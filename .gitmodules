@@ -2,3 +2,7 @@
 	path = ext/terraform
 	url = https://github.com/hashicorp/terraform-website-prototype.git
 	branch = terraform-placeholder
+[submodule "ext/providers/rundeck"]
+	path = ext/providers/rundeck
+	url = https://github.com/hashicorp/terraform-website-prototype.git
+	branch = provider-rundeck-placeholder
