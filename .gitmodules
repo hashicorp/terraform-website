@@ -1,0 +1,4 @@
+[submodule "ext/terraform"]
+	path = ext/terraform
+	url = https://github.com/hashicorp/terraform-website-prototype.git
+	branch = terraform-placeholder
