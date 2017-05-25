@@ -6,6 +6,11 @@ activate :hashicorp do |h|
   h.github_slug = "hashicorp/terraform"
 end
 
+# "ext" contains submodules for other repositories we pull docs from,
+# but we reference these via symlinks elsewhere in this repo.
+ignore "ext/**/*"
+config[:file_watcher_ignore] += [/^(\/website\/)?ext\//]
+
 helpers do
   # Returns the FQDN of the image URL.
   #
