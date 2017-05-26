@@ -1,8 +1,12 @@
 [submodule "ext/terraform"]
 	path = ext/terraform
-	url = https://github.com/hashicorp/terraform-website-prototype.git
-	branch = terraform-placeholder
+	url = https://github.com/hashicorp/terraform.git
+	branch = split-website-prototype
 [submodule "ext/providers/rundeck"]
 	path = ext/providers/rundeck
 	url = https://github.com/hashicorp/terraform-website-prototype.git
 	branch = provider-rundeck-placeholder
+[submodule "ext/providers/opc"]
+	path = ext/providers/opc
+	url = https://github.com/hashicorp/terraform-provider-opc.git
+	branch = split-website-prototype
