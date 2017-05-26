@@ -18,7 +18,7 @@ the various source files.
 Running the site locally is simple:
 
 1. Install [Docker](https://docs.docker.com/engine/installation/) if you have not already done so
-2. Clone this repo
+2. Clone this repo and its submodules: `git clone --recursive https://github.com/hashicorp/terraform-website.git`
 3. Run `make website`
 
 Open up `http://localhost:4567`. Note that some URLs you may need to append
