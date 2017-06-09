@@ -1,0 +1,272 @@
+[submodule "ext/providers/alicloud"]
+	path = ext/providers/alicloud
+	url = https://github.com/terraform-providers/terraform-provider-alicloud.git
+	branch = stable-website
+[submodule "ext/providers/archive"]
+	path = ext/providers/archive
+	url = https://github.com/terraform-providers/terraform-provider-archive.git
+	branch = stable-website
+[submodule "ext/providers/arukas"]
+	path = ext/providers/arukas
+	url = https://github.com/terraform-providers/terraform-provider-arukas.git
+	branch = stable-website
+[submodule "ext/providers/aws"]
+	path = ext/providers/aws
+	url = https://github.com/terraform-providers/terraform-provider-aws.git
+	branch = stable-website
+[submodule "ext/providers/azure"]
+	path = ext/providers/azure
+	url = https://github.com/terraform-providers/terraform-provider-azure.git
+	branch = stable-website
+[submodule "ext/providers/azurerm"]
+	path = ext/providers/azurerm
+	url = https://github.com/terraform-providers/terraform-provider-azurerm.git
+	branch = stable-website
+[submodule "ext/providers/bitbucket"]
+	path = ext/providers/bitbucket
+	url = https://github.com/terraform-providers/terraform-provider-bitbucket.git
+	branch = stable-website
+[submodule "ext/providers/chef"]
+	path = ext/providers/chef
+	url = https://github.com/terraform-providers/terraform-provider-chef.git
+	branch = stable-website
+[submodule "ext/providers/circonus"]
+	path = ext/providers/circonus
+	url = https://github.com/terraform-providers/terraform-provider-circonus.git
+	branch = stable-website
+[submodule "ext/providers/clc"]
+	path = ext/providers/clc
+	url = https://github.com/terraform-providers/terraform-provider-clc.git
+	branch = stable-website
+[submodule "ext/providers/cloudflare"]
+	path = ext/providers/cloudflare
+	url = https://github.com/terraform-providers/terraform-provider-cloudflare.git
+	branch = stable-website
+[submodule "ext/providers/cloudstack"]
+	path = ext/providers/cloudstack
+	url = https://github.com/terraform-providers/terraform-provider-cloudstack.git
+	branch = stable-website
+[submodule "ext/providers/cobbler"]
+	path = ext/providers/cobbler
+	url = https://github.com/terraform-providers/terraform-provider-cobbler.git
+	branch = stable-website
+[submodule "ext/providers/consul"]
+	path = ext/providers/consul
+	url = https://github.com/terraform-providers/terraform-provider-consul.git
+	branch = stable-website
+[submodule "ext/providers/datadog"]
+	path = ext/providers/datadog
+	url = https://github.com/terraform-providers/terraform-provider-datadog.git
+	branch = stable-website
+[submodule "ext/providers/dme"]
+	path = ext/providers/dme
+	url = https://github.com/terraform-providers/terraform-provider-dme.git
+	branch = stable-website
+[submodule "ext/providers/dns"]
+	path = ext/providers/dns
+	url = https://github.com/terraform-providers/terraform-provider-dns.git
+	branch = stable-website
+[submodule "ext/providers/dnsimple"]
+	path = ext/providers/dnsimple
+	url = https://github.com/terraform-providers/terraform-provider-dnsimple.git
+	branch = stable-website
+[submodule "ext/providers/do"]
+	path = ext/providers/do
+	url = https://github.com/terraform-providers/terraform-provider-digitalocean.git
+	branch = stable-website
+[submodule "ext/providers/docker"]
+	path = ext/providers/docker
+	url = https://github.com/terraform-providers/terraform-provider-docker.git
+	branch = stable-website
+[submodule "ext/providers/dyn"]
+	path = ext/providers/dyn
+	url = https://github.com/terraform-providers/terraform-provider-dyn.git
+	branch = stable-website
+[submodule "ext/providers/external"]
+	path = ext/providers/external
+	url = https://github.com/terraform-providers/terraform-provider-external.git
+	branch = stable-website
+[submodule "ext/providers/fastly"]
+	path = ext/providers/fastly
+	url = https://github.com/terraform-providers/terraform-provider-fastly.git
+	branch = stable-website
+[submodule "ext/providers/github"]
+	path = ext/providers/github
+	url = https://github.com/terraform-providers/terraform-provider-github.git
+	branch = stable-website
+[submodule "ext/providers/gitlab"]
+	path = ext/providers/gitlab
+	url = https://github.com/terraform-providers/terraform-provider-gitlab.git
+	branch = stable-website
+[submodule "ext/providers/google"]
+	path = ext/providers/google
+	url = https://github.com/terraform-providers/terraform-provider-google.git
+	branch = stable-website
+[submodule "ext/providers/grafana"]
+	path = ext/providers/grafana
+	url = https://github.com/terraform-providers/terraform-provider-grafana.git
+	branch = stable-website
+[submodule "ext/providers/heroku"]
+	path = ext/providers/heroku
+	url = https://github.com/terraform-providers/terraform-provider-heroku.git
+	branch = stable-website
+[submodule "ext/providers/http"]
+	path = ext/providers/http
+	url = https://github.com/terraform-providers/terraform-provider-http.git
+	branch = stable-website
+[submodule "ext/providers/icinga2"]
+	path = ext/providers/icinga2
+	url = https://github.com/terraform-providers/terraform-provider-icinga2.git
+	branch = stable-website
+[submodule "ext/providers/ignition"]
+	path = ext/providers/ignition
+	url = https://github.com/terraform-providers/terraform-provider-ignition.git
+	branch = stable-website
+[submodule "ext/providers/influxdb"]
+	path = ext/providers/influxdb
+	url = https://github.com/terraform-providers/terraform-provider-influxdb.git
+	branch = stable-website
+[submodule "ext/providers/kubernetes"]
+	path = ext/providers/kubernetes
+	url = https://github.com/terraform-providers/terraform-provider-kubernetes.git
+	branch = stable-website
+[submodule "ext/providers/librato"]
+	path = ext/providers/librato
+	url = https://github.com/terraform-providers/terraform-provider-librato.git
+	branch = stable-website
+[submodule "ext/providers/local"]
+	path = ext/providers/local
+	url = https://github.com/terraform-providers/terraform-provider-local.git
+	branch = stable-website
+[submodule "ext/providers/logentries"]
+	path = ext/providers/logentries
+	url = https://github.com/terraform-providers/terraform-provider-logentries.git
+	branch = stable-website
+[submodule "ext/providers/mailgun"]
+	path = ext/providers/mailgun
+	url = https://github.com/terraform-providers/terraform-provider-mailgun.git
+	branch = stable-website
+[submodule "ext/providers/mysql"]
+	path = ext/providers/mysql
+	url = https://github.com/terraform-providers/terraform-provider-mysql.git
+	branch = stable-website
+[submodule "ext/providers/newrelic"]
+	path = ext/providers/newrelic
+	url = https://github.com/terraform-providers/terraform-provider-newrelic.git
+	branch = stable-website
+[submodule "ext/providers/nomad"]
+	path = ext/providers/nomad
+	url = https://github.com/terraform-providers/terraform-provider-nomad.git
+	branch = stable-website
+[submodule "ext/providers/ns1"]
+	path = ext/providers/ns1
+	url = https://github.com/terraform-providers/terraform-provider-ns1.git
+	branch = stable-website
+[submodule "ext/providers/oneandone"]
+	path = ext/providers/oneandone
+	url = https://github.com/terraform-providers/terraform-provider-oneandone.git
+	branch = stable-website
+[submodule "ext/providers/opc"]
+	path = ext/providers/opc
+	url = https://github.com/terraform-providers/terraform-provider-opc.git
+	branch = stable-website
+[submodule "ext/providers/openstack"]
+	path = ext/providers/openstack
+	url = https://github.com/terraform-providers/terraform-provider-openstack.git
+	branch = stable-website
+[submodule "ext/providers/opsgenie"]
+	path = ext/providers/opsgenie
+	url = https://github.com/terraform-providers/terraform-provider-opsgenie.git
+	branch = stable-website
+[submodule "ext/providers/ovh"]
+	path = ext/providers/ovh
+	url = https://github.com/terraform-providers/terraform-provider-ovh.git
+	branch = stable-website
+[submodule "ext/providers/packet"]
+	path = ext/providers/packet
+	url = https://github.com/terraform-providers/terraform-provider-packet.git
+	branch = stable-website
+[submodule "ext/providers/pagerduty"]
+	path = ext/providers/pagerduty
+	url = https://github.com/terraform-providers/terraform-provider-pagerduty.git
+	branch = stable-website
+[submodule "ext/providers/postgresql"]
+	path = ext/providers/postgresql
+	url = https://github.com/terraform-providers/terraform-provider-postgresql.git
+	branch = stable-website
+[submodule "ext/providers/powerdns"]
+	path = ext/providers/powerdns
+	url = https://github.com/terraform-providers/terraform-provider-powerdns.git
+	branch = stable-website
+[submodule "ext/providers/profitbricks"]
+	path = ext/providers/profitbricks
+	url = https://github.com/terraform-providers/terraform-provider-profitbricks.git
+	branch = stable-website
+[submodule "ext/providers/rabbitmq"]
+	path = ext/providers/rabbitmq
+	url = https://github.com/terraform-providers/terraform-provider-rabbitmq.git
+	branch = stable-website
+[submodule "ext/providers/rancher"]
+	path = ext/providers/rancher
+	url = https://github.com/terraform-providers/terraform-provider-rancher.git
+	branch = stable-website
+[submodule "ext/providers/random"]
+	path = ext/providers/random
+	url = https://github.com/terraform-providers/terraform-provider-random.git
+	branch = stable-website
+[submodule "ext/providers/rundeck"]
+	path = ext/providers/rundeck
+	url = https://github.com/terraform-providers/terraform-provider-rundeck.git
+	branch = stable-website
+[submodule "ext/providers/scaleway"]
+	path = ext/providers/scaleway
+	url = https://github.com/terraform-providers/terraform-provider-scaleway.git
+	branch = stable-website
+[submodule "ext/providers/softlayer"]
+	path = ext/providers/softlayer
+	url = https://github.com/terraform-providers/terraform-provider-softlayer.git
+	branch = stable-website
+[submodule "ext/providers/spotinst"]
+	path = ext/providers/spotinst
+	url = https://github.com/terraform-providers/terraform-provider-spotinst.git
+	branch = stable-website
+[submodule "ext/providers/statuscake"]
+	path = ext/providers/statuscake
+	url = https://github.com/terraform-providers/terraform-provider-statuscake.git
+	branch = stable-website
+[submodule "ext/providers/template"]
+	path = ext/providers/template
+	url = https://github.com/terraform-providers/terraform-provider-template.git
+	branch = stable-website
+[submodule "ext/providers/terraform"]
+	path = ext/providers/terraform
+	url = https://github.com/terraform-providers/terraform-provider-terraform.git
+	branch = stable-website
+[submodule "ext/providers/terraform-enterprise"]
+	path = ext/providers/terraform-enterprise
+	url = https://github.com/terraform-providers/terraform-provider-atlas.git
+	branch = stable-website
+[submodule "ext/providers/tls"]
+	path = ext/providers/tls
+	url = https://github.com/terraform-providers/terraform-provider-tls.git
+	branch = stable-website
+[submodule "ext/providers/triton"]
+	path = ext/providers/triton
+	url = https://github.com/terraform-providers/terraform-provider-triton.git
+	branch = stable-website
+[submodule "ext/providers/ultradns"]
+	path = ext/providers/ultradns
+	url = https://github.com/terraform-providers/terraform-provider-ultradns.git
+	branch = stable-website
+[submodule "ext/providers/vault"]
+	path = ext/providers/vault
+	url = https://github.com/terraform-providers/terraform-provider-vault.git
+	branch = stable-website
+[submodule "ext/providers/vcd"]
+	path = ext/providers/vcd
+	url = https://github.com/terraform-providers/terraform-provider-vcd.git
+	branch = stable-website
+[submodule "ext/providers/vsphere"]
+	path = ext/providers/vsphere
+	url = https://github.com/terraform-providers/terraform-provider-vsphere.git
+	branch = stable-website
