@@ -6,6 +6,9 @@ activate :hashicorp do |h|
   h.github_slug = "hashicorp/terraform"
 end
 
+ignore "ext/**/*"
+config[:file_watcher_ignore] += [/^(\/website\/)?ext\//]
+
 helpers do
   # Returns the FQDN of the image URL.
   #
