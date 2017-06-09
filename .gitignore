@@ -1,0 +1,5 @@
+.vagrant
+.bundle
+build
+node_modules
+vendor
