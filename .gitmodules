@@ -274,3 +274,7 @@
 	path = ext/providers/null
 	url = https://github.com/terraform-providers/terraform-provider-null.git
 	branch = stable-website
+[submodule "ext/terraform"]
+	path = ext/terraform
+	url = https://github.com/hashicorp/terraform.git
+	branch = stable-website
