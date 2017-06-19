@@ -21,4 +21,8 @@ website:
 		--volume "$(shell pwd):/website" \
 		hashicorp/middleman-hashicorp:${VERSION}
 
-.PHONY: build website
+sync:
+	@echo "==> Syncing submodules for upstream changes"
+	@git submodule update --init --remote
+
+.PHONY: build website sync
