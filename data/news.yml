@@ -9,9 +9,9 @@ featured_post:
 
 additional_posts:
   -
-    title: Terraform 0.9 Released
-    body: Terraform 0.9 adds major new functionality to Terraform. Read the highlights from the 0.9 release.
-    link_url: https://www.hashicorp.com/blog/terraform-0-9/
+    title: Terraform 0.9.8 released
+    body: We are pleased to announce the release of Terraform 0.9.8. This release includes new data sources, new resources, and more.
+    link_url: https://www.hashicorp.com/blog/terraform-0-9-8/
   -
     title: 'Webinar: Multi-Cloud, One Command with Terraform'
     body: Watch our recent webinar with Mitchell Hashimoto to learn how Terraform provisions infrastructure across different clouds using a consistent workflow.
