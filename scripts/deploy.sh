@@ -5,17 +5,6 @@ PROJECT="terraform"
 PROJECT_URL="www.terraform.io"
 FASTLY_SERVICE_ID="7GrxRJP3PVBuqQbyxYQ0MV"
 
-# Ensure the proper AWS environment variables are set
-if [ -z "$AWS_ACCESS_KEY_ID" ]; then
-  echo "Missing AWS_ACCESS_KEY_ID!"
-  exit 1
-fi
-
-if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
-  echo "Missing AWS_SECRET_ACCESS_KEY!"
-  exit 1
-fi
-
 # Ensure the proper Fastly keys are set
 if [ -z "$FASTLY_API_KEY" ]; then
   echo "Missing FASTLY_API_KEY!"
