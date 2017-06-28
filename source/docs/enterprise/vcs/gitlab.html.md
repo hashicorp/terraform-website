@@ -14,42 +14,44 @@ Additionally, plans are run when a pull request is created or updated. Terraform
 Enterprise will update the pull request with the result of the Terraform plan
 providing quick feedback on proposed changes.
 
-## Registering an OAuth Application & Client
+## Setup an Organization to use GitLab
 
-### Creating and Updating an GitLab OAuth Application
+### Create a GitLab OAuth Application
 
-You will need to register Terraform Enterprise as an OAuth Application within your GitLab account.
+You will need to register Terraform Enterprise as an OAuth application within your GitLab account. Proceed to https://gitlab.com/profile/applications (for GitLab.com). Fill out the form with the following information.
 
-Proceed to https://gitlab.com/profile/applications. Fill out the required information and set the `Redirect URI` to a placeholder (i.e. http://example.com), as you will need to register the GitLab OAuth Client with Terraform Enterprise before it can give you this value.
+- **Name**: Terraform Enterprise (or whatever you want)
+- **Redirect URI**: http://example.com (You will need to come back and fill in the real value later)
+- **Scopes**: None
 
-When you save the form, you will be redirected to the OAuth Application view. Copy your Application Key and Secret as you will need them to connect GitLab to Terraform Enterprise.
+Upon saving, you will be redirected to the OAuth application view. Copy the **Application Id** and **Secret**. You will need to enter these values into Terraform Enterprise. Leave this tab open in your browser as you will need to return to it in a moment.
 
 
-### Creating a Terraform Enterprise OAuth Client
+### Create a Terraform Enterprise OAuth Client
 
-In a new tab, navigate to https://atlas.hashicorp.com/settings and in the left-side panel, click on the organization that you’d like to administer your GitLab connection, then click on “Configuration” in the left-side panel.
+In a new tab, navigate to https://atlas.hashicorp.com/settings and, in the left-side panel, select the Organization that you’d like to setup to use with GitLab. Then click on **Configuration** in the left-side panel.
 
-In the “Add OAuthClient” pane, select your GitLab installation type (GitLab.com, GitLab Community Edition, or GitLab Enterprise) and fill in your application key and secret. In the base URL field, enter the root URL of your GitLab instance (i.e. https://gitlab.com for GitLab.com). In the API URL field, enter the base API URL (i.e. https://gitlab.com/api/v3 for GitLab.com). Create the OAuth client.
+Scroll down to the **Add OAuthClient** pane and fill out the form with the following information.
 
-Once you have created your client, you will be redirected back to the configurations page for your chosen organization. On that page, find the “OAuth Clients” pane and copy the `Callback URL` for your GitLab OAuth Client. In a new tab, navigate back to https://gitlab.com/profile/applications select the terraform-enterprise OAuth Application and click edit. Enter the `Callback URL` you just copied in the field labeled `Redirect URI`. Save the application.
+- **Oauth client**: Your GitLab installation type (e.g. GitLab.com, GitLab Community Edition, or GitLab Enterprise)
+- **Application key**: Application Id (from GitLab in the previous section)
+- **Base url**: https://gitlab.com (for GitLab.com; If you are using GitLab Community Edition or GitLab Enterprise your URL will be different)
+- **Api url**: https://gitlab.com/api/v3 (for GitLab.com; If you are using GitLab Community Edition or GitLab Enterprise your URL will be different)
+- **Application secret**: Secret (from GitLab in the previous section)
 
-Your OAuth Client should now be enabled for your Organization to use within Terraform Enterprise.
+Once you have created your client, you will be redirected back to the **Configuration** page for your chosen Organization. On that page, find the **OAuth Clients** pane and copy the **Callback url** for GitLab. Leave this tab open in your browser as you will need to return to it in a moment.
 
-## Using Terraform Enterprise with GitLab
+Back in the open GitLab tab, select the Terraform Enterprise OAuth application and click edit. Enter the **Callback url** you just copied in the field labeled **Redirect URI**. Save the OAuth application.
 
-There are two ways to connect your preferred VCS Host to Terraform Enterprise. You can generate an OAuth token both at the user and organization level.
+### Connect a GitLab User to Organization
 
-### Linking your Terraform Enterprise Organization
+Back on the **Configuration** page for your Terraform Enterprise Organization, in the **OAuth Connections** pane, you can now connect your organization to GitLab by clicking **Connect**. You will be briefly redirected to GitLab in order to authenticate the client. You should be successfuly redirected back to Terraform Enterprise. If you are not, check the values in your OAuth client and make sure they match exactly with the values associated with your GitLab OAuth application.
 
-Return to the settings page for the organization in which you created the OAuth Client (https://atlas.hashicorp.com/settings/organizations/your-organization/configuration). Find the section entitled `Organization Connections to OAuth Client` and click connect beneath your GitLab installation. You will be briefly redirected to GitLab in order to authenticate the client. Once you are redirected back to Terraform Enterprise, you should see that the token was created with a unique identifier. There is also an option to destroy the token and disconnect the organization from your preferred GitLab installation. You are now ready to use your organization's token to manage builds and configurations within Terraform Enterprise.
-
-### Linking your Terraform Enterprise User Account
-
-Navigate to https://atlas.hashicorp.com/settings/connections and click on “Connect “GitLab.com to Atlas”. You will briefly be redirected to GitLab in order to authenticate your OAuth Client. Once redirected back to Terraform Enterprise, You should see a green flash banner with the message: "Successfully Linked to GitLab".
+The Terraform Enterprise GitLab integration is now ready your Organization to start using.
 
 ## Connecting Configurations
 
-Once you have linked a GitLab installation to your account or organization,
+Once you have linked a GitLab installation to your Organization,
 you are ready to begin creating Packer Builds and Terraform Environments linked
 to your desired GitLab repository.
 
