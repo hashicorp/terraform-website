@@ -10,7 +10,7 @@ build:
 		hashicorp/middleman-hashicorp:${VERSION} \
 		bundle exec middleman build --verbose --clean
 
-website: sync
+website:
 	@echo "==> Starting website in Docker..."
 	@docker run \
 		--interactive \
