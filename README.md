@@ -26,7 +26,8 @@ like any normal GitHub project, and we'll merge it in.
 The site can be run locally as follows:
 
 1. Install [Docker](https://docs.docker.com/engine/installation/) if you have not already done so
-2. Clone this repo and run `make website`
+2. Clone this repo and run `make sync` then `make website`
+3. For future updates of provider documentation, run `make sync` again.
 
 Then open up `http://localhost:4567`. Note that some URLs may need ".html" appended to make them work (in the navigation).
 
