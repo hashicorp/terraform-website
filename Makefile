@@ -25,4 +25,8 @@ sync:
 	@echo "==> Syncing submodules for upstream changes"
 	@git submodule update --init --remote
 
+deinit:
+	@echo "==> Deinitializing submodules"
+	@git submodule deinit --all -f
+
 .PHONY: build website sync
