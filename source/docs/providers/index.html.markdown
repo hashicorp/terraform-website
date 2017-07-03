@@ -1,1 +1,1 @@
-../../../ext/terraform/website/docs/providers/index.html.markdown
+../../../ext/terraform/website/source/docs/providers/index.html.markdown
