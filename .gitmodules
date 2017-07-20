@@ -1,7 +1,7 @@
 [submodule "ext/terraform"]
 	path = ext/terraform
 	url = https://github.com/hashicorp/terraform.git
-	branch = stable-website
+	branch = master
 [submodule "ext/providers/alicloud"]
 	path = ext/providers/alicloud
 	url = https://github.com/terraform-providers/terraform-provider-alicloud
