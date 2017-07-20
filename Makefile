@@ -2,11 +2,14 @@ VERSION?="0.3.28"
 
 build:
 	@echo "==> Starting build in Docker..."
+	@mkdir -p build
 	@docker run \
 		--interactive \
 		--rm \
 		--tty \
-		--volume "$(shell pwd):/website" \
+		--volume "$(shell pwd)/ext:/ext" \
+		--volume "$(shell pwd)/content:/website" \
+		--volume "$(shell pwd)/build:/website/build" \
 		hashicorp/middleman-hashicorp:${VERSION} \
 		bundle exec middleman build --verbose --clean
 
@@ -18,7 +21,8 @@ website:
 		--tty \
 		--publish "4567:4567" \
 		--publish "35729:35729" \
-		--volume "$(shell pwd):/website" \
+		--volume "$(shell pwd)/ext:/ext" \
+		--volume "$(shell pwd)/content:/website" \
 		hashicorp/middleman-hashicorp:${VERSION}
 
 sync:
