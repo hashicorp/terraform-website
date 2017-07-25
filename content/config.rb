@@ -100,4 +100,41 @@ helpers do
 
     return classes.join(" ")
   end
+
+  # Returns a URL where the content of the given page can be edited
+  # on Github, taking into account the symlinks into other repository
+  # submodules.
+  def github_edit_url(page)
+    fn = File.realpath(page.source_file)
+
+    # This depends on the way we mount the volumes in the Docker container:
+    # /website is the main website content (the "content" directory in the repo)
+    # /ext is all the submodules (the "ext" directory in the repo)
+    if fn.start_with?('/website/')
+      return "https://github.com/hashicorp/terraform-website/edit/master/content/#{fn['/website/'.length..-1]}"
+    end
+
+    if fn.start_with?('/ext/terraform/')
+      return "https://github.com/hashicorp/terraform/edit/master/#{fn['/ext/terraform/'.length..-1]}"
+    end
+
+    if fn.start_with?('/ext/providers/')
+      rel = fn['/ext/providers/'.length..-1]
+      provider, rel = rel.split('/', 2)
+
+      # digitalocean has a different provider name than its repository name,
+      # for historical reasons.
+      if provider == "do"
+        provider = "digitalocean"
+      end
+
+      return "https://github.com/terraform-providers/terraform-provider-#{provider}/edit/master/#{rel}"
+    end
+
+    # Should never get here, but if we do we'll at least drop the user
+    # somewhere that they can see how the website repo works.
+    return "https://github.com/hashicorp/terraform-website"
+
+  end
+
 end
