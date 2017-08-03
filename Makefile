@@ -2,14 +2,14 @@ VERSION?="0.3.28"
 
 build:
 	@echo "==> Starting build in Docker..."
-	@mkdir -p build
+	@mkdir -p content/build
 	@docker run \
 		--interactive \
 		--rm \
 		--tty \
 		--volume "$(shell pwd)/ext:/ext" \
 		--volume "$(shell pwd)/content:/website" \
-		--volume "$(shell pwd)/build:/website/build" \
+		--volume "$(shell pwd)/content/build:/website/build" \
 		hashicorp/middleman-hashicorp:${VERSION} \
 		bundle exec middleman build --verbose --clean
 
