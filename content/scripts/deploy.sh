@@ -9,12 +9,12 @@ FASTLY_DICTIONARY_ID="7n1Z1felxjjsUB4EcqPkpI"
 # Ensure the proper AWS environment variables are set
 if [ -z "$AWS_ACCESS_KEY_ID" ]; then
   echo "Missing AWS_ACCESS_KEY_ID!"
-  exit 1
+#  exit 1
 fi
 
 if [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
   echo "Missing AWS_SECRET_ACCESS_KEY!"
-  exit 1
+#  exit 1
 fi
 
 # Ensure the proper Fastly keys are set
