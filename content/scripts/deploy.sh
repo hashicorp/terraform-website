@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -e
+set -x
 
 PROJECT="terraform"
 PROJECT_URL="www.terraform.io"
@@ -64,6 +65,10 @@ if [ -z "$NO_UPLOAD" ]; then
     --add-header="x-amz-meta-surrogate-key: site-$PROJECT" \
     sync "$DIR/build/" "s3://hc-sites/$PROJECT/latest/"
 
+  printf "Sleeping after upload..."
+  sleep 5
+  printf "ok!\n"
+
   # The s3cmd guessed mime type for text files is often wrong. This is
   # problematic for some assets, so force their mime types to be correct.
   echo "Overriding javascript mime-types..."
@@ -75,6 +80,10 @@ if [ -z "$NO_UPLOAD" ]; then
     --recursive \
     modify "s3://hc-sites/$PROJECT/latest/"
 
+  printf "Sleeping after modify..."
+  sleep 5
+  printf "ok!\n"
+
   echo "Overriding css mime-types..."
   s3cmd \
     --mime-type="text/css" \
@@ -84,6 +93,10 @@ if [ -z "$NO_UPLOAD" ]; then
     --recursive \
     modify "s3://hc-sites/$PROJECT/latest/"
 
+  printf "Sleeping after modify..."
+  sleep 5
+  printf "ok!\n"
+
   echo "Overriding svg mime-types..."
   s3cmd \
     --mime-type="image/svg+xml" \
@@ -92,6 +105,11 @@ if [ -z "$NO_UPLOAD" ]; then
     --include "*.svg" \
     --recursive \
     modify "s3://hc-sites/$PROJECT/latest/"
+
+  printf "Sleeping after final modify..."
+  sleep 5
+  printf "ok!\n"
+
 fi
 
 # Add redirects if they exist
