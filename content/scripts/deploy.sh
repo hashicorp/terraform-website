@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -e
-set -x
 
 PROJECT="terraform"
 PROJECT_URL="www.terraform.io"
