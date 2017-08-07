@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
+# Don't Change these or Fastly will be broken!
 PROJECT="terraform"
 PROJECT_URL="www.terraform.io"
 FASTLY_SERVICE_ID="7GrxRJP3PVBuqQbyxYQ0MV"
