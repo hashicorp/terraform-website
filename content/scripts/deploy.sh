@@ -63,6 +63,7 @@ if [ -z "$NO_UPLOAD" ]; then
     --add-header="Cache-Control: max-age=14400" \
     --add-header="x-amz-meta-surrogate-control: max-age=31536000, stale-white-revalidate=86400, stale-if-error=604800" \
     --add-header="x-amz-meta-surrogate-key: site-$PROJECT" \
+    --add-header="x-amz-acl: bucket-owner-full-control" \
     sync "$DIR/build/" "s3://hc-sites/$PROJECT/latest/"
 
   printf "Sleeping after upload..."
