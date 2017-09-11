@@ -1,43 +1,49 @@
 ---
 layout: "enterprise"
-page_title: "Accessing TFE - Getting Started - Terraform Enterprise"
+page_title: "Accessing TFE Beta - Getting Started - Terraform Enterprise Beta"
 ---
 
-# Accessing Terraform Enterprise v2
+# Accessing Terraform Enterprise Beta
 
-TFE v2 is in beta, and you can't currently use it with your existing TFE data and configurations. To start testing TFE v2, you must:
+The Terraform Enterprise beta is a rewritten version of TFE, and you can't currently use it with your existing TFE data and configurations. To start testing TFE v2, you must:
 
 - Make sure you have a TFE account.
+- Contact HashiCorp sales to request access to the TFE beta.
 - Manually navigate to TFE v2.
-- Create a new organization specifically for working with TFE v2.
+- Create a new organization for working with TFE v2.
 
 ## Creating a TFE Account
 
-If you don't already have a TFE account, you must create one. You can use the same user account to access TFE v1 and the TFE v2 beta.
+If you don't already have a TFE account, you must create one. You can use the same user account to access TFE classic and TFE beta, although you'll use separate organizations.
 
-TODO: I don't remember how I created an account, and I can't find the links for it when I open atlas in a private browser.
+[Click here to request a free trial of TFE][signup], or contact HashiCorp sales to purchase a TFE subscription.
 
-## Getting Accepted into the TFE v2 Beta
+[signup]: https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform&_ga=2.40850658.1512399790.1504740058-931972891.1498668200#terraform-contact-form
 
-TODO: Do you need to get whitelisted to use v2? If so, we need to write down the acceptance process.
+## Getting Accepted into the Beta Program
 
-## Navigating to TFE v2
+This beta program is currently by invitation only. User accounts that aren't on the beta list cannot navigate to the beta version of TFE.
 
-To access TFE v2, you must manually navigate to the following URL:
+To participate, please contact HashiCorp sales.
+
+TODO: get details from product when this is solidified. Likely there'll be a web form.
+
+
+## Navigating to TFE Beta
+
+To access TFE beta, you must manually navigate to the following URL:
 
 <https://atlas.hashicorp.com/v2>
 
-At a later date, we will add a discoverable link in the TFE navigation menu. For now, we're using this manual step to help manage the rate of beta testing and avoid confusing v1 users.
+At a later date, when the beta version is more mature, we will add a discoverable link in the TFE navigation menu.
 
 ## Creating an Organization
 
-After you've navigated to TFE v2, you will be prompted to create a new organization. TFE v2 **cannot** currently import settings and workspaces from an existing TFE v1 organization.
-
-To create your v2 organization, enter a name (distinct from your v1 organization(s)) and an admin email address at the prompt.
+After you've navigated to TFE beta, you will be prompted to create a new organization. Enter a name (distinct from your main TFE organization) and an admin email address at the prompt:
 
 ![TFE's new organization prompt](./images/new_organization.png)
 
-TODO: Can't remember whether there's a different first-run experience we should point out here.
+TFE beta cannot currently import settings and workspaces from an existing TFE classic organization. We will enable migration from TFE classic at a later date, when the beta version is more mature.
 
 For more information about organizations, see [the TFE docs about users, teams, and organizations.](TODO)
 
