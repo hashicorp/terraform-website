@@ -1,3 +1,8 @@
+---
+layout: enterprise2
+page_title: "Variables - API Docs - Terraform Enterprise Beta"
+---
+
 # Variables API
 
 
@@ -57,7 +62,7 @@ curl \
 
 ```json
 {
-  "data": { 
+  "data": {
     "id":"var-EavQ1LztoRTQHSNT",
     "type":"vars",
     "attributes": {
@@ -137,7 +142,7 @@ https://atlas.hashicorp.com/api/v2/vars?filter%5Borganization%5D%5Busername%5D=s
 }
 ```
 
-## 
+##
 
 ## Update Variables
 
@@ -214,4 +219,4 @@ $ curl \
 }
 ```
 
-## 
+##

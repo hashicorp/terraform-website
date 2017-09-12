@@ -1,3 +1,8 @@
+---
+layout: enterprise2
+page_title: "Linkable Repos - API Docs - Terraform Enterprise Beta"
+---
+
 # Linkable Repos API
 
 The Linkable Repos API is used to retreive the list of available repositories. This is used to identify the ID of a repository when configuring the ingress-trigger on a workspace.
