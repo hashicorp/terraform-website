@@ -1,6 +1,7 @@
 ---
-layout: "enterprise"
+layout: "enterprise2"
 page_title: "Accessing TFE Beta - Getting Started - Terraform Enterprise Beta"
+sidebar_current: "docs-enterprise2-started-access"
 ---
 
 # Accessing Terraform Enterprise Beta

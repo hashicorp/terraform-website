@@ -1,6 +1,7 @@
 ---
 page_title: "Index - API Docs - Terraform Enterprise Beta"
 layout: "enterprise2"
+sidebar_current: "docs-enterprise2-api"
 ---
 
 

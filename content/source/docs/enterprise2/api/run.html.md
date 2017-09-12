@@ -1,6 +1,7 @@
 ---
 layout: enterprise2
 page_title: "Runs - API Docs - Terraform Enterprise Beta"
+sidebar_current: "docs-enterprise2-api-run"
 ---
 
 # Runs API
