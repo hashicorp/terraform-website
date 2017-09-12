@@ -1,3 +1,8 @@
+---
+layout: enterprise2
+page_title: "Workspaces - API Docs - Terraform Enterprise Beta"
+---
+
 # Workspaces API
 
 
@@ -12,7 +17,7 @@ This endpoint creates a new workspace in the organization.
 ### Parameters
 
 - `name` (string: \<required\>) - Specifies the name of the workspace. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
-- `environment`(string: "default") - Specifies the environment attribute on the workspace. 
+- `environment`(string: "default") - Specifies the environment attribute on the workspace.
 - `organization` (string: \<required\>) - Specififes the username or organizaiton name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
 
 ### Sample Payload
@@ -72,7 +77,7 @@ $ curl \
 
 
 
-##Create a Workspace with VCS Configuration
+## Create a Workspace with VCS Configuration
 
 The default `/workspaces` endpoint creates a workspace without configuring the VCS connection (`ingress-trigger`). In Beta there is no dedicated endpoint for managing the `ingress-trigger`so it must be configured at the time of workspace creation.
 
@@ -82,7 +87,7 @@ The default `/workspaces` endpoint creates a workspace without configuring the V
 ### Parameters
 
 - `name` (string: \<required\>) - Specifies the name of the workspace. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
-- `environment`(string: "default") - Specifies the environment attribute on the workspace. 
+- `environment`(string: "default") - Specifies the environment attribute on the workspace.
 - `organization` (string: \<required\>) - Specififes the username or organizaiton name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
 - `default-branch`(boolean: true) - specifies if the default branch should be used. In the beta release this is set to `true` by default and it is not configurable. Providing a branch will result in an error.
 - `path`(string:'/') - Specifies the directory of the repo to be used for the workspaces. Only this directory is cloned and the root path and other directories are not cloned.
@@ -167,7 +172,7 @@ $ curl \
   https://atlas.hashicorp.com/api/v2/organizations/skierkowski/workspaces
 ```
 
-### 
+###
 
 ```json
 {

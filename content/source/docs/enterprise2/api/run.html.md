@@ -1,3 +1,8 @@
+---
+layout: enterprise2
+page_title: "Runs - API Docs - Terraform Enterprise Beta"
+---
+
 # Runs API
 
 Performing a run requires creation of a run which also creates a plan. Once a plan is executed the workspace may automatically trigger an apply if the workspace is configured to automatically perform the apply. If it is not configured to automatically perform an apply, you can perform the Apply vai the API.
@@ -143,4 +148,4 @@ curl \
 }
 ```
 
-## 
+##
