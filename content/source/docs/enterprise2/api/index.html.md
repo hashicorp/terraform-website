@@ -56,7 +56,7 @@ new_workspace  = {
     }
   }
 }
-create_workspace_response     = post(workspaces_url, new_workspace.to_json, headers)
+create_workspace_response     = RestClient.post(workspaces_url, new_workspace.to_json, headers)
 create_workspace_response_obj = JSON.parse(create_workspace_response)
 puts create_workspace_response_obj
 
