@@ -13,6 +13,7 @@ sidebar_current: "docs-enterprise2-api-workspaces"
 This endpoint creates a new workspace in the organization.
 
 **Method**: POST
+
 **Path**: /organizations/:organization/workspaces
 
 ### Parameters
@@ -83,6 +84,7 @@ $ curl \
 The default `/workspaces` endpoint creates a workspace without configuring the VCS connection (`ingress-trigger`). In Beta there is no dedicated endpoint for managing the `ingress-trigger`so it must be configured at the time of workspace creation.
 
 **Method**: POST
+
 **Path**: /organizations/:organization/compound-workspaces
 
 ### Parameters
@@ -158,6 +160,7 @@ $ curl \
 This endpoint lists workspaces in the organization.
 
 **Method**: GET
+
 **Path**: /organizations/:organization/workspaces
 
 ### Parameters

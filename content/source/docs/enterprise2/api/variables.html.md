@@ -11,6 +11,7 @@ sidebar_current: "docs-enterprise2-api-variables"
 ## Create a Variable
 
 **Method**: POST
+
 **Path**: /vars
 
 ### Parameters
@@ -94,6 +95,7 @@ curl \
 ## List Variables
 
 **Method**: GET
+
 **Path**: /vars
 
 ### Parameters
@@ -148,6 +150,7 @@ https://atlas.hashicorp.com/api/v2/vars?filter%5Borganization%5D%5Busername%5D=s
 ## Update Variables
 
 **Method**: PATCH
+
 **Path**: /vars/:variable_id
 
 ### Parameters
