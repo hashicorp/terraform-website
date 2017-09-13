@@ -1,7 +1,7 @@
 ---
 layout: enterprise2
 page_title: "Linkable Repos - API Docs - Terraform Enterprise Beta"
-sidebar_current: "docs-enterprise2-api-repos"
+sidebar_current: "docs-enterprise2-api-linkable-repos"
 ---
 
 # Linkable Repos API
