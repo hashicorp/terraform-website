@@ -6,11 +6,64 @@ sidebar_current: "docs-enterprise2-api-run"
 
 # Runs API
 
-Performing a run requires creation of a run which also creates a plan. Once a plan is executed the workspace may automatically trigger an apply if the workspace is configured to automatically perform the apply. If it is not configured to automatically perform an apply, you can perform the Apply vai the API.
+Performing a run on a new configuration is a multi step process.
+
+1. Create a Configuration Version on the Workspace
+2. Upload configuration files to the Configuration Version
+3. Create a Run on the Workspace
+4. Create and queue a Plan on the Run; this is done automatically when the Run is created
+5. Create and queue an Apply on the Run
+
+
+## Create a Configuration Version on the Workspace
+
+**Method**: POST
+
+**Path**: /workspace/:workspace_id/configuration-versions
+
+### Parameters
+
+- `:workspace_id` (string: \<required\>) - specifies the workspace ID to create the new configuration version
+
+### Sample Payload
+```json
+{
+  "data": {
+    "type": "configuration-versions"
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://atlas.hashicorp.com/api/v2/workspace/ws-2Qhk7LHgbMrm3grF/configuration-vesion
+```
+
+### Sample Response
+```json
+{
+  "data": {
+    "id": "cv-ntv3HbhJqvFzamy7",
+    "type": "configuration-versions",
+    "attributes": {
+      "upload-url": "http://127.0.0.1:7675/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da"
+      ...
+    }
+  }
+}
+```
+
 
 ## Create a Run on the Workspace
 
 **Method**: POST
+
 **Path**: /runs
 
 ### Parameters
@@ -88,9 +141,10 @@ curl \
 }
 ```
 
-## Applying a plan in a Run
+## Create and queue an Apply on the Run
 
 **Method**: POST
+
 **Path**: /runs/:run_id/actions/apply
 
 ### Parameters
