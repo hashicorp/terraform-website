@@ -17,9 +17,9 @@ Performing a run on a new configuration is a multi step process.
 
 ## Create a Configuration Version on the Workspace
 
-**Method**: POST
-
-**Path**: /workspace/:workspace_id/configuration-versions
+| Method | Path           |
+| :----- | :------------- |
+| POST | /workspace/:workspace_id/configuration-versions |
 
 ### Parameters
 
@@ -62,9 +62,9 @@ curl \
 
 ## Create a Run on the Workspace
 
-**Method**: POST
-
-**Path**: /runs
+| Method | Path           |
+| :----- | :------------- |
+| POST | /runs |
 
 ### Parameters
 
@@ -143,9 +143,9 @@ curl \
 
 ## Create and queue an Apply on the Run
 
-**Method**: POST
-
-**Path**: /runs/:run_id/actions/apply
+| Method | Path           |
+| :----- | :------------- |
+| POST | /runs/:run_id/actions/apply |
 
 ### Parameters
 

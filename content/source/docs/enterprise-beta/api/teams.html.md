@@ -8,9 +8,9 @@ sidebar_current: "docs-enterprise2-api-teams"
 
 ## Create a Team
 
-**Method**: POST
-
-**Path**: /organizations/:organization_id/teams
+| Method | Path           |
+| :----- | :------------- |
+| POST | /organizations/:organization_id/teams |
 
 ### Parameters
 - `name` (string: \<required\>) - Specifies the name of the teams. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
@@ -65,9 +65,9 @@ $ curl \
 
 # Delete a Team
 
-**Method**: DELETE
-
-**Path**: /teams/:team_id
+| Method | Path           |
+| :----- | :------------- |
+| DELETE | /teams/:team_id |
 
 ### Parameters
 - `team_id` (string: \<required\>) - The Team ID to be deleted. This paremeter is specified in the URL.
