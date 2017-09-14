@@ -12,9 +12,9 @@ The Linkable Repos API is used to retreive the list of available repositories. T
 
 This endpoint lists linkable repos to which you have access.
 
-**Method**: GET
-
-**Path**: /linkable-repos
+| Method | Path           |
+| :----- | :------------- |
+|  GET | /linkable-repos |
 
 ### Parameters
 

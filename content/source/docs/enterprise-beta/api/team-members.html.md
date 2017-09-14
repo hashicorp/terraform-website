@@ -9,9 +9,9 @@ sidebar_current: "docs-enterprise2-api-team-members"
 ## Add a User to Team
 This method adds multiple users to a Team. Both Users and Teams must already exist.
 
-**Method**: POST
-
-**Path**: /teams/:team_id/relationships/users
+| Method | Path           |
+| :----- | :------------- |
+| POST | /teams/:team_id/relationships/users |
 
 ### Parameters
 - `team_id` (string: \<required\>) - The Team ID of the team to add the users to. Team must already exit.
@@ -42,9 +42,9 @@ $ curl \
 # Delete a User from Team
 THis method removes multiple users from a Team. Both Users and Teams must already exist. This DOES NOT delete the User, it only remoes them from this team.
 
-**Method**: DELETE
-
-**Path**: /teams/:team_id
+| Method | Path           |
+| :----- | :------------- |
+| DELETE | /teams/:team_id |
 
 ### Parameters
 - `team_id` (string: \<required\>) - The Team ID of the team to remove users from. Team must already exit.

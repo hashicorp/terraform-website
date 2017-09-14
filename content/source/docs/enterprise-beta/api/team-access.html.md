@@ -9,9 +9,9 @@ The Team access APIs are used to map teams to workspaces with permissions. A sin
 
 ## List Team access to Workspaces
 
-**method**: GET
-
-**path**: /team_workspaces
+| Method | Path           |
+| :----- | :------------- |
+| GET | /team_workspaces |
 
 ### Parameters
 - `filter[organization][username]` (string: \<required\>) - The organization username
@@ -36,9 +36,9 @@ $ curl \
 
 ## Add Team access to a Workspace
 
-**method**: POST
-
-**path**: /team_workspaces
+| Method | Path           |
+| :----- | :------------- |
+| POST | /team_workspaces |
 
 ### Parameters
 - `filter[organization][username]` (string: \<required\>) - The organization username
@@ -82,9 +82,9 @@ $ curl \
 
 ## Show Team access to a Workspace
 
-**method**: GET
-
-**path**: /team_workspaces/:id
+| Method | Path           |
+| :----- | :------------- |
+| GET | /team_workspaces/:id |
 
 ### Parameters
 - `id` (string: \<required\>) - ...
@@ -113,9 +113,9 @@ $ curl \
 
 ## Update Team access to a Workspace
 
-**method**: PATCH
-
-**path**: /team_workspaces/:id
+| Method | Path           |
+| :----- | :------------- |
+| PATCH | /team_workspaces/:id |
 
 ### Parameters
 - `id` (string: \<required\>) - ...
@@ -157,9 +157,9 @@ $ curl \
 
 ## Remove Team access to a Workspace
 
-**method**: DELETE
-
-**path**: /team_workspaces/:id
+| Method | Path           |
+| :----- | :------------- |
+| DELETE | /team_workspaces/:id |
 
 ### Parameters
 - `id` (string: \<required\>) - The ID of the Teams Access to a Workspace
