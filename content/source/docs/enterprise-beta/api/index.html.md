@@ -31,14 +31,14 @@ The August Release endpoints use the [JSON API specification](http://jsonapi.org
 
 ## Example
 
-This is a Ruby example which creates a new workspace called `workspace-demo` with no other settings in the `skierkowski` organization and lists all workspaces using the `v2` API.
+This is a Ruby example which creates a new workspace called `my-workspace` with no other settings in the `my-organization` organization and lists all workspaces using the `v2` API.
 
 ```ruby
 require 'rest-client'
 require 'json'
 
 base         = 'https://atlas.hashicorp.com/api/v2'
-organization = 'skierkowski'
+organization = 'my-organization'
 headers      = {
   'Authorization' => "Bearer #{ENV['ATLAS_TOKEN']}",
   'Content-Type'  => 'application/vnd.api+json'
@@ -52,7 +52,7 @@ new_workspace  = {
   data: {
     type: "workspace",
     attributes: {
-      name: "workspace-demo"
+      name: "my-workspace"
     }
   }
 }

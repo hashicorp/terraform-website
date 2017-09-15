@@ -6,6 +6,8 @@ sidebar_current: "docs-enterprise2-api-run"
 
 # Runs API
 
+-> **Note**: These API Endpoints are not yet available on `https://atlas.hashicorp.com/api/v2/` and may be subject to change before they are made available.
+
 Performing a run on a new configuration is a multi step process.
 
 1. Create a Configuration Version on the Workspace
@@ -16,14 +18,15 @@ Performing a run on a new configuration is a multi step process.
 
 
 ## Create a Configuration Version on the Workspace
+A Configuration Version (`configuration-version`) is an resource used to reference the uploaded configuration files. It is associated with the Run to use the uploaded configuration files for performing the Plan and Apply.
 
 | Method | Path           |
 | :----- | :------------- |
-| POST | /workspace/:workspace_id/configuration-versions |
+| POST | /workspaces/:workspace_id/configuration-versions |
 
 ### Parameters
 
-- `:workspace_id` (string: \<required\>) - specifies the workspace ID to create the new configuration version
+- `:workspace_id` (`string: <required>`) - specifies the workspace ID to create the new configuration version
 
 ### Sample Payload
 ```json
@@ -42,7 +45,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/workspace/ws-2Qhk7LHgbMrm3grF/configuration-vesion
+  https://atlas.hashicorp.com/api/v2/workspaces/ws-2Qhk7LHgbMrm3grF/configuration-vesions
 ```
 
 ### Sample Response
@@ -59,8 +62,28 @@ curl \
 }
 ```
 
+## Upload Configuration files
+
+| Method | Path           |
+| :----- | :------------- |
+| POST | The upload URL is provided in the `upload-url` attribute in the `configuration-versions` resource |
+
+### Parameters
+
+- `data` (`file: <required>`) - A local .tar.gz file containing the folder of the terraform configuration files.
+
+### Sample Request
+
+```shell
+$ curl \
+    --request POST \
+    -F 'data=@config.tar.gz` \
+    http://127.0.0.1:7675/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da
+```
+
 
 ## Create a Run on the Workspace
+A Run performs a Plan and Apply on the last configuration version created and using the variables set in the workspace.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -68,8 +91,8 @@ curl \
 
 ### Parameters
 
-- `id` (string: \<required\>) - specifies the workspace ID to run
-- `is-destroy` (bool: false) - specifies if this plan is a destory plan, which will destroy all provisioned resources.
+- `id` (`string: <required>`) - specifies the workspace ID to run
+- `is-destroy` (`bool: false`) - specifies if this plan is a destory plan, which will destroy all provisioned resources.
 
 ### Sample Payload
 
@@ -149,8 +172,8 @@ curl \
 
 ### Parameters
 
-- `run_id` (string: \<required\>) - specifies the run ID to run
-- `id` (string: \<required\>) - specifies the workspace ID
+- `run_id` (`string: <required>`) - specifies the run ID to run
+- `id` (`string: <required>`) - specifies the workspace ID
 
 ### Sample Payload
 
