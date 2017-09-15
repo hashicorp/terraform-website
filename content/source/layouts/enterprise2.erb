@@ -5,10 +5,6 @@
         <a class="back" href="/docs/index.html">Documentation Home</a>
       </li>
 
-      <li<%= sidebar_current("docs-enterprise-home") %>>
-        <a class="back" href="/docs/enterprise/index.html">Terraform Enterprise (classic)</a>
-      </li>
-
       <li<%= sidebar_current("docs-enterprise2-home") %>>
         <a class="back" href="/docs/enterprise-beta/index.html">Terraform Enterprise (beta)</a>
       </li>
@@ -32,6 +28,23 @@
           </li>
         </ul>
       </li>
+
+      <li<%= sidebar_current("docs-enterprise2-workspaces") %>>
+        <a href="/docs/enterprise-beta/workspaces/index.html">Workspaces</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-enterprise2-workspaces-naming") %>>
+            <a href="/docs/enterprise-beta/workspaces/naming.html">Naming</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-workspaces-repo-structure") %>>
+            <a href="/docs/enterprise-beta/workspaces/repo-structure.html">Repo Structure</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-workspaces-settings") %>>
+            <a href="/docs/enterprise-beta/workspaces/settings.html">Settings</a>
+          </li>
+        <ul>
+      </li>
+
+      <hr>
 
       <li<%= sidebar_current("docs-enterprise2-api") %>>
         <a href="/docs/enterprise-beta/api/index.html">API</a>
