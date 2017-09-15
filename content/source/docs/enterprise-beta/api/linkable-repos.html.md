@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-api-linkable-repos"
 
 # Linkable Repos API
 
-The Linkable Repos API is used to retreive the list of available repositories. This is used to identify the ID of a repository when configuring the ingress-trigger on a workspace.
+The Linkable Repos API is used to retreive the list of available VCS repositories. This is used to identify the ID of a repository when configuring the ingress-trigger on a workspace. Your organization must already have the VCS OAuth Connection configured.
 
 ## List Linkable Repos
 
@@ -18,7 +18,7 @@ This endpoint lists linkable repos to which you have access.
 
 ### Parameters
 
-- `organization` (string: \<required\>) - Specifies the username or organization name under which to list the workspaces. This uses the [JSON API Filtering](http://jsonapi.org/recommendations/#filtering) recommendation to specify the organization.
+- `?filter[organization][username]` (`string: <required>`) - Specifies the username or organization name under which to list the workspaces. This is specified as a query parameter.
 
 ### Sample Request
 
@@ -26,7 +26,7 @@ This endpoint lists linkable repos to which you have access.
 $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-https://atlas.hashicorp.com/api/v2/linkable-repos?filter[organization][username]=:organization
+  https://atlas.hashicorp.com/api/v2/linkable-repos?filter[organization][username]=my-organization
 ```
 
 
@@ -38,10 +38,10 @@ https://atlas.hashicorp.com/api/v2/linkable-repos?filter[organization][username]
     "data": [
         {
             "attributes": {
-                "name": "skierkowski/terraform-test-proj",
+                "name": "hashicorp/terraform-basic-demo-configuration",
                 "provider": "github"
             },
-            "id": "232804_skierkowski/terraform-test-proj",
+            "id": "232804_hashicorp/terraform-basic-demo-configuration",
             "type": "linkable-repos"
         }
     ]

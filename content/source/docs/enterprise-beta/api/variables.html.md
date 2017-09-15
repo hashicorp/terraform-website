@@ -5,7 +5,7 @@ sidebar_current: "docs-enterprise2-api-variables"
 ---
 
 # Variables API
-
+This set of API covers creatue, update, list and delete operations of variables. 
 
 
 ## Create a Variable
@@ -16,13 +16,13 @@ sidebar_current: "docs-enterprise2-api-variables"
 
 ### Parameters
 
-- `key` (string: \<required\>) - specifies the name of the variable which will be passed into the plan/apply.
-- `value` (string: \<required\>) - specifies the value of the variable which will be passed into the plan/apply.
-- `filter:organization:username` (string: required) - variables must be placed in a workspace which is contained in an organization, as such, you must specify the organization of the workspace using this filter.
-- `filter:workspace:name`(string: required) - variables must be placed in a workspace which requires that you set the name of the workspace using this filter.
-- `category`(string: "terraform" or "environment") - specifies whether this should be parsed as a terraform variable (with support for HCL) or as an enviornment variable. This governs how it is accessible in the terraform configuration.
-- `hcl`(bool: false)
-- `sensitive` (bool: false) - marks the variable as sensitive. If true then the variable is written once and not visible thereafter.
+- `key` (`string: <required>`) - specifies the name of the variable which will be passed into the plan/apply.
+- `value` (`string: <required>`) - specifies the value of the variable which will be passed into the plan/apply.
+- `category` (`string: "terraform"|"environment"`) - specifies whether this should be parsed as a terraform variable (with support for HCL) or as an enviornment variable. This governs how it is accessible in the terraform configuration.
+- `hcl` (`bool: false`) - use HCL when setting the value of the string.
+- `sensitive` (`bool: false`) - marks the variable as sensitive. If true then the variable is written once and not visible thereafter.
+- `?filter[organization][username]` (`string: required`) - variables must be placed in a workspace which is contained in an organization; you must specify the organization of the workspace the `filter` query parameter
+- `?filter[workspace][name]` (`string: required`) - variables must be placed in a workspace which requires that you set the name of the workspace using the `filter` query parameter.
 
 ### Sample Payload
 
@@ -40,10 +40,10 @@ sidebar_current: "docs-enterprise2-api-variables"
   },
   "filter": {
     "organization": {
-      "username":"skierkowski-v2-03"
+      "username":"my-organization"
     },
     "workspace": {
-      "name":"demo-01"
+      "name":"my-workspace"
     }
   }
 }
@@ -81,7 +81,7 @@ curl \
           "type":"workspaces"
         },
         "links": {
-          "related":"/api/v2/organizations/workspace-v2-03/workspaces/workspace-v2-03"
+          "related":"/api/v2/organizations/my-organization/workspaces/my-workspace"
         }
       }
     },
@@ -100,7 +100,8 @@ curl \
 
 ### Parameters
 
-- `filter` (optional: list of strin key/value pairs) - The filters are optional and can be used to filter by organization name or workspace name. Multiple filters can be passed and all are optional.
+- `?filter[organization][username]` (`optional`) - Optionally filter the list to an organization given the organization name
+- `?filter[workspace][name]` (`optional`) - Optionally fitler the list to a workspace given the workspace name
 
 ### Sample Request
 
@@ -108,8 +109,8 @@ curl \
 $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-https://atlas.hashicorp.com/api/v2/vars?filter%5Borganization%5D%5Busername%5D=skierkowski-v2-03&filter%5Bworkspace%5D%5Bname%5D=demo-01
-# ?filter[organization][username]=skierkowski-v2-03&filter[workspace][name]=demo01
+https://atlas.hashicorp.com/api/v2/vars?filter%5Borganization%5D%5Busername%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace
+# ?filter[organization][username]=my-organization&filter[workspace][name]=demo01
 ```
 
 ### Sample Response
@@ -133,7 +134,7 @@ https://atlas.hashicorp.com/api/v2/vars?filter%5Borganization%5D%5Busername%5D=s
             "type":"workspaces"
           },
           "links": {
-            "related":"/api/v2/organizations/skierkowski-v2-03/workspaces/demo-01"
+            "related":"/api/v2/organizations/my-organization/workspaces/my-workspace"
           }
         }
       },
@@ -155,12 +156,7 @@ https://atlas.hashicorp.com/api/v2/vars?filter%5Borganization%5D%5Busername%5D=s
 
 ### Parameters
 
-- `key` (string: \<required\>) - specifies the name of the variable which will be passed into the plan/apply.
-- `value` (string: \<required\>) - specifies the value of the variable which will be passed into the plan/apply.
-- `variable_id` (string: <required>) - specifies the ID of the variable to be updated
-- `category`(string: "terraform" or "environment") - specifies whether this should be parsed as a terraform variable (with support for HCL) or as an enviornment variable. This governs how it is accessible in the terraform configuration.
-- `hcl`(bool: false)
-- `sensitive` (bool: false) - marks the variable as sensitive. If true then the variable is written once and not visible thereafter.
+- `:variable_id` (`string: <required>`) - specifies the ID of the variable to be updated. Specified in the request path.
 
 ### Sample Payload
 
