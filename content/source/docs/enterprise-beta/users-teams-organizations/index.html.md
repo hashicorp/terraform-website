@@ -20,4 +20,4 @@ workspaces.
 
 **Organizations** are a shared space for teams to collaborate on workspaces.
 Organization owners set which users have read, write, and admin privileges on
-which workspaces
+which workspaces.
