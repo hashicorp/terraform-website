@@ -10,8 +10,7 @@ This documentation explains the organizational and access control model in
 Terraform Enterprise.
 
 **Users** are individual members of an organization. They belong to teams which
-are granted permissions to an organization’s workspaces. Users can also be
-added directly to a workspace by being added as a collaborator.
+are granted permissions to an organization’s workspaces.
 
 **Teams** are groups of users that reflect your company's group
 structure. Organization owners can create teams and manage membership.
