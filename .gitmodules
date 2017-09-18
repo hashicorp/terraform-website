@@ -10,10 +10,6 @@
 	path = ext/providers/archive
 	url = https://github.com/terraform-providers/terraform-provider-archive
 	branch = stable-website
-[submodule "ext/providers/arukas"]
-	path = ext/providers/arukas
-	url = https://github.com/terraform-providers/terraform-provider-arukas
-	branch = stable-website
 [submodule "ext/providers/aws"]
 	path = ext/providers/aws
 	url = https://github.com/terraform-providers/terraform-provider-aws
