@@ -69,7 +69,21 @@ When you create a new workspace, a few things happen:
 
 ![finish dialog](./images/work-finished.png)
 
-We'll edit variables and start Terraform runs in the next page of this guide. But first, you might want to change some of your workspace's settings.
+## Editing Variables
+
+For almost any Terraform codebase, you'll want to edit the Terraform variables and environment variables used by the code.
+
+You can edit variables as soon as you've created a workspace, by clicking the workspace's "Variables" tab.
+
+![the edit control](./images/work-var-edit.png)
+
+The variables page has three sections: Terraform variables (as declared in your Terraform configurations), shared environment variables, and per-user environment variables. (Note that environment variables can be used to set Terraform variables, with the standard `TF_VAR_*` format.)
+
+To edit one of these sections, click the "Edit" control. You can then add, modify, or delete variables. Make sure to click "Save" or "Save & Plan" once you've finished editing.
+
+![editing a variables list](./images/work-var-editing.png)
+
+Terraform variables default to being basic string values, but you can also enter array or map values if you click the "HCL" checkbox for that variable. You can write these values with the syntax you'd use in a Terraform configuration.
 
 ## Configuring a Workspace
 
