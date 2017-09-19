@@ -5,17 +5,17 @@ sidebar_current: "docs-enterprise2-sentinel"
 ---
 
 # Sentinel Policy as Code
-[Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy as code
-framework integrated with the HashiCorp Enterprise products to enable
-fine-grained, logic-based policy decisions that can be extended to source
-external information to make decisions.
 
-To learn how to use Sentinel to enforce policies in Terraform, [read the
+[Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy as code
+framework integrated with the HashiCorp Enterprise products. It enables
+fine-grained, logic-based policy decisions, and can be extended to use information from external sources.
+
+To learn how to use Sentinel to enforce policies in Terraform, read [the Sentinel
 documentation](https://docs.hashicorp.com/sentinel/app/terraform/).
 
 Here are some examples of Sentinel policies in Terraform:
 
-**All AWS instances must have a tag billing-id**
+**All AWS instances must have a `billing-id` tag:**
 
 ```
 import "tfplan"
@@ -28,7 +28,7 @@ main = rule {
 }
 ```
 
-**Only allow GCP instance sizes smaller than n1-standard-16**
+**Only allow GCP instance sizes smaller than n1-standard-16:**
 
 ```
 import "tfplan"
