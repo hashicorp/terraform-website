@@ -5,6 +5,7 @@ sidebar_current: "docs-enterprise2-api-teams"
 ---
 
 # Teams API
+
 The Teams API is used to create and destroy teams. The [Team Membership API](/docs/enterprise-beta/api/team-members.html) is used to add or remove users to this team. To give a team access to a Workspace use the [Team Access API](/docs/enterprise-beta/api/team-access.html) to associate a team with privileges on a a workspace.
 
 ## Create a Team
@@ -14,8 +15,9 @@ The Teams API is used to create and destroy teams. The [Team Membership API](/do
 | POST | /organizations/:organization_id/teams |
 
 ### Parameters
+
 - `name` (`string: <required>`) - Specifies the name of the teams. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
-- `:organization_id` (`string: <required>`) - Specififes the username or organizaiton name under which to create the team. The organization must already exist in the system, and the user must have permissions to create new team. This is specified in the URL path.
+- `:organization_id` (`string: <required>`) - Specififes the username or organization name under which to create the team. The organization must already exist in the system, and the user must have permissions to create new team. This is specified in the URL path.
 
 ### Sample Payload
 
@@ -71,6 +73,7 @@ $ curl \
 | DELETE | /teams/:team_id |
 
 ### Parameters
+
 - `:team_id` (`string: <required>`) - The Team ID to be deleted. This paremeter is specified in the URL.
 
 

@@ -5,6 +5,7 @@ sidebar_current: "docs-enterprise2-api-workspaces"
 ---
 
 # Workspaces API
+
 Workspaces represent running infrastructure managed by Terraform.
 
 
@@ -19,7 +20,7 @@ This endpoint creates a new workspace in the organization.
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specififes the username or organizaiton name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
+- `:organization` (`string: <required>`) - Specififes the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
 - `name` (`string: <required>`) - Specifies the name of the workspace. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
 
 
@@ -91,9 +92,9 @@ The default `/workspaces` endpoint creates a workspace without configuring the V
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specififes the username or organizaiton name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
+- `:organization` (`string: <required>`) - Specififes the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
 - `name` (`string: <required>`) - Specifies the name of the workspace. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
-- `default-branch`(`boolean: true`) - specifies if the default branch should be used. In the beta release this is set to `true` by default and it is not configurable. Providing a branch will result in an error.
+- `default-branch` (`boolean: true`) - specifies if the default branch should be used. In the beta release this is set to `true` by default and it is not configurable. Providing a branch will result in an error.
 - `path` (`string:'/'`) - Specifies the directory of the repo to be used for the workspaces. Only this directory is cloned and the root path and other directories are not cloned.
 - `linkable-repo-id` (`string: <required>`) - This is the ID of the repository to be used. The ID can be obtained from the `linkable-repos`endpoint.
 

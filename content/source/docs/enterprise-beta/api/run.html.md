@@ -18,6 +18,7 @@ Performing a run on a new configuration is a multi step process.
 
 
 ## Create a Configuration Version on the Workspace
+
 A Configuration Version (`configuration-version`) is an resource used to reference the uploaded configuration files. It is associated with the Run to use the uploaded configuration files for performing the Plan and Apply.
 
 | Method | Path           |
@@ -29,6 +30,7 @@ A Configuration Version (`configuration-version`) is an resource used to referen
 - `:workspace_id` (`string: <required>`) - specifies the workspace ID to create the new configuration version
 
 ### Sample Payload
+
 ```json
 {
   "data": {
@@ -49,6 +51,7 @@ curl \
 ```
 
 ### Sample Response
+
 ```json
 {
   "data": {
@@ -83,6 +86,7 @@ $ curl \
 
 
 ## Create a Run on the Workspace
+
 A Run performs a Plan and Apply on the last configuration version created and using the variables set in the workspace.
 
 | Method | Path           |
@@ -226,4 +230,3 @@ curl \
 }
 ```
 
-##
