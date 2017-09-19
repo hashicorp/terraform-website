@@ -1,0 +1,102 @@
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+    <ul class="nav docs-sidenav">
+      <li<%= sidebar_current("docs-home") %>>
+        <a class="back" href="/docs/index.html">Documentation Home</a>
+      </li>
+
+      <li<%= sidebar_current("docs-enterprise2-home") %>>
+        <a class="back" href="/docs/enterprise-beta/index.html">Terraform Enterprise (beta)</a>
+      </li>
+
+      <hr>
+
+      <li<%= sidebar_current("docs-enterprise2-started") %>>
+        <a href="/docs/enterprise-beta/getting-started/index.html">Getting Started</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-enterprise2-started-access") %>>
+            <a href="/docs/enterprise-beta/getting-started/access.html">Accessing TFE Beta</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-started-vcs") %>>
+            <a href="/docs/enterprise-beta/getting-started/vcs.html">Configuring VCS Access</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-started-workspaces") %>>
+            <a href="/docs/enterprise-beta/getting-started/workspaces.html">Creating Workspaces</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-started-runs") %>>
+            <a href="/docs/enterprise-beta/getting-started/runs.html">Doing Terraform Runs</a>
+          </li>
+        </ul>
+      </li>
+
+      <li<%= sidebar_current("docs-enterprise2-workspaces") %>>
+        <a href="/docs/enterprise-beta/workspaces/index.html">Workspaces</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-enterprise2-workspaces-naming") %>>
+            <a href="/docs/enterprise-beta/workspaces/naming.html">Naming</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-workspaces-repo-structure") %>>
+            <a href="/docs/enterprise-beta/workspaces/repo-structure.html">Repo Structure</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-workspaces-settings") %>>
+            <a href="/docs/enterprise-beta/workspaces/settings.html">Settings</a>
+          </li>
+        </ul>
+      </li>
+
+      <li<%= sidebar_current("docs-enterprise2-users-teams-organizations") %>>
+        <a href="/docs/enterprise-beta/users-teams-organizations/index.html">Users, Teams, Organizations</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-enterprise2-users-teams-organizations-users") %>>
+            <a href="/docs/enterprise-beta/users-teams-organizations/users.html">Users</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-users-teams-organizations-teams") %>>
+            <a href="/docs/enterprise-beta/users-teams-organizations/teams.html">Teams</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-users-teams-organizations-organizations") %>>
+            <a href="/docs/enterprise-beta/users-teams-organizations/organizations.html">Organizations</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-users-teams-organizations-permissions") %>>
+            <a href="/docs/enterprise-beta/users-teams-organizations/permissions.html">Permissions</a>
+          </li>
+        </ul>
+      </li>
+
+      <li<%= sidebar_current("docs-enterprise2-sentinel") %>>
+        <a href="/docs/enterprise-beta/sentinel/index.html">Sentinel</a>
+      </li>
+
+      <hr>
+
+      <li<%= sidebar_current("docs-enterprise2-api") %>>
+        <a href="/docs/enterprise-beta/api/index.html">API</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-enterprise2-api-workspaces") %>>
+            <a href="/docs/enterprise-beta/api/workspaces.html">Workspaces</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-variables") %>>
+            <a href="/docs/enterprise-beta/api/variables.html">Variables</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-run") %>>
+            <a href="/docs/enterprise-beta/api/run.html">Runs</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-linkable-repos") %>>
+            <a href="/docs/enterprise-beta/api/linkable-repos.html">Linkable Repos</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-teams") %>>
+            <a href="/docs/enterprise-beta/api/teams.html">Teams</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-team-members") %>>
+            <a href="/docs/enterprise-beta/api/team-members.html">Team Membership</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-team-access") %>>
+            <a href="/docs/enterprise-beta/api/team-access.html">Team Access</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  <% end %>
+
+  <%= yield %>
+<% end %>
