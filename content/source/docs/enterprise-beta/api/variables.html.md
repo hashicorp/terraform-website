@@ -5,7 +5,8 @@ sidebar_current: "docs-enterprise2-api-variables"
 ---
 
 # Variables API
-This set of API covers creatue, update, list and delete operations of variables. 
+
+This set of API covers creatue, update, list and delete operations of variables.
 
 
 ## Create a Variable
@@ -146,8 +147,6 @@ https://atlas.hashicorp.com/api/v2/vars?filter%5Borganization%5D%5Busername%5D=m
 }
 ```
 
-##
-
 ## Update Variables
 
 | Method | Path           |
@@ -219,4 +218,3 @@ $ curl \
 }
 ```
 
-##
