@@ -13,5 +13,5 @@ workspaces.
 
 To create a team, navigate to the "Teams" section of your organization settings.
 To give a team permissions on a specific workspace, navigate to the "Access
-settings on the workspace and add the team. A team can be given read, write, or
+settings" on the workspace and add the team. A team can be given read, write, or
 admin [permissions on a workspace](./permissions.html).
