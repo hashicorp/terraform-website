@@ -6,17 +6,12 @@ sidebar_current: "docs-enterprise2-users-teams-organizations"
 
 # Users, Teams, and Organizations
 
-This documentation explains the organizational and access control model in
-Terraform Enterprise.
+Terraform Enterprise's organizational and access control model is based around three units: users, teams, and organizations.
 
-**Users** are individual members of an organization. They belong to teams which
-are granted permissions to an organization’s workspaces.
-
-**Teams** are groups of users that reflect your company's group
-structure. Organization owners can create teams and manage membership.
-Organization owners can give teams read, write, and admin permissions to
-workspaces.
-
-**Organizations** are a shared space for teams to collaborate on workspaces.
-Organization owners set which users have read, write, and admin privileges on
-which workspaces.
+- **Users** are individual members of an organization. They belong to teams, which
+are granted permissions on an organization’s workspaces.
+- **Teams** are groups of users that reflect your company's organizational
+structure. Organization owners can create teams and manage their membership.
+- **Organizations** are shared spaces for teams to collaborate on workspaces.
+An organization can have many teams, and the owners of the organization set
+which users have which privileges (read/write/admin) on which workspaces.
