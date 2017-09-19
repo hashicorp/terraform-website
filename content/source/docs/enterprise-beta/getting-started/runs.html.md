@@ -21,7 +21,7 @@ TFE enforces Terraform's division between _plan_ and _apply_ operations. It alwa
 
 There are two ways to start a run in a workspace:
 
-- Manually queuing a plan, by clicking the "Queue Plan" button in the upper right of a workspace. This is most useful when you've edited some variables and need to update your infrastructure accordingly.
+- Manually queuing a plan, by clicking the "Queue Plan" button in the upper right of a workspace. This is useful when you've edited some variables and need to update your infrastructure accordingly.
 - Automatically queuing a plan by committing to version control. (TFE always registers a VCS webhook when you create a new workspace, although you can later delete the webhook to prevent automatic runs.)
 
 ### Per-Workspace Queues
@@ -30,7 +30,7 @@ Each workspace in TFE maintains its own queue of runs, and processes those runs 
 
 Whenever you request a new run, it's added to the end of the queue. If there's already a run in progress, your new run won't start until the current one has completely finished — TFE won't even plan the run yet, because the current run might change the work your run needs to do. Runs that are waiting for other runs to finish are in a _pending_ state, and a workspace might have any number of pending runs.
 
-When a run is requested, TFE "locks in" the current Terraform code (usually tied to a specific VCS commit) and variable values. If you change variables or commit new code before the run finishes, it will only affect future runs, not ones that are already pending, planning, or awaiting apply.
+When you request a run, TFE locks the run to the current Terraform code (usually associated with a specific VCS commit) and variable values. If you change variables or commit new code before the run finishes, it will only affect future runs, not ones that are already pending, planning, or awaiting apply.
 
 ### Run States
 
@@ -70,7 +70,7 @@ Most importantly, it shows:
 - The code commit associated with the run.
 - How the run was triggered, when, and which user requested it (if applicable).
 - A timeline of events related to the run.
-- The output from both the `terraform plan` and `terraform apply` commands, if applicable.
+- The output from both the `terraform plan` and `terraform apply` commands, if applicable. You can hide or reveal these as needed; they default to visible if the command is currently running, and hidden if the command has finished.
 
 ### Confirming or Discarding Plans
 
@@ -82,7 +82,7 @@ When you visit the page for a run that has finished planning, you'll see the fol
 
 When you've finished reviewing the output of a plan, use one of these buttons to apply or discard it. Optionally, you can leave a comment for your colleagues if you think there's something unusual involved in the run.
 
-Note that until you apply or discard a plan, it will prevent TFE from starting another run in that workspace.
+Note that until you apply or discard a plan, TFE can't start another run in that workspace.
 
 ## Preventing Runs
 

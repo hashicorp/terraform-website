@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-started-workspaces"
 
 **Prerequisites:** Before starting this guide, you should [get access to Terraform Enterprise](./access.html) and [configure VCS access](./vcs.html).
 
-At this point, you've done all the setup TFE needs, and can start using it for real work. Your first task should be to set up some Workspaces.
+At this point, you've done all the setup TFE needs, and can start using it for real work. Your first task should be to set up some workspaces.
 
 ## About Workspaces
 
@@ -34,7 +34,7 @@ To create your first workspace, click the "+ New Workspace" button in the upper 
 
 ![new button](./images/work-new-button.png)
 
-On the "Create a new Workspace" page, you need to enter at least two items: a workspace name, and a VCS repository. When you've finished, click the "Create Workspace" button.
+On the "Create a new Workspace" page, you need to enter at least two items: a workspace name, and a VCS repository. (You can search for a repo by typing part of its name.) When you've finished, click the "Create Workspace" button.
 
 ![fields on new workspace page](./images/work-new-fields.png)
 
@@ -63,11 +63,11 @@ Optionally, you can set three other settings for a new workspace:
 When you create a new workspace, a few things happen:
 
 - TFE _doesn't_ immediately queue a plan for the workspace. Instead, it presents you with a dialog, with shortcut links to either queue a plan or edit variables.
+
+    ![finish dialog](./images/work-finished.png)
 - TFE automatically registers a webhook with your VCS service. The next time new commits appear in the selected branch of that repo, TFE will automatically queue a Terraform plan for the workspace.
 
     **Note:** If you don't want to automatically queue Terraform plans for new commits, you must delete the workspace's webhook manually, via your VCS service's interface or API.
-
-![finish dialog](./images/work-finished.png)
 
 ## Editing Variables
 
@@ -83,7 +83,7 @@ To edit one of these sections, click the "Edit" control. You can then add, modif
 
 ![editing a variables list](./images/work-var-editing.png)
 
-Terraform variables default to being basic string values, but you can also enter array or map values if you click the "HCL" checkbox for that variable. You can write these values with the syntax you'd use in a Terraform configuration.
+Terraform variables start as basic string values, but you can also enter array or map values if you click the "HCL" checkbox for that variable. You can write these values with the same syntax you'd use in a Terraform configuration.
 
 ## Configuring a Workspace
 
@@ -104,14 +104,14 @@ Most of your time in TFE is spent in two views:
 
 * The main page, which is a list of workspaces and their statuses. Use this to get an overview of the workspaces you're responsible for, and to navigate between workspaces.
 
+    ![main page](./images/work-mainpage.png)
+
     To get back to the main page at any time, click the Terraform logo button in the upper left and choose "Terraform Enterprise (Beta)".
 * The individual workspace pages, which provide more detail about a workspace's status, and let you manage runs, variables, and settings.
 
     To reach a workspace page, click that workspace's entry on the main page.
 
-![main page](./images/work-mainpage.png)
-
-![a workspace page](./images/work-workspacepage.png)
+    ![a workspace page](./images/work-workspacepage.png)
 
 ## Next Steps
 

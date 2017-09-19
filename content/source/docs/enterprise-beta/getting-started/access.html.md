@@ -45,13 +45,13 @@ After you've navigated to TFE beta, it will prompt you to create a new organizat
 
 ![TFE's new organization prompt](./images/access-new-org.png)
 
-TFE beta cannot currently import settings and workspaces from an existing TFE classic organization. We will enable migration from TFE classic at a later date, when the beta version is more mature.
+TFE beta cannot currently import settings and workspaces from an existing TFE classic organization. We will enable migration from TFE classic at a later date.
 
 ## Adding Other Users to an Organization
 
 To collaborate with your colleagues in TFE beta, you'll all need access to the same TFE organization. You can add users to an organization by creating a _team_ and adding users to it.
 
-First, navigate to the settings page for your organization — you can reach it from the dropdown menu with your team name at the top of every page. Once there, click the "Teams" link in the sidebar navigation.
+First, navigate to the settings page for your organization — you can reach it from the organization dropdown menu at the top of every page. Once there, click the "Teams" link in the sidebar navigation.
 
 The list of teams starts with just one team, named "owners." Don't add users to this team yet; instead, enter a new team name (like "beta-testers") in the text field and click the "Create team" button.
 
@@ -59,9 +59,9 @@ Once the team is created, click its name. This will navigate to the team page:
 
 ![adding members to a team](./images/access-add-members.png)
 
-Add as many users as you'd like by typing their TFE username in the text field and clicking "Add user." You'll need to already know their usernames; there's currently no feature for looking up users by email address or real name.
+Add as many users as you'd like by typing their TFE username in the text field and clicking "Add user." Added users won't receive a notification, but your organization will be available the next time they access TFE beta.
 
-**Important:** Currently, TFE beta does not have access controls for workspaces; these are coming in a future update. Users you add to your organization have full permissions for every workspace in it.
+~> **Important:** Currently, TFE beta does not have access controls for workspaces; these are coming soon in a future update. Users you add to your organization have full permissions for every workspace in it.
 
 ## Next Steps
 
