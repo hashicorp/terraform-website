@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-started-vcs"
 
 # Configuring Version Control Access
 
-**Prerequisites:** At this point, you should have [gotten access to Terraform Enterprise beta](./get-started-access.html), and created an organization if necessary.
+**Prerequisites:** At this point, you should have [gotten access to Terraform Enterprise beta](./access.html), and created an organization if necessary.
 
 Before you can use TFE, it needs access to the version control system (VCS) you use for Terraform code.
 
