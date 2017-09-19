@@ -6,14 +6,13 @@ sidebar_current: "docs-enterprise2-workspaces-naming"
 
 # Workspace Naming
 
-Workspace naming strategy is important as it is the structure for organizing
-workspaces at scale. Since workspace names must be unique, the recommended
-approach for naming uses workspace attributes. An attribute is a defining
-characteristic of a workspace — such as the component being managed, the
-environment it runs it, and the region it is provisioned into.
+Terraform Enterprise organizes workspaces by name, so it's important to use a consistent and informative naming strategy. And although future releases of TFE will add more organizational tools, the name will always be the most important piece of information about a workspace.
 
-For example, if workspaces have attributes for environment, component, and
-region, each of those attributes should be reflected in the workspace name:
+The best way to make names that are both unique and useful is to combine the workspace's most distinguishing _attributes_ in a consistent order. Attributes can be any defining
+characteristic of a workspace — such as the component being managed, the
+environment it runs in, and the region it is provisioned into.
+
+A good strategy to start with is `<COMPONENT>-<ENVIRONMENT>-<REGION>`. For example:
 
 - networking-prod-us-east
 - networking-staging-us-east
@@ -24,7 +23,4 @@ region, each of those attributes should be reflected in the workspace name:
 - monitoring-prod-us-eu-central
 - monitoring-staging-eu-central
 
-This should ensure that the workspace name is both unique and informative. If
-for some reason including all the attributes in the name does not create a
-unique name, it is recommended to add an additional attribute. Other common
-attributes are provider (AWS, GCP, Azure), datacenter, and line of business.
+If those three attributes can't uniquely distinguish all of your workspaces, you might need to add another attribute; for example, the infrastructure provider (AWS, GCP, Azure), datacenter, or line of business.

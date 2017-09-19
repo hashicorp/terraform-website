@@ -6,18 +6,24 @@ sidebar_current: "docs-enterprise2-workspaces-settings"
 
 # Workspace Settings
 
-This page explains various settings to customize workspaces.
+Terraform Enterprise lets you customize workspaces with the following settings:
 
 ## Terraform Working Directory
-The directory that Terraform will execute within. This defaults to the root of
-your repository and is typically set to a subdirectory matching the environment
-when multiple environments exist within the same repository.
+
+The directory where Terraform will execute. This defaults to the root of
+your repository.
+
+If your repo contains multiple environments, you can set this to the subdirectory matching the workspace's environment. If your repo contains
 
 ## VCS Root Path
-This path, if specified, will be used as the root of the Terraform execution
-context and all files outside of this path will be thrown away. The Terraform
-Working Directory is calculated relative to this subpath.
+
+If specified, this directory is used as the root of the Terraform execution
+context, and all files outside it are deleted before running. If a Terraform
+Working Directory is also specified, it is calculated relative to this subpath.
+
+Most users don't need external files to be deleted, and should use the Terraform Working Directory setting alone.
 
 ## VCS branch
-The branch from which to import new versions. This defaults to the value your
-version control provides as the default branch for this repository.
+
+The branch to import new versions from. This defaults to your
+version control's default branch for the repository.
