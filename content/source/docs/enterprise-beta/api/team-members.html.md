@@ -43,7 +43,7 @@ $ curl \
 
 
 # Delete a User from Team
-THis method removes multiple users from a Team. Both Users and Teams must already exist. This DOES NOT delete the User, it only remoes them from this team.
+This method removes multiple users from a Team. Both Users and Teams must already exist. This DOES NOT delete the User, it only remoes them from this team.
 
 | Method | Path           |
 | :----- | :------------- |
