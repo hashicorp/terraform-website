@@ -20,7 +20,7 @@ This endpoint creates a new workspace in the organization.
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specififes the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
+- `:organization` (`string: <required>`) - Specififes the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
 - `name` (`string: <required>`) - Specifies the name of the workspace. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
 
 
