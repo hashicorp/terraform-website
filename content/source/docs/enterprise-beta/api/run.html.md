@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-api-run"
 
 # Runs API
 
--> **Note**: These API Endpoints are not yet available on `https://atlas.hashicorp.com/api/v2/` and may be subject to change before they are made available.
+-> **Note**: These API endpoints are in Beta and may be subject to change.
 
 Performing a run on a new configuration is a multi step process.
 

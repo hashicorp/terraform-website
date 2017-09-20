@@ -6,6 +6,8 @@ sidebar_current: "docs-enterprise2-api-workspaces"
 
 # Workspaces API
 
+-> **Note**: These API endpoints are in Beta and may be subject to change.
+
 Workspaces represent running infrastructure managed by Terraform.
 
 
