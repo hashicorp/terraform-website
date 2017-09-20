@@ -94,24 +94,28 @@ The default `/workspaces` endpoint creates a workspace without configuring the V
 
 - `:organization` (`string: <required>`) - Specififes the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
 - `name` (`string: <required>`) - Specifies the name of the workspace. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
-- `default-branch` (`boolean: true`) - specifies if the default branch should be used. In the beta release this is set to `true` by default and it is not configurable. Providing a branch will result in an error.
-- `path` (`string:'/'`) - Specifies the directory of the repo to be used for the workspaces. Only this directory is cloned and the root path and other directories are not cloned.
+- `default-branch` (`boolean: true`) - specifies if the default branch should be used.
+- `vcs-root-path` (`string:''`) - Specifies the root of the Terraform execution context and all files outside of this path will be thrown away.
+- `working-directory` (`string:''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 - `linkable-repo-id` (`string: <required>`) - This is the ID of the repository to be used. The ID can be obtained from the `linkable-repos`endpoint.
 
 ### Sample Payload
 
 ```json
 {
-  "data": {
-    "type": "compound-workspaces",
+  "data": 
+  {
     "attributes": {
+      "name":"workspace-demo",
+      "working-directory":"",
+      "linkable-repo-id":"233127_skierkowski/terraform-test-proj",
       "ingress-trigger-attributes": {
-        "default-branch": true,
-        "path":"/"
+        "branch":"",
+        "vcs-root-path":"",
+        "default-branch":true
       }
-      "linkable-repo-id": "4_my-organization/terraform-test-proj",
-      "name": "my-workspace"
-    }
+    },
+    "type":"compound-workspaces"
   }
 }
 ```
@@ -132,12 +136,23 @@ $ curl \
 ```json
 {
   "data": {
-    "id":"ws-bBdse6NaNz3fs9yd",
+    "id":"ws-ScBEdDQkA2ydAj3q",
     "type":"workspaces",
     "attributes": {
-      "name":"my-workspace",
-      "environment":null,
-      "created-at":"2017-08-29T15:18:28.794Z"
+      "name":"workspace-demo",
+      "environment":"default",
+      "auto-apply":false,
+      "locked":false,
+      "created-at":"2017-09-20T15:36:52.931Z",
+      "working-directory":"",
+      "terraform-version":"0.10.5",
+      "can-queue-destroy-plan":false,
+      "ingress-trigger-attributes": {
+        "branch":"",
+        "default-branch":true,
+        "vcs-root-path":"",
+        "ingress-submodules":false
+      }
     },
     "relationships": {
       "organization": {
@@ -151,7 +166,7 @@ $ curl \
       }
     },
     "links": {
-      "self":"/api/v2/organizations/my-organization-v2/workspaces/ws-bBdse6NaNz3fs9yd"
+      "self":"/api/v2/organizations/my-organization/workspaces/ws-ScBEdDQkA2ydAj3q"
     }
   }
 }
