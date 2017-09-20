@@ -82,7 +82,7 @@ $ curl \
 
 ## Create a Workspace with a VCS Configuration
 
-The default `/workspaces` endpoint creates a workspace without configuring the VCS connection (`ingress-trigger`). In Beta there is no dedicated endpoint for managing the `ingress-trigger` so it must be configured at the time of workspace creation.
+The default `/workspaces` endpoint creates a workspace without configuring the VCS connection (`ingress-trigger`).
 
 | Method | Path           |
 | :----- | :------------- |
