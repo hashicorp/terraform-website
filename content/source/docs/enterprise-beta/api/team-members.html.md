@@ -6,20 +6,22 @@ sidebar_current: "docs-enterprise2-api-team-members"
 
 # Team Membership API
 
--> **Note**: These API endpoints are in Beta and may be subject to change.
+-> **Note**: These API endpoints are in beta and may be subject to change.
 
 The Team Membership API is used to add or remove users from teams. The [Team API](/docs/enterprise-beta/api/teams.html) is used to create or destroy teams.
 
 ## Add a User to Team
-This method adds multiple users to a Team. Both Users and Teams must already exist.
+
+This method adds multiple users to a team. Both users and teams must already exist.
 
 | Method | Path           |
 | :----- | :------------- |
 | POST | /teams/:team_id/relationships/users |
 
 ### Parameters
-- `team_id` (`string: <required>`) - The Team ID of the team to add the users to. Team must already exit.
-- `user_id` (`string: <required>`) - The User ID of all the team memers to add.
+
+- `team_id` (`string: <required>`) - The team ID of the team to add the users to. Team must already exit.
+- `user_id` (`string: <required>`) - The user ID of all the team members to add.
 
 ### Sample Payload
 
@@ -44,15 +46,17 @@ $ curl \
 
 
 # Delete a User from Team
-This method removes multiple users from a Team. Both Users and Teams must already exist. This DOES NOT delete the User, it only removes them from this team.
+
+This method removes multiple users from a team. Both users and teams must already exist. This DOES NOT delete the user; it only removes them from this team.
 
 | Method | Path           |
 | :----- | :------------- |
 | DELETE | /teams/:team_id |
 
 ### Parameters
-- `team_id` (`string: <required>`) - The Team ID of the team to remove users from. Team must already exit.
-- `user_id` (`string: <required>`) - The User IDs of all the team memers to remove.
+
+- `team_id` (`string: <required>`) - The team ID of the team to remove users from. Team must already exist.
+- `user_id` (`string: <required>`) - The user IDs of all the team members to remove.
 
 ### Sample Payload
 

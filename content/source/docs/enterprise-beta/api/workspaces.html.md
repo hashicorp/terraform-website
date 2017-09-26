@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-api-workspaces"
 
 # Workspaces API
 
--> **Note**: These API endpoints are in Beta and may be subject to change.
+-> **Note**: These API endpoints are in beta and may be subject to change.
 
 Workspaces represent running infrastructure managed by Terraform.
 
@@ -25,19 +25,19 @@ The default `/workspaces` endpoint creates a workspace without configuring the V
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specififes the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
+- `:organization` (`string: <required>`) - Specifies the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 - `default-branch` (`boolean: true`) - specifies if the default branch should be used.
 - `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
-- `linkable-repo-id` (`string: <required>`) - This is the ID of the repository to be used. The ID can be obtained from the `linkable-repos`endpoint.
-- `name` (`string: <required>`) - Specifies the name of the workspace. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
-- `vcs-root-path` (`string:''`) - Specifies the root of the Terraform execution context and all files outside of this path will be thrown away.
+- `linkable-repo-id` (`string: <required>`) - This is the ID of the repository to be used. The ID can be obtained from the `linkable-repos` endpoint.
+- `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+- `vcs-root-path` (`string:''`) - Specifies the root of the Terraform execution context; all files outside of this path will be thrown away.
 - `working-directory` (`string:''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 
 ### Sample Payload
 
 ```json
 {
-  "data": 
+  "data":
   {
     "attributes": {
       "name":"workspace-demo",
@@ -108,7 +108,7 @@ $ curl \
 ```
 
 ## Update a Workspace
- 
+
 Update the workspace settings
 
 | Method | Path           |
@@ -119,13 +119,13 @@ Update the workspace settings
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This is specified in the URL path.
-- `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update. 
+- `:organization` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
+- `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update.
 - `default-branch` (`boolean: true`) - specifies if the default branch should be used.
 - `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
-- `linkable-repo-id` (`string: ''`) - This is the ID of the repository to be used. The ID can be obtained from the `linkable-repos`endpoint. If one is not specifies it does not update this setting.
-- `name` (`string: <required>`) - Specifies the name of the workspace. This must be a alphanumeric and `-`or `_`. This will be used as an identifier and must be unique in the organization.
-- `vcs-root-path` (`string:''`) - Specifies the root of the Terraform execution context and all files outside of this path will be thrown away.
+- `linkable-repo-id` (`string: ''`) - This is the ID of the repository to be used. The ID can be obtained from the `linkable-repos` endpoint. If one is not specified it does not update this setting.
+- `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+- `vcs-root-path` (`string:''`) - Specifies the root of the Terraform execution context; all files outside of this path will be thrown away.
 - `working-directory` (`string:''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 
 ### Sample Payload
@@ -218,7 +218,7 @@ This endpoint lists workspaces in the organization.
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specififes the username or organization name under which to list the workspaces. This is specified in the URL path.
+- `:organization` (`string: <required>`) - Specifies the username or organization name under which to list the workspaces. This is specified in the URL path.
 
 ### Sample Request
 

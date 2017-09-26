@@ -6,20 +6,20 @@ sidebar_current: "docs-enterprise2-api-run"
 
 # Runs API
 
--> **Note**: These API endpoints are in Beta and may be subject to change.
+-> **Note**: These API endpoints are in beta and may be subject to change.
 
 Performing a run on a new configuration is a multi step process.
 
-1. Create a Configuration Version on the Workspace
-2. Upload configuration files to the Configuration Version
-3. Create a Run on the Workspace
-4. Create and queue a Plan on the Run; this is done automatically when the Run is created
-5. Create and queue an Apply on the Run
+1. Create a configuration version on the workspace
+2. Upload configuration files to the configuration version
+3. Create a Run on the workspace
+4. Create and queue a plan on the run; this is done automatically when the run is created
+5. Create and queue an apply on the run
 
 
 ## Create a Configuration Version on the Workspace
 
-A Configuration Version (`configuration-version`) is an resource used to reference the uploaded configuration files. It is associated with the Run to use the uploaded configuration files for performing the Plan and Apply.
+A configuration version (`configuration-version`) is an resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -65,7 +65,7 @@ curl \
 }
 ```
 
-## Upload Configuration files
+## Upload Configuration Files
 
 | Method | Path           |
 | :----- | :------------- |
@@ -87,7 +87,7 @@ $ curl \
 
 ## Create a Run on the Workspace
 
-A Run performs a Plan and Apply on the last configuration version created and using the variables set in the workspace.
+A run performs a plan and apply on the last configuration version created and using the variables set in the workspace.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -96,8 +96,8 @@ A Run performs a Plan and Apply on the last configuration version created and us
 ### Parameters
 
 - `id` (`string: <required>`) - specifies the workspace ID to run
-- `is-destroy` (`bool: false`) - specifies if this plan is a destory plan, which will destroy all provisioned resources.
-- `:workspace_id` (`string: <required>`) - specifies the workspace ID where the Run will be executed.
+- `is-destroy` (`bool: false`) - specifies if this plan is a destroy plan, which will destroy all provisioned resources.
+- `:workspace_id` (`string: <required>`) - specifies the workspace ID where the run will be executed.
 
 ### Sample Payload
 
@@ -161,7 +161,7 @@ curl \
 }
 ```
 
-## Create and queue an Apply on the Run
+## Create and Queue an Apply on the Run
 
 | Method | Path           |
 | :----- | :------------- |
