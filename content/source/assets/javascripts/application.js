@@ -8,7 +8,7 @@ document.addEventListener("turbolinks:load", function() {
     "use strict";
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
     var flexibleLocation = new RegExp(
-        location.pathname.replace(/(\/|\/index.html)$/, "/(index.html)?") + '$'
+        location.pathname.replace(/(\/|\/index\.html)$/, "/(index.html)?") + '$'
     );
     var activeLinks = docsSidebar.find("a").filter(
         function(index, element) {
@@ -16,6 +16,5 @@ document.addEventListener("turbolinks:load", function() {
         }
     );
     var activeListItems = docsSidebar.find("li").has(activeLinks);
-    console.log(activeListItems);
     activeListItems.addClass("active");
 });
