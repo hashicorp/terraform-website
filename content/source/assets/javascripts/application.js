@@ -4,7 +4,7 @@
 //= require hashicorp/mega-nav
 //= require hashicorp/sidebar
 
-$( document ).ready( function() {
+document.addEventListener("turbolinks:load", function() {
     "use strict";
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
     var flexibleLocation = new RegExp(
