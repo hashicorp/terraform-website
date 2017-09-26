@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-api-team-members"
 
 -> **Note**: These API endpoints are in Beta and may be subject to change.
 
-The Team Membership API is used to add or remove users from a teams. The [Team API](/docs/enterprise-beta/api/teams.html) is used to create or destroy teams.
+The Team Membership API is used to add or remove users from teams. The [Team API](/docs/enterprise-beta/api/teams.html) is used to create or destroy teams.
 
 ## Add a User to Team
 This method adds multiple users to a Team. Both Users and Teams must already exist.
