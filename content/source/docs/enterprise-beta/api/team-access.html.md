@@ -6,9 +6,9 @@ sidebar_current: "docs-enterprise2-api-team-access"
 
 # Team access API
 
-The Team access APIs are used to associates a Team to a Workspaces with permissions. A single `team-workspace` resource contains the relationship to the Team and Workspace, and it contains the privelege the Team has on the Workspace.
+-> **Note**: These API endpoints are in Beta and may be subject to change.
 
--> **Note**: These API Endpoints are not yet available on `https://atlas.hashicorp.com/api/v2/` and may be subject to change before they are made available.
+The Team access APIs are used to associate a Team to a Workspaces with permissions. A single `team-workspace` resource contains the relationship to the Team and Workspace, and it contains the privilege the Team has on the Workspace.
 
 ## List Team access to Workspaces
 

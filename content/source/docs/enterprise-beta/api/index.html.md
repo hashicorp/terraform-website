@@ -7,6 +7,8 @@ sidebar_current: "docs-enterprise2-api"
 
 # Terraform Enterprise API Documentation
 
+-> **Note**: These API endpoints are in Beta and may be subject to change.
+
 Terraform Enterprise provides an API for a subset of its features. If you have any questions or want to request new API features, please email support@hashicorp.com.
 
 See the navigation sidebar for the list of available endpoints.

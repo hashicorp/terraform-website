@@ -5,9 +5,10 @@ sidebar_current: "docs-enterprise2-api-team-members"
 ---
 
 # Team Membership API
-The Team Membership API is used to add or remove users from a teams. The [Team API](/docs/enterprise-beta/api/teams.html) is used to create or destroy teams.
 
--> **Note**: These API Endpoints are not yet available on `https://atlas.hashicorp.com/api/v2/` and may be subject to change before they are made available.
+-> **Note**: These API endpoints are in Beta and may be subject to change.
+
+The Team Membership API is used to add or remove users from teams. The [Team API](/docs/enterprise-beta/api/teams.html) is used to create or destroy teams.
 
 ## Add a User to Team
 This method adds multiple users to a Team. Both Users and Teams must already exist.
@@ -43,7 +44,7 @@ $ curl \
 
 
 # Delete a User from Team
-THis method removes multiple users from a Team. Both Users and Teams must already exist. This DOES NOT delete the User, it only remoes them from this team.
+This method removes multiple users from a Team. Both Users and Teams must already exist. This DOES NOT delete the User, it only removes them from this team.
 
 | Method | Path           |
 | :----- | :------------- |
