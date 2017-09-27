@@ -6,9 +6,9 @@ sidebar_current: "docs-enterprise2-api-variables"
 
 # Variables API
 
--> **Note**: These API endpoints are in Beta and may be subject to change.
+-> **Note**: These API endpoints are in beta and may be subject to change.
 
-This set of API covers creatue, update, list and delete operations of variables.
+This set of APIs covers create, update, list and delete operations on variables.
 
 
 ## Create a Variable
@@ -21,11 +21,11 @@ This set of API covers creatue, update, list and delete operations of variables.
 
 - `key` (`string: <required>`) - specifies the name of the variable which will be passed into the plan/apply.
 - `value` (`string: <required>`) - specifies the value of the variable which will be passed into the plan/apply.
-- `category` (`string: "terraform"|"environment"`) - specifies whether this should be parsed as a terraform variable (with support for HCL) or as an enviornment variable. This governs how it is accessible in the terraform configuration.
+- `category` (`string: "terraform"|"environment"`) - specifies whether this should be parsed as a Terraform variable (with support for HCL) or as an environment variable. This governs how it is accessible in the Terraform configuration.
 - `hcl` (`bool: false`) - use HCL when setting the value of the string.
 - `sensitive` (`bool: false`) - marks the variable as sensitive. If true then the variable is written once and not visible thereafter.
-- `?filter[organization][username]` (`string: required`) - variables must be placed in a workspace which is contained in an organization; you must specify the organization of the workspace the `filter` query parameter
-- `?filter[workspace][name]` (`string: required`) - variables must be placed in a workspace which requires that you set the name of the workspace using the `filter` query parameter.
+- `?filter[workspace][name]` (`string: required`) - variables must be associated with a workspace. Specify the workspace's name with the `filter` query parameter.
+- `?filter[organization][username]` (`string: required`) - workspaces must be owned by an organization. Specify which organization owns the workspace with the `filter` query parameter.
 
 ### Sample Payload
 
@@ -104,7 +104,7 @@ curl \
 ### Parameters
 
 - `?filter[organization][username]` (`optional`) - Optionally filter the list to an organization given the organization name
-- `?filter[workspace][name]` (`optional`) - Optionally fitler the list to a workspace given the workspace name
+- `?filter[workspace][name]` (`optional`) - Optionally filter the list to a workspace given the workspace name
 
 ### Sample Request
 

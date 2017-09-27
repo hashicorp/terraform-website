@@ -6,11 +6,11 @@ sidebar_current: "docs-enterprise2-api-team-access"
 
 # Team access API
 
--> **Note**: These API endpoints are in Beta and may be subject to change.
+-> **Note**: These API endpoints are in beta and may be subject to change.
 
-The Team access APIs are used to associate a Team to a Workspaces with permissions. A single `team-workspace` resource contains the relationship to the Team and Workspace, and it contains the privilege the Team has on the Workspace.
+The team access APIs are used to associate a team to permissions on a workspace. A single `team-workspace` resource contains the relationship between the Team and Workspace, including the privileges the team has on the workspace.
 
-## List Team access to Workspaces
+## List Team Access to Workspaces
 
 | Method | Path           |
 | :----- | :------------- |
@@ -19,8 +19,8 @@ The Team access APIs are used to associate a Team to a Workspaces with permissio
 ### Parameters
 
 - `?filter[organization][username]` (`string: <required>`) - The organization username
-- `?filter[workspace][name]` (`string: <required>`) - The worksapce name
-- `?filter[team][id]` (`string: <required>`) - Team ID
+- `?filter[workspace][name]` (`string: <required>`) - The workspace name
+- `?filter[team][id]` (`string: <required>`) - The team ID
 
 ### Sample Request
 
@@ -47,9 +47,9 @@ $ curl \
 ### Parameters
 
 - `filter[organization][username]` (`string: <required>`) - The organization username
-- `filter[workspace][name]` (`string: <required>`) - The worksapce name
-- `filter[team][id]` (`string: <required>`) - Team ID
-- `permission` (`string: <required>`) - ...
+- `filter[workspace][name]` (`string: <required>`) - The workspace name
+- `filter[team][id]` (`string: <required>`) - The team ID
+- `permission` (`string: <required>`) - `read`, `write`, or `admin`
 
 ### Sample Payload
 
@@ -85,7 +85,7 @@ $ curl \
 }
 ```
 
-## Show Team access to a Workspace
+## Show Team Access to a Workspace
 
 | Method | Path           |
 | :----- | :------------- |
@@ -93,7 +93,7 @@ $ curl \
 
 ### Parameters
 
-- `id` (`string: <required>`) - ...
+- `id` (`string: <required>`) - The ID of the team/workspace relationship.
 
 ### Sample Request
 
@@ -117,7 +117,7 @@ $ curl \
 }
 ```
 
-## Update Team access to a Workspace
+## Update Team Access to a Workspace
 
 | Method | Path           |
 | :----- | :------------- |
@@ -125,7 +125,7 @@ $ curl \
 
 ### Parameters
 
-- `id` (`string: <required>`) - ...
+- `id` (`string: <required>`) - The ID of the team/workspace relationship.
 
 ### Sample Payload
 
@@ -162,7 +162,7 @@ $ curl \
 }
 ```
 
-## Remove Team access to a Workspace
+## Remove Team Access to a Workspace
 
 | Method | Path           |
 | :----- | :------------- |
@@ -170,7 +170,7 @@ $ curl \
 
 ### Parameters
 
-- `id` (`string: <required>`) - The ID of the Teams Access to a Workspace
+- `id` (`string: <required>`) - The ID of the team/workspace relationship.
 
 ### Sample Request
 

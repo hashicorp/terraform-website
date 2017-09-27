@@ -6,9 +6,9 @@ sidebar_current: "docs-enterprise2-api-linkable-repos"
 
 # Linkable Repos API
 
--> **Note**: These API endpoints are in Beta and may be subject to change.
+-> **Note**: These API endpoints are in beta and may be subject to change.
 
-The Linkable Repos API is used to retreive the list of available VCS repositories. This is used to identify the ID of a repository when configuring the ingress-trigger on a workspace. Your organization must already have the VCS OAuth Connection configured.
+The linkable repos API is used to retrieve the list of available VCS repositories. This is used to identify the ID of a repository when configuring the ingress-trigger on a workspace. Your organization must already have a VCS OAuth connection configured.
 
 ## List Linkable Repos
 
@@ -20,7 +20,7 @@ This endpoint lists linkable repos to which you have access.
 
 ### Parameters
 
-- `?filter[organization][username]` (`string: <required>`) - Specifies the username or organization name under which to list the workspaces. This is specified as a query parameter.
+- `?filter[organization][username]` (`string: <required>`) - Specifies the username or organization name whose repositories you're requesting. This is specified as a query parameter.
 
 ### Sample Request
 
