@@ -284,3 +284,26 @@ $ curl \
 }
 ```
 
+
+## Delete a workspace
+
+This endpoint deletes a workspace
+
+| Method | Path           |
+| :----- | :------------- |
+| DELETE | /organizations/:organization/workspaces/:workspace |
+
+### Parameters
+
+- `:workspace` (`string: <required>`) - Specifies the workspace ID to delete. This parameter is specified in the URL path.
+- `:organization` (`string: <required>`) - Specifies the organization name where the workspace belongs. This parameter is specified in the URL path.
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://atlas.hashicorp.com/api/v2/organizations/my-organization/workspaces/my-workspace
+```
