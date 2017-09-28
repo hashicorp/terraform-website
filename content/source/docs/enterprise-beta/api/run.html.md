@@ -91,13 +91,13 @@ A run performs a plan and apply on the last configuration version created and us
 
 | Method | Path           |
 | :----- | :------------- |
-| POST | /workspaces/:workspace_id/runs |
+| POST | /runs |
 
 ### Parameters
 
 - `id` (`string: <required>`) - specifies the workspace ID to run
 - `is-destroy` (`bool: false`) - specifies if this plan is a destroy plan, which will destroy all provisioned resources.
-- `:workspace_id` (`string: <required>`) - specifies the workspace ID where the run will be executed.
+- `workspace_id` (`string: <required>`) - specifies the workspace ID where the run will be executed.
 
 ### Sample Payload
 
@@ -107,7 +107,15 @@ A run performs a plan and apply on the last configuration version created and us
     "attributes": {
       "is-destroy":false
     },
-    "type":"runs"
+    "type":"runs",
+    "relationships": {
+      "workspace": {
+        "data": {
+          "type": "workspaces",
+          "id": "ws-LLGHCr4SWy28wyGN"
+        }
+      }
+    }
   }
 }
 ```
