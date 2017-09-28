@@ -287,7 +287,7 @@ $ curl \
 
 ## Delete a workspace
 
-This endpoint deletes a workspace
+This endpoint deletes a workspace.
 
 | Method | Path           |
 | :----- | :------------- |
