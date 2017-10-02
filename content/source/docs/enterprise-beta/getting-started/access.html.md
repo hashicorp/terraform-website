@@ -9,10 +9,11 @@ sidebar_current: "docs-enterprise2-started-access"
 Terraform Enterprise (TFE) beta is a rewritten version of TFE, and you can't currently use it with your existing TFE data and configurations. To start testing TFE beta, you must:
 
 - Make sure you have a TFE account.
-- Contact HashiCorp sales to request access to the TFE beta.
-- Navigate to TFE beta.
-- Create a new organization for working with TFE beta.
-
+- [Contact HashiCorp sales](https://www.hashicorp.com/products/terraform/) to request access to the TFE beta.
+- [Navigate to TFE beta](https://atlas.hashicorp.com/beta).
+- [Create a new organization](https://atlas.hashicorp.com/beta/organizations/new) for working with TFE beta. Ensure
+ you do not have an organization created already under this name in the Classic version.
+ 
 ## Creating a TFE Account
 
 If you don't already have a TFE account, you must create one. You can use the same user account to access TFE classic and TFE beta, although you'll use separate organizations.
