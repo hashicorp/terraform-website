@@ -3,7 +3,7 @@ layout: "enterprise"
 page_title: "Installing Software - Runs - Terraform Enterprise"
 sidebar_current: "docs-enterprise-runs-installing"
 description: |-
-  Installing custom software on the Terraform Runners.
+  Installing custom software on the Terraform workers.
 ---
 
 # Installing Custom Software
