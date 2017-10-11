@@ -278,3 +278,7 @@
 	path = ext/providers/atlas
 	url = https://github.com/terraform-providers/terraform-provider-atlas
 	branch = stable-website
+[submodule "ext/providers/logicmonitor"]
+	path = ext/providers/logicmonitor
+	url = https://github.com/terraform-providers/terraform-provider-logicmonitor
+	branch = stable-website
