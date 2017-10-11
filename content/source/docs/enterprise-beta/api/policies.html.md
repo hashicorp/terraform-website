@@ -34,11 +34,11 @@ This endpoint enables you to create a policy and associate it with an organizati
     "attributes": {
       "enforce": [
         {
-          "path": "basic.sentinel",
+          "path": "my-example-policy.sentinel",
           "mode": "hard-mandatory"
         }
       ],
-      "name": "basic",
+      "name": "my-example-policy",
     },
     "type":"policies"
   }
@@ -64,10 +64,10 @@ curl \
     "id":"pol-u3S5p2Uwk21keu1s",
     "type":"policies",
     "attributes": {
-      "name":"basic",
+      "name":"my-example-policy",
       "enforce": [
         {
-          "path":"basic.sentinel",
+          "path":"my-example-policy.sentinel",
           "mode":"advisory"
         }
       ],
@@ -164,10 +164,10 @@ curl \
     "id":"pol-u3S5p2Uwk21keu1s",
     "type":"policies",
     "attributes": {
-      "name":"basic",
+      "name":"my-example-policy",
       "enforce": [
         {
-          "path":"basic.sentinel",
+          "path":"my-example-policy.sentinel",
           "mode":"soft-mandatory"
         }
       ],
@@ -213,10 +213,10 @@ curl \
                 "enforce": [
                     {
                         "mode": "advisory",
-                        "path": "basic.sentinel"
+                        "path": "my-example-policy.sentinel"
                     }
                 ],
-                "name": "basic",
+                "name": "my-example-policy",
                 "updated-at": "2017-10-10T20:52:13.898Z"
             },
             "id": "pol-u3S5p2Uwk21keu1s",
