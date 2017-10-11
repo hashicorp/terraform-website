@@ -34,11 +34,11 @@ This endpoint enables you to create a policy and associate it with an organizati
     "attributes": {
       "enforce": [
         {
-          "path": "my-example-policy.sentinel",
+          "path": "basic.sentinel",
           "mode": "hard-mandatory"
         }
       ],
-      "name": "my-example-policy",
+      "name": "basic",
     },
     "type":"policies"
   }
@@ -75,8 +75,7 @@ curl \
     },
     "links": {
       "self":"/api/v2/policies/pol-u3S5p2Uwk21keu1s",
-      "upload":"/api/v2/policies/pol-u3S5p2Uwk21keu1s/upload",
-      "download":"/api/v2/policies/pol-u3S5p2Uwk21keu1s/download"
+      "upload":"/api/v2/policies/pol-u3S5p2Uwk21keu1s/upload"
     }
   }
 }
@@ -91,11 +90,10 @@ This endpoint is used to upload the policy content to the policy.
 
 | Method | Path           |
 | :----- | :------------- |
-| PUT | /organizations/:organization/policies/:policy_id/upload |
+| PUT | /policies/:policy_id/upload |
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - specifies the organization name where the Policy will be defined
 - `:policy_id` (`string: <required>`) - specifies the policy ID to which the file should be saved
 
 ### Sample Payload
@@ -110,10 +108,9 @@ main = rule { true }
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/octet-stream" \
-  --header "Accept: text/plain" \
-  --request POST \
-  --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/policy/pol-u3S5p2Uwk21keu1s/upload
+  --request PUT \
+  --data-binary @payload.sentinel \
+  https://atlas.hashicorp.com/api/v2/policy/pol-u3S5p2Uwk21keu1s/upload
 ```
 
 
@@ -123,11 +120,11 @@ This endpoint enables you to update a Policy
 
 | Method | Path           |
 | :----- | :------------- |
-| PATCH | /organizations/:organization/policies/:policy_id |
+| PATCH | /policies/:policy_id |
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - specifies the organization name where the Policy is defined
+- `:policy_id` (`string: <required>`) - specifies the policy ID to be updated
 
 ### Sample Payload
 
@@ -156,7 +153,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/policy/pol-u3S5p2Uwk21keu1s
+  https://atlas.hashicorp.com/api/v2/policy/pol-u3S5p2Uwk21keu1s
 ```
 
 ### Sample Response
@@ -238,11 +235,11 @@ curl \
 
 | Method | Path           |
 | :----- | :------------- |
-| DELETE | /organizations/:organization/policies/:policy_id |
+| DELETE | /policies/:policy_id |
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - specifies the organization name where the Policy is defined
+- `:policy_id` (`string: <required>`) - specifies the policy ID to be deleted
 
 ### Sample Request
 
@@ -251,6 +248,6 @@ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/policies/pl-u3S5p2Uwk21keu1s
+  https://atlas.hashicorp.com/api/v2/policies/pl-u3S5p2Uwk21keu1s
 ```
 
