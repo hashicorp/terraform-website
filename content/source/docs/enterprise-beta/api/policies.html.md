@@ -246,7 +246,6 @@ curl \
 ```shell
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
-  --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://atlas.hashicorp.com/api/v2/policies/pl-u3S5p2Uwk21keu1s
 ```
