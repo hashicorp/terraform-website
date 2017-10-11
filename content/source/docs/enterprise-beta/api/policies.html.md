@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-api-policy"
 
 -> **Note**: These API endpoints are in beta and may be subject to change.
 
-[Sentinel Policy as Code](/docs/enterprise-beta/sentinel/index.html) is an embedded policy as code framework integrated with Terraform Enterprise. Policies are defined in organizations and enforced on all workspace Runs between a plan and an apply. This doc covers operations to create, read, update, and delete the Sentinel Policies in an organization. The [Runs API](/docs/enterprise-beta/api/run.html) covers the steps for reading and overriding policy checks in a workspace run.
+[Sentinel Policy as Code](/docs/enterprise-beta/sentinel/index.html) is an embedded policy as code framework integrated with Terraform Enterprise. Policies are defined in organizations and enforced on all workspace Runs between a plan and an apply. A plan must pass the policy in order to proceed to the apply step. This doc covers operations to create, read, update, and delete the Sentinel Policies in an organization. The [Runs API](/docs/enterprise-beta/api/run.html) covers the steps for reading and overriding policy checks in a workspace run.
 
 
 ## Create a Policy
@@ -23,7 +23,7 @@ This endpoint enables you to create a policy and associate it with an organizati
 
 - `:organization` (`string: <required>`) - specifies the organization name where the Policy will be defined
 - `name` (`string: <required>`) - specifies the name of the policy. Accepts alphanumeric characters, as well as `-` and `_`. Cannot be modified after creation.
-- `mode` (`string: "soft"`) - specifies the enforcement level of the policy, it can be `hard`, `soft`, or `advisory`.
+- `mode` (`string: "soft"`) - specifies the enforcement level of the policy, it can be `hard`, `soft`, or `advisory`. Enforcement level details can be found in the [Managing Policies](/docs/enterprise-beta/sentinel/manage-policies.html) documentation.
 
 
 ### Sample Payload

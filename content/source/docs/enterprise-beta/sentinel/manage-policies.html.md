@@ -10,7 +10,7 @@ Sentinel Policies are rules which are enforced on every workspace run to validat
 
 To view the policies navigate to the organization's settings page under "Sentinel Policy". From the "Sentinel Policy" section you can view, list, edit, create and delete the policies.
 
-To create a new policy navigate to “Create Policy”. Sentinel is designed to enable policy as code. As such, it is not recommended to use the Terraform Enterprise UI to manage policy. However, this interface can serve to demonstrate or manage very simple Sentinel policy. 
+To create a new policy navigate to “Create Policy”. Sentinel is designed to enable policy as code. As such, it is not recommended to use the Terraform Enterprise UI to manage policy. Instead, it is [recommended to store Sentinel policies in version control](./integrate-vcs.html).
 
 - **Policy Name**: The name of your policy is used in the UI and Sentinel output. Accepts alphanumeric characters, as well as `-` and `_`. Cannot be modified after creation.
 - **Enforcement Mode**: This sets the level to which the policy is enforced when performing a Run.
