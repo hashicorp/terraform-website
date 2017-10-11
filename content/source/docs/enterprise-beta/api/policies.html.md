@@ -199,7 +199,6 @@ List all the policies for a given organization
 ```shell
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
-  --header "Content-Type: application/vnd.api+json" \
   https://atlas.hashicorp.com/api/v2/organizations/my-organization/policies
 ```
 
