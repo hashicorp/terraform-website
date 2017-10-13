@@ -19,7 +19,7 @@ The default `/workspaces` endpoint creates a workspace without configuring the V
 
 | Method | Path           |
 | :----- | :------------- |
-| POST | /organizations/:organization/compound-workspaces |
+| POST | /compound-workspaces |
 
 
 
@@ -63,7 +63,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/workspaces
+  https://atlas.hashicorp.com/api/v2/compound-workspaces
 ```
 
 ### Sample Response
@@ -113,7 +113,7 @@ Update the workspace settings
 
 | Method | Path           |
 | :----- | :------------- |
-| PATCH | /organizations/:organization/compound-workspaces/:workspace_id |
+| PATCH | /compound-workspaces/:workspace_id |
 
 
 
@@ -158,7 +158,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/workspaces/ws-5GfiHeb4B39c3Gu3
+  https://atlas.hashicorp.com/api/v2/compound-workspaces/ws-5GfiHeb4B39c3Gu3
 ```
 
 ### Sample Response
