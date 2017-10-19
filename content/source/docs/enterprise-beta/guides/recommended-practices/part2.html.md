@@ -103,8 +103,8 @@ The following questions will help you assess the maturity of your change control
 
 1. Access is not restricted or audited. Everyone in the platform team has the flexibility to create, change, and destroy all infrastructure. This leads to a complex system that is unstable and hard to manage.
 2. Access is not restricted, only audited. This makes it easier to track changes after the fact, but doesn't proactively protect your infrastructure's stability.
-3. Access is restricted based on service provider account level. members of the team have admin access to different accounts based on the environment they are responsible for.
-4. Access is restricted based on user roles. all access is restricted based on user roles at infrastructure provider level.
+3. Access is restricted based on service provider account level. Members of the team have admin access to different accounts based on the environment they are responsible for.
+4. Access is restricted based on user roles. All access is restricted based on user roles at infrastructure provider level.
 
 ### Q7. What is the process for changing existing infrastructure?
 
