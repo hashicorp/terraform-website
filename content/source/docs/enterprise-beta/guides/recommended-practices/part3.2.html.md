@@ -37,9 +37,9 @@ Start moving infrastructure code into version control. New Terraform code should
 
 [Terraform](https://www.terraform.io/docs/modules/usage.html) [modules](https://www.terraform.io/docs/modules/usage.html) are reusable configuration units. They let you manage pieces of infrastructure as a single package you can call and define multiple times in the main configuration for a workspace. Examples of a good Terraform module candidate would be an auto-scaling group on AWS that wraps a launch configuration, auto-scaling group, and EC2 Elastic Load Balancer (ELB).. If you are already using Terraform modules, make sure you’re following the best practices and keep an eye on places where your modules could improve.
 
-    The diagram below can help you decide when to write a module:
+The diagram below can help you decide when to write a module:
 
-    ![Screen Shot 2017-06-19 at 10.22.11.png](./images/image2.png)
+![(A flow chart suggesting that modules should be used to reuse code with multiple resources for architectural patterns, reduction of configuration, or a custom setup with many resource types.)](../images/image2.png)
 
 ## 4. Share Knowledge
 
