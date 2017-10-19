@@ -39,7 +39,7 @@ Start moving infrastructure code into version control. New Terraform code should
 
 The diagram below can help you decide when to write a module:
 
-![(A flow chart suggesting that modules should be used to reuse code with multiple resources for architectural patterns, reduction of configuration, or a custom setup with many resource types.)](../images/image2.png)
+![(A flow chart suggesting that modules should be used to reuse code with multiple resources for architectural patterns, reduction of configuration, or a custom setup with many resource types.)](./images/image2.png)
 
 ## 4. Share Knowledge
 
