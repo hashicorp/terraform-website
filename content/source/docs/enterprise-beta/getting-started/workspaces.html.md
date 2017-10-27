@@ -20,9 +20,11 @@ A workspace consists of:
 * Values for any variables those configurations require.
 * Persistent stored state for the resources it manages.
 
-A well-designed Terraform workflow uses multiple codebases, so you can manage each logical grouping of infrastructure with its own set of Terraform configurations. Additionally, it's common to use the same group of configurations multiple times (with different values for variables) to manage different environments.
+A well-designed Terraform workflow uses multiple configurations, so you can manage each logical grouping of infrastructure with its own code. Additionally, it's common to use the same configuration multiple times (with different values for variables) to manage different environments.
 
 ## Creating a Workspace
+
+~> **Note:** Currently, only members of the "owners" team can create new workspaces.
 
 First, make sure you're on TFE's front page. If you're still on the VCS settings (or any other page), click the Terraform logo button in the upper left and choose "Terraform Enterprise (Beta)".
 
@@ -40,9 +42,9 @@ On the "Create a new Workspace" page, you need to enter at least two items: a wo
 
 ### Workspace Name
 
-A workspace name should tell your colleagues what the workspace is for. Most workspaces are _a particular environment_ of _a particular codebase,_ so the name should include both the name of the codebase and the name of the environment.
+A workspace name should tell your colleagues what the workspace is for. Most workspaces are _a particular environment_ of _a particular Terraform configuration,_ so the name should include both the name of the configuration and the name of the environment.
 
-In this example, we're using a codebase named "minimal" and we're deploying it in a production environment, so we named it `minimal-prod`.
+In this example, we're using a configuration named "minimal" and we're deploying it in a production environment, so we named it `minimal-prod`.
 
 ### Repository
 
@@ -71,7 +73,7 @@ When you create a new workspace, a few things happen:
 
 ## Editing Variables
 
-For almost any Terraform codebase, you'll want to edit the Terraform variables and environment variables used by the code.
+For almost any workspace, you'll want to edit the Terraform variables and environment variables used by the code.
 
 You can edit variables as soon as you've created a workspace, by clicking the workspace's "Variables" tab.
 
@@ -84,6 +86,28 @@ To edit one of these sections, click the "Edit" control. You can then add, modif
 ![editing a variables list](./images/work-var-editing.png)
 
 Terraform variables start as basic string values, but you can also enter array or map values if you click the "HCL" checkbox for that variable. You can write these values with the same syntax you'd use in a Terraform configuration.
+
+## Granting Access
+
+The user account that created your organization is part of the "owners" team, which can do any action on any workspace. Most of your colleagues don't need that level of access; instead, an administrator can give them access to the specific workspaces they need to use.
+
+TFE manages access with _teams._ In your organization's settings, you can create any number of teams and add users to them — earlier in this getting started guide, you might have [already created a team](./access.html#adding-other-users-to-an-organization) to bring other users into your organization. If you haven't done that yet, do it now.
+
+Once you have some teams, you can add them to a workspace by clicking the "Access" tab:
+
+![managing team access to a workspace](./images/work-access.png)
+
+A newly created workspace can't be used by anyone but the "owners" team; other teams can't even see it. To enable collaboration on a workspace, you must add other teams to it.
+
+To add a team to a workspace, select it from the dropdown menu and choose which permissions the team should have. There are three levels of permissions available:
+
+- **Read** access lets team members view the workspace's variables and settings, view its run history, and view its StateVersions and ConfigurationVersions. They can't queue run plans, apply existing run plans, or change any variables or settings.
+- **Write** access lets team members create and approve runs, and lock or unlock the workspace. It doesn't let them change variables or settings.
+- **Admin** access lets team members change variables and settings, add other teams to the workspace, remove other teams from the workspace, and delete the workspace.
+
+To change a team's permissions on a workspace, you must first delete their existing permissions, then add their new permissions.
+
+~> **Note:** These permissions only affect actions via TFE's UI and API. If a person can push commits to a workspace's VCS repo and the workspace is set to automatically apply changes, that person can still make infrastructure changes. Take this into account when planning your teams and workspace permissions.
 
 ## Configuring a Workspace
 

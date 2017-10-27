@@ -22,6 +22,8 @@ TFE enforces Terraform's division between _plan_ and _apply_ operations. It alwa
 There are two ways to start a run in a workspace:
 
 - Manually queuing a plan, by clicking the "Queue Plan" button in the upper right of a workspace. This is useful when you've edited some variables and need to update your infrastructure accordingly.
+
+    Manually queueing a plan requires write or admin access.
 - Automatically queuing a plan by committing to version control. (TFE always registers a VCS webhook when you create a new workspace, although you can later delete the webhook to prevent automatic runs.)
 
 ### Per-Workspace Queues
@@ -84,10 +86,14 @@ When you've finished reviewing the output of a plan, use one of these buttons to
 
 Note that until you apply or discard a plan, TFE can't start another run in that workspace.
 
+#### Auto apply
+
+By default, run plans require confirmation. If you would rather automatically apply plans that don't have errors, you can enable auto apply on the workspace's settings tab.
+
 ## Preventing Runs
 
 If you need to temporarily stop runs from being queued, you can lock the workspace.
 
-You can find the lock button in the workspace settings page.
+You can find the lock button in the workspace settings page. Locking a workspace requires write or admin access.
 
 

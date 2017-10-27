@@ -6,9 +6,9 @@ sidebar_current: "docs-enterprise2-users-teams-organizations-permissions"
 
 # Permissions
 
-Teams can be given read, write, or admin permissions on workspaces.
+Teams can have **read, write,** or **admin** permissions on workspaces.
 
-**Read**
+## Read
 
 Can read any information on the workspace including:
 
@@ -18,19 +18,19 @@ Can read any information on the workspace including:
 
 Cannot do anything which alters state of the above.
 
-**Write**
+## Write
 
 Can do everything the read access level can do plus:
 
 - Execute functions which alter state of the above models
-- Create and approve Runs.
-- Lock and Unlock the Workspace
+- Create and approve runs.
+- Lock and unlock the workspace
 
-**Admin**
+## Admin
 
 Can do everything the write access level can do, plus:
 
-- Read and Write Variables on the workspace
+- Read and write variables on the workspace
 - Delete the workspace
-- Add and Remove Teams from the Workspace at any access level
-- Read and Write Workspace settings (VCS config, etc)
+- Add and remove teams from the workspace at any access level
+- Read and write workspace settings (VCS config, etc)
