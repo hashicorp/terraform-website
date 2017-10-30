@@ -38,6 +38,7 @@
 
 /docs/backends/types/atlas.html                  /docs/backends/types/terraform-enterprise.html
 /docs/configuration/atlas.html                   /docs/configuration/terraform-enterprise.html
+/docs/enterprise/packer/builds.html              /docs/enterprise/packer/builds/index.html
 /docs/providers/atlas                            /docs/providers/terraform-enterprise/index.html
 /docs/providers/aws/r/alb.html                    /docs/providers/aws/r/lb.html
 /docs/providers/aws/r/alb_listener.html           /docs/providers/aws/r/lb_listener.html
