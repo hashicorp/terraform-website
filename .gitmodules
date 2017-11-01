@@ -284,5 +284,5 @@
 	branch = stable-website
 [submodule "ext/providers/cloudscale"]
 	path = ext/providers/cloudscale
-	url = /Users/clint/Projects/Go/src/github.com/terraform-providers/terraform-provider-cloudscale
+	url = https://github.com/terraform-providers/terraform-provider-cloudscale
 	branch = stable-website
