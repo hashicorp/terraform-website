@@ -109,7 +109,7 @@ $ curl \
 }
 ```
 
-## Create a Workspace without a VCS Repository
+## Create a Workspace Without a VCS Repository
 
 The default `/workspaces` endpoint creates a workspace without configuring the VCS connection (`ingress-trigger`).
 
