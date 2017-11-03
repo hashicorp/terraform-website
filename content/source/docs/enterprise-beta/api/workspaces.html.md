@@ -26,7 +26,7 @@ This endpoint is used to create a new workspace which references an `o-auth-toke
 ### Parameters
 
 - `:organization` (`string: <required>`) - Specifies the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
-- `o-auth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtain from the [o-auth-tokens](./o-auth-tokens.html) endpoint.
+- `o-auth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [o-auth-tokens](./o-auth-tokens.html) endpoint.
 - `default-branch` (`boolean: true`) - specifies if the default branch should be used.
 - `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
 - `linkable-repo-id` (`string: <optional>`) - This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
@@ -200,7 +200,7 @@ Update the workspace settings
 
 - `:organization` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 - `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update.
-- `o-auth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtain from the [o-auth-tokens](/docs/enterprise-beta/api/o-auth-tokens.html) endpoint.
+- `o-auth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [o-auth-tokens](/docs/enterprise-beta/api/o-auth-tokens.html) endpoint.
 - `default-branch` (`boolean: true`) - specifies if the default branch should be used.
 - `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
 - `linkable-repo-id` (`string: <required>`) - This is the reference to your VCS repository in the format :org/:repo
