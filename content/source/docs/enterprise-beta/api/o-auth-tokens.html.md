@@ -12,7 +12,7 @@ The `o-auth-token` object represents a VCS configuration which includes the OAut
 
 ## List OAuth Tokens
 
-List all the policies for a given organization
+List all the OAuth Tokens for a given organization
 
 | Method | Path           |
 | :----- | :------------- |
@@ -20,7 +20,7 @@ List all the policies for a given organization
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - specifies the organization name where the Policy is defined
+- `:organization` (`string: <required>`) - specifies the organization name where the OAuth Token is defined
 
 ### Sample Request
 
