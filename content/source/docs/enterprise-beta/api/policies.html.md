@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-api-policy"
 
 # Policies API
 
--> **Note**: These API endpoints are in beta and are be subject to change.
+-> **Note**: These API endpoints are in beta and are subject to change.
 
 [Sentinel Policy as Code](/docs/enterprise-beta/sentinel/index.html) is an embedded policy as code framework integrated with Terraform Enterprise. Policies are defined in organizations and enforced on all workspace Runs between a plan and an apply. A plan's changes must be validated by the policy in order to proceed to the apply step. This doc covers operations to create, read, update, and delete the Sentinel Policies in an organization. The [Runs API](/docs/enterprise-beta/api/run.html) covers the steps for reading and overriding policy checks in a workspace run.
 

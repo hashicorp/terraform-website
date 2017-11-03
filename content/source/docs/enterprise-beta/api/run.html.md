@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-api-run"
 
 # Runs API
 
--> **Note**: These API endpoints are in beta and are be subject to change.
+-> **Note**: These API endpoints are in beta and are subject to change.
 
 Performing a run on a new configuration is a multi step process.
 

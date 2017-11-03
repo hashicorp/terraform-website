@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-api-team-access"
 
 # Team access API
 
--> **Note**: These API endpoints are in beta and are be subject to change.
+-> **Note**: These API endpoints are in beta and are subject to change.
 
 The team access APIs are used to associate a team to permissions on a workspace. A single `team-workspace` resource contains the relationship between the Team and Workspace, including the privileges the team has on the workspace.
 
