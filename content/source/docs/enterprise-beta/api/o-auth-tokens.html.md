@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-api-o-auth-tokens"
 
 # OAuth Tokens
 
--> **Note**: These API endpoints are in beta and may be subject to change.
+-> **Note**: These API endpoints are in beta and are be subject to change.
 
 The `o-auth-token` object represents a VCS configuration which includes the OAuth connection and the assocaited OAuth token. This object is used when creating a workspace to identify which VCS connection to use.
 
