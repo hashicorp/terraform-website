@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-api-variables"
 
 # Variables API
 
--> **Note**: These API endpoints are in beta and may be subject to change.
+-> **Note**: These API endpoints are in beta and are subject to change.
 
 This set of APIs covers create, update, list and delete operations on variables.
 
