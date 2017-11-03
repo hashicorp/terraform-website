@@ -29,7 +29,7 @@ This endpoint is used to create a new workspace which references an `o-auth-toke
 - `o-auth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtain from the [o-auth-tokens](/docs/enterprise-beta/api/o-auth-tokens.html) endpoint.
 - `default-branch` (`boolean: true`) - specifies if the default branch should be used.
 - `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
-- `linkable-repo-id` (`string: <optional>`) - This is the reference to your VCS repository in the format :org/:repo
+- `linkable-repo-id` (`string: <optional>`) - This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
 - `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 - `vcs-root-path` (`string:''`) - Specifies the root of the Terraform execution context; all files outside of this path will be thrown away.
 - `working-directory` (`string:''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
