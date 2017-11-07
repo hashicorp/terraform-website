@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-saml-configuration"
 
 # Configuration
 
-Go to `https://[your-terraform-domain]/admin/settings/saml` and you’ll need to set the following values
+Go to `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/admin/settings/saml` and set the following:
 
 1. **Single Sign On URL**: specifies the HTTP(S) endpoint on your IdP for single sign-on requests. This value is provided by your IdP configuration.
 2. **Single Log Out URL**:  specifies the HTTP(s) endpoint on your IdP for single logout requests. This value is provided by your IdP configuration. Single Logut is not yet supported.
