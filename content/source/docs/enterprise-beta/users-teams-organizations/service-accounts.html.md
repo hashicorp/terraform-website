@@ -16,8 +16,8 @@ Team service accounts can be found under "Team API Token" section of the team ma
 
 
 ## Organization service accounts
-Organization service accounts are associated with the organization and have permissions across the entire organization. These accounts have permission to perform all CRUD operation all all resources; however, these accounts do not have permission to trigger an apply on a workspace. To perform workspace operations like applying, use team service accounts.
 
+Organization service accounts are associated with the organization and have permissions across the entire organization. These accounts have permission to perform all CRUD operations on all resources; however, these accounts do not have permission to trigger an apply on a workspace. To perform workspace operations like applying, use team service accounts.
 
 Organization service accounts can be found under "API Token" on the Organization Settings page.
 
