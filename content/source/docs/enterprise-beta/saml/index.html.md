@@ -12,7 +12,10 @@ SAML is an XML-based standard for authentication and authorization. Terraform En
 
 Terraform Enterprise supports the SAML 2.0 standard. It has been tested with a variety of identity providers.
 
-- Azure Active Directory (Azure AD) - planned
-- OneLogin - verified
 - Google G Suite - verified
-- PingFederate - planned
+- OneLogin - verified
+
+These providers are planned to be verified for the General Availability launch but have not been tested in Beta.
+
+- PingFederate
+- Azure Active Directory (Azure AD)
