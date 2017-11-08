@@ -26,8 +26,10 @@ Organization service accounts can be found under "API Token" on the Organization
 If using the team or organization service accounts, consider the following criteria around generating and using the tokens:
 
 - Teams and Organizations do not have tokens by default.
+- Only one token is allowed per team.
+- Only one token is allowed per organization.
 - Any member of that team can generate a new token.
 - The tokens are generated and displayed only once when they are created and obfuscated thereafter. If the token is lost, it must be regenerated.
-- When a token is regenerated the previous token will become immediately invalid. 
+- When a token is regenerated the previous token will become immediately invalid.
 - Tokens can be revoked (deleted) by any member of the team.
 - Generating, regenerated, and deleting are all supported through both the UI and the API.
