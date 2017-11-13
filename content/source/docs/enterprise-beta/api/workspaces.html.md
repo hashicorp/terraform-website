@@ -115,7 +115,7 @@ The default `/workspaces` endpoint creates a workspace without configuring the V
 
 | Method | Path           |
 | :----- | :------------- |
-| POST | /organiozations/:organization_username/workspaces |
+| POST | /organizations/:organization_username/workspaces |
 
 
 
