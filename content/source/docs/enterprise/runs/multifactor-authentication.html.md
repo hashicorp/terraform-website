@@ -12,10 +12,6 @@ You can optionally configure Terraform plans and applies to use multi-factor aut
 
 This option is disabled by default and can be enabled by an organization owner.
 
-!> This is an advanced feature that enables changes to active infrastructure
-without user confirmation. Please understand the implications to your
-infrastructure before enabling.
-
 ## Setting Up AWS Multi-Factor Authentication
 
 Before you are able to set up multi-factor authentication in Terraform
