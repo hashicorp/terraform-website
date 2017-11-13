@@ -212,22 +212,4 @@ curl \
   https://atlas.hashicorp.com/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/apply
 ```
 
-### Sample Response
-
-```json
-{
-  "data": {
-    "id":"apply-asdRRMYRZS2o4Qhn",
-    "type":"applies",
-    "attributes": {
-      "status":"pending",
-      "status-timestamps": {},
-      "log-read-url":"https://archivist.hashicorp.com/v1/object/dmF1bHQ6djE6em1wNGpRczhGR2ZTY2RURWcxNDN4RjkvMWNveVdmQU9XRXVIdWQ5ZE9WYjhhd2lFb0dqQ0VOUk1FWlBCNmVNRXVBYWUrY1UvSGNKWkEzeUp6c0FxaHd0VzhZakxBQ1VJMEFHN2NRaCtaMEZOb2hFQTA4VmZoRTBUSFdBd01iVWo3bk5YMUM3THVXQ1VpdVhKNnBWM1c0Nm1iZCtoZnNUVkc1VEViWlFHK1E9PQ=="
-    },
-    "links": {
-      "self":"/api/v2/applies/apply-asdRRMYRZS2o4Qhn"
-    }
-  }
-}
-```
 
