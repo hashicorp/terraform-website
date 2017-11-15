@@ -14,7 +14,7 @@ The team access APIs are used to associate a team to permissions on a workspace.
 
 | Method | Path           |
 | :----- | :------------- |
-| GET | /team_workspaces |
+| GET | /team-workspaces |
 
 ### Parameters
 
@@ -73,7 +73,7 @@ $ curl \
 
 | Method | Path           |
 | :----- | :------------- |
-| POST | /team_workspaces |
+| POST | /team-workspaces |
 
 ### Parameters
 
@@ -116,7 +116,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/team_workspaces
+  https://atlas.hashicorp.com/api/v2/team-workspaces
 ```
 
 ### Sample Response
@@ -173,7 +173,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://atlas.hashicorp.com/api/v2/team_workspaces/257525
+  https://atlas.hashicorp.com/api/v2/team-workspaces/257525
 ```
 
 ### Sample Response
@@ -192,7 +192,7 @@ $ curl \
 
 | Method | Path           |
 | :----- | :------------- |
-| DELETE | /team_workspaces/:id |
+| DELETE | /team-workspaces/:id |
 
 ### Parameters
 
@@ -205,6 +205,6 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://atlas.hashicorp.com/api/v2/team_workspaces/257525
+  https://atlas.hashicorp.com/api/v2/team-workspaces/257525
 ```
 
