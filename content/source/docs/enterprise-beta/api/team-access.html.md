@@ -18,9 +18,7 @@ The team access APIs are used to associate a team to permissions on a workspace.
 
 ### Parameters
 
-- `?filter[organization][username]` (`string: <required>`) - The organization username
-- `?filter[workspace][name]` (`string: <required>`) - The workspace name
-- `?filter[team][id]` (`string: <required>`) - The team ID
+- `?filter[workspace][id]` (`string: <required>`) - The workspace ID for which to list the teams with access
 
 ### Sample Request
 
@@ -29,13 +27,46 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://atlas.hashicorp.com/api/v2/team_workspaces?filter[organization][username]=hashicorp&filter[workspace][name]=example&filter[team][id]=1
+  https://atlas.hashicorp.com/api/v2/team-workspaces?filter%5Bworkspace%5D%5Bid%5D=ws-5vBKrazjYR36gcYX
 ```
 
 ### Sample Response
 
 ```json
-{}
+{
+  "data": [
+    {
+      "id":"131",
+      "type":"team-workspaces",
+      "attributes": {
+        "access":"read"
+      },
+      "relationships": {
+        "team": {
+          "data": {
+            "id":"team-BUHBEM97xboT8TVz",
+            "type":"teams"
+          },
+          "links": {
+            "related":"/api/v2/teams/devs"
+          }
+        },
+        "workspace": {
+          "data": {
+            "id":"ws-5vBKrazjYR36gcYX",
+            "type":"workspaces"
+          },
+          "links": {
+            "related":"/api/v2/organizations/my-organization/workspaces/ws-5vBKrazjYR36gcYX"
+          }
+        }
+      },
+      "links": {
+        "self":"/api/v2/team-workspaces/131"
+      }
+    }
+  ]
+}
 ```
 
 ## Add Team access to a Workspace
