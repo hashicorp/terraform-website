@@ -188,51 +188,6 @@ $ curl \
 }
 ```
 
-## Update Team Access to a Workspace
-
-| Method | Path           |
-| :----- | :------------- |
-| PATCH | /team-workspaces/:id |
-
-### Parameters
-
-- `id` (`string: <required>`) - The ID of the team/workspace relationship.
-
-### Sample Payload
-
-```json
-{
-  "data": {
-    "type": "team-workspaces",
-    "id": "1",
-    "attributes": { "permission": "read" }
-  }
-}
-```
-
-### Sample Request
-
-```shell
-$ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
-  --header "Content-Type: application/vnd.api+json" \
-  --request PATCH \
-  --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/team_workspaces/257525
-```
-
-### Sample Response
-
-```json
-{
-  "data": {
-    "type": "team-workspaces",
-    "id": "1",
-    "attributes": { "permission": "read" }
-  }
-}
-```
-
 ## Remove Team Access to a Workspace
 
 | Method | Path           |
