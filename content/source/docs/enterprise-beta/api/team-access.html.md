@@ -129,7 +129,7 @@ $ curl \
 
 | Method | Path           |
 | :----- | :------------- |
-| GET | /team_workspaces/:id |
+| GET | /team-workspaces/:id |
 
 ### Parameters
 
@@ -161,7 +161,7 @@ $ curl \
 
 | Method | Path           |
 | :----- | :------------- |
-| PATCH | /team_workspaces/:id |
+| PATCH | /team-workspaces/:id |
 
 ### Parameters
 
