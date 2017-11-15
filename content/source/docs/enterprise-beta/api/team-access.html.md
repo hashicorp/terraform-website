@@ -14,13 +14,11 @@ The team access APIs are used to associate a team to permissions on a workspace.
 
 | Method | Path           |
 | :----- | :------------- |
-| GET | /team_workspaces |
+| GET | /team-workspaces |
 
 ### Parameters
 
-- `?filter[organization][username]` (`string: <required>`) - The organization username
-- `?filter[workspace][name]` (`string: <required>`) - The workspace name
-- `?filter[team][id]` (`string: <required>`) - The team ID
+- `?filter[workspace][id]` (`string: <required>`) - The workspace ID for which to list the teams with access
 
 ### Sample Request
 
@@ -29,35 +27,83 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://atlas.hashicorp.com/api/v2/team_workspaces?filter[organization][username]=hashicorp&filter[workspace][name]=example&filter[team][id]=1
+  https://atlas.hashicorp.com/api/v2/team-workspaces?filter%5Bworkspace%5D%5Bid%5D=ws-5vBKrazjYR36gcYX
 ```
 
 ### Sample Response
 
 ```json
-{}
+{
+  "data": [
+    {
+      "id":"131",
+      "type":"team-workspaces",
+      "attributes": {
+        "access":"read"
+      },
+      "relationships": {
+        "team": {
+          "data": {
+            "id":"team-BUHBEM97xboT8TVz",
+            "type":"teams"
+          },
+          "links": {
+            "related":"/api/v2/teams/devs"
+          }
+        },
+        "workspace": {
+          "data": {
+            "id":"ws-5vBKrazjYR36gcYX",
+            "type":"workspaces"
+          },
+          "links": {
+            "related":"/api/v2/organizations/my-organization/workspaces/ws-5vBKrazjYR36gcYX"
+          }
+        }
+      },
+      "links": {
+        "self":"/api/v2/team-workspaces/131"
+      }
+    }
+  ]
+}
 ```
 
 ## Add Team access to a Workspace
 
 | Method | Path           |
 | :----- | :------------- |
-| POST | /team_workspaces |
+| POST | /team-workspaces |
 
 ### Parameters
 
-- `filter[organization][username]` (`string: <required>`) - The organization username
-- `filter[workspace][name]` (`string: <required>`) - The workspace name
-- `filter[team][id]` (`string: <required>`) - The team ID
-- `permission` (`string: <required>`) - `read`, `write`, or `admin`
+- `access` (`string: <required>`) - `read`, `write`, or `admin`
+- `team` (`string: <required>`) - The ID of the team to add to the workspace.
+- `workspace` (`string: <required>`) - The workspace ID to which the team is to be added.
 
 ### Sample Payload
 
 ```json
 {
   "data": {
-    "type": "team-workspaces",
-    "attributes": { "permission": "read" }
+    "attributes": {
+      "access":"read"
+    },
+    "relationships": {
+      "workspace": {
+        "data": {
+          "type":"workspaces",
+          "id":"ws-5vBKrazjYR36gcYX"
+        }
+      },
+      "team": {
+        "data": {
+          "type":"teams",
+          "id":"team-BUHBEM97xboT8TVz"
+        }
+      }
+    },
+    "type":"team-workspaces"
   }
 }
 ```
@@ -70,7 +116,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/team_workspaces?filter[organization][username]=hashicorp&filter[workspace][name]=example&filter[team][id]=1
+  https://atlas.hashicorp.com/api/v2/team-workspaces
 ```
 
 ### Sample Response
@@ -78,9 +124,34 @@ $ curl \
 ```json
 {
   "data": {
-    "type": "team-workspaces",
-    "id": "1",
-    "attributes": { "permission": "read" }
+    "id":"131",
+    "type":"team-workspaces",
+    "attributes": {
+      "access":"read"
+    },
+    "relationships": {
+      "team": {
+        "data": {
+          "id":"team-BUHBEM97xboT8TVz",
+          "type":"teams"
+        },
+        "links": {
+          "related":"/api/v2/teams/devs"
+        }
+      },
+      "workspace": {
+        "data": {
+          "id":"ws-5vBKrazjYR36gcYX",
+          "type":"workspaces"
+        },
+        "links": {
+          "related":"/api/v2/organizations/my-organization/workspaces/ws-5vBKrazjYR36gcYX"
+        }
+      }
+    },
+    "links": {
+      "self":"/api/v2/team-workspaces/131"
+    }
   }
 }
 ```
@@ -89,7 +160,7 @@ $ curl \
 
 | Method | Path           |
 | :----- | :------------- |
-| GET | /team_workspaces/:id |
+| GET | /team-workspaces/:id |
 
 ### Parameters
 
@@ -102,52 +173,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://atlas.hashicorp.com/api/v2/team_workspaces/257525
-```
-
-### Sample Response
-
-```json
-{
-  "data": {
-    "type": "team-workspaces",
-    "id": "1",
-    "attributes": { "permission": "read" }
-  }
-}
-```
-
-## Update Team Access to a Workspace
-
-| Method | Path           |
-| :----- | :------------- |
-| PATCH | /team_workspaces/:id |
-
-### Parameters
-
-- `id` (`string: <required>`) - The ID of the team/workspace relationship.
-
-### Sample Payload
-
-```json
-{
-  "data": {
-    "type": "team-workspaces",
-    "id": "1",
-    "attributes": { "permission": "read" }
-  }
-}
-```
-
-### Sample Request
-
-```shell
-$ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
-  --header "Content-Type: application/vnd.api+json" \
-  --request PATCH \
-  --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/team_workspaces/257525
+  https://atlas.hashicorp.com/api/v2/team-workspaces/257525
 ```
 
 ### Sample Response
@@ -166,7 +192,7 @@ $ curl \
 
 | Method | Path           |
 | :----- | :------------- |
-| DELETE | /team_workspaces/:id |
+| DELETE | /team-workspaces/:id |
 
 ### Parameters
 
@@ -179,6 +205,6 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://atlas.hashicorp.com/api/v2/team_workspaces/257525
+  https://atlas.hashicorp.com/api/v2/team-workspaces/257525
 ```
 
