@@ -46,18 +46,33 @@ $ curl \
 
 ### Parameters
 
-- `filter[organization][username]` (`string: <required>`) - The organization username
-- `filter[workspace][name]` (`string: <required>`) - The workspace name
-- `filter[team][id]` (`string: <required>`) - The team ID
-- `permission` (`string: <required>`) - `read`, `write`, or `admin`
+- `access` (`string: <required>`) - `read`, `write`, or `admin`
+- `team` (`string: <required>`) - The ID of the team to add to the workspace.
+- `workspace` (`string: <required>`) - The workspace ID to which the team is to be added.
 
 ### Sample Payload
 
 ```json
 {
   "data": {
-    "type": "team-workspaces",
-    "attributes": { "permission": "read" }
+    "attributes": {
+      "access":"read"
+    },
+    "relationships": {
+      "workspace": {
+        "data": {
+          "type":"workspaces",
+          "id":"ws-5vBKrazjYR36gcYX"
+        }
+      },
+      "team": {
+        "data": {
+          "type":"teams",
+          "id":"team-BUHBEM97xboT8TVz"
+        }
+      }
+    },
+    "type":"team-workspaces"
   }
 }
 ```
@@ -70,7 +85,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/team_workspaces?filter[organization][username]=hashicorp&filter[workspace][name]=example&filter[team][id]=1
+  https://atlas.hashicorp.com/api/v2/team_workspaces
 ```
 
 ### Sample Response
@@ -78,9 +93,34 @@ $ curl \
 ```json
 {
   "data": {
-    "type": "team-workspaces",
-    "id": "1",
-    "attributes": { "permission": "read" }
+    "id":"131",
+    "type":"team-workspaces",
+    "attributes": {
+      "access":"read"
+    },
+    "relationships": {
+      "team": {
+        "data": {
+          "id":"team-BUHBEM97xboT8TVz",
+          "type":"teams"
+        },
+        "links": {
+          "related":"/api/v2/teams/devs"
+        }
+      },
+      "workspace": {
+        "data": {
+          "id":"ws-5vBKrazjYR36gcYX",
+          "type":"workspaces"
+        },
+        "links": {
+          "related":"/api/v2/organizations/my-organization/workspaces/ws-5vBKrazjYR36gcYX"
+        }
+      }
+    },
+    "links": {
+      "self":"/api/v2/team-workspaces/131"
+    }
   }
 }
 ```
