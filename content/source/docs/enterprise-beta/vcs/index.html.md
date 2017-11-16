@@ -45,7 +45,7 @@ TFE supports the following VCS services:
 - [GitHub](./github.html)
 - [GitHub Enterprise](./github-enterprise.html)
 - [GitLab.com](./gitlab-com.html)
-- GitLab EE and CE
+- [GitLab EE and CE](./gitlab-eece.html)
 - Bitbucket Cloud
 - Bitbucket Server
 
