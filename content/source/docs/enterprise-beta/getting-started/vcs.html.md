@@ -30,13 +30,7 @@ Provide callback URL. | &nbsp;
 &nbsp; | Request VCS access.
 Approve access request. | &nbsp;
 
-For complete instructions, click the link for your VCS service below:
-
-- [GitHub](../vcs/github.html)
-- [GitHub Enterprise](../vcs/github-enterprise.html)
-- GitLab
-- Bitbucket Cloud
-- Bitbucket Server
+For complete instructions, see the [VCS Integrations page](../vcs/index.html).
 
 Currently, TFE cannot use other VCS services (including generic Git servers).
 

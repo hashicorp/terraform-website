@@ -1,7 +1,7 @@
 ---
 layout: enterprise2
 page_title: "GitHub Enterprise - VCS Services - Terraform Enterprise Beta"
-sidebar_current: "docs-enterprise2-vcs-ghenterprise"
+sidebar_current: "docs-enterprise2-vcs-github-enterprise"
 ---
 
 # Configuring GitHub Enterprise Access
