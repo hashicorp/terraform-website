@@ -27,7 +27,6 @@ The rest of this page explains the GitLab.com versions of these steps.
 2. Navigate to GitLab's [User Settings > Applications](https://gitlab.com/profile/applications) page.
 
     This page is located at <https://gitlab.com/profile/applications>. You can also reach it through GitLab's menus:
-
     - In the upper right corner, click your profile picture and choose "Settings."
     - In the navigation sidebar, click "Applications."
 

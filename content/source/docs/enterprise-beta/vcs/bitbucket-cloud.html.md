@@ -31,7 +31,6 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
 2. Navigate to Bitbucket's "Add OAuth Consumer" page.
 
     This page is located at `https://bitbucket.org/account/user/<YOUR USERNAME>/oauth-consumers/new`. You can also reach it through Bitbucket's's menus:
-
     - In the lower left corner, click your profile picture and choose "Bitbucket settings."
     - In the settings navigation, click "OAuth," which is in the "Access Management" section.
     - On the OAuth settings page, click the "Add consumer" button.

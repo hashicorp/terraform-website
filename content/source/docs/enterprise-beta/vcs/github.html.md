@@ -31,7 +31,6 @@ The rest of this page explains the GitHub versions of these steps.
 2. Navigate to GitHub's [Register a New OAuth Application](https://github.com/settings/applications/new) page.
 
     This page is located at <https://github.com/settings/applications/new>. You can also reach it through GitHub's menus:
-
     - In the upper right corner, click your profile picture and choose "Settings."
     - In the navigation sidebar, click "OAuth Apps" (under the "Developer settings" section).
     - In the upper right corner, click the "Register a new application" button.
