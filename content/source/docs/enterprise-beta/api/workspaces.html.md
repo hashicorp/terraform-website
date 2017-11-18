@@ -113,7 +113,7 @@ $ curl \
       }
     },
     "links": {
-      "self": "/api/v2/organizations/adobe-demo/workspaces/ws-YnyXLq9fy38afEeb"
+      "self": "/api/v2/organizations/my-organization/workspaces/ws-YnyXLq9fy38afEeb"
     }
   }
 }
