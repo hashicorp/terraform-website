@@ -22,7 +22,9 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
 ## Step 1: On GitLab, Create a New Application
 
-1. Open your GitLab instance in your browser and log in as whichever account owns your organization's Terraform repositories.
+1. Open your GitLab instance in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
+
+    ~> **Important:** The account you use for connecting TFE **must have admin (master) access** to any shared repositories of Terraform configurations.
 
 2. Navigate to GitLab's "User Settings > Applications" page.
 

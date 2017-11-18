@@ -22,11 +22,9 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
 
 ## Step 1: On Bitbucket Cloud, Create a New OAuth Consumer
 
-1. Open [Bitbucket Cloud](https://bitbucket.org) in your browser and log in as whichever account owns your organization's most important configuration.
+1. Open [Bitbucket Cloud](https://bitbucket.org) in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
-    ~> **Important:** The account you use for connecting TFE and Bitbucket **must have admin access** to any team-owned repositories that conatain Terraform configurations.
-
-    For most organizations this should be a service user, whose credentials are shared among an operations team. If you don't have an account like that, use your own account and make a note of it in your team's shared infrastructure documentation, so your colleagues know who owns this configuration.
+    ~> **Important:** The account you use for connecting TFE **must have admin access** to any shared repositories of Terraform configurations.
 
 2. Navigate to Bitbucket's "Add OAuth Consumer" page.
 

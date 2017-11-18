@@ -22,11 +22,9 @@ The rest of this page explains the GitHub versions of these steps.
 
 ## Step 1: On GitHub, Create a New OAuth Application
 
-1. Open [github.com](https://github.com) in your browser and log in as whichever account owns your organization's most important configuration.
+1. Open [github.com](https://github.com) in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
-    ~> **Important:** The account you use for connecting TFE and GitHub must be a member of your GitHub organization. It does not need full permissions on any particular repositories.
-
-    For most organizations this should be a service user, whose credentials are shared among an operations team. If you don't have an account like that, use your own account and make a note of it in your team's shared infrastructure documentation, so your colleagues know who owns this configuration. (You can transfer ownership of the app configuration later if necessary.)
+    ~> **Important:** The account you use for connecting TFE **must have admin access** to any shared repositories of Terraform configurations.
 
 2. Navigate to GitHub's [Register a New OAuth Application](https://github.com/settings/applications/new) page.
 
@@ -91,7 +89,7 @@ The rest of this page explains the GitHub versions of these steps.
 
     This takes you to a page on github.com, asking whether you want to authorize the app.
 
-2. The authorization page lists all the GitHub organizations you belong to. Find the organization that owns your Terraform code repositories, and click its "Request" button.
+2. The authorization page lists any GitHub organizations this account belongs to. If there is a "Request" button next to the organization that owns your Terraform code repositories, click it now.
 
     ![GitHub screenshot: the authorization screen](./images/gh-authorize.png)
 
@@ -99,7 +97,7 @@ The rest of this page explains the GitHub versions of these steps.
 
 ## Step 5: Contact Your GitHub Organization Admins
 
-When you requested organization access for TFE, GitHub sent an automated email to the administrators of your GitHub organization. An administrator must approve the request before TFE can access your organization's shared repositories.
+If your organization uses OAuth app access restrictions, you had to click a "Request" button when authorizing TFE, which sent an automated email to the administrators of your GitHub organization. An administrator must approve the request before TFE can access your organization's shared repositories.
 
 If you're a GitHub administrator, check your email now and respond to the request; otherwise, contact whoever is responsible for GitHub accounts in your organization, and wait for confirmation that they've approved your request.
 
