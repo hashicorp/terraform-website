@@ -12,29 +12,14 @@ Before you can use TFE, it needs access to the version control system (VCS) you 
 
 ## About VCS Access
 
-Every workspace in TFE is associated with a VCS repository, which provides the Terraform code for that workspace. To find out which repos are available, and to access their contents, TFE needs access to your VCS service.
+Every workspace in TFE is associated with a VCS repository, which provides the Terraform code for that workspace. To find out which repos are available, access their contents, and create webhooks, TFE needs access to your VCS service.
 
 ## Configuring VCS Access
 
-TFE uses the OAuth protocol to authenticate with VCS services.
+Before you can create workspaces based on your repositories, you must authorize TFE to access your VCS service.
 
-~> **Important:** Even if you've used OAuth before, read the instructions carefully. Since TFE's security model treats each _organization_ as a separate OAuth application, we authenticate with OAuth's developer workflow, which is more complex than the standard user workflow.
-
-The exact steps to authenticate are different for each VCS service, but they follow this general order:
-
-On your VCS | On TFE
---|--
-Register your TFE organization as a new app. Get ID and key. | &nbsp;
-&nbsp; | Tell TFE how to reach VCS, and provide ID and key. Get callback URL.
-Provide callback URL. | &nbsp;
-&nbsp; | Request VCS access.
-Approve access request. | &nbsp;
-
-For complete instructions, see the [VCS Integrations page](../vcs/index.html).
-
-Currently, TFE cannot use other VCS services (including generic Git servers).
-
+The exact instructions are different for each supported VCS service. Open the [VCS Integrations page](../vcs/index.html) in a new tab, select your VCS, and follow the instructions to connect it. When you've finished, continue to the next page in this guide.
 
 ## Next Steps
 
-After you've configured VCS access, you should [start creating workspaces](./workspaces.html).
+After you've configured VCS access, you can [start creating workspaces](./workspaces.html).
