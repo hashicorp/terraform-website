@@ -24,7 +24,7 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
 1. Open your GitLab instance in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
-    ~> **Important:** The account you use for connecting TFE **must have admin (master) access** to any shared repositories of Terraform configurations.
+    ~> **Important:** The account you use for connecting TFE **must have admin (master) access** to any shared repositories of Terraform configurations, since creating webhooks requires admin permissions.
 
 2. Navigate to GitLab's "User Settings > Applications" page.
 

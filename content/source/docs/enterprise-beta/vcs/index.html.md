@@ -10,9 +10,11 @@ TFE's core features require access to your version control system (VCS) service.
 
 ## How TFE Uses VCS Access
 
-TFE relies on VCS to get Terraform configurations. Every workspace is associated with a VCS repository, which provides Terraform code for that workspace.
+Most workspaces in TFE are associated with a VCS repository, which provides Terraform configurations for that workspace. To find out which repos are available, access their contents, and create webhooks, TFE needs access to your VCS service.
 
-To use your code, TFE needs to do several things:
+Although TFE's API lets you create workspaces and push configurations to them without a VCS connection, the primary workflow expects every workspace to be backed by a repository. If you plan to use TFE's GUI to create workspaces, you must configure VCS access first.
+
+To use configurations from VCS, TFE needs to do several things:
 
 - Access a list of repositories, to let you search for repos when creating new workspaces.
 - Register webhooks with your VCS service, to get notified of new commits to a chosen branch.
