@@ -38,8 +38,7 @@ This endpoint is used to create a new workspace which references an `o-auth-toke
 
 ```json
 {
-  "data":
-  {
+  "data": {
     "attributes": {
       "name":"workspace-demo",
       "working-directory":"",
@@ -48,8 +47,7 @@ This endpoint is used to create a new workspace which references an `o-auth-toke
       "ingress-trigger-attributes": {
         "branch":"",
         "vcs-root-path":"",
-        "default-branch":true,
-        "ingress-submodules": false,
+        "default-branch":true
       }
     },
     "type":"compound-workspaces"
@@ -73,37 +71,49 @@ $ curl \
 ```json
 {
   "data": {
-    "id":"ws-ScBEdDQkA2ydAj3q",
-    "type":"workspaces",
+    "id": "ws-YnyXLq9fy38afEeb",
+    "type": "workspaces",
     "attributes": {
-      "name":"workspace-demo",
-      "environment":"default",
-      "auto-apply":false,
-      "locked":false,
-      "created-at":"2017-09-20T15:36:52.931Z",
-      "working-directory":"",
-      "terraform-version":"0.10.5",
-      "can-queue-destroy-plan":false,
+      "name": "workspace-demo",
+      "environment": "default",
+      "auto-apply": false,
+      "locked": false,
+      "created-at": "2017-11-18T00:43:59.384Z",
+      "working-directory": "",
+      "terraform-version": "0.11.0",
+      "can-queue-destroy-plan": false,
       "ingress-trigger-attributes": {
-        "branch":"",
-        "default-branch":true,
-        "vcs-root-path":"",
-        "ingress-submodules":false
+        "branch": "",
+        "default-branch": true,
+        "vcs-root-path": "",
+        "ingress-submodules": false
+      },
+      "permissions": {
+        "can-update": true,
+        "can-destroy": false,
+        "can-queue-destroy": false,
+        "can-queue-run": false,
+        "can-update-variable": false,
+        "can-lock": false,
+        "can-read-settings": true
       }
     },
     "relationships": {
       "organization": {
         "data": {
-          "id":"my-organization",
-          "type":"organizations"
+          "id": "my-organization",
+          "type": "organizations"
         }
       },
+      "ssh-key": {
+        "data": null
+      },
       "latest-run": {
-        "data":null
+        "data": null
       }
     },
     "links": {
-      "self":"/api/v2/organizations/my-organization/workspaces/ws-ScBEdDQkA2ydAj3q"
+      "self": "/api/v2/organizations/my-organization/workspaces/ws-YnyXLq9fy38afEeb"
     }
   }
 }
