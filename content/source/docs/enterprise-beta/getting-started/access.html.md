@@ -61,7 +61,7 @@ Once the team is created, click its name. This will navigate to the team page:
 
 Add as many users as you'd like by typing their TFE username in the text field and clicking "Add user." Added users won't receive a notification, but your organization will be available the next time they access TFE beta.
 
-~> **Important:** Currently, TFE beta does not have access controls for workspaces; these are coming soon in a future update. Users you add to your organization have full permissions for every workspace in it.
+~> **Note:** Team membership is how TFE controls access to workspaces. Later, you can create more teams and assign them different permissions on a per-workspace basis.
 
 ## Next Steps
 
