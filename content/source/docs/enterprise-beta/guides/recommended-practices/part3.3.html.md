@@ -52,7 +52,7 @@ Create workspaces in TFE, and map VCS repositories to them. Each workspace reads
 
 We recommend using the same repository and branch for every environment of a given app or service — write your Terraform code such that you can differentiate the environments via variables, and set those variables appropriately per workspace. This might not be practical for your existing code yet, in which case you can use different branches per workspace and handle promotion through your merge strategy, but we believe a model of one canonical branch works best.
 
-![Changes in VCS branches can be merged to master and then promoted between workspaces representing a staging environment, a UAT environment, and finally a production environment.](../images/image1.png)
+![Changes in VCS branches can be merged to master and then promoted between workspaces representing a staging environment, a UAT environment, and finally a production environment.](./images/image1.png)
 
 ## 5. Create Users and Teams
 
