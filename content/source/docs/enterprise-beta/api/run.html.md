@@ -178,26 +178,14 @@ curl \
 ### Parameters
 
 - `run_id` (`string: <required>`) - specifies the run ID to run
-- `id` (`string: <required>`) - specifies the workspace ID
+- `comment` (`string: <optional>`) - specifies the workspace ID
 
 ### Sample Payload
+This payload is optional, so the `curl` command will work without the `--data @payload.json` option too.
 
 ```json
 {
-  "data": {
-    "attributes": {
-      "is-destroy":false
-    },
-    "relationships": {
-      "workspace": {
-        "data": {
-          "type":"workspaces",
-          "id":"ws-4j8p6jX1w33MiDC7"
-        }
-      }
-    },
-    "type":"runs"
-  }
+  "comment":"Looks good to me"
 }
 ```
 
