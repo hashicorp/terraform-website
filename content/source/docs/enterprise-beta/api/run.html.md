@@ -67,6 +67,8 @@ curl \
 
 ## Upload Configuration Files
 
+-> **Note**: Uploading a configuration file automatically creates a run and associates with this configuration-version. Therefore it is unnecessary to [create a run on the workspace](#create-a-run-on-the-workspace) if a new file is uploaded.
+
 | Method | Path           |
 | :----- | :------------- |
 | POST | The upload URL is provided in the `upload-url` attribute in the `configuration-versions` resource |
