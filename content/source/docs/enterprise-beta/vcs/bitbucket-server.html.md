@@ -1,13 +1,13 @@
 ---
 layout: enterprise2
-page_title: "Bitbucket Server - VCS Services - Terraform Enterprise Beta"
+page_title: "Bitbucket Server - VCS Providers - Terraform Enterprise Beta"
 sidebar_current: "docs-enterprise2-vcs-bitbucket-server"
 ---
 
 
 # Configuring Bitbucket Server Access
 
-These instructions are for using Bitbucket Server for Terraform Enterprise (TFE)'s VCS features. Bitbucket Server is the on-premise version of Bitbucket; [Bitbucket Cloud has separate instructions,](./bitbucket-cloud.html) as do the [other supported VCS services.](./index.html)
+These instructions are for using Bitbucket Server for Terraform Enterprise (TFE)'s VCS features. Bitbucket Server is the on-premise version of Bitbucket; [Bitbucket Cloud has separate instructions,](./bitbucket-cloud.html) as do the [other supported VCS providers.](./index.html)
 
 Note that Bitbucket Server requires both OAuth authentication and an SSH key. The instructions below include SSH key configuration.
 

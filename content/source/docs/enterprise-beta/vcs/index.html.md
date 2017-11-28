@@ -1,34 +1,53 @@
 ---
 layout: enterprise2
-page_title: "Connecting VCS Services - Terraform Enterprise Beta"
+page_title: "Connecting VCS Providers - Terraform Enterprise Beta"
 sidebar_current: "docs-enterprise2-vcs"
 ---
 
-# Connecting VCS Services to Terraform Enterprise
+# Connecting VCS Providers to Terraform Enterprise
 
-TFE's core features require access to your version control system (VCS) service. You'll need to configure VCS access when first setting up a TFE organization, and you might need to add additional VCS services later depending on how your organization grows.
+TFE's core features require access to your version control system (VCS) provider. You'll need to configure VCS access when first setting up a TFE organization, and you might need to add additional VCS providers later depending on how your organization grows.
 
 ## How TFE Uses VCS Access
 
-Most workspaces in TFE are associated with a VCS repository, which provides Terraform configurations for that workspace. To find out which repos are available, access their contents, and create webhooks, TFE needs access to your VCS service.
+Most workspaces in TFE are associated with a VCS repository, which provides Terraform configurations for that workspace. To find out which repos are available, access their contents, and create webhooks, TFE needs access to your VCS provider.
 
 Although TFE's API lets you create workspaces and push configurations to them without a VCS connection, the primary workflow expects every workspace to be backed by a repository. If you plan to use TFE's GUI to create workspaces, you must configure VCS access first.
 
 To use configurations from VCS, TFE needs to do several things:
 
 - Access a list of repositories, to let you search for repos when creating new workspaces.
-- Register webhooks with your VCS service, to get notified of new commits to a chosen branch.
+- Register webhooks with your VCS provider, to get notified of new commits to a chosen branch.
 - Download the contents of a repository at a specific commit in order to run Terraform with that code.
 
-For most of our supported VCS services, TFE can do all of that with the service's HTTPS API and an OAuth token. However, some VCS services also require an SSH key for downloading repository contents. For details, see the page about your specific VCS service. (Links are below.)
+### Webhooks
+
+TFE uses webhooks to monitor new commits and pull requests.
+
+- When someone adds new commits to a branch, any workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can also prevent automatic runs by locking a workspace.
+- When someone submits a pull request/merge request to a branch, TFE does a Terraform plan with the contents of the request and records the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
+
+    Pull request plans don't appear in a workspace's run list, and can't be applied. They're intended only as a check for merge safety.
+
+### SSH Keys
+
+For most supported VCS providers, TFE does not need an SSH key — it can do everything it needs with the provider's API and an OAuth token. The exception is Bitbucket Server, which requires an SSH key for downloading repository contents. The setup instructions for Bitbucket Server include this step.
+
+You can also add a SSH private key for the other VCS providers, and TFE will use that key to download repo contents. Most users should not do this; the only reason to use an SSH key this way is if your repositories include submodules that can only be accessed via SSH.
+
+To add an SSH key to a VCS connection, finish configuring it and then use the "add a private SSH key" link in the OAuth Configuration page.
+
+### Multiple VCS Connections
+
+If your infrastructure code is spread across multiple VCS providers, you can configure multiple VCS connections. TFE will ask which VCS connection to use whenever you create a new workspace.
 
 ## Configuring VCS Access
 
-TFE uses the OAuth protocol to authenticate with VCS services.
+TFE uses the OAuth protocol to authenticate with VCS providers.
 
 ~> **Important:** Even if you've used OAuth before, read the instructions carefully. Since TFE's security model treats each _organization_ as a separate OAuth application, we authenticate with OAuth's developer workflow, which is more complex than the standard user workflow.
 
-The exact steps to authenticate are different for each VCS service, but they follow this general order:
+The exact steps to authenticate are different for each VCS provider, but they follow this general order:
 
 On your VCS | On TFE
 --|--
@@ -38,11 +57,11 @@ Provide callback URL. | &nbsp;
 &nbsp; | Request VCS access.
 Approve access request. | &nbsp;
 
-For complete details, click the link for your VCS service below.
+For complete details, click the link for your VCS provider below.
 
-### Supported VCS Services
+### Specific Instructions for Supported VCS Providers
 
-TFE supports the following VCS services:
+To configure VCS access, select your VCS provider from the list below:
 
 - [GitHub](./github.html)
 - [GitHub Enterprise](./github-enterprise.html)
@@ -51,5 +70,5 @@ TFE supports the following VCS services:
 - [Bitbucket Cloud](./bitbucket-cloud.html)
 - [Bitbucket Server](./bitbucket-server.html)
 
-Currently, TFE cannot use other VCS services (including generic Git servers).
+Currently, TFE cannot use other VCS providers (including generic Git servers).
 

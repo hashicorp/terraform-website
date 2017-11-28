@@ -1,12 +1,12 @@
 ---
 layout: enterprise2
-page_title: "Bitbucket Cloud - VCS Services - Terraform Enterprise Beta"
+page_title: "Bitbucket Cloud - VCS Providers - Terraform Enterprise Beta"
 sidebar_current: "docs-enterprise2-vcs-bitbucket-cloud"
 ---
 
 # Configuring Bitbucket Cloud Access
 
-These instructions are for using Bitbucket Cloud for Terraform Enterprise (TFE)'s VCS features. Bitbucket Cloud is the cloud-hosted version of Bitbucket; [self-hosted Bitbucket Server instances have separate instructions,](./bitbucket-server.html) as do the [other supported VCS services.](./index.html)
+These instructions are for using Bitbucket Cloud for Terraform Enterprise (TFE)'s VCS features. Bitbucket Cloud is the cloud-hosted version of Bitbucket; [self-hosted Bitbucket Server instances have separate instructions,](./bitbucket-server.html) as do the [other supported VCS providers.](./index.html)
 
 Connecting TFE to your VCS involves five steps:
 
