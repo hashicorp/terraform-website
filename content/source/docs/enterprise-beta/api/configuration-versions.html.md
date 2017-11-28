@@ -73,6 +73,6 @@ curl \
 ```shell
 $ curl \
     --request PUT \
-    -F 'data=@config.tar.gz` \
+    -F 'data=@config.tar.gz' \
     http://127.0.0.1:7675/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da
 ```
