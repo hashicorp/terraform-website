@@ -100,7 +100,8 @@ curl \
 ```
 
 ## Apply
-The `apply` endpoint represents an action as opposed to a resource. As such, the endpoint does not return any object in the response body. This endpoint queues the request to perform an apply, the apply may happen at a later time.
+
+The `apply` endpoint represents an action as opposed to a resource. As such, the endpoint does not return any object in the response body. This endpoint queues the request to perform an apply; the apply might not happen immediately.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -112,6 +113,7 @@ The `apply` endpoint represents an action as opposed to a resource. As such, the
 - `comment` (`string: <optional>`) - specifies the workspace ID
 
 ### Sample Payload
+
 This payload is optional, so the `curl` command will work without the `--data @payload.json` option too.
 
 ```json
