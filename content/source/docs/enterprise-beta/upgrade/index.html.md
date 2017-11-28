@@ -48,13 +48,15 @@ terraform {
 }
 ```
 
-Reinitialize Terraform with the new configuration.
+### 3.c. Reinitialize Terraform
+
+Reinitialize Terraform to ensure your working directory is up to date, especially if you just added backend configuration.
 
 ```bash
 terraform init
 ```
 
-### 3.c. Reconfigure the backend for the new workspace
+### 3.d. Reconfigure the backend for the new workspace
 
 Update the `name` field of the `backend` block to reference the new workspace.
 
@@ -66,7 +68,7 @@ terraform {
 }
 ```
 
-### 3.d. Reinitialize Terraform
+### 3.e. Reinitialize Terraform again
 
 Terraform's `init` command automatically migrates state from the legacy environment to the new workspace when the [backend is reconfigured](../../backends/config.html#changing-configuration). Run the `init` command, and it will ask to migrate the state. Answer `yes`.
 
