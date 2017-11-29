@@ -109,7 +109,7 @@ The `apply` endpoint represents an action as opposed to a resource. As such, the
 ### Parameters
 
 - `run_id` (`string: <required>`) - specifies the run ID to run
-- `comment` (`string: <optional>`) - specifies the workspace ID
+- `comment` (`string: <optional>`) - Optional comment to add on the apply
 
 ### Sample Payload
 This payload is optional, so the `curl` command will work without the `--data @payload.json` option too.
