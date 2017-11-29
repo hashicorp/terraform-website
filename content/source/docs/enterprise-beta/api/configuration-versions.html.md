@@ -10,7 +10,7 @@ sidebar_current: "docs-enterprise2-api-configuration-versions"
 
 ## Create a Configuration Version
 
-A configuration version (`configuration-version`) is an resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
+A configuration version (`configuration-version`) is a resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -58,7 +58,7 @@ curl \
 
 ## Upload Configuration Files
 
--> **Note**: Uploading a configuration file automatically creates a run and associates with this configuration-version. Therefore it is unnecessary to [create a run on the workspace](./run.html#create-a-run) if a new file is uploaded.
+-> **Note**: Uploading a configuration file automatically creates a run and associates it with this configuration-version. Therefore it is unnecessary to [create a run on the workspace](./run.html#create-a-run) if a new file is uploaded.
 
 | Method | Path           |
 | :----- | :------------- |
