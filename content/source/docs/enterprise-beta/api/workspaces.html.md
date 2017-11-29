@@ -140,7 +140,7 @@ The default `/workspaces` endpoint creates a workspace without configuring the V
   "data":
   {
     "attributes": {
-      "name":"workspace-demo",
+      "name":"workspace-demo"
     },
     "type":"workspaces"
   }
