@@ -66,7 +66,7 @@ curl \
 
 ### Parameters
 
-- `data` (`file: <required>`) - A local .tar.gz file containing the folder of the terraform configuration files.
+- `data` (`file: <required>`) - A local .tar.gz file containing the folder of the terraform configuration files. You can create this file by running `tar -zcvf ./config.tar.gz .` from within the directory with the terraform configuration.
 
 ### Sample Request
 
