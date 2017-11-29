@@ -1,12 +1,12 @@
 ---
 layout: enterprise2
-page_title: "GitHub Enterprise - VCS Services - Terraform Enterprise Beta"
+page_title: "GitHub Enterprise - VCS Providers - Terraform Enterprise Beta"
 sidebar_current: "docs-enterprise2-vcs-ghenterprise"
 ---
 
 # Configuring GitHub Enterprise Access
 
-These instructions are for using an on-premise installation of GitHub Enterprise for TFE's VCS features. [GitHub.com has separate instructions,](./github-enterprise.html) as do the [other supported VCS services.](./index.html)
+These instructions are for using an on-premise installation of GitHub Enterprise for TFE's VCS features. [GitHub.com has separate instructions,](./github-enterprise.html) as do the [other supported VCS providers.](./index.html)
 
 Connecting TFE to your VCS involves five steps:
 

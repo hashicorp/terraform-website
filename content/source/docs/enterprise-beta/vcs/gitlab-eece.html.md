@@ -1,12 +1,12 @@
 ---
 layout: enterprise2
-page_title: "GitLab EE and CE - VCS Services - Terraform Enterprise Beta"
+page_title: "GitLab EE and CE - VCS Providers - Terraform Enterprise Beta"
 sidebar_current: "docs-enterprise2-vcs-gitlab-eece"
 ---
 
 # Configuring GitLab EE and CE Access
 
-These instructions are for using an on-premise installation of GitLab Enterprise Edition (EE) or GitLab Community Edition (CE) for Terraform Enterprise (TFE)'s VCS features. [GitLab.com has separate instructions,](./gitlab-ce-ee.html) as do the [other supported VCS services.](./index.html)
+These instructions are for using an on-premise installation of GitLab Enterprise Edition (EE) or GitLab Community Edition (CE) for Terraform Enterprise (TFE)'s VCS features. [GitLab.com has separate instructions,](./gitlab-ce-ee.html) as do the [other supported VCS providers.](./index.html)
 
 Connecting TFE to your VCS involves five steps:
 
