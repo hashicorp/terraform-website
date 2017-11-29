@@ -10,10 +10,10 @@ sidebar_current: "docs-enterprise2-api-run"
 
 Performing a run on a new configuration is a multi step process.
 
-1. [Create a configuration version on the workspace](./configuration-versions.html#create-a-configuration-version)
-2. [Upload configuration files to the configuration version](./configuration-versions.html#upload-configuration-files)
-3. [Create a Run on the workspace](#create-a-run)
-4. [Create and queue an apply on the run](#apply)
+1. [Create a configuration version on the workspace](./configuration-versions.html#create-a-configuration-version).
+2. [Upload configuration files to the configuration version](./configuration-versions.html#upload-configuration-files).
+3. [Create a Run on the workspace](#create-a-run); this is done automatically when a configuration file is uploaded.
+4. [Create and queue an apply on the run](#apply); if auto-apply is not enabled.
 
 ## Create a Run
 
