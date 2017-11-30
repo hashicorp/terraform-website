@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-vcs-gitlab-com"
 
 # Configuring GitLab.com Access
 
-These instructions are for using GitLab.com for Terraform Enterprise (TFE)'s VCS features. [GitLab CE and GitLab EE have separate instructions,](./gitlab-ce-ee.html) as do the [other supported VCS providers.](./index.html)
+These instructions are for using GitLab.com for Terraform Enterprise (TFE)'s VCS features. [GitLab CE and GitLab EE have separate instructions,](./gitlab-eece.html) as do the [other supported VCS providers.](./index.html)
 
 Connecting TFE to your VCS involves five steps:
 
