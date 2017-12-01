@@ -82,7 +82,7 @@ curl \
 
 ## Publish a Module
 
-This endpoint can be used to publish a new module to the registry. The publishing process will ingress the configuration from the repository and parse the various fields (e.g. input variables, output variables, readme) from the repository.
+This endpoint can be used to publish a new module to the registry. The publishing process will fetch all tags in the source repository that look like SemVer versions with optional 'v' prefix. For each version, the tag is cloned and the config parsed to populate module details (input and output variables, readme, submodules, etc.). The [Module Registry Requirements](../../registry/modules/publish.html#requirements) defines additional requirements on naming, standard module structure and tags for releases.
 
 | Method | Path           |
 | :----- | :------------- |
