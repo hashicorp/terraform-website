@@ -25,7 +25,6 @@ This endpoint lists the policy checks in a run.
 ```shell
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
-  --header "Content-Type: application/vnd.api+json" \
   https://atlas.hashicorp.com/api/v2/runs/run-CZcmD7eagjhyXavN/policy-checks
 ```
 
@@ -105,7 +104,7 @@ This endpoint overrides a soft-mandatory or warning policy.
 
 | Method | Path           |
 | :----- | :------------- |
-| GET | /policy-checks/:policy_check_id/actions/override |
+| POST | /policy-checks/:policy_check_id/actions/override |
 
 ### Parameters
 
