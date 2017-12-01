@@ -95,19 +95,13 @@ This endpoint can be used to publish a new module to the registry. The publishin
 
 
 ### Sample Payload
-They payload must include `ingress-trigger-attributes`; however, those fields **MUST** be set to the default values provided.
 
 ```json
 {
   "data": {
     "attributes": {
       "linkable-repo-id":"SKI/terraform-aws-instance",
-      "o-auth-token-id":"1",
-      "ingress-trigger-attributes": {
-        "branch":"",
-        "default-branch":true,
-        "vcs-root-path":""
-      }
+      "o-auth-token-id":"1"
     },
     "type":"registry-modules"
   }
