@@ -57,8 +57,6 @@ curl \
 
 ## Delete the team token
 
-Delete or regenerates an team token.
-
 | Method | Path           |
 | :----- | :------------- |
 | DELETE | /teams/:team_id/authentication-token |

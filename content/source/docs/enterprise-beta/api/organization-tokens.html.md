@@ -55,11 +55,7 @@ curl \
 }
 ```
 
-
-
 ## Delete the organization token
-
-Delete or regenerates an organization token.
 
 | Method | Path           |
 | :----- | :------------- |
