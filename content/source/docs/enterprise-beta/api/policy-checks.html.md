@@ -10,7 +10,7 @@ sidebar_current: "docs-enterprise2-api-policy-checks"
 
 ## List policy checks
 
-This endpoint lists the policy checks in a run
+This endpoint lists the policy checks in a run.
 
 | Method | Path           |
 | :----- | :------------- |
