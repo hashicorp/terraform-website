@@ -162,7 +162,7 @@ curl \
 
 ## Delete a module
 
-This set of endpoint can be used to delete a single version, all versions for a given module and provider, or all versions for all providers for a given module.
+These endpoints can delete a single version for a provider, a single provider (and all its versions) for a module, or a whole module. If the requested deletion would leave a provider with no versions or a module with no providers, the empty items will be automatically deleted as well.
 
 | Method | Path           |
 | :----- | :------------- |
