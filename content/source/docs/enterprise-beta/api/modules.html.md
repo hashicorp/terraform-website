@@ -8,77 +8,39 @@ sidebar_current: "docs-enterprise2-api-modules"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-## List modules
+## Listing and reading modules, providers and versions
 
-Lists all the modules for a given organization. **Note** that all other endpoints have the subpath `/api/v2`, this endpoint does not use that subpath.
+The Terraform Enterprise Module Registry provides the same API endpoints as the [Terraform Registry HTTP API](../../registry/api.html). Terraform Enterprise extends this API to add [authentication](./index.html#authentication). Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /api/registry/v1/modules/:organization |
+- List available versions for a specific module
+- Download source code for a specific module version
+- List latest version of a module for all providers
+- Get the latest version for a specific module provider
+- Get a specific module
+- Download the latest version of a module
 
+The TFE Module Registry endpoints differs from the Module Registry endpoints in the following ways:
 
-### Parameters
-- `:organization` (`string: <required>`) - Specifies the organization for which to list the modules
+- The `:namespace` parameter should be replaced with the organization name.
+- All other TFE endpoints are on the `/api/v2` subpath; the module registry endpoint has the subpath `/api/registry`.
+- [Authentication](./index.html#authentication) is handled the same as all other TFE endpoints.
 
 ### Sample Request
 
+List available versions for the `consul` module for the `aws` provider on the module registry published from the Github organization `my-gh-repo-org`:
+
 ```shell
-curl \
+$ curl https://registry.terraform.io/v1/modules/my-gh-repo-org/consul/aws/versions
+```
+
+The same request for the same module and provider on the TFE module registry for `my-tfe-org` TFE organization:
+
+```shell
+$ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
-  https://atlas.hashicorp.com/api/registry/v1/modules/skierkowski-v2
+  https://atlas.hashicorp.com/api/registry/v1/modules/my-tfe-org/consul/aws/versions
 ```
 
-### Sample Response
-
-```json
-{
-  "meta": {
-    "limit": 15,
-    "current_offset": 0
-  },
-  "modules": [
-    {
-      "id": "skierkowski-v2/instance/aws/0.0.08",
-      "owner": "",
-      "namespace": "skierkowski-v2",
-      "name": "instance",
-      "version": "0.0.08",
-      "provider": "aws",
-      "description": "",
-      "source": "https://bitbucket-server.hashicorp.engineering/projects/SKI/repos/terraform-aws-instance/browse",
-      "published_at": "2017-11-30T07:00:40.664036Z",
-      "downloads": 0,
-      "verified": false
-    },
-    {
-      "id": "skierkowski-v2/vpc/aws/0.0.1",
-      "owner": "",
-      "namespace": "skierkowski-v2",
-      "name": "vpc",
-      "version": "0.0.1",
-      "provider": "aws",
-      "description": "",
-      "source": "https://bitbucket-server.hashicorp.engineering/projects/SKI/repos/terraform-aws-vpc/browse",
-      "published_at": "2017-11-30T00:53:06.966753Z",
-      "downloads": 0,
-      "verified": false
-    },
-    {
-      "id": "skierkowski-v2/subnet/aws/0.0.1",
-      "owner": "",
-      "namespace": "skierkowski-v2",
-      "name": "subnet",
-      "version": "0.0.1",
-      "provider": "aws",
-      "description": "",
-      "source": "https://bitbucket-server.hashicorp.engineering/projects/SKI/repos/terraform-aws-subnet/browse",
-      "published_at": "2017-11-30T17:38:01.600527Z",
-      "downloads": 0,
-      "verified": false
-    }
-  ]
-}
-```
 
 ## Publish a Module
 
