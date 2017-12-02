@@ -1,17 +1,17 @@
 default_link_text: 'Read more'
 
 featured_post:
-  # media_html: <a href="http://hashi.co/2qO6A2H" target="_blank"><img src="assets/images/news/webinar-register-585w.png" alt="Webinar Register Now" srcset="assets/images/news/webinar-register-2000w.png 2x"></a>
-  title: 'Webinar: Controlling Your Organization With HashiCorp Terraform and Google Cloud Platform'
-  body: Watch our recent webinar with Seth Vargo and Google Cloud. Learn how to build your entire infrastructure across Google Cloud with one command.
-  link_url: https://www.youtube.com/watch?v=Ym6DtUx5REg
-  link_text: Watch Now
+  title: Terraform 0.11.0 Released
+  body: Terraform 0.11.0 is out! The latest update includes improvements to Terraform Registry integration, per-module provider configuration, and improvements to CLI workflow. There have also been improvements to a number of major providers. See the blog post for all the details!
+  link_url: https://www.hashicorp.com/blog/hashicorp-terraform-0-11
 
 additional_posts:
   -
-    title: Terraform 0.9.8 released
-    body: We are pleased to announce the release of Terraform 0.9.8. This release includes new data sources, new resources, and more.
-    link_url: https://www.hashicorp.com/blog/terraform-0-9-8/
+    # media_html: <a href="http://hashi.co/2qO6A2H" target="_blank"><img src="assets/images/news/webinar-register-585w.png" alt="Webinar Register Now" srcset="assets/images/news/webinar-register-2000w.png 2x"></a>
+    title: 'Webinar: Controlling Your Organization With HashiCorp Terraform and Google Cloud Platform'
+    body: Watch our recent webinar with Seth Vargo and Google Cloud. Learn how to build your entire infrastructure across Google Cloud with one command.
+    link_url: https://www.youtube.com/watch?v=Ym6DtUx5REg
+    link_text: Watch Now
   -
     title: 'Webinar: Multi-Cloud, One Command with Terraform'
     body: Watch our recent webinar with Mitchell Hashimoto to learn how Terraform provisions infrastructure across different clouds using a consistent workflow.

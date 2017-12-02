@@ -54,7 +54,6 @@ if [ -z "$NO_UPLOAD" ]; then
   # longer. We manually purge the Fastly cache, so setting it to a year is more
   # than fine.
   s3cmd \
-    --quiet \
     --delete-removed \
     --guess-mime-type \
     --no-mime-magic \
