@@ -1,7 +1,7 @@
 ---
 layout: enterprise2
 page_title: "Policies - API Docs - Terraform Enterprise Beta"
-sidebar_current: "docs-enterprise2-api-policy"
+sidebar_current: "docs-enterprise2-api-policies"
 ---
 
 # Policies API

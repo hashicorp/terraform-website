@@ -29,7 +29,13 @@ We return 404 Not Found codes for resources that a user doesn't have access to, 
 
 The API documented in these pages is the second version of TFE's API, and resides under the `/v2` prefix. For documentation of the `/v1` endpoints, see [the TFE (classic) API docs.](/docs/enterprise/api/index.html)
 
-Future APIs will increment this version, leaving the` /v1` API intact, though in the future we might deprecate certain features. In that case, we'll provide ample notice to migrate to the new API.
+Future APIs will increment this version, leaving the `/v1` API intact, though in the future we might deprecate certain features. In that case, we'll provide ample notice to migrate to the new API.
+
+## Paths
+
+All V2 API endpoints use `/api/v2` as the subpath unless otherwise specified.
+
+For example, if the API endpoint documentation defines the path `/runs` then the full path is `/api/v2/runs`.
 
 ## JSON API Formatting
 

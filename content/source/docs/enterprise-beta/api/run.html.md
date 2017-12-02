@@ -66,18 +66,29 @@ curl \
 ```json
 {
   "data": {
-    "id":"run-DQGdmrWMX8z9yWQB",
-    "type":"runs",
+    "id": "run-CZcmD7eagjhyXavN",
+    "type": "runs",
     "attributes": {
-      "auto-apply":false,
-      "error-text":null,
-      "is-destroy":false,
-      "message":"Run from QUEUE PLAN",
+      "auto-apply": false,
+      "error-text": null,
+      "is-destroy": false,
+      "message": "Queued manually in Terraform Enterprise",
       "metadata": {},
-      "source":"configuration_version",
-      "status":"pending",
-      "status-timestamps":{},
-      "terraform-version":"0.10.3"
+      "source": "tfe-ui",
+      "status": "pending",
+      "status-timestamps": {},
+      "terraform-version": "0.10.8",
+      "created-at": "2017-11-29T19:56:15.205Z",
+      "may-canceled": true,
+      "may-confirm": false,
+      "may-discarded": false,
+      "has-changes": false,
+      "permissions": {
+        "can-apply": true,
+        "can-cancel": true,
+        "can-discard": true,
+        "can-force-execute": true
+      }
     },
     "relationships": {
       "apply": {...},
@@ -88,12 +99,14 @@ curl \
       "input-state-version": {...},
       "plan": {...},
       "run-events": {...},
+      "policy-checks": {...},
+      "workspace": {...},
       "workspace-comments": {...},
       "workspace-run-alerts": {...}
       }
     },
     "links": {
-      "self":"/api/v2/runs/run-DQGdmrWMX8z9yWQB"
+      "self": "/api/v2/runs/run-CZcmD7eagjhyXavN"
     }
   }
 }
