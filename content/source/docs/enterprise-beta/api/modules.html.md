@@ -10,7 +10,7 @@ sidebar_current: "docs-enterprise2-api-modules"
 
 ## Listing and reading modules, providers and versions
 
-The Terraform Enterprise Module Registry provides the same API endpoints as the [Terraform Registry HTTP API](../../registry/api.html). Terraform Enterprise extends this API to add [authentication](./index.html#authentication). Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
+The Terraform Enterprise Module Registry implemenets the [Registry standard API](../../registry/api.html) for consuming the modules. Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
 
 - List available versions for a specific module
 - Download source code for a specific module version
@@ -22,7 +22,7 @@ The Terraform Enterprise Module Registry provides the same API endpoints as the 
 The TFE Module Registry endpoints differs from the Module Registry endpoints in the following ways:
 
 - The `:namespace` parameter should be replaced with the organization name.
-- All other TFE endpoints are on the `/api/v2` subpath; the module registry endpoint has the subpath `/api/registry`.
+- The module registry discovery endpoints have the path prefix provided in the [discovery document](../../registry/api.html#service-discovery) which is currently `/api/registry/v1`.
 - [Authentication](./index.html#authentication) is handled the same as all other TFE endpoints.
 
 ### Sample Request
