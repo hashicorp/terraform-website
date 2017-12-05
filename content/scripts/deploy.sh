@@ -97,6 +97,19 @@ if [ -z "$NO_UPLOAD" ]; then
   sleep 5
   printf "ok!\n"
 
+  echo "Forcing public acl for images..."
+  s3cmd \
+    --exclude "*" \
+    --include "*.png" \
+    --include "*.gif" \
+    --acl-public \
+    --recursive \
+    setacl "s3://hc-sites/$PROJECT/latest/"
+
+  printf "Sleeping after setacl..."
+  sleep 5
+  printf "ok!\n"
+
   echo "Overriding svg mime-types..."
   s3cmd \
     --mime-type="image/svg+xml" \
