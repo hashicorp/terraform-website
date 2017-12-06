@@ -39,7 +39,7 @@ Here is a rough overview of what we will cover in these sections:
 Navigate to <https://tfe.example.com/admin/bootstrap> in your browser. You will
 be presented with a status page that looks like this:
 
-![Bootstrap Status Page](/assets/bootstrap-status.png)
+![Bootstrap Status Page](assets/bootstrap-status.png)
 
 Along the left side you will notice a list of items including `Create
 Administrator` and several `Configure ...`. These will help you navigate between
