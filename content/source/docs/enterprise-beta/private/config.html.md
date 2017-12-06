@@ -39,7 +39,7 @@ Here is a rough overview of what we will cover in these sections:
 Navigate to <https://tfe.example.com/admin/bootstrap> in your browser. You will
 be presented with a status page that looks like this:
 
-![Bootstrap Status Page](https://github.com/hashicorp/terraform-enterprise-modules/raw/master/docs/assets/bootstrap-status.png)
+![Bootstrap Status Page](/docs/enterprise-beta/private/assets/bootstrap-status.png)
 
 Along the left side you will notice a list of items including `Create
 Administrator` and several `Configure ...`. These will help you navigate between
@@ -158,7 +158,7 @@ if you have not already done so. Then, click your username in the bottom left,
 and click `Account Settings`. On the following page, click `Create Organization`
 on the left menu.
 
-![Create a new organization](https://github.com/hashicorp/terraform-enterprise-modules/raw/master/docs/assets/create-organization.png)
+![Create a new organization](/docs/enterprise-beta/private/assets/create-organization.png)
 
 You can jump to this page via <https://tfe.example.com/organizations/new>.
 
@@ -199,7 +199,7 @@ organization, then scroll to the bottom of the page. Check the `Terraform` and
 `Packer` check boxes under `Enterprise billing active?`, and then click `Update
 Organization`.
 
-![Enable enterprise features](https://github.com/hashicorp/terraform-enterprise-modules/raw/master/docs/assets/billing-checkboxes.png)
+![Enable enterprise features](/docs/enterprise-beta/private/assets/billing-checkboxes.png)
 
 ### Accessing Terraform and Packer Features
 
@@ -207,14 +207,14 @@ Finally, you will be able to access Terraform and Packer features by selecting
 them from the dropdown in the top left (which shows Vagrant by default). You
 should see the following page:
 
-![Enterprise features are enabled!](https://github.com/hashicorp/terraform-enterprise-modules/raw/master/docs/assets/enterprise-enabled.png)
+![Enterprise features are enabled!](/docs/enterprise-beta/private/assets/enterprise-enabled.png)
 
 You are now ready to use Terraform Enterprise!
 
 If you see this page instead, you must follow the directions under **Enabling
 Enterprise Features**, above:
 
-![Enterprise features are disabled](https://github.com/hashicorp/terraform-enterprise-modules/raw/master/docs/assets/enterprise-disabled.png)
+![Enterprise features are disabled](/docs/enterprise-beta/private/assets/enterprise-disabled.png)
 
 If you have trouble getting past this page, please reach out to HashiCorp for
 help.
