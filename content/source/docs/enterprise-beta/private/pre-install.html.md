@@ -1,10 +1,10 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Pre-Installation Requirements"
+page_title: "Private Terraform Pre-Installation Requirements"
 sidebar_current: "docs-enterprise2-private-preinstall"
 ---
 
-# Private Terraform Enterprise Pre-Installation Requirements
+# Private Terraform Pre-Installation Requirements
 
 Prior to attempting the installation, please read over ALL the documentation. If you have any questions about anything please contact your Sales Engineer or Technical Account Manager. 
 

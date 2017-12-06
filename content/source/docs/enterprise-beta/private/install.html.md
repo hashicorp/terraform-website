@@ -121,7 +121,7 @@ through a proxy. By setting the `proxy_url` to either an http:// or https:// url
 all systems that make HTTP and HTTPS request will connect to the proxy to
 perform the request.
 
-*NOTE* This is only for outbound HTTP and HTTPS requests. Other traffic such
+\*NOTE\* This is only for outbound HTTP and HTTPS requests. Other traffic such
 as SMTP and NTP are not proxied and will attempt to connect directly.
 
 ### Populating Variables
