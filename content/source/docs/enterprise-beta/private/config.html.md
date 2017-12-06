@@ -199,7 +199,7 @@ organization, then scroll to the bottom of the page. Check the `Terraform` and
 `Packer` check boxes under `Enterprise billing active?`, and then click `Update
 Organization`.
 
-![Enable enterprise features](/docs/enterprise-beta/private/assets/billing-checkboxes.png)
+![Enable enterprise features](assets/billing-checkboxes.png)
 
 ### Accessing Terraform and Packer Features
 
