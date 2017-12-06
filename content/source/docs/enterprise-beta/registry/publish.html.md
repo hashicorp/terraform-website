@@ -16,15 +16,13 @@ Only members of the "owners" team can publish new modules. Once a module is publ
 
 ## Workflow Summary
 
-The private module registry is designed to be be as automatic as possible, so it defers to your version control repositories for most management tasks.
+The private module registry is designed to be be as automatic as possible, so it defers to your VCS provider for most management tasks. The only manual tasks are adding a new module and deleting versions.
 
 After configuring at least one [connection to a VCS provider][vcs], you can publish a new module by telling TFE which repository it lives in. The registry uses the _name_ of the repo to determine the module's name and provider, and uses the repo's _tags_ to identify the available versions. It also uses the README and configurations in the repo to format documentation for each version.
 
-To release a new version of an existing module, push a new tag to the module's repo. The registry updates automatically.
+To release a new version of an existing module, push a new tag to its repo. The registry updates automatically.
 
 Consumers of a module don't need access to its source repository, even when running Terraform from the command line; the registry handles downloads, and uses TFE's API tokens to control access.
-
-Other than adding a new module, the only task that requires manual action in the registry is deleting versions of a module.
 
 ## Preparing a Module Repository
 
@@ -91,7 +89,7 @@ To delete a module or version:
 3. Click the "Delete Module 🗑" button.
 4. Select the desired action from the drop-down and confirm with the "Delete" button.
     - "Delete only this module version" affects the version of the module you were viewing when you clicked delete.
-    - The other two options are only different if you have modules with the same name but different providers. (For example, if you publish repositories named `terraform-aws-appserver` and `terraform-azure-appserver`, the registry treats them as alternate providers of the same `appserver` module.) If you use multi-provider modules, the "Delete all providers and versions for this module" option will delete multiple modules.
+    - The other two options are only different if you have modules with the same name but different providers. (For example, if you have module repos named `terraform-aws-appserver` and `terraform-azure-appserver`, the registry treats them as alternate providers of the same `appserver` module.) If you use multi-provider modules like this, the "Delete all providers and versions for this module" option can delete multiple modules.
 
 ~> **Note:** If a deletion would leave a module with no versions, the module will be automatically deleted.
 
