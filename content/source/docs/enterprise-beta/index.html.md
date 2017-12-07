@@ -21,3 +21,4 @@ This is a list of features specific to Terraform Enterprise.
 - [Terraform Remote State Storage](/docs/enterprise/state)
 - [Terraform Run Notifications](/docs/enterprise/runs/notifications.html)
 - [Sentinel Policy as Code](/docs/enterprise-beta/sentinel/index.html)
+- [Private Terraform Enterprise Installation and Configuration](/docs/enterprise-beta/private/index.html)
