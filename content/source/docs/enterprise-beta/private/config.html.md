@@ -21,18 +21,19 @@ correctly restored from backup. Please contact HashiCorp for help.
 
 Here is a rough overview of what we will cover in these sections:
 
-1. System Configuration
-	1. Create the administrator account
-	2. Configure SMTP for sending emails
-	3. Configure Twilio for sending SMS messages
-	4. Configure connectivity to git
-2. Team Setup
-	1. Inviting Colleagues
-	2. Creating an Organization
-	3. Creating a Team
-	4. Enabling Enterprise Features
-	5. Accessing Terraform and Packer Features
-	6. Creating Additional Administrators
+1. [System Configuration](/docs/enterprise-beta/private/config.html#system-configuration)
+	1. [Create the administrator account](/docs/enterprise-beta/private/config.html#creating-an-administrator)
+	2. [Configure SMTP for sending emails](/docs/enterprise-beta/private/config.html#configure-smtp)
+	3. [Configure Twilio for sending SMS messages](/docs/enterprise-beta/private/config.html#configure-twilio)
+	4. [Configure connectivity to git](/docs/enterprise-beta/private/config.html#configure-git-hub-)
+	5. [Configure acceptance tests](/docs/enterprise-beta/private/config.html#configure-acceptance-tests-verify-and-complete)
+2. [Team Setup](/docs/enterprise-beta/private/config.html#team-setup)
+	1. [Inviting Colleagues](/docs/enterprise-beta/private/config.html#inviting-colleagues)
+	2. [Creating an Organization](/docs/enterprise-beta/private/config.html#creating-an-organization)
+	3. [Creating a Team](/docs/enterprise-beta/private/config.html#creating-a-team)
+	4. [Enabling Enterprise Features](/docs/enterprise-beta/private/config.html#enabling-enterprise-features)
+	5. [Accessing Terraform and Packer Features](/docs/enterprise-beta/private/config.html#accessing-terraform-and-packer-features)
+	6. [Creating Additional Administrators](/docs/enterprise-beta/private/config.html#creating-additional-administrators)
 
 ## System Configuration
 
@@ -116,7 +117,7 @@ If you have already completed this step or navigated away from the page, you can
 edit the OAuth configuration by way of the `here` link in the yellow bar at the
 top of the `Configure GitHub` page.
 
-### Configure Acceptances Tests, Verify, and Complete
+### Configure Acceptance Tests, Verify, and Complete
 
 The `Configure Acceptance Tests`, `Configure Acceptance Test GitHub`, `Verify`,
 and `Complete` steps are no longer used and will be removed in a future version
