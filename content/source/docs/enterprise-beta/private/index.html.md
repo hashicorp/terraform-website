@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-private"
 
 # Private Terraform Enterprise Installation and Configuration
 
-Private Terraform is software provided to customers for installation in their AWS environment, allowing them full use of Terraform Enterprise in a private, isolated environment.
+Private Terraform Enterprise is software provided to customers for installation in their AWS environment, allowing them full use of Terraform Enterprise in a private, isolated environment.
 
 This document is intended to help guide customers on how to properly install Private Terraform into their Amazon VPC. This document will lay out the required prerequisites, steps to install the software and the basic configurations that will need to be done after install.
 
