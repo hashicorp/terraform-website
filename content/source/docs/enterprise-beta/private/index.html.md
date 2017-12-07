@@ -4,11 +4,11 @@ page_title: "Private Terraform Installation and Configuration"
 sidebar_current: "docs-enterprise2-private"
 ---
 
-# Private Terraform Installation and Configuration
+# Private Terraform Enterprise Installation and Configuration
 
-Private Terraform Enterprise (pTFE) is software provided to customers for installation in their AWS environment, allowing them full use of Terraform Enterprise in a private, isolated environment.
+Private Terraform is software provided to customers for installation in their AWS environment, allowing them full use of Terraform Enterprise in a private, isolated environment.
 
-This document is intended to help guide customers on how to properly install Private Terraform Enterprise into their Amazon VPC. This document will lay out the required prerequisites, steps to install the software and the basic configurations that will need to be done after install.
+This document is intended to help guide customers on how to properly install Private Terraform into their Amazon VPC. This document will lay out the required prerequisites, steps to install the software and the basic configurations that will need to be done after install.
 
 - [Private Terraform Pre-Installation Requirements](/docs/enterprise-beta/private/pre-install.html)
 - [Private Terraform Installation](/docs/enterprise-beta/private/install.html)

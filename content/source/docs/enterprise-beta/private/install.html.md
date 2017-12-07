@@ -36,7 +36,7 @@ The following details will be requested during the application bootstrapping pro
   * Hostname and port of SMTP service
   * Type of authentication (plain or login)
   * Username and password
-  * Email address to use as the sender for emails originating from TFE
+  * Email address to use as the sender for emails originating from Terraform Enterprise
 * (Optional) **Twilio Credentials**: Terraform Enterprise can use Twilio for SMS-based 2-factor authentication. If Twilio is not configurated, virtual MFA device based 2FA (e.g. Google Authenticator) will still be available.
 
 ### Required Variables
@@ -57,7 +57,7 @@ The following variables are required inputs and must be populated prior to begin
 
 These variables can be populated, but they have defaults that can also be used.
 
-* `key_name`: Name of AWS SSH Key Pair that will be used. The pair needs to already exist, it will not be created. If this variable is not set, no SSH access will be available to the TFE instance.
+* `key_name`: Name of AWS SSH Key Pair that will be used. The pair needs to already exist, it will not be created. If this variable is not set, no SSH access will be available to the Terraform Enterprise instance.
 * `manage_bucket` Indicate if this terraform state should create and own the bucket. Set this to false if you are reusing an existing bucket.
 * `kms_key_id` Specify the ARN for a KMS key to use rather than having one
   created automatically.
@@ -68,7 +68,7 @@ These variables can be populated, but they have defaults that can also be used.
 * `db_snapshot_identifier` Previously made snapshot to restore when RDS is created. This is for migration of data between clusters. Default is to create the database fresh.
 * `db_name` This only needs to be set if you're migrating from an RDS instance with a different database name.
 * `zone_id` The id of a Route53 zone that a record for the cluster will be installed into. Leave this blank if you need to manage DNS elsewhere. Example: `ZVEF52R7NLTW6`
-* `hostname` If specifying `zone_id`, this should be set to the name that is used for the record to be registered with the zone. This value combined with the zone information will form the full DNS name for TFE. Example: `emp-test`
+* `hostname` If specifying `zone_id`, this should be set to the name that is used for the record to be registered with the zone. This value combined with the zone information will form the full DNS name for Terraform Enterprise. Example: `emp-test`
 * `arn_partition` Used mostly for govcloud installations. Example: `aws-us-gov`
 * `internal_elb` Indicate to AWS that the created ELB is internal only. Example: `true`
 * `startup_script` Shell code that should run on the first boot.
@@ -142,12 +142,12 @@ To upgrade your instance of Terraform Enterprise, simply update the repository c
 
 ## Outputs
 
-* `dns_name` - The DNS name of the load balancer for TFE. If you are managing
+* `dns_name` - The DNS name of the load balancer for Terraform Enterprise. If you are managing
    DNS separately, you'll need to make a CNAME record from your indicated
    hostname to this value.
-* `zone_id` - The Route53 Zone ID of the load balancer for TFE. If you are
+* `zone_id` - The Route53 Zone ID of the load balancer for Terraform Enterprise. If you are
    managing DNS separately but still using Route53, this value may be useful.
-* `url` - The URL where TFE will become available when it boots.
+* `url` - The URL where Terraform Enterprise will become available when it boots.
 
 ## Configuration
 
