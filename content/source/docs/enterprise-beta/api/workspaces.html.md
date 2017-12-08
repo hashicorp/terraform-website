@@ -15,7 +15,7 @@ Workspaces represent running infrastructure managed by Terraform.
 
 ## Create a Workspace with a VCS Repository
 
-This endpoint is used to create a new workspace which references an `o-auth-token`, `linkable-repo-id` and `ingress-trigger-attributes` to configure the connection to VCS.
+This endpoint is used to create a new workspace which references an `oauth-token`, `linkable-repo-id` and `ingress-trigger-attributes` to configure the connection to VCS.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -26,7 +26,7 @@ This endpoint is used to create a new workspace which references an `o-auth-toke
 ### Parameters
 
 - `:organization` (`string: <required>`) - Specifies the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
-- `o-auth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [o-auth-tokens](./o-auth-tokens.html) endpoint.
+- `oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 - `default-branch` (`boolean: true`) - specifies if the default branch should be used.
 - `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
 - `linkable-repo-id` (`string: <optional>`) - This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
@@ -43,7 +43,7 @@ This endpoint is used to create a new workspace which references an `o-auth-toke
       "name":"workspace-demo",
       "working-directory":"",
       "linkable-repo-id":"skierkowski/terraform-test-proj",
-      "o-auth-token-id": 7,
+      "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
       "ingress-trigger-attributes": {
         "branch":"",
         "vcs-root-path":"",
@@ -210,7 +210,7 @@ Update the workspace settings
 
 - `:organization` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 - `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update.
-- `o-auth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [o-auth-tokens](/docs/enterprise-beta/api/o-auth-tokens.html) endpoint.
+- `oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](/docs/enterprise-beta/api/oauth-tokens.html) endpoint.
 - `default-branch` (`boolean: true`) - specifies if the default branch should be used.
 - `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
 - `linkable-repo-id` (`string: <required>`) - This is the reference to your VCS repository in the format :org/:repo
@@ -226,7 +226,7 @@ Update the workspace settings
     "attributes": {
       "name":"my-workspace-2",
       "working-directory":"",
-      "o-auth-token-id": "238571",
+      "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
       "linkable-repo-id":"skierkowski/terraform-test-proj",
       "ingress-trigger-attributes": {
         "branch":"",

@@ -53,7 +53,7 @@ This endpoint can be used to publish a new module to the registry. The publishin
 ### Parameters
 
 - `linkable-repo-id` (`string: <required>`) - Specifies the repository to be used to ingress the configuration. For Bitbucket server, the format is `<PROJECT_KEY>/<REPO>`. Bitbucket Server is currently the only supported VCS service.
-- `o-auth-token-id` (`string: <requires>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [o-auth-tokens](./o-auth-tokens.html) endpoint.
+- `oauth-token-id` (`string: <requires>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 
 
 ### Sample Payload
@@ -63,7 +63,7 @@ This endpoint can be used to publish a new module to the registry. The publishin
   "data": {
     "attributes": {
       "linkable-repo-id":"SKI/terraform-aws-instance",
-      "o-auth-token-id":"1"
+      "oauth-token-id":"ot-hmAyP66qk2AMVdbJ"
     },
     "type":"registry-modules"
   }
@@ -142,4 +142,3 @@ curl \
   --request POST \
   https://atlas.hashicorp.com/api/v2/registry-modules/actions/delete/skierkowski-v2/instance
 ```
-
