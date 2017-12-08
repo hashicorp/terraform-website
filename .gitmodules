@@ -286,3 +286,7 @@
 	path = ext/providers/cloudscale
 	url = https://github.com/terraform-providers/terraform-provider-cloudscale
 	branch = stable-website
+[submodule "ext/providers/opentelekomcloud"]
+	path = ext/providers/opentelekomcloud
+	url = https://github.com/terraform-providers/terraform-provider-opentelekomcloud
+	branch = stable-website
