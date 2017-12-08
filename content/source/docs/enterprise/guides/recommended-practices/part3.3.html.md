@@ -28,7 +28,7 @@ Get familiar with how Terraform runs work in TFE. With Terraform OSS, you genera
 
 TFE does things differently: a workspace is associated directly with a VCS repo, and you use TFE’s UI or API to start and monitor runs. To get familiar with this operating model:
 
-* Read the documentation on how to [perform and configureTerraform runs](https://www.terraform.io/docs/enterprise-beta/getting-started/runs.html) in Terraform Enterprise.
+* Read the documentation on how to [perform and configureTerraform runs](../../getting-started/runs.html) in Terraform Enterprise.
 * Create a proof-of-concept workspace, associate it with Terraform code in a VCS repo, set variables as needed, and use Terraform Enterprise to perform some Terraform runs with that code.
 
 ## 3. Design Your Organization’s Workspace Structure

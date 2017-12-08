@@ -51,7 +51,7 @@ workspace — one set of variables for `prod` and one set for `stage`.
 ```
 
 Each workspace listens to a specific
-branch for changes, as configured by the [VCS branch setting](/docs/enterprise-beta/workspaces/settings.html#vcs-branch).
+branch for changes, as configured by the [VCS branch setting](./settings.html#vcs-branch).
 The `networking-prod` workspace should be configured to listen to the `prod`
 branch and `networking-stage` to `stage.` To promote a change to stage, just open
 a PR against that branch. To promote to prod, open a PR for stage against prod.
@@ -96,7 +96,7 @@ the prod and stage environments have separate `main.tf` configurations and `vari
 ```
 
 In this example, each workspace is configured with a
-different [Terraform Working Directory](/docs/enterprise-beta/workspaces/settings.html#terraform-working-directory). This setting
+different [Terraform Working Directory](./settings.html#terraform-working-directory). This setting
 tells TFE which directory to execute Terraform in.
 The `networking-prod` workspace is configured with `prod` as its working directory
 and the `networking-stage` workspace is configured with `stage` as its working

@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-api-teams"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-The Teams API is used to create and destroy teams. The [Team Membership API](/docs/enterprise-beta/api/team-members.html) is used to add or remove users from a team. To give a team access to a workspace use the [Team Access API](/docs/enterprise-beta/api/team-access.html) to associate a team with privileges on a workspace.
+The Teams API is used to create and destroy teams. The [Team Membership API](./team-members.html) is used to add or remove users from a team. To give a team access to a workspace use the [Team Access API](./team-access.html) to associate a team with privileges on a workspace.
 
 ## Create a Team
 

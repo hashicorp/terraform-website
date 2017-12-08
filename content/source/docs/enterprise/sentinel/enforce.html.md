@@ -10,7 +10,7 @@ Once a policy is added to an organization it is enforced on all runs.
 
 The policy check will occur immediately after a plan is successfully executed in the run. If the plan fails, the policy check will not be performed. The policy check uses the generated tfplan file, [simulated apply object](https://docs.hashicorp.com/sentinel/app/terraform/import-tfplan#resource-applied-field), state and configuration to verify the rules in each of the policies.
 
-Enforcement level details can be found in the [Managing Policies](/docs/enterprise-beta/sentinel/manage-policies.html) documentation.
+Enforcement level details can be found in the [Managing Policies](./manage-policies.html) documentation.
 
 All `hard mandatory` and `soft mandatory` policies must pass in order for the run to continue to the the "Confirm & Apply" state.
 

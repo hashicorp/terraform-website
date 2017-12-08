@@ -57,7 +57,7 @@ The values for these variables should be placed in the `terraform.tfvars` file. 
 * `db_password`: Password that will be used to access RDS. Example: `databaseshavesecrets`
 * `bucket_name`: Name of the S3 bucket to store artifacts used by the cluster into. This bucket is automatically created. We suggest you name it `tfe-${hostname}-data`, as convention.
 
-### Optional Variables 
+### Optional Variables
 
 These variables can be populated, but they have defaults that will be used if you omit them. As with the required variables, you can place these values in the `terraform.tfvars` file.
 
@@ -152,4 +152,4 @@ To upgrade your instance of Terraform Enterprise, update the repository containi
 ## Configuration
 
 After completing a new install you should head to the
-[configuration page](/docs/enterprise-beta/private/config.html) to create users and teams.
+[configuration page](./config.html) to create users and teams.

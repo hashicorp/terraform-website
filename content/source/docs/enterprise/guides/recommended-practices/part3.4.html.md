@@ -21,4 +21,4 @@ regulatory compliance
 
 * Add infrastructure monitoring and performance metrics. This can help make environment promotion safer, and safeguard the performance of your applications. There are many tools available in this space, and we recommend monitoring both the infrastructure itself, and the user’s-eye-view performance of your applications.
 
-* Use the TFE API. The [TFE API](https://www.terraform.io/docs/enterprise-beta/api/index.html) can be used to integrate with general-purpose CI/CD tools to trigger Terraform runs in response to a variety of events.
+* Use the TFE API. The [TFE API](../../api/index.html) can be used to integrate with general-purpose CI/CD tools to trigger Terraform runs in response to a variety of events.

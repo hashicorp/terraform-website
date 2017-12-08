@@ -210,7 +210,7 @@ Update the workspace settings
 
 - `:organization` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 - `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update.
-- `oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](/docs/enterprise-beta/api/oauth-tokens.html) endpoint.
+- `oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 - `default-branch` (`boolean: true`) - specifies if the default branch should be used.
 - `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
 - `linkable-repo-id` (`string: <required>`) - This is the reference to your VCS repository in the format :org/:repo

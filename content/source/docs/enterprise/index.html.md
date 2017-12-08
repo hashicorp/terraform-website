@@ -16,5 +16,5 @@ If you are new to the TFE beta, begin with the
 
 This is a list of features specific to Terraform Enterprise.
 
-- [Sentinel Policy as Code](/docs/enterprise-beta/sentinel/index.html)
-- [Private Terraform Enterprise Installation and Configuration](/docs/enterprise-beta/private/index.html)
+- [Sentinel Policy as Code](./sentinel/index.html)
+- [Private Terraform Enterprise Installation and Configuration](./private/index.html)
