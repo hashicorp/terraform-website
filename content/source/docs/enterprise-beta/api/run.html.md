@@ -101,7 +101,7 @@ curl \
       "run-events": {...},
       "policy-checks": {...},
       "workspace": {...},
-      "workspace-comments": {...},
+      "comments": {...},
       "workspace-run-alerts": {...}
       }
     },
@@ -211,7 +211,7 @@ curl \
         "plan": {...},
         "run-events": {...},
         "policy-checks": {...},
-        "workspace-comments": {...},
+        "comments": {...},
         "workspace-run-alerts": {...},
       "links": {
         "self": "/api/v2/runs/run-bWSq4YeYpfrW4mx7"
