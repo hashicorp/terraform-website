@@ -30,6 +30,8 @@ The following are required to complete installation:
   * *NOTE:* Certificates are per region, so be sure to create them in the same region as you'll be deploying Terraform Enterprise into.
   * *NOTE:* The certificate must allow the fully qualified hostname that Terraform Enterprise will be using. This means you need to decide on a final hostname when creating the certificates and use the same value in the configuration.
 
+[//]: <> (Insert instructions about cloning the aws-standard repo to your laptop/server where you will do the deploy from.)
+
 The following details will be requested during the application bootstrapping process. It's helpful to have them prepared beforehand.
 
 * **SMTP Credentials**: Terraform Enterprise requires SMTP information to send email. SMTP configuration can be skipped if necessary during the installation, but HashiCorp recommends configuring it during the initial bootstrapping process.
@@ -43,7 +45,7 @@ The following details will be requested during the application bootstrapping pro
 
 The following Terraform variables are required inputs and must be populated prior to beginning installation.
 
-The values for these variables should be placed in the `terraform.tfvars` file. Copy `terraform.tfvars.example` to `terraform.tfvars` and edit it with the proper values.
+The values for these variables should be placed in the `terraform.tfvars` file. Download `https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-standard/terraform.tfvars.example` to the machine where you will be doing the deploy from (can be your laptop, as long as it has the necessary AWS connectivity) and copy it to `terraform.tfvars`, then edit it with the proper values.
 
 * `region`: The AWS region to deploy into.
 * `ami_id`: The ID of a Terraform Enterprise Base AMI. See [`ami-ids`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/docs/ami-ids.md) to look one up.
@@ -55,7 +57,7 @@ The values for these variables should be placed in the `terraform.tfvars` file. 
 * `db_password`: Password that will be used to access RDS. Example: `databaseshavesecrets`
 * `bucket_name`: Name of the S3 bucket to store artifacts used by the cluster into. This bucket is automatically created. We suggest you name it `tfe-${hostname}-data`, as convention.
 
-### Optional Variables
+### Optional Variables 
 
 These variables can be populated, but they have defaults that will be used if you omit them. As with the required variables, you can place these values in the `terraform.tfvars` file.
 
@@ -82,7 +84,7 @@ These variables can be populated, but they have defaults that will be used if yo
 * `ebs_size` The size (in GB) to configure the EBS volumes used to store redis data. Default: `100`
 * `ebs_redundancy` The number of EBS volumes to mirror together for redundancy in storing redis data. Default: `2`
 
-#### Startup Script
+#### Startup Script (Optional)
 
 The `startup_script` variable can contain any shell code and
 will be executed on the first boot. This mechanism can be used to customize the AMI,
@@ -116,7 +118,7 @@ adduser my-admin
 SHELL
 ```
 
-#### Proxy Support
+#### Proxy Support (Optional)
 
 The cluster can be configured to send all outbound HTTP and HTTPS traffic
 through a proxy. By setting the `proxy_url` to either an http:// or https:// url,
@@ -128,11 +130,11 @@ as SMTP and NTP are not proxied and will attempt to connect directly.
 
 ## Planning
 
-Terraform Enterprise uses Terraform itself for deployment. Once you have filled in the `terraform.tfvars` file, simply run: `terraform plan`. This will output the manifest of all the resources that will be created.
+Terraform Enterprise uses Terraform itself for deployment. Once you have filled in the `terraform.tfvars` file, simply run: `terraform init` then `terraform plan`. This will output the manifest of all the resources that will be created.
 
 ## Deployment
 
-Once you've reviewed the plan output and are ready to deploy Terraform Enterprise, run `terraform apply`. This will take approximately 10 minutes (mostly due to RDS creation time).
+Once you've reviewed the plan output and are ready to deploy Terraform Enterprise, run `terraform apply`. This will take anywhere from 10 to 20 minutes (mostly due to RDS creation time).
 
 ## Upgrade
 
