@@ -36,7 +36,7 @@ curl \
 {
   "data": [
     {
-      "id":"238560",
+      "id":"ot-hmAyP66qk2AMVdbJ",
       "type":"oauth-tokens",
       "attributes": {
         "uid":"885724",
@@ -47,13 +47,13 @@ curl \
       "relationships": {
         "oauth-client": {
           "data": {
-            "id":"423",
+            "id":"oc-GhHqb5rkeK19mLB8",
             "type":"oauth-clients"
           }
         }
       },
       "links": {
-        "self":"/api/v2/oauth-tokens/238560"
+        "self":"/api/v2/oauth-tokens/ot-hmAyP66qk2AMVdbJ"
       }
     }
   ]

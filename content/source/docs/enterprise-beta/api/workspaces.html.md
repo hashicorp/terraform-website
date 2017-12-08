@@ -43,7 +43,7 @@ This endpoint is used to create a new workspace which references an `oauth-token
       "name":"workspace-demo",
       "working-directory":"",
       "linkable-repo-id":"skierkowski/terraform-test-proj",
-      "oauth-token-id": 7,
+      "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
       "ingress-trigger-attributes": {
         "branch":"",
         "vcs-root-path":"",
@@ -226,7 +226,7 @@ Update the workspace settings
     "attributes": {
       "name":"my-workspace-2",
       "working-directory":"",
-      "oauth-token-id": "238571",
+      "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
       "linkable-repo-id":"skierkowski/terraform-test-proj",
       "ingress-trigger-attributes": {
         "branch":"",

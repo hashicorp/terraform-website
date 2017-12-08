@@ -63,7 +63,7 @@ This endpoint can be used to publish a new module to the registry. The publishin
   "data": {
     "attributes": {
       "linkable-repo-id":"SKI/terraform-aws-instance",
-      "oauth-token-id":"1"
+      "oauth-token-id":"ot-hmAyP66qk2AMVdbJ"
     },
     "type":"registry-modules"
   }
@@ -142,4 +142,3 @@ curl \
   --request POST \
   https://atlas.hashicorp.com/api/v2/registry-modules/actions/delete/skierkowski-v2/instance
 ```
-
