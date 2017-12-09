@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "GitHub Enterprise - VCS Providers - Terraform Enterprise Beta"
+page_title: "GitHub Enterprise - VCS Providers - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-vcs-ghenterprise"
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "OAuth Tokens - API Docs - Terraform Enterprise Beta"
+page_title: "OAuth Tokens - API Docs - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-api-oauth-tokens"
 ---
 

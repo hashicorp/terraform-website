@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "GitLab EE and CE - VCS Providers - Terraform Enterprise Beta"
+page_title: "GitLab EE and CE - VCS Providers - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-vcs-gitlab-eece"
 ---
 

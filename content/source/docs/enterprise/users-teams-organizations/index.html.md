@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "Users, Teams, and Organizations - Terraform Enterprise Beta"
+page_title: "Users, Teams, and Organizations - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-users-teams-organizations"
 ---
 

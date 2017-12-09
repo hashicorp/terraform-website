@@ -1,6 +1,6 @@
 ---
 layout: "enterprise2"
-page_title: "Configuring VCS - Getting Started - Terraform Enterprise Beta"
+page_title: "Configuring VCS - Getting Started - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-started-vcs"
 ---
 

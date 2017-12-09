@@ -1,6 +1,6 @@
 ---
 layout: "enterprise2"
-page_title: "Home - Terraform Enterprise Beta"
+page_title: "Home - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-home"
 description: |-
   Terraform Enterprise is a tool for safely and efficiently changing infrastructure across providers.

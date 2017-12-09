@@ -1,5 +1,5 @@
 ---
-page_title: "API Docs - Terraform Enterprise Beta"
+page_title: "API Docs - Terraform Enterprise"
 layout: "enterprise2"
 sidebar_current: "docs-enterprise2-api"
 ---

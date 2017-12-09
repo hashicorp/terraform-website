@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "Upgrading - Terraform Enterprise Beta"
+page_title: "Upgrading - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-upgrading"
 ---
 

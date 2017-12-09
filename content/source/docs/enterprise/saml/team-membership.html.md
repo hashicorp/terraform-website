@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "SAML Team Membership - Terraform Enterprise Beta"
+page_title: "SAML Team Membership - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-saml-team-membership"
 ---
 

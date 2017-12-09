@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "Organization Tokens - API Docs - Terraform Enterprise Beta"
+page_title: "Organization Tokens - API Docs - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-api-organization-tokens"
 ---
 

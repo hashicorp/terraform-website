@@ -1,6 +1,6 @@
 ---
 layout: "enterprise2"
-page_title: "Creating Workspaces - Getting Started - Terraform Enterprise Beta"
+page_title: "Creating Workspaces - Getting Started - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-started-workspaces"
 ---
 
