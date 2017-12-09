@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Runs - Terraform Enterprise"
+page_title: "Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs"
 description: |-
   A "run" in Atlas represents the logical grouping of two Terraform steps - a "plan" and an "apply".

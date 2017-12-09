@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Starting - Runs - Terraform Enterprise"
+page_title: "Starting - Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs-starting"
 description: |-
   How to start runs in Terraform Enterprise.

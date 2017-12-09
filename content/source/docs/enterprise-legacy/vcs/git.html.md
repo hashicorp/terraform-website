@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Git - VCS Integrations - Terraform Enterprise"
+page_title: "Git - VCS Integrations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-vcs-git-"
 description: |-
   Git repositories can be integrated with Terraform Enterprise by using push command.

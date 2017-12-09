@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Notifications - Runs - Terraform Enterprise"
+page_title: "Notifications - Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs-notifications"
 description: |-
   Terraform Enterprise can send notifications to your organization. This post is on how.

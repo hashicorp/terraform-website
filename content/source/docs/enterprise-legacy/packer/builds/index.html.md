@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Packer Builds - Terraform Enterprise"
+page_title: "Packer Builds - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-packerbuilds"
 description: |-
   Builds are instances of `packer build` being run within Terraform Enterprise.

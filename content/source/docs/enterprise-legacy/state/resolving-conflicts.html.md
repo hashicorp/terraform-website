@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Resolving Conflicts - State - Terraform Enterprise"
+page_title: "Resolving Conflicts - State - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-state-resolving"
 description: |-
   Resolving conflicts with remote states.

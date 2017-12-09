@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Support - Terraform Enterprise"
+page_title: "Support - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-support"
 description: |-
   All users of Terraform Enterprise are urged to email feedback, questions or requests to the HashiCorp team.

@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Runs - API - Terraform Enterprise"
+page_title: "Runs - API - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-api-runs"
 description: |-
   Runs in Terraform Enterprise represents a two step Terraform plan and a subsequent apply.

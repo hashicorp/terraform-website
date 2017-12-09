@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Monolithic Artifacts - FAQ - Terraform Enterprise"
+page_title: "Monolithic Artifacts - FAQ - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-faq-monolithic"
 description: |-
   How do I build multiple applications into one artifact?

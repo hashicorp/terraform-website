@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "VCS Integrations - Terraform Enterprise"
+page_title: "VCS Integrations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-vcs"
 description: |-
   Terraform Enterprise can integrate with version control software Git and GitHub.

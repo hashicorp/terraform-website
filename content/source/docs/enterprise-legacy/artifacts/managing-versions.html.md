@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Managing Versions - Artifacts - Terraform Enterprise"
+page_title: "Managing Versions - Artifacts - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-artifacts-versions"
 description: |-
   Artifacts are versioned and assigned a version number, here is how to manage the versions.

@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Variables and Configuration - Runs - Terraform Enterprise"
+page_title: "Variables and Configuration - Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs-variables"
 description: |-
   How to configure runs and their variables.

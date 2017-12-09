@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Organizations - Terraform Enterprise"
+page_title: "Organizations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-organizations"
 description: |-
   Organizations are a group of users in Terraform Enterprise that have access and ownership over shared resources.

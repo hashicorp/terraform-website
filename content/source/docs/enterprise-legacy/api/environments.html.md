@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Environments - API - Terraform Enterprise"
+page_title: "Environments - API - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-api-environments"
 description: |-
   Environments represent running infrastructure managed by Terraform.

@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Managing Terraform Versions - Runs - Terraform Enterprise"
+page_title: "Managing Terraform Versions - Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs-versions"
 description: |-
   How to manage versions of Terraform Enterprise.

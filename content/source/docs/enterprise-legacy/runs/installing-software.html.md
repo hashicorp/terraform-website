@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Installing Software - Runs - Terraform Enterprise"
+page_title: "Installing Software - Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs-installing"
 description: |-
   Installing custom software on the Terraform workers.

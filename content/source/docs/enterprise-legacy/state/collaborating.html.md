@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Collaborating - State - Terraform Enterprise"
+page_title: "Collaborating - State - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-state-collaborating"
 description: |-
   How to collaborate on states.

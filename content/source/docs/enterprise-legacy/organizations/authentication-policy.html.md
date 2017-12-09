@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Authentication Policy - Organizations - Terraform Enterprise"
+page_title: "Authentication Policy - Organizations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-organizations-policy"
 description: |-
   Owners can set organization-wide authentication policy in Terraform Enterprise.

@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Users - API - Terraform Enterprise"
+page_title: "Users - API - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-api-users"
 description: |-
   Users are both users and organizations in Terraform Enterprise. They are the parent resource of all resources.

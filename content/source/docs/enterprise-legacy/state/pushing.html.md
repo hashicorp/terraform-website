@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Pushing - State - Terraform Enterprise"
+page_title: "Pushing - State - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-state-pushing"
 description: |-
   Pushing remote states.

@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Membership - Organizations - Terraform Enterprise"
+page_title: "Membership - Organizations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-organizations-membership"
 description: |-
   Terraform Enterprise allows collaboration in organizations. However, there are several membership levels within organizations.

@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Starting - Packer Builds - Terraform Enterprise"
+page_title: "Starting - Packer Builds - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-packerbuilds-starting"
 description: |-
   Packer builds can be started in Terraform Enterprise in two ways. This post is about how.

@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Accounts - Terraform Enterprise"
+page_title: "Accounts - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-accounts"
 description: |-
   Users are the main identity system in Terraform Enterprise.

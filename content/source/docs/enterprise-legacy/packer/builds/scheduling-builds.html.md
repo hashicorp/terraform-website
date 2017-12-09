@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Schedule Periodic Builds - Packer Builds - Terraform Enterprise"
+page_title: "Schedule Periodic Builds - Packer Builds - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-packerbuilds-scheduling"
 description: |-
   Terraform Enterprise can automatically run a Packer build and create artifacts on a specified schedule.

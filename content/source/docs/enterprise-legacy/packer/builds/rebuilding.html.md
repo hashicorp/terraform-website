@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Rebuilding - Packer Builds - Terraform Enterprise"
+page_title: "Rebuilding - Packer Builds - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-packerbuilds-rebuilding"
 description: |-
   Sometimes builds fail due to temporary or remotely controlled conditions.

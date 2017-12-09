@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Access - Accounts - Terraform Enterprise"
+page_title: "Access - Accounts - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-accounts-access"
 description: |-
   Terraform Enterprise allows collaboration on resources, with several levels of access.

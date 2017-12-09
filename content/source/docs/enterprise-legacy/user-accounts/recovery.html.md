@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Recovery - Accounts - Terraform Enterprise"
+page_title: "Recovery - Accounts - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-accounts-recovery"
 description: |-
   If you have lost access to your account, use the reset password form to send yourself a link to reset your password.

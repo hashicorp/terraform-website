@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Automatic Applies - Runs - Terraform Enterprise"
+page_title: "Automatic Applies - Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs-applies"
 description: |-
   How to automatically apply plans.

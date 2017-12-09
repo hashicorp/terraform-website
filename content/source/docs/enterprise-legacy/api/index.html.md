@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "API - Terraform Enterprise"
+page_title: "API - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-api"
 description: |-
   Terraform Enterprise provides an API for a **subset of features**.

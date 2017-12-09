@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Migrate - Organizations - Terraform Enterprise"
+page_title: "Migrate - Organizations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-organizations-migrate"
 description: |-
   How to migrate existing organization.

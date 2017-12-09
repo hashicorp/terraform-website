@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "State - API - Terraform Enterprise"
+page_title: "State - API - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-api-states"
 description: |-
   State represents the status of your infrastructure at the last time Terraform was run.

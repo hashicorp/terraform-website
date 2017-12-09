@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Rolling Deployments - FAQ - Terraform Enterprise"
+page_title: "Rolling Deployments - FAQ - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-faq-deployments"
 description: |-
   How do I configure rolling deployments in Terraform Enterprise?

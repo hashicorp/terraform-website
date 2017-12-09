@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Glossary - Terraform Enterprise"
+page_title: "Glossary - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-glossary"
 description: |-
   Terminology for Terraform Enterprise.

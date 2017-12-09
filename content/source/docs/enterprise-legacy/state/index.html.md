@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "State - Terraform Enterprise"
+page_title: "State - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-state"
 description: |-
   Terraform stores the state of your managed infrastructure from the last time Terraform was run. This section is about states.

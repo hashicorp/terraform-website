@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Build Environment - Packer Builds - Terraform Enterprise"
+page_title: "Build Environment - Packer Builds - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-packerbuilds-environment"
 description: |-
   This page outlines the environment that Packer runs in within Terraform Enterprise.

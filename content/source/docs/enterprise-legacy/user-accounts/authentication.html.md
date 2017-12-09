@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Authentication - Accounts - Terraform Enterprise"
+page_title: "Authentication - Accounts - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-accounts-authentication"
 description: |-
   Terraform Enterprise requires a username and password to sign up and login. However, there are several ways to authenticate with your account.

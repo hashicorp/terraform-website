@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Create - Organizations - Terraform Enterprise"
+page_title: "Create - Organizations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-organizations-create"
 description: |-
   How to create a Terraform Enterprise account.

@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Trial - Organizations - Terraform Enterprise"
+page_title: "Trial - Organizations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-organizations-trials"
 description: |-
   Terraform Enterprise offers a 30-day trial.

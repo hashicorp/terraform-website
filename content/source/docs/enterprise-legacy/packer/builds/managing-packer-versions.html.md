@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Managing Packer Versions - Packer Builds - Terraform Enterprise"
+page_title: "Managing Packer Versions - Packer Builds - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-packerbuilds-versions"
 description: |-
   Terraform Enterprise does not automatically upgrade the version of Packer used to run builds or compiles.

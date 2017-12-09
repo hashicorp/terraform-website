@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Bitbucket Cloud - VCS Integrations - Terraform Enterprise"
+page_title: "Bitbucket Cloud - VCS Integrations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-vcs-bitbucket-cloud"
 description: |-
   Bitbucket Cloud repositories can be integrated with Terraform Enterprise by using push command.

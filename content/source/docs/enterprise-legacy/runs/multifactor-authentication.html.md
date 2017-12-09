@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "AWS Multi-Factor Authentication - Runs - Terraform Enterprise"
+page_title: "AWS Multi-Factor Authentication - Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs-multifactor-authentication"
 description: |-
   Installing custom software on the Terraform Runners.

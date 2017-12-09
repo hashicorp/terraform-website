@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Scheduling - Runs - Terraform Enterprise"
+page_title: "Scheduling - Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs-schedule"
 description: |-
   Schedule periodic plan runs in Terraform.

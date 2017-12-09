@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Configurations - API - Terraform Enterprise"
+page_title: "Configurations - API - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-api-configurations"
 description: |-
   A configuration represents settings associated with a resource that runs

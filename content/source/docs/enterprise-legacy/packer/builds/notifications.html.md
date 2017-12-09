@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Build Notifications - Packer Builds - Terraform Enterprise"
+page_title: "Build Notifications - Packer Builds - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-packerbuilds-notifications"
 description: |-
   Terraform Enterprise can send build notifications to your organization.

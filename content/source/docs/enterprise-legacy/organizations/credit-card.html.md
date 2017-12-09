@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Add a Credit Card - Organizations - Terraform Enterprise"
+page_title: "Add a Credit Card - Organizations - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-organizations-credit"
 description: |-
   You must add a credit card to your organization's account to setup auto billing.

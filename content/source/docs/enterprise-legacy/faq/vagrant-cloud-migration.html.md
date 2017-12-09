@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Vagrant Cloud Migration - FAQ - Terraform Enterprise"
+page_title: "Vagrant Cloud Migration - FAQ - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-faq-vagrant-cloud-migration"
 description: |-
   Vagrant-related functionality will be moved from Terraform Enterprise into its own product, Vagrant Cloud. This migration is currently planned for June 27th, 2017.

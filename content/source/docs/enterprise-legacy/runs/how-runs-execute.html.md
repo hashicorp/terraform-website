@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Execution - Runs - Terraform Enterprise"
+page_title: "Execution - Runs - Terraform Enterprise (legacy)"
 sidebar_current: "docs-enterprise-runs-execute"
 description: |-
   How runs execute in Terraform Enterprise.
