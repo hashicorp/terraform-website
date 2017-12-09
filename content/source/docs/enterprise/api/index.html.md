@@ -39,5 +39,5 @@ For example, if the API endpoint documentation defines the path `/runs` then the
 
 ## JSON API Formatting
 
-The TFE beta endpoints use the [JSON API specification](http://jsonapi.org/) which specifies standards for [HTTP error codes](http://jsonapi.org/examples/#error-objects-error-codes), [error objects](http://jsonapi.org/examples/#error-objects-basics), [document structure](http://jsonapi.org/format/#document-structure), [HTTP Request/Response headers](http://jsonapi.org/format/#content-negotiation), and other key aspects of the API.
+The TFE endpoints use the [JSON API specification](http://jsonapi.org/) which specifies standards for [HTTP error codes](http://jsonapi.org/examples/#error-objects-error-codes), [error objects](http://jsonapi.org/examples/#error-objects-basics), [document structure](http://jsonapi.org/format/#document-structure), [HTTP Request/Response headers](http://jsonapi.org/format/#content-negotiation), and other key aspects of the API.
 

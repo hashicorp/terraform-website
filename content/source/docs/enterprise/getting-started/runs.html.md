@@ -4,7 +4,7 @@ page_title: "Running Terraform - Getting Started - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-started-runs"
 ---
 
-# Running Terraform in TFE Beta
+# Running Terraform in TFE
 
 **Prerequisites:** Before starting this guide, make sure you've [created and configured at least one workspace](./workspaces.html).
 

@@ -26,7 +26,7 @@ A well-designed Terraform workflow uses multiple configurations, so you can mana
 
 ~> **Note:** Currently, only members of the "owners" team can create new workspaces.
 
-First, make sure you're on TFE's front page. If you're still on the VCS settings (or any other page), click the Terraform logo button in the upper left and choose "Terraform Enterprise (Beta)".
+First, make sure you're on TFE's front page. If you're still on the VCS settings (or any other page), click the Terraform logo button in the upper left and choose "Terraform Enterprise".
 
 ![navigate](./images/work-navigate.png)
 
@@ -130,7 +130,7 @@ Most of your time in TFE is spent in two views:
 
     ![main page](./images/work-mainpage.png)
 
-    To get back to the main page at any time, click the Terraform logo button in the upper left and choose "Terraform Enterprise (Beta)".
+    To get back to the main page at any time, click the Terraform logo button in the upper left and choose "Terraform Enterprise".
 * The individual workspace pages, which provide more detail about a workspace's status, and let you manage runs, variables, and settings.
 
     To reach a workspace page, click that workspace's entry on the main page.
