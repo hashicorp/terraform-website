@@ -26,15 +26,13 @@ This page covers the following topics:
 	3. [Configure SMTP for sending emails](#configure-smtp)
 	4. [Configure Twilio for sending SMS messages](#configure-twilio)
 	5. [Configure connectivity to git](#configure-git-hub-)
-	6. [Create a Workspace](#configure-workspace)
-	7. [Verify the Configuration](#verify-the-config)
+	6. [Create a Workspace and Verify](#configure-workspace-and-verify-config)
 
 2. [Team Setup](#team-setup)
 	1. [Inviting Colleagues](#inviting-colleagues)
 	2. [Creating an Organization](#creating-an-organization)
 	3. [Creating a Team](#creating-a-team)
 	4. [Enabling Enterprise Features](#enabling-enterprise-features)
-	5. [Accessing Terraform and Packer Features](#accessing-terraform-and-packer-features)
 	6. [Creating Additional Administrators](#creating-additional-administrators)
 
 ## System Configuration
@@ -63,8 +61,7 @@ account credentials you just created. Do so, and you will be returned to the
 
 ### Creating an Organization
 
-Create an organization by navigating to the Private Terraform Enterprise homepage. You will need to login
-if you have not already done so. Then, click your username in the bottom left,
+Create an organization by navigating to the Private Terraform Enterprise homepage in a new tab or browser window. You will need to login if you have not already done so. Then, click your username in the bottom left,
 and click "Account Settings." On the following page, click "Create Organization"
 on the left menu.
 
@@ -82,6 +79,8 @@ You will notice that you also have an organization matching your username. This
 allows you to share projects owned by your personal account (rather than an
 organization) with other users. You cannot create teams under your personal
 organization.
+
+After this is done, and showing the `Create a new Workspace` page, click back to the previous tab/browser window and continue.
 
 ### Configure SMTP
 
@@ -142,16 +141,6 @@ If you have already completed this step or navigated away from the page, you can
 edit the OAuth configuration by way of the "here" link in the yellow bar at the
 top of the "Configure GitHub" page.
 
-### Create a Workspace
-
-We will create an initial workspace and connect it to a temporary repo on your VCS provider. 
-
-
-
-
-### Verify the Configuration
-
-
 ### Skip: Configure Acceptance Tests, Verify, and Complete
 
 The "Configure Acceptance Tests," "Configure Acceptance Test GitHub," "Verify,"
@@ -160,6 +149,37 @@ of Private Terraform Enterprise.
 
 After configuring your git provider, you are finished with the System
 Configuration section and should move on to Team Setup.
+
+### Create a Workspace and Verify Config
+
+* Click back over to the tab that's open to the `Create a new Workspace` page, or you can access this page by going to `https://<TFE HOSTNAME/app/<ORG NAME>/workspaces/new`. 
+
+* In the `Workspace Name` page enter something like `'intial-test'`. 
+
+* If you haven't already, create a repo and copy the main.tf from `https://github.com/hashicorp/terraform-random` into it. 
+
+* On the workspace page select the `intial-test` repo and then click the `Create Workspace` button.
+
+* You can then queue the plan.
+
+![New workspace](assets/new-workspace.png)
+
+* Once you see the `Needs Confirmation` dialog, scroll down and click the `Confirm & Apply`. 
+
+![Needs Confirmation](assets/needs-confirmation.png)
+
+---
+
+![Confirm and Apply](assets/confirm-apply.png)
+
+* If everything was successful you should see `Executed successfully with changes`.
+
+![Success!](assets/test-successful.png)
+
+## Congratulations!
+
+The initial setup is complete. You can now click back to the admin page and setup access for other users and groups (below) or [SAML](docs/enterprise/saml/configuration.html). 
+
 
 ## Team Setup
 
@@ -187,7 +207,7 @@ colleagues and have them sign up `https://<TFE HOSTNAME>/account/new`.
 
 ### Creating an Organization
 
-Create an organization by navigating to the Private Terraform Enterprise homepage. You will need to login
+Create additional organizations by navigating to the Private Terraform Enterprise homepage. You will need to login
 if you have not already done so. Then, click your username in the bottom left,
 and click "Account Settings." On the following page, click "Create Organization"
 on the left menu.
@@ -197,15 +217,6 @@ on the left menu.
 You can jump to this page via `https://<TFE HOSTNAME>/organizations/new`.
 
 You will need to fill in a name and email for the organization.
-
-To return to the organization page at a later time, follow the same flow through
-the UI. Click your username, click "Account Settings," and then click the
-organization in the left menu.
-
-You will notice that you also have an organization matching your username. This
-allows you to share projects owned by your personal account (rather than an
-organization) with other users. You cannot create teams under your personal
-organization.
 
 ### Creating a Team
 
@@ -234,24 +245,6 @@ organization, then scroll to the bottom of the page. Check the "Terraform" and
 Organization."
 
 ![Enable enterprise features](assets/billing-checkboxes.png)
-
-### Accessing Terraform and Packer Features
-
-Finally, you will be able to access Terraform and Packer features by selecting
-them from the dropdown in the top left (which shows Vagrant by default). You
-should see the following page:
-
-![Enterprise features are enabled!](assets/enterprise-enabled.png)
-
-You are now ready to use Terraform Enterprise!
-
-If you see this page instead, you must follow the directions under **Enabling
-Enterprise Features**, above:
-
-![Enterprise features are disabled](assets/enterprise-disabled.png)
-
-If you have trouble getting past this page, please reach out to HashiCorp for
-help.
 
 ### Creating Additional Administrators
 
