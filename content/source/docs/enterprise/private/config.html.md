@@ -20,12 +20,15 @@ correctly restored from backup. Please contact HashiCorp for help.
 
 This page covers the following topics:
 
-1. [System Configuration](#system-configuration)
+1. [Initial System Configuration](#system-configuration)
 	1. [Create the administrator account](#creating-an-administrator)
-	2. [Configure SMTP for sending emails](#configure-smtp)
-	3. [Configure Twilio for sending SMS messages](#configure-twilio)
-	4. [Configure connectivity to git](#configure-git-hub-)
-	5. [Configure acceptance tests](#configure-acceptance-tests-verify-and-complete)
+	2. [Creating an Organization](#creating-an-organization)
+	3. [Configure SMTP for sending emails](#configure-smtp)
+	4. [Configure Twilio for sending SMS messages](#configure-twilio)
+	5. [Configure connectivity to git](#configure-git-hub-)
+	6. [Create a Workspace](#configure-workspace)
+	7. [Verify the Configuration](#verify-the-config)
+
 2. [Team Setup](#team-setup)
 	1. [Inviting Colleagues](#inviting-colleagues)
 	2. [Creating an Organization](#creating-an-organization)
@@ -57,6 +60,28 @@ will be able to create additional administrators later.
 After clicking "Save and Continue" you will be prompted to login with the
 account credentials you just created. Do so, and you will be returned to the
 "Configure SMTP" step.
+
+### Creating an Organization
+
+Create an organization by navigating to the Private Terraform Enterprise homepage. You will need to login
+if you have not already done so. Then, click your username in the bottom left,
+and click "Account Settings." On the following page, click "Create Organization"
+on the left menu.
+
+![Create a new organization](assets/create-organization.png)
+
+You can jump to this page via `https://<TFE HOSTNAME>/organizations/new`.
+
+You will need to fill in a name and email for the organization.
+
+To return to the organization page at a later time, follow the same flow through
+the UI. Click your username, click "Account Settings," and then click the
+organization in the left menu.
+
+You will notice that you also have an organization matching your username. This
+allows you to share projects owned by your personal account (rather than an
+organization) with other users. You cannot create teams under your personal
+organization.
 
 ### Configure SMTP
 
@@ -116,6 +141,16 @@ If you need to change a setting, click "Reconfigure" at the bottom of the page.
 If you have already completed this step or navigated away from the page, you can
 edit the OAuth configuration by way of the "here" link in the yellow bar at the
 top of the "Configure GitHub" page.
+
+### Create a Workspace
+
+We will create an initial workspace and connect it to a temporary repo on your VCS provider. 
+
+
+
+
+### Verify the Configuration
+
 
 ### Skip: Configure Acceptance Tests, Verify, and Complete
 
