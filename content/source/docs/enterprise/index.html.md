@@ -18,3 +18,4 @@ This is a list of features specific to Terraform Enterprise.
 
 - [Sentinel Policy as Code](./sentinel/index.html)
 - [Private Terraform Enterprise Installation and Configuration](./private/index.html)
+	- [SAML SSO](./saml/index.html)

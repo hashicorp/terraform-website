@@ -18,7 +18,7 @@ standard configuration package uses Terraform to create both the compute and dat
 
 Before setup begins, a few resources need to be provisioned. We consider these out of scope for the cluster provisioning because they depend on the user's environment.
 
-The following are required to complete installation:
+The following are **required** to complete installation:
 
 * **AWS IAM credentials** capable of creating new IAM roles configuring various services. We suggest you use an admin role for this. The credentials are only used for setup; during runtime only an assumed role is used.
 * **AWS VPC** containing at least 2 subnets. These will be used to launch the cluster into. Subnets do not need to be public, but they do need an internet gateway at present.
@@ -30,7 +30,16 @@ The following are required to complete installation:
   * *NOTE:* Certificates are per region, so be sure to create them in the same region as you'll be deploying Terraform Enterprise into.
   * *NOTE:* The certificate must allow the fully qualified hostname that Terraform Enterprise will be using. This means you need to decide on a final hostname when creating the certificates and use the same value in the configuration.
 
-[//]: <> (Insert instructions about cloning the aws-standard repo to your laptop/server where you will do the deploy from.)
+### Clone the Installer Git Repo
+
+Private Terraform Enterprise installs via Terraform. It is expected you have downloaded the Terraform Open Source binary to the machine where you will be doing the install from. To get started you will also need to clone a repo that contains the necessary modules and variable files. 
+
+* Open a terminal on a machine that has full network access to the AWS account where private terraform will be deployed. Enter the following to clone the repo
+
+```
+git clone git@github.com:hashicorp/terraform-enterprise-modules.git
+```
+* Once the clone is complete cd into the `terraform-enterprise-modules/aws-standard/` directory. 
 
 The following details will be requested during the application bootstrapping process. It's helpful to have them prepared beforehand.
 
@@ -45,7 +54,7 @@ The following details will be requested during the application bootstrapping pro
 
 The following Terraform variables are required inputs and must be populated prior to beginning installation.
 
-The values for these variables should be placed in the `terraform.tfvars` file. Download `https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-standard/terraform.tfvars.example` to the machine where you will be doing the deploy from (can be your laptop, as long as it has the necessary AWS connectivity) and copy it to `terraform.tfvars`, then edit it with the proper values.
+The values for these variables should be placed in the `terraform.tfvars` file. Copy the `terraform.tfvars.example` in the `aws-standard` directory to `terraform.tfvars`, then edit it with the proper values. There are notes in the file regarding each variable, but please use the following list for more information:
 
 * `region`: The AWS region to deploy into.
 * `ami_id`: The ID of a Terraform Enterprise Base AMI. See [`ami-ids`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/docs/ami-ids.md) to look one up.
@@ -61,7 +70,7 @@ The values for these variables should be placed in the `terraform.tfvars` file. 
 
 These variables can be populated, but they have defaults that will be used if you omit them. As with the required variables, you can place these values in the `terraform.tfvars` file.
 
-* `key_name`: Name of AWS SSH Key Pair that will be used. The pair needs to already exist, it will not be created. If this variable is not set, no SSH access will be available to the Terraform Enterprise instance.
+* `key_name`: Name of AWS SSH Key Pair that will be used. The pair needs to already exist, it will not be created. **If this variable is not set, no SSH access will be available to the Terraform Enterprise instance.**
 * `manage_bucket` Indicate if this Terraform state should create and own the bucket. Set this to false if you are reusing an existing bucket.
 * `kms_key_id` Specify the ARN for a KMS key to use rather than having one
   created automatically.
