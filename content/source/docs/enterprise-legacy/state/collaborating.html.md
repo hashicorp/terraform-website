@@ -15,8 +15,8 @@ changes. It stores information about the changes Terraform makes based on
 configuration.
 
 In order to collaborate safely on remote state, we recommend
-[creating an organization](/docs/enterprise/organizations/create.html) to
+[creating an organization](/docs/enterprise-legacy/organizations/create.html) to
 manage teams of users.
 
-Then, following a [Terraform Enterprise Run](/docs/enterprise/runs) or [`apply`](/docs/commands/apply.html)
+Then, following a [Terraform Enterprise Run](/docs/enterprise-legacy/runs) or [`apply`](/docs/commands/apply.html)
 you can view state versions in the `States` list of the environment.

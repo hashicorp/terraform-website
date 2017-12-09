@@ -19,6 +19,6 @@ can access.
 
 Remote state is automatically updated when you run [`apply`](/docs/commands/apply.html)
 locally. It is also updated when an `apply` is executed in a [Terraform Enterprise
-Run](/docs/enterprise/runs/index.html).
+Run](/docs/enterprise-legacy/runs/index.html).
 
 Read [more about remote state](/docs/state/remote.html).

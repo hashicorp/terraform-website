@@ -8,7 +8,7 @@ description: |-
 
 # Pushing Terraform Remote State to Terraform Enterprise
 
-Terraform Enterprise is one of a few options to store [remote state](/docs/enterprise/state).
+Terraform Enterprise is one of a few options to store [remote state](/docs/enterprise-legacy/state).
 
 Remote state gives you the ability to version and collaborate on Terraform
 changes. It stores information about the changes Terraform makes based on
