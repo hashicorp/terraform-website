@@ -34,7 +34,7 @@ The following are **required** to complete installation:
 
 Private Terraform Enterprise installs via Terraform. It is expected you have downloaded the Terraform Open Source binary to the machine where you will be doing the install from. To get started you will also need to clone a repo that contains the necessary modules and variable files. 
 
-* Open a terminal on a machine that has full network access to the AWS account where private terraform will be deployed. Enter the following to clone the repo
+* Open a terminal on a machine that has full network access to the AWS account where Private Terraform Enterprise will be deployed. Enter the following to clone the repo
 
 ```
 git clone git@github.com:hashicorp/terraform-enterprise-modules.git

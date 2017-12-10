@@ -1,6 +1,6 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Configuration"
+page_title: "Private Terraform Enterprise Configuration"
 sidebar_current: "docs-enterprise2-private-config"
 ---
 
@@ -183,7 +183,7 @@ The initial setup is complete. You can now click back to the admin page and setu
 
 ## Team Setup
 
-Private Terraform Enterprise models Packer and Terraform projects as Builds and Environments,
+Private Terraform Enterprise models Terraform projects as Builds and Environments,
 respectively.
 
 Private Terraform Enterprise models user access via Organizations, Teams, and Users. An organization
