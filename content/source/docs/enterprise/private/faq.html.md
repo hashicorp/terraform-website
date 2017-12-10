@@ -620,8 +620,8 @@ The following diagram shows the way data flows through the various services and 
 
 ## Advanced Terraform
 
-The `aws-standard` terraform module can be as a true terraform module
-to enable some additional features for configure the cluster.
+The `aws-standard` terraform module can be used as a true terraform module
+to enable some additional features to configure the cluster.
 
 
 ### Additional IAM Role policies
