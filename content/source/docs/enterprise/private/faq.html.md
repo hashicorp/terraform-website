@@ -61,10 +61,10 @@ For the most up-to-date list of AMI IDs please view the [list maintained on our 
 
 ## Additional Configuration Info
 
-Each subdirectory contains a set of Terraform Configuration meant to support the primary Terraform Enterprise installation configs present in [`aws-standard`](../aws-standard).
+Each subdirectory contains a set of Terraform Configurations meant to support the primary Terraform Enterprise installation configs present in [`aws-standard`](../aws-standard).
 
  * [`base-vpc`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/base-vpc) - Configuration for creating a basic VPC and subnets that meet [the documented requirements for Private Terraform Enterprise installation](/docs/enterprise/private/install.html#preflight).
- * [`minimum-viable-iam`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/minimum-viable-iam) - Configuration for creating an AWS user with a minimum access policy required to perform a Terraform Enterprise installation.
+ * [`minimum-viable-iam`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/minimum-viable-iam) - Configuration for creating an AWS user with a minimum access policy required to perform a Terraform Enterprise installation. Please note using the `AdministratorAccess` policy is recommended. This access is only required for the initial deployment.
 
 ---
 
@@ -447,7 +447,7 @@ Terraform Enterprise makes several categories of outbound requests, detailed in 
 
 #### Version Control System Integrations
 
-Private Terraform Enterprise can be configured with any of a number of **[Version Control Systems (VCSs)](https://www.terraform.io/docs/enterprise/vcs/index.html)**, some supporting both SaaS and private-network installations.
+Private Terraform Enterprise workspaces can be configured to a number of **[Version Control Systems (VCSs)](https://www.terraform.io/docs/enterprise/vcs/index.html)**, some supporting both SaaS and private-network installations.
 
 In order to perform ingress of Terraform configuration from a configured VCS, Private Terraform Enterprise will need to be able to communciate with that provider's API, and webhooks from that provider will need to be able to reach Private Terraform Enterprise.
 
