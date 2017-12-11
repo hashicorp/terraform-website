@@ -178,7 +178,7 @@ Configuration section and should move on to Team Setup.
 
 ## Congratulations!
 
-The initial setup is complete. You can now click back to the admin page and setup access for other users and groups (below) or [SAML](docs/enterprise/saml/configuration.html). 
+The initial setup is complete. You can now click back to the admin page and setup access for other users and groups (below) or [SAML](../saml/configuration.html). 
 
 
 ## Team Setup
