@@ -167,3 +167,6 @@
 /docs/enterprise/api/states.html                         /docs/enterprise-legacy/api/states.html
 /docs/enterprise/api/users.html                          /docs/enterprise-legacy/api/users.html
 /docs/enterprise/api/runs.html                           /docs/enterprise-legacy/api/runs.html
+/docs/enterprise/vcs/bitbucket.html                      /docs/enterprise/vcs/bitbucket-cloud.html
+/docs/enterprise/vcs/git.html                            /docs/enterprise-legacy/vcs/git.html
+/docs/enterprise/vcs/gitlab.html                         /docs/enterprise/vcs/gitlab-eece.html
