@@ -1,19 +1,15 @@
 ---
-layout: "enterprise"
-page_title: "Terraform Enterprise"
-sidebar_current: "docs-enterprise-home"
+layout: "enterprise2"
+page_title: "Home - Terraform Enterprise"
+sidebar_current: "docs-enterprise2-home"
 description: |-
   Terraform Enterprise is a tool for safely and efficiently changing infrastructure across providers.
 ---
 
-# Terraform Enterprise Features
+# Terraform Enterprise Beta
 
-[Terraform Enterprise](https://www.hashicorp.com/products/terraform/) is a tool for safely and
-efficiently changing infrastructure across providers.
+This is the documentation for Terraform Enterprise (TFE) Beta. [Terraform Enterprise](https://www.hashicorp.com/products/terraform/) is a product to make
+it easier for teams to collaborate and govern Terraform changes.
 
-This is a list of features specific to Terraform Enterprise.
-
-- [Terraform Plans and Applies](/docs/enterprise/runs)
-- [Terraform Artifact Registry](/docs/enterprise/artifacts)
-- [Terraform Remote State Storage](/docs/enterprise/state)
-- [Terraform Run Notifications](/docs/enterprise/runs/notifications.html)
+If you are new to TFE, begin with the
+[Getting Started Guide](./getting-started/access.html).
