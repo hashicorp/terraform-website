@@ -8,6 +8,8 @@ description: |-
 
 # Starting Packer Builds in Terraform Enterprise
 
+-> **Deprecation warning**:  The Packer and Artifact Registry features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Friday, March 30, 2018. Please see our [guide on building immutable infrastructure with Packer on CI/CD](https://www.packer.io/guides/packer-on-cicd/) for ideas on implementing these features yourself.
+
 Packer builds can be started in in two ways: `packer push` to upload the
 template and directory or via a GitHub connection that retrieves the contents of
 a repository after changes to the default branch (usually master).

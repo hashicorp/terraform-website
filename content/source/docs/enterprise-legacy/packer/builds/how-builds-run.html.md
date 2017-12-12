@@ -8,6 +8,8 @@ description: |-
 
 # How Packer Builds Run in Terraform Enterprise
 
+-> **Deprecation warning**:  The Packer and Artifact Registry features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Friday, March 30, 2018. Please see our [guide on building immutable infrastructure with Packer on CI/CD](https://www.packer.io/guides/packer-on-cicd/) for ideas on implementing these features yourself.
+
 This briefly covers the internal process of running builds in Terraform
 Enterprise. It's not necessary to know this information, but may be valuable to
 help understand implications of running or debugging failing builds.

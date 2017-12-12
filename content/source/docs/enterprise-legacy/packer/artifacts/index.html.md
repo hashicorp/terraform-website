@@ -8,6 +8,8 @@ description: |-
 
 # About Packer and Artifacts
 
+-> **Deprecation warning**:  The Packer and Artifact Registry features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Friday, March 30, 2018. Please see our [guide on building immutable infrastructure with Packer on CI/CD](https://www.packer.io/guides/packer-on-cicd/) for ideas on implementing these features yourself.
+
 Packer creates and uploads artifacts to Terraform Enterprise. This is done
 with the [post-processor](https://packer.io/docs/post-processors/atlas.html).
 
