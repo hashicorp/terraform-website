@@ -8,6 +8,8 @@ description: |-
 
 # Managing Packer Versions
 
+-> **Deprecation warning**:  The Packer and Artifact Registry features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Friday, March 30, 2018. Please see our [guide on building immutable infrastructure with Packer on CI/CD](https://www.packer.io/guides/packer-on-cicd/) for ideas on implementing these features yourself.
+
 Terraform Enterprise does not automatically upgrade the version of Packer used
 to run builds or compiles. This is intentional, as occasionally there can be
 backwards incompatible changes made to Packer that cause templates to stop

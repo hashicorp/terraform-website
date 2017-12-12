@@ -8,6 +8,8 @@ description: |-
 
 # Schedule Periodic Builds in Terraform Enterprise
 
+-> **Deprecation warning**:  The Packer and Artifact Registry features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Friday, March 30, 2018. Please see our [guide on building immutable infrastructure with Packer on CI/CD](https://www.packer.io/guides/packer-on-cicd/) for ideas on implementing these features yourself.
+
 Terraform Enterprise can automatically run a Packer build and
 create artifacts on a specified schedule. This option is disabled by default and can be enabled by an
 organization owner on a per-[environment](/docs/enterprise-legacy/glossary#environment) basis.

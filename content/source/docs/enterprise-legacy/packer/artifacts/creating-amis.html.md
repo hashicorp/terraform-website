@@ -8,6 +8,8 @@ description: |-
 
 # Creating AMI Artifacts with Terraform Enterprise
 
+-> **Deprecation warning**:  The Packer and Artifact Registry features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Friday, March 30, 2018. Please see our [guide on building immutable infrastructure with Packer on CI/CD](https://www.packer.io/guides/packer-on-cicd/) for ideas on implementing these features yourself.
+
 In an immutable infrastructure workflow, it's important to version and store
 full images (artifacts) to be deployed. This section covers storing [AWS
 AMI](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) images in

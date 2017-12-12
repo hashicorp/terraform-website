@@ -8,6 +8,8 @@ description: |-
 
 # Artifact Provider
 
+-> **Deprecation warning**:  The Packer and Artifact Registry features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Friday, March 30, 2018. Please see our [guide on building immutable infrastructure with Packer on CI/CD](https://www.packer.io/guides/packer-on-cicd/) for ideas on implementing these features yourself.
+
 Terraform has a [provider](https://terraform.io/docs/providers/index.html) for managing Terraform Enterprise artifacts called `atlas_artifact`.
 
 This is used to make data stored in Artifacts available to Terraform for
