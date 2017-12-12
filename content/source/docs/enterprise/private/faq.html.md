@@ -61,8 +61,6 @@ For the most up-to-date list of AMI IDs please view the [list maintained on our 
 
 ## Additional Configuration Info
 
-Each subdirectory contains a set of Terraform Configurations meant to support the primary Terraform Enterprise installation configs present in [`aws-standard`](../aws-standard).
-
  * [`base-vpc`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/base-vpc) - Configuration for creating a basic VPC and subnets that meet [the documented requirements for Private Terraform Enterprise installation](/docs/enterprise/private/install.html#preflight).
  * [`minimum-viable-iam`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/minimum-viable-iam) - Configuration for creating an AWS user with a minimum access policy required to perform a Terraform Enterprise installation. Please note using the `AdministratorAccess` policy is recommended. This access is only required for the initial deployment.
 
@@ -118,7 +116,7 @@ will be ready to resume work where you left off.
 #### Step 1. Configuration
 
 Begin by configuring the `tfvars` file found in the `aws-standard`
-directory. Please reference [the README.md](../aws-standard/README.md) for
+directory. Please reference [the Installation page](./install.html) for
 full descriptions of all the variables. You will provide your existing S3 bucket
 as `bucket_name`, and `tfe-legacy-upgrade` as the `db_snapshot_identifier`.
 
@@ -307,7 +305,7 @@ Private Terraform Enterprise's applcation-level services all log to CloudWatch l
 {hostname}-{servicename}
 ```
 
-Where `hostname` is the fqdn you provided when setting up Private Terraform Enterprise, and `servicename` is the name of the service whose logs can be found in the stream. More information about each service can be found in [`tfe-architecture`](tfe-architecture.md).
+Where `hostname` is the fqdn you provided when setting up Private Terraform Enterprise, and `servicename` is the name of the service whose logs can be found in the stream. More information about each service can be found in [`tfe-architecture`](#private-terraform-enterprise-architecture).
 
 For example, if your Private Terraform Enterprise installation is available at `tfe.mycompany.io`, you'll find CloudWatch Log streams like the following:
 
@@ -459,7 +457,7 @@ As a part of their primary mode of operation, Terraform makes API calls out to i
 
 #### Terraform Release Downloading
 
-By default, Private Terraform Enterprise downloads the versions of Terraform that it executes from https://releases.hashicorp.com/ - though this behavior can be customized by specifying different download locations. See [`managing-tool-versions`](managing-tool-versions.md).
+By default, Private Terraform Enterprise downloads the versions of Terraform that it executes from https://releases.hashicorp.com/ - though this behavior can be customized by specifying different download locations. See [`managing-tool-versions`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/docs/managing-tool-versions.md).
 
 #### Terraform Latest Version Notifications
 
