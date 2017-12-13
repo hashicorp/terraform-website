@@ -14,15 +14,37 @@ Terraform is executed within Terraform Enterprise.
 
 ## Structuring Repos for Multiple Environments
 
-There are two ways to structure the Terraform code in your repository to manage
+There are three ways to structure the Terraform code in your repository to manage
 multiple environments (dev, stage, prod).
 
 Depending on your organization's use of version control, one method for
 multi-environment management may be better than the other.
 
+### Multiple Workspaces per Repo (Recommended)
+
+This is the overall recommended approach as it enables users to create a pipeline
+to promote changes through environments without additional overhead in version
+control. The model is to have one repo, such as `terraform-networking`, which
+is connected to multiple workspaces — `networking-prod`, `networking-stage`,
+`networking-uat`. Each workspace can be configured to connect to that VCS repo
+in the workspace settings. Additionally each workspace can have
+a unique set of variables to configure the differences per environment.
+
+To make an infrastructure change, a user can open a pull request on the
+`terraform-networking` repo, which triggers a plan in all three connected workspaces.
+The user can then merge the PR and apply it in one workspace at a time, first with
+`networking-uat`, then `networking-stage`, and finally `networking-prod`. Eventually
+Terraform Enterprise will have functionality to enforce the stages in this pipeline.
+
+This model does not work if there are major environmental differences. For example, if the
+`networking-prod` workspace has 10 more unique resources than the `networking-stage` workspace,
+they likely cannot share the same Terraform configuration and thus cannot share the same repo.
+If there are major structural differences between environments, one of the below approaches
+can work.
+
 ### Branches
 
-For organizations comfortable with long-running branches, we recommend
+For organizations that prefer long-running branches, we recommend
 creating a branch for each environment. For example, Terraform code would live
 in a repo called `terraform-networking`, which would have two long-running
 branches — `prod` and `stage`.
