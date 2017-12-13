@@ -162,7 +162,7 @@
 /docs/enterprise/user-accounts/authentication.html       /docs/enterprise-legacy/user-accounts/authentication.html
 /docs/enterprise/user-accounts/index.html                /docs/enterprise-legacy/user-accounts/index.html
 /docs/enterprise/user-accounts/recovery.html             /docs/enterprise-legacy/user-accounts/recovery.html
-/docs/enterprise/api/configuraitons.html                 /docs/enterprise-legacy/api/configuraitons.html
+/docs/enterprise/api/configurations.html                 /docs/enterprise-legacy/api/configurations.html
 /docs/enterprise/api/environments.html                   /docs/enterprise-legacy/api/environments.html
 /docs/enterprise/api/states.html                         /docs/enterprise-legacy/api/states.html
 /docs/enterprise/api/users.html                          /docs/enterprise-legacy/api/users.html
