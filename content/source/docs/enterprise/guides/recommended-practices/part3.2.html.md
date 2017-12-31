@@ -63,7 +63,7 @@ Here are a few examples of good build patterns from several cloud providers:
 
 If your organization already has a configuration management tool, then it’s time to integrate it with Terraform — you can use [Terraform’s provisioners](https://www.terraform.io/docs/provisioners/index.html) to pass control to configuration management after a resource is created. Terraform should handle the infrastructure, and other tools should handle user data and applications.
 
-If you don’t use configuration management, and you aren’t using strictly immutable infrastructure, you should consider adopting a config management tool. This might be a large task, but it supports the same goals that drove you to infrastructure as code, by making application configuration more controllable, understandable, and repeatable across teams.
+If your organization doesn't use a configuration management tool yet, and the configuration of the infrastructure being managed is mutable, you should consider adopting a configuration management tool. This might be a large task, but it supports the same goals that drove you to infrastructure as code, by making application configuration more controllable, understandable, and repeatable across teams.
 
 If you’re just getting started, try this tutorial on how to [create a Chef cookbook](https://www.vagrantup.com/docs/provisioning/chef_solo.html) and test it locally with Vagrant. We also recommend this article about how to decide what [configuration management tool](http://www.intigua.com/blog/puppet-vs.-chef-vs.-ansible-vs.-saltstack) is best suited for your organization.
 
