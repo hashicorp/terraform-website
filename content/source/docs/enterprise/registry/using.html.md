@@ -8,10 +8,10 @@ sidebar_current: "docs-enterprise2-registry-using"
 
 ~> **Note:** Currently, the private module registry only supports BitBucket Server and GitHub/GitHub Enterprise.
 
-By design, the private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already familiar with the public registry, here are the main differences:
+By design, Terraform Enterprise (TFE)'s private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already familiar with the public registry, here are the main differences:
 
 - Use TFE's web UI to browse and search for modules.
-- In Terraform configurations, add TFE's hostname as a prefix to the module identifier. For example:
+- Module `source` strings are slightly different. The public registry uses a three-part `<NAMESPACE>/<MODULE NAME>/<PROVIDER>` format, and private modules use a four-part `<TFE HOSTNAME>/<TFE ORGANIZATION>/<MODULE NAME>/<PROVIDER>` format. For example, to load a module from the `example_corp` organization on the SaaS version of TFE:
 
     ```hcl
     module "vpc" {
@@ -19,8 +19,7 @@ By design, the private module registry works much like the [public Terraform Reg
       version = "1.0.4"
     }
     ```
-- The second part of the source string (the namespace) is your TFE organization. The module in the example above is loaded from the `example_corp` organization.
-- TFE can automatically access your private modules during Terraform runs. However, if you're running Terraform on the command line, you must configure credentials in your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html).
+- TFE can automatically access your private modules during Terraform runs. However, when running Terraform on the command line, you must configure credentials in your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html).
 
 ## Finding Modules
 
