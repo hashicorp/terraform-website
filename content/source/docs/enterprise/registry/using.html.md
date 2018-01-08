@@ -15,7 +15,8 @@ By design, the private module registry works much like the [public Terraform Reg
 
     ```hcl
     module "vpc" {
-      source = "atlas.hashicorp.com/example_corp/vpc/aws"
+      source  = "atlas.hashicorp.com/example_corp/vpc/aws"
+      version = "1.0.4"
     }
     ```
 - The second part of the source string (the namespace) is your TFE organization. The module in the example above is loaded from the `example_corp` organization.
@@ -50,7 +51,8 @@ In Terraform configurations, you can use any private module from your organizati
 
 ```hcl
 module "vpc" {
-  source = "atlas.hashicorp.com/example_corp/vpc/aws"
+  source  = "atlas.hashicorp.com/example_corp/vpc/aws"
+  version = "1.0.4"
 }
 ```
 
@@ -70,19 +72,21 @@ Alternately, you can use the configuration designer, which lets you select multi
 
 TFE can use your private modules during plans and applies with no extra configuration, _as long as the workspace is configured to use Terraform 0.11 or higher._
 
-Note that you can only use private modules from your organization's registry; sharing modules across TFE organizations is not supported.
+Note that you can only use private modules from your own organization's registry. If you need to share modules across organizations, do so at the VCS repository level — share access to the backing repository, and add the module to each organization's registry.
 
 ### On the Command Line
 
-If you're using Terraform 0.11 or higher, you can run configurations that use private modules on the CLI. However, you must provide a valid TFE API token in order to access private modules.
+If you're using Terraform 0.11 or higher, you can use private modules when applying configurations on the CLI. However, you must provide a valid TFE API token to access private modules.
 
-To configure private module access, add a `credentials` block to your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html). The block label for the `credentials` block must be TFE's hostname (either `atlas.hashicorp.com` or the hostname of your private install), and the block body must contain a `token` attribute whose value is a TFE authentication token. You can generate a personal API token from your user settings page in TFE.
+To configure private module access, add a `credentials` block to your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html).
 
 ``` hcl
 credentials "atlas.hashicorp.com" {
   token = "xxxxxx.atlasv1.zzzzzzzzzzzzz"
 }
 ```
+
+The block label for the `credentials` block must be TFE's hostname (either `atlas.hashicorp.com` or the hostname of your private install), and the block body must contain a `token` attribute whose value is a TFE authentication token. You can generate a personal API token from your user settings page in TFE.
 
 ~> **Important:** When adding an authentication token to your CLI config file, check the file permissions and make sure other users on the same computer cannot view its contents.
 

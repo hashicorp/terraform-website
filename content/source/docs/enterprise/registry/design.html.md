@@ -36,7 +36,7 @@ When you click a module's "Add Module" button, it appears in the "Selected Modul
 
 ### Setting Versions
 
-By default, selecting a module adds it most recent version to the configuration. You can specify a different version by clicking the module's version number in the "Selected Modules" list on the right, which reveals a drop-down menu of available versions.
+By default, selecting a module adds its most recent version to the configuration. You can specify a different version by clicking the module's version number in the "Selected Modules" list on the right, which reveals a drop-down menu of available versions.
 
 ![TFE screenshot: setting a module version with the drop-down](./images/design-set-version.png)
 
@@ -58,7 +58,7 @@ Variable values can be literal strings, or can interpolate other values. When yo
 
 ### Deferring Variables
 
-The "Set Variables" page is primarily for hardcoding or interpolating values that will stay the same across workspaces. If you want to delegate a value to the users of a configuration, you can check the variable's "Deferred" checkbox. This adds a Terraform variable with no default value to the configuration, which workspace users will have to provide a value for.
+Some variables should be set by the author of a configuration (as static or interpolated values), but others should be set by the configuration's user. If you want to delegate a module variable to users, you can select its "Deferred" checkbox, which ties its value to a new top-level Terraform variable with no default value. Anyone creating a workspace from your configuration will have to provide a value for that variable.
 
 ## The Output Configuration
 
