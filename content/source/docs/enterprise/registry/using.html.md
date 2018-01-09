@@ -11,11 +11,11 @@ sidebar_current: "docs-enterprise2-registry-using"
 By design, Terraform Enterprise (TFE)'s private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already familiar with the public registry, here are the main differences:
 
 - Use TFE's web UI to browse and search for modules.
-- Module `source` strings are slightly different. The public registry uses a three-part `<NAMESPACE>/<MODULE NAME>/<PROVIDER>` format, and private modules use a four-part `<TFE HOSTNAME>/<TFE ORGANIZATION>/<MODULE NAME>/<PROVIDER>` format. For example, to load a module from the `example_corp` organization on the SaaS version of TFE:
+- Module `source` strings are slightly different. The public registry uses a three-part `<NAMESPACE>/<MODULE NAME>/<PROVIDER>` format, and private modules use a four-part `<TFE HOSTNAME>/<TFE ORGANIZATION>/<MODULE NAME>/<PROVIDER>` format. (Also, see [Note About Hostnames below](#note-about-hostnames).) For example, to load a module from the `example_corp` organization on the SaaS version of TFE:
 
     ```hcl
     module "vpc" {
-      source  = "atlas.hashicorp.com/example_corp/vpc/aws"
+      source  = "app.terraform.io/example_corp/vpc/aws"
       version = "1.0.4"
     }
     ```
@@ -50,14 +50,20 @@ In Terraform configurations, you can use any private module from your organizati
 
 ```hcl
 module "vpc" {
-  source  = "atlas.hashicorp.com/example_corp/vpc/aws"
+  source  = "app.terraform.io/example_corp/vpc/aws"
   version = "1.0.4"
 }
 ```
 
-If you're using the SaaS version of TFE, the hostname is `atlas.hashicorp.com`; private installs have their own hostnames. The second part of the source string (the namespace) is the name of your TFE organization.
+If you're using the SaaS version of TFE, the hostname is `app.terraform.io`; private installs have their own hostnames. The second part of the source string (the namespace) is the name of your TFE organization.
 
 For more details on using modules in Terraform configurations, see ["Using Modules" in the Terraform docs.](/docs/modules/usage.html)
+
+### Note About Hostnames
+
+`app.terraform.io` is the future hostname for the SaaS version of Terraform Enterprise, and `atlas.hashicorp.com` is the current hostname. Right now, **you can safely use either hostname** for private modules, since `app.terraform.io` is already forwarding API calls and `atlas.hashicorp.com` will redirect API calls for a long time after we complete the hostname change.
+
+Since changing the hostname across all your Terraform configurations would be annoying, we recommend using `app.terraform.io` for private modules immediately, even though the hostname change isn't complete yet. It will make your configurations more confusing for a little while, but will save you effort in the long run.
 
 ### Usage Examples and the Configuration Designer
 
@@ -80,12 +86,12 @@ If you're using Terraform 0.11 or higher, you can use private modules when apply
 To configure private module access, add a `credentials` block to your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html).
 
 ``` hcl
-credentials "atlas.hashicorp.com" {
+credentials "app.terraform.io" {
   token = "xxxxxx.atlasv1.zzzzzzzzzzzzz"
 }
 ```
 
-The block label for the `credentials` block must be TFE's hostname (either `atlas.hashicorp.com` or the hostname of your private install), and the block body must contain a `token` attribute whose value is a TFE authentication token. You can generate a personal API token from your user settings page in TFE.
+The block label for the `credentials` block must be TFE's hostname (either `app.terraform.io`, `atlas.hashicorp.com`, or the hostname of your private install), and the block body must contain a `token` attribute whose value is a TFE authentication token. You can generate a personal API token from your user settings page in TFE.
 
 ~> **Important:** When adding an authentication token to your CLI config file, check the file permissions and make sure other users on the same computer cannot view its contents.
 
