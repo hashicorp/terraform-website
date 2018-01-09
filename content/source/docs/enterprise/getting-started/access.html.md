@@ -23,9 +23,10 @@ If you don't already have a TFE account, you must create one. You can use the sa
 
 ## Navigating to TFE
 
-To access TFE, log into TFE at [atlas.hashicorp.com](https://atlas.hashicorp.com) and use the main navigation drop-down in the upper left:
+In your web browser, go to:
 
-![TFE's navigation drop-down, with TFE beta indicated](./images/access-menu.png)
+- [atlas.hashicorp.com](https://atlas.hashicorp.com) if you've registered for the SaaS version of TFE.
+- The hostname of your private instance if you're using private Terraform Enterprise.
 
 ## Creating an Organization
 
