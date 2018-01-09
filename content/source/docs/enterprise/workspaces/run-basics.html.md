@@ -26,9 +26,9 @@ When you request a run, TFE locks the run to the current Terraform code (usually
 
 ## Run States
 
-Each run passes through several stages of action, and TFE shows the progress through those stages as run states.
+Each run passes through several stages of action (pending, plan, policy check, apply, and completion), and TFE shows the progress through those stages as run states.
 
-In the list of workspaces on TFE's main page, each workspace shows the state of its most recently queued run. So if any runs are pending, the workspace is in "pending," regardless of what it's currently running or waiting for.
+In the list of workspaces on TFE's main page, each workspace shows the state of the run it's currently processing. (Or, if no run is in progress, the state of the most recent completed run.)
 
 ### 1. The Pending Stage
 
