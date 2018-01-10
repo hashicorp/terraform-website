@@ -91,7 +91,9 @@ credentials "app.terraform.io" {
 }
 ```
 
-The block label for the `credentials` block must be TFE's hostname (either `app.terraform.io`, `atlas.hashicorp.com`, or the hostname of your private install), and the block body must contain a `token` attribute whose value is a TFE authentication token. You can generate a personal API token from your user settings page in TFE.
+The block label for the `credentials` block must be TFE's hostname (`app.terraform.io`, `atlas.hashicorp.com`, or the hostname of your private install), and the block body must contain a `token` attribute whose value is a TFE authentication token. You can generate a personal API token from your user settings page in TFE.
+
+Make sure the hostname matches the hostname you use in module sources — if the same TFE server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, you can add two `credentials` blocks with the same `token`.
 
 ~> **Important:** When adding an authentication token to your CLI config file, check the file permissions and make sure other users on the same computer cannot view its contents.
 
