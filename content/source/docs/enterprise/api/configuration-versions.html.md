@@ -38,7 +38,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/workspaces/ws-2Qhk7LHgbMrm3grF/configuration-vesions
+  https://atlas.hashicorp.com/api/v2/workspaces/ws-2Qhk7LHgbMrm3grF/configuration-versions
 ```
 
 ### Sample Response
