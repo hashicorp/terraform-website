@@ -19,12 +19,21 @@ Before you begin, you'll need to get a few bits of data as well as get a linux
 instance ready.
 
 ### Data Files
-* TLS private key and certificate (option
+* TLS private key and certificate _Optional: Self-signed materials can be used_
 * License key (provided by HashiCorp)
 
 ### Linux Instance
 You'll be installing the software onto a linux instance of your own choosing.
 You will start and manage this instance like any other server.
+
+Supported Linux operating systems:
+* Debian 7.7+
+* Ubuntu 14.04 / 15.10 / 16.04
+* Fedora 21 / 22
+* Red Hat Enterprise Linux 6.5+
+* CentOS 6+
+* Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03
+* Oracle Linux 6.5+
 
 #### Hardware Requirements
 
@@ -66,7 +75,7 @@ application as well as the Terraform plans and applies.
 
 1. Configure the hostname (which can be an IP only) and the SSL certificate
 1. Upload your license file
-1. Indicate if they're doing an online or airgap installation (online if
+1. Indicate if you're doing an online or airgap installation (online if
    you're not sure)
 1. If indicated, lookup and enter your activation code
 1. Secure access to the admin console. We recommend at least setting up the
