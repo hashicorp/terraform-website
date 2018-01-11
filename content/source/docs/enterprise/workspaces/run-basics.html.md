@@ -46,15 +46,16 @@ _Leaving this stage:_
 _States in this stage:_
 
 - **Planning:** TFE is currently running `terraform plan`.
-- **Planned:** `terraform plan` has finished. TFE sometimes pauses in this state, depending on the workspace and organization settings.
+- **Needs Confirmation:** `terraform plan` has finished. TFE sometimes pauses in this state, depending on the workspace and organization settings.
 
 _Leaving this stage:_
 
 - If the `terraform plan` command failed, TFE skips to completion (**Plan Errored** state).
-- If the plan succeeded:
+- If the plan succeeded and doesn't require any changes (since it already matches the current infrastructure state), TFE skips to completion (**No Changes** state).
+- If the plan succeeded and requires changes:
     - If [Sentinel policies][] are enabled, TFE proceeds automatically to the policy check stage.
     - If there are no Sentinel policies and auto-apply is enabled on the workspace, TFE proceeds automatically to the apply stage.
-    - If there are no Sentinel policies and auto-apply is disabled, TFE pauses in the **Planned** state until a user with write access to the workspace takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
+    - If there are no Sentinel policies and auto-apply is disabled, TFE pauses in the **Needs Confirmation** state until a user with write access to the workspace takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
 
 ### 3. The Policy Check Stage
 
@@ -87,15 +88,20 @@ _States in this stage:_
 
 _Leaving this stage:_
 
-- When the apply finishes, TFE proceeds automatically to completion (**Applied** state).
+After applying, TFE proceeds automatically to completion.
+
+- If the apply succeeded, the run ends in the **Applied** state.
+- If the apply failed, the runs ends in the **Apply Errored** state.
 
 ### 5. Completion
 
-A run is considered completed if it finishes applying, if the plan or policy check fails, or if a user chooses not to continue it. Once a run is completed, the next run in the queue can enter the plan stage.
+A run is considered completed if it finishes applying, if any part of the run fails, if there's nothing to do, or if a user chooses not to continue. Once a run is completed, the next run in the queue can enter the plan stage.
 
 _States in this stage:_
 
-- **Applied:** TFE has finished applying.
+- **Applied:** TFE has successfully finished applying.
+- **No Changes:** `terraform plan`'s output already matches the current infrastructure state, so `terraform apply` doesn't need to do anything.
+- **Apply Errored:** The `terraform apply` command failed, possibly due to a missing or misconfigured provider or an illegal operation on a provider.
 - **Plan Errored:** The `terraform plan` command failed (usually requiring fixes to variables or code), or a hard-mandatory Sentinel policy failed. The run cannot be applied.
 - **Discarded:** A user chose not to continue this run.
 
