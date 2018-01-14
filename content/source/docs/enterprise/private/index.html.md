@@ -10,8 +10,8 @@ Private Terraform Enterprise is software provided to customers that allows full 
 
 This section is intended to help guide customers on how to properly install Private Terraform Enterprise. This includes required prerequisites, steps to install the software, and the basic configuration that will need to be done after install.
 
-- [Installation (AMI)](./install.html) - For most customers
-- [Installer (Beta)](./installer.html) - For customers in the Installer beta program
+- [Installation (AMI)](./install-ami.html) - For most customers
+- [Installation (Installer Beta)](./install-installer.html) - For customers in the Installer beta program
 - [Configuration and Validation](./config.html)
 - [Frequently Asked Questions](./faq.html)
 
