@@ -1,19 +1,19 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installer (beta)"
-sidebar_current: "docs-enterprise2-private-installer"
+page_title: "Private Terraform Enterprise Installation (Installer Beta)"
+sidebar_current: "docs-enterprise2-private-install-installer"
 ---
 
-# Private Terraform Enterprise Installer (beta)
+# Private Terraform Enterprise Installation (Installer Beta)
 
 ## Delivery
 
--> **Note**: This document is only meant for those customers in the Private
-Terraform Enterprise installer beta program. All other customers can follow the
-instructions for the machine-image based install available in other sections.
-
 This document outlines the procedure for using the Private Terraform Enterprise
 installer to set up Terraform Enterprise on a customer-controlled machine.
+
+~> **Note**: This document is only meant for those customers in the Private
+Terraform Enterprise installer beta program. All other customers can follow the
+[instructions for the AMI-based install](./install-ami.html).
 
 ## Preflight
 
@@ -73,24 +73,26 @@ The installer can run in two modes, Online or Airgap. Each of these modes has a 
 
 ### Run The Installer - Online
 
-If the instance can access the internet, you can run the installer directly from the internet.
+If your instance can access the internet, you should run the Online install mode.
 
 1. From a shell on your instance:
   * To execute the installer directly, run `curl https://install.terraform.io/ptfe/beta | sudo bash`
 	* To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/beta > install.sh` and then once you are satisfied with the script's content, execute it with `sudo bash install.sh`
-1. The software will take a few minutes and you'll be presented with a message about how/where to access the rest of the setup via the web. This will be https://[hostname/ip of your instance]:8800`
-  * The web interface uses an internal CA to issues certificates, so you will
-    see a security warning. This is expected and you'll need to proceed with
-    the connection anyway.
+1. The software will take a few minutes and you'll be presented with a message
+	 about how/where to access the rest of the setup via the web. This will be
+   `https://[hostname or ip of your instance]:8800`
+  * The Admin Console an internal CA to issue bootstrap certificates, so you will
+		see a security warning first connecting. This is expected and you'll need
+    to proceed with the connection anyway.
 
 ### Run The Installer - Airgap
 
-If the instance can not reach the internet, then you can follow these steps to begin installation.
+If the instance can not reach the internet, then you can follow these steps to begin an Airgap installation.
 
 Preparing the instance:
 
 1. Download the `.airgap` file using the information given to you in your setup email and place that file somewhere on the the instance.
-  * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"`.
+  * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
   * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
 1. [Download the installer bootstrapper](https://s3.amazonaws.com/replicated-airgap-work/replicated.tar.gz) put it into its own directory on the instance (e.g. `/opt/tfe-installer/`)
 1. Airgap installations require Docker be pre-installed. Double check that your instance has a supported version of Docker (see [Software Requirements](#software-requirements) above for details).
@@ -116,7 +118,7 @@ Executing the installer:
 	  to the `.airgap` file that you downloaded using the inital instruction in
     your setup email.
 1. Secure access to the Admin Console. We recommend at least setting up the
-   simple password auth. If you're so inclined, LDAP authenication that only
+   simple password auth. If you're so inclined, LDAP authentication that only
    applies to the Admin Console can be configured as well.
 1. The system will now perform a set of pre-flight checks on the instance and
    configuration thus far. If any of these fail, it will indicate as much. You
@@ -142,28 +144,13 @@ Executing the installer:
    concurrently. This setting should be adjusted with care as setting it too
    high can result in an very unresponsive instance.
 
-### Finish Bootstrapping
-
-Once configured, the software will finish downloading. When it’s ready, the UI
-will indicate so and there will be an Open link to click to access the Terraform Enterprise UI.
-
-## Configuration
-
-After completing a new install you should head to the
-[configuration page](./config.html) to create users and teams.
-
-## PostgreSQL Requirements
+#### PostgreSQL Requirements
 
 When Terraform Enterprise is using an external PostgreSQL database, the
 following must be present on it:
 
-* User with access to ownership semantics on a database
-* The following PostgreSQL schemas must be installed into the database:
-  * `rails`
-  * `vault`
-  * `registry`
-
-### Schema Creation
+* User with access to ownership semantics on the referenced database
+* The following PostgreSQL schemas must be installed into the database: `rails`, `vault`, `registry`
 
 To create schemas in PostgreSQL, the `CREATE SCHEMA` command is used. So to
 create the above required schemas, the follow snippit must be run on the
@@ -175,11 +162,20 @@ CREATE SCHEMA vault;
 CREATE SCHEMA registry;
 ```
 
-### Database URL
-
 When specifying which PostgreSQL database to use, the value specified must
-be a valid Database URL, as specified by https://www.postgresql.org/docs/9.3/static/libpq-connect.html#AEN39514.
+be a valid Database URL, as [specified in the libpq documentation](https://www.postgresql.org/docs/9.3/static/libpq-connect.html#AEN39514).
 
 Additionally, the URL must include the `sslmode` parameter indicating if SSL
 should be used to connect to the database. There is no assumed SSL mode, the
 parameter must be specified.
+
+### Finish Bootstrapping
+
+Once configured, the software will finish downloading. When it’s ready, the UI
+will indicate so and there will be an Open link to click to access the Terraform Enterprise UI.
+
+## Configuration
+
+After completing a new install you should head to the [configuration
+page](./config.html) to continue setting up Terraform Enterprise.
+

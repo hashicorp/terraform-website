@@ -1,18 +1,18 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Installation and Configuration"
+page_title: "Private Terraform Enterprise"
 sidebar_current: "docs-enterprise2-private"
 ---
 
-# Private Terraform Enterprise Installation and Configuration
+# Private Terraform Enterprise
 
-Private Terraform Enterprise is software provided to customers for installation in their AWS environment, allowing them full use of Terraform Enterprise in a private, isolated environment.
+Private Terraform Enterprise is software provided to customers that allows full use of Terraform Enterprise in a private, isolated environment.
 
-This document is intended to help guide customers on how to properly install Private Terraform Enterprise into their Amazon VPC. This document will lay out the required prerequisites, steps to install the software and the basic configurations that will need to be done after install.
+This section is intended to help guide customers on how to properly install Private Terraform Enterprise. This includes required prerequisites, steps to install the software, and the basic configuration that will need to be done after install.
 
-- [Private Terraform Pre-Installation Requirements](./pre-install.html)
-- [Private Terraform Installation](./install.html)
-- [Private Terraform Configuration and Validation](./config.html)
-- [Private Terraform Frequently Asked Questions](./faq.html)
+- [Installation (AMI)](./install.html) - For most customers
+- [Installer (Beta)](./installer.html) - For customers in the Installer beta program
+- [Configuration and Validation](./config.html)
+- [Frequently Asked Questions](./faq.html)
 
-*Please note: This documentation is provided for customers who feel confident, after reading the full documentation, that they can successfully deploy Private Terraform on their own. If you are unsure, or have questions, please talk to your Solutions Engineer (pre-sales, POC or trial) or Technical Account Manager (existing customers). If you have read the documentation and are ready to schedule your install, please inform your Sales Engineer (pre-sales, POC or trial) or Technical Account Manager (existing customers) of your install time window so they can make sure they are available if necessary.*
+~> **Please Note**: This documentation is provided for customers who feel confident, after reading the full documentation, that they can successfully deploy Private Terraform Enterprise on their own. If you are unsure, or have questions, please talk to your Solutions Engineer (pre-sales, POC or trial) or Technical Account Manager (existing customers). If you have read the documentation and are ready to schedule your install, please inform your Sales Engineer (pre-sales, POC or trial) or Technical Account Manager (existing customers) of your install time window so they can make sure they are available if necessary.
