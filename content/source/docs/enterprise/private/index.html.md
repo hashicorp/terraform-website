@@ -15,4 +15,6 @@ This document is intended to help guide customers on how to properly install Pri
 - [Private Terraform Configuration and Validation](./config.html)
 - [Private Terraform Frequently Asked Questions](./faq.html)
 
+**Audit Logs**: Starting with the AMI released on January 19th, 2018, the audit log feature is available in Private Terraform Enterprise. For more information about logs, please see the [Frequently Asked Questions](./faq.html#terraform-enterprise-logs).
+
 *Please note: This documentation is provided for customers who feel confident, after reading the full documentation, that they can successfully deploy Private Terraform on their own. If you are unsure, or have questions, please talk to your Solutions Engineer (pre-sales, POC or trial) or Technical Account Manager (existing customers). If you have read the documentation and are ready to schedule your install, please inform your Sales Engineer (pre-sales, POC or trial) or Technical Account Manager (existing customers) of your install time window so they can make sure they are available if necessary.*
