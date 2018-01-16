@@ -67,6 +67,26 @@ Check Docker compatability:
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instances primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the install begins.
 1. _Optional_: Get a domain name for the instance.  If you opt to use only an IP to access the instance, enter the IP into the hostname field when prompted during the web portion of the setup.
 
+### Operational Mode Decision
+
+Terraform Enterprise can store it's state in a few different ways and you'll
+need to decide which works best for your installation:
+
+1. **Demo** - This mode stores all data on the instance. The data can be
+   backed up with the snapshot mechanism for restore later.
+1. **Production - External Services** - This mode stores the majority of the
+   stateful data used by the instance in an external Postgresql database as
+   well as an external S3 compatible endpoint. There is still critical data
+   stored on the instance that must be managed with snapshots. Be sure to
+   checked the [PostgreSQL Requirements](#postgresql-requirements) for what
+   needs to be present for Terraform Enterprise to work.
+1. **Production - Mounted Disk** - This mode stores data in a separate
+   directory on the host, with the intention that the directory is
+   configured to stored it's data on an external disk, such as EBS, iSCSI,
+   etc.
+
+The decision you make will be entered during setup.
+
 ## Installation
 
 The installer can run in two modes, Online or Airgap. Each of these modes has a different way of executing the installer, but afterwards everything is the same.
@@ -125,19 +145,9 @@ Executing the installer:
    can either fix the issues and re-run the checks or ignore the warnings and
    proceed. If you do proceed despite the warnings, you are assuming the
    support responsibility.
-1. Configure the operational mode for this installation
-  1. **Demo** - This mode stores all data on the instance. The data can be
-     backed up with the snapshot mechanism for restore later.
-  1. **Production - External Services** - This mode stores the majority of the
-     stateful data used by the instance in an external Postgresql database as
-     well as an external S3 compatible endpoint. There is still critical data
-     stored on the instance that must be managed with snapshots. Be sure to
-     checked the [PostgreSQL Requirements](#postgresql-requirements) for what
-     needs to be present for Terraform Enterprise to work.
-  1. **Production - Mounted Disk** - This mode stores data in a separate
-     directory on the host, with the intention that the directory is
-     configured to stored it's data on an external disk, such as EBS, iSCSI,
-     etc.
+1. Configure the operational mode for this installation. See
+   [Operational Modes](#operational-mode-decision) for information on what the different values
+   are.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
    configuration and you wish to increase the work that the instance does
@@ -149,6 +159,7 @@ Executing the installer:
 When Terraform Enterprise is using an external PostgreSQL database, the
 following must be present on it:
 
+* The version of PostgreSQL must be 9.4 or greater
 * User with access to ownership semantics on the referenced database
 * The following PostgreSQL schemas must be installed into the database: `rails`, `vault`, `registry`
 
