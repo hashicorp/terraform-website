@@ -46,7 +46,7 @@ operating systems:
 These requirements are to provide the instance with enough resources to run the
 Terraform Enterprise application as well as the Terraform plans and applies.
 
- * At least 80GB of disk space on the root volume
+ * At least 40GB of disk space on the root volume
  * At least 8GB of system memory
  * At least 2 CPU cores
 
