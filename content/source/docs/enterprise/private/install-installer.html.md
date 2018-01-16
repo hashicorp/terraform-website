@@ -69,7 +69,7 @@ Check Docker compatability:
 
 ### Operational Mode Decision
 
-Terraform Enterprise can store it's state in a few different ways and you'll
+Terraform Enterprise can store its state in a few different ways and you'll
 need to decide which works best for your installation:
 
 1. **Demo** - This mode stores all data on the instance. The data can be
