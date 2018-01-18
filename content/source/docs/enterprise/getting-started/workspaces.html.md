@@ -44,7 +44,7 @@ On the "Create a new Workspace" page, you need to enter at least two items: a wo
 
 A workspace name should tell your colleagues what the workspace is for. Most workspaces are _a particular environment_ of _a particular Terraform configuration,_ so the name should include both the name of the configuration and the name of the environment.
 
-In this example, we're using a configuration named "minimal" and we're deploying it in a production environment, so we named it `minimal-prod`.
+In this example, we're using a configuration named "minimum" and we're deploying it in a production environment, so we named it `minimum-prod`.
 
 ### Repository
 
