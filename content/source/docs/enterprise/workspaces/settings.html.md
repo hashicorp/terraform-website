@@ -13,7 +13,7 @@ Terraform Enterprise lets you customize workspaces with the following settings:
 The directory where Terraform will execute. This defaults to the root of
 your repository.
 
-If your repo contains multiple environments, you can set this to the subdirectory matching the workspace's environment. If your repo contains
+If your repo contains multiple environments, you can set this to the subdirectory matching the workspace's environment.
 
 ## VCS Root Path
 

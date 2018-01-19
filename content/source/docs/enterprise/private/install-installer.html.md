@@ -43,7 +43,7 @@ operating systems:
 
 #### Hardware Requirements
 
-These requirements are to provide the instance with enough resources to run the
+These requirements provide the instance with enough resources to run the
 Terraform Enterprise application as well as the Terraform plans and applies.
 
  * At least 40GB of disk space on the root volume
@@ -101,8 +101,8 @@ If your instance can access the internet, you should run the Online install mode
 1. The software will take a few minutes and you'll be presented with a message
 	 about how/where to access the rest of the setup via the web. This will be
    `https://[hostname or ip of your instance]:8800`
-  * The Admin Console an internal CA to issue bootstrap certificates, so you will
-		see a security warning first connecting. This is expected and you'll need
+  * The Admin Console uses an internal CA to issue bootstrap certificates, so you will
+		see a security warning when first connecting. This is expected and you'll need
     to proceed with the connection anyway.
 
 ### Run The Installer - Airgap
@@ -164,7 +164,7 @@ following must be present on it:
 * The following PostgreSQL schemas must be installed into the database: `rails`, `vault`, `registry`
 
 To create schemas in PostgreSQL, the `CREATE SCHEMA` command is used. So to
-create the above required schemas, the follow snippit must be run on the
+create the above required schemas, the following snippet must be run on the
 database:
 
 ```
