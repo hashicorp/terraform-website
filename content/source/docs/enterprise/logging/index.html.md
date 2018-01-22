@@ -29,7 +29,7 @@ We will write to the audit log when any resource managed by PTFE is mutated. Rea
 When requests occur, there are four necessary pieces of information that will be logged:
 
   1. The actor
-    * Users (including IP address and token used)
+		* Users (including IP address and token used)
 		* Version Control System users (identified in webhooks)
 		* Service accounts
 		* Terraform Enterprise
