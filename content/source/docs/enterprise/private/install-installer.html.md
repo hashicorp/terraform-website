@@ -54,8 +54,10 @@ Terraform Enterprise application as well as the Terraform plans and applies.
 
 Check Docker compatability:
 
-  * The instance should run a current version of Docker engine (1.7.1 - 17.06.2-ce with 17.06.2-ce being the recommended version). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10. In online mode, the installer will install Docker automatically. In airgapped mode, Docker should be installed before you begin.
+  * The instance should run a current version of Docker engine (1.7.1 - 17.06.2-ce, 17.06.2-ce recommended). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10. In online mode, the installer will install Docker automatically. In airgapped mode, Docker should be installed before you begin.
   * For _Redhat Enterprise_, _Oracle Linux_, and _SUSE Enterprise_, you **must** pre-install Docker as these distribtions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
+
+~> **Note**: It is not recommended to run Docker under a 2.x kernel.
 
 #### Network Requirements
 
