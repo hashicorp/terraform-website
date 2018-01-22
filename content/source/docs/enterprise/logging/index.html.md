@@ -29,17 +29,17 @@ We will write to the audit log when any resource managed by PTFE is mutated. Rea
 When requests occur, there are four necessary pieces of information that will be logged:
 
   1. The actor
-    a. Users (including IP address and token used)
-		b. Version Control System users (identified in webhooks)
-		c. Service accounts
-		d. Terraform Enterprise
+    * Users (including IP address and token used)
+		* Version Control System users (identified in webhooks)
+		* Service accounts
+		* Terraform Enterprise
 	2. The action
-		a. Reading sensitive resources
-		b. Creation of new resources
-		c. Updating existing resources
-		d. Deletion of existing resources
-		e. Additional actions as defined in /actions/* namespaces
-		f. Webhook API calls
+		* Reading sensitive resources
+		* Creation of new resources
+		* Updating existing resources
+		* Deletion of existing resources
+		* Additional actions as defined in /actions/* namespaces
+		* Webhook API calls
 	3. The target of the action (any resource exposed by APIv2)
 	4. The time that the action occurred
 	5. Where the action was taken (web/API request, background job, etc.)
