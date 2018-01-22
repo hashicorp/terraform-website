@@ -12,14 +12,13 @@ This page will provide answers to many common questions around Private Terraform
 2. [AMI IDs](#ami-ids)
 3. [Additional Configuration Info](#additional-configuration-info)
 4. [Upgrade Information](#migrating-from-a-legacy-terraform-enterprise-installation)
-5. [Logs](#terraform-enterprise-logs)
-6. [Migration from SaaS-based Terraform Enterprise](#migrating-from-terraform-enterprise-saas)
-7. [Required Network Access](#network-access)
-8. [Managing the Terraform State of the Install Process](#storing-terraform-enterprise-state)
-9. [Support](#support-for-private-terraform-enterprise)
-10. [Private Terraform Enterprise Architecture](#private-terraform-enterprise-architecture)
-11. [Advanced Terraform](#advanced-terraform)
-12. [Rekeying the Vault instance used by Private Terraform Enterprise](#rekeying-vault)
+5. [Migration from SaaS-based Terraform Enterprise](#migrating-from-terraform-enterprise-saas)
+6. [Required Network Access](#network-access)
+7. [Managing the Terraform State of the Install Process](#storing-terraform-enterprise-state)
+8. [Support](#support-for-private-terraform-enterprise)
+9. [Private Terraform Enterprise Architecture](#private-terraform-enterprise-architecture)
+10. [Advanced Terraform](#advanced-terraform)
+11. [Rekeying the Vault instance used by Private Terraform Enterprise](#rekeying-vault)
 
 ---
 
@@ -290,46 +289,6 @@ need to update these in two places:
   linked to a GitHub Repo will need to be relinked with GitHub by clicking
   "Update VCS Settings" on the "Integrations" page. This will update GitHub
   webhooks to point to the new hostname.
-
-  ---
-
-## Terraform Enterprise Logs
-
-This document contains information about interacting with Private Terraform Enterprise logs.
-
-### Application-level Logs
-
-Private Terraform Enterprise's applcation-level services all log to CloudWatch logs, with one stream per service. The stream names take the format:
-
-```
-{hostname}-{servicename}
-```
-
-Where `hostname` is the fqdn you provided when setting up Private Terraform Enterprise, and `servicename` is the name of the service whose logs can be found in the stream. More information about each service can be found in [`tfe-architecture`](#private-terraform-enterprise-architecture).
-
-For example, if your Private Terraform Enterprise installation is available at `tfe.mycompany.io`, you'll find CloudWatch Log streams like the following:
-
-```
-tfe.mycompany.io-atlas-frontend
-tfe.mycompany.io-atlas-worker
-tfe.mycompany.io-binstore
-tfe.mycompany.io-logstream
-tfe.mycompany.io-packer-build-manager
-tfe.mycompany.io-packer-build-worker
-tfe.mycompany.io-slug-extract
-tfe.mycompany.io-slug-ingress
-tfe.mycompany.io-slug-merge
-tfe.mycompany.io-storagelocker
-tfe.mycompany.io-terraform-build-manager
-tfe.mycompany.io-terraform-build-worker
-tfe.mycompany.io-terraform-state-parser
-```
-
-CloudWatch logs can be searched, filtered, and read from either from the AWS Web Console or (recommended) the command line [`awslogs`](https://github.com/jorgebastida/awslogs) tool.
-
-### System-level Logs
-
-All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
 
 ---
 
