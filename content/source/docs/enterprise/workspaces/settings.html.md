@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-workspaces-settings"
 
 # Workspace Settings
 
-Terraform Enterprise lets you customize workspaces with the following settings:
+In Terraform Enterprise, the workspace's associated repository can only be configured once; it can't be changed at a later date. The following settings are customizable at any point:
 
 ## Terraform Working Directory
 
