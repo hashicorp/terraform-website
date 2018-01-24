@@ -52,6 +52,8 @@ The "repository" field is linked to data from your VCS service. You can start ty
 
 In this example, we're using the `nfagerlund/terraform-minimum` repo.
 
+~> **Note**: the repository a workspace is associated with can't be changed after it's initially set.
+
 ### Other Settings
 
 Optionally, you can set three other settings for a new workspace:

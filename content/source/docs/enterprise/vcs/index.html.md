@@ -20,6 +20,8 @@ To use configurations from VCS, TFE needs to do several things:
 - Register webhooks with your VCS provider, to get notified of new commits to a chosen branch.
 - Download the contents of a repository at a specific commit in order to run Terraform with that code.
 
+~> **Important:** Repo connections are only configured when creating or initially configuring new workspaces; the repo for a workspace can't be updated.
+
 ### Webhooks
 
 TFE uses webhooks to monitor new commits and pull requests.
