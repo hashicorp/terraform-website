@@ -28,6 +28,7 @@ A run performs a plan and apply on the last configuration version created and us
 - `id` (`string: <required>`) - specifies the workspace ID to run
 - `is-destroy` (`bool: false`) - specifies if this plan is a destroy plan, which will destroy all provisioned resources.
 - `workspace_id` (`string: <required>`) - specifies the workspace ID where the run will be executed.
+- `configuration-version-id` (`string: <optional>`) - specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
 
 ### Sample Payload
 
@@ -43,6 +44,12 @@ A run performs a plan and apply on the last configuration version created and us
         "data": {
           "type": "workspaces",
           "id": "ws-LLGHCr4SWy28wyGN"
+        }
+      },
+      "configuration-version": {
+        "data": {
+          "type": "configuration-versions",
+          "id": "cv-n4XQPBa2QnecZJ4G"
         }
       }
     }
