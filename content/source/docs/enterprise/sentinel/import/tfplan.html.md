@@ -117,7 +117,7 @@ Resources returns a map of all the resources in the root module.
 This is identical to `tfplan.module([]).resources`. If you want to
 validate a policy against all resources of a particular type, you will
 need to use logic similar to that in the second example in the
-[tfplan.module_paths](/sentinel/app/terraform/import-tfplan#tfplan-module_paths) section above.
+[tfplan.module_paths](#tfplan-module_paths) section above.
 
 ### tfplan.module(path)
 
