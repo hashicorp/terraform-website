@@ -91,4 +91,4 @@ TFE performs Terraform runs on disposable Linux worker VMs using a POSIX-compati
 
 ### Secure Storage of Variables
 
-TFE's backend storage system encrypts variables on disk using AES-128, and uses Vault to protect the encryption key.
+TFE encrypts all variable values securely using [Vault's transit backend](https://www.vaultproject.io/docs/secrets/transit/index.html) prior to saving them. This ensures that no out-of-band party can read these values without proper authorization.
