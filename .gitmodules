@@ -290,3 +290,7 @@
 	path = ext/providers/opentelekomcloud
 	url = https://github.com/terraform-providers/terraform-provider-opentelekomcloud
 	branch = stable-website
+[submodule "ext/providers/panos"]
+	path = ext/providers/panos
+	url = https://github.com/terraform-providers/terraform-provider-panos
+	branch = stable-website
