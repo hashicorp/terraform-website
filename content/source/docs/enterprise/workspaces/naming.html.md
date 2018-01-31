@@ -8,6 +8,8 @@ sidebar_current: "docs-enterprise2-workspaces-naming"
 
 Terraform Enterprise organizes workspaces by name, so it's important to use a consistent and informative naming strategy. And although future releases of TFE will add more organizational tools, the name will always be the most important piece of information about a workspace.
 
+Note that workspace names can only include letters, numbers, -, and _.
+
 The best way to make names that are both unique and useful is to combine the workspace's most distinguishing _attributes_ in a consistent order. Attributes can be any defining
 characteristic of a workspace — such as the component being managed, the
 environment it runs in, and the region it is provisioned into.
