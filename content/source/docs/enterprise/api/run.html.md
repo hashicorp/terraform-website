@@ -15,9 +15,11 @@ Performing a run on a new configuration is a multi step process.
 3. [Create a Run on the workspace](#create-a-run); this is done automatically when a configuration file is uploaded.
 4. [Create and queue an apply on the run](#apply); if auto-apply is not enabled.
 
+Alternately, you can create a run with a pre-existing configuration version, even one from another workspace. This is useful for promoting known good code from one workspace to another.
+
 ## Create a Run
 
-A run performs a plan and apply on the last configuration version created and using the variables set in the workspace.
+A run performs a plan and apply on the last configuration version created and uses the variables set in the workspace.
 
 | Method | Path           |
 | :----- | :------------- |
