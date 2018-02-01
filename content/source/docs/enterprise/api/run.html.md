@@ -19,7 +19,7 @@ Alternately, you can create a run with a pre-existing configuration version, eve
 
 ## Create a Run
 
-A run performs a plan and apply on the last configuration version created and uses the variables set in the workspace.
+A run performs a plan and apply, using a configuration version and the workspace’s current variables. You can specify a configuration version when creating a run; if you don’t provide one, the run defaults to the workspace’s most recently used version. (A configuration version is “used” when it is created or used for a run in this workspace.)
 
 | Method | Path           |
 | :----- | :------------- |
