@@ -35,7 +35,7 @@ TFE uses webhooks to monitor new commits and pull requests.
 
 For most supported VCS providers, TFE does not need an SSH key — it can do everything it needs with the provider's API and an OAuth token. The exception is Bitbucket Server, which requires an SSH key for downloading repository contents. The [setup instructions for Bitbucket Server](./bitbucket-server.html) include this step.
 
-For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials.
+For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials.
 
 To add an SSH key to a VCS connection, finish configuring OAuth in the organization settings, and then use the "add a private SSH key" link on the OAuth Configuration page to add a private key that has access to the submodule repositories. When setting up a workspace, if submodules are required, select "Include submodules on clone". More at [Workspace settings](../workspaces/settings.html).
 

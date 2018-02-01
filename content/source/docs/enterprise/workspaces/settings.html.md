@@ -12,7 +12,7 @@ In Terraform Enterprise, the workspace's associated repository can only be confi
 
 The directory where Terraform will execute. This defaults to the root of the repository.
 
-If the repo contains multiple environments, set this to the subdirectory matching the workspace's environment. More at [Repo Structure](./repo-structure.html)
+If the repo contains multiple environments, set this to the subdirectory matching the workspace's environment. More at [Repo Structure](./repo-structure.html).
 
 ## VCS Root Path
 
@@ -28,7 +28,7 @@ The branch to import new versions from. This defaults to the version control sys
 
 ## SSH Key
 
-Set an SSH key here if the configuration sources Terraform modules from other repos. The SSH key must have read access to the module repos. If no SSH keys are listed here, visit "Manage SSH Keys" in the Organization settings.
+Set an SSH key here if the configuration sources Terraform modules from other repos. The SSH key must have read access to the module repos. See also [Assigning Keys to Workspaces](./ssh-keys#assigning-keys-to-workspaces). If no SSH keys are listed here, visit "Manage SSH Keys" in the Organization settings or review [Adding and Deleting Keys](./ssh-keys.html#adding-and-deleting-keys).
 
 ## Include submodules on clone
 
