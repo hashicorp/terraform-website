@@ -6,15 +6,15 @@ sidebar_current: "docs-enterprise2-workspaces-ssh-keys"
 
 # Using SSH Keys for Cloning Modules
 
-Terraform configurations can pull in modules from [a variety of different sources](/docs/modules/sources.html), and private Git repositories are the most common source for private modules.
+Terraform configurations can pull in Terraform modules from [a variety of different sources](/docs/modules/sources.html), and private Git repositories are the most common source for private modules.
 
 To access a private Git repository, Terraform either needs login credentials (for HTTPS access) or an SSH key. Terraform Enterprise (TFE) can store private SSH keys centrally, and you can easily use them in any workspace that clones modules from a Git server.
 
-~> **Note:** SSH keys for cloning modules from Git repos are only used during Terraform runs. They are managed separately from any [keys used for bringing VCS content into TFE.](../vcs/index.html#ssh-keys)
+~> **Note:** SSH keys for cloning Terraform modules from Git repos are only used during Terraform runs. They are managed separately from any [keys used for bringing VCS content into TFE](../vcs/index.html#ssh-keys).
 
-TFE manages SSH keys at the organization level, and you can add or delete keys via your organization's settings. Once a key is uploaded, the text of the key is not displayed to users.
+TFE manages SSH keys used to clone Terraform modules at the organization level, and allows multiple keys to be added for the organization. You can add or delete keys via the organization's settings. Once a key is uploaded, the text of the key is not displayed to users.
 
-To assign a key to a workspace, go to its settings and choose a previously added key from a drop-down menu. Each workspace can only use one SSH key.
+To assign a key to a workspace, go to its settings and choose a previously added key from the drop-down menu on Integrations under "SSH Key". Each workspace can only use one SSH key.
 
 ## Adding and Deleting Keys
 
