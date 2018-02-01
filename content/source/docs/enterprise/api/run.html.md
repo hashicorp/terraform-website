@@ -15,9 +15,11 @@ Performing a run on a new configuration is a multi step process.
 3. [Create a Run on the workspace](#create-a-run); this is done automatically when a configuration file is uploaded.
 4. [Create and queue an apply on the run](#apply); if auto-apply is not enabled.
 
+Alternately, you can create a run with a pre-existing configuration version, even one from another workspace. This is useful for promoting known good code from one workspace to another.
+
 ## Create a Run
 
-A run performs a plan and apply on the last configuration version created and using the variables set in the workspace.
+A run performs a plan and apply, using a configuration version and the workspace’s current variables. You can specify a configuration version when creating a run; if you don’t provide one, the run defaults to the workspace’s most recently used version. (A configuration version is “used” when it is created or used for a run in this workspace.)
 
 | Method | Path           |
 | :----- | :------------- |
@@ -28,6 +30,7 @@ A run performs a plan and apply on the last configuration version created and us
 - `id` (`string: <required>`) - specifies the workspace ID to run
 - `is-destroy` (`bool: false`) - specifies if this plan is a destroy plan, which will destroy all provisioned resources.
 - `workspace_id` (`string: <required>`) - specifies the workspace ID where the run will be executed.
+- `configuration-version-id` (`string: <optional>`) - specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
 
 ### Sample Payload
 
@@ -43,6 +46,12 @@ A run performs a plan and apply on the last configuration version created and us
         "data": {
           "type": "workspaces",
           "id": "ws-LLGHCr4SWy28wyGN"
+        }
+      },
+      "configuration-version": {
+        "data": {
+          "type": "configuration-versions",
+          "id": "cv-n4XQPBa2QnecZJ4G"
         }
       }
     }
