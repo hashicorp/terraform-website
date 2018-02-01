@@ -10,11 +10,11 @@ This document contains information about interacting with Private Terraform Ente
 
 ### Audit Logs
 
-As of (**insert date/build here**) audit logging is available in Private Terraform Enterprise. 
+As of Private Terraform Enterprise release v201802-1, audit logging is available in Private Terraform Enterprise. 
 
 #### What will be logged?
 
-We will write to the audit log when any resource managed by PTFE is mutated. Read requests will be logged for resources deemed sensitive. These include:
+The audit log will be updated when any resource managed by Terraform Enterprise is changed. Read requests will be logged for resources deemed sensitive. These include:
 
   * Authentication Tokens
   * Configuration Versions
@@ -26,7 +26,7 @@ We will write to the audit log when any resource managed by PTFE is mutated. Rea
   * Vars
 
 
-When requests occur, there are four necessary pieces of information that will be logged:
+When requests occur, these are the pieces of information that will be logged:
 
   1. The actor
 		* Users (including IP address and token used)

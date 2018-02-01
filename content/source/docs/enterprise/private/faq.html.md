@@ -19,6 +19,7 @@ This page will provide answers to many common questions around Private Terraform
 9. [Private Terraform Enterprise Architecture](#private-terraform-enterprise-architecture)
 10. [Advanced Terraform](#advanced-terraform)
 11. [Rekeying the Vault instance used by Private Terraform Enterprise](#rekeying-vault)
+12. [Minimum Viable IAM Access Policy](#minimum-viable-iam-access-policy)
 
 ---
 
@@ -700,5 +701,9 @@ sudo rm /data/vault-unseal-key
 sudo atlas-backup
 ```
 
+---
 
+## Minimum Viable IAM Access Policy
+
+HashiCorp does not recommend using the minimum viable IAM access policy. You will need to edit this policy to account for any and all actions you wish Terraform to be able to perform against your AWS account. We do, however, provide a [git repo](https://github.com/hashicorp/terraform-enterprise-modules/tree/master/aws-extra/minimum-viable-iam) you can use as a base example to start from. 
 
