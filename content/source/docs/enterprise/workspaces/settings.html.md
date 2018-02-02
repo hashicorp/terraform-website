@@ -28,7 +28,7 @@ The branch to import new versions from. This defaults to the version control sys
 
 ## SSH Key
 
-Set an SSH key here if the configuration sources Terraform modules from other repos. The SSH key must have read access to the module repos. See also [Assigning Keys to Workspaces](./ssh-keys#assigning-keys-to-workspaces). If no SSH keys are listed here, visit "Manage SSH Keys" in the Organization settings or review [Adding and Deleting Keys](./ssh-keys.html#adding-and-deleting-keys).
+Set an SSH key here if the configuration sources Terraform modules from other repos. The SSH key must have read access to the module repos. See also [Assigning Keys to Workspaces](./ssh-keys.html#assigning-keys-to-workspaces). If no SSH keys are listed here, visit "Manage SSH Keys" in the Organization settings or review [Adding and Deleting Keys](./ssh-keys.html#adding-and-deleting-keys).
 
 ## Include submodules on clone
 
