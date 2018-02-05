@@ -55,7 +55,7 @@ The [configuration version API](../api/configuration-versions.html) expects a ta
 
 ```bash
 UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
-tar -zcvf $UPLOAD_FILE_NAME $CONTENT_DIRECTORY
+tar cvzf $UPLOAD_FILE_NAME -C $CONTENT_DIRECTORY .
 ```
 
 ### 3. Look Up the Workspace ID
