@@ -44,8 +44,8 @@ A number of settings are available to configure and tune your installation.  The
 
 The following apply to every installation:
 
-- `hostname` — (required) this is the hostname you will use to access your installation
-- `installation_type` — (required) one of `poc` or `production`
+- `hostname` — (Required) this is the hostname you will use to access your installation
+- `installation_type` — (Required) one of `poc` or `production`
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
 
 
