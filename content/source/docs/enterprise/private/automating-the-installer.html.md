@@ -6,13 +6,16 @@ sidebar_current: "docs-enterprise2-private-install-installer"
 
 # Private Terraform Enterprise Automated Installation (Installer Beta)
 
-The installation of Private Terraform Enterprise can be completely automated, for both online and airgapped modes.  Before invoking the installer you must:
-- prepare `/etc/replicated.conf`
-- prepare an [application settings](#application-settings) file
-- copy your license file to the instance
-- download the `.airgap` bundle to the instance (Airgapped mode only)
+The installation of Private Terraform Enterprise can be automated for both online and airgapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
 
-You may also need to provide additional flags (such as the instance's public and private IP addresses) in order to not be prompted for those values when running the installer.
+Before starting the install process, you must:
+
+- prepare `/etc/replicated.conf`, which defines the settings for the Replicated installer.
+- prepare an [application settings](#application-settings) file, which defines the settings for the Terraform Enterprise application.
+- copy your license file to the instance.
+- download the `.airgap` bundle to the instance (Airgapped mode only).
+
+You may also need to provide additional flags (such as the instance's public and private IP addresses) in order to avoid being prompted for those values when running the installer (which may result in either a failure of the installer or a unbounded delay while waiting for input).
 
 It's expected that the user is already familiar with how to do a [manual install](./install-installer.html#installation).
 
@@ -70,7 +73,7 @@ The following are required if you've chosen `external` for `production_type`:
 
 ## Online
 
-The following is an example `/etc/replicated.conf` suitable for an automated online install using a self-signed certificated.  `TlsBootstrapHostname` should match the `hostname` value in the application settings file (referenced by `ImportSettingsFrom`).  You also need to provide the full path to your license file in `LicenseFileLocation`.
+The following is an example `/etc/replicated.conf` suitable for an automated online install using a self-signed certificate.  `TlsBootstrapHostname` should match the `hostname` value in the application settings file (referenced by `ImportSettingsFrom`).  You also need to provide the full path to your license file in `LicenseFileLocation`.
 
 See the full set of configuration parameters in the [Replicated documentation](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically).
 
@@ -101,7 +104,7 @@ Note the `private-address` and `public-address` flags provided to the installer.
 
 ## Airgapped
 
-The following is an example `/etc/replicated.conf` suitable for an automated airgapped install, building on the online example above.  Note the addition of `LicenseBootstrapAirgapPackagePath`, which is a path to the `.airgap` bundle on the instance.  
+The following is an example `/etc/replicated.conf` suitable for an automated airgapped install, which builds on the online example above.  Note the addition of `LicenseBootstrapAirgapPackagePath`, which is a path to the `.airgap` bundle on the instance.  
 
 ```json
 {
