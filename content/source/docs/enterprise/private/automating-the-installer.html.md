@@ -73,7 +73,7 @@ The following are required if you've chosen `external` for `production_type`:
 
 ## Online
 
-The following is an example `/etc/replicated.conf` suitable for an automated online install using a self-signed certificate.  `TlsBootstrapHostname` should match the `hostname` value in the application settings file (referenced by `ImportSettingsFrom`).  You also need to provide the full path to your license file in `LicenseFileLocation`.
+The following is an example `/etc/replicated.conf` suitable for an automated online install using a self-signed certificate.  `ImportSettingsFrom` must be the full path to the application settings file.  You also need to provide the full path to your license file in `LicenseFileLocation`.
 
 See the full set of configuration parameters in the [Replicated documentation](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically).
 
@@ -82,7 +82,6 @@ See the full set of configuration parameters in the [Replicated documentation](h
     "DaemonAuthenticationType":     "password",
     "DaemonAuthenticationPassword": "your-password-here",
     "TlsBootstrapType":             "self-signed",
-    "TlsBootstrapHostname":         "tfe.example.com",
     "BypassPreflightChecks":        true,
     "ImportSettingsFrom":           "/path/to/application-settings.json",
     "LicenseFileLocation":          "/path/to/license.rli"
@@ -111,7 +110,6 @@ The following is an example `/etc/replicated.conf` suitable for an automated air
     "DaemonAuthenticationType":          "password",
     "DaemonAuthenticationPassword":      "your-password-here",
     "TlsBootstrapType":                  "self-signed",
-    "TlsBootstrapHostname":              "tfe.example.com",
     "BypassPreflightChecks":             true,
     "ImportSettingsFrom":                "/path/to/application-settings.json",
     "LicenseFileLocation":               "/path/to/license.rli",
@@ -149,3 +147,4 @@ done
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
 - [`/etc/replicated.conf`](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically)
 - [application settings](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-app-settings-automatically)
+
