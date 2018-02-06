@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer Beta)"
-sidebar_current: "docs-enterprise2-private-install-installer"
+page_title: "Private Terraform Enterprise Automated Installation (Installer Beta)"
+sidebar_current: "docs-enterprise2-private-installer-automating"
 ---
 
 # Private Terraform Enterprise Automated Installation (Installer Beta)
