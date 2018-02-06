@@ -10,8 +10,8 @@ The installation of Private Terraform Enterprise can be automated for both onlin
 
 Before starting the install process, you must:
 
-- prepare `/etc/replicated.conf`, which defines the settings for the Replicated installer.
 - prepare an [application settings](#application-settings) file, which defines the settings for the Terraform Enterprise application.
+- prepare `/etc/replicated.conf`, which defines the settings for the Replicated installer.
 - copy your license file to the instance.
 - download the `.airgap` bundle to the instance (Airgapped mode only).
 
@@ -21,7 +21,7 @@ It's expected that the user is already familiar with how to do a [manual install
 
 ## Application settings
 
-This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the demo installation type or as complex as specifying the Postgresql connection string and S3 bucket credentials and parameters.  You will need to reference it via the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
+This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the demo installation type or as complex as specifying the Postgresql connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
 
 ### Format
 
