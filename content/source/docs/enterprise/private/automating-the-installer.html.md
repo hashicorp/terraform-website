@@ -26,15 +26,15 @@ The settings file is JSON formatted.  The example below is suitable for a demo i
 
 ```json
 {
-  "hostname": {
-    "value": "terraform.example.com"
-  },
-  "installation_type": {
-    "value": "poc"
-  },
-  "capacity_concurrency": {
-    "value": 5
-  }
+    "hostname": {
+        "value": "terraform.example.com"
+    },
+    "installation_type": {
+        "value": "poc"
+    },
+    "capacity_concurrency": {
+        "value": 5
+    }
 }
 ```
 
@@ -76,7 +76,7 @@ See the full set of configuration parameters in the [Replicated documentation](h
 
 ```json
 {
-	"DaemonAuthenticationType":     "password",
+    "DaemonAuthenticationType":     "password",
     "DaemonAuthenticationPassword": "your-password-here",
     "TlsBootstrapType":             "self-signed",
     "TlsBootstrapHostname":         "tfe.example.com",
@@ -92,9 +92,9 @@ Once `/etc/replicated.conf` has been created, you can retrieve and execute the i
 ```bash
 curl -o install.sh https://install.terraform.io/ptfe/beta
 bash ./install.sh \
-	no-proxy \
-	private-address=1.2.3.4 \
-	public-address=5.6.7.8
+    no-proxy \
+    private-address=1.2.3.4 \
+    public-address=5.6.7.8
 ```
 
 Note the `private-address` and `public-address` flags provided to the installer.  These may be left out, but the installer will prompt for them if it is unable to determine appropriate values automatically.
@@ -105,7 +105,7 @@ The following is an example `/etc/replicated.conf` suitable for an automated air
 
 ```json
 {
-	"DaemonAuthenticationType":          "password",
+    "DaemonAuthenticationType":          "password",
     "DaemonAuthenticationPassword":      "your-password-here",
     "TlsBootstrapType":                  "self-signed",
     "TlsBootstrapHostname":              "tfe.example.com",
@@ -125,10 +125,10 @@ Once `/etc/replicated.conf` has been created, you can now execute the install sc
 ```bash
 cd /tmp
 ./install.sh \
-	airgap \
-	no-proxy \
-	private-address=1.2.3.4 \
-	public-address=5.6.7.8
+    airgap \
+    no-proxy \
+    private-address=1.2.3.4 \
+    public-address=5.6.7.8
 ```
 
 ## Waiting for Terraform Enterprise to become ready
@@ -142,7 +142,6 @@ done
 ```
 
 ## References
-
 
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
 - [`/etc/replicated.conf`](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically)
