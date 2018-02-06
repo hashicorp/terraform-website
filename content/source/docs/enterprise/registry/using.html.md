@@ -19,7 +19,7 @@ By design, Terraform Enterprise (TFE)'s private module registry works much like 
       version = "1.0.4"
     }
     ```
-- TFE can automatically access your private modules during Terraform runs. However, when running Terraform on the command line, you must configure credentials in your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html).
+- TFE can automatically access your private modules during Terraform runs. However, when running Terraform on the command line, you must configure a `credentials` block in your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html). See below for the [credentials format](#on-the-command-line).
 
 ## Finding Modules
 
@@ -44,7 +44,7 @@ Click a module's "Details" button to view its details page. Use the "Versions" d
 
 ![TFE screenshot: a module details page](./images/publish-module-details.png)
 
-## Using Modules in Terraform Configurations
+## Using Private Modules in Terraform Configurations
 
 In Terraform configurations, you can use any private module from your organization's registry. The syntax for referencing private modules in `source` attributes is `<TFE HOSTNAME>/<TFE ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
 

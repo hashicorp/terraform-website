@@ -6,15 +6,13 @@ sidebar_current: "docs-enterprise2-registry-design"
 
 # Using the Configuration Designer
 
-Terraform Enterprise (TFE)'s private module registry includes a configuration designer.
+Terraform Enterprise (TFE)'s private module registry includes a configuration designer, which can help you spend less time writing boilerplate code in a module-centric Terraform workflow.
 
-The configuration designer isn't a drag-and-drop Terraform workflow or a restrictive "wizard" interface. Instead, it's a shortcut to reduce the amount of boilerplate code you write in a module-centric Terraform workflow.
-
-What it most resembles is interactive documentation for your private modules, or advanced autocompletion like you might see in an IDE. It results in the same Terraform code you would have written in your text editor, but saves time by automatically discovering the variables you need and searching module and workspace outputs for reusable values.
+The configuration designer is sort of like interactive documentation for your private modules, or very advanced autocompletion. It results in the same Terraform code you would have written in your text editor, but saves time by automatically discovering variables and searching module and workspace outputs for reusable values.
 
 ## Workflow Summary
 
-The configuration designer lets you outline a new workspace by choosing any number of private modules. It then lists those modules' variables as a fillable HTML form, with a helper interface for finding interpolatable values.
+The configuration designer lets you outline a configuration for a new workspace by choosing any number of private modules. It then lists those modules' variables as a fillable HTML form, with a helper interface for finding interpolatable values.
 
 Once you finish, the designer returns the text of a `main.tf` configuration, which you must copy and paste to create a new VCS repo for workspaces. The designer does not automatically create any repos or workspaces; it's only a shortcut for writing Terraform code faster.
 

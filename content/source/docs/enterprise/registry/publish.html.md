@@ -10,7 +10,7 @@ sidebar_current: "docs-enterprise2-registry-publish"
 
 ~> **Note:** Currently, the private module registry only supports BitBucket Server and GitHub/GitHub Enterprise.
 
-TFE's private module registry lets you publish Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
+Terraform Enterprise (TFE)'s private module registry lets you publish Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
 
 Only members of the "owners" team can publish new modules. Once a module is published, the ability to release new versions is managed by your VCS provider.
 
