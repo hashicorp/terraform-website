@@ -61,42 +61,41 @@ The audit log will be updated when any resource managed by Terraform Enterprise 
 When requests occur, these are the pieces of information that will be logged:
 
   1. The actor
-		* Users (including IP address and token used)
-		* Version Control System users (identified in webhooks)
-		* Service accounts
-		* Terraform Enterprise
-	2. The action
-		* Reading sensitive resources
-		* Creation of new resources
-		* Updating existing resources
-		* Deletion of existing resources
-		* Additional actions as defined in /actions/* namespaces
-		* Webhook API calls
-	3. The target of the action (any resource exposed by APIv2)
-	4. The time that the action occurred
-	5. Where the action was taken (web/API request, background job, etc.)
+    * Users (including IP address)
+    * Version Control System users (identified in webhooks)
+    * Service accounts
+    * Terraform Enterprise
+  2. The action
+    * Reading sensitive resources
+    * Creation of new resources
+    * Updating existing resources
+    * Deletion of existing resources
+    * Additional actions as defined in /actions/* namespaces
+    * Webhook API calls
+  3. The target of the action (any resource exposed by APIv2)
+  4. The time that the action occurred
+  5. Where the action was taken (web/API request, background job, etc.)
 
 ### Log Format
 
-Log entries are in JSON, just like other terraform logs. Log formatting will look like this: 
+Log entries are in JSON, just like other terraform logs. Most audit log entries will be formatted like this: 
 
 ``` json
-{"time":"2017-12-19T15:54:33.792Z","action":"plan","resource":"run","resource_id":"run-RgPD6h3tdpj9GaHG","actor":"gh-webhooks-tfe-dev-v2"}
-{"time":"2017-12-19T16:56:18.623Z","resource":"run",action":"apply","resource_id":"run-RgPD6h3tdpj9GaHG","actor":"johnsmith"}
 {
-		"time": "2017-12-19T15:23:45.148Z",
-		"resource": "var",
-		"action": "destroy",
-		"resource_id": "var-9a3hrbYfFsTzg2FZ",
-		"actor": "jsmith",
-		"category": "env",
-		"key": "ATLAS_CONFIRM_DESTROY"
+  "timestamp": "2017-12-19T15:23:45.148Z",
+  "resource": "workspace",
+  "action": "destroy",
+  "resource_id": "ws-9a3hrbYfFsTzg2FZ",
+  "actor": "jsmith",
+  "actor_ip": "94.122.17.37"
 }
 ```
 
+Certain entries will contain additional information in the payload, but all audit log entries will contain the above keys.
+
 ### Log Location
 
-Audit logs are written using the `Rails.logger`, which is already setup to use log rotation, which will prevent logs from going too large in size. To distinguish Audit Log entries from other log entries, the JSON is prefixed with `[Audit Log]`. These are written out to CloudWatch logs just like application-level logs.
+Audit log entries are written to the application logs. To distinguish audit Log entries from other log entries, the JSON is prefixed with `[Audit Log]`. These are written out to CloudWatch logs just like all other application-level logs.
 
 ---
 
