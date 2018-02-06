@@ -6,6 +6,7 @@ sidebar_current: "docs-enterprise2-migrating-workspaces"
 
 [cli-workspaces]: /docs/state/workspaces.html
 [user-token]: ../users-teams-organizations/users.html#api-tokens
+[backend]: /docs/backends/index.html
 
 
 # Migrating State from Multiple Terraform Workspaces
@@ -16,16 +17,16 @@ These workspaces, managed with the `terraform workspace` command, aren't the sam
 
 If you use multiple workspaces, you'll need to migrate each one to a separate TFE workspace.
 
-Migrating multiple workspaces is similar to migrating a single workspace, but it requires some extra steps.
+Migrating multiple workspaces is similar to [migrating a single workspace](./index.html), but it requires some extra steps.
 
-### Step 1: Gather Credentials, Data, and Code
+## Step 1: Gather Credentials, Data, and Code
 
 Make sure you have all of the following:
 
 - The location of the VCS repository for the Terraform configuration in question.
 - A local working copy of the Terraform configuration in question.
-- The existing state data.
-    - If you were using the `local` backend, you need the original working directory where you've been running Terraform, or a copy of the `terraform.tfstate` and `terraform.tfstate.d` files to copy into a fresh working directory.
+- The existing state data. The location of the state depends on which [backend][] you've been using:
+    - If you were using the `local` backend, your state is files on disk. You need the original working directory where you've been running Terraform, or a copy of the `terraform.tfstate` and `terraform.tfstate.d` files to copy into a fresh working directory.
     - For remote backends, you need the path to the particular storage being used (usually already included in the configuration) and access credentials (which you usually must set as an environment variable).
 - A TFE user account which is a member of your organization's owners team, so you can create workspaces.
 - A [user API token][user-token] for your TFE user account. (Organization and team tokens will not work; the token must be associated with an individual user.)
@@ -42,25 +43,25 @@ For each workspace you're migrating, create a new workspace in your TFE organiza
 
 **Do not perform any runs in these workspaces yet,** and consider locking them to be sure. If an apply happens prematurely, you'll need to destroy the workspace and start the process over.
 
-### Step 3: Stop Terraform Runs
+## Step 3: Stop Terraform Runs
 
 However you currently run Terraform to manage this infrastructure, stop. Let any current runs finish, then make sure there won't be more.
 
 This might involve locking or deleting CI jobs, restricting access to the state backend, or just communicating very clearly with your colleagues.
 
-### Step 4: Navigate to Your Terraform Working Directory
+## Step 4: Prepare Your Terraform Working Directory
 
 In your shell, go to the directory with the Terraform configuration you're migrating.
 
 - If you've already been doing Terraform runs in this directory, you should be ready to go.
 - If you had to retrieve state files from elsewhere, copy them into the root of the working directory and run `terraform init`.
-- If you had to check out a fresh working directory from version control, run `terraform init`.
+- If you use a remote backend and had to check out a fresh working directory from version control, run `terraform init`.
 
 ## Step 5: Migrate to the `local` Backend, if Necessary
 
-If you use a remote backend that supports multiple workspaces, migrate to the local backend now. You need copies of each state file on disk, and this is the easiest way to get them. (If you know what you're doing, you can skip this step and download state files manually.)
+If you use a remote backend that supports multiple workspaces, migrate to the local backend now. You need copies of each state file on disk, and this is the easiest way to get them.
 
-Delete the `terraform { backend {...` configuration block, and run `terraform init`. Confirm that you want to copy existing state to the new `local` backend, even if there's already data in it. (Any existing local data is probably out of date.)
+To migrate to `local`, delete the `terraform { backend {...` configuration block and run `terraform init`. Confirm that you want to copy existing state to the new `local` backend, even if there's already data in it. (Any existing local data is probably out of date.)
 
 ## Step 6: Back Up Your State Files
 
@@ -92,7 +93,7 @@ terraform {
 - In the `name` attribute, specify the name of your TFE organization and the target workspace, separated by a slash. (For example, `example_corp/database-prod`.)
 - The `address` attribute is only necessary with private TFE instances. You can omit it if you're using the SaaS version of TFE.
 
-~> **Note:** The `atlas` backend block is temporary; it isn't needed once TFE takes over Terraform runs. The easiest way to handle this is to put the backend config in a separate `backend.tf` file and not check that file into version control.
+~> **Note:** The `atlas` backend block is temporary; it isn't needed once TFE takes over Terraform runs. It's easiest to put the backend block in a separate `backend.tf` file which isn't checked into version control.
 
 ## Step 9: Migrate `default` by Running `terraform init`
 
