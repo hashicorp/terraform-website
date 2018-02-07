@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-saml-identity-provider-configuration-onelogin
 
 # OneLogin Configuration
 
-Instructions for configuring OneLogin as the identity provider (IdP) for Terraform Enterprise.
+Follow these steps to configure OneLogin as the identity provider (IdP) for Terraform Enterprise.
 
 1. Add a OneLogin app by going to Apps > Add Apps then searching for "SAML Test Connector (IdP)".
 2. Name the app.
