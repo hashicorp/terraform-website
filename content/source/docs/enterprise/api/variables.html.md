@@ -21,7 +21,7 @@ This set of APIs covers create, update, list and delete operations on variables.
 
 - `key` (`string: <required>`) - specifies the name of the variable which will be passed into the plan/apply.
 - `value` (`string: <required>`) - specifies the value of the variable which will be passed into the plan/apply.
-- `category` (`string: "terraform"|"environment"`) - specifies whether this should be parsed as a Terraform variable (with support for HCL) or as an environment variable. This governs how it is accessible in the Terraform configuration.
+- `category` (`string: "terraform"|"env"`) - specifies whether this should be parsed as a Terraform variable (with support for HCL) or as an environment variable. This governs how it is accessible in the Terraform configuration.
 - `hcl` (`bool: false`) - use HCL when setting the value of the string.
 - `sensitive` (`bool: false`) - marks the variable as sensitive. If true then the variable is written once and not visible thereafter.
 - `?filter[workspace][name]` (`string: required`) - variables must be associated with a workspace. Specify the workspace's name with the `filter` query parameter.
