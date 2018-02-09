@@ -97,13 +97,13 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
     ![TFE screenshot: the connect organization button](./images/tfe-connect-orgname.png)
 
-    This takes you to a page on GitLab.com, asking whether you want to authorize the app.
+    This takes you to a page on GitLab, asking whether you want to authorize the app.
 
     ![GitLab screenshot: the authorization screen](./images/gitlab-authorize.png)
 
-2. Click the green "Authorize" button at the bottom of the authorization page. This returns you to TFE's OAuth Configuration page, where the GitLab.com client's information has been updated.
+2. Click the green "Authorize" button at the bottom of the authorization page. This returns you to TFE's OAuth Configuration page, where the GitLab client's information has been updated.
 
 ## Finished
 
-At this point, GitLab.com access for TFE is fully configured, and you can create Terraform workspaces based on your organization's shared repositories.
+At this point, GitLab access for TFE is fully configured, and you can create Terraform workspaces based on your organization's shared repositories.
 
