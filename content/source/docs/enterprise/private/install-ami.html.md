@@ -88,7 +88,7 @@ These variables can be populated, but they have defaults that will be used if yo
 * `internal_elb` Indicate to AWS that the created ELB is internal only. Example: `true`
 * `startup_script` Shell code that should run on the first boot. This is explained in more detail below.
 * `external_security_group_id` The ID of a custom EC2 Security Group to assign to the ELB for "external" access to the system. By default, a Security Group will be created that allows ingress port 80 and 443 to `0.0.0.0/0`.
-* `internal_security_group_id` The ID of a custom EC2 Security Group to assign to the instance for "internal" access to the system. By default, a Security group will be created that allos ingress port 22 and 8080 from `0.0.0.0/0`.
+* `internal_security_group_id` The ID of a custom EC2 Security Group to assign to the instance for "internal" access to the system. By default, a Security group will be created that allows ingress port 22 and 8080 from `0.0.0.0/0`.
 * `proxy_url` A url (http or https, with port) to proxy all external http/https request from the cluster to. This is explained in more detail below.
 * `local_redis` If true, use a local Redis server on the cluster instance, eliminating the need for ElasticCache. Default: `false`
 * `local_setup` If true, write the setup data to a local file called `tfe-setup-data` instead of into S3. The instance will prompt for this setup data on its first boot, after which point it will be stored in Vault. (Requires a release `v201709-1` or later to be set to true.) Default: `false`
