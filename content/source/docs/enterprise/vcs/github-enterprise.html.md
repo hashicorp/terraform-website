@@ -96,7 +96,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 
     This takes you to a page on github.com, asking whether you want to authorize the app.
 
-2. The authorization page lists any GitHub organizations this account belongs to. If there is a "Request" button next to the organization that owns your Terraform code repositories, click it now.
+2. The authorization page lists any GitHub organizations this account belongs to. If there is a "Request" button next to the organization that owns your Terraform code repositories, click it now. Note that you need to do this even if you are only connecting workspaces to private forks of repositories in those organizations since those forks are subject to the organization's access restrictions.  See [About OAuth App access restrictions](https://help.github.com/articles/about-oauth-app-access-restrictions).
 
     ![GitHub screenshot: the authorization screen](./images/gh-authorize.png)
 
