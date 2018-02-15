@@ -14,4 +14,4 @@ are granted permissions on an organization’s workspaces.
 structure. Organization owners can create teams and manage their membership.
 - **Organizations** are shared spaces for teams to collaborate on workspaces.
 An organization can have many teams, and the owners of the organization set
-which teams have which privileges (read/write/admin) on which workspaces.
+which teams have which permissions (read/write/admin) on which workspaces.

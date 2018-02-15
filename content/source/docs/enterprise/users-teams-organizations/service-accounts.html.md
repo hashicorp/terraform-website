@@ -26,7 +26,7 @@ Organization service accounts are under "API Token" on the Organization Settings
 The following rules apply to team and organization service accounts:
 
 - Teams and organizations do not have tokens by default.
-- Team and organization tokens cannot authenticate with Terraform's `atlas` backend; they only work with the v2 API. If you need to use the `atlas` backend (to mirate state, for example), use a [user token](./users.html#api-tokens).
+- Team and organization tokens cannot authenticate with Terraform's `atlas` backend; they only work with the v2 API. If you need to use the `atlas` backend (to migrate state, for example), use a [user token](./users.html#api-tokens).
 - Only one token is allowed per team.
 - Only one token is allowed per organization.
 - Any member of a team can generate and revoke tokens for that team.
