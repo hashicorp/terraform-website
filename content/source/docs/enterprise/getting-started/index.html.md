@@ -6,8 +6,8 @@ sidebar_current: "docs-enterprise2-started"
 
 # Getting Started with Terraform Enterprise
 
-Welcome to the new Terraform Enterprise!
+Welcome to Terraform Enterprise!
 
-This is a rewritten version of TFE. If you've used TFE before, you might notice some features that are still pending, and other things might not be where you expect them. We've written this guide to walk you through TFE's core workflows and introduce you to its UI.
+Terraform Enterprise helps teams collaborate on infrastructure. It combines a predictable and reliable shared run environment with tools to help you work together on Terraform configurations and modules. To learn more about its features and functionality, and to request a free trial, see the [Terraform Enterprise product page](https://www.hashicorp.com/products/terraform).
 
-The first page is about [how to access TFE.](./access.html)
+This getting started guide introduces Terraform Enterprise's core workflows and UI, and walks you through their basic usage. The first page is about [how to access Terraform Enterprise.](./access.html)
