@@ -58,7 +58,7 @@ The following Terraform variables are required inputs and must be populated prio
 
 The values for these variables should be placed in the `terraform.tfvars` file. Copy the `terraform.tfvars.example` in the `aws-standard` directory to `terraform.tfvars`, then edit it with the proper values. There are notes in the file regarding each variable, but please use the following list for more information:
 
-**NOTE**: use only alphanumeric characters (upper- and lower-case), as well as dashes, underscores, colons, and forward-slashes (`-`, `_`, `:`, `/`).  Other characters may cause the TFE instance to be unable to boot.
+**NOTE**: Use only alphanumeric characters (upper- and lower-case), as well as dashes, underscores, colons, and forward-slashes (`-`, `_`, `:`, `/`).  Other characters may cause the TFE instance to be unable to boot.
 
 * `region`: The AWS region to deploy into.
 * `ami_id`: The ID of a Terraform Enterprise Base AMI. See [`ami-ids`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/docs/ami-ids.md) to look one up.
@@ -74,7 +74,7 @@ The values for these variables should be placed in the `terraform.tfvars` file. 
 
 These variables can be populated, but they have defaults that will be used if you omit them. As with the required variables, you can place these values in the `terraform.tfvars` file.
 
-**NOTE**: use only alphanumeric characters (upper- and lower-case), as well as dashes, underscores, colons, and forward-slashes (`-`, `_`, `:`, `/`).  Other characters may cause the TFE instance to be unable to boot.
+**NOTE**: Use only alphanumeric characters (upper- and lower-case), as well as dashes, underscores, colons, and forward-slashes (`-`, `_`, `:`, `/`).  Other characters may cause the TFE instance to be unable to boot.
 
 * `key_name`: Name of AWS SSH Key Pair that will be used (as shown in the AWS console). The pair needs to already exist, it will not be created. **If this variable is not set, no SSH access will be available to the Terraform Enterprise instance.**
 * `manage_bucket` Indicate if this Terraform state should create and own the bucket. Set this to false if you are reusing an existing bucket.
