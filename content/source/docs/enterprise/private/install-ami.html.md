@@ -58,6 +58,8 @@ The following Terraform variables are required inputs and must be populated prio
 
 The values for these variables should be placed in the `terraform.tfvars` file. Copy the `terraform.tfvars.example` in the `aws-standard` directory to `terraform.tfvars`, then edit it with the proper values. There are notes in the file regarding each variable, but please use the following list for more information:
 
+**NOTE**: Use only alphanumeric characters (upper- and lower-case), as well as dashes, underscores, colons, and forward-slashes (`-`, `_`, `:`, `/`).  Other characters may cause the TFE instance to be unable to boot.
+
 * `region`: The AWS region to deploy into.
 * `ami_id`: The ID of a Terraform Enterprise Base AMI. See [`ami-ids`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/docs/ami-ids.md) to look one up.
 * `fqdn`: The hostname that the cluster will be accessible at. This value needs to match the DNS setup for proper operations. Example: `tfe-eng01.mycompany.io`
@@ -71,6 +73,8 @@ The values for these variables should be placed in the `terraform.tfvars` file. 
 ### Optional Variables
 
 These variables can be populated, but they have defaults that will be used if you omit them. As with the required variables, you can place these values in the `terraform.tfvars` file.
+
+**NOTE**: Use only alphanumeric characters (upper- and lower-case), as well as dashes, underscores, colons, and forward-slashes (`-`, `_`, `:`, `/`).  Other characters may cause the TFE instance to be unable to boot.
 
 * `key_name`: Name of AWS SSH Key Pair that will be used (as shown in the AWS console). The pair needs to already exist, it will not be created. **If this variable is not set, no SSH access will be available to the Terraform Enterprise instance.**
 * `manage_bucket` Indicate if this Terraform state should create and own the bucket. Set this to false if you are reusing an existing bucket.
@@ -87,19 +91,22 @@ These variables can be populated, but they have defaults that will be used if yo
 * `arn_partition` Used mostly for govcloud installations. Example: `aws-us-gov`
 * `internal_elb` Indicate to AWS that the created ELB is internal only. Example: `true`
 * `startup_script` Shell code that should run on the first boot. This is explained in more detail below.
-* `external_security_group_id` The ID of a custom EC2 Security Group to assign to the ELB for "external" access to the system. By default, a Security Group will be created that allows ingress port 80 and 443 to `0.0.0.0/0`.
-* `internal_security_group_id` The ID of a custom EC2 Security Group to assign to the instance for "internal" access to the system. By default, a Security group will be created that allows ingress port 22 and 8080 from `0.0.0.0/0`.
+* `external_security_group_ids` The IDs of existing EC2 Security Groups to assign to the ELB for "external" access to the system. By default, a Security Group will be created that allows ingress to ports 80 and 443 from `0.0.0.0/0`.
+* `internal_security_group_ids` The IDs of existing EC2 Security Groups to assign to the instance for "internal" access to the system. By default, a Security group will be created that allows ingress to ports 22 and 8080 from `0.0.0.0/0`.
 * `proxy_url` A url (http or https, with port) to proxy all external http/https request from the cluster to. This is explained in more detail below.
+* `no_proxy` Hosts to exclude from proxying, in addition to the default set. (Only applies when `proxy_url` is set.)
 * `local_redis` If true, use a local Redis server on the cluster instance, eliminating the need for ElasticCache. Default: `false`
 * `local_setup` If true, write the setup data to a local file called `tfe-setup-data` instead of into S3. The instance will prompt for this setup data on its first boot, after which point it will be stored in Vault. (Requires a release `v201709-1` or later to be set to true.) Default: `false`
 * `ebs_size` The size (in GB) to configure the EBS volumes used to store redis data. Default: `100`
 * `ebs_redundancy` The number of EBS volumes to mirror together for redundancy in storing redis data. Default: `2`
+* `archivist_sse` Setting for server-side encryption of objects in S3; if provided, _must_ be set to `aws:kms`. Default: ``
+* `archivist_kms_key_id` KMS key ID (full ARN) for server-side encryption of objects stored in S3.
 
 #### Startup Script (Optional)
 
-The `startup_script` variable can contain any shell code and
-will be executed on the first boot. This mechanism can be used to customize the AMI,
-adding additional software or configuration.
+The `startup_script` variable can contain any shell code and will be executed on
+the first boot. This mechanism can be used to customize the AMI, adding
+additional software or configuration.
 
 For example, to install a custom SSL certificate for the services to trust:
 
@@ -110,7 +117,7 @@ update-ca-certificates
 
 Be sure that files in `/usr/local/share/ca-certificates` end in `.crt` and that `update-ca-certificates` is run after they're placed.
 
-To install additional Ubuntu packages:
+Or to install additional Ubuntu packages:
 
 ```
 apt-get install -y emacs
@@ -132,12 +139,15 @@ SHELL
 #### Proxy Support (Optional)
 
 The cluster can be configured to send all outbound HTTP and HTTPS traffic
-through a proxy. By setting the `proxy_url` to either an http:// or https:// url,
-all systems that make HTTP and HTTPS request will connect to the proxy to
+through a proxy. By setting the `proxy_url` to either an http:// or https://
+url, all systems that make HTTP and HTTPS request will connect to the proxy to
 perform the request.
 
-~> **Note:** This is only for outbound HTTP and HTTPS requests. Other traffic such
-as SMTP and NTP are not proxied and will attempt to connect directly.
+A comma-separated list of hosts to be excluded from proxying can be specified
+via the `no_proxy` variable.
+
+~> **Note:** This is only for outbound HTTP and HTTPS requests. Other traffic
+such as SMTP and NTP are not proxied and will attempt to connect directly.
 
 ## Planning
 
