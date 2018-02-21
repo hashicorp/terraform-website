@@ -1,0 +1,60 @@
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+    <ul class="nav docs-sidenav">
+      <li<%= sidebar_current("docs-extend-home") %>>
+        <a href="/docs/extend/home/index.html">Home</a>
+      </li>
+      <li<%= sidebar_current("docs-extend-how-terraform-works") %>>
+        <a href="/docs/extend/how-terraform-works/index.html">How Terraform Works</a>
+      </li>
+      <li<%= sidebar_current("docs-extend-plugin-types") %>>
+        <a href="/docs/extend/plugin-types/index.html">Plugin types</a>
+      </li>
+      <li<%= sidebar_current("docs-extend-writing-custom-provider") %>>
+        <!-- possibly make this "Guides" and collect some? -->
+        <a href="/docs/extend/writing-custom-provider/index.html">Writing a Custom Provider</a>
+      </li>
+
+      <li<%= sidebar_current("docs-extend-schemas") %>>
+        <a href="/docs/extend/schemas/index.html">Schemas</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-extend-schemas-create") %>>
+            <a href="/docs/extend/schemas/create.html">Schema Types</a>
+          </li>
+          <li<%= sidebar_current("docs-extend-schemas-trials") %>>
+            <a href="/docs/extend/schemas/trials.html">Schema Properties</a>
+          </li>
+<!-- omitted for now, to be created later
+          <li<%= sidebar_current("docs-extend-schemas-methods") %>>
+            <!-- Document methods of type Schema: DiffSuppressFunc, DefaultFunc, StateFunc, et. al -->
+            <a href="/docs/extend/schemas/methods.html">Schema Methods</a>
+          </li>
+-->
+        </ul>
+      </li>
+
+      <li<%= sidebar_current("docs-extend-community") %>>
+        <a href="/docs/extend/community/index.html">Community</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-extend-community-contributing") %>>
+            <a href="/docs/extend/community/contributing.html">Contributing</a>
+          </li>
+          <li<%= sidebar_current("docs-extend-community-code-of-conduct") %>>
+            <a href="/docs/extend/community/code-of-conduct.html">Code of Conduct</a>
+          </li>
+        </ul>
+      </li>
+
+      <hr>
+
+      <li<%= sidebar_current("docs-extend-accounts") %>>
+        <a href="/docs/extend/user-accounts/index.html">User Accounts</a>
+      </li>
+      <li<%= sidebar_current("docs-extend-accounts") %>>
+        <a href="/docs/extend/user-accounts/index.html">User Accounts</a>
+      </li>
+    </ul>
+  <% end %>
+
+  <%= yield %>
+<% end %>
