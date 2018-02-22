@@ -53,6 +53,8 @@ WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
 
 The [configuration version API](../api/configuration-versions.html) expects a tar.gz file to be uploaded, so the configuration directory must be packaged into a tar.gz.
 
+~> **Important:** The configuration directory must be the root of the tar file, with no intermediate directories. In other words, when the tar file is extracted the result must be paths like `./main.tf` rather than `./terraform-appserver/main.tf`.
+
 ```bash
 UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
 tar cvzf $UPLOAD_FILE_NAME -C $CONTENT_DIRECTORY .
