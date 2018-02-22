@@ -42,7 +42,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/teams
+  https://app.terraform.io/api/v2/organizations/my-organization/teams
 ```
 
 
@@ -86,5 +86,5 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://atlas.hashicorp.com/api/v2/teams/257529
+  https://app.terraform.io/api/v2/teams/257529
 ```

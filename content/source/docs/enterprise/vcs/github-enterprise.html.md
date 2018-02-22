@@ -42,7 +42,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
     Field name                 | Value
     ---------------------------|--------------------------------------------------
     Application Name           | Terraform Enterprise (`<YOUR ORGANIZATION NAME>`)
-    Homepage URL               | `https://atlas.hashicorp.com` (or the URL of your private TFE install)
+    Homepage URL               | `https://app.terraform.io` (or the URL of your private TFE install)
     Application Description    | Any description of your choice.
     Authorization callback URL | `https://example.com/replace-this-later` (or any placeholder; the correct URI doesn't exist until the next step.)
 

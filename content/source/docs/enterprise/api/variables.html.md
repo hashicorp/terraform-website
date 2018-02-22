@@ -60,7 +60,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/vars
+  https://app.terraform.io/api/v2/vars
 ```
 
 ### Sample Response
@@ -112,7 +112,7 @@ curl \
 $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-https://atlas.hashicorp.com/api/v2/vars?filter%5Borganization%5D%5Busername%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace
+https://app.terraform.io/api/v2/vars?filter%5Borganization%5D%5Busername%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace
 # ?filter[organization][username]=my-organization&filter[workspace][name]=demo01
 ```
 
@@ -185,7 +185,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/vars/var-yRmifb4PJj7cLkMG
+  https://app.terraform.io/api/v2/vars/var-yRmifb4PJj7cLkMG
 ```
 
 ### Sample Response

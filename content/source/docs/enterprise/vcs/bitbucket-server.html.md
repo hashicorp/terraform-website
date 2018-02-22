@@ -55,9 +55,9 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
     ![Bitbucket Server screenshot: The application links page](./images/bitbucket-server-application-links.png)
 
-2. Enter TFE's URL in the text field (`https://atlas.hashicorp.com`, or the hostname of your private TFE instance) and click the "Create new link" button.
+2. Enter TFE's URL in the text field (`https://app.terraform.io`, or the hostname of your private TFE instance) and click the "Create new link" button.
 
-    ~> **Note:** If you're connecting multiple TFE organizations to the same Bitbucket Server instance, you can only use TFE's main URL once. For subsequent organizations, you can enter the organization URL instead. Organization URLs look like `https://atlas.hashicorp.com/app/<ORG NAME>` or `https://<TFE HOSTNAME>/app/<ORG NAME>` — it's the page TFE's "Workspaces" button takes you to.
+    ~> **Note:** If you're connecting multiple TFE organizations to the same Bitbucket Server instance, you can only use TFE's main URL once. For subsequent organizations, you can enter the organization URL instead. Organization URLs look like `https://app.terraform.io/app/<ORG NAME>` or `https://<TFE HOSTNAME>/app/<ORG NAME>` — it's the page TFE's "Workspaces" button takes you to.
 
 3. In the "Configure application URL" dialog, confirm that you wish to use the URL exactly as you entered it. If you used TFE's main URL, click "Continue;" if you used an organization URL, click the "Use this URL" checkbox and then click "Continue."
 

@@ -41,7 +41,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/teams/257525/relationships/users
+  https://app.terraform.io/api/v2/teams/257525/relationships/users
 ```
 
 
@@ -76,5 +76,5 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/teams/257525/relationships/users
+  https://app.terraform.io/api/v2/teams/257525/relationships/users
 ```

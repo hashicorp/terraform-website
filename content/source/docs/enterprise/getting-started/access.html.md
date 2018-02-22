@@ -25,7 +25,7 @@ If you don't already have a TFE account, you must create one. You can use the sa
 
 In your web browser, go to:
 
-- [atlas.hashicorp.com](https://atlas.hashicorp.com) if you've registered for the SaaS version of TFE.
+- [app.terraform.io](https://app.terraform.io) if you've registered for the SaaS version of TFE.
 - The hostname of your private instance if you're using private Terraform Enterprise.
 
 ## Creating an Organization

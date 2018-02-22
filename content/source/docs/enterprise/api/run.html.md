@@ -67,7 +67,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/runs
+  https://app.terraform.io/api/v2/runs
 ```
 
 ### Sample Response
@@ -152,7 +152,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/apply
+  https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/apply
 ```
 
 
@@ -174,7 +174,7 @@ This endpoint lists the runs in a workspace
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://atlas.hashicorp.com/api/v2/workspaces/ws-yF7z4gyEQRhaCNG9/runs
+  https://app.terraform.io/api/v2/workspaces/ws-yF7z4gyEQRhaCNG9/runs
 ```
 
 ### Sample Response

@@ -25,7 +25,7 @@ This endpoint lists the policy checks in a run.
 ```shell
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
-  https://atlas.hashicorp.com/api/v2/runs/run-CZcmD7eagjhyXavN/policy-checks
+  https://app.terraform.io/api/v2/runs/run-CZcmD7eagjhyXavN/policy-checks
 ```
 
 ### Sample Response
@@ -117,7 +117,7 @@ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://atlas.hashicorp.com/api/v2/policy-checks/polchk-EasPB4Srx5NAiWAU/actions/override
+  https://app.terraform.io/api/v2/policy-checks/polchk-EasPB4Srx5NAiWAU/actions/override
 ```
 
 ### Sample Response
