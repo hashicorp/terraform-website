@@ -7,6 +7,8 @@ description: |-
   to extend Terraform's core offering.
 ---
 
-# Extending Terraform
+# Plugin Types
 
-This is the documentation for Extending Terraform Extend
+- Providers
+- Provisioners(?)
+- Backend(?) - not really a plugin, but backends are part of extending Terraform ¯\\_(ツ)_/¯

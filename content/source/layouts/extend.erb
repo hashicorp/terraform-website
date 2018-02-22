@@ -2,34 +2,38 @@
   <% content_for :sidebar do %>
     <ul class="nav docs-sidenav">
       <li<%= sidebar_current("docs-extend-home") %>>
-        <a href="/docs/extend/home/index.html">Home</a>
+        <a href="/docs/extend/index.html">Home</a>
       </li>
       <li<%= sidebar_current("docs-extend-how-terraform-works") %>>
-        <a href="/docs/extend/how-terraform-works/index.html">How Terraform Works</a>
+        <a href="/docs/extend/how-terraform-works.html">How Terraform Works</a>
       </li>
       <li<%= sidebar_current("docs-extend-plugin-types") %>>
-        <a href="/docs/extend/plugin-types/index.html">Plugin types</a>
+        <a href="/docs/extend/plugin-types.html">Plugin types</a>
       </li>
-      <li<%= sidebar_current("docs-extend-writing-custom-provider") %>>
+      <li<%= sidebar_current("docs-extend-writing-custom-providers") %>>
         <!-- possibly make this "Guides" and collect some? -->
-        <a href="/docs/extend/writing-custom-provider/index.html">Writing a Custom Provider</a>
+        <a href="/docs/extend/writing-custom-providers.html">Writing Custom Providers</a>
       </li>
 
       <li<%= sidebar_current("docs-extend-schemas") %>>
         <a href="/docs/extend/schemas/index.html">Schemas</a>
         <ul class="nav">
-          <li<%= sidebar_current("docs-extend-schemas-create") %>>
-            <a href="/docs/extend/schemas/create.html">Schema Types</a>
+          <li<%= sidebar_current("docs-extend-schemas-types") %>>
+            <a href="/docs/extend/schemas/schema-types.html">Schema Types</a>
           </li>
-          <li<%= sidebar_current("docs-extend-schemas-trials") %>>
-            <a href="/docs/extend/schemas/trials.html">Schema Properties</a>
+          <li<%= sidebar_current("docs-extend-schemas-properties") %>>
+            <a href="/docs/extend/schemas/schema-properties.html">Schema Properties</a>
           </li>
-<!-- omitted for now, to be created later
-          <li<%= sidebar_current("docs-extend-schemas-methods") %>>
+          <%
+#Not yet
+=begin
+          <li<%= sidebar_current("docs-extend-schemas-methods") \%\>>
+          TODO: fix the \%\> above, it's changed to not mess with the multiline begin/end comment
             <!-- Document methods of type Schema: DiffSuppressFunc, DefaultFunc, StateFunc, et. al -->
-            <a href="/docs/extend/schemas/methods.html">Schema Methods</a>
+            <a href="/docs/extend/schemas/schema-methods.html">Schema Methods</a>
           </li>
--->
+=end
+%>
         </ul>
       </li>
 
@@ -47,11 +51,11 @@
 
       <hr>
 
-      <li<%= sidebar_current("docs-extend-accounts") %>>
-        <a href="/docs/extend/user-accounts/index.html">User Accounts</a>
+      <li<%= sidebar_current("docs-extend-internals") %>>
+        <a href="/docs/internals/index.html">Terraform Internals</a>
       </li>
-      <li<%= sidebar_current("docs-extend-accounts") %>>
-        <a href="/docs/extend/user-accounts/index.html">User Accounts</a>
+      <li<%= sidebar_current("docs-extend-provider-dev-program") %>>
+        <a href="/guides/terraform-provider-development-program.html">Terraform Provider Development Program</a>
       </li>
     </ul>
   <% end %>
