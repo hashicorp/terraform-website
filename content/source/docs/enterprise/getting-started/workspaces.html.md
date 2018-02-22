@@ -59,7 +59,6 @@ In this example, we're using the `nfagerlund/terraform-minimum` repo.
 Optionally, you can set three other settings for a new workspace:
 
 - **Terraform Working Directory:** The directory in this repo where TFE will execute Terraform commands. If the Terraform configuration files you want aren't in the root of the repository, use this to specify where they are.
-- **VCS Root Path:** Similar to "Terraform Working Directory," but deletes other directories before running any Terraform command. Most users should use "Terraform Working Directory" instead.
 - **VCS Branch:** Which branch to use. Defaults to the repo's default branch, which is usually `master`.
 
 ## What Happens in a New Workspace
