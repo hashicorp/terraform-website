@@ -124,6 +124,7 @@ Preparing the instance:
 Executing the installer:
 
 From a shell on your instance, in the directory where you placed the `replicated.tar.gz` installer bootstrapper:
+
 1. Run `tar xzf replicated.tar.gz`
 1. Run `sudo ./install.sh airgap`
 1. When asked, select the interface of your primary private network interface used to access the instance.
