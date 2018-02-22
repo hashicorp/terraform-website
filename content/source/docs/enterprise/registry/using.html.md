@@ -11,7 +11,7 @@ sidebar_current: "docs-enterprise2-registry-using"
 By design, Terraform Enterprise (TFE)'s private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already familiar with the public registry, here are the main differences:
 
 - Use TFE's web UI to browse and search for modules.
-- Module `source` strings are slightly different. The public registry uses a three-part `<NAMESPACE>/<MODULE NAME>/<PROVIDER>` format, and private modules use a four-part `<TFE HOSTNAME>/<TFE ORGANIZATION>/<MODULE NAME>/<PROVIDER>` format. (Also, see [Note About Hostnames below](#note-about-hostnames).) For example, to load a module from the `example_corp` organization on the SaaS version of TFE:
+- Module `source` strings are slightly different. The public registry uses a three-part `<NAMESPACE>/<MODULE NAME>/<PROVIDER>` format, and private modules use a four-part `<TFE HOSTNAME>/<TFE ORGANIZATION>/<MODULE NAME>/<PROVIDER>` format. For example, to load a module from the `example_corp` organization on the SaaS version of TFE:
 
     ```hcl
     module "vpc" {
@@ -59,12 +59,6 @@ If you're using the SaaS version of TFE, the hostname is `app.terraform.io`; pri
 
 For more details on using modules in Terraform configurations, see ["Using Modules" in the Terraform docs.](/docs/modules/usage.html)
 
-### Note About Hostnames
-
-`app.terraform.io` is the future hostname for the SaaS version of Terraform Enterprise, and `atlas.hashicorp.com` is the current hostname. Right now, **you can safely use either hostname** for private modules, since `app.terraform.io` is already forwarding API calls and `atlas.hashicorp.com` will redirect API calls for a long time after we complete the hostname change.
-
-Since changing the hostname across all your Terraform configurations would be annoying, we recommend using `app.terraform.io` for private modules immediately, even though the hostname change isn't complete yet. It will make your configurations more confusing for a little while, but will save you effort in the long run.
-
 ### Usage Examples and the Configuration Designer
 
 Each registry page for a module version includes a usage example, which you can copy and paste to get started.
@@ -91,7 +85,7 @@ credentials "app.terraform.io" {
 }
 ```
 
-The block label for the `credentials` block must be TFE's hostname (`app.terraform.io`, `atlas.hashicorp.com`, or the hostname of your private install), and the block body must contain a `token` attribute whose value is a TFE authentication token. You can generate a personal API token from your user settings page in TFE.
+The block label for the `credentials` block must be TFE's hostname (`app.terraform.io` or the hostname of your private install), and the block body must contain a `token` attribute whose value is a TFE authentication token. You can generate a personal API token from your user settings page in TFE.
 
 Make sure the hostname matches the hostname you use in module sources — if the same TFE server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, you can add two `credentials` blocks with the same `token`.
 

@@ -40,7 +40,7 @@ The same request for the same module and provider on the TFE module registry for
 ```shell
 $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
-  https://atlas.hashicorp.com/api/registry/v1/modules/my-tfe-org/consul/aws/versions
+  https://app.terraform.io/api/registry/v1/modules/my-tfe-org/consul/aws/versions
 ```
 
 
@@ -80,7 +80,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/registry-modules
+  https://app.terraform.io/api/v2/registry-modules
 ```
 
 ### Sample Response
@@ -142,5 +142,5 @@ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://atlas.hashicorp.com/api/v2/registry-modules/actions/delete/skierkowski-v2/instance
+  https://app.terraform.io/api/v2/registry-modules/actions/delete/skierkowski-v2/instance
 ```

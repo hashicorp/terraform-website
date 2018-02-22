@@ -27,7 +27,7 @@ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/authentication-token
+  https://app.terraform.io/api/v2/organizations/my-organization/authentication-token
 ```
 
 ### Sample Response
@@ -72,5 +72,5 @@ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/authentication-token
+  https://app.terraform.io/api/v2/organizations/my-organization/authentication-token
 ```

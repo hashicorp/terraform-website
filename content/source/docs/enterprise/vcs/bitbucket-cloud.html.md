@@ -46,7 +46,7 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
     Name             | Terraform Enterprise (`<YOUR ORGANIZATION NAME>`)
     Description      | Any description of your choice.
     Callback URL     | `https://example.com/replace-this-later` (or any placeholder; the correct URI doesn't exist until the next step.)
-    URL              | `https://atlas.hashicorp.com` (or the URL of your private TFE install)
+    URL              | `https://app.terraform.io` (or the URL of your private TFE install)
 
     Ensure that the "This is a private consumer" option is checked. Then, activate the following permissions checkboxes:
 

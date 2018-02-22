@@ -66,7 +66,7 @@ The first step identified the organization name and the workspace name; however,
 WORKSPACE_ID=($(curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://atlas.hashicorp.com/api/v2/organizations/$ORG_NAME/workspaces/$WORKSPACE_NAME \
+  https://app.terraform.io/api/v2/organizations/$ORG_NAME/workspaces/$WORKSPACE_NAME \
   | jq -r '.data.id'))
 ```
 
@@ -82,7 +82,7 @@ UPLOAD_URL=($(curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @create_config_version.json \
-  https://atlas.hashicorp.com/api/v2/workspaces/$WORKSPACE_ID/configuration-versions \
+  https://app.terraform.io/api/v2/workspaces/$WORKSPACE_ID/configuration-versions \
   | jq -r '.data.attributes."upload-url"'))
 ```
 
@@ -137,7 +137,7 @@ tar -zcvf $UPLOAD_FILE_NAME $CONTENT_DIRECTORY
 WORKSPACE_ID=($(curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://atlas.hashicorp.com/api/v2/organizations/$ORG_NAME/workspaces/$WORKSPACE_NAME \
+  https://app.terraform.io/api/v2/organizations/$ORG_NAME/workspaces/$WORKSPACE_NAME \
   | jq -r '.data.id'))
 echo '{"data":{"type":"configuration-version"}}' > ./create_config_version.json
 
@@ -146,7 +146,7 @@ UPLOAD_URL=($(curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @create_config_version.json \
-  https://atlas.hashicorp.com/api/v2/workspaces/$WORKSPACE_ID/configuration-versions \
+  https://app.terraform.io/api/v2/workspaces/$WORKSPACE_ID/configuration-versions \
   | jq -r '.data.attributes."upload-url"'))
 curl \
   --request PUT \

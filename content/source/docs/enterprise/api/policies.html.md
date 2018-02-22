@@ -53,7 +53,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/policies
+  https://app.terraform.io/api/v2/organizations/my-organization/policies
 ```
 
 ### Sample Response
@@ -110,7 +110,7 @@ curl \
   --header "Content-Type: application/octet-stream" \
   --request PUT \
   --data-binary @payload.sentinel \
-  https://atlas.hashicorp.com/api/v2/policy/pol-u3S5p2Uwk21keu1s/upload
+  https://app.terraform.io/api/v2/policy/pol-u3S5p2Uwk21keu1s/upload
 ```
 
 
@@ -153,7 +153,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/policy/pol-u3S5p2Uwk21keu1s
+  https://app.terraform.io/api/v2/policy/pol-u3S5p2Uwk21keu1s
 ```
 
 ### Sample Response
@@ -199,7 +199,7 @@ List all the policies for a given organization
 ```shell
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/policies
+  https://app.terraform.io/api/v2/organizations/my-organization/policies
 ```
 
 ### Sample Response
@@ -246,6 +246,6 @@ curl \
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --request DELETE \
-  https://atlas.hashicorp.com/api/v2/policies/pl-u3S5p2Uwk21keu1s
+  https://app.terraform.io/api/v2/policies/pl-u3S5p2Uwk21keu1s
 ```
 

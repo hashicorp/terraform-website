@@ -63,7 +63,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/compound-workspaces
+  https://app.terraform.io/api/v2/compound-workspaces
 ```
 
 ### Sample Response
@@ -155,7 +155,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/workspaces
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces
 ```
 
 ### Sample Response
@@ -248,7 +248,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/compound-workspaces/ws-erEAnPmgtm5mJr77
+  https://app.terraform.io/api/v2/compound-workspaces/ws-erEAnPmgtm5mJr77
 ```
 
 ### Sample Response
@@ -313,7 +313,7 @@ This endpoint lists workspaces in the organization.
 $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/workspaces
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces
 ```
 
 ### Sample Response
@@ -420,5 +420,5 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://atlas.hashicorp.com/api/v2/organizations/my-organization/workspaces/my-workspace
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces/my-workspace
 ```

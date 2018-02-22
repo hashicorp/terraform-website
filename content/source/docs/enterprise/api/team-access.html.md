@@ -27,7 +27,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://atlas.hashicorp.com/api/v2/team-workspaces?filter%5Bworkspace%5D%5Bid%5D=ws-5vBKrazjYR36gcYX
+  https://app.terraform.io/api/v2/team-workspaces?filter%5Bworkspace%5D%5Bid%5D=ws-5vBKrazjYR36gcYX
 ```
 
 ### Sample Response
@@ -116,7 +116,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://atlas.hashicorp.com/api/v2/team-workspaces
+  https://app.terraform.io/api/v2/team-workspaces
 ```
 
 ### Sample Response
@@ -173,7 +173,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://atlas.hashicorp.com/api/v2/team-workspaces/257525
+  https://app.terraform.io/api/v2/team-workspaces/257525
 ```
 
 ### Sample Response
@@ -205,6 +205,6 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://atlas.hashicorp.com/api/v2/team-workspaces/257525
+  https://app.terraform.io/api/v2/team-workspaces/257525
 ```
 

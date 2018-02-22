@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-users-teams-organizations-users"
 
 # Users
 
-Users are individual members of an organization. Users must first [create an account](https://atlas.hashicorp.com/account/new) in Terraform Enterprise before
+Users are individual members of an organization. Users must first [create an account](https://app.terraform.io/account/new) in Terraform Enterprise before
 they can be added to an organization.
 
 ## Team and Organization Membership
