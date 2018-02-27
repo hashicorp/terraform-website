@@ -22,7 +22,15 @@ instance ready.
 
 ### Data Files
 
-* TLS private key and certificate _Optional: Self-signed materials can be used_
+* TLS private key and certificate
+  * The installer allows for using a self-signed certificate but HashiCorp does
+    _not_ recommended this. Your VCS provider will likely reject that certificate
+    when sending webhooks. If you do use the self-signed certificate, you must configured
+    each webhook to ignore SSL errors within your VCS provider.
+  * If you do not have access to a certificate, you can use
+    [Let's Encrypt](https://letsencrypt.org/getting-started/) to request one for free.
+    You will provide the path on the host system to the created certificate and key
+    when requested by the setup process.
 * License key (provided by HashiCorp)
 
 ### Linux Instance
