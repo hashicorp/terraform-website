@@ -14,12 +14,12 @@ The Teams API is used to create and destroy teams. The [Team Membership API](./t
 
 | Method | Path           |
 | :----- | :------------- |
-| POST | /organizations/:organization_id/teams |
+| POST | /organizations/:organization_name/teams |
 
 ### Parameters
 
 - `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-- `:organization_id` (`string: <required>`) - Specifies the username or organization name under which to create the team. The organization must already exist in the system, and the user must have permissions to create new teams. This parameter is specified in the URL path.
+- `:organization_name` (`string: <required>`) - Specifies the organization name under which to create the team. The organization must already exist in the system, and the user must have permissions to create new teams. This parameter is specified in the URL path.
 
 ### Sample Payload
 

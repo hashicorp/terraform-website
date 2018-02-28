@@ -16,11 +16,11 @@ This endpoint is used to create a new workspace either with or without a VCS con
 
 | Method | Path           |
 | :----- | :------------- |
-| POST | /organizations/:organization_username/workspaces |
+| POST | /organizations/:organization_name/workspaces |
 
 ### Parameters
 
-- `:organization_username` (`string: <required>`) - Specifies the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
+- `:organization_name` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 - `name`
 
 ### Create a Workspace Without a VCS Repository
@@ -206,12 +206,12 @@ Update the workspace settings
 
 | Method | Path           |
 | :----- | :------------- |
-| PATCH | /organizations/:organization_username/workspaces/:workspace_id |
+| PATCH | /organizations/:organization_name/workspaces/:workspace_id |
 
 
 ### Parameters
 
-- `:organization_username` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
+- `:organization_name` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 - `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update.
 - `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 - `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
@@ -304,7 +304,7 @@ This endpoint lists workspaces in the organization.
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specifies the username or organization name under which to list the workspaces. This is specified in the URL path.
+- `:organization` (`string: <required>`) - Specifies the organization name under which to list the workspaces. This is specified in the URL path.
 
 ### Sample Request
 

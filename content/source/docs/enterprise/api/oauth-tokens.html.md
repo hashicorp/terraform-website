@@ -16,11 +16,11 @@ List all the OAuth Tokens for a given organization
 
 | Method | Path           |
 | :----- | :------------- |
-| GET | /organizations/:organization_username/oauth-tokens |
+| GET | /organizations/:organization_name/oauth-tokens |
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - specifies the organization name where the OAuth Token is defined
+- `:organization_name` (`string: <required>`) - specifies the organization name where the OAuth Token is defined
 
 ### Sample Request
 
