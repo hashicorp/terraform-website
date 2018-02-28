@@ -414,3 +414,74 @@ $ curl \
   --request DELETE \
   https://app.terraform.io/api/v2/organizations/my-organization/workspaces/my-workspace
 ```
+
+
+## Lock a workspace
+
+This endpoint locks a workspace.
+
+| Method | Path           |
+| :----- | :------------- |
+| POST | /workspaces/:workspace_id/actions/lock |
+
+### Parameters
+
+* `:workspace_id` (`string: <required>`) - Specifies the workspace ID to lock.
+* `reason` (`string: <optional>`) - Specifies the reason for locking the workspace.
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  https://app.terraform.io/api/v2/workspaces/my-workspace/actions/lock
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "auto-apply": false,
+      "can-queue-destroy-plan": false,
+      "created-at": "2017-11-02T23:23:53.765Z",
+      "environment": "default",
+      "locked": true,
+      "name": "my-workspace",
+      "permissions": {
+        "can-destroy": true,
+        "can-lock": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-update": true,
+        "can-update-variable": true
+      },
+      "terraform-version": "0.10.8",
+      "vcs-repo": {
+        "branch": "",
+        "identifier": "my-organization/my-repository",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
+      },
+      "working-directory": null
+    },
+    "id": "ws-YnyXLq9fy38afEeb",
+    "relationships": {
+      "locked-by": {
+        "data": {
+          "id": "my-user",
+          "type": "users"
+        },
+        "links": {
+          "related": "/api/v2/users/my-user"
+        }
+      }
+    },
+    "type": "workspaces"
+  }
+}
+```
