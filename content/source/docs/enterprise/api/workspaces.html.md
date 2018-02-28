@@ -110,6 +110,7 @@ By supplying the necessary attributes under a `vcs-repository` object, you can c
 #### Parameters
 
 - `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+- `terraform_version` (`string: <optional>`) - Specifices the version of Terraform to use for this workspace.
 - `working-directory` (`string: ''`) - Specifies a relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 - `vcs-repo.oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 - `vcs-repo.branch` (`string: ''`) - Specifies the repository branch that Terraform will execute from. If left null or submitted as an empty string, this defaults to the repository's default branch (e.g. `master`) .
@@ -123,6 +124,7 @@ By supplying the necessary attributes under a `vcs-repository` object, you can c
   "data": {
     "attributes": {
       "name":"workspace-demo",
+      "terraform_version":"0.11.1",
       "working-directory":"",
       "vcs-repo": {
         "identifier":"skierkowski/terraform-test-proj",
@@ -214,6 +216,7 @@ Update the workspace settings
 - `:organization_name` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 - `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update.
 - `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+- `terraform_version` (`string: <optional>`) - Specifices the version of Terraform to use for this workspace.
 - `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 - `vcs-repo.branch` (`string: ''`) - Specifies the repository branch that Terraform will execute from. If left null or as an empty string, this defaults to the repository's default branch (e.g. `master`) .
 - `vcs-repo.oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
@@ -227,6 +230,7 @@ Update the workspace settings
   "data": {
     "attributes": {
       "name":"my-workspace-2",
+      "terraform_version":"0.11.1",
       "working-directory":"",
       "vcs-repo": {
         "identifier":"skierkowski/terraform-test-proj",
