@@ -21,10 +21,15 @@ This endpoint is used to create a new workspace either with or without a VCS con
 ### Parameters
 
 - `:organization_username` (`string: <required>`) - Specifies the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
+- `name`
 
 ### Create a Workspace Without a VCS Repository
 
-If you supply nothing but a name, you can create a Workspace without configuring it against a VCS Repository.
+If you supply nothing but a name, you can create a workspace without configuring it against a VCS repository.
+
+#### Parameters
+
+- `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 
 #### Sample Payload
 
@@ -105,9 +110,9 @@ By supplying the necessary attributes under a `vcs-repository` object, you can c
 #### Parameters
 
 - `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-- `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
+- `working-directory` (`string: ''`) - Specifies a relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 - `vcs-repo.oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
-- `vcs-repo.branch` (`string: ''`) - Specifies the repository branch that Terraform will execute from. If left null or as an empty string, this defaults to the repository's default branch (e.g. `master`) .
+- `vcs-repo.branch` (`string: ''`) - Specifies the repository branch that Terraform will execute from. If left null or submitted as an empty string, this defaults to the repository's default branch (e.g. `master`) .
 - `vcs-repo.ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
 - `vcs-repo.identifier` (`string: <optional>`) - This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
 
