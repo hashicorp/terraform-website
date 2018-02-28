@@ -436,7 +436,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://app.terraform.io/api/v2/workspaces/my-workspace/actions/lock
+  https://app.terraform.io/api/v2/workspaces/ws-YnyXLq9fy38afEeb/actions/lock
 ```
 
 ### Sample Response
@@ -506,7 +506,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://app.terraform.io/api/v2/workspaces/my-workspace/actions/unlock
+  https://app.terraform.io/api/v2/workspaces/ws-YnyXLq9fy38afEeb/actions/unlock
 ```
 
 ### Sample Response
