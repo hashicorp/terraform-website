@@ -10,50 +10,37 @@ sidebar_current: "docs-enterprise2-api-workspaces"
 
 Workspaces represent running infrastructure managed by Terraform.
 
+## Create a Workspace
 
-
-
-## Create a Workspace with a VCS Repository
-
-This endpoint is used to create a new workspace which references an `oauth-token`, `linkable-repo-id` and `ingress-trigger-attributes` to configure the connection to VCS.
+This endpoint is used to create a new workspace either with or without a VCS configuration.
 
 | Method | Path           |
 | :----- | :------------- |
-| POST | /compound-workspaces |
-
-
+| POST | /organizations/:organization_username/workspaces |
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specifies the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
-- `oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
-- `default-branch` (`boolean: true`) - specifies if the default branch should be used.
-- `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
-- `linkable-repo-id` (`string: <optional>`) - This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
-- `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-- `working-directory` (`string:''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
+- `:organization_username` (`string: <required>`) - Specifies the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 
-### Sample Payload
+### Create a Workspace Without a VCS Repository
+
+If you supply nothing but a name, you can create a Workspace without configuring it against a VCS Repository.
+
+#### Sample Payload
 
 ```json
 {
-  "data": {
+  "data":
+  {
     "attributes": {
-      "name":"workspace-demo",
-      "working-directory":"",
-      "linkable-repo-id":"skierkowski/terraform-test-proj",
-      "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
-      "ingress-trigger-attributes": {
-        "branch":"",
-        "default-branch":true
-      }
+      "name":"workspace-demo"
     },
-    "type":"compound-workspaces"
+    "type":"workspaces"
   }
 }
 ```
 
-### Sample Request
+#### Sample Request
 
 ```shell
 $ curl \
@@ -61,10 +48,10 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/compound-workspaces
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces
 ```
 
-### Sample Response
+#### Sample Response
 
 ```json
 {
@@ -80,11 +67,6 @@ $ curl \
       "working-directory": "",
       "terraform-version": "0.11.0",
       "can-queue-destroy-plan": false,
-      "ingress-trigger-attributes": {
-        "branch": "",
-        "default-branch": true,
-        "ingress-submodules": false
-      },
       "permissions": {
         "can-update": true,
         "can-destroy": false,
@@ -116,35 +98,40 @@ $ curl \
 }
 ```
 
-## Create a Workspace Without a VCS Repository
+### Create a Workspace with a VCS Repository
 
-The default `/workspaces` endpoint creates a workspace without configuring the VCS connection (`ingress-trigger`).
+By supplying the necessary attributes under a `vcs-repository` object, you can create a Workspace that is configured against a VCS Repository.
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /organizations/:organization_username/workspaces |
+#### Parameters
 
+- `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+- `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
+- `vcs-repo.oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+- `vcs-repo.branch` (`string: ''`) - Specifies the repository branch that Terraform will execute from. If left null or as an empty string, this defaults to the repository's default branch (e.g. `master`) .
+- `vcs-repo.ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
+- `vcs-repo.identifier` (`string: <optional>`) - This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
 
-
-### Parameters
-
-- `:organization_username` (`string: <required>`) - Specifies the username or organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
-
-### Sample Payload
+#### Sample Payload
 
 ```json
 {
-  "data":
-  {
+  "data": {
     "attributes": {
-      "name":"workspace-demo"
+      "name":"workspace-demo",
+      "working-directory":"",
+      "vcs-repo": {
+        "identifier":"skierkowski/terraform-test-proj",
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "branch":"",
+        "default-branch":true
+      }
     },
     "type":"workspaces"
   }
 }
 ```
 
-### Sample Request
+#### Sample Request
 
 ```shell
 $ curl \
@@ -155,7 +142,7 @@ $ curl \
   https://app.terraform.io/api/v2/organizations/my-organization/workspaces
 ```
 
-### Sample Response
+#### Sample Response
 
 ```json
 {
@@ -170,7 +157,22 @@ $ curl \
       "created-at": "2017-11-02T23:55:16.142Z",
       "working-directory": null,
       "terraform-version": "0.10.8",
-      "can-queue-destroy-plan": true
+      "can-queue-destroy-plan": true,
+      "vcs-repo": {
+        "identifier": "skierkowski/terraform-test-proj",
+        "branch": "",
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "ingress-submodules": false
+      },
+      "permissions": {
+        "can-update": true,
+        "can-destroy": false,
+        "can-queue-destroy": false,
+        "can-queue-run": false,
+        "can-update-variable": false,
+        "can-lock": false,
+        "can-read-settings": true
+      }
     },
     "relationships": {
       "organization": {
@@ -199,20 +201,19 @@ Update the workspace settings
 
 | Method | Path           |
 | :----- | :------------- |
-| PATCH | /compound-workspaces/:workspace_id |
-
+| PATCH | /organizations/:organization_username/workspaces/:workspace_id |
 
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
+- `:organization_username` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 - `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update.
-- `oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
-- `default-branch` (`boolean: true`) - specifies if the default branch should be used.
-- `ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
-- `linkable-repo-id` (`string: <required>`) - This is the reference to your VCS repository in the format :org/:repo
 - `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-- `working-directory` (`string:''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
+- `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
+- `vcs-repo.branch` (`string: ''`) - Specifies the repository branch that Terraform will execute from. If left null or as an empty string, this defaults to the repository's default branch (e.g. `master`) .
+- `vcs-repo.oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+- `vcs-repo.ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
+- `vcs-repo.identifier` (`string: <required>`) - This is the reference to your VCS repository in the format :org/:repo
 
 ### Sample Payload
 
@@ -222,15 +223,14 @@ Update the workspace settings
     "attributes": {
       "name":"my-workspace-2",
       "working-directory":"",
-      "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
-      "linkable-repo-id":"skierkowski/terraform-test-proj",
-      "ingress-trigger-attributes": {
+      "vcs-repo": {
+        "identifier":"skierkowski/terraform-test-proj",
         "branch":"",
         "ingress-submodules":false,
-        "default-branch":true
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
       }
     },
-    "type":"compound-workspaces"
+    "type":"workspaces"
   }
 }
 ```
