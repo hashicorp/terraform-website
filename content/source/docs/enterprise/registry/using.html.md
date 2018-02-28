@@ -71,11 +71,19 @@ Alternately, you can use the configuration designer, which lets you select multi
 
 TFE can use your private modules during plans and applies with no extra configuration, _as long as the workspace is configured to use Terraform 0.11 or higher._
 
-Note that you can only use private modules from your own organization's registry. If you need to share modules across organizations, do so at the VCS repository level — share access to the backing repository, and add the module to each organization's registry.
+A given workspace can only use private modules from the organization it belongs to. If you want to use the same module in multiple organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html.html#sharing-modules-across-organizations).)
 
 ### On the Command Line
 
-If you're using Terraform 0.11 or higher, you can use private modules when applying configurations on the CLI. However, you must provide a valid TFE API token to access private modules.
+If you're using Terraform 0.11 or higher, you can use private modules when applying configurations on the CLI. To do this, you must provide a valid [TFE API token](../users-teams-organizations/users.html#api-tokens).
+
+#### Permissions
+
+When you authenticate with a user token, you can access modules from any organization you are a member of. (A user is a member of an organization if they belong to any team in that organization.)
+
+Within a given Terraform configuration, you should only use modules from one organization. Mixing modules from different organizations might work on the CLI with your user token, but it will make your configuration difficult or impossible to collaborate with. If you want to use the same module in multiple organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html.html#sharing-modules-across-organizations).)
+
+#### Configuration
 
 To configure private module access, add a `credentials` block to your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html).
 
@@ -89,5 +97,4 @@ The block label for the `credentials` block must be TFE's hostname (`app.terrafo
 
 Make sure the hostname matches the hostname you use in module sources — if the same TFE server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, you can add two `credentials` blocks with the same `token`.
 
-~> **Important:** When adding an authentication token to your CLI config file, check the file permissions and make sure other users on the same computer cannot view its contents.
-
+~> **Important:** Make sure to protect your API token. When adding an authentication token to your CLI config file, check the file permissions and make sure other users on the same computer cannot view its contents.

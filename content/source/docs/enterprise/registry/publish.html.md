@@ -94,3 +94,9 @@ To delete a module or version:
 ~> **Note:** If a deletion would leave a module with no versions, the module will be automatically deleted.
 
 ![TFE screenshot: the deletion dialog](./images/publish-delete.png)
+
+## Sharing Modules Across Organizations
+
+In normal operation, TFE doesn't allow one organization's workspaces to use private modules from a different organization. (When TFE runs Terraform, it provides temporary credentials that are only valid for the workspace's organization, and uses those credentials to access modules.) And although it's possible to mix modules from multiple organizations when running Terraform on the command line, we strongly recommend against it.
+
+However, you can easily share modules across organizations by sharing the underlying VCS repository. Grant each organization access to the module's repo, then add the module to each organization's registry. When you push tags to publish new module versions, both organizations will update appropriately.
