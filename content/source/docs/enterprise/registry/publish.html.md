@@ -62,7 +62,7 @@ This brings you to the "Add a New Module" page, which has a text field and at le
 
 If you have multiple VCS providers configured, use the buttons to select one. In the text field, enter the name of the repository for the module you're adding. Then click the "Publish Module" button.
 
-~> **Note:** The name you type into the repo field will usually be something like `hashicorp/terraform-aws-vpc` or `INFRA/terraform-azure-appserver`. Module repo names use a `terraform-<PROVIDER>-<NAME>` format, and VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. (For most providers the namespace is a username or organization name, but Bitbucket Server uses project keys, like `INFRA`.)
+~> **Note:** The name you type into the repo field will usually be something like `hashicorp/terraform-aws-vpc` or `INFRA/terraform-azure-appserver`. Module repo names use a `terraform-<PROVIDER>-<NAME>` format, and VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. (For most providers the namespace is an organization name, but Bitbucket Server uses project keys, like `INFRA`.)
 
 TFE will display a loading page while it imports the module versions from version control, and will then take you to the new module's details page. On the details page you can view available versions, read documentation, and copy a usage example.
 
