@@ -88,7 +88,12 @@ curl \
           "queued-at": "2017-11-29T20:02:17+00:00",
           "soft-failed-at": "2017-11-29T20:02:20+00:00"
         },
-        "may-override": false
+        "actions": {
+          "is-overridable": true
+        },
+        "permissions": {
+          "can-override": false
+        }
       },
       "links": {
         "output": "/api/v2/policy-checks/polchk-9VYRc9bpfJEsnwum/output"
@@ -180,7 +185,12 @@ curl \
         "soft-failed-at": "2017-11-29T20:13:40+00:00",
         "overridden-at": "2017-11-29T20:14:11+00:00"
       },
-      "may-override": false
+      "actions": {
+        "is-overridable": true
+      },
+      "permissions": {
+        "can-override": false
+      }
     },
     "links": {
       "output": "/api/v2/policy-checks/polchk-EasPB4Srx5NAiWAU/output"

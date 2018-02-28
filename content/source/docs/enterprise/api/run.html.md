@@ -88,10 +88,12 @@ curl \
       "status-timestamps": {},
       "terraform-version": "0.10.8",
       "created-at": "2017-11-29T19:56:15.205Z",
-      "may-canceled": true,
-      "may-confirm": false,
-      "may-discarded": false,
       "has-changes": false,
+      "actions": {
+        "is-cancelable": true,
+        "is-confirmable": false,
+        "is-discardable": false,
+      },
       "permissions": {
         "can-apply": true,
         "can-cancel": true,
@@ -198,10 +200,12 @@ curl \
         },
         "terraform-version": "0.11.0",
         "created-at": "2017-11-28T22:52:46.711Z",
-        "may-canceled": false,
-        "may-confirm": true,
-        "may-discarded": true,
         "has-changes": true,
+        "actions": {
+          "is-cancelable": false,
+          "is-confirmable": true,
+          "is-discardable": true,
+        },
         "permissions": {
           "can-apply": true,
           "can-cancel": true,
