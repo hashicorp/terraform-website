@@ -485,3 +485,62 @@ $ curl \
   }
 }
 ```
+
+
+## Unlock a workspace
+
+This endpoint unlocks a workspace.
+
+| Method | Path           |
+| :----- | :------------- |
+| POST | /workspaces/:workspace_id/actions/unlock |
+
+### Parameters
+
+* `:workspace_id` (`string: <required>`) - Specifies the workspace ID to unlock.
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  https://app.terraform.io/api/v2/workspaces/my-workspace/actions/unlock
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "auto-apply": false,
+      "can-queue-destroy-plan": false,
+      "created-at": "2017-11-02T23:23:53.765Z",
+      "environment": "default",
+      "locked": false,
+      "name": "my-workspace",
+      "permissions": {
+        "can-destroy": true,
+        "can-lock": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-update": true,
+        "can-update-variable": true
+      },
+      "terraform-version": "0.10.8",
+      "vcs-repo": {
+        "branch": "",
+        "identifier": "my-organization/my-repository",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
+      },
+      "working-directory": null
+    },
+    "id": "ws-YnyXLq9fy38afEeb",
+    "type": "workspaces"
+  }
+}
+```
