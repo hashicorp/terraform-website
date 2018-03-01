@@ -54,8 +54,8 @@ This endpoint can be used to publish a new module to the registry. The publishin
 
 ### Parameters
 
-- `linkable-repo-id` (`string: <required>`) - Specifies the repository to be used to ingress the configuration. For Bitbucket server, the format is `<PROJECT_KEY>/<REPO>`. Bitbucket Server is currently the only supported VCS service.
-- `oauth-token-id` (`string: <requires>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+- `vcs-repo.identifier` (`string: <required>`) - Specifies the repository to be used to ingress the configuration. For Bitbucket server, the format is `<PROJECT_KEY>/<REPO>`. Bitbucket Server is currently the only supported VCS service.
+- `vcs-repo.oauth-token-id` (`string: <requires>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 
 
 ### Sample Payload
@@ -64,8 +64,10 @@ This endpoint can be used to publish a new module to the registry. The publishin
 {
   "data": {
     "attributes": {
-      "linkable-repo-id":"SKI/terraform-aws-instance",
-      "oauth-token-id":"ot-hmAyP66qk2AMVdbJ"
+      "vcs-repo": {
+        "identifier":"SKI/terraform-aws-instance",
+        "oauth-token-id":"ot-hmAyP66qk2AMVdbJ"
+      }
     },
     "type":"registry-modules"
   }
