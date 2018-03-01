@@ -553,3 +553,172 @@ $ curl \
   }
 }
 ```
+
+
+## Associate an SSH key to a workspace
+
+This endpoint associates an SSH key to a workspace.
+
+| Method | Path           |
+| :----- | :------------- |
+| PATCH | /workspaces/:workspace_id/relationships/ssh-key |
+
+### Parameters
+
+* `:workspace_id` (`string: <required>`) - Specifies the workspace ID to associate the SSH key to.
+* `id` (`string: <required>`) - Specifies the SSH key ID to associate.
+
+#### Sample Payload
+
+```json
+{
+  "data":
+  {
+    "attributes": {
+      "id":"sshkey-GxrePWre1Ezug7aM"
+    },
+    "type":"workspaces"
+  }
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/ws-erEAnPmgtm5mJr77/relationships/ssh-key
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "auto-apply": false,
+      "can-queue-destroy-plan": false,
+      "created-at": "2017-11-02T23:24:05.997Z",
+      "environment": "default",
+      "ingress-trigger-attributes": {
+        "branch": "",
+        "default-branch": true,
+        "ingress-submodules": false
+      },
+      "locked": false,
+      "name": "my-workspace-2",
+      "terraform-version": "0.10.8",
+      "working-directory": ""
+    },
+    "id": "ws-erEAnPmgtm5mJr77",
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/ws-erEAnPmgtm5mJr77"
+    },
+    "relationships": {
+      "latest-run": {
+        "data": null
+      },
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "ssh-key": {
+        "data": {
+          "id": "sshkey-GxrePWre1Ezug7aM",
+          "type": "ssh-keys"
+        },
+        "links": {
+          "related": "/api/v2/ssh-keys/sshkey-GxrePWre1Ezug7aM"
+        }
+      }
+    },
+    "type": "workspaces"
+  }
+}
+```
+
+
+## Dissociate an SSH key from a workspace
+
+This endpoint dissociates the currently associated SSH key from a workspace.
+
+| Method | Path           |
+| :----- | :------------- |
+| PATCH | /workspaces/:workspace_id/relationships/ssh-key |
+
+### Parameters
+
+* `:workspace_id` (`string: <required>`) - Specifies the workspace ID to dissociate the currently associated SSH key from.
+
+#### Sample Payload
+
+```json
+{
+  "data":
+  {
+    "attributes": {
+      "id":null
+    },
+    "type":"workspaces"
+  }
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/ws-erEAnPmgtm5mJr77/relationships/ssh-key
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "auto-apply": false,
+      "can-queue-destroy-plan": false,
+      "created-at": "2017-11-02T23:24:05.997Z",
+      "environment": "default",
+      "ingress-trigger-attributes": {
+        "branch": "",
+        "default-branch": true,
+        "ingress-submodules": false
+      },
+      "locked": false,
+      "name": "my-workspace-2",
+      "terraform-version": "0.10.8",
+      "working-directory": ""
+    },
+    "id": "ws-erEAnPmgtm5mJr77",
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/ws-erEAnPmgtm5mJr77"
+    },
+    "relationships": {
+      "latest-run": {
+        "data": null
+      },
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "ssh-key": {
+        "data": null
+      }
+    },
+    "type": "workspaces"
+  }
+}
+```
