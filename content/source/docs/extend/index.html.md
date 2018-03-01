@@ -10,50 +10,50 @@ description: |-
 # Extending Terraform
 
 Terraform enables you to safely and predictably create, change, and improve
-infrastructure. It is an open source tool that codifies APIs, with the goal of
-being extendable to provision any infrastructure for any application.
+infrastructure. It is an open source tool that codifies infrastructure provider
+APIs with the goal of enabling users to codify and provision any infrastructure.
+Terraform can be extended to provision more infrastructure providers with
+Providers, more infrastructure resources with Resources, and more options to
+store Terraform state with Backends. Providers, Resources, and Backends are
+collectively categorized as "Plugins".
 
 ~> This is an advanced section! If you are looking for information on using
-Terraform with any of the existing Providers or Plugins, please refer to the
+Terraform with any of the existing Plugins, please refer to the
 [Docs](/docs/index.html) section of this website.
 
-The Extending Terraform section is filled with content dedicated to those who
-wish to extend Terraform. The intended audience is anyone wanting to add or edit
-source code (“developers”) for either Terraform itself, or a Terraform Plugin.
-The content assumes you have basic operating knowledge or experience with using
-Terraform, and is under active development. 
+The Extending Terraform section is filled with content for users who wish to
+extend Terraform. The intended audience is anyone wanting to add or edit source
+code (“developers”) for either Terraform itself, or a Terraform Plugin. The
+content assumes you have basic operating knowledge or experience using
+Terraform.
 
-Below is a brief description of each subsection, with the content being
-organized in a progressive manner. Developers new to Terraform should start at
-the top and work their way down. 
+Below is a brief description of each section. The content is organized from
+simplest to most complex — developers new to writing code for Terraform should
+start at the top. 
 
-## How Terraform Works 
+## [How Terraform Works](/docs/extend/how-terraform-works.html)
 
 High level overview of how the Terraform tool works. Learn about the logical
-components of Terraform (Core vs. Plugins) and the basics of how they interact. 
+components of Terraform (Core vs. Plugins) and the basics of how they interact.
 
-## Plugin Types
+## [Plugin Types](/docs/extend/plugin-types.html)
 
-Terraform uses a plugin system to achieve its goals. Learn about the types of
-plugins Terraform uses, and their responsibilities. 
+Learn about the different types of Terraform plugins — Providers, Resources,
+Backends. 
 
-## Writing a Custom Provider 
+## [Writing Custom Providers](/docs/extend/writing-custom-providers.html)
 
-A step by step guide that walks you through writing, compiling, and executing an
-example Terraform Provider. 
+A step by step guide for writing, compiling, and executing an example Terraform
+Provider. 
 
-## Schemas
+## [Schemas](/docs/extend/schemas/index.html)
 
-The Schema package is a high-level framework provided by Terraform Core for
-easily writing Plugins for Terraform. Providers, Resources, and Backends are all
-defined in terms of the Schema package, and it includes many builtin types and
-methods for developers to use when writing plugins. 
+The Schema package is a high-level framework for easily writing Plugins for
+Terraform. Providers, Resources, and Backends are all defined in terms of the
+Schema package, which includes builtin types and methods for developers to use
+when writing plugins. 
 
-## Community
+## [Community](/docs/extend/community/index.html)
 
 Terraform is a mature project with a growing community. There are active,
 dedicated people willing to help you through various mediums. 
-
-~> This documentation is open source! To contribute to this documentation, or to
-report an issue, please visit the [`hashicorp/terraform-website` GitHub
-repository](https://github.com/hashicorp/terraform-website). 
