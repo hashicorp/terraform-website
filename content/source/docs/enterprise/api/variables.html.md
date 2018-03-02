@@ -219,3 +219,23 @@ $ curl \
   }
 }
 ```
+
+## Delete Variables
+
+| Method | Path           |
+| :----- | :------------- |
+| DELETE | /vars/:variable_id |
+
+### Parameters
+
+- `:variable_id` (`string: <required>`) - specifies the ID of the variable to be deleted. Specified in the request path.
+
+### Sample Request
+
+```bash
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/vars/var-yRmifb4PJj7cLkMG
+```
