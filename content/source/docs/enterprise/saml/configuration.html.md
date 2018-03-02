@@ -20,8 +20,8 @@ Go to `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/admin/settings/saml` and set t
 1. **Single Sign On URL**: specifies the HTTP(S) endpoint on your IdP for single sign-on requests. This value is provided by your IdP configuration.
 2. **Single Log Out URL**:  specifies the HTTP(s) endpoint on your IdP for single logout requests. This value is provided by your IdP configuration. Single Logout is not yet supported.
 3. **Identity Provider Certificate**: Specifies the PEM encoded X.509 Certificate as provided by the IdP configuration.
-4. **User email address**: (default: `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`) Specifies the attribute to be used to identify the email address of the user. The username is generated using the email address by using the local-part (username) of the email (before the `@`). The username must be alphanumeric, `-` or `_` characters, all invalid characters will be converted to `_`.
-5. **Team Attribute Name**: (default: `MemberOf`) Specifies the name of the SAML attribute that determines [team membership](./team-membership.html). The value of this attribute in the SAML assertion must be a string containing a comma-separated list of team names.
+4. **Team Attribute Name**: (default: `MemberOf`) Specifies the name of the SAML attribute that determines [team membership](./team-membership.html). The value of this attribute in the SAML assertion must be a string containing a comma-separated list of team names.
+5. **Site Admin Role**: (default: `site-admins`) Specifies the role for site admin access, provided in the list of roles sent in the Team Attribute Name attribute.
 
 ## Identity Provider
 
