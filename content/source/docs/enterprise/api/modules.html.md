@@ -54,7 +54,7 @@ This endpoint can be used to publish a new module to the registry. The publishin
 
 ### Parameters
 
-- `vcs-repo.identifier` (`string: <required>`) - Specifies the repository to be used to ingress the configuration. For Bitbucket server, the format is `<PROJECT_KEY>/<REPO>`. Bitbucket Server is currently the only supported VCS service.
+- `vcs-repo.identifier` (`string: <required>`) - Specifies the repository to be used to ingress the configuration. For GitHub and Bitbucket, the format is `<PROJECT_KEY>/<REPO>`.
 - `vcs-repo.oauth-token-id` (`string: <required>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 
 
