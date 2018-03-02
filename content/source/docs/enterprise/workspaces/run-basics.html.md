@@ -132,7 +132,7 @@ Most importantly, it shows:
 - A timeline of events related to the run.
 - The output from both the `terraform plan` and `terraform apply` commands, if applicable. You can hide or reveal these as needed; they default to visible if the command is currently running, and hidden if the command has finished.
 
-## Preventing Runs
+## Locking Workspaces (Preventing Runs)
 
 If you need to temporarily stop runs from being queued, you can lock the workspace.
 
