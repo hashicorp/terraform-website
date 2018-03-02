@@ -17,8 +17,7 @@ Terraform Enterprise installer beta program. All other customers can follow the
 
 ## Preflight
 
-Before you begin, you'll need to get a few bits of data as well as get a Linux
-instance ready.
+Before you begin, you'll need to prepare data files and a Linux instance.
 
 ### Data Files
 
@@ -35,7 +34,7 @@ instance ready.
 
 ### Linux Instance
 
-You'll be installing the software onto a Linux instance of your own choosing.
+Install the software on a Linux instance of your choosing.
 You will start and manage this instance like any other server.
 
 The Private Terraform Enterprise Installer currently supports the following
@@ -84,18 +83,19 @@ Check Docker compatibility:
 Terraform Enterprise can store its state in a few different ways and you'll
 need to decide which works best for your installation:
 
-1. **Demo** - This mode stores all data on the instance. The data can be
-   backed up with the snapshot mechanism for restore later.
+1. **Production - Mounted Disk (Recommended)** - This mode stores data in a separate
+   directory on the host, with the intention that the directory is
+   configured to store its data on an external disk, such as EBS, iSCSI,
+   etc.
 1. **Production - External Services** - This mode stores the majority of the
    stateful data used by the instance in an external Postgresql database as
    well as an external S3 compatible endpoint. There is still critical data
    stored on the instance that must be managed with snapshots. Be sure to
    checked the [PostgreSQL Requirements](#postgresql-requirements) for what
    needs to be present for Terraform Enterprise to work.
-1. **Production - Mounted Disk** - This mode stores data in a separate
-   directory on the host, with the intention that the directory is
-   configured to store its data on an external disk, such as EBS, iSCSI,
-   etc.
+1. **Demo** - This mode stores all data on the instance. The data can be
+   backed up with the snapshot mechanism for restore later.
+
 
 The decision you make will be entered during setup.
 
@@ -168,10 +168,10 @@ From a shell on your instance, in the directory where you placed the `replicated
 
 #### PostgreSQL Requirements
 
-When Terraform Enterprise is using an external PostgreSQL database, the
+When Terraform Enterprise uses an external PostgreSQL database, the
 following must be present on it:
 
-* The version of PostgreSQL must be 9.4 or greater
+* PostgreSQL version 9.4 or greater
 * User with access to ownership semantics on the referenced database
 * The following PostgreSQL schemas must be installed into the database: `rails`, `vault`, `registry`
 
