@@ -555,9 +555,9 @@ $ curl \
 ```
 
 
-## Associate an SSH key to a workspace
+## Assign an SSH key to a workspace
 
-This endpoint associates an SSH key to a workspace.
+This endpoint assigns an SSH key to a workspace.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -565,8 +565,8 @@ This endpoint associates an SSH key to a workspace.
 
 ### Parameters
 
-* `:workspace_id` (`string: <required>`) - Specifies the workspace ID to associate the SSH key to.
-* `id` (`string: <required>`) - Specifies the SSH key ID to associate.
+* `:workspace_id` (`string: <required>`) - Specifies the workspace ID to assign the SSH key to.
+* `id` (`string: <required>`) - Specifies the SSH key ID to assign. This ID can be obtained from the [ssh-keys](./ssh-keys.html) endpoint.
 
 #### Sample Payload
 
@@ -643,9 +643,9 @@ $ curl \
 ```
 
 
-## Dissociate an SSH key from a workspace
+## Unassign an SSH key from a workspace
 
-This endpoint dissociates the currently associated SSH key from a workspace.
+This endpoint unassigns the currently assigned SSH key from a workspace.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -653,7 +653,7 @@ This endpoint dissociates the currently associated SSH key from a workspace.
 
 ### Parameters
 
-* `:workspace_id` (`string: <required>`) - Specifies the workspace ID to dissociate the currently associated SSH key from.
+* `:workspace_id` (`string: <required>`) - Specifies the workspace ID to unassign the currently assigned SSH key from.
 
 #### Sample Payload
 
