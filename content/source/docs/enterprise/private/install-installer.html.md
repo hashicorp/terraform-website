@@ -86,16 +86,19 @@ different approach to
 [recovering from failures](/reliability-availability.html#recovery-from-failures-1)
 and should be selected based on your organization's preferences.
 
-1. **Production - Mounted Disk** - This mode stores data in a separate
-   directory on the host, with the intention that the directory is
-   configured to store its data on an external disk, such as EBS, iSCSI,
-   etc.
 1. **Production - External Services** - This mode stores the majority of the
-   stateful data used by the instance in an external Postgresql database as
+   stateful data used by the instance in an external PostgreSQL database as
    well as an external S3-compatible endpoint. There is still critical data
    stored on the instance that must be managed with snapshots. Be sure to
    checked the [PostgreSQL Requirements](#postgresql-requirements) for what
-   needs to be present for Terraform Enterprise to work.
+   needs to be present for Terraform Enterprise to work. This option is best
+   for users with expertise managing PostgreSQL or users that have access
+   to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/). 
+1. **Production - Mounted Disk** - This mode stores data in a separate
+   directory on the host, with the intention that the directory is
+   configured to store its data on an external disk, such as EBS, iSCSI,
+   etc. This option is best for users with experience mounting performant
+   block storage.
 1. **Demo** - This mode stores all data on the instance. The data can be
    backed up with the snapshot mechanism for restore later.
 
