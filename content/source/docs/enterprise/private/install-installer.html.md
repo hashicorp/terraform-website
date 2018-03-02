@@ -81,15 +81,18 @@ Check Docker compatibility:
 ### Operational Mode Decision
 
 Terraform Enterprise can store its state in a few different ways and you'll
-need to decide which works best for your installation:
+need to decide which works best for your installation. Each option has a
+different approach to
+[recovering from failures](/reliability-availability.html#recovery-from-failures-1)
+and should be selected based on your organization's preferences.
 
-1. **Production - Mounted Disk (Recommended)** - This mode stores data in a separate
+1. **Production - Mounted Disk** - This mode stores data in a separate
    directory on the host, with the intention that the directory is
    configured to store its data on an external disk, such as EBS, iSCSI,
    etc.
 1. **Production - External Services** - This mode stores the majority of the
    stateful data used by the instance in an external Postgresql database as
-   well as an external S3 compatible endpoint. There is still critical data
+   well as an external S3-compatible endpoint. There is still critical data
    stored on the instance that must be managed with snapshots. Be sure to
    checked the [PostgreSQL Requirements](#postgresql-requirements) for what
    needs to be present for Terraform Enterprise to work.
