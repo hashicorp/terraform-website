@@ -10,5 +10,5 @@ Terraform Enterprise (TFE)'s private module registry helps you share [Terraform 
 
 By design, the private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already used the public registry, TFE's registry will feel familiar.
 
-~> **Note:** Currently, the private module registry only supports BitBucket Server and GitHub/GitHub Enterprise.
+~> **Note:** Currently, the private module registry works with all supported VCS providers except Bitbucket Cloud.
 
