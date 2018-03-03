@@ -36,12 +36,13 @@ Password management isn't available if your organization uses [SAML single sign 
 
 Users can create any number of API tokens, and can revoke existing tokens at any time. API tokens are necessary for:
 
-- Authenticating with the [Terraform Enterprise API](../api/index.html).
-- Authenticating with the [Terraform `atlas` backend](/docs/backends/types/terraform-enterprise.html).
+- Authenticating with the [Terraform Enterprise API](../api/index.html). API calls require an `Authorization: Bearer <TOKEN>` HTTP header.
+- Authenticating with the [Terraform `atlas` backend](/docs/backends/types/terraform-enterprise.html). The backend looks for a token in the `ATLAS_TOKEN` environment variable.
+- Using [private modules](../registry/using.html) in command-line Terraform runs on local machines. This requires [a `credentials` block](../registry/using.html#configuration) in your `~/.terraformrc` file.
 
 Terraform Enterprise has three kinds of API tokens: user, team, and organization. For more information about team and organization tokens, see [Service Accounts](./service-accounts.html).
 
-Protect your tokens carefully, because they can do anything your user account can. For example, if you belong to a team with write access to a workspace, your API token can edit variables in that workspace. See [Permissions](./permissions.html) for details about workspace permissions.
+Protect your tokens carefully, because they can do anything your user account can. For example, if you belong to a team with write access to a workspace, your API token can edit variables in that workspace. (See [Permissions](./permissions.html) for details about workspace permissions.) Since users can be members of multiple organizations, user tokens work with any organization their user belongs to.
 
 To manage API tokens, click the "Tokens" tab of the user settings page.
 
