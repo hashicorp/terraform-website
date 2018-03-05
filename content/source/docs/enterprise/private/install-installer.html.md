@@ -83,7 +83,7 @@ Check Docker compatibility:
 Terraform Enterprise can store its state in a few different ways and you'll
 need to decide which works best for your installation. Each option has a
 different approach to
-[recovering from failures](/reliability-availability.html#recovery-from-failures-1)
+[recovering from failures](./reliability-availability.html#recovery-from-failures-1)
 and should be selected based on your organization's preferences.
 
 1. **Production - External Services** - This mode stores the majority of the
@@ -93,7 +93,7 @@ and should be selected based on your organization's preferences.
    checked the [PostgreSQL Requirements](#postgresql-requirements) for what
    needs to be present for Terraform Enterprise to work. This option is best
    for users with expertise managing PostgreSQL or users that have access
-   to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/). 
+   to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/).
 1. **Production - Mounted Disk** - This mode stores data in a separate
    directory on the host, with the intention that the directory is
    configured to store its data on an external disk, such as EBS, iSCSI,
@@ -157,11 +157,11 @@ From a shell on your instance, in the directory where you placed the `replicated
 	  to the `.airgap` file that you downloaded using the initial instruction in
     your setup email.
 1. Secure access to the Admin Console. We recommend at least setting up the
-   simple password auth. If you're so inclined, LDAP authentication can also be 
+   simple password auth. If you're so inclined, LDAP authentication can also be
    configured for the Admin Console.
 1. The system will now perform a set of pre-flight checks on the instance and
-   configuration thus far and indicate any failures. You can either fix the issues 
-   and re-run the checks or ignore the warnings and proceed. If you do proceed 
+   configuration thus far and indicate any failures. You can either fix the issues
+   and re-run the checks or ignore the warnings and proceed. If you do proceed
    despite the warnings, you are assuming the support responsibility.
 1. Configure the operational mode for this installation. See
    [Operational Modes](#operational-mode-decision) for information on what the different values
@@ -221,4 +221,3 @@ page](./config.html) to continue setting up Terraform Enterprise.
 2. Download the new `.airgap` package onto the instance and put it into the `Update Path` location.
 3. From the admin console dashboard (`https://[hostname or ip of your instance]:8800/dashboard`) click the "Check Now" button; the new version should be recognized, then click "View Update".
 4. Review the release notes and then click "Install Update".
-
