@@ -76,7 +76,7 @@
                   <li><a href="/docs/index.html">Docs</a></li>
                   <li><a href="/guides/index.html">Guides</a></li>
                   <%
-                    ext=ENV['SHOW_EXTEND']
+                    ext=ENV['SHOW_EXTEND'] || ""
                     if ext.empty?
                   %>
                      <li><a href="/community.html">Community</a></li>
