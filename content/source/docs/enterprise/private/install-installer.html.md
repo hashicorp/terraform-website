@@ -59,7 +59,9 @@ Terraform Enterprise application as well as the Terraform plans and applies.
 
 #### Software Requirements
 
-Check Docker compatibility:
+~> RedHat Enterprise Linux (RHEL) has a specific set of requirements. Please see the [RHEL Install Guide](./rhel-install-guide.html) before continuing.
+
+For Linux distributions other than RHEL, check Docker compatibility:
 
   * The instance should run a current version of Docker engine (1.7.1 - 17.06.2-ce, 17.06.2-ce recommended). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
     * In Online mode, the installer will install Docker automatically
