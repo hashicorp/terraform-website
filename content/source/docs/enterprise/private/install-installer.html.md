@@ -41,12 +41,12 @@ The Private Terraform Enterprise Installer currently supports the following
 operating systems:
 
 * Debian 7.7+
-* Ubuntu 14.04 / 15.10 / 16.04
+* Ubuntu 14.04 / 16.04
 * Fedora 21 / 22
-* Red Hat Enterprise Linux 6.5+
-* CentOS 6+
-* Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03
-* Oracle Linux 6.5+
+* Red Hat Enterprise Linux 7.2+
+* CentOS 7+
+* Amazon Linux 2016.03 / 2016.09 / 2017.03
+* Oracle Linux 7.2+
 
 #### Hardware Requirements
 
