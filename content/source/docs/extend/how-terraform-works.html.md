@@ -10,20 +10,21 @@ description: |-
 
 # How Terraform Works 
 
-Terraform is a tool for building, changing, and versioning
-infrastructure safely and efficiently. Terraform is built on a plugin-based
-architecture, enabling developers to extend Terraform by writing new plugins or
-compiling modified versions of existing plugins in order to support new
-functionality and new infrastructure providers.
+Terraform is a tool for building, changing, and versioning infrastructure safely
+and efficiently. Terraform is built on a plugin-based architecture, enabling
+developers to extend Terraform by writing new plugins or compiling modified
+versions of existing plugins.
 
-Terraform is logically split into two main parts: Terraform Core, and Terraform
-Plugins. Terraform Core uses remote procedure calls (RPC) to communicate with
-Terraform Plugins, and offers multiple ways to discover and load plugins to use.
+Terraform is logically split into two main parts: **Terraform Core**, and
+**Terraform Plugins**. Terraform Core uses remote procedure calls (RPC) to
+communicate with Terraform Plugins, and offers multiple ways to discover and
+load plugins to use.  Terraform Plugins expose an implementation for a specific
+service, such as AWS, or provisioner, such as bash.
 
 ## Terraform Core 
 
-Terraform Core is a statically-compiled binary written in the
-Go programming language. The compiled binary is the command line tool (CLI)
+Terraform Core is a [statically-compiled binary][0] written in the [Go
+programming language][1]. The compiled binary is the command line tool (CLI)
 `terraform`, the entrypoint for anyone using Terraform. The code is open source
 and hosted at github.com/hashicorp/terraform. 
 
@@ -42,10 +43,10 @@ modules
 Terraform Plugins are written in Go and are executable binaries invoked by
 Terraform Core over RPC. Each plugin exposes an implementation for a specific
 service, such as AWS, or provisioner, such as bash. All Providers and
-Provisioners used in Terraform configurations are plugins, and are executed as a
-separate process and communicate with the main Terraform binary over an RPC
+Provisioners used in Terraform configurations are plugins. They are executed as
+a separate process and communicate with the main Terraform binary over an RPC
 interface. Terraform has several Provisioners built-in, while Providers are
-discovered dynamically as needed (See Discovery below). Terraform Core provides
+discovered dynamically as needed (See **Discovery** below). Terraform Core provides
 a high-level framework that abstracts away the details of plugin discovery and
 RPC communication so developers do not need to manage either.
 
@@ -70,7 +71,7 @@ It does not include any Providers, due to the large number of them and the
 various supported versions. Terraform reads configuration files and installs the
 needed Providers automatically from releases.hashicorp.com. At time of writing
 Terraform can only automatically install Providers distributed by HashiCorp,
-which are found on [releases.hashicorp.com](https://releases.hashicorp.com).
+which are found on [releases.hashicorp.com][2].
 
 Third-party providers can be manually installed by placing their plugin
 executables in one of the following locations depending on the host operating
@@ -81,7 +82,7 @@ Data" directory.
 - On all other systems, in the sub-path .terraform.d/plugins in
 your user's home directory.
 
-[`terraform init`](https://www.terraform.io/docs/commands/init.html) will search
+[`terraform init`][3] will search
 this directory for additional plugins during plugin initialization.
 
 The naming scheme for plugins is `terraform-<type>-NAME_vX.Y.Z`, where `type` is
@@ -90,3 +91,8 @@ name and version of a particular provider binary. Third-party plugins will often
 be distributed with an appropriate filename already set in the distribution
 archive so that it can be extracted directly into the plugin directory described
 above.
+
+[0]: https://en.wikipedia.org/wiki/Static_build#Static_building
+[1]: https://golang.org/
+[2]: https://releases.hashicorp.com
+[3]: https://www.terraform.io/docs/commands/init.html
