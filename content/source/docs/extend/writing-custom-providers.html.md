@@ -9,8 +9,14 @@ description: |-
 
 # Writing Custom Providers
 
-In Terraform, a "provider" is the logical abstraction of an upstream API. This
-guide details how to build a custom provider for Terraform.
+In Terraform, a Provider is the logical abstraction of an upstream API. This
+guide details how to build a custom provider for Terraform. 
+
+~> NOTE: This guide details steps to author code and compile a working Provider.
+It omits many implementation details in order to get developers going with
+coding an example Provider and executing it with Terraform. Please refer to the
+rest of the [Extending Terraform](/docs/extend/index.html) for a more complete
+reference on authoring Providers and Resources. 
 
 ## Why?
 
@@ -59,8 +65,10 @@ func Provider() *schema.Provider {
 
 The
 [`helper/schema`](https://godoc.org/github.com/hashicorp/terraform/helper/schema)
-library is part of Terraform's core. It abstracts many of the complexities and
-ensures consistency between providers. The example above defines an empty provider (there are no _resources_).
+library is part of [Terraform
+Core](/docs/extend/how-terraform-works.html#terraform-core). It abstracts many
+of the complexities and ensures consistency between providers. The example above
+defines an empty provider (there are no _resources_).
 
 The `*schema.Provider` type describes the provider's properties including:
 
@@ -256,7 +264,30 @@ a `main.tf` in the working directory (the same place where the plugin exists).
 resource "example_server" "my-server" {}
 ```
 
-And execute `terraform plan`:
+Terraform automatically discovers the Providers when it parses configuration
+files. This only occurs when the `init` command is executed. Terraform will
+search for matching Providers via a
+[**Discovery**](http://localhost:4567/docs/extend/how-terraform-works.html#discovery)
+process, including the current local directory. Run `terraform init` to discover
+our newly compiled Provider:
+
+```text
+$ terraform init
+
+Initializing provider plugins...
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
+
+Now execute `terraform plan`:
 
 ```text
 $ terraform plan
@@ -279,13 +310,27 @@ resource "example_server" "my-server" {
 Execute `terraform plan` to verify the validation is passing:
 
 ```text
-$ terraform plan
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
 
-+ example_server.my-server
-    address: "1.2.3.4"
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + example_server.my-server
+      id:      <computed>
+      address: "1.2.3.4"
 
 
 Plan: 1 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
 ```
 
 It is possible to run `terraform apply`, but it will be a no-op because all of
@@ -315,10 +360,16 @@ address. The existence of a non-blank ID is what tells Terraform that a resource
 was created. This ID can be any string value, but should be a value that can be
 used to read the resource again.
 
-Recompile the binary, the run `terraform plan` and `terraform apply`.
+Finally, we must recompile the binary and instruct Terraform to reinitialize it
+by rerunning `terraform init`. This is only necessary because we have modified
+the code and recompiled the binary, and it no longer matches an internal hash
+Terraform uses to ensure the same binaries are used for each operation. 
+
+Run `terraform init`, and then run `terraform plan`. 
 
 ```shell
 $ go build -o terraform-provider-example
+$ terraform init
 # ...
 ```
 
@@ -332,14 +383,34 @@ $ terraform plan
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
 
+Terraform will ask for confirmation when you run `terraform apply`. Enter `yes`
+to create your example server and commit it to state:
+
 ```text
 $ terraform apply
 
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + example_server.my-server
+      id:      <computed>
+      address: "1.2.3.4"
+
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
 example_server.my-server: Creating...
   address: "" => "1.2.3.4"
-example_server.my-server: Creation complete (ID: 1.2.3.4)
-
-Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+example_server.my-server: Creation complete after 0s (ID: 1.2.3.4)
 ```
 
 Since the `Create` operation used `SetId`, Terraform believes the resource created successfully. Verify this by running `terraform plan`.
@@ -351,11 +422,14 @@ The refreshed state will be used to calculate this plan, but will not be
 persisted to local or remote state storage.
 
 example_server.my-server: Refreshing state... (ID: 1.2.3.4)
+
+------------------------------------------------------------------------
+
 No changes. Infrastructure is up-to-date.
 
 This means that Terraform did not detect any differences between your
-configuration and real physical resources that exist. As a result, Terraform
-doesn't need to do anything.
+configuration and real physical resources that exist. As a result, no
+actions need to be performed.
 ```
 
 Again, because of the call to `SetId`, Terraform believes the resource was
@@ -367,26 +441,64 @@ To verify this behavior, change the value of the `address` field and run
 
 ```text
 $ terraform plan
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
 example_server.my-server: Refreshing state... (ID: 1.2.3.4)
 
-~ example_server.my-server
-    address: "1.2.3.4" => "5.6.7.8"
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  ~ update in-place
+
+Terraform will perform the following actions:
+
+  ~ example_server.my-server
+      address: "1.2.3.4" => "5.6.7.8"
 
 
 Plan: 0 to add, 1 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
 ```
 
 Terraform detects the change and displays a diff with a `~` prefix, noting the
 resource will be modified in place, rather than created new.
 
-Run `terraform apply` to apply the changes.
+Run `terraform apply` to apply the changes. Terraform will again prompt for
+confirmation:
 
 ```text
 $ terraform apply
 example_server.my-server: Refreshing state... (ID: 1.2.3.4)
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  ~ update in-place
+
+Terraform will perform the following actions:
+
+  ~ example_server.my-server
+      address: "1.2.3.4" => "5.6.7.8"
+
+
+Plan: 0 to add, 1 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
 example_server.my-server: Modifying... (ID: 1.2.3.4)
   address: "1.2.3.4" => "5.6.7.8"
-example_server.my-server: Modifications complete (ID: 1.2.3.4)
+example_server.my-server: Modifications complete after 0s (ID: 1.2.3.4)
 
 Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
 ```
@@ -507,25 +619,40 @@ func resourceServerDelete(d *schema.ResourceData, m interface{}) error {
 The destroy function should always handle the case where the resource might
 already be destroyed (manually, for example). If the resource is already
 destroyed, this should not return an error. This allows Terraform users to
-manually delete resources without breaking Terraform.
+manually delete resources without breaking Terraform. Recompile and reinitialize
+the Provider:
 
 ```shell
 $ go build -o terraform-provider-example
+$ terraform init
+#...
 ```
 
 Run `terraform destroy` to destroy the resource.
 
 ```text
 $ terraform destroy
+example_server.my-server: Refreshing state... (ID: 5.6.7.8)
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  - example_server.my-server
+
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
 Do you really want to destroy?
-  Terraform will delete all your managed infrastructure.
+  Terraform will destroy all your managed infrastructure, as shown above.
   There is no undo. Only 'yes' will be accepted to confirm.
 
   Enter a value: yes
 
-example_server.my-server: Refreshing state... (ID: 5.6.7.8)
 example_server.my-server: Destroying... (ID: 5.6.7.8)
-example_server.my-server: Destruction complete
+example_server.my-server: Destruction complete after 0s
 
 Destroy complete! Resources: 1 destroyed.
 ```
