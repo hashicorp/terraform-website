@@ -33,7 +33,7 @@ and hosted at github.com/hashicorp/terraform.
 - Infrastructure as code: reading and interpolating configuration files and
 modules 
 - Resource state management 
-- Construction of the resource graph 
+- Construction of the [Resource Graph](/docs/internals/graph.html)
 - Plan execution 
 - Communication with plugins over RPC
 
