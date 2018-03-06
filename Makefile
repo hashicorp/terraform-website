@@ -6,6 +6,7 @@ build:
 	@mkdir -p content/build
 	@docker run \
 		--interactive \
+    -e "SHOW_EXTEND=${EXTEND}" \
 		--rm \
 		--tty \
 		--volume "$(shell pwd)/ext:/ext" \

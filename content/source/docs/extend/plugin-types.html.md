@@ -10,15 +10,14 @@ description: |-
 # Terraform Plugin Types	
 
 Terraform is logically split into two main parts: Terraform Core, and Terraform
-Plugins. Terraform Plugins are written in Go and are executable binaries
-executed as a separate process and communicate with the main Terraform binary
-over an RPC interface. The network communication and RPC is handled
-automatically by higher-level Terraform libraries, so developers need only worry
-about the implementation of their specific Plugin behavior. 
+Plugins. Each plugin exposes an implementation for a specific service, such as
+AWS, or provisioner, such as bash. Terraform Plugins are written in Go and are
+executable binaries executed as a separate process and communicate with the main
+Terraform binary over an RPC interface. The network communication and RPC is
+handled automatically by higher-level Terraform libraries, so developers need
+only worry about the implementation of their specific Plugin behavior. 
 
-Each plugin exposes an implementation for a specific service, such as AWS, or
-provisioner, such as bash. There are two types of plugins supported by
-Terraform:
+There are two types of plugins supported by Terraform:
 
 ## Providers
 
@@ -45,8 +44,8 @@ providers from [releases.hashicorp.com](https://releases.hashicorp.com), or from
 specific [locations on disk](/docs/extend/how-terraform-works.html#discovery).
 At time of writing, the source code for all Providers distributed by HashiCorp
 for automatic discovery are hosted on in the
-[`terraform-providers`(https://github.com/terraform-providers) GitHub
-Organization]. 
+[`terraform-providers` GitHub
+Organization](https://github.com/terraform-providers). 
 
 Visit the [Provider index](/docs/providers/index.html) in our documentation
 section to learn more about our existing Providers
