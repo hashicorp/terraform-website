@@ -12,13 +12,15 @@ The team access APIs are used to associate a team to permissions on a workspace.
 
 ## List Team Access to Workspaces
 
-| Method | Path           |
-| :----- | :------------- |
-| GET | /team-workspaces |
+`GET /team-workspaces`
 
-### Parameters
+### Query Parameters
 
-- `filter[workspace][id]` (`string: <required>`) - The workspace ID for which to list the teams with access
+[These are standard URL query parameters](./index.html.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter               | Description
+------------------------|------------
+`filter[workspace][id]` | **Required.** The workspace ID for which to list the teams with access.
 
 ### Sample Request
 
@@ -69,17 +71,24 @@ $ curl \
 }
 ```
 
-## Add Team access to a Workspace
+## Add Team Access to a Workspace
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /team-workspaces |
+`POST /team-workspaces`
 
-### Parameters
+### Request Body
 
-- `access` (`string: <required>`) - `read`, `write`, or `admin`
-- `team` (`string: <required>`) - The ID of the team to add to the workspace.
-- `workspace` (`string: <required>`) - The workspace ID to which the team is to be added.
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                                 | Type   | Default | Description
+-----------------------------------------|--------|---------|------------
+`data.type`                              | string |         | Must be `"team-workspaces"`.
+`data.attributes.access`                 | string |         | The type of access to grant. Valid values are `read`, `write`, or `admin`.
+`data.relationships.workspace.data.type` | string |         | Must be `workspaces`.
+`data.relationships.workspace.data.id`   | string |         | The workspace ID to which the team is to be added.
+`data.relationships.team.data.type`      | string |         | Must be `teams`.
+`data.relationships.team.data.id`        | string |         | The ID of the team to add to the workspace.
 
 ### Sample Payload
 
@@ -158,13 +167,11 @@ $ curl \
 
 ## Show Team Access to a Workspace
 
-| Method | Path           |
-| :----- | :------------- |
-| GET | /team-workspaces/:id |
+`GET /team-workspaces/:id``
 
-### Parameters
-
-- `id` (`string: <required>`) - The ID of the team/workspace relationship.
+Parameter | Description
+----------|------------
+`:id`     | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-workspaces) described above.
 
 ### Sample Request
 
@@ -190,13 +197,11 @@ $ curl \
 
 ## Remove Team Access to a Workspace
 
-| Method | Path           |
-| :----- | :------------- |
-| DELETE | /team-workspaces/:id |
+`DELETE /team-workspaces/:id`
 
-### Parameters
-
-- `id` (`string: <required>`) - The ID of the team/workspace relationship.
+Parameter | Description
+----------|------------
+`:id`     | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-workspaces) described above.
 
 ### Sample Request
 
