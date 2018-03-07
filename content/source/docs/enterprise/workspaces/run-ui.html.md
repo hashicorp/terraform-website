@@ -25,6 +25,8 @@ If the code in version control hasn't changed but you've modified some variables
 
 Manually queueing a plan requires write or admin access.
 
+If the workspace has a plan that is still in the [Plan stage](./run-basics.html#2-the-plan-stage) when a new plan is queued, you can either wait for it to complete, or visit the "Current Run" page and click "Run this plan now". Be aware that this will terminate the current plan and unlock the workspace, which can lead to anomalies in behavior, but can be useful if the plans are long-running and the current plan is known not to have all the desired changes.
+
 ## Confirming or Discarding Plans
 
 By default, run plans require confirmation before TFE will apply them. Users with write access on a workspace can visit the page for a run that has finished planning and click the "Confirm & Apply" or "Discard Plan" button to finish or cancel a run.
@@ -33,7 +35,7 @@ By default, run plans require confirmation before TFE will apply them. Users wit
 
 Users can also leave comments if there's something unusual involved in a run.
 
-Note that until you apply or discard a plan, TFE can't start another run in that workspace.
+Note that once the Plan stage is completed, until you apply or discard a plan, TFE can't start another run in that workspace.
 
 ### Auto apply
 
