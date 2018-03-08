@@ -50,26 +50,26 @@ The following apply to every installation:
 - `hostname` — (Required) this is the hostname you will use to access your installation
 - `installation_type` — (Required) one of `poc` or `production`
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
-
+- `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying
+- `ca_certs` — (Optional) custom certificate authority (CA) bundle
 
 `production_type` is required if you've chosen `production` for the `installation_type`:
 
 - `production_type` — one of `external` or `disk`
 
-
 `disk_path` is required if you've chosen `disk` for `production_type`:
 
 - `disk_path` — path on instance to persistent storage
 
+The following apply if you've chosen `external` for `production_type`:
 
-The following are required if you've chosen `external` for `production_type`:
-
-- `postgres_url` — the database URL
-- `aws_access_key_id` — AWS access key ID for S3 bucket access
-- `aws_secret_access_key` — AWS secret access key for S3 bucket access
-- `s3_bucket` — the S3 bucket where resources will be stored
-- `s3_region` — the region where the S3 bucket exists
-
+- `postgres_url` — (Required) the database URL
+- `aws_access_key_id` — (Required) AWS access key ID for S3 bucket access
+- `aws_secret_access_key` — (Required) AWS secret access key for S3 bucket access
+- `s3_bucket` — (Required) the S3 bucket where resources will be stored
+- `s3_region` — (Required) the region where the S3 bucket exists
+- `s3_sse` — (Optional) enables server-side encryption of objects in S3; if provided, must be set to `aws:kms`
+- `s3_sse_kms_key_id` — (Optional) An optional KMS key for use when S3 server-side encryption is enabled
 
 ## Online
 
