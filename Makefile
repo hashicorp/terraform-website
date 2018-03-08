@@ -1,4 +1,4 @@
-VERSION?="0.3.32"
+VERSION?="0.3.35"
 MKFILE_PATH=$(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
 build:
@@ -11,6 +11,7 @@ build:
 		--volume "$(shell pwd)/ext:/ext" \
 		--volume "$(shell pwd)/content:/website" \
 		--volume "$(shell pwd)/content/build:/website/build" \
+		-e "ENV=production" \
 		hashicorp/middleman-hashicorp:${VERSION} \
 		bundle exec middleman build --verbose --clean
 
