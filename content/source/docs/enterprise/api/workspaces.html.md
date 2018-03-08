@@ -97,7 +97,7 @@ $ curl \
       }
     },
     "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/ws-YnyXLq9fy38afEeb"
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-demo"
     }
   }
 }
@@ -196,7 +196,7 @@ $ curl \
       }
     },
     "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/ws-SihZTyXKfNXUWuUa"
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-demo"
     }
   }
 }
@@ -208,14 +208,13 @@ Update the workspace settings
 
 | Method | Path           |
 | :----- | :------------- |
-| PATCH | /organizations/:organization_name/workspaces/:workspace_id |
+| PATCH | /organizations/:organization_name/workspaces/:name |
 
 
 ### Parameters
 
 - `:organization_name` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
-- `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update.
-- `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+- `name` (`string: <required>`) - Specifies the name of the workspace to update, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 - `terraform_version` (`string: <optional>`) - Specifices the version of Terraform to use for this workspace.
 - `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 - `vcs-repo.branch` (`string: ''`) - Specifies the repository branch that Terraform will execute from. If left null or as an empty string, this defaults to the repository's default branch (e.g. `master`) .
@@ -252,7 +251,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/compound-workspaces/ws-erEAnPmgtm5mJr77
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces/my-workspace-2
 ```
 
 ### Sample Response
@@ -292,7 +291,7 @@ $ curl \
       }
     },
     "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/ws-erEAnPmgtm5mJr77"
+      "self": "/api/v2/organizations/my-organization/workspaces/my-workspace-2"
     }
   }
 }
@@ -400,6 +399,78 @@ $ curl \
 }
 ```
 
+## Show workspace
+
+This endpoint shows details for a workspace in the organization.
+
+| Method | Path           |
+| :----- | :------------- |
+| GET | /organizations/:organization/workspaces/:name |
+
+### Parameters
+
+- `:organization` (`string: <required>`) - Specifies the organization name under which to list the workspaces. This is specified in the URL path.
+- `:name` (`string: <required>`) - Specifies the name of the workspace to show details for. This is specified in the URL path.
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces/my-workspace-3
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "ws-mD5bmJ8ry3uTzuHi",
+    "type": "workspaces",
+    "attributes": {
+      "name": "my-workspace-3",
+      "environment": "default",
+      "auto-apply": false,
+      "locked": false,
+      "created-at": "2018-03-08T22:30:00.404Z",
+      "working-directory": null,
+      "terraform-version": "0.11.3",
+      "permissions": {
+        "can-update": true,
+        "can-destroy": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-update-variable": true,
+        "can-lock": true,
+        "can-read-settings": true
+      },
+      "actions": {
+        "is-destroyable": true
+      }
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "latest-run": {
+        "data": null
+      },
+      "current-run": {
+        "data": null
+      }
+    },
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/my-workspace-3"
+    }
+  }
+}
+
+```
+
 
 ## Delete a workspace
 
@@ -407,11 +478,11 @@ This endpoint deletes a workspace.
 
 | Method | Path           |
 | :----- | :------------- |
-| DELETE | /organizations/:organization/workspaces/:workspace |
+| DELETE | /organizations/:organization/workspaces/:name |
 
 ### Parameters
 
-- `:workspace` (`string: <required>`) - Specifies the workspace ID to delete. This parameter is specified in the URL path.
+- `:name` (`string: <required>`) - Specifies the name of the workspace to delete. This parameter is specified in the URL path.
 - `:organization` (`string: <required>`) - Specifies the organization name where the workspace belongs. This parameter is specified in the URL path.
 
 ### Sample Request
