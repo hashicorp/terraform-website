@@ -11,6 +11,8 @@ These instructions are for using Bitbucket Server for Terraform Enterprise (TFE)
 
 Note that Bitbucket Server requires both OAuth authentication and an SSH key. The instructions below include SSH key configuration.
 
+-> **Version note:** TFE supports Bitbucket Server versions 4.9.1 and newer. We do not test older versions of Bitbucket Server with TFE, and they might not work as expected.
+
 ## Step 1: On Bitbucket Server, Ensure the Webhooks Plugin is Installed
 
 TFE uses webhooks to get new configurations. To support this, Bitbucket Server needs Atlassian's webhooks plugin.
