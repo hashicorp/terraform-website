@@ -41,6 +41,8 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 2. The next page has a drop-down and several text fields. Select "Bitbucket Server" from the drop-down. Several text fields will vanish, leaving only two. Enter the URL of your Bitbucket Server instance in both fields. The API URL should be the same as the main URL.
 
+    ~> **Note:** If you omit the port, TFE uses the standard port for the protocol (80 for HTTP, 443 for HTTPS). However, Bitbucket Server's default port is 7990. If you haven't configured Bitbucket Server to use the standard HTTP ports, make sure to specify its port in the URL.
+
     ![TFE screenshot: text fields for adding a Bitbucket Server OAuth client](./images/bitbucket-server-tfe-add-client-fields.png)
 
 3. Click "Create OAuth Client." This will take you back to the OAuth Configuration page, which now includes your new Bitbucket Server client.
