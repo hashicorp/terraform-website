@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Installation (Installer Beta) - RHEL Install Guide"
-sidebar_current: "docs-enterprise2-private-installer"
+sidebar_current: "docs-enterprise2-private-rhel"
 ---
 
 # Private Terraform Enterprise Installation (Installer Beta) - RHEL Install Guide
