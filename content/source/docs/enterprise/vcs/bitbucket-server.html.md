@@ -11,6 +11,8 @@ These instructions are for using Bitbucket Server for Terraform Enterprise (TFE)
 
 Note that Bitbucket Server requires both OAuth authentication and an SSH key. The instructions below include SSH key configuration.
 
+-> **Version note:** TFE supports Bitbucket Server versions 4.9.1 and newer. We do not test older versions of Bitbucket Server with TFE, and they might not work as expected.
+
 ## Step 1: On Bitbucket Server, Ensure the Webhooks Plugin is Installed
 
 TFE uses webhooks to get new configurations. To support this, Bitbucket Server needs Atlassian's webhooks plugin.
@@ -38,6 +40,8 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
     1. Click the "Add an OAuth Client" button.
 
 2. The next page has a drop-down and several text fields. Select "Bitbucket Server" from the drop-down. Several text fields will vanish, leaving only two. Enter the URL of your Bitbucket Server instance in both fields. The API URL should be the same as the main URL.
+
+    ~> **Note:** If you omit the port, TFE uses the standard port for the protocol (80 for HTTP, 443 for HTTPS). However, Bitbucket Server's default port is 7990. If you haven't configured Bitbucket Server to use the standard HTTP ports, make sure to specify its port in the URL.
 
     ![TFE screenshot: text fields for adding a Bitbucket Server OAuth client](./images/bitbucket-server-tfe-add-client-fields.png)
 
