@@ -44,7 +44,7 @@ one hour is recommended as that will minimize the data loss to one
 hour only. For Mounted Disk or External Services, Daily is recommended
 as the snapshots contain only configuration data, not application data.
 
-## 2. Restore a snapshot in a new PTFE instance Usage Of Scripts
+## 2. Restore a snapshot in a new PTFE instance
 
 ## Version Checking
 
