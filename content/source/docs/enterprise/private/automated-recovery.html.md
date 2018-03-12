@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Automated Recovery (Installer Beta)"
-sidebar_current: "docs-enterprise2-private-installer-automating"
+sidebar_current: "docs-enterprise2-private-automated-recovery"
 ---
 
 # Private Terraform Enterprise Automated Recovery (Installer Beta)
@@ -91,7 +91,7 @@ echo
 echo "Application booted!"
 ```
 
-## SFTP
+### SFTP
 
 This example uses sftp to store the snapshots.
 
@@ -145,7 +145,7 @@ echo
 echo "Application booted!"
 ```
 
-## Local directory
+### Local directory
 
 This example uses a local directory to store the snapshots. If this is intended to be run
 on a brand new system, the local directory would be either mounted block device or a
