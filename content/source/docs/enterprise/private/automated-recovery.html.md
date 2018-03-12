@@ -23,13 +23,13 @@ have two types of data on it:
 - Terraform Enterprise application data: The core product data such as
 run history, configuration history, state history. This data
 changes frequently.
-- Terraform Enterprise instance configuration data: The data used
+- Terraform Enterprise installer data: The data used
 to configure Private TFE itself such as installation type, database
 connection settings, hostname. This data rarely changes.
 
-In demo mode, both application data and instance configuration data are
+In demo mode, both application data and installer data are
 stored on the PTFE instance. In mounted disk and external servies mode, only
-instance configuration data is stored on the instance. Application data
+installer data is stored on the instance. Application data
 is stored in the mounted disk or in an external Postgres.
 
 Automated snapshots are more effective when using mounted disk or
