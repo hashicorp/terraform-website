@@ -24,8 +24,8 @@ have two types of data on it:
 run history, configuration history, state history. This data
 changes frequently.
 - Terraform Enterprise instance configuration data: The data used
-to configure Private TFE itself such as SMTP credentials, admin
-credentials, installation type. This data rarely changes.
+to configure Private TFE itself such as installation type, database
+connection settings, hostname. This data rarely changes.
 
 In demo mode, both application data and instance configuration data are
 stored on the PTFE instance. In mounted disk and external servies mode, only
