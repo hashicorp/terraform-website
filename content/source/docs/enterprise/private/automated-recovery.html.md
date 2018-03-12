@@ -11,6 +11,12 @@ To provide a short Mean-Time-To-Recovery (MTTR), an installation can be configur
 This is must useful when couple with using mounted disk or external services as the period of potental lost data is much shorter. If
 this mechanism is used with demo mode, all data present (database and configuration) at the last snapshot is the data restored.
 
+## Usage Of Scripts
+
+The expectations is that one of these scripts is run on machine boot, restoring operations of PTFE automatically.
+There are many mechanisms that can run a script on boot (cloud-init, systemd, /etc/init.d), which one is used is up
+to the user.
+
 ## Version Checking
 
 Using this mechanism requires Replicated version 2.17.0 or greater. You can check the version using `replicatedctl version`.
