@@ -25,7 +25,7 @@ This file contains the values you would normally provide in the settings screen,
 
 ### Format
 
-The settings file is JSON formatted.  The example below is suitable for a demo installation:
+The settings file is JSON formatted. All values must be strings.  The example below is suitable for a demo installation:
 
 ```json
 {
@@ -36,7 +36,7 @@ The settings file is JSON formatted.  The example below is suitable for a demo i
         "value": "poc"
     },
     "capacity_concurrency": {
-        "value": 5
+        "value": "5"
     }
 }
 ```
