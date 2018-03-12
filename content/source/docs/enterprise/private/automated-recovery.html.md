@@ -6,35 +6,58 @@ sidebar_current: "docs-enterprise2-private-automated-recovery"
 
 # Private Terraform Enterprise Automated Recovery (Installer Beta)
 
-To provide a short Mean-Time-To-Recovery (MTTR), an installation can be configured to automatically restore the most recent snapshot.
+This guide explains how to configure automated recovery for a Private Terraform
+Enterprise installation. The goal is to provide a short Mean-Time-To-Recovery (MTTR)
+in the event of an outage. There are two steps in the automated recovery process:
 
-This is must useful when couple with using mounted disk or external services as the period of potental lost data is much shorter. If
-this mechanism is used with demo mode, all data present (database and configuration) at the last snapshot is the data restored.
+1. Configure snapshots on your current install to backup data
+1. Provision a new PTFE instance using the latest snapshot
 
-## Usage Of Scripts
+This guide will walk through both of these steps. 
 
-The expectations is that one of these scripts is run on machine boot, restoring operations of PTFE automatically.
-There are many mechanisms that can run a script on boot (cloud-init, systemd, /etc/init.d), which one is used is up
-to the user.
+## 1. Configure snapshots
+
+Snapshots are taken on the Private TFE instance. That instance can
+have two types of data on it:
+
+- Terraform Enterprise application data: The core product data such as
+run history, configuration history, state history. This data
+changes frequently.
+- Terraform Enterprise instance configuration data: The data used
+to configure Private TFE itself such as SMTP credentials, admin
+credentials, installation type. This data rarely changes.
+
+In demo mode, both application data and instance configuration data are
+stored on the PTFE instance. In mounted disk and external servies mode, only
+instance configuration data is stored on the instance. Application data
+is stored in the mounted disk or in an external Postgres.
+
+Automated snapshots are more effective when using mounted disk or
+external services as the amount of backed up data is smaller and
+less risky.
+
+Snapshots are configured in the dashboard under `Console Settings`,
+in the `Snapshot & Restore` section. We suggest you also select
+`Enable Automatic Scheduled Snapshots`. For the interval, it depends
+on the mode of operation you're using. If you're in Demo mode,
+one hour is recommended as that will minimize the data loss to one
+hour only. For Mounted Disk or External Services, Daily is recommended
+as the snapshots contain only configuration data, not application data.
+
+## 2. Restore a snapshot in a new PTFE instance Usage Of Scripts
 
 ## Version Checking
 
-Using this mechanism requires Replicated version 2.17.0 or greater. You can check the version using `replicatedctl version`.
-
-## Snapshot Creation
-
-Usage of these mechanism depends on having configured snapshots and performed a snapshot operation previously.
-
-Snapshots are configured in the dashboard under `Console Settings`, in the `Snapshot & Restore` section. As you're planning
-on doing automated recovery, we suggest you also select `Enable Automatic Scheduled Snapshots`. For the interval, it depends 
-on the mode of operation you're using. If you're in Demo mode, we suggest one hour because that will minimize the data loss to
-one hour only. For Mounted Disk or External Services, Daily is fine as the snapshots contain only configuration data, not
-data that changes as the product is used.
+Using the restore mechanism requires Replicated version 2.17.0 or greater.
+You can check the version using `replicatedctl version`.
 
 ## Script
+Below are examples of restore scripts that are run on machine boot.
+There are many mechanisms that can run a script on boot (cloud-init, systemd, /etc/init.d),
+which one is used is up to the user
 
-This script is presented as an example. Anyone using it needs to understand what it's doing and is free to modify it to meet any
-additional needs they have.
+This script is presented as an example. Anyone using it needs to understand
+what it's doing and is free to modify it to meet any additional needs they have.
 
 ### S3
 
