@@ -19,7 +19,7 @@ configuration to provide failover.
 
 ## Setup
 
-Follow these steps to configure an external Vault instance:
+Use the following as a guide to configure an external Vault instance:
 
 1. Enable AppRole: `vault auth-enable approle`
 1. Enable transit: `vault mount transit`
