@@ -9,7 +9,7 @@ The following logos can be used in the `README` files for the core Terraform
 repository and the official providers, and for HashiCorp marketing purposes.
 
 Please refer to
-[the Terraform brand guidelines](https://www.hashicorp.com/brand/terraform/)
+[the Terraform brand guidelines](https://www.hashicorp.com/brand#terraform)
 for detailed guidelines on usage of these (and other) logo images.
 
 ## Main Logo
