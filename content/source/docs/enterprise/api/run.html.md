@@ -234,3 +234,37 @@ curl \
   ]
 }
 ```
+
+# Discard
+
+The `discard` endpoint represents an action as opposed to a resource. As such, the endpoint does not return any object in the response body. This endpoint queues the request to perform a discard; the discard might not happen immediately.
+
+| Method | Path           |
+| :----- | :------------- |
+| POST | /runs/:run_id/actions/discard |
+
+### Parameters
+
+- `run_id` (`string: <required>`) - specifies the run ID to run
+- `comment` (`string: <optional>`) - Optional comment to add on the discard
+
+### Sample Payload
+
+This payload is optional, so the `curl` command will work without the `--data @payload.json` option too.
+
+```json
+{
+  "comment": "This run was discarded"
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/discard
+```
