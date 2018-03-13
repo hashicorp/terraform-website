@@ -18,7 +18,7 @@ The team access APIs are used to associate a team to permissions on a workspace.
 
 ### Parameters
 
-- `?filter[workspace][id]` (`string: <required>`) - The workspace ID for which to list the teams with access
+- `filter[workspace][id]` (`string: <required>`) - The workspace ID for which to list the teams with access
 
 ### Sample Request
 
@@ -27,7 +27,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://app.terraform.io/api/v2/team-workspaces?filter%5Bworkspace%5D%5Bid%5D=ws-5vBKrazjYR36gcYX
+  "https://app.terraform.io/api/v2/team-workspaces?filter%5Bworkspace%5D%5Bid%5D=ws-5vBKrazjYR36gcYX"
 ```
 
 ### Sample Response
@@ -207,4 +207,3 @@ $ curl \
   --request DELETE \
   https://app.terraform.io/api/v2/team-workspaces/257525
 ```
-
