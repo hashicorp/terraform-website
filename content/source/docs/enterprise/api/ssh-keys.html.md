@@ -8,11 +8,18 @@ sidebar_current: "docs-enterprise2-api-ssh-keys"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-The `ssh-key` object represents an SSH key which includes a name and the SSH private key. This object is used to clone Terraform modules at the organization level, and allows multiple keys to be added for the organization. You can also easily use them in any [workspace](./workspaces.html#assign-an-ssh-key-to-a-workspace) that clones modules from a Git server.
+The `ssh-key` object represents an SSH key which includes a name and the SSH private key. An organization can have multiple SSH keys available.
+
+SSH keys can be used in two places:
+
+- They can be assigned to VCS provider integrations ([available in the API as `oauth-tokens`](./oauth-tokens.html)). Bitbucket Server requires an SSH key; other providers only need an SSH key if your repositories include submodules that are only accessible via SSH (instead of your VCS provider's API).
+- They can be [assigned to workspaces](./workspaces.html#assign-an-ssh-key-to-a-workspace) and used when Terraform needs to clone modules from a Git server. This is only necessary when your configurations directly reference modules from a Git server; you do not need to do this if you use Terraform Enterprise's [private module registry](../registry/index.html).
+
+~> **Important:** The list and read methods on this API only provide metadata about SSH keys. The actual private key text is write-only, and Terraform Enterprise never provides it to users via the API or UI.
 
 ## List SSH Keys
 
-List all the SSH Keys for a given organization
+List all the SSH Keys for a given organization.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -52,7 +59,7 @@ curl \
 
 ## Get an SSH Key
 
-Get an SSH Key
+Get the name (and other metadata) associated with a given SSH key ID.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -89,7 +96,7 @@ curl \
 
 ## Create an SSH Key
 
-Create an SSH Key
+Create an SSH Key.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -144,7 +151,7 @@ curl \
 
 ## Update an SSH Key
 
-Update an SSH Key
+Update an SSH Key.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -197,7 +204,7 @@ curl \
 
 ## Delete an SSH Key
 
-Delete an SSH Key
+Delete an SSH Key.
 
 | Method | Path           |
 | :----- | :------------- |

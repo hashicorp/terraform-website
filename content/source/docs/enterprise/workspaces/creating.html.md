@@ -30,7 +30,7 @@ You must fill out several fields to configure your new workspace:
 
 There are also several optional fields, which you can reveal by clicking the "More options" link:
 
-![Screenshot: Optional fields for new workspaces](./images/creating/options.png)
+![Screenshot: Optional fields for new workspaces](./images/creating-options.png)
 
 - **Terraform working directory** — The directory where Terraform will execute, specified as a relative path from the root of the repo. This is useful when working with VCS repos that contain multiple Terraform configurations.
 - **VCS branch** — Which branch of the repository to use. If left blank, TFE will use the repository's default branch.
