@@ -110,7 +110,7 @@ curl \
   --header "Content-Type: application/octet-stream" \
   --request PUT \
   --data-binary @payload.sentinel \
-  https://app.terraform.io/api/v2/policy/pol-u3S5p2Uwk21keu1s/upload
+  https://app.terraform.io/api/v2/policies/pol-u3S5p2Uwk21keu1s/upload
 ```
 
 
@@ -153,7 +153,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/policy/pol-u3S5p2Uwk21keu1s
+  https://app.terraform.io/api/v2/policies/pol-u3S5p2Uwk21keu1s
 ```
 
 ### Sample Response
