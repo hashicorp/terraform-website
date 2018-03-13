@@ -103,8 +103,8 @@ curl \
 
 ### Parameters
 
-- `?filter[organization][name]` (`optional`) - Optionally filter the list to an organization given the organization name. If this parameter is provided, `filter[workspace][name]` must also be provided.
-- `?filter[workspace][name]` (`optional`) - Optionally filter the list to a workspace given the workspace name. If this parameter is provided, `filter[organization][name]` must also be provided.
+- `filter[organization][name]` (`optional`) - Optionally filter the list to an organization given the organization name. If this parameter is provided, `filter[workspace][name]` must also be provided.
+- `filter[workspace][name]` (`optional`) - Optionally filter the list to a workspace given the workspace name. If this parameter is provided, `filter[organization][name]` must also be provided.
 
 ### Sample Request
 
