@@ -6,19 +6,20 @@ sidebar_current: "docs-enterprise2-private-vault"
 
 # Private Terraform Enterprise Customer Managed Vault
 
-The installer product can be configured to use a customer managed Vault cluster
-rather than the internal Vault instance.
+Private Terraform Enterprise can be configured to use an external Vault cluster
+rather than the internal Vault instance. Within PTFE, Vault is used to
+encrypt sensitive information such as variables and states.
 
-This allows customers to have full control over how the Vault cluster is
-managed, for example how it is sealed and unsealed, replicated, etc.
+An external Vault cluster allows the customer to have full control over how
+the Vault cluster is managed, for example how it is sealed and unsealed, replicated, etc.
 
-When this is configured along side the External Services installation mode,
-the product becomes fully stateless, meaning it can be run in a hot-standby
+When an external Vault cluster is configured along with the External Services installation mode,
+the product becomes fully stateless and can be run in a hot-standby
 configuration to provide failover.
 
 ## Setup
 
-To setup your Vault cluster to be used, follow the following steps:
+Follwo these steps to configure an external Vault instance:
 
 1. Enable AppRole: `vault auth-enable approle`
 1. Enable transit: `vault mount transit`
@@ -32,10 +33,10 @@ To setup your Vault cluster to be used, follow the following steps:
 
 ## role\_id and secret\_id
 
-The `role_id` and `secret_id` values created during setup will be input during
-the installation of the product, along with the URL to be used to access your
-vault cluster, such as `https://vault.mycompany.com:8200`. If you use SSL to
-access the vault cluster, be sure that the Certificate Authority used is a
+The `role_id` and `secret_id` values created during configuration will be input during
+the PTFE installation along with the Vault cluster URL such as
+`https://vault.mycompany.com:8200`. If you use SSL to
+access the Vault cluster, be sure that the Certificate Authority used is a
 globally trusted one or input in the section of the installer to upload a
 custom CA bundle.
 
