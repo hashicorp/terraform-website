@@ -19,7 +19,7 @@ configuration to provide failover.
 
 ## Setup
 
-Follwo these steps to configure an external Vault instance:
+Follow these steps to configure an external Vault instance:
 
 1. Enable AppRole: `vault auth-enable approle`
 1. Enable transit: `vault mount transit`
@@ -30,15 +30,17 @@ Follwo these steps to configure an external Vault instance:
 1. Retrieve the AppRole `role_id`: `vault read auth/approle/role/ptfe/role-id`
 1. Retrieve the AppRole `secret_id`:
    `vault write -f auth/approle/role/ptfe/secret-id`
+1. Input the address of the vault cluster, role\_id, and secret\_id during the
+   install process
 
 ## role\_id and secret\_id
 
 The `role_id` and `secret_id` values created during configuration will be input during
 the PTFE installation along with the Vault cluster URL such as
-`https://vault.mycompany.com:8200`. If you use SSL to
-access the Vault cluster, be sure that the Certificate Authority used is a
-globally trusted one or input in the section of the installer to upload a
-custom CA bundle.
+`https://vault.mycompany.com:8200`. If you use SSL to access the Vault cluster, 
+the certificate must be trusted by the product. That means the issuer of the certificate
+is either globally trusted or you have provided the certificate for the issuer
+in the "Certificate Authority bundle" section of the installer configuration.
 
 ## Vault Policy
 
