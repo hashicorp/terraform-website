@@ -82,20 +82,27 @@ Open two side-by-side browser windows. In one of them, navigate to the new works
 
 Copy the old environment's variables and values to the new workspace, ensuring that all of the values are identical.
 
+If the environment had any sensitive variables, TFE will not show you their values; you'll need to recover the values from outside TFE, probably in your team's password management or secret management system.
+
 ### 4.a. Set `ATLAS_TOKEN` (Optional)
 
 ~> **Important:** This step is **only** for configurations that access state from a legacy TFE environment using a `terraform_remote_state` data source. If this environment doesn't do that, skip to the next step.
 
 TFE usually makes it easy to share state data between workspaces by automatically handling authentication. However, this only works _within_ a single organization, and your legacy environments are in a separate organization from your new workspaces. If your Terraform configuration accesses remote state from a legacy TFE environment, you must manually provide credentials until all of the relevant environments have been migrated to the new TFE.
 
-To do this, create a new environment variable in the new workspace called `ATLAS_TOKEN` and enter a valid TFE user token that can access the environment in question. (Make sure you check the "Sensitive" checkbox to protect the token.)
+To do this, create a new environment variable in the new workspace called `ATLAS_TOKEN` and enter a valid TFE user API token as its value. Mark the variable as sensitive to protect the token.
 
-If you're using this workaround during your migration process, you must do two additional steps later:
+The user account that owns this token must be a member of both the new and legacy organizations, and must have the following permissions:
 
-1. After migrating the environment whose state data this workspace uses, edit the configuration to reference its new workspace in your new TFE organization.
-2. At the same time, edit this workspace's variables to delete the `ATLAS_TOKEN` environment variable.
+- **Read** access to any legacy environments that the configuration needs to read state from.
+- **Write** access to the new workspace where the configuration will run.
 
-Make a note of the affected workspaces as you migrate them, and update them as soon as you can after you finish migrating. If you leave an overridden value for `ATLAS_TOKEN` in place after your migration project has ended, it can interfere with other TFE features like the private module registry.
+If you use this workaround during your migration process, you must do two additional steps after you've migrated all of your legacy environments:
+
+1. Edit this workspace's configuration so it reads state data from the new workspaces that replaced your legacy environments.
+2. At the same time, delete `ATLAS_TOKEN` from this workspace's variables.
+
+Make a note of any workspaces that access remote state as you migrate them, and update them soon after you finish migrating. Leaving a value for `ATLAS_TOKEN` over the long term can make your workspaces unnecessarily fragile.
 
 ## 5. Disable VCS Integration in the Legacy Environment
 
