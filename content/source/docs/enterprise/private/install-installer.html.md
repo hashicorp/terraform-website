@@ -173,6 +173,21 @@ From a shell on your instance, in the directory where you placed the `replicated
    configuration and you wish to increase the work that the instance does
    concurrently. This setting should be adjusted with care as setting it too
    high can result in an very unresponsive instance.
+1. _Optional:_ Provide the text version of a certificate (or certificates) which will be added to the trusted
+   list the product. This is used when services the product communicates with do not use
+   globally trusted certificates but rather a private Certificate Authority (CA). This is typically
+   used when a VCS provider uses a private CA.
+1. _Optional:_ Adjust the path used to store the vault files that are used to encrypt
+   sensitive data. This is a path on the host system, which allows the customer
+   to store these files outside of product to enhance security. Additionally,
+   you can configure the system to not store the vault files within any snapshots,
+   giving you full custody of these files. These files will need to be provided before
+   any snapshot restore process is performed, and should be placed into the path configured.
+1. _Optional:_ Configure the product to use an externally managed Vault cluster.
+   See [Customer Managed Vault Cluster](./vault.html) for details on how to configure this option.
+1. _Optional:_ Configure the path on the host that is exposed as /.well-known within the product,
+   for use with [Let's Encrypt certbot tool with webroot](https://certbot.eff.org/docs/using.html#webroot).
+   The path here is passed to the `-w` option when using `certbot`.
 
 #### PostgreSQL Requirements
 
