@@ -194,7 +194,7 @@ From a shell on your instance, in the directory where you placed the `replicated
    giving you full custody of these files. These files will need to be provided before
    any snapshot restore process is performed, and should be placed into the path configured.
 1. _Optional:_ Configure the product to use an externally managed Vault cluster.
-   See [Customer Managed Vault Cluster](./vault.html) for details on how to configure this option.
+   See [Externally Managed Vault Cluster](./vault.html) for details on how to configure this option.
 
 #### PostgreSQL Requirements
 

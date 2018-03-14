@@ -56,13 +56,13 @@ The following apply to every installation:
   to be able to generate certificates.
 - `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying
 - `ca_certs` — (Optional) custom certificate authority (CA) bundle
-- `cust_vault_enable` - (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
-  - `cust_vault_addr` - URL of external Vault cluster
-  - `cust_vault_role_id` - AppRole RoleId to use to authenticate with the Vault cluster
-  - `cust_vault_secret_id` - AppRole SecretId to use to authenticate with the Vault cluster
-  - `cust_vault_path` - (Optional) Path on the Vault server for the AppRole auth. Defaults to `auth/approle`
-  - `cust_vault_token_renew` - (Optional) How often (in seconds) to renew the Vault token. Defaults to `3600`
-- `vault_path` - (Optional) Path on the host system to store the vault files. If `cust_vault_enable` is set, this has no effect.
+- `extern_vault_enable` - (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
+  - `extern_vault_addr` - URL of external Vault cluster
+  - `extern_vault_role_id` - AppRole RoleId to use to authenticate with the Vault cluster
+  - `extern_vault_secret_id` - AppRole SecretId to use to authenticate with the Vault cluster
+  - `extern_vault_path` - (Optional) Path on the Vault server for the AppRole auth. Defaults to `auth/approle`
+  - `extern_vault_token_renew` - (Optional) How often (in seconds) to renew the Vault token. Defaults to `3600`
+- `vault_path` - (Optional) Path on the host system to store the vault files. If `extern_vault_enable` is set, this has no effect.
 - `vault_store_snapshot` - (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not, Defaults to `1`.
 
 #### `production_type` is required if you've chosen `production` for the `installation_type`:
