@@ -55,7 +55,21 @@ The following apply to every installation:
 - `letsencrypt_path` - (Optional) Path on the host to make `/.well-known` available in the product. This is used for certbot
   to be able to generate certificates.
 - `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying
-- `ca_certs` — (Optional) custom certificate authority (CA) bundle
+- `ca_certs` — (Optional) custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
+  in the data with `\n`. For instance:
+
+  ```
+  --- X509 CERT ---
+  aabbccddeeff
+  --- X509 CERT ---
+  ```
+
+  would become
+
+  ```
+  --- X509 CERT ---\naabbccddeeff\n--- X509 CERT ---\n
+  ```
+
 - `extern_vault_enable` - (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
   - `extern_vault_addr` - URL of external Vault cluster
   - `extern_vault_role_id` - AppRole RoleId to use to authenticate with the Vault cluster
