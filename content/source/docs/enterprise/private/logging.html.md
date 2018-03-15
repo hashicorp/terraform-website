@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-logging"
 
 This document contains information about interacting with Private Terraform Enterprise logs.
 
-# Application-level Logs
+# Application Logs - AMI based installs
 
 Private Terraform Enterprise's application-level services all log to CloudWatch logs, with one stream per service. The stream names take the format:
 
@@ -37,6 +37,32 @@ tfe.mycompany.io-terraform-state-parser
 ```
 
 CloudWatch logs can be searched, filtered, and read from either from the AWS Web Console or (recommended) the command line [`awslogs`](https://github.com/jorgebastida/awslogs) tool.
+
+## System-level Logs
+
+All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
+
+# Application Log - Installer Beta
+
+The installer based version runs the application in a set of docker containers. As such, any tooling that can interact with docker logs
+can read the logs. This includes running the command `docker logs` as well as access the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
+
+An example of a tool that can automatically pull logs for all docker containers is [logspout](https://github.com/gliderlabs/logspout).
+It can easily be configured to take the docker logs and send them to a syslog endpoint. Here is an example invocation to do so:
+
+```shell
+$ docker run --name="logspout" \
+	--volume=/var/run/docker.sock:/var/run/docker.sock \
+	gliderlabs/logspout \
+	syslog+tls://logs.mycompany.com:55555
+```
+
+The container uses the docker API internally to find the containers and ingress the logs, at which point it then sends
+them `logs.mycompany.com` over TCP on port 55555 using syslog over TLS.
+
+~> **NOTE:** Private Terraform Enterprise installations only supports docker `log-driver` configured to either `json-file` or `journald`.
+   The reason is that all other log drivers prevent the support bundle functionality from being to gather logs, making it
+   impossible to provide product support. **DO NOT** change the log driver of an installation to anything other than `json-file` or `journald`.
 
 ---
 
@@ -99,6 +125,3 @@ Audit log entries are written to the application logs. To distinguish audit Log 
 
 ---
 
-## System-level Logs
-
-All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
