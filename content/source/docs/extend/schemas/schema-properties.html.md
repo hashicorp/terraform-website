@@ -13,7 +13,7 @@ description: |-
 `schema.Schema`
 
 Schema properties from
-[`helper/schame/schema.go`](https://github.com/hashicorp/terraform/blob/master/helper/schema/schema.go#L37):
+[`helper/schema/schema.go`](https://github.com/hashicorp/terraform/blob/master/helper/schema/schema.go#L37):
 
 ```
 // If one of these is set, then this item can come from the configuration.

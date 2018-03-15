@@ -1,7 +1,7 @@
 ---
 layout: "extend"
 page_title: "Home - Extending Terraform"
-sidebar_current: "docs-enterprise-home"
+sidebar_current: "docs-extend-home"
 description: |-
   Extending Terraform is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
