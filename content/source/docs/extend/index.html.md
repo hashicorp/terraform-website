@@ -9,13 +9,12 @@ description: |-
 
 # Extending Terraform
 
-Terraform enables you to safely and predictably create, change, and improve
-infrastructure. It is an open source tool that codifies infrastructure provider
-APIs with the goal of enabling users to codify and provision any infrastructure.
-Terraform can be extended to provision more infrastructure providers with
-Providers, more infrastructure resources with Resources, and more options to
-store Terraform state with Backends. Providers, Resources, and Backends are
-collectively categorized as "Plugins".
+Terraform can be extended to allow users to manage more IaaS/PaaS/SaaS/... providers with
+**Providers** (containing [Resources](https://www.terraform.io/docs/configuration/resources.html)
+and/or [Data Sources](https://www.terraform.io/docs/configuration/data-sources.html)),
+more options to store Terraform state with [Backends](https://www.terraform.io/docs/backends)
+and more options to provision instance with **Provisioners**. **Providers**
+and **Provisioners** are collectively categorized as "Plugins".
 
 ~> This is an advanced section! If you are looking for information on using
 Terraform with any of the existing Plugins, please refer to the
@@ -38,8 +37,7 @@ components of Terraform (Core vs. Plugins) and the basics of how they interact.
 
 ## [Plugin Types](/docs/extend/plugin-types.html)
 
-Learn about the different types of Terraform plugins — Providers, Resources,
-Backends. 
+Learn about the different types of Terraform plugins — Providers and Provisioners.
 
 ## [Writing Custom Providers](/docs/extend/writing-custom-providers.html)
 
@@ -49,9 +47,9 @@ Provider.
 ## [Schemas](/docs/extend/schemas/index.html)
 
 The Schema package is a high-level framework for easily writing Plugins for
-Terraform. Providers, Resources, and Backends are all defined in terms of the
-Schema package, which includes builtin types and methods for developers to use
-when writing plugins. 
+Terraform. Providers (with Resources and/or Data Sources), and Provisioners
+are all defined in terms of the Schema package, which includes builtin types
+and methods for developers to use when writing plugins.
 
 ## [Community](/docs/extend/community/index.html)
 
