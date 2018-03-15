@@ -10,7 +10,7 @@ description: |-
 # Schema Behaviors
 
 Schema fields that can have an effect at plan or apply time are collectively
-referred to as “Behavioral fields”, or an elements _behaviors_. These fields are
+referred to as "Behavioral fields", or an elements _behaviors_. These fields are
 often combined in several ways to create different behaviors, depending on the
 need of the element in question, typically customized to match the behavior of a
 cloud service API. For example, at time of writing AWS Launch Configurations
@@ -70,7 +70,7 @@ Indicates that this element must be provided in the configuration. Omiting this 
 
 ```hcl
 resource "example_volume" "ex" {
-  name = “swap volume”
+  name = "swap volume"
 }
 ```
 
@@ -97,7 +97,7 @@ If `Default` is specified, that value that is used when this item is not set in 
 
 ```hcl
 resource "example_volume" "ex" {
-  name = “swap volume”
+  name = "swap volume"
   encrypted = true
 }
 ```
@@ -106,7 +106,7 @@ resource "example_volume" "ex" {
 
 ```hcl
 resource "example_volume" "ex" {
-  name = “swap volume”
+  name = "swap volume"
   # encrypted receives its default value, false
 }
 ```
@@ -134,12 +134,12 @@ Cannot be used with `DefaultFunc`
 
 ```hcl
 resource "example_volume" "ex" {
-  name = “swap volume”
+  name = "swap volume"
   encrypted = true
 }
 
-output “volume_uuid” {
-  value = “${example_volume.ex.uuid}”
+output "volume_uuid" {
+  value = "${example_volume.ex.uuid}"
 }
 ```
 
@@ -164,8 +164,8 @@ output “volume_uuid” {
 
 ```hcl
 resource "example_instance" "ex" {
-  name = “bastion host”
-  base_image = “ubuntu_17.10” 
+  name = "bastion host"
+  base_image = "ubuntu_17.10" 
 }
 ```
 
@@ -199,8 +199,8 @@ Here we assume the service API accepts capitalizations of the `base_image` name 
 
 ```hcl
 resource "example_instance" "ex" {
-  name = “bastion host”
-  base_image = “UBunTu_17.10” 
+  name = "bastion host"
+  base_image = "UBunTu_17.10" 
 }
 ```
 #### DefaultFunc
@@ -208,7 +208,7 @@ resource "example_instance" "ex" {
 **Restrictions:**  
 Cannot be used if `Default` is specified
 
-When `DefaultFunc` will be used to compute a dynamic default for this element. The return value of this function should be “stable”, such that it is uncommon to return different values in subsequent plans without any other changes being made, to avoid unnecessary diffs in `terraform plan`. 
+When `DefaultFunc` will be used to compute a dynamic default for this element. The return value of this function should be "stable", such that it is uncommon to return different values in subsequent plans without any other changes being made, to avoid unnecessary diffs in `terraform plan`. 
 
 `DefaultFunc` is most commonly used in Provider schemas, allows elements to have a default read from the environment. 
 
@@ -221,11 +221,11 @@ In this example, Terraform will attempt to read `region` from the environment if
   Type:     schema.TypeString,
   Required: true,
   DefaultFunc: func() (interface{}, error) {
-    if v := os.Getenv(“PROVIDER_REGION”); v != "" {
+    if v := os.Getenv("PROVIDER_REGION"); v != "" {
       return v, nil
     }
 
-    return “us-west”, nil
+    return "us-west", nil
   },
 },
 ```
@@ -234,8 +234,8 @@ In this example, Terraform will attempt to read `region` from the environment if
 
 ```hcl
 provider "example" {
-  api_key = “somesecretkey”
-  region = “us-est”
+  api_key = "somesecretkey"
+  region = "us-est"
 }
 ```
 
@@ -244,8 +244,8 @@ provider "example" {
 
 ```hcl
 provider "example" {
-  api_key = “somesecretkey”
-  # region is “us-west”
+  api_key = "somesecretkey"
+  # region is "us-west"
 }
 ```
 
@@ -253,8 +253,9 @@ provider "example" {
 
 ```hcl
 provider "example" {
-  api_key = “somesecretkey”
-  # region is “us-east” 
+  api_key = "somesecretkey"
+  # region is "us-east" 
 }
 ```
+
 ## Lexical Scoping
