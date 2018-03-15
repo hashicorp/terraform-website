@@ -213,10 +213,12 @@ Update the workspace settings
 
 ### Parameters
 
+Note that only the first four of these parameters can be used when updating a workspace without a VCS repository.
+
 - `:organization_name` (`string: <required>`) - Specifies the name of the organization the workspace should belong to. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
 - `name` (`string: <required>`) - Specifies the name of the workspace to update, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 - `terraform_version` (`string: <optional>`) - Specifices the version of Terraform to use for this workspace.
-- `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
+- `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your configuration and is typically set to a subdirectory matching the environment when multiple environments exist within the same configuration.
 - `vcs-repo.branch` (`string: ''`) - Specifies the repository branch that Terraform will execute from. If left null or as an empty string, this defaults to the repository's default branch (e.g. `master`) .
 - `vcs-repo.oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 - `vcs-repo.ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
