@@ -23,12 +23,15 @@ configuration, as opposed to trying to update the existing resource.
 ## Primitive Behaviors 
 #### Optional
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
-**Example:** `true` or `false`
+**Values:** `true` or `false`  
 **Restrictions:**
-Cannot be used if `Required` is `true`
-Must be set if `Required` is omitted **and** element is not `Computed`
 
-Indicates that this element is optional to include in the configuration. Note that `Optional` does not itself establish a default value. See [Default]() below.
+- Cannot be used if `Required` is `true`
+- Must be set if `Required` is omitted **and** element is not `Computed`
+
+Indicates that this element is optional to include in the configuration. Note
+that `Optional` does not itself establish a default value. See [Default]()
+below.
 
 **Schema example:**
 
@@ -49,13 +52,16 @@ resource "example_volume" "ex" {
 
 #### Required
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
-**Example:** `true` or `false`  
-**Restrictions:**
-Cannot be used if `Optional` is `true`
-Cannot be used if `Computed` is `true`
-Must be set if `Optional` is omitted **and** element is not `Computed`
+**Values:** `true` or `false`  
+**Restrictions:**  
 
-Indicates that this element must be provided in the configuration. Omiting this attribute from configuration, or later removing it, will result in a [plan-time]() error.
+- Cannot be used if `Optional` is `true`
+- Cannot be used if `Computed` is `true`
+- Must be set if `Optional` is omitted **and** element is not `Computed`
+
+Indicates that this element must be provided in the configuration. Omiting this
+attribute from configuration, or later removing it, will result in a
+[plan-time]() error.
 
 **Schema example:**
 
@@ -76,12 +82,15 @@ resource "example_volume" "ex" {
 
 #### Default
 **Data structure:** [interface](https://golang.org/doc/effective_go.html#interfaces)    
-**Example:** any value of an elements `Type` for primitive types, or the type defined by `Elem` for complex types.
-**Restrictions:**
-Cannot be used if `Required` is `true`
-Cannot be used with `DefaultFunc`
+**Value:** any value of an elements `Type` for primitive types, or the type
+defined by `Elem` for complex types.  
+**Restrictions:**  
 
-If `Default` is specified, that value that is used when this item is not set in the configuration. 
+- Cannot be used if `Required` is `true`
+- Cannot be used with `DefaultFunc`
+
+If `Default` is specified, that value that is used when this item is not set in
+the configuration. 
 
 **Schema example:**
 
@@ -113,13 +122,18 @@ resource "example_volume" "ex" {
 
 #### Computed
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
-**Example:** `true` or `false`  
-**Restrictions:**
-Cannot be used when `Required` is `true`
-Cannot be used when `Default` is `specified`
-Cannot be used with `DefaultFunc`
+**Value:** `true` or `false`    
+**Restrictions:**  
 
-`Computed` is often used to represent values that are not user configurable or can not be known at time of `terraform plan` or `apply`, such as date of creation or a service specific UUID. `Computed` can be combined with other attributes to achieve specific behaviors, and can be used as output for interpolation into other resources
+- Cannot be used when `Required` is `true`
+- Cannot be used when `Default` is `specified`
+- Cannot be used with `DefaultFunc`
+
+`Computed` is often used to represent values that are not user configurable or
+can not be known at time of `terraform plan` or `apply`, such as date of
+creation or a service specific UUID. `Computed` can be combined with other
+attributes to achieve specific behaviors, and can be used as output for
+interpolation into other resources
 
 **Schema example:**
 
@@ -145,10 +159,10 @@ output "volume_uuid" {
 
 #### ForceNew
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
-**Example:** `true` or `false`  
+**Value:** `true` or `false`  
 
-`ForceNew` indicates that any change in this field requires the resource to be destroyed and recreated. 
-
+`ForceNew` indicates that any change in this field requires the resource to be
+destroyed and recreated. 
 
 **Schema example:**
 
@@ -172,9 +186,12 @@ resource "example_instance" "ex" {
 
 ## Function Behaviors
 #### DiffSuppressFunc
-**Data structure:** [SchemaDiffSuppressFunc](https://github.com/hashicorp/terraform/blob/ead558261d5e322f1f1e90c8e74834ba9215f24e/helper/schema/schema.go#L202)    
+**Data structure:**
+[SchemaDiffSuppressFunc](https://github.com/hashicorp/terraform/blob/ead558261d5e322f1f1e90c8e74834ba9215f24e/helper/schema/schema.go#L202)    
 
-When provided `DiffSuppressFunc` will be used by Terraform to calculate the diff of this field. Common use cases are capitalization differences in string names, or logical equivalences in JSON values. 
+When provided `DiffSuppressFunc` will be used by Terraform to calculate the diff
+of this field. Common use cases are capitalization differences in string names,
+or logical equivalences in JSON values. 
 
 **Schema example:**
 
@@ -195,7 +212,9 @@ When provided `DiffSuppressFunc` will be used by Terraform to calculate the diff
 
 **Configuration example:**
 
-Here we assume the service API accepts capitalizations of the `base_image` name and converts it to a lowercase string. The API then returns the lower case value in it’s responses. 
+Here we assume the service API accepts capitalizations of the `base_image` name
+and converts it to a lowercase string. The API then returns the lower case value
+in it’s responses. 
 
 ```hcl
 resource "example_instance" "ex" {
@@ -203,18 +222,27 @@ resource "example_instance" "ex" {
   base_image = "UBunTu_17.10" 
 }
 ```
+
 #### DefaultFunc
-**Data structure:** [SchemaDefaultFunc](https://github.com/hashicorp/terraform/blob/ead558261d5e322f1f1e90c8e74834ba9215f24e/helper/schema/schema.go#L209)    
+**Data structure:**
+[SchemaDefaultFunc](https://github.com/hashicorp/terraform/blob/ead558261d5e322f1f1e90c8e74834ba9215f24e/helper/schema/schema.go#L209)  
 **Restrictions:**  
-Cannot be used if `Default` is specified
 
-When `DefaultFunc` will be used to compute a dynamic default for this element. The return value of this function should be "stable", such that it is uncommon to return different values in subsequent plans without any other changes being made, to avoid unnecessary diffs in `terraform plan`. 
+- Cannot be used if `Default` is specified  
 
-`DefaultFunc` is most commonly used in Provider schemas, allows elements to have a default read from the environment. 
+When `DefaultFunc` will be used to compute a dynamic default for this element.
+The return value of this function should be "stable", such that it is uncommon
+to return different values in subsequent plans without any other changes being
+made, to avoid unnecessary diffs in `terraform plan`. 
+
+`DefaultFunc` is most commonly used in Provider schemas, allows elements to have
+a default read from the environment. 
 
 **Schema example:**
 
-In this example, Terraform will attempt to read `region` from the environment if it is omitted from configuration. If it’s not found in the environment, a default value of `us-west` is given.
+In this example, Terraform will attempt to read `region` from the environment if
+it is omitted from configuration. If it’s not found in the environment, a
+default value of `us-west` is given.
 
 ```go
 "region": {
@@ -240,7 +268,8 @@ provider "example" {
 ```
 
 
-**Configuration example (default func with `PROVIDER_REGION` set to `us-west` in the environment):**
+**Configuration example (default func with `PROVIDER_REGION` set to `us-west` in
+the environment):**
 
 ```hcl
 provider "example" {
@@ -249,7 +278,8 @@ provider "example" {
 }
 ```
 
-**Configuration example (default func with `PROVIDER_REGION` unset in the environment):**
+**Configuration example (default func with `PROVIDER_REGION` unset in the
+environment):**
 
 ```hcl
 provider "example" {
