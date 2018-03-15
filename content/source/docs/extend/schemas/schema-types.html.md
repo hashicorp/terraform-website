@@ -130,9 +130,9 @@ resource "example_spot_request" "ex" {
 }
 ```
 
-#### Primitave state representations:
+#### Primitive state representations:
 
-Primitaves are stored in the statefile as `"key": "value"` string pairs:
+Primitives are stored in the [statefile](https://www.terraform.io/docs/state/index.html) as `"key": "value"` string pairs:
 
 ```json
 "encrypted": "Managed by Terraform",
