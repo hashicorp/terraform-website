@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-logging"
 
 # Terraform Enterprise Logs
 
-This document contains information about interacting with Private Terraform Enterprise logs.
+This document contains information about interacting with Private Terraform Enterprise logs. There are two types of logs, application logs and audit logs. Application logs emit information about the services that comprise Terraform Enterprise. Audit logs emit information whenever any resource managed by Terraform Enterprise is changed.
 
 # Application Logs - AMI based installs
 
@@ -42,7 +42,7 @@ CloudWatch logs can be searched, filtered, and read from either from the AWS Web
 
 All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
 
-# Application Log - Installer Beta
+# Application Logs - Installer Beta
 
 The installer-based version runs the application in a set of docker containers. As such, any tooling that can interact with docker logs
 can read the logs. This includes running the command `docker logs` as well as access the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
@@ -64,20 +64,19 @@ them `logs.mycompany.com` over TCP on port 55555 using syslog over TLS.
    All other log drivers prevent the support bundle functionality from gathering logs, making it
    impossible to provide product support. **DO NOT** change the log driver of an installation to anything other than `json-file` or `journald`.
 
----
+# Audit Logs
 
-## Audit Logs
+Audit log entries are written to the application logs. To distinguish audit Log entries from other log entries, the JSON is prefixed with `[Audit Log]`.
 
+## AMI based installs
 
-### AMI based installs
+As of Private Terraform Enterprise release v201802-1, audit logging is available in Private Terraform Enterprise. These are written out to CloudWatch logs just like all other application-level logs.
 
-As of Private Terraform Enterprise release v201802-1, audit logging is available in Private Terraform Enterprise. 
-
-### Installer Beta
+## Installer Beta
 
 The audit logs have been available in the installer beta since beta4. They are emitted along with other logs by the `ptfe_atlas` container.
 
-### Log Contents
+## Log Contents
 
 The audit log will be updated when any resource managed by Terraform Enterprise is changed. Read requests will be logged for resources deemed sensitive. These include:
 
@@ -109,7 +108,7 @@ When requests occur, these are the pieces of information that will be logged:
   4. The time that the action occurred
   5. Where the action was taken (web/API request, background job, etc.)
 
-### Log Format
+## Log Format
 
 Log entries are in JSON, just like other terraform logs. Most audit log entries will be formatted like this: 
 
@@ -125,10 +124,3 @@ Log entries are in JSON, just like other terraform logs. Most audit log entries 
 ```
 
 Certain entries will contain additional information in the payload, but all audit log entries will contain the above keys.
-
-### Log Location
-
-Audit log entries are written to the application logs. To distinguish audit Log entries from other log entries, the JSON is prefixed with `[Audit Log]`. These are written out to CloudWatch logs just like all other application-level logs.
-
----
-
