@@ -68,7 +68,14 @@ them `logs.mycompany.com` over TCP on port 55555 using syslog over TLS.
 
 ## Audit Logs
 
+
+### AMI based installs
+
 As of Private Terraform Enterprise release v201802-1, audit logging is available in Private Terraform Enterprise. 
+
+### Installer Beta
+
+The audit logs have been available in the installer beta since beta4. They are emitted along with other logs by the `ptfe_atlas` container.
 
 ### Log Contents
 
