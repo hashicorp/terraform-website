@@ -44,7 +44,7 @@ All other system-level logs can be found in the standard locations for an Ubuntu
 
 # Application Log - Installer Beta
 
-The installer based version runs the application in a set of docker containers. As such, any tooling that can interact with docker logs
+The installer-based version runs the application in a set of docker containers. As such, any tooling that can interact with docker logs
 can read the logs. This includes running the command `docker logs` as well as access the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
 
 An example of a tool that can automatically pull logs for all docker containers is [logspout](https://github.com/gliderlabs/logspout).
@@ -61,7 +61,7 @@ The container uses the docker API internally to find the containers and ingress 
 them `logs.mycompany.com` over TCP on port 55555 using syslog over TLS.
 
 ~> **NOTE:** Private Terraform Enterprise installations only supports docker `log-driver` configured to either `json-file` or `journald`.
-   The reason is that all other log drivers prevent the support bundle functionality from being to gather logs, making it
+   All other log drivers prevent the support bundle functionality from gathering logs, making it
    impossible to provide product support. **DO NOT** change the log driver of an installation to anything other than `json-file` or `journald`.
 
 ---
