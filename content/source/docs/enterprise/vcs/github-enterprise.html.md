@@ -20,6 +20,8 @@ Approve access request. | &nbsp;
 
 The rest of this page explains the GitHub Enterprise versions of these steps.
 
+~> **Important:** TFE needs to contact your GitHub Enterprise instance during setup and during normal operation. For the SaaS version of TFE, this means GitHub Enterprise must be internet-accessible; for private installs of TFE, you must have network connectivity between your TFE and GitHub Enterprise instances.
+
 ## Step 1: On GitHub, Create a New OAuth Application
 
 1. Open your GitHub Enterprise instance in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
@@ -101,6 +103,8 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
     ![GitHub screenshot: the authorization screen](./images/gh-authorize.png)
 
 3. Click the green "Authorize `<GITHUB USER>`" button at the bottom of the authorization page. GitHub might request your password to confirm the operation.
+
+    This returns you to TFE's OAuth Configuration page. If it results in a 500 error, it usually means TFE was unable to reach your GitHub Enterprise instance.
 
 ## Step 5: Contact Your GitHub Organization Admins
 
