@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-private-installer"
 
 ## Delivery
 
-This document outlines the procedure for using the Private Terraform Enterprise
+This document outlines the procedure for using the Private Terraform Enterprise (PTFE)
 installer to set up Terraform Enterprise on a customer-controlled machine.
 
 ~> **Note**: This document is only meant for those customers in the Private
@@ -28,10 +28,14 @@ Before you begin, you'll need to prepare data files and a Linux instance.
     each webhook to ignore SSL errors within your VCS provider.
   * If you do not have access to a certificate, you can use
     [Let's Encrypt](https://letsencrypt.org/getting-started/) to request one for free.
-    You will provide the path on the host system to the created certificate and key
-    when requested by the setup process.
+    This functionality is available in the settings dashboard, simply click the
+    `Automatically Request Certificate via Let's Encrypt` option.
 * License key (provided by HashiCorp)
 
+~> **Note:** If you use your own certificate and it is issued by a private Certificate
+   Authority, you must provide the certificate for that CA in the
+   `Certificate Authority (CA) Bundle` section of the installation. This allows services
+   running within PTFE to access eachother properly.
 ### Linux Instance
 
 Install the software on a Linux instance of your choosing.
@@ -79,6 +83,12 @@ For Linux distributions other than RHEL, check Docker compatibility:
   * **9870-9880 (inclusive)** - for internal communication on the host and its subnet; not publicly accessible
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
 1. _Optional_: Get a domain name for the instance.  If you opt to use only an IP to access the instance, enter the IP into the hostname field when prompted during the web portion of the setup.
+
+~> **Note**: PTFE needs to be able to access all services that it integrates with, such as VCS providers,
+   terraform providers, etc. Because it typically accesses them via SSL/TLS, it is critical that the
+   certificates used by any service that is accessed is trusted by PTFE. This means properly configuring
+   the `Certificate Authority (CA) Bundle` option so that PTFE can properly trust any certificates
+   issued by private CAs.
 
 ### Operational Mode Decision
 
@@ -151,7 +161,9 @@ From a shell on your instance, in the directory where you placed the `replicated
 
 ### Continue Installation In Browser
 
-1. Configure the hostname (which can be an IP only) and the SSL certificate.
+1. Configure the hostname and the SSL certificate. If you wish to use the builtin
+   Let's Encrypt functionality, specify Self-Signed here and later on you'll have
+   the opportunity to configure the application using Let's Encrypt.
 1. Upload your license file. (Provided to you in your setup email)
 1. Indicate if you're doing an Online or Airgapped installation (Choose Online if
    you're not sure)
