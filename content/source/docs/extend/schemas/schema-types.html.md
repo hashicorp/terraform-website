@@ -332,6 +332,8 @@ of the attributes of the set.
 
 ------
 
-For information on the properties (such as  `Required` and `ValidateFunc`), see
-[Schema Properties]("/docs/extend/schemas/schema-properties.html").
+## Next Steps 
 
+Checkout [Schema Behaviors](/docs/extend/schemas/schema-behaviors.html) to learn
+Checkout [Schema Behaviors](/docs/extend/schemas/schema-behaviors.html) to learn
+how to customize each schema elements behavior.

@@ -62,15 +62,15 @@ Schema items must be defined using one of the builtin types, such as
 valid input for a given schema item in a users configuration. 
 
 See [Schema
-Types](/docs/extend/schema-types.html) for more information on the Types
+Types](/docs/extend/schemas/schema-types.html) for more information on the Types
 available to schemas.
 
-## Schema Properties
+## Schema Behaviors
 
 Schema items can have various properties that can be combined to match their
-behavioras represented by their API. Some items are **Required**, others
+behaviors represented by their API. Some items are **Required**, others
 **Optional**, while others may be **Computed** such that they are useful to be
 tracked in state, but cannot be configured by users.
 
-See [Schema Properties](/docs/extend/schema-properties.html) for more
+See [Schema Behaviors](/docs/extend/schemas/schema-behaviors.html) for more
 information on the properties a schema can have.
