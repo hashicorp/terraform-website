@@ -1,10 +1,12 @@
 VERSION?="0.3.32"
+EXTEND=${SHOW_EXTEND}
 
 build:
 	@echo "==> Starting build in Docker..."
 	@mkdir -p content/build
 	@docker run \
 		--interactive \
+    -e "SHOW_EXTEND=${EXTEND}" \
 		--rm \
 		--tty \
 		--volume "$(shell pwd)/ext:/ext" \
@@ -17,6 +19,7 @@ website:
 	@echo "==> Starting website in Docker..."
 	@docker run \
 		--interactive \
+    -e "SHOW_EXTEND=${EXTEND}" \
 		--rm \
 		--tty \
 		--publish "4567:4567" \

@@ -1,0 +1,64 @@
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+    <ul class="nav docs-sidenav">
+      <li<%= sidebar_current("docs-extend-home") %>>
+        <a href="/docs/extend/index.html">Home</a>
+      </li>
+      <li<%= sidebar_current("docs-extend-how-terraform-works") %>>
+        <a href="/docs/extend/how-terraform-works.html">How Terraform Works</a>
+      </li>
+      <li<%= sidebar_current("docs-extend-plugin-types") %>>
+        <a href="/docs/extend/plugin-types.html">Plugin Types</a>
+      </li>
+      <li<%= sidebar_current("docs-extend-writing-custom-providers") %>>
+        <!-- possibly make this "Guides" and collect some? -->
+        <a href="/docs/extend/writing-custom-providers.html">Writing Custom Providers</a>
+      </li>
+
+      <li<%= sidebar_current("docs-extend-schemas") %>>
+        <a href="/docs/extend/schemas/index.html">Schemas</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-extend-schemas-types") %>>
+            <a href="/docs/extend/schemas/schema-types.html">Schema Types</a>
+          </li>
+          <li<%= sidebar_current("docs-extend-schemas-behaviors") %>>
+            <a href="/docs/extend/schemas/schema-behaviors.html">Schema Behaviors</a>
+          </li>
+<%
+#Not yet
+=begin
+          <li<%= sidebar_current("docs-extend-schemas-methods") \%\>>
+          TODO: fix the \%\> above, it's changed to not mess with the multiline begin/end comment
+            <!-- Document methods of type Schema: DiffSuppressFunc, DefaultFunc, StateFunc, et. al -->
+            <a href="/docs/extend/schemas/schema-methods.html">Schema Methods</a>
+          </li>
+=end
+%>
+        </ul>
+      </li>
+
+      <li<%= sidebar_current("docs-extend-community") %>>
+        <a href="/docs/extend/community/index.html">Community</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-extend-community-contributing") %>>
+            <a href="/docs/extend/community/contributing.html">Contributing</a>
+          </li>
+          <li<%= sidebar_current("docs-extend-community-code-of-conduct") %>>
+            <a href="/docs/extend/community/code-of-conduct.html">Code of Conduct</a>
+          </li>
+        </ul>
+      </li>
+
+      <hr>
+
+      <li<%= sidebar_current("docs-extend-internals") %>>
+        <a href="/docs/internals/index.html">Terraform Internals</a>
+      </li>
+      <li<%= sidebar_current("docs-extend-provider-dev-program") %>>
+        <a href="/guides/terraform-provider-development-program.html">Terraform Provider Development Program</a>
+      </li>
+    </ul>
+  <% end %>
+
+  <%= yield %>
+<% end %>
