@@ -38,7 +38,7 @@ If you supply nothing but a name, you can create a workspace without configuring
   "data":
   {
     "attributes": {
-      "name":"workspace-demo"
+      "name":"workspace-1"
     },
     "type":"workspaces"
   }
@@ -64,7 +64,7 @@ $ curl \
     "id": "ws-YnyXLq9fy38afEeb",
     "type": "workspaces",
     "attributes": {
-      "name": "workspace-demo",
+      "name": "workspace-1",
       "environment": "default",
       "auto-apply": false,
       "locked": false,
@@ -97,7 +97,7 @@ $ curl \
       }
     },
     "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/ws-YnyXLq9fy38afEeb"
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
     }
   }
 }
@@ -123,7 +123,7 @@ By supplying the necessary attributes under a `vcs-repository` object, you can c
 {
   "data": {
     "attributes": {
-      "name":"workspace-demo",
+      "name":"workspace-2",
       "terraform_version":"0.11.1",
       "working-directory":"",
       "vcs-repo": {
@@ -157,7 +157,7 @@ $ curl \
     "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces",
     "attributes": {
-      "name": "workspace-demo",
+      "name": "workspace-2",
       "environment": "default",
       "auto-apply": false,
       "locked": false,
@@ -196,7 +196,7 @@ $ curl \
       }
     },
     "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/ws-SihZTyXKfNXUWuUa"
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
     }
   }
 }
@@ -208,16 +208,17 @@ Update the workspace settings
 
 | Method | Path           |
 | :----- | :------------- |
-| PATCH | /organizations/:organization_name/workspaces/:workspace_id |
+| PATCH | /organizations/:organization_name/workspaces/:name |
 
 
 ### Parameters
 
-- `:organization_name` (`string: <required>`) - Specifies the organization name under which to create the workspace. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
-- `:workspace_id` (`string: <required>`) - Specifies the workspace ID to update.
-- `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+Note that workspaces without an associated VCS repository only use the organization name, workspace name, terraform version, and working directory.
+
+- `:organization_name` (`string: <required>`) - Specifies the name of the organization the workspace should belong to. The organization must already exist in the system, and the user must have permissions to create new workspaces. This parameter is specified in the URL path.
+- `name` (`string: <required>`) - Specifies the name of the workspace to update, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 - `terraform_version` (`string: <optional>`) - Specifices the version of Terraform to use for this workspace.
-- `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
+- `working-directory` (`string: ''`) - Specifies the directory that Terraform will execute within. This defaults to the root of your configuration and is typically set to a subdirectory matching the environment when multiple environments exist within the same configuration.
 - `vcs-repo.branch` (`string: ''`) - Specifies the repository branch that Terraform will execute from. If left null or as an empty string, this defaults to the repository's default branch (e.g. `master`) .
 - `vcs-repo.oauth-token-id` (`string: <optional>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 - `vcs-repo.ingress-submodules` (`boolean: false`) - Specifies whether submodules should be fetched when cloning the VCS repository.
@@ -229,7 +230,7 @@ Update the workspace settings
 {
   "data": {
     "attributes": {
-      "name":"my-workspace-2",
+      "name":"workspace-2",
       "terraform_version":"0.11.1",
       "working-directory":"",
       "vcs-repo": {
@@ -252,7 +253,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/compound-workspaces/ws-erEAnPmgtm5mJr77
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces/workspace-2
 ```
 
 ### Sample Response
@@ -260,10 +261,10 @@ $ curl \
 ```json
 {
   "data": {
-    "id": "ws-erEAnPmgtm5mJr77",
+    "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces",
     "attributes": {
-      "name": "my-workspace-2",
+      "name": "workspace-2",
       "environment": "default",
       "auto-apply": false,
       "locked": false,
@@ -292,7 +293,7 @@ $ curl \
       }
     },
     "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/ws-erEAnPmgtm5mJr77"
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
     }
   }
 }
@@ -325,10 +326,10 @@ $ curl \
 {
   "data": [
     {
-      "id": "ws-erEAnPmgtm5mJr77",
+      "id": "ws-SihZTyXKfNXUWuUa",
       "type": "workspaces",
       "attributes": {
-        "name": "my-workspace-2",
+        "name": "workspace-2",
         "environment": "default",
         "auto-apply": false,
         "locked": false,
@@ -357,14 +358,14 @@ $ curl \
         }
       },
       "links": {
-        "self": "/api/v2/organizations/my-organization/workspaces/ws-erEAnPmgtm5mJr77"
+        "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
       }
     },
     {
-      "id": "ws-XNjxRUBLi6n1xyVk",
+      "id": "ws-YnyXLq9fy38afEeb",
       "type": "workspaces",
       "attributes": {
-        "name": "my-workspace-1",
+        "name": "workspace-1",
         "environment": "default",
         "auto-apply": false,
         "locked": false,
@@ -393,11 +394,83 @@ $ curl \
         }
       },
       "links": {
-        "self": "/api/v2/organizations/my-organization/workspaces/ws-XNjxRUBLi6n1xyVk"
+        "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
       }
     }
   ]
 }
+```
+
+## Show workspace
+
+This endpoint shows details for a workspace in the organization.
+
+| Method | Path           |
+| :----- | :------------- |
+| GET | /organizations/:organization/workspaces/:name |
+
+### Parameters
+
+- `:organization` (`string: <required>`) - Specifies the organization name under which to list the workspaces. This is specified in the URL path.
+- `:name` (`string: <required>`) - Specifies the name of the workspace to show details for. This is specified in the URL path.
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces/workspace-1
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "ws-mD5bmJ8ry3uTzuHi",
+    "type": "workspaces",
+    "attributes": {
+      "name": "workspace-1",
+      "environment": "default",
+      "auto-apply": false,
+      "locked": false,
+      "created-at": "2018-03-08T22:30:00.404Z",
+      "working-directory": null,
+      "terraform-version": "0.11.3",
+      "permissions": {
+        "can-update": true,
+        "can-destroy": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-update-variable": true,
+        "can-lock": true,
+        "can-read-settings": true
+      },
+      "actions": {
+        "is-destroyable": true
+      }
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "latest-run": {
+        "data": null
+      },
+      "current-run": {
+        "data": null
+      }
+    },
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
+    }
+  }
+}
+
 ```
 
 
@@ -407,12 +480,12 @@ This endpoint deletes a workspace.
 
 | Method | Path           |
 | :----- | :------------- |
-| DELETE | /organizations/:organization/workspaces/:workspace |
+| DELETE | /organizations/:organization/workspaces/:name |
 
 ### Parameters
 
-- `:workspace` (`string: <required>`) - Specifies the workspace ID to delete. This parameter is specified in the URL path.
-- `:organization` (`string: <required>`) - Specifies the organization name where the workspace belongs. This parameter is specified in the URL path.
+- `:name` (`string: <required>`) - Specifies the name of the workspace to delete. This parameter is specified in the URL path.
+- `:organization` (`string: <required>`) - Specifies the name of the organization the workspace belongs to. This parameter is specified in the URL path.
 
 ### Sample Request
 
@@ -421,7 +494,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/organizations/my-organization/workspaces/my-workspace
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces/workspace-1
 ```
 
 
@@ -445,7 +518,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://app.terraform.io/api/v2/workspaces/ws-YnyXLq9fy38afEeb/actions/lock
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/actions/lock
 ```
 
 ### Sample Response
@@ -459,7 +532,7 @@ $ curl \
       "created-at": "2017-11-02T23:23:53.765Z",
       "environment": "default",
       "locked": true,
-      "name": "my-workspace",
+      "name": "workspace-2",
       "permissions": {
         "can-destroy": true,
         "can-lock": true,
@@ -478,7 +551,7 @@ $ curl \
       },
       "working-directory": null
     },
-    "id": "ws-YnyXLq9fy38afEeb",
+    "id": "ws-SihZTyXKfNXUWuUa",
     "relationships": {
       "locked-by": {
         "data": {
@@ -515,7 +588,7 @@ $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://app.terraform.io/api/v2/workspaces/ws-YnyXLq9fy38afEeb/actions/unlock
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/actions/unlock
 ```
 
 ### Sample Response
@@ -529,7 +602,7 @@ $ curl \
       "created-at": "2017-11-02T23:23:53.765Z",
       "environment": "default",
       "locked": false,
-      "name": "my-workspace",
+      "name": "workspace-2",
       "permissions": {
         "can-destroy": true,
         "can-lock": true,
@@ -548,7 +621,7 @@ $ curl \
       },
       "working-directory": null
     },
-    "id": "ws-YnyXLq9fy38afEeb",
+    "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces"
   }
 }
@@ -588,9 +661,9 @@ This endpoint assigns an SSH key to a workspace.
 $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  --request POST \
+  --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/workspaces/ws-erEAnPmgtm5mJr77/relationships/ssh-key
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/relationships/ssh-key
 ```
 
 ### Sample Response
@@ -609,13 +682,13 @@ $ curl \
         "ingress-submodules": false
       },
       "locked": false,
-      "name": "my-workspace-2",
+      "name": "workspace-2",
       "terraform-version": "0.10.8",
       "working-directory": ""
     },
-    "id": "ws-erEAnPmgtm5mJr77",
+    "id": "ws-SihZTyXKfNXUWuUa",
     "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/ws-erEAnPmgtm5mJr77"
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
     },
     "relationships": {
       "latest-run": {
@@ -675,9 +748,9 @@ This endpoint unassigns the currently assigned SSH key from a workspace.
 $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  --request POST \
+  --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/workspaces/ws-erEAnPmgtm5mJr77/relationships/ssh-key
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/relationships/ssh-key
 ```
 
 ### Sample Response
@@ -696,13 +769,13 @@ $ curl \
         "ingress-submodules": false
       },
       "locked": false,
-      "name": "my-workspace-2",
+      "name": "workspace-2",
       "terraform-version": "0.10.8",
       "working-directory": ""
     },
     "id": "ws-erEAnPmgtm5mJr77",
     "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/ws-erEAnPmgtm5mJr77"
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
     },
     "relationships": {
       "latest-run": {
