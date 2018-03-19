@@ -661,7 +661,7 @@ This endpoint assigns an SSH key to a workspace.
 $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  --request POST \
+  --request PATCH \
   --data @payload.json \
   https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/relationships/ssh-key
 ```
@@ -748,7 +748,7 @@ This endpoint unassigns the currently assigned SSH key from a workspace.
 $ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  --request POST \
+  --request PATCH \
   --data @payload.json \
   https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/relationships/ssh-key
 ```
