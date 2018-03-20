@@ -33,11 +33,77 @@ Future APIs will increment this version, leaving the `/v1` API intact, though in
 
 ## Paths
 
-All V2 API endpoints use `/api/v2` as the subpath unless otherwise specified.
+All V2 API endpoints use `/api/v2` as a prefix unless otherwise specified.
 
 For example, if the API endpoint documentation defines the path `/runs` then the full path is `/api/v2/runs`.
 
 ## JSON API Formatting
 
-The TFE endpoints use the [JSON API specification](http://jsonapi.org/) which specifies standards for [HTTP error codes](http://jsonapi.org/examples/#error-objects-error-codes), [error objects](http://jsonapi.org/examples/#error-objects-basics), [document structure](http://jsonapi.org/format/#document-structure), [HTTP Request/Response headers](http://jsonapi.org/format/#content-negotiation), and other key aspects of the API.
+The TFE endpoints use the [JSON API specification](http://jsonapi.org/), which specifies key aspects of the API. Most notably:
 
+- [HTTP error codes](http://jsonapi.org/examples/#error-objects-error-codes)
+- [Error objects](http://jsonapi.org/examples/#error-objects-basics)
+- [Document structure][document]
+- [HTTP request/response headers](http://jsonapi.org/format/#content-negotiation)
+
+[document]: http://jsonapi.org/format/#document-structure
+
+### JSON API Documents
+
+Since our API endpoints use the JSON API spec, most of them return [JSON API documents][document].
+
+Endpoints that use the POST method also require a JSON API document as the request payload. A request object usually looks something like this:
+
+```json
+{
+  "data": {
+    "type":"vars",
+    "attributes": {
+      "key":"some_key",
+      "value":"some_value",
+      "category":"terraform",
+      "hcl":false,
+      "sensitive":false
+    }
+  },
+  "filter": {
+    "organization": {
+      "name":"my-organization"
+    },
+    "workspace": {
+      "name":"my-workspace"
+    }
+  }
+}
+```
+
+These objects always include a top-level `data` property, which:
+
+- Must have a `type` property to indicate what type of API object you're interacting with.
+- Often has an `attributes` property to specify attributes of the object you're creating or modifying.
+- Sometimes has a `relationships` property to specify other objects that are linked to what you're working with.
+
+A request payload sometimes has other top-level properties that are siblings of `data`, like `filter`.
+
+In the documentation for each API method, we use dot notation to explain the structure of nested objects in the request. For example, the properties of the request object above are listed as follows:
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`data.type`                 | string |         | Must be `"vars"`.
+`data.attributes.key`       | string |         | The name of the variable.
+`data.attributes.value`     | string |         | The value of the variable.
+`data.attributes.category`  | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
+`data.attributes.hcl`       | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
+`data.attributes.sensitive` | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
+`filter.workspace.name`     | string |         | The name of the workspace that owns the variable.
+`filter.organization.name`  | string |         | The name of the organization that owns the workspace.
+
+We also always include a sample payload object, to show the document structure more visually.
+
+### Query Parameters
+
+Although most of our API endpoints use the POST method and receive their parameters as a JSON object in the request payload, some of them use the GET method. These GET endpoints sometimes require URL query parameters, in the standard `...path?key1=value1&key2=value2` format.
+
+Since these parameters were originally designed as part of a JSON object, they sometimes have characters that must be [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding) in a query parameter. For example, `[` becomes `%5B` and `]` becomes `%5D`.
+
+For more about URI structure and query strings, see [the specification (RFC 3986)](https://tools.ietf.org/html/rfc3986) or [the Wikipedia page on URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).

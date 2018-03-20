@@ -12,14 +12,22 @@ The Teams API is used to create and destroy teams. The [Team Membership API](./t
 
 ## Create a Team
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /organizations/:organization_name/teams |
+`POST /organizations/:organization_name/teams`
 
-### Parameters
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to create the team in. The organization must already exist in the system, and the user must have permissions to create new teams.
 
-- `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-- `:organization_name` (`string: <required>`) - Specifies the organization name under which to create the team. The organization must already exist in the system, and the user must have permissions to create new teams. This parameter is specified in the URL path.
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path               | Type   | Default | Description
+-----------------------|--------|---------|------------
+`data.type`            | string |         | Must be `"teams"`.
+`data.attributes.name` | string |         | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 
 ### Sample Payload
 
@@ -70,13 +78,11 @@ $ curl \
 
 # Delete a Team
 
-| Method | Path           |
-| :----- | :------------- |
-| DELETE | /teams/:team_id |
+`DELETE /teams/:team_id`
 
-### Parameters
-
-- `:team_id` (`string: <required>`) - The team ID to be deleted. This parameter is specified in the URL.
+Parameter   | Description
+------------|------------
+`:team_id`  | The team ID to be deleted.
 
 
 ### Sample Request

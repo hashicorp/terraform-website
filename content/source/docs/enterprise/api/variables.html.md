@@ -13,19 +13,26 @@ This set of APIs covers create, update, list and delete operations on variables.
 
 ## Create a Variable
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /vars |
+`POST /vars`
 
-### Parameters
+### Request Body
 
-- `key` (`string: <required>`) - specifies the name of the variable which will be passed into the plan/apply.
-- `value` (`string: <required>`) - specifies the value of the variable which will be passed into the plan/apply.
-- `category` (`string: "terraform"|"env"`) - specifies whether this should be parsed as a Terraform variable (with support for HCL) or as an environment variable. This governs how it is accessible in the Terraform configuration.
-- `hcl` (`bool: false`) - use HCL when setting the value of the string.
-- `sensitive` (`bool: false`) - marks the variable as sensitive. If true then the variable is written once and not visible thereafter.
-- `filter[workspace][name]` (`string: required`) - variables must be associated with a workspace. Specify the workspace's name with the `filter` query parameter.
-- `filter[organization][name]` (`string: required`) - workspaces must be owned by an organization. Specify which organization owns the workspace with the `filter` query parameter.
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`data.type`                 | string |         | Must be `"vars"`.
+`data.attributes.key`       | string |         | The name of the variable.
+`data.attributes.value`     | string |         | The value of the variable.
+`data.attributes.category`  | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
+`data.attributes.hcl`       | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
+`data.attributes.sensitive` | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
+`filter.workspace.name`     | string |         | The name of the workspace that owns the variable.
+`filter.organization.name`  | string |         | The name of the organization that owns the workspace.
+
 
 ### Sample Payload
 
@@ -97,14 +104,18 @@ curl \
 
 ## List Variables
 
-| Method | Path           |
-| :----- | :------------- |
-| GET | /vars |
+`GET /vars`
 
-### Parameters
+### Query Parameters
 
-- `filter[organization][name]` (`optional`) - Optionally filter the list to an organization given the organization name. If this parameter is provided, `filter[workspace][name]` must also be provided.
-- `filter[workspace][name]` (`optional`) - Optionally filter the list to a workspace given the workspace name. If this parameter is provided, `filter[organization][name]` must also be provided.
+[These are standard URL query parameters](./index.html.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter                    | Description
+-----------------------------|------------
+`filter[workspace][name]`    | **Optional.** The name of one workspace to list variables for. If included, you must also include the organization name filter.
+`filter[organization][name]` | The name of the organization that owns the desired workspace. Must be combined with the workspace name filter.
+
+These two parameters are optional but linked; if you include one, you must include both. Without a filter, this method lists variables for all workspaces you can access.
 
 ### Sample Request
 
@@ -151,13 +162,23 @@ $ curl \
 
 ## Update Variables
 
-| Method | Path           |
-| :----- | :------------- |
-| PATCH | /vars/:variable_id |
+`PATCH /vars/:variable_id`
 
-### Parameters
+Parameter      | Description
+---------------|------------
+`:variable_id` | The ID of the variable to be updated.
 
-- `:variable_id` (`string: <required>`) - specifies the ID of the variable to be updated. Specified in the request path.
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path          | Type   | Default | Description
+------------------|--------|---------|------------
+`data.type`       | string |         | Must be `"vars"`.
+`data.id`         | string |         | The ID of the variable to update.
+`data.attributes` | object |         | New attributes for the variable. This object can include `key`, `value`, `category`, `hcl`, and `sensitive` properties, which are described above under [create a variable](#create-a-variable). All of these properties are optional; if omitted, a property will be left unchanged.
 
 ### Sample Payload
 
@@ -222,13 +243,11 @@ $ curl \
 
 ## Delete Variables
 
-| Method | Path           |
-| :----- | :------------- |
-| DELETE | /vars/:variable_id |
+`DELETE /vars/:variable_id`
 
-### Parameters
-
-- `:variable_id` (`string: <required>`) - specifies the ID of the variable to be deleted. Specified in the request path.
+Parameter      | Description
+---------------|------------
+`:variable_id` | The ID of the variable to be deleted.
 
 ### Sample Request
 
