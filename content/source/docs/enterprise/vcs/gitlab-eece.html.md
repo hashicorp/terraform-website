@@ -20,6 +20,8 @@ Approve access request. | &nbsp;
 
 The rest of this page explains the on-premise GitLab versions of these steps.
 
+~> **Important:** TFE needs to contact your GitLab instance during setup and during normal operation. For the SaaS version of TFE, this means GitLab must be internet-accessible; for private installs of TFE, you must have network connectivity between your TFE and GitLab instances.
+
 ## Step 1: On GitLab, Create a New Application
 
 1. Open your GitLab instance in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
@@ -102,6 +104,8 @@ The rest of this page explains the on-premise GitLab versions of these steps.
     ![GitLab screenshot: the authorization screen](./images/gitlab-authorize.png)
 
 2. Click the green "Authorize" button at the bottom of the authorization page. This returns you to TFE's OAuth Configuration page, where the GitLab client's information has been updated.
+
+    If this results in a 500 error, it usually means TFE was unable to reach your GitLab instance.
 
 ## Finished
 
