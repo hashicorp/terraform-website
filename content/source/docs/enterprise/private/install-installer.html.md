@@ -36,6 +36,7 @@ Before you begin, you'll need to prepare data files and a Linux instance.
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
    running within PTFE to access eachother properly.
+
 ### Linux Instance
 
 Install the software on a Linux instance of your choosing.
@@ -84,11 +85,23 @@ For Linux distributions other than RHEL, check Docker compatibility:
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
 1. _Optional_: Get a domain name for the instance.  If you opt to use only an IP to access the instance, enter the IP into the hostname field when prompted during the web portion of the setup.
 
+
+#### Trusting SSL/TLS Certificates
+
+The installer has a section that allows multiple certificates to be specified as trusted. These
+certificates are a `Certificate Authority (CA) Bundle` and are used to allow PTFE to connect
+to services that uses SSL/TLS certificates issued by private CAs.
+
+The UI to upload these certificates looks like:
+
+![ptfe-ca-ui](./assets/ptfe-ca-bundle.png)
+
 ~> **Note**: PTFE needs to be able to access all services that it integrates with, such as VCS providers,
    terraform providers, etc. Because it typically accesses them via SSL/TLS, it is critical that the
    certificates used by any service that is accessed is trusted by PTFE. This means properly configuring
    the `Certificate Authority (CA) Bundle` option so that PTFE can properly trust any certificates
    issued by private CAs.
+
 
 ### Operational Mode Decision
 
