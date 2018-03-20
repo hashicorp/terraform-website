@@ -90,7 +90,7 @@ and should be selected based on your organization's preferences.
 
 1. **Production - External Services** - This mode stores the majority of the
    stateful data used by the instance in an external PostgreSQL database as
-   well as an external S3-compatible endpoint. There is still critical data
+   well as an external S3-compatible endpoint or Azure blob storage. There is still critical data
    stored on the instance that must be managed with snapshots. Be sure to
    checked the [PostgreSQL Requirements](#postgresql-requirements) for what
    needs to be present for Terraform Enterprise to work. This option is best
@@ -168,11 +168,33 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. Configure the operational mode for this installation. See
    [Operational Modes](#operational-mode-decision) for information on what the different values
    are.
+1. _Optional:_ Configure that you wish for the system to request a SSL/TLS certificate
+   automatically from [Let's Encrypt](https://www.letsencrypt.org). If you do not have
+   a certificate and key you wish to upload, we highly suggest you use this option rather than
+   self-signed certificates. Self-signed certificates have significant issues when interacting
+   with VCS webhooks, which the system relies on.
+1. _Optional:_ If you are not using the builtin integration with Let's Encrypt, you can use this option
+   to configure the path on the host that is exposed as `/.well-known` within the product,
+   for use with [Let's Encrypt certbot tool with webroot](https://certbot.eff.org/docs/using.html#webroot).
+   The path here is passed to the `-w` option when using `certbot`.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
    configuration and you wish to increase the work that the instance does
    concurrently. This setting should be adjusted with care as setting it too
    high can result in an very unresponsive instance.
+1. _Optional:_ Provide the text version of a certificate (or certificates) which will be added to the trusted
+   list the product. This is used when services the product communicates with do not use
+   globally trusted certificates but rather a private Certificate Authority (CA). This is typically
+   used when Private Terraform Enterprise uses a private certificate (it must trust itself) or a
+   VCS provider uses a private CA.
+1. _Optional:_ Adjust the path used to store the vault files that are used to encrypt
+   sensitive data. This is a path on the host system, which allows the customer
+   to store these files outside of product to enhance security. Additionally,
+   you can configure the system to not store the vault files within any snapshots,
+   giving you full custody of these files. These files will need to be provided before
+   any snapshot restore process is performed, and should be placed into the path configured.
+1. _Optional:_ Configure the product to use an externally managed Vault cluster.
+   See [Externally Managed Vault Cluster](./vault.html) for details on how to configure this option.
 
 #### PostgreSQL Requirements
 

@@ -50,26 +50,64 @@ The following apply to every installation:
 - `hostname` — (Required) this is the hostname you will use to access your installation
 - `installation_type` — (Required) one of `poc` or `production`
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
+- `letsencrypt_auto` - (Optional) Indicate if the system should request an SSL/TLS certificate automatically from [Let's Encrypt](https://letsencrypt.org). Set to `1` if so.
+- `letsencrypt_email` - (Required with `letsencrypt_auto`) Sets the email to associate with the generate certificate.
+- `letsencrypt_path` - (Optional) Path on the host to make `/.well-known` available in the product. This is used for certbot
+  to be able to generate certificates.
 - `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying
-- `ca_certs` — (Optional) custom certificate authority (CA) bundle
+- `ca_certs` — (Optional) custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
+  in the data with `\n`. For instance:
 
-`production_type` is required if you've chosen `production` for the `installation_type`:
+  ```
+  --- X509 CERT ---
+  aabbccddeeff
+  --- X509 CERT ---
+  ```
+
+  would become
+
+  ```
+  --- X509 CERT ---\naabbccddeeff\n--- X509 CERT ---\n
+  ```
+
+- `extern_vault_enable` - (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
+  - `extern_vault_addr` - URL of external Vault cluster
+  - `extern_vault_role_id` - AppRole RoleId to use to authenticate with the Vault cluster
+  - `extern_vault_secret_id` - AppRole SecretId to use to authenticate with the Vault cluster
+  - `extern_vault_path` - (Optional) Path on the Vault server for the AppRole auth. Defaults to `auth/approle`
+  - `extern_vault_token_renew` - (Optional) How often (in seconds) to renew the Vault token. Defaults to `3600`
+- `vault_path` - (Optional) Path on the host system to store the vault files. If `extern_vault_enable` is set, this has no effect.
+- `vault_store_snapshot` - (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not, Defaults to `1`.
+
+#### `production_type` is required if you've chosen `production` for the `installation_type`:
 
 - `production_type` — one of `external` or `disk`
 
-`disk_path` is required if you've chosen `disk` for `production_type`:
+#### `disk_path` is required if you've chosen `disk` for `production_type`:
 
 - `disk_path` — path on instance to persistent storage
 
-The following apply if you've chosen `external` for `production_type`:
+#### The following apply if you've chosen `external` for `production_type`:
 
 - `postgres_url` — (Required) the database URL
-- `aws_access_key_id` — (Required) AWS access key ID for S3 bucket access
-- `aws_secret_access_key` — (Required) AWS secret access key for S3 bucket access
+
+The system can use either S3 or Azure, so you only need to provide one set of the following variables.
+
+For S3:
+
+- `aws_access_key_id` — (Required) AWS access key ID for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
+- `aws_secret_access_key` — (Required) AWS secret access key for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
 - `s3_bucket` — (Required) the S3 bucket where resources will be stored
 - `s3_region` — (Required) the region where the S3 bucket exists
 - `s3_sse` — (Optional) enables server-side encryption of objects in S3; if provided, must be set to `aws:kms`
 - `s3_sse_kms_key_id` — (Optional) An optional KMS key for use when S3 server-side encryption is enabled
+
+For Azure:
+
+- `azure_account_name` - (Required) The account name for the Azure account to access the container
+- `azure_account_key` - (Required) The account key to access the account specified in `azure_account_name`
+- `azure_container` - (Required) The identifer for the Azure blob storage container
+- `azure_endpoint` - (Optional) The URL for the Azure cluster to use. By default is the global one.
 
 ## Online
 
