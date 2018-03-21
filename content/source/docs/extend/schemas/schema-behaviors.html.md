@@ -21,7 +21,7 @@ and then recreate the resource if any of the attributes change in the
 configuration, as opposed to trying to update the existing resource.
 
 ## Primitive Behaviors 
-#### Optional
+### Optional
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
 **Values:** `true` or `false`  
 **Restrictions:**
@@ -50,7 +50,7 @@ resource "example_volume" "ex" {
 }
 ```
 
-#### Required
+### Required
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
 **Values:** `true` or `false`  
 **Restrictions:**  
@@ -80,7 +80,7 @@ resource "example_volume" "ex" {
 }
 ```
 
-#### Default
+### Default
 **Data structure:** [interface](https://golang.org/doc/effective_go.html#interfaces)    
 **Value:** any value of an elements `Type` for primitive types, or the type
 defined by `Elem` for complex types.  
@@ -120,7 +120,7 @@ resource "example_volume" "ex" {
 }
 ```
 
-#### Computed
+### Computed
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
 **Value:** `true` or `false`    
 **Restrictions:**  
@@ -157,7 +157,7 @@ output "volume_uuid" {
 }
 ```
 
-#### ForceNew
+### ForceNew
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
 **Value:** `true` or `false`  
 
@@ -185,7 +185,7 @@ resource "example_instance" "ex" {
 
 
 ## Function Behaviors
-#### DiffSuppressFunc
+### DiffSuppressFunc
 **Data structure:**
 [SchemaDiffSuppressFunc](https://github.com/hashicorp/terraform/blob/ead558261d5e322f1f1e90c8e74834ba9215f24e/helper/schema/schema.go#L202)    
 
@@ -223,7 +223,7 @@ resource "example_instance" "ex" {
 }
 ```
 
-#### DefaultFunc
+### DefaultFunc
 **Data structure:**
 [SchemaDefaultFunc](https://github.com/hashicorp/terraform/blob/ead558261d5e322f1f1e90c8e74834ba9215f24e/helper/schema/schema.go#L209)  
 **Restrictions:**  

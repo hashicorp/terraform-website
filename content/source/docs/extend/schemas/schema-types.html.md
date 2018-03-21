@@ -50,7 +50,7 @@ Go language data structures that represent them.
 
 Primitive types are simple, singular values such as integers and booleans. 
 
-#### TypeBool
+### TypeBool
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
 **Example:** `true` or `false`
 
@@ -70,7 +70,7 @@ resource "example_volume" "ex" {
 }
 ```
 
-#### TypeInt
+### TypeInt
 **Data structure:** [int](https://golang.org/pkg/builtin/#int)  
 **Example:** `-9`, `0`, `1`, `2`, `9`
 
@@ -90,7 +90,7 @@ resource "example_compute_instance" "ex" {
 }
 ```
 
-#### TypeFloat 
+### TypeFloat 
 **Data structure:** [float64](https://golang.org/pkg/builtin/#float64)  
 **Example:** `1.0`, `7.19009`
 
@@ -110,7 +110,7 @@ resource "example_spot_request" "ex" {
 }
 ```
 
-#### TypeString
+### TypeString
 **Data structure:** [string](https://golang.org/pkg/builtin/#string)  
 **Example:** `"Hello, world!"`
 
@@ -130,7 +130,7 @@ resource "example_spot_request" "ex" {
 }
 ```
 
-#### Primitive state representations:
+### Primitive state representations:
 
 Primitives are stored in the [statefile](https://www.terraform.io/docs/state/index.html) as `"key": "value"` string pairs:
 
@@ -154,7 +154,7 @@ the type. There is an additional `key.index` item included in the state that
 tracks the number of items the property contains. Examples are provided with
 each type below.
 
-#### TypeMap
+### TypeMap
 **Data structure:** [map](https://golang.org/doc/effective_go.html#maps): `map[string]interface{}`    
 **Example:** `key = value`
 
@@ -191,7 +191,7 @@ items in a map is denoted by the `%` index:
 "tags.name": "example tag",
 ```
 
-#### TypeList
+### TypeList
 **Data structure:** [Slice](https://golang.org/doc/effective_go.html#slices): `[]interface{}`  
 **Example:** `[]interface{"2", "3", "4"}`
 
@@ -232,7 +232,7 @@ resource "example_compute_instance" "ex" {
 "name_servers.3": "ns-564.awsdns-06.net",
 ```
 
-#### TypeSet
+### TypeSet
 **Data structure:** [`*schema.Set`](https://github.com/hashicorp/terraform/blob/504d5ef233230984ccd378a6847fa8b9e32f6bee/helper/schema/set.go#L44)  
 **Example:** `[]string{"one", "two", "three"}`
 
