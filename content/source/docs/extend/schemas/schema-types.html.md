@@ -41,9 +41,9 @@ func resourceExampleResource() *schema.Resource {
 ```
 
 The Schema attribute `Type` defines what kind of values users can provide in
-their configuraiton for this element. Here we define the avaliable schema types
+their configuration for this element. Here we define the available schema types
 supported. See [Schema Behaviors](/docs/extend/schemas/schema-behaviors.html)
-for more information on configurating element behaviors.
+for more information on configuring element behaviors.
 
 
 ## Types
@@ -51,18 +51,18 @@ for more information on configurating element behaviors.
 The schema attribute `Type` determines what data is valid in configuring the
 element, as well as the type of data returned when used in
 [interpolation](/docs/configuration/interpolation.html). Schemas attributes must
-be one of the types defined below, and can be loosly categorized as either
+be one of the types defined below, and can be loosely categorized as either
 **Primitive** or **Aggregate** types:  
 
 **Primitive types**
 
 Primitive types are simple values such as integers, booleans, and strings.
 Primitives are stored in the
-[statefile](https://www.terraform.io/docs/state/index.html) as `"key": "value"`
+[state file](https://www.terraform.io/docs/state/index.html) as `"key": "value"`
 string pairs, where both `key` and `value` are string representations. 
 
 
-**Aggreggates types**
+**Aggregate types**
 
 Aggregate types form more complicated data types by combining primitive types.
 Aggregate types may define the types of elements they contain by using the

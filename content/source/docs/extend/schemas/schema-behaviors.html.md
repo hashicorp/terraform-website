@@ -59,7 +59,7 @@ resource "example_volume" "ex" {
 - Cannot be used if `Computed` is `true`
 - Must be set if `Optional` is omitted **and** element is not `Computed`
 
-Indicates that this element must be provided in the configuration. Omiting this
+Indicates that this element must be provided in the configuration. Omitting this
 attribute from configuration, or later removing it, will result in a
 [plan-time]() error.
 
@@ -200,7 +200,7 @@ or logical equivalences in JSON values.
   Type:     schema.TypeString,
   Required: true,
   ForceNew: true,
-  # Supress the diff shown if the base_image name are equal when both compared in lower        #  case.
+  # Suppress the diff shown if the base_image name are equal when both compared in lower        #  case.
   DiffSuppressFunc: func(k, old, new string, d *schema.ResourceData) bool {
     if strings.ToLower(old) == strings.ToLower(new) {
       return true 
