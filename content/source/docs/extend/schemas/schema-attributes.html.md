@@ -5,9 +5,10 @@ sidebar_current: "docs-extend-schemas-types"
 description: |-
   Extending Terraform is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
+  
 ---
 
-# Schema Types
+# Schema Attributes and Types
 
 Almost every Terraform Plugin offers user configurable parameters, examples such
 as a Provisioner `secret_key`, a Provider’s `region`, or a Resources `name`.
@@ -39,16 +40,41 @@ func resourceExampleResource() *schema.Resource {
 }
 ```
 
-This type determines what data is expected and valid in configuring,
-as well as the type of data returned when used in
-[interpolation](/docs/configuration/interpolation.html).
+The Schema attribute `Type` defines what kind of values users can provide in
+their configuraiton for this element. Here we define the avaliable schema types
+supported. See [Schema Behaviors](/docs/extend/schemas/schema-behaviors.html)
+for more information on configurating element behaviors.
 
-See below for information on the possible types for schema parameters, and the
-Go language data structures that represent them.
+
+## Types
+
+The schema attribute `Type` determines what data is valid in configuring the
+element, as well as the type of data returned when used in
+[interpolation](/docs/configuration/interpolation.html). Schemas attributes must
+be one of the types defined below, and can be loosly categorized as either
+**Primitive** or **Aggregate** types:  
+
+**Primitive types**
+
+Primitive types are simple values such as integers, booleans, and strings.
+Primitives are stored in the
+[statefile](https://www.terraform.io/docs/state/index.html) as `"key": "value"`
+string pairs, where both `key` and `value` are string representations. 
+
+
+**Aggreggates types**
+
+Aggregate types form more complicated data types by combining primitive types.
+Aggregate types may define the types of elements they contain by using the
+`Elem` property. If the `Elem` property is omitted, the default element data
+type is a `string`. 
+
+Aggregate types are stored in state as a `key.index` and `value` pair for each
+element of the property, with a unique `index` appended to the `key` based on
+the type. There is an additional `key.index` item included in the state that
+tracks the number of items the property contains. 
 
 ## Primitive Types
-
-Primitive types are simple, singular values such as integers and booleans. 
 
 ### TypeBool
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
@@ -70,6 +96,12 @@ resource "example_volume" "ex" {
 }
 ```
 
+**State representation:**  
+
+```json
+"encrypted": "true",
+```
+
 ### TypeInt
 **Data structure:** [int](https://golang.org/pkg/builtin/#int)  
 **Example:** `-9`, `0`, `1`, `2`, `9`
@@ -88,6 +120,11 @@ resource "example_volume" "ex" {
 resource "example_compute_instance" "ex" {
   cores = 16
 }
+```
+**State representation:**  
+
+```json
+"cores": "16",
 ```
 
 ### TypeFloat 
@@ -110,6 +147,12 @@ resource "example_spot_request" "ex" {
 }
 ```
 
+**State representation:**  
+
+```json
+"price": "0.37",
+```
+
 ### TypeString
 **Data structure:** [string](https://golang.org/pkg/builtin/#string)  
 **Example:** `"Hello, world!"`
@@ -130,29 +173,15 @@ resource "example_spot_request" "ex" {
 }
 ```
 
-### Primitive state representations:
-
-Primitives are stored in the [statefile](https://www.terraform.io/docs/state/index.html) as `"key": "value"` string pairs:
+**State representation:**  
 
 ```json
-"encrypted": "Managed by Terraform",
-"cores": "false",
-"price": "Z1UUXI7TYWEYXA",
-"name": "tftesting.com",
+"description": "Managed by Terraform",
 ```
+
 
 ## Aggregate Types
 
-Aggregate types form more complicated data types by combining primitive types.
-Aggregate types may define the types of elements they contain by using the
-`Elem` property. If the `Elem` property is omitted, the default element data
-type is a `string`. 
-
-Aggregate types are stored in state as a `key.index` and `value` pair for each
-element of the property, with a unique `index` appended to the `key` based on
-the type. There is an additional `key.index` item included in the state that
-tracks the number of items the property contains. Examples are provided with
-each type below.
 
 ### TypeMap
 **Data structure:** [map](https://golang.org/doc/effective_go.html#maps): `map[string]interface{}`    
