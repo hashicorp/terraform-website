@@ -335,5 +335,4 @@ of the attributes of the set.
 ## Next Steps 
 
 Checkout [Schema Behaviors](/docs/extend/schemas/schema-behaviors.html) to learn
-Checkout [Schema Behaviors](/docs/extend/schemas/schema-behaviors.html) to learn
 how to customize each schema elements behavior.

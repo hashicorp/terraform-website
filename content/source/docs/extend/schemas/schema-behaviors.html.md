@@ -287,5 +287,3 @@ provider "example" {
   # region is "us-east" 
 }
 ```
-
-## Lexical Scoping
