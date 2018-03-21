@@ -35,7 +35,7 @@ Before you begin, you'll need to prepare data files and a Linux instance.
 ~> **Note:** If you use your own certificate and it is issued by a private Certificate
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
-   running within PTFE to access eachother properly.
+   running within PTFE to access each other properly.
 
 ### Linux Instance
 
@@ -88,9 +88,9 @@ For Linux distributions other than RHEL, check Docker compatibility:
 
 #### Trusting SSL/TLS Certificates
 
-The installer has a section that allows multiple certificates to be specified as trusted. These
-certificates are a `Certificate Authority (CA) Bundle` and are used to allow PTFE to connect
-to services that uses SSL/TLS certificates issued by private CAs.
+The installer has a section that allows multiple certificates to be specified as trusted.
+A collection certificates for trusted issuers are known as a `Certificate Authority (CA) Bundle` and are
+used to allow PTFE to connect to services that uses SSL/TLS certificates issued by private CAs.
 
 The UI to upload these certificates looks like:
 
