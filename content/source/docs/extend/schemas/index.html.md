@@ -55,14 +55,14 @@ structs that define the behavior.
 Schemas can be thought of as a type paired one or more properties that describe
 it’s behavior. 
 
-## Schema Attributes
+## Schema Types
 
 Schema items must be defined using one of the builtin types, such as
 `TypeString`, `TypeBool`, `TypeInt`, et. al. The type defines what is considered
 valid input for a given schema item in a users configuration. 
 
-See [Schema Attributes ](/docs/extend/schemas/schema-attributes.html) for more
-information on the attributes available to schemas.
+See [Schema Types](/docs/extend/schemas/schema-types.html) for more
+information on the types available to schemas.
 
 ## Schema Behaviors
 
