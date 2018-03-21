@@ -18,7 +18,7 @@ If further explanation of this method is needed beyond its title, write it here,
 
 ### Query Parameters
 
-[These are standard URL query parameters](./index.html.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 <!-- ^ Query parameters get their own header and boilerplate. Omit the whole section if this method takes no query parameters; we only use them for certain GET requests. -->
 
