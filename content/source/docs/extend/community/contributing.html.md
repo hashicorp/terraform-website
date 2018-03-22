@@ -5,28 +5,33 @@ sidebar_current: "docs-extend-community-contributing"
 description: |-
   Terraform is a mature project with a growing community. There are
   active, dedicated people willing to help you through various mediums.
-comments:
-  This is a direct copy and paste of https://github.com/hashicorp/terraform/blob/master/.github/CONTRIBUTING.md
-  This needs to be trimmed for specifics to contributing to Terraform in the
-  context of being on terraform.io
+
 ---
 
 # Contributing to Terraform
 
-**First:** if you're unsure or afraid of _anything_, just ask
-or submit the issue or pull request anyways. You won't be yelled at for
-giving your best effort. The worst that can happen is that you'll be
-politely asked to change something. We appreciate any sort of contributions,
-and don't want a wall of rules to get in the way of that.
+Terraform and it's diverse collection of plugins are a collaborative work
+between HashiCorp employees, independent cloud vendors, and a large open source
+community. HashiCorp and the Terraform team truly values every issue, pull
+request, and feature request received on any of its many GitHub repositories.
+The only prerequisite to contributing to Terraform is an interest to improve the
+project! 
 
-However, for those individuals who want a bit more guidance on the
-best way to contribute to the project, read on. This document will cover
-what we're looking for. By addressing all the points we're looking for,
-it raises the chances we can quickly merge or address your contributions.
+While you do not need to be an expert in any of the following, these are things
+that are helpful to have or know if you're wanting to contribute more:
 
-Specifically, we have provided checklists below for each type of issue and pull
-request that can happen on the project. These checklists represent everything
-we need to be able to review and respond quickly.
+- Basic knowledge of Terraform. If you're new to Terraform, please see our
+[introduction documentation](/intro/index.html).
+- Basic programming knowledge. Terraform and Terraform Plugins are written in
+[the Go programming language](https://golang.org), but even if you've never
+written a line of Go before, you're still welcome to take a dive into the code
+and submit patches, the community is happy to assist with code reviews and offer
+guidance specific to Go. 
+- Infrastructure as Code. If this is a new term for you, checkout
+[Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_Code)
+on Wikipedia for a brief introduction. Our [Getting Started
+guide](/intro/getting-started/install.html) is a great way to get started as
+well.
 
 ## HashiCorp vs. Community Providers
 
@@ -47,10 +52,10 @@ contributed.
 
 The current list of HashiCorp Providers is as follows:
 
- * `aws`
- * `azurerm`
- * `google`
- * `opc`
+ * [Amazon Web Services](https://github.com/terraform-providers/terraform-provider-aws)
+ * [Azure RM](https://github.com/terraform-providers/terraform-provider-azurerm)
+ * [Google Cloud Platform](https://github.com/terraform-providers/terraform-provider-google)
+ * [Oracle Public Cloud](https://github.com/terraform-providers/terraform-provider-opc)
 
 Our testing standards are the same for both HashiCorp and Community providers,
 and HashiCorp runs full acceptance test suites for every provider nightly to
@@ -66,8 +71,13 @@ play in the various areas of the code base.
 ### Issue Reporting Checklists
 
 We welcome issues of all kinds including feature requests, bug reports, and
-general questions. Below you'll find checklists with guidelines for well-formed
-issues of each type.
+general questions. The code and issue tracker for Terraform is at
+[https://github.com/hashicorp/terraform](https://github.com/hashicorp/terraform).
+Each officially supported Terraform Provider has it's own GitHub repository in
+the [Terraform Providers][tfproviders] GitHub Organization.
+
+Below you'll find checklists with guidelines for well-formed issues of each
+type.
 
 #### Bug Reports
 
@@ -182,6 +192,11 @@ easy for anybody to help us improve our docs.
  - [ ] __Relevant Terraform version__: Is this update worth deploying to the
    site immediately, or is it referencing an upcoming version of Terraform and
    should get pushed out with the next release?
+   
+As mentioned above, each Terraform Provider has it's own code repository in the
+[Terraform Providers][tfproviders]. Each repository has it's own folder named
+`website` that contains that Providers documentation. Updates for documentation
+for a specific provider should be reported or posted there. 
 
 #### Enhancement/Bugfix to a Resource
 
@@ -383,7 +398,7 @@ ok      github.com/hashicorp/terraform/builtin/providers/azurerm    318.392s
 
 #### Writing an Acceptance Test
 
-Terraform has a framework for writing acceptance tests which minimises the
+Terraform has a framework for writing acceptance tests which minimizes the
 amount of boilerplate code necessary to use common testing patterns. The entry
 point to the framework is the `resource.Test()` function.
 
@@ -535,3 +550,4 @@ When executing the test, the following steps are taken for each `TestStep`:
 [website]: https://github.com/hashicorp/terraform/tree/master/website
 [acctests]: https://github.com/hashicorp/terraform#acceptance-tests
 [ml]: https://groups.google.com/group/terraform-tool
+[tfproviders]: https://github.com/terraform-providers

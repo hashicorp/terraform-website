@@ -34,7 +34,7 @@ community, Gitter chat, or the mailing list for that.
 
 - Terraform Providers distributed by HashiCorp are part of the
 [`terraform-providers`](https://github.com/terraform-providers) GitHub
-Organization. Each Provider is a seperate GitHub project with their own issue
+Organization. Each Provider is a separate GitHub project with their own issue
 trackers.
 
 
