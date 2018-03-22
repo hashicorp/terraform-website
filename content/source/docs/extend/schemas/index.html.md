@@ -61,9 +61,8 @@ Schema items must be defined using one of the builtin types, such as
 `TypeString`, `TypeBool`, `TypeInt`, et. al. The type defines what is considered
 valid input for a given schema item in a users configuration. 
 
-See [Schema
-Types](/docs/extend/schemas/schema-types.html) for more information on the Types
-available to schemas.
+See [Schema Types](/docs/extend/schemas/schema-types.html) for more
+information on the types available to schemas.
 
 ## Schema Behaviors
 
