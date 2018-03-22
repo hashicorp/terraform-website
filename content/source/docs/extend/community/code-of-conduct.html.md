@@ -7,9 +7,9 @@ description: |-
   active, dedicated people willing to help you through various mediums.
 ---
 
-# Terraform Code of Conduct
+# Terraform Developers Code of Conduct
 
-We need to document our Code of Conduct. At least, reference [HashiCorp's
-Community Guidelines](https://www.hashicorp.com/community-guidelines)
+HashiCorp Community Guidelines apply to you when interacting with the community
+while working on Terraform Providers. 
 
-- https://www.hashicorp.com/community-guidelines
+Please read the full text at https://www.hashicorp.com/community-guidelines
