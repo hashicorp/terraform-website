@@ -182,6 +182,10 @@
 	path = ext/providers/opsgenie
 	url = https://github.com/terraform-providers/terraform-provider-opsgenie
 	branch = stable-website
+[submodule "ext/providers/oraclepaas"]
+ 	path = ext/providers/oraclepaas
+ 	url = https://github.com/terraform-providers/terraform-provider-oraclepaas
+ 	branch = stable-website
 [submodule "ext/providers/ovh"]
 	path = ext/providers/ovh
 	url = https://github.com/terraform-providers/terraform-provider-ovh
