@@ -11,7 +11,7 @@ This install guide is specifically for users of Private Terraform Enterprise ins
 ## Install Recommendations
 
 * RedHat Enterprise Linux version 7.3 or 7.4
-* Docker 1.13.1 (available in RHEL extras) or Docker CE or EE version 17.06 or later. The later versions are not available in the standard RHEL yum repositories.
+* Docker 1.13.1 (available in RHEL extras), or Docker CE or EE version 17.06 or later. The later versions are not available in the standard RHEL yum repositories.
    * For Docker CE, you can use the official CentOS docker repository. Instructions are available here: https://docs.docker.com/install/linux/docker-ce/centos/#install-from-a-package.
    * For Docker EE, there are explicit RHEL instructions to follow: https://docs.docker.com/install/linux/docker-ee/rhel/ 
 * A properly configured docker storage backend, either:
@@ -20,7 +20,7 @@ This install guide is specifically for users of Private Terraform Enterprise ins
 
 ## Mandatory Configuration
 
-If you opt to use Docker from RHEL extras, then you must make a change to it's default configuration to avoid hitting an out of memory bug.
+If you opt to use Docker from RHEL extras, then you must make a change to its default configuration to avoid hitting an out of memory bug.
 
 1. Open `/usr/lib/systemd/system/docker.service`
 1. Remove the line that contains `--authorization-plugin=rhel-push-plugin`
