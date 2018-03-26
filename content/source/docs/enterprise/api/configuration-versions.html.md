@@ -168,8 +168,8 @@ This POST endpoint requires the following properties as a request payload.
 
 Properties without a default value are required.
 
-| Key path | Type | Default | Description                                                                                                                                                                                           |
-| -------- | ---- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key path | Type | Default | Description                                                                                                                                                                                                         |
+| -------- | ---- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `data`   | file |         | **Required.** A local .tar.gz file containing the folder of the terraform configuration files. This file can be created by running `tar -zcvf ./config.tar.gz .` from within the terraform configuration directory. |
 
 ### Sample Request
