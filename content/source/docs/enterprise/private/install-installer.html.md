@@ -92,6 +92,21 @@ The installer has a section that allows multiple certificates to be specified as
 A collection certificates for trusted issuers are known as a `Certificate Authority (CA) Bundle` and are
 used to allow PTFE to connect to services that uses SSL/TLS certificates issued by private CAs.
 
+All certificates in the certificate signing chain, meaning the root certificate and any intermediate certificates,
+must be included here. These multiple certificates are listed one after another in text format.
+
+Certificates must be formatted using PEM encoding, ie as text. For example:
+
+```
+-----BEGIN CERTIFICATE-----
+MIIFtTCCA52gAwIBAgIIYY3HhjsBggUwDQYJKoZIhvcNAQEFBQAwRDEWMBQGA1UE
+AwwNQUNFRElDT00gUm9vdDEMMAoGA1UECwwDUEtJMQ8wDQYDVQQKDAZFRElDT00x
+CzAJBgNVBAYTAkVTMB4XDTA4MDQxODE2MjQyMloXDTI4MDQxMzE2MjQyMlowRDEW
+MBQGA1UEAwwNQUNFRElDT00gUm9vdDEMMAoGA1UECwwDUEtJMQ8wDQYDVQQKDAZF
+....
+-----END CERTIFICATE-----
+```
+
 The UI to upload these certificates looks like:
 
 ![ptfe-ca-ui](./assets/ptfe-ca-bundle.png)
@@ -102,6 +117,9 @@ The UI to upload these certificates looks like:
    the `Certificate Authority (CA) Bundle` option so that PTFE can properly trust any certificates
    issued by private CAs.
 
+~> **Note**: If PTFE is configured with a SSL key and certificate issued against a private CA,
+   the certificate chain for that CA must be included here as well. This allows the instance
+   to properly query itself.
 
 ### Operational Mode Decision
 
