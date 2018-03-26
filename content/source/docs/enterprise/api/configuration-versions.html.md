@@ -144,12 +144,25 @@ curl \
 ```json
 {
   "data": {
-    "id": "cv-ntv3HbhJqvFzamy7",
+    "id": "cv-UYwHEakurukz85nW",
     "type": "configuration-versions",
     "attributes": {
-      "upload-url":
-        "https://ARCHIVIST/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da"
-    }
+      "error": null,
+      "source": "tfe-api",
+      "status": "pending",
+      "status-timestamps": {},
+      "upload-url": "https://ARCHIVIST/v1/object/9224c6b3-2e14-4cd7-adff-ed484d7294c2"
+    },
+    "relationships": {
+      "ingress-attributes": {
+        "data": null,
+        "links": {
+          "related":
+            "/api/v2/configuration-versions/cv-UYwHEakurukz85nW/ingress-attributes"
+        }
+      }
+    },
+    "links": { "self": "/api/v2/configuration-versions/cv-UYwHEakurukz85nW" }
   }
 }
 ```
