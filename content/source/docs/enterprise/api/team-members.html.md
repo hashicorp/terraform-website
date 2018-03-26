@@ -59,7 +59,7 @@ curl \
   https://app.terraform.io/api/v2/teams/257525/relationships/users
 ```
 
-# Delete a User from Team
+## Delete a User from Team
 
 This method removes multiple users from a team. Both users and teams must already exist. This DOES NOT delete the user; it only removes them from this team.
 
