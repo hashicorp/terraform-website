@@ -15,7 +15,7 @@ and efficiently. Terraform is built on a plugin-based architecture, enabling
 developers to extend Terraform by writing new plugins or compiling modified
 versions of existing plugins.
 
-Terraform is logically split into two main parts: **Terraform Core**, and
+Terraform is logically split into two main parts: **Terraform Core** and
 **Terraform Plugins**. Terraform Core uses remote procedure calls (RPC) to
 communicate with Terraform Plugins, and offers multiple ways to discover and
 load plugins to use.  Terraform Plugins expose an implementation for a specific
