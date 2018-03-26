@@ -14,21 +14,36 @@ The Team Membership API is used to add or remove users from teams. The [Team API
 
 This method adds multiple users to a team. Both users and teams must already exist.
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /teams/:team_id/relationships/users |
+`POST /teams/:team_id/relationships/users`
 
-### Parameters
+| Parameter  | Description         |
+| ---------- | ------------------- |
+| `:team_id` | The ID of the team. |
 
-- `team_id` (`string: <required>`) - The team ID of the team to add the users to. Team must already exit.
-- `user_id` (`string: <required>`) - The user ID of all the team members to add.
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path      | Type   | Default | Description                |
+| ------------- | ------ | ------- | -------------------------- |
+| `data[].type` | string |         | Must be `"users"`.         |
+| `data[].id`   | string |         | The ID of the user to add. |
 
 ### Sample Payload
 
 ```json
 {
   "data": [
-    { "type": "users", "id": "myusername" },
+    {
+      "type": "users",
+      "id": "myusername"
+    },
+    {
+      "type": "users",
+      "id": "username"
+    }
   ]
 }
 ```
@@ -36,7 +51,7 @@ This method adds multiple users to a team. Both users and teams must already exi
 ### Sample Request
 
 ```shell
-$ curl \
+curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
@@ -44,26 +59,40 @@ $ curl \
   https://app.terraform.io/api/v2/teams/257525/relationships/users
 ```
 
-
 # Delete a User from Team
 
 This method removes multiple users from a team. Both users and teams must already exist. This DOES NOT delete the user; it only removes them from this team.
 
-| Method | Path           |
-| :----- | :------------- |
-| DELETE | /teams/:team_id |
+`DELETE /teams/:team_id/relationships/users`
 
-### Parameters
+| Parameter  | Description         |
+| ---------- | ------------------- |
+| `:team_id` | The ID of the team. |
 
-- `team_id` (`string: <required>`) - The team ID of the team to remove users from. Team must already exist.
-- `user_id` (`string: <required>`) - The user IDs of all the team members to remove.
+### Request Body
+
+This DELETE endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path      | Type   | Default | Description                   |
+| ------------- | ------ | ------- | ----------------------------- |
+| `data[].type` | string |         | Must be `"users"`.            |
+| `data[].id`   | string |         | The ID of the user to remove. |
 
 ### Sample Payload
 
 ```json
 {
   "data": [
-    { "type": "users", "id": "myusername" },
+    {
+      "type": "users",
+      "id": "myusername"
+    },
+    {
+      "type": "users",
+      "id": "username"
+    }
   ]
 }
 ```
