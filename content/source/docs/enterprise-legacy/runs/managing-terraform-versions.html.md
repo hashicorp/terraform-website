@@ -8,6 +8,8 @@ description: |-
 
 # Managing Terraform Versions
 
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
+
 Terraform Enterprise does not automatically upgrade the version of Terraform
 used to execute plans and applies. This is intentional, as occasionally there
 can be backwards incompatible changes made to Terraform that cause state and

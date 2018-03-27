@@ -8,11 +8,13 @@ description: |-
 
 # AWS Multi-Factor Authentication for Terraform Runs in Terraform Enterprise
 
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
+
 You can optionally configure Terraform plans and applies to use multi-factor authentication using [AWS Secure Token Service](http://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html).
 
 This option is disabled by default and can be enabled by an organization owner.
 
-!> This is an advanced feature that enables changes to active infrastructure
+-> This is an advanced feature that enables changes to active infrastructure
 without user confirmation. Please understand the implications to your
 infrastructure before enabling.
 

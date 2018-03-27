@@ -8,6 +8,8 @@ description: |-
 
 # Authentication
 
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
+
 Terraform Enterprise requires a username and password to sign up and login.
 However, there are several ways to authenticate with your account.
 

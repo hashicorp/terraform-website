@@ -9,6 +9,8 @@ description: |-
 
 # Set an Organization Authentication Policy
 
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
+
 Because organization membership affords members access to potentially sensitive
 resources, owners can set organization-wide authentication policy in Terraform
 Enterprise.

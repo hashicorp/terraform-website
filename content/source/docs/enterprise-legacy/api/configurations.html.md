@@ -9,6 +9,8 @@ description: |-
 
 # Configuration API
 
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
+
 A configuration version represents versions of Terraform configuration. Each set
 of changes to Terraform HCL files or the scripts used in the files should have
 an associated configuration version.
