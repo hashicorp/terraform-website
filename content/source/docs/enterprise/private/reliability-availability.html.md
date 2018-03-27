@@ -119,7 +119,7 @@ stores there.
 ~> **Note**: The PTFE Installer architecture is currently in beta and is being
 actively developed. The section below is subject to change as work continues.
 
-This section describes how to setup your PTFE deployment to recover from
+This section describes how to set up your PTFE deployment to recover from
 failures in the various operational modes (demo, mounted disk, external
 services). The operational mode is selected at install time and can not be changed
 once the install is running.
