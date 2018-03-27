@@ -126,7 +126,7 @@ once the install is running.
 
 The below table explains where each data type in the Storage Layer is stored and
 the corresponding snapshot and restore procedure. For the data types that use
-PTFE's built-in snapshot and restore function managed by PTFE, follow
+PTFE's built-in snapshot and restore function, follow
 [these instructions](./automated-recovery.html). For the data types that do
 **not** use the built-in functionality, backup and restore is the responsibility
 of the user.
