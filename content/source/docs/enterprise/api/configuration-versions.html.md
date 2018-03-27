@@ -10,9 +10,11 @@ sidebar_current: "docs-enterprise2-api-configuration-versions"
 
 ## List Configuration Versions
 
-| Method | Path           |
-| :----- | :------------- |
-| GET | /workspaces/:workspace_id/configuration-versions |
+`GET /workspaces/:workspace_id/configuration-versions`
+
+Parameter            | Description
+---------------------|------------
+`:workspace_id` | The id of the workspace to list configurations from.
 
 ### Sample Request
 
@@ -28,40 +30,42 @@ curl \
 
 ```json
 {
-    "data": [
-        {
-            "id": "cv-ntv3HbhJqvFzamy7",
-            "type": "configuration-versions",
-            "attributes": {
-                "error": null,
-                "source": "gitlab",
-                "status": "uploaded",
-                "status-timestamps": {}
-            },
-            "relationships": {
-                "ingress-attributes": {
-                    "data": {
-                        "id": "ia-i4MrTxmQXYxH2nYD",
-                        "type": "ingress-attributes"
-                    },
-                    "links": {
-                        "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
-                    }
-                }
-            },
-            "links": {
-                "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7"
-            }
+  "data": [
+    {
+      "id": "cv-ntv3HbhJqvFzamy7",
+      "type": "configuration-versions",
+      "attributes": {
+        "error": null,
+        "source": "gitlab",
+        "status": "uploaded",
+        "status-timestamps": {}
+      },
+      "relationships": {
+        "ingress-attributes": {
+          "data": {
+            "id": "ia-i4MrTxmQXYxH2nYD",
+            "type": "ingress-attributes"
+          },
+          "links": {
+            "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
+          }
         }
-    ]
+      },
+      "links": {
+        "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7"
+      }
+    }
+  ]
 }
 ```
 
 ## Show a Configuration Version
 
-| Method | Path           |
-| :----- | :------------- |
-| GET | /configuration-versions/:configuration-id |
+`GET /configuration-versions/:configuration-id`
+
+Parameter            | Description
+---------------------|------------
+`:configuration-id` | The id of the configuration to show.
 
 ### Sample Request
 
@@ -77,30 +81,30 @@ curl \
 
 ```json
 {
-    "data": {
-        "id": "cv-ntv3HbhJqvFzamy7",
-        "type": "configuration-versions",
-        "attributes": {
-            "error": null,
-            "source": "gitlab",
-            "status": "uploaded",
-            "status-timestamps": {}
-        },
-        "relationships": {
-            "ingress-attributes": {
-                "data": {
-                    "id": "ia-i4MrTxmQXYxH2nYD",
-                    "type": "ingress-attributes"
-                },
-                "links": {
-                    "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
-                }
-            }
+  "data": {
+    "id": "cv-ntv3HbhJqvFzamy7",
+    "type": "configuration-versions",
+    "attributes": {
+      "error": null,
+      "source": "gitlab",
+      "status": "uploaded",
+      "status-timestamps": {}
+    },
+    "relationships": {
+      "ingress-attributes": {
+        "data": {
+          "id": "ia-i4MrTxmQXYxH2nYD",
+          "type": "ingress-attributes"
         },
         "links": {
-            "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7"
+          "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
         }
+      }
+    },
+    "links": {
+      "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7"
     }
+  }
 }
 ```
 
@@ -172,3 +176,9 @@ $ curl \
     -F 'data=@config.tar.gz' \
     http://127.0.0.1:7675/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da
 ```
+
+## Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+- `ingress_attributes` - The commit information used in the configuration
