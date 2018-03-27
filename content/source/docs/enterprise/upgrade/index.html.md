@@ -10,85 +10,74 @@ If you used the legacy version of Terraform Enterprise (TFE), you probably have 
 
 Follow these steps to migrate your old TFE environments to new TFE workspaces.
 
-## 1. Create a New Organization
+~> **Important:** Workspace migration imports the settings and the most recent Terraform state from a legacy environment. It does not import the state history or the run event history. If you need to preserve historical data from your legacy environments for regulatory reasons, please contact Hashicorp support for assistance and do not delete your legacy environments after migrating.
 
-You can't use the new TFE with a legacy organization because the internals are too different. If you don't already have an organization in the new TFE, [create an organization](../getting-started/access.html#creating-an-organization) and [configure version control access](../vcs/index.html) now. Organization names must be globally unique, so you must choose a new organization name.
+## Step 1: Create a New Organization
 
-## 2. Create New Workspaces
+You can't use the new TFE with a legacy organization because the internals are too different. If you don't already have an organization in the new TFE, do the following:
 
-TFE can't automatically import legacy environments, so start by [creating a new workspace](../getting-started/workspaces.html#creating-a-workspace) for each legacy environment. Workspace names are unique to the organization, so you can re-use the same names for the new workspaces.
+1. [Create an organization](../getting-started/access.html#creating-an-organization).
+2. [Configure version control access](../vcs/index.html). Use the same VCS account(s) that you used in your legacy TFE organization, so that the new organization can access the same repositories.
 
-When you create these workspaces: _do_ link them to the same VCS repo as the corresponding environment, but _don't_ allow any applies to occur yet. If other people are likely to commit to the repo before you've finished, you might want to lock the workspace so it doesn't create a bunch of inaccurate plans.
+### Note: Naming Your Organizations
 
--> **Note**: If the organization has more workspaces than you can easily create with the UI, use the [workspace create API](../api/workspaces.html) to automate this process.
+Organization names are globally unique, so your old and new organizations must have different names.
 
-## 3. Migrate State
+If you want to re-use your existing organization's name, you can rename your legacy organization (go to your account settings, choose your legacy organization from the sidebar, and change the Username field) before creating your new organization. However, note that this can cause problems if you plan to continue Terraform runs in your legacy organization for a while.
 
-Each TFE workspace has its own remote backend, and TFE overrides the configuration to use that backend whenever it does a run. To transfer control of your infrastructure, you must migrate state from the legacy environment to the new workspace.
+## Step 2: Verify Your Permissions
 
-### 3.a. Authenticate the CLI
+To migrate legacy environments to new workspaces, you must be a member of the owners team in both the new organization and the legacy organization. Make sure that your currently logged-in TFE user belongs to both owners teams.
 
-From **User Settings** > **Tokens** obtain the API key and set the environment variable `ATLAS_TOKEN`.
+## Step 3: Migrate Environments to the New Organization
 
-```bash
-export ATLAS_TOKEN=<YOUR_API_TOKEN>
-```
+Follow these steps for each legacy environment you want to migrate to your new organization.
 
-### 3.b. Configure the Backend for the Legacy Environment
+### Step 3.a: Ensure the Legacy Environment is Ready
 
-In most cases the backend is already configured to use the legacy environment. If the CLI commands `push`, `plan`, `apply`, or `state` were ever used, this block is already configured as needed.
+Navigate to your legacy TFE environment and ensure your environment is in a stable state before migrating. In particular:
 
-If a remote backend is not already configured with the TFE legacy environment, add the `backend` configuration block.
+- Make sure that no runs are currently in progress, and that the most recent plan has been applied.
+- Make sure that the environment is either unlocked, or locked by your currently logged-in user account.
+- Check with your colleagues and make sure no one needs to make changes to this infrastructure while you are migrating.
 
-```terraform
-terraform {
-  backend "atlas" {
-    name = "<LEGACY_ORG>/<SOURCE_ENVIRONMENT>"
-  }
-}
-```
+If you start migrating when there is a run in progress or the workspace is locked by a different user, the migration will fail.
 
-### 3.c. Reinitialize Terraform
+### Step 3.b: Create a New Workspace Using the "Import" Tab
 
-Reinitialize Terraform to ensure your working directory is up to date, especially if you just added backend configuration.
+Navigate to your new TFE organization, make sure you're on the [main workspaces list](../workspaces/index.html), and click the "+ New Workspace" button.
 
-```bash
-terraform init
-```
+On the new workspace page, there are two tabs beneath the "Create a new Workspace" header. Click the one labeled "Import from legacy (Atlas) environment".
 
-### 3.d. Reconfigure the Backend for the New Workspace
+![screenshot: form fields on the 'import from legacy (Atlas) environment' page](./images/new-workspace-import.png)
 
-Update the `name` field of the `backend` block to reference the new workspace.
+This import tab has fewer settings than the [new workspace tab](../workspaces/creating.html), since it migrates most settings from the legacy environment. Fill the fields as follows:
 
-```terraform
-terraform {
-  backend "atlas" {
-    name = "<NEW_ORG>/<DESTINATION_WORKSPACE>"
-  }
-}
-```
+- In the "Legacy Environment" field, enter the environment to migrate, in the form `<LEGACY ORGANIZATION>/<ENVIRONMENT NAME>`.
+- In the "Workspace Name" field, enter the new name of the workspace, which should usually be the same as the old environment name.
+- Choose the same VCS connection and repository as the old environment.
 
-### 3.e. Reinitialize Terraform Again
+After filling the fields, click the "Create Workspace" button.
 
-Terraform's `init` command automatically migrates state from the legacy environment to the new workspace when the [backend is reconfigured](../../backends/config.html#changing-configuration). Run the `init` command, and it will ask to migrate the state. Answer `yes`.
+After a brief delay the migration should finish, with a "Configuration uploaded successfully" message.
 
-```bash
-terraform init
-```
+![screenshot: a successfully completed migration](./images/new-workspace-success.png)
 
-## 4. Set Variables in the New Workspace
+If the migration fails, the error message should explain the problem; most commonly, migration fails when a different user has locked the legacy environment, and you must unlock it to proceed. If you encounter an error you can't recover from, please contact Hashicorp support.
 
-Open two side-by-side browser windows. In one of them, navigate to the new workspace you created and click on the "Variables" tab. In the other, navigate to the legacy environment you're migrating and view its variables.
+### Step 3.c: Inspect the New Workspace's Settings
 
-Copy the old environment's variables and values to the new workspace, ensuring that all of the values are identical.
+The migration should result in a new workspace with the same data and settings as the legacy environment. Compare the two to ensure everything is as expected. In particular, note that:
 
-If the environment had any sensitive variables, TFE will not show you their values; you'll need to recover the values from outside TFE, probably in your team's password management or secret management system.
+- TFE updates your new organization's teams and team membership to match the legacy environment. If necessary, it will create new teams and/or add users to existing teams. Carefully verify your team settings before continuing.
+- Environment variables and Terraform variables are copied to the new workspace, including sensitive values. However, the new TFE does not support personal organization variables; if you used personal variables, you might need to add additional variables to the workspace.
+- VCS repo settings (like working directory) should match those from the legacy environment.
 
-### 4.a. Set `ATLAS_TOKEN` (Optional)
+### Step 3.d: Set `ATLAS_TOKEN` (Optional)
 
 ~> **Important:** This step is **only** for configurations that access state from a legacy TFE environment using a `terraform_remote_state` data source. If this environment doesn't do that, skip to the next step.
 
-TFE usually makes it easy to share state data between workspaces by automatically handling authentication. However, this only works _within_ a single organization, and your legacy environments are in a separate organization from your new workspaces. If your Terraform configuration accesses remote state from a legacy TFE environment, you must manually provide credentials until all of the relevant environments have been migrated to the new TFE.
+TFE usually makes it easy to share state data between workspaces by automatically handling authentication. However, this only works _within_ a single organization, and your legacy environments are in a separate organization from your new workspaces. If your Terraform configuration accesses remote state from a legacy TFE environment, you must manually provide credentials until all of the relevant environments are migrated to the new TFE.
 
 To do this, create a new environment variable in the new workspace called `ATLAS_TOKEN` and enter a valid TFE user API token as its value. Mark the variable as sensitive to protect the token.
 
@@ -97,35 +86,31 @@ The user account that owns this token must be a member of both the new and legac
 - **Read** access to any legacy environments that the configuration needs to read state from.
 - **Write** access to the new workspace where the configuration will run.
 
-If you use this workaround during your migration process, you must do two additional steps after you've migrated all of your legacy environments:
+If you use this workaround during your migration process, you must do two additional steps after migrating all of your legacy environments:
 
 1. Edit this workspace's configuration so it reads state data from the new workspaces that replaced your legacy environments.
 2. At the same time, delete `ATLAS_TOKEN` from this workspace's variables.
 
 Make a note of any workspaces that access remote state as you migrate them, and update them soon after you finish migrating. Leaving a value for `ATLAS_TOKEN` over the long term can make your workspaces unnecessarily fragile.
 
-## 5. Disable VCS Integration in the Legacy Environment
+### Step 3.e: Unlock Workspace and Queue Plan
 
-Before committing and pushing the backend change to VCS, the legacy environment webhook must be disabled to prevent the configuration from running in both the legacy environment and the new workspace.
+Upon creation, the migrated workspace is locked to prevent runs. Unlock it after verifying the settings and variables, and queue a plan.
 
-In legacy TFE, go to the Environment settings page and go to “Integrations”. In the “Version Control Integration” section click “Unlink”.
+If everything matches the legacy environment, **the plan should complete with no changes** (or the expected changes if the VCS repository has new commits). If the plan would result in changes, inspect it carefully to find what has changed and update variables or settings if necessary.
 
-This will prevent the environment from performing a run on future commits.
+At this point, your new workspace is ready for normal operation.
 
-## 6. Commit Backend Configuration Changes and Verify
+### Step 3.f: Delete Legacy Environment (Optional)
 
-Commit and push the changes to VCS. The following changes should occur.
+At this point, the legacy environment is locked and will perform no more runs unless someone in your organization unlocks it.
 
-- The legacy environment will **not** trigger a new run because it was disabled in the previous step.
-- The new workspace will trigger a new run (plan & apply).
+If you have no more need for the legacy environment, you can now delete it. **Do not delete it yet** if any of the following are true:
 
-    ~> **Note:** If you locked the workspace while performing the migration, unlock it to enable runs.
-- The plan logs should show **no changes**.
+- A workspace (or un-migrated legacy environment) is using the environment's state data with a `terraform_remote_state` data source.
 
-These changes verify the workspace was migrated successfully.
+    If the environment's state is in use, leave the legacy environment locked to prevent runs, then delete it after updating the affected configurations to use the new workspace's state data.
+- You need to preserve state history or run event history. (Workspace migration imports the most recent Terraform state, but does not import history.)
 
-## 7. Delete Legacy Environment
+    If you need to preserve historical data from your legacy environments for regulatory reasons, please contact Hashicorp support for assistance and do not delete your legacy environments after migrating.
 
-Once the new workspace configuration is verified, you can delete the legacy environment.
-
-The only exception is if other configurations use remote state data from the legacy environment with a `terraform_remote_state` data source. In that case, leave the legacy environment locked to prevent runs, then delete it after updating the affected configurations to use the new workspace's state data.
