@@ -119,97 +119,58 @@ stores there.
 ~> **Note**: The PTFE Installer architecture is currently in beta and is being
 actively developed. The section below is subject to change as work continues.
 
-The PTFE Installer architecture has several supported modes of operation, each
-of which has different implications for reliability and availability.
-
-The operational mode is selected at install time and can not be changed
+This section describes how to setup your PTFE deployment to recover from
+failures in the various operational modes (demo, mounted disk, external
+services). The operational mode is selected at install time and can not be changed
 once the install is running.
 
-### Demo mode
+The below table explains where each data type in the Storage Layer is stored and
+the corresponding snapshot and restore procedure. For the data types that use
+PTFE's built-in snapshot and restore function managed by PTFE, follow
+[these instructions](./automated-recovery.html). For the data types that do
+**not** use the built-in functionality, backup and restore is the responsibility
+of the user.
 
-In the Demo mode of the Installer Architecture, the **Application Layer**,
-**Coordination Layer**, and **Storage Layer** execute on a linux instance.
+|  | Configuration Data | Vault Data | PostgreSQL Data | Blob Storage Data |
+|-------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| Demo | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE |
+| Mounted Disk | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in mounted disks - Snapshot and Restore done external to PTFE | Stored in mounted disks - Snapshot and Restore done external to PTFE |
+| External Services | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in external service - Snapshot and Restore done external to PTFE | Stored in external service - Snapshot and Restore done external to PTFE | Stored in external service - Snapshot and Restore done external to PTFE |
 
-All data is stored within Docker volumes on the instance.
+### Demo
 
-The builtin Snapshot mechanism can be used to package up all data and store it
-off the instance. The builtin Restore mechanism can then be used to pull the
-data back in and restore operations. The Snapshot and Restore functionality is
-available to be configured and automated from the Admin Console.
+All data (Configuration, PostgreSQL, Blob Storage, Vault) is stored within
+Docker volumes on the instance.
 
-### Mounted Volumes
+**Snapshot:** The built-in Snapshot mechanism can be used to package up
+all data and store it off the instance. The frequency of automated snapshots can
+be configured hourly such that the worst-case data loss can be as low as 1 hour.
 
-In the Mounted Volumes mode of the Installer Architecture, the
-**Application Layer**, **Coordination Layer**, and **Storage Layer** execute on
-a Linux instance.
+**Restore:** If the instance running Terraform Enterprise is lost, the only recovery
+mechanism in demo mode is to create a new instance and use the builtin Restore
+mechanism to recreate it from a previous snapshot.
 
-_Configuration Data_ for the installation is stored in Docker volumes on the
-instance.
+[Configure Snapshot and Restore following these instructions](./automated-recovery.html).
 
-Both the _PostgreSQL Database_ and _Blob Storage_ use mounted volumes for their
-data. Backup and restore of that volume is the responsibility of the user, the system
-does not manage that.
+### Mounted Disk
 
-The builtin Snapshot mechanism can be used to package up the _Configuration
-Data_ and store it off the instance. The builtin Restore mechanism can then be
-used to pull the configuration data back in and restore operations.  The
-Snapshot and Restore functionality is available to be configured and automated
-from the Admin Console.
+_PostgreSQL Database_ and _Blob Storage_ use mounted disks for their
+data. Backup and restore of those volumes is the responsibility of the user, the
+system does not manage that.
 
-### External Services
-
-In the External Services mode of the Installer Architecture, the
-**Application Layer** and **Coordination Layer** execute on a Linux instance.
-The **Storage Layer** is configured to use as external services in the form an
-a PostgreSQL server and an S3-compatible service.
-
-The maintainance of PostgreSQL and S3 are handled by the user, which includes backing
-up and restoring if necessary.
-
-_Configuration Data_ for the installation is stored in Docker volumes on the
-instance.
-
-The builtin Snapshot mechanism can be used to package up the _Configuration
-Data_ and store it off the instance. The builtin Restore mechanism can then be
-used to pull the configuration data back in and restore operations.  The
-Snapshot and Restore functionality is available to be configured and automated
-from the Admin Console.
-
-### Availability During Upgrades
-
-Upgrades for the Installer Architecture utilize the Installer Admin Console.
-Once an upgrade has been been detected (either online or airgap), the new code
-is imported and once ready, all services on the instance are restarted running
-the new code. The expected downtime is between 30 seconds and 5 minutes,
-depending on if database updates have to be applied.
-
-Only application services are changed during the upgrade; data is not backed up
-or restored. The only data changes that may occur during are the application of
-migrations the new version might apply to the _PostgreSQL Database_.
-
-When an upgrade is ready to start the new code, the system waits for all terrform runs
-to finish before continuing. Once the new code has started, the queue of runs is
-continued in the same order.
-
-### Recovery From Failures
-
-#### Demo mode
-
-If the instance running Terraform Enterprise is lost, the only recovery mechanism
-in demo mode is to create a new instance and use the builtin Restore mechanism to
-recreate it from a previous snapshot.
-
-The frequency of automated snapshots can be configured such that worst-case
-data loss can be as low as 1 hour.
-
-#### Mounted Disk
+_Configuration Data_ and _Vault Data_ for the installation is stored in Docker
+volumes on the instance. The built-in Snapshot mechanism can be used to package up the
+Configuration and Vault data and store it off the instance. The built-in Restore
+mechanism can then be used to pull the configuration data back in and restore
+operations.
+[Configure Snapshot and Restore following these instructions](./automated-recovery.html).
 
 If the instance running Terraform Enterprise is lost, the presumption is that the
-volume storing the data is not lost. Because only configuration data is stored
+volume storing the data is not lost. Because only Configuration and Vault data is stored
 on the instance, we recommend using a system snapshot mechanism to provide fast
-recovery.
+recovery following these steps:
 
-The procedure here would be as follows:
+**Snapshot**
 
 - Be sure that the mounted volume being used is automatically mounted
   automatically on start.  For instance with AWS, this means having it attached
@@ -226,15 +187,17 @@ The procedure here would be as follows:
   instance. The exact mechanism used is specific to the virtualization
   environment that the product runs in.
 
+**Restore**
+
 - Configure the virtualization to run the new snapshot and restart a new
   instance should it stop. In AWS, this is done using an Autoscaling Group.
   The environment can monitor the availability of port 443 for instance health
   as well.
 
-The new instance now has the software as well as configuration on it by default
-and can access the data stored on the mounted disk. Using these steps, the MTTR
-of a lost instance is almost as fast as the virtualization environment can start
-a new instance, typically less than a minute.
+- The new instance now has the software as well as configuration on it by default
+  and can access the data stored on the mounted disk. Using these steps, the MTTR
+  of a lost instance is almost as fast as the virtualization environment can start
+  a new instance, typically less than a minute.
 
 ~> **NOTE:** Because the software is being restored from a snapshot, it's
 important that this process be repeated when the Terraform Enterprise software
@@ -242,14 +205,30 @@ is updated so that any restored instance due to loss has the newest version.
 This is important because the data stored on the mounted disk is versioned
 along with the software.
 
-#### External Services
+### External Services
+
+In the External Services mode of the Installer Architecture, the
+**Application Layer** and **Coordination Layer** execute on a Linux instance,
+but the **Storage Layer** is configured to use external services in the form an
+a PostgreSQL server, an S3-compatible Blob Storage, and an
+[external Vault](./vault.html).
+
+The maintenance of PostgreSQL, Blob Storage, and Vault are handled by the user,
+which includes backing up and restoring if necessary.
+
+_Configuration Data_ for the installation is stored in Docker
+volumes on the instance. The built-in Snapshot mechanism can be used to package up the
+Configuration data and store it off the instance. The built-in Restore
+mechanism can then be used to pull the configuration data back in and restore
+operations.
+[Configure Snapshot and Restore following these instructions](./automated-recovery.html).
 
 If the instance running Terraform Enterprise is lost, the utilization of
-external servies means no state data is lost. Because only configuration data is
-stored on the instance, we recommend using a system snapshot mechanism to provide
-fast recovery.
+external services means no state data is lost. Because only configuration data
+is stored on the instance, we recommend using a system snapshot mechanism to
+provide fast recovery following these steps:
 
-The procedure here would be as follows:
+**Snapshot**
 
 - Perform the initial installation of the product, including entering the
   license and doing initial setup.
@@ -262,19 +241,37 @@ The procedure here would be as follows:
   instance. The exact mechanism used is specific to the virtualization
   environment that the product runs in.
 
+**Restore**
+
 - Configure the virtualization to run the new snapshot and restart a new
   instance should it stop. In AWS, this is done using an Autoscaling Group.
   The environment can monitor the availability of port 443 for instance health
   as well.
 
-The new instance now has the software as well as configuration on it by default
-and can access the data stored on the mounted disk. Using these steps, the MTTR
-of a lost instance is almost as fast as the virtualization environment can start
-a new instance, typically less than a minute.
+- The new instance now has the software as well as configuration on it by default
+  and can access the data stored on the mounted disk. Using these steps, the MTTR
+  of a lost instance is almost as fast as the virtualization environment can start
+  a new instance, typically less than a minute.
 
 ~> **NOTE:** Because the software being restored is preinstalled on the
-virtualization specific snapshot, it's important that a new snapshot is taken 
+virtualization specific snapshot, it's important that a new snapshot is taken
 when the Terraform Enterprise software is updated so that
 any restored instance has the newest version. This is important
 because the data stored in the external services is versioned along with the
 software.
+
+### Availability During Upgrades
+
+Upgrades for the Installer Architecture utilize the Installer Admin Console.
+Once an upgrade has been been detected (either online or airgap), the new code
+is imported and once ready, all services on the instance are restarted running
+the new code. The expected downtime is between 30 seconds and 5 minutes,
+depending on if database updates have to be applied.
+
+Only application services are changed during the upgrade; data is not backed up
+or restored. The only data changes that may occur during are the application of
+migrations the new version might apply to the _PostgreSQL Database_.
+
+When an upgrade is ready to start the new code, the system waits for all
+terraform runs to finish before continuing. Once the new code has started, the
+queue of runs is continued in the same order.

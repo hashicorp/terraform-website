@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Externally Managed Vault (Installer Beta)"
-sidebar_current: "docs-enterprise2-private-vault"
+page_title: "Private Terraform Enterprise Externally Managed Vault"
+sidebar_current: "docs-enterprise2-private-installer-vault"
 ---
 
 # Private Terraform Enterprise Externally Managed Vault
@@ -37,7 +37,7 @@ Use the following as a guide to configure an external Vault instance:
 
 The `role_id` and `secret_id` values created during configuration will be input during
 the PTFE installation along with the Vault cluster URL such as
-`https://vault.mycompany.com:8200`. If you use SSL to access the Vault cluster, 
+`https://vault.mycompany.com:8200`. If you use SSL to access the Vault cluster,
 the certificate must be trusted by PTFE. That means the issuer of the certificate
 is either globally trusted or you have provided the certificate for the issuer
 in the "Certificate Authority bundle" section of the installer configuration.

@@ -23,7 +23,7 @@ Before setup begins, a few resources need to be provisioned. We consider these o
 The following are **required** to complete installation:
 
 * **AWS IAM credentials** capable of creating new IAM roles configuring various services. We strongly suggest you use the `AdministratorAccess` policy for this. The credentials are only used for setup; during runtime only an assumed role is used.
-* **AWS VPC** containing at least 2 subnets. These will be used to launch the cluster into. Subnets do not need to be public, but they do need an internet gateway at present. If two private subnets are used they should each be in a seperate Availability Zone (AZ). Also, if a third public subnet is used, and the instance resides in a private subnet, the public subnet must be in the same AZ as the instance. 
+* **AWS VPC** containing at least 2 subnets. These will be used to launch the cluster into. Subnets do not need to be public, but they do need an internet gateway at present. If two private subnets are used they should each be in a seperate Availability Zone (AZ). Also, if a third public subnet is used, and the instance resides in a private subnet, the public subnet must be in the same AZ as the instance.
 * **SSH Key Pair** configured with AWS EC2. This will be used to configure support access to the cluster. This SSH key can be optionally removed from the instance once installation is complete.
   * To create a new one, [see Amazon's docs for EC2 key pairs.](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 * A **Publicly Trusted TLS certificate** registered with AWS Certificate Manager. This can be one created by ACM for a hostname or the certificate can be imported into it.
@@ -34,14 +34,14 @@ The following are **required** to complete installation:
 
 ### Clone the Installer Git Repo
 
-Private Terraform Enterprise installs via Terraform. It is expected you have downloaded the Terraform Open Source binary to the machine where you will be doing the install from. To get started you will also need to clone a repo that contains the necessary modules and variable files. 
+Private Terraform Enterprise installs via Terraform. It is expected you have downloaded the Terraform Open Source binary to the machine where you will be doing the install from. To get started you will also need to clone a repo that contains the necessary modules and variable files.
 
 * Open a terminal on a machine that has full network access to the AWS account where Private Terraform Enterprise will be deployed. Enter the following to clone the repo
 
 ```
 git clone git@github.com:hashicorp/terraform-enterprise-modules.git
 ```
-* Once the clone is complete cd into the `terraform-enterprise-modules/aws-standard/` directory. 
+* Once the clone is complete cd into the `terraform-enterprise-modules/aws-standard/` directory.
 
 The following details will be requested during the application bootstrapping process. It's helpful to have them prepared beforehand.
 
