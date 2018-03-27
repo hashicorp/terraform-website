@@ -204,18 +204,19 @@ $ curl \
 
 ### Create a Workspace which is migrated from a legacy Environment
 
-By supplying the necessary attributes, you can create a workspace which is migrated from a legacy Environment. When you do this, the following will happen:
-* Environment and Terraform variables will be copied to the workspace.
-* Teams which are associated with the legacy Environment will be created in the destination Workspace's Organization.
-* Members of those teams will be added as members in the destination Workspace's Organization.
-* The Team will be given the same access level on the Workspace as it had with the legacy Environment.
-* The latest state of the legacy Environment will be copied over into the Workspace and set as the Workspace's current state.
-* VCS repo ingress settings will be copied over into the environment.
+By supplying the necessary attributes, you can create a workspace which is migrated from a legacy environment. When you do this, the following will happen:
+
+- Environment and Terraform variables will be copied to the workspace.
+- Teams which are associated with the legacy environment will be created in the destination workspace's organization, if teams with those names don't already exist.
+- Members of those teams will be added as members of the corresponding teams in the destination workspace's organization.
+- Each team will be given the same access level on the workspace as it had on the legacy environment.
+- The latest state of the legacy environment will be copied over into the workspace and set as the workspace's current state.
+- VCS repo ingress settings (like branch and working directory) will be copied over into the workspace.
 
 #### Parameters
 
 - `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-- `migration-environment` (`string: <required>`) - Specifies the legacy Environment to use as the source of the migration in the form `organization/environment`
+- `migration-environment` (`string: <required>`) - Specifies the legacy environment to use as the source of the migration in the form `organization/environment`
 - `vcs-repo.oauth-token-id` (`string: <required>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 - `vcs-repo.identifier` (`string: <required>`) - This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
 
