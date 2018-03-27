@@ -24,7 +24,7 @@ The new Terraform Enterprise does not support the `terraform push` command, whic
 
 This does not mean we're dropping support for a CLI-based workflow — we want push to be better, and the integrated `push` command was holding us back because we built it on an outdated understanding of how Terraform Enterprise should work. Users of `terraform push` have a few options:
 
-- Use [the add-on Terraform Enterprise Push commands](https://github.com/hashicorp/terraform-enterprise-push). These are designed as a one-to-one replacement for `terraform push`, with a modified syntax and some new features.
+- Use [the add-on Terraform Enterprise command line tools](https://github.com/hashicorp/tfe-cli). These are designed as a one-to-one replacement for `terraform push`, with a modified syntax and some new features.
 - Use the [API-based run workflow](../workspaces/run-api.html) to upload a configuration tabrall and queue a run. This is a more powerful option for integration with automated systems.
 
 We're also working on a more deeply integrated CLI workflow that combines the collaborative benefits of centrally managed Terraform runs with the interactive responsiveness of running Terraform on your laptop. This doesn't have a release date yet, but we hope our current replacements for `terraform push` offer a comfortable migration path in the meantime.
