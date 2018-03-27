@@ -45,7 +45,7 @@ All other system-level logs can be found in the standard locations for an Ubuntu
 # Application Logs - Installer Beta
 
 The installer-based version runs the application in a set of docker containers. As such, any tooling that can interact with docker logs
-can read the logs. This includes running the command `docker logs` as well as access the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
+can read the logs. This includes running the command `docker logs`, as well as access the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
 
 An example of a tool that can automatically pull logs for all docker containers is [logspout](https://github.com/gliderlabs/logspout).
 It can easily be configured to take the docker logs and send them to a syslog endpoint. Here is an example invocation to do so:
@@ -58,9 +58,10 @@ $ docker run --name="logspout" \
 ```
 
 The container uses the docker API internally to find the containers and ingress the logs, at which point it then sends
-them `logs.mycompany.com` over TCP on port 55555 using syslog over TLS.
+them to `logs.mycompany.com` over TCP on port 55555 using syslog over TLS.
 
-~> **NOTE:** Private Terraform Enterprise installations only supports docker `log-driver` configured to either `json-file` or `journald`.
+~> **NOTE:** While docker has support for daemon wide log drivers that can send all logs for all containers to various services,
+   Private Terraform Enterprise installations only supports docker `log-driver` configured to either `json-file` or `journald`.
    All other log drivers prevent the support bundle functionality from gathering logs, making it
    impossible to provide product support. **DO NOT** change the log driver of an installation to anything other than `json-file` or `journald`.
 
@@ -124,3 +125,13 @@ Log entries are in JSON, just like other terraform logs. Most audit log entries 
 ```
 
 Certain entries will contain additional information in the payload, but all audit log entries will contain the above keys.
+
+### Log Location
+
+Audit log entries are written to the application logs. To distinguish audit log entries from other log entries, the JSON is prefixed with `[Audit Log]`. These are written out to CloudWatch logs just like all other application-level logs. For example:
+
+```
+2018-03-27 21:55:29 [INFO] [Audit Log] {"resource":"oauth_client","action":"create","resource_id":"oc-FErAhnuHHwcad3Kx","actor":"atlasint","timestamp":"2018-03-27T21:55:29Z","actor_ip":"11.22.33.44"}
+```
+
+---
