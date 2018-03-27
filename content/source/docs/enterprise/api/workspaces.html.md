@@ -202,6 +202,106 @@ $ curl \
 }
 ```
 
+### Create a Workspace which is migrated from a legacy Environment
+
+By supplying the necessary attributes, you can create a workspace which is migrated from a legacy environment. When you do this, the following will happen:
+
+- Environment and Terraform variables will be copied to the workspace.
+- Teams which are associated with the legacy environment will be created in the destination workspace's organization, if teams with those names don't already exist.
+- Members of those teams will be added as members of the corresponding teams in the destination workspace's organization.
+- Each team will be given the same access level on the workspace as it had on the legacy environment.
+- The latest state of the legacy environment will be copied over into the workspace and set as the workspace's current state.
+- VCS repo ingress settings (like branch and working directory) will be copied over into the workspace.
+
+#### Parameters
+
+- `name` (`string: <required>`) - Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+- `migration-environment` (`string: <required>`) - Specifies the legacy environment to use as the source of the migration in the form `organization/environment`
+- `vcs-repo.oauth-token-id` (`string: <required>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+- `vcs-repo.identifier` (`string: <required>`) - This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
+
+#### Sample Payload
+
+```json
+{
+  "data": {
+    "attributes": {
+      "name":"workspace-2",
+      "migration-environment":"legacy-hashicorp-organization/legacy-environment",
+      "vcs-repo": {
+        "identifier":"skierkowski/terraform-test-proj",
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
+      }
+    },
+    "type":"workspaces"
+  }
+}
+```
+
+#### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/organizations/my-organization/workspaces
+```
+
+#### Sample Response
+
+```json
+{
+  "data": {
+    "id": "ws-SihZTyXKfNXUWuUa",
+    "type": "workspaces",
+    "attributes": {
+      "name": "workspace-2",
+      "environment": "default",
+      "auto-apply": false,
+      "locked": false,
+      "created-at": "2017-11-02T23:55:16.142Z",
+      "working-directory": null,
+      "terraform-version": "0.10.8",
+      "can-queue-destroy-plan": true,
+      "vcs-repo": {
+        "identifier": "skierkowski/terraform-test-proj",
+        "branch": "",
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "ingress-submodules": false
+      },
+      "permissions": {
+        "can-update": true,
+        "can-destroy": false,
+        "can-queue-destroy": false,
+        "can-queue-run": false,
+        "can-update-variable": false,
+        "can-lock": false,
+        "can-read-settings": true
+      }
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "ssh-key": {
+        "data": null
+      },
+      "latest-run": {
+        "data": null
+      }
+    },
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
+    }
+  }
+}
+```
+
 ## Update a Workspace
 
 Update the workspace settings
