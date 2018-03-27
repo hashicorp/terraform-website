@@ -48,6 +48,12 @@ In order to queue a destroy plan on an environment (legacy) or workspace (curren
 
 The new Terraform Enterprise doesn't yet support arbitrary notifications at the end of runs. We plan to add a webhook-based notification system in a future update.
 
+### Shared Variables
+
+Legacy Terraform Enterprise supported organization-level variables that could be shared across multiple environments, which made it easier to re-use common variable values.
+
+Unfortunately, this feature was entangled with personal variables, which we permanently removed. We're planning a replacement feature to let you use shared sets of variables across multiple workspaces, but we're still in the process of designing it.
+
 ### Periodically Queued Plans
 
 In legacy Terraform Enterprise, you could set an environment to periodically queue a plan regardless of whether the configuration had changed. The new Terraform Enterprise does not currently have this feature.
@@ -70,9 +76,9 @@ Legacy Terraform Enterprise could grant access permissions to individual users; 
 
 We removed individual access because it eventually makes workspace settings too complex. Team-based access is easier to update and govern — single-user teams offer the same granularity of permissions, but with faster updates as soon as they need to become five-user or zero-user teams.
 
-### Personal Environment and Organization Variables
+### Personal Variables
 
-Legacy Terraform Enterprise had a personal variables feature, where each user could set values that only applied to runs that they queued. In the new Terraform Enterprise, all variables are tied to a workspace, not a user.
+Legacy Terraform Enterprise had a personal variables feature, where each user could set values that only applied to runs that they queued.
 
 We removed this feature because it worked against Terraform Enterprise's goal of collaborative and predictable infrastructure. Not only did it make runs inconsistent and less reliable, it also expected that users would be queueing most runs manually in the UI, when we've found that people want most runs to happen in response to changes in a VCS repo or other automatic triggers.
 
