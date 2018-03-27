@@ -43,11 +43,6 @@ In order to queue a destroy plan on an environment (legacy) or workspace (curren
 
 ## Gone But Returning Soon
 
-### Two-Factor Authentication
-
-The new version of Terraform Enterprise doesn't yet support two-factor authentication in its integrated login system. We plan to add it in a future update.
-
-Depending on your security infrastructure, our [SAML single sign-on support](../saml/index.html) (available on private installs) might also suit your needs.
 
 ### Notifications
 
