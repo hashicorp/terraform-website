@@ -8,6 +8,102 @@ sidebar_current: "docs-enterprise2-api-configuration-versions"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
+## List Configuration Versions
+
+| Method | Path           |
+| :----- | :------------- |
+| GET | /workspaces/:workspace_id/configuration-versions |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/workspaces/ws-2Qhk7LHgbMrm3grF/configuration-versions
+```
+
+### Sample Response
+
+```json
+{
+    "data": [
+        {
+            "id": "cv-ntv3HbhJqvFzamy7",
+            "type": "configuration-versions",
+            "attributes": {
+                "error": null,
+                "source": "gitlab",
+                "status": "uploaded",
+                "status-timestamps": {}
+            },
+            "relationships": {
+                "ingress-attributes": {
+                    "data": {
+                        "id": "ia-i4MrTxmQXYxH2nYD",
+                        "type": "ingress-attributes"
+                    },
+                    "links": {
+                        "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
+                    }
+                }
+            },
+            "links": {
+                "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7"
+            }
+        }
+    ]
+}
+```
+
+## Show a Configuration Version
+
+| Method | Path           |
+| :----- | :------------- |
+| GET | /configuration-versions/:configuration-id |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7
+```
+
+### Sample Response
+
+```json
+{
+    "data": {
+        "id": "cv-ntv3HbhJqvFzamy7",
+        "type": "configuration-versions",
+        "attributes": {
+            "error": null,
+            "source": "gitlab",
+            "status": "uploaded",
+            "status-timestamps": {}
+        },
+        "relationships": {
+            "ingress-attributes": {
+                "data": {
+                    "id": "ia-i4MrTxmQXYxH2nYD",
+                    "type": "ingress-attributes"
+                },
+                "links": {
+                    "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
+                }
+            }
+        },
+        "links": {
+            "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7"
+        }
+    }
+}
+```
+
 ## Create a Configuration Version
 
 A configuration version (`configuration-version`) is a resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
