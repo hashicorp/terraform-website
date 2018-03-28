@@ -10,7 +10,7 @@ If you used the legacy version of Terraform Enterprise (TFE), you probably have 
 
 Follow these steps to migrate your old TFE environments to new TFE workspaces.
 
-~> **Important:** Workspace migration imports the settings and the most recent Terraform state from a legacy environment. It does not import the state history or the run event history. If you need to preserve historical data from your legacy environments for regulatory reasons, please contact Hashicorp support for assistance and do not delete your legacy environments after migrating.
+~> **Important:** Workspace migration imports the settings and the most recent Terraform state from a legacy environment. It does not import the state history or the run event history. If you need to preserve historical data from your legacy environments for regulatory reasons, please contact HashiCorp support for assistance and do not delete your legacy environments after migrating.
 
 ## Step 1: Create a New Organization
 
@@ -55,7 +55,7 @@ This import tab has fewer settings than the [new workspace tab](../workspaces/cr
 
 - In the "Legacy Environment" field, enter the environment to migrate, in the form `<LEGACY ORGANIZATION>/<ENVIRONMENT NAME>`.
 - In the "Workspace Name" field, enter the new name of the workspace, which should usually be the same as the old environment name.
-- Choose the same VCS connection and repository as the old environment.
+- Choose the same VCS provider and repository as the old environment, or choose "None" if you plan to [push configurations via the API](../workspaces/run-api.html).
 
 After filling the fields, click the "Create Workspace" button.
 
@@ -63,7 +63,7 @@ After a brief delay the migration should finish, with a "Configuration uploaded 
 
 ![screenshot: a successfully completed migration](./images/new-workspace-success.png)
 
-If the migration fails, the error message should explain the problem; most commonly, migration fails when a different user has locked the legacy environment, and you must unlock it to proceed. If you encounter an error you can't recover from, please contact Hashicorp support.
+If the migration fails, the error message should explain the problem; most commonly, migration fails when a different user has locked the legacy environment, and you must unlock it to proceed. If you encounter an error you can't recover from, please contact HashiCorp support.
 
 ### Step 3.c: Inspect the New Workspace's Settings
 
@@ -112,5 +112,5 @@ If you have no more need for the legacy environment, you can now delete it. **Do
     If the environment's state is in use, leave the legacy environment locked to prevent runs, then delete it after updating the affected configurations to use the new workspace's state data.
 - You need to preserve state history or run event history. (Workspace migration imports the most recent Terraform state, but does not import history.)
 
-    If you need to preserve historical data from your legacy environments for regulatory reasons, please contact Hashicorp support for assistance and do not delete your legacy environments after migrating.
+    If you need to preserve historical data from your legacy environments for regulatory reasons, please contact HashiCorp support for assistance and do not delete your legacy environments after migrating.
 
