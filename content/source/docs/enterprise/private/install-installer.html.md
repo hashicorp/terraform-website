@@ -26,10 +26,6 @@ Before you begin, you'll need to prepare data files and a Linux instance.
     _not_ recommended this. Your VCS provider will likely reject that certificate
     when sending webhooks. If you do use the self-signed certificate, you must configure
     each webhook to ignore SSL errors within your VCS provider.
-  * If you do not have access to a certificate, you can use
-    [Let's Encrypt](https://letsencrypt.org/getting-started/) to request one for free.
-    This functionality is available in the settings dashboard, simply click the
-    `Automatically Request Certificate via Let's Encrypt` option.
 * License key (provided by HashiCorp)
 
 ~> **Note:** If you use your own certificate and it is issued by a private Certificate
@@ -192,9 +188,7 @@ From a shell on your instance, in the directory where you placed the `replicated
 
 ### Continue Installation In Browser
 
-1. Configure the hostname and the SSL certificate. If you wish to use the builtin
-   Let's Encrypt functionality, specify Self-Signed here and later on you'll have
-   the opportunity to configure the application using Let's Encrypt.
+1. Configure the hostname and the SSL certificate.
 1. Upload your license file. (Provided to you in your setup email)
 1. Indicate if you're doing an Online or Airgapped installation (Choose Online if
    you're not sure)
