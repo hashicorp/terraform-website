@@ -8,9 +8,7 @@ description: |-
 
 # Automatic Terraform Applies
 
--> This is an unreleased beta feature. Please
-<a href="mailto:support@hashicorp.com">contact support</a> if you are interested
-in helping us test this feature.
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
 
 You can automatically apply successful Terraform plans to your
 infrastructure. This option is disabled by default and can be enabled by an

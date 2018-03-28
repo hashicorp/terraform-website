@@ -8,6 +8,8 @@ description: |-
 
 # Collaborating on Terraform Remote State
 
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
+
 Terraform Enterprise is one of a few options to store [remote state](/docs/state/remote.html).
 
 Remote state gives you the ability to version and collaborate on Terraform

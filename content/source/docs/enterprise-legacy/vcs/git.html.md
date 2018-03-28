@@ -8,6 +8,8 @@ description: |-
 
 # Git Integration
 
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
+
 Git repositories can be integrated with Terraform Enterprise by using
 [`terraform push`](/docs/commands/push.html) to import Terraform configuration
 when changes are committed. When Terraform configuration is imported using
