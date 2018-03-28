@@ -40,10 +40,12 @@ There are also several optional fields, which you can reveal by clicking the "Mo
 
 When you create a new workspace, a few things happen:
 
-- TFE _doesn't_ immediately queue a plan for the workspace. Instead, it presents a dialog with shortcut links to either queue a plan or edit variables.
-- TFE automatically registers a webhook with your VCS service. The next time new commits appear in the selected branch of that repo, TFE will automatically queue a Terraform plan for the workspace.
+- TFE _doesn't_ immediately queue a plan for the workspace. Instead, it presents a dialog with shortcut links to either queue a plan or edit variables. If you don't need to edit variables, manually queuing a plan confirms to TFE that the workspace is ready to run.
+- TFE automatically registers a webhook with your VCS service. The next time new commits appear in the selected branch of that repo or a PR is opened to that branch, TFE will automatically queue a Terraform plan for the workspace. More at [VCS Connection webhooks](../vcs/index.html#webhooks).
 
-Most of the time, you'll want do do some of the following after creating a workspace:
+A workspace with no runs will not accept new runs via VCS webhook; at least one run must be manually queued to confirm that the workspace is ready for further runs.
+
+Most of the time, you'll want to do one or more of the following after creating a workspace:
 
 - [Edit variables](./variables.html)
 - [Edit workspace settings](./settings.html)
