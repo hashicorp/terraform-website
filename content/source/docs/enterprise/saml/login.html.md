@@ -12,4 +12,6 @@ They can follow the link to complete the SAML login process with the identity pr
 
 ## API token expiration
 
-When a user's web session expires, their API tokens will be temporarily disabled until they reauthenticate at `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/session`.
+When a user's SAML-authenticated web session expires, their API tokens are also temporarily disabled until they reauthenticate at `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/session`. This is because Terraform Enterprise relies on your identity provider for [team membership mapping](./team-membership.html), and a user might have been added to or removed from some teams since their session expired. This restriction only affects user tokens, not [team or organization tokens](../users-teams-organizations/service-accounts.html).
+
+Session expiration periods are configurable in the organization settings.
