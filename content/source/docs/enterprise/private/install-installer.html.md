@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-private-installer"
 
 ## Delivery
 
-This document outlines the procedure for using the Private Terraform Enterprise
+This document outlines the procedure for using the Private Terraform Enterprise (PTFE)
 installer to set up Terraform Enterprise on a customer-controlled machine.
 
 ~> **Note**: This document is only meant for those customers in the Private
@@ -26,11 +26,12 @@ Before you begin, you'll need to prepare data files and a Linux instance.
     _not_ recommended this. Your VCS provider will likely reject that certificate
     when sending webhooks. If you do use the self-signed certificate, you must configure
     each webhook to ignore SSL errors within your VCS provider.
-  * If you do not have access to a certificate, you can use
-    [Let's Encrypt](https://letsencrypt.org/getting-started/) to request one for free.
-    You will provide the path on the host system to the created certificate and key
-    when requested by the setup process.
 * License key (provided by HashiCorp)
+
+~> **Note:** If you use your own certificate and it is issued by a private Certificate
+   Authority, you must provide the certificate for that CA in the
+   `Certificate Authority (CA) Bundle` section of the installation. This allows services
+   running within PTFE to access each other properly.
 
 ### Linux Instance
 
@@ -79,6 +80,42 @@ For Linux distributions other than RHEL, check Docker compatibility:
   * **9870-9880 (inclusive)** - for internal communication on the host and its subnet; not publicly accessible
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
 1. _Optional_: Get a domain name for the instance.  If you opt to use only an IP to access the instance, enter the IP into the hostname field when prompted during the web portion of the setup.
+
+
+#### Trusting SSL/TLS Certificates
+
+The installer has a section that allows multiple certificates to be specified as trusted.
+A collection of certificates for trusted issuers are known as a `Certificate Authority (CA) Bundle` and are
+used to allow PTFE to connect to services that use SSL/TLS certificates issued by private CAs.
+
+All certificates in the certificate signing chain, meaning the root certificate and any intermediate certificates,
+must be included here. These multiple certificates are listed one after another in text format.
+
+Certificates must be formatted using PEM encoding, ie as text. For example:
+
+```
+-----BEGIN CERTIFICATE-----
+MIIFtTCCA52gAwIBAgIIYY3HhjsBggUwDQYJKoZIhvcNAQEFBQAwRDEWMBQGA1UE
+AwwNQUNFRElDT00gUm9vdDEMMAoGA1UECwwDUEtJMQ8wDQYDVQQKDAZFRElDT00x
+CzAJBgNVBAYTAkVTMB4XDTA4MDQxODE2MjQyMloXDTI4MDQxMzE2MjQyMlowRDEW
+MBQGA1UEAwwNQUNFRElDT00gUm9vdDEMMAoGA1UECwwDUEtJMQ8wDQYDVQQKDAZF
+....
+-----END CERTIFICATE-----
+```
+
+The UI to upload these certificates looks like:
+
+![ptfe-ca-ui](./assets/ptfe-ca-bundle.png)
+
+~> **Note**: PTFE needs to be able to access all services that it integrates with, such as VCS providers,
+   terraform providers, etc. Because it typically accesses them via SSL/TLS, it is critical that the
+   certificates used by any service that is accessed is trusted by PTFE. This means properly configuring
+   the `Certificate Authority (CA) Bundle` option so that PTFE can properly trust any certificates
+   issued by private CAs.
+
+~> **Note**: If PTFE is configured with a SSL key and certificate issued against a private CA,
+   the certificate chain for that CA must be included here as well. This allows the instance
+   to properly query itself.
 
 ### Operational Mode Decision
 
@@ -151,7 +188,7 @@ From a shell on your instance, in the directory where you placed the `replicated
 
 ### Continue Installation In Browser
 
-1. Configure the hostname (which can be an IP only) and the SSL certificate.
+1. Configure the hostname and the SSL certificate.
 1. Upload your license file. (Provided to you in your setup email)
 1. Indicate if you're doing an Online or Airgapped installation (Choose Online if
    you're not sure)
