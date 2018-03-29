@@ -81,6 +81,31 @@ For Linux distributions other than RHEL, check Docker compatibility:
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
 1. _Optional_: Get a domain name for the instance.  If you opt to use only an IP to access the instance, enter the IP into the hostname field when prompted during the web portion of the setup.
 
+### Proxy Usage
+
+If your installation requires using a proxy server, you will be asked for the proxy server information when you first
+run the installer via `ssh`. This proxy server will be used for all outbound HTTP and HTTPS connections.
+
+Optionally if you're running the installer script in an automated manner, you can pass a `http-proxy` flag to set this functionality.
+For example:
+
+```
+./install.sh http-proxy=http://internal.mycompany.com:8080
+```
+
+To exclude certain hosts from being accessed through the proxy (for instance, an internal VCS service), you will be
+provided a place on the Settings page to enter in these exclusions.
+
+#### Reconfiguring the Proxy
+
+If you wish to change the proxy settings after an install has been done, you can do so on the Console Settings page, accessed from
+the dashboard on port 8800.
+
+![PTFE Console Settings](./assets/ptfe-console-settings.png)
+
+On the Console Settings page, there is a section for HTTP Proxy:
+
+![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
 
 #### Trusting SSL/TLS Certificates
 
