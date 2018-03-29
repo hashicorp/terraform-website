@@ -58,7 +58,7 @@ gnupg/  hashicorp-support.tar.gz  hashicorp-support.tar.gz.enc
 ```
 
 Next you will need to copy the `hashicorp-support.tar.gz.enc` file listed above off the instance. This
-can be done via scp or another tool that can interface with the system over SSH/SFTP. For example:
+can be done via scp or another tool that can interface with the system over SSH/SFTP. For example on Linux and Mac OS X:
 
 ```
 local$ scp -i ~/.ssh/hc-eng-emp.pem tfe-admin@1.2.3.4:/var/lib/hashicorp-support/hashicorp-support.tar.gz.enc .
@@ -66,6 +66,10 @@ hashicorp-support.tar.gz.enc                                                    
 ```
 
 You will attach that support bundle to your support ticket using the SendSafely integration (as it allows for large file uploads).
+
+## Windows
+
+On Microsoft Windows, tools such as [PSCP](https://www.ssh.com/ssh/putty/putty-manuals/0.68/Chapter5.html) and [WinSCP](https://winscp.net/eng/index.php) can be used to transfer the file.
 
 # Installer based Installs
 
