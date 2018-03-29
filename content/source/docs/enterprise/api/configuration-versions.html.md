@@ -174,26 +174,19 @@ curl \
 
 -> **Note**: Uploading a configuration file automatically creates a run and associates it with this configuration-version. Therefore it is unnecessary to [create a run on the workspace](./run.html#create-a-run) if a new file is uploaded.
 
-`POST https://archivist.terraform.io/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da`
+`PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
 
 **The URL is provided in the `upload-url` attribute in the `configuration-versions` resource.**
 
-### Request Body
-
-This POST endpoint requires the following properties as a request payload.
-
-Properties without a default value are required.
-
-| Key path | Type | Default | Description                                                                                                                                                                                                         |
-| -------- | ---- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data`   | file |         | A local .tar.gz file containing the folder of the terraform configuration files. This file can be created by running `tar -zcvf ./config.tar.gz .` from within the terraform configuration directory. |
-
 ### Sample Request
+
+**@filename is the name of configuration file you wish to upload.**
 
 ```shell
 curl \
+  --header "Content-Type: application/octet-stream" \
   --request PUT \
-  -F 'data=@config.tar.gz' \
+  --data-binary @filename \
   https://archivist.terraform.io/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da
 ```
 
