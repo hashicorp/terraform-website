@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-private-installer"
 
 # Private Terraform Enterprise
 
-This section is guides users through deploying Private Terraform Enterprise
+This section guides users through deploying Private Terraform Enterprise
 using the installer method. This includes required prerequisites, steps to
 install the software, and the basic configuration that will need to be done
 after install.
