@@ -9,7 +9,7 @@ sidebar_current: "docs-enterprise2-diagnostics"
 This document contains information on how to provide HashiCorp with diagnostic information about a Private Terraform Enterprise (PTFE)
 installation that requires assistance from HashiCorp support.
 
-# AMI based installs
+# AMI-based installs
 
 To generate a support bundle, connect to the instance via ssh and run `sudo hashicorp-support`. Below is a sample session:
 
@@ -57,34 +57,34 @@ tfe.mycompany.com:~$ ls -F /var/lib/hashicorp-support/
 gnupg/  hashicorp-support.tar.gz  hashicorp-support.tar.gz.enc
 ```
 
-Next you will need to copy the `hashicorp-support.tar.gz.enc` file listed above off the instance. This
-can be done via scp or another tool that can interface with the system over SSH/SFTP. For example on Linux and Mac OS X:
+Next, copy the `hashicorp-support.tar.gz.enc` file listed above off the instance. This
+can be done via scp or another tool that can interface with the system over SSH/SFTP. For example, on Linux and Mac OS X:
 
 ```
 local$ scp -i ~/.ssh/hc-eng-emp.pem tfe-admin@1.2.3.4:/var/lib/hashicorp-support/hashicorp-support.tar.gz.enc .
 hashicorp-support.tar.gz.enc                                                      100%  111MB  20.9MB/s   00:05
 ```
 
-You will attach that support bundle to your support ticket using the SendSafely integration (as it allows for large file uploads).
+Then, attach the bundle to your support ticket. If possible, use the SendSafely integration (as it allows for large file uploads).
 
 ## Windows
 
 On Microsoft Windows, tools such as [PSCP](https://www.ssh.com/ssh/putty/putty-manuals/0.68/Chapter5.html) and [WinSCP](https://winscp.net/eng/index.php) can be used to transfer the file.
 
-# Installer based Installs
+# Installer-based Instances
 
-Diagnostic information is made available in the Installer via the dashboard, available on port 8800 of your installation.
+Diagnostic information is available via in the Installer dashboard on port 8800 of your installation.
 
-On your dashboard, click on the Support tab:
+On the dashboard, click on the Support tab:
 
 ![PTFE Dashboard Top](./assets/ptfe-dashboard.png)
 
-On the next page, you'll have access to click a button which will download the support bundle directly to your web browser.
+On the next page, click the _Download Support Bundle_ button which will download the support bundle directly to your web browser.
 
 ![PTFE Support](./assets/ptfe-support.png)
 
-You will attach that support bundle to your support ticket using the SendSafely integration (as it allows for large file uploads).
+Then, attach the bundle to your support ticket. If possible, use the SendSafely integration (as it allows for large file uploads).
 
 # Pre-Sales uploads
 
-If you do not have access to the HashiCorp support ticket system, you may upload files directly at https://hashicorp.sendsafely.com/dropzone/private-tfe.
+Customers in the pre-sales phase can upload files directly at https://hashicorp.sendsafely.com/dropzone/private-tfe.
