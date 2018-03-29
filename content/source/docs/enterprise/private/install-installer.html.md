@@ -85,8 +85,8 @@ For Linux distributions other than RHEL, check Docker compatibility:
 #### Trusting SSL/TLS Certificates
 
 The installer has a section that allows multiple certificates to be specified as trusted.
-A collection certificates for trusted issuers are known as a `Certificate Authority (CA) Bundle` and are
-used to allow PTFE to connect to services that uses SSL/TLS certificates issued by private CAs.
+A collection of certificates for trusted issuers are known as a `Certificate Authority (CA) Bundle` and are
+used to allow PTFE to connect to services that use SSL/TLS certificates issued by private CAs.
 
 All certificates in the certificate signing chain, meaning the root certificate and any intermediate certificates,
 must be included here. These multiple certificates are listed one after another in text format.
