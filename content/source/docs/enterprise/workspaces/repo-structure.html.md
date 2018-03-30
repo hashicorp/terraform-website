@@ -49,7 +49,7 @@ Using the branch strategy reduces the number of files needed in the repo. In the
 │   │   ├── outputs.tf
 ```
 
-Each workspace listens to a specific branch for changes, as configured by the [VCS branch setting](./settings.html#vcs-branch). This means that plans will not occur in a given workspace until a PR is opened against or merged into the designated branch. The `networking-prod` workspace would be configured to listen to the `prod` branch, `networking-stage` to `stage`, and `networking-dev` to `dev`. To promote a change to `stage`, just open a PR against the `stage` branch. To promote to prod, open a PR from `stage` against `prod`.
+Each workspace listens to a specific branch for changes, as configured by the [VCS branch setting](./settings.html#vcs-branch). This means that plans will not occur in a given workspace until a PR is opened or a push event occurs on the designated branch. The `networking-prod` workspace would be configured to listen to the `prod` branch, `networking-stage` to `stage`, and `networking-dev` to `dev`. To promote a change to `stage`, open a PR against the `stage` branch. To promote to prod, open a PR from `stage` against `prod`.
 
 The upside of this approach is that it requires fewer files and runs fewer plans, but the potential downside is that the branches can drift out of sync. Thus, in this model, it's very important to enforce consistent branch merges for promoting changes.
 
