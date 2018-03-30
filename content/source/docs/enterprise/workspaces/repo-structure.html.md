@@ -19,7 +19,7 @@ Depending on your organization's use of version control, one method for multi-en
 
 ### Multiple Workspaces per Repo (Recommended)
 
-Using a single repo attached to multiple workspaces is the overall recommended approach, as it enables the creation of a pipeline to promote changes through environments, without additional overhead in version control. When using this model, one repo, such as `terraform-networking`, is connected to multiple workspaces — `networking-prod`, `networking-stage`, `networking-dev`. While the repo connection is the same in each case, each workspace can have a unique set of variables to configure the differences per environment.
+Using a single repo attached to multiple workspaces is is the simplest best-practice approach, as it enables the creation of a pipeline to promote changes through environments, without additional overhead in version control. When using this model, one repo, such as `terraform-networking`, is connected to multiple workspaces — `networking-prod`, `networking-stage`, `networking-dev`. While the repo connection is the same in each case, each workspace can have a unique set of variables to configure the differences per environment.
 
 To make an infrastructure change, a user opens a pull request on the `terraform-networking` repo, which will trigger a plan in all three connected workspaces. The user can then merge the PR and apply it in one workspace at a time, first with `networking-dev`, then `networking-stage`, and finally `networking-prod`. Eventually, Terraform Enterprise will have functionality to enforce the stages in this pipeline.
 
