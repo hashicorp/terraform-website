@@ -68,6 +68,7 @@ The following apply to every installation:
   ```
 
 - `extern_vault_enable` - (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
+  - These variables are only used if `extern_vault_enable` is set `1`
   - `extern_vault_addr` - (Required) URL of external Vault cluster
   - `extern_vault_role_id` - (Required) AppRole RoleId to use to authenticate with the Vault cluster
   - `extern_vault_secret_id` - (Required) AppRole SecretId to use to authenticate with the Vault cluster
