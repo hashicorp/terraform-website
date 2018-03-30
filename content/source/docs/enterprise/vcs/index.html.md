@@ -37,6 +37,8 @@ For most supported VCS providers, TFE does not need an SSH key — it can do ev
 
 For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials.
 
+If submodules will be cloned via SSH from a private VCS instance, SSH must be running on the standard port 22 on the VCS server.
+
 To add an SSH key to a VCS connection, finish configuring OAuth in the organization settings, and then use the "add a private SSH key" link on the OAuth Configuration page to add a private key that has access to the submodule repositories. When setting up a workspace, if submodules are required, select "Include submodules on clone". More at [Workspace settings](../workspaces/settings.html).
 
 ### Multiple VCS Connections
