@@ -86,7 +86,7 @@ For Linux distributions other than RHEL, check Docker compatibility:
 If your installation requires using a proxy server, you will be asked for the proxy server information when you first
 run the installer via `ssh`. This proxy server will be used for all outbound HTTP and HTTPS connections.
 
-Optionally if you're running the installer script in an automated manner, you can pass a `http-proxy` flag to set this functionality.
+Optionally, if you're running the installer script in an automated manner, you can pass a `http-proxy` flag to set the address of the proxy.
 For example:
 
 ```
@@ -94,12 +94,11 @@ For example:
 ```
 
 To exclude certain hosts from being accessed through the proxy (for instance, an internal VCS service), you will be
-provided a place on the Settings page to enter in these exclusions.
+provided a place on the Settings page available on port 8800 under `/settings` to enter in these exclusions.
 
 #### Reconfiguring the Proxy
 
-If you wish to change the proxy settings after an install has been done, you can do so on the Console Settings page, accessed from
-the dashboard on port 8800.
+To change the proxy settings after installation, use the Console settings page, accessed from the dashboard on port 8800 under `/console/settings`.
 
 ![PTFE Console Settings](./assets/ptfe-console-settings.png)
 
