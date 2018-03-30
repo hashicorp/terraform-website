@@ -37,12 +37,15 @@ role when considering the reliability of the overall system:
 - **Storage Layer**
 
   - _PostgreSQL Database_ - Serves as the primary store of Terraform
-    Enterprise's application data
+    Enterprise's application data such as workspace settings and user settings
 
   - _Blob Storage_ - Used for storage of Terraform state files, plan files,
     configuration, and output logs
 
-  - _HashiCorp Vault_ - Used for encryption of sensitive data
+  - _HashiCorp Vault_ - Used for encryption of sensitive data. There are
+    two types of Vault data in PTFE -
+    [key material](https://www.vaultproject.io/docs/concepts/seal.html) and
+    [storage backend data](https://www.vaultproject.io/docs/configuration/storage/index.html).
 
   - _Configuration Data_ - The information provided and/or generated at
     install-time (e.g. database credentials, hostname, etc.)
