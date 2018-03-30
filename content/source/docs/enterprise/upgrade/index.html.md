@@ -93,9 +93,9 @@ If you use this workaround during your migration process, you must do two additi
 
 Make a note of any workspaces that access remote state as you migrate them, and update them soon after you finish migrating. Leaving a value for `ATLAS_TOKEN` over the long term can make your workspaces unnecessarily fragile.
 
-### Step 3.e: Unlock Workspace and Queue Plan
+### Step 3.e: Queue Plan and Check Results
 
-Upon creation, the migrated workspace is locked to prevent runs. Unlock it after verifying the settings and variables, and queue a plan.
+After verifying the settings and variables, queue a plan in the new workspace.
 
 If everything matches the legacy environment, **the plan should complete with no changes** (or the expected changes if the VCS repository has new commits). If the plan would result in changes, inspect it carefully to find what has changed and update variables or settings if necessary.
 
