@@ -41,6 +41,65 @@ The settings file is JSON formatted. All values must be strings.  The example be
 }
 ```
 
+### Discovery
+
+One the easiest ways to get the settings is to [perform a manual install](./install-installer.html#installation) and configure all the settings how you want them. Then you can ssh in and request the settings in JSON format and use that file in a future automated install.
+
+To extract the settings as JSON, run via ssh on the instance:
+
+```
+ptfe$ replicatedctl app-config export > settings.json
+```
+
+Here is an example of running that on a demo system:
+
+```
+ptfe$ replicatedctl app-config export > settings.json
+ptfe$ cat settings.json
+{
+    "aws_access_key_id": {},
+    "aws_instance_profile": {},
+    "aws_secret_access_key": {},
+    "azure_account_key": {},
+    "azure_account_name": {},
+    "azure_container": {},
+    "azure_endpoint": {},
+    "ca_certs": {},
+    "capacity_concurrency": {
+        "value": "10"
+    },
+    "disk_path": {},
+    "extern_vault_addr": {},
+    "extern_vault_enable": {
+        "value": "0"
+    },
+    "extern_vault_path": {},
+    "extern_vault_role_id": {},
+    "extern_vault_secret_id": {},
+    "extern_vault_token_renew": {},
+    "extra_no_proxy": {},
+    "hostname": {
+        "value": "tfe.mycompany.com"
+    },
+    "installation_type": {
+        "value": "poc"
+    },
+    "placement": {},
+    "postgres_url": {},
+    "production_type": {},
+    "s3_bucket": {},
+    "s3_region": {},
+    "s3_sse": {},
+    "s3_sse_kms_key_id": {},
+    "vault_path": {
+        "value": "/var/lib/tfe-vault"
+    },
+    "vault_store_snapshot": {
+        "value": "1"
+    }
+}
+```
+
 ### Available settings
 
 A number of settings are available to configure and tune your installation.  They are summarized below; it is expected the user will have completed a manual installation first and already be familiar with the nature of these parameters from the settings screen.
