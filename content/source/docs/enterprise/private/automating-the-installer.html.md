@@ -127,7 +127,7 @@ The following apply to every installation:
   ```
 
 - `extern_vault_enable` - (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
-  - These variables are only used if `extern_vault_enable` is set `1`
+  - These variables are only used if `extern_vault_enable` is set to `1`
   - `extern_vault_addr` - (Required) URL of external Vault cluster
   - `extern_vault_role_id` - (Required) AppRole RoleId to use to authenticate with the Vault cluster
   - `extern_vault_secret_id` - (Required) AppRole SecretId to use to authenticate with the Vault cluster
@@ -169,7 +169,7 @@ For Azure:
 - `azure_account_name` - (Required) The account name for the Azure account to access the container
 - `azure_account_key` - (Required) The account key to access the account specified in `azure_account_name`
 - `azure_container` - (Required) The identifer for the Azure blob storage container
-- `azure_endpoint` - (Optional) The URL for the Azure cluster to use. By default this is the global one.
+- `azure_endpoint` - (Optional) The URL for the Azure cluster to use. By default this is the global cluster.
 
 ## Online
 
