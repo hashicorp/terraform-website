@@ -124,21 +124,34 @@ actively developed. The section below is subject to change as work continues.
 
 This section describes how to set up your PTFE deployment to recover from
 failures in the various operational modes (demo, mounted disk, external
-services). The operational mode is selected at install time and can not be changed
-once the install is running.
+services). The operational mode is selected at install time and can not be
+changed once the install is running.
 
-The below table explains where each data type in the Storage Layer is stored and
+The below tables explain where each data type in the
+[Storage Layer](#components) is stored and
 the corresponding snapshot and restore procedure. For the data types that use
 PTFE's built-in snapshot and restore function, follow
 [these instructions](./automated-recovery.html). For the data types that do
 **not** use the built-in functionality, backup and restore is the responsibility
 of the user.
 
-|  | Configuration Data | Vault Data | PostgreSQL Data | Blob Storage Data |
-|-------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| Demo | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE |
-| Mounted Disk | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in mounted disks - Snapshot and Restore done external to PTFE | Stored in mounted disks - Snapshot and Restore done external to PTFE |
-| External Services | Stored in Docker volumes on instance - Snapshot and Restore done by PTFE | Stored in external service - Snapshot and Restore done external to PTFE | Stored in external service - Snapshot and Restore done external to PTFE | Stored in external service - Snapshot and Restore done external to PTFE |
+*Data Location*
+
+|  | Configuration | Vault | PostgreSQL | Blob Storage |
+|-------------------|--------------------------------------|----------------------------------------------------------------------------------------------|--------------------------------------|--------------------------------------|
+| Demo | Stored in Docker volumes on instance | Key material is stored in Docker volumes on instance, storage backend is internal PostgreSQL | Stored in Docker volumes on instance | Stored in Docker volumes on instance |
+| Mounted Disk | Stored in Docker volumes on instance | Key material on host in `/var/lib/tfe-vault`, storage backend is mounted disk PostgreSQL | Stored in mounted disks | Stored in mounted disks |
+| External Services | Stored in Docker volumes on instance | Key material on host in `/var/lib/tfe-vault`, storage backend is external PostgreSQL | Stored in external service | Stored in external service |
+| External Vault | - | Key material in external Vault with user-defined storage backend | - | - |
+
+*Backup and Restore Responsibility*
+
+|                   | Configuration | Vault | PostgreSQL | Blob Storage |
+|-------------------|---------------|-------|------------|--------------|
+| Demo              | PTFE          | PTFE  | PTFE       | PTFE         |
+| Mounted Disk      | PTFE          | PTFE  | User       | User         |
+| External Services | PTFE          | User  | User       | User         |
+| External Vault    | -             | User  | -          | -            |
 
 ### Demo
 
@@ -176,7 +189,7 @@ recovery following these steps:
 **Snapshot**
 
 - Be sure that the mounted volume being used is automatically mounted
-  automatically on start.  For instance with AWS, this means having it attached
+  on start. For example with AWS this means having it attached
   to the EC2 instance as well as being mounted to a path in Linux.
 
 - Perform the initial installation of the product, including entering the
@@ -213,7 +226,7 @@ along with the software.
 In the External Services mode of the Installer Architecture, the
 **Application Layer** and **Coordination Layer** execute on a Linux instance,
 but the **Storage Layer** is configured to use external services in the form an
-a PostgreSQL server, an S3-compatible Blob Storage, and an
+a PostgreSQL server, an S3-compatible Blob Storage, and optionally an
 [external Vault](./vault.html).
 
 The maintenance of PostgreSQL, Blob Storage, and Vault are handled by the user,
@@ -267,9 +280,9 @@ software.
 
 Upgrades for the Installer Architecture utilize the Installer Admin Console.
 Once an upgrade has been been detected (either online or airgap), the new code
-is imported and once ready, all services on the instance are restarted running
+is imported. Once ready, all services on the instance are restarted running
 the new code. The expected downtime is between 30 seconds and 5 minutes,
-depending on if database updates have to be applied.
+depending on whether database updates have to be applied.
 
 Only application services are changed during the upgrade; data is not backed up
 or restored. The only data changes that may occur during are the application of
