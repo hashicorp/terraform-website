@@ -108,6 +108,59 @@ Since these parameters were originally designed as part of a JSON object, they s
 
 For more about URI structure and query strings, see [the specification (RFC 3986)](https://tools.ietf.org/html/rfc3986) or [the Wikipedia page on URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
+### Inclusion of Related Resources
+
+Some of the API's GET endpoints can return additional information about nested resources by adding an `include` query parameter, whose value is a comma-separated list of resource types.
+
+The related resource options are listed in each endpoint's documentation where available.
+
+The related resources will appear in an `included` section of the response.
+
+Example:
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/teams/team-n8UQ6wfhyym25sMe?include=users
+```
+
+```json
+{
+  "data": {
+    "id": "team-n8UQ6wfhyym25sMe",
+    "type": "teams",
+    "attributes": {
+      "name": "owners",
+      "users-count": 1
+      ...
+    },
+    "relationships": {
+      "users": {
+        "data": [
+          {
+              "id": "hashibot",
+              "type": "users"
+          }
+        ]
+      } ...
+    }
+    ...
+  },
+  "included": [
+    {
+      "id": "hashibot",
+      "type": "users",
+      "attributes": {
+        "username": "hashibot"
+        ...
+      } ...
+    }
+  ]
+}
+```
+
 ## Community client libraries and tools
 
 The community client libraries and tools listed below have been built by the community of Terraform Enterprise users and vendors. These client libraries and tools are not tested nor officially maintained by HashiCorp, and are listed here in order to help users find them easily.

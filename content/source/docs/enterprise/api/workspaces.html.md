@@ -895,3 +895,18 @@ $ curl \
   }
 }
 ```
+
+
+## Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+- `organization` - The full organization record.
+- `latest_run` - Additional information about the last run.
+- `latest_run.plan ` - The plan used in the last run.
+- `latest_run.configuration_version` - The configuration used in the last run.
+- `latest_run.configuration_version.ingress_attributes` - The commit information used in the last run.
+- `current_run` - Additional information about the current run.
+- `current_run.plan` - The plan used in the current run.
+- `current_run.configuration_version` - The configuration used in the current run.
+- `current_run.configuration_version.ingress_attributes` - The commit information used in the current run.

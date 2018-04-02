@@ -268,3 +268,13 @@ curl \
   --data @payload.json \
   https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/discard
 ```
+
+## Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+- `plan` - Additional information about plans.
+- `apply` - Additional information about applies.
+- `created_by` - Full user records of the users responsible for creating the runs.
+- `configuration_version` - The configuration record used in the run.
+- `configuration_version.ingress_attributes` - The commit information used in the run.
