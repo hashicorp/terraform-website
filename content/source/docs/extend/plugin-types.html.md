@@ -9,9 +9,9 @@ description: |-
 
 # Terraform Plugin Types	
 
-Terraform is logically split into two main parts: Terraform Core, and Terraform
+Terraform is logically split into two main parts: Terraform Core and Terraform
 Plugins. Each plugin exposes an implementation for a specific service, such as
-AWS, or provisioner, such as bash. Terraform Plugins are written in Go and are
+the AWS provider or bash provisioner. Terraform Plugins are written in Go and are
 executable binaries executed as a separate process and communicate with the main
 Terraform binary over an RPC interface. The network communication and RPC is
 handled automatically by higher-level Terraform libraries, so developers need
