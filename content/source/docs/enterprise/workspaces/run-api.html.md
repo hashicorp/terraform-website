@@ -21,6 +21,10 @@ Once your other tooling has decided a run should occur, it must make a series of
 
 The most significant difference in this workflow is that TFE _does not_ fetch configuration files from version control. Instead, your own tooling must upload the configurations as a `.tar.gz` file. This allows you to work with configurations from unsupported version control systems, automatically generate Terraform configurations from some other source of data, or build a variety of other integrations.
 
+The provided script is not intended for production use, and instead, should be
+treated as an example for building your own client. The [tfe-cli](https://github.com/hashicorp/tfe-cli#push-terraform-configurations)
+is recommended if you are not building your own client.
+
 ## Pushing a New Configuration Version
 
 Pushing a new configuration to an existing workspace is a multi-step process. These steps will walk through each step in detail, using an example bash script to illustrate.
