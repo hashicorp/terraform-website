@@ -156,7 +156,7 @@ Select which will be used, S3 or Azure:
 
 For S3:
 
-- `aws_instance_profile` (Optional) When set, use credentials from the AWS instance profile. If selected, `aws_access_key_id` and `aws_secret_access_key` are not required. Set to `1` to use the instance profile. Defaults to `0`.
+- `aws_instance_profile` (Optional) When set, use credentials from the AWS instance profile. Set to 1 to use the instance profile. Defaults to 0. If selected, `aws_access_key_id` and `aws_secret_access_key` are not required.
 - `aws_access_key_id` — (Required unless `aws_instance_profile` is set) AWS access key ID for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
 - `aws_secret_access_key` — (Required unless `aws_instance_profile` is set) AWS secret access key for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
 - `s3_bucket` — (Required) the S3 bucket where resources will be stored
