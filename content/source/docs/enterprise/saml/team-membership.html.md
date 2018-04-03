@@ -10,11 +10,11 @@ Terraform Enterprise (TFE) can automatically add users to teams based on their S
 
 ## Configuring Team Membership Mapping
 
-Team membership mapping is controlled with the "Team membership mapping enabled?" checkbox, in the SAML section of the TFE admin pages.
+Team membership mapping is controlled with the "Enable team membership" checkbox in the SAML section of the TFE admin pages.
 
 ![Screenshot: the TFE SAML admin page](./images/sso-tfe-admin.png)
 
-Once you enable it, you must specify the name of a SAML attribute in the [Team Attribute Name](./configuration.html) setting, and make sure the value of that atribute in the SAML assertion is a comma-separated list of team names.
+Once you enable it, you must specify the name of a SAML attribute in the [Team Attribute Name](./configuration.html) setting, and make sure the AttributeStatement in the SAMLResponse contains a list of AttributeValue items.
 
 Once team membership mapping is enabled, users logging in via SAML are automatically added to the teams included in their assertion, and automatically removed from any teams that _aren't_ included in their assertion. Note that this overrides any manually set team memberships; whenever the user logs in, their team membership is adjusted to match their SAML assertion.
 
