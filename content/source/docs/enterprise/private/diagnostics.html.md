@@ -9,7 +9,7 @@ sidebar_current: "docs-enterprise2-diagnostics"
 This document contains information on how to provide HashiCorp with diagnostic information about a Private Terraform Enterprise (PTFE)
 installation that requires assistance from HashiCorp support.
 
-# AMI-based installs
+## AMI-based installs
 
 To generate a support bundle, connect to the instance via ssh and run `sudo hashicorp-support`. Below is a sample session:
 
@@ -67,11 +67,11 @@ hashicorp-support.tar.gz.enc                                                    
 
 Then, attach the bundle to your support ticket. If possible, use the SendSafely integration (as it allows for large file uploads).
 
-## Windows
+### Windows
 
 On Microsoft Windows, tools such as [PSCP](https://www.ssh.com/ssh/putty/putty-manuals/0.68/Chapter5.html) and [WinSCP](https://winscp.net/eng/index.php) can be used to transfer the file.
 
-# Installer-based Instances
+## Installer-based Instances
 
 Diagnostic information is available via in the Installer dashboard on port 8800 of your installation.
 
@@ -85,6 +85,6 @@ On the next page, click the _Download Support Bundle_ button which will download
 
 Then, attach the bundle to your support ticket. If possible, use the SendSafely integration (as it allows for large file uploads).
 
-# Pre-Sales uploads
+## Pre-Sales uploads
 
-Customers in the pre-sales phase can upload files directly at https://hashicorp.sendsafely.com/dropzone/private-tfe.
+Customers in the pre-sales phase can upload support bundle files directly at https://hashicorp.sendsafely.com/dropzone/private-tfe.
