@@ -14,9 +14,9 @@ A configuration version (`configuration-version`) is a resource used to referenc
 
 `GET /workspaces/:workspace_id/configuration-versions`
 
-Parameter            | Description
----------------------|------------
-`:workspace_id` | The id of the workspace to list configurations from.
+| Parameter       | Description                                          |
+| --------------- | ---------------------------------------------------- |
+| `:workspace_id` | The id of the workspace to list configurations from. |
 
 ### Sample Request
 
@@ -50,7 +50,8 @@ curl \
             "type": "ingress-attributes"
           },
           "links": {
-            "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
+            "related":
+              "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
           }
         }
       },
@@ -66,9 +67,9 @@ curl \
 
 `GET /configuration-versions/:configuration-id`
 
-Parameter            | Description
----------------------|------------
-`:configuration-id` | The id of the configuration to show.
+| Parameter           | Description                          |
+| ------------------- | ------------------------------------ |
+| `:configuration-id` | The id of the configuration to show. |
 
 ### Sample Request
 
@@ -101,7 +102,8 @@ curl \
           "type": "ingress-attributes"
         },
         "links": {
-          "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
+          "related":
+            "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
         }
       }
     },
@@ -116,8 +118,8 @@ curl \
 
 `POST /workspaces/:workspace_id/configuration-versions`
 
-| Parameter       | Description                                                             |
-| --------------- | ----------------------------------------------------------------------- |
+| Parameter       | Description                                               |
+| --------------- | --------------------------------------------------------- |
 | `:workspace_id` | The workspace ID to create the new configuration version. |
 
 ### Sample Payload
@@ -154,7 +156,8 @@ curl \
       "source": "tfe-api",
       "status": "pending",
       "status-timestamps": {},
-      "upload-url": "https://archivist.terraform.io/v1/object/9224c6b3-2e14-4cd7-adff-ed484d7294c2"
+      "upload-url":
+        "https://archivist.terraform.io/v1/object/9224c6b3-2e14-4cd7-adff-ed484d7294c2"
     },
     "relationships": {
       "ingress-attributes": {
@@ -194,4 +197,4 @@ curl \
 
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
 
-- `ingress_attributes` - The commit information used in the configuration
+* `ingress_attributes` - The commit information used in the configuration
