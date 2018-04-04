@@ -8,13 +8,15 @@ sidebar_current: "docs-enterprise2-api-configuration-versions"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
+A configuration version (`configuration-version`) is a resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
+
 ## List Configuration Versions
 
 `GET /workspaces/:workspace_id/configuration-versions`
 
-Parameter            | Description
----------------------|------------
-`:workspace_id` | The id of the workspace to list configurations from.
+| Parameter       | Description                                          |
+| --------------- | ---------------------------------------------------- |
+| `:workspace_id` | The id of the workspace to list configurations from. |
 
 ### Sample Request
 
@@ -36,6 +38,7 @@ curl \
       "type": "configuration-versions",
       "attributes": {
         "error": null,
+        "error-message": null,
         "source": "gitlab",
         "status": "uploaded",
         "status-timestamps": {}
@@ -47,7 +50,8 @@ curl \
             "type": "ingress-attributes"
           },
           "links": {
-            "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
+            "related":
+              "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
           }
         }
       },
@@ -63,9 +67,9 @@ curl \
 
 `GET /configuration-versions/:configuration-id`
 
-Parameter            | Description
----------------------|------------
-`:configuration-id` | The id of the configuration to show.
+| Parameter           | Description                          |
+| ------------------- | ------------------------------------ |
+| `:configuration-id` | The id of the configuration to show. |
 
 ### Sample Request
 
@@ -86,6 +90,7 @@ curl \
     "type": "configuration-versions",
     "attributes": {
       "error": null,
+      "error-message": null,
       "source": "gitlab",
       "status": "uploaded",
       "status-timestamps": {}
@@ -97,7 +102,8 @@ curl \
           "type": "ingress-attributes"
         },
         "links": {
-          "related": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
+          "related":
+            "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/ingress-attributes"
         }
       }
     },
@@ -110,15 +116,11 @@ curl \
 
 ## Create a Configuration Version
 
-A configuration version (`configuration-version`) is a resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
+`POST /workspaces/:workspace_id/configuration-versions`
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /workspaces/:workspace_id/configuration-versions |
-
-### Parameters
-
-- `:workspace_id` (`string: <required>`) - specifies the workspace ID to create the new configuration version
+| Parameter       | Description                                               |
+| --------------- | --------------------------------------------------------- |
+| `:workspace_id` | The workspace ID to create the new configuration version. |
 
 ### Sample Payload
 
@@ -146,12 +148,27 @@ curl \
 ```json
 {
   "data": {
-    "id": "cv-ntv3HbhJqvFzamy7",
+    "id": "cv-UYwHEakurukz85nW",
     "type": "configuration-versions",
     "attributes": {
-      "upload-url": "http://127.0.0.1:7675/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da"
-      ...
-    }
+      "error": null,
+      "error-message": null,
+      "source": "tfe-api",
+      "status": "pending",
+      "status-timestamps": {},
+      "upload-url":
+        "https://archivist.terraform.io/v1/object/9224c6b3-2e14-4cd7-adff-ed484d7294c2"
+    },
+    "relationships": {
+      "ingress-attributes": {
+        "data": null,
+        "links": {
+          "related":
+            "/api/v2/configuration-versions/cv-UYwHEakurukz85nW/ingress-attributes"
+        }
+      }
+    },
+    "links": { "self": "/api/v2/configuration-versions/cv-UYwHEakurukz85nW" }
   }
 }
 ```
@@ -160,25 +177,24 @@ curl \
 
 -> **Note**: Uploading a configuration file automatically creates a run and associates it with this configuration-version. Therefore it is unnecessary to [create a run on the workspace](./run.html#create-a-run) if a new file is uploaded.
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | The upload URL is provided in the `upload-url` attribute in the `configuration-versions` resource |
+`PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
 
-### Parameters
-
-- `data` (`file: <required>`) - A local .tar.gz file containing the folder of the terraform configuration files. This file can be created by running `tar -zcvf ./config.tar.gz .` from within the terraform configuration directory.
+**The URL is provided in the `upload-url` attribute in the `configuration-versions` resource.**
 
 ### Sample Request
 
+**@filename is the name of configuration file you wish to upload.**
+
 ```shell
-$ curl \
-    --request PUT \
-    -F 'data=@config.tar.gz' \
-    http://127.0.0.1:7675/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da
+curl \
+  --header "Content-Type: application/octet-stream" \
+  --request PUT \
+  --data-binary @filename \
+  https://archivist.terraform.io/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da
 ```
 
 ## Available Related Resources
 
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
 
-- `ingress_attributes` - The commit information used in the configuration
+* `ingress_attributes` - The commit information used in the configuration
