@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-saml-attributes"
 
 # Attributes
 
-Attributes for a new or existing user can be specified on signon. When the user logs in, these attributes will be updated.
+The following SAML attributes correspond to properties of a Terraform Enterprise user account. When a new or existing user logs in, their account info will be updated with data from these attributes.
 
 ## Username
 
@@ -22,9 +22,9 @@ If Username is specified, the system will assign that username instead of an aut
 
 ## MemberOf
 
-Team assignments are specified in the MemberOf attribute.
+Team membership is specified in the MemberOf attribute. (If desired, you can [configure a different name](./team-membership.html) for the team membership attribute.)
 
-Roles can be specified in separate AttributeValue items:
+Teams can be specified in separate AttributeValue items:
 
 ```xml
 <saml:AttributeStatement>
@@ -45,7 +45,7 @@ or in one AttributeValue as a comma-separated list:
 </saml:AttributeStatement>
 ```
 
-There is a special-case role "site-admins" that will add a user as a site admin to your private Terraform Enterprise instance.
+There is a special-case role `site-admins` that will add a user as a site admin to your private Terraform Enterprise instance.
 
 ```xml
 <saml:AttributeStatement>
