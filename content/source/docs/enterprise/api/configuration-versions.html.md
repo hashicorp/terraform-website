@@ -38,7 +38,7 @@ curl \
       "type": "configuration-versions",
       "attributes": {
         "error": null,
-        "error-message":null,
+        "error-message": null,
         "source": "gitlab",
         "status": "uploaded",
         "status-timestamps": {}
@@ -89,7 +89,7 @@ curl \
     "type": "configuration-versions",
     "attributes": {
       "error": null,
-      "error-message":null,
+      "error-message": null,
       "source": "gitlab",
       "status": "uploaded",
       "status-timestamps": {}
@@ -150,7 +150,7 @@ curl \
     "type": "configuration-versions",
     "attributes": {
       "error": null,
-      "error-message":null,
+      "error-message": null,
       "source": "tfe-api",
       "status": "pending",
       "status-timestamps": {},
