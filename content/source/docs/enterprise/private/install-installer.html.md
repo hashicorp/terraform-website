@@ -79,7 +79,7 @@ For Linux distributions other than RHEL, check Docker compatibility:
   * **443** and **80** - to access the TFE app (both ports are needed; HTTP will redirect to HTTPS)
   * **9870-9880 (inclusive)** - for internal communication on the host and its subnet; not publicly accessible
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
-1. _Optional_: Get a domain name for the instance.  If you opt to use only an IP to access the instance, enter the IP into the hostname field when prompted during the web portion of the setup.
+1. Get a domain name for the instance. Using an IP address to address the product is not supported as many systems use TLS an need to verify that the certificate is correct, which can only be done with a hostname at present.
 
 ### Proxy Usage
 
