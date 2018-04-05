@@ -42,7 +42,7 @@ CloudWatch logs can be searched, filtered, and read from either from the AWS Web
 
 All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
 
-## Application Logs - Installer Beta
+## Application Logs - Installer
 
 The installer-based version runs the application in a set of docker containers. As such, any tooling that can interact with docker logs
 can read the logs. This includes running the command `docker logs`, as well as access the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
@@ -73,9 +73,9 @@ Audit log entries are written to the application logs. To distinguish audit Log 
 
 As of Private Terraform Enterprise release v201802-1, audit logging is available in Private Terraform Enterprise. These are written out to CloudWatch logs just like all other application-level logs.
 
-### Installer Beta
+### Installer
 
-The audit logs have been available in the installer beta since beta4. They are emitted along with other logs by the `ptfe_atlas` container.
+The audit logs have been available in the installer since beta4. They are emitted along with other logs by the `ptfe_atlas` container.
 
 ### Log Contents
 

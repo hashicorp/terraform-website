@@ -1,18 +1,18 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer Beta)"
+page_title: "Private Terraform Enterprise Installation (Installer)"
 sidebar_current: "docs-enterprise2-private-installer"
 ---
 
-# Private Terraform Enterprise Installation (Installer Beta)
+# Private Terraform Enterprise Installation (Installer)
 
 ## Delivery
 
 This document outlines the procedure for using the Private Terraform Enterprise (PTFE)
 installer to set up Terraform Enterprise on a customer-controlled machine.
 
-~> **Note**: This document is only meant for those customers in the Private
-Terraform Enterprise installer beta program. All other customers can follow the
+~> **Note**: This document is only meant for those customers using Private
+Terraform Enterprise via the Installer. Customers using the AMI can follow the
 [instructions for the AMI-based install](./install-ami.html).
 
 ## Preflight
@@ -177,8 +177,8 @@ The installer can run in two modes, Online or Airgapped. Each of these modes has
 If your instance can access the internet, you should run the Online install mode.
 
 1. From a shell on your instance:
-  * To execute the installer directly, run `curl https://install.terraform.io/ptfe/beta | sudo bash`
-	* To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/beta > install.sh` and then once you are satisfied with the script's content, execute it with `sudo bash install.sh`
+  * To execute the installer directly, run `curl https://install.terraform.io/ptfe/stable | sudo bash`
+	* To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/stable > install.sh` and then once you are satisfied with the script's content, execute it with `sudo bash install.sh`
 1. The software will take a few minutes and you'll be presented with a message
 	 about how/where to access the rest of the setup via the web. This will be
    `https://[hostname or ip of your instance]:8800`
