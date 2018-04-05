@@ -1,10 +1,10 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Automated Installation (Installer Beta)"
+page_title: "Private Terraform Enterprise Automated Installation (Installer)"
 sidebar_current: "docs-enterprise2-private-installer-automating"
 ---
 
-# Private Terraform Enterprise Automated Installation (Installer Beta)
+# Private Terraform Enterprise Automated Installation (Installer)
 
 The installation of Private Terraform Enterprise can be automated for both online and airgapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
 
@@ -192,7 +192,7 @@ See the full set of configuration parameters in the [Replicated documentation](h
 Once `/etc/replicated.conf` has been created, you can retrieve and execute the install script as `root`:
 
 ```bash
-curl -o install.sh https://install.terraform.io/ptfe/beta
+curl -o install.sh https://install.terraform.io/ptfe/stable
 bash ./install.sh \
     no-proxy \
     private-address=1.2.3.4 \

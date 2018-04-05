@@ -1,18 +1,18 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer Beta)"
+page_title: "Private Terraform Enterprise Installation (Installer)"
 sidebar_current: "docs-enterprise2-private-installer"
 ---
 
-# Private Terraform Enterprise Installation (Installer Beta)
+# Private Terraform Enterprise Installation (Installer)
 
 ## Delivery
 
 This document outlines the procedure for using the Private Terraform Enterprise (PTFE)
 installer to set up Terraform Enterprise on a customer-controlled machine.
 
-~> **Note**: This document is only meant for those customers in the Private
-Terraform Enterprise installer beta program. All other customers can follow the
+~> **Note**: This document is only meant for those customers using Private
+Terraform Enterprise via the Installer. Customers using the AMI can follow the
 [instructions for the AMI-based install](./install-ami.html).
 
 ## Preflight
@@ -43,10 +43,9 @@ operating systems:
 
 * Debian 7.7+
 * Ubuntu 14.04 / 16.04
-* Fedora 21 / 22
 * Red Hat Enterprise Linux 7.2+
 * CentOS 7+
-* Amazon Linux 2016.03 / 2016.09 / 2017.03
+* Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09
 * Oracle Linux 7.2+
 
 #### Hardware Requirements
@@ -79,7 +78,7 @@ For Linux distributions other than RHEL, check Docker compatibility:
   * **443** and **80** - to access the TFE app (both ports are needed; HTTP will redirect to HTTPS)
   * **9870-9880 (inclusive)** - for internal communication on the host and its subnet; not publicly accessible
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
-1. _Optional_: Get a domain name for the instance.  If you opt to use only an IP to access the instance, enter the IP into the hostname field when prompted during the web portion of the setup.
+1. Get a domain name for the instance. Using an IP address to access the product is not supported as many systems use TLS and need to verify that the certificate is correct, which can only be done with a hostname at present.
 
 ### Proxy Usage
 
@@ -177,8 +176,8 @@ The installer can run in two modes, Online or Airgapped. Each of these modes has
 If your instance can access the internet, you should run the Online install mode.
 
 1. From a shell on your instance:
-  * To execute the installer directly, run `curl https://install.terraform.io/ptfe/beta | sudo bash`
-	* To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/beta > install.sh` and then once you are satisfied with the script's content, execute it with `sudo bash install.sh`
+  * To execute the installer directly, run `curl https://install.terraform.io/ptfe/stable | sudo bash`
+	* To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/stable > install.sh` and then once you are satisfied with the script's content, execute it with `sudo bash install.sh`
 1. The software will take a few minutes and you'll be presented with a message
 	 about how/where to access the rest of the setup via the web. This will be
    `https://[hostname or ip of your instance]:8800`
