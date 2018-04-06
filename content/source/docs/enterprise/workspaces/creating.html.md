@@ -37,6 +37,8 @@ VCS-backed workspaces support several optional fields, which you can reveal by c
 ![Screenshot: Optional fields for new VCS-backed workspaces](./images/creating-options.png)
 
 - **Terraform working directory** — The directory where Terraform will execute, specified as a relative path from the root of the repo. This is useful when working with VCS repos that contain multiple Terraform configurations.
+
+    -> **Note:** If you specify a working directory, TFE will still queue a plan for changes to the repository outside that working directory. This is because local modules are often outside the working directory, and changes to those modules should result in a new run. If you have a repo that manages multiple infrastructure components with different lifecycles and are experiencing too many runs, we recommend splitting the components out into independent repos. See [Repository Structure](./repo-structure.html) for more detailed explanations.
 - **VCS branch** — Which branch of the repository to use. If left blank, TFE will use the repository's default branch.
 - **Include submodules on clone** (checkbox) — Whether to recursively clone all of the repository's submodules when fetching a configuration.
 
