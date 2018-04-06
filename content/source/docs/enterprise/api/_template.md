@@ -41,6 +41,7 @@ Properties without a default value are required.
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.type`                 | string |         | Must be `"somethings"`.
+`data[].type`               | string |         | ... <!-- use data[].x when data is an array of objects. -->
 `data.attributes.category`  | string |         | Whether this is a blue or red something. Valid values are `"blue"` or `"red"`.
 `data.attributes.sensitive` | bool   | `false` | Whether the value is sensitive. If true then the something is written once and not visible thereafter.
 `filter.workspace.name`     | string |         | The name of the workspace that owns the something.
@@ -60,6 +61,19 @@ them from unquoted values like booleans and nulls.
 - In the rare case where a parameter is optional but has no default, you can
   list something like "(nothing)" as the default and explain in the description.
 -->
+
+### Available Related Resources
+
+<!-- Omit this subheader and section if it's not applicable. -->
+
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+Resource Name      | Description
+-------------------|------------
+`organization`     | The full organization record.
+`latest_run`       | Additional information about the last run.
+`latest_run.plan ` | The plan used in the last run.
+
 
 ### Sample Payload
 
