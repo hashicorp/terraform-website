@@ -33,6 +33,8 @@ Make sure you've picked a VCS system that Terraform Enterprise will be able to a
 
 Start moving infrastructure code into version control. New Terraform code should all be going into version control; if you have existing Terraform code that’s outside version control, start moving it in so that everyone in your organization knows where to look for things and can track the history and purpose of changes.
 
+-> **Note:** There are several ways to structure Terraform repositories. If you want to learn more about how your repo structure can affect your Terraform Enterprise workflows, see [VCS Repository Structure](https://www.terraform.io/docs/enterprise/workspaces/repo-structure.html) in the Terraform Enterprise documentation.
+
 ## 3. Create Your First Module
 
 [Terraform modules](https://www.terraform.io/docs/modules/usage.html) are reusable configuration units. They let you manage pieces of infrastructure as a single package you can call and define multiple times in the main configuration for a workspace. Examples of a good Terraform module candidate would be an auto-scaling group on AWS that wraps a launch configuration, auto-scaling group, and EC2 Elastic Load Balancer (ELB). If you are already using Terraform modules, make sure you’re following the best practices and keep an eye on places where your modules could improve.

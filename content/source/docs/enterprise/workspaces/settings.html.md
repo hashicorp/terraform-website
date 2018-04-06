@@ -14,6 +14,8 @@ The directory where Terraform will execute. This defaults to the root of the rep
 
 If the repo contains multiple environments, set this to the subdirectory matching the workspace's environment. More at [Repo Structure](./repo-structure.html).
 
+-> **Note:** If you specify a working directory, TFE will still queue a plan for changes to the repository outside that working directory. This is because local modules are often outside the working directory, and changes to those modules should result in a new run. If you have a repo that manages multiple infrastructure components with different lifecycles and are experiencing too many runs, we recommend splitting the components out into independent repos. See [Repository Structure](./repo-structure.html) for more detailed explanations.
+
 ## VCS branch
 
 The branch to import new versions from. This defaults to the version control system's default branch for the repository.

@@ -39,11 +39,11 @@ To delete a key, find it in the list of keys and click its "Delete" button. Befo
 
 ## Assigning Keys to Workspaces
 
-To assign a key to a workspace, navigate to that workspace's page and click the "Integrations" link.
+To assign a key to a workspace, navigate to that workspace's page and click the "Settings" link.
 
-![TFE screenshot: the integrations link on a workspace's page](./images/keys-integrations.png)
+![TFE screenshot: the settings link on a workspace's page](./images/keys-integrations.png)
 
-Scroll down and locate the "SSH Key" dropdown menu. Select a named key from the list in this dropdown, then click the "Update VCS Settings" button at the bottom of the page.
+Scroll down and locate the "SSH Key" dropdown menu. Select a named key from the list in this dropdown, then click the "Update SSH key" button directly below the menu.
 
 ![TFE screenshot: the SSH key dropdown menu](./images/keys-dropdown.png)
 

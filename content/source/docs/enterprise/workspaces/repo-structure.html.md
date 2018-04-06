@@ -1,10 +1,10 @@
 ---
 layout: "enterprise2"
-page_title: "Naming - Workspaces - Terraform Enterprise"
+page_title: "VCS Repository Structure - Workspaces - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-workspaces-repo-structure"
 ---
 
-# Repo Structure
+# Repository Structure
 
 Terraform Enterprise integrates with version control repositories to obtain
 configurations and trigger Terraform runs. Structuring the repo properly is
@@ -56,6 +56,8 @@ The upside of this approach is that it requires fewer files and runs fewer plans
 ### Directories
 
 For organizations that have significant differences between environments, or prefer short-lived branches that are frequently merged into the master branch, we recommend creating a separate directory for each environment.
+
+~> **Important:** Since workspaces will queue a plan whenever their VCS branch changes or receives a pull request, you should avoid connecting too many workspaces to the same repository. Connecting more than about ten workspaces to one branch of a repo can cause slow performance and unnecessary noise; if you need to support more workspaces than that, we recommend splitting components into multiple repos.
 
 In the example repo structure below, the prod, stage, and dev environments have separate `main.tf` configurations and `variables.tf` files. These environments can still refer to the same modules (like `compute` and `networking`).
 
