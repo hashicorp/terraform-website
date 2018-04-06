@@ -10,9 +10,9 @@ Workspaces are how Terraform Enterprise (TFE) organizes infrastructure. If you'v
 
 A workspace consists of:
 
-- A collection of Terraform configurations (retrieved from a VCS repo).
-- Values for any variables those configurations require.
-- Persistent stored state for the resources it manages.
+- A Terraform configuration (usually retrieved from a VCS repo, but sometimes uploaded directly).
+- Values for variables used by the configuration.
+- Persistent stored state for the resources the configuration manages.
 - Historical state and run logs.
 
 ## Listing and Filtering Workspaces
