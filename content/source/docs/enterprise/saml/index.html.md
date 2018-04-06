@@ -1,7 +1,7 @@
 ---
 layout: enterprise2
 page_title: "SAML - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-saml"
+sidebar_current: "docs-enterprise2-private-saml"
 ---
 
 # SAML Single Sign On
