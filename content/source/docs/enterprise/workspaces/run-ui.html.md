@@ -6,10 +6,11 @@ sidebar_current: "docs-enterprise2-workspaces-run-ui"
 
 # The UI- and VCS-driven Run Workflow
 
-Terraform Enterprise (TFE) has two workflows for managing Terraform runs.
+Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
 
-- The simpler workflow, described below, is driven by TFE's UI and by integration with a supported VCS provider.
-- [The more complex workflow](./run-api.html) is driven entirely by TFE's API, and lets you replace the UI and supported VCS providers with almost any kind of custom tooling.
+- The UI/VCS-driven run workflow described below, which is TFE's primary mode of operation.
+- The [API-driven run workflow](./run-api.html), which is more flexible but requires you to create some tooling.
+- The [CLI-driven run workflow](./run-cli.html), which is the API-driven workflow with a user-friendly command line tool.
 
 ## Summary
 
