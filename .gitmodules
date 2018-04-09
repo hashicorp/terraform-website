@@ -298,3 +298,7 @@
 	path = ext/providers/panos
 	url = https://github.com/terraform-providers/terraform-provider-panos
 	branch = stable-website
+[submodule "ext/providers/nsxt"]
+	path = ext/providers/nsxt
+	url = https://github.com/terraform-providers/terraform-provider-nsxt
+	branch = stable-website
