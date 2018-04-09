@@ -170,3 +170,4 @@
 /docs/enterprise/vcs/bitbucket.html                      /docs/enterprise/vcs/bitbucket-cloud.html
 /docs/enterprise/vcs/git.html                            /docs/enterprise-legacy/vcs/git.html
 /docs/enterprise/vcs/gitlab.html                         /docs/enterprise/vcs/gitlab-eece.html
+/guides/writing-custom-terraform-providers.html          /docs/extend/writing-custom-providers.html
