@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
 page_title: "Terraform Enterprise Logging"
-sidebar_current: "docs-enterprise2-logging"
+sidebar_current: "docs-enterprise2-private-logging"
 ---
 
 # Terraform Enterprise Logs
@@ -110,7 +110,7 @@ When requests occur, these pieces of information will be logged:
 
 ### Log Format
 
-Log entries are in JSON, just like other Terraform logs. Most audit log entries are formatted like this: 
+Log entries are in JSON, just like other Terraform logs. Most audit log entries are formatted like this:
 
 ``` json
 {
