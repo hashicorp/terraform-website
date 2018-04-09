@@ -1,7 +1,7 @@
 ---
 layout: enterprise2
 page_title: "SAML Team Membership - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-saml-team-membership"
+sidebar_current: "docs-enterprise2-private-saml-team-membership"
 ---
 
 # Team Membership Mapping
