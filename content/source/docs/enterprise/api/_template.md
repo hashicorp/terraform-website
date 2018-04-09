@@ -8,6 +8,11 @@ Follow this template to format each API method. There are usually multiple secti
 
 <!-- ^ The method and path are styled as a single code span, with global prefix (`/api/v2`) omitted and the method capitalized. -->
 
+- On success: HTTP 200 and a JSON API document (`type: "somethings"`).
+- On failure: HTTP 409 and a non-JSON error message.
+
+<!-- ^ Include status codes even if they're plain 200/404. If a JSON API document is returned, specify the `type`. -->
+
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create the something in. The organization must already exist in the system, and the user must have permissions to create new somethings.
