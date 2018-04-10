@@ -8,11 +8,6 @@ Follow this template to format each API method. There are usually multiple secti
 
 <!-- ^ The method and path are styled as a single code span, with global prefix (`/api/v2`) omitted and the method capitalized. -->
 
-- On success: HTTP 200 and a JSON API document (`type: "somethings"`).
-- On failure: HTTP 409 and a non-JSON error message.
-
-<!-- ^ Include status codes even if they're plain 200/404. If a JSON API document is returned, specify the `type`. -->
-
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create the something in. The organization must already exist in the system, and the user must have permissions to create new somethings.
@@ -20,6 +15,13 @@ Parameter            | Description
 <!-- ^ The list of URL path parameters goes directly below the method and path, without a header of its own. They're simpler than other parameters because they're always strings and they're always mandatory, so this table only has two columns. Prefix URL path parameter names with a colon.
 
 If further explanation of this method is needed beyond its title, write it here, after the parameter list. -->
+
+Result  | Status and response
+--------|------------------------
+Success | HTTP 200 and a JSON API document (`type: "somethings"`).
+Failure | HTTP 409 and a non-JSON error message.
+
+<!-- ^ Include status codes even if they're plain 200/404. If a JSON API document is returned, specify the `type`. If there are multiple success or failure scenarios, put something descriptive in the "Result" column to distinguish them. -->
 
 ### Query Parameters
 
