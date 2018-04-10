@@ -16,7 +16,7 @@ Workspaces represent running infrastructure managed by Terraform.
 
 | Parameter            | Description                                                                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `:organization_name` | The name of the organization to create the something in. The organization must already exist in the system, and the user must have permissions to create new somethings. |
+| `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
 
 ### Request Body
 
@@ -24,9 +24,9 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-By supplying the necessary attributes under a `vcs-repository` object, you can create a Workspace that is configured against a VCS Repository.
+By supplying the necessary attributes under a `vcs-repository` object, you can create a workspace that is configured against a VCS Repository.
 
-By supplying the necessary attribute, `migration-environment`, you can create a workspace which is migrated from a legacy environment. When you do this, the following will happen:
+By supplying a `migration-environment` attribute, you can create a workspace which is migrated from a legacy environment. When you do this, the following will happen:
 
 * Environment and Terraform variables will be copied to the workspace.
 * Teams which are associated with the legacy environment will be created in the destination workspace's organization, if teams with those names don't already exist.
@@ -35,18 +35,18 @@ By supplying the necessary attribute, `migration-environment`, you can create a 
 * The latest state of the legacy environment will be copied over into the workspace and set as the workspace's current state.
 * VCS repo ingress settings (like branch and working directory) will be copied over into the workspace.
 
-| Key path                                      | Type    | Default    | Description                                                                                                                                                                                                                             |
-| --------------------------------------------- | ------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data.type`                                   | string  |            | Must be `"workspaces"`.                                                                                                                                                                                                                 |
-| `data.attributes.name`                        | string  |            | Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                  |
-| `data.attributes.auto-apply`                  | boolean | false      | Whether to automatically apply changes when a Terraform plan is successful.                                                                                                                                                             |
-| `data.attributes.terraform-version`           | string  |            | The version of Terraform to use for this workspace.                                                                                                                                                                                     |
-| `data.attributes.migration-environment`       | string  |            | Specifies the legacy environment to use as the source of the migration in the form `organization/environment`                                                                                                                           |
-| `data.attributes.working-directory`           | string  |            | Specifies a relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository. |
-| `data.attributes.vcs-repo.oauth-token-id`     | string  |            | Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.                                                                             |
-| `data.attributes.vcs-repo.branch`             | string  | `"master"` | Specifies the repository branch that Terraform will execute from. If left null or submitted as an empty string, this defaults to the repository's default branch (e.g. `master`) .                                                      |
-| `data.attributes.vcs-repo.ingress-submodules` | boolean | false      | Specifies whether submodules should be fetched when cloning the VCS repository.                                                                                                                                                         |
-| `data.attributes.vcs-repo.identifier`         | string  |            | This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.                                                                               |
+| Key path                                      | Type    | Default | Description                                                                                                                                                                                                                             |
+| --------------------------------------------- | ------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data.type`                                   | string  |         | Must be `"workspaces"`.                                                                                                                                                                                                                 |
+| `data.attributes.name`                        | string  |         | Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                  |
+| `data.attributes.auto-apply`                  | boolean | false   | Whether to automatically apply changes when a Terraform plan is successful.                                                                                                                                                             |
+| `data.attributes.terraform-version`           | string  | `null`  | The version of Terraform to use for this workspace. Upon creating a workspace, the latest version is selected unless otherwise specified (e.g. `"0.11.1"`).                                                                             |
+| `data.attributes.migration-environment`       | string  | `null`  | Specifies the legacy environment to use as the source of the migration in the form `organization/environment`                                                                                                                           |
+| `data.attributes.working-directory`           | string  | `null`  | Specifies a relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository. |
+| `data.attributes.vcs-repo.oauth-token-id`     | string  |         | Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.                                                                             |
+| `data.attributes.vcs-repo.branch`             | string  | `null`  | Specifies the repository branch that Terraform will execute from. If left null or submitted as an empty string, this defaults to the repository's default branch (e.g. `master`) .                                                      |
+| `data.attributes.vcs-repo.ingress-submodules` | boolean | false   | Specifies whether submodules should be fetched when cloning the VCS repository.                                                                                                                                                         |
+| `data.attributes.vcs-repo.identifier`         | string  |         | This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.                                                                               |
 
 ### Sample Payload
 
@@ -278,7 +278,7 @@ Update the workspace settings
 
 | Parameter            | Description                                                                                                                                                                      |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `:organization_name` | The name of the organization to create the something in. The organization must already exist in the system, and the user must have permissions to create new somethings.         |
+| `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces.         |
 | `:name`              | Specifies the name of the workspace to update, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization. |
 
 ### Request Body
@@ -289,17 +289,17 @@ Properties without a default value are required.
 
 Note that workspaces without an associated VCS repository only use the `auto-apply`, `terraform-version`, and `working-directory`.
 
-| Key path                                      | Type    | Default    | Description                                                                                                                                                                                                                             |
-| --------------------------------------------- | ------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data.type`                                   | string  |            | Must be `"workspaces"`.                                                                                                                                                                                                                 |
-| `data.attributes.name`                        | string  |            | Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                  |
-| `data.attributes.auto-apply`                  | boolean | false      | Whether to automatically apply changes when a Terraform plan is successful.                                                                                                                                                             |
-| `data.attributes.terraform-version`           | string  |            | The version of Terraform to use for this workspace.                                                                                                                                                                                     |
-| `data.attributes.working-directory`           | string  |            | Specifies a relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository. |
-| `data.attributes.vcs-repo.oauth-token-id`     | string  |            | Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.                                                                             |
-| `data.attributes.vcs-repo.branch`             | string  | `"master"` | Specifies the repository branch that Terraform will execute from. If left null or submitted as an empty string, this defaults to the repository's default branch (e.g. `master`) .                                                      |
-| `data.attributes.vcs-repo.ingress-submodules` | boolean | false      | Specifies whether submodules should be fetched when cloning the VCS repository.                                                                                                                                                         |
-| `data.attributes.vcs-repo.identifier`         | string  |            | This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.                                                                               |
+| Key path                                      | Type    | Default | Description                                                                                                                                                                                                                             |
+| --------------------------------------------- | ------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data.type`                                   | string  |         | Must be `"workspaces"`.                                                                                                                                                                                                                 |
+| `data.attributes.name`                        | string  |         | Specifies the name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                  |
+| `data.attributes.auto-apply`                  | boolean | false   | Whether to automatically apply changes when a Terraform plan is successful.                                                                                                                                                             |
+| `data.attributes.terraform-version`           | string  | `null`  | The version of Terraform to use for this workspace.                                                                                                                                                                                     |
+| `data.attributes.working-directory`           | string  | `null`  | Specifies a relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository. |
+| `data.attributes.vcs-repo.oauth-token-id`     | string  |         | Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.                                                                             |
+| `data.attributes.vcs-repo.branch`             | string  | `null`  | Specifies the repository branch that Terraform will execute from. If left null or submitted as an empty string, this defaults to the repository's default branch (e.g. `master`) .                                                      |
+| `data.attributes.vcs-repo.ingress-submodules` | boolean | false   | Specifies whether submodules should be fetched when cloning the VCS repository.                                                                                                                                                         |
+| `data.attributes.vcs-repo.identifier`         | string  |         | This is the reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.                                                                               |
 
 ### Sample Payload
 
@@ -384,7 +384,7 @@ This endpoint lists workspaces in the organization.
 
 | Parameter            | Description                                                                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `:organization_name` | The name of the organization to create the something in. The organization must already exist in the system, and the user must have permissions to create new somethings. |
+| `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
 
 ### Sample Request
 
@@ -484,7 +484,7 @@ This endpoint shows details for a workspace in the organization.
 
 | Parameter            | Description                                                                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `:organization_name` | The name of the organization to create the something in. The organization must already exist in the system, and the user must have permissions to create new somethings. |
+| `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
 | `:name`              | Specifies the name of the workspace to show details for, which can only include letters, numbers, `-`, and `_`.                                                          |
 
 ### Sample Request
@@ -553,7 +553,7 @@ This endpoint deletes a workspace.
 
 | Parameter            | Description                                                                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `:organization_name` | The name of the organization to create the something in. The organization must already exist in the system, and the user must have permissions to create new somethings. |
+| `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
 | `:name`              | Specifies the name of the workspace to delete, which can only include letters, numbers, `-`, and `_`.                                                                    |
 
 ### Sample Request
