@@ -32,12 +32,12 @@ If you were able to connect TFE to Bitbucket Server but cannot create workspaces
 
 To fix this issue:
 
-- Make sure you haven't manually entered any webhook URLs for the affected repository or project. Although the Bitbucket Web Post Hooks Plugin documentation describes how to manually enter a hook URL, TFE handles this automatically. Manually entered URLs can sometimes interfere with TFE's operation.
+- Make sure you haven't manually entered any webhook URLs for the affected repository or project. Although the Bitbucket Web Post Hooks Plugin documentation describes how to manually enter a hook URL, TFE handles this automatically. Manually entered URLs can interfere with TFE's operation.
 
     To check the hook URLs for a repository, go to the repository's settings, then go to the "Hooks" page (in the "Workflow" section) and click on the "Post-Receive WebHooks" link.
 
     Also note that some Bitbucket Server versions might allow you to set per-project or server-wide hook URLs in addition to per-repository hooks. These should all be empty; if you set a hook URL that might affect more than one repo when installing the plugin, go back and delete it.
-- Make sure you aren't trying to connect too many workspaces to a single repository. Bitbucket Server's webhooks plugin can only attach five hooks to a given repo, and TFE can have problems if you exceed the limit. You might need to create additional repositories if you need to make more than five workspaces from a single configuration repo.
+- Make sure you aren't trying to connect too many workspaces to a single repository. Bitbucket Server's webhooks plugin can only attach five hooks to a given repo. You might need to create additional repositories if you need to make more than five workspaces from a single configuration repo.
 
 ## Bitbucket Cloud
 
