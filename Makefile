@@ -28,6 +28,7 @@ website:
 
 website-test:
 	@echo "==> Testing website in Docker..."
+	-@docker stop "tf-website-temp"
 	@docker run \
 		--detach \
 		--rm \
@@ -72,6 +73,7 @@ ifeq ($(PROVIDER_NAME),)
 	exit 1
 endif
 	@echo "==> Testing $(PROVIDER_NAME) provider website in Docker..."
+	-@docker stop "tf-website-temp"
 	@docker run \
 		--detach \
 		--rm \
