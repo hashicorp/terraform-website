@@ -26,6 +26,19 @@ website:
 		--volume "$(shell pwd)/content:/website" \
 		hashicorp/middleman-hashicorp:${VERSION}
 
+website-test:
+	@echo "==> Testing website in Docker..."
+	@docker run \
+		--detach \
+		--rm \
+		--name "tf-website-temp" \
+		--publish "4567:4567" \
+		--volume "$(shell pwd)/ext:/ext" \
+		--volume "$(shell pwd)/content:/website" \
+		hashicorp/middleman-hashicorp:${VERSION}
+	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567" "/"
+	@docker stop "tf-website-temp"
+
 website-provider:
 ifeq ($(PROVIDER_PATH),)
 	@echo 'Please set PROVIDER_PATH'
