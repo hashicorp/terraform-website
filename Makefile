@@ -1,4 +1,5 @@
 VERSION?="0.3.32"
+MKFILE_PATH=$(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
 build:
 	@echo "==> Starting build in Docker..."
@@ -47,6 +48,30 @@ endif
 		--volume "$(shell pwd)/content/source/assets:/website/docs/assets" \
 		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
 		hashicorp/middleman-hashicorp:${VERSION}
+
+website-provider-test:
+ifeq ($(PROVIDER_PATH),)
+	@echo 'Please set PROVIDER_PATH'
+	exit 1
+endif
+ifeq ($(PROVIDER_NAME),)
+	@echo 'Please set PROVIDER_NAME'
+	exit 1
+endif
+	@echo "==> Testing $(PROVIDER_NAME) provider website in Docker..."
+	@docker run \
+		--detach \
+		--rm \
+		--name "tf-website-$(PROVIDER_NAME)-temp" \
+		--publish "4567:4567" \
+		--volume "$(PROVIDER_PATH)/website:/website" \
+		--volume "$(PROVIDER_PATH)/website:/ext/providers/$(PROVIDER_NAME)/website" \
+		--volume "$(shell pwd)/content:/terraform-website" \
+		--volume "$(shell pwd)/content/source/assets:/website/docs/assets" \
+		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
+		hashicorp/middleman-hashicorp:${VERSION}
+	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567" "/docs/providers/$(PROVIDER_NAME)/"
+	@docker stop "tf-website-$(PROVIDER_NAME)-temp"
 
 sync:
 	@echo "==> Syncing submodules for upstream changes"
