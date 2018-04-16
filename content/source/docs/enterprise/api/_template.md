@@ -16,12 +16,23 @@ Parameter            | Description
 
 If further explanation of this method is needed beyond its title, write it here, after the parameter list. -->
 
-Result  | Status and response
---------|------------------------
-Success | HTTP 200 and a JSON API document (`type: "somethings"`).
-Failure | HTTP 409 and a non-JSON error message.
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "somethings"`) | Successfully created a team
+[400][] | [JSON API error object][]                    | Invalid `include` parameter
+[404][] | [JSON API error object][]                    | Organization not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]                    | Validation errors
+[500][] | [JSON API error object][]                    | Failure during team creation
 
-<!-- ^ Include status codes even if they're plain 200/404. If a JSON API document is returned, specify the `type`. If there are multiple success or failure scenarios, put something descriptive in the "Result" column to distinguish them. -->
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+<!-- ^ Include status codes even if they're plain 200/404. If a JSON API document is returned, specify the `type`. If the table includes links, use reference-style links to keep the table size small. -->
 
 ### Query Parameters
 
