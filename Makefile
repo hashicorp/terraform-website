@@ -61,6 +61,8 @@ endif
 		--volume "$(shell pwd)/content:/terraform-website" \
 		--volume "$(shell pwd)/content/source/assets:/website/docs/assets" \
 		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
+		--workdir /terraform-website \
+		-e PROVIDER_NAME=$(PROVIDER_NAME) \
 		hashicorp/middleman-hashicorp:${VERSION}
 
 website-provider-test:
@@ -84,8 +86,9 @@ endif
 		--volume "$(shell pwd)/content:/terraform-website" \
 		--volume "$(shell pwd)/content/source/assets:/website/docs/assets" \
 		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
+		--workdir /terraform-website \
 		hashicorp/middleman-hashicorp:${VERSION}
-	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567" "/docs/providers/$(PROVIDER_NAME)/"
+	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567/docs/providers/$(PROVIDER_NAME)/"
 	@docker stop "tf-website-$(PROVIDER_NAME)-temp"
 
 sync:
