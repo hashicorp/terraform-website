@@ -27,7 +27,7 @@ module Helpers
   #
   # @return [String]
   def description_for(page)
-    description = (page.data.description || "")
+    description = (page.data.description || "Terraform by HashiCorp")
       .gsub('"', '')
       .gsub(/\n+/, ' ')
       .squeeze(' ')
