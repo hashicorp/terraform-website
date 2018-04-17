@@ -19,6 +19,8 @@ Each workspace has its own queue of runs, which are processed one at a time in o
 
 Most runs in TFE are started automatically — whenever new commits are added to a workspace's VCS branch, it queues a new plan. You can also manually queue plans, usually after editing variables.
 
+Note that TFE needs network access to any infrastructure providers managed by your Terraform configurations. If you're using the SaaS version of TFE and you use Terraform to manage private cloud resources, those providers must be internet accessible.
+
 For more details, see the following pages:
 
 - [About Terraform Runs in Terraform Enterprise](../workspaces/run-basics.html)

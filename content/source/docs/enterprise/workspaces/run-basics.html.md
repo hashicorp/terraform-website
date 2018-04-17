@@ -18,6 +18,14 @@ This page describes the basics of what a run is in TFE. Once you understand the 
 
 TFE enforces Terraform's division between _plan_ and _apply_ operations. It always plans first, saves the plan's output, and uses that output for the apply. In the default configuration, it waits for user approval before running an apply, but you can configure workspaces to automatically apply successful plans.
 
+## Network Access to VCS and Infrastructure Providers
+
+In order to perform Terraform runs, TFE needs network access to all of the resources being managed by Terraform.
+
+If you are using the SaaS version of TFE, this means your VCS provider and any private infrastructure providers you manage with Terraform (including VMware vSphere, OpenStack, other private clouds, and more) _must be internet accessible._
+
+Private installs of TFE must have network connectivity to any connected VCS providers or managed infrastructure providers.
+
 ## Runs and Workspaces
 
 TFE always performs Terraform runs in the context of a [workspace](./index.html). The workspace provides the state and variables for the run, and usually specifies where the configuration should come from.
