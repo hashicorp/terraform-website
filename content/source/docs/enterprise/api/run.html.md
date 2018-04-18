@@ -123,18 +123,37 @@ curl \
 }
 ```
 
-## Apply
+## Apply a Run
 
-The `apply` endpoint represents an action as opposed to a resource. As such, the endpoint does not return any object in the response body. This endpoint queues the request to perform an apply; the apply might not happen immediately.
+`POST /runs/:run_id/actions/apply`
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /runs/:run_id/actions/apply |
+Parameter | Description
+----------|------------
+`run_id`  | The run ID to apply
 
-### Parameters
+Applies a run that is paused waiting for confirmation after a plan. This includes runs in the "needs confirmation" and "policy checked" states. This action is only required for workspaces without auto-apply enabled.
 
-- `run_id` (`string: <required>`) - specifies the run ID to run
-- `comment` (`string: <optional>`) - Optional comment to add on the apply
+This endpoint queues the request to perform an apply; the apply might not happen immediately.
+
+This endpoint represents an action as opposed to a resource. As such, the endpoint does not return any object in the response body.
+
+Status  | Response                  | Reason(s)
+--------|---------------------------|----------
+[202][] | none                      | Successfully queued a discard request.
+[409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed.
+
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+
+### Request Body
+
+This POST endpoint allows an optional JSON object with the following properties as a request payload.
+
+Key path  | Type   | Default | Description
+----------|--------|---------|------------
+`comment` | string | `null`  | An optional comment about the run.
 
 ### Sample Payload
 
@@ -158,17 +177,13 @@ curl \
 ```
 
 
-## List Runs
+## List Runs in a Workspace
 
-This endpoint lists the runs in a workspace
+`GET /workspaces/:workspace_id/runs`
 
-| Method | Path           |
-| :----- | :------------- |
-| GET | /workspaces/:workspace_id/runs |
-
-### Parameters
-
-- `workspace_id` (`string: <required>`) - specifies the workspace ID for the runs to list.
+Parameter      | Description
+---------------|------------
+`workspace_id` | The workspace ID to list runs for.
 
 ### Sample Request
 
@@ -235,18 +250,33 @@ curl \
 }
 ```
 
-# Discard
+## Discard a Run
 
-The `discard` endpoint represents an action as opposed to a resource. As such, the endpoint does not return any object in the response body. This endpoint queues the request to perform a discard; the discard might not happen immediately.
+`POST /runs/:run_id/actions/discard`
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /runs/:run_id/actions/discard |
+Parameter | Description
+----------|------------
+`run_id`  | The run ID to discard
 
-### Parameters
+The `discard` action can be used to skip any remaining work on runs that are paused waiting for confirmation or priority. This includes runs in the "pending," "needs confirmation," "policy checked," and "policy override" states.
 
-- `run_id` (`string: <required>`) - specifies the run ID to run
-- `comment` (`string: <optional>`) - Optional comment to add on the discard
+This endpoint queues the request to perform a discard; the discard might not happen immediately. After discarding, the run is completed and later runs can proceed.
+
+This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
+
+Status  | Response                  | Reason(s)
+--------|---------------------------|----------
+[202][] | none                      | Successfully queued a discard request.
+[409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed.
+
+### Request Body
+
+This POST endpoint allows an optional JSON object with the following properties as a request payload.
+
+Key path  | Type   | Default | Description
+----------|--------|---------|------------
+`comment` | string | `null`  | An optional explanation for why the run was discarded.
+
 
 ### Sample Payload
 
@@ -267,6 +297,54 @@ curl \
   --request POST \
   --data @payload.json \
   https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/discard
+```
+
+## Cancel a Run
+
+`POST /runs/:run_id/actions/cancel`
+
+Parameter | Description
+----------|------------
+`run_id`  | The run ID to cancel
+
+The `cancel` action can be used to interrupt a run that is currently planning or applying.
+
+This endpoint queues the request to perform a cancel; the cancel might not happen immediately. After canceling, the run is completed and later runs can proceed.
+
+This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
+
+Status  | Response                  | Reason(s)
+--------|---------------------------|----------
+[202][] | none                      | Successfully queued a cancel request.
+[409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed.
+
+### Request Body
+
+This POST endpoint allows an optional JSON object with the following properties as a request payload.
+
+Key path  | Type   | Default | Description
+----------|--------|---------|------------
+`comment` | string | `null`  | An optional explanation for why the run was canceled.
+
+### Sample Payload
+
+This payload is optional, so the `curl` command will work without the `--data @payload.json` option too.
+
+```json
+{
+  "comment": "This run was stuck and would never finish."
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/cancel
 ```
 
 ## Available Related Resources
