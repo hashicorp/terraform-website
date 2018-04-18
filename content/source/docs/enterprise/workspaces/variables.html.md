@@ -15,13 +15,7 @@ Terraform Enterprise (TFE) workspaces can set values for two kinds of variables:
 
 You can edit a workspace's variables via the UI or the API. All runs in a workspace use its variables.
 
-## The Variables API
-
-[variables_api]: ../api/variables.html
-
-You can automate any variable management task with the [variables API][variables_api].
-
-The rest of this page gives background on how TFE uses variables and describes the UI for editing variables. For details about the API endpoints, see the [variables API page][variables_api].
+-> **API note:** You can also manage variables with the [variables API](../api/variables.html).
 
 ## Managing Variables
 
@@ -73,17 +67,21 @@ Terraform Enterprise can't automatically discover variable names from a workspac
 
 If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
 
+## Loading Variables from Files
+
+If a workspace is configured to use Terraform 0.10.0 or later, you can commit any number of [`*.auto.tfvars` files](/docs/configuration/variables.html#variable-files) to provide default variable values. Terraform will automatically load variables from those files.
+
+If any automatically loaded variables have the same names as variables specified in the TFE workspace, TFE's values will override the automatic values (except for map values, [which are merged](/docs/configuration/variables.html#variable-merging)).
+
+You can also use the optional [TFE CLI tool](https://github.com/hashicorp/tfe-cli/)'s `tfe pushvars` command to update a workspace's variables using a local variables file. This has the same effect as managing workspace variables manually or via the API, but can be more convenient for large numbers of complex variables.
+
 ## How TFE Uses Variables
 
 ### Terraform Variables
 
-After retrieving the workspace's configuration, TFE uses a workspace's Terraform variables to write a `terraform.tfvars` file into the working directory. Terraform loads that `tfvars` file as part of the run.
+TFE passes variables to Terraform by writing a `terraform.tfvars` file and passing the `-var-file=terraform.tfvars` option to the Terraform command.
 
-This means:
-
-- HCL variable values behave predictably, without needing to accommodate shell quoting.
-- You cannot commit a file named `terraform.tfvars` to version control, since TFE will overwrite it. (Note that you shouldn't check in `terraform.tfvars` even when running Terraform solely on the command line.)
-- In the event that HCL syntax changes slightly between Terraform versions, all values in a given workspace will be handled consistently, since the variables file is interpreted by the same Terraform version that loads the rest of the code.
+Do not commit a file named `terraform.tfvars` to version control, since TFE will overwrite it. (Note that you shouldn't check in `terraform.tfvars` even when running Terraform solely on the command line.)
 
 ### Environment Variables
 
