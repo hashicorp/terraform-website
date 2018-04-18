@@ -73,7 +73,7 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create the team in. The organization must already exist in the system, and the user must have permissions to create new teams.
 
-Status  | Response                                | Reason(s)
+Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "teams"`) | Successfully created a team
 [400][] | [JSON API error object][]               | Invalid `include` parameter

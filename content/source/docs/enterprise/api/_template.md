@@ -16,7 +16,7 @@ Parameter            | Description
 
 If further explanation of this method is needed beyond its title, write it here, after the parameter list. -->
 
-Status  | Response                                     | Reason(s)
+Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "somethings"`) | Successfully created a team
 [400][] | [JSON API error object][]                    | Invalid `include` parameter
