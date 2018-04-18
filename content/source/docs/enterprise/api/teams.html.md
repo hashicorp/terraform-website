@@ -73,6 +73,22 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create the team in. The organization must already exist in the system, and the user must have permissions to create new teams.
 
+Status  | Response                                | Reason
+--------|-----------------------------------------|----------
+[200][] | [JSON API document][] (`type: "teams"`) | Successfully created a team
+[400][] | [JSON API error object][]               | Invalid `include` parameter
+[404][] | [JSON API error object][]               | Organization not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]               | Validation errors
+[500][] | [JSON API error object][]               | Failure during team creation
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
 ### Request Body
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
