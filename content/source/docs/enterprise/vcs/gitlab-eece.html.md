@@ -22,6 +22,8 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
 ~> **Important:** TFE needs to contact your GitLab instance during setup and during normal operation. For the SaaS version of TFE, this means GitLab must be internet-accessible; for private installs of TFE, you must have network connectivity between your TFE and GitLab instances.
 
+-> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
+
 ## Step 1: On GitLab, Create a New Application
 
 1. Open your GitLab instance in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.

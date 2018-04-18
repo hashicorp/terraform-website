@@ -63,6 +63,8 @@ Approve access request. | &nbsp;
 
 For complete details, click the link for your VCS provider below.
 
+-> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
+
 ### Specific Instructions for Supported VCS Providers
 
 To configure VCS access, select your VCS provider from the list below:
