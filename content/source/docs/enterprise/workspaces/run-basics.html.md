@@ -63,6 +63,7 @@ _States in this stage:_
 _Leaving this stage:_
 
 - If the `terraform plan` command failed, TFE skips to completion (**Plan Errored** state).
+- If a user canceled the plan by pressing the "Cancel Run" button, TFE skips to completion (**Canceled** state).
 - If the plan succeeded and doesn't require any changes (since it already matches the current infrastructure state), TFE skips to completion (**No Changes** state).
 - If the plan succeeded and requires changes:
     - If [Sentinel policies][] are enabled, TFE proceeds automatically to the policy check stage.
@@ -103,7 +104,8 @@ _Leaving this stage:_
 After applying, TFE proceeds automatically to completion.
 
 - If the apply succeeded, the run ends in the **Applied** state.
-- If the apply failed, the runs ends in the **Apply Errored** state.
+- If the apply failed, the run ends in the **Apply Errored** state.
+- If a user canceled the apply by pressing the "Cancel Run" button, the run ends in the **Canceled** state.
 
 ### 5. Completion
 
@@ -116,7 +118,7 @@ _States in this stage:_
 - **Apply Errored:** The `terraform apply` command failed, possibly due to a missing or misconfigured provider or an illegal operation on a provider.
 - **Plan Errored:** The `terraform plan` command failed (usually requiring fixes to variables or code), or a hard-mandatory Sentinel policy failed. The run cannot be applied.
 - **Discarded:** A user chose not to continue this run.
-
+- **Canceled:** A user interrupted the `terraform plan` or `terraform apply` command with the "Cancel Run" button.
 
 ## Interacting with Runs
 
@@ -143,6 +145,12 @@ Most importantly, it shows:
 - How the run was triggered, when, and which user requested it (if applicable).
 - A timeline of events related to the run.
 - The output from both the `terraform plan` and `terraform apply` commands, if applicable. You can hide or reveal these as needed; they default to visible if the command is currently running, and hidden if the command has finished.
+
+If the run is still in progress and you have write access to the workspace, there are controls for interacting with the run at the bottom of the page. Depending on the state of the run, the following buttons might be available:
+
+- A "Cancel Run" button, if a plan or apply is currently running.
+- "Confirm & Apply" and "Discard Plan" buttons, if a plan needs confirmation.
+- An "Override Policy" button, if a soft-mandatory policy failed (only available for owners team).
 
 ## Locking Workspaces (Preventing Runs)
 
