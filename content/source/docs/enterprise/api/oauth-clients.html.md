@@ -20,9 +20,10 @@ Parameter            | Description
 
 This endpoint allows you to create a VCS connection between an organization and a VCS provider (GitHub, Bitbucket, or GitLab) for use when creating or setting up workspaces. By using this API endpoint, you can provide a pre-generated OAuth token string instead of going through the process of creating a GitHub/GitLab OAuth Application or Bitbucket App Link. To learn how to generate one of these token strings for your VCS provider, you can read the following documentation:
 
-* GitHub and GitHub Enterprise: [https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
-* Bitbucket and Bitbucket Server: [https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html](https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html)
-* GitLab, GitLab Community Edition, and GitLab Enterprise Edition: [https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html#creating-a-personal-access-token](https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html#creating-a-personal-access-token)
+* [GitHub and GitHub Enterprise](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+* [Bitbucket Server](https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html)
+* [Bitbucket Cloud](https://confluence.atlassian.com/bitbucket/app-passwords-828781300.html)
+* [GitLab, GitLab Community Edition, and GitLab Enterprise Edition](https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html#creating-a-personal-access-token)
 
 Result  | Status and response
 --------|------------------------
