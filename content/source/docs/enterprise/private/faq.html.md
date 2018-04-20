@@ -289,7 +289,11 @@ information in your support request. You can create a support bundle by
 connecting to your Private Terraform Enterprise instance via SSH and running
 
     sudo hashicorp-support
+    
+Or in cases of Replicated install:
 
+    sudo replicatedctl support-bundle
+    
 You will see output similar to:
 
     ==> Creating HashiCorp Support Bundle in /var/lib/hashicorp-support
