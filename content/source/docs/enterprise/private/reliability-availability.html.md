@@ -186,41 +186,6 @@ volume storing the data is not lost. Because only Configuration and Vault data i
 on the instance, we recommend using an automated install mechanism to provide fast
 recovery following these steps:
 
-**Snapshot**
-
-- Be sure that the mounted volume being used is automatically mounted
-  on start. For example with AWS this means having it attached
-  to the EC2 instance as well as being mounted to a path in Linux.
-
-- Perform the initial installation of the product, including entering the
-  license and doing initial setup.
-
-- From the admin UI, click the **Stop** button. This will stop all of the
-  services the application runs.
-
-- Take a snapshot of the instance. For instance, in AWS this would mean shutting
-  down the EC2 instance and then triggering an AMI to be created from the
-  instance. The exact mechanism used is specific to the virtualization
-  environment that the product runs in.
-
-**Restore**
-
-- Configure the virtualization to run the new snapshot and restart a new
-  instance should it stop. In AWS, this is done using an Autoscaling Group.
-  The environment can monitor the availability of port 443 for instance health
-  as well.
-
-- The new instance now has the software as well as configuration on it by default
-  and can access the data stored on the mounted disk. Using these steps, the MTTR
-  of a lost instance is almost as fast as the virtualization environment can start
-  a new instance, typically less than a minute.
-
-~> **NOTE:** Because the software is being restored from a snapshot, it's
-important that this process be repeated when the Terraform Enterprise software
-is updated so that any restored instance due to loss has the newest version.
-This is important because the data stored on the mounted disk is versioned
-along with the software.
-
 ### External Services
 
 In the External Services mode of the Installer Architecture, the
@@ -243,38 +208,6 @@ If the instance running Terraform Enterprise is lost, the utilization of
 external services means no state data is lost. Because only configuration data
 is stored on the instance, we recommend using a system snapshot mechanism to
 provide fast recovery following these steps:
-
-**Snapshot**
-
-- Perform the initial installation of the product, including entering the
-  license and doing initial setup.
-
-- From the admin UI, click the **Stop** button. This will stop all of the
-  services the application runs.
-
-- Take a snapshot of the instance. For instance, in AWS this would mean shutting
-  down the EC2 instance and then triggering an AMI to be created from the
-  instance. The exact mechanism used is specific to the virtualization
-  environment that the product runs in.
-
-**Restore**
-
-- Configure the virtualization to run the new snapshot and restart a new
-  instance should it stop. In AWS, this is done using an Autoscaling Group.
-  The environment can monitor the availability of port 443 for instance health
-  as well.
-
-- The new instance now has the software as well as configuration on it by default
-  and can access the data stored on the mounted disk. Using these steps, the MTTR
-  of a lost instance is almost as fast as the virtualization environment can start
-  a new instance, typically less than a minute.
-
-~> **NOTE:** Because the software being restored is preinstalled on the
-virtualization specific snapshot, it's important that a new snapshot is taken
-when the Terraform Enterprise software is updated so that
-any restored instance has the newest version. This is important
-because the data stored in the external services is versioned along with the
-software.
 
 ### Availability During Upgrades
 
