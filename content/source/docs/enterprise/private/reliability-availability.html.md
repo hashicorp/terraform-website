@@ -174,16 +174,16 @@ _PostgreSQL Database_ and _Blob Storage_ use mounted disks for their
 data. Backup and restore of those volumes is the responsibility of the user, the
 system does not manage that.
 
-_Configuration Data_ and _Vault Data_ for the installation is stored in Docker
+_Configuration Data_ and _Vault Data_ for the installation are stored in Docker
 volumes on the instance. The built-in Snapshot mechanism can be used to package up the
 Configuration and Vault data and store it off the instance. The built-in Restore
 mechanism can then be used to pull the configuration data back in and restore
-operations.
+operation.
 [Configure Snapshot and Restore following these instructions](./automated-recovery.html).
 
 If the instance running Terraform Enterprise is lost, the presumption is that the
 volume storing the data is not lost. Because only Configuration and Vault data is stored
-on the instance, we recommend using a system snapshot mechanism to provide fast
+on the instance, we recommend using an automated install mechanism to provide fast
 recovery following these steps:
 
 **Snapshot**
@@ -225,7 +225,7 @@ along with the software.
 
 In the External Services mode of the Installer Architecture, the
 **Application Layer** and **Coordination Layer** execute on a Linux instance,
-but the **Storage Layer** is configured to use external services in the form an
+but the **Storage Layer** is configured to use external services in the form of
 a PostgreSQL server, an S3-compatible Blob Storage, and optionally an
 [external Vault](./vault.html).
 
