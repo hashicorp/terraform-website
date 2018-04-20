@@ -36,11 +36,17 @@ Key path                    | Type   | Default | Description
 `data.relationships.workspace.data.id` | string | | Specifies the workspace ID where the run will be executed.
 `data.relationships.configuration-version.data.id` | string | (nothing) | Specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
 
-Status  | Response                                     | Reason
---------|----------------------------------------------|----------
-[200][https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200] | [JSON API document][https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents] (`type: "run"`) | Successfully created a run
-[404][https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404] | [JSON API error object][http://jsonapi.org/format/#error-objects]                    | Organization or workspace not found, or user unauthorized to perform action
-[422][https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422] | [JSON API error object][http://jsonapi.org/format/#error-objects]                    | Validation errors
+Status  | Response                               | Reason
+--------|----------------------------------------|-------
+[200][] | [JSON API document][] (`type: "runs"`) | Successfully created a run
+[404][] | [JSON API error object][]              | Organization or workspace not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]              | Validation errors
+
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+
 
 ### Sample Payload
 
