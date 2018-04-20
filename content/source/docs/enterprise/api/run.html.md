@@ -19,19 +19,28 @@ Alternately, you can create a run with a pre-existing configuration version, eve
 
 ## Create a Run
 
+`POST /runs`
+
 A run performs a plan and apply, using a configuration version and the workspace’s current variables. You can specify a configuration version when creating a run; if you don’t provide one, the run defaults to the workspace’s most recently used version. (A configuration version is “used” when it is created or used for a run in this workspace.)
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /runs |
+### Request Body
 
-### Parameters
+This POST endpoint requires a JSON object with the following properties as a request payload.
 
-- `id` (`string: <required>`) - specifies the workspace ID to run
-- `is-destroy` (`bool: false`) - specifies if this plan is a destroy plan, which will destroy all provisioned resources.
-- `message` (`string: <optional`) - specifies the message to be associated with this run.
-- `workspace_id` (`string: <required>`) - specifies the workspace ID where the run will be executed.
-- `configuration-version-id` (`string: <optional>`) - specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
+Properties without a default value are required.
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`data.attributes.is-destroy` | bool | false | Specifies if this plan is a destroy plan, which will destroy all provisioned resources.
+`data.attributes.message` | string | "Queued manually via the Terraform Enterprise API | Specifies the message to be associated with this run.
+`data.relationships.workspace.data.id` | string | | Specifies the workspace ID where the run will be executed.
+`data.relationships.configuration-version.data.id` | string | (nothing) | Specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200] | [JSON API document][https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents] (`type: "run"`) | Successfully created a run
+[404][https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404] | [JSON API error object][http://jsonapi.org/format/#error-objects]                    | Organization or workspace not found, or user unauthorized to perform action
+[422][https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422] | [JSON API error object][http://jsonapi.org/format/#error-objects]                    | Validation errors
 
 ### Sample Payload
 
@@ -77,7 +86,7 @@ curl \
 ```json
 {
   "data": {
-    "id": "run-CZcmD7eagjhyXavN",
+    "id": "run-CZcmD7eagjhyX0vN",
     "type": "runs",
     "attributes": {
       "auto-apply": false,
@@ -119,7 +128,7 @@ curl \
       }
     },
     "links": {
-      "self": "/api/v2/runs/run-CZcmD7eagjhyXavN"
+      "self": "/api/v2/runs/run-CZcmD7eagjhyX0vN"
     }
   }
 }
