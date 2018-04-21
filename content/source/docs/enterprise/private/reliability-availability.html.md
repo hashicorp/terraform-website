@@ -117,10 +117,7 @@ against data corruption.
 The redundancy guarantees of Amazon S3 serve to protect the files that PTFE
 stores there.
 
-## Installer Architecture (Beta)
-
-~> **Note**: The PTFE Installer architecture is currently in beta and is being
-actively developed. The section below is subject to change as work continues.
+## Installer Architecture
 
 This section describes how to set up your PTFE deployment to recover from
 failures in the various operational modes (demo, mounted disk, external

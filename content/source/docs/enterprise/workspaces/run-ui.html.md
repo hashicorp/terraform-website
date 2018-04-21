@@ -6,14 +6,17 @@ sidebar_current: "docs-enterprise2-workspaces-run-ui"
 
 # The UI- and VCS-driven Run Workflow
 
-Terraform Enterprise (TFE) has two workflows for managing Terraform runs.
+Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
 
-- The simpler workflow, described below, is driven by TFE's UI and by integration with a supported VCS provider.
-- [The more complex workflow](./run-api.html) is driven entirely by TFE's API, and lets you replace the UI and supported VCS providers with almost any kind of custom tooling.
+- The UI/VCS-driven run workflow described below, which is TFE's primary mode of operation.
+- The [API-driven run workflow](./run-api.html), which is more flexible but requires you to create some tooling.
+- The [CLI-driven run workflow](./run-cli.html), which is the API-driven workflow with a user-friendly command line tool.
 
 ## Summary
 
 In the UI and VCS workflow, every workspace is associated with a specific branch of a VCS repo of Terraform configurations. TFE registers webhooks with your VCS provider when you create a workspace, then automatically queues a Terraform run whenever new commits are merged to the workspace's branch.
+
+By default, TFE also performs a plan-only run when a pull request is opened against that branch. As described at [VCS Connection webhooks](../vcs/index.html#webhooks), plan-only runs can't be applied, although their details can be viewed in TFE via a link in the VCS status check.
 
 The Terraform code for a run always comes from version control, and is always associated with a specific commit.
 
@@ -21,7 +24,7 @@ The Terraform code for a run always comes from version control, and is always as
 
 Most of the time, you start a run automatically by committing changes to version control.
 
-If the code in version control hasn't changed but you've modified some variables in TFE, you can also manually queue a plan from the UI. Each workspace has a "Queue Plan" button, and the form for editing variables also includes a "Save & Plan" button.
+When you initially set up the workspace and add variables, or if the code in version control hasn't changed but you've modified some variables in TFE, you can manually queue a plan from the UI. Each workspace has a "Queue Plan" button, and the form for editing variables also includes a "Save & Plan" button.
 
 Manually queueing a plan requires write or admin access.
 

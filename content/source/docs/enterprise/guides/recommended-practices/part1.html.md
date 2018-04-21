@@ -105,24 +105,6 @@ As we described above, each workspace is a specific environment of a given Terra
 
 Later, you'll be able to set up promotion relationships, so instead of checking out code directly from version control, a higher environment can accept code directly from a prior environment. This can help provide a guarantee that high environments only run known good code.
 
-## Variable and Policy Management
-
-Terraform Enterprise has multiple places to set variables, which override each other in hierarchical order. For all of these levels, TFE securely stores variables in Vault.
-
-### Organization
-
-Any workspace can use default variables from the organization level. For example, the organization might specify a default billing tag to use on all resources.
-
-This is the lowest level of the hierarchy; all subsequent levels can override it.
-
-### Workspace
-
-Per-workspace variables. Most variables are stored at the workspace level; this is the best place for things like AMI IDs, machine counts, SSL certificates, and more.
-
-### User
-
-Variables attached to a specific user, which are used in all workspaces and which override workspace variables. For example, each user can be associated with their ARN.
-
 ## Next
 
 Now that you're familiar with the outlines of the Terraform Enterprise workflow, it's time to assess your organization's provisioning practices. Continue on to [Part 2: Evaluating Your Current Provisioning Practices](./part2.html).

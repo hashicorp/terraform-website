@@ -12,7 +12,7 @@ The goal of this installation procedure is to set up a Terraform Enterprise
 cluster that is available on a DNS name that is accessed via HTTPS. This
 standard configuration package uses Terraform to create both the compute and data layer resources, and optionally uses Route53 to configure the DNS automatically.
 
--> **Note**: This document applies to the standard AMI-based deliverable of Private Terraform Enterprise. If you are in the Installer Beta program, please see the [instructions for the Installer](./install-installer.html).
+-> **Note**: This document applies to the standard AMI-based deliverable of Private Terraform Enterprise. If you are using the Installer, please see the [instructions for the Installer](./install-installer.html).
 
 ## Preflight
 

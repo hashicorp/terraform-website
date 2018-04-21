@@ -8,6 +8,8 @@ description: |-
 
 # Terraform Enterprise API Documentation
 
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
+
 Terraform Enterprise provides an API for a **subset of features** available. For
 questions or requests for new API features please email
 [support@hashicorp.com](mailto:support@hashicorp.com).

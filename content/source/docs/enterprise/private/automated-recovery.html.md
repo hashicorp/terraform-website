@@ -4,7 +4,7 @@ page_title: "Private Terraform Enterprise Automated Recovery (Installer Beta)"
 sidebar_current: "docs-enterprise2-private-installer-automated-recovery"
 ---
 
-# Private Terraform Enterprise Automated Recovery (Installer Beta)
+# Private Terraform Enterprise Automated Recovery (Installer)
 
 This guide explains how to configure automated recovery for a Private Terraform
 Enterprise installation. The goal is to provide a short Mean-Time-To-Recovery (MTTR)
@@ -84,7 +84,7 @@ apt-get install -y jq
 
 # Run the installer.
 
-curl https://install.terraform.io/ptfe/beta | bash -s fast-timeouts
+curl https://install.terraform.io/ptfe/stable | bash -s fast-timeouts
 
 # This retrieves a list of all the snapshots currently available.
 replicatedctl snapshot ls $access -o json > /tmp/snapshots.json
@@ -138,7 +138,7 @@ apt-get install -y jq
 
 # Run the installer.
 
-curl https://install.terraform.io/ptfe/beta | bash -s fast-timeouts
+curl https://install.terraform.io/ptfe/stable | bash -s fast-timeouts
 
 # This retrieves a list of all the snapshots currently available.
 replicatedctl snapshot ls $access -o json > /tmp/snapshots.json
@@ -191,7 +191,7 @@ apt-get install -y jq
 
 # Run the installer.
 
-curl https://install.terraform.io/ptfe/beta | bash -s fast-timeouts
+curl https://install.terraform.io/ptfe/stable | bash -s fast-timeouts
 
 # This retrieves a list of all the snapshots currently available.
 replicatedctl snapshot ls $access -o json > /tmp/snapshots.json

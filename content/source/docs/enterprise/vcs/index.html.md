@@ -20,8 +20,6 @@ To use configurations from VCS, TFE needs to do several things:
 - Register webhooks with your VCS provider, to get notified of new commits to a chosen branch.
 - Download the contents of a repository at a specific commit in order to run Terraform with that code.
 
-~> **Important:** Repo connections are only configured when creating or initially configuring new workspaces; the repo for a workspace can't be updated.
-
 ### Webhooks
 
 TFE uses webhooks to monitor new commits and pull requests.
@@ -36,6 +34,8 @@ TFE uses webhooks to monitor new commits and pull requests.
 For most supported VCS providers, TFE does not need an SSH key — it can do everything it needs with the provider's API and an OAuth token. The exception is Bitbucket Server, which requires an SSH key for downloading repository contents. The [setup instructions for Bitbucket Server](./bitbucket-server.html) include this step.
 
 For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials.
+
+If submodules will be cloned via SSH from a private VCS instance, SSH must be running on the standard port 22 on the VCS server.
 
 To add an SSH key to a VCS connection, finish configuring OAuth in the organization settings, and then use the "add a private SSH key" link on the OAuth Configuration page to add a private key that has access to the submodule repositories. When setting up a workspace, if submodules are required, select "Include submodules on clone". More at [Workspace settings](../workspaces/settings.html).
 
@@ -60,6 +60,8 @@ Provide callback URL. | &nbsp;
 Approve access request. | &nbsp;
 
 For complete details, click the link for your VCS provider below.
+
+-> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
 
 ### Specific Instructions for Supported VCS Providers
 

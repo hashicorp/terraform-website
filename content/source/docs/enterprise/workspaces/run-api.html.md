@@ -6,10 +6,11 @@ sidebar_current: "docs-enterprise2-workspaces-run-api"
 
 # The API-driven Run Workflow
 
-Terraform Enterprise (TFE) has two workflows for managing Terraform runs.
+Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
 
-- [The simpler workflow](./run-ui.html) is driven by TFE's UI and by integration with a supported VCS provider.
-- The more complex workflow, described below, is driven entirely by TFE's API, and lets you replace the UI and supported VCS providers with almost any kind of custom tooling.
+- The [UI/VCS-driven run workflow](./run-ui.html), which is TFE's primary mode of operation.
+- The API-driven run workflow described below, which is more flexible but requires you to create some tooling.
+- The [CLI-driven run workflow](./run-cli.html), which is the API-driven workflow with a user-friendly command line tool.
 
 ## Summary
 
@@ -20,6 +21,8 @@ Instead, one of your organization's other tools is in charge of deciding when co
 Once your other tooling has decided a run should occur, it must make a series of calls to TFE's `runs` and `configuration-versions` APIs to upload configuration files and perform a run with them. For the exact series of API calls, see the [pushing a new configuration version](#pushing-a-new-configuration-version) section.
 
 The most significant difference in this workflow is that TFE _does not_ fetch configuration files from version control. Instead, your own tooling must upload the configurations as a `.tar.gz` file. This allows you to work with configurations from unsupported version control systems, automatically generate Terraform configurations from some other source of data, or build a variety of other integrations.
+
+~> **Important:** The script below is provided to illustrate the run process, and is not intended for production use. If you want to [drive TFE runs from the command line](./run-cli.html) without building your own client, download the [TFE CLI client](https://github.com/hashicorp/tfe-cli#push-terraform-configurations).
 
 ## Pushing a New Configuration Version
 

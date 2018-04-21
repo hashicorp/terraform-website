@@ -15,18 +15,24 @@ Note that Bitbucket Server requires both OAuth authentication and an SSH key. Th
 
 ~> **Important:** TFE needs to contact your Bitbucket Server instance during setup and during normal operation. For the SaaS version of TFE, this means Bitbucket Server must be internet-accessible; for private installs of TFE, you must have network connectivity between your TFE and Bitbucket Server instances.
 
+-> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
+
 ## Step 1: On Bitbucket Server, Ensure the Webhooks Plugin is Installed
 
 TFE uses webhooks to get new configurations. To support this, Bitbucket Server needs Atlassian's webhooks plugin.
 
 1. Open your Bitbucket server instance in your browser and log in as an admin user.
 2. Go to the "Manage add-ons" page. You can click the gear icon in the upper right corner and then use the "Manage add-ons" link in the sidebar, or go directly to `https://<BITBUCKET HOSTNAME>/plugins/servlet/upm`.
-3. Look for an add-on named "Bitbucket Server Web Post Hooks Plugin," and make sure it is installed and enabled.
+3. Look for an add-on named "Bitbucket Server Web Post Hooks Plugin," and make sure it is installed and enabled. The plugin is disabled by default. Clicking `Enabled` will toggle the plugin on.
 4. If the plugin isn't present, click "Find new add-ons" in the sidebar navigation. Search for the plugin by name and install it.
 
     Make sure to install the correct plugin. TFE is designed to work with the [Bitbucket Server Web Post Hooks Plugin published by Atlassian Labs.](https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview)
 
     ![Atlassian Marketplace screenshot: The Atlassian Labs Bitbucket Server Web Post Hooks Plugin](./images/bitbucket-server-webhooks-plugin.png)
+
+5. Visit the repository's settings, click on `Hooks` and check that the plugin is *enabled* there as well.
+
+There is an option to configure a `webhook URL` on the plugin. Leave this optional field blank. Terraform Enterprise will dynamically update the `webhook URL` after the VCS connection is established.
 
 Leave the page open in a browser tab, and remain logged in as an admin user.
 
@@ -43,7 +49,7 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 2. The next page has a drop-down and several text fields. Select "Bitbucket Server" from the drop-down. Several text fields will vanish, leaving only two. Enter the URL of your Bitbucket Server instance in both fields. The API URL should be the same as the main URL.
 
-    ~> **Note:** If you omit the port, TFE uses the standard port for the protocol (80 for HTTP, 443 for HTTPS). However, Bitbucket Server's default port is 7990. If you haven't configured Bitbucket Server to use the standard HTTP ports, make sure to specify its port in the URL.
+    ~> **Note:** If you omit the port in the URL, TFE uses the standard port for the protocol (80 for HTTP, 443 for HTTPS). If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL.
 
     ![TFE screenshot: text fields for adding a Bitbucket Server OAuth client](./images/bitbucket-server-tfe-add-client-fields.png)
 

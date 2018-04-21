@@ -1,7 +1,7 @@
 ---
 layout: enterprise2
 page_title: "SAML Identity Provider Configuration - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-saml-identity-provider-configuration"
+sidebar_current: "docs-enterprise2-private-saml-identity-provider-configuration"
 ---
 
 # Identity Provider Configuration
@@ -22,9 +22,6 @@ To help you with the configuration of your identity provider, here are example d
 <samlp:AuthnRequest AssertionConsumerServiceURL='https://app.terraform.io/users/saml/auth' Destination='https://example.onelogin.com/trust/saml2/http-post/sso/1' ID='_000eda0a-c0f0-00cf-b0a0-c00b000d000f' IssueInstant='2018-02-28T02:16:25Z' Version='2.0' xmlns:saml='urn:oasis:names:tc:SAML:2.0:assertion' xmlns:samlp='urn:oasis:names:tc:SAML:2.0:protocol'>
   <saml:Issuer>https://app.terraform.io/users/saml/metadata</saml:Issuer>
   <samlp:NameIDPolicy AllowCreate='true' Format='urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'/>
-  <samlp:RequestedAuthnContext Comparison='exact'>
-    <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
-  </samlp:RequestedAuthnContext>
 </samlp:AuthnRequest>
 ```
 
@@ -73,9 +70,13 @@ To help you with the configuration of your identity provider, here are example d
         <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
       </saml:AuthnContext>
     </saml:AuthnStatement>
+    <saml:Attribute Name="Username" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+      <saml:AttributeValue xsi:type="xs:string">new-username</saml:AttributeValue>
+    </saml:Attribute>
     <saml:AttributeStatement>
       <saml:Attribute Name="MemberOf" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
         <saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">devs</saml:AttributeValue>
+        <saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">site-admins</saml:AttributeValue>
       </saml:Attribute>
     </saml:AttributeStatement>
   </saml:Assertion>

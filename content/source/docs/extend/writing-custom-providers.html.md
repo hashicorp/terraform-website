@@ -267,7 +267,7 @@ resource "example_server" "my-server" {}
 Terraform automatically discovers the Providers when it parses configuration
 files. This only occurs when the `init` command is executed. Terraform will
 search for matching Providers via a
-[**Discovery**](http://localhost:4567/docs/extend/how-terraform-works.html#discovery)
+[**Discovery**](https://www.terraform.io/docs/extend/how-terraform-works.html#discovery)
 process, including the current local directory. Run `terraform init` to discover
 our newly compiled Provider:
 

@@ -107,3 +107,65 @@ Although most of our API endpoints use the POST method and receive their paramet
 Since these parameters were originally designed as part of a JSON object, they sometimes have characters that must be [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding) in a query parameter. For example, `[` becomes `%5B` and `]` becomes `%5D`.
 
 For more about URI structure and query strings, see [the specification (RFC 3986)](https://tools.ietf.org/html/rfc3986) or [the Wikipedia page on URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
+
+### Inclusion of Related Resources
+
+Some of the API's GET endpoints can return additional information about nested resources by adding an `include` query parameter, whose value is a comma-separated list of resource types.
+
+The related resource options are listed in each endpoint's documentation where available.
+
+The related resources will appear in an `included` section of the response.
+
+Example:
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/teams/team-n8UQ6wfhyym25sMe?include=users
+```
+
+```json
+{
+  "data": {
+    "id": "team-n8UQ6wfhyym25sMe",
+    "type": "teams",
+    "attributes": {
+      "name": "owners",
+      "users-count": 1
+      ...
+    },
+    "relationships": {
+      "users": {
+        "data": [
+          {
+              "id": "hashibot",
+              "type": "users"
+          }
+        ]
+      } ...
+    }
+    ...
+  },
+  "included": [
+    {
+      "id": "hashibot",
+      "type": "users",
+      "attributes": {
+        "username": "hashibot"
+        ...
+      } ...
+    }
+  ]
+}
+```
+
+## Community client libraries and tools
+
+The community client libraries and tools listed below have been built by the community of Terraform Enterprise users and vendors. These client libraries and tools are not tested nor officially maintained by HashiCorp, and are listed here in order to help users find them easily.
+
+If you have built a client library and would like to add it to this community list, please [contribute](https://github.com/hashicorp/terraform-website#contributions-welcome) to [this page](https://github.com/hashicorp/terraform-website/blob/master/content/source/docs/enterprise/api/index.html.md).
+
+- [tf_api_gateway](https://github.com/PlethoraOfHate/tf_api_gateway): Python API library and console app
+- [terraform-enterprise-client](https://github.com/skierkowski/terraform-enterprise-client): Ruby API library and console app

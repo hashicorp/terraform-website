@@ -8,6 +8,8 @@ description: |-
 
 # State API
 
+!> **Deprecation warning**: Terraform Enterprise (Legacy) features of Atlas will no longer be actively developed or maintained and will be fully decommissioned on Thursday, May 31, 2018. Please see our [Upgrading From Terraform Enterprise (Legacy)](https://www.terraform.io/docs/enterprise/upgrade/index.html) guide to migrate to the new Terraform Enterprise.
+
 State represents the status of your infrastructure at the last time Terraform
 was run. States can be pushed to Terraform Enterprise from Terraform's CLI after
 an apply is done locally, or state is automatically stored if the apply is done

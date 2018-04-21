@@ -1,10 +1,10 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Automated Installation (Installer Beta)"
+page_title: "Private Terraform Enterprise Automated Installation (Installer)"
 sidebar_current: "docs-enterprise2-private-installer-automating"
 ---
 
-# Private Terraform Enterprise Automated Installation (Installer Beta)
+# Private Terraform Enterprise Automated Installation (Installer)
 
 The installation of Private Terraform Enterprise can be automated for both online and airgapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
 
@@ -41,6 +41,65 @@ The settings file is JSON formatted. All values must be strings.  The example be
 }
 ```
 
+### Discovery
+
+One the easiest ways to get the settings is to [perform a manual install](./install-installer.html#installation) and configure all the settings how you want them. Then you can ssh in and request the settings in JSON format and use that file in a future automated install.
+
+To extract the settings as JSON, run via ssh on the instance:
+
+```
+ptfe$ replicatedctl app-config export > settings.json
+```
+
+Here is an example of running that on a demo system:
+
+```
+ptfe$ replicatedctl app-config export > settings.json
+ptfe$ cat settings.json
+{
+    "aws_access_key_id": {},
+    "aws_instance_profile": {},
+    "aws_secret_access_key": {},
+    "azure_account_key": {},
+    "azure_account_name": {},
+    "azure_container": {},
+    "azure_endpoint": {},
+    "ca_certs": {},
+    "capacity_concurrency": {
+        "value": "10"
+    },
+    "disk_path": {},
+    "extern_vault_addr": {},
+    "extern_vault_enable": {
+        "value": "0"
+    },
+    "extern_vault_path": {},
+    "extern_vault_role_id": {},
+    "extern_vault_secret_id": {},
+    "extern_vault_token_renew": {},
+    "extra_no_proxy": {},
+    "hostname": {
+        "value": "tfe.mycompany.com"
+    },
+    "installation_type": {
+        "value": "poc"
+    },
+    "placement": {},
+    "postgres_url": {},
+    "production_type": {},
+    "s3_bucket": {},
+    "s3_region": {},
+    "s3_sse": {},
+    "s3_sse_kms_key_id": {},
+    "vault_path": {
+        "value": "/var/lib/tfe-vault"
+    },
+    "vault_store_snapshot": {
+        "value": "1"
+    }
+}
+```
+
 ### Available settings
 
 A number of settings are available to configure and tune your installation.  They are summarized below; it is expected the user will have completed a manual installation first and already be familiar with the nature of these parameters from the settings screen.
@@ -50,9 +109,6 @@ The following apply to every installation:
 - `hostname` — (Required) this is the hostname you will use to access your installation
 - `installation_type` — (Required) one of `poc` or `production`
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
-- `letsencrypt_auto` - (Optional) Indicate if the system should request an SSL/TLS certificate automatically from [Let's Encrypt](https://letsencrypt.org). Set to `1` if so.
-- `letsencrypt_email` - (Required with `letsencrypt_auto`) Sets the email to associate with the generate certificate.
-- `letsencrypt_path` - (Optional) Path on the host to make `/.well-known` available in the product. This is used for certbot
   to be able to generate certificates.
 - `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying
 - `ca_certs` — (Optional) custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
@@ -71,9 +127,10 @@ The following apply to every installation:
   ```
 
 - `extern_vault_enable` - (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
-  - `extern_vault_addr` - URL of external Vault cluster
-  - `extern_vault_role_id` - AppRole RoleId to use to authenticate with the Vault cluster
-  - `extern_vault_secret_id` - AppRole SecretId to use to authenticate with the Vault cluster
+  - These variables are only used if `extern_vault_enable` is set to `1`
+  - `extern_vault_addr` - (Required) URL of external Vault cluster
+  - `extern_vault_role_id` - (Required) AppRole RoleId to use to authenticate with the Vault cluster
+  - `extern_vault_secret_id` - (Required) AppRole SecretId to use to authenticate with the Vault cluster
   - `extern_vault_path` - (Optional) Path on the Vault server for the AppRole auth. Defaults to `auth/approle`
   - `extern_vault_token_renew` - (Optional) How often (in seconds) to renew the Vault token. Defaults to `3600`
 - `vault_path` - (Optional) Path on the host system to store the vault files. If `extern_vault_enable` is set, this has no effect.
@@ -93,10 +150,15 @@ The following apply to every installation:
 
 The system can use either S3 or Azure, so you only need to provide one set of the following variables.
 
+Select which will be used, S3 or Azure:
+
+- `placement` - (Required) Set to `placement_s3` for S3 and `placement_azure` for Azure
+
 For S3:
 
-- `aws_access_key_id` — (Required) AWS access key ID for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
-- `aws_secret_access_key` — (Required) AWS secret access key for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
+- `aws_instance_profile` (Optional) When set, use credentials from the AWS instance profile. Set to 1 to use the instance profile. Defaults to 0. If selected, `aws_access_key_id` and `aws_secret_access_key` are not required.
+- `aws_access_key_id` — (Required unless `aws_instance_profile` is set) AWS access key ID for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
+- `aws_secret_access_key` — (Required unless `aws_instance_profile` is set) AWS secret access key for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
 - `s3_bucket` — (Required) the S3 bucket where resources will be stored
 - `s3_region` — (Required) the region where the S3 bucket exists
 - `s3_sse` — (Optional) enables server-side encryption of objects in S3; if provided, must be set to `aws:kms`
@@ -107,7 +169,7 @@ For Azure:
 - `azure_account_name` - (Required) The account name for the Azure account to access the container
 - `azure_account_key` - (Required) The account key to access the account specified in `azure_account_name`
 - `azure_container` - (Required) The identifer for the Azure blob storage container
-- `azure_endpoint` - (Optional) The URL for the Azure cluster to use. By default is the global one.
+- `azure_endpoint` - (Optional) The URL for the Azure cluster to use. By default this is the global cluster.
 
 ## Online
 
@@ -130,7 +192,7 @@ See the full set of configuration parameters in the [Replicated documentation](h
 Once `/etc/replicated.conf` has been created, you can retrieve and execute the install script as `root`:
 
 ```bash
-curl -o install.sh https://install.terraform.io/ptfe/beta
+curl -o install.sh https://install.terraform.io/ptfe/stable
 bash ./install.sh \
     no-proxy \
     private-address=1.2.3.4 \
