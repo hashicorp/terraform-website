@@ -14,6 +14,7 @@ This page will provide answers to many common questions around Private Terraform
 4. [Upgrade Information](#migrating-from-a-legacy-terraform-enterprise-installation)
 5. [Migration from SaaS-based Terraform Enterprise](#migrating-from-terraform-enterprise-saas)
 6. [Required Network Access](#network-access)
+7. [Disabling VCS Webhook SSL verification](#disabling-vcs-webhook-ssl-verification)
 7. [Managing the Terraform State of the Install Process](#storing-terraform-enterprise-state)
 8. [Support](#support-for-private-terraform-enterprise)
 9. [Private Terraform Enterprise Architecture](#private-terraform-enterprise-architecture)
@@ -218,6 +219,16 @@ When displaying Terraform Runs, Private Terraform Enterprise has JavaScript that
 
 * Private Terraform Enterprise uses the configured SMTP endpoint for sending emails
 * Twilio can optionally be set up for for SMS-based 2FA (virtual TOTP support is available separately which does not make external API calls)
+
+---
+## Disabling VCS webhook SSL verification
+
+If running PTFE with a self-signed certificate (which is not recommended) or with a certificate that the connected VCS system does not trust, webhooks on the VCS must have SSL verification disabled in order to push data to PTFE. This configuration is _not recommended_ but is included here for reference.
+
+* **GitHub and GitHub Enterprise**: In the repository settings, select **Webhooks**, and then choose a webhook. Click the **Disable SSL verification** button above the event list, then confirm. See the [API Reference for this value](https://developer.github.com/v3/repos/hooks/#create-a-hook) for more information.
+* [GitLab.com and GitLab EE/CE](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html#ssl-verification)
+* [Bitbucket Cloud](https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html#Managewebhooks-create_webhookCreatingwebhooks)
+* Bitbucket Server
 
 ---
 

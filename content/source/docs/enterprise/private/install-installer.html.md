@@ -24,8 +24,8 @@ Before you begin, you'll need to prepare data files and a Linux instance.
 * TLS private key and certificate
   * The installer allows for using a self-signed certificate but HashiCorp does
     _not_ recommended this. Your VCS provider will likely reject that certificate
-    when sending webhooks. If you do use the self-signed certificate, you must configure
-    each webhook to ignore SSL errors within your VCS provider.
+    when sending webhooks. If you do use the self-signed certificate, you must [configure
+    each webhook to ignore SSL errors](./faq.html#disabling-vcs-webhook-ssl-verification) within your VCS provider.
 * License key (provided by HashiCorp)
 
 ~> **Note:** If you use your own certificate and it is issued by a private Certificate
