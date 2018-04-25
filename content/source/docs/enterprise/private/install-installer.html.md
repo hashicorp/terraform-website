@@ -223,7 +223,7 @@ From a shell on your instance, in the directory where you placed the `replicated
    configured for the Admin Console.
 1. The system will now perform a set of pre-flight checks on the instance and
    configuration thus far and indicate any failures. You can either fix the issues
-   and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
+   and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
 1. Configure the operational mode for this installation. See
    [Operational Modes](#operational-mode-decision) for information on what the different values
    are.
