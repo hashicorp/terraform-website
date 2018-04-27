@@ -1,5 +1,6 @@
 VERSION?="0.3.35"
 MKFILE_PATH=$(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
+DEPLOY_ENV?="development"
 
 build:
 	@echo "==> Starting build in Docker..."
@@ -11,7 +12,7 @@ build:
 		--volume "$(shell pwd)/ext:/ext" \
 		--volume "$(shell pwd)/content:/website" \
 		--volume "$(shell pwd)/content/build:/website/build" \
-		-e "ENV=production" \
+		-e "DEPLOY_ENV=${DEPLOY_ENV}" \
 		hashicorp/middleman-hashicorp:${VERSION} \
 		bundle exec middleman build --verbose --clean
 
@@ -23,6 +24,7 @@ website:
 		--tty \
 		--publish "4567:4567" \
 		--publish "35729:35729" \
+		-e "DEPLOY_ENV=${DEPLOY_ENV}" \
 		--volume "$(shell pwd)/ext:/ext" \
 		--volume "$(shell pwd)/content:/website" \
 		hashicorp/middleman-hashicorp:${VERSION}

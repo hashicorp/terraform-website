@@ -24,7 +24,7 @@
         "AWS_ACCESS_KEY_ID={{ user `aws_access_key_id` }}",
         "AWS_SECRET_ACCESS_KEY={{ user `aws_secret_access_key` }}",
         "AWS_REGION={{ user `aws_region` }}",
-        "ENV={{ user `website_environment` }}",
+        "DEPLOY_ENV={{ user `website_environment` }}",
         "FASTLY_API_KEY={{ user `fastly_api_key` }}"
       ],
       "inline": [
