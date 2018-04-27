@@ -212,11 +212,11 @@ From a shell on your instance, in the directory where you placed the `replicated
 ### Continue Installation In Browser
 
 1. Configure the hostname and the SSL certificate.
-1. Upload your license file. (Provided to you in your setup email)
-1. Indicate if you're doing an Online or Airgapped installation (Choose Online if
-   you're not sure)
+1. Upload your license file, provided to you in your setup email.
+1. Indicate whether you're doing an Online or Airgapped installation. Choose Online if
+   you're not sure.
 	* If you are doing an Airgapped install, provide the path on the the instance
-	  to the `.airgap` file that you downloaded using the initial instruction in
+	  to the `.airgap` file that you downloaded using the initial instructions in
     your setup email.
 1. Secure access to the Admin Console. We recommend at least setting up the
    simple password auth. If you're so inclined, LDAP authentication can also be
@@ -228,29 +228,20 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. Configure the operational mode for this installation. See
    [Operational Modes](#operational-mode-decision) for information on what the different values
    are.
-1. _Optional:_ Configure that you wish for the system to request a SSL/TLS certificate
-   automatically from [Let's Encrypt](https://www.letsencrypt.org). If you do not have
-   a certificate and key you wish to upload, we highly suggest you use this option rather than
-   self-signed certificates. Self-signed certificates have significant issues when interacting
-   with VCS webhooks, which the system relies on.
-1. _Optional:_ If you are not using the builtin integration with Let's Encrypt, you can use this option
-   to configure the path on the host that is exposed as `/.well-known` within the product,
-   for use with [Let's Encrypt certbot tool with webroot](https://certbot.eff.org/docs/using.html#webroot).
-   The path here is passed to the `-w` option when using `certbot`.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
    configuration and you wish to increase the work that the instance does
    concurrently. This setting should be adjusted with care as setting it too
    high can result in an very unresponsive instance.
-1. _Optional:_ Provide the text version of a certificate (or certificates) which will be added to the trusted
-   list the product. This is used when services the product communicates with do not use
+1. _Optional:_ Provide the text version of a certificate (or certificates) that will be added to the trusted
+   list for the product. This is used when services the product communicates with do not use
    globally trusted certificates but rather a private Certificate Authority (CA). This is typically
    used when Private Terraform Enterprise uses a private certificate (it must trust itself) or a
    VCS provider uses a private CA.
 1. _Optional:_ Adjust the path used to store the vault files that are used to encrypt
-   sensitive data. This is a path on the host system, which allows the customer
-   to store these files outside of product to enhance security. Additionally,
-   you can configure the system to not store the vault files within any snapshots,
+   sensitive data. This is a path on the host system, which allows you
+   to store these files outside of the product to enhance security. Additionally,
+   you can configure the system not to store the vault files within any snapshots,
    giving you full custody of these files. These files will need to be provided before
    any snapshot restore process is performed, and should be placed into the path configured.
 1. _Optional:_ Configure the product to use an externally managed Vault cluster.
