@@ -52,6 +52,9 @@ ifeq ($(PROVIDER_NAME),)
 	@echo 'Please set PROVIDER_NAME'
 	exit 1
 endif
+ifeq ($(PROVIDER_SLUG),)
+	PROVIDER_SLUG=$(PROVIDER_NAME)
+endif
 	@echo "==> Starting $(PROVIDER_NAME) provider website in Docker..."
 	@docker run \
 		--interactive \
@@ -65,7 +68,7 @@ endif
 		--volume "$(shell pwd)/content/source/assets:/website/docs/assets" \
 		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
 		--workdir /terraform-website \
-		-e PROVIDER_NAME=$(PROVIDER_NAME) \
+		-e PROVIDER_SLUG=$(PROVIDER_SLUG) \
 		hashicorp/middleman-hashicorp:${VERSION}
 
 website-provider-test:
@@ -76,6 +79,9 @@ endif
 ifeq ($(PROVIDER_NAME),)
 	@echo 'Please set PROVIDER_NAME'
 	exit 1
+endif
+ifeq ($(PROVIDER_SLUG),)
+	PROVIDER_SLUG=$(PROVIDER_NAME)
 endif
 	@echo "==> Testing $(PROVIDER_NAME) provider website in Docker..."
 	-@docker stop "tf-website-temp"
@@ -91,7 +97,7 @@ endif
 		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
 		--workdir /terraform-website \
 		hashicorp/middleman-hashicorp:${VERSION}
-	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567/docs/providers/$(PROVIDER_NAME)/"
+	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567/docs/providers/$(PROVIDER_SLUG)/"
 	@docker stop "tf-website-$(PROVIDER_NAME)-temp"
 
 sync:
