@@ -137,12 +137,12 @@ clients and the PTFE application server. The certificate can be
 specified during the UI-based installation or the path to the
 certificate codified during an unattended installation.
 
-If a Classic or ALB Load Balancer is used, SSL/TLS will be terminated there.
+If a Classic or Application Load Balancer is used, SSL/TLS will be terminated there.
 In this configuration, the PTFE instances should still be configured to listen
 for incoming SSL/TLS connections but can do so using a self-signed certificate.
 
-The Load Balancer, being configured to send traffic to port 443 on the instances
-as type `https` will ignore the fact that it can't trust the self-signed certificate
+The load balancer, being configured to send traffic to port 443 on the instances
+as type `https`, will ignore the fact that it can't trust the self-signed certificate
 and operate correctly.
 
 ## Infrastructure Diagram
