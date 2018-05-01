@@ -2,7 +2,7 @@ Follow this template to format each API method. There are usually multiple secti
 
 ## Create a Something
 
-<!-- "Verb a Noun" or "Verb Nouns." -->
+<!-- Header: "Verb a Noun" or "Verb Nouns." -->
 
 `POST /organizations/:organization_name/somethings`
 
@@ -15,6 +15,10 @@ Parameter            | Description
 <!-- ^ The list of URL path parameters goes directly below the method and path, without a header of its own. They're simpler than other parameters because they're always strings and they're always mandatory, so this table only has two columns. Prefix URL path parameter names with a colon.
 
 If further explanation of this method is needed beyond its title, write it here, after the parameter list. -->
+
+-> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+
+<!-- ^ Include a note like the above if the endpoint CANNOT be used with a given token type. Most endpoints don't need this. -->
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
