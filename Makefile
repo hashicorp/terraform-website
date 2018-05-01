@@ -53,9 +53,9 @@ ifeq ($(PROVIDER_NAME),)
 	exit 1
 endif
 ifeq ($(PROVIDER_SLUG),)
-	PROVIDER_SLUG=$(PROVIDER_NAME)
+	$(eval PROVIDER_SLUG := $(PROVIDER_NAME))
 endif
-	@echo "==> Starting $(PROVIDER_NAME) provider website in Docker..."
+	@echo "==> Starting $(PROVIDER_SLUG) provider website in Docker..."
 	@docker run \
 		--interactive \
 		--rm \
@@ -81,10 +81,10 @@ ifeq ($(PROVIDER_NAME),)
 	exit 1
 endif
 ifeq ($(PROVIDER_SLUG),)
-	PROVIDER_SLUG=$(PROVIDER_NAME)
+	$(eval PROVIDER_SLUG := $(PROVIDER_NAME))
 endif
 	@echo "==> Testing $(PROVIDER_NAME) provider website in Docker..."
-	-@docker stop "tf-website-temp"
+	-@docker stop "tf-website-$(PROVIDER_NAME)-temp"
 	@docker run \
 		--detach \
 		--rm \
