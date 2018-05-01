@@ -12,8 +12,8 @@ config[:file_watcher_ignore] += [/^(\/website\/)?ext\//]
 require "middleman_helpers"
 helpers Helpers
 
-if ENV.include?('PROVIDER_NAME')
-  provider = ENV['PROVIDER_NAME']
+if ENV.include?('PROVIDER_SLUG')
+  provider = ENV['PROVIDER_SLUG']
   logger.info("==")
   logger.info("==> See #{provider} docs at http://localhost:4567/docs/providers/#{provider}")
   logger.info("==")
