@@ -18,6 +18,10 @@ Parameter            | Description
 -------------------- | ------------
 `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces.
 
+-> **Note:** Workspace creation is restricted to members of the owners team, the owners team [service account](../users-teams-organizations/service-accounts.html#team-service-accounts), and the [organization service account](../users-teams-organizations/service-accounts.html#organization-service-accounts).
+
+-> **Note:** Migrating legacy workspaces (with the `migration-environment` attribute) can only be done with a [user token](../users-teams-organizations/users.html#api-tokens). The user must be a member of the owners team in both the legacy organization and the new organization.
+
 ### Request Body
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
