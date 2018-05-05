@@ -19,15 +19,23 @@ SSH keys can be used in two places:
 
 ## List SSH Keys
 
-List all the SSH Keys for a given organization.
+`GET /organizations/:organization_name/ssh-keys`
 
-| Method | Path           |
-| :----- | :------------- |
-| GET | /organizations/:organization_name/ssh-keys |
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to list SSH keys for.
 
-### Parameters
+-> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
-- `:organization_name` (`string: <required>`) - specifies the organization name where the SSH Keys are defined
+Status  | Response                                             | Reason
+--------|------------------------------------------------------|-------
+[200][] | Array of [JSON API document][]s (`type: "ssh-keys"`) | Success
+[404][] | [JSON API error object][]                            | Organization not found
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -59,15 +67,20 @@ curl \
 
 ## Get an SSH Key
 
-Get the name (and other metadata) associated with a given SSH key ID.
+`GET /ssh-keys/:ssh_key_id`
 
-| Method | Path           |
-| :----- | :------------- |
-| GET | /ssh-keys/:ssh_key_id |
+Parameter     | Description
+--------------|----------------------
+`:ssh_key_id` | The SSH key ID to get.
 
-### Parameters
+This endpoint is for looking up the name associated with an SSH key ID. It does not retrieve the key text.
 
-- `:ssh_key_id` (`string: <required>`) - specifies the SSH key ID to get
+-> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+
+Status  | Response                                   | Reason
+--------|--------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "ssh-keys"`) | Success
+[404][] | [JSON API error object][]                  | SSH key not found or user not authorized
 
 ### Sample Request
 
@@ -96,26 +109,45 @@ curl \
 
 ## Create an SSH Key
 
-Create an SSH Key.
+`POST /organizations/:organization_name/ssh-keys`
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /organizations/:organization_name/ssh-keys |
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to create an SSH key in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 
-### Parameters
+-> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
-- `:organization_name` (`string: <required>`) - specifies the organization name where the SSH keys are defined
-- `name` (`string: <required>`) - specifies the name of the SSH key
-- `value` (`string: <required>`) - specifies the text of the SSH private key
+Status  | Response                                   | Reason
+--------|--------------------------------------------|-------
+[201][] | [JSON API document][] (`type: "ssh-keys"`) | Success
+[422][] | [JSON API error object][]                  | Validation errors
+
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`data.type`                 | string |         | Must be `"ssh-keys"`.
+`data.attributes.name`      | string |         | A name to identify the SSH key.
+`data.attributes.value`     | string |         | The text of the SSH private key.
+
 
 ### Sample Payload
 
 ```json
 {
   "data": {
+    "type": "ssh-keys",
     "attributes": {
       "name": "SSH Key",
-      "value": "..."
+      "value": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEAm6+JVgl..."
     }
   }
 }
@@ -151,16 +183,34 @@ curl \
 
 ## Update an SSH Key
 
-Update an SSH Key.
+`PATCH /ssh-keys/:ssh_key_id`
 
-| Method | Path           |
-| :----- | :------------- |
-| PATCH | /ssh-keys/:ssh_key_id |
+Parameter            | Description
+---------------------|------------
+`:ssh_key_id`        | The SSH key ID to update.
 
-### Parameters
+This endpoint lets you replace the name or value of an existing SSH key. Existing workspaces that use the key will be updated with the new name and/or key text.
 
-- `:ssh_key_id` (`string: <required>`) - specifies the SSH key ID to update
-- `name` (`string: <required>`) - specifies the name of the SSH key
+Only members of the owners team (or the owners team's service account) can edit SSH keys.
+
+-> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+
+Status  | Response                                   | Reason
+--------|--------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "ssh-keys"`) | Success
+[404][] | [JSON API error object][]                  | SSH key not found or user not authorized
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                    | Type   | Default   | Description
+----------------------------|--------|-----------|------------
+`data.type`                 | string |           | Must be `"ssh-keys"`.
+`data.attributes.name`      | string | (nothing) | A name to identify the SSH key. If omitted, the existing name is preserved.
+`data.attributes.value`     | string | (nothing) | The text of the SSH private key. If omitted, the existing value is preserved.
 
 ### Sample Payload
 
@@ -204,15 +254,23 @@ curl \
 
 ## Delete an SSH Key
 
-Delete an SSH Key.
+`DELETE /ssh-keys/:ssh_key_id`
 
-| Method | Path           |
-| :----- | :------------- |
-| DELETE | /ssh-keys/:ssh_key_id |
+Parameter            | Description
+---------------------|------------
+`:ssh_key_id`        | The SSH key ID to delete.
 
-### Parameters
+Only members of the owners team (or the owners team's service account) can delete SSH keys.
 
-- `:ssh_key_id` (`string: <required>`) - specifies the SSH key ID to delete
+-> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+
+Status  | Response                                             | Reason
+--------|------------------------------------------------------|-------
+[204][] | Nothing                                              | Success
+[404][] | [JSON API error object][]                            | SSH key not found or user not authorized
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+
 
 ### Sample Request
 
