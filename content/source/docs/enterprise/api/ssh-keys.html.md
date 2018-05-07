@@ -25,7 +25,7 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to list SSH keys for.
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
@@ -75,7 +75,7 @@ Parameter     | Description
 
 This endpoint is for looking up the name associated with an SSH key ID. It does not retrieve the key text.
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 Status  | Response                                   | Reason
 --------|--------------------------------------------|-------
@@ -115,7 +115,7 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create an SSH key in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 Status  | Response                                   | Reason
 --------|--------------------------------------------|-------
@@ -189,11 +189,11 @@ Parameter            | Description
 ---------------------|------------
 `:ssh_key_id`        | The SSH key ID to update.
 
-This endpoint lets you replace the name or value of an existing SSH key. Existing workspaces that use the key will be updated with the new name and/or key text.
+This endpoint replaces the name and/or key text of an existing SSH key. Existing workspaces that use the key will be updated with the new values.
 
 Only members of the owners team (or the owners team's service account) can edit SSH keys.
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 Status  | Response                                   | Reason
 --------|--------------------------------------------|-------
@@ -262,7 +262,7 @@ Parameter            | Description
 
 Only members of the owners team (or the owners team's service account) can delete SSH keys.
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------

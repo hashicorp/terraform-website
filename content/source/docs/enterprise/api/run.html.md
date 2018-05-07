@@ -23,7 +23,7 @@ Alternately, you can create a run with a pre-existing configuration version, eve
 
 A run performs a plan and apply, using a configuration version and the workspace’s current variables. You can specify a configuration version when creating a run; if you don’t provide one, the run defaults to the workspace’s most recently used version. (A configuration version is “used” when it is created or used for a run in this workspace.)
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 ### Request Body
 
@@ -158,7 +158,7 @@ This endpoint queues the request to perform an apply; the apply might not happen
 
 This endpoint represents an action as opposed to a resource. As such, the endpoint does not return any object in the response body.
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 
 Status  | Response                  | Reason(s)
@@ -210,7 +210,7 @@ Parameter      | Description
 ---------------|------------
 `workspace_id` | The workspace ID to list runs for.
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
@@ -305,7 +305,7 @@ This endpoint queues the request to perform a discard; the discard might not hap
 
 This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
@@ -357,7 +357,7 @@ This endpoint queues the request to perform a cancel; the cancel might not happe
 
 This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
 
--> **Note:** This endpoint is disabled for [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
