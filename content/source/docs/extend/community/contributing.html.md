@@ -10,9 +10,9 @@ description: |-
 
 # Contributing to Terraform
 
-Terraform and it's diverse collection of plugins are a collaborative work
+Terraform and its diverse collection of plugins are a collaborative work
 between HashiCorp employees, independent cloud vendors, and a large open source
-community. HashiCorp and the Terraform team truly values every issue, pull
+community. HashiCorp and the Terraform team truly value every issue, pull
 request, and feature request received on any of its many GitHub repositories.
 The only prerequisite to contributing to Terraform is an interest to improve the
 project! 
@@ -25,9 +25,9 @@ that are helpful to have or know if you're wanting to contribute more:
 - Basic programming knowledge. Terraform and Terraform Plugins are written in
 [the Go programming language](https://golang.org), but even if you've never
 written a line of Go before, you're still welcome to take a dive into the code
-and submit patches, the community is happy to assist with code reviews and offer
+and submit patches. The community is happy to assist with code reviews and offer
 guidance specific to Go. 
-- Infrastructure as Code. If this is a new term for you, checkout
+- Infrastructure as Code. If this is a new term for you, check out
 [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_Code)
 on Wikipedia for a brief introduction. Our [Getting Started
 guide](/intro/getting-started/install.html) is a great way to get started as
@@ -73,7 +73,7 @@ play in the various areas of the code base.
 We welcome issues of all kinds including feature requests, bug reports, and
 general questions. The code and issue tracker for Terraform is at
 [https://github.com/hashicorp/terraform](https://github.com/hashicorp/terraform).
-Each officially supported Terraform Provider has it's own GitHub repository in
+Each officially supported Terraform Provider has its own GitHub repository in
 the [Terraform Providers][tfproviders] GitHub Organization.
 
 Below you'll find checklists with guidelines for well-formed issues of each
@@ -193,8 +193,8 @@ easy for anybody to help us improve our docs.
    site immediately, or is it referencing an upcoming version of Terraform and
    should get pushed out with the next release?
    
-As mentioned above, each Terraform Provider has it's own code repository in the
-[Terraform Providers][tfproviders]. Each repository has it's own folder named
+As mentioned above, each Terraform Provider has its own code repository in the
+[Terraform Providers][tfproviders]. Each repository has its own folder named
 `website` that contains that Providers documentation. Updates for documentation
 for a specific provider should be reported or posted there. 
 
@@ -255,7 +255,7 @@ Implementing a new provider gives Terraform the ability to manage resources in
 a whole new API. It's a larger undertaking, but brings major new functionality
 into Terraform.
 
- - [ ] __Minimal initial LOC__: Some providers may be big and it can be
+ - [ ] __Minimal initial LOC__: Some providers may be big, and it can be
    inefficient for both reviewer & author to go through long feedback cycles
    on a big PR with many resources. We encourage you to only submit
    the necessary minimum in a single PR, ideally **just the first resource**
@@ -339,7 +339,7 @@ work involved in testing a resource.
 
 Because acceptance tests create real resources, they often cost money to run.
 Because the resources only exist for a short period of time, the total amount
-of money required is usually a relatively small. Nevertheless, we don't want
+of money required is usually relatively small. Nevertheless, we don't want
 financial limitations to be a barrier to contribution, so if you are unable to
 pay to run acceptance tests for your contribution, simply mention this in your
 pull request. We will happily accept "best effort" implementations of
