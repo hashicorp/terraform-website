@@ -41,9 +41,9 @@ Key path                    | Type   | Default | Description
 Status  | Response                               | Reason
 --------|----------------------------------------|-------
 [200][] | [JSON API document][] (`type: "runs"`) | Successfully created a run
+[401][] | [JSON API error object][]              | Tried to create run with organization token (use a user or team token instead)
 [404][] | [JSON API error object][]              | Organization or workspace not found, or user unauthorized to perform action
 [422][] | [JSON API error object][]              | Validation errors
-[401][] | [JSON API error object][]              | Tried to create run with organization token (use a user or team token instead)
 
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -164,8 +164,8 @@ This endpoint represents an action as opposed to a resource. As such, the endpoi
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a discard request.
-[409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed.
 [401][] | [JSON API error object][] | Tried to apply run with organization token (use a user or team token instead)
+[409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed.
 
 [202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
 [409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
@@ -286,7 +286,7 @@ curl \
         "self": "/api/v2/runs/run-bWSq4YeYpfrW4mx7"
       }
     },
-    ...
+    {...}
   ]
 }
 ```
@@ -310,8 +310,8 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a discard request.
-[409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed.
 [401][] | [JSON API error object][] | Tried to discard run with organization token (use a user or team token instead)
+[409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed.
 
 ### Request Body
 
@@ -362,8 +362,8 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a cancel request.
-[409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed.
 [401][] | [JSON API error object][] | Tried to cancel run with organization token (use a user or team token instead)
+[409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed.
 
 ### Request Body
 
