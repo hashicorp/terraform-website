@@ -161,6 +161,33 @@ $ curl \
 }
 ```
 
+## Rate Limiting
+
+You can make up to 30 requests per second to the API as an authenticated or unauthenticated request. If you reach the rate limit then you will be throttled and an error response will be returned.
+
+Authenticated requests are allocated to the user associated with the authentication token. This means that a user with multiple tokens will still be limited to 30 requests per second, additional tokens will not allow you to increase the requests per second permitted.
+
+Unauthenticated requests are associated with the requesting IP address.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[429][] | [JSON API error object][]                    | Rate limit has been reached.
+
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+```json
+{
+  "errors": [
+    {
+      "detail": "You have exceeded the API's rate limit of 30 requests per second.",
+      "status": 429,
+      "title": "Too many requests"
+    }
+  ]
+}
+```
+
 ## Community client libraries and tools
 
 The community client libraries and tools listed below have been built by the community of Terraform Enterprise users and vendors. These client libraries and tools are not tested nor officially maintained by HashiCorp, and are listed here in order to help users find them easily.
