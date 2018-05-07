@@ -25,7 +25,7 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][] (`type: "somethings"`) | Successfully created a team
 [400][] | [JSON API error object][]                    | Invalid `include` parameter
 [404][] | [JSON API error object][]                    | Organization not found, or user unauthorized to perform action
-[422][] | [JSON API error object][]                    | Validation errors
+[422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 [500][] | [JSON API error object][]                    | Failure during team creation
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

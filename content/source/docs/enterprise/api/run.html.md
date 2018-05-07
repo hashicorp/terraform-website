@@ -43,7 +43,7 @@ Status  | Response                               | Reason
 [200][] | [JSON API document][] (`type: "runs"`) | Successfully created a run
 [401][] | [JSON API error object][]              | Tried to create run with organization token (use a user or team token instead)
 [404][] | [JSON API error object][]              | Organization or workspace not found, or user unauthorized to perform action
-[422][] | [JSON API error object][]              | Validation errors
+[422][] | [JSON API error object][]              | Malformed request body (missing attributes, wrong types, etc.)
 
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
