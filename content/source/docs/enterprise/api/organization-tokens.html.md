@@ -16,9 +16,9 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to generate a token for.
 
-Generates a new organization token and overrides existing token if one exists. This token can be used to act as [the organization service account](../users-teams-organizations/service-accounts.html).
+Generates a new organization token, replacing any existing token. This token can be used to act as [the organization service account](../users-teams-organizations/service-accounts.html).
 
-Only members of the owners team, the owners team service account, and the organization service account can use this endpoint.
+Only members of the owners team, the owners [team service account](../users-teams-organizations/service-accounts.html#team-service-accounts), and the [organization service account](../users-teams-organizations/service-accounts.html#organization-service-accounts) can use this endpoint.
 
 Status  | Response                                                | Reason
 --------|---------------------------------------------------------|-------

@@ -30,7 +30,7 @@ Parameter            | Description
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
 [200][] | Array of [JSON API document][]s (`type: "ssh-keys"`) | Success
-[404][] | [JSON API error object][]                            | Organization not found
+[404][] | [JSON API error object][]                            | Organization not found or user not authorized
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
@@ -120,7 +120,8 @@ Parameter            | Description
 Status  | Response                                   | Reason
 --------|--------------------------------------------|-------
 [201][] | [JSON API document][] (`type: "ssh-keys"`) | Success
-[422][] | [JSON API error object][]                  | Validation errors
+[422][] | [JSON API error object][]                  | Malformed request body (missing attributes, wrong types, etc.)
+[404][] | [JSON API error object][]                  | User not authorized
 
 [201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
 [422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
@@ -191,7 +192,7 @@ Parameter            | Description
 
 This endpoint replaces the name and/or key text of an existing SSH key. Existing workspaces that use the key will be updated with the new values.
 
-Only members of the owners team (or the owners team's service account) can edit SSH keys.
+Only members of the owners team (or the owners team service account) can edit SSH keys.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
@@ -260,7 +261,7 @@ Parameter            | Description
 ---------------------|------------
 `:ssh_key_id`        | The SSH key ID to delete.
 
-Only members of the owners team (or the owners team's service account) can delete SSH keys.
+Only members of the owners team (or the owners team service account) can delete SSH keys.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 

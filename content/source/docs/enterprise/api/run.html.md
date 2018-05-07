@@ -41,7 +41,6 @@ Key path                    | Type   | Default | Description
 Status  | Response                               | Reason
 --------|----------------------------------------|-------
 [200][] | [JSON API document][] (`type: "runs"`) | Successfully created a run
-[401][] | [JSON API error object][]              | Tried to create run with organization token (use a user or team token instead)
 [404][] | [JSON API error object][]              | Organization or workspace not found, or user unauthorized to perform action
 [422][] | [JSON API error object][]              | Malformed request body (missing attributes, wrong types, etc.)
 
@@ -49,7 +48,6 @@ Status  | Response                               | Reason
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
 
 
 ### Sample Payload
@@ -164,7 +162,6 @@ This endpoint represents an action as opposed to a resource. As such, the endpoi
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a discard request.
-[401][] | [JSON API error object][] | Tried to apply run with organization token (use a user or team token instead)
 [409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed.
 
 [202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
@@ -210,12 +207,9 @@ Parameter      | Description
 ---------------|------------
 `workspace_id` | The workspace ID to list runs for.
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
-
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
 [200][] | Array of [JSON API document][]s (`type: "runs"`) | Successfully listed runs
-[401][] | [JSON API error object][]                        | Tried to list runs with organization token (use a user or team token instead)
 
 ### Query Parameters
 
@@ -310,7 +304,6 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a discard request.
-[401][] | [JSON API error object][] | Tried to discard run with organization token (use a user or team token instead)
 [409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed.
 
 ### Request Body
@@ -362,7 +355,6 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a cancel request.
-[401][] | [JSON API error object][] | Tried to cancel run with organization token (use a user or team token instead)
 [409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed.
 
 ### Request Body
