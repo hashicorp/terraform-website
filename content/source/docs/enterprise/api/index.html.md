@@ -163,7 +163,7 @@ $ curl \
 
 ## Rate Limiting
 
-You can make up to 30 requests per second to the API as an authenticated or unauthenticated request. If you reach the rate limit then you will be throttled and an error response will be returned.
+You can make up to 30 requests per second to the API as an authenticated or unauthenticated request. If you reach the rate limit then your access will be throttled and an error response will be returned.
 
 Authenticated requests are allocated to the user associated with the authentication token. This means that a user with multiple tokens will still be limited to 30 requests per second, additional tokens will not allow you to increase the requests per second permitted.
 
