@@ -386,6 +386,15 @@ This endpoint lists workspaces in the organization.
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
 
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter                    | Description
+-----------------------------|------------
+`page[number]`    | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]` | **Optional.** If omitted, the endpoint will return 20 workspaces per page.
+
 ### Sample Request
 
 ```shell
