@@ -108,6 +108,39 @@ Since these parameters were originally designed as part of a JSON object, they s
 
 For more about URI structure and query strings, see [the specification (RFC 3986)](https://tools.ietf.org/html/rfc3986) or [the Wikipedia page on URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
+### Pagination
+
+Pagination is supported on the [list workspaces](/docs/enterprise/api/workspaces.html#list-workspaces) and [list runs](/docs/enterprise/api/run.html#list-runs-in-a-workspace) endpoints. A client may pass the following query parameters to control pagination on supported endpoints:
+
+Parameter      | Description
+---------------|------------
+`page[number]` | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 20 items per page.
+
+Additional data is returned in the `links` and `meta` top level attributes of the response.
+
+```json
+{
+  "data": [...],
+  "links": {
+    "self": "https://app.terraform.io/api/v2/organizations/hashicorp/workspaces?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://app.terraform.io/api/v2/organizations/hashicorp/workspaces?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": "https://app.terraform.io/api/v2/organizations/hashicorp/workspaces?page%5Bnumber%5D=2&page%5Bsize%5D=20",
+    "last": "https://app.terraform.io/api/v2/organizations/hashicorp/workspaces?page%5Bnumber%5D=2&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "prev-page": null,
+      "next-page": 2,
+      "total-pages": 2,
+      "total-count": 21
+    }
+  }
+}
+```
+
 ### Inclusion of Related Resources
 
 Some of the API's GET endpoints can return additional information about nested resources by adding an `include` query parameter, whose value is a comma-separated list of resource types.
