@@ -21,4 +21,5 @@ wget \
 	--page-requisites \
 	--recursive \
 	--spider \
+	--waitretry=120 \
 	$URL
