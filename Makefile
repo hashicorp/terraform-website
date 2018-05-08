@@ -83,7 +83,7 @@ endif
 ifeq ($(PROVIDER_SLUG),)
 	$(eval PROVIDER_SLUG := $(PROVIDER_NAME))
 endif
-ifeq ($(LINKCHECK_DELAY,)
+ifeq ($(LINKCHECK_DELAY),)
 	$(eval LINKCHECK_DELAY := 15)
 endif
 	@echo "==> Testing $(PROVIDER_NAME) provider website in Docker..."
