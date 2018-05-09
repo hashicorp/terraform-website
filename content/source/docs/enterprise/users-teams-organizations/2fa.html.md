@@ -10,6 +10,8 @@ User accounts can be additionally protected with two-factor authentication (2FA)
 
 ## Setting up Two-factor Authentication
 
+-> **API:** You can also manage user two-factor authentication with the [two-factor authentication API](../api/account.html).
+
 To reach your user security settings page, click the user icon in the upper right corner and choose "User Settings" from the menu.
 
 ![The two-factor authentication page in user settings](./images/2fa-user-settings.png)
