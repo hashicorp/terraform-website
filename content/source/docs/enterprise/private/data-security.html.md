@@ -10,6 +10,32 @@ Private Terraform Enterprise (PTFE) takes the security of the data it manages
 seriously. This document will go over a number of specific forms of data and how
 they are secured.
 
+## Reference Table
+
+| Object                               | Cached                     | Storage       | Encrypted                             |
+|:-------------------------------------|:---------------------------|:--------------|:--------------------------------------|
+| Ingressed VCS Data                   | No                         | Object Store  | Vault Datakeys + AES-128              |
+| Terraform Plan Result                | No                         | Object Store  | Vault Datakeys + AES-128              |
+| Terraform State                      | No                         | Object Store  | Vault Datakeys + AES-128              |
+| Terraform Logs                       | Yes                        | Object Store  | Vault Datakeys + AES-128              |
+| Terraform/Environment Variables      | Yes (not sensitive fields) | PostgreSQL    | Vault Transit Encryption              |
+|                                      |                            |               |                                       |
+| Organization/Workspace/Team Settings | Yes                        | PostgreSQL    | No                                    |
+| Account Password                     | No                         | PostgreSQL    | bcrypt                                |
+| 2FA Recovery Codes                   | No                         | PostgreSQL    | Vault Transit Encryption              |
+| SSH Keys                             | No                         | PostgreSQL    | Vault Transit Encryption              |
+| User/Team/Organization Tokens        | No                         | PostgreSQL    | HMAC SHA512                           |
+| OAuth Client ID + Secret             | No                         | PostgreSQL    | Vault Transit Encryption              |
+| OAuth User Tokens                    | No                         | PostgreSQL    | Vault Transit Encryption              |
+|                                      |                            |               |                                       |
+| Twilio Account Configuration         | No                         | PostgreSQL    | Vault Transit Encryption              |
+| SMTP Configuration                   | No                         | PostgreSQL    | Vault Transit Encryption              |
+| SAML Configuration                   | No                         | PostgreSQL    | Vault Transit Encryption              |
+|                                      |                            |               |                                       |
+| Vault Unseal Key                     | No                         | Host          | No                                    |
+| PTFE Token to access Vault           | No                         | Redis on Host | Protected by Installer Primary Secret |
+| Installer Primary Secret Key         | No                         | Host          | Encrypted by Installer                |
+
 ## Terraform States
 
 Terraform states are one of the most sensitive pieces of data in Terraform
