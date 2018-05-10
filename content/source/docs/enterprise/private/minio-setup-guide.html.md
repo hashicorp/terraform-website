@@ -48,7 +48,8 @@ Now you'll start the Minio container, mounting a volume so that you can gain acc
     docker run \
       -d \
       --name minio \
-      -v /run/minio/config:/root/.minio minio/minio:latest \
+      -v /run/minio/config:/root/.minio \
+      minio/minio:latest \
       -- \
       server /data
 
@@ -86,7 +87,8 @@ You may now [continue the installation in the browser](./install-installer.html#
 5. Enter the access key and secret access key using the information retrieved from Minio
 6. Provide the endpoint URL, like: `http://<ip address from above>:9000`
 7. Enter the name of the bucket you created above (`ptfe` in the example)
-8. Enter `us-east-1` for the region; this is arbitrary, but must be a valid AWS region<br/>**Note:** The "Test Authentication" button does not currently work for non-AWS endpoints
+8. Enter `us-east-1` for the region; this is arbitrary, but must be a valid AWS region  
+   **Note:** The "Test Authentication" button does not currently work for non-AWS endpoints
 9. Click "Save"
 
 ## Next Steps
