@@ -155,8 +155,6 @@ resource "example_spot_request" "ex" {
 
 ### TypeString
 
-> **NOTE** `TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://godoc.org/github.com/hashicorp/terraform/helper/validation#ValidateRFC3339TimeString)).
-
 **Data structure:** [string](https://golang.org/pkg/builtin/#string)  
 **Example:** `"Hello, world!"`
 
@@ -182,10 +180,36 @@ resource "example_spot_request" "ex" {
 "description": "Managed by Terraform",
 ```
 
+### Date & Time Data
 
+`TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://godoc.org/github.com/hashicorp/terraform/helper/validation#ValidateRFC3339TimeString)).
+
+**Example:** `2006-01-02T15:04:05Z07:00`
+
+**Schema example:**
+
+```go
+"expiration": {
+  Type:         schema.TypeString,
+  ValidateFunc: validation.ValidateRFC3339TimeString,
+},
+```
+
+**Configuration example:**
+
+```hcl
+resource "example_resource" "ex" {
+  expiration = "2006-01-02T15:04:05Z07:00"
+}
+```
+
+**State representation:**  
+
+```json
+"expiration": "2006-01-02T15:04:05Z07:00",
+```
 
 ## Aggregate Types
-
 
 ### TypeMap
 **Data structure:** [map](https://golang.org/doc/effective_go.html#maps): `map[string]interface{}`    
