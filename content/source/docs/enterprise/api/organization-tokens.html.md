@@ -10,15 +10,25 @@ sidebar_current: "docs-enterprise2-api-organization-tokens"
 
 ## Generate a new organization token
 
-Generates a new organization token and overrides existing token if one exists.
+`POST /organizations/:organization_name/authentication-token`
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /organizations/:organization/authentication-token |
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to generate a token for.
 
-### Parameters
+Generates a new organization token, replacing any existing token. This token can be used to act as [the organization service account](../users-teams-organizations/service-accounts.html).
 
-- `:organization` (`string: <required>`) - specifies the organization for the organization token
+Only members of the owners team, the owners [team service account](../users-teams-organizations/service-accounts.html#team-service-accounts), and the [organization service account](../users-teams-organizations/service-accounts.html#organization-service-accounts) can use this endpoint.
+
+Status  | Response                                                | Reason
+--------|---------------------------------------------------------|-------
+[201][] | [JSON API document][] (`type: "authentication-tokens"`) | Success
+[404][] | [JSON API error object][]                               | User not authorized
+
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -57,13 +67,20 @@ curl \
 
 ## Delete the organization token
 
-| Method | Path           |
-| :----- | :------------- |
-| DELETE | /organizations/:organization/authentication-token |
+`DELETE /organizations/:organization/authentication-token`
 
-### Parameters
+Parameter            | Description
+---------------------|------------
+`:organization_name` | Which organization's token should be deleted.
 
-- `:organization` (`string: <required>`) - specifies the organization for the organization token
+Only members of the owners team, the owners team service account, and the organization service account can use this endpoint.
+
+Status  | Response                                             | Reason
+--------|------------------------------------------------------|-------
+[204][] | Nothing                                              | Success
+[404][] | [JSON API error object][]                            | User not authorized
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 
 ### Sample Request
 
