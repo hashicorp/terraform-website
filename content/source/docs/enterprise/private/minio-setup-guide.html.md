@@ -23,13 +23,13 @@ When configured to use external services, PTFE must be connected to a storage se
 
 ~> **Note:** This is not a production-ready configuration: it's intended to guide you to a working configuration that can later be automated and hardened.
 
-This guide will walk through installing Minio in a Docker container alongside PTFE on the same host, with PTFE configured in the "Production - External Services" [operational mode](.install-installer.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc.  It is assumed your instance will have access to the Internet and that you will be performing an online install of PTFE.
+This guide will walk through installing Minio in a Docker container alongside PTFE on the same host, with PTFE configured in the "Production - External Services" [operational mode](./install-installer.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc.  It is assumed your instance will have access to the Internet and that you will be performing an online install of PTFE.
 
 ### System preparation
 
 Ensure your Linux instance meets the [requirements](./install-installer.html#linux-instance).  You will need [jq](https://stedolan.github.io/jq/) (a command-line JSON processor), and the [AWS CLI](https://aws.amazon.com/cli/).
 
-You also need a PostgreSQL database that meets the [requirements](.install-installer.html#postgresql-requirements), as this is part of the external services operational mode.
+You also need a PostgreSQL database that meets the [requirements](./install-installer.html#postgresql-requirements), as this is part of the external services operational mode.
 
 ### PTFE installation
 
