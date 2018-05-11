@@ -132,16 +132,18 @@ curl \
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the user to delete.
+`:id`     | The ID of the user to suspend.
 
 This endpoint will suspend a user's account, preventing them from logging in and accessing resources.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "users"`) | Successfully suspended the user's account.
+[400][] | [JSON API error object][]               | User is already suspended.
 [404][] | [JSON API error object][]               | Client is not an administrator.
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
@@ -199,16 +201,18 @@ curl \
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the user to delete.
+`:id`     | The ID of the user to re-activate.
 
 This endpoint will re-active a suspended user's account, allowing them to continue logging in and accessing resources.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "users"`) | Successfully re-activated the user's account.
+[400][] | [JSON API error object][]               | User is not suspended.
 [404][] | [JSON API error object][]               | Client is not an administrator.
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
@@ -221,6 +225,144 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/unsuspend"
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "user-ZL4MsEKnd6iTigTb",
+    "type": "users",
+    "attributes": {
+      "username": "myuser",
+      "email": "myuser@example.com",
+      "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
+      "is-admin": false,
+      "is-suspended": false,
+      "two-factor": {
+        "delivery": null,
+        "sms-number": null,
+        "enabled": false,
+        "verified": false
+      }
+    },
+    "relationships": {
+      "organizations": {
+        "data": [
+          {
+            "id": "myorganization",
+            "type": "organizations"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/api/v2/users/myuser"
+    }
+  }
+}
+```
+
+## Grant a user administrative privileges
+
+`POST /admin/users/:id/actions/grant_admin`
+
+Parameter | Description
+----------|------------
+`:id`     | The ID of the user to make an administrator.
+
+Status  | Response                                | Reason
+--------|-----------------------------------------|----------
+[200][] | [JSON API document][] (`type: "users"`) | Successfully made the user an administrator.
+[400][] | [JSON API error object][]               | User is already an administrator.
+[404][] | [JSON API error object][]               | Client is not an administrator.
+[422][] | [JSON API error object][]               | Validation errors
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/grant_admin"
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "user-ZL4MsEKnd6iTigTb",
+    "type": "users",
+    "attributes": {
+      "username": "myuser",
+      "email": "myuser@example.com",
+      "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
+      "is-admin": true,
+      "is-suspended": false,
+      "two-factor": {
+        "delivery": null,
+        "sms-number": null,
+        "enabled": false,
+        "verified": false
+      }
+    },
+    "relationships": {
+      "organizations": {
+        "data": [
+          {
+            "id": "myorganization",
+            "type": "organizations"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/api/v2/users/myuser"
+    }
+  }
+}
+```
+
+## Revoke an user's administrative privileges
+
+`POST /admin/users/:id/actions/revoke_admin`
+
+Parameter | Description
+----------|------------
+`:id`     | The ID of the administratot to demote.
+
+This endpoint will suspend a user's account, preventing them from logging in and accessing resources.
+
+Status  | Response                                | Reason
+--------|-----------------------------------------|----------
+[200][] | [JSON API document][] (`type: "users"`) | Successfully made the user an administrator.
+[400][] | [JSON API error object][]               | User is not an administrator.
+[404][] | [JSON API error object][]               | Client is not an administrator.
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/revoke_admin"
 ```
 
 ### Sample Response
