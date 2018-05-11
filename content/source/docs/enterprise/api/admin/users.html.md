@@ -8,7 +8,94 @@ sidebar_current: "docs-enterprise2-api-admin"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-The Admin API contains endpoints to help site administrators configure, monitor, and troubleshoot their Terraform Enterprise installation.
+The User Admin API contains endpoints to help site administrators manage user accounts.
+
+## List all users
+
+`GET /admin/users`
+
+This endpoint will list all user accounts in the Terraform Enterprise installation.
+
+Status  | Response                                | Reason
+--------|-----------------------------------------|----------
+[200][] | [JSON API document][] (`type: "users"`) | Successfully listed users
+[404][] | [JSON API error object][]               | Client is not an administrator.
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Query Parameters
+
+[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter           | Description
+--------------------|------------
+`q`                 | A search query string. Users are searchable by username and email address.
+`filter[admin]`     | If supplied, can be `"true"` or `"false"` to show only administrators or non-administrators.
+`filter[suspended]` | If supplied, can be `"true"` or `"false"` to show only suspended users or users who are not suspended.
+
+### Available Related Resources
+
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+Resource Name      | Description
+-------------------|------------
+`organizations`    | A list of full organization records for each returned user.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  "https://app.terraform.io/api/v2/admin/users"
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "user-ZL4MsEKnd6iTigTb",
+      "type": "users",
+      "attributes": {
+        "username": "myuser",
+        "email": "myuser@example.com",
+        "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
+        "is-admin": true,
+        "is-suspended": false,
+        "two-factor": {
+          "delivery": null,
+          "sms-number": null,
+          "enabled": false,
+          "verified": false
+        }
+      },
+      "relationships": {
+        "organizations": {
+          "data": [
+            {
+              "id": "myorganization",
+              "type": "organizations"
+            }
+          ]
+        }
+      },
+      "links": {
+        "self": "/api/v2/users/myuser"
+      }
+    }
+  ],
+  "meta": {
+    "total-count": 1,
+    "suspended-count": 0,
+    "admin-count": 1
+  }
+}
+```
 
 ## Impersonate another user
 
