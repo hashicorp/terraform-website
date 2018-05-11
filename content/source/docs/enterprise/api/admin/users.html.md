@@ -1,10 +1,10 @@
 ---
 layout: enterprise2
-page_title: "Admin - API Docs - Terraform Enterprise"
+page_title: "Users - Admin - API Docs - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-api-admin-users"
 ---
 
-# Admin API
+# Admin Users API
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
@@ -89,10 +89,24 @@ curl \
       }
     }
   ],
+  "links": {
+    "self": "https://app.terraform.io/api/v2/admin/users?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://app.terraform.io/api/v2/admin/users?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "https://app.terraform.io/api/v2/admin/users?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
   "meta": {
     "total-count": 1,
     "suspended-count": 0,
-    "admin-count": 1
+    "admin-count": 1,
+    "pagination": {
+      "current-page": 1,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 1,
+      "total-count": 1
+    }
   }
 }
 ```
