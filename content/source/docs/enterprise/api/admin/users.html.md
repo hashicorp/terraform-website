@@ -97,6 +97,35 @@ curl \
 }
 ```
 
+## Delete a user account
+
+`DELETE /admin/users/:id`
+
+Parameter | Description
+----------|------------
+`:id`     | The ID of the user to delete.
+
+Status  | Response                  | Reason
+--------|---------------------------|----------
+[204][] | Empty body                | Successfully destroyed the user account.
+[404][] | [JSON API error object][] | Client is not an administrator.
+[422][] | [JSON API error object][] | Validation errors
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb"
+```
+
 ## Impersonate another user
 
 `POST /admin/users/:username/actions/impersonate`
