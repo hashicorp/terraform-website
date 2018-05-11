@@ -83,6 +83,9 @@ endif
 ifeq ($(PROVIDER_SLUG),)
 	$(eval PROVIDER_SLUG := $(PROVIDER_NAME))
 endif
+ifeq ($(LINKCHECK_DELAY),)
+	$(eval LINKCHECK_DELAY := 15)
+endif
 	@echo "==> Testing $(PROVIDER_NAME) provider website in Docker..."
 	-@docker stop "tf-website-$(PROVIDER_NAME)-temp"
 	@docker run \
@@ -97,6 +100,8 @@ endif
 		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
 		--workdir /terraform-website \
 		hashicorp/middleman-hashicorp:${VERSION}
+	@echo "==> Waiting $(LINKCHECK_DELAY)s for website before linkchecking"
+	@sleep $(LINKCHECK_DELAY)
 	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567/docs/providers/$(PROVIDER_SLUG)/"
 	@docker stop "tf-website-$(PROVIDER_NAME)-temp"
 
