@@ -1,0 +1,123 @@
+---
+layout: enterprise2
+page_title: "Workspaces - Admin - API Docs - Terraform Enterprise"
+sidebar_current: "docs-enterprise2-api-admin-workspaces"
+---
+
+# Admin Workspaces API
+
+-> **Note**: These API endpoints are in beta and are subject to change.
+
+The Workspace Admin API contains endpoints to help site administrators manage workspaces.
+
+## List all workspaces
+
+`GET /admin/workspaces`
+
+This endpoint will list all workspaces in the Terraform Enterprise installation.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "workspaces"`) | Successfully listed workspaces
+[404][] | [JSON API error object][]                    | Client is not an administrator.
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Query Parameters
+
+[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter                     | Description
+------------------------------|------------
+`q`                           | A search query string. Workspaces are searchable by name and organization name.
+`filter[current_run][status]` | An optional comma-separated list of Run statuses to restrict results to. Can be a list of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
+`sort`                        | Allows sorting the returned workspaces. This defaults to `"name"`, but can also be supplied as `"current-run.created-at"` to order by the time of the workspaces' current run. Prepending a hypen to the sort parameter will reverse the order (e.g. `"-name"` to reverse the default order)
+
+### Available Related Resources
+
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+Resource Name         | Description
+----------------------|------------
+`organization`        | The full organization records for each returned workspace.
+`organization.owners` | A list of owners for each workspace's associated organization.
+`current_run`         | The full current run for each returned workspace.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  "https://app.terraform.io/api/v2/admin/workspaces"
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "ws-2HRvNs49EWPjDqT1",
+      "type": "workspaces",
+      "attributes": {
+        "name": "my-workspace",
+        "locked": false,
+        "vcs-repo": {
+          "identifier": "my-organization/my-repository"
+        }
+      },
+      "relationships": {
+        "organization": {
+          "data": {
+            "id": "myorganization",
+            "type": "organizations"
+          }
+        },
+        "current-run": {
+          "data": {
+            "id": "run-jm8ekSaW3F52FACN",
+            "type": "runs"
+          }
+        }
+      },
+      "links": {
+        "self": "/api/v2/organizations/myorganization/workspaces/my-workspace"
+      }
+    }
+  ],
+  "links": {
+    "self": "http://localhost:3000/api/v2/admin/workspaces?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "http://localhost:3000/api/v2/admin/workspaces?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "http://localhost:3000/api/v2/admin/workspaces?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pending-count": 1,
+    "planning-count": 0,
+    "planned-count": 0,
+    "confirmed-count": 0,
+    "applying-count": 0,
+    "applied-count": 0,
+    "discarded-count": 0,
+    "errored-count": 0,
+    "canceled-count": 0,
+    "policy-checking-count": 0,
+    "policy-override-count": 0,
+    "policy-checked-count": 0,
+    "total-count": 0,
+    "no-run-count": 0,
+    "pagination": {
+      "current-page": 1,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 0,
+      "total-count": 1
+    }
+  }
+}
+```
