@@ -114,3 +114,32 @@ curl \
   }
 }
 ```
+
+## Force a run to cancel
+
+`POST /admin/runs/:id/actions/cancel`
+
+Parameter | Description
+----------|------------
+`:id`     | The ID of the run to cancel.
+
+This endpoint will force a run (and its plan/apply, if applicable) into the `"errored"` state; this should only be performed for runs which are stuck and no longer progressing normally.
+
+Status  | Response                  | Reason
+--------|---------------------------|----------
+[204][] | Empty response            | Successfully suspended the user's account.
+[404][] | [JSON API error object][] | Run not found, or client is not an administrator.
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  "https://app.terraform.io/api/v2/admin/runs/run-VCsNJXa59eUza53R/actions/cancel"
+```
