@@ -209,7 +209,7 @@ Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "users"`) | Successfully re-activated the user's account.
 [400][] | [JSON API error object][]               | User is not suspended.
-[404][] | [JSON API error object][]               | Client is not an administrator.
+[404][] | [JSON API error object][]               | User not found, or client is not an administrator.
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
@@ -276,7 +276,7 @@ Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "users"`) | Successfully made the user an administrator.
 [400][] | [JSON API error object][]               | User is already an administrator.
-[404][] | [JSON API error object][]               | Client is not an administrator.
+[404][] | [JSON API error object][]               | User not found, or client is not an administrator.
 [422][] | [JSON API error object][]               | Validation errors
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -347,7 +347,7 @@ Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "users"`) | Successfully made the user an administrator.
 [400][] | [JSON API error object][]               | User is not an administrator.
-[404][] | [JSON API error object][]               | Client is not an administrator.
+[404][] | [JSON API error object][]               | User not found, or client is not an administrator.
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
@@ -416,7 +416,7 @@ Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "users"`) | Successfully suspended the user's account.
 [400][] | [JSON API error object][]               | User does not have two-factor authentication enabled.
-[404][] | [JSON API error object][]               | Client is not an administrator.
+[404][] | [JSON API error object][]               | User not found, or client is not an administrator.
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
