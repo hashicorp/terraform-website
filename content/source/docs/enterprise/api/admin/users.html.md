@@ -402,6 +402,75 @@ curl \
 }
 ```
 
+## Disable a user's two-factor authentication
+
+`POST /admin/users/:id/actions/disable_two_factor`
+
+Parameter | Description
+----------|------------
+`:id`     | The ID of the user to disable 2FA for.
+
+This endpoint will disable a user's two-factor authentication in the situation where they have lost access to their phone number or token generator.
+
+Status  | Response                                | Reason
+--------|-----------------------------------------|----------
+[200][] | [JSON API document][] (`type: "users"`) | Successfully suspended the user's account.
+[400][] | [JSON API error object][]               | User does not have two-factor authentication enabled.
+[404][] | [JSON API error object][]               | Client is not an administrator.
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/disable_two_factor"
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "user-ZL4MsEKnd6iTigTb",
+    "type": "users",
+    "attributes": {
+      "username": "myuser",
+      "email": "myuser@example.com",
+      "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
+      "is-admin": false,
+      "is-suspended": false,
+      "two-factor": {
+        "delivery": null,
+        "sms-number": null,
+        "enabled": false,
+        "verified": false
+      }
+    },
+    "relationships": {
+      "organizations": {
+        "data": [
+          {
+            "id": "myorganization",
+            "type": "organizations"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/api/v2/users/myuser"
+    }
+  }
+}
+```
+
 ## Impersonate another user
 
 `POST /admin/users/:username/actions/impersonate`
