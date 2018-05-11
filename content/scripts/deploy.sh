@@ -114,6 +114,7 @@ if [ -z "$NO_UPLOAD" ]; then
   s3cmd \
     --mime-type="image/svg+xml" \
     --add-header="Cache-Control: max-age=31536000" \
+    --remove-header="Connection" \
     --exclude "*" \
     --include "*.svg" \
     --recursive \
