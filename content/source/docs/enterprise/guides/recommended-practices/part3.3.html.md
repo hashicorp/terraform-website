@@ -54,16 +54,23 @@ We recommend using the same repository and branch for every environment of a giv
 
 ![Changes in VCS branches can be merged to master and then promoted between workspaces representing a staging environment, a UAT environment, and finally a production environment.](./images/image1.png)
 
-## 5. Create Users and Teams
+## 5. Plan and Create Teams
 
-Your colleagues must create their own TFE user accounts and ask to join your organization, and you can then add them to the appropriate teams.
+TFE manages workspace access with teams, which are groups of user accounts.
 
-TFE’s teams are lists of users that can be granted per-workspace permissions, which means your TFE teams should match your understanding of who's responsible for which infrastructure. That isn't always an exact match for your org chart, so make sure you spend some time thinking about this and talking to people across the organization. Keep in mind:
+Your TFE teams should match your understanding of who's responsible for which infrastructure. That isn't always an exact match for your org chart, so make sure you spend some time thinking about this and talking to people across the organization. Keep in mind:
 
 * Some teams need to administer many workspaces, and others only need permissions on one or two.
 * A team might not have the same permissions on every workspace they use; for example, application developers might have read/write access to their app’s dev and stage environments, but read-only access to prod.
 
 Managing an accurate and complete map of how responsibilities are delegated is one of the most difficult parts of practicing collaborative infrastructure as code.
+
+When managing team membership, you have two options:
+
+- Manage user accounts with [SAML single sign-on](../../saml/index.html). SAML support is available with the Premium tier on private installs, and lets users log into TFE via your organization's existing identity provider. If your organization is at a scale where you use a SAML-compatible identity provider, we recommend this option.
+
+    If your identity provider already has information about your colleagues' teams or groups, you can [manage team membership via your identity provider](../../saml/team-membership.html). Otherwise, you can add users to teams with the UI or with [the team membership API](../../api/team-members.html).
+- Manage user accounts in TFE. Your colleagues must create their own TFE user accounts, and you can add them to your organization by adding their username to at least one team. You can manage team membership with the UI or with [the team membership API](../../api/team-members.html).
 
 ## 6. Assign Permissions
 
