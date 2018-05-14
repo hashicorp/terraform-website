@@ -40,6 +40,7 @@ website-test:
 		--volume "$(shell pwd)/ext:/ext" \
 		--volume "$(shell pwd)/content:/website" \
 		hashicorp/middleman-hashicorp:${VERSION}
+	until curl -f http://localhost:4567/; do sleep 1; done
 	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567" "/"
 	@docker stop "tf-website-temp"
 
@@ -97,6 +98,7 @@ endif
 		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
 		--workdir /terraform-website \
 		hashicorp/middleman-hashicorp:${VERSION}
+	until curl -f http://localhost:4567/; do sleep 1; done
 	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567/docs/providers/$(PROVIDER_SLUG)/"
 	@docker stop "tf-website-$(PROVIDER_NAME)-temp"
 
