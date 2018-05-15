@@ -16,10 +16,10 @@ The Terraform Version Admin API contains endpoints to help site administrators m
 
 This endpoint will list all known versions of Terraform.
 
-Status  | Response                                | Reason
---------|-----------------------------------------|----------
-[200][] | [JSON API document][] (`type: "users"`) | Successfully listed Terraform versions
-[404][] | [JSON API error object][]               | Client is not an administrator.
+Status  | Response                                             | Reason
+--------|------------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "terraform-versions"`) | Successfully listed Terraform versions
+[404][] | [JSON API error object][]                            | Client is not an administrator.
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
@@ -112,13 +112,13 @@ Properties without a default value are required.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
-`data.type`                 | string |         | Must be `"terraform-versions"`
-`data.attributes.version`   | string |         | A semantic version string (e.g. `"1.0.0"`)
-`data.attributes.url`       | string |         | The URL where a binary of this version can be downloaded
-`data.attributes.sha`       | string |         | The shasum of the Terraform binary
-`data.attributes.official`  | bool   | `false` | Whether or not this is an official release of Terraform
-`data.attributes.enabled`   | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
-`data.attributes.beta`      | bool   | `false` | Whether or not this version of Terraform is a beta pre-release
+`data.type`                 | string |         | **Required.** Must be `"terraform-versions"`
+`data.attributes.version`   | string |         | **Required.** A semantic version string (e.g. `"1.0.0"`)
+`data.attributes.url`       | string |         | **Required.** The URL where a compressed binary (using ZIP compression) of this version can be downloaded
+`data.attributes.sha`       | string |         | **Required.** The SHA-256 checksum of the compressed Terraform binary
+`data.attributes.official`  | bool   | `false` | **Optional.** Whether or not this is an official release of Terraform
+`data.attributes.enabled`   | bool   | `true`  | **Optional.** Whether or not this version of Terraform is enabled for use in Terraform Enterprise
+`data.attributes.beta`      | bool   | `false` | **Optional.** Whether or not this version of Terraform is a beta pre-release
 
 ### Sample Payload
 
@@ -173,7 +173,7 @@ curl \
 
 Parameter  | Description
 -----------|------------
-`:version` | The version string of the Terraform version to update
+`:version` | The version string of the Terraform version to show
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|----------
@@ -240,12 +240,12 @@ Properties without a default value are required.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
-`data.type`                 | string |         | Must be `"terraform-versions"`
-`data.attributes.url`       | string |         | The URL where a binary of this version can be downloaded
-`data.attributes.sha`       | string |         | The shasum of the Terraform binary
-`data.attributes.official`  | bool   | `false` | Whether or not this is an official release of Terraform
-`data.attributes.enabled`   | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
-`data.attributes.beta`      | bool   | `false` | Whether or not this version of Terraform is a beta pre-release
+`data.type`                 | string |         | **Required.** Must be `"terraform-versions"`
+`data.attributes.url`       | string |         | **Required.** The URL where a binary of this version can be downloaded
+`data.attributes.sha`       | string |         | **Required.** The shasum of the Terraform binary
+`data.attributes.official`  | bool   | `false` | **Optional.** Whether or not this is an official release of Terraform
+`data.attributes.enabled`   | bool   | `true`  | **Optional.** Whether or not this version of Terraform is enabled for use in Terraform Enterprise
+`data.attributes.beta`      | bool   | `false` | **Optional.** Whether or not this version of Terraform is a beta pre-release
 
 ### Sample Payload
 

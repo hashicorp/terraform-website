@@ -28,16 +28,16 @@ Status  | Response                               | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter           | Description
 --------------------|------------
-`q`                 | A search query string. Runs are searchable by ID, workspace name, organization name or email, and VCS repository identifier.
-`filter[status]`    | An optional comma-separated list of Run statuses to restrict results to. Can be a list of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
+`q`                 | **Optional.** A search query string. Runs are searchable by ID, workspace name, organization name or email, and VCS repository identifier.
+`filter[status]`    | **Optional.** A comma-separated list of Run statuses to restrict results to. Can be a list of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
 
 ### Available Related Resources
 
-This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](../index.html#inclusion-of-related-resources). The following resource types are available:
 
 Resource Name            | Description
 -------------------------|------------
@@ -125,13 +125,14 @@ Parameter | Description
 
 This endpoint will force a run (and its plan/apply, if applicable) into the `"errored"` state; this should only be performed for runs which are stuck and no longer progressing normally.
 
-Status  | Response                  | Reason
---------|---------------------------|----------
-[204][] | Empty response            | Successfully suspended the user's account.
-[404][] | [JSON API error object][] | Run not found, or client is not an administrator.
+Status  | Response                               | Reason
+--------|----------------------------------------|----------
+[200][] | [JSON API document][] (`type: "runs"`) | Successfully canceled the run.
+[404][] | [JSON API error object][]              | Run not found, or client is not an administrator.
 
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
@@ -142,4 +143,34 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   "https://app.terraform.io/api/v2/admin/runs/run-VCsNJXa59eUza53R/actions/cancel"
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "run-VCsNJXa59eUza53R",
+    "type": "runs",
+    "attributes": {
+      "status": "errored",
+      "status-timestamps": {
+        "planned-at": "2018-03-02T23:42:06Z"
+      },
+      "has-changes": true,
+      "created-at": "2018-03-02T23:42:06.651Z"
+    },
+    "relationships": {
+      "workspace": {
+        "data": {
+          "id": "ws-mJtb6bXGybq5zbf3",
+          "type": "workspaces"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/runs/run-VCsNJXa59eUza53R"
+    }
+  }
+}
 ```

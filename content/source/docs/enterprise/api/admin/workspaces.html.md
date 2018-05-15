@@ -32,9 +32,9 @@ Status  | Response                                     | Reason
 
 Parameter                     | Description
 ------------------------------|------------
-`q`                           | A search query string. Workspaces are searchable by name and organization name.
-`filter[current_run][status]` | An optional comma-separated list of Run statuses to restrict results to. Can be a list of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
-`sort`                        | Allows sorting the returned workspaces. This defaults to `"name"`, but can also be supplied as `"current-run.created-at"` to order by the time of the workspaces' current run. Prepending a hypen to the sort parameter will reverse the order (e.g. `"-name"` to reverse the default order)
+`q`                           | **Optional.** A search query string. Workspaces are searchable by name and organization name.
+`filter[current_run][status]` | **Optional.** A comma-separated list of Run statuses to restrict results to. Can be a list of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
+`sort`                        | **Optional.** Allows sorting the returned workspaces. This defaults to `"name"`, but can also be supplied as `"current-run.created-at"` to order by the time of the workspaces' current run. Prepending a hypen to the sort parameter will reverse the order (e.g. `"-name"` to reverse the default order)
 
 ### Available Related Resources
 

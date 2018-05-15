@@ -28,11 +28,11 @@ Status  | Response                                        | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter           | Description
 --------------------|------------
-`q`                 | A search query string. Organizations are searchable by name and notification email.
+`q`                 | **Optional.** A search query string. Organizations are searchable by name and notification email.
 
 ### Sample Request
 

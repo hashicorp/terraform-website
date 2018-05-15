@@ -4,11 +4,11 @@ page_title: "Admin - API Docs - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-api-admin"
 ---
 
-# Terraform Enterprise Admin API Documentation
+# Private Terraform Enterprise Admin API Documentation
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-Terraform Enterprise provides an API to allow administrators to configure and support their installation.
+Private Terraform Enterprise provides an API to allow administrators to configure and support their installation.
 
 See the navigation sidebar for the list of available endpoints.
 

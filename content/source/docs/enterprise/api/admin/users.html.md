@@ -28,7 +28,7 @@ Status  | Response                                | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter           | Description
 --------------------|------------
@@ -38,7 +38,7 @@ Parameter           | Description
 
 ### Available Related Resources
 
-This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](../index.html#inclusion-of-related-resources). The following resource types are available:
 
 Resource Name      | Description
 -------------------|------------
@@ -115,6 +115,8 @@ curl \
 
 `DELETE /admin/users/:id`
 
+This endpoint will delete a user's account from Terraform Enterprise. Users cannot be deleted if they are the last remaining owner of any organizations. These organizations must be given a new owner or deleted first.
+
 Parameter | Description
 ----------|------------
 `:id`     | The ID of the user to delete.
@@ -148,7 +150,7 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the user to suspend.
 
-This endpoint will suspend a user's account, preventing them from logging in and accessing resources.
+This endpoint will suspend a user's account, preventing them from authenticating and accessing resources.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
@@ -353,9 +355,7 @@ curl \
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the administratot to demote.
-
-This endpoint will suspend a user's account, preventing them from logging in and accessing resources.
+`:id`     | The ID of the administrator to demote.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
@@ -428,7 +428,7 @@ This endpoint will disable a user's two-factor authentication in the situation w
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
-[200][] | [JSON API document][] (`type: "users"`) | Successfully suspended the user's account.
+[200][] | [JSON API document][] (`type: "users"`) | Successfully disabled the user's two-factor authentication.
 [400][] | [JSON API error object][]               | User does not have two-factor authentication enabled.
 [404][] | [JSON API error object][]               | User not found, or client is not an administrator.
 
@@ -493,7 +493,7 @@ Parameter   | Description
 ------------|------------
 `:username` | The name of the user to impersonate.
 
-Impersonation allows an admin to begin a new session as another user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, but a new `"admin"` key will contain the username of the admin acting on the user's behalf. For more information about audit logging, see the [relevant documentation][audit logging].
+Impersonation allows an admin to begin a new session as another non-admin user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, but a new `"admin"` key will contain the username of the admin acting on the user's behalf. For more information about audit logging, see the [relevant documentation][audit logging].
 
 This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
 
