@@ -36,6 +36,14 @@ Parameter           | Description
 `page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`        | **Optional.** If omitted, the endpoint will return 20 organizations per page.
 
+### Available Related Resources
+
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+Resource Name | Description
+--------------|------------
+`owners`      | A list of owners for each organization.
+
 ### Sample Request
 
 ```shell
@@ -89,4 +97,94 @@ curl \
     }
   }
 }
+```
+
+## Show an organization
+
+`GET /admin/organizations/:name`
+
+Parameter  | Description
+-----------|------------
+`:name`    | The name of the organization to show
+
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "organizations"`) | The request was successful
+[404][] | [JSON API error object][]                       | Organization not found, or client is not an administrator
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Available Related Resources
+
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+Resource Name | Description
+--------------|------------
+`owners`      | A list of owners for the organization.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/admin/organizations/my-organization
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "my-organization",
+    "type": "organizations",
+    "attributes": {
+      "name": "my-organization",
+      "notification-email": "my-organization@example.com"
+    },
+    "relationships": {
+      "owners": {
+        "data": [
+          {
+            "id": "user-mVPjPn2hRJFtHMF5",
+            "type": "users"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/api/v2/organizations/my-organization"
+    }
+  }
+}
+```
+
+## Delete an organization
+
+`DELETE /admin/organizations/:name`
+
+Parameter  | Description
+-----------|------------
+`:name`    | The name of the organization to delete
+
+Status  | Response                  | Reason
+--------|---------------------------|----------
+[204][] | Empty response            | The organization was successfully deleted
+[404][] | [JSON API error object][] | Organization not found, or client is not an administrator
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/admin/organizations/my-organization
 ```
