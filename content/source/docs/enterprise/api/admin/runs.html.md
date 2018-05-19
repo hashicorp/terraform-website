@@ -14,7 +14,7 @@ The Runs Admin API contains endpoints to help site administrators manage runs.
 
 `GET /admin/runs`
 
-This endpoint will list all runs in the Terraform Enterprise installation.
+This endpoint lists all runs in the Terraform Enterprise installation.
 
 Status  | Response                               | Reason
 --------|----------------------------------------|----------
@@ -34,6 +34,8 @@ Parameter           | Description
 --------------------|------------
 `q`                 | **Optional.** A search query string. Runs are searchable by ID, workspace name, organization name or email, and VCS repository identifier.
 `filter[status]`    | **Optional.** A comma-separated list of Run statuses to restrict results to. Can be a list of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
+`page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`        | **Optional.** If omitted, the endpoint will return 20 runs per page.
 
 ### Available Related Resources
 
@@ -41,8 +43,8 @@ This GET endpoint can optionally return related resources, if requested with [th
 
 Resource Name            | Description
 -------------------------|------------
-`workspace`              | The full workspace this run belongs in.
-`workspace.organization` | The full organization of the associated workspace.
+`workspace`              | The workspace this run belongs in.
+`workspace.organization` | The organization of the associated workspace.
 
 ### Sample Request
 
@@ -123,7 +125,7 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the run to cancel.
 
-This endpoint will force a run (and its plan/apply, if applicable) into the `"errored"` state; this should only be performed for runs which are stuck and no longer progressing normally.
+This endpoint forces a run (and its plan/apply, if applicable) into the `"errored"` state; this action should only be performed for runs which are stuck and are no longer progressing normally.
 
 Status  | Response                               | Reason
 --------|----------------------------------------|----------

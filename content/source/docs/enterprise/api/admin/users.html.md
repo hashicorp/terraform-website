@@ -8,13 +8,13 @@ sidebar_current: "docs-enterprise2-api-admin-users"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-The User Admin API contains endpoints to help site administrators manage user accounts.
+The Users Admin API contains endpoints to help site administrators manage user accounts.
 
 ## List all users
 
 `GET /admin/users`
 
-This endpoint will list all user accounts in the Terraform Enterprise installation.
+This endpoint lists all user accounts in the Terraform Enterprise installation.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
@@ -32,9 +32,11 @@ Status  | Response                                | Reason
 
 Parameter           | Description
 --------------------|------------
-`q`                 | A search query string. Users are searchable by username and email address.
-`filter[admin]`     | If supplied, can be `"true"` or `"false"` to show only administrators or non-administrators.
-`filter[suspended]` | If supplied, can be `"true"` or `"false"` to show only suspended users or users who are not suspended.
+`q`                 | **Optional.** A search query string. Users are searchable by username and email address.
+`filter[admin]`     | **Optional.** Can be `"true"` or `"false"` to show only administrators or non-administrators.
+`filter[suspended]` | **Optional.** Can be `"true"` or `"false"` to show only suspended users or users who are not suspended.
+`page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`        | **Optional.** If omitted, the endpoint will return 20 users per page.
 
 ### Available Related Resources
 
@@ -42,7 +44,7 @@ This GET endpoint can optionally return related resources, if requested with [th
 
 Resource Name      | Description
 -------------------|------------
-`organizations`    | A list of full organization records for each returned user.
+`organizations`    | A list of organizations that each user is a member of.
 
 ### Sample Request
 
@@ -78,7 +80,7 @@ curl \
         "organizations": {
           "data": [
             {
-              "id": "myorganization",
+              "id": "my-organization",
               "type": "organizations"
             }
           ]
@@ -115,7 +117,7 @@ curl \
 
 `DELETE /admin/users/:id`
 
-This endpoint will delete a user's account from Terraform Enterprise. Users cannot be deleted if they are the last remaining owner of any organizations. These organizations must be given a new owner or deleted first.
+This endpoint deletes a user's account from Terraform Enterprise. Users cannot be deleted if they are the last remaining owner of any organizations. These organizations must be given a new owner or deleted first.
 
 Parameter | Description
 ----------|------------
@@ -125,7 +127,7 @@ Status  | Response                  | Reason
 --------|---------------------------|----------
 [204][] | Empty body                | Successfully destroyed the user account.
 [404][] | [JSON API error object][] | Client is not an administrator.
-[422][] | [JSON API error object][] | Validation errors
+[422][] | [JSON API error object][] | The user cannot be deleted because they are the last remaining owner of one or more organizations.
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
@@ -150,7 +152,7 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the user to suspend.
 
-This endpoint will suspend a user's account, preventing them from authenticating and accessing resources.
+This endpoint suspends a user's account, preventing them from authenticating and accessing resources.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
@@ -198,7 +200,7 @@ curl \
       "organizations": {
         "data": [
           {
-            "id": "myorganization",
+            "id": "my-organization",
             "type": "organizations"
           }
         ]
@@ -219,7 +221,7 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the user to re-activate.
 
-This endpoint will re-active a suspended user's account, allowing them to continue logging in and accessing resources.
+This endpoint re-activates a suspended user's account, allowing them to resume authenticating and accessing resources.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
@@ -267,7 +269,7 @@ curl \
       "organizations": {
         "data": [
           {
-            "id": "myorganization",
+            "id": "my-organization",
             "type": "organizations"
           }
         ]
@@ -336,7 +338,7 @@ curl \
       "organizations": {
         "data": [
           {
-            "id": "myorganization",
+            "id": "my-organization",
             "type": "organizations"
           }
         ]
@@ -403,7 +405,7 @@ curl \
       "organizations": {
         "data": [
           {
-            "id": "myorganization",
+            "id": "my-organization",
             "type": "organizations"
           }
         ]
@@ -424,7 +426,7 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the user to disable 2FA for.
 
-This endpoint will disable a user's two-factor authentication in the situation where they have lost access to their phone number or token generator.
+This endpoint disables a user's two-factor authentication in the situation where they have lost access to their device and recovery codes.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
@@ -472,7 +474,7 @@ curl \
       "organizations": {
         "data": [
           {
-            "id": "myorganization",
+            "id": "my-organization",
             "type": "organizations"
           }
         ]
@@ -493,7 +495,7 @@ Parameter   | Description
 ------------|------------
 `:username` | The name of the user to impersonate.
 
-Impersonation allows an admin to begin a new session as another non-admin user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, but a new `"admin"` key will contain the username of the admin acting on the user's behalf. For more information about audit logging, see the [relevant documentation][audit logging].
+Impersonation allows an admin to begin a new session as another non-admin user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, but a new `"admin"` key will contain the username of the admin acting on the user's behalf. For more information, see the [audit logging documentation][audit logging].
 
 This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
 

@@ -8,13 +8,13 @@ sidebar_current: "docs-enterprise2-api-admin-terraform-versions"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-The Terraform Version Admin API contains endpoints to help site administrators manage known versions of Terraform.
+The Terraform Versions Admin API contains endpoints to help site administrators manage known versions of Terraform.
 
 ## List all Terraform versions
 
 `GET /admin/terraform-versions`
 
-This endpoint will list all known versions of Terraform.
+This endpoint lists all known versions of Terraform.
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|----------
@@ -25,6 +25,15 @@ Status  | Response                                             | Reason
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter      | Description
+---------------|------------
+`page[number]` | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 20 Terraform versions per page.
 
 ### Sample Request
 
@@ -297,7 +306,7 @@ curl \
 
 `DELETE /admin/terraform-versions/:version`
 
-This endpoint will remove a Terraform version from Terraform Enterprise. Versions cannot be removed if they are official versions of Terraform or if there are Workspaces using them.
+This endpoint removes a Terraform version from Terraform Enterprise. Versions cannot be removed if they are official versions of Terraform or if there are Workspaces using them.
 
 Parameter  | Description
 -----------|------------
@@ -307,7 +316,7 @@ Status  | Response                  | Reason
 --------|---------------------------|----------
 [204][] | Empty response            | The Terraform version was successfully deleted
 [404][] | [JSON API error object][] | Terraform version not found, or client is not an administrator
-[422][] | [JSON API error object][] | Validation errors
+[422][] | [JSON API error object][] | The Terraform version cannot be removed due to it being official or in use.
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404

@@ -8,13 +8,13 @@ sidebar_current: "docs-enterprise2-api-admin-organizations"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-The Organization Admin API contains endpoints to help site administrators manage organizations.
+The Organizations Admin API contains endpoints to help site administrators manage organizations.
 
 ## List all organizations
 
 `GET /admin/organizations`
 
-This endpoint will list all organizations in the Terraform Enterprise installation.
+This endpoint lists all organizations in the Terraform Enterprise installation.
 
 Status  | Response                                        | Reason
 --------|-------------------------------------------------|----------
@@ -33,6 +33,8 @@ Status  | Response                                        | Reason
 Parameter           | Description
 --------------------|------------
 `q`                 | **Optional.** A search query string. Organizations are searchable by name and notification email.
+`page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`        | **Optional.** If omitted, the endpoint will return 20 organizations per page.
 
 ### Sample Request
 
@@ -49,11 +51,11 @@ curl \
 {
   "data": [
     {
-      "id": "myorganization",
+      "id": "my-organization",
       "type": "organizations",
       "attributes": {
-        "name": "myorganization",
-        "notification-email": "myorganization@example.com"
+        "name": "my-organization",
+        "notification-email": "my-organization@example.com"
       },
       "relationships": {
         "owners": {
@@ -66,7 +68,7 @@ curl \
         }
       },
       "links": {
-        "self": "/api/v2/organizations/myorganization"
+        "self": "/api/v2/organizations/my-organization"
       }
     }
   ],

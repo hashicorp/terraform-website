@@ -8,13 +8,13 @@ sidebar_current: "docs-enterprise2-api-admin-workspaces"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-The Workspace Admin API contains endpoints to help site administrators manage workspaces.
+The Workspaces Admin API contains endpoints to help site administrators manage workspaces.
 
 ## List all workspaces
 
 `GET /admin/workspaces`
 
-This endpoint will list all workspaces in the Terraform Enterprise installation.
+This endpoint lists all workspaces in the Terraform Enterprise installation.
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
@@ -35,6 +35,8 @@ Parameter                     | Description
 `q`                           | **Optional.** A search query string. Workspaces are searchable by name and organization name.
 `filter[current_run][status]` | **Optional.** A comma-separated list of Run statuses to restrict results to. Can be a list of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
 `sort`                        | **Optional.** Allows sorting the returned workspaces. This defaults to `"name"`, but can also be supplied as `"current-run.created-at"` to order by the time of the workspaces' current run. Prepending a hypen to the sort parameter will reverse the order (e.g. `"-name"` to reverse the default order)
+`page[number]`                | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                  | **Optional.** If omitted, the endpoint will return 20 workspaces per page.
 
 ### Available Related Resources
 
@@ -42,9 +44,9 @@ This GET endpoint can optionally return related resources, if requested with [th
 
 Resource Name         | Description
 ----------------------|------------
-`organization`        | The full organization records for each returned workspace.
+`organization`        | The organization for each returned workspace.
 `organization.owners` | A list of owners for each workspace's associated organization.
-`current_run`         | The full current run for each returned workspace.
+`current_run`         | The current run for each returned workspace.
 
 ### Sample Request
 
@@ -73,7 +75,7 @@ curl \
       "relationships": {
         "organization": {
           "data": {
-            "id": "myorganization",
+            "id": "my-organization",
             "type": "organizations"
           }
         },
@@ -85,7 +87,7 @@ curl \
         }
       },
       "links": {
-        "self": "/api/v2/organizations/myorganization/workspaces/my-workspace"
+        "self": "/api/v2/organizations/my-organization/workspaces/my-workspace"
       }
     }
   ],
