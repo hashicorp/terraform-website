@@ -33,7 +33,7 @@ TFE does things differently: a workspace is associated directly with a VCS repo,
 
 ## 3. Design Your Organization’s Workspace Structure
 
-In TFE, each Terraform configuration should manage a speciic infrastructure component, and each environment of a given configuration should be a separate workspace — in other words, Terraform configurations * environments = workspaces. A workspace name should be something like “networking-dev,” so you can tell at a glance which infrastructure and environment it manages.
+In TFE, each Terraform configuration should manage a specific infrastructure component, and each environment of a given configuration should be a separate workspace — in other words, Terraform configurations * environments = workspaces. A workspace name should be something like “networking-dev,” so you can tell at a glance which infrastructure and environment it manages.
 
 The definition of an “infrastructure component” depends on your organization’s structure. A given workspace might manage an application, a service, or a group of related services; it might provision infrastructure used by a single engineering team, or it might provision shared, foundational infrastructure used by the entire business.
 
