@@ -1,4 +1,14 @@
 module Helpers
+  # Returns a segment tracking ID such that local development is not
+  # tracked to production systems.
+  def segmentId()
+    if (ENV['DEPLOY_ENV'] == 'production')
+      'EnEETDWhfxp1rp09jVvJr66LdvwI6KVP'
+    else
+      '0EXTgkNx0Ydje2PGXVbRhpKKoe5wtzcE'
+    end
+  end
+
   # Returns the FQDN of the image URL.
   #
   # @param [String] path
@@ -27,7 +37,7 @@ module Helpers
   #
   # @return [String]
   def description_for(page)
-    description = (page.data.description || "")
+    description = (page.data.description || "Terraform by HashiCorp")
       .gsub('"', '')
       .gsub(/\n+/, ' ')
       .squeeze(' ')

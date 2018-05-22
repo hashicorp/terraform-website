@@ -20,6 +20,7 @@
       a {
         color: $sidebar-link-color;
         font-size: $sidebar-font-size;
+        overflow-wrap: break-word;
         padding: 10px 0 10px 15px;
 
         &:before {

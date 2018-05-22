@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Automated Recovery (Installer)"
-sidebar_current: "docs-enterprise2-private-automated-recovery"
+page_title: "Private Terraform Enterprise Automated Recovery (Installer Beta)"
+sidebar_current: "docs-enterprise2-private-installer-automated-recovery"
 ---
 
 # Private Terraform Enterprise Automated Recovery (Installer)
@@ -13,7 +13,7 @@ in the event of an outage. There are two steps in the automated recovery process
 1. Configure snapshots on your current install to backup data
 1. Provision a new PTFE instance using the latest snapshot
 
-This guide will walk through both of these steps. 
+This guide will walk through both of these steps.
 
 ## 1. Configure snapshots
 
@@ -28,7 +28,7 @@ to configure Private TFE itself such as installation type, database
 connection settings, hostname. This data rarely changes.
 
 In demo mode, both application data and installer data are
-stored on the PTFE instance. In mounted disk and external servies mode, only
+stored on the PTFE instance. In mounted disk and external services mode, only
 installer data is stored on the instance. Application data
 is stored in the mounted disk or in an external Postgres.
 
@@ -74,7 +74,7 @@ region=region_of_the_bucket
 access_key=aws_access_key_id
 secret_key=aws_secret_access_key
 
-access="--store s3 --s3-bucket $bucket --s3-region $region --s3-key-id $access_key --s3-secret-key $secret_key" 
+access="--store s3 --s3-bucket $bucket --s3-region $region --s3-key-id $access_key --s3-secret-key $secret_key"
 
 # jq is used by this script, so install it. For other Linux distros, either preinstall jq
 # and remove these lines, or change to the mechanism your distro uses to install jq.
@@ -128,7 +128,7 @@ key="$(base64 -w0 "$key_file")"
 host=sftp_server_hostname_or_ip
 user=user_to_sftp_on_the_remote_server
 
-access="--store sftp --sftp-host $host --sftp-user $user --sftp-key $key" 
+access="--store sftp --sftp-host $host --sftp-user $user --sftp-key $key"
 
 # jq is used by this script, so install it. For other Linux distros, either preinstall jq
 # and remove these lines, or change to the mechanism your distro uses to install jq.
@@ -181,7 +181,7 @@ set -e -u -o pipefail
 
 path=absolute_path_to_directory_of_snapshots
 
-access="--store local --path '$path'" 
+access="--store local --path '$path'"
 
 # jq is used by this script, so install it. For other Linux distros, either preinstall jq
 # and remove these lines, or change to the mechanism your distro uses to install jq.

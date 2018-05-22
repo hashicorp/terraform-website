@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Diagnostics"
-sidebar_current: "docs-enterprise2-diagnostics"
+sidebar_current: "docs-enterprise2-private-diagnostics"
 ---
 
 # Private Terraform Enterprise Diagnostics

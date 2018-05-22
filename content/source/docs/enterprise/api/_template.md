@@ -2,7 +2,7 @@ Follow this template to format each API method. There are usually multiple secti
 
 ## Create a Something
 
-<!-- "Verb a Noun" or "Verb Nouns." -->
+<!-- Header: "Verb a Noun" or "Verb Nouns." -->
 
 `POST /organizations/:organization_name/somethings`
 
@@ -15,6 +15,28 @@ Parameter            | Description
 <!-- ^ The list of URL path parameters goes directly below the method and path, without a header of its own. They're simpler than other parameters because they're always strings and they're always mandatory, so this table only has two columns. Prefix URL path parameter names with a colon.
 
 If further explanation of this method is needed beyond its title, write it here, after the parameter list. -->
+
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+
+<!-- ^ Include a note like the above if the endpoint CANNOT be used with a given token type. Most endpoints don't need this. -->
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "somethings"`) | Successfully created a team
+[400][] | [JSON API error object][]                    | Invalid `include` parameter
+[404][] | [JSON API error object][]                    | Organization not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
+[500][] | [JSON API error object][]                    | Failure during team creation
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+<!-- ^ Include status codes even if they're plain 200/404. If a JSON API document is returned, specify the `type`. If the table includes links, use reference-style links to keep the table size small. -->
 
 ### Query Parameters
 
@@ -41,6 +63,7 @@ Properties without a default value are required.
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.type`                 | string |         | Must be `"somethings"`.
+`data[].type`               | string |         | ... <!-- use data[].x when data is an array of objects. -->
 `data.attributes.category`  | string |         | Whether this is a blue or red something. Valid values are `"blue"` or `"red"`.
 `data.attributes.sensitive` | bool   | `false` | Whether the value is sensitive. If true then the something is written once and not visible thereafter.
 `filter.workspace.name`     | string |         | The name of the workspace that owns the something.
@@ -60,6 +83,19 @@ them from unquoted values like booleans and nulls.
 - In the rare case where a parameter is optional but has no default, you can
   list something like "(nothing)" as the default and explain in the description.
 -->
+
+### Available Related Resources
+
+<!-- Omit this subheader and section if it's not applicable. -->
+
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+Resource Name      | Description
+-------------------|------------
+`organization`     | The full organization record.
+`latest_run`       | Additional information about the last run.
+`latest_run.plan ` | The plan used in the last run.
+
 
 ### Sample Payload
 

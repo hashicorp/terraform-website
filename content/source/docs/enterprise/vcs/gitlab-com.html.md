@@ -20,6 +20,8 @@ Approve access request. | &nbsp;
 
 The rest of this page explains the GitLab.com versions of these steps.
 
+-> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
+
 ## Step 1: On GitLab, Create a New Application
 
 1. Open [gitlab.com](https://gitlab.com) in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.

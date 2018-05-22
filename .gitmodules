@@ -274,8 +274,8 @@
 	path = ext/providers/vsphere
 	url = https://github.com/terraform-providers/terraform-provider-vsphere
 	branch = stable-website
-[submodule "ext/providers/do"]
-	path = ext/providers/do
+[submodule "ext/providers/digitalocean"]
+	path = ext/providers/digitalocean
 	url = https://github.com/terraform-providers/terraform-provider-digitalocean
 	branch = stable-website
 [submodule "ext/providers/atlas"]

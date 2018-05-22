@@ -22,10 +22,10 @@ There are two types of plugins supported by Terraform:
 ## Providers
 
 Providers are the most common type of Plugin, which expose the features that a
-specific service offers via it’s [application programming
+specific service offers via its [application programming
 interface](https://en.wikipedia.org/wiki/Application_programming_interface)
 (API). Providers define **Resources** and are responsible for managing their
-life cycles. Examples of a providers are the [Amazon Web Service
+life cycles. Examples of providers are the [Amazon Web Service
 Provider](/docs/providers/aws/index.html) or the [Google Cloud
 Provider](/docs/providers/google/index.html). Example resources are
 `aws_instance` and `google_compute_instance`. 
@@ -36,7 +36,7 @@ service on behalf of the user. Each Resource implements `CREATE`, `READ`,
 manages a [Resource Graph](/docs/internals/graph.html) of all the resources
 declared in the configuration as well as their current state. Resources remain
 ignorant of the current state, only responding to method calls from Terraform
-Core and perform the matching CRUD action. 
+Core and performing the matching CRUD action. 
 
 Terraform determines the Providers needed by reading and interpolating
 configuration files. Terraform will dynamically discover and fetch the needed
@@ -48,7 +48,7 @@ for automatic discovery are hosted on in the
 Organization](https://github.com/terraform-providers). 
 
 Visit the [Provider index](/docs/providers/index.html) in our documentation
-section to learn more about our existing Providers
+section to learn more about our existing Providers.
 
 ## Provisioners
 

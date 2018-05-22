@@ -1,0 +1,11 @@
+dist: trusty
+sudo: required
+services:
+  - docker
+language: ruby
+git:
+  submodules: false
+
+script:
+- make sync
+- make website-test

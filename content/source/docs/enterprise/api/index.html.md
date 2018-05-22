@@ -9,15 +9,22 @@ sidebar_current: "docs-enterprise2-api"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-Terraform Enterprise provides an API for a subset of its features. If you have any questions or want to request new API features, please email support@hashicorp.com.
+Terraform Enterprise (TFE) provides an API for a subset of its features. If you have any questions or want to request new API features, please email support@hashicorp.com.
 
 See the navigation sidebar for the list of available endpoints.
 
 ## Authentication
 
-All requests must be authenticated with a bearer token. Use the HTTP Header `Authorization` with the value `Bearer <token>`. This token can be generated or revoked on the account tokens page. Your token has access to all resources your account has access to.
+All requests must be authenticated with a bearer token. Use the HTTP header `Authorization` with the value `Bearer <token>`. If the token is absent or invalid, TFE responds with [HTTP status 401][401] and a [JSON API error object][]. The 401 status code is reserved for problems with the authentication token; forbidden requests with a valid token result in a 404.
 
-For organization-level resources, we recommend creating a separate user account that can be added to the organization with the specific privilege level required.
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+There are three kinds of token available:
+
+- [User tokens](../users-teams-organizations/users.html#api-tokens) — each TFE user can have any number of API tokens, which can make requests on their behalf.
+- [Team tokens](../users-teams-organizations/service-accounts.html#team-service-accounts) — each team has an associated service account, which can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.
+- [Organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts) — each organization also has a service account, which can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.
 
 ## Response Codes
 
@@ -108,6 +115,39 @@ Since these parameters were originally designed as part of a JSON object, they s
 
 For more about URI structure and query strings, see [the specification (RFC 3986)](https://tools.ietf.org/html/rfc3986) or [the Wikipedia page on URIs](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier).
 
+### Pagination
+
+Pagination is supported on the [list workspaces](/docs/enterprise/api/workspaces.html#list-workspaces) and [list runs](/docs/enterprise/api/run.html#list-runs-in-a-workspace) endpoints. A client may pass the following query parameters to control pagination on supported endpoints:
+
+Parameter      | Description
+---------------|------------
+`page[number]` | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 20 items per page.
+
+Additional data is returned in the `links` and `meta` top level attributes of the response.
+
+```json
+{
+  "data": [...],
+  "links": {
+    "self": "https://app.terraform.io/api/v2/organizations/hashicorp/workspaces?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://app.terraform.io/api/v2/organizations/hashicorp/workspaces?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": "https://app.terraform.io/api/v2/organizations/hashicorp/workspaces?page%5Bnumber%5D=2&page%5Bsize%5D=20",
+    "last": "https://app.terraform.io/api/v2/organizations/hashicorp/workspaces?page%5Bnumber%5D=2&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "prev-page": null,
+      "next-page": 2,
+      "total-pages": 2,
+      "total-count": 21
+    }
+  }
+}
+```
+
 ### Inclusion of Related Resources
 
 Some of the API's GET endpoints can return additional information about nested resources by adding an `include` query parameter, whose value is a comma-separated list of resource types.
@@ -156,6 +196,33 @@ $ curl \
         "username": "hashibot"
         ...
       } ...
+    }
+  ]
+}
+```
+
+## Rate Limiting
+
+You can make up to 30 requests per second to the API as an authenticated or unauthenticated request. If you reach the rate limit then your access will be throttled and an error response will be returned.
+
+Authenticated requests are allocated to the user associated with the authentication token. This means that a user with multiple tokens will still be limited to 30 requests per second, additional tokens will not allow you to increase the requests per second permitted.
+
+Unauthenticated requests are associated with the requesting IP address.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[429][] | [JSON API error object][]                    | Rate limit has been reached.
+
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+```json
+{
+  "errors": [
+    {
+      "detail": "You have exceeded the API's rate limit of 30 requests per second.",
+      "status": 429,
+      "title": "Too many requests"
     }
   ]
 }

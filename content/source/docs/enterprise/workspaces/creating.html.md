@@ -36,11 +36,14 @@ VCS-backed workspaces support several optional fields, which you can reveal by c
 
 ![Screenshot: Optional fields for new VCS-backed workspaces](./images/creating-options.png)
 
-- **Terraform working directory** — The directory where Terraform will execute, specified as a relative path from the root of the repo. This is useful when working with VCS repos that contain multiple Terraform configurations.
+- **Terraform working directory** — The directory where Terraform will execute, specified as a relative path from the root of the repo. This is useful when working with VCS repos that contain multiple Terraform configurations. Defaults to the root of the repo.
 
     -> **Note:** If you specify a working directory, TFE will still queue a plan for changes to the repository outside that working directory. This is because local modules are often outside the working directory, and changes to those modules should result in a new run. If you have a repo that manages multiple infrastructure components with different lifecycles and are experiencing too many runs, we recommend splitting the components out into independent repos. See [Repository Structure](./repo-structure.html) for more detailed explanations.
 - **VCS branch** — Which branch of the repository to use. If left blank, TFE will use the repository's default branch.
-- **Include submodules on clone** (checkbox) — Whether to recursively clone all of the repository's submodules when fetching a configuration.
+- **Include submodules on clone** (checkbox) — Whether to recursively clone all of the repository's Git submodules when fetching a configuration.
+
+    -> **Note:** The [SSH key for cloning Git submodules](../vcs/index.html#ssh-keys) is set in the VCS provider settings for the organization, and is not necessarily related to the SSH key set in the workspace's settings.
+
 
 ### Importing Legacy Environments
 
@@ -53,7 +56,7 @@ The process of migrating a legacy environment to a new Terraform Enterprise work
 When you create a new workspace, a few things happen:
 
 - TFE _doesn't_ immediately queue a plan for the workspace. Instead, it presents a dialog with shortcut links to either queue a plan or edit variables. If you don't need to edit variables, manually queuing a plan confirms to TFE that the workspace is ready to run.
-- TFE automatically registers a webhook with your VCS service. The next time new commits appear in the selected branch of that repo or a PR is opened to that branch, TFE will automatically queue a Terraform plan for the workspace. More at [VCS Connection webhooks](../vcs/index.html#webhooks).
+- If you selected a VCS provider and repository, TFE automatically registers a webhook. The next time new commits appear in the selected branch of that repo or a PR is opened to that branch, TFE will automatically queue a Terraform plan for the workspace. More at [VCS Connection webhooks](../vcs/index.html#webhooks).
 
 A workspace with no runs will not accept new runs via VCS webhook; at least one run must be manually queued to confirm that the workspace is ready for further runs.
 
