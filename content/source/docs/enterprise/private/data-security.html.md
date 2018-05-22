@@ -7,7 +7,7 @@ sidebar_current: "docs-enterprise2-private-data-security"
 # Private Terraform Enterprise - Security
 
 Private Terraform Enterprise (PTFE) takes the security of the data it manages
-seriously. This table will provide reference for the parts of the PTFE app that can contain sensitive data, what storage is used, and what encryption is used.
+seriously. This table lists which parts of the PTFE app can contain sensitive data, what storage is used, and what encryption is used.
 
 | Object                               | Cached                     | Storage       | Encrypted                             |
 |:-------------------------------------|:---------------------------|:--------------|:--------------------------------------|
