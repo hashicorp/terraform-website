@@ -99,15 +99,17 @@ curl \
     "last": "https://app.terraform.io/api/v2/admin/users?page%5Bnumber%5D=1&page%5Bsize%5D=20"
   },
   "meta": {
-    "total-count": 1,
-    "suspended-count": 0,
-    "admin-count": 1,
     "pagination": {
       "current-page": 1,
       "prev-page": null,
       "next-page": null,
       "total-pages": 1,
       "total-count": 1
+    },
+    "status-counts": {
+      "total": 1,
+      "suspended": 0,
+      "admin": 1
     }
   }
 }

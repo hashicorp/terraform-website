@@ -93,25 +93,27 @@ curl \
     "last": "https://app.terraform.io/api/v2/admin/runs?page%5Bnumber%5D=1&page%5Bsize%5D=20"
   },
   "meta": {
-    "pending-count": 1,
-    "planning-count": 0,
-    "planned-count": 0,
-    "confirmed-count": 0,
-    "applying-count": 0,
-    "applied-count": 0,
-    "discarded-count": 0,
-    "errored-count": 0,
-    "canceled-count": 0,
-    "policy-checking-count": 0,
-    "policy-override-count": 0,
-    "policy-checked-count": 0,
-    "total-count": 1,
     "pagination": {
       "current-page": 1,
       "prev-page": null,
       "next-page": null,
       "total-pages": 1,
       "total-count": 1
+    },
+    "status-counts": {
+      "pending": 1,
+      "planning": 0,
+      "planned": 0,
+      "confirmed": 0,
+      "applying": 0,
+      "applied": 0,
+      "discarded": 0,
+      "errored": 0,
+      "canceled": 0,
+      "policy-checking": 0,
+      "policy-override": 0,
+      "policy-checked": 0,
+      "total": 1
     }
   }
 }

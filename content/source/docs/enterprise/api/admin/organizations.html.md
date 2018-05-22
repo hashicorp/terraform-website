@@ -63,6 +63,8 @@ curl \
       "type": "organizations",
       "attributes": {
         "name": "my-organization",
+        "enterprise-plan": "pro",
+        "trial-expires-at": "2018-05-22T00:00:00.000Z",
         "notification-email": "my-organization@example.com"
       },
       "relationships": {
@@ -94,6 +96,14 @@ curl \
       "next-page": null,
       "total-pages": 1,
       "total-count": 1
+    },
+    "status-counts": {
+      "total": 1,
+      "active-trial": 0,
+      "expired-trial": 0,
+      "pro": 1,
+      "premium": 0,
+      "disabled": 0
     }
   }
 }
