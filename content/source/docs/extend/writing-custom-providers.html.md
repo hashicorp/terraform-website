@@ -188,7 +188,9 @@ The `Create`, `Read`, and `Delete` functions are required for a resource to be
 functional. There are other functions, but these are the only required ones.
 Terraform itself handles which function to call and with what data. Based on the
 schema and current state of the resource, Terraform can determine whether it
-needs to create a new resource, update an existing one, or destroy.
+needs to create a new resource, update an existing one, or destroy. The create and 
+update function should always return the read function to ensure the state
+is reflected in the `terraform.state` file.
 
 Each of the four struct fields point to a function. While it is technically
 possible to inline all functions in the resource schema, best practice dictates
@@ -198,7 +200,7 @@ signatures.
 
 ```golang
 func resourceServerCreate(d *schema.ResourceData, m interface{}) error {
-        return nil
+        return resourceServerRead(d, m)
 }
 
 func resourceServerRead(d *schema.ResourceData, m interface{}) error {
@@ -206,7 +208,7 @@ func resourceServerRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func resourceServerUpdate(d *schema.ResourceData, m interface{}) error {
-        return nil
+        return resourceServerRead(d, m)
 }
 
 func resourceServerDelete(d *schema.ResourceData, m interface{}) error {
@@ -347,7 +349,7 @@ Back in `resource_server.go`, implement the create functionality:
 func resourceServerCreate(d *schema.ResourceData, m interface{}) error {
         address := d.Get("address").(string)
         d.SetId(address)
-        return nil
+        return resourceServerRead(d, m)
 }
 ```
 
@@ -517,7 +519,7 @@ empty function definition. Recall the current update function:
 
 ```golang
 func resourceServerUpdate(d *schema.ResourceData, m interface{}) error {
-        return nil
+        return resourceServerRead(d, m)
 }
 ```
 
@@ -593,7 +595,7 @@ func resourceServerUpdate(d *schema.ResourceData, m interface{}) error {
         // all fields again.
         d.Partial(false)
 
-        return nil
+        return resourceServerRead(d, m)
 }
 ```
 
@@ -612,8 +614,8 @@ the resource was deleted successfully.
 
 ```go
 func resourceServerDelete(d *schema.ResourceData, m interface{}) error {
-  // d.SetId("") is automatically called assuming delete returns no errors, but
-  // it is added here for explicitness.
+        // d.SetId("") is automatically called assuming delete returns no errors, but
+        // it is added here for explicitness.
         d.SetId("")
         return nil
 }
