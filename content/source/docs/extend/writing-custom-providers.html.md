@@ -691,6 +691,203 @@ func resourceServerRead(d *schema.ResourceData, m interface{}) error {
 }
 ```
 
+## Implementing a more complex Read
+
+Often the resulting data structure from the API is more complicated and contains nested structures. The following example illustrates this fact. The goal is that the `terraform.state` maps the resulting data structure as close as possible. This mapping is called `flattening` whereas mapping the terraform configuration to an API call, e.g. on create is called `expanding`.
+
+This example illustrates the `flattening`  of a nested structure which contains a `TypeSet` and `TypeMap`.
+
+Considering the following structure as result from the API:
+
+```json
+{
+  "ID": "ozfsuj7dblzwjo8zoguosr1l5",
+  "Spec": {
+    "Name": "tftest-service-basic",
+    "Labels": {},
+    "Address": "tf-test-address",
+    "TaskTemplate": {
+      "ContainerSpec": {
+        "Mounts": [
+          {
+            "Type": "volume",
+            "Source": "tftest-volume",
+            "Target": "/mount/test",
+            "VolumeOptions": {
+              "NoCopy": true,
+              "DriverConfig": {}
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+The nested structures are `Spec` -> `TaskTemplate` -> `ContainerSpec` -> `Mounts`. There can be multiple `Mounts`  but have to be unique, so type `TypeSet` is the appropriate type. 
+
+Due to the limitation of [tf-11115] (https://github.com/hashicorp/terraform/issues/11115) is not possible to nest maps.  So the workaround is to let only the innermost data structure be of the type `TypeMap`: in this case `driver_options`. The outer data structures are of `TypeList` which can only have one item.
+
+```hcl
+/// ...
+"task_spec": &schema.Schema{
+  Type:        schema.TypeList,
+  MaxItems:    1,
+  Required:    true,
+  Elem: &schema.Resource{
+    Schema: map[string]*schema.Schema{
+      "container_spec": &schema.Schema{
+        Type:        schema.TypeList,
+        Required:    true,
+        MaxItems:    1,
+        Elem: &schema.Resource{
+          Schema: map[string]*schema.Schema{
+            "mounts": &schema.Schema{
+              Type:        schema.TypeSet,
+              Optional:    true,
+              Elem: &schema.Resource{
+                Schema: map[string]*schema.Schema{
+                  "target": &schema.Schema{
+                    Type:        schema.TypeString,
+                    Required:    true,
+                  },
+                  "source": &schema.Schema{
+                    Type:        schema.TypeString,
+                    Required:    true,
+                  },
+                  "type": &schema.Schema{
+                    Type:         schema.TypeString,
+                    Required:     true,
+                  },
+                  "volume_options": &schema.Schema{
+                    Type:        schema.TypeList,
+                    Optional:    true,
+                    MaxItems:    1,
+                    Elem: &schema.Resource{
+                      Schema: map[string]*schema.Schema{
+                        "no_copy": &schema.Schema{
+                          Type:        schema.TypeBool,
+                          Optional:    true,
+                        },
+                        "labels": &schema.Schema{
+                          Type:        schema.TypeMap,
+                          Optional:    true,
+                          Elem:        &schema.Schema{Type: schema.TypeString},
+                        },
+                        "driver_name": &schema.Schema{
+                          Type:        schema.TypeString,
+                          Optional:    true,
+                        },
+                        "driver_options": &schema.Schema{
+                          Type:        schema.TypeMap,
+                          Optional:    true,
+                          Elem:        &schema.Schema{Type: schema.TypeString},
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+}
+```
+
+The `resourceServerRead` function now also sets/flattens the nested data structure from the API:
+
+```go
+func resourceServerRead(d *schema.ResourceData, m interface{}) error {
+  client := m.(*MyClient)
+  obj, ok := client.Get(d.Id())
+
+  if !ok {
+    d.SetId("")
+    return nil
+  }
+
+  d.Set("address", obj.Address)
+  if err = d.Set("task_spec", flattenTaskSpec(server.Spec.TaskTemplate)); err != nil {
+        log.Printf("[WARN] failed to set task spec from API: %s", err)
+    }
+
+  return nil
+}
+```
+
+The so-called `flatteners` are in a separate file `structures_server.go`. The outermost data structure is a `map[string]interface{}` and each item a `[]interface{}`:
+
+```go
+func flattenTaskSpec(in server.TaskSpec) []interface{} {
+    // NOTE: the top level structure to set is a map
+    m := make(map[string]interface{})
+    if in.ContainerSpec != nil {
+      m["container_spec"] = flattenContainerSpec(in.ContainerSpec)
+    }
+    /// ...
+
+    return []interface{}{m}
+}
+
+func flattenContainerSpec(in *server.ContainerSpec) []interface{} {
+    // NOTE: all nested structures are lists of interface{}
+    var out = make([]interface{}, 0, 0)
+    m := make(map[string]interface{})
+    /// ...
+    if len(in.Mounts) > 0 {
+      m["mounts"] = flattenServiceMounts(in.Mounts)
+    }
+    /// ...
+    out = append(out, m)
+    return out
+}
+
+func flattenServiceMounts(in []mount.Mount) *schema.Set {
+    var out = make([]interface{}, len(in), len(in))
+    // NOTE: for each mount of the API
+    for i, v := range in {
+      m := make(map[string]interface{})
+      m["target"] = v.Target
+      m["source"] = v.Source
+      m["type"] = string(v.Type) 
+
+      if v.VolumeOptions != nil {
+        volumeOptions := make([]interface{}, 0, 0)
+        volumeOptionsItem := make(map[string]interface{}, 0)
+
+        volumeOptionsItem["no_copy"] = v.VolumeOptions.NoCopy
+        // NOTE: this is a internally written mappe from map[string]string => map[string]interface{}
+        // because terrafrom can only store map with interface{} as type of the value
+        volumeOptionsItem["labels"] = mapStringStringToMapStringInterface(v.VolumeOptions.Labels)
+        if v.VolumeOptions.DriverConfig != nil {
+          if len(v.VolumeOptions.DriverConfig.Name) > 0 {
+            volumeOptionsItem["driver_name"] = v.VolumeOptions.DriverConfig.Name
+          }
+          volumeOptionsItem["driver_options"] = mapStringStringToMapStringInterface(v.VolumeOptions.DriverConfig.Options)
+        }
+
+        volumeOptions = append(volumeOptions, volumeOptionsItem)
+        m["volume_options"] = volumeOptions
+      }
+      // NOTE: append each mapped mount
+      out[i] = m
+    }
+    // NOTE: retrieve the desired part of the schema
+    taskSpecResource := resourceServer().Schema["task_spec"].Elem.(*schema.Resource)
+    containerSpecResource := taskSpecResource.Schema["container_spec"].Elem.(*schema.Resource)
+    mountsResource := containerSpecResource.Schema["mounts"].Elem.(*schema.Resource)
+    // NOTE: so that terraform internal hashing function can be used
+    f := schema.HashResource(mountsResource)
+    // NOTE: now the mapped mounts will be hashed accordingly
+    return schema.NewSet(f, out)
+}
+```
+
+
 ## Next Steps
 
 This guide covers the schema and structure for implementing a Terraform provider
