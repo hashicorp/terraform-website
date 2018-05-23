@@ -18,6 +18,15 @@ A configuration version (`configuration-version`) is a resource used to referenc
 | --------------- | ---------------------------------------------------- |
 | `:workspace_id` | The id of the workspace to list configurations from. |
 
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter      | Description
+---------------|------------
+`page[number]` | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 20 configuration versions per page.
+
 ### Sample Request
 
 ```shell
