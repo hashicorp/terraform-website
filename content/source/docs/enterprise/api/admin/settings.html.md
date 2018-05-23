@@ -114,12 +114,137 @@ curl \
 }
 ```
 
+## List SAML Settings
+`GET /api/v2/admin/settings/saml`
+
+Status  | Response                                         | Reason
+--------|--------------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "settings/saml"`) | Successfully listed SAML settings
+[404][] | [JSON API error object][]                    | User unauthorized to perform action
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/admin/settings/saml
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "saml",
+    "type": "settings/saml",
+    "attributes": {
+      "enabled": true,
+      "idp-cert": "SAMPLE-CERTIFICATE",
+      "slo-target": "https://example.com/slo",
+      "sso-target": "https://example.com/sso",
+      "attr-groups": "MemberOf",
+      "attr-site-admin": "SiteAdmin",
+      "site-admin-role": "site-admins",
+      "sso-api-token-session-timeout": 1209600
+    }
+  }
+}
+```
+
+## Update SAML Settings
+`PATCH /api/v2/admin/settings/saml`
+
+Status  | Response                                         | Reason
+--------|--------------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "settings/saml"`) | Successfully updated SAML settings
+[404][] | [JSON API error object][]                    | User unauthorized to perform action
+[422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required if `data.attributes.enabled` is set to `true`.
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`data.attributes.enabled`    | bool   | `false` | Allows SAML to be used. If true, all remaining attributes are required.
+`data.attributes.idp-cert`   | string |         | Identity Provider Certificate specifies the PEM encoded X.509 Certificate as provided by the IdP configuration.
+`data.attributes.slo-target` | string |         | Single Log Out URL specifies the HTTPS endpoint on your IdP for single logout requests. This value is provided by the IdP configuration.
+`data.attributes.sso-target` | string |         | Single Sign On URL specifies the HTTPS endpoint on your IdP for single sign-on requests. This value is provided by the IdP configuration.
+`data.attributes.attr-groups`| string | `"MemberOf"` | Team Attribute Name specifies the name of the SAML attribute that determines team membership.
+`data.attributes.attr-site-admin`| string |`"SiteAdmin"`| Specifies the role for site admin access, overriding the "Site Admin Role" method.
+`data.attributes.site-admin-role`| string |`"site-admins"`| Specifies the role for site admin access, provided in the list of roles sent in the Team Attribute Name attribute.
+`data.attributes.sso-api-token-session-timeout`| integer | 1209600 | Specifies the Single Sign On session timeout in seconds, defaulting to 14 days.
+
+```json
+{
+  "data": {
+    "attributes": {
+      "enabled": true,
+      "idp-cert": "SAMPLE-CERTIFICATE",
+      "slo-target": "https://example.com/slo",
+      "sso-target": "https://example.com/sso",
+      "attr-groups": "MemberOf",
+      "attr-site-admin": "SiteAdmin",
+      "site-admin-role": "site-admins",
+      "sso-api-token-session-timeout": 1209600
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/admin/settings/saml
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id":"saml",
+    "type":"settings/saml",
+    "attributes": {
+      "enabled": true,
+      "idp-cert": "SAMPLE-CERTIFICATE",
+      "slo-target": "https://example.com/slo",
+      "sso-target": "https://example.com/sso",
+      "attr-groups": "MemberOf",
+      "attr-site-admin": "SiteAdmin",
+      "site-admin-role": "site-admins",
+      "sso-api-token-session-timeout": 1209600
+    }
+  }
+}
+```
+
 ## List SMTP Settings
 `GET /api/v2/admin/settings/smtp`
 
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
-[200][] | [JSON API document][] (`type: "settings"`) | Successfully listed SMTP settings
+[200][] | [JSON API document][] (`type: "settings/saml"`) | Successfully listed SMTP settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
