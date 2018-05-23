@@ -367,3 +367,112 @@ curl \
   }
 }
 ```
+
+## List Twilio Settings
+`GET /api/v2/admin/settings/twilio`
+
+Status  | Response                                         | Reason
+--------|--------------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "settings/twilio"`) | Successfully listed Twilio settings
+[404][] | [JSON API error object][]                    | User unauthorized to perform action
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/admin/settings/twilio
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "twilio",
+    "type": "settings/twilio",
+    "attributes": {
+      "enabled": true,
+      "account-sid": "12345abcd",
+      "from-number": "555-555-5555"
+    }
+  }
+}
+```
+
+## Update Twilio Settings
+`PATCH /api/v2/admin/settings/twilio`
+
+Status  | Response                                         | Reason
+--------|--------------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "settings/twilio"`) | Successfully listed Twilio settings
+[404][] | [JSON API error object][]                    | User unauthorized to perform action
+[422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required if `data.attributes.enabled` is set to `true`.
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`data.attributes.enabled`    | bool   | `false` | Allows Twilio to be used. If true, all remaining attributes are required.
+`data.attributes.account-sid`  | string   |  | The Twilio account id.
+`data.attributes.auth-token` | string   |  | The Twilio authentication token.
+`data.attributes.from-number`| string     |  | The Twilio registered phone number which will be used to send the message.
+`data.attributes.test-number`| string     |  | The target phone number for the test SMS. Not persisted and only used during testing.
+
+```json
+{
+  "data": {
+    "attributes": {
+      "enabled": true,
+      "account-sid": "12345abcd",
+      "auth-token": "sample_token",
+      "from-number": "555-555-5555",
+      "test-number": "555-555-0000"
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/admin/settings/twilio
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id":"twilio",
+    "type":"settings/twilio",
+    "attributes": {
+      "enabled": true,
+      "account-sid": "12345abcd",
+      "from-number": "555-555-5555"
+    }
+  }
+}
+```
