@@ -122,12 +122,25 @@ curl \
 | --------------- | --------------------------------------------------------- |
 | `:workspace_id` | The workspace ID to create the new configuration version. |
 
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                          | Type    | Default | Description
+--------------------------------- | ------- | ------- | -----------
+`data.attributes.auto-queue-runs` | boolean | true    | When true, runs are queued automatically when the configuration version is uploaded.
+
 ### Sample Payload
 
 ```json
 {
   "data": {
-    "type": "configuration-versions"
+    "type": "configuration-versions",
+    "attributes": {
+      "auto-queue-runs": true
+    }
   }
 }
 ```
@@ -151,6 +164,7 @@ curl \
     "id": "cv-UYwHEakurukz85nW",
     "type": "configuration-versions",
     "attributes": {
+      "auto-queue-runs": true,
       "error": null,
       "error-message": null,
       "source": "tfe-api",
@@ -175,7 +189,7 @@ curl \
 
 ## Upload Configuration Files
 
--> **Note**: Uploading a configuration file automatically creates a run and associates it with this configuration-version. Therefore it is unnecessary to [create a run on the workspace](./run.html#create-a-run) if a new file is uploaded.
+-> **Note**: If `auto-queue-runs` was either not provided or set to `true` during creation of the configuration version, a run using this configuration version will be automatically queued on the workspace. If `auto-queue-runs` was set to `false` explicitly, then it is necessary to [create a run on the workspace](./run.html#create-a-run) manually after the configuration version is uploaded.
 
 `PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
 
