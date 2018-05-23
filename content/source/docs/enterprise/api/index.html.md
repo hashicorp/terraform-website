@@ -117,7 +117,7 @@ For more about URI structure and query strings, see [the specification (RFC 3986
 
 ### Pagination
 
-Pagination is supported on the [list workspaces](/docs/enterprise/api/workspaces.html#list-workspaces) and [list runs](/docs/enterprise/api/run.html#list-runs-in-a-workspace) endpoints. A client may pass the following query parameters to control pagination on supported endpoints:
+Pagination is supported on the [list workspaces](/docs/enterprise/api/workspaces.html#list-workspaces), [list runs](/docs/enterprise/api/run.html#list-runs-in-a-workspace), and [list configuration versions](/docs/enterprise/api/configuration-versions.html#list-configuration-versions) endpoints. A client may pass the following query parameters to control pagination on supported endpoints:
 
 Parameter      | Description
 ---------------|------------
