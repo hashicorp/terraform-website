@@ -36,26 +36,26 @@ There is an option to configure a `webhook URL` on the plugin. Leave this option
 
 Leave the page open in a browser tab, and remain logged in as an admin user.
 
-## Step 2: On TFE, Add an OAuth Client
+## Step 2: On TFE, Add a VCS Provider
 
-1. Open TFE in your browser and navigate to the "OAuth Configuration" settings for your organization. Click the "Add an OAuth Client" button.
+1. Open TFE in your browser and navigate to the "VCS Provider" settings for your organization. Click the "Add VCS Provider" button.
 
     If you just created your organization, you might already be on this page. Otherwise:
 
     1. Click the upper-left organization menu, making sure it currently shows your organization.
     1. Click the "`<ORGANIZATION>` Settings" link, right below the name of your organization.
-    1. On the next page, click "OAuth Configuration" in the left sidebar.
-    1. Click the "Add an OAuth Client" button.
+    1. On the next page, click "VCS Provider" in the left sidebar.
+    1. Click the "Add VCS Provider" button.
 
 2. The next page has a drop-down and several text fields. Select "Bitbucket Server" from the drop-down. Several text fields will vanish, leaving only two. Enter the URL of your Bitbucket Server instance in both fields. The API URL should be the same as the main URL.
 
     ~> **Note:** If you omit the port in the URL, TFE uses the standard port for the protocol (80 for HTTP, 443 for HTTPS). If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL.
 
-    ![TFE screenshot: text fields for adding a Bitbucket Server OAuth client](./images/bitbucket-server-tfe-add-client-fields.png)
+    ![TFE screenshot: text fields for adding a Bitbucket Server VCS provider](./images/bitbucket-server-tfe-add-client-fields.png)
 
-3. Click "Create OAuth Client." This will take you back to the OAuth Configuration page, which now includes your new Bitbucket Server client.
+3. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket Server client.
 
-4. Take note of two items in the new client's information: the **Consumer Key** and the **Public Key.** You'll copy and paste these unique strings in the next step. Leave this page open in a browser tab.
+4. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Consumer Key** and **Public Key.**
 
     ![TFE screenshot: Consumer key and public key](./images/bitbucket-server-tfe-consumer-and-public-key.png)
 
@@ -119,7 +119,7 @@ This SSH key **must have an empty passphrase.** TFE cannot use SSH keys that req
 
 ## Step 6: On TFE, Request Access and Add an SSH Private Key
 
-1. Go back to your TFE browser tab and click the "Connect organization `<NAME>`" button on the OAuth Configuration page.
+1. Go back to your TFE browser tab and click the "Connect organization `<NAME>`" button on the VCS Provider page.
 
     ![TFE screenshot: the connect organization button](./images/tfe-connect-orgname.png)
 
@@ -127,7 +127,7 @@ This SSH key **must have an empty passphrase.** TFE cannot use SSH keys that req
 
     ![Bitbucket Server screenshot: the authorization page](./images/bitbucket-server-authorize.png)
 
-2. Click the "Allow" button. This returns you to TFE's OAuth Configuration page, where the Bitbucket Server client's information has been updated.
+2. Click the "Allow" button. This returns you to TFE's VCS Provider page, where the Bitbucket Server client's information has been updated.
 
     If this results in a 500 error, it usually means TFE was unable to reach your Bitbucket Server instance.
 
