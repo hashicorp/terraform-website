@@ -302,3 +302,7 @@
 	path = ext/providers/nsxt
 	url = https://github.com/terraform-providers/terraform-provider-nsxt
 	branch = stable-website
+[submodule "ext/providers/runscope"]
+	path = ext/providers/runscope
+	url = https://github.com/terraform-providers/terraform-provider-runscope
+	branch = stable-website
