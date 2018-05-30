@@ -32,7 +32,7 @@ If the workspace has a plan that is still in the [plan stage](./run-basics.html#
 
 ## Confirming or Discarding Plans
 
-By default, run plans require confirmation before TFE will apply them. Users with write access on a workspace can visit the page for a run that has finished planning and click the "Confirm & Apply" or "Discard Plan" button to finish or cancel a run.
+By default, run plans require confirmation before TFE will apply them. Users with write access on a workspace can navigate to a run that has finished planning and click the "Confirm & Apply" or "Discard Plan" button to finish or cancel a run. If necessary, use the "View Plan" button for more details about what the run will change.
 
 ![confirm button](./images/runs-confirm.png)
 
