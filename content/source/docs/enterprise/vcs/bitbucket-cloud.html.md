@@ -37,9 +37,7 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
 
 3. This page has a form with four text fields and many checkboxes.
 
-    ![Bitbucket Cloud screenshot: New OAuth consumer text fields](./images/bitbucket-cloud-add-consumer-1.png)
-
-    ![Bitbucket Cloud screenshot: New OAuth consumer permissions checkboxes](./images/bitbucket-cloud-add-consumer-2.png)
+    ![Bitbucket Cloud screenshot: New OAuth consumer text fields and permissions checkboxes](./images/bitbucket-cloud-add-consumer.png)
 
     Fill out the text fields as follows:
 
@@ -61,26 +59,28 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
 
 4. Click the "Save" button, which returns you to the OAuth settings page.
 
-5. Find your new OAuth consumer under the "OAuth Consumers" heading, and click its name to reveal its details. Take note of two items: the **Key** and the **Secret.** You'll copy and paste these unique strings in the next step. Leave this page open in a browser tab.
+5. Find your new OAuth consumer under the "OAuth Consumers" heading, and click its name to reveal its details.
+
+    Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Key** and **Secret.**
 
     ![Bitbucket Cloud screenshot: OAuth consumer with key and secret revealed](./images/bitbucket-cloud-application-created.png)
 
-## Step 2: On TFE, Add an OAuth Client
+## Step 2: On TFE, Add a VCS Provider
 
-1. Open TFE in your browser and navigate to the "OAuth Configuration" settings for your organization. Click the "Add an OAuth Client" button.
+1. Open TFE in your browser and navigate to the "VCS Provider" settings for your organization. Click the "Add VCS Provider" button.
 
     If you just created your organization, you might already be on this page. Otherwise:
 
     1. Click the upper-left organization menu, making sure it currently shows your organization.
     1. Click the "`<ORGANIZATION>` Settings" link, right below the name of your organization.
-    1. On the next page, click "OAuth Configuration" in the left sidebar.
-    1. Click the "Add an OAuth Client" button.
+    1. On the next page, click "VCS Provider" in the left sidebar.
+    1. Click the "Add VCS Provider" button.
 
 2. The next page has a drop-down and four text fields. Select "Bitbucket Cloud" from the drop-down, and enter the **Key** and **Secret** from the previous step. (Ignore the two disabled URL fields, which are used for on-premise VCSs.)
 
     ![TFE screenshot: add client fields](./images/bitbucket-cloud-tfe-add-client-fields.png)
 
-3. Click "Create connection." This will take you back to the OAuth Configuration page, which now includes your new Bitbucket client.
+3. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket client.
 
 4. Locate the new client's "Callback URL," and copy it to your clipboard; you'll paste it in the next step. Leave this page open in a browser tab.
 
@@ -100,7 +100,7 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
 
 ## Step 4: On TFE, Request Access
 
-1. Go back to your TFE browser tab and click the "Connect organization `<NAME>`" button on the OAuth Configuration page.
+1. Go back to your TFE browser tab and click the "Connect organization `<NAME>`" button on the VCS Provider page.
 
     ![TFE screenshot: the connect organization button](./images/tfe-connect-orgname.png)
 
@@ -108,7 +108,7 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
 
     ![Bitbucket Cloud screenshot: the authorization screen](./images/bitbucket-cloud-authorize.png)
 
-2. Click the green "Authorize" button at the bottom of the authorization page. This returns you to TFE's OAuth Configuration page, where the Bitbucket Cloud client's information has been updated.
+2. Click the green "Authorize" button at the bottom of the authorization page. This returns you to TFE's VCS Provider page, where the Bitbucket Cloud client's information has been updated.
 
 ## Finished
 

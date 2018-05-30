@@ -50,22 +50,22 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
     Application Description    | Any description of your choice.
     Authorization callback URL | `https://example.com/replace-this-later` (or any placeholder; the correct URI doesn't exist until the next step.)
 
-4. Click the "Register application" button. This will take you to the application page.
+4. Click the "Register application" button, which creates the application and takes you to its page.
 
-5. Take note of two items: the **Client ID** and the **Client Secret.** You'll copy and paste these unique strings in the next step. Leave this page open in a browser tab.
+5. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Client ID** and **Client Secret.**
 
     ![GitHub screenshot: the new application's client ID and client secret](./images/gh-secrets.png)
 
-## Step 2: On TFE, Add an OAuth Client
+## Step 2: On TFE, Add a VCS Provider
 
-1. Open TFE in your browser and navigate to the "OAuth Configuration" settings for your organization. Click the "Add an OAuth Client" button.
+1. Open TFE in your browser and navigate to the "VCS Provider" settings for your organization. Click the "Add VCS Provider" button.
 
     If you just created your organization, you might already be on this page. Otherwise:
 
     1. Click the upper-left organization menu, making sure it currently shows your organization.
-    1. Click the "`<ORGANIZATION>` Settings" link, right below the name of your organization.
-    1. On the next page, click "OAuth Configuration" in the left sidebar.
-    1. Click the "Add an OAuth Client" button.
+    1. Click the "Organization Settings" link, right below the name of your organization.
+    1. On the next page, click "VCS Provider" in the left sidebar.
+    1. Click the "Add VCS Provider" button.
 
 2. The next page has a drop-down and four text fields. Select "GitHub Enterprise" from the drop-down, and fill in all four text fields as follows:
 
@@ -78,7 +78,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 
     ![TFE screenshot: add client fields](./images/ghe-tfe-add-client-fields.png)
 
-3. Click "Create connection." This will take you back to the OAuth Configuration page, which now includes your new GitHub Enterprise client.
+3. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new GitHub Enterprise client.
 
 4. Locate the new client's "Callback URL," and copy it to your clipboard; you'll paste it in the next step. Leave this page open in a browser tab.
 
@@ -86,7 +86,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 
 ## Step 3: On GitHub, Update the Callback URL
 
-1. Go back to your GitHub browser tab. (If you accidentally closed it, you can reach your OAuth app page through the menus: use the upper right menu > Settings > OAuth Apps > "Terraform Enterprise (`<YOUR ORG NAME>`)".)
+1. Go back to your GitHub browser tab. (If you accidentally closed it, you can reach your OAuth app page through the menus: use the upper right menu > Settings > Developer settings > OAuth Apps > "Terraform Enterprise (`<YOUR ORG NAME>`)".)
 
 2. In the "Authorization Callback URL" field, near the bottom of the page, paste the callback URL from TFE's OAuth Configuration page, replacing the "example.com" placeholder you entered earlier.
 
@@ -94,7 +94,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 
 ## Step 4: On TFE, Request Access
 
-1. Go back to your TFE browser tab and click the "Connect organization `<NAME>`" button on the OAuth Configuration page.
+1. Go back to your TFE browser tab and click the "Connect organization `<NAME>`" button on the VCS Provider page.
 
     ![TFE screenshot: the connect organization button](./images/tfe-connect-orgname.png)
 
