@@ -336,7 +336,7 @@ cluster is removed!
 ~> **NOTE:** If you have modified the terraform modules we have provided, you'll need to adapt these instructions
    to fit your modifications.
 
-### Remove from terraform state
+### Move to new terraform state
 
 First, verify all the resources currently tracked in the terraform state. If the terraform.state is on your local
 disk, change to that directory. Next, list the state:
@@ -369,7 +369,7 @@ module.route53.aws_route53_record.rec
 random_id.installation-id
 ```
 
-Of these resources, the ones we need to remove from the state so they are can exist outside this terraform config:
+Of these resources, the ones we need to move from the state so they are can exist outside this terraform config:
 ```
 aws_kms_alias.key
 aws_kms_key.key
@@ -381,7 +381,12 @@ module.instance.aws_s3_bucket.tfe_bucket
 
 To remove these resources from the state, run:
 ```shell
-$ terraform state rm aws_kms_alias.key aws_kms_key.key module.db.aws_db_instance.rds module.db.aws_db_subnet_group.rds module.db.aws_security_group.rds module.instance.aws_s3_bucket.tfe_bucket
+$ terraform state mv -state-out=terraform.tfstate.installer aws_kms_alias.key aws_kms_alias.key
+$ terraform state mv -state-out=terraform.tfstate.installer aws_kms_key.key aws_kms_key.key
+$ terraform state mv -state-out=terraform.tfstate.installer module.db.aws_db_instance.rds module.db.aws_db_instance.rds 
+$ terraform state mv -state-out=terraform.tfstate.installer module.db.aws_db_subnet_group.rds module.db.aws_db_subnet_group.rds
+$ terraform state mv -state-out=terraform.tfstate.installer module.db.aws_security_group.rds module.db.aws_security_group.rds
+$ terraform state mv -state-out=terraform.tfstate.installer module.instance.aws_s3_bucket.tfe_bucket module.instance.aws_s3_bucket.tfe_bucket
 ```
 
 ### Destroy AMI cluster
@@ -395,5 +400,10 @@ $ terraform destroy
 ```
 
 You'll be asked to confirm the resources to destroyed and should double check that the list doesn't contain the
-resources we removed earlier.
+resources we moved earlier.
+
+### Managing Installer Resources
+
+To continue to manage the resource used by the Installer-based install, you can move the resources in the new `terraform.tfstate.installer` file
+to a large state file along with the terraform modules for them.
 
