@@ -297,14 +297,15 @@ From a shell on your instance, in the directory where you placed the `replicated
    configuration thus far and indicate any failures. You can either fix the issues
    and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
 1. Select **External Services** under Production Type
-1. For the PostgreSQL url, copy and paste the value that was output by the `migrator` process for the PostgreSQL url.
+1. For the PostgreSQL url, copy and paste the value that was output by the `migrator` process for _PostgreSQL Database URL_.
 1. Select **S3** under Object Storage
 1. Configure the Access Key Id and Secret Access Key _OR_ select that you want to use an instance provide.
    **NOTE**: An instance profile must be previously configured on the instance.
-1. For the Bucket, copy and paste the value that was output by the `migrator` process for the Bucket.
-1. For the Region, copy and paste the value that was output by the `migrator` process for the Region.
+1. For the Bucket, copy and paste the value that was output by the `migrator` process for _S3 Bucket_.
+1. For the Region, copy and paste the value that was output by the `migrator` process for _S3 Region_.
 1. For the server-side Encrytion, copy and paste the value that was output by the `migrator` process for the server-side encryption.
-1. For the KMS key, copy and paste the value that was output by the `migrator` process for the KMS key.
+1. For the KMS key, copy and paste the value that was output by the `migrator` process for _Optional KMS key_. **NOTE:** This key is not optional
+   for migration as it is used to properly read all the data in S3.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
    configuration and you wish to increase the work that the instance does
