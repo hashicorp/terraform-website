@@ -6,8 +6,8 @@ sidebar_current: "docs-enterprise2-private-installer-migration"
 
 # Private Terraform Enterprise Installer Migration
 
-This document outlines the procedure for migrating from the AMI based Private Terraform Enterprise (PTFE)
-to the installer.
+This document outlines the procedure for migrating from the AMI-based Private Terraform Enterprise (PTFE)
+to the Installer-based PTFE.
 
 ## Preflight
 
@@ -137,15 +137,15 @@ The UI to upload these certificates looks like:
 ### Operational Mode
 
 As you are migrating from the AMI, you'll be using **Production - External Services** to
-access the data previously managed by the AMI installation. This means using RDS for
+access the data previously managed by the AMI-based installation. This means using RDS for
 PostgreSQL and S3 to store the objects.
 
 ## Begin Migration
 
-Now that the linux instance has been booted into the correct environment, you're ready to begin
+Now that the linux instance has been booted into the correct Linux environment, you're ready to begin
 the migration process.
 
-~> NOTE: The migration process will render the AMI installation inoperable. Be sure to backup
+~> NOTE: The migration process will render the AMI-based installation inoperable. Be sure to back up
    RDS before beginning.
 
 Schedule downtime for the installation and do not continue until that downtime period has
@@ -153,8 +153,8 @@ arrived.
 
 ### Prepare for migration
 
-SSH to the instance currently running in your PTFE AutoScaling group. You'll now download
-a migrator tool onto it to run the migration procedure:
+SSH to the instance currently running in your PTFE AutoScaling group. Then download
+the migrator tool onto it to run the migration procedure:
 
 ```shell
 $ curl -O https://s3.amazonaws.com/hashicorp-ptfe-data/migrator
@@ -165,17 +165,17 @@ $ chmod a+x migrator
 
 ~> NOTE: The AMI instance will not function after this step.
 
-Next you'll need to create a password that will be used to protect the migration data
+Next, create a password that will be used to protect the migration data
 as it is passed to the installer. This password is only used for this migration process
 and is not used after the migration is complete. 
 
-For this example, we'll be using the password `ptfemigrate` but you must change it to
+For this example, we'll use the password `ptfemigrate` but you must change it to
 a password of your own choosing.
 
-This process will shutdown certain services on the AMI instance to verify consistency
+This process shuts down certain services on the AMI instance to verify consistency
 before moving data into the RDS instance to be used by the installer.
 
-Run these commands over SSH on the AMI instance:
+SSH into the AMI instance, and then run these commands:
 
 ```shell
 $ sudo ./migrator -password ptfemigrate
@@ -187,8 +187,9 @@ The command will ask you to confirm that you wish to continue. When are ready, r
 $ sudo ./migrator -password ptfemigrate -confirm
 ```
 
-The output of the command will include some debugging information to provide to support if
-there is an issue as well as a specially formatting block of text that like:
+When the migrator command completes, the output will include some debugging information
+to provide to support if there is an issue as well as a specially formatting block of text
+that looks like:
 
 ```
 -----BEGIN PTFE MIGRATION DATA-----
@@ -205,38 +206,37 @@ l7X33mQ270NGbKc/k6aCaqMZXyKewDk9bGalULh4dwSZXzNl4sJeb6DarkMyN1gp
 SggAGKOsNGVfaGlm5WNTAxRJRZ3dS4UV3ar9UVhblXKO14cm6fKt5ByNBvGTtuy0
 h3tR9gbjVjBA5S+iXP7lSb8=
 -----END PTFE MIGRATION DATA-----
-
 ```
 
-The first and last line will be the same as the above example but the body will be entirely different. This
-is a PEM encoded block that contains the configuration as well as vault keys to allow
+The first and last lines will be the same as above but the body will be entirely different. This
+is a PEM encoded block that contains the configuration as well as Vault keys to allow
 the installer to access your data.
 
-Copy this block of text, including the begin and end marking lines,
-to your computers clipboard by selecting the text and typing Control-C (Windows) or Command-C (macOS).
+Copy this block of text, including the beginning and ending lines beginning with `-----`
+to your computer's clipboard by selecting the text and typing Control-C (Windows) or Command-C (macOS).
 
 ### Importing data into the installer instance
 
-To introduce the migration data to the installer instance, connect to it over SSH.
+To transfer the migration data to the installer instance, connect to it over SSH.
 
-Once connected, run the following commands:
+Once connected, run the following commands to add the migrator tool to the instance:
 
 ```
 $ curl -O https://s3.amazonaws.com/hashicorp-ptfe-data/migrator
 $ chmod a+x migrator
 ```
 
-Next to import the data, you'll run the following command, passing in the same password used
-to generate the migration data and then paste the data you
-previously copied to your computers clipboard when asked by using Control-V (Windows) or
-Command-V (macOS):
+Then, to import the data, run the following command, passing in the same password used
+to generate the migration data.
 
 ```
 $ sudo ./migrator -password ptfemigrate
 ```
 
-The migrator process will place the vault data in the default path as well as output the
-values you'll need to enter into the Installer browser interface in the next few steps.
+When prompted, paste the data you previously copied to your computer's clipboard.
+
+The migrator process will place the Vault data in the default path for the installer to find,
+and outputs the	values you'll need later in the process for the Installer web interface.
 
 ## Installing PTFE
 
@@ -244,7 +244,7 @@ The installer can run in two modes, Online or Airgapped. Each of these modes has
 
 ### Run The Installer - Online
 
-If your instance can access the internet, you should run the Online install mode.
+If your instance can access the Internet, use the Online install mode.
 
 1. From a shell on your instance:
   * To execute the installer directly, run `curl https://install.terraform.io/ptfe/stable | sudo bash`
@@ -258,7 +258,7 @@ If your instance can access the internet, you should run the Online install mode
 
 ### Run The Installer - Airgapped
 
-If the instance can not reach the internet, then you can follow these steps to begin an Airgapped installation.
+If the instance cannot reach the internet, then follow these steps to begin an Airgapped installation.
 
 Preparing the instance:
 
@@ -283,7 +283,7 @@ From a shell on your instance, in the directory where you placed the `replicated
 ### Continue Installation In Browser
 
 1. Configure the hostname and the SSL certificate. **NOTE:** This does not need to be same hostname
-   as was used by the AMI and must be a hostname that currently resolves in DNS properly.
+   that was used by the AMI. It must be a hostname that currently resolves in DNS properly.
 1. Upload your license file, provided to you in your setup email.
 1. Indicate whether you're doing an Online or Airgapped installation. Choose Online if
    you're not sure.
@@ -299,13 +299,12 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. Select **External Services** under Production Type
 1. For the PostgreSQL url, copy and paste the value that was output by the `migrator` process for _PostgreSQL Database URL_.
 1. Select **S3** under Object Storage
-1. Configure the Access Key Id and Secret Access Key _OR_ select that you want to use an instance provide.
+1. Configure the Access Key ID and Secret Access Key _OR_ indicate that you want to use an instance profile.
    **NOTE**: An instance profile must be previously configured on the instance.
 1. For the Bucket, copy and paste the value that was output by the `migrator` process for _S3 Bucket_.
 1. For the Region, copy and paste the value that was output by the `migrator` process for _S3 Region_.
 1. For the server-side Encrytion, copy and paste the value that was output by the `migrator` process for the server-side encryption.
-1. For the KMS key, copy and paste the value that was output by the `migrator` process for _Optional KMS key_. **NOTE:** This key is not optional
-   for migration as it is used to properly read all the data in S3.
+1. For the KMS key, copy and paste the value that was output by the `migrator` process for _Optional KMS key_. **NOTE:** This key is not optional for migration, as it is used to read all the data in S3.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
    configuration and you wish to increase the work that the instance does
@@ -326,7 +325,6 @@ will indicate so and there will be an Open link to click to access the Terraform
 
 You can now access your PTFE installation using the previously configured hostname.
 
-
 ## Cleanup
 
 Now that the installer is using a subset of resources created by the AMI cluster terraform,
@@ -336,12 +334,12 @@ If these resources are not removed, it's possible to accidentally delete the dat
 cluster is removed!
 
 ~> **NOTE:** If you have modified the terraform modules we have provided, you'll need to adapt these instructions
-   to fit your modifications
+   to fit your modifications.
 
 ### Remove from terraform state
 
-First, let's verify all the resources currently tracked in the terraform state. Change to the directory
-where the terraform state exists (or if remote state is used, any directory), and list the state:
+First, verify all the resources currently tracked in the terraform state. If the terraform.state is on your local
+disk, change to that directory. Next, list the state:
 
 ```shell
 $ terraform state list
@@ -371,9 +369,7 @@ module.route53.aws_route53_record.rec
 random_id.installation-id
 ```
 
-Of these resources, the ones we need to remove from the state so they are can exist outside this terraform config
-are: 
-
+Of these resources, the ones we need to remove from the state so they are can exist outside this terraform config:
 ```
 aws_kms_alias.key
 aws_kms_key.key
@@ -384,14 +380,13 @@ module.instance.aws_s3_bucket.tfe_bucket
 ```
 
 To remove these resources from the state, run:
-
 ```shell
 $ terraform state rm aws_kms_alias.key aws_kms_key.key module.db.aws_db_instance.rds module.db.aws_db_subnet_group.rds module.db.aws_security_group.rds module.instance.aws_s3_bucket.tfe_bucket
 ```
 
 ### Destroy AMI cluster
 
-Now that these resources have been removed, you can destroy the AMI cluster without effecting the installer based installation.
+Now that these resources have been removed, it's safe to destroy the AMI cluster without affecting the installer-based installation.
 
 If you're ready to perform that step, run:
 
@@ -399,6 +394,6 @@ If you're ready to perform that step, run:
 $ terraform destroy
 ```
 
-You'll be asked to confirm the resources to destroyed and should double check the list doesn't contain the
+You'll be asked to confirm the resources to destroyed and should double check that the list doesn't contain the
 resources we removed earlier.
 
