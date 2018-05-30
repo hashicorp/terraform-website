@@ -1,24 +1,13 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer Beta)"
-sidebar_current: "docs-enterprise2-private-installer-install"
+page_title: "Private Terraform Enterprise Installer Migration"
+sidebar_current: "docs-enterprise2-private-installer-migration"
 ---
 
-# Private Terraform Enterprise Installation (Installer)
+# Private Terraform Enterprise Installer Migration
 
-## Delivery
-
-This document outlines the procedure for using the Private Terraform Enterprise (PTFE)
-installer to set up Terraform Enterprise on a customer-controlled machine.
-
-~> **Note**: This document is only meant for those customers using Private
-Terraform Enterprise via the Installer. Customers using the AMI can follow the
-[instructions for the AMI-based install](./install-ami.html).
-
-## Migrating from AMI
-
-If you are migrating an installation from the AMI to the installer, please
-use the instuctions in the [migration document](./migrate.html).
+This document outlines the procedure for migrating from the AMI based Private Terraform Enterprise (PTFE)
+to the installer.
 
 ## Preflight
 
@@ -145,34 +134,111 @@ The UI to upload these certificates looks like:
    the certificate chain for that CA must be included here as well. This allows the instance
    to properly query itself.
 
-### Operational Mode Decision
+### Operational Mode
 
-Terraform Enterprise can store its state in a few different ways and you'll
-need to decide which works best for your installation. Each option has a
-different approach to
-[recovering from failures](./reliability-availability.html#recovery-from-failures-1)
-and should be selected based on your organization's preferences.
+As you are migrating from the AMI, you'll be using **Production - External Services** to
+access the data previously managed by the AMI installation. This means using RDS for
+PostgreSQL and S3 to store the objects.
 
-1. **Production - External Services** - This mode stores the majority of the
-   stateful data used by the instance in an external PostgreSQL database as
-   well as an external S3-compatible endpoint or Azure blob storage. There is still critical data
-   stored on the instance that must be managed with snapshots. Be sure to
-   checked the [PostgreSQL Requirements](#postgresql-requirements) for what
-   needs to be present for Terraform Enterprise to work. This option is best
-   for users with expertise managing PostgreSQL or users that have access
-   to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/).
-1. **Production - Mounted Disk** - This mode stores data in a separate
-   directory on the host, with the intention that the directory is
-   configured to store its data on an external disk, such as EBS, iSCSI,
-   etc. This option is best for users with experience mounting performant
-   block storage.
-1. **Demo** - This mode stores all data on the instance. The data can be
-   backed up with the snapshot mechanism for restore later.
+## Begin Migration
 
+Now that the linux instance has been booted into the correct environment, you're ready to begin
+the migration process.
 
-The decision you make will be entered during setup.
+~> NOTE: The migration process will render the AMI installation inoperable. Be sure to backup
+   RDS before beginning.
 
-## Installation
+Schedule downtime for the installation and do not continue until that downtime period has
+arrived.
+
+### Prepare for migration
+
+SSH to the instance currently running in your PTFE AutoScaling group. You'll now download
+a migrator tool onto it to run the migration procedure:
+
+```shell
+$ curl -O https://s3.amazonaws.com/hashicorp-ptfe-data/migrator
+$ chmod a+x migrator
+```
+
+### Migrate data out of the AMI instance
+
+~> NOTE: The AMI instance will not function after this step.
+
+Next you'll need to create a password that will be used to protect the migration data
+as it is passed to the installer. This password is only used for this migration process
+and is not used after the migration is complete. 
+
+For this example, we'll be using the password `ptfemigrate` but you must change it to
+a password of your own choosing.
+
+This process will shutdown certain services on the AMI instance to verify consistency
+before moving data into the RDS instance to be used by the installer.
+
+Run these commands over SSH on the AMI instance:
+
+```shell
+$ sudo ./migrator -password ptfemigrate
+```
+
+The command will ask you to confirm that you wish to continue. When are ready, run:
+
+```shell
+$ sudo ./migrator -password ptfemigrate -confirm
+```
+
+The output of the command will include some debugging information to provide to support if
+there is an issue as well as a specially formatting block of text that like:
+
+```
+-----BEGIN PTFE MIGRATION DATA-----
+rbBuoUY1CZxFBH8sLHYpZzc7ndBD7on3aaro4Br9kV9W2t8PqOMYhS9Ts/nHr2ev
+cpN3EQEuK+Bur/TBYEEHjXiiv71aGjO6c2z68yhvfafDbTfvW8N0rXDQM26F2rTa
+1NGZNB1FUFPWFvPqbLW25xw5h+wn1FuOlEkqVsaBSdpYWGH/7NPtRDX2dN2ZhPYN
+vs5T0wZ3ToPM7e7yfwI/0uMg+2lAK0h4L/ioYgLHBSN/bGr/Plfj6+CR7zza8XC3
+kSv6kzGFr7fCT4BWzSJc38sOMviBY/TdyDPRlmmM7Flg9JLYIvLVxosRfIneQn60
+K5Jcf1wJEsH/ZAQpEkbp6PzQKUmAlvEHf/fSAPxf3W3ulAubrCe2QmwsPIJkIGx/
+uwfKgTCFr/svIkAtccTmeQ8pxAmNEA4CW/jEGlFkkZiu74+ia8KdF5lrtJBLA9Lj
+J8sue9KYAB64fwQ+fISLfrMeahjgFip3gPXofDevM2gbIFvde2iCFFbPlL3oYlRK
+nNVGb9Fa2ttIlP6oFZTbp7Ph0FZ+oSCtmFeDmpjQ5aM5C4WxmfMjs7IDJGup2ZyI
+l7X33mQ270NGbKc/k6aCaqMZXyKewDk9bGalULh4dwSZXzNl4sJeb6DarkMyN1gp
+SggAGKOsNGVfaGlm5WNTAxRJRZ3dS4UV3ar9UVhblXKO14cm6fKt5ByNBvGTtuy0
+h3tR9gbjVjBA5S+iXP7lSb8=
+-----END PTFE MIGRATION DATA-----
+
+```
+
+The first and last line will be the same as the above example but the body will be entirely different. This
+is a PEM encoded block that contains the configuration as well as vault keys to allow
+the installer to access your data.
+
+Copy this block of text, including the begin and end marking lines,
+to your computers clipboard by selecting the text and typing Control-C (Windows) or Command-C (macOS).
+
+### Importing data into the installer instance
+
+To introduce the migration data to the installer instance, connect to it over SSH.
+
+Once connected, run the following commands:
+
+```
+$ curl -O https://s3.amazonaws.com/hashicorp-ptfe-data/migrator
+$ chmod a+x migrator
+```
+
+Next to import the data, you'll run the following command, passing in the same password used
+to generate the migration data and then paste the data you
+previously copied to your computers clipboard when asked by using Control-V (Windows) or
+Command-V (macOS):
+
+```
+$ sudo ./migrator -password ptfemigrate
+```
+
+The migrator process will place the vault data in the default path as well as output the
+values you'll need to enter into the Installer browser interface in the next few steps.
+
+## Installing PTFE
 
 The installer can run in two modes, Online or Airgapped. Each of these modes has a different way of executing the installer, but the result is the same.
 
@@ -216,7 +282,8 @@ From a shell on your instance, in the directory where you placed the `replicated
 
 ### Continue Installation In Browser
 
-1. Configure the hostname and the SSL certificate.
+1. Configure the hostname and the SSL certificate. **NOTE:** This does not need to be same hostname
+   as was used by the AMI and must be a hostname that currently resolves in DNS properly.
 1. Upload your license file, provided to you in your setup email.
 1. Indicate whether you're doing an Online or Airgapped installation. Choose Online if
    you're not sure.
@@ -229,9 +296,15 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. The system will now perform a set of pre-flight checks on the instance and
    configuration thus far and indicate any failures. You can either fix the issues
    and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
-1. Configure the operational mode for this installation. See
-   [Operational Modes](#operational-mode-decision) for information on what the different values
-   are.
+1. Select **External Services** under Production Type
+1. For the PostgreSQL url, copy and paste the value that was output by the `migrator` process for the PostgreSQL url.
+1. Select **S3** under Object Storage
+1. Configure the Access Key Id and Secret Access Key _OR_ select that you want to use an instance provide.
+   **NOTE**: An instance profile must be previously configured on the instance.
+1. For the Bucket, copy and paste the value that was output by the `migrator` process for the Bucket.
+1. For the Region, copy and paste the value that was output by the `migrator` process for the Region.
+1. For the server-side Encrytion, copy and paste the value that was output by the `migrator` process for the server-side encryption.
+1. For the KMS key, copy and paste the value that was output by the `migrator` process for the KMS key.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
    configuration and you wish to increase the work that the instance does
@@ -242,47 +315,89 @@ From a shell on your instance, in the directory where you placed the `replicated
    globally trusted certificates but rather a private Certificate Authority (CA). This is typically
    used when Private Terraform Enterprise uses a private certificate (it must trust itself) or a
    VCS provider uses a private CA.
-1. _Optional:_ Adjust the path used to store the vault files that are used to encrypt
-   sensitive data. This is a path on the host system, which allows you
-   to store these files outside of the product to enhance security. Additionally,
-   you can configure the system not to store the vault files within any snapshots,
-   giving you full custody of these files. These files will need to be provided before
-   any snapshot restore process is performed, and should be placed into the path configured.
-1. _Optional:_ Configure the product to use an externally managed Vault cluster.
-   See [Externally Managed Vault Cluster](./vault.html) for details on how to configure this option.
 
-#### PostgreSQL Requirements
-
-When Terraform Enterprise uses an external PostgreSQL database, the
-following must be present on it:
-
-* PostgreSQL version 9.4 or greater
-* User with access to ownership semantics on the referenced database
-* The following PostgreSQL schemas must be installed into the database: `rails`, `vault`, `registry`
-
-To create schemas in PostgreSQL, the `CREATE SCHEMA` command is used. So to
-create the above required schemas, the following snippet must be run on the
-database:
-
-```
-CREATE SCHEMA rails;
-CREATE SCHEMA vault;
-CREATE SCHEMA registry;
-```
-
-When specifying which PostgreSQL database to use, the value specified must
-be a valid Database URL, as [specified in the libpq documentation](https://www.postgresql.org/docs/9.3/static/libpq-connect.html#AEN39514).
-
-Additionally, the URL must include the `sslmode` parameter indicating if SSL
-should be used to connect to the database. There is no assumed SSL mode, the
-parameter must be specified.
-
-### Finish Bootstrapping
+### Finish Installing
 
 Once configured, the software will finish downloading. When it’s ready, the UI
 will indicate so and there will be an Open link to click to access the Terraform Enterprise UI.
 
-## Configuration
+## Access
 
-After completing a new install you should head to the [configuration
-page](./config.html) to continue setting up Terraform Enterprise.
+You can now access your PTFE installation using the previously configured hostname.
+
+
+## Cleanup
+
+Now that the installer is using a subset of resources created by the AMI cluster terraform,
+we need to remove those resources from the terraform state used to create the AMI cluster.
+
+If these resources are not removed, it's possible to accidentally delete the data when the AMI
+cluster is removed!
+
+~> **NOTE:** If you have modified the terraform modules we have provided, you'll need to adapt these instructions
+   to fit your modifications
+
+### Remove from terraform state
+
+First, let's verify all the resources currently tracked in the terraform state. Change to the directory
+where the terraform state exists (or if remote state is used, any directory), and list the state:
+
+```shell
+$ terraform state list
+aws_caller_identity.current
+aws_kms_alias.key
+aws_kms_key.key
+aws_subnet.instance
+aws_vpc.vpc
+module.db.aws_db_instance.rds
+module.db.aws_db_subnet_group.rds
+module.db.aws_security_group.rds
+module.instance.aws_autoscaling_group.ptfe
+module.instance.aws_ebs_volume.data[0]
+module.instance.aws_ebs_volume.data[1]
+module.instance.aws_elb.ptfe
+module.instance.aws_iam_instance_profile.tfe_instance
+module.instance.aws_iam_policy_document.tfe-perms
+module.instance.aws_iam_role.tfe_iam_role
+module.instance.aws_iam_role_policy.tfe-perms
+module.instance.aws_launch_configuration.ptfe
+module.instance.aws_s3_bucket.tfe_bucket
+module.instance.aws_s3_bucket_object.setup
+module.instance.aws_security_group.ptfe
+module.instance.aws_security_group.ptfe-external
+module.instance.aws_subnet.subnet
+module.route53.aws_route53_record.rec
+random_id.installation-id
+```
+
+Of these resources, the ones we need to remove from the state so they are can exist outside this terraform config
+are: 
+
+```
+aws_kms_alias.key
+aws_kms_key.key
+module.db.aws_db_instance.rds
+module.db.aws_db_subnet_group.rds
+module.db.aws_security_group.rds
+module.instance.aws_s3_bucket.tfe_bucket
+```
+
+To remove these resources from the state, run:
+
+```shell
+$ terraform state rm aws_kms_alias.key aws_kms_key.key module.db.aws_db_instance.rds module.db.aws_db_subnet_group.rds module.db.aws_security_group.rds module.instance.aws_s3_bucket.tfe_bucket
+```
+
+### Destroy AMI cluster
+
+Now that these resources have been removed, you can destroy the AMI cluster without effecting the installer based installation.
+
+If you're ready to perform that step, run:
+
+```shell
+$ terraform destroy
+```
+
+You'll be asked to confirm the resources to destroyed and should double check the list doesn't contain the
+resources we removed earlier.
+
