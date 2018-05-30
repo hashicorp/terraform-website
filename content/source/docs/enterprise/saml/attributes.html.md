@@ -20,6 +20,18 @@ If Username is specified, the system will assign that username instead of an aut
 </saml:AttributeStatement>
 ```
 
+## SiteAdmin
+
+If the SiteAdmin attribute is present, the system will grant or revoke site admin access for the user. Site admin access can be also be granted or revoked in the [MemberOf attribute](#memberof), however the SiteAdmin attribute is the recommended method of managing access and will override the other value.
+
+```xml
+<saml:AttributeStatement>
+  <saml:Attribute Name="SiteAdmin">
+    <saml:AttributeValue xsi:type="xs:boolean">false</saml:AttributeValue>
+  </saml:Attribute>
+</saml:AttributeStatement>
+```
+
 ## MemberOf
 
 Team membership is specified in the MemberOf attribute. (If desired, you can [configure a different name](./team-membership.html) for the team membership attribute.)
