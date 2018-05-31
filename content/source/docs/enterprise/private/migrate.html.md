@@ -188,7 +188,7 @@ $ sudo ./migrator -password ptfemigrate -confirm
 ```
 
 When the migrator command completes, the output will include some debugging information
-to provide to support if there is an issue as well as a specially formatting block of text
+to provide to support if there is an issue as well as a specially-formatting block of text
 that looks like:
 
 ```
@@ -235,7 +235,7 @@ $ sudo ./migrator -password ptfemigrate
 
 When prompted, paste the data you previously copied to your computer's clipboard.
 
-The migrator process will place the Vault data in the default path for the installer to find,
+The migrator process places the Vault data in the default path for the installer to find,
 and outputs the	values you'll need later in the process for the Installer web interface.
 
 ## Installing PTFE
@@ -369,7 +369,7 @@ module.route53.aws_route53_record.rec
 random_id.installation-id
 ```
 
-Of these resources, the ones we need to move from the state so they are can exist outside this terraform config:
+Of these resources, the ones to move from the state so they are can exist outside this terraform config are:
 ```
 aws_kms_alias.key
 aws_kms_key.key
