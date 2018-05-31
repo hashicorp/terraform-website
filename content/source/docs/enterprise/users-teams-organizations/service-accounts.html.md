@@ -10,16 +10,19 @@ Terraform Enterprise provides two types of service accounts. These accounts can 
 
 ## Team Service Accounts
 
-Team service accounts are generally used to perform operations on workspaces. They have the same access level as the team in which they are created.
+To manage the API token for a team service account, go to **Organization settings > Teams > (desired team)** and use the controls under the "Team API Token" header.
 
-Team service accounts are under the "Team API Token" section of the team management page. All the teams in your organization are under "Teams" on the organization settings page.
-
+Team service accounts are designed for performing operations on workspaces. They have the same access level as the team in which they are created.
 
 ## Organization Service Accounts
 
-Organization service accounts are associated with the organization and have permissions across the entire organization. These accounts have permission to perform all CRUD operations on all resources; however, these accounts do not have permission to trigger an apply on a workspace. To perform workspace operations like applying, use team service accounts.
+To manage the API token for an organization service account, go to **Organization settings > API Token** and use the controls under the "Organization Tokens" header.
 
-Organization service accounts are under "API Token" on the Organization Settings page.
+Organization service accounts are designed for creating and configuring workspaces and teams. We don't recommend using them as an all-purpose interface to TFE; their purpose is to do some initial setup before delegating a workspace to a team. For more routine interactions with workspaces, use team service accounts.
+
+Organization service accounts have permissions across the entire organization. They can perform all CRUD operations on most resources, but have some limitations; most importantly, they cannot start runs or create configuration versions. Any API endpoints that can't be used with an organization account include a note like the following:
+
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 ## Generating Tokens
 
