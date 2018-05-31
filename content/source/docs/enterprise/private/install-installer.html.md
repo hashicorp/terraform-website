@@ -18,7 +18,7 @@ Terraform Enterprise via the Installer. Customers using the AMI can follow the
 ## Migrating from AMI
 
 If you are migrating an installation from the AMI to the installer, please
-use the instuctions in the [migration document](./migrate.html).
+use the instuctions in the [migration guide](./migrate.html).
 
 ## Preflight
 
@@ -127,6 +127,12 @@ MIIFtTCCA52gAwIBAgIIYY3HhjsBggUwDQYJKoZIhvcNAQEFBQAwRDEWMBQGA1UE
 AwwNQUNFRElDT00gUm9vdDEMMAoGA1UECwwDUEtJMQ8wDQYDVQQKDAZFRElDT00x
 CzAJBgNVBAYTAkVTMB4XDTA4MDQxODE2MjQyMloXDTI4MDQxMzE2MjQyMlowRDEW
 MBQGA1UEAwwNQUNFRElDT00gUm9vdDEMMAoGA1UECwwDUEtJMQ8wDQYDVQQKDAZF
+....
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIIB5zCCAY6gAwIBAgIUNJADaMM+URJrPMdoIeeAs9/CEt4wCgYIKoZIzj0EAwIw
+UjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1TYW4gRnJhbmNp
+c2NvMR4wHAYDVQQDExVoYXNoaWNvcnAuZW5naW5lZXJpbmcwHhcNMTgwMjI4MDYx
 ....
 -----END CERTIFICATE-----
 ```

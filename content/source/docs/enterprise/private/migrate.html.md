@@ -17,12 +17,12 @@ Before you begin, you'll need to prepare data files and a Linux instance.
 
 * TLS private key and certificate
   * The installer allows for using a self-signed certificate but HashiCorp does
-    _not_ recommended this. Your VCS provider will likely reject that certificate
+    _not_ recommend this. Your VCS provider will likely reject that certificate
     when sending webhooks. If you do use the self-signed certificate, you must configure
     each webhook to ignore SSL errors within your VCS provider.
 * License key (provided by HashiCorp)
 
-~> **Note:** If you use your own certificate and it is issued by a private Certificate
+~> **Note:** If you use your own certificate issued by a private or internal Certificate
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
    running within PTFE to access each other properly.
@@ -118,6 +118,12 @@ CzAJBgNVBAYTAkVTMB4XDTA4MDQxODE2MjQyMloXDTI4MDQxMzE2MjQyMlowRDEW
 MBQGA1UEAwwNQUNFRElDT00gUm9vdDEMMAoGA1UECwwDUEtJMQ8wDQYDVQQKDAZF
 ....
 -----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIIB5zCCAY6gAwIBAgIUNJADaMM+URJrPMdoIeeAs9/CEt4wCgYIKoZIzj0EAwIw
+UjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1TYW4gRnJhbmNp
+c2NvMR4wHAYDVQQDExVoYXNoaWNvcnAuZW5naW5lZXJpbmcwHhcNMTgwMjI4MDYx
+....
+-----END CERTIFICATE-----
 ```
 
 The UI to upload these certificates looks like:
@@ -163,7 +169,11 @@ $ chmod a+x migrator
 
 ### Migrate data out of the AMI instance
 
-~> NOTE: The AMI instance will not function after this step.
+~> NOTE: The AMI instance will not function after this step. Certain services are stopped and
+   should not be restarted after the migration. The migration moves data stored in Consul by
+   the AMI (Vault data) into PostgreSQL to be used by the installer. If the AMI adds new
+   data to Consul after the migration, the installer-based instance won't have access to it,
+   destabilizing the system.
 
 Next, create a password that will be used to protect the migration data
 as it is passed to the installer. This password is only used for this migration process
@@ -185,6 +195,93 @@ The command will ask you to confirm that you wish to continue. When are ready, r
 
 ```shell
 $ sudo ./migrator -password ptfemigrate -confirm
+```
+
+An example session of running the migrator looks like:
+
+```shell
+This program will prepare your database for migration as well as
+output a block of text that you must provide when requested while
+later running this program on the linux instance being used
+to run the installer.
+
+This program will now shutdown some primary services before
+continuning to be sure that the database is consistent
+Shutting down services...
+2018/05/25 17:37:04 Generated new root token to transmit
+2018/05/25 17:37:04 connecting to postgresql at postgres://atlas:xxyyzz@tfe-aabbcc.ddeeff.us-west-2.rds.amazonaws.com:5432/atlas_production?&options=-c%20search%5Fpath%3Dvault
+2018/05/25 17:37:04 setup rails schema!
+2018/05/25 17:37:04 writing core/audit
+2018/05/25 17:37:04 writing core/auth
+2018/05/25 17:37:04 writing core/cluster/local/info
+2018/05/25 17:37:04 writing core/keyring
+2018/05/25 17:37:04 writing core/leader/615b50e4-206d-9170-7971-f2b6b8a508fd
+2018/05/25 17:37:04 writing core/local-audit
+2018/05/25 17:37:04 writing core/local-auth
+2018/05/25 17:37:04 writing core/local-mounts
+2018/05/25 17:37:04 writing core/lock
+2018/05/25 17:37:04 writing core/master
+2018/05/25 17:37:04 writing core/mounts
+2018/05/25 17:37:04 writing core/seal-config
+2018/05/25 17:37:04 writing core/wrapping/jwtkey
+2018/05/25 17:37:04 writing logical/91a7ef51-f1c5-b0a2-8755-3a4d86f1a082/ptfe-backup
+2018/05/25 17:37:04 writing logical/91a7ef51-f1c5-b0a2-8755-3a4d86f1a082/setup-data
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/archivist_encoder
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/archivist_kdf
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_events_resource_diff
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_o_auth_clients_secret
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_o_auth_clients_webhook_secret
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_o_auth_tokens_info
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_o_auth_tokens_value
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_runs_metadata
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_runs_var_snapshot
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_setting_storage_postgres_value
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_vcs_hosts_webhook_secret
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/archive/atlas_vcs_repos_webhook_secret
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/archivist_encoder
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/archivist_kdf
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_events_resource_diff
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_o_auth_clients_secret
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_o_auth_clients_webhook_secret
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_o_auth_tokens_info
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_o_auth_tokens_value
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_runs_metadata
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_runs_var_snapshot
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_setting_storage_postgres_value
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_vcs_hosts_webhook_secret
+2018/05/25 17:37:04 writing logical/e0eb6eb8-56e2-d564-8fc4-78ee882229e8/policy/atlas_vcs_repos_webhook_secret
+2018/05/25 17:37:04 writing sys/expire/id/auth/token/create-orphan/5c40cdecc64ba276ca810a7d43cf69a4b486ad4d
+2018/05/25 17:37:04 writing sys/expire/id/auth/token/create/aaf09a178b4658fd926f9193caef9e1817aae7c4
+2018/05/25 17:37:04 writing sys/policy/archivist
+2018/05/25 17:37:04 writing sys/policy/atlas
+2018/05/25 17:37:04 writing sys/policy/default
+2018/05/25 17:37:04 writing sys/policy/response-wrapping
+2018/05/25 17:37:04 writing sys/token/accessor/105c7e4b4898cd905a915b48c7e8d3a20b7e8d25
+2018/05/25 17:37:04 writing sys/token/accessor/9ff1ff31131be14d563ce1f0fb4781610175189f
+2018/05/25 17:37:04 writing sys/token/accessor/b336f38abdbe381c8989c90f980c8267a3af999e
+2018/05/25 17:37:04 writing sys/token/accessor/c0142d331857496927a3799ea9df277e69d0a982
+2018/05/25 17:37:04 writing sys/token/id/5c40cdecc64ba276ca810a7d43cf69a4b486ad4d
+2018/05/25 17:37:04 writing sys/token/id/5ed7ddc1674fbb42fe3ddcd278802a116b7cd4ab
+2018/05/25 17:37:04 writing sys/token/id/aaf09a178b4658fd926f9193caef9e1817aae7c4
+2018/05/25 17:37:04 writing sys/token/id/c356180d070a7aafa29f25416d5b8d2bba3dffa8
+2018/05/25 17:37:04 writing sys/token/salt
+2018/05/25 17:37:04 all vault data copied
+copy and paste this data onto the instance PTFE will be installed on
+
+-----BEGIN PTFE MIGRATION DATA-----
+sl+VOHlCIKTq+aX7h/ZROP+bQkuJJlw/Is8WeFB/lfETBxXPmRwA6Ll9gYxyxpmq
+hYUnw5Sj6IkHYGpwyw8tHdWyDTPHbtRZJtywGx8DAV6qi6gHbjjm93h4Rx5CIOZL
+N3KBsHJR2tbp+xa1AtHxzzG+dzE1GzZwIbka/vOp2vQd47sroYSppMuH5GwcwM8G
+sg64byIj00oj5UhF289hEoVlAL9jz51thzy8hXKC5UQtGnesva5c2hYMKu/Hkf68
+7Irg7kWuruc+6MM9F2WIZ/gGGtMqEZQM2NL7WvBlcbbFZHDNGsWojiWhK+IJPK0C
+vj217NebILBphOkoXiXsg0PnUNhovLl9Gp/4kuHUT01pZbTzdwd/Va0uLZLY4CFc
+s8qx91pxLCVThCDEFJ4mfyFk7QObTl76ObxnqrGMSJ++Co/Wt264cUqDUoJ7rCdN
+pQFtOcPk+0RLw4qBFPEL2iKOe4r878PajKaRThE4yt62noF/pfabV0yckVz2lfFY
+vnlL85GxgpBdyMp4EGrJyxPqCMSCiBNLzMT6MZWynDlcRwkSf8xZyw36wMoF48Nz
+nITmImg+IzyV+eb3gjRqAC6zl2Dd/QZiKti1fgwKt1YFSMIHOuHWpTsxh1b/fAtQ
+Gchx01Jkp2kd73jxEEJ8r9yEDZzNf5Hh4U8IiLxFNCP/2UjEtPI5nNSnxm3/fj3v
+EhdSjIQGthiXHuU4gAOC4c0=
+-----END PTFE MIGRATION DATA-----
 ```
 
 When the migrator command completes, the output will include some debugging information
@@ -217,7 +314,7 @@ to your computer's clipboard by selecting the text and typing Control-C (Windows
 
 ### Importing data into the installer instance
 
-To transfer the migration data to the installer instance, connect to it over SSH.
+To transfer the migration data to the installer-based instance, connect to it over SSH.
 
 Once connected, run the following commands to add the migrator tool to the instance:
 
@@ -328,7 +425,7 @@ You can now access your PTFE installation using the previously configured hostna
 ## Cleanup
 
 Now that the installer is using a subset of resources created by the AMI cluster terraform,
-we need to remove those resources from the terraform state used to create the AMI cluster.
+we need to move those resources from the terraform state for the AMI cluster.
 
 If these resources are not removed, it's possible to accidentally delete the data when the AMI
 cluster is removed!
