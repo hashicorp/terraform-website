@@ -1,6 +1,6 @@
 ---
 layout: "enterprise2"
-page_title: "Using Private Modules - Private Module Registry - Terraform Enterprise Beta"
+page_title: "Using Private Modules - Private Module Registry - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-registry-using"
 ---
 
