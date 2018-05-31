@@ -131,6 +131,8 @@ curl \
 | --------------- | --------------------------------------------------------- |
 | `:workspace_id` | The workspace ID to create the new configuration version. |
 
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+
 ### Request Body
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
