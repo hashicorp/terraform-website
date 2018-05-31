@@ -39,7 +39,7 @@ The same request for the same module and provider on the TFE module registry for
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   https://app.terraform.io/api/registry/v1/modules/my-tfe-org/consul/aws/versions
 ```
 
@@ -78,7 +78,7 @@ This endpoint can be used to publish a new module to the registry. The publishin
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -141,7 +141,7 @@ These endpoints can delete a single version for a provider, a single provider (a
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   https://app.terraform.io/api/v2/registry-modules/actions/delete/skierkowski-v2/instance

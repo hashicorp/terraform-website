@@ -49,7 +49,7 @@ This endpoint enables you to create a policy and associate it with an organizati
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -106,7 +106,7 @@ main = rule { true }
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/octet-stream" \
   --request PUT \
   --data-binary @payload.sentinel \
@@ -149,7 +149,7 @@ This endpoint enables you to update a Policy
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
@@ -198,7 +198,7 @@ List all the policies for a given organization
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   https://app.terraform.io/api/v2/organizations/my-organization/policies
 ```
 
@@ -244,7 +244,7 @@ curl \
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --request DELETE \
   https://app.terraform.io/api/v2/policies/pl-u3S5p2Uwk21keu1s
 ```

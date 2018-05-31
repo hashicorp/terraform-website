@@ -63,7 +63,7 @@ Key path                    | Type   | Default | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -121,7 +121,7 @@ These two parameters are optional but linked; if you include one, you must inclu
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
 "https://app.terraform.io/api/v2/vars?filter%5Borganization%5D%5Bname%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace"
 # ?filter[organization][name]=my-organization&filter[workspace][name]=demo01
@@ -202,7 +202,7 @@ Key path          | Type   | Default | Description
 
 ```bash
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
@@ -253,7 +253,7 @@ Parameter      | Description
 
 ```bash
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/vars/var-yRmifb4PJj7cLkMG

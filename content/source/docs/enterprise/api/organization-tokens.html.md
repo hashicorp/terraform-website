@@ -34,7 +34,7 @@ Status  | Response                                                | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   https://app.terraform.io/api/v2/organizations/my-organization/authentication-token
@@ -86,7 +86,7 @@ Status  | Response                                             | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/organizations/my-organization/authentication-token
