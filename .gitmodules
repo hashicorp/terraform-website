@@ -302,3 +302,7 @@
 	path = ext/providers/nsxt
 	url = https://github.com/terraform-providers/terraform-provider-nsxt
 	branch = stable-website
+[submodule "ext/providers/flexibleengine"]
+	path = ext/providers/flexibleengine
+	url = https://github.com/terraform-providers/terraform-provider-flexibleengine
+	branch = stable-website
