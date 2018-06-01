@@ -177,7 +177,7 @@ Status  | Response                                         | Reason
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
-Properties without a default value are required if `data.attributes.enabled` is set to `true`.
+If `data.attributes.enabled` is set to `true`, all remaining attributes must have valid values. You can omit attributes if they have a default value, or if a value was set by a previous update. Omitted attributes keep their previous values.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
@@ -308,7 +308,7 @@ Status  | Response                                     | Reason
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
-Properties without a default value are required if `data.attributes.enabled` is set to `true`.
+If `data.attributes.enabled` is set to `true`, all remaining attributes must have valid values. You can omit attributes if they have a default value, or if a value was set by a previous update. Omitted attributes keep their previous values.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
@@ -426,7 +426,7 @@ Status  | Response                                         | Reason
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
-Properties without a default value are required if `data.attributes.enabled` is set to `true`.
+If `data.attributes.enabled` is set to `true`, all remaining attributes must have valid values. You can omit attributes if they have a default value, or if a value was set by a previous update. Omitted attributes keep their previous values.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
