@@ -87,4 +87,4 @@ Then, attach the bundle to your support ticket. If possible, use the SendSafely 
 
 ## Pre-Sales uploads
 
-Customers in the pre-sales phase can upload support bundle files directly at https://hashicorp.sendsafely.com/dropzone/private-tfe.
+Customers in the pre-sales phase can upload support bundle files directly at https://hashicorp.sendsafely.com/u/ptfe-support-bundles.
