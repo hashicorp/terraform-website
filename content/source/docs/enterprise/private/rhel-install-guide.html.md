@@ -33,7 +33,7 @@ If you opt to use Docker from RHEL extras, then you must make a change to its de
 Sure! Just be sure to have at least 1.13.1 and authorization plugins disabled.
 
 ### When I run the installer, it allows me to download and install Docker CE on RedHat. Can I use that?
-Yes, Docker CE is compatible with the current installer; however it is not directly supported by RedHat (See https://access.redhat.com/articles/2726611). You still need to be sure that the storage backend is configured properly as by default, Docker will be using devicemapper in loopback, an entirely unsupported mode.
+Yes, Docker CE is compatible with the current installer. However, it is not directly [supported by RedHat](https://access.redhat.com/articles/2726611). You still need to be sure that the storage backend is configured properly as by default, Docker will be using devicemapper in loopback, an entirely unsupported mode.
 
 ### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
 No. This is an installation that docker provides as sample and is not supported by Private Terraform Enterprise due to the significant instability in it. Docker themselves do not suggest using this mode: https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-loop-lvm-mode-for-testing 
