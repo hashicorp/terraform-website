@@ -8,6 +8,8 @@ sidebar_current: "docs-enterprise2-api-configuration-versions"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
+-> **Note:** Before working with the runs or configuration versions APIs, read the [API-driven run workflow](../workspaces/run-api.html) page, which includes both a full overview of this workflow and a walkthrough of a simple implementation of it.
+
 A configuration version (`configuration-version`) is a resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
 
 ## List Configuration Versions
