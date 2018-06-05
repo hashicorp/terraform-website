@@ -306,3 +306,7 @@
 	path = ext/providers/flexibleengine
 	url = https://github.com/terraform-providers/terraform-provider-flexibleengine
 	branch = stable-website
+[submodule "ext/providers/hcloud"]
+	path = ext/providers/hcloud
+	url = https://github.com/terraform-providers/terraform-provider-hcloud
+	branch = stable-website
