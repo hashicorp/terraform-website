@@ -26,7 +26,7 @@ List all the OAuth Tokens for a given organization
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   https://app.terraform.io/api/v2/organizations/my-organization/oauth-tokens
 ```
 

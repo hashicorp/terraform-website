@@ -24,7 +24,7 @@ This endpoint lists the policy checks in a run.
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   https://app.terraform.io/api/v2/runs/run-CZcmD7eagjhyXavN/policy-checks
 ```
 
@@ -119,7 +119,7 @@ This endpoint overrides a soft-mandatory or warning policy.
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   https://app.terraform.io/api/v2/policy-checks/polchk-EasPB4Srx5NAiWAU/actions/override
