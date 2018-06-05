@@ -10,9 +10,9 @@ Terraform Enterprise (TFE) provides a central interface for running Terraform wi
 
 This page describes the basics of what a run is in TFE. Once you understand the basics, you can read about:
 
-- The [UI/VCS-driven run workflow](./run-ui.html), which is TFE's primary mode of operation.
-- The [API-driven run workflow](./run-api.html), which is more flexible but requires you to create some tooling.
-- The [CLI-driven run workflow](./run-cli.html), which is the API-driven workflow with a user-friendly command line tool.
+- The [UI/VCS-driven run workflow](./ui.html), which is TFE's primary mode of operation.
+- The [API-driven run workflow](./api.html), which is more flexible but requires you to create some tooling.
+- The [CLI-driven run workflow](./cli.html), which is the API-driven workflow with a user-friendly command line tool.
 
 ## Plans and Applies
 

@@ -8,8 +8,8 @@ sidebar_current: "docs-enterprise2-run-cli"
 
 Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
 
-- The [UI/VCS-driven run workflow](./run-ui.html), which is TFE's primary mode of operation.
-- The [API-driven run workflow](./run-api.html), which is more flexible but requires you to create some tooling.
+- The [UI/VCS-driven run workflow](./ui.html), which is TFE's primary mode of operation.
+- The [API-driven run workflow](./api.html), which is more flexible but requires you to create some tooling.
 - The CLI-driven run workflow described below, which is the API-driven workflow with a user-friendly command line tool.
 
 ## Summary

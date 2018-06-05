@@ -108,7 +108,7 @@ Today, you have two options for manually promoting configurations from one works
 
     This method is advanced, but it takes advantage of the same APIs that the upcoming pipelines feature will use. For more information about using the runs API, see:
 
-    - [The API-driven Run Workflow](../../workspaces/run-api.html)
+    - [The API-driven Run Workflow](../../run/api.html)
     - [The Runs API reference](../../api/run.html) (in particular, the "Create a Run" endpoint and the "List Runs in a Workspace" endpoint)
 
 ## Next
