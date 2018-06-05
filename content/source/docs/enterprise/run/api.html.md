@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
-page_title: "API-driven Runs - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-run-api"
+page_title: "API-driven Runs - Runs - Terraform Enterprise"
+sidebar_current: "docs-enterprise2-run-api"
 ---
 
 # The API-driven Run Workflow
