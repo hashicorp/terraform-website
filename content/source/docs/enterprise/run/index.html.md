@@ -82,3 +82,37 @@ If you need to temporarily stop runs from being queued, you can lock the workspa
 
 You can find the lock button in the workspace settings page. Locking a workspace requires write or admin access.
 
+## Terraform State in TFE
+
+Each TFE workspace has its own separate state data. In order to read and write state for the correct workspace, TFE overrides any configured [backend](/docs/backends/index.html) when running Terraform.
+
+You can view current and historical state data for a workspace from its "States" tab. Each state in the list indicates which run and which VCS commit (if applicable) it was associated with. You can click a state in the list for more details, including a diff against the previous state and a link to the raw state file.
+
+### Cross-Workspace State Access
+
+In your Terraform configurations, you can use a [`terraform_remote_state` data source](/docs/providers/terraform/d/remote_state.html) to access [outputs](/docs/configuration/outputs.html) from your other workspaces.
+
+~> **Important:** A given workspace can only access state data from within the same organization. If you plan to use multiple TFE organizations, make sure to keep groups of workspaces that use each other's data together in the same organization.
+
+To configure a data source for a TFE workspace, set `backend` to `atlas` and `config.name` to `<ORGANIZATION>/<WORKSPACE>`.
+
+``` hcl
+data "terraform_remote_state" "vpc" {
+  backend = "atlas"
+  config {
+    name = "example_corp/vpc-prod"
+  }
+}
+
+resource "aws_instance" "redis_server" {
+  # ...
+  subnet_id = "${data.terraform_remote_state.vpc.subnet_id}"
+}
+```
+
+### Backend Details
+
+TFE uses [the `atlas` backend](/docs/backends/types/terraform-enterprise.html) to exchange state data with the Terraform process during runs. The `atlas` backend requires an access token, provided via the `$ATLAS_TOKEN` environment variable. When you run Terraform from the command line, you can use a [user API token](../users-teams-organizations/users.html#api-tokens) with write permissions on the desired workspace.
+
+When TFE performs a run, it doesn't use existing user credentials; instead it generates a unique per-run API token, and exports it to the Terraform worker's shell environment as `$ATLAS_TOKEN`. This per-run token can read and write state data for the workspace associated with the run, and can read state data from any other workspace in the same organization. It cannot make any other calls to the TFE API. Per-run tokens are not considered to be user, team, or organization tokens, and become invalid after the run is completed.
+
