@@ -11,11 +11,11 @@ sidebar_current: "docs-enterprise2-api-admin-settings"
 -> **Note**: These endpoints are only available in Private Terraform instances and only accessible by site administrators.
 
 ## List General Settings
-`GET /api/v2/admin/settings/general`
+`GET /api/v2/admin/general-settings`
 
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
-[200][] | [JSON API document][] (`type: "settings/general"`) | Successfully listed General settings
+[200][] | [JSON API document][] (`type: "general-settings"`) | Successfully listed General settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -30,7 +30,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://app.terraform.io/api/v2/admin/settings/general
+  https://app.terraform.io/api/v2/admin/general-settings
 ```
 
 ### Sample Response
@@ -39,7 +39,7 @@ curl \
 {
   "data": {
     "id": "general",
-    "type": "settings/general",
+    "type": "general-settings",
     "attributes": {
       "support-email-address": "support@example.com",
       "security-email-address": "security@example.com",
@@ -50,11 +50,11 @@ curl \
 ```
 
 ## Update General Settings
-`PATCH /api/v2/admin/settings/general`
+`PATCH /api/v2/admin/general-settings`
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
-[200][] | [JSON API document][] (`type: "settings/general"`) | Successfully updated the General settings
+[200][] | [JSON API document][] (`type: "general-settings"`) | Successfully updated the General settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
@@ -96,7 +96,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/admin/settings/general
+  https://app.terraform.io/api/v2/admin/general-settings
 ```
 
 ### Sample Response
@@ -105,7 +105,7 @@ curl \
 {
   "data": {
     "id":"general",
-    "type":"settings/general",
+    "type":"general-settings",
     "attributes": {
       "support-email-address": "support@example.com",
       "security-email-address": "security@example.com",
@@ -116,11 +116,11 @@ curl \
 ```
 
 ## List SAML Settings
-`GET /api/v2/admin/settings/saml`
+`GET /api/v2/admin/saml-settings`
 
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
-[200][] | [JSON API document][] (`type: "settings/saml"`) | Successfully listed SAML settings
+[200][] | [JSON API document][] (`type: "saml-settings"`) | Successfully listed SAML settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -135,7 +135,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://app.terraform.io/api/v2/admin/settings/saml
+  https://app.terraform.io/api/v2/admin/saml-settings
 ```
 
 ### Sample Response
@@ -144,7 +144,7 @@ curl \
 {
   "data": {
     "id": "saml",
-    "type": "settings/saml",
+    "type": "saml-settings",
     "attributes": {
       "enabled": true,
       "idp-cert": "SAMPLE-CERTIFICATE",
@@ -160,11 +160,11 @@ curl \
 ```
 
 ## Update SAML Settings
-`PATCH /api/v2/admin/settings/saml`
+`PATCH /api/v2/admin/saml-settings`
 
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
-[200][] | [JSON API document][] (`type: "settings/saml"`) | Successfully updated SAML settings
+[200][] | [JSON API document][] (`type: "saml-settings"`) | Successfully updated SAML settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
@@ -216,7 +216,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/admin/settings/saml
+  https://app.terraform.io/api/v2/admin/saml-settings
 ```
 
 ### Sample Response
@@ -225,7 +225,7 @@ curl \
 {
   "data": {
     "id":"saml",
-    "type":"settings/saml",
+    "type":"saml-settings",
     "attributes": {
       "enabled": true,
       "idp-cert": "SAMPLE-CERTIFICATE",
@@ -241,11 +241,11 @@ curl \
 ```
 
 ## List SMTP Settings
-`GET /api/v2/admin/settings/smtp`
+`GET /api/v2/admin/smtp-settings`
 
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
-[200][] | [JSON API document][] (`type: "settings/saml"`) | Successfully listed SMTP settings
+[200][] | [JSON API document][] (`type: "saml-settings"`) | Successfully listed SMTP settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -260,7 +260,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://app.terraform.io/api/v2/admin/settings/smtp
+  https://app.terraform.io/api/v2/admin/smtp-settings
 ```
 
 ### Sample Response
@@ -269,7 +269,7 @@ curl \
 {
   "data": {
     "id": "smtp",
-    "type": "settings/smtp",
+    "type": "smtp-settings",
     "attributes": {
       "enabled": true,
       "host": "example.com",
@@ -283,13 +283,13 @@ curl \
 ```
 
 ## Update SMTP Settings
-`PATCH /api/v2/admin/settings/smtp`
+`PATCH /api/v2/admin/smtp-settings`
 
 When this request is submitted, a test message will be sent to the specified `sender` address. If the test message delivery fails, the API will return an error code indicating the reason for the failure.
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
-[200][] | [JSON API document][] (`type: "settings/smtp"`) | Successfully updated the SMTP settings
+[200][] | [JSON API document][] (`type: "smtp-settings"`) | Successfully updated the SMTP settings
 [401][] | [JSON API error object][]                    | SMTP user credentials are invalid
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
@@ -347,7 +347,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/admin/settings/smtp
+  https://app.terraform.io/api/v2/admin/smtp-settings
 ```
 
 ### Sample Response
@@ -356,7 +356,7 @@ curl \
 {
   "data": {
     "id":"smtp",
-    "type":"settings/smtp",
+    "type":"smtp-settings",
     "attributes": {
       "enabled": true,
       "host": "example.com",
@@ -370,11 +370,11 @@ curl \
 ```
 
 ## List Twilio Settings
-`GET /api/v2/admin/settings/twilio`
+`GET /api/v2/admin/twilio-settings`
 
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
-[200][] | [JSON API document][] (`type: "settings/twilio"`) | Successfully listed Twilio settings
+[200][] | [JSON API document][] (`type: "twilio-settings"`) | Successfully listed Twilio settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -389,7 +389,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://app.terraform.io/api/v2/admin/settings/twilio
+  https://app.terraform.io/api/v2/admin/twilio-settings
 ```
 
 ### Sample Response
@@ -398,7 +398,7 @@ curl \
 {
   "data": {
     "id": "twilio",
-    "type": "settings/twilio",
+    "type": "twilio-settings",
     "attributes": {
       "enabled": true,
       "account-sid": "12345abcd",
@@ -409,11 +409,11 @@ curl \
 ```
 
 ## Update Twilio Settings
-`PATCH /api/v2/admin/settings/twilio`
+`PATCH /api/v2/admin/twilio-settings`
 
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
-[200][] | [JSON API document][] (`type: "settings/twilio"`) | Successfully listed Twilio settings
+[200][] | [JSON API document][] (`type: "twilio-settings"`) | Successfully listed Twilio settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
@@ -459,7 +459,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/admin/settings/twilio
+  https://app.terraform.io/api/v2/admin/twilio-settings
 ```
 
 ### Sample Response
@@ -468,7 +468,7 @@ curl \
 {
   "data": {
     "id":"twilio",
-    "type":"settings/twilio",
+    "type":"twilio-settings",
     "attributes": {
       "enabled": true,
       "account-sid": "12345abcd",
