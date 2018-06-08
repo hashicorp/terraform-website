@@ -33,7 +33,7 @@ Status  | Response                               | Reason
 Parameter           | Description
 --------------------|------------
 `q`                 | **Optional.** A search query string. Runs are searchable by ID, workspace name, organization name or email, and VCS repository identifier.
-`filter[status]`    | **Optional.** A comma-separated list of Run statuses to restrict results to. Can be a list of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
+`filter[status]`    | **Optional.** A comma-separated list of Run statuses to restrict results to, including any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
 `page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`        | **Optional.** If omitted, the endpoint will return 20 runs per page.
 
@@ -119,7 +119,7 @@ curl \
 }
 ```
 
-## Force a run to cancel
+## Force a run into the "cancelled" state
 
 `POST /admin/runs/:id/actions/cancel`
 

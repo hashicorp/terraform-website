@@ -41,7 +41,7 @@ Parameter      | Description
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  "https://app.terraform.io/api/v2/admin/users"
+  "https://app.terraform.io/api/v2/admin/terraform-versions"
 ```
 
 ### Sample Response
@@ -122,8 +122,8 @@ Properties without a default value are required.
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.type`                 | string |         | **Required.** Must be `"terraform-versions"`
-`data.attributes.version`   | string |         | **Required.** A semantic version string (e.g. `"1.0.0"`)
-`data.attributes.url`       | string |         | **Required.** The URL where a compressed binary (using ZIP compression) of this version can be downloaded
+`data.attributes.version`   | string |         | **Required.** A semantic version string (e.g. `"0.11.0"`)
+`data.attributes.url`       | string |         | **Required.** The URL where a compressed 64-bit linux binary (using ZIP compression) of this version can be downloaded
 `data.attributes.sha`       | string |         | **Required.** The SHA-256 checksum of the compressed Terraform binary
 `data.attributes.official`  | bool   | `false` | **Optional.** Whether or not this is an official release of Terraform
 `data.attributes.enabled`   | bool   | `true`  | **Optional.** Whether or not this version of Terraform is enabled for use in Terraform Enterprise
@@ -136,7 +136,7 @@ Key path                    | Type   | Default | Description
   "data": {
     "type": "terraform-versions",
     "attributes": {
-      "version": "1.0.0",
+      "version": "0.11.0",
       "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
       "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
       "official": true,
@@ -165,7 +165,7 @@ curl \
   "data": {
     "type": "terraform-versions",
     "attributes": {
-      "version": "1.0.0",
+      "version": "0.11.0",
       "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
       "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
       "official": true,
@@ -200,7 +200,7 @@ Status  | Response                                             | Reason
 curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/admin/terraform-versions/1.0.0
+  https://app.terraform.io/api/v2/admin/terraform-versions/0.11.0
 ```
 
 ### Sample Response
@@ -210,7 +210,7 @@ curl \
   "data": {
     "type": "terraform-versions",
     "attributes": {
-      "version": "1.0.0",
+      "version": "0.11.0",
       "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
       "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
       "official": true,
@@ -281,7 +281,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/admin/terraform-versions/1.0.0
+  https://app.terraform.io/api/v2/admin/terraform-versions/0.11.0
 ```
 
 ### Sample Response
@@ -291,7 +291,7 @@ curl \
   "data": {
     "type": "terraform-versions",
     "attributes": {
-      "version": "1.0.0",
+      "version": "0.11.0",
       "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
       "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
       "official": true,
@@ -331,5 +331,5 @@ curl \
   --header "Authorization: Bearer $ATLAS_TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/admin/terraform-versions/1.0.0
+  https://app.terraform.io/api/v2/admin/terraform-versions/0.11.0
 ```

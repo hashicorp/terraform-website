@@ -33,8 +33,8 @@ Status  | Response                                     | Reason
 Parameter                     | Description
 ------------------------------|------------
 `q`                           | **Optional.** A search query string. Workspaces are searchable by name and organization name.
-`filter[current_run][status]` | **Optional.** A comma-separated list of Run statuses to restrict results to. Can be a list of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
-`sort`                        | **Optional.** Allows sorting the returned workspaces. This defaults to `"name"`, but can also be supplied as `"current-run.created-at"` to order by the time of the workspaces' current run. Prepending a hypen to the sort parameter will reverse the order (e.g. `"-name"` to reverse the default order)
+`filter[current_run][status]` | **Optional.** A comma-separated list of Run statuses to restrict results to, including of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
+`sort`                        | **Optional.** Allows sorting the returned workspaces. This defaults to `"name"`, but can also be supplied as `"current-run.created-at"` to order by the time of the workspaces' current run. Prepending a hyphen to the sort parameter will reverse the order (e.g. `"-name"` to reverse the default order)
 `page[number]`                | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`                  | **Optional.** If omitted, the endpoint will return 20 workspaces per page.
 
@@ -119,8 +119,8 @@ curl \
       "policy-checking": 0,
       "policy-override": 0,
       "policy-checked": 0,
-      "none": 0
-      "total": 0,
+      "none": 0,
+      "total": 1,
     }
   }
 }
