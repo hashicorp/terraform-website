@@ -15,7 +15,7 @@ Terraform Enterprise (TFE) workspaces can set values for two kinds of variables:
 
 You can edit a workspace's variables via the UI or the API. All runs in a workspace use its variables.
 
--> **API note:** You can also manage variables with the [variables API](../api/variables.html).
+-> **API:** See the [variables API](../api/variables.html).
 
 ## Managing Variables
 
