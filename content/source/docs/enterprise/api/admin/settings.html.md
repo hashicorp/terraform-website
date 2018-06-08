@@ -72,7 +72,7 @@ Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.attributes.support-email-address`  | string   | `"support@hashicorp.com"` | The support address for outgoing emails.
 `data.attributes.security-email-address` | string   | `"security@hashicorp.com"` | The security address for outgoing emails.
-`data.attributes.limit-user-organization-creation`| bool     | `true` | Determines whether users who are not `site-admins` will be able to create new organizations.
+`data.attributes.limit-user-organization-creation`| bool     | `true` | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
 
 ### Sample Payload
 
