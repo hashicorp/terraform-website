@@ -153,7 +153,9 @@ curl \
       "attr-groups": "MemberOf",
       "attr-site-admin": "SiteAdmin",
       "site-admin-role": "site-admins",
-      "sso-api-token-session-timeout": 1209600
+      "sso-api-token-session-timeout": 1209600,
+      "acs-consumer-url": "https://example.com/users/saml/auth",
+      "metadata-url": "https://example.com/users/saml/metadata"
     }
   }
 }
@@ -234,7 +236,9 @@ curl \
       "attr-groups": "MemberOf",
       "attr-site-admin": "SiteAdmin",
       "site-admin-role": "site-admins",
-      "sso-api-token-session-timeout": 1209600
+      "sso-api-token-session-timeout": 1209600,
+      "acs-consumer-url": "https://example.com/users/saml/auth",
+      "metadata-url": "https://example.com/users/saml/metadata"
     }
   }
 }
