@@ -1,16 +1,16 @@
 ---
 layout: "enterprise2"
-page_title: "API-driven Runs - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-run-api"
+page_title: "API-driven Runs - Runs - Terraform Enterprise"
+sidebar_current: "docs-enterprise2-run-api"
 ---
 
 # The API-driven Run Workflow
 
 Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
 
-- The [UI/VCS-driven run workflow](./run-ui.html), which is TFE's primary mode of operation.
+- The [UI/VCS-driven run workflow](./ui.html), which is TFE's primary mode of operation.
 - The API-driven run workflow described below, which is more flexible but requires you to create some tooling.
-- The [CLI-driven run workflow](./run-cli.html), which is the API-driven workflow with a user-friendly command line tool.
+- The [CLI-driven run workflow](./cli.html), which is the API-driven workflow with a user-friendly command line tool.
 
 ## Summary
 
@@ -22,7 +22,7 @@ Once your other tooling has decided a run should occur, it must make a series of
 
 The most significant difference in this workflow is that TFE _does not_ fetch configuration files from version control. Instead, your own tooling must upload the configurations as a `.tar.gz` file. This allows you to work with configurations from unsupported version control systems, automatically generate Terraform configurations from some other source of data, or build a variety of other integrations.
 
-~> **Important:** The script below is provided to illustrate the run process, and is not intended for production use. If you want to [drive TFE runs from the command line](./run-cli.html) without building your own client, download the [TFE CLI client](https://github.com/hashicorp/tfe-cli#push-terraform-configurations).
+~> **Important:** The script below is provided to illustrate the run process, and is not intended for production use. If you want to [drive TFE runs from the command line](./cli.html) without building your own client, download the [TFE CLI client](https://github.com/hashicorp/tfe-cli#push-terraform-configurations).
 
 ## Pushing a New Configuration Version
 

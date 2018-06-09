@@ -23,9 +23,11 @@ Note that TFE needs network access to any infrastructure providers managed by yo
 
 For more details, see the following pages:
 
-- [About Terraform Runs in Terraform Enterprise](../workspaces/run-basics.html)
-- [The UI- and VCS-driven Run Workflow](../workspaces/run-ui.html)
-- [The API-driven Run Workflow](../workspaces/run-api.html)
+- [About Terraform Runs in Terraform Enterprise](../run/index.html)
+- [Run States and Stages](../run/states.html)
+- [The UI- and VCS-driven Run Workflow](../run/ui.html)
+- [The API-driven Run Workflow](../run/api.html)
+- [CLI-driven run workflow](../run/cli.html)
 
 ## Starting a Run from Version Control
 
