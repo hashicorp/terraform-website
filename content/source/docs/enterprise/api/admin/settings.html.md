@@ -289,7 +289,7 @@ curl \
 ## Update SMTP Settings
 `PATCH /api/v2/admin/smtp-settings`
 
-When this request is submitted, a test message will be sent to the specified `sender` address. If the test message delivery fails, the API will return an error code indicating the reason for the failure.
+When this request is submitted, a test message will be sent to the specified `test-email-address` address. If the test message delivery fails, the API will return an error code indicating the reason for the failure.
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
@@ -324,6 +324,7 @@ Key path                    | Type   | Default | Description
 `data.attributes.auth`      | string | `"none"`| The authentication type. Valid values are `"none"`, `"plain"`, and `"login"`.
 `data.attributes.username`  | string |         | The username used to authenticate to the SMTP server. Only required if `data.attributes.auth` is set to `"login"` or `"plain"`.
 `data.attributes.password`  | string |         | The username used to authenticate to the SMTP server. Only required if `data.attributes.auth` is set to `"login"` or `"plain"`.
+`data.attributes.test-email-address`| string     |  | The email address to send a test message to. Not persisted and only used during testing.
 
 ### Sample Payload
 
@@ -337,7 +338,8 @@ Key path                    | Type   | Default | Description
       "sender": "sample_user@example.com",
       "auth": "login",
       "username": "sample_user",
-      "password": "sample_password"
+      "password": "sample_password",
+      "test-email-address": "test@example.com"
     }
   }
 }
