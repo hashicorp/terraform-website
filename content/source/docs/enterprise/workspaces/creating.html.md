@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-workspaces-creating"
 
 ~> **Note:** Only members of the "owners" team can create new workspaces.
 
--> **API:** You can also create and manage workspaces with the [workspaces API](../api/workspaces.html).
+-> **API:** See the [Create a Workspace endpoint](../api/workspaces.html#create-a-workspace) (`POST /organizations/:organization/workspaces`).
 
 Create new Terraform Enterprise (TFE) workspaces with the "+ New Workspace" button, which appears on the list of workspaces. If you're not already viewing the workspace list, you can get there with the "Workspaces" button in the top navigation bar.
 
