@@ -1,0 +1,291 @@
+---
+layout: "extend-testing"
+page_title: "Extending Terraform - Acceptance Testing: TestStep"
+sidebar_current: "docs-extend-testing-acceptance-teststep"
+description: |-
+  Extending Terraform is a section for content dedicated to developing Plugins
+  to extend Terraform's core offering.
+---
+
+# Acceptance Tests: TestSteps
+
+`TestStep`s represent the application of an actual Terraform configuration file
+to a given state. Each step requires a configuration as input and provides
+developers several means of validating the behavior of the specific resource
+under test. 
+
+## Test Modes
+
+Terraform’s test framework facilitates two distinct modes of acceptance tests,
+*Lifecycle* and *Import*. 
+
+*Lifecycle* mode is the most common mode, and is used for testing plugins by
+providing one or more configuration files with the same logic as would be used
+when running `terraform apply`. 
+
+*Import* mode is used for testing resource functionality to import existing
+infrastructure into a Terraform statefile, using the same logic as would be used
+when running `terraform import`. 
+
+An acceptance test’s mode is implicitly determined by the fields provided in the
+`TestStep` definition. The applicable fields are defined below in the [TestStep
+Reference API][#teststep-reference-api]. 
+
+## Steps
+
+`Steps` is slice property of
+[TestCase](/docs/extend/testing/acceptance-tests/testcase.html), the object used
+to construct acceptance tests. Each step represents a full `terraform apply` of
+a given configuration language, followed by zero or more checks (defined later)
+to verify the application. Each `Step` is applied in order, and require its own
+configuration and optional check functions. 
+
+Below is a code example of a lifecycle test that provides two `TestStep` objects: 
+
+```golang
+package example
+
+// example.Widget represents a concrete Go type that represents an API resource
+func TestAccExampleWidget_basic(t *testing.T) {
+	var widgetBefore, widgetAfter example.Widget
+	rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
+
+	resource.Test(t, resource.TestCase{
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckExampleResourceDestroy,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccExampleResource(rName),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
+				),
+			},
+			{
+				Config: testAccExampleResource_removedPolicy(rName),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckExampleResourceExists("example_widget.foo", &widgetAfter),
+				),
+			},
+		},
+	})
+}
+```
+
+In the above example each `TestCase` invokes a function to retrieve it’s desired
+configuration, based on a randomized name provided, however an in-line string or
+constant string would work as well, so long as they contain valid Terraform
+configuration for the plugin or resource under test. This pattern of first
+applying and checking a basic configuration, followed by applying a modified
+configuration with updated or additional checks is a common pattern used to test
+update functionality.
+
+
+## Check Functions
+
+After the configuration for a `TestStep` is applied, Terraform’s testing
+framework provides developers an opportunity to check the results by providing a
+“Check” function. While possible to only supply a single function, it is
+recommended you use multiple functions to validate specific information about
+the results of the `terraform apply` ran in each `TestStep`. The `Check`
+attribute is of `TestStep` is singular, so in order to include multiple checks
+developers should use either `ComposeTestCheckFunc` or
+`ComposeAggregateTestCheckFunc` (defined below) to group multiple check
+functions, defined below:
+
+### ComposeTestCheckFunc 
+
+ComposeTestCheckFunc lets you compose multiple TestCheckFunc functions into a
+single check. As a user testing their provider, this lets you decompose your
+checks into smaller pieces more easily, with individual methods for checking
+specific attributes. Each check is ran in the order provided, and on failure the
+entire `TestCase` is stopped, and Terraform attempts to destroy any resources
+created.
+
+Example:
+
+```go 
+Steps: []resource.TestStep{
+  {
+    Config: testAccExampleResource(rName),
+    Check: resource.ComposeTestCheckFunc(
+		// if testAccCheckExampleResourceExists fails to find the resource, 
+		// the parent TestStep and TestCase fail
+      testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore), 
+      resource.TestCheckResourceAttr("example_widget.foo", "size", "expected size"),
+    ),
+  },
+},
+```
+
+### ComposeAggregateTestCheckFunc 
+
+ComposeAggregateTestCheckFunc lets you compose multiple TestCheckFunc functions
+into a single check. It’s purpose and usage is identical to
+ComposeTestCheckFunc, however each check is ran in order even if a previous
+check failed, collecting the errors returned from any checks and returning a
+single aggregate error. The entire `TestCase` is still stopped, and Terraform
+attempts to destroy any resources created. 
+
+Example:
+
+```
+Steps: []resource.TestStep{
+  {
+    Config: testAccExampleResource(rName),
+    Check: resource.ComposeAggregateTestCheckFunc(
+      testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore), // if testAccCheckExampleResourceExists fails to find the resource, the following TestCheckResourceAttr is still ran, with any errors aggregated
+      resource.TestCheckResourceAttr("example_widget.foo", "active", "true"),
+    ),
+  },
+},
+```
+
+## Builtin check functions
+
+Terraform has several TestCheckFunc functions builtin for developers to use for
+common checks, such as verifying the status and value of a specific attribute in
+the resulting state. Developers are encouraged to use as many as reasonable to
+verify the behavior of the plugin/resource, and should combine them with the
+above mentioned `ComposeTestCheckFunc` or `ComposeAggregateTestCheckFunc`
+functions.
+
+Most builtin functions accept `name`, `key`, and/or `value` fields, derived from
+the typical Terraform configuration stanzas:
+
+```hcl
+resource "example_widget" "foo" {
+  active = true
+}
+```
+
+Here the `name` represents the resource name in state (`example_widget.foo`),
+the `key` represents the attribute to check (`active`), and `value` represents
+the desired value to check against (`true`). Not all functions accept all three
+inputs.
+
+Below is a list of builtin check functions, with links to their corresponding
+documentation on godoc.org:
+
+- [TestCheckResourceAttrSet(name, key
+string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckResourceAttrSet)  
+- [TestCheckModuleResourceAttrSet(mp []string, name string, key
+string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckModuleResourceAttrSet)  
+- [TestCheckResourceAttr(name, key, value
+string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckResourceAttr)  
+- [TestCheckModuleResourceAttr(mp []string, name string, key string, value
+string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckModuleResourceAttr)
+- [TestCheckNoResourceAttr(name, key
+string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckNoResourceAttr)  
+- [TestCheckModuleNoResourceAttr(mp []string, name string, key
+string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckModuleNoResourceAttr)  
+- [TestCheckResourceAttrPtr(name string, key string, value
+*string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckResourceAttrPtr)  
+- [TestCheckModuleResourceAttrPtr(mp []string, name string, key string, value
+*string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckModuleResourceAttrPtr)  
+- [TestCheckResourceAttrPair(nameFirst, keyFirst, nameSecond, keySecond
+string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckResourceAttrPair)  
+- [TestCheckModuleResourceAttrPair(mpFirst []string, nameFirst string, keyFirst
+string, mpSecond []string, nameSecond string, keySecond
+string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckModuleResourceAttrPair)  
+- [TestCheckOutput(name, value
+string)](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckOutput)  
+
+
+## Custom check functions 
+
+The `Check` field of `TestStep` accepts any function of type
+[TestCheckFunc](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCheckFunc).
+Developers are free to write their own `check` functions to create customized
+validation functions for their plugin. Any function that matches the
+`TestCheckFunc` function signature of `func(*terraform.State) error` can be used
+individually, or with other `TestCheckFunc` functions with one of the above
+Aggregate functions. 
+
+It's common to write custom `TestCheckFunc` functions to validate resources were
+created correctly by using SDKs directly to verify identity and properties of
+resources. These functions can retrieve information by SDKs and provide the
+results to other `TestCheckFunc` methods. The below example uses
+`ComposeTestCheckFunc` to group a set of `TestCheckFunc` functions together. The
+first function `testAccCheckExampleWidgetExists` uses the `Example` service SDK
+directly, and queries it for the ID of the widget we have in state. After found,
+it stores the results into the `widget` struct declared at the begining of the
+test function. The next check function `testAccCheckExampleWidgetAttributes`
+recieves the updated `widget` and check's it's attributes. The final check
+`TestCheckResourceAttr` verifies that the same value is stored in state.
+ 
+```go  
+func TestAccExampleWidget_basic(t *testing.T) {
+	var widget example.WidgetDescription
+
+	resource.Test(t, resource.TestCase{
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckExampleWidgetDestroy,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccExampleWidgetConfig,
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckExampleWidgetExists("example_widget.bar", &widget),
+					testAccCheckExampleWidgetAttributes(&widget),
+					resource.TestCheckResourceAttr("example_widget.bar", "active", "true"),
+				),
+			},
+		},
+	})
+}
+
+// testAccCheckExampleWidgetAttributes verifies attributes are set correctly by 
+// Terraform
+func testAccCheckExampleWidgetAttributes(widget *example.WidgetDescription) resource.TestCheckFunc {
+	return func(s *terraform.State) error {
+		if *widget.active != true {
+			return fmt.Errorf("widget is not active")
+		}
+
+		return nil
+	}
+}
+
+// testAccCheckExampleWidgetExists uses the Example SDK directly to retrieve 
+// the Widget description, and stores it in the provided 
+// *example.WidgetDescription
+func testAccCheckExampleWidgetExists(resourceName string, widget *example.WidgetDescription) resource.TestCheckFunc {
+	return func(s *terraform.State) error {
+		// retrieve the resource by name from state
+		rs, ok := s.RootModule().Resources[resourceName]
+		if !ok {
+			return fmt.Errorf("Not found: %s", resourceName)
+		}
+
+		if rs.Primary.ID == "" {
+			return fmt.Errorf("Widget ID is not set")
+		}
+
+		// retrieve the client from the test provider
+		client := testAccProvider.Meta().(*ExampleClient)
+
+		response, err := client.DescribeWidgets(&example.DescribeWidgetsInput{
+			WidgetIDs: []string{rs.Primary.ID},
+		})
+
+		if err != nil {
+			return err
+		}
+
+		// we expect only a single widget by this ID. If we find zero, or many, 
+		// then we consider this an error
+		if len(response.WidgetDescriptions) != 1 ||
+			*response.WidgetDescriptions[0].WidgetID != rs.Primary.ID {
+			return fmt.Errorf("Widget not found")
+		}
+
+		// store the resulting widget in the *example.WidgetDescription pointer
+		*widget = *response.WidgetDescriptions[0]
+		return nil
+	}
+}
+```
+
+
+[1]: /docs/extend/testing/acceptance-testing/bestpractices.html
