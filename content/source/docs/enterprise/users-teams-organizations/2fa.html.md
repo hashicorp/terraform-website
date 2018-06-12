@@ -10,7 +10,7 @@ User accounts can be additionally protected with two-factor authentication (2FA)
 
 ## Setting up Two-factor Authentication
 
--> **API:** You can also manage user two-factor authentication with the [two-factor authentication API](../api/account.html).
+-> **API:** See the [two-factor authentication API](../api/account.html).
 
 To reach your user security settings page, click the user icon in the upper right corner and choose "User Settings" from the menu.
 
@@ -32,7 +32,7 @@ If necessary you can also use a backup code by clicking "Use a recovery code". P
 
 ## Requiring Two-factor Authentication for All Users
 
--> **API:** You can set an organization's authentication policy with the [organization update endpoint](../api/organizations.html#update-an-organization) (via the `data.attributes.collaborator-auth-policy` key).
+-> **API:** See the [Update an Organization endpoint](../api/organizations.html#update-an-organization) — the request body's `data.attributes.collaborator-auth-policy` property manages this setting.
 
 If you are an organization owner you can require all users within your organization to use two-factor authentication.
 

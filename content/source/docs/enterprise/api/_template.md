@@ -123,14 +123,14 @@ Resource Name      | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
   https://app.terraform.io/api/v2/somethings
 ```
 
-<!-- In curl examples, you can use the `$ATLAS_TOKEN` environment variable. If it's a GET request with query parameters, you can use double-quotes to have curl handle the URL encoding for you.
+<!-- In curl examples, you can use the `$TOKEN` environment variable. If it's a GET request with query parameters, you can use double-quotes to have curl handle the URL encoding for you.
 
 Make sure to test a query that's very nearly the same as the example, to avoid errors. -->
 

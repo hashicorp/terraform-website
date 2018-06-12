@@ -27,7 +27,7 @@ Status  | Response                                        | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
   https://app.terraform.io/api/v2/organizations
@@ -90,7 +90,7 @@ Status  | Response                                        | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
   https://app.terraform.io/api/v2/organizations/hashicorp
@@ -176,7 +176,7 @@ Key path                    | Type   | Default | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -220,6 +220,8 @@ curl \
 ## Update an Organization
 
 `PATCH /organizations/:organization_name`
+
+-> **Note**: Renaming an organization is not recommended if the organization has modules in the Private Module Registry. To rename an organization with private modules, first, delete the modules from the Private Module Registry. Then make the name change. After the change is complete, reload the modules into the Private Module Registry.
 
 Parameter            | Description
 ---------------------|------------
@@ -267,7 +269,7 @@ Key path                                   | Type    | Default  | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
@@ -329,7 +331,7 @@ Status  | Response                                        | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/organizations/hashicorp

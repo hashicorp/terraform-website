@@ -1,6 +1,6 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Automated Recovery (Installer Beta)"
+page_title: "Private Terraform Enterprise Automated Recovery (Installer)"
 sidebar_current: "docs-enterprise2-private-installer-automated-recovery"
 ---
 

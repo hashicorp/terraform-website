@@ -99,11 +99,17 @@ To use TFE effectively, you must make sure the division of workspaces and permis
 
 ## Promoting Changes Between Related Workspaces (Coming Soon)
 
-In a future version, TFE will let you create promotion pipelines across workspaces.
+In a future version, TFE will let you create automatic promotion pipelines across workspaces, to help guarantee that high environments only run known good code.
 
-As we described above, each workspace is a specific environment of a given Terraform configuration. Today, you must handle code promotion manually, by switching the code used in a higher environment to match the code that successfully passed the prior environment.
+Today, you have two options for manually promoting configurations from one workspace to another:
 
-Later, you'll be able to set up promotion relationships, so instead of checking out code directly from version control, a higher environment can accept code directly from a prior environment. This can help provide a guarantee that high environments only run known good code.
+- Once a new configuration has passed a testing environment, update the code in the next environment's VCS repository to match that configuration. Usually this is done by with a branch merging workflow, but there are other ways to accomplish it.
+- Use the runs API to handle promotion. Each run is associated with a static configuration version, and the API allows you to specify an existing version by its ID. You can create your high-environment workspaces without a backing VCS repository (to prevent automatic plans), look up the configuration version from the last successful run in a lower environment, then re-use that known-good configuration version when starting a run in the higher environment.
+
+    This method is advanced, but it takes advantage of the same APIs that the upcoming pipelines feature will use. For more information about using the runs API, see:
+
+    - [The API-driven Run Workflow](../../run/api.html)
+    - [The Runs API reference](../../api/run.html) (in particular, the "Create a Run" endpoint and the "List Runs in a Workspace" endpoint)
 
 ## Next
 

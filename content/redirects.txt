@@ -177,3 +177,9 @@
 # Extending Terraform section
 /guides/writing-custom-terraform-providers.html          /docs/extend/writing-custom-providers.html
 /community.html                                          /docs/extend/community/index.html
+
+# Move the docs about TFE runs
+/docs/enterprise/workspaces/run-basics.html              /docs/enterprise/run/index.html
+/docs/enterprise/workspaces/run-ui.html                  /docs/enterprise/run/ui.html
+/docs/enterprise/workspaces/run-api.html                 /docs/enterprise/run/api.html
+/docs/enterprise/workspaces/run-cli.html                 /docs/enterprise/run/cli.html

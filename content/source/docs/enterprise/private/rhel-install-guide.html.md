@@ -11,8 +11,7 @@ This install guide is specifically for users of Private Terraform Enterprise ins
 ## Install Recommendations
 
 * RedHat Enterprise Linux version 7.3 or 7.4
-* Docker 1.13.1 (available in RHEL extras), or Docker CE or EE version 17.06 or later. The later versions are not available in the standard RHEL yum repositories.
-   * For Docker CE, you can use the official CentOS docker repository. Instructions are available here: https://docs.docker.com/install/linux/docker-ce/centos/#install-from-a-package.
+* Docker 1.13.1 (available in RHEL extras), or Docker EE version 17.06 or later. The later versions are not available in the standard RHEL yum repositories.
    * For Docker EE, there are explicit RHEL instructions to follow: https://docs.docker.com/install/linux/docker-ee/rhel/ 
 * A properly configured docker storage backend, either:
    * Devicemapper configured for production usage, according to the Docker documentation: https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production. This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
@@ -34,7 +33,7 @@ If you opt to use Docker from RHEL extras, then you must make a change to its de
 Sure! Just be sure to have at least 1.13.1 and authorization plugins disabled.
 
 ### When I run the installer, it allows me to download and install Docker CE on RedHat. Can I use that?
-Yes, Docker CE is compatible with the current installer; however it is not directly supported by RedHat. You still need to be sure that the storage backend is configured properly as by default, Docker will be using devicemapper in loopback, an entirely unsupported mode.
+Yes, Docker CE is compatible with the current installer. However, it is not directly [supported by RedHat](https://access.redhat.com/articles/2726611). You still need to be sure that the storage backend is configured properly as by default, Docker will be using devicemapper in loopback, an entirely unsupported mode.
 
 ### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
 No. This is an installation that docker provides as sample and is not supported by Private Terraform Enterprise due to the significant instability in it. Docker themselves do not suggest using this mode: https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-loop-lvm-mode-for-testing 

@@ -41,7 +41,7 @@ Status  | Response                                             | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   https://app.terraform.io/api/v2/organizations/my-organization/ssh-keys
 ```
 
@@ -86,7 +86,7 @@ Status  | Response                                   | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   https://app.terraform.io/api/v2/ssh-keys/sshkey-GxrePWre1Ezug7aM
 ```
 
@@ -158,7 +158,7 @@ Key path                    | Type   | Default | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --request POST \
   --data @payload.json \
   https://app.terraform.io/api/v2/organizations/my-organization/ssh-keys
@@ -229,7 +229,7 @@ Key path                    | Type   | Default   | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --request PATCH \
   --data @payload.json \
   https://app.terraform.io/api/v2/ssh-keys/sshkey-GxrePWre1Ezug7aM
@@ -277,7 +277,7 @@ Status  | Response                                             | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --request DELETE \
   https://app.terraform.io/api/v2/ssh-keys/sshkey-GxrePWre1Ezug7aM
 ```

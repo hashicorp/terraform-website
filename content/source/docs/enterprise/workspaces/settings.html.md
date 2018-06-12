@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-workspaces-settings"
 
 # Workspace Settings
 
--> **API note:** You can also change a workspace's settings with the [update a workspace](../api/workspaces.html#update-a-workspace) method (`PATCH /organizations/:organization_name/workspaces/:name`).
+-> **API:** See the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace) (`PATCH /organizations/:organization_name/workspaces/:name`).
 
 Terraform Enterprise (TFE) workspaces can be reconfigured after creation.
 

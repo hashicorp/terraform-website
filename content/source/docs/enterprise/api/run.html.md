@@ -8,14 +8,16 @@ sidebar_current: "docs-enterprise2-api-run"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-Performing a run on a new configuration is a multi step process.
+-> **Note:** Before working with the runs or configuration versions APIs, read the [API-driven run workflow](../workspaces/run-api.html) page, which includes both a full overview of this workflow and a walkthrough of a simple implementation of it.
+
+Performing a run on a new configuration is a multi-step process.
 
 1. [Create a configuration version on the workspace](./configuration-versions.html#create-a-configuration-version).
 2. [Upload configuration files to the configuration version](./configuration-versions.html#upload-configuration-files).
-3. [Create a Run on the workspace](#create-a-run); this is done automatically when a configuration file is uploaded.
-4. [Create and queue an apply on the run](#apply); if auto-apply is not enabled.
+3. [Create a run on the workspace](#create-a-run); this is done automatically when a configuration file is uploaded.
+4. [Create and queue an apply on the run](#apply-a-run); if auto-apply is not enabled.
 
-Alternately, you can create a run with a pre-existing configuration version, even one from another workspace. This is useful for promoting known good code from one workspace to another.
+Alternatively, you can create a run with a pre-existing configuration version, even one from another workspace. This is useful for promoting known good code from one workspace to another.
 
 ## Create a Run
 
@@ -82,7 +84,7 @@ Status  | Response                               | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -161,8 +163,8 @@ This endpoint represents an action as opposed to a resource. As such, the endpoi
 
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
-[202][] | none                      | Successfully queued a discard request.
-[409][] | [JSON API error object][] | Run was not paused for confirmation or priority; discard not allowed.
+[202][] | none                      | Successfully queued an apply request.
+[409][] | [JSON API error object][] | Run was not paused for confirmation; apply not allowed.
 
 [202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
 [409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
@@ -191,7 +193,7 @@ This payload is optional, so the `curl` command will work without the `--data @p
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -224,7 +226,7 @@ Parameter      | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   https://app.terraform.io/api/v2/workspaces/ws-yF7z4gyEQRhaCNG9/runs
 ```
@@ -329,7 +331,7 @@ This payload is optional, so the `curl` command will work without the `--data @p
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -379,7 +381,7 @@ This payload is optional, so the `curl` command will work without the `--data @p
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \

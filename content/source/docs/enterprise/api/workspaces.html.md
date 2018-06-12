@@ -112,7 +112,7 @@ _Migrating a legacy environment_
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -330,7 +330,7 @@ Key path                                      | Type           | Default        
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
@@ -403,7 +403,7 @@ Parameter      | Description
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   https://app.terraform.io/api/v2/organizations/my-organization/workspaces
 ```
@@ -504,7 +504,7 @@ This endpoint shows details for a workspace in the organization.
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   https://app.terraform.io/api/v2/organizations/my-organization/workspaces/workspace-1
 ```
@@ -573,7 +573,7 @@ This endpoint deletes a workspace.
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/organizations/my-organization/workspaces/workspace-1
@@ -611,7 +611,7 @@ Properties without a default value are required.
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -679,7 +679,7 @@ This endpoint unlocks a workspace.
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/actions/unlock
@@ -759,7 +759,7 @@ Properties without a default value are required.
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
@@ -853,7 +853,7 @@ Properties without a default value are required.
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \

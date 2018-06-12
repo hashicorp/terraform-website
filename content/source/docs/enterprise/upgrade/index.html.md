@@ -55,7 +55,7 @@ This import tab has fewer settings than the [new workspace tab](../workspaces/cr
 
 - In the "Legacy Environment" field, enter the environment to migrate, in the form `<LEGACY ORGANIZATION>/<ENVIRONMENT NAME>`.
 - In the "Workspace Name" field, enter the new name of the workspace, which should usually be the same as the old environment name.
-- Choose the same VCS provider and repository as the old environment, or choose "None" if you plan to [push configurations via the API](../workspaces/run-api.html).
+- Choose the same VCS provider and repository as the old environment, or choose "None" if you plan to push configurations [via the API](../run/api.html) or [with the optional TFE CLI tool](../run/cli.html).
 
 After filling the fields, click the "Create Workspace" button.
 

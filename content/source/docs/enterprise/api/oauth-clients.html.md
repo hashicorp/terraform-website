@@ -64,7 +64,7 @@ Key path                             | Type   | Default | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \

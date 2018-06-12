@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
-page_title: "UI/VCS-driven Runs - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-run-ui"
+page_title: "UI/VCS-driven Runs - Runs - Terraform Enterprise"
+sidebar_current: "docs-enterprise2-run-ui"
 ---
 
 # The UI- and VCS-driven Run Workflow
@@ -9,8 +9,8 @@ sidebar_current: "docs-enterprise2-workspaces-run-ui"
 Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
 
 - The UI/VCS-driven run workflow described below, which is TFE's primary mode of operation.
-- The [API-driven run workflow](./run-api.html), which is more flexible but requires you to create some tooling.
-- The [CLI-driven run workflow](./run-cli.html), which is the API-driven workflow with a user-friendly command line tool.
+- The [API-driven run workflow](./api.html), which is more flexible but requires you to create some tooling.
+- The [CLI-driven run workflow](./cli.html), which is the API-driven workflow with a user-friendly command line tool.
 
 ## Summary
 
@@ -28,11 +28,11 @@ When you initially set up the workspace and add variables, or if the code in ver
 
 Manually queueing a plan requires write or admin access.
 
-If the workspace has a plan that is still in the [plan stage](./run-basics.html#2-the-plan-stage) when a new plan is queued, you can either wait for it to complete, or visit the "Current Run" page and click "Run this plan now". Be aware that this will terminate the current plan and unlock the workspace, which can lead to anomalies in behavior, but can be useful if the plans are long-running and the current plan is known not to have all the desired changes.
+If the workspace has a plan that is still in the [plan stage](./states.html#2-the-plan-stage) when a new plan is queued, you can either wait for it to complete, or visit the "Current Run" page and click "Run this plan now". Be aware that this will terminate the current plan and unlock the workspace, which can lead to anomalies in behavior, but can be useful if the plans are long-running and the current plan is known not to have all the desired changes.
 
 ## Confirming or Discarding Plans
 
-By default, run plans require confirmation before TFE will apply them. Users with write access on a workspace can visit the page for a run that has finished planning and click the "Confirm & Apply" or "Discard Plan" button to finish or cancel a run.
+By default, run plans require confirmation before TFE will apply them. Users with write access on a workspace can navigate to a run that has finished planning and click the "Confirm & Apply" or "Discard Plan" button to finish or cancel a run. If necessary, use the "View Plan" button for more details about what the run will change.
 
 ![confirm button](./images/runs-confirm.png)
 

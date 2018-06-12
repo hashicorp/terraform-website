@@ -22,7 +22,7 @@ Parameter            | Description
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
   https://app.terraform.io/api/v2/organizations/my-organization/teams
@@ -117,7 +117,7 @@ Key path               | Type   | Default | Description
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -158,7 +158,7 @@ Parameter   | Description
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
   https://app.terraform.io/api/v2/teams/257529
@@ -211,7 +211,7 @@ Parameter   | Description
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/teams/257529

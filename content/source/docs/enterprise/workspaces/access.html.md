@@ -21,7 +21,7 @@ For more information see:
 
 ## Managing Workspace Access Permissions
 
--> **API note:** You can also use the [Team Access APIs](../api/team-access.html) to manage access to a workspace.
+-> **API:** See the [Team Access APIs](../api/team-access.html).
 
 When a workspace is created, the only team able to access it is the owners team, with full admin permissions. The owners team can never be removed from a workspace.
 

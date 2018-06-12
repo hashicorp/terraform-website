@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-upgrading-differences"
 
 # Differences Between Current and Legacy Terraform Enterprise
 
-Terraform Enterprise began as part of the discontinued Atlas suite, and today's version is a redesign built for using Terraform in a team setting. Most notably, it focuses heavily on a [VCS-driven run workflow](../workspaces/run-ui.html), while providing a rich API to support alternate workflows.
+Terraform Enterprise began as part of the discontinued Atlas suite, and today's version is a redesign built for using Terraform in a team setting. Most notably, it focuses heavily on a [VCS-driven run workflow](../run/ui.html), while providing a rich API to support alternate workflows.
 
 If you've previously used the legacy version of Terraform Enterprise, we hope you enjoy the new version's improvements. However, as part of this redesign, some features have been removed and others are not yet implemented.
 
@@ -25,7 +25,7 @@ The new Terraform Enterprise does not support the `terraform push` command, whic
 This does not mean we're dropping support for a CLI-based workflow — we want push to be better, and the integrated `push` command was holding us back because we built it on an outdated understanding of how Terraform Enterprise should work. Users of `terraform push` have a few options:
 
 - Use [the add-on Terraform Enterprise command line tools](https://github.com/hashicorp/tfe-cli). These are designed as a one-to-one replacement for `terraform push`, with a modified syntax and some new features.
-- Use the [API-based run workflow](../workspaces/run-api.html) to upload a configuration tabrall and queue a run. This is a more powerful option for integration with automated systems.
+- Use the [API-based run workflow](../run/api.html) to upload a configuration tabrall and queue a run. This is a more powerful option for integration with automated systems.
 
 We're also working on a more deeply integrated CLI workflow that combines the collaborative benefits of centrally managed Terraform runs with the interactive responsiveness of running Terraform on your laptop. This doesn't have a release date yet, but we hope our current replacements for `terraform push` offer a comfortable migration path in the meantime.
 

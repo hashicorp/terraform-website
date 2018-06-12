@@ -117,7 +117,7 @@ For more about URI structure and query strings, see [the specification (RFC 3986
 
 ### Pagination
 
-Pagination is supported on the [list workspaces](/docs/enterprise/api/workspaces.html#list-workspaces) and [list runs](/docs/enterprise/api/run.html#list-runs-in-a-workspace) endpoints. A client may pass the following query parameters to control pagination on supported endpoints:
+Most of the endpoints that return lists of objects support pagination. A client may pass the following query parameters to control pagination on supported endpoints:
 
 Parameter      | Description
 ---------------|------------
@@ -160,7 +160,7 @@ Example:
 
 ```shell
 $ curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
   https://app.terraform.io/api/v2/teams/team-n8UQ6wfhyym25sMe?include=users
