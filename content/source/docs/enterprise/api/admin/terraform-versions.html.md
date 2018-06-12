@@ -121,13 +121,13 @@ Properties without a default value are required.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
-`data.type`                 | string |         | **Required.** Must be `"terraform-versions"`
-`data.attributes.version`   | string |         | **Required.** A semantic version string (e.g. `"0.11.0"`)
-`data.attributes.url`       | string |         | **Required.** The URL where a compressed 64-bit linux binary (using ZIP compression) of this version can be downloaded
-`data.attributes.sha`       | string |         | **Required.** The SHA-256 checksum of the compressed Terraform binary
-`data.attributes.official`  | bool   | `false` | **Optional.** Whether or not this is an official release of Terraform
-`data.attributes.enabled`   | bool   | `true`  | **Optional.** Whether or not this version of Terraform is enabled for use in Terraform Enterprise
-`data.attributes.beta`      | bool   | `false` | **Optional.** Whether or not this version of Terraform is a beta pre-release
+`data.type`                 | string |         | Must be `"terraform-versions"`
+`data.attributes.version`   | string |         | A semantic version string (e.g. `"0.11.0"`)
+`data.attributes.url`       | string |         | The URL where a compressed 64-bit linux binary (using ZIP compression) of this version can be downloaded
+`data.attributes.sha`       | string |         | The SHA-256 checksum of the compressed Terraform binary
+`data.attributes.official`  | bool   | `false` | Whether or not this is an official release of Terraform
+`data.attributes.enabled`   | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
+`data.attributes.beta`      | bool   | `false` | Whether or not this version of Terraform is a beta pre-release
 
 ### Sample Payload
 
@@ -249,12 +249,12 @@ Properties without a default value are required.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
-`data.type`                 | string |         | **Required.** Must be `"terraform-versions"`
-`data.attributes.url`       | string |         | **Required.** The URL where a binary of this version can be downloaded
-`data.attributes.sha`       | string |         | **Required.** The shasum of the Terraform binary
-`data.attributes.official`  | bool   | `false` | **Optional.** Whether or not this is an official release of Terraform
-`data.attributes.enabled`   | bool   | `true`  | **Optional.** Whether or not this version of Terraform is enabled for use in Terraform Enterprise
-`data.attributes.beta`      | bool   | `false` | **Optional.** Whether or not this version of Terraform is a beta pre-release
+`data.type`                 | string |         | Must be `"terraform-versions"`
+`data.attributes.url`       | string |         | The URL where a binary of this version can be downloaded
+`data.attributes.sha`       | string |         | The shasum of the Terraform binary
+`data.attributes.official`  | bool   | `false` | Whether or not this is an official release of Terraform
+`data.attributes.enabled`   | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
+`data.attributes.beta`      | bool   | `false` | Whether or not this version of Terraform is a beta pre-release
 
 ### Sample Payload
 
