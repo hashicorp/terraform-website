@@ -12,7 +12,7 @@ description: |-
 Here we cover information needed to write successful tests for Terraform
 Plugins. Tests are a vital part of the Terraform ecosystem, verifying we can
 deliver on our mission to safely and predictably create, change, and improve
-infrastructure. Documentation for Terraform tests is broken into categories
+infrastructure. Documentation for Terraform tests are broken into categories
 briefly described below. Each category has more detailed information by clicking
 on the matching item in the left navigation. 
 

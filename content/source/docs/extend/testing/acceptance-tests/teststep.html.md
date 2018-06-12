@@ -143,7 +143,7 @@ Steps: []resource.TestStep{
 
 ## Builtin check functions
 
-Terraform has several TestCheckFunc functions builtin for developers to use for
+Terraform has several TestCheckFunc functions built in for developers to use for
 common checks, such as verifying the status and value of a specific attribute in
 the resulting state. Developers are encouraged to use as many as reasonable to
 verify the behavior of the plugin/resource, and should combine them with the
@@ -208,10 +208,10 @@ resources. These functions can retrieve information by SDKs and provide the
 results to other `TestCheckFunc` methods. The below example uses
 `ComposeTestCheckFunc` to group a set of `TestCheckFunc` functions together. The
 first function `testAccCheckExampleWidgetExists` uses the `Example` service SDK
-directly, and queries it for the ID of the widget we have in state. After found,
-it stores the results into the `widget` struct declared at the begining of the
+directly, and queries it for the ID of the widget we have in state. Once found,
+the result is stored into the `widget` struct declared at the begining of the
 test function. The next check function `testAccCheckExampleWidgetAttributes`
-recieves the updated `widget` and check's it's attributes. The final check
+recieves the updated `widget` and checks its attributes. The final check
 `TestCheckResourceAttr` verifies that the same value is stored in state.
  
 ```go  
