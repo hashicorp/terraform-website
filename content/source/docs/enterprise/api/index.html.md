@@ -71,14 +71,21 @@ Endpoints that use the POST method also require a JSON API document as the reque
       "category":"terraform",
       "hcl":false,
       "sensitive":false
-    }
-  },
-  "filter": {
-    "organization": {
-      "name":"my-organization"
     },
-    "workspace": {
-      "name":"my-workspace"
+    "relationships": {
+      "organization": {
+        "data": {
+          "id":"my-organization",
+          "type":"organizations"
+          }
+        }
+      },
+      "workspace": {
+        "data": {
+          "id":"ws-4j8p6jX1w33MiDC7",
+          "type":"workspaces"
+        }
+      }
     }
   }
 }
@@ -90,20 +97,20 @@ These objects always include a top-level `data` property, which:
 - Often has an `attributes` property to specify attributes of the object you're creating or modifying.
 - Sometimes has a `relationships` property to specify other objects that are linked to what you're working with.
 
-A request payload sometimes has other top-level properties that are siblings of `data`, like `filter`.
-
 In the documentation for each API method, we use dot notation to explain the structure of nested objects in the request. For example, the properties of the request object above are listed as follows:
 
-Key path                    | Type   | Default | Description
-----------------------------|--------|---------|------------
-`data.type`                 | string |         | Must be `"vars"`.
-`data.attributes.key`       | string |         | The name of the variable.
-`data.attributes.value`     | string |         | The value of the variable.
-`data.attributes.category`  | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
-`data.attributes.hcl`       | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
-`data.attributes.sensitive` | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
-`filter.workspace.name`     | string |         | The name of the workspace that owns the variable.
-`filter.organization.name`  | string |         | The name of the organization that owns the workspace.
+Key path                                    | Type   | Default | Description
+--------------------------------------------|--------|---------|------------
+`data.type`                                 | string |         | Must be `"vars"`.
+`data.attributes.key`                       | string |         | The name of the variable.
+`data.attributes.value`                     | string |         | The value of the variable.
+`data.attributes.category`                  | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
+`data.attributes.hcl`                       | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
+`data.attributes.sensitive`                 | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
+`data.relationships.workspace.data.type`    | string |         | Must be `"workspaces"`.
+`data.relationships.workspace.data.id`      | string |         | The ID of the workspace that owns the variable.
+`data.relationships.organization.data.type` | string |         | Must be `"organizations"`.
+`data.relationships.organization.data.id`   | string |         | The ID (which is the name) of the organization that owns the workspace.
 
 We also always include a sample payload object, to show the document structure more visually.
 
