@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-api-run"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
--> **Note:** Before working with the runs or configuration versions APIs, read the [API-driven run workflow](../workspaces/run-api.html) page, which includes both a full overview of this workflow and a walkthrough of a simple implementation of it.
+-> **Note:** Before working with the runs or configuration versions APIs, read the [API-driven run workflow](../run/api.html) page, which includes both a full overview of this workflow and a walkthrough of a simple implementation of it.
 
 Performing a run on a new configuration is a multi-step process.
 
