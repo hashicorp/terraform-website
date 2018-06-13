@@ -43,7 +43,7 @@ The best way to see how TFE's run queue works is to make changes before queueing
 
 At the top of the workspace's page, click the "Runs" link, which goes to the full list of runs.
 
-![runs list](../workspaces/images/runs-list.png)
+![runs list](../run/images/runs-list.png)
 
 From the list of runs, you can click to view or interact with an individual run. Choose the run you started first, which will probably be in the "Pending," "Planning," or "Planned" state. Note that your second run is "Pending."
 
@@ -51,11 +51,11 @@ From the list of runs, you can click to view or interact with an individual run.
 
 An individual run page shows the progress and outcomes of each stage of the run.
 
-![a run page](../workspaces/images/runs-run-page.png)
+![a run page](../run/images/runs-run-page.png)
 
 Once this run has finished planning, it will ask you to confirm or discard the plan. Click the "Confirm & Apply" button to finish applying the changes from your new commits.
 
-![confirm button](../workspaces/images/runs-confirm.png)
+![confirm button](../run/images/runs-confirm.png)
 
 Note that until you apply or discard a plan, TFE can't start another run in that workspace, and your second run will stay "Pending."
 
