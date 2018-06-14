@@ -108,7 +108,7 @@
 /docs/enterprise-beta/workspaces/index.html             /docs/enterprise/workspaces/index.html
 /docs/enterprise-beta/workspaces/naming.html            /docs/enterprise/workspaces/naming.html
 /docs/enterprise-beta/workspaces/repo-structure.html    /docs/enterprise/workspaces/repo-structure.html
-/docs/enterprise-beta/workspaces/run-api.html           /docs/enterprise/workspaces/run-api.html
+/docs/enterprise-beta/workspaces/run-api.html           /docs/enterprise/run/api.html
 /docs/enterprise-beta/workspaces/run-basics.html        /docs/enterprise/workspaces/run-basics.html
 /docs/enterprise-beta/workspaces/run-ui.html            /docs/enterprise/workspaces/run-ui.html
 /docs/enterprise-beta/workspaces/settings.html          /docs/enterprise/workspaces/settings.html
