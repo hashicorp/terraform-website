@@ -27,8 +27,8 @@ architecture.
 
 Depending on the chosen [operational
 mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
-the infrastructure requirements for PTFE range from a single GCP EC2 instance
-for demo installations to multiple instances connected to RDS, S3, and an
+the infrastructure requirements for PTFE range from a single Cloud Compute VM instance
+for demo installations to multiple instances connected to Cloud SQL, Cloud Storage, and an
 external Vault cluster for a stateless production installation.
 
 This reference architecture focuses on the “Production - External
@@ -38,12 +38,12 @@ The following table provides high-level server guidelines. Of particular
 note is the strong recommendation to avoid non-fixed performance CPUs,
 or “Burstable CPU” in GCP terms, such as T-series instances.
 
-### PTFE Server (EC2)
+### PTFE Server (Compute Engine VM)
 
-| Type        | CPU      | Memory       | Disk | GCP Instance Types    |
-|-------------|----------|--------------|------|-----------------------|
-| Minimum     | 2 core   | 8 GB RAM     | 50GB | m5.large              |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB | m5.xlarge, m5.2xlarge |
+| Type        | CPU      | Memory       | Disk | GCP Instance Types             |
+|-------------|----------|--------------|------|--------------------------------|
+| Minimum     | 2 core   | 8 GB RAM     | 50GB | n1-standard-4, n1-standard-8   |
+| Recommended | 4-8 core | 16-32 GB RAM | 50GB | n1-standard-16, n1-standard-32 |
 
 #### Hardware Sizing Considerations
 
@@ -53,12 +53,12 @@ or “Burstable CPU” in GCP terms, such as T-series instances.
 - The recommended size is for production environments where there is a
 - consistent high workload in the form of concurrent terraform runs.
 
-### PostgreSQL Database (RDS Multi-AZ)
+### PostgreSQL Database (Cloud SQL PostgreSQL Production)
 
-| Type        | CPU      | Memory       | Storage | GCP Instance Types          |
-|-------------|----------|--------------|---------|-----------------------------|
-| Minimum     | 2 core   | 8 GB RAM     | 50GB    | db.m4.large                 |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB    | db.m4.xlarge, db.m4.2xlarge |
+| Type        | CPU      | Memory       | Storage | GCP Instance Types           |
+|-------------|----------|--------------|---------|------------------------------|
+| Minimum     | 2 core   | 8 GB RAM     | 50GB    | Custom PostgreSQL Production |
+| Recommended | 4-8 core | 16-26 GB RAM | 50GB    | Custom PostgreSQL Production |
 
 #### Hardware Sizing Considerations
 
@@ -68,7 +68,7 @@ or “Burstable CPU” in GCP terms, such as T-series instances.
 - The recommended size is for production environments where there is a
   consistent high workload in the form of concurrent terraform runs.
 
-### Object Storage (S3)
+### Object Storage (Cloud Storage)
 
 An [S3 Standard](https://GCP.amazon.com/s3/storage-classes/) bucket must be
 specified during the PTFE installation for application data to be stored
