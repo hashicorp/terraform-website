@@ -1,0 +1,98 @@
+---
+layout: "extend-testing"
+page_title: "Extending Terraform - Unit Testing"
+sidebar_current: "docs-extend-testing-unit"
+description: |-
+  Extending Terraform is a section for content dedicated to developing Plugins
+  to extend Terraform's core offering.
+---
+
+# Unit Testing
+
+Testing plugin code in small, isolated units is distinct from Acceptance Tests,
+and does not require network connections. Unit tests are commonly used for
+testing helper methods that expand or flatten API responses into data structures
+for storage into state by Terraform. This section covers the specifics of
+writing Unit Tests for Terraform Plugin code.
+
+The procedure for writing unit tests for Terraform follows the same setup and
+conventions of writing any Go unit tests. We recommend naming tests to follow
+the same convention as our acceptance tests, `Test<Provider>_<Test Name>`. For more
+information on Go tests, see the [official Golang docs on testing][0]. 
+
+
+Below is an example unit test used in flattening AWS security group rules,
+demonstrating a typical `flattener` type method that's commonly used to convert
+structures returned from APIs into data structures used by Terraform in saving
+to state. This example is truncated for brevity, but you can see the full test in the
+[aws/structure_test.go in the Terraform AWS Provider
+repository on GitHUb](https://github.com/terraform-providers/terraform-provider-aws/blob/f22ae122d8407672bd38951f80a2813b8b9af683/aws/structure_test.go#L930-L1027)
+
+```go
+func TestFlattenSecurityGroups(t *testing.T) {
+	cases := []struct {
+		ownerId  *string
+		pairs    []*ec2.UserIdGroupPair
+		expected []*GroupIdentifier
+	}{
+		// simple, no user id included
+		{
+			ownerId: aws.String("user1234"),
+			pairs: []*ec2.UserIdGroupPair{
+				&ec2.UserIdGroupPair{
+					GroupId: aws.String("sg-12345"),
+				},
+			},
+			expected: []*GroupIdentifier{
+				&GroupIdentifier{
+					GroupId: aws.String("sg-12345"),
+				},
+			},
+		},
+		// include the owner id, but keep it consitent with the same account. Tests
+		// EC2 classic situation
+		{
+			ownerId: aws.String("user1234"),
+			pairs: []*ec2.UserIdGroupPair{
+				&ec2.UserIdGroupPair{
+					GroupId: aws.String("sg-12345"),
+					UserId:  aws.String("user1234"),
+				},
+			},
+			expected: []*GroupIdentifier{
+				&GroupIdentifier{
+					GroupId: aws.String("sg-12345"),
+				},
+			},
+		},
+
+		// include the owner id, but from a different account. This is reflects
+		// EC2 Classic when referring to groups by name
+		{
+			ownerId: aws.String("user1234"),
+			pairs: []*ec2.UserIdGroupPair{
+				&ec2.UserIdGroupPair{
+					GroupId:   aws.String("sg-12345"),
+					GroupName: aws.String("somegroup"), // GroupName is only included in Classic
+					UserId:    aws.String("user4321"),
+				},
+			},
+			expected: []*GroupIdentifier{
+				&GroupIdentifier{
+					GroupId:   aws.String("sg-12345"),
+					GroupName: aws.String("user4321/somegroup"),
+				},
+			},
+		},
+	}
+
+	for _, c := range cases {
+		out := flattenSecurityGroups(c.pairs, c.ownerId)
+		if !reflect.DeepEqual(out, c.expected) {
+			t.Fatalf("Error matching output and expected: %#v vs %#v", out, c.expected)
+		}
+	}
+}
+```
+
+[0]: https://golang.org/pkg/testing/
