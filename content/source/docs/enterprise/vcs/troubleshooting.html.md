@@ -101,7 +101,7 @@ Then run the `openssl s_client` command, using the certificate at `/tmp/cust-ca-
 openssl s_client -showcerts -CAfile /tmp/cust-ca-certificates.crt -connect git-server-hostname:443
 ```
 
-For example, the error `verify error:num=18:self signed certificate` might be returned if a GitLab server was running with a self-signed certificate. This example output is shown below.
+For example, a Gitlab server that uses a self-signed certificate might result in an error like `verify error:num=18:self signed certificate`, as shown in the output below:
 
 ```
 bash-4.3# openssl s_client -showcerts -CAfile /tmp/cust-ca-certificates.crt -connect gitlab.local:443
