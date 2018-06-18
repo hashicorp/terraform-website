@@ -146,7 +146,8 @@ Terraform Enterprise can store its state in a few different ways and you'll
 need to decide which works best for your installation. Each option has a
 different approach to
 [recovering from failures](./reliability-availability.html#recovery-from-failures-1)
-and should be selected based on your organization's preferences.
+and should be selected based on your organization's preferences. The operational mode is selected
+at install time and cannot be changed once the install is running.
 
 1. **Production - External Services** - This mode stores the majority of the
    stateful data used by the instance in an external PostgreSQL database as
