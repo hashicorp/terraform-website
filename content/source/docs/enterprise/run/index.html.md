@@ -82,6 +82,30 @@ If you need to temporarily stop runs from being queued, you can lock the workspa
 
 You can find the lock button in the workspace settings page. Locking a workspace requires write or admin access.
 
+## Installing Terraform Providers
+
+### Providers Distributed by HashiCorp
+
+TFE runs `terraform init` before every plan or apply, which automatically downloads any [providers](/docs/configuration/providers.html) Terraform needs.
+
+Private installs of TFE can automatically install providers as long as they can access registry.terraform.io. If that isn't feasible due to security requirements, you can manually install providers. Use [the `terraform-bundle` tool][bundle] to build a custom version of Terraform that includes the necessary providers, and configure your workspaces to use that bundled version.
+
+[bundle]: https://github.com/hashicorp/terraform/tree/master/tools/terraform-bundle#installing-a-bundle-in-on-premises-terraform-enterprise
+
+### Custom and Community Providers
+
+-> **Note:** We are investigating how to improve custom provider installation, so this information might change in the near future.
+
+Terraform only automatically installs plugins from [the main list of providers](/docs/providers/index.html); to use community providers or your own custom providers, you must install them yourself.
+
+Currently, there are two ways to use custom provider plugins with TFE.
+
+- Add the provider binary to the VCS repo (or manually-uploaded configuration version) for any workspace that uses it. Place the compiled `linux_amd64` version of the plugin at `terraform.d/plugins/linux_amd64/<PLUGIN NAME>` (as a relative path from the root of the working directory).
+
+    You can add plugins directly to a configuration repo, or you can add them as Git submodules and symlink the files into `terraform.d/plugins/linux_amd64/`. Submodules are a good choice when many workspaces use the same custom provider, since they keep your repos smaller. If using submodules, enable the ["Include submodules on clone" setting](../workspaces/settings.html#include-submodules-on-clone) on any affected workspace.
+
+- **Private TFE only:** Use [the `terraform-bundle` tool][bundle] to add custom providers to a custom Terraform version. This keeps custom providers out of your configuration repos entirely, and is easier to update when many workspaces use the same provider.
+
 ## Terraform State in TFE
 
 Each TFE workspace has its own separate state data. In order to read and write state for the correct workspace, TFE overrides any configured [backend](/docs/backends/index.html) when running Terraform.
