@@ -88,20 +88,23 @@ You can find the lock button in the workspace settings page. Locking a workspace
 
 TFE runs `terraform init` before every plan or apply, which automatically downloads any [providers](/docs/configuration/providers.html) Terraform needs.
 
-Private installs of TFE can automatically install providers as long as they can access registry.terraform.io. If that isn't feasible due to security requirements, you can manually install providers. Use [the `terraform-bundle` tool][bundle] to pre-download all the providers you need and bundle them with a version of Terraform, use the admin pages to upload the bundle as a new Terraform version, and configure your workspaces to use that bundled Terraform version.
+Private installs of TFE can automatically install providers as long as they can access registry.terraform.io. If that isn't feasible due to security requirements, you can manually install providers. Use [the `terraform-bundle` tool][bundle] to build a custom version of Terraform that includes the necessary providers, and configure your workspaces to use that bundled version.
 
 [bundle]: https://github.com/hashicorp/terraform/tree/master/tools/terraform-bundle#installing-a-bundle-in-on-premises-terraform-enterprise
 
-### Third-Party Providers
+### Custom and Community Providers
 
--> **Note:** We are investigating how to improve third-party provider installation, so this information might change in the near future.
+-> **Note:** We are investigating how to improve custom provider installation, so this information might change in the near future.
 
-Currently, there are two ways to use third-party provider plugins with TFE.
+Terraform only automatically installs plugins from [the main list of providers](/docs/providers/index.html); to use community providers or your own custom providers, you must install them yourself.
 
-- Add the provider binary to the VCS repo (or manually-uploaded configuration version) for any workspace that uses it. You must include the compiled `linux_amd64` version of the plugin, and it must be stored at `terraform.d/plugins/linux_amd64/<PLUGIN NAME>` (as a relative path from the root of the working directory).
+Currently, there are two ways to use custom provider plugins with TFE.
 
-    When adding plugins to a repo, you can add them directly or add them as a Git submodule. (Make sure each workspace's ["Include submodules on clone" setting](../workspaces/settings.html#include-submodules-on-clone) is enabled.) Submodules can reduce repo sizes when multiple workspaces use the same third-party provider.
-- **Private TFE only:** Use `terraform-bundle` to add third-party providers to a special Terraform version, much like you would pre-download providers for an air-gapped environment. This keeps custom providers out of your configuration repos entirely, and is easier to update when many workspaces use the same provider.
+- Add the provider binary to the VCS repo (or manually-uploaded configuration version) for any workspace that uses it. Place the compiled `linux_amd64` version of the plugin at `terraform.d/plugins/linux_amd64/<PLUGIN NAME>` (as a relative path from the root of the working directory).
+
+    You can add plugins directly to a configuration repo, or you can add them as Git submodules and symlink the files into `terraform.d/plugins/linux_amd64/`. Submodules are a good choice when many workspaces use the same custom provider, since they keep your repos smaller. If using submodules, enable the ["Include submodules on clone" setting](../workspaces/settings.html#include-submodules-on-clone) on any affected workspace.
+
+- **Private TFE only:** Use [the `terraform-bundle` tool][bundle] to add custom providers to a custom Terraform version. This keeps custom providers out of your configuration repos entirely, and is easier to update when many workspaces use the same provider.
 
 ## Terraform State in TFE
 
