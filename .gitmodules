@@ -310,3 +310,7 @@
 	path = ext/providers/hcloud
 	url = https://github.com/terraform-providers/terraform-provider-hcloud
 	branch = stable-website
+[submodule "ext/providers/azurestack"]
+	path = ext/providers/azurestack
+	url = https://github.com/terraform-providers/terraform-provider-azurestack
+	branch = stable-website
