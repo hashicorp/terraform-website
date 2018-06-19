@@ -61,7 +61,6 @@ Key path                                    | Type   | Default | Description
         "data": {
           "id":"my-organization",
           "type":"organizations"
-          }
         }
       },
       "workspace": {
