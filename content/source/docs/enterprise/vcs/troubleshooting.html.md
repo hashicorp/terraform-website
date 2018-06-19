@@ -85,25 +85,23 @@ The domain name for Terraform Enterprise changed on 02/22 at 9AM from atlas.hash
 
 The fix is to update the OAuth Callback URL in your VCS provider to use app.terraform.io instead of atlas.hashicorp.com.
 
-## Debugging Certificate Errors on Private Terraform Enterprise
+## Certificate Errors on Private Terraform Enterprise
 
-When debugging failures of VCS connections due to certifcate errors, it's sometime helpful to run the OpenSSL command within the TFE container to get more information.
+When debugging failures of VCS connections due to certifcate errors, running additional diagnostics using the OpenSSL command may provide more information about the failure.
 
-Attach a bash session to the PTFE container:
+First, attach a bash session to the application container:
 
 ```
 docker exec -it ptfe_atlas sh -c "stty rows 50 && stty cols 150 && bash"
 ```
 
-Then run the `openssl s_client` command, using the certificate from the container, and you'll be able to see the SSL connection, and any errors that come up.
-
-The certificate will be available under `/tmp/cust-ca-certificates.crt` in the container:
+Then run the `openssl s_client` command, using the certificate at `/tmp/cust-ca-certificates.crt` in the container:
 
 ```
 openssl s_client -showcerts -CAfile /tmp/cust-ca-certificates.crt -connect git-server-hostname:443
 ```
 
-For example, if my GitLab server was running self-signed certificates, I might get a `verify error:num=18:self signed certificate` log like so:
+For example, a Gitlab server that uses a self-signed certificate might result in an error like `verify error:num=18:self signed certificate`, as shown in the output below:
 
 ```
 bash-4.3# openssl s_client -showcerts -CAfile /tmp/cust-ca-certificates.crt -connect gitlab.local:443
