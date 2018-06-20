@@ -8,6 +8,8 @@ sidebar_current: "docs-enterprise2-api-admin-terraform-versions"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
+-> **Pre-release:** These API endpoints are not yet available in the current Private Terraform Enterprise release.
+
 The Terraform Versions Admin API contains endpoints to help site administrators manage known versions of Terraform.
 
 ## List all Terraform versions
