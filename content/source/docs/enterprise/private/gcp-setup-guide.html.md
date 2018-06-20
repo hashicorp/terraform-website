@@ -133,7 +133,7 @@ and operate correctly.
 
 ## Infrastructure Diagram
 
-![GCP-infrastructure-diagram](./assets/GCP-infrastructure-diagram.png)
+![gcp-infrastructure-diagram](./assets/gcp-infrastructure-diagram.png)
 
 The above diagram shows the infrastructure components at a high-level.
 
@@ -189,52 +189,42 @@ of the installation guide.
 
 ### Failure Scenarios
 
-GCP provides availability and reliability recommendations in the [Well-Architected
-framework](https://GCP.amazon.com/architecture/well-architected/).
+GCP provides guidance on [designing robust systems](https://cloud.google.com/compute/docs/tutorials/robustsystems).
 Working in accordance with those recommendations the PTFE Reference
 Architecture is designed to handle different failure scenarios with
 different probabilities. As the architecture evolves it may provide a
 higher level of service continuity.
 
-#### Single EC2 Instance Failure
+#### Single Compute Engine Instance Failure
 
 In the event of the *PTFE-main* instance failing in a way that GCP can
-observe, a CloudWatch alarm can trigger [EC2
-instance
-recovery](https://docs.GCP.amazon.com/GCPEC2/latest/UserGuide/ec2-instance-recover.html)
-automatically. This would result in the EC2 instance being started on
-different physical hardware. A recovered instance is identical to the
-original instance, including the instance ID, private IP addresses,
-Elastic IP addresses, and all instance metadata. Once the EC2 instance
-is running again service would resume as normal.
+observe, [Live Migration](https://cloud.google.com/compute/docs/instances/live-migration)
+is used to move the instance to new physical hardware automatically.
+In the event that Live Migration is not possible the instance will crash and be restarted
+on new physical hardware automatically. During instance startup the PTFE services will
+be started and service will resume.
 
-#### Availability Zone Failure
+#### Zone Failure
 
-In the event of the Availability Zone hosting the main instances (EC2
-and RDS) failing, traffic must be routed to the standby instances to
-resume service.
+In the event of the Zone hosting the main instances (Compute Engine and Cloud SQL) failing, traffic must be routed to the standby instances to resume service.
 
--   The Load Balancer listener must be reconfigured to direct traffic to
+-   The Alias IP must be reconfigured to direct traffic to
     the *PTFE-standby* instance. This can be managed manually or automated.
 
--   Multi-AZ RDS automatically fails over to the RDS Standby Replica
-    (*RDS-standby*). The [GCP documentation provides more
-    detail](https://docs.GCP.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)
+-   Cloud SQL automatically and transparently fails over to the standby zone. 
+    The [GCP documentation provides more
+    detail](https://cloud.google.com/sql/docs/postgres/high-availability)
     on the exact behaviour and expected impact.
 
--   Both S3 and Vault are resilient to Availability Zone failure based
+-   Both Cloud Storage and Vault are resilient to Zone failure based
     on their architecture.
 
-See below for more detail on how each component handles Availability
-Zone failure.
+See below for more detail on how each component handles Zone failure.
 
 ##### PTFE Servers
 
-Through deployment of two EC2 instances in different availability zones, the
-PTFE Reference Architecture is designed in accordance with the [Reliability
-Pillar of the GCP
-Well-Architected](https://d1.GCPstatic.com/whitepapers/architecture/GCP-Reliability-Pillar.pdf)
-framework to provide improved availability and reliability. Should the
+Through deployment of two Compute Engine instances in different Zones, the
+PTFE Reference Architecture is resilient to Zone failure. Should the
 *PTFE-main* server fail, it can be automatically recovered, or traffic can be
 routed to the *PTFE-standby* server to resume service when the failure is
 limited to the PTFE server layer.
@@ -252,27 +242,26 @@ same configuration.
 
 ##### PostgreSQL Database
 
-Using RDS Multi-AZ as an external database service leverages the highly
+Using Cloud SQL as an external database service leverages the highly
 available infrastructure provided by GCP. From the GCP website:
 
-> *In a Multi-AZ deployment, Amazon RDS automatically provisions and
-> maintains a synchronous standby replica in a different Availability
-> Zone. In the event of a planned or unplanned outage of your DB
-> instance, Amazon RDS automatically switches to a standby replica in
-> another Availability Zone. ([source](https://docs.GCP.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html))*
+> *A Cloud SQL instance configured for high availability is also called a regional instance. 
+> A regional instance is located in two zones within the configured region, so if it cannot
+> serve data from its primary zone, it fails over and continues to serve data from its secondary zone.
+> ([source](https://cloud.google.com/sql/docs/postgres/high-availability))*
 
 ##### Object Storage
 
-Using S3 as an external object store leverages the highly available
-infrastructure provided by GCP. S3 buckets are replicated to all
-Availability Zones within the region selected during bucket creation.
+Using Regional Cloud Storage as an external object store leverages the highly available
+infrastructure provided by GCP. Regional Cloud Storage buckets are resilient to Zone failure
+within the region selected during bucket creation.
 From the GCP website:
 
-> *Amazon S3 runs on the world’s largest global cloud infrastructure,
-> and was built from the ground up to deliver a customer promise of
-> 99.999999999% of durability. Data is automatically distributed across
-> a minimum of three physical facilities that are geographically
-> separated within an GCP Region. ([source](https://GCP.amazon.com/s3/))*
+> *Regional Storage is appropriate for storing data in the same regional location 
+> as Compute Engine instances or Kubernetes Engine clusters that use the data. 
+> Doing so gives you better performance for data-intensive computations, as opposed 
+> to storing your data in a multi-regional location. 
+> ([source](https://cloud.google.com/storage/docs/storage-classes))*
 
 ##### Vault Cluster
 
@@ -282,13 +271,12 @@ Architecture](https://www.vaultproject.io/guides/operations/reference-architectu
 This would provide high availability and disaster recovery support,
 minimising downtime in the event of an outage.
 
-## Disaster Recovery
+## Disaster Recovery *(WIP from here down)*
 
 ### Failure Scenarios
 
-GCP provides availability and reliability recommendations in the
-Well-Architected framework. Working in accordance with those
-recommendations the PTFE Reference Architecture is designed to handle
+GCP provides guidance on [designing robust systems](https://cloud.google.com/compute/docs/tutorials/robustsystems).
+Working in accordance with those recommendations the PTFE Reference Architecture is designed to handle
 different failure scenarios that have different probabilities. As the
 architecture evolves it may provide a higher level of service
 continuity.
@@ -320,7 +308,7 @@ it along with some global services such as DNS.
 #### Data Corruption
 
 The PTFE application architecture relies on multiple service endpoints
-(RDS, S3, Vault) all providing their own backup and recovery
+(Cloud SQL, Cloud Stoprage, Vault) all providing their own backup and recovery
 functionality to support a low MTTR in the event of data corruption.
 
 ##### PTFE Servers
@@ -351,7 +339,7 @@ and summarised below:
 
 ##### Object Storage
 
-There is no automatic backup/snapshot of S3 by GCP, so it is recommended
+There is no automatic backup/snapshot of Cloud Storage by GCP, so it is recommended
 to script a bucket copy process from the bucket used by the PTFE
 application to a “backup bucket” in S3 that runs at regular intervals.
 The [Amazon S3 Standard-Infrequent
