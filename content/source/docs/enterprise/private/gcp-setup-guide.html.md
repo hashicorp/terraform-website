@@ -42,8 +42,8 @@ or “Burstable CPU” in GCP terms, such as T-series instances.
 
 | Type        | CPU      | Memory       | Disk | GCP Instance Types             |
 |-------------|----------|--------------|------|--------------------------------|
-| Minimum     | 2 core   | 8 GB RAM     | 50GB | n1-standard-4, n1-standard-8   |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB | n1-standard-16, n1-standard-32 |
+| Minimum     | 2-4 core | 8-16 GB RAM  | 50GB | n1-standard-2, n1-standard-4   |
+| Recommended | 4-8 core | 16-32 GB RAM | 50GB | n1-standard-4, n1-standard-8   |
 
 #### Hardware Sizing Considerations
 
@@ -58,7 +58,7 @@ or “Burstable CPU” in GCP terms, such as T-series instances.
 | Type        | CPU      | Memory       | Storage | GCP Instance Types           |
 |-------------|----------|--------------|---------|------------------------------|
 | Minimum     | 2 core   | 8 GB RAM     | 50GB    | Custom PostgreSQL Production |
-| Recommended | 4-8 core | 16-26 GB RAM | 50GB    | Custom PostgreSQL Production |
+| Recommended | 4-8 core | 16-32 GB RAM | 50GB    | Custom PostgreSQL Production |
 
 #### Hardware Sizing Considerations
 
@@ -70,17 +70,15 @@ or “Burstable CPU” in GCP terms, such as T-series instances.
 
 ### Object Storage (Cloud Storage)
 
-An [S3 Standard](https://GCP.amazon.com/s3/storage-classes/) bucket must be
+A [Regional Cloud Storage](https://cloud.google.com/storage/docs/storage-classes#regional) bucket must be
 specified during the PTFE installation for application data to be stored
-securely and redundantly away from the EC2 servers running the PTFE
-application. This S3 bucket must be in the same region as the EC2 and RDS
-instances. It is recommended the VPC containing the PTFE servers be configured
-with a [VPC endpoint for
-S3](https://docs.GCP.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html).
-Vault is used to encrypt all application data stored in the S3 bucket.  This
-allows for further [server-side
-encryption](https://docs.GCP.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
-by S3 if required by your security policy.
+securely and redundantly away from the Compute Engine VMs running the PTFE
+application. This Cloud Storage bucket must be in the same region as the Compute Engine and Cloud SQL
+instances.
+Vault is used to encrypt all application data stored in the Cloud Storage bucket.  This
+still allows for the further [server-side
+encryption](https://cloud.google.com/storage/docs/encryption/)
+that Cloud Storage performs.
 
 ### Vault Cluster
 
@@ -97,38 +95,26 @@ accessible at an endpoint the PTFE servers can reach.
 In order to successfully provision this reference architecture you must
 also be permitted to create the following GCP resources:
 
-- VPC
+- Project
+- Network
 - Subnet
-- Route Table
-- Route Table Association
-- Security Group
-- Load Balancer (Network or Classic)
-- Target Group (if using Network Load Balancer)
-- CloudWatch Alarm
-- IAM Instance Profile
-- IAM Role
-- IAM Role Policy
+- Firewall
+- Instance Alias IP
 
 #### Network
 
 To deploy PTFE in GCP you will need to create new or use existing
 networking infrastructure. The below infrastructure diagram highlights
-some of the key components (VPC, subnets, DB subnet group) and you will
-also have security group, routing table and gateway requirements. These
+some of the key components (network, subnets) and you will
+also have firewalls and gateway requirements. These
 elements are likely to be very unique to your environment and not
-something this Reference Architecture can specify in detail. An [example Terraform
-configuration](https://github.com/hashicorp/private-terraform-enterprise/blob/master/examples/GCP/network/main.tf)
-is provided to demonstrate how these resources can be provisioned and
-how they interrelate.
+something this Reference Architecture can specify in detail.
 
 #### DNS
 
-DNS can be configured external to GCP or using [Route 53](https://GCP.amazon.com/route53/). The
-fully qualified domain name should resolve to the Load Balancer using a
-CNAME if using external DNS or an [alias
-record](https://docs.GCP.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
-if using Route 53. Creating the required DNS entry is outside the scope
-of this guide.
+DNS can be configured external to GCP or using [Cloud DNS](https://cloud.google.com/dns/). The
+fully qualified domain name should resolve to the Alias IP using an A record.
+Creating the required DNS entry is outside the scope of this guide.
 
 #### SSL/TLS
 
@@ -153,53 +139,42 @@ The above diagram shows the infrastructure components at a high-level.
 
 ### Application Layer
 
-The Application Layer is composed of two PTFE servers (EC2 instances)
-running in different Availability Zones and operating in a main/standby
-configuration. Traffic is routed only to *PTFE-main* via a Load
-Balancer. Routing changes are typical managed by a human triggering a
-change in the Load Balancer configuration.
+The Application Layer is composed of two PTFE servers (Compute Engine instances)
+running in different Zones and operating in a main/standby
+configuration. Traffic is routed only to *PTFE-main* via an Alias IP.
+Routing changes are typical managed by a human removing the Alias IP from *PTFE-main*
+and adding it to *PTFE-standby*.
 
 ### Storage Layer
 
-The Storage Layer is composed of multiple service endpoints (RDS, S3,
+The Storage Layer is composed of multiple service endpoints (Cloud SQL, Cloud Storage,
 Vault) all configured with or benefiting from inherent resiliency
-provided by GCP (in the case of RDS and S3) or resiliency provided by a
+provided by GCP (in the case of Cloud SQL and Cloud Storage) or resiliency provided by a
 well-architected deployment (in the case of Vault).
 
--   [More information about RDS Multi-AZ deployments](https://GCP.amazon.com/rds/details/multi-az/).
-
--   [More information about S3 Standard](https://GCP.amazon.com/s3/storage-classes/).
-
+-   [More information about Cloud SQL high-availability](https://cloud.google.com/sql/docs/postgres/high-availability).
+-   [More information about Regional Cloud Storage](https://cloud.google.com/storage/docs/storage-classes).
 -   [More information about highly available Vault deployments](https://www.vaultproject.io/guides/operations/vault-ha-consul.html)
 
 ## Infrastructure Provisioning
 
 The recommended way to deploy PTFE is through use of a Terraform configuration
 that defines the required resources, their references to other resources, and
-dependencies. An [example Terraform
-configuration](https://github.com/hashicorp/private-terraform-enterprise/blob/master/examples/GCP/pes/main.tf)
-is provided to demonstrate how these resources can be provisioned and how they
-interrelate. This Terraform configuration assumes the required networking
-components are already in place. If you are creating networking components for
-this PTFE installation, an [example Terraform configuration is available for
-the networking
-resources](https://github.com/hashicorp/private-terraform-enterprise/blob/master/examples/GCP/network/main.tf)
-as well.
+dependencies.
 
 ## Normal Operation
 
 ### Component Interaction
 
-The Load Balancer routes all traffic to the *PTFE-main* instance which
+The Alias IP routes all traffic to the *PTFE-main* instance which
 in turn handles all requests to the PTFE application.
 
-The PTFE application is connected to the PostgreSQL database via the RDS
-Multi-AZ endpoint and all database requests are routed via the RDS
-Multi-AZ endpoint to the *RDS-main* database instance.
+The PTFE application is connected to the PostgreSQL database via the Cloud SQL
+endpoint and all database requests are routed via the Cloud SQL endpoint to the database instance.
 
-The PTFE application is connected to object storage via the S3 endpoint
+The PTFE application is connected to object storage via the Cloud Storage endpoint
 for the defined bucket and all object storage requests are routed to the
-highly available infrastructure supporting S3.
+highly available infrastructure supporting Cloud Storage.
 
 The PTFE application is connected to the Vault cluster via the Vault
 cluster endpoint URL.
