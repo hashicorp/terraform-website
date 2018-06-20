@@ -10,6 +10,8 @@ sidebar_current: "docs-enterprise2-api-admin-settings"
 
 -> **Note**: These endpoints are only available in Private Terraform instances and only accessible by site administrators.
 
+-> **Pre-release**: These API endpoints are not yet available in the current Private Terraform Enterprise release.
+
 ## List SAML Settings
 `GET /api/v2/admin/saml-settings`
 
