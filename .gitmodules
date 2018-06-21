@@ -314,3 +314,7 @@
 	path = ext/providers/azurestack
 	url = https://github.com/terraform-providers/terraform-provider-azurestack
 	branch = stable-website
+[submodule "ext/providers/runscope"]
+	path = ext/providers/runscope
+	url = https://github.com/terraform-providers/terraform-provider-runscope
+	branch = stable-website
