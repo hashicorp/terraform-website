@@ -22,25 +22,23 @@ This POST endpoint requires a JSON object with the following properties as a req
 Properties without a default value are required.
 
 
-Key path                                    | Type   | Default | Description
---------------------------------------------|--------|---------|------------
-`data.type`                                 | string |         | Must be `"vars"`.
-`data.attributes.key`                       | string |         | The name of the variable.
-`data.attributes.value`                     | string |         | The value of the variable.
-`data.attributes.category`                  | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
-`data.attributes.hcl`                       | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
-`data.attributes.sensitive`                 | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
-`data.relationships.workspace.data.type`    | string |         | Must be `"workspaces"`.
-`data.relationships.workspace.data.id`      | string |         | The ID of the workspace that owns the variable.
-`data.relationships.organization.data.type` | string |         | Must be `"organizations"`.
-`data.relationships.organization.data.id`   | string |         | The ID (which is the name) of the organization that owns the workspace.
+Key path                                 | Type   | Default | Description
+-----------------------------------------|--------|---------|------------
+`data.type`                              | string |         | Must be `"vars"`.
+`data.attributes.key`                    | string |         | The name of the variable.
+`data.attributes.value`                  | string |         | The value of the variable.
+`data.attributes.category`               | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
+`data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
+`data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
+`data.relationships.workspace.data.type` | string |         | Must be `"workspaces"`.
+`data.relationships.workspace.data.id`   | string |         | The ID of the workspace that owns the variable.
 
 **Deprecation warning**: The custom `filter` properties are replaced by JSON API `relationships` and will be removed from future versions of the API!
 
-Key path                                    | Type   | Default | Description
---------------------------------------------|--------|---------|------------
-`filter.workspace.name`                     | string |         | The name of the workspace that owns the variable.
-`filter.organization.name`                  | string |         | The name of the organization that owns the workspace.
+Key path                                 | Type   | Default | Description
+-----------------------------------------|--------|---------|------------
+`filter.workspace.name`                  | string |         | The name of the workspace that owns the variable.
+`filter.organization.name`               | string |         | The name of the organization that owns the workspace.
 
 
 ### Sample Payload
@@ -57,12 +55,6 @@ Key path                                    | Type   | Default | Description
       "sensitive":false
     },
     "relationships": {
-      "organization": {
-        "data": {
-          "id":"my-organization",
-          "type":"organizations"
-        }
-      },
       "workspace": {
         "data": {
           "id":"ws-4j8p6jX1w33MiDC7",
@@ -127,8 +119,8 @@ curl \
 
 Parameter                    | Description
 -----------------------------|------------
-`filter[workspace][name]`    | **Optional.** The name of one workspace to list variables for. If included, you must also include the organization name filter.
-`filter[organization][name]` | The name of the organization that owns the desired workspace. Must be combined with the workspace name filter.
+`filter[workspace][name]`    | **Optional** The name of one workspace to list variables for. If included, you must also include the organization name filter.
+`filter[organization][name]` | **Optional** The name of the organization that owns the desired workspace. If included, you must also included the workspace name filter.
 
 These two parameters are optional but linked; if you include one, you must include both. Without a filter, this method lists variables for all workspaces you can access.
 
