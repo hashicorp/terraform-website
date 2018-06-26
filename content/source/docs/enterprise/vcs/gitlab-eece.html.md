@@ -70,7 +70,7 @@ The rest of this page explains the on-premise GitLab versions of these steps.
     Field          | Value
     ---------------|--------------------------------------------
     HTTP URL       | `https://<GITLAB INSTANCE HOSTNAME>`
-    API URL        | `https://<GITLAB INSTANCE HOSTNAME>/api/v3`
+    API URL        | `https://<GITLAB INSTANCE HOSTNAME>/api/v4`
     Application ID | (paste value from previous step)
     Secret         | (paste value from previous step)
 
