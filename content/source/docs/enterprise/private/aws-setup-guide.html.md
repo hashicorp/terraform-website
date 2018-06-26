@@ -132,7 +132,7 @@ of this guide.
 
 #### SSL/TLS
 
-An SSL/TLS certificate is required for secure communication between
+An SSL/TLS certificate signed by a public or private CA is required for secure communication between
 clients and the PTFE application server. The certificate can be
 specified during the UI-based installation or the path to the
 certificate codified during an unattended installation.
@@ -141,9 +141,7 @@ If a Classic or Application Load Balancer is used, SSL/TLS will be terminated th
 In this configuration, the PTFE instances should still be configured to listen
 for incoming SSL/TLS connections.
 
-Since the load balancer is configured to send traffic to port 443 on the instances
-as type `https`, it will ignore the fact that it can't trust self-signed certificates
-and operate correctly. HashiCorp does not recommend the use of self-signed certificates.
+HashiCorp does not recommend the use of self-signed certificates.
 
 ## Infrastructure Diagram
 
