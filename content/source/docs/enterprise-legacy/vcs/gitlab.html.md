@@ -38,7 +38,7 @@ Scroll down to the **Add OAuthClient** pane and fill out the form with the follo
 - **Oauth client**: Your GitLab installation type (e.g. GitLab.com, GitLab Community Edition, or GitLab Enterprise)
 - **Application key**: Application Id (from GitLab in the previous section)
 - **Base url**: https://gitlab.com (for GitLab.com; If you are using GitLab Community Edition or GitLab Enterprise your URL will be different)
-- **Api url**: https://gitlab.com/api/v3 (for GitLab.com; If you are using GitLab Community Edition or GitLab Enterprise your URL will be different)
+- **Api url**: https://gitlab.com/api/v4 (for GitLab.com; If you are using GitLab Community Edition or GitLab Enterprise your URL will be different)
 - **Application secret**: Secret (from GitLab in the previous section)
 
 Once you have created your client, you will be redirected back to the **Configuration** page for your chosen Organization. On that page, find the **OAuth Clients** pane and copy the **Callback url** for GitLab. Leave this tab open in your browser as you will need to return to it in a moment.

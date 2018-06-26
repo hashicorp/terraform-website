@@ -72,7 +72,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
     Field         | Value
     --------------|--------------------------------------------
     HTTP URL      | `https://<GITHUB INSTANCE HOSTNAME>`
-    API URL       | `https://<GITHUB INSTANCE HOSTNAME>/api/v3`
+    API URL       | `https://<GITHUB INSTANCE HOSTNAME>/api/v4`
     Client ID     | (paste value from previous step)
     Client Secret | (paste value from previous step)
 
