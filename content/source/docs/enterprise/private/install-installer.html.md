@@ -27,13 +27,10 @@ Before you begin, you'll need to prepare data files and a Linux instance.
 ### Data Files
 
 * TLS private key and certificate
-  * The installer allows for using a self-signed certificate but HashiCorp does
-    _not_ recommended this. Your VCS provider will likely reject that certificate
-    when sending webhooks. If you do use the self-signed certificate, you must configure
-    each webhook to ignore SSL errors within your VCS provider.
+  * The installer allows for using a certificate signed by a public or private CA. If you do not use a trusted certificate, your VCS provider will likely reject that certificate when sending webhooks. 
 * License key (provided by HashiCorp)
 
-~> **Note:** If you use your own certificate and it is issued by a private Certificate
+~> **Note:** If you use a certificate issued by a private Certificate
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
    running within PTFE to access each other properly.

@@ -173,7 +173,7 @@ For Azure:
 
 ## Online
 
-The following is an example `/etc/replicated.conf` suitable for an automated online install using a self-signed certificate.  `ImportSettingsFrom` must be the full path to the application settings file.  You also need to provide the full path to your license file in `LicenseFileLocation`.
+The following is an example `/etc/replicated.conf` suitable for an automated online install using a certificate trusted by a public or private CA.  `ImportSettingsFrom` must be the full path to the application settings file.  You also need to provide the full path to your license file in `LicenseFileLocation`.
 
 See the full set of configuration parameters in the [Replicated documentation](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically).
 
@@ -181,7 +181,10 @@ See the full set of configuration parameters in the [Replicated documentation](h
 {
     "DaemonAuthenticationType":     "password",
     "DaemonAuthenticationPassword": "your-password-here",
-    "TlsBootstrapType":             "self-signed",
+    "TlsBootstrapType":             "server-path",
+    "TlsBootstrapHostname":         "server.company.com",
+    "TlsBootstrapCert":             "/etc/server.crt",
+    "TlsBootstrapKey":              "/etc/server.key",
     "BypassPreflightChecks":        true,
     "ImportSettingsFrom":           "/path/to/application-settings.json",
     "LicenseFileLocation":          "/path/to/license.rli"
@@ -209,7 +212,10 @@ The following is an example `/etc/replicated.conf` suitable for an automated air
 {
     "DaemonAuthenticationType":          "password",
     "DaemonAuthenticationPassword":      "your-password-here",
-    "TlsBootstrapType":                  "self-signed",
+    "TlsBootstrapType":                  "server-path",
+    "TlsBootstrapHostname":              "server.company.com",
+    "TlsBootstrapCert":                  "/etc/server.crt",
+    "TlsBootstrapKey":                   "/etc/server.key",
     "BypassPreflightChecks":             true,
     "ImportSettingsFrom":                "/path/to/application-settings.json",
     "LicenseFileLocation":               "/path/to/license.rli",
