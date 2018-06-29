@@ -7,7 +7,7 @@ sidebar_current: "docs-enterprise2-private-config"
 # Private Terraform Enterprise Configuration
 
 After you have completed the installation process you will need to create an
-administrator account. When the admin user creation has been completed you will
+admin user. When the admin user creation has been completed you will
 be able to create your first organizations and users and enable the enterprise
 features for those accounts.
 
@@ -22,7 +22,7 @@ In all examples below, be sure to replace "`<TFE HOSTNAME>`" with the hostname
 of your Private Terraform Enterprise instance.
 
 Navigate to `https://<TFE HOSTNAME>:8800/` in your browser. You will
-be presented with the installer's dashboard that looks like this:
+be presented with the installer's dashboard:
 
 ![PTFE Installer Dashboard](./assets/post-install-repl-console.png)
 
@@ -34,9 +34,9 @@ You will be able to create additional administrators once you login.
 
 ![New admin dialog](./assets/create-an-account.png)
 
-### Creating an Organization
+### Creating an organization
 
-The next step will create the first Organization.
+The next step will create the first organization.
 
 ![Create a new organization](./assets/create-organization.png)
 
