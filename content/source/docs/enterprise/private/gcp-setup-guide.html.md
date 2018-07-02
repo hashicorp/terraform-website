@@ -99,7 +99,6 @@ also be permitted to create the following GCP resources:
 - Network
 - Subnet
 - Firewall
-- Instance Alias IP
 
 #### Network
 
