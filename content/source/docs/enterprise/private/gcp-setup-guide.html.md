@@ -270,7 +270,7 @@ Architecture](https://www.vaultproject.io/guides/operations/reference-architectu
 This would provide high availability and disaster recovery support,
 minimising downtime in the event of an outage.
 
-## Disaster Recovery *(WIP from here down)*
+## Disaster Recovery
 
 ### Failure Scenarios
 
@@ -296,18 +296,18 @@ primary GCP Region hosting the PTFE application failing, the secondary
 GCP Region will require some configuration before traffic is directed to
 it along with some global services such as DNS.
 
--   [RDS cross-region read replicas](https://docs.GCP.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.XRgn) can be used in a warm standby architecture or [RDS database backups](https://docs.GCP.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html) can be used in a cold standby architecture.
+-   [Cloud SQL cross-region read replicas](https://cloud.google.com/sql/docs/postgres/replication/manage-replicas) can be used in a warm standby architecture or [Cloud SQL database backups](https://cloud.google.com/sql/docs/postgres/backup-recovery/restoring) can be used in a cold standby architecture.
 
--   [S3 cross-region replication](https://docs.GCP.amazon.com/AmazonS3/latest/dev/crr.html) must be configured so the object storage component of the Storage Layer is available in the secondary GCP Region.
+-   [Multi-Regional Cloud Storage replication](https://cloud.google.com/storage/docs/storage-classes#multi-regional) must be configured so the object storage component of the Storage Layer is available in multiple GCP Regions.
 
 -   [Vault Disaster Recovery (DR) Replication](https://www.vaultproject.io/docs/enterprise/replication/index.html#performance-replication-and-disaster-recovery-dr-replication) must be configured for a Vault cluster in the secondary GCP Region.
 
--   DNS must be redirected to the Load Balancer acting as the entry point for the infrastructure deployed in the secondary GCP Region.
+-   DNS must be redirected to the Alias IP acting as the entry point for the infrastructure deployed in the secondary GCP Region.
 
 #### Data Corruption
 
 The PTFE application architecture relies on multiple service endpoints
-(Cloud SQL, Cloud Stoprage, Vault) all providing their own backup and recovery
+(Cloud SQL, Cloud Storage, Vault) all providing their own backup and recovery
 functionality to support a low MTTR in the event of data corruption.
 
 ##### PTFE Servers
@@ -322,37 +322,28 @@ corruption.
 
 ##### PostgreSQL Database
 
-Backup and recovery of PostgreSQL is managed by GCP and configured
-through the GCP management console on CLI. More details of RDS for
-PostgreSQL features are available [here](https://GCP.amazon.com/rds/postgresql/)
-and summarised below:
+Backup and restoration of PostgreSQL is managed by GCP and configured
+through the GCP management console or CLI.
 
-> ***Automated Backups** – The automated backup feature of Amazon RDS is
-> turned on by default and enables point-in-time recovery for your DB
-> Instance. Amazon RDS will backup your database and transaction logs
-> and store both for a user-specified retention period.*
->
-> ***DB Snapshots** – DB Snapshots are user-initiated backups of your DB
-> Instance. These full database backups will be stored by Amazon RDS
-> until you explicitly delete them.*
+Automated (scheduled) and on-demand backups are available in GCP. Review the
+[backup](https://cloud.google.com/sql/docs/postgres/backup-recovery/backups)
+and [restoration](https://cloud.google.com/sql/docs/postgres/backup-recovery/restore)
+documentation for further guidance.
+
+More details of Cloud SQL (PostgreSQL) features are available [here](https://cloud.google.com/sql/docs/postgres/).
 
 ##### Object Storage
 
 There is no automatic backup/snapshot of Cloud Storage by GCP, so it is recommended
 to script a bucket copy process from the bucket used by the PTFE
-application to a “backup bucket” in S3 that runs at regular intervals.
-The [Amazon S3 Standard-Infrequent
-Access](https://GCP.amazon.com/s3/storage-classes/) storage class
-is identified as a solution targeted more for DR backups than S3
-Standard. From the GCP website:
+application to a “backup bucket” in Cloud Storage that runs at regular intervals.
+The [Nearline Storage](https://cloud.google.com/storage/docs/storage-classes#nearline) storage class
+is identified as a solution targeted more for DR backups. From the GCP website:
 
-> *Amazon S3 Standard-Infrequent Access (S3 Standard-IA) is an Amazon S3
-> storage class for data that is accessed less frequently, but requires
-> rapid access when needed. S3 Standard-IA offers the high durability,
-> high throughput, and low latency of S3 Standard, with a low per GB
-> storage price and per GB retrieval fee. This combination of low cost
-> and high performance make S3 Standard-IA ideal for long-term storage,
-> backups, and as a data store for disaster recovery. ([source](https://GCP.amazon.com/s3/storage-classes/))*
+> *Nearline Storage is ideal for data you plan to read or modify on average once a month or less. 
+> For example, if you want to continuously add files to Cloud Storage and plan to access those 
+> files once a month for analysis, Nearline Storage is a great choice.
+> Nearline Storage is also appropriate for data backup, disaster recovery, and archival storage. ([source](https://cloud.google.com/storage/docs/storage-classes#nearline))*
 
 ##### Vault Cluster
 
