@@ -318,3 +318,7 @@
 	path = ext/providers/runscope
 	url = https://github.com/terraform-providers/terraform-provider-runscope
 	branch = stable-website
+[submodule "ext/providers/telefonicaopencloud"]
+	path = ext/providers/telefonicaopencloud
+	url = https://github.com/terraform-providers/terraform-provider-telefonicaopencloud
+	branch = stable-website
