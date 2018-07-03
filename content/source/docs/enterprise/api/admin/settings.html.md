@@ -12,6 +12,103 @@ sidebar_current: "docs-enterprise2-api-admin-settings"
 
 -> **Pre-release**: These API endpoints are not yet available in the current Private Terraform Enterprise release.
 
+## List General Settings
+`GET /api/v2/admin/general-settings`
+
+Status  | Response                                         | Reason
+--------|--------------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "general-settings"`) | Successfully listed General settings
+[404][] | [JSON API error object][]                    | User unauthorized to perform action
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/admin/general-settings
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "general",
+    "type": "general-settings",
+    "attributes": {
+      "limit-user-organization-creation": true
+    }
+  }
+}
+```
+
+## Update General Settings
+`PATCH /api/v2/admin/general-settings`
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "general-settings"`) | Successfully updated the General settings
+[404][] | [JSON API error object][]                    | User unauthorized to perform action
+[422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`data.attributes.limit-user-organization-creation`| bool     | `true` | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "attributes": {
+      "limit-user-organization-creation": true
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/admin/general-settings
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id":"general",
+    "type":"general-settings",
+    "attributes": {
+      "limit-user-organization-creation": true
+    }
+  }
+}
+```
+
 ## List SAML Settings
 `GET /api/v2/admin/saml-settings`
 
