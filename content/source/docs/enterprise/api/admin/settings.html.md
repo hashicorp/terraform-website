@@ -141,6 +141,7 @@ curl \
     "type": "saml-settings",
     "attributes": {
       "enabled": true,
+      "debug": false,
       "idp-cert": "SAMPLE-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
@@ -179,6 +180,7 @@ If `data.attributes.enabled` is set to `true`, all remaining attributes must hav
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.attributes.enabled`    | bool   | `false` | Allows SAML to be used. If true, all remaining attributes are required.
+`data.attributes.debug`    | bool   | `false` | Enables a SAML debug dialog that allows an admin to see the SAMLResponse XML and processed values during login.
 `data.attributes.idp-cert`   | string |         | Identity Provider Certificate specifies the PEM encoded X.509 Certificate as provided by the IdP configuration.
 `data.attributes.slo-endpoint-url` | string |         | Single Log Out URL specifies the HTTPS endpoint on your IdP for single logout requests. This value is provided by the IdP configuration.
 `data.attributes.sso-endpoint-url` | string |         | Single Sign On URL specifies the HTTPS endpoint on your IdP for single sign-on requests. This value is provided by the IdP configuration.
@@ -192,6 +194,7 @@ Key path                    | Type   | Default | Description
   "data": {
     "attributes": {
       "enabled": true,
+      "debug": false,
       "idp-cert": "SAMPLE-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
@@ -224,6 +227,7 @@ curl \
     "type":"saml-settings",
     "attributes": {
       "enabled": true,
+      "debug": false,
       "idp-cert": "SAMPLE-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
