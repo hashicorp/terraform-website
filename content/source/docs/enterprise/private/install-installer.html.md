@@ -261,7 +261,7 @@ When Terraform Enterprise uses an external PostgreSQL database, the
 following must be present on it:
 
 * PostgreSQL version 9.4 or greater
-* User with access to ownership semantics on the referenced database
+* User with all privileges granted on the schemas created and the ability to run "CREATE EXTENSION" on the database
 * The following PostgreSQL schemas must be installed into the database: `rails`, `vault`, `registry`
 
 To create schemas in PostgreSQL, the `CREATE SCHEMA` command is used. So to
@@ -278,7 +278,7 @@ When specifying which PostgreSQL database to use, the value specified must
 be a valid Database URL, as [specified in the libpq documentation](https://www.postgresql.org/docs/9.3/static/libpq-connect.html#AEN39514).
 
 Additionally, the URL must include the `sslmode` parameter indicating if SSL
-should be used to connect to the database. There is no assumed SSL mode, the
+should be used to connect to the database. There is no assumed SSL mode; the
 parameter must be specified.
 
 ### Finish Bootstrapping
