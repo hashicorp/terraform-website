@@ -48,5 +48,5 @@ choose to configure other aspects of PTFE, or add more users.
 You have successfully configured the installation and configuration steps that
 are specific to Private Terraform Enterprise! You can now configure SMTP
 (`https://<TFE HOSTNAME>/app/admin/smtp/`), Twilio (`https://<TFE HOSTNAME>/app/admin/twillio`),
-SAML (`https://<TFE HOSTNAME>/app/admin/saml`), or head to the[Getting Started](/docs/enterprise/getting-started/index.html)
+SAML (`https://<TFE HOSTNAME>/app/admin/saml`), or head to the [Getting Started](/docs/enterprise/getting-started/index.html)
 section to start using the software..
