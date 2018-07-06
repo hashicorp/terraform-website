@@ -22,7 +22,7 @@ In all examples below, be sure to replace "`<TFE HOSTNAME>`" with the hostname
 of your Private Terraform Enterprise instance.
 
 Navigate to `https://<TFE HOSTNAME>:8800/` in your browser. You will
-be presented with the installer's dashboard:
+be presented with the installer dashboard:
 
 ![PTFE Installer Dashboard](./assets/post-install-repl-console.png)
 
@@ -30,7 +30,7 @@ be presented with the installer's dashboard:
 
 After clicking on the "Open", right below the "Stop Now" button, you will
 be brought to a page asking you to create the first PTFE administrator account.
-You will be able to create additional administrators once you login.
+You will be able to create additional administrators once you log in.
 
 ![New admin dialog](./assets/create-an-account.png)
 
@@ -46,5 +46,7 @@ choose to configure other aspects of PTFE, or add more users.
 ## Success!
 
 You have successfully configured the installation and configuration steps that
-are specific to Private Terraform Enterprise! You can now head to the [Getting
-Started](/docs/enterprise/getting-started/index.html) section to continue.
+are specific to Private Terraform Enterprise! You can now configure SMTP
+(https://<TFE HOSTNAME>/app/admin/smtp/), Twilio (https://<TFE HOSTNAME>/app/admin/twillio),
+SAML (https://<TFE HOSTNAME>/app/admin/saml), or head to the[Getting Started](/docs/enterprise/getting-started/index.html)
+section to start using the software..
