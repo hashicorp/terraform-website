@@ -264,7 +264,7 @@ When Terraform Enterprise uses an external PostgreSQL database, the
 following must be present on it:
 
 * PostgreSQL version 9.4 or greater
-* User with full access to the schemas created and the ability to run "CREATE EXTENSION" on the database
+* User with all privileges granted on the schemas created and the ability to run "CREATE EXTENSION" on the database
 * The following PostgreSQL schemas must be installed into the database: `rails`, `vault`, `registry`
 
 To create schemas in PostgreSQL, the `CREATE SCHEMA` command is used. So to
