@@ -354,7 +354,7 @@ resource "example_security_group" "ex" {
     protocol    = "tcp"                
     from_port   = 80                   
     to_port     = 8000                 
-    cidr_blocks = ["0.0.0.0/0", "10.0.0
+    cidr_blocks = ["0.0.0.0/0", "10.0.0.0/8"]
   }                                    
 }                                      
 ```
