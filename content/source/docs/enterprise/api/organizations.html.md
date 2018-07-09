@@ -221,8 +221,6 @@ curl \
 
 `PATCH /organizations/:organization_name`
 
--> **Note**: Renaming an organization is not recommended if the organization has modules in the Private Module Registry. To rename an organization with private modules, first, delete the modules from the Private Module Registry. Then make the name change. After the change is complete, reload the modules into the Private Module Registry.
-
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to update
