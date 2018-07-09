@@ -53,6 +53,8 @@ If you need to prevent Terraform runs for any reason, you can lock a workspace. 
 
 Locks are managed with a single "Lock/Unlock `<WORKSPACE NAME>`" button. TFE asks for confirmation when unlocking.
 
+~> **Important:** Locking a workspace prevents runs within TFE, but it **does not** prevent state from being updated. This means a user with write access can still modify the workspace's resources by running Terraform outside TFE with [the `atlas` remote backend](/docs/backends/types/terraform-enterprise.html). To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows; to perform runs from the command line, see [TFE's CLI-driven workflow](../run/cli.html).
+
 ### Workspace Delete
 
 This section includes two buttons:
