@@ -36,11 +36,11 @@ Services” operational mode.
 
 The following table provides high-level server guidelines. Of particular
 note is the strong recommendation to avoid non-fixed performance CPUs,
-or “Burstable CPU” in GCP terms, such as T-series instances.
+or “Shared-core machine types” in GCP terms, such as f1-series and g1-series instances.
 
 ### PTFE Server (Compute Engine VM)
 
-| Type        | CPU      | Memory       | Disk | GCP Instance Types             |
+| Type        | CPU      | Memory       | Disk | GCP Machine Types              |
 |-------------|----------|--------------|------|--------------------------------|
 | Minimum     | 2-4 core | 8-16 GB RAM  | 50GB | n1-standard-2, n1-standard-4   |
 | Recommended | 4-8 core | 16-32 GB RAM | 50GB | n1-standard-4, n1-standard-8   |
@@ -55,18 +55,16 @@ or “Burstable CPU” in GCP terms, such as T-series instances.
 
 ### PostgreSQL Database (Cloud SQL PostgreSQL Production)
 
-| Type        | CPU      | Memory       | Storage | GCP Instance Types           |
+| Type        | CPU      | Memory       | Storage | GCP Machine Types            |
 |-------------|----------|--------------|---------|------------------------------|
 | Minimum     | 2 core   | 8 GB RAM     | 50GB    | Custom PostgreSQL Production |
 | Recommended | 4-8 core | 16-32 GB RAM | 50GB    | Custom PostgreSQL Production |
 
 #### Hardware Sizing Considerations
 
-- The minimum size would be appropriate for most initial production
-  deployments, or for development/testing environments.
+- The minimum size would be appropriate for most initial production deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a
-  consistent high workload in the form of concurrent terraform runs.
+- The recommended size is for production environments where there is a consistent high workload in the form of concurrent terraform runs.
 
 ### Object Storage (Cloud Storage)
 
@@ -124,11 +122,9 @@ certificate codified during an unattended installation.
 
 If a Classic or Application Load Balancer is used, SSL/TLS will be terminated there.
 In this configuration, the PTFE instances should still be configured to listen
-for incoming SSL/TLS connections but can do so using a self-signed certificate.
+for incoming SSL/TLS connections.
 
-Since the load balancer is configured to send traffic to port 443 on the instances
-as type `https`, will ignore the fact that it can't trust the self-signed certificate
-and operate correctly.
+HashiCorp does not recommend the use of self-signed certificates.
 
 ## Infrastructure Diagram
 
@@ -141,7 +137,7 @@ The above diagram shows the infrastructure components at a high-level.
 The Application Layer is composed of two PTFE servers (Compute Engine instances)
 running in different Zones and operating in a main/standby
 configuration. Traffic is routed only to *PTFE-main* via an Alias IP.
-Routing changes are typical managed by a human removing the Alias IP from *PTFE-main*
+Routing changes are typically managed by a human removing the Alias IP from *PTFE-main*
 and adding it to *PTFE-standby*.
 
 ### Storage Layer
