@@ -154,7 +154,7 @@ The above diagram shows the infrastructure components at a high-level.
 The Application Layer is composed of two PTFE servers (EC2 instances)
 running in different Availability Zones and operating in a main/standby
 configuration. Traffic is routed only to *PTFE-main* via a Load
-Balancer. Routing changes are typical managed by a human triggering a
+Balancer. Routing changes are typically managed by a human triggering a
 change in the Load Balancer configuration.
 
 ### Storage Layer
