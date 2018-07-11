@@ -24,8 +24,8 @@ To use configurations from VCS, TFE needs to do several things:
 
 TFE uses webhooks to monitor new commits and pull requests.
 
-- When someone adds new commits to a chosen branch, any workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can prevent automatic runs by locking a workspace.
-- When someone submits a pull request/merge request to the chosen branch from another branch in the same repository, TFE does a Terraform plan with the contents of the request and records the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
+- When someone adds new commits to a branch in a repository linked to TFE, any workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can prevent automatic runs by locking a workspace.
+- When someone submits a pull request/merge request to a branch from another branch in the same repository, TFE does a Terraform plan with the contents of the request and records the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
 
     Pull request plans don't appear in a workspace's run list, and can't be applied. They're intended only as a check for merge safety.
 
