@@ -80,7 +80,12 @@ If the run is still in progress and you have write access to the workspace, ther
 
 If you need to temporarily stop runs from being queued, you can lock the workspace.
 
-You can find the lock button in the workspace settings page. Locking a workspace requires write or admin access.
+A lock prevents TFE from performing any plans or applies in the workspace. This includes automatic runs due to new commits in the VCS repository, manual runs queued via the UI, and runs created with the API or the TFE CLI tool. New runs remain in the "Pending" state until the workspace is unlocked.
+
+You can find the lock button in [the workspace settings page](../workspaces/settings.html). Locking a workspace requires write or admin access.
+
+~> **Important:** Locking a workspace prevents runs within TFE, but it **does not** prevent state from being updated. This means a user with write access can still modify the workspace's resources by running Terraform outside TFE with [the `atlas` remote backend](/docs/backends/types/terraform-enterprise.html). To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows; to perform runs from the command line, see [TFE's CLI-driven workflow](./cli.html).
+
 
 ## Installing Terraform Providers
 
