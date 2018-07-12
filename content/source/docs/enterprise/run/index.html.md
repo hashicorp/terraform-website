@@ -50,7 +50,7 @@ Each workspace has three always-visible tools for working with runs:
 
 - A "Queue Plan" button, in the upper right.
 - A "Runs" link, which goes to the full list of runs.
-- A "Current Run" link, which goes to the most recent _completed_ run. (Completed runs are in an "applied," "discarded," "needs confirmation", or "plan errored" state.)
+- A "Current Run" link, which goes to the most recent active run. (This might not be the most recently initiated run, since runs in the "pending" state remain inactive until the current run is completed.)
 
 ![runs list](./images/runs-list.png)
 
