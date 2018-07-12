@@ -263,7 +263,7 @@ default value of `us-west` is given.
 ```hcl
 provider "example" {
   api_key = "somesecretkey"
-  region = "us-est"
+  region = "us-east"
 }
 ```
 
