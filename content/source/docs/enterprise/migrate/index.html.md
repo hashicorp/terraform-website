@@ -103,8 +103,6 @@ If all went well, the plan should result in no changes or very small changes. TF
 - If the plan would create an entirely new set of infrastructure resources, you probably have the wrong state file.
 
     In the case of a wrong state file, you can recover by fixing your local working directory and trying again. You'll need to re-set to the local backend, run `terraform init`, replace the state file with the correct one, change back to the `atlas` backend, run `terraform init` again, and confirm that you want to replace the remote state with the current local state.
-- If the plan recognizes the existing resources but would make unexpected changes, check whether the designated VCS branch for the workspace is the same branch you've been running Terraform on. You can also check whether variables in the TFE workspace have the correct values.
-
-    In the case of a wrong VCS branch, you'll need to delete and re-create the workspace, since a workspace's branch can't be changed.
+- If the plan recognizes the existing resources but would make unexpected changes, check whether the designated VCS branch for the workspace is the same branch you've been running Terraform on, and update it, if it is not. You can also check whether variables in the TFE workspace have the correct values.
 
 
