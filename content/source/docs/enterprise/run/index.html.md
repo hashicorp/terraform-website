@@ -32,9 +32,9 @@ TFE always performs Terraform runs in the context of a [workspace](./index.html)
 
 Each workspace in TFE maintains its own queue of runs, and processes those runs in order.
 
-Whenever a new run is requested, it's added to the end of the queue. If there's already a run in progress, the new run won't start until the current one has completely finished — TFE won't even plan the run yet, because the current run might change what a future run would do. Runs that are waiting for other runs to finish are in a _pending_ state, and a workspace might have any number of pending runs.
+Whenever a new run is initiated, it's added to the end of the queue. If there's already a run in progress, the new run won't start until the current one has completely finished — TFE won't even plan the run yet, because the current run might change what a future run would do. Runs that are waiting for other runs to finish are in a _pending_ state, and a workspace might have any number of pending runs.
 
-When you request a run, TFE locks the run to the current Terraform code (usually associated with a specific VCS commit) and variable values. If you change variables or commit new code before the run finishes, it will only affect future runs, not ones that are already pending, planning, or awaiting apply.
+When you initiate a run, TFE locks the run to the current Terraform code (usually associated with a specific VCS commit) and variable values. If you change variables or commit new code before the run finishes, it will only affect future runs, not ones that are already pending, planning, or awaiting apply.
 
 ## Run States
 
@@ -50,7 +50,7 @@ Each workspace has three always-visible tools for working with runs:
 
 - A "Queue Plan" button, in the upper right.
 - A "Runs" link, which goes to the full list of runs.
-- A "Latest Run" link, which goes to the most recent _completed_ run. (Completed runs are in an "applied," "discarded," or "plan errored" state.)
+- A "Current Run" link, which goes to the most recent active run. (This might not be the most recently initiated run, since runs in the "pending" state remain inactive until the current run is completed.)
 
 ![runs list](./images/runs-list.png)
 
@@ -66,7 +66,7 @@ Most importantly, it shows:
 
 - The current status of the run.
 - The code commit associated with the run.
-- How the run was triggered, when, and which user requested it (if applicable).
+- How the run was initiated, when, and which user initated it (if applicable).
 - A timeline of events related to the run.
 - The output from both the `terraform plan` and `terraform apply` commands, if applicable. You can hide or reveal these as needed; they default to visible if the command is currently running, and hidden if the command has finished.
 

@@ -12,7 +12,7 @@ TFE's core features require access to your version control system (VCS) provider
 
 Most workspaces in TFE are associated with a VCS repository, which provides Terraform configurations for that workspace. To find out which repos are available, access their contents, and create webhooks, TFE needs access to your VCS provider.
 
-Although TFE's API lets you create workspaces and push configurations to them without a VCS connection, the primary workflow expects every workspace to be backed by a repository. If you plan to use TFE's GUI to create workspaces, you must configure VCS access first.
+Although TFE's API lets you create workspaces and push configurations to them without a VCS connection, the primary workflow expects every workspace to be backed by a repository.
 
 To use configurations from VCS, TFE needs to do several things:
 
@@ -24,8 +24,8 @@ To use configurations from VCS, TFE needs to do several things:
 
 TFE uses webhooks to monitor new commits and pull requests.
 
-- When someone adds new commits to a branch, any workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can also prevent automatic runs by locking a workspace.
-- When someone submits a pull request/merge request to a branch, TFE does a Terraform plan with the contents of the request and records the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
+- When someone adds new commits to a branch in a repository linked to TFE, any workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can prevent automatic runs by locking a workspace.
+- When someone submits a pull request/merge request to a branch from another branch in the same repository, TFE does a Terraform plan with the contents of the request and records the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
 
     Pull request plans don't appear in a workspace's run list, and can't be applied. They're intended only as a check for merge safety.
 
@@ -74,5 +74,5 @@ To configure VCS access, select your VCS provider from the list below:
 - [Bitbucket Cloud](./bitbucket-cloud.html)
 - [Bitbucket Server](./bitbucket-server.html)
 
-Currently, TFE cannot use other VCS providers (including generic Git servers).
+Currently, TFE cannot use other VCS providers (including generic Git servers or other Git-based providers).
 

@@ -14,15 +14,15 @@ Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
 
 ## Summary
 
-In the UI and VCS workflow, every workspace is associated with a specific branch of a VCS repo of Terraform configurations. TFE registers webhooks with your VCS provider when you create a workspace, then automatically queues a Terraform run whenever new commits are merged to the workspace's branch.
+In the UI and VCS workflow, every workspace is associated with a specific branch of a VCS repo of Terraform configurations. TFE registers webhooks with your VCS provider when you create a workspace, then automatically queues a Terraform run whenever new commits are merged to that branch of workspace's linked repository.
 
-By default, TFE also performs a plan-only run when a pull request is opened against that branch. As described at [VCS Connection webhooks](../vcs/index.html#webhooks), plan-only runs can't be applied, although their details can be viewed in TFE via a link in the VCS status check.
+By default, TFE also performs a plan-only run when a pull request is opened against that branch from another branch in the linked repository. As described at [VCS Connection webhooks](../vcs/index.html#webhooks), plan-only runs can't be applied, although their details can be viewed in TFE via a link in the VCS status check.
 
 The Terraform code for a run always comes from version control, and is always associated with a specific commit.
 
 ## Starting Runs
 
-Most of the time, you start a run automatically by committing changes to version control.
+Most of the time, you start a run automatically by committing changes to version control through a merge or direct commit to the target branch. A plan-only run starts when a pull request is opened from another branch in the workspace's linked VCS repository to the target branch. If a PR is opened requesting a merge of changes from a different repository (for example, a fork of the primary repository) no run will be initiated, since TFE is not configured to monitor the contents of any other repository.
 
 When you initially set up the workspace and add variables, or if the code in version control hasn't changed but you've modified some variables in TFE, you can manually queue a plan from the UI. Each workspace has a "Queue Plan" button, and the form for editing variables also includes a "Save & Plan" button.
 
