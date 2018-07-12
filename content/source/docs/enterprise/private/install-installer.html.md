@@ -173,8 +173,13 @@ at install time and cannot be changed once the install is running.
 1. **Demo** - This mode stores all data on the instance. The data can be
    backed up with the snapshot mechanism for restore later.
 
-
 The decision you make will be entered during setup.
+
+#### External Vault Option
+
+If you choose to run the instance in the Production operational mode, during the installation, you can also choose to use an external Vault cluster, rather than the default internal Vault provided by PTFE.
+
+This option is also selected at initial installation, and cannot be changed later. If you will want to use an external Vault cluster when running Terraform Enterprise in production, select that option when initially switching to the Production operational mode. See [Externally Managed Vault Cluster](./vault.html) for more information on what this option requires.
 
 ## Installation
 
