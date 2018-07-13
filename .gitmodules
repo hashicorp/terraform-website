@@ -322,3 +322,7 @@
 	path = ext/providers/telefonicaopencloud
 	url = https://github.com/terraform-providers/terraform-provider-telefonicaopencloud
 	branch = stable-website
+[submodule "ext/providers/huaweicloud"]
+	path = ext/providers/huaweicloud
+	url = https://github.com/terraform-providers/terraform-provider-huaweicloud
+	branch = stable-website
