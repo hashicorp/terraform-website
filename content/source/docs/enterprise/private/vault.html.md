@@ -17,6 +17,10 @@ When an external Vault cluster is configured along with the External Services in
 Private Terraform Enterprise becomes fully stateless and can be run in a hot-standby
 configuration to provide failover.
 
+-> **NOTE:** The external Vault option must be selected at initial installation, and cannot be changed later.
+Do not attempt to migrate an existing Terraform Enterprise instance between internal and external
+Vault options.
+
 ## Setup
 
 Use the following as a guide to configure an external Vault instance:
