@@ -41,7 +41,7 @@ Parameter      | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   "https://app.terraform.io/api/v2/admin/terraform-versions"
 ```
@@ -125,7 +125,7 @@ Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.type`                 | string |         | Must be `"terraform-versions"`
 `data.attributes.version`   | string |         | A semantic version string (e.g. `"0.11.0"`)
-`data.attributes.url`       | string |         | The URL where a compressed 64-bit linux binary (using ZIP compression) of this version can be downloaded
+`data.attributes.url`       | string |         | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded
 `data.attributes.sha`       | string |         | The SHA-256 checksum of the compressed Terraform binary
 `data.attributes.official`  | bool   | `false` | Whether or not this is an official release of Terraform
 `data.attributes.enabled`   | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
@@ -153,7 +153,7 @@ Key path                    | Type   | Default | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
@@ -200,7 +200,7 @@ Status  | Response                                             | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   https://app.terraform.io/api/v2/admin/terraform-versions/0.11.0
 ```
@@ -252,8 +252,8 @@ Properties without a default value are required.
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.type`                 | string |         | Must be `"terraform-versions"`
-`data.attributes.url`       | string |         | The URL where a binary of this version can be downloaded
-`data.attributes.sha`       | string |         | The shasum of the Terraform binary
+`data.attributes.url`       | string |         | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded
+`data.attributes.sha`       | string |         | The SHA-256 checksum of the compressed Terraform binary
 `data.attributes.official`  | bool   | `false` | Whether or not this is an official release of Terraform
 `data.attributes.enabled`   | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
 `data.attributes.beta`      | bool   | `false` | Whether or not this version of Terraform is a beta pre-release
@@ -279,7 +279,7 @@ Key path                    | Type   | Default | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
@@ -308,7 +308,7 @@ curl \
 
 `DELETE /admin/terraform-versions/:version`
 
-This endpoint removes a Terraform version from Terraform Enterprise. Versions cannot be removed if they are official versions of Terraform or if there are Workspaces using them.
+This endpoint removes a Terraform version from Terraform Enterprise. Versions cannot be removed if they are labeled as official versions of Terraform or if there are workspaces using them.
 
 Parameter  | Description
 -----------|------------
@@ -318,7 +318,7 @@ Status  | Response                  | Reason
 --------|---------------------------|----------
 [204][] | Empty response            | The Terraform version was successfully deleted
 [404][] | [JSON API error object][] | Terraform version not found, or client is not an administrator
-[422][] | [JSON API error object][] | The Terraform version cannot be removed due to it being official or in use.
+[422][] | [JSON API error object][] | The Terraform version cannot be removed (it is official or is in use)
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
@@ -330,7 +330,7 @@ Status  | Response                  | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/admin/terraform-versions/0.11.0

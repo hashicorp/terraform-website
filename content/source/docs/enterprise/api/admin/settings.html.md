@@ -177,17 +177,19 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 
 If `data.attributes.enabled` is set to `true`, all remaining attributes must have valid values. You can omit attributes if they have a default value, or if a value was set by a previous update. Omitted attributes keep their previous values.
 
+See [SAML Configuration](/docs/enterprise/saml/configuration.html) for more details on attribute values.
+
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
-`data.attributes.enabled`    | bool   | `false` | Allows SAML to be used. If true, all remaining attributes are required.
+`data.attributes.enabled`    | bool   | `false` | Allows SAML to be used. If true, all remaining attributes must have valid values.
 `data.attributes.debug`    | bool   | `false` | Enables a SAML debug dialog that allows an admin to see the SAMLResponse XML and processed values during login.
 `data.attributes.idp-cert`   | string |         | Identity Provider Certificate specifies the PEM encoded X.509 Certificate as provided by the IdP configuration.
 `data.attributes.slo-endpoint-url` | string |         | Single Log Out URL specifies the HTTPS endpoint on your IdP for single logout requests. This value is provided by the IdP configuration.
 `data.attributes.sso-endpoint-url` | string |         | Single Sign On URL specifies the HTTPS endpoint on your IdP for single sign-on requests. This value is provided by the IdP configuration.
 `data.attributes.attr-groups`| string | `"MemberOf"` | Team Attribute Name specifies the name of the SAML attribute that determines team membership.
-`data.attributes.attr-site-admin`| string |`"SiteAdmin"`| Specifies the role for site admin access, overriding the "Site Admin Role" method.
+`data.attributes.attr-site-admin`| string |`"SiteAdmin"`| Specifies the role for site admin access. Overrides the "Site Admin Role" method.
 `data.attributes.site-admin-role`| string |`"site-admins"`| Specifies the role for site admin access, provided in the list of roles sent in the Team Attribute Name attribute.
-`data.attributes.sso-api-token-session-timeout`| integer | 1209600 | Specifies the Single Sign On session timeout in seconds, defaulting to 14 days.
+`data.attributes.sso-api-token-session-timeout`| integer | 1209600 | Specifies the Single Sign On session timeout in seconds. Defaults to 14 days.
 
 ```json
 {
@@ -247,7 +249,7 @@ curl \
 
 Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
-[200][] | [JSON API document][] (`type: "saml-settings"`) | Successfully listed SMTP settings
+[200][] | [JSON API document][] (`type: "smtp-settings"`) | Successfully listed SMTP settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -287,7 +289,7 @@ curl \
 ## Update SMTP Settings
 `PATCH /api/v2/admin/smtp-settings`
 
-When this request is submitted, a test message will be sent to the specified `test-email-address` address. If the test message delivery fails, the API will return an error code indicating the reason for the failure.
+When a request to this endpoint is submitted, a test message will be sent to the specified `test-email-address`. If the test message delivery fails, the API will return an error code indicating the reason for the failure.
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
@@ -295,8 +297,8 @@ Status  | Response                                     | Reason
 [401][] | [JSON API error object][]                    | SMTP user credentials are invalid
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
-[500][] | [JSON API error object][]                    | SMTP server server error
-[504][] | [JSON API error object][]                    | SMTP server timeout
+[500][] | [JSON API error object][]                    | SMTP server returned a server error
+[504][] | [JSON API error object][]                    | SMTP server timed out
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
@@ -315,7 +317,7 @@ If `data.attributes.enabled` is set to `true`, all remaining attributes must hav
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
-`data.attributes.enabled`   | bool   | `false` | Allows SMTP to be used. If true, all remaining attributes are required.
+`data.attributes.enabled`   | bool   | `false` | Allows SMTP to be used. If true, all remaining attributes must have valid values.
 `data.attributes.host`      | string |         | The host address of the SMTP server.
 `data.attributes.port`      | integer|         | The port of the SMTP server.
 `data.attributes.sender`    | string |         | The desired sender address.
@@ -435,10 +437,10 @@ If `data.attributes.enabled` is set to `true`, all remaining attributes must hav
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
-`data.attributes.enabled`    | bool   | `false` | Allows Twilio to be used. If true, all remaining attributes are required.
+`data.attributes.enabled`    | bool   | `false` | Allows Twilio to be used. If true, all remaining attributes must have valid values.
 `data.attributes.account-sid`  | string   |  | The Twilio account id.
 `data.attributes.auth-token` | string   |  | The Twilio authentication token.
-`data.attributes.from-number`| string     |  | The Twilio registered phone number which will be used to send the message.
+`data.attributes.from-number`| string     |  | The Twilio registered phone number that will be used to send the message.
 
 ```json
 {
