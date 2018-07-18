@@ -16,4 +16,6 @@ See the navigation sidebar for the list of available endpoints.
 
 ## Authentication
 
-With the exception of the user impersonation endpoints, all requests must be authenticated with a bearer token belonging to a site administrator. Use the HTTP Header `Authorization` with the value `Bearer <token>`. This token can be generated or revoked on the account tokens page. In the context of the Admin API, your token has access to all resources in the system.
+With the exception of the [user impersonation endpoints](/docs/enterprise/api/admin/users.html#impersonate-another-user), all requests must be authenticated with a bearer token belonging to a site administrator. Use the HTTP Header `Authorization` with the value `Bearer <token>`. This token can be generated or revoked on the [tokens tab of the user settings page](/docs/enterprise/users-teams-organizations/users.html#api-tokens). In the context of the Admin API, your token has management access to all resources in the system.
+
+For more information on authentication behavior, see [the API overview section](docs/enterprise/api/index.html#authentication).

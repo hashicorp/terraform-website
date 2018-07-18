@@ -39,6 +39,8 @@ Parameter           | Description
 `page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`        | **Optional.** If omitted, the endpoint will return 20 runs per page.
 
+A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo` where `:org` and `:repo` refer to the organization (or project) and repository in your VCS provider.
+
 ### Available Related Resources
 
 This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](../index.html#inclusion-of-related-resources). The following resource types are available:
@@ -52,7 +54,7 @@ Resource Name            | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   "https://app.terraform.io/api/v2/admin/runs"
 ```
@@ -129,7 +131,7 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the run to cancel.
 
-This endpoint forces a run (and its plan/apply, if applicable) into the `"errored"` state; this action should only be performed for runs which are stuck and are no longer progressing normally.
+This endpoint forces a run (and its plan/apply, if applicable) into the `"errored"` state. This action should only be performed for runs that are stuck and no longer progressing normally, as there is a risk of lost state data if a progressing apply is force-canceled. Healthy runs can be [requested for cancellation by end-users](/docs/enterprise/run/states.html).
 
 Status  | Response                               | Reason
 --------|----------------------------------------|----------
@@ -145,7 +147,7 @@ Status  | Response                               | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   "https://app.terraform.io/api/v2/admin/runs/run-VCsNJXa59eUza53R/actions/cancel"
