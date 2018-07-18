@@ -505,6 +505,8 @@ Impersonation allows an admin to begin a new session as another non-admin user i
 
 This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
 
+Because of the requirement to provide a valid admin user session cookie in order to impersonate, it's normally simpler to impersonate another user via the Terraform Enterprise Admin UI. However, if the need arises, the cookie can be retrieved through the browser and used in the API, or retrieved via an automation tool that can handle cookies.
+
 [audit logging]: /docs/enterprise/private/logging.html#audit-logs
 
 Status  | Response                  | Reason
@@ -532,9 +534,9 @@ curl \
 
 `POST /admin/users/actions/unimpersonate`
 
-When an admin has used the above endpoint to begin an impersonation session, they can make a request to this endpoint in order to end that session and log out as the impersonated user.
+When an admin has used the above endpoint to begin an impersonation session, they can make a request to this endpoint, using the cookie provided originally, in order to end that session and log out as the impersonated user.
 
-This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
+This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session as the original admin user. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
