@@ -39,7 +39,7 @@ Parameter           | Description
 `page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`        | **Optional.** If omitted, the endpoint will return 20 runs per page.
 
-A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo` where `:org` and `:repo` refer to the organization (or project) and repository in your VCS provider.
+A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo`, where `:org` and `:repo` refer to the organization (or project) and repository in your VCS provider.
 
 ### Available Related Resources
 
