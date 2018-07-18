@@ -10,7 +10,7 @@ sidebar_current: "docs-enterprise2-api-admin-settings"
 
 -> **Note**: These endpoints are only available in Private Terraform instances and only accessible by site administrators.
 
--> **Pre-release**: These API endpoints are not yet available in the current Private Terraform Enterprise release.
+-> These API endpoints are available in Private Terraform Enterprise as of version 201807-1.
 
 ## List General Settings
 `GET /api/v2/admin/general-settings`
