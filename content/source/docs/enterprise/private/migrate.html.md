@@ -9,6 +9,28 @@ sidebar_current: "docs-enterprise2-private-installer-migration"
 This document outlines the procedure for migrating from the AMI-based Private Terraform Enterprise (PTFE)
 to the Installer-based PTFE.
 
+## Terraform State
+
+To run this procedure, you'll need the terraform state file used to create the AMI-based installation. Additionally, we strongly suggest you back up this state file before proceeding with this process, in the event that you need to revert back to the AMI.
+
+## Backup
+
+Before beginning, it's best to create an additional backup of your RDS database. This will allow you to rollback the data and continue to use the AMI if necessary.
+
+To create an RDS backup, go to the [Amazon RDS Instances](https://console.aws.amazon.com/rds/home?region=us-east-1#dbinstances:). You may need to change the region that you are viewing in order to see your PTFE instance. Once you find it, click on the instance name. On the next page, select **Instance Actions** and then **Take snapshot**. On the **Take DB Snapshot** page, enter a name for the snapshot such as `Pre-Installer Migration`, and then click **Take Snapshot**.
+
+The snapshot will take a little while to create. After it has finished, you can continue with the rest of the migration steps.
+
+### Reverting back to the AMI
+
+To revert to the AMI after running the migration script:
+
+* If you've already manipulated the state file to move the resources, you'll need to restore the original state file.
+* With your original terraform state file in place, return to the [Amazon RDS Snapshots](https://console.aws.amazon.com/rds/home?region=us-east-1#db-snapshots:) and find the snapshot you created before migrating. Click on the snapshot and note its **ARN** value. Open your **.tfvars** file and add `db_snapshot = "arn-value-of-snapshot"`.
+* Run `terraform apply` to make sure everything is set up. This will result in a new RDS instance being built against the snapshot.
+* If the EC2 instance is still running from the migration process, run `shutdown` on it to get a new instance created.
+* Return to the original hostname used for the cluster.
+
 ## Preflight
 
 Before you begin, you'll need to prepare data files and a Linux instance.
