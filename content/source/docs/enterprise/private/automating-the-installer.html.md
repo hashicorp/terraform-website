@@ -21,7 +21,7 @@ It's expected that the user is already familiar with how to do a [manual install
 
 ## Application settings
 
-This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the demo installation type or as complex as specifying the Postgresql connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
+This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the demo installation type or as complex as specifying the PostgreSQL connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
 
 ### Format
 
@@ -85,7 +85,6 @@ ptfe$ cat settings.json
         "value": "poc"
     },
     "placement": {},
-    "postgres_url": {},
     "production_type": {},
     "s3_bucket": {},
     "s3_region": {},
@@ -146,7 +145,11 @@ The following apply to every installation:
 
 #### The following apply if you've chosen `external` for `production_type`:
 
-- `postgres_url` — (Required) the database URL
+- `pg_user` — (Required) PostgreSQL user name to connect as
+- `pg_password` — (Required) The password for the PostgreSQL user
+- `pg_netloc` — (Required) The `hostname:port` of the target PostgreSQL server
+- `pg_dbname` — (Required) The database name
+- `pg_extra_params` — (Optional) Parameter keywords of the form `param1=value1&param2=value2` to support additional options that may be necessary for your specific PostgreSQL server.  Allowed values are [documented on the PostgreSQL site](https://www.postgresql.org/docs/9.4/static/libpq-connect.html#LIBPQ-PARAMKEYWORDS).  An additional restriction on the `sslmode` parameter is that only the `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
 The system can use either S3 or Azure, so you only need to provide one set of the following variables.
 
