@@ -11,7 +11,7 @@ to the Installer-based PTFE.
 
 ## Terraform State
 
-To run this procedure, you'll need the terraform state file used to create the AMI based installation. Additionaly, we strongly suggest you backup this state file before proceeding with this process in the event that you need to revert back to the AMI.
+To run this procedure, you'll need the terraform state file used to create the AMI-based installation. Additionally, we strongly suggest you back up this state file before proceeding with this process, in the event that you need to revert back to the AMI.
 
 ## Backup
 
