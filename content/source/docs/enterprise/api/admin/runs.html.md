@@ -131,7 +131,7 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the run to cancel.
 
-This endpoint forces a run (and its plan/apply, if applicable) into the `"errored"` state. This action should only be performed for runs that are stuck and no longer progressing normally, as there is a risk of lost state data if a progressing apply is force-canceled. Healthy runs can be [requested for cancellation by end-users](/docs/enterprise/run/states.html).
+This endpoint forces a run (and its plan/apply, if applicable) into the `"errored"` state. This action should only be performed for runs that are stuck and no longer progressing normally, as there is a risk of lost state data if a progressing apply is force-canceled. Healthy runs can be [requested for cancellation by end-users](../../run/states.html).
 
 Status  | Response                               | Reason
 --------|----------------------------------------|----------

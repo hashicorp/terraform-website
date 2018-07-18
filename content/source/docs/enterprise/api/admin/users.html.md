@@ -430,9 +430,7 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the user to disable 2FA for.
 
-This endpoint disables a user's two-factor authentication in the situation where they have lost access to their device and recovery codes.
-
-Before disabling a user's two-factor authentication, completing a security verification process is recommended to ensure the request is legitimate.
+This endpoint disables a user's two-factor authentication in the situation where they have lost access to their device and recovery codes. Before disabling a user's two-factor authentication, completing a security verification process is recommended to ensure the request is legitimate.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
@@ -527,7 +525,7 @@ curl \
   --header "Cookie: $COOKIE" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://app.terraform.io/api/v2/admin/users/myusername/actions/impersonate
+  https://app.terraform.io/api/v2/admin/users/sample_user/actions/impersonate
 ```
 
 ## End an impersonation session

@@ -40,7 +40,7 @@ Parameter           | Description
 
 ### Available Related Resources
 
-This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](../index.html#inclusion-of-related-resources). The following resource types are available:
 
 Resource Name | Description
 --------------|------------
@@ -131,7 +131,7 @@ Status  | Response                                        | Reason
 
 ### Available Related Resources
 
-This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](../index.html#inclusion-of-related-resources). The following resource types are available:
 
 Resource Name | Description
 --------------|------------
