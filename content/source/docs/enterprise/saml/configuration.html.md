@@ -13,6 +13,10 @@ SAML requires the configuration of two parties:
 
 Terraform Enterprise is configured as the Service Provider.
 
+
+
+~> For MS ADFS specific instructions follow [this link](./adfs.html)
+
 ## Terraform Enterprise (Service Provider)
 
 Go to `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/admin/settings/saml` and set the following:
