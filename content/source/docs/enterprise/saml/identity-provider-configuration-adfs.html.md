@@ -100,4 +100,4 @@ This document assumes that you have already installed and configured ADFS and th
 
 ## Test configured SAML login
 
-At this point SAML is configured. Follow [these instructions](docs/enterprise/saml/login.html) to log in to Terraform Enterprise.
+At this point SAML is configured. Follow [these instructions to log in](./login.html) to Terraform Enterprise.

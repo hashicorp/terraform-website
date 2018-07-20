@@ -13,9 +13,7 @@ SAML requires the configuration of two parties:
 
 Terraform Enterprise is configured as the Service Provider.
 
-
-
-~> For MS ADFS specific instructions follow [this link](./adfs.html)
+~> For instructions for specific IdPs, see [Identity Provider Configuration](./identity-provider-configuration.html)
 
 ## Terraform Enterprise (Service Provider)
 
