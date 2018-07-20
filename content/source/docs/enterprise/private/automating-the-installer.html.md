@@ -21,7 +21,7 @@ It's expected that the user is already familiar with how to do a [manual install
 
 ## Application settings
 
-This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the demo installation type or as complex as specifying the Postgresql connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
+This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the demo installation type or as complex as specifying the PostgreSQL connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
 
 ### Format
 
@@ -51,7 +51,7 @@ To extract the settings as JSON, run via ssh on the instance:
 ptfe$ replicatedctl app-config export > settings.json
 ```
 
-Here is an example of running that on a demo system:
+Here is an example app-config export for an instance configured in demo mode:
 
 ```
 ptfe$ replicatedctl app-config export > settings.json
@@ -65,40 +65,43 @@ ptfe$ cat settings.json
     "azure_container": {},
     "azure_endpoint": {},
     "ca_certs": {},
-    "capacity_concurrency": {
-        "value": "10"
-    },
+    "capacity_concurrency": {},
+    "capacity_memory": {},
     "disk_path": {},
     "extern_vault_addr": {},
-    "extern_vault_enable": {
-        "value": "0"
-    },
+    "extern_vault_enable": {},
     "extern_vault_path": {},
     "extern_vault_role_id": {},
     "extern_vault_secret_id": {},
     "extern_vault_token_renew": {},
     "extra_no_proxy": {},
+    "gcs_bucket": {},
+    "gcs_credentials": {},
+    "gcs_project": {},
     "hostname": {
         "value": "tfe.mycompany.com"
     },
     "installation_type": {
         "value": "poc"
     },
+    "pg_dbname": {},
+    "pg_extra_params": {},
+    "pg_netloc": {},
+    "pg_password": {},
+    "pg_user": {},
     "placement": {},
-    "postgres_url": {},
     "production_type": {},
     "s3_bucket": {},
+    "s3_endpoint": {},
     "s3_region": {},
     "s3_sse": {},
     "s3_sse_kms_key_id": {},
-    "vault_path": {
-        "value": "/var/lib/tfe-vault"
-    },
-    "vault_store_snapshot": {
-        "value": "1"
-    }
+    "vault_path": {},
+    "vault_store_snapshot": {}
 }
 ```
+
+Note that when you build your own settings file, you do not need to include parameters that do not have `value` keys, such as `extra_no_proxy` in the output above.
 
 ### Available settings
 
@@ -109,7 +112,7 @@ The following apply to every installation:
 - `hostname` — (Required) this is the hostname you will use to access your installation
 - `installation_type` — (Required) one of `poc` or `production`
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
-  to be able to generate certificates.
+- `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`
 - `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying
 - `ca_certs` — (Optional) custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
   in the data with `\n`. For instance:
@@ -126,15 +129,15 @@ The following apply to every installation:
   --- X509 CERT ---\naabbccddeeff\n--- X509 CERT ---\n
   ```
 
-- `extern_vault_enable` - (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
+- `extern_vault_enable` — (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
   - These variables are only used if `extern_vault_enable` is set to `1`
-  - `extern_vault_addr` - (Required) URL of external Vault cluster
-  - `extern_vault_role_id` - (Required) AppRole RoleId to use to authenticate with the Vault cluster
-  - `extern_vault_secret_id` - (Required) AppRole SecretId to use to authenticate with the Vault cluster
-  - `extern_vault_path` - (Optional) Path on the Vault server for the AppRole auth. Defaults to `auth/approle`
-  - `extern_vault_token_renew` - (Optional) How often (in seconds) to renew the Vault token. Defaults to `3600`
-- `vault_path` - (Optional) Path on the host system to store the vault files. If `extern_vault_enable` is set, this has no effect.
-- `vault_store_snapshot` - (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not, Defaults to `1`.
+  - `extern_vault_addr` — (Required) URL of external Vault cluster
+  - `extern_vault_role_id` — (Required) AppRole RoleId to use to authenticate with the Vault cluster
+  - `extern_vault_secret_id` — (Required) AppRole SecretId to use to authenticate with the Vault cluster
+  - `extern_vault_path` — (Optional) Path on the Vault server for the AppRole auth. Defaults to `auth/approle`
+  - `extern_vault_token_renew` — (Optional) How often (in seconds) to renew the Vault token. Defaults to `3600`
+- `vault_path` — (Optional) Path on the host system to store the vault files. If `extern_vault_enable` is set, this has no effect.
+- `vault_store_snapshot` — (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not, Defaults to `1`.
 
 #### `production_type` is required if you've chosen `production` for the `installation_type`:
 
@@ -146,19 +149,24 @@ The following apply to every installation:
 
 #### The following apply if you've chosen `external` for `production_type`:
 
-- `postgres_url` — (Required) the database URL
+- `pg_user` — (Required) PostgreSQL user to connect as
+- `pg_password` — (Required) The password for the PostgreSQL user
+- `pg_netloc` — (Required) The hostname and port of the target PostgreSQL server in the format `hostname:port`
+- `pg_dbname` — (Required) The database name
+- `pg_extra_params` — (Optional) Parameter keywords of the form `param1=value1&param2=value2` to support additional options that may be necessary for your specific PostgreSQL server.  Allowed values are [documented on the PostgreSQL site](https://www.postgresql.org/docs/9.4/static/libpq-connect.html#LIBPQ-PARAMKEYWORDS).  An additional restriction on the `sslmode` parameter is that only the `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
 The system can use either S3 or Azure, so you only need to provide one set of the following variables.
 
 Select which will be used, S3 or Azure:
 
-- `placement` - (Required) Set to `placement_s3` for S3 and `placement_azure` for Azure
+- `placement` — (Required) Set to `placement_s3` for S3, `placement_azure` for Azure, or `placement_gcs` for GCS
 
-For S3:
+For S3 (or S3-compatible storage providers):
 
 - `aws_instance_profile` (Optional) When set, use credentials from the AWS instance profile. Set to 1 to use the instance profile. Defaults to 0. If selected, `aws_access_key_id` and `aws_secret_access_key` are not required.
 - `aws_access_key_id` — (Required unless `aws_instance_profile` is set) AWS access key ID for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
 - `aws_secret_access_key` — (Required unless `aws_instance_profile` is set) AWS secret access key for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
+- `s3_endpoint` — (Optional) Endpoint URL (hostname only or fully qualified URI). Usually only needed if using a VPC endpoint or an S3-compatible storage provider.
 - `s3_bucket` — (Required) the S3 bucket where resources will be stored
 - `s3_region` — (Required) the region where the S3 bucket exists
 - `s3_sse` — (Optional) enables server-side encryption of objects in S3; if provided, must be set to `aws:kms`
@@ -166,10 +174,16 @@ For S3:
 
 For Azure:
 
-- `azure_account_name` - (Required) The account name for the Azure account to access the container
-- `azure_account_key` - (Required) The account key to access the account specified in `azure_account_name`
-- `azure_container` - (Required) The identifer for the Azure blob storage container
-- `azure_endpoint` - (Optional) The URL for the Azure cluster to use. By default this is the global cluster.
+- `azure_account_name` — (Required) The account name for the Azure account to access the container
+- `azure_account_key` — (Required) The account key to access the account specified in `azure_account_name`
+- `azure_container` — (Required) The identifer for the Azure blob storage container
+- `azure_endpoint` — (Optional) The URL for the Azure cluster to use. By default this is the global cluster.
+
+For GCS:
+
+- `gcs_credentials` — (Required) JSON blob containing the GCP credentials document. **Note:** this is a string, so ensure value is properly escaped.
+- `gcs_project` — (Required) The GCP project where the bucket resides.
+- `gcs_bucket` — (Required) The storage bucket name.
 
 ## Online
 
