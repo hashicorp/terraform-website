@@ -52,7 +52,7 @@ Resource Name      | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   "https://app.terraform.io/api/v2/admin/users"
 ```
@@ -121,7 +121,7 @@ curl \
 
 `DELETE /admin/users/:id`
 
-This endpoint deletes a user's account from Terraform Enterprise. Users cannot be deleted if they are the last remaining owner of any organizations. These organizations must be given a new owner or deleted first.
+This endpoint deletes a user's account from Terraform Enterprise. To prevent unowned organizations, a user cannot be deleted if they are the sole owner of any organizations. The organizations must be given a new owner or deleted first.
 
 Parameter | Description
 ----------|------------
@@ -129,9 +129,9 @@ Parameter | Description
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
-[204][] | Empty body                | Successfully destroyed the user account.
+[204][] | Empty body                | Successfully removed the user account.
 [404][] | [JSON API error object][] | Client is not an administrator.
-[422][] | [JSON API error object][] | The user cannot be deleted because they are the last remaining owner of one or more organizations.
+[422][] | [JSON API error object][] | The user cannot be deleted because they are the sole owner of one or more organizations.
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
@@ -142,7 +142,7 @@ Status  | Response                  | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb"
@@ -174,7 +174,7 @@ Status  | Response                                | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/suspend"
@@ -243,7 +243,7 @@ Status  | Response                                | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/unsuspend"
@@ -312,7 +312,7 @@ Status  | Response                                | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/grant_admin"
@@ -379,7 +379,7 @@ Status  | Response                                | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/revoke_admin"
@@ -430,7 +430,7 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the user to disable 2FA for.
 
-This endpoint disables a user's two-factor authentication in the situation where they have lost access to their device and recovery codes.
+This endpoint disables a user's two-factor authentication in the situation where they have lost access to their device and recovery codes. Before disabling a user's two-factor authentication, completing a security verification process is recommended to ensure the request is legitimate.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
@@ -448,7 +448,7 @@ Status  | Response                                | Reason
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   "https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/disable_two_factor"
@@ -499,16 +499,18 @@ Parameter   | Description
 ------------|------------
 `:username` | The name of the user to impersonate.
 
-Impersonation allows an admin to begin a new session as another non-admin user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, but a new `"admin"` key will contain the username of the admin acting on the user's behalf. For more information, see the [audit logging documentation][audit logging].
+Impersonation allows an admin to begin a new session as another user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, and an added `"admin"` key will contain the username of the admin acting on the user's behalf. For more information, see the [audit logging documentation][audit logging].
 
 This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
+
+Because of the requirement to provide a valid admin user session cookie in order to impersonate, it's normally simpler to impersonate another user via the Terraform Enterprise Admin UI. However, if the need arises, the cookie can be retrieved through the browser and used in the API, or retrieved via an automation tool that can handle cookies.
 
 [audit logging]: /docs/enterprise/private/logging.html#audit-logs
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
 [204][] | Empty body                | Successfully impersonated the user
-[403][] | [JSON API error object][] | Client is attempting to impersonate another admin, or is already impersonating another user.
+[403][] | [JSON API error object][] | Client is already impersonating another user.
 [404][] | [JSON API error object][] | User not found, or client is not an administrator.
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
@@ -520,19 +522,19 @@ Status  | Response                  | Reason
 
 ```shell
 curl \
-  --header "Cookie: $ATLAS_COOKIE" \
+  --header "Cookie: $COOKIE" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://app.terraform.io/api/v2/admin/users/myusername/actions/impersonate
+  https://app.terraform.io/api/v2/admin/users/sample_user/actions/impersonate
 ```
 
 ## End an impersonation session
 
 `POST /admin/users/actions/unimpersonate`
 
-When an admin has used the above endpoint to begin an impersonation session, they can make a request to this endpoint in order to end that session and log out as the impersonated user.
+When an admin has used the above endpoint to begin an impersonation session, they can make a request to this endpoint, using the cookie provided originally, in order to end that session and log out as the impersonated user.
 
-This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
+This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session as the original admin user. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
@@ -549,7 +551,7 @@ Status  | Response                  | Reason
 
 ```shell
 curl \
-  --header "Cookie: $ATLAS_COOKIE" \
+  --header "Cookie: $COOKIE" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   https://app.terraform.io/api/v2/admin/users/actions/unimpersonate

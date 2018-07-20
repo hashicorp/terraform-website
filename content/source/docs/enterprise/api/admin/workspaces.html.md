@@ -30,7 +30,7 @@ Status  | Response                                     | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter                     | Description
 ------------------------------|------------
@@ -42,7 +42,7 @@ Parameter                     | Description
 
 ### Available Related Resources
 
-This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](../index.html#inclusion-of-related-resources). The following resource types are available:
 
 Resource Name         | Description
 ----------------------|------------
@@ -54,7 +54,7 @@ Resource Name         | Description
 
 ```shell
 curl \
-  --header "Authorization: Bearer $ATLAS_TOKEN" \
+  --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   "https://app.terraform.io/api/v2/admin/workspaces"
 ```
