@@ -17,7 +17,15 @@ You can edit a workspace's variables via the UI or the API. All runs in a worksp
 
 -> **API:** See the [variables API](../api/variables.html).
 
-## Managing Variables
+## Loading Variables from Files
+
+If a workspace is configured to use Terraform 0.10.0 or later, you can commit any number of [`*.auto.tfvars` files](/docs/configuration/variables.html#variable-files) to provide default variable values. Terraform will automatically load variables from those files.
+
+If any automatically loaded variables have the same names as variables specified in the TFE workspace, TFE's values will override the automatic values (except for map values, [which are merged](/docs/configuration/variables.html#variable-merging)).
+
+You can also use the optional [TFE CLI tool](https://github.com/hashicorp/tfe-cli/)'s `tfe pushvars` command to update a workspace's variables using a local variables file. This has the same effect as managing workspace variables manually or via the API, but can be more convenient for large numbers of complex variables.
+
+## Managing Variables in the UI
 
 To view and manage a workspace's variables, navigate to that workspace and click the "Variables" navigation link at the top.
 
@@ -61,19 +69,11 @@ Marking a variable as sensitive severely limits how users can interact with it:
 - Nobody (including you) can view the value in TFE's UI or API. (However, Terraform runs will receive the value, and might print the value in logs if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations.)
 - Nobody can edit the variable's name or value, change whether or not it's an HCL value, or mark it as non-sensitive. To alter anything about a sensitive variable, you must delete it and create a new variable with the same name.
 
-### Determining Variable Names
+### Looking Up Variable Names
 
 Terraform Enterprise can't automatically discover variable names from a workspace's Terraform code. You must discover the necessary variable names by reading code or documentation, then enter them manually.
 
 If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
-
-## Loading Variables from Files
-
-If a workspace is configured to use Terraform 0.10.0 or later, you can commit any number of [`*.auto.tfvars` files](/docs/configuration/variables.html#variable-files) to provide default variable values. Terraform will automatically load variables from those files.
-
-If any automatically loaded variables have the same names as variables specified in the TFE workspace, TFE's values will override the automatic values (except for map values, [which are merged](/docs/configuration/variables.html#variable-merging)).
-
-You can also use the optional [TFE CLI tool](https://github.com/hashicorp/tfe-cli/)'s `tfe pushvars` command to update a workspace's variables using a local variables file. This has the same effect as managing workspace variables manually or via the API, but can be more convenient for large numbers of complex variables.
 
 ## How TFE Uses Variables
 
