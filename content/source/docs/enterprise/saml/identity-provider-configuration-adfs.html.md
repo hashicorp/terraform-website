@@ -1,8 +1,10 @@
 ---
 layout: enterprise2
 page_title: "ADFS Configuration - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-saml-configuration"
+sidebar_current: "docs-enterprise2-private-saml-identity-provider-configuration-adfs"
 ---
+
+# ADFS Configuration
 
 This guide explains how to configure Active Directory Federated Services (ADFS) in order to use it as an Identity Provider (IdP) for PTFE's SAML authentication feature. The screenshots below were taken on Windows Server 2016, and the UI may not look the same on previous Windows versions.
 
@@ -17,11 +19,11 @@ This document assumes that you have already installed and configured ADFS and th
 3. Expand the `Service` object and click "Endpoints".
   ![saml_2](./images/saml_2.png)
 4. Make a note of the `URL Path` for Type `SAML 2.0/WS-Federation`. (If you are using the default settings, this will be `/adfs/ls/`.)
-5. Next click "Certificates" and choose the one under `Token-signing`.
+5. Switch from "Endpoints" to "Certificates" and choose the one under `Token-signing`.
   ![saml_3](./images/saml_3.png)
-6. Right click on "View Certificate".
+6. Right click "View Certificate".
   ![saml_5](./images/saml_5.png)
-7. On the Certificate form, select the Details tab and click "Copy to File".
+7. In the Certificate dialog, select the Details tab and click "Copy to File".
   ![saml_6](./images/saml_6.png)
 8. In the Certificate Export Wizard, click "Next", select "Base-64 encoded X.509 (.CER)" and click "Next" again.
   ![saml_8](./images/saml_8.png)
@@ -48,7 +50,7 @@ This document assumes that you have already installed and configured ADFS and th
    ![saml_1](./images/saml_1.png)
 3. Right-click "Relying Party Trusts" and then click "Add Relying Party Trust".
    ![saml_11](./images/saml_11.png)
-4. In the next dialog, select "Claims aware" and click "Start".
+4. In the Add Relying Party Trust Wizard, select "Claims aware" and click "Start".
    ![saml_12](./images/saml_12.png)
 5. Next, select "Import data about the relying party published online or on a local network", and in the text box, enter `https://<TFE HOSTNAME>/users/saml/metadata`.
    ![saml_13](./images/saml_13.png)
@@ -70,18 +72,20 @@ This document assumes that you have already installed and configured ADFS and th
 3. Set the attribute store to "Active Directory".
    - From the `LDAP Attribute` column, select "E-Mail Addresses".
    - From the `Outgoing Claim Type`, select "E-Mail Address". 
-   ![saml_19](./images/saml_19.png)
-3. Click "Finish".
+![saml_19](./images/saml_19.png)
+
+4. Click "Finish".
 
 #### Transform Incoming Claims
 
 4. Click "Add Rule", and then select "Transform an Incoming Claim" from the `Claim rule template` dropdown. Click "Next".
    ![saml_22](./images/saml_22.png)
 5. Set a name used to identify the claim rule.
-6. Select "E-mail Address" as the `Incoming Claim Type`.
-7. Select "Name ID" as the `Outgoing Claim Type`.
-8. Select "Email" for `Outgoing Name ID Format`.
-   ![saml_23](./images/saml_23.png)
+  - Select "E-mail Address" as the `Incoming Claim Type`.
+  - Select "Name ID" as the `Outgoing Claim Type`.
+  - Select "Email" for `Outgoing Name ID Format`.
+![saml_23](./images/saml_23.png)
+
 6. Click "Finish".
 
 #### Send Group Membership as a Claim
@@ -89,8 +93,10 @@ This document assumes that you have already installed and configured ADFS and th
 7. Click "Add Rule", and then select "Send Group Membership as a Claim" from the `Claim rule template` dropdown. Click "Next".
 8. Click "Browse" and locate the AD User group that contains all PTFE admins.
    ![saml_26](./images/saml_26.png)
-9. Set `Outgoing claim type` to `Group`, `Outgoing claim value` to `MemberOf`, and click "Finish".
+  - Set `Outgoing claim type` to `Group`. 
+  - Set `Outgoing claim value` to `MemberOf`.
    ![saml_27](./images/saml_27.png)
+9. Click "Finish".
 
 ## Test configured SAML login
 

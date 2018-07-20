@@ -11,6 +11,7 @@ Single sign-on setup instructions for specific identity providers (IdP).
 ## Identity Providers
 
 * [OneLogin](./identity-provider-configuration-onelogin.html)
+* [ADFS](./identity-provider-configuration-adfs.html)
 
 ## Request and response
 
