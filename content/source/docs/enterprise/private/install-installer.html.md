@@ -186,6 +186,8 @@ The follow are **supported** mounted disk types:
 * GCP Zonal Persistent Disk
 * Azure Disk Storage
 * iSCSI
+* SAN
+* Physically connected disks as in non-cloud hardware
 
 ##### Unsupported Mounted Disk Types
 
