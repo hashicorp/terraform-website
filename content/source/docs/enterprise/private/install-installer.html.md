@@ -177,7 +177,9 @@ The decision you make will be entered during setup.
 
 #### Mounted Disk Guidelines
 
-The mounted disk option provides for significant flexibility in how PTFE stores it's data. In order to help customers narrow down possibilites we're providing some guidelines about how to use mounted disk.
+The mounted disk option provides for significant flexibility in how PTFE stores its data. To help narrow down possibilites here are our guidelines about using mounted disk storage.
+
+##### Supported Mounted Disk Types
 
 The follow are **supported** mounted disk types:
 * AWS EBS
@@ -185,13 +187,15 @@ The follow are **supported** mounted disk types:
 * Azure Disk Storage
 * iSCSI
 
+##### Unsupported Mounted Disk Types
+
 The follow are **not supported** mounted disk types:
 * NFS
 * SMB/CIFS
 
-The reason for supporting only some types of mounted disk is to provide relability and performance guarantees required to store and retrieve the data PTFE utilizes.
+The supported mounted disk types provide the necessary reliability and performance for data storage and retrieval in PTFE.
 
-If the type of mounted disk you wish to use is not here, please contact your HashiCorp representative to get clarification on if that type is supported.
+If the type of mounted disk you wish to use is not listed, please contact your HashiCorp representative to get clarification on whether that type is supported.
 
 #### External Vault Option
 
