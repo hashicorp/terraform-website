@@ -43,7 +43,8 @@ curl \
     "id": "general",
     "type": "general-settings",
     "attributes": {
-      "limit-user-organization-creation": true
+      "limit-user-organization-creation": true,
+      "support-email-address": "support@hashicorp.com"
     }
   }
 }
@@ -71,6 +72,7 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.attributes.limit-user-organization-creation`| bool     | `true` | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
+`data.attributes.support-email-address`  | string   | `"support@hashicorp.com"` | The support address for outgoing emails.
 
 ### Sample Payload
 
@@ -78,7 +80,8 @@ Key path                    | Type   | Default | Description
 {
   "data": {
     "attributes": {
-      "limit-user-organization-creation": true
+      "limit-user-organization-creation": true,
+      "support-email-address": "support@hashicorp.com"
     }
   }
 }
@@ -103,7 +106,8 @@ curl \
     "id":"general",
     "type":"general-settings",
     "attributes": {
-      "limit-user-organization-creation": true
+      "limit-user-organization-creation": true,
+      "support-email-address": "support@hashicorp.com"
     }
   }
 }
