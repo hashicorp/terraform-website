@@ -70,13 +70,7 @@ curl \
         "email": "myuser@example.com",
         "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
         "is-admin": true,
-        "is-suspended": false,
-        "two-factor": {
-          "delivery": null,
-          "sms-number": null,
-          "enabled": false,
-          "verified": false
-        }
+        "is-suspended": false
       },
       "relationships": {
         "organizations": {
@@ -192,13 +186,7 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": true,
-      "two-factor": {
-        "delivery": null,
-        "sms-number": null,
-        "enabled": false,
-        "verified": false
-      }
+      "is-suspended": true
     },
     "relationships": {
       "organizations": {
@@ -261,13 +249,7 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": false,
-      "two-factor": {
-        "delivery": null,
-        "sms-number": null,
-        "enabled": false,
-        "verified": false
-      }
+      "is-suspended": false
     },
     "relationships": {
       "organizations": {
@@ -330,13 +312,7 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": true,
-      "is-suspended": false,
-      "two-factor": {
-        "delivery": null,
-        "sms-number": null,
-        "enabled": false,
-        "verified": false
-      }
+      "is-suspended": false
     },
     "relationships": {
       "organizations": {
@@ -397,13 +373,7 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": false,
-      "two-factor": {
-        "delivery": null,
-        "sms-number": null,
-        "enabled": false,
-        "verified": false
-      }
+      "is-suspended": false
     },
     "relationships": {
       "organizations": {
@@ -466,13 +436,7 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": false,
-      "two-factor": {
-        "delivery": null,
-        "sms-number": null,
-        "enabled": false,
-        "verified": false
-      }
+      "is-suspended": false
     },
     "relationships": {
       "organizations": {
