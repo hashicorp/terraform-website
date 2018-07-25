@@ -35,6 +35,16 @@ Drift][drift], we cover some best practices to ensure Terraform's statefile is
 an accurate reflection of reality, in order to provide accurate plan and apply
 functionality. 
 
+## Testing Patterns
+
+Terraform developers are encouraged to write acceptance tests that create real
+resource to verify the behavior of plugins, ensuring a reliable and safe
+way to manage infrastructure. In [Testing Patterns][testing-patterns] we cover
+some basic acceptance tests that almost all resources should have to validate
+not only the functionality of the resource, but that the resource behaves as
+Terraform would expect a resource to behave. 
+
 [Click here to learn more.][drift]
 
 [drift]: /docs/extend/best-practices/detecting-drift.html
+[testing-patterns]: /docs/extend/best-practices/testing.html
