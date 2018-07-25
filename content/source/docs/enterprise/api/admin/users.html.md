@@ -479,15 +479,33 @@ Because of the requirement to provide a valid admin user session cookie in order
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
-[204][] | Empty body                | Successfully impersonated the user
+[204][] | Empty body                | Successfully impersonated the user.
+[400][] | [JSON API error object][] | A reason for impersonation is required.
 [403][] | [JSON API error object][] | Client is already impersonating another user.
 [403][] | [JSON API error object][] | User is a Service Account which cannot be impersonated.
 [404][] | [JSON API error object][] | User not found, or client is not an administrator.
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
 [403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`reason`| string | | A reason for impersonation, which will be recorded in the Audit Log.
+
+### Sample Payload
+
+```json
+{
+  "reason": "Reason for impersonation"
+}
+```
 
 ### Sample Request
 
@@ -496,6 +514,7 @@ curl \
   --header "Cookie: $COOKIE" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
+  --data @payload.json \
   https://app.terraform.io/api/v2/admin/users/sample_user/actions/impersonate
 ```
 
