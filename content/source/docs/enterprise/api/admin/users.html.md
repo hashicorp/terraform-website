@@ -70,7 +70,8 @@ curl \
         "email": "myuser@example.com",
         "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
         "is-admin": true,
-        "is-suspended": false
+        "is-suspended": false,
+        "is-service-account": false
       },
       "relationships": {
         "organizations": {
@@ -186,7 +187,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": true
+      "is-suspended": true,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
@@ -249,7 +251,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": false
+      "is-suspended": false,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
@@ -312,7 +315,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": true,
-      "is-suspended": false
+      "is-suspended": false,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
@@ -373,7 +377,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": false
+      "is-suspended": false,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
@@ -436,7 +441,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": false
+      "is-suspended": false,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
