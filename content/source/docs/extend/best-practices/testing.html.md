@@ -1,10 +1,11 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Best Practices"
+page_title: "Extending Terraform: Testing Patterns"
 sidebar_current: "docs-extend-best-practices-testing"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Testing Patterns covers essential acceptance test patterns 
+  to implement for Terraform resources. 
+  
 ---
 
 # Testing Patterns
