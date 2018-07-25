@@ -7,7 +7,7 @@ description: |-
   to extend Terraform's core offering.
 ---
 
-# Testing Best Practices
+# Testing Patterns
 
 In [Testing Terraform Plugins][1] we introduce Terraform’s Testing Framework,
 providing reference for its functionality and introducing the basic parts of
