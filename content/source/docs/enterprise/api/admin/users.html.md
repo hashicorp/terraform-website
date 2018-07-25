@@ -463,11 +463,11 @@ curl \
 
 ## Impersonate another user
 
-`POST /admin/users/:username/actions/impersonate`
+`POST /admin/users/:id/actions/impersonate`
 
 Parameter   | Description
 ------------|------------
-`:username` | The name of the user to impersonate.
+`:id` | The ID of the user to impersonate.
 
 Impersonation allows an admin to begin a new session as another user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, and an added `"admin"` key will contain the username of the admin acting on the user's behalf. For more information, see the [audit logging documentation][audit logging].
 
@@ -515,7 +515,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/admin/users/sample_user/actions/impersonate
+  https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/impersonate
 ```
 
 ## End an impersonation session
