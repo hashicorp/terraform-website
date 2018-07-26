@@ -1,10 +1,10 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise - Admin - Integrations"
-sidebar_current: "docs-enterprise2-private"
+page_title: "Integrations - Admin - Private Terraform Enterprise"
+sidebar_current: "docs-enterprise2-private-integration"
 ---
 
-# Private Terraform Enterprise Integrations
+# Administration: Service Integrations
 
 ## SAML Integration
 
