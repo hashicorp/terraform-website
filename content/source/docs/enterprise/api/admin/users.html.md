@@ -70,7 +70,8 @@ curl \
         "email": "myuser@example.com",
         "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
         "is-admin": true,
-        "is-suspended": false
+        "is-suspended": false,
+        "is-service-account": false
       },
       "relationships": {
         "organizations": {
@@ -186,7 +187,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": true
+      "is-suspended": true,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
@@ -249,7 +251,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": false
+      "is-suspended": false,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
@@ -312,7 +315,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": true,
-      "is-suspended": false
+      "is-suspended": false,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
@@ -373,7 +377,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": false
+      "is-suspended": false,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
@@ -436,7 +441,8 @@ curl \
       "email": "myuser@example.com",
       "avatar-url": "https://www.gravatar.com/avatar/3a23b75d5aa41029b88b73f47a0d90db?s=100&d=mm",
       "is-admin": false,
-      "is-suspended": false
+      "is-suspended": false,
+      "is-service-account": false
     },
     "relationships": {
       "organizations": {
@@ -457,11 +463,11 @@ curl \
 
 ## Impersonate another user
 
-`POST /admin/users/:username/actions/impersonate`
+`POST /admin/users/:id/actions/impersonate`
 
 Parameter   | Description
 ------------|------------
-`:username` | The name of the user to impersonate.
+`:id` | The ID of the user to impersonate.
 
 Impersonation allows an admin to begin a new session as another user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, and an added `"admin"` key will contain the username of the admin acting on the user's behalf. For more information, see the [audit logging documentation][audit logging].
 
@@ -473,14 +479,33 @@ Because of the requirement to provide a valid admin user session cookie in order
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
-[204][] | Empty body                | Successfully impersonated the user
+[204][] | Empty body                | Successfully impersonated the user.
+[400][] | [JSON API error object][] | A reason for impersonation is required.
 [403][] | [JSON API error object][] | Client is already impersonating another user.
+[403][] | [JSON API error object][] | User is a Service Account which cannot be impersonated.
 [404][] | [JSON API error object][] | User not found, or client is not an administrator.
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
 [403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`reason`| string | | A reason for impersonation, which will be recorded in the Audit Log.
+
+### Sample Payload
+
+```json
+{
+  "reason": "Reason for impersonation"
+}
+```
 
 ### Sample Request
 
@@ -489,7 +514,8 @@ curl \
   --header "Cookie: $COOKIE" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://app.terraform.io/api/v2/admin/users/sample_user/actions/impersonate
+  --data @payload.json \
+  https://app.terraform.io/api/v2/admin/users/user-ZL4MsEKnd6iTigTb/actions/impersonate
 ```
 
 ## End an impersonation session
