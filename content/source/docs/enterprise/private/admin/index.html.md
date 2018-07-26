@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
 page_title: "Admin - Private Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private"
+sidebar_current: "docs-enterprise2-private-administration"
 ---
 
 # Administering Private Terraform Enterprise
@@ -17,9 +17,13 @@ This section is about in-application administration, including general settings,
 
 ## Accessing the Admin Interface
 
-- need to be a site admin
-- click your user icon in the upper right (screenshot)
-- you'll end up here (screenshot of admin pages)
+Only Private Terraform Enterprise users with the site-admin permission can access the administrative functions. To view, search, and update settings in the UI, click your user icon in the upper right:
+
+(screenshot)
+
+which will take you to the admin area. Currently, it defaults to showing the user management page. 
+
+(screenshot of admin pages)
 
 ## Administration Tasks
 
