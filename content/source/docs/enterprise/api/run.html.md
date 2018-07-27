@@ -36,7 +36,7 @@ Properties without a default value are required.
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.attributes.is-destroy` | bool | false | Specifies if this plan is a destroy plan, which will destroy all provisioned resources.
-`data.attributes.message` | string | "Queued manually via the Terraform Enterprise API | Specifies the message to be associated with this run.
+`data.attributes.message` | string | "Queued manually via the Terraform Enterprise API" | Specifies the message to be associated with this run.
 `data.relationships.workspace.data.id` | string | | Specifies the workspace ID where the run will be executed.
 `data.relationships.configuration-version.data.id` | string | (nothing) | Specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
 
