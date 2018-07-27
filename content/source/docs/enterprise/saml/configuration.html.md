@@ -17,7 +17,7 @@ Terraform Enterprise is configured as the Service Provider.
 
 ## Terraform Enterprise (Service Provider)
 
-Go to `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/admin/settings/saml` and set the following:
+Go to `https://<TFE HOSTNAME>/admin/settings/saml` and set the following:
 
 1. **Single Sign On URL**: specifies the HTTP(S) endpoint on your IdP for single sign-on requests. This value is provided by your IdP configuration.
 2. **Single Log Out URL**:  specifies the HTTP(s) endpoint on your IdP for single logout requests. This value is provided by your IdP configuration. Single Logout is not yet supported.
@@ -29,8 +29,8 @@ Go to `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/admin/settings/saml` and set t
 
 Configure the following values in the SAML Identity Provider (IdP):
 
-1. **Audience**: `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/users/saml/metadata`
-2. **Recipient**: `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/users/saml/auth`
-3. **ACS (Consumer) URL**: `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/users/saml/auth`
+1. **Audience**: `https://<TFE HOSTNAME>/users/saml/metadata`
+2. **Recipient**: `https://<TFE HOSTNAME>/users/saml/auth`
+3. **ACS (Consumer) URL**: `https://<TFE HOSTNAME>/users/saml/auth`
 
-The SAML Metadata document is available at: `https://<YOUR_TERRAFORM_ENTERPRISE_DOMAIN>/users/saml/metadata`
+The SAML Metadata document is available at: `https://<TFE HOSTNAME>/users/saml/metadata`
