@@ -144,6 +144,7 @@ Properties without a default value are required.
 Key path                          | Type    | Default | Description
 --------------------------------- | ------- | ------- | -----------
 `data.attributes.auto-queue-runs` | boolean | true    | When true, runs are queued automatically when the configuration version is uploaded.
+`data.attributes.speculative`     | boolean | false   | When true, this configuration version may only be used to create runs which are speculative, that is, cannot be confirmed nor applied.
 
 ### Sample Payload
 
