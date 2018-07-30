@@ -25,10 +25,10 @@ Vault options.
 
 Use the following as a guide to configure an external Vault instance:
 
-1. Enable AppRole: `vault auth-enable approle`
-1. Enable transit: `vault mount transit`
+1. Enable AppRole: `vault auth enable approle`
+1. Enable transit: `vault secrets enable transit`
 1. Install the `ptfe` policy (See below for policy):
-   `vault policy-write ptfe ptfe.hcl`
+   `vault policy write ptfe ptfe.hcl`
 1. Create an AppRole instance:
    `vault write auth/approle/role/ptfe policies="ptfe"`.
 1. Retrieve the AppRole `role_id`: `vault read auth/approle/role/ptfe/role-id`
