@@ -44,7 +44,9 @@ curl \
     "type": "general-settings",
     "attributes": {
       "limit-user-organization-creation": true,
-      "support-email-address": "support@hashicorp.com"
+      "support-email-address": "support@hashicorp.com",
+      "api-rate-limiting-enabled": true,
+      "api-rate-limit": 30
     }
   }
 }
@@ -69,10 +71,14 @@ Status  | Response                                     | Reason
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
-Key path                    | Type   | Default | Description
-----------------------------|--------|---------|------------
-`data.attributes.limit-user-organization-creation`| bool     | `true` | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
-`data.attributes.support-email-address`  | string   | `"support@hashicorp.com"` | The support address for outgoing emails.
+Key path                                          | Type     | Default                   | Description
+--------------------------------------------------|----------|---------------------------|------------
+`data.attributes.limit-user-organization-creation`| bool     | `true`                    | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
+`data.attributes.support-email-address`           | string   | `"support@hashicorp.com"` | The support address for outgoing emails.
+`data.attributes.api-rate-limiting-enabled`       | bool     | `true`                    | Whether or not rate limiting is enabled for API requests. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
+`data.attributes.api-rate-limit`                  | integer  | 30                        | The number of allowable API requests per second for any client. This value cannot be less than 30. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
+
+[rate limiting documentation]: https://www.terraform.io/docs/enterprise/api/index.html#rate-limiting
 
 ### Sample Payload
 
@@ -81,7 +87,9 @@ Key path                    | Type   | Default | Description
   "data": {
     "attributes": {
       "limit-user-organization-creation": true,
-      "support-email-address": "support@hashicorp.com"
+      "support-email-address": "support@hashicorp.com",
+      "api-rate-limiting-enabled": true,
+      "api-rate-limit": 50
     }
   }
 }
@@ -107,7 +115,9 @@ curl \
     "type":"general-settings",
     "attributes": {
       "limit-user-organization-creation": true,
-      "support-email-address": "support@hashicorp.com"
+      "support-email-address": "support@hashicorp.com",
+      "api-rate-limiting-enabled": true,
+      "api-rate-limit": 50
     }
   }
 }
