@@ -310,12 +310,9 @@ CREATE SCHEMA vault;
 CREATE SCHEMA registry;
 ```
 
-When specifying which PostgreSQL database to use, the value specified must
-be a valid Database URL, as [specified in the libpq documentation](https://www.postgresql.org/docs/9.3/static/libpq-connect.html#AEN39514).
-
-Additionally, the URL must include the `sslmode` parameter indicating if SSL
-should be used to connect to the database. There is no assumed SSL mode; the
-parameter must be specified.
+When providing optional extra keyword parameters for the database connection,
+note an additional restriction on the `sslmode` parameter is that only the
+`require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
 ### Finish Bootstrapping
 
