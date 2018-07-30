@@ -8,7 +8,9 @@ sidebar_current: "docs-enterprise2-private-logging"
 
 This document contains information about interacting with Private Terraform Enterprise logs. There are two types of logs, application logs and audit logs. Application logs emit information about the services that comprise Terraform Enterprise. Audit logs emit information whenever any resource managed by Terraform Enterprise is changed.
 
-## Application Logs - Installer
+## Application Logs 
+
+### Installer
 
 The installer-based version runs the application in a set of docker containers. As such, any tooling that can interact with docker logs
 can read the logs. This includes running the command `docker logs`, as well as access the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
@@ -31,7 +33,7 @@ them to `logs.mycompany.com` over TCP on port 55555 using syslog over TLS.
    All other log drivers prevent the support bundle functionality from gathering logs, making it
    impossible to provide product support. **DO NOT** change the log driver of an installation to anything other than `json-file` or `journald`.
 
-## Application Logs - AMI based installs
+### AMI based installs
 
 Private Terraform Enterprise's application-level services all log to CloudWatch logs, with one stream per service. The stream names take the format:
 
@@ -61,21 +63,20 @@ tfe.mycompany.io-terraform-state-parser
 
 CloudWatch logs can be searched, filtered, and read from either from the AWS Web Console or (recommended) the command line [`awslogs`](https://github.com/jorgebastida/awslogs) tool.
 
-### System-level Logs
-
-All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
+**NOTE:** All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
 
 ## Audit Logs
 
 Audit log entries are written to the application logs. To distinguish audit Log entries from other log entries, the JSON is prefixed with `[Audit Log]`.
 
+### Installer
+
+The audit logs have been available in the installer since beta4. They are emitted along with other logs by the `ptfe_atlas` container.
+
 ### AMI based installs
 
 As of Private Terraform Enterprise release v201802-1, audit logging is available in Private Terraform Enterprise. These are written out to CloudWatch logs just like all other application-level logs.
 
-### Installer
-
-The audit logs have been available in the installer since beta4. They are emitted along with other logs by the `ptfe_atlas` container.
 
 ### Log Contents
 
