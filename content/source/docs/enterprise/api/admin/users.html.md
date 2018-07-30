@@ -471,6 +471,8 @@ Parameter   | Description
 
 Impersonation allows an admin to begin a new session as another user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, and an added `"admin"` key will contain the username of the admin acting on the user's behalf. For more information, see the [audit logging documentation][audit logging].
 
+-> **Note**: It is not possible to impersonate service accounts or your own account.
+
 This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
 
 Because of the requirement to provide a valid admin user session cookie in order to impersonate, it's normally simpler to impersonate another user via the Terraform Enterprise Admin UI. However, if the need arises, the cookie can be retrieved through the browser and used in the API, or retrieved via an automation tool that can handle cookies.
@@ -482,7 +484,7 @@ Status  | Response                  | Reason
 [204][] | Empty body                | Successfully impersonated the user.
 [400][] | [JSON API error object][] | A reason for impersonation is required.
 [403][] | [JSON API error object][] | Client is already impersonating another user.
-[403][] | [JSON API error object][] | User is a Service Account which cannot be impersonated.
+[403][] | [JSON API error object][] | User cannot be impersonated.
 [404][] | [JSON API error object][] | User not found, or client is not an administrator.
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
