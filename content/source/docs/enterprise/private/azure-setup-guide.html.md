@@ -75,6 +75,12 @@ instances.
     a consistent high workload in the form of concurrent terraform
     runs.
 
+##### Azure VM Disk Size Considerations
+
+The default root disk size for most Linux distros in Azure is 30GB. Even when assigning an instance more storage to the root partition, depending on the operating system, there may be additional steps required to fully utlize the full 50GB+ of disk, such as using a tool like `fdisk`.
+
+This process is documented in the Azure knowledge base article ["How to: Resize Linux osDisk partition on Azure"](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
+
 ### Object Storage (Azure Blob Storage)
 
 An Azure Blob Storage
@@ -346,7 +352,7 @@ and summarised below:
 > ***Automated Backups** – Azure Database for PostgreSQL automatically
 > creates server backups and stores them in user configured locally
 > redundant or geo-redundant storage.*
-> 
+>
 > ***Backup redundancy** – Azure Database for PostgreSQL provides the
 > flexibility to choose between locally redundant or geo-redundant
 > backup storage.*
