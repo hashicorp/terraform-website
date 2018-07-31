@@ -78,7 +78,7 @@ Key path                                          | Type     | Default          
 `data.attributes.api-rate-limiting-enabled`       | bool     | `true`                    | Whether or not rate limiting is enabled for API requests. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
 `data.attributes.api-rate-limit`                  | integer  | 30                        | The number of allowable API requests per second for any client. This value cannot be less than 30. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
 
-[rate limiting documentation]: https://www.terraform.io/docs/enterprise/api/index.html#rate-limiting
+[rate limiting documentation]: ../index.html#rate-limiting
 
 ### Sample Payload
 
