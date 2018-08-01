@@ -10,9 +10,9 @@ sidebar_current: "docs-enterprise2-api-policies"
 
 [Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Enterprise.
 
-Policies are defined on a per-organization level, and are enforced on all runs between the plan and apply stages. (For details, see [Run States and Stages](../run/states.html).) A plan's changes must be validated by the policy in order to proceed to the apply step.
+Policies are configured on a per-organization level, and are enforced on all of an organization's workspaces during runs. Each plan's changes are validated against the policy prior to the apply step. (For details, see [Run States and Stages](../run/states.html).)
 
-This page documents the API endpoints to create, read, update, and delete the Sentinel policies in an organization. To read and override policy checks in a specific run, use the [Runs API](./run.html).
+This page documents the API endpoints to create, read, update, and delete the Sentinel policies in an organization. To view and manage the results of a specific run's policy check, use the [Runs API](./run.html).
 
 
 ## Create a Policy
@@ -52,7 +52,7 @@ Key path                         | Type            | Default          | Descript
 `data.type`                      | string          |                  | Must be `"policies"`.
 `data.attributes.name`           | string          |                  | The name of the policy, which cannot be modified after creation. Can include letters, numbers, `-`, and `_`.
 `data.attributes.enforce`        | array\[object\] |                  | Although `enforce` can only include one object, it is specified as an array.
-`data.attributes.enforce[].path` | string          |                  | A redundant key. Must be present, but its value has no effect.
+`data.attributes.enforce[].path` | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` has the same value as `data.attributes.name`.
 `data.attributes.enforce[].mode` | string          | `soft-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
 
 
@@ -178,7 +178,7 @@ Key path                         | Type            | Default          | Descript
 `data.type`                      | string          |                  | Must be `"policies"`.
 `data.attributes.name`           | string          | (Current name)   | Ignored if present.
 `data.attributes.enforce`        | array\[object\] |                  | Although `enforce` can only include one object, it is specified as an array.
-`data.attributes.enforce[].path` | string          |                  | A redundant key. Must be present, but its value has no effect.
+`data.attributes.enforce[].path` | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` matches the original value of `data.attributes.name`.
 `data.attributes.enforce[].mode` | string          | `soft-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
 
 
