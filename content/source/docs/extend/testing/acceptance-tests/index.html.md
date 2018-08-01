@@ -28,7 +28,7 @@ for Terraform to leave orphaned or “dangling” resources behind, depending on
 correctness of the code in development. The testing framework provides means to
 validate all resources are destroyed, alerting developers if any fail to
 destroy. It is the developer's responsibility to clean up any dangling resources
-left over fromduring testing and development. 
+left over from testing and development. 
 
 ## Test files
 
