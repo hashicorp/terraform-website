@@ -228,7 +228,7 @@ resource "example_instance" "ex" {
 [SchemaDefaultFunc](https://github.com/hashicorp/terraform/blob/ead558261d5e322f1f1e90c8e74834ba9215f24e/helper/schema/schema.go#L209)  
 **Restrictions:**  
 
-- Cannot be used if `Default` is specified  
+- Cannot be used if `Default` is specified
 
 When `DefaultFunc` will be used to compute a dynamic default for this element.
 The return value of this function should be "stable", such that it is uncommon
@@ -285,5 +285,76 @@ environment):**
 provider "example" {
   api_key = "somesecretkey"
   # region is "us-east" 
+}
+```
+
+### StateFunc
+**Data structure:** [SchemaStateFunc](https://github.com/hashicorp/terraform/blob/a20dbb43782ade816baaeffa8033da0027ee6b26/helper/schema/schema.go#L245)    
+
+`SchemaStateFunc` is a function used to convert the value of this element to a string to be stored in the state. 
+
+
+**Schema example:**
+
+In this example, the `StateFunc` converts a string value to all lower case. 
+
+```go
+"name": &schema.Schema{
+  Type:     schema.TypeString,
+  ForceNew: true,
+  Required: true,
+  StateFunc: func(val interface{}) string {
+    return strings.ToLower(val.(string))
+  },
+},
+```
+
+**Configuration example (provided):**
+
+```hcl
+resource "example" "ex_instance" {
+  name = "SomeValueCASEinsensitive"
+}
+```
+
+Value in statefile: 
+
+```json
+"name": "somevaluecaseinsensitive"
+```
+
+### ValidateFunc
+**Data structure:** [SchemaValidateFunc](https://github.com/hashicorp/terraform/blob/a20dbb43782ade816baaeffa8033da0027ee6b26/helper/schema/schema.go#L249)   
+**Restrictions:** 
+
+- Only works with primitive types  
+
+`SchemaValidateFunc` is a function used to validate the value of a primitive type. Common use cases include ensuring an integer falls within a range or a string value is present in a list of valid options. The function returns two slices, the first for warnings, the second is errors which can be used to catch multiple invalid cases. Terraform will only halt execution if an error is returned. Returning warnings will warn the user but the data provided is considered valid.
+
+Terraform includes a number of validators for use in plugins in the validation package. A full list can be found here: https://godoc.org/github.com/hashicorp/terraform/helper/validation 
+
+**Schema example:**
+
+In this example, the `ValidateFunc` ensures the integer provider is a value between 0 and 10.
+
+```go
+"amount": &schema.Schema{
+ Type:     schema.TypeInt,
+ Required: true,
+ ValidateFunc: func(val interface{}, key string) (warns []string, errs []error) {
+   v := val.(int)
+   if v < 0 || v > 10 {
+     errs = append(errs, fmt.Errorf("%q must be between 0 and 10 inclusive, got: %d", key, v))
+   }
+   return
+ },
+},
+```
+
+**Configuration example:**
+
+```hcl
+resource "example" "ex_instance" {
+ amount = "-1"
 }
 ```
