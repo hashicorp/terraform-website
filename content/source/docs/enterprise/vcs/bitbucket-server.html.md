@@ -22,7 +22,7 @@ Note that Bitbucket Server requires both OAuth authentication and an SSH key. Th
 TFE uses webhooks to get new configurations. To support this, Bitbucket Server needs Atlassian's webhooks plugin.
 
 1. Open your Bitbucket server instance in your browser and log in as an admin user.
-2. Go to the "Manage add-ons" page. You can click the gear icon in the upper right corner and then use the "Manage add-ons" link in the sidebar, or go directly to `https://<BITBUCKET HOSTNAME>/plugins/servlet/upm`.
+2. Go to the "Manage add-ons" page. You can click the gear icon in the upper right corner and then use the "Manage add-ons" link in the sidebar, or go directly to `https://<BITBUCKET INSTANCE HOSTNAME>/plugins/servlet/upm`.
 3. Look for an add-on named "Bitbucket Server Web Post Hooks Plugin," and make sure it is installed and enabled. The plugin is disabled by default. Clicking `Enabled` will toggle the plugin on.
 4. If the plugin isn't present, click "Find new add-ons" in the sidebar navigation. Search for the plugin by name and install it.
 
@@ -61,7 +61,7 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 ## Step 3: On Bitbucket Server, Create a New Application Link
 
-1. While logged in as an admin user, go to Bitbucket Server's "Application Links" administration page. You can use the sidebar navigation in the admin pages, or go directly to `https://<BITBUCKET HOSTNAME>/plugins/servlet/applinks/listApplicationLinks`.
+1. While logged in as an admin user, go to Bitbucket Server's "Application Links" administration page. You can use the sidebar navigation in the admin pages, or go directly to `https://<BITBUCKET INSTANCE HOSTNAME>/plugins/servlet/applinks/listApplicationLinks`.
 
     This page has a text field for creating a new application link, followed by a list of existing application links.
 
@@ -111,7 +111,7 @@ This SSH key **must have an empty passphrase.** TFE cannot use SSH keys that req
 
     ~> **Important:** The account you use for connecting TFE **must have admin access** to any shared repositories of Terraform configurations, since creating webhooks requires admin permissions.
 
-3. Go to the "SSH keys" page. You can click the profile icon in the upper right corner, choose "Manage account," then click "SSH keys" in the sidebar navigation, or you can go directly to `https://<BITBUCKET HOSTNAME>/plugins/servlet/ssh/account/keys`.
+3. Go to the "SSH keys" page. You can click the profile icon in the upper right corner, choose "Manage account," then click "SSH keys" in the sidebar navigation, or you can go directly to `https://<BITBUCKET INSTANCE HOSTNAME>/plugins/servlet/ssh/account/keys`.
 
     ![Bitbucket Server sceenshot: the SSH keys page](./images/bitbucket-server-ssh-keys.png)
 
