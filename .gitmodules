@@ -326,3 +326,7 @@
 	path = ext/providers/huaweicloud
 	url = https://github.com/terraform-providers/terraform-provider-huaweicloud
 	branch = stable-website
+[submodule "ext/providers/brightbox"]
+	path = ext/providers/brightbox
+	url = https://github.com/terraform-providers/terraform-provider-brightbox
+	branch = stable-website
