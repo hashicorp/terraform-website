@@ -10,7 +10,7 @@ Site administrators have access to all organizations, users, runs, and workspace
 
 ## Viewing, Searching, and Filtering Lists
 
-Each account or resource is initally presented as a searchable list, accessed by clicking the name of the resource on the left. In addition to searching or filtering (typically by email, name, or other relevant attribute), there are pre-existing filters to show useful sets, such as site administrators (users) or needs confirmation (workspaces, runs).
+Each type of account or resource is initally presented as a searchable list, accessed by clicking the name of the resource on the left. In addition to searching or filtering (typically by email, name, or other relevant attribute), there are pre-existing filters to show useful sets, such as site administrators (users) or "Needs Attention" (workspaces, runs).
 
 ## Managing Users
 
@@ -52,19 +52,23 @@ The administrative view of workspaces and runs provides limited detail (name, st
 
 ### Deleting Workspaces
 
-A workspace can be administratively deleted, using the **Delete this Workspace** button at the bottom of its details page, if it should not have been created, or is presenting issues to the application.
+A workspace can be administratively deleted, using the **Delete this Workspace** button at the bottom of its details page, if it should not have been created, or is presenting issues for the application.
 
 ### Force-Canceling Runs
 
-A run can be administratively force-canceled if it becomes stuck or is presenting issues to the application. Runs can be force-canceled from the run list. The run details page primarily offers the option to impersonate an organization owner for additional details.
+A run can be administratively force-canceled if it becomes stuck or is presenting issues to the application. Runs can be force-canceled from the run list or the run details page. The run details page also offers the option to impersonate an organization owner for additional details on the run.
 
-We recommend impersonating a user prior to force-canceling a run, to ensure that graceful cancellation was attempted, and that the run is no longer progressing.
+We recommend impersonating a user (if necessary) to view run details prior to force-canceling a run, to ensure that graceful cancellation was attempted, and that the run is no longer progressing.
 
 ### Migration of Workspace History from Legacy Environments
 
-- link to user docs about migration.
-- can view progress, but there's nothing to really do.
-- in a future version, legacy data will be destroyed; read your release notes, and if you still need legacy data, wait to upgrade to that version until migration is complete.
+The Migrations section, accessed by clicking **Migrations** on the left, shows the progress of migrating history from legacy Terraform Enterprise environments to Terraform Enterprise workspaces. While all workspaces are listed in this area, history migration is only relevant for those workspaces created by [setting up migration from older environments](../../upgrade/index.html).
+
+During the initial setup, current data is migrated, and history data is migrated in the background, with the progress being visible in this admin area. This process is intended to have minimal impact on the running system, so if a large number of workspaces have been migrated, it may take some time before they're all complete.
+
+If history migration initially fails, the migration will be retried periodically. If you see a migration that continually errors, [contact HashiCorp Support](../faq.html#support-for-private-terraform-enterprise).
+
+A future version of Terraform Enterprise will remove Legacy environment data and code completely. Be sure to review release notes and wait to upgrade to that version until migration of desired data is complete.
 
 ## Managing Terraform Versions
 
