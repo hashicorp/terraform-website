@@ -27,7 +27,7 @@ Before you begin, you'll need to prepare data files and a Linux instance.
 ### Data Files
 
 * TLS private key and certificate
-  * The installer allows for using a certificate signed by a public or private CA. If you do not use a trusted certificate, your VCS provider will likely reject that certificate when sending webhooks. 
+  * The installer allows for using a certificate signed by a public or private CA. If you do not use a trusted certificate, your VCS provider will likely reject that certificate when sending webhooks.
 * License key (provided by HashiCorp)
 
 ~> **Note:** If you use a certificate issued by a private Certificate
@@ -189,6 +189,12 @@ The follow are **supported** mounted disk types:
 * iSCSI
 * SAN
 * Physically connected disks as in non-cloud hardware
+
+###### Additional Note about Disk Resizing
+
+Depending on your Cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
+
+For example, with RedHat-flavour (eg. RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article ["How to: Resize Linux osDisk partition on Azure"](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/)..
 
 ##### Unsupported Mounted Disk Types
 
