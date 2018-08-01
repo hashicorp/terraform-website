@@ -1,0 +1,76 @@
+---
+layout: enterprise2
+page_title: "SAML SSO Troubleshooting Guide - Terraform Enterprise"
+sidebar_current: "docs-enterprise2-private-saml-troubleshooting"
+---
+
+# Troubleshooting Guide
+
+**Note**: Verify you are on release version 201807-2 as that is the version that has the debugging functionality that is described in this guide. If you would like assistance with upgrading, please [contact support](/docs/enterprise/private/faq.html#support-for-private-terraform-enterprise).
+
+## Disable SAML Single Sign-On
+
+Before starting, disable SAML SSO by going to `https://<TFE HOSTNAME>/app/admin/saml` and unchecking the Enable SAML Single Sign-On checkbox. It's best to start from a clean setup.
+
+## Create a non-SSO admin account for recovery
+
+Before proceeding with troubleshooting, create a non-SSO admin account that can be used to log in if admin access gets revoked for other admins. Open `https://<TFE HOSTNAME>/account/new` to create the account. Make sure to grant admin access to this user and verify they can log in at `https://<TFE HOSTNAME>/`.
+
+## Enable SAML SSO and SAML debugging
+
+### Enable SAML SSO
+
+Enable SAML SSO by following the [configuration instructions](/docs/enterprise/saml/configuration.html).
+
+### Enable SAML debugging
+
+Enable SAML debugging by going to `https://<TFE HOSTNAME>/app/admin/saml`.
+
+![image](./images/saml-sso-enable.png)
+
+## Test sign-on
+
+Try signing on by going to `https://<TFE HOSTNAME>/` and clicking the "Log in via SAML" button. Verify the page says `WARNING: SAML debugging is enabled`.
+
+If login fails, the SAMLResponse XML document sent from the identity provider is shown. The XML document may contain the user's username, list of roles, and other attributes. Checking the format of the email address and username and whether the desired list of roles is included may assist with debugging.
+
+![image](./images/saml-response.png)
+
+If there is a configuration error, that is also shown on the login form.
+
+![image](./images/saml-error.png)
+
+Fix the configuration error and try to log in again.
+
+## Common configuration errors
+
+Most errors will be from misconfiguration and will be shown in the red box on the Terraform Enterprise login form.
+
+**CONFIGURATION ERROR: `https://<TFE HOSTNAME>/metadata` is not a valid audience for this Response - Valid audiences: `https://<TFE HOSTNAME>/users/saml/metadata`**<br />
+The audience URL was not configured correctly in the identity provider.<br />
+**How to resolve:** Open the Terraform Enterprise admin settings for SAML SSO, copy the ACS Consumer URL, then paste it into the identity provider settings.
+
+**CONFIGURATION ERROR: The response was received at `https://<TFE HOSTNAME>/auth` instead of `https://<TFE HOSTNAME>/users/saml/auth`**<br />
+The recipient URL was not configured correctly in the identity provider.<br />
+**How to resolve:** Open the Terraform Enterprise admin settings for SAML SSO, copy the Metadata URL, then paste it into the identity provider settings.
+
+**ERROR: Validation failed: Email is invalid, Email is not a valid email address, Username has already been taken**<br />
+NameID is invalid. It must be an email address.<br />
+**How to resolve:** Open the identity provider settings and configure email address as the value for NameID.
+
+**ERROR: Mail::AddressList can not parse |{onelogin:email}|: Only able to parse up to "{onelogin:email}"**<br />
+The NameID that was received was blank.<br />
+**How to resolve:** Open the identity provider settings and configure email address as the value for NameID.
+
+**ERROR: nested asn1 error**<br />
+The identity provider certificate is invalid or was not pasted correctly into Terraform Enterprise.<br />
+**How to resolve:** Open the identity provider settings, copy the certificate, then paste it into the "IDP Certificate" field in Terraform Enterprise.
+
+## Contacting support
+
+If you're not able to resolve the error using the steps above, [reach out to support](/docs/enterprise/private/faq.html#support-for-private-terraform-enterprise). When contacting support, please provide:
+
+  * A screenshot of "SAML Response" and "Processed attributes" shown on the login page after failed login
+  * A screenshot of the error on the login page
+  * The [SAMLResponse XML document](./identity-provider-configuration.html#example-samlresponse)
+  * A [support bundle](/docs/enterprise/private/faq.html#diagnostics)
