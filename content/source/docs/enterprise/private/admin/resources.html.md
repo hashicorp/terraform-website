@@ -14,7 +14,7 @@ Each account or resource is initally presented as a searchable list, accessed by
 
 ## Managing Users
 
-After selecting a user fron the list, the user's detail page shows including their information and any organizations they belong to. This page offers four actions:
+Selecting a user from the list shows their detail page, which includes their status and any organizations they belong to. The detail page offers four actions:
 
 ### Promoting a User to Administrator
 
@@ -40,8 +40,7 @@ Impersonation can be performed from the user detail page, by clicking the **Impe
 
 When impersonating a user, a reason is required and will be logged to the audit log. Any actions taken while impersonating will record both the impersonating admin and the impersonated user as the actor.
 
-
-### Managing Organizations
+## Managing Organizations
 
 If your institution uses multiple organizations in Terraform Enterprise, you can view the details of the organization, impersonate an owner, or delete an organization (using the red **Delete this organization** button at the bottom of the details page).
 
