@@ -17,7 +17,7 @@ This section is about in-application administration, including general settings,
 
 ## Accessing the Admin Interface
 
-Only Private Terraform Enterprise users with the site-admin permission can access the administrative functions. To view, search, and update settings in the UI, click your user icon in the upper right:
+Only Private Terraform Enterprise users with the site-admin permission can access the administrative functions. To view, search, and update settings in the UI, click your user icon in the upper right, then click **Site Admin**:
 
 (screenshot)
 
