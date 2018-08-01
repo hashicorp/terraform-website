@@ -6,8 +6,7 @@ sidebar_current: "docs-enterprise2-private-diagnostics"
 
 # Private Terraform Enterprise Diagnostics
 
-This document contains information on how to provide HashiCorp with diagnostic information about a Private Terraform Enterprise (PTFE)
-installation that requires assistance from HashiCorp support.
+This document contains information on how to provide HashiCorp with diagnostic information about a Private Terraform Enterprise (PTFE) installation that requires assistance from HashiCorp support.
 
 ## Installer-based Instances
 
@@ -72,8 +71,8 @@ tfe.mycompany.com:~$ ls -F /var/lib/hashicorp-support/
 gnupg/  hashicorp-support.tar.gz  hashicorp-support.tar.gz.enc
 ```
 
-Next, copy the `hashicorp-support.tar.gz.enc` file listed above off the instance. This
-can be done via scp or another tool that can interface with the system over SSH/SFTP. For example, on Linux and Mac OS X:
+For your privacy and security, the entire contents of the support bundle are encrypted with a 2048
+bit RSA key to generate the `tar.gz.enc` file. Once the process is complete, copy the `hashicorp-support.tar.gz.enc` file listed above off the instance. This can be done via scp or another tool that can interface with the system over SSH/SFTP. For example, on Linux and Mac OS X:
 
 ```
 local$ scp -i ~/.ssh/hc-eng-emp.pem tfe-admin@1.2.3.4:/var/lib/hashicorp-support/hashicorp-support.tar.gz.enc .
@@ -82,9 +81,39 @@ hashicorp-support.tar.gz.enc                                                    
 
 Then, attach the bundle to your support ticket. If possible, use the SendSafely integration (as it allows for large file uploads).
 
-### Windows
+### Scrubbing Secrets
+
+If you have extremely sensitive data in your Terraform build logs you
+may opt to omit these logs from your bundle. However, this may impede our
+efforts to diagnose any problems you are encountering. To create a custom
+support bundle, run the following commands:
+
+    sudo -s
+    hashicorp-support
+    cd /var/lib/hashicorp-support
+    tar -xzf hashicorp-support.tar.gz
+    rm hashicorp-support.tar.gz*
+    rm nomad/*build-worker*
+    tar -czf hashicorp-support.tar.gz *
+    gpg2 -e -r "Terraform Enterprise Support" \
+        --cipher-algo AES256 \
+        --compress-algo ZLIB \
+        -o hashicorp-support.tar.gz.enc \
+        hashicorp-support.tar.gz
+
+You will note that we first create a support bundle using the normal procedure,
+extract it, remove the files we want to omit, and then create a new one.
+
+
+## Windows
 
 On Microsoft Windows, tools such as [PSCP](https://www.ssh.com/ssh/putty/putty-manuals/0.68/Chapter5.html) and [WinSCP](https://winscp.net/eng/index.php) can be used to transfer the file.
+
+## About the Bundle
+
+The support bundle contains logging and telemetry data from various components
+in Private Terraform Enterprise. It may also include log data from Terraform builds you have executed on your Private Terraform Enterprise installation.
+
 
 ## Pre-Sales uploads
 
