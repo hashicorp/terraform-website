@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
 page_title: "Integrations - Admin - Private Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-administration-integration"
+sidebar_current: "docs-enterprise2-private-admin-integration"
 ---
 
 # Administration: Service Integrations

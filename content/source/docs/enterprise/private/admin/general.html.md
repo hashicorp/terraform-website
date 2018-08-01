@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
 page_title: "General Settings - Admin - Private Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-administration-general"
+sidebar_current: "docs-enterprise2-private-admin-general"
 ---
 
 # Administration: General Settings
