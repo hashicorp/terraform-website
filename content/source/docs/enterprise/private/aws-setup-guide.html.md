@@ -25,7 +25,7 @@ architecture.
 
 ## Infrastructure Requirements
 
-~> This reference architecture focuses on the _Production - External
+-> This reference architecture focuses on the _Production - External
 Services_ operational mode.
 
 Depending on the chosen [operational
@@ -163,7 +163,7 @@ can occur on the Terraform instances directly.
 
 ### DNS Failover Pair Mode
 
-![aws-infrastructure-diagram-route53](./assets/aws-setup-guide-pfte-route53.png)
+![aws-infrastructure-diagram-route53](./assets/aws-setup-guide-ptfe-route53.png)
 
 In this design, Route 53 Failover Pairs and Health Checks are used to automatically switch over to the standby instance 
 in the case of a master node failure.  No human intervention is required to complete the failover action.
@@ -383,12 +383,12 @@ through the AWS management console on CLI. More details of RDS for
 PostgreSQL features are available [here](https://aws.amazon.com/rds/postgresql/)
 and summarised below:
 
-> ***Automated Backups** – The automated backup feature of Amazon RDS is
+> *Automated Backups – The automated backup feature of Amazon RDS is
 > turned on by default and enables point-in-time recovery for your DB
 > Instance. Amazon RDS will backup your database and transaction logs
 > and store both for a user-specified retention period.*
 >
-> ***DB Snapshots** – DB Snapshots are user-initiated backups of your DB
+> *DB Snapshots – DB Snapshots are user-initiated backups of your DB
 > Instance. These full database backups will be stored by Amazon RDS
 > until you explicitly delete them.*
 

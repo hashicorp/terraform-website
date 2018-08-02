@@ -29,7 +29,7 @@ architecture.
 
 ## Infrastructure Requirements
 
-~> This reference architecture focuses on the _Production - External Services_ operational mode.
+-> This reference architecture focuses on the _Production - External Services_ operational mode.
 
 Depending on the chosen [operational
 mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
@@ -343,13 +343,13 @@ features are available
 [here](https://docs.microsoft.com/en-us/azure/postgresql/concepts-backup)
 and summarised below:
 
-> - __Automated Backups__ – Azure Database for PostgreSQL automatically
+> *Automated Backups – Azure Database for PostgreSQL automatically
 > creates server backups and stores them in user configured locally
-> redundant or geo-redundant storage.
+> redundant or geo-redundant storage.*
 >
-> - __Backup redundancy__ – Azure Database for PostgreSQL provides the
+> *Backup redundancy – Azure Database for PostgreSQL provides the
 > flexibility to choose between locally redundant or geo-redundant
-> backup storage.
+> backup storage.*
 
 ##### Object Storage
 
