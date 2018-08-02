@@ -1,13 +1,13 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer) - AWS Setup Guide"
+page_title: "Private Terraform Enterprise Reference Architecture (AWS)"
 sidebar_current: "docs-enterprise2-private-installer-aws"
 description: |-
   This document provides recommended practices and a reference architecture for
   HashiCorp Private Terraform Enterprise (PTFE) implementations on AWS.
 ---
 
-# Private Terraform Enterprise AWS Setup Guide
+# Private Terraform Enterprise Reference Architecture (AWS)
 
 This document provides recommended practices and a reference architecture for
 HashiCorp Private Terraform Enterprise (PTFE) implementations on AWS.
@@ -25,14 +25,14 @@ architecture.
 
 ## Infrastructure Requirements
 
+~> This reference architecture focuses on the _Production - External
+Services_ operational mode.
+
 Depending on the chosen [operational
 mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single AWS EC2 instance
 for demo installations to multiple instances connected to RDS, S3, and an
 external Vault cluster for a stateless production installation.
-
-This reference architecture focuses on the “Production - External
-Services” operational mode.
 
 The following table provides high-level server guidelines. Of particular
 note is the strong recommendation to avoid non-fixed performance CPUs,
@@ -90,6 +90,9 @@ cluster](https://www.terraform.io/docs/enterprise/private/vault.html).  This
 reference architecture assumes that a highly available Vault cluster is
 accessible at an endpoint the PTFE servers can reach.
 
+For more information on setting up an external Vault cluster, please visit the [Vault 
+Reference Architecture](https://www.vaultproject.io/guides/operations/reference-architecture.html).
+
 ### Other Considerations
 
 #### Additional AWS Resources
@@ -108,6 +111,7 @@ also be permitted to create the following AWS resources:
 - IAM Instance Profile
 - IAM Role
 - IAM Role Policy
+- Route 53 (optional for High Availability)
 
 #### Network
 
@@ -130,6 +134,11 @@ record](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-recor
 if using Route 53. Creating the required DNS entry is outside the scope
 of this guide.
 
+Another approach would be to use an external registrar or DNS server to point to a Route 53 CNAME record using 
+a cannonical but not necessarily public domain name, which then forwards to the ALIAS record for the ELB.  This 
+pattern is required if using Route 53 Health Checks and failover pairs to automatically fail over to the standby 
+instance.  This is documented further below.
+
 #### SSL/TLS
 
 An SSL/TLS certificate signed by a public or private CA is required for secure communication between
@@ -137,25 +146,33 @@ clients and the PTFE application server. The certificate can be
 specified during the UI-based installation or the path to the
 certificate codified during an unattended installation.
 
-If a Classic or Application Load Balancer is used, SSL/TLS will be terminated there.
-In this configuration, the PTFE instances should still be configured to listen
-for incoming SSL/TLS connections.
+HashiCorp does not recommend the use of self-signed certificates.  
 
-HashiCorp does not recommend the use of self-signed certificates.
+## Private Terraform Enterprise - Reference Architecture Diagrams
 
-## Infrastructure Diagram
+Below are two recommended infrastructure modes for PTFE, including a brief description of each.
 
-![aws-infrastructure-diagram](./assets/aws-infrastructure-diagram.png)
+### Load Balancer Mode
 
-The above diagram shows the infrastructure components at a high-level.
+![aws-infrastructure-diagram-elb](./assets/aws-setup-guide-ptfe-elb.png)
+
+In this design, we employ an AWS ELB or ALB to control primary/standby and traffic routing.  ELB Configuration or 
+target group membership are used to designate the active node and failover must happen manually by changing 
+infrastructure manually in the AWS console.  Load balancers are configured in TCP passthrough so that SSL termination 
+can occur on the Terraform instances directly.
+
+### DNS Failover Pair Mode
+
+![aws-infrastructure-diagram-route53](./assets/aws-setup-guide-pfte-route53.png)
+
+In this design, Route 53 Failover Pairs and Health Checks are used to automatically switch over to the standby instance 
+in the case of a master node failure.  No human intervention is required to complete the failover action.
 
 ### Application Layer
 
 The Application Layer is composed of two PTFE servers (EC2 instances)
 running in different Availability Zones and operating in a main/standby
-configuration. Traffic is routed only to *PTFE-main* via a Load
-Balancer. Routing changes are typically managed by a human triggering a
-change in the Load Balancer configuration.
+configuration. Traffic is routed only to *PTFE-main* via one of the above infrastructure options. 
 
 ### Storage Layer
 
@@ -237,8 +254,11 @@ In the event of the Availability Zone hosting the main instances (EC2
 and RDS) failing, traffic must be routed to the standby instances to
 resume service.
 
--   The Load Balancer listener must be reconfigured to direct traffic to
+-   If using a Load Balancer, the listener must be reconfigured to direct traffic to
     the *PTFE-standby* instance. This can be managed manually or automated.
+    
+-   If using Route 53, no action is necessary, as the health checks will
+    automatically change the CNAME pointer to the healthy standby instance.
 
 -   Multi-AZ RDS automatically fails over to the RDS Standby Replica
     (*RDS-standby*). The [AWS documentation provides more
