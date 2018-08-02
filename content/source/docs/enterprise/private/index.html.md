@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private"
+sidebar_current: "docs-enterprise2-private-home"
 ---
 
 # Private Terraform Enterprise
