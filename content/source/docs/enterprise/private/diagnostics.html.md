@@ -105,7 +105,7 @@ You will note that we first create a support bundle using the normal procedure,
 extract it, remove the files we want to omit, and then create a new one.
 
 
-## Windows
+### Windows
 
 On Microsoft Windows, tools such as [PSCP](https://www.ssh.com/ssh/putty/putty-manuals/0.68/Chapter5.html) and [WinSCP](https://winscp.net/eng/index.php) can be used to transfer the file.
 
