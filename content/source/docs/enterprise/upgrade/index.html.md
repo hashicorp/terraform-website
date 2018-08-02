@@ -10,8 +10,6 @@ If you used the legacy version of Terraform Enterprise (TFE), you probably have 
 
 Follow these steps to migrate your old TFE environments to new TFE workspaces.
 
-~> **Important:** Workspace migration is not yet available in Private Terraform Enterprise (PTFE). A future PTFE release will enable migration.
-
 ## Step 1: Create a New Organization
 
 You can't use the current version of TFE with a legacy organization because the internals are too different. If you don't already have an organization in the new TFE, do the following:
