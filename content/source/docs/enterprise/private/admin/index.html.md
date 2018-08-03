@@ -17,13 +17,15 @@ This section is about in-application administration, including general settings,
 
 ## Accessing the Admin Interface
 
-Only Private Terraform Enterprise users with the site-admin permission can access the administrative functions. To view, search, and update settings in the UI, click your user icon in the upper right, then click **Site Admin**:
+Only Private Terraform Enterprise users with the site-admin permission can access the administrative functions.
 
-(screenshot)
+To navigate to the site admin section of the UI, click your user icon in the upper right, then click **Site Admin**:
 
-which will take you to the admin area. Currently, it defaults to showing the user management page. 
+![screenshot: the "Site Admin" link in the user menu](./images/admin-navigate.png)
 
-(screenshot of admin pages)
+This will take you to the admin area. Currently, it defaults to showing the user management page; use the navigation on the left to access the other administrative functions.
+
+![screenshot: the user management page, with the site administration navigation list on the left side](./images/admin-users.png)
 
 ## Administration Tasks
 
