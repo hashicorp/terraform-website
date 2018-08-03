@@ -116,3 +116,5 @@ Before deleting, make sure the legacy environment is no longer needed. In partic
 
     History migration is a silent background process, and TFE does not display its status to normal users. However, site admins can view migration status in TFE's admin pages. To find out whether migration has finished, wait several days after migrating your final legacy environment, then contact the administrators of your TFE instance. For the SaaS version of TFE, email HashiCorp support; for private installs, contact your organization's admins.
 
+    If you are an administrator of your private TFE instance, you can view the current status of all history migrations [on the Migrations page of the site admin section](../private/admin/resources.html#migration-of-workspace-history-from-legacy-environments).
+
