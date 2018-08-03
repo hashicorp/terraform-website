@@ -25,6 +25,8 @@ This page will provide answers to many common questions around Private Terraform
 
 ## About the Private Terraform Enterprise AMI
 
+!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Private Terraform Enterprise Installer.
+
 This document contains information about the Terraform Enterprise AMI.
 
 ### Operating System

@@ -25,6 +25,8 @@ Then, attach the bundle to your support ticket. If possible, use the SendSafely 
 
 ## AMI-based installs
 
+!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Private Terraform Enterprise Installer.
+
 To generate a support bundle, connect to the instance via ssh and run `sudo hashicorp-support`. Below is a sample session:
 
 ```
