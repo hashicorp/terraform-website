@@ -30,5 +30,5 @@ This will take you to the admin area. Currently, it defaults to showing the user
 ## Administration Tasks
 
 * [General settings](./general.html)
-* [Integration Settings](./integrations.html)
+* [Service Integrations](./integration.html)
 * [Managing Accounts and Resources](./resources.html)
