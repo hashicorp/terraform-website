@@ -119,7 +119,9 @@ Parameter            | Description
 `:organization_name` | The name of the organization that owns the OAuth connection.
 `:id`                | The ID of the OAuth client to destroy.
 
-This endpoint allows you to remove an existing connection between an organization and a VCS provider (GitHub, Bitbucket, or GitLab). Note that removing the OAuth Client will unlink workspaces that use this connection from their repositories, and these workspaces will need to be manually linked to another repository.
+This endpoint allows you to remove an existing connection between an organization and a VCS provider (GitHub, Bitbucket, or GitLab).
+
+**Note:** Removing the OAuth Client will unlink workspaces that use this connection from their repositories, and these workspaces will need to be manually linked to another repository.
 
 Status  | Response                                        | Reason
 --------|---------------------------|----------
