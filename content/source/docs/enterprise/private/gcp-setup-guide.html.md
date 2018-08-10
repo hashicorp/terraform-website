@@ -1,13 +1,13 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer) - GCP Setup Guide"
+page_title: "Private Terraform Enterprise Reference Architecture (GCP)"
 sidebar_current: "docs-enterprise2-private-installer-gcp"
 description: |-
   This document provides recommended practices and a reference architecture for
   HashiCorp Private Terraform Enterprise (PTFE) implementations on GCP.
 ---
 
-# Private Terraform Enterprise GCP Setup Guide
+# Private Terraform Enterprise Reference Architecture (GCP)
 
 This document provides recommended practices and a reference architecture for
 HashiCorp Private Terraform Enterprise (PTFE) implementations on GCP.
