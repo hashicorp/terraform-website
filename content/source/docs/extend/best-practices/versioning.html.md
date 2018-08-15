@@ -6,23 +6,13 @@ description: |-
   Recommendations for version numbering and documentation.
 ---
 
-# Versioning
+# Versioning and Changelog
 
-Given the breadth of available Terraform providers, ensuring a consistent experience means setting a standard guideline for compatibility promises. These guidelines are enforced for providers released by HashiCorp and are recommended for all community providers.
-
-## Table of Contents
-
-- [Versioning Specification](#versioning-specification)
-- [Changelog Specification](#changelog-specification)
-  - [Version Headers](#version-headers)
-  - [Catagorization](#catagorization)
-  - [Entry Format](#entry-format)
-  - [Entry Ordering](#entry-ordering)
-  - [Example Changelog](#example-changelog)
+Given the breadth of available Terraform plugins, ensuring a consistent experience across them requires a standard guideline for compatibility promises. These guidelines are enforced for plugins released by HashiCorp and are recommended for all community plugins.
 
 ## Versioning Specification
 
-Observing that Terraform providers are in many ways analogous to shared libraries in a programming language, we adopted a version numbering scheme for providers that follows the guidelines of [Semantic Versioning](http://semver.org/). In summary, this means that with a version number of the form `MAJOR`.`MINOR`.`PATCH`, the following meanings apply:
+Observing that Terraform plugins are in many ways analogous to shared libraries in a programming language, we adopted a version numbering scheme that follows the guidelines of [Semantic Versioning](http://semver.org/). In summary, this means that with a version number of the form `MAJOR`.`MINOR`.`PATCH`, the following meanings apply:
 
 - Increasing only the patch number suggests that the release includes only bug fixes, and is intended to be functionally equivalent.
 - Increasing the minor number suggests that new features have been added but that existing functionality remains broadly compatible.
@@ -40,7 +30,7 @@ The upcoming release version number is always at the top of the file and is mark
 
 ~> **NOTE:** For HashiCorp released providers, the release process will replace the "Unreleased" header with the current date. This line must be present with the target release version to successfully release that version.
 
-```md
+```text
 ## X.Y.Z (Unreleased)
 
 ...
@@ -51,19 +41,19 @@ The upcoming release version number is always at the top of the file and is mark
 ...
 ```
 
-### Catagorization
+### Categorization
 
 Information in the changelog should broken down as follows:
 
-- Backwards incompatibilities (`BACKWARDS INCOMPATIBILITIES`/`BREAKING CHANGES`): This section documents in brief any incompatible changes and how to handle them. This should only be present in major version upgrades.
-- Notes (`NOTES`): Additional information for potentially unexpected upgrade behavior, upcoming deprecations, or to highlight very important crash fixes (e.g. due to upstream API changes)
-- Features (`FEATURES`): These are major new improvements that deserve a special highlight, such as a new resource or data source.
-- Improvements (`IMPROVEMENTS`/`ENHANCEMENTS`): Smaller features added to the project such as a new attribute for a resource.
-- Bug fixes (`BUG FIXES`): Any bugs that were fixed.
+- **BACKWARDS INCOMPATIBILITIES** or **BREAKING CHANGES**: This section documents in brief any incompatible changes and how to handle them. This should only be present in major version upgrades.
+- **NOTES**: Additional information for potentially unexpected upgrade behavior, upcoming deprecations, or to highlight very important crash fixes (e.g. due to upstream API changes)
+- **FEATURES**: These are major new improvements that deserve a special highlight, such as a new resource or data source.
+- **IMPROVEMENTS** or **ENHANCEMENTS**: Smaller features added to the project such as a new attribute for a resource.
+- **BUG FIXES**: Any bugs that were fixed.
 
-These should be displayed as a top level keyword (e.g. `BUG FIXES:`) with new lines above and below:
+These should be displayed as left aligned text with new lines above and below:
 
-```md
+```text
 
 CATEGORY:
 
@@ -73,11 +63,11 @@ CATEGORY:
 
 Each entry under a category should use the following format:
 
-```md
+```text
 * subsystem: Descriptive message [GH-1234]
 ```
 
-For provider development typically the "subsystem" is the resource or data source affected e.g. `resource/vpc`, or `provider` if the change affects whole provider (e.g. authentication logic). Each bullet also references the corresponding pull request number that contained the code changes, in the format of `[GH-####]` (for HashiCorp released providers, this will be automatically updated on release).
+For provider development typically the "subsystem" is the resource or data source affected e.g. `resource/load_balancer`, or `provider` if the change affects whole provider (e.g. authentication logic). Each bullet also references the corresponding pull request number that contained the code changes, in the format of `[GH-####]` (for HashiCorp released plugins, this will be automatically updated on release).
 
 ### Entry Ordering
 
@@ -88,7 +78,7 @@ To order entries, these basic rules should be followed:
 
 ### Example Changelog
 
-```md
+```text
 ## 1.0.0 (Unreleased)
 
 BREAKING CHANGES:
