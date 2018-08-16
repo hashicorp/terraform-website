@@ -8,6 +8,7 @@ sidebar_current: "docs-enterprise2-migrating"
 [backend]: /docs/backends/index.html
 [cli-workspaces]: /docs/state/workspaces.html
 [user-token]: ../users-teams-organizations/users.html#api-tokens
+[remote-backend]: /docs/backends/types/remote.html
 
 # Migrating State from Terraform Open Source
 
@@ -33,7 +34,13 @@ Make sure you have all of the following:
     export TFE_TOKEN=<USER TOKEN>
     ```
 
-## Step 2: Prepare Your Terraform Working Directory
+## Step 2: Stop Terraform Runs
+
+However you currently run Terraform to manage this infrastructure, stop. Let any current runs finish, then make sure there won't be more.
+
+This might involve locking or deleting CI jobs, restricting access to the state backend, or just communicating very clearly with your colleagues.
+
+## Step 3: Prepare Your Terraform Working Directory
 
 In your shell, go to the directory with the Terraform configuration you're migrating.
 
@@ -41,7 +48,7 @@ In your shell, go to the directory with the Terraform configuration you're migra
 - If you had to retrieve a `terraform.tfstate` file from elsewhere, copy it into the root of the working directory and run `terraform init`.
 - If you use a remote backend and had to check out a fresh working directory from version control, run `terraform init`.
 
-## Step 3: Edit the Backend Configuration
+## Step 4: Edit the Backend Configuration
 
 If the Terraform configuration has an existing backend block, delete it now.
 
@@ -63,9 +70,9 @@ terraform {
 - Use the `remote` backend.
 - In the `organization` attribute, specify the name of your TFE organization.
 - The `hostname` attribute is only necessary with private TFE instances. You can omit it if you're using the SaaS version of TFE.
-- In the `name` attribute in the `workspaces` block, specify the name of a new workspace to create with your state. You should ensure that a workspace with this name does not already exist in your organization.
+- In the `name` attribute in the `workspaces` block, specify the name of a new workspace to create with your state. You should ensure that a workspace with this name does not already exist in your organization. See [the remote backend documentation][remote-backend] for details.
 
-## Step 4: Run `terraform init` and Answer "Yes"
+## Step 5: Run `terraform init` and Answer "Yes"
 
 Run `terraform init`.
 
@@ -81,7 +88,7 @@ Do you want to copy existing state to the new backend?
 
 Answer "yes," and Terraform will migrate your state.
 
-## Step 5: Configure the TFE Workspace
+## Step 6: Configure the TFE Workspace
 
 Make any settings changes necessary for your new workspace.
 
@@ -89,7 +96,7 @@ Make any settings changes necessary for your new workspace.
 - Set variable values appropriately
 - Set team access permissions
 
-## Step 6: Queue a Run in the New Workspace
+## Step 7: Queue a Run in the New Workspace
 
 In TFE, queue a plan in the new workspace. Examine the results.
 
