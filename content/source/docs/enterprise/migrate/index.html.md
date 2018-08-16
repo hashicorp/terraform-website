@@ -9,6 +9,7 @@ sidebar_current: "docs-enterprise2-migrating"
 [cli-workspaces]: /docs/state/workspaces.html
 [user-token]: ../users-teams-organizations/users.html#api-tokens
 [remote-backend]: /docs/backends/types/remote.html
+[cli-credentials]: /docs/commands/cli-config.html#credentials
 
 # Migrating State from Terraform Open Source
 
@@ -26,13 +27,7 @@ Make sure you have all of the following:
     - If you were using the default `local` backend, your state is a file on disk. You need the original working directory where you've been running Terraform, or a copy of the `terraform.tfstate` file to copy into a fresh working directory.
     - For remote backends, you need the path to the particular storage being used (usually already included in the configuration) and access credentials (which you usually must set as an environment variable).
 - A TFE user account which is a member of your organization's owners team, so you can create workspaces.
-- A [user API token][user-token] for your TFE user account. (Organization and team tokens will not work; the token must be associated with an individual user.)
-
-    In your shell, set a `TFE_TOKEN` environment variable with your API token as the value.
-
-    ``` bash
-    export TFE_TOKEN=<USER TOKEN>
-    ```
+- A [user API token][user-token] for your TFE user account configured using your [CLI configuration file][cli-credentials]. (Organization and team tokens will not work; the token must be associated with an individual user.)
 
 ## Step 2: Stop Terraform Runs
 
