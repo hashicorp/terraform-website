@@ -25,6 +25,14 @@ practice is also linked in navigation on the left.
 
 The Best Practices section is a work in progress, with more sections to come.
 
+## Deprecations, Removals, and Renames
+
+Over time, remote services evolve and better workflows are designed.
+Terraform's plugin system has functionality to aid in iterative improvements.
+In [Deprecations, Removals, and Renames][deprecations], we cover procedures for
+backwards compatible code and documentation updates to ensure that operators
+are well informed of changes ahead of functionality being removed or renamed.
+
 ## Detecting Drift
 
 Terraform is a declarative tool designed to be the source of truth for
@@ -46,5 +54,6 @@ Terraform would expect a resource to behave.
 
 [Click here to learn more.][drift]
 
+[deprecations]: /docs/extend/best-practices/deprecations.html
 [drift]: /docs/extend/best-practices/detecting-drift.html
 [testing-patterns]: /docs/extend/best-practices/testing.html
