@@ -17,7 +17,11 @@ If you already use Terraform to manage infrastructure, you're probably managing 
 
 ~> **Important:** These instructions are for migrating state in a basic working directory that only uses the `default` workspace. If you use multiple [workspaces][cli-workspaces] in one working directory, the instructions are different; see [Migrating State from Multiple Terraform Workspaces](./workspaces.html) instead.
 
-## Step 1: Gather Credentials, Data, and Code
+## Step 1: Ensure Terraform ≥ 0.11.8 is Installed
+
+To follow these instructions, you need Terraform 0.11.8 or later on the workstation where you are performing the migration. The remote backend this process relies on is not present in older versions.
+
+## Step 2: Gather Credentials, Data, and Code
 
 Make sure you have all of the following:
 
@@ -29,13 +33,13 @@ Make sure you have all of the following:
 - A TFE user account which is a member of your organization's owners team, so you can create workspaces.
 - A [user API token][user-token] for your TFE user account configured using your [CLI configuration file][cli-credentials]. (Organization and team tokens will not work; the token must be associated with an individual user.)
 
-## Step 2: Stop Terraform Runs
+## Step 3: Stop Terraform Runs
 
 However you currently run Terraform to manage this infrastructure, stop. Let any current runs finish, then make sure there won't be more.
 
 This might involve locking or deleting CI jobs, restricting access to the state backend, or just communicating very clearly with your colleagues.
 
-## Step 3: Prepare Your Terraform Working Directory
+## Step 4: Prepare Your Terraform Working Directory
 
 In your shell, go to the directory with the Terraform configuration you're migrating.
 
@@ -43,7 +47,7 @@ In your shell, go to the directory with the Terraform configuration you're migra
 - If you had to retrieve a `terraform.tfstate` file from elsewhere, copy it into the root of the working directory and run `terraform init`.
 - If you use a remote backend and had to check out a fresh working directory from version control, run `terraform init`.
 
-## Step 4: Edit the Backend Configuration
+## Step 5: Edit the Backend Configuration
 
 If the Terraform configuration has an existing backend block, delete it now.
 
@@ -67,7 +71,7 @@ terraform {
 - The `hostname` attribute is only necessary with private TFE instances. You can omit it if you're using the SaaS version of TFE.
 - In the `name` attribute in the `workspaces` block, specify the name of a new workspace to create with your state. You should ensure that a workspace with this name does not already exist in your organization. See [the remote backend documentation][remote-backend] for details.
 
-## Step 5: Run `terraform init` and Answer "Yes"
+## Step 6: Run `terraform init` and Answer "Yes"
 
 Run `terraform init`.
 
@@ -83,15 +87,15 @@ Do you want to copy existing state to the new backend?
 
 Answer "yes," and Terraform will migrate your state.
 
-## Step 6: Configure the TFE Workspace
+## Step 7: Configure the TFE Workspace
 
 Make any settings changes necessary for your new workspace.
 
-- Set the VCS repository
-- Set variable values appropriately
-- Set team access permissions
+- [Set the VCS repository](../workspaces/settings.html#vcs-connection-and-repository)
+- [Set variable values appropriately](../workspaces/variables.html)
+- [Set team access permissions](../workspaces/access.html)
 
-## Step 7: Queue a Run in the New Workspace
+## Step 8: Queue a Run in the New Workspace
 
 In TFE, queue a plan in the new workspace. Examine the results.
 
