@@ -9,9 +9,9 @@ description: |-
 
 # Sweepers
 
-Acceptance tests in Terraform provision and verify real infrastructure using Terraform's testing framework (see [Acceptance Tests](/docs/extend/testing/acceptance-tests/index.html) for more information). Ideally all infrastructure created is then destroyed within the lifecycle of a test, however the reality is that there are several situations that can arise where resources created during a test are “leaked”. Leaked test resources are resources created by Terraform during a test, but Terraform either failed to destroy them at it’s conclusion, or the test falsely reported all resources were destroyed after completing the test. Common causes are intermittent errors or failures in vendor APIs, or developer error in the resource code or test.
+Acceptance tests in Terraform provision and verify real infrastructure using [Terraform's testing framework](/docs/extend/testing/acceptance-tests/index.html). Ideally all infrastructure created is then destroyed within the lifecycle of a test, however the reality is that there are several situations that can arise where resources created during a test are “leaked”. Leaked test resources are resources created by Terraform during a test, but Terraform either failed to destroy them as part of the test, or the test falsely reported all resources were destroyed after completing the test. Common causes are intermittent errors or failures in vendor APIs, or developer error in the resource code or test.
 
-To address the possibility of leaked resources, Terraform provides a mechanism called `sweepers` to cleanup leftover infrastructure. We will add a file to our folder structure that will invoke the sweeper helper.
+To address the possibility of leaked resources, Terraform provides a mechanism called sweepers to cleanup leftover infrastructure. We will add a file to our folder structure that will invoke the sweeper helper.
 
 ```
 terraform-plugin-example/
@@ -23,7 +23,7 @@ terraform-plugin-example/
 │   ├── resource_example_compute_test.go
 ```
 
-example_sweeper_test.go
+__`example_sweeper_test.go`__
 
 ```go
 package example
@@ -47,7 +47,7 @@ func sharedClientForRegion(region string) (interface{}, error) {
 
 `resource.TestMain` is responsible for parsing the special test flags and invoking the sweepers. Sweepers should be added within the acceptance test file of a resource.
 
-resource_example_compute_test.go
+__`resource_example_compute_test.go`__
 
 ```go
 package example
@@ -87,11 +87,11 @@ func init() {
 }
 ```
 
-This example demonstrates adding a sweeper, it is important to note that the string passed to `resource.AddTestSweepers` is added to a map, this name must be unique. Also note there needs to be a way of identifying resources created by Terraform during acceptance tests, a common practice is to prefix all resource names created during acceptance tests with `"test-acc"` or something similar.
+This example demonstrates adding a sweeper, it is important to note that the string passed to `resource.AddTestSweepers` is added to a map, this name must therefore be unique. Also note there needs to be a way of identifying resources created by Terraform during acceptance tests, a common practice is to prefix all resource names created during acceptance tests with `"test-acc"` or something similar.
 
 For more complex leaks, sweepers can also specify a list of sweepers that need to be run prior to the one being defined.
 
-resource_example_compute_disk_test.go
+__`resource_example_compute_disk_test.go`__
 
 ```go
 package example
