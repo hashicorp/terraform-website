@@ -12,7 +12,7 @@ This document contains information about interacting with Private Terraform Ente
 
 ### Installer
 
-Installer-based PTFE runs in a set of Docker containers. As such, any tooling that can interact with Docker logs can read the logs. This includes the command docker logs, as well as access via the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
+Installer-based PTFE runs in a set of Docker containers. As such, any tooling that can interact with Docker logs can read the logs. This includes the command `docker logs`, as well as access via the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
 
 An example of a tool that can automatically pull logs for all docker containers is [logspout](https://github.com/gliderlabs/logspout).
 Logspout can be configured to take the Docker logs and send them to a syslog endpoint. Here's an example invocation:
