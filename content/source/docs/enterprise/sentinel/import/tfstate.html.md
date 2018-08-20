@@ -72,8 +72,8 @@ from name to data source. For the documentation on the value, see
 
 This returns a list of data sources and behaves exactly how a resource lookup
 behaves with the m.resources.TYPE.NAME syntax above. All fields that are
-accessible within resources are available within a data source, save `tainted`,
-as data sources cannot be tainted.
+accessible within resources are available within a data source, except for
+`tainted`, as data sources cannot be tainted.
 
 ### m.outputs.NAME
 
