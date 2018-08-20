@@ -119,14 +119,6 @@ validate a policy against all resources of a particular type, you will
 need to use logic similar to that in the second example in the
 [tfplan.module_paths](#tfplan-module_paths) section above.
 
-### tfplan.data
-
-`data` returns a map of all the data sources in the root module.
-This is identical to `tfplan.module([]).data`. If you want to
-validate a policy against all data sources of a particular type,
-you will need to use logic similar to that in the second example in
-the [tfplan.module_paths](#tfplan-module_paths) section above.
-
 ### tfplan.module(path)
 
 The module function finds the module at the given path and returns
@@ -212,16 +204,6 @@ r = m.resources.aws_instance.app
 // There should only be a single app instance being created.
 main = rule { length(r) is 1 }
 ```
-
-### module.data.TYPE.NAME
-
-This returns a list of data sources with the given type and name, and behaves
-exactly how a resource lookup behaves with the module.resources.TYPE.NAME syntax
-above. All fields that are accessible within [resources](#type-resource) are
-available within a data source.
-
-Note for a data source to be present here, it must be in the plan, which
-generally means it must have some unknown data at plan time.
 
 ## Type: resource
 
