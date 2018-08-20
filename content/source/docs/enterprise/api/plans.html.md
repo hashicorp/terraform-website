@@ -49,6 +49,9 @@ curl \
     "type": "plans",
     "attributes": {
       "has-changes": true,
+      "resource-additions": 0,
+      "resource-changes": 1,
+      "resource-destructions": 0,
       "status": "finished",
       "status-timestamps": {
         "queued-at": "2018-07-02T22:29:53+00:00",
