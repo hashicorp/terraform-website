@@ -53,6 +53,28 @@ Terraform. Providers (with Resources and/or Data Sources), and Provisioners
 are all defined in terms of the Schema package, which includes builtin types
 and methods for developers to use when writing plugins.
 
+## [Resources](/docs/extend/resources.html)
+
+The Resource package provides several utilities and conveniences for handling
+tasks such as state migrations and customized difference behavior, these tasks
+often come up during provider development as schemas must change and evolve over
+time.
+
+## [Best Practices](/docs/extend/best-practices/index.html)
+
+The Best Practices section offers guides on techniques that range from the steps
+required to deprecate schema attributes, to testing patterns,
+and how to version and manage a provider changelog. These techniques were
+learned through years of Terraform development from both HashiCorp employees
+and Community members.
+
+## [Testing](/docs/extend/testing/index.html)
+
+Terraform provides a testing framework for validating resource implementations.
+The Testing section provides a breakdown of how to compose these tests using
+Test Cases and Test Steps, as well as covering unit test conventions and how
+they apply to Terraform plugin development.
+
 ## [Community](/docs/extend/community/index.html)
 
 Terraform is a mature project with a growing community. There are active,
