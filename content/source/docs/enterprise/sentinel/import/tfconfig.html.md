@@ -15,10 +15,10 @@ to describe the desired infrastructure state. This import alone doesn't
 give you access to the state of the infrastructure. To view the state
 of the infrastructure, see the `tfstate` import.
 
-Policies using the tfconfig import can access all aspects of the configuration:
-providers, resources, data sources, modules, variables, etc. Note that since
-this is the configuration and not an invocation of Terraform, you can't see
-values for variables, state, etc.
+Policies using the tfconfig import can access all aspects of the
+configuration: providers, resources, modules, variables, etc. Note
+that since this is the configuration and not an invocation of Terraform,
+you can't see values for variables, state, etc.
 
 ### tfconfig.modules
 
@@ -62,21 +62,6 @@ value, see `m.resources.TYPE.NAME`
 
 This returns the resource with the given type and name.
 
-### m.data
-
-This returns all the data sources in the module as a map. The map
-key is the type, the value is the same as `m.data.TYPE`.
-
-### m.data.TYPE
-
-This returns all the data sources in the module with the given type
-as a map from name to data source. For the documentation on the
-value, see `m.data.TYPE.NAME`
-
-### m.data.TYPE.NAME
-
-This returns the data source with the given type and name.
-
 ### m.variables
 
 This returns all the defined variables for the module.
@@ -111,13 +96,6 @@ This returns the value of the field.
 ### r.config.FIELD
 
 The FIELD is a field within the resource to access. This returns the
-value of the field.
-
-## Type: d
-
-### d.config.FIELD
-
-The FIELD is a field within the data source to access. This returns the
 value of the field.
 
 ## Type: v
