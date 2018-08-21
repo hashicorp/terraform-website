@@ -304,7 +304,7 @@ including another `schema`. Set items cannot be repeated.
 **Schema example:** 
 
 ```go
-"ingress_rule": {
+"ingress": {
   Type:     schema.TypeSet,
   Elem: &schema.Resource{
     Schema: map[string]*schema.Schema{
