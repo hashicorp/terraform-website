@@ -178,11 +178,12 @@ The decision you make will be entered during setup.
 
 #### Mounted Disk Guidelines
 
-The mounted disk option provides for significant flexibility in how PTFE stores its data. To help narrow down possibilites here are our guidelines about using mounted disk storage.
+The mounted disk option provides significant flexibility in how PTFE stores its data. To help narrow down the possibilites, we've provided the following guidelines for mounted disk storage.
 
 ##### Supported Mounted Disk Types
 
-The follow are **supported** mounted disk types:
+The following are **supported** mounted disk types:
+
 * AWS EBS
 * GCP Zonal Persistent Disk
 * Azure Disk Storage
@@ -190,15 +191,16 @@ The follow are **supported** mounted disk types:
 * SAN
 * Physically connected disks as in non-cloud hardware
 
-###### Additional Note about Disk Resizing
+###### Disk Resizing
 
-Depending on your Cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
+Depending on your cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
 
-For example, with RedHat-flavour (eg. RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article ["How to: Resize Linux osDisk partition on Azure"](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/)..
+For example, with RedHat-flavor (RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article [How to: Resize Linux osDisk partition on Azure](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
 
 ##### Unsupported Mounted Disk Types
 
-The follow are **not supported** mounted disk types:
+The following are **not** supported mounted disk types:
+
 * NFS
 * SMB/CIFS
 
