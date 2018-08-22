@@ -100,7 +100,7 @@ application data stored in this location. This allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy. 
 
-S3-compatible can be Google Cloud storage, Azure blob storage, or [ceph](https://ceph.com/), among many others. Please feel free to reach out to [support](https://www.hashicorp.com/support) with questions. 
+S3-compatible storage can be Google Cloud storage, Azure blob storage, or [ceph](https://ceph.com/), among many others. Please feel free to reach out to [support](https://www.hashicorp.com/support) with questions. 
 
 ### Vault Servers
 
@@ -166,9 +166,9 @@ template.
 
 The PTFE application is connect to the Postgres database via the Postgres URL.
 
-The PTFE application is connected to object storage via the S3 endpoint for the
+The PTFE application is connected to object storage via the API endpoint for the
 defined storage location and all object storage requests are routed to the highly
-available infrastructure supporting S3.
+available infrastructure supporting the storage location.
 
 The PTFE application is connected to the Vault cluster via the Vault cluster
 endpoint URL.
@@ -237,7 +237,7 @@ From the AWS website:
 > separated within an AWS Region.
 > ([source](https://aws.amazon.com/s3/))*
 
-Other cloud provider (Azure, GCP) also provide highly available storage. If you choose to utilize an on-premises storage solution, such as ceph, it will be your responsibility to configure HA as required by your implementation. 
+Other cloud providers (Azure, GCP) also provide highly available storage. If you choose to utilize an on-premises storage solution, such as ceph, it will be your responsibility to configure HA as required by your implementation. 
 
 #### Vault Servers
 
