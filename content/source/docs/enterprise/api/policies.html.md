@@ -101,7 +101,7 @@ curl \
           "mode":"advisory"
         }
       ],
-      "updated-at":"2017-10-10T20:52:13.898Z"
+      "updated-at": null
     },
     "links": {
       "self":"/api/v2/policies/pol-u3S5p2Uwk21keu1s",
