@@ -42,7 +42,7 @@ TFE cannot currently import settings and workspaces from an existing TFE legacy 
 
 To collaborate with your colleagues in TFE, you'll all need access to the same TFE organization. You can add users to an organization by creating a _team_ and adding users to it.
 
-First, navigate to the settings page for your organization — you can reach it from the organization dropdown menu at the top of every page. Once there, click the "Teams" link in the sidebar navigation.
+First, navigate to the settings page for your organization — you can reach it from the "Settings" link found at the top of every page. Once there, click the "Teams" link in the sidebar navigation.
 
 The list of teams starts with just one team, named "owners." Don't add users to this team yet; instead, enter a new team name (like "core-infrastructure") in the text field and click the "Create team" button.
 
