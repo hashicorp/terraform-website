@@ -18,7 +18,7 @@ Parameter | Description
 ----------|------------
 `id`      | The ID of the plan to show.
 
-As there is no endpoint to list plans, you can find the ID for a plan in the
+There is no endpoint to list plans. You can find the ID for a plan in the
 `relationships.plan` property of a run object.
 
 Status  | Response                                | Reason
