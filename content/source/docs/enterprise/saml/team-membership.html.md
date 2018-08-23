@@ -10,17 +10,13 @@ Terraform Enterprise (TFE) can automatically add users to teams based on their S
 
 ## Configuring Team Membership Mapping
 
-Team membership mapping is controlled with the "Enable team membership" checkbox in the SAML section of the TFE admin pages.
+Team membership mapping is controlled by including the [Team Attribute Name](./configuration.html) in your SAML assertion. You must specify the name of a SAML attribute in the [Team Attribute Name](./configuration.html) setting, and make sure the AttributeStatement in the SAMLResponse contains a list of AttributeValue items.
 
-![Screenshot: the TFE SAML admin page](./images/sso-tfe-admin.png)
-
-Once you enable it, you must specify the name of a SAML attribute in the [Team Attribute Name](./configuration.html) setting, and make sure the AttributeStatement in the SAMLResponse contains a list of AttributeValue items.
-
-Once team membership mapping is enabled, users logging in via SAML are automatically added to the teams included in their assertion, and automatically removed from any teams that _aren't_ included in their assertion. Note that this overrides any manually set team memberships; whenever the user logs in, their team membership is adjusted to match their SAML assertion.
+If the [Team Attribute Name](./configuration.html) is included in your SAML assertion, users logging in via SAML are automatically added to the teams included in their assertion, and automatically removed from any teams that _aren't_ included in their assertion. Note that this overrides any manually set team memberships; whenever the user logs in, their team membership is adjusted to match their SAML assertion.
 
 Any team names that don't match existing teams are ignored; TFE will not automatically create new teams.
 
-To disable team membership mapping, uncheck the "Team membership mapping enabled?" checkbox in the SAML admin page. With mapping disabled, TFE won't automatically manage team membership on login, and you can manually add users to teams via the organization settings page.
+To disable team membership mapping, remove the [Team Attribute Name](./configuration.html) from your SAML assertion. With mapping disabled, TFE won't automatically manage team membership on login, and you can manually add users to teams via the organization settings page.
 
 ## Team Names
 
