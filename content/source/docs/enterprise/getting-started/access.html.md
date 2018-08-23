@@ -46,8 +46,6 @@ First, navigate to the settings page for your organization — you can reach it
 
 The list of teams starts with just one team, named "owners." Don't add users to this team yet; instead, enter a new team name (like "core-infrastructure") in the text field and click the "Create team" button.
 
-Once the team is created, click its name. This will navigate to the team page:
-
 ![adding members to a team](./images/access-add-members.png)
 
 Add as many users as you'd like by typing their TFE username in the text field and clicking "Add user." Added users won't receive a notification, but your organization will be available the next time they access TFE.
