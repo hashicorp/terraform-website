@@ -30,14 +30,14 @@ Depending on the chosen [operational
 mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single virtual machine
 for demo or proof of concept installations, to multiple virtual machines
-hosting postgres, access to S3, Azure or Google Cloud storage, and external Vault servers for
+hosting the Terraform Enterprise application, PostgreSQL, and external Vault servers for
 a stateless production installation.
 
 This reference architecture focuses on the “Production - External Services”
 operational mode. If you require all of the pTFE infrastructure to be on-prem,
 you can either deploy S3-compatible storage [such as ceph](http://ceph.com/) or select the
 “Production - Mounted Disk” option. This option will require you to specify the
-local path for the storage where postgres data will be stored and where the
+local path for the storage where PostgreSQL data will be stored and where the
 data typically written to S3 (blob) will be stored.  The assumption is this
 local path is a mounted disk from either a SAN or NAS device (or some other
 replicated storage), allowing for rapid recovery or failover. More information
@@ -45,7 +45,7 @@ about the Mounted Disk option can be found at the end of this document.
 
 The following table provides high-level server recommendations as a guideline.
 Please note, thick provision, lazy zeroed storage is preferred. Thin
-provisioned is only recommended if you are using an external postgres database
+provisioned is only recommended if you are using an external PostgreSQL database
 as well as an external vault server. Using thin provisioned disks when using
 the internal database or vault may result in serious performance issues.
 
@@ -95,12 +95,12 @@ An [S3 Standard](https://aws.amazon.com/s3/storage-classes/) bucket, or compatib
 specified during the PTFE installation for application data to be stored
 securely and redundantly away from the virtual servers running the PTFE
 application. This object storage must be accessible via the network to the PTFE virtual
-machine as well as the postgres server. Vault is used to encrypt all
+machine as well as the PostgreSQL server. Vault is used to encrypt all
 application data stored in this location. This allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy. 
 
-S3-compatible storage can be Google Cloud storage, Azure blob storage, or [ceph](https://ceph.com/), among many others. Please feel free to reach out to [support](https://www.hashicorp.com/support) with questions. 
+Recommended object storage solutions are AWS S3, Google Cloud storage, Azure blob storage. Other options for S3-compatible storage are [minio](https://www.minio.io/) and [ceph](https://ceph.com/), among many others. Please feel free to reach out to [support](https://www.hashicorp.com/support) with questions. 
 
 ### Vault Servers
 
@@ -114,7 +114,7 @@ endpoint the PTFE servers can reach.
 #### Network
 
 To deploy PTFE on VMWare you will need to create new or use existing networking
-infrastructure that has access to not only the S3 bucket, the Postgres
+infrastructure that has access to not only the S3 bucket, the PostgreSQL
 instance, and the Vault server, but also any infrastructure you expect to
 manage with the PTFE server. If you plan to use your PTFE server to manage or
 deploy AWS, you will need to make sure the PTFE server has unimpeded access to
@@ -164,7 +164,7 @@ template.
 
 ### Component Interaction
 
-The PTFE application is connect to the Postgres database via the Postgres URL.
+The PTFE application is connect to the PostgreSQL database via the PostgreSQL URL.
 
 The PTFE application is connected to object storage via the API endpoint for the
 defined storage location and all object storage requests are routed to the highly
@@ -218,8 +218,8 @@ VM after services have been started on it in the event of a failure.
 
 #### PostgreSQL Database
 
-Using a postgres cluster will provide fault tolerance at the database layer.
-Documentation on how to deploy a postgres cluster can be found on the [postgres
+Using a PostgreSQL cluster will provide fault tolerance at the database layer.
+Documentation on how to deploy a PostgreSQL cluster can be found on the [PostgreSQL
 documentation
 page](https://www.postgresql.org/docs/9.5/static/creating-cluster.html).
 
@@ -282,7 +282,7 @@ Vault backup and recovery.
 
 ### Normal Operation
 
-The postgres database will be run in a local container and data will be
+The PostgreSQL database will be run in a local container and data will be
 written to the specified path (which should be a mounted storage device,
 replicated and/or backed up frequently.)
 
@@ -327,11 +327,11 @@ VM after services have been started on it in the event of a failure.
 
 #### PostgreSQL Database
 
-When running in mounted storage mode the postgres server runs inside a
-Docker container. If the postgres service fails a new container should
+When running in mounted storage mode the PostgreSQL server runs inside a
+Docker container. If the PostgreSQL service fails a new container should
 be automatically created. However, if the service is hung, or otherwise
 fails without triggering a new container deployment, the pTFE server
-should be stopped and the standby server started. All postgres data will
+should be stopped and the standby server started. All PostgreSQL data will
 have been written to the mounted storage and will then be accessible on
 the standby node.
 
@@ -368,7 +368,7 @@ then power up the primary server.
 
 #### PostgreSQL Database
 
-The postgres data will be written to the mounted storage. The
+The PostgreSQL data will be written to the mounted storage. The
 expectation is that the storage server is replicated or backed up
 offsite and will be made available to the server in the event of a DR.
 
