@@ -18,7 +18,7 @@ Parameter | Description
 ----------|------------
 `id`      | The ID of the apply to show.
 
-As there is no endpoint to list applies, you can find the ID for an apply in the
+There is no endpoint to list applies. You can find the ID for an apply in the
 `relationships.apply` property of a run object.
 
 Status  | Response                                  | Reason
