@@ -137,7 +137,7 @@ of this guide. You will be prompted for the public and private certificates duri
 
 ![vmware-infrastructure-diagram](./assets/vmware-infrastructure-diagram.jpg)
 
-The above diagram show the infrastructure components at a high-level.
+The above diagram shows the infrastructure components at a high-level.
 
 ### Storage Layer
 
