@@ -95,7 +95,7 @@ An [S3 Standard](https://aws.amazon.com/s3/storage-classes/) bucket, or compatib
 specified during the PTFE installation for application data to be stored
 securely and redundantly away from the virtual servers running the PTFE
 application. This object storage must be accessible via the network to the PTFE virtual
-machine as well as the PostgreSQL server. Vault is used to encrypt all
+machine. Vault is used to encrypt all
 application data stored in this location. This allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy. 
