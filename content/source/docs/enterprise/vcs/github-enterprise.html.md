@@ -52,7 +52,9 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 
 4. Click the "Register application" button, which creates the application and takes you to its page.
 
-5. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Client ID** and **Client Secret.**
+5. <a href="./images/tfe_logo.png" download>Download this image of the Terraform logo</a>, upload it with the "Upload new logo" button or the drag-and-drop target, and set the badge background color to `#5C4EE5`. This optional step helps you identify TFE's pull request checks at a glance.
+
+6. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Client ID** and **Client Secret.**
 
     ![GitHub screenshot: the new application's client ID and client secret](./images/gh-secrets.png)
 
