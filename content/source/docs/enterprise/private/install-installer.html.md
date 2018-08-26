@@ -17,7 +17,7 @@ Terraform Enterprise via the Installer. Customers using the AMI can follow the
 
 ## Migrating from AMI
 
-!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Private Terraform Enterprise Installer.
+!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018.
 
 If you are migrating an installation from the AMI to the installer, please
 use the instuctions in the [migration guide](./migrate.html).
