@@ -18,7 +18,47 @@ Observing that Terraform plugins are in many ways analogous to shared libraries 
 - Increasing the minor number suggests that new features have been added but that existing functionality remains broadly compatible.
 - Increasing the major number indicates that significant breaking changes have been made, and thus extra care or attention is required during an upgrade.
 
-Version numbers above `1.0.0` signify stronger compatibility guarantees, based on the rules above.
+Version numbers above `1.0.0` signify stronger compatibility guarantees, based on the rules above. Each increasing level can also contain changes of the lower level (e.g. `MINOR` can contain `PATCH` changes).
+
+### Example Major Number Increments
+
+Increasing the `MAJOR` number is intended to signify potentially breaking changes.
+
+Within Terraform provider development, some examples include:
+
+- Removing a resource or data source
+- Removing an attribute
+- Renaming a resource or data source
+- Renaming an attribute
+- Changing fundamental provider behaviors (e.g. authentication or configuration precedence)
+- Changing resource import ID format
+- Changing resource ID format
+- Changing attribute type where the new type is functionally incompatible (e.g. `TypeSet` to `TypeList`)
+- Changing attribute format (e.g. changing a timestamp from epoch time to a string)
+
+### Example Minor Number Increments
+
+`MINOR` increments are intended to signify the availability of new functionality or deprecations of existing functionality without breaking changes to the previous version.
+
+Within Terraform provider development, some examples include:
+
+- Marking a resource or data source as deprecated
+- Marking an attribute as deprecated
+- Adding a new resource or data source
+- Aliasing an existing resource or data source
+- Implementing new attributes within the provider configuration or an existing resource or data source
+- Implementing new validation within an existing resource or data source
+- Changing attribute type where the new type is functionally compatible (e.g. `TypeList` to `TypeSet`)
+
+### Example Patch Number Increments
+
+Increasing the `PATCH` number is intended to signify mainly bug fixes and to be functionally equivalent with the previous version.
+
+Within Terraform provider development, some examples include:
+
+- Fixing an interaction with the remote API or Terraform state drift detection (e.g. broken create, read, update, or delete functionality)
+- Fixing attributes to match behavior with resource code (e.g. removing `Optional` when an attribute can not be configured in the remote API)
+- Fixing attributes to match behavior with the remote API (e.g. changing `Required` to `Optional`, fixing validation)
 
 ## Changelog Specification
 
