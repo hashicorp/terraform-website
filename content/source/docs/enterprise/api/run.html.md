@@ -220,7 +220,7 @@ This endpoint supports pagination [with standard URL query parameters](./index.h
 Parameter      | Description
 ---------------|------------
 `page[number]` | **Optional.** If omitted, the endpoint will return the first page.
-`page[size]`   | **Optional.** If omitted, the endpoint will return 20 runs per page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 150 runs per page.
 
 ### Sample Request
 
