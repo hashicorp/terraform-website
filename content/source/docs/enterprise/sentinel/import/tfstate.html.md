@@ -24,6 +24,11 @@ The terraform version that made this state.
 Resources returns a map of all the resources in the root module.
 This is identical to tfstate.module([]).resources.
 
+### tfstate.data
+
+Resources returns a map of all the data sources in the root module.
+This is identical to tfstate.module([]).data.
+
 ### tfstate.module(path)
 
 The module function finds the module at the given path.
@@ -51,6 +56,24 @@ value, see `m.resources.TYPE.NAME`
 This returns the list of resources with the given type and name. The
 result is a list because the plan is aware that the count may be greater
 than zero.
+
+### m.data
+
+This returns all the data sources in the module as a map. The map key is the
+type, the value is the same as `m.data.TYPE`.
+
+### m.data.TYPE
+
+This returns all the data sources in the module with the given type as a map
+from name to data source. For the documentation on the value, see
+`m.data.TYPE.NAME`
+
+### m.data.TYPE.NAME
+
+This returns a list of data sources and behaves exactly how a resource lookup
+behaves with the m.resources.TYPE.NAME syntax above. All fields that are
+accessible within resources are available within a data source, except for
+`tainted`, as data sources cannot be tainted.
 
 ### m.outputs.NAME
 

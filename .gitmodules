@@ -330,3 +330,11 @@
 	path = ext/providers/brightbox
 	url = https://github.com/terraform-providers/terraform-provider-brightbox
 	branch = stable-website
+[submodule "ext/providers/acme"]
+	path = ext/providers/acme
+	url = https://github.com/terraform-providers/terraform-provider-acme
+	branch = stable-website
+[submodule "ext/providers/tfe"]
+	path = ext/providers/tfe
+	url = https://github.com/terraform-providers/terraform-provider-tfe
+	branch = stable-website

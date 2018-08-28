@@ -50,7 +50,9 @@ The rest of this page explains the GitHub versions of these steps.
 
 4. Click the "Register application" button, which creates the application and takes you to its page.
 
-5. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Client ID** and **Client Secret.**
+5. <a href="./images/tfe_logo.png" download>Download this image of the Terraform logo</a>, upload it with the "Upload new logo" button or the drag-and-drop target, and set the badge background color to `#5C4EE5`. This optional step helps you identify TFE's pull request checks at a glance.
+
+6. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Client ID** and **Client Secret.**
 
     ![GitHub screenshot: the new application's client ID and client secret](./images/gh-secrets.png)
 
@@ -61,7 +63,7 @@ The rest of this page explains the GitHub versions of these steps.
     If you just created your organization, you might already be on this page. Otherwise:
 
     1. Click the upper-left organization menu, making sure it currently shows your organization.
-    1. Click the "Organization Settings" link, right below the name of your organization.
+    1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
     1. On the next page, click "VCS Provider" in the left sidebar.
     1. Click the "Add VCS Provider" button.
 

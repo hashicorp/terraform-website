@@ -28,7 +28,9 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
 1. Open your GitLab instance in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
-    ~> **Important:** The account you use for connecting TFE **must have admin (master) access** to any shared repositories of Terraform configurations, since creating webhooks requires admin permissions.
+    ~> **Important:** The account you use for connecting TFE **must have admin (master) access** to any shared repositories of Terraform configurations, since creating webhooks requires admin permissions. Do not create the application as an administrative application not owned by a user; TFE needs user access to repositories to create webhooks and ingress configurations.
+
+    ~> **Important**: In GitLab EE 10.6 and up, you may also need to enable **Allow requests to the local network from hooks and services** on the "Outbound requests" section inside the Admin area under Settings (`/admin/application_settings`). Refer to [the GitLab EE documentation](https://docs.gitlab.com/ee/security/webhooks.html) for details.
 
 2. Navigate to GitLab's "User Settings > Applications" page.
 
@@ -61,7 +63,7 @@ The rest of this page explains the on-premise GitLab versions of these steps.
     If you just created your organization, you might already be on this page. Otherwise:
 
     1. Click the upper-left organization menu, making sure it currently shows your organization.
-    1. Click the "`<ORGANIZATION>` Settings" link, right below the name of your organization.
+    1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
     1. On the next page, click "VCS Provider" in the left sidebar.
     1. Click the "Add VCS Provider" button.
 
