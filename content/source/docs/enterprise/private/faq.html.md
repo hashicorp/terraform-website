@@ -69,13 +69,13 @@ Here you'll find a list of Packer and Terraform versions as well as a link to ad
 
 ![admin-tools-edit](assets/admin-tools-edit.png)
 
-In Terraform Enterprise installations 201807-1 or later, see [Managing Tool Versions](../admin/resources.html#managing-tool-versions).
+In Terraform Enterprise installations 201807-1 or later, see [Managing Tool Versions](admin/resources.html#managing-terraform-versions).
 
 ## Migrating from Terraform Enterprise SaaS
 
 If you are already a user of the Terraform Enterprise SaaS (hereafter "the SaaS"), you may have Environments that you want to migrate over to your new Private Terraform Enterprise installation.
 
-These instructions assume Terraform 0.9 or greater. See [docs on legacy remote state](https://www.terraform.io/docs/backends/legacy-0-8.html) for information on upgrading usage of remote state in prior versions of Terraform.
+These instructions assume Terraform 0.9 or greater. See [docs on legacy remote state](/docs/backends/legacy-0-8.html) for information on upgrading usage of remote state in prior versions of Terraform.
 
 ### Prerequisites
 
