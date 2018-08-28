@@ -60,7 +60,8 @@ curl \
         "sha": "4e3d5e4c6a267e31e9f95d4c1b00f5a7be5a319698f0370825b459cb786e2f35",
         "official": true,
         "enabled": true,
-        "beta": false
+        "beta": false,
+        "usage": 2
       }
     },
     {
@@ -72,7 +73,8 @@ curl \
         "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
         "official": true,
         "enabled": true,
-        "beta": false
+        "beta": false,
+        "usage": 0
       }
     }
   ],
@@ -84,10 +86,6 @@ curl \
     "last": "http://localhost:3000/api/v2/admin/terraform_versions?page%5Bnumber%5D=1&page%5Bsize%5D=20"
   },
   "meta": {
-    "usage-counts": {
-      "0.11.1": 2,
-      "0.11.0": 0,
-    },
     "pagination": {
       "current-page": 1,
       "prev-page": null,
@@ -165,6 +163,7 @@ curl \
 ```json
 {
   "data": {
+    "id": "0.11.0",
     "type": "terraform-versions",
     "attributes": {
       "version": "0.11.0",
@@ -172,7 +171,8 @@ curl \
       "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
       "official": true,
       "enabled": true,
-      "beta": false
+      "beta": false,
+      "usage": 0
     }
   }
 }
@@ -210,6 +210,7 @@ curl \
 ```json
 {
   "data": {
+    "id": "0.11.0",
     "type": "terraform-versions",
     "attributes": {
       "version": "0.11.0",
@@ -217,7 +218,8 @@ curl \
       "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
       "official": true,
       "enabled": true,
-      "beta": false
+      "beta": false,
+      "usage": 0
     }
   }
 }
@@ -291,6 +293,7 @@ curl \
 ```json
 {
   "data": {
+    "id": "0.11.0",
     "type": "terraform-versions",
     "attributes": {
       "version": "0.11.0",
@@ -298,7 +301,8 @@ curl \
       "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
       "official": true,
       "enabled": false,
-      "beta": false
+      "beta": false,
+      "usage": 0
     }
   }
 }
