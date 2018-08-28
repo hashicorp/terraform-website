@@ -20,7 +20,7 @@ providers, resources, data sources, modules, variables, etc. Note that since
 this is the configuration and not an invocation of Terraform, you can't see
 values for variables, state, etc.
 
-### tfconfig.modules
+### tfconfig.module_paths
 
 All the module paths represented in the config. This can be used along
 with tfconfig.module() to iterate through all modules.
@@ -29,59 +29,59 @@ with tfconfig.module() to iterate through all modules.
 
 The module function finds the module at the given path.
 
-## Type: m
+## Type: module
 
-### m.modules.NAME
+### module.modules.NAME
 
 This returns the module configuration for the module NAME. This
 does NOT return the full module configuration, only the usage from
 this module. This allows you to inspect the parameters to a module.
 
-### m.providers
+### module.providers
 
 This returns all the configured providers in the module. Note
 that this will only contain the configuration that was set explicitly
 within this module.
 
-### m.providers.NAME
+### module.providers.NAME
 
 This returns the configuration for the provider with the given name.
 
-### m.resources
+### module.resources
 
 This returns all the resources in the module as a map. The map
-key is the type, the value is the same as `m.resources.TYPE`.
+key is the type, the value is the same as `module.resources.TYPE`.
 
-### m.resources.TYPE
+### module.resources.TYPE
 
 This returns all the resources in the module with the given type
 as a map from name to resource. For the documentation on the
-value, see `m.resources.TYPE.NAME`
+value, see `module.resources.TYPE.NAME`
 
-### m.resources.TYPE.NAME
+### module.resources.TYPE.NAME
 
 This returns the resource with the given type and name.
 
-### m.data
+### module.data
 
 This returns all the data sources in the module as a map. The map
-key is the type, the value is the same as `m.data.TYPE`.
+key is the type, the value is the same as `module.data.TYPE`.
 
-### m.data.TYPE
+### module.data.TYPE
 
 This returns all the data sources in the module with the given type
 as a map from name to data source. For the documentation on the
-value, see `m.data.TYPE.NAME`
+value, see `module.data.TYPE.NAME`
 
-### m.data.TYPE.NAME
+### module.data.TYPE.NAME
 
 This returns the data source with the given type and name.
 
-### m.variables
+### module.variables
 
 This returns all the defined variables for the module.
 
-### m.variables.NAME
+### module.variables.NAME
 
 This returns the variable with the given name.
 
@@ -95,37 +95,47 @@ The source of the module.
 
 The FIELD is a field within the module to configure it.
 
-## Type: p
+## Type: providers
 
-### p.alias.NAME
+### providers.alias.NAME
 
 This accesses the provider with the alias of name NAME.
 
-### p.config.FIELD
+### providers.config.FIELD
 
 The FIELD is a field within the provider configuration to access.
 This returns the value of the field.
 
-## Type: r
+### providers.version
 
-### r.config.FIELD
+This returns the version of the provider.
+
+## Type: resources
+
+### resources.config.FIELD
 
 The FIELD is a field within the resource to access. This returns the
 value of the field.
 
-## Type: d
+### resources.provisioners
 
-### d.config.FIELD
+## Type: data
+
+### data.config.FIELD
 
 The FIELD is a field within the data source to access. This returns the
 value of the field.
 
-## Type: v
+## Type: variables
 
-### v.type
+### variables.NAME
 
-This accesses all the information related to variables.
+This returns the variable with the given name.
 
-### v.default
+### variables.NAME.default
 
-### v.description
+This returns the default value for the variable of the given NAME.
+
+### variables.NAME.description
+
+This returns the description set for the variable of the given NAME.
