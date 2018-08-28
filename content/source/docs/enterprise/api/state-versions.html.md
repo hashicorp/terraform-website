@@ -47,9 +47,9 @@ Properties without a default value are required.
 Key path                    | Type    | Default   | Description
 ----------------------------|---------|-----------|------------
 `data.type`                 | string  |           | Must be `"state-versions"`.
-`data.attributes.serial`    | integer |           | The serial of the state version
+`data.attributes.serial`    | integer |           | The serial of the state version. Must match the serial value extracted from the raw state file.
 `data.attributes.md5`       | string  |           | An MD5 hash of the raw state version
-`data.attributes.lineage`   | string  | (nothing) | Lineage of the state version
+`data.attributes.lineage`   | string  | (nothing) | **Optional** Lineage of the state version. Should match the lineage extracted from the raw state file. Early versions of terraform did not have the concept of lineage, so this is an optional attribute.
 `data.attributes.state`     | string  |           | Base64 encoded raw state file
 
 ### Sample Payload
@@ -62,7 +62,7 @@ Key path                    | Type    | Default   | Description
       "serial": 1,
       "md5": "871d1b4a-e579-fb7c-ffdb-f0c858a647a7",
       "lineage": "871d1b4a-e579-fb7c-ffdb-f0c858a647a7",
-      "state": "ewogICAgInZlcnNpb24iOiAzLAogICAgInRlcnJhZm9ybV92ZXJzaW9uIjog\nIjAuMTEuNyIsCiAgICAic2VyaWFsIjogMSwKICAgICJsaW5lYWdlIjogIjg3\nMWQxYjRhLWU1NzktZmI3Yy1mZmRiLWYwYzg1OGE2NDdhNyIsCiAgICAibW9k\ndWxlcyI6IFsKICAgICAgICB7CiAgICAgICAgICAgICJwYXRoIjogWwogICAg\nICAgICAgICAgICAgInJvb3QiCiAgICAgICAgICAgIF0sCiAgICAgICAgICAg\nICJvdXRwdXRzIjogewogICAgICAgICAgICAgICAgInJhbmRvbSI6IHsKICAg\nICAgICAgICAgICAgICAgICAic2Vuc2l0aXZlIjogZmFsc2UsCiAgICAgICAg\nICAgICAgICAgICAgInR5cGUiOiAic3RyaW5nIiwKICAgICAgICAgICAgICAg\nICAgICAidmFsdWUiOiAiNDI2ZmNjZTQyYTNiMTM0MCIKICAgICAgICAgICAg\nICAgIH0KICAgICAgICAgICAgfSwKICAgICAgICAgICAgInJlc291cmNlcyI6\nIHsKICAgICAgICAgICAgICAgICJyYW5kb21faWQucmFuZG9tIjogewogICAg\nICAgICAgICAgICAgICAgICJ0eXBlIjogInJhbmRvbV9pZCIsCiAgICAgICAg\nICAgICAgICAgICAgImRlcGVuZHNfb24iOiBbXSwKICAgICAgICAgICAgICAg\nICAgICAicHJpbWFyeSI6IHsKICAgICAgICAgICAgICAgICAgICAgICAgImlk\nIjogIlFtX001Q283RTBBIiwKICAgICAgICAgICAgICAgICAgICAgICAgImF0\ndHJpYnV0ZXMiOiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAiYjY0\nIjogIlFtX001Q283RTBBIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAg\nICJiNjRfc3RkIjogIlFtL001Q283RTBBPSIsCiAgICAgICAgICAgICAgICAg\nICAgICAgICAgICAiYjY0X3VybCI6ICJRbV9NNUNvN0UwQSIsCiAgICAgICAg\nICAgICAgICAgICAgICAgICAgICAiYnl0ZV9sZW5ndGgiOiAiOCIsCiAgICAg\nICAgICAgICAgICAgICAgICAgICAgICAiZGVjIjogIjQ3ODcyNzAyMDkyNTEy\nNTEwMDgiLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgImhleCI6ICI0\nMjZmY2NlNDJhM2IxMzQwIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAg\nICJpZCI6ICJRbV9NNUNvN0UwQSIsCiAgICAgICAgICAgICAgICAgICAgICAg\nICAgICAia2VlcGVycy4lIjogIjEiLAogICAgICAgICAgICAgICAgICAgICAg\nICAgICAgImtlZXBlcnMudXVpZCI6ICI0OGIwOGExOS02ODA1LTIxOTctYzMw\nYS04ZmM4ZjVmOWM2MTEiCiAgICAgICAgICAgICAgICAgICAgICAgIH0sCiAg\nICAgICAgICAgICAgICAgICAgICAgICJtZXRhIjoge30sCiAgICAgICAgICAg\nICAgICAgICAgICAgICJ0YWludGVkIjogZmFsc2UKICAgICAgICAgICAgICAg\nICAgICB9LAogICAgICAgICAgICAgICAgICAgICJkZXBvc2VkIjogW10sCiAg\nICAgICAgICAgICAgICAgICAgInByb3ZpZGVyIjogInByb3ZpZGVyLnJhbmRv\nbSIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfSwKICAgICAgICAg\nICAgImRlcGVuZHNfb24iOiBbXQogICAgICAgIH0KICAgIF0KfQo=\n"
+      "state": "..."
     }
   }
 }
@@ -80,6 +80,8 @@ curl \
 ```
 
 ### Sample Response
+
+-> **Note**: The `hosted-state-download-url` attribute provides a url from which you can download the raw state.
 
 ```json
 {
@@ -126,6 +128,8 @@ curl \
 
 ### Sample Response
 
+-> **Note**: The `hosted-state-download-url` attribute provides a url from which you can download the raw state.
+
 ```json
 {
     "data": [
@@ -136,7 +140,7 @@ curl \
                 "vcs-commit-sha": null,
                 "vcs-commit-url": null,
                 "created-at": "2018-08-27T14:49:47.902Z",
-                "hosted-state-download-url": "https://archivist.terraform.io/v1/object/..."
+                "hosted-state-download-url": "https://archivist.terraform.io/v1/object/...",
                 "serial": 3
             },
             "relationships": {
@@ -240,6 +244,8 @@ curl \
 ```
 
 ### Sample Response
+
+-> **Note**: The `hosted-state-download-url` attribute provides a url from which you can download the raw state.
 
 ```json
 {
