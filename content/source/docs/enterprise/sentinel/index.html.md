@@ -6,13 +6,13 @@ sidebar_current: "docs-enterprise2-sentinel"
 
 # Sentinel Overview
 
-[Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy as code
+[Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code
 framework integrated with the HashiCorp Enterprise products. It enables
 fine-grained, logic-based policy decisions, and can be extended to use
 information from external sources.
 
-To learn how to use Sentinel to enforce policies in Terraform, read [the
-Sentinel documentation](https://docs.hashicorp.com/sentinel/app/terraform/).
+To learn how to use Sentinel and begin writing policies with the Sentinel
+language, see [the Sentinel documentation](https://docs.hashicorp.com/sentinel/app/terraform/).
 
 ## Sentinel in Terraform Enterprise
 
