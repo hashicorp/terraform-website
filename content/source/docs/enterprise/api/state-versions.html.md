@@ -100,6 +100,115 @@ curl \
 }
 ```
 
+## List State Versions for a Workspace
+
+`GET /state-versions`
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter                    | Description
+-----------------------------|------------
+`filter[workspace][name]`    | **Required** The name of one workspace to list versions for.
+`filter[organization][name]` | **Required** The name of the organization that owns the desired workspace.
+`page[number]`               | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                 | **Optional.** If omitted, the endpoint will return 20 state versions per page.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/state-versions?filter%5Bworkspace%5D%5Bname%5D=my-workspace&filter%5Borganization%5D%5Bname%5D=my-organization
+```
+
+### Sample Response
+
+```json
+{
+    "data": [
+        {
+            "id": "sv-SDboVZC8TCxXEneJ",
+            "type": "state-versions",
+            "attributes": {
+                "vcs-commit-sha": null,
+                "vcs-commit-url": null,
+                "created-at": "2018-08-27T14:49:47.902Z",
+                "hosted-state-download-url": "https://archivist.terraform.io/v1/object/..."
+                "serial": 3
+            },
+            "relationships": {
+                "run": {
+                    "data": {
+                        "type": "runs"
+                    }
+                },
+                "created-by": {
+                    "data": {
+                        "id": "api-org-my-organization",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "/api/v2/runs/sv-SDboVZC8TCxXEneJ/created-by"
+                    }
+                }
+            },
+            "links": {
+                "self": "/api/v2/state-versions/sv-SDboVZC8TCxXEneJ"
+            }
+        },
+        {
+            "id": "sv-UdqGARTddt8SEJEi",
+            "type": "state-versions",
+            "attributes": {
+                "vcs-commit-sha": null,
+                "vcs-commit-url": null,
+                "created-at": "2018-08-27T14:49:46.102Z",
+                "hosted-state-download-url": "https://archivist.terraform.io/v1/object/...",
+                "serial": 2
+            },
+            "relationships": {
+                "run": {
+                    "data": {
+                        "type": "runs"
+                    }
+                },
+                "created-by": {
+                    "data": {
+                        "id": "api-org-my-organization",
+                        "type": "users"
+                    },
+                    "links": {
+                        "related": "/api/v2/runs/sv-UdqGARTddt8SEJEi/created-by"
+                    }
+                }
+            },
+            "links": {
+                "self": "/api/v2/state-versions/sv-UdqGARTddt8SEJEi"
+            }
+        }
+    ],
+    "links": {
+        "self": "https://app.terraform.io/api/v2/state-versions?filter%5Borganization%5D%5Bname%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace&page%5Bnumber%5D=1&page%5Bsize%5D=20",
+        "first": "https://app.terraform.io/api/v2/state-versions?filter%5Borganization%5D%5Bname%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace&page%5Bnumber%5D=1&page%5Bsize%5D=20",
+        "prev": null,
+        "next": null,
+        "last": "https://app.terraform.io/api/v2/state-versions?filter%5Borganization%5D%5Bname%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace&page%5Bnumber%5D=1&page%5Bsize%5D=20"
+    },
+    "meta": {
+        "pagination": {
+            "current-page": 1,
+            "prev-page": null,
+            "next-page": null,
+            "total-pages": 1,
+            "total-count": 2
+        }
+    }
+}
+```
+
 ## Fetch the Current State Version for a Workspace
 
 `GET /workspaces/:workspace_id/current-state-version`
@@ -141,7 +250,7 @@ curl \
             "vcs-commit-sha": null,
             "vcs-commit-url": null,
             "created-at": "2018-08-27T14:49:47.902Z",
-            "hosted-state-download-url": "https://archivist.terraform.io/v1/object/........",
+            "hosted-state-download-url": "https://archivist.terraform.io/v1/object/...",
             "serial": 3
         },
         "relationships": {
