@@ -16,7 +16,7 @@ sidebar_current: "docs-enterprise2-api-state-versions"
 | --------------- | --------------------------------------------------------- |
 | `:workspace_id` | The workspace ID to create the new state version. |
 
-Creates a state version and sets it as the head state version for the given
+Creates a state version and sets it as the current state version for the given
 workspace.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
@@ -79,8 +79,6 @@ curl \
   https://app.terraform.io/api/v2/workspaces/ws-6fHMCom98SDXSQUv/state-versions
 ```
 
-Make sure to test a query that's very nearly the same as the example, to avoid errors. -->
-
 ### Sample Response
 
 ```json
@@ -97,6 +95,73 @@ Make sure to test a query that's very nearly the same as the example, to avoid e
         },
         "links": {
             "self": "/api/v2/state-versions/sv-DmoXecHePnNznaA4"
+        }
+    }
+}
+```
+
+## Fetch the Current State Version for a Workspace
+
+`GET /workspaces/:workspace_id/current-state-version`
+
+| Parameter       | Description                                               |
+| --------------- | --------------------------------------------------------- |
+| `:workspace_id` | The ID for the workspace whose current state version you want to fetch |
+
+Fetches the current state version for the given workspace. This state version
+will be the input state when running terraform operations.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace
+[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/workspaces/ws-6fHMCom98SDXSQUv/current-state-version
+```
+
+### Sample Response
+
+```json
+{
+    "data": {
+        "id": "sv-SDboVZC8TCxXEneJ",
+        "type": "state-versions",
+        "attributes": {
+            "vcs-commit-sha": null,
+            "vcs-commit-url": null,
+            "created-at": "2018-08-27T14:49:47.902Z",
+            "hosted-state-download-url": "https://archivist.terraform.io/v1/object/........",
+            "serial": 3
+        },
+        "relationships": {
+            "run": {
+                "data": {
+                    "type": "runs"
+                }
+            },
+            "created-by": {
+                "data": {
+                    "id": "api-org-hashicorp",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "/api/v2/runs/sv-SDboVZC8TCxXEneJ/created-by"
+                }
+            }
+        },
+        "links": {
+            "self": "/api/v2/state-versions/sv-SDboVZC8TCxXEneJ"
         }
     }
 }
