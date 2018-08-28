@@ -25,8 +25,8 @@ Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
 [201][] | [JSON API document][]                        | Successfully created a state version
 [404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
-[409][] | [JSON API error object][]                    |
-[412][] | [JSON API error object][]                    |
+[409][] | [JSON API error object][]                    | Conflict; check the error object for more information
+[412][] | [JSON API error object][]                    | Precondition failed; check the error object for more information
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
 [201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
@@ -78,8 +78,6 @@ curl \
   --data @payload.json \
   https://app.terraform.io/api/v2/workspaces/ws-6fHMCom98SDXSQUv/state-versions
 ```
-
-<!-- In curl examples, you can use the `$TOKEN` environment variable. If it's a GET request with query parameters, you can use double-quotes to have curl handle the URL encoding for you.
 
 Make sure to test a query that's very nearly the same as the example, to avoid errors. -->
 
