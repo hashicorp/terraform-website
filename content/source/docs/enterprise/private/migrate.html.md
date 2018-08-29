@@ -83,6 +83,12 @@ For Linux distributions other than RHEL, check Docker compatibility:
 
 ~> **Note**: It is not recommended to run Docker under a 2.x kernel.
 
+#### SELinux
+
+At present the product does not support SELinux. The host running the installer must be configured in permissive mode by running: `setenforce 0`.
+
+Future releases may add native support for SELinux.
+
 #### Network Requirements
 
 1. Have the following ports available to the Linux instance:
