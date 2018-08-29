@@ -257,11 +257,13 @@ curl \
           "is-cancelable": false,
           "is-confirmable": true,
           "is-discardable": true,
+          "is-force-cancelable": false
         },
         "permissions": {
           "can-apply": true,
           "can-cancel": true,
           "can-discard": true,
+          "can-force-cancel": false,
           "can-force-execute": true
         }
       },
@@ -336,11 +338,13 @@ curl \
         "is-cancelable": false,
         "is-confirmable": true,
         "is-discardable": true,
+        "is-force-cancelable": false
       },
       "permissions": {
         "can-apply": true,
         "can-cancel": true,
         "can-discard": true,
+        "can-force-cancel": false,
         "can-force-execute": true
       }
     },
