@@ -346,7 +346,7 @@ Parameter | Description
 ----------|------------
 `run_id`  | The run ID to cancel
 
-The `cancel` action can be used to interrupt a run that is currently planning or applying.
+The `cancel` action can be used to interrupt a run that is currently planning or applying. Performing a cancel is roughly equivalent to hitting ctrl+c during a Terraform plan or apply on the CLI. The running Terraform process is sent an `INT` signal, which instructs Terraform to end its work and wrap up in the safest way possible.
 
 This endpoint queues the request to perform a cancel; the cancel might not happen immediately. After canceling, the run is completed and later runs can proceed.
 
@@ -387,6 +387,62 @@ curl \
   --data @payload.json \
   https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/cancel
 ```
+
+## Forcefully cancel a Run
+
+`POST /runs/:run_id/actions/force-cancel`
+
+Parameter | Description
+----------|------------
+`run_id`  | The run ID to cancel
+
+The `force-cancel` action is like [cancel](#cancel-a-run), but ends the run immediately. Once invoked, the run is placed into a `canceled` state, and the running Terraform process is terminated. The workspace is immediately unlocked, allowing further runs to be queued.
+
+This endpoint enforces a prerequisite that a [non-forceful cancel](#cancel-a-run) is performed first. Once a non-forceful cancel has been performed, an additional cool-off period is enforced. The time remaining in the cool-off period can be found using the `GET` endpoint for the run, in the key `force_cancel_delay_seconds`. Once this time period expires, if the run has still not ended, the force-cancel endpoint may be used successfully.
+
+This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
+
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+
+~> **Warning:** This endpoint has potentially dangerous side-effects, including loss of any in-flight state in the running Terraform process. Use this operation with extreme caution.
+
+Status  | Response                  | Reason(s)
+--------|---------------------------|----------
+[202][] | none                      | Successfully queued a cancel request.
+[409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed.
+
+### Request Body
+
+This POST endpoint allows an optional JSON object with the following properties as a request payload.
+
+Key path  | Type   | Default | Description
+----------|--------|---------|------------
+`comment` | string | `null`  | An optional explanation for why the run was canceled.
+
+### Sample Payload
+
+This payload is optional, so the `curl` command will work without the `--data @payload.json` option too.
+
+```json
+{
+  "comment": "This run was stuck and would never finish."
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/cancel
+```
+
+## Available Related Resources
+
+
 
 ## Available Related Resources
 
