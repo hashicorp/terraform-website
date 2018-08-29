@@ -143,6 +143,22 @@ Status  | Response                               | Reason
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
+### Request body
+
+This POST endpoint allows an optional JSON object with the following properties as a request payload.
+
+Key path  | Type   | Default | Description
+----------|--------|---------|------------
+`comment` | string | `null`  | An optional explanation for why the run was force canceled.
+
+### Sample Payload
+
+```json
+{
+  "comment": "This run was stuck and would never finish."
+}
+```
+
 ### Sample Request
 
 ```shell
@@ -150,6 +166,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
+  --data @payload.json \
   "https://app.terraform.io/api/v2/admin/runs/run-VCsNJXa59eUza53R/actions/force-cancel"
 ```
 
