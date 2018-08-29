@@ -124,6 +124,14 @@ On the Console Settings page, there is a section for HTTP Proxy:
 
 ![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
 
+#### Proxy Exclusions (NOPROXY)
+
+If certain hostnames should not use the proxy and the instance should connect directly to them (for instance for S3), then you can pass an additional option to provide a list of domains:
+
+```
+./install.sh additional-no-proxy=s3.amazonaws.com,internal-vcs.mycompany.com,example.com
+````
+
 #### Trusting SSL/TLS Certificates
 
 The installer has a section that allows multiple certificates to be specified as trusted.
