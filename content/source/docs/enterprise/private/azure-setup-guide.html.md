@@ -1,6 +1,6 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Reference Architecture (Azure)"
+page_title: "Private Terraform Enterprise - Reference Architecture - Azure"
 sidebar_current: "docs-enterprise2-private-installer-azure"
 description: |-
   This document provides recommended practices and a reference
@@ -8,7 +8,7 @@ description: |-
   implementations on Azure.
 ---
 
-# Private Terraform Enterprise Reference Architecture (Azure)
+# Private Terraform Enterprise Azure Reference Architecture
 
 ## Introduction
 
@@ -29,7 +29,7 @@ architecture.
 
 ## Infrastructure Requirements
 
--> This reference architecture focuses on the _Production - External Services_ operational mode.
+-> **Note:** This reference architecture focuses on the _Production - External Services_ operational mode.
 
 Depending on the chosen [operational
 mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
@@ -40,7 +40,7 @@ demo or proof of concept installations, to multiple instances connected to
 [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/),
 and an external Vault cluster for a stateless production installation.
 
-The following table provides high level server recommendations and is meant as
+The following table provides high level server recommendations, and is meant as
 a guideline. Of particular note is the strong recommendation to avoid non-fixed
 performance CPUs, or “Burstable CPU” in Azure terms, such as B-series
 instances.
@@ -90,7 +90,7 @@ must be specified during the PTFE installation for application data to
 be stored securely and redundantly away from the Azure VMs running the
 PTFE application. This Azure Blob Storage container must be in the same
 region as the VMs and Azure Database for PostgreSQL instance. It is recommended
-the Virtual Network containing the PTFE servers be configured with a
+the virtual network containing the PTFE servers be configured with a
 [Virtual Network (VNet) service
 endpoint](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview)
 for Azure Storage. Vault is used to encrypt all application data stored
@@ -163,7 +163,7 @@ The Application Layer is composed of two PTFE servers (Azure VMs)
 running in different subnets and operating in an active/standby
 configuration. Traffic is routed to the active PTFE server via the Load Balancer
 rules and health checks. In the event that the active PTFE server becomes unavailable,
-the traffic will then route to the standby PTFE server making it the new active
+the traffic will then route to the standby PTFE server, making it the new active
 server. Routing changes can also be managed by a human triggering by triggering a change in
 the Load Balancer configuration to switch between the PTFE servers.
 
@@ -175,11 +175,13 @@ inherent resiliency provided by Azure (in the case of Azure Database for Postgre
 Blob Storage) or assumed resiliency provided by a well-architected
 deployment (in the case of Vault).
 
-  - [More information about Azure Database for PostgreSQL deployments](https://docs.microsoft.com/en-us/azure/postgresql/concepts-business-continuity)
+#### Additional Information
 
-  - [More information about Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)
-  
-  - [More information about highly available Vault deployments](https://www.vaultproject.io/guides/operations/vault-ha-consul.html)
+- [Azure Database for PostgreSQL deployments](https://docs.microsoft.com/en-us/azure/postgresql/concepts-business-continuity)
+
+- [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)
+
+- [Highly available Vault deployments](https://www.vaultproject.io/guides/operations/vault-ha-consul.html)
 
 ## Infrastructure Provisioning
 
@@ -191,7 +193,7 @@ other resources, and associated dependencies.
 
 ### Component Interaction
 
-The Load Balancer routes all traffic to the active PTFE instance which
+The Load Balancer routes all traffic to the active PTFE instance, which
 handles all requests to the PTFE application.
 
 The PTFE application is connected to the PostgreSQL database via the
@@ -236,7 +238,7 @@ In the event of the active instance failing, the Load Balancer
 should be reconfigured (manually or automatically) to route all traffic
 to the standby instance.
 
-~> Active-active configuration is not supported due to a serialisation requirement in the core components of PTFE; therefore, all traffic from the Load Balancer *MUST* be routed to a single instance.
+~> **Important:** Active-active configuration is not supported due to a serialisation requirement in the core components of PTFE; therefore, all traffic from the Load Balancer *MUST* be routed to a single instance.
 
 When using the _Production - External Services_ deployment model (PostgreSQL Database, Object Storage, Vault), there is still some application configuration data present on the
 PTFE server such as installation type, database connection settings, and
@@ -246,7 +248,7 @@ use the same configuration and no action is required.
 
 If the
 configuration on the active instance changes, you should [create a snapshot](https://www.terraform.io/docs/enterprise/private/automated-recovery.html#1-configure-snapshots) via the
-UI or CLI and recover this to the standby instance in order for both instances to use the
+UI or CLI and recover this to the standby instance so that both instances use the
 same configuration.
 
 ##### PostgreSQL Database
