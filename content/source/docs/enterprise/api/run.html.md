@@ -439,7 +439,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a cancel request.
-[409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed.
+[409][] | [JSON API error object][] | Run was not planning or applying, has not been canceled non-forcefully, or the cool-off period has not yet passed.
 
 ### Request Body
 
