@@ -524,10 +524,6 @@ curl \
 
 ## Available Related Resources
 
-
-
-## Available Related Resources
-
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
 
 - `plan` - Additional information about plans.
