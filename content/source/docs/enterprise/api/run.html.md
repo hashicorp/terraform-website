@@ -277,13 +277,91 @@ curl \
         "run-events": {...},
         "policy-checks": {...},
         "comments": {...},
-        "workspace-run-alerts": {...},
+        "workspace-run-alerts": {...}
+      },
       "links": {
         "self": "/api/v2/runs/run-bWSq4YeYpfrW4mx7"
       }
     },
     {...}
   ]
+}
+```
+
+## Get run details
+
+`GET /runs/:run_id`
+
+Parameter     | Description
+--------------|----------------------
+`:run_id`     | The run ID to get.
+
+This endpoint is used for showing details of a specific run.
+
+Status  | Response                               | Reason
+--------|----------------------------------------|-------
+[200][] | [JSON API document][] (`type: "runs"`) | Success
+[404][] | [JSON API error object][]              | Run not found or user not authorized
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  https://app.terraform.io/api/v2/runs/run-bWSq4YeYpfrW4mx7
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "run-bWSq4YeYpfrW4mx7",
+    "type": "runs",
+    "attributes": {
+      "auto-apply": false,
+      "error-text": null,
+      "is-destroy": false,
+      "message": "",
+      "metadata": {},
+      "source": "tfe-configuration-version",
+      "status": "planned",
+      "status-timestamps": {
+        "planned-at": "2017-11-28T22:52:51+00:00"
+      },
+      "terraform-version": "0.11.0",
+      "created-at": "2017-11-28T22:52:46.711Z",
+      "has-changes": true,
+      "actions": {
+        "is-cancelable": false,
+        "is-confirmable": true,
+        "is-discardable": true,
+      },
+      "permissions": {
+        "can-apply": true,
+        "can-cancel": true,
+        "can-discard": true,
+        "can-force-execute": true
+      }
+    },
+    "relationships": {
+      "workspace": {...},
+      "apply": {...},
+      "canceled-by": {...},
+      "configuration-version": {...},
+      "confirmed-by": {...},
+      "created-by": {...},
+      "input-state-version": {...},
+      "plan": {...},
+      "run-events": {...},
+      "policy-checks": {...},
+      "comments": {...},
+      "workspace-run-alerts": {...}
+    },
+    "links": {
+      "self": "/api/v2/runs/run-bWSq4YeYpfrW4mx7"
+    }
+  }
 }
 ```
 
@@ -398,7 +476,7 @@ Parameter | Description
 
 The `force-cancel` action is like [cancel](#cancel-a-run), but ends the run immediately. Once invoked, the run is placed into a `canceled` state, and the running Terraform process is terminated. The workspace is immediately unlocked, allowing further runs to be queued.
 
-This endpoint enforces a prerequisite that a [non-forceful cancel](#cancel-a-run) is performed first. Once a non-forceful cancel has been performed, an additional cool-off period is enforced. The time remaining in the cool-off period can be found using the `GET` endpoint for the run, in the key `force_cancel_delay_seconds`. Once this time period expires, if the run has still not ended, the force-cancel endpoint may be used successfully.
+This endpoint enforces a prerequisite that a [non-forceful cancel](#cancel-a-run) is performed first. Once a non-forceful cancel has been performed, an additional cool-off period is enforced. The time remaining in the cool-off period can be found using the [run details endpoint](#get-run-details), in the key `force_cancel_delay_seconds`. Once this time period expires, if the run has still not ended, the force-cancel endpoint may be used successfully.
 
 This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
 
