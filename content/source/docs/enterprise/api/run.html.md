@@ -439,7 +439,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a cancel request.
-[409][] | [JSON API error object][] | Run was not planning or applying, has not been canceled non-forcefully, or the cool-off period has not yet passed.
+[409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed.
 
 ### Request Body
 
@@ -470,7 +470,7 @@ curl \
   https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/cancel
 ```
 
-## Forcefully cancel a Run
+## Forcefully cancel a run
 
 `POST /runs/:run_id/actions/force-cancel`
 
@@ -480,7 +480,7 @@ Parameter | Description
 
 The `force-cancel` action is like [cancel](#cancel-a-run), but ends the run immediately. Once invoked, the run is placed into a `canceled` state, and the running Terraform process is terminated. The workspace is immediately unlocked, allowing further runs to be queued. The `force-cancel` operation requires workspace admin privileges.
 
-This endpoint enforces a prerequisite that a [non-forceful cancel](#cancel-a-run) is performed first, and a cool-off period has elapsed. It is useful to check the `data.attributes.is-force-cancelable` value of the [run details endpoint](#get-run-details) to determine if this criteria is met. The time remaining in the cool-off period can also be found using the [run details endpoint](#get-run-details), in the key `data.attributes.force_cancel_delay_seconds`. Note that this key is only present in the payload after the initial cancel has been initiated.
+This endpoint enforces a prerequisite that a [non-forceful cancel](#cancel-a-run) is performed first, and a cool-off period has elapsed. To determine if this criteria is met, it is useful to check the `data.attributes.is-force-cancelable` value of the [run details endpoint](#get-run-details). The time remaining in the cool-off period can also be found using the [run details endpoint](#get-run-details), in the key `data.attributes.force_cancel_delay_seconds`. Note that this key is only present in the payload after the initial cancel has been initiated.
 
 This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
 
@@ -491,7 +491,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a cancel request.
-[409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed.
+[409][] | [JSON API error object][] | Run was not planning or applying, has not been canceled non-forcefully, or the cool-off period has not yet passed.
 
 ### Request Body
 
