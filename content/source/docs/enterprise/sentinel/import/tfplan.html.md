@@ -233,11 +233,11 @@ Only fields that are changing within the plan are available here. If
 a field already was set in the state and wasn't changed, no change
 is required and it will not be present in the plan. You can still find
 the field in the `tfplan.state`. You can also use the `resource.applied`
-value which will retain the old value.
+value, which will retain the old value.
 
 If FIELD contains a period, it must be accessed as a map. For example:
 `resource.diff[FIELD]`. Map and list elements may contain periods. For
-example a tag "foo" being set on an instance may require access this
+example a tag "foo" being set on an instance may require this
 sort of access:
 
 ```python
@@ -246,6 +246,9 @@ import "tfplan"
 r = tfplan.resources.aws_instance.web
 main = rule { not r.diff["tag.foo"].computed }
 ```
+
+You can check if the value is computed by using the `computed` property,
+as in this example.
 
 ### resource.applied.FIELD
 
@@ -261,5 +264,4 @@ this is the mechanism to use. For example, a policy that requires a certain
 tag be set on a resource should use this to find the tag.
 
 Note that if `FIELD` is a computed value, then this will return a
-special UUID marker noting it is computed. You can check if the value
-is computed by using the `is_computed` function.
+special UUID marker noting it is computed.
