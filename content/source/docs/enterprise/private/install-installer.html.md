@@ -77,7 +77,7 @@ For Linux distributions other than RHEL, check Docker compatibility:
 
 #### SELinux
 
-At present the product does not support SELinux. The host running the installer must be configured in permissive mode by running: `setenforce 0`.
+Private Terraform Enterprise does not support SELinux. The host running the installer must be configured in permissive mode by running: `setenforce 0`.
 
 Future releases may add native support for SELinux.
 
@@ -116,7 +116,7 @@ On the Console Settings page, there is a section for HTTP Proxy:
 
 ![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
 
-#### Proxy Exclusions (NOPROXY)
+#### Proxy Exclusions (NO\_PROXY)
 
 If certain hostnames should not use the proxy and the instance should connect directly to them (for instance for S3), then you can pass an additional option to provide a list of domains:
 
