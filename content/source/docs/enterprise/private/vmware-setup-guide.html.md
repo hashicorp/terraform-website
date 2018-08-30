@@ -1,7 +1,7 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise - Reference Architecture - VMware"
-sidebar_current: "docs-enterprise2-private-installer-vmware"
+sidebar_current: "docs-enterprise2-private-reference-architecture-vmware"
 description: |-
   This document provides recommended practices and a reference architecture for
   HashiCorp Private Terraform Enterprise (PTFE) implementations on VMware.
