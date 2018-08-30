@@ -8,61 +8,51 @@ sidebar_current: "docs-enterprise2-private-faq"
 
 This page will provide answers to many common questions around Private Terraform Enterprise
 
+## General FAQ
+
+1. [Support](#support-for-private-terraform-enterprise)
+2. [Managing Tool Versions](#managing-tool-versions)
+3. [Migration from SaaS-based Terraform Enterprise](#migrating-from-terraform-enterprise-saas)
+
+
+## AMI FAQ
+
+!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Private Terraform Enterprise Installer.
+
 1. [About the AMI](#about-the-private-terraform-enterprise-ami)
 2. [AMI IDs](#ami-ids)
 3. [Additional Configuration Info](#additional-configuration-info)
 4. [Upgrade Information](#migrating-from-a-legacy-terraform-enterprise-installation)
-5. [Migration from SaaS-based Terraform Enterprise](#migrating-from-terraform-enterprise-saas)
-6. [Required Network Access](#network-access)
-7. [Managing the Terraform State of the Install Process](#storing-terraform-enterprise-state)
-8. [Support](#support-for-private-terraform-enterprise)
-9. [Private Terraform Enterprise Architecture](#private-terraform-enterprise-architecture)
-10. [Advanced Terraform](#advanced-terraform)
-11. [Rekeying the Vault instance used by Private Terraform Enterprise](#rekeying-vault)
-12. [Minimum Viable IAM Access Policy](#minimum-viable-iam-access-policy)
+5. [Required Network Access](#network-access)
+6. [Managing the Terraform State of the Install Process](#storing-terraform-enterprise-state)
+7. [Private Terraform Enterprise Architecture](#private-terraform-enterprise-architecture)
+8. [Advanced Terraform](#advanced-terraform)
+9. [Rekeying the Vault instance used by Private Terraform Enterprise](#rekeying-vault)
+10. [Minimum Viable IAM Access Policy](#minimum-viable-iam-access-policy)
 
 ---
 
-## About the Private Terraform Enterprise AMI
+## Support for Private Terraform Enterprise
 
-This document contains information about the Terraform Enterprise AMI.
+If some aspect of Private Terraform Enterprise is not working as
+expected, please reach out to support for help.
 
-### Operating System
+### Email
 
-The Private Terraform Enterprise AMI is based on the latest release of Ubuntu 16.04 with all security
-patches applied.
+You can engage HashiCorp support via the web portal at https://support.hashicorp.com or
+by email at <support@hashicorp.com>. Please make sure
+to use your organization email (not your personal email) when contacting us so
+we can associate the support request with your organization and expedite our
+response.
 
-### Network Ports
+### Diagnostics
 
-The Private Terraform Enterprise AMI requires that port :8080 be accessible. This is where all traffic
-from the ELB is routed. Many other internal Private Terraform Enterprise services listen on the host,
-but they do not require external traffic. The AWS security group for the
-instance as well as software firewall rules within the runtime enforce this.
+For most technical issues, HashiCorp support will ask you to include diagnostic
+information in your support request. To ensure the required information is included,
+PTFE has the ability to automatically generate a support bundle including logs and configuration details.
 
-### `ulimits`
-
-The necessary limits on open file descriptors are raised within
-`/etc/security/limits.d/nofile.conf` on the machine image.
-
-### Critical Services
-
-The Private Terraform Enterprise AMI contains dozens of services that are required for proper operation
-of Terraform Enterprise. These services are all configured to launch on boot.
-Application-level services are managed via Nomad and system-level automation is
-managed via `systemd`.
-
----
-
-## AMI IDs
-
-For the most up-to-date list of AMI IDs please view the [list maintained on our GitHub repo](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/docs/ami-ids.md).
-
----
-
-## Additional Configuration Info
-
- * [`base-vpc`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/base-vpc) - Configuration for creating a basic VPC and subnets that meet [the documented requirements for Private Terraform Enterprise installation](/docs/enterprise/private/install-ami.html#preflight).
- * [`minimum-viable-iam`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/minimum-viable-iam) - Configuration for creating an AWS user with a minimum access policy required to perform a Terraform Enterprise installation. Please note using the `AdministratorAccess` policy is recommended. This access is only required for the initial deployment.
+* [AMI-based instance bundle generation](./diagnostics.html#ami-based-installs)
+* [Installer-based instance bundle generation](./diagnostics.html#installer-based-instances)
 
 ---
 
@@ -161,6 +151,49 @@ terraform init
 You will again be asked if you want to copy the state file. Type `yes` and the state will be uploaded to your Private Terraform Enterprise installation.
 
 ---
+
+## About the Private Terraform Enterprise AMI
+
+This section contains information about the Terraform Enterprise AMI.
+
+### Operating System
+
+The Private Terraform Enterprise AMI is based on the latest release of Ubuntu 16.04 with all security
+patches applied.
+
+### Network Ports
+
+The Private Terraform Enterprise AMI requires that port :8080 be accessible. This is where all traffic
+from the ELB is routed. Many other internal Private Terraform Enterprise services listen on the host,
+but they do not require external traffic. The AWS security group for the
+instance as well as software firewall rules within the runtime enforce this.
+
+### `ulimits`
+
+The necessary limits on open file descriptors are raised within
+`/etc/security/limits.d/nofile.conf` on the machine image.
+
+### Critical Services
+
+The Private Terraform Enterprise AMI contains dozens of services that are required for proper operation
+of Terraform Enterprise. These services are all configured to launch on boot.
+Application-level services are managed via Nomad and system-level automation is
+managed via `systemd`.
+
+---
+
+## AMI IDs
+
+For the most up-to-date list of AMI IDs please view the [list maintained on our GitHub repo](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/docs/ami-ids.md).
+
+---
+
+## Additional Configuration Info
+
+ * [`base-vpc`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/base-vpc) - Configuration for creating a basic VPC and subnets that meet [the documented requirements for Private Terraform Enterprise installation](/docs/enterprise/private/install-ami.html#preflight).
+ * [`minimum-viable-iam`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/minimum-viable-iam) - Configuration for creating an AWS user with a minimum access policy required to perform a Terraform Enterprise installation. Please note using the `AdministratorAccess` policy is recommended. This access is only required for the initial deployment.
+
+--- 
 
 ## Network Access
 
@@ -267,82 +300,6 @@ terraform init
 ```
 
 Now, if you keep the `backend.tf` file in scope when you run `terraform` operations, all state will be stored in the configured bucket.
-
----
-
-## Support for Private Terraform Enterprise
-
-If some aspect of Private Terraform Enterprise is not working as
-expected, please reach out to support for help.
-
-### Email
-
-You can engage HashiCorp support via <support@hashicorp.com>. Please make sure
-to use your organization email (not your personal email) when contacting us so
-we can associate the support request with your organization and expedite our
-response.
-
-### Diagnostics
-
-For most technical issues HashiCorp support will ask you to include diagnostic
-information in your support request. You can create a support bundle by
-connecting to your Private Terraform Enterprise instance via SSH and running
-
-    sudo hashicorp-support
-
-You will see output similar to:
-
-    ==> Creating HashiCorp Support Bundle in /var/lib/hashicorp-support
-    ==> Wrote support tarball to /var/lib/hashicorp-support/hashicorp-support.tar.gz
-    gpg: checking the trustdb
-    gpg: marginals needed: 3  completes needed: 1  trust model: PGP
-    gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
-    gpg: next trustdb check due at 2019-04-14
-    ==> Wrote encrypted support tarball to /var/lib/hashicorp-support/hashicorp-support.tar.gz.enc
-    Please send your support bundle to HashiCorp support.
-
-Attach the `hashicorp-support.tar.gz.enc` file to your support request. If it is
-too large to attach you can send this to us via S3, FTP, or another data store
-you control.
-
-**Warning:** Make sure to attach the file ending in `.tar.gz.enc` as the
-contents of `.tar.gz` are not encrypted!
-
-**Note:** The GPG key used to encrypt the bundle is imported for the `root` user
-only. If you use `sudo -sH`, change `$HOME`, or take a similar action, the
-encryption step will fail. To assume `root` use `sudo -s` instead.
-
-#### About the Bundle
-
-The support bundle contains logging and telemetry data from various components
-in Private Terraform Enterprise. It may also include log data from Terraform builds you have executed on your Private Terraform Enterprise installation. For your privacy and
-security, the entire contents of the support bundle are encrypted with a 2048
-bit RSA key.
-
-#### Scrubbing Secrets
-
-If you have extremely sensitive data in your Terraform build logs you
-may opt to omit these logs from your bundle. However, this may impede our
-efforts to diagnose any problems you are encountering. To create a custom
-support bundle, run the following commands:
-
-    sudo -s
-    hashicorp-support
-    cd /var/lib/hashicorp-support
-    tar -xzf hashicorp-support.tar.gz
-    rm hashicorp-support.tar.gz*
-    rm nomad/*build-worker*
-    tar -czf hashicorp-support.tar.gz *
-    gpg2 -e -r "Terraform Enterprise Support" \
-        --cipher-algo AES256 \
-        --compress-algo ZLIB \
-        -o hashicorp-support.tar.gz.enc \
-        hashicorp-support.tar.gz
-
-You will note that we first create a support bundle using the normal procedure,
-extract it, remove the files we want to omit, and then create a new one.
-
----
 
 ## Private Terraform Enterprise Architecture
 

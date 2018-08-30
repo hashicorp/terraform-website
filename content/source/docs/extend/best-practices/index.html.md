@@ -25,6 +25,14 @@ practice is also linked in navigation on the left.
 
 The Best Practices section is a work in progress, with more sections to come.
 
+## Deprecations, Removals, and Renames
+
+Over time, remote services evolve and better workflows are designed.
+Terraform's plugin system has functionality to aid in iterative improvements.
+In [Deprecations, Removals, and Renames][deprecations], we cover procedures for
+backwards compatible code and documentation updates to ensure that operators
+are well informed of changes ahead of functionality being removed or renamed.
+
 ## Detecting Drift
 
 Terraform is a declarative tool designed to be the source of truth for
@@ -33,7 +41,7 @@ infrastructure, Terraform needs to be able to detect changes made outside of
 it's configuration and provide means of reconciliation. In [Detecting
 Drift][drift], we cover some best practices to ensure Terraform's statefile is
 an accurate reflection of reality, in order to provide accurate plan and apply
-functionality. 
+functionality.
 
 ## Testing Patterns
 
@@ -42,9 +50,18 @@ resource to verify the behavior of plugins, ensuring a reliable and safe
 way to manage infrastructure. In [Testing Patterns][testing-patterns] we cover
 some basic acceptance tests that almost all resources should have to validate
 not only the functionality of the resource, but that the resource behaves as
-Terraform would expect a resource to behave. 
+Terraform would expect a resource to behave.
 
-[Click here to learn more.][drift]
+## Versioning and Changelog
 
+Terraform development serves two distinct audiences: those writing plugin code
+and those implementing them. By clearly and consistently allowing operators to
+easily understand changes in plugin implementation via version numbering and
+documenting those changes, a trust is formed between the two audiences. In
+[Versioning and Changelog][versioning] we cover some guidelines when deciding
+release versions and how to relay changes through documentation.
+
+[deprecations]: /docs/extend/best-practices/deprecations.html
 [drift]: /docs/extend/best-practices/detecting-drift.html
 [testing-patterns]: /docs/extend/best-practices/testing.html
+[versioning]: /docs/extend/best-practices/versioning.html

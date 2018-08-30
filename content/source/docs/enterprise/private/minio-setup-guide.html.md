@@ -3,12 +3,12 @@ layout: "enterprise2"
 page_title: "Private Terraform Enterprise Installation (Installer) - Minio Setup Guide"
 sidebar_current: "docs-enterprise2-private-installer-minio"
 description: |-
-  This document provides an overview for setting up Minio for external object storage for HashiCop Private Terraform Enterprise (PTFE).
+  This document provides an overview for setting up Minio for external object storage for HashiCorp Private Terraform Enterprise (PTFE).
 ---
 
 # Private Terraform Enterprise Installation (Installer) - Minio Setup Guide
 
-This document provides an overview for setting up [Minio](https://minio.io) for external object storage for HashiCop Private Terraform Enterprise (PTFE).
+This document provides an overview for setting up [Minio](https://minio.io) for external object storage for HashiCorp Private Terraform Enterprise (PTFE).
 
 ## Required Reading
 
@@ -17,7 +17,7 @@ This document provides an overview for setting up [Minio](https://minio.io) for 
 
 ## Overview
 
-When configured to use external services, PTFE must be connected to a storage service to persist workspace state and other file-based data.  Native support exists for Azure Blob Storage, Amazon S3, and services that are API-compatible with Amazon S3.  If you are not using Azure or a cloud provider with an S3-compatible service, or you are running PTFE in an environment without a storage service, it may be possible to use [Minio](https://minio.io) instead.  
+When configured to use external services, PTFE must be connected to a storage service to persist workspace state and other file-based data.  Native support exists for Azure Blob Storage, Amazon S3, and services that are API-compatible with Amazon S3.  If you are not using Azure or a cloud provider with an S3-compatible service, or you are running PTFE in an environment without a storage service, it may be possible to use [Minio](https://minio.io) instead.
 
 ## Installation
 
@@ -87,7 +87,7 @@ You may now [continue the installation in the browser](./install-installer.html#
 5. Enter the access key and secret access key using the information retrieved from Minio
 6. Provide the endpoint URL, like: `http://<ip address from above>:9000`
 7. Enter the name of the bucket you created above (`ptfe` in the example)
-8. Enter `us-east-1` for the region; this is arbitrary, but must be a valid AWS region  
+8. Enter `us-east-1` for the region; this is arbitrary, but must be a valid AWS region
    **Note:** The "Test Authentication" button does not currently work for non-AWS endpoints
 9. Click "Save"
 

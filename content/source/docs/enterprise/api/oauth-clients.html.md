@@ -109,3 +109,31 @@ curl \
   }
 }
 ```
+
+## Destroy an OAuth Client
+
+`DELETE /organizations/:organization_name/oauth-clients/:id`
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization that owns the OAuth connection.
+`:id`                | The ID of the OAuth client to destroy.
+
+This endpoint allows you to remove an existing connection between an organization and a VCS provider (GitHub, Bitbucket, or GitLab).
+
+**Note:** Removing the OAuth Client will unlink workspaces that use this connection from their repositories, and these workspaces will need to be manually linked to another repository.
+
+Status  | Response                                        | Reason
+--------|---------------------------|----------
+[204][] | Empty response            | The OAuth Client was successfully destroyed
+[404][] | [JSON API error object][] | Organization or OAuth Client not found, or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/organizations/my-organization/oauth-clients/oc-XKFwG6ggfA9n7t1K
+```

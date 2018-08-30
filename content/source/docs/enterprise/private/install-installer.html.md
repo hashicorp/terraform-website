@@ -17,6 +17,8 @@ Terraform Enterprise via the Installer. Customers using the AMI can follow the
 
 ## Migrating from AMI
 
+!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018.
+
 If you are migrating an installation from the AMI to the installer, please
 use the instuctions in the [migration guide](./migrate.html).
 
@@ -44,10 +46,10 @@ The Private Terraform Enterprise Installer currently supports the following
 operating systems:
 
 * Debian 7.7+
-* Ubuntu 14.04 / 16.04
+* Ubuntu 14.04 / 16.04 / 18.04
 * Red Hat Enterprise Linux 7.2+
 * CentOS 7+
-* Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09
+* Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
 * Oracle Linux 7.2+
 
 #### Hardware Requirements
@@ -178,11 +180,12 @@ The decision you make will be entered during setup.
 
 #### Mounted Disk Guidelines
 
-The mounted disk option provides for significant flexibility in how PTFE stores its data. To help narrow down possibilites here are our guidelines about using mounted disk storage.
+The mounted disk option provides significant flexibility in how PTFE stores its data. To help narrow down the possibilites, we've provided the following guidelines for mounted disk storage.
 
 ##### Supported Mounted Disk Types
 
-The follow are **supported** mounted disk types:
+The following are **supported** mounted disk types:
+
 * AWS EBS
 * GCP Zonal Persistent Disk
 * Azure Disk Storage
@@ -190,15 +193,16 @@ The follow are **supported** mounted disk types:
 * SAN
 * Physically connected disks as in non-cloud hardware
 
-###### Additional Note about Disk Resizing
+###### Disk Resizing
 
-Depending on your Cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
+Depending on your cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
 
-For example, with RedHat-flavour (eg. RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article ["How to: Resize Linux osDisk partition on Azure"](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/)..
+For example, with RedHat-flavor (RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article [How to: Resize Linux osDisk partition on Azure](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
 
 ##### Unsupported Mounted Disk Types
 
-The follow are **not supported** mounted disk types:
+The following are **not** supported mounted disk types:
+
 * NFS
 * SMB/CIFS
 
@@ -310,12 +314,9 @@ CREATE SCHEMA vault;
 CREATE SCHEMA registry;
 ```
 
-When specifying which PostgreSQL database to use, the value specified must
-be a valid Database URL, as [specified in the libpq documentation](https://www.postgresql.org/docs/9.3/static/libpq-connect.html#AEN39514).
-
-Additionally, the URL must include the `sslmode` parameter indicating if SSL
-should be used to connect to the database. There is no assumed SSL mode; the
-parameter must be specified.
+When providing optional extra keyword parameters for the database connection,
+note an additional restriction on the `sslmode` parameter is that only the
+`require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
 ### Finish Bootstrapping
 

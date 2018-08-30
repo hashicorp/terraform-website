@@ -8,7 +8,30 @@ sidebar_current: "docs-enterprise2-private-logging"
 
 This document contains information about interacting with Private Terraform Enterprise logs. There are two types of logs, application logs and audit logs. Application logs emit information about the services that comprise Terraform Enterprise. Audit logs emit information whenever any resource managed by Terraform Enterprise is changed.
 
-## Application Logs - AMI based installs
+## Application Logs 
+
+### Installer
+
+Installer-based PTFE runs in a set of Docker containers. As such, any tooling that can interact with Docker logs can read the logs. This includes the command `docker logs`, as well as access via the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
+
+An example of a tool that can automatically pull logs for all docker containers is [logspout](https://github.com/gliderlabs/logspout).
+Logspout can be configured to take the Docker logs and send them to a syslog endpoint. Here's an example invocation:
+
+```shell
+$ docker run --name="logspout" \
+  --volume=/var/run/docker.sock:/var/run/docker.sock \
+  gliderlabs/logspout \
+  syslog+tls://logs.mycompany.com:55555
+```
+
+The logspout container uses the Docker API internally to find other running containers and ingress their logs, then send them to `logs.mycompany.com` on port 55555 using syslog with TCP/TLS.
+
+~> **NOTE:** While docker has support for daemon-wide log drivers that can send all logs for all containers to various services,
+   Private Terraform Enterprise only supports having the Docker `log-driver` configured to either `json-file` or `journald`.
+   All other log drivers prevent the support bundle functionality from gathering logs, making it
+   impossible to provide product support. **DO NOT** change the log driver of an installation to anything other than `json-file` or `journald`.
+
+### AMI based installs
 
 Private Terraform Enterprise's application-level services all log to CloudWatch logs, with one stream per service. The stream names take the format:
 
@@ -38,44 +61,20 @@ tfe.mycompany.io-terraform-state-parser
 
 CloudWatch logs can be searched, filtered, and read from either from the AWS Web Console or (recommended) the command line [`awslogs`](https://github.com/jorgebastida/awslogs) tool.
 
-### System-level Logs
-
-All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
-
-## Application Logs - Installer
-
-The installer-based version runs the application in a set of docker containers. As such, any tooling that can interact with docker logs
-can read the logs. This includes running the command `docker logs`, as well as access the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
-
-An example of a tool that can automatically pull logs for all docker containers is [logspout](https://github.com/gliderlabs/logspout).
-It can easily be configured to take the docker logs and send them to a syslog endpoint. Here is an example invocation to do so:
-
-```shell
-$ docker run --name="logspout" \
-	--volume=/var/run/docker.sock:/var/run/docker.sock \
-	gliderlabs/logspout \
-	syslog+tls://logs.mycompany.com:55555
-```
-
-The container uses the docker API internally to find the containers and ingress the logs, at which point it then sends
-them to `logs.mycompany.com` over TCP on port 55555 using syslog over TLS.
-
-~> **NOTE:** While docker has support for daemon wide log drivers that can send all logs for all containers to various services,
-   Private Terraform Enterprise installations only supports docker `log-driver` configured to either `json-file` or `journald`.
-   All other log drivers prevent the support bundle functionality from gathering logs, making it
-   impossible to provide product support. **DO NOT** change the log driver of an installation to anything other than `json-file` or `journald`.
+-> **Note:** All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
 
 ## Audit Logs
 
 Audit log entries are written to the application logs. To distinguish audit Log entries from other log entries, the JSON is prefixed with `[Audit Log]`.
 
+### Installer
+
+The audit logs are emitted along with other logs by the `ptfe_atlas` container.
+
 ### AMI based installs
 
 As of Private Terraform Enterprise release v201802-1, audit logging is available in Private Terraform Enterprise. These are written out to CloudWatch logs just like all other application-level logs.
 
-### Installer
-
-The audit logs have been available in the installer since beta4. They are emitted along with other logs by the `ptfe_atlas` container.
 
 ### Log Contents
 

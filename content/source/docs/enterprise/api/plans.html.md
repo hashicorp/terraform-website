@@ -18,7 +18,7 @@ Parameter | Description
 ----------|------------
 `id`      | The ID of the plan to show.
 
-As there is no endpoint to list plans, you can find the ID for a plan in the
+There is no endpoint to list plans. You can find the ID for a plan in the
 `relationships.plan` property of a run object.
 
 Status  | Response                                | Reason
@@ -49,6 +49,9 @@ curl \
     "type": "plans",
     "attributes": {
       "has-changes": true,
+      "resource-additions": 0,
+      "resource-changes": 1,
+      "resource-destructions": 0,
       "status": "finished",
       "status-timestamps": {
         "queued-at": "2018-07-02T22:29:53+00:00",

@@ -53,63 +53,11 @@ Pull requests should cover the following:
 
 If a pull request has been approved by a maintainer and the submitter has push privileges (recognizable via Collaborator or Member badge), the submitter should merge their own pull request. Any pull request that significantly changes or breaks user experience should always get at least one vote of approval from a HashiCorp employee prior to merge. We prefer to merge via the GitHub web interface using the green merge button. Squash when the commit history is irrelevant.
 
-### Changelog
+### Versioning and Changelog
 
-Changelogs are an important piece of documentation within a provider. All providers should follow a consistent CHANGELOG that is broken down as follows:
-
-- Backwards incompatibilities: This section documents in brief any incompatible changes and how to handle them. This is only present in certain versions that can have breaking changes, see the subsection of "versioning" for more information.
-- Features: These are major new features or major new improvements that deserve a special highlight, such as a new resource or data source like EKS cluster for the AWS provider.
-- Improvements: Smaller features or enhancements added to the project such as a new field for a resource.
-- Bug fixes: Any bugs that were fixed.
+All providers should follow a consistent versioning scheme and changes should be documented in a `CHANGELOG` file. The specific changelog formatting required for HashiCorp released providers (due to the release process) and recommended for all community providers is outlined in our [versioning best practices documentation](/docs/extend/best-practices/versioning.html).
 
 To keep the CHANGELOG up to date, we recommend updating the CHANGELOG after every set of commits that change the project. Never include CHANGELOG updates in a pull request. If you do, it will very likely cause a merge conflict with other pull requests. Instead, make the pull request without CHANGELOG updates, and add to the CHANGELOG only after merge.
-
-#### Entry Format
-
-To keep the CHANGELOG entries standardized across our tools, we follow a simple format scheme as follows:
-
-```
-CATEGORY: [BACKWARDS INCOMPATIBILITY / NEW FEATURES / BUG FIXES]
-
-* subsystem: Descriptive message [GH-1234]
-```
-For provider development typically the "subsystem" is the resource or data source affected e.g. `resource/vpc`, or `provider` if the change affects whole provider (e.g. authentication logic).
-
-#### Entry Ordering
-
-To order entries, these basic rules should be followed:
-
-1. If large cross-cutting changes are present, we list them as "provider: "
-2. Order entries lexicographically in the subsystem (`resource/eks` < `resource/rds`)
-
-#### Example Changelog
-```
-## 1.27.0 (Unreleased)
-
-BREAKING CHANGES:
-
-  * The only thing that's changed is everything [GH-1]
-
-FEATURES:
-
-  * New resource: eks [GH-43]
-
-IMPROVEMENTS:
-
-  * resource/elb: Super improved [GH-12]
-  * resource/vpc: Now better [GH-22, GH-32]
-```
-The upcoming release is always at the top of the file and is marked specifically as "Unreleased". Each bullet also references the corresponding pull request number that contained the code changes. During the release process the "Unreleased" header is removed and all pull request references are linked to automatically.
-
-#### Versioning
-
-Provider development follows [semantic versioning guidelines](https://semver.org/). In summary, this means that with a version number of the form MAJOR.MINOR.PATCH, the following meanings apply:
-
-- Increasing only the patch number suggests that the release includes only bug fixes, and is intended to be functionally equivalent.
-- Increasing the minor number suggests that new features have been added but that existing functionality remains broadly compatible.
-- Increasing the major number indicates that significant breaking changes have been made, and thus extra care or attention is required during an upgrade.
-
-For more details please visit a [blog post](https://www.hashicorp.com/blog/hashicorp-terraform-provider-versioning) made regarding Provider versioning.
 
 ### Release process
 

@@ -117,7 +117,7 @@ Each workspace has a "Settings" page (available from the top links when viewing 
 - **Terraform version:** TFE can use any released version of Terraform to manage a workspace. Different workspaces can use different versions, and TFE won't automatically upgrade a workspace.
 
     To stay up to date, you should visit workspace settings periodically and update the Terraform version.
-- **Workspace lock:** A user with admin privileges on a workspace can _lock_ the workspace, which prevents plans and applies from running. Use this when recovering from a bad commit or performing other maintenance.
+- **Workspace lock:** A user with write privileges on a workspace can _lock_ the workspace, which prevents plans and applies from running. Use this when recovering from a bad commit or performing other maintenance.
 - **Workspace delete:** When deleting a workspace, you usually also want to de-provision any infrastructure it's managing. This section of the settings has a button for queueing a destroy plan (to de-provision), and a button for deleting the workspace data. Note that destroy plans require an extra environment variable for confirmation; see the settings page for more details.
 
 ## Navigating Workspaces
