@@ -1,17 +1,16 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer) - VMware Setup Guide"
+page_title: "Private Terraform Enterprise - Reference Architecture - VMware"
 sidebar_current: "docs-enterprise2-private-installer-vmware"
 description: |-
   This document provides recommended practices and a reference architecture for
   HashiCorp Private Terraform Enterprise (PTFE) implementations on VMware.
 ---
 
-# Private Terraform Enterprise VMware Setup Guide
+# Private Terraform Enterprise VMware Reference Architecture
 
-The goal of this document is to provide recommended practices for
-HashiCorp Private Terraform Enterprise (PTFE) implementations through
-use of a Reference Architecture.
+This document provides recommended practices and a reference architecture for
+HashiCorp Private Terraform Enterprise (PTFE) implementations on VMware.
 
 ## Required Reading
 
@@ -56,7 +55,7 @@ the internal database or vault may result in serious performance issues.
 | Minimum     | 2           | 2             | 8 GB RAM     | 40GB |
 | Recommended | 2           | 4             | 16-32 GB RAM | 40GB |
 
--> Per VMWare’s recommendation, always allocate the least amount of CPU necessary. HashiCorp recommends starting with 2 CPUs and increasing if necessary.
+-> **Note:** Per VMWare’s recommendation, always allocate the least amount of CPU necessary. HashiCorp recommends starting with 2 CPUs and increasing if necessary.
 
 #### Hardware Sizing Considerations
 
@@ -204,7 +203,7 @@ In the event of a server outage ESX will vMotion the PTFE virtual
 machine to a functioning ESX host. This typically does not result in any
 visible outage to the end-user.
 
-### Failure by Application Tier 
+### Failure by Application Tier
 
 #### PTFE Servers
 

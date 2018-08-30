@@ -1,12 +1,14 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer) - Azure Setup Guide"
+page_title: "Private Terraform Enterprise - Reference Architecture - Azure"
 sidebar_current: "docs-enterprise2-private-installer-azure"
 description: |-
   This document provides recommended practices and a reference
   architecture for HashiCorp Private Terraform Enterprise (PTFE)
   implementations on Azure.
 ---
+
+# Private Terraform Enterprise Azure Reference Architecture
 
 ## Introduction
 
@@ -27,16 +29,16 @@ architecture.
 
 ## Infrastructure Requirements
 
+-> **Note:** This reference architecture focuses on the _Production - External Services_ operational mode.
+
 Depending on the chosen [operational
 mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single [Azure VM
 instance](https://azure.microsoft.com/en-us/services/virtual-machines/) for
 demo or proof of concept installations, to multiple instances connected to
-Azure DB, Azure Blob Storage and an external Vault cluster for a stateless
-production installation.
-
-This reference architecture focuses on the “Production - External Services”
-operational mode.
+[Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/),
+[Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/),
+and an external Vault cluster for a stateless production installation.
 
 The following table provides high level server recommendations, and is meant as
 a guideline. Of particular note is the strong recommendation to avoid non-fixed
@@ -53,13 +55,18 @@ instances.
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
-	deployments, or for development/testing environments.
+  deployments or for development/testing environments.
 
-- The recommended size is for production environments where there is
-	a consistent high workload in the form of concurrent terraform
-	runs.
+- The recommended size is for production environments where there is a
+  consistently high workload in the form of concurrent terraform runs.
 
-### PostgreSQL Database (Azure DB for PostgreSQL)
+- The default osDisk size for most Linux images on Azure is 30GB. When
+  increasing the size of the osDisk partition, there may be additional
+  steps required to fully utilize the disk space, such as using a tool
+  like `fdisk`. This process is documented in the Azure knowledge base
+  article ["How to: Resize Linux osDisk partition on Azure"](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
+
+### PostgreSQL Database (Azure Database for PostgreSQL)
 
 | Type        | CPU      | Memory      | Storage | Azure DB Sizes                                     |
 | ----------- | -------- | ----------- | ------- | -------------------------------------------------- |
@@ -68,18 +75,12 @@ instances.
 
 #### Hardware Sizing Considerations
 
-  - The minimum size would be appropriate for most initial production
-    deployments, or for development/testing environments.
+- The minimum size would be appropriate for most initial production
+  deployments, or for development/testing environments.
 
-  - The recommended size is for production environments where there is
-    a consistent high workload in the form of concurrent terraform
-    runs.
-
-##### Azure VM Disk Size Considerations
-
-The default root disk size for most Linux distros in Azure is 30GB. Even when assigning an instance more storage to the root partition, depending on the operating system, there may be additional steps required to fully utlize the full 50GB+ of disk, such as using a tool like `fdisk`.
-
-This process is documented in the Azure knowledge base article ["How to: Resize Linux osDisk partition on Azure"](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
+- The recommended size is for production environments where there is
+  a consistent high workload in the form of concurrent terraform
+  runs.
 
 ### Object Storage (Azure Blob Storage)
 
@@ -88,8 +89,8 @@ An Azure Blob Storage
 must be specified during the PTFE installation for application data to
 be stored securely and redundantly away from the Azure VMs running the
 PTFE application. This Azure Blob Storage container must be in the same
-region as the VMs and Azure DB instances. It is recommended the Virtual
-Network containing the PTFE servers be configured with a
+region as the VMs and Azure Database for PostgreSQL instance. It is recommended
+the virtual network containing the PTFE servers be configured with a
 [Virtual Network (VNet) service
 endpoint](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview)
 for Azure Storage. Vault is used to encrypt all application data stored
@@ -100,7 +101,7 @@ by Azure Blob Storage if required by your security policy.
 
 ### Vault Cluster
 
-In order to provide a fully stateless application instance, PTFE must be
+In order to provide a fully stateless application deployment, PTFE must be
 configured to speak with an [external Vault
 cluster](https://www.terraform.io/docs/enterprise/private/vault.html).
 This reference architecture assumes that a highly available Vault
@@ -113,19 +114,19 @@ cluster is accessible at an endpoint the PTFE servers can reach.
 In order to successfully provision this reference architecture you must
 also be permitted to create the following Azure resources:
 
-  - Resource Group
+  - [Resource Group(s)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups)
 
-  - Load Balancer
+  - [Load Balancer](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview)
 
-  - Virtual Network
+  - [Virtual Network](https://azure.microsoft.com/en-us/services/virtual-network/)
 
-  - Subnet
+  - [Subnet](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-manage-subnet)
 
-  - Public IP
+  - [Public IP](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-ip-addresses-overview-arm#public-ip-addresses)
 
-  - Managed Disk
+  - [Managed Disk](https://azure.microsoft.com/en-us/services/managed-disks/)
 
-  - Network Interface
+  - [Network Interface](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface)
 
 #### Network
 
@@ -159,53 +160,49 @@ The above diagram show the infrastructure components at a high-level.
 ### Application Layer
 
 The Application Layer is composed of two PTFE servers (Azure VMs)
-running in different subnets and operating in a main/standby
-configuration. Traffic is routed only to PTFE-main via a Load Balancer.
-Routing changes are typical managed by a human triggering a change in
-the Load Balancer configuration.
+running in different subnets and operating in an active/standby
+configuration. Traffic is routed to the active PTFE server via the Load Balancer
+rules and health checks. In the event that the active PTFE server becomes unavailable,
+the traffic will then route to the standby PTFE server, making it the new active
+server. Routing changes can also be managed by a human triggering by triggering a change in
+the Load Balancer configuration to switch between the PTFE servers.
 
 ### Storage Layer
 
-The Storage Layer is composed of multiple service endpoints (AzureDB,
+The Storage Layer is composed of multiple service endpoints (Azure Database for PostgreSQL,
 Azure Blob Storage, Vault) all configured with or benefitting from
-inherent resiliency provided by Azure (in the case of AzureDB and Azure
+inherent resiliency provided by Azure (in the case of Azure Database for PostgreSQL and Azure
 Blob Storage) or assumed resiliency provided by a well-architected
 deployment (in the case of Vault).
 
-  - [More information about AzureDB for
-    PostgreSQL
-    deployments](https://docs.microsoft.com/en-us/azure/postgresql/concepts-business-continuity)
+#### Additional Information
 
-  - [More information about Azure Blob
-    Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)
+- [Azure Database for PostgreSQL deployments](https://docs.microsoft.com/en-us/azure/postgresql/concepts-business-continuity)
 
+- [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)
 
-
-  - [More information about highly available
-    Vault
-    deployments](https://www.vaultproject.io/guides/operations/vault-ha-consul.html)
+- [Highly available Vault deployments](https://www.vaultproject.io/guides/operations/vault-ha-consul.html)
 
 ## Infrastructure Provisioning
 
 The recommended way to deploy PTFE is through use of a Terraform
 configuration that defines the required resources, their references to
-other resources and dependencies.
+other resources, and associated dependencies.
 
 ## Normal Operation
 
 ### Component Interaction
 
-The Load Balancer routes all traffic to the *PTFE-main* instance which
-in turn handles all requests to the PTFE application.
+The Load Balancer routes all traffic to the active PTFE instance, which
+handles all requests to the PTFE application.
 
 The PTFE application is connected to the PostgreSQL database via the
 Azure provided database server name endpoint. All database requests are
-routed to the *AzureDB-main* server.
+routed to the highly available infrastructure supporting Azure Database for PostgreSQL.
 
 The PTFE application is connected to object storage via the Azure Blob
-Storage endpoint for the defined container and all object storage
-requests are routed to the highly available infrastructure supporting
-Azure Storage.
+Storage endpoint for the defined container. All object storage requests
+are routed to the highly available infrastructure supporting Azure Storage.
 
 The PTFE application is connected to the Vault cluster via the Vault
 cluster endpoint URL.
@@ -230,28 +227,28 @@ of the installation guide.
 ### Failure Scenarios
 
 The PTFE Reference Architecture is designed to handle different failure
-scenarios that have different probabilities. As the architecture evolves
-the ability to provide better service continuity may improve.
+scenarios that have different probabilities. The ability to provide better
+service continuity will improve as the architecture evolves.
 
 #### Component Failure
 
 ##### Single VM Failure
 
-In the event of the *PTFE-main* instance failing, the Load Balancer
-should be re-configured (manually or automatically) to route all traffic
-to the *PTFE-standby* instance. It is important to note this
-configuration of routing all traffic to a single instance and not in an
-active-active configuration is by design due to a serialisation
-requirement in the core components of PTFE.
+In the event of the active instance failing, the Load Balancer
+should be reconfigured (manually or automatically) to route all traffic
+to the standby instance.
 
-With external services (PostgreSQL Database, Object Storage, Vault) in
-use, there is still some application configuration data present on the
-PTFE server such as installation type, database connection settings,
-hostname. This data rarely changes. If the application configuration has
-not changed since installation, both PTFE-main and PTFE-standby will be
-using the same configuration and no action is required. If the
-configuration on PTFE-main changes you should create a snapshot via the
-UI or CLI and recover this to PTFE-standby so both instances use the
+~> **Important:** Active-active configuration is not supported due to a serialisation requirement in the core components of PTFE; therefore, all traffic from the Load Balancer *MUST* be routed to a single instance.
+
+When using the _Production - External Services_ deployment model (PostgreSQL Database, Object Storage, Vault), there is still some application configuration data present on the
+PTFE server such as installation type, database connection settings, and
+hostname; however, this data rarely changes. If the application configuration has
+not changed since installation, both PTFE1 and PTFE2 will
+use the same configuration and no action is required.
+
+If the
+configuration on the active instance changes, you should [create a snapshot](https://www.terraform.io/docs/enterprise/private/automated-recovery.html#1-configure-snapshots) via the
+UI or CLI and recover this to the standby instance so that both instances use the
 same configuration.
 
 ##### PostgreSQL Database
@@ -286,8 +283,8 @@ minimising downtime in the event of an outage.
 ### Failure Scenarios
 
 The PTFE Reference Architecture is designed to handle different failure
-scenarios that have different probabilities. As the architecture evolves
-it may provide a higher level of service continuity.
+scenarios that have different probabilities. The ability to provide better
+service continuity will improve as the architecture evolves.
 
 #### Region Failure
 
@@ -332,10 +329,9 @@ corruption.
 
 ##### PTFE Servers
 
-With external services (PostgreSQL Database, Object Storage, Vault) in
-use, there is still some application configuration data present on the
-PTFE server such as installation type, database connection settings,
-hostname. This data rarely changes. We recommend
+When using the _Production - External Services_ deployment model (PostgreSQL Database, Object Storage, Vault), there is still some application configuration data present on the
+PTFE server such as installation type, database connection settings, and
+hostname; however, this data rarely changes. We recommend
 [configuring automated
 snapshots](https://www.terraform.io/docs/enterprise/private/automated-recovery.html#1-configure-snapshots)
 for this installation data so it can be recovered in the event of data
@@ -349,19 +345,19 @@ features are available
 [here](https://docs.microsoft.com/en-us/azure/postgresql/concepts-backup)
 and summarised below:
 
-> ***Automated Backups** – Azure Database for PostgreSQL automatically
+> *Automated Backups – Azure Database for PostgreSQL automatically
 > creates server backups and stores them in user configured locally
 > redundant or geo-redundant storage.*
 >
-> ***Backup redundancy** – Azure Database for PostgreSQL provides the
+> *Backup redundancy – Azure Database for PostgreSQL provides the
 > flexibility to choose between locally redundant or geo-redundant
 > backup storage.*
 
 ##### Object Storage
 
-There is no automatic backup/snapshot of Azure Storage by Azure, so it
+There is no automatic backup/snapshot of Azure Blob Storage by Azure, so it
 is recommended to script a container copy process from the container
-used by the PTFE application to a “backup container” in Azure Storage
+used by the PTFE application to a “backup container” in Azure Blob Storage
 that runs at regular intervals. It is important the copy process is not
 so frequent that data corruption in the source content is copied to the
 backup before it is identified.
