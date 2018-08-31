@@ -125,13 +125,13 @@ curl \
 
 ## Force a run into the "cancelled" state
 
-`POST /admin/runs/:id/actions/force-cancel`
+`POST /admin/runs/:id/actions/cancel`
 
 Parameter | Description
 ----------|------------
 `:id`     | The ID of the run to cancel.
 
-This endpoint forces a run (and its plan/apply, if applicable) into the `"canceled"` state. This action should only be performed for runs that are stuck and no longer progressing normally, as there is a risk of lost state data if a progressing apply is force-canceled. Healthy runs can be [requested for cancellation by end-users](../../run/states.html).
+This endpoint forces a run (and its plan/apply, if applicable) into the `"errored"` state. This action should only be performed for runs that are stuck and no longer progressing normally, as there is a risk of lost state data if a progressing apply is force-canceled. Healthy runs can be [requested for cancellation by end-users](../../run/states.html).
 
 Status  | Response                               | Reason
 --------|----------------------------------------|----------
@@ -143,22 +143,6 @@ Status  | Response                               | Reason
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
-### Request body
-
-This POST endpoint allows an optional JSON object with the following properties as a request payload.
-
-Key path  | Type   | Default | Description
-----------|--------|---------|------------
-`comment` | string | `null`  | An optional explanation for why the run was force-canceled.
-
-### Sample Payload
-
-```json
-{
-  "comment": "This run was stuck and would never finish."
-}
-```
-
 ### Sample Request
 
 ```shell
@@ -166,8 +150,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  --data @payload.json \
-  "https://app.terraform.io/api/v2/admin/runs/run-VCsNJXa59eUza53R/actions/force-cancel"
+  "https://app.terraform.io/api/v2/admin/runs/run-VCsNJXa59eUza53R/actions/cancel"
 ```
 
 ### Sample Response
