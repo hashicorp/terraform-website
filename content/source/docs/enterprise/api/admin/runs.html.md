@@ -149,7 +149,7 @@ This POST endpoint allows an optional JSON object with the following properties 
 
 Key path  | Type   | Default | Description
 ----------|--------|---------|------------
-`comment` | string | `null`  | An optional explanation for why the run was force canceled.
+`comment` | string | `null`  | An optional explanation for why the run was force-canceled.
 
 ### Sample Payload
 

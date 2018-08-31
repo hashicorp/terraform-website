@@ -440,6 +440,7 @@ Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a cancel request.
 [409][] | [JSON API error object][] | Run was not planning or applying; cancel not allowed.
+[404][] | [JSON API error object][] | Run was not found or user not authorized.
 
 ### Request Body
 
@@ -492,6 +493,7 @@ Status  | Response                  | Reason(s)
 --------|---------------------------|----------
 [202][] | none                      | Successfully queued a cancel request.
 [409][] | [JSON API error object][] | Run was not planning or applying, has not been canceled non-forcefully, or the cool-off period has not yet passed.
+[404][] | [JSON API error object][] | Run was not found or user not authorized.
 
 ### Request Body
 
