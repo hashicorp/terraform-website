@@ -287,5 +287,6 @@ func testAccCheckExampleWidgetExists(resourceName string, widget *example.Widget
 }
 ```
 
+## Next Steps
 
-[1]: /docs/extend/testing/acceptance-testing/bestpractices.html
+Acceptance Testing is an essential approach to validating the implementation of a Terraform Provider. Using actual APIs to provision resources for testing can leave behind real infrastructure that costs money between tests. The reasons for these leaks can vary, regardless Terraform provides a mechanism known as [Sweepers](/docs/extend/testing/acceptance-tests/sweepers.html) to help keep the testing account clean.
