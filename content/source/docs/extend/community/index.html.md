@@ -12,6 +12,10 @@ description: |-
 Terraform is a mature project with a growing community. There are active,
 dedicated people willing to help you through various mediums.
 
+**Events:** HashiCorp sponsors various community events to bring together
+Terraform ecosystem developers. See the
+[events](/docs/extend/community/events/index.html) page for more information.
+
 **Stack Exchange:** Terraform questions often get asked and answered on [Server
 Fault](https://serverfault.com/) and [Stack
 Overflow](https://stackoverflow.com/). Use the tag "terraform" to help your
