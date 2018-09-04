@@ -40,16 +40,7 @@
 /docs/configuration/atlas.html                   /docs/configuration/terraform-enterprise.html
 /docs/enterprise/packer/builds.html              /docs/enterprise/packer/builds/index.html
 /docs/providers/atlas                            /docs/providers/terraform-enterprise/index.html
-/docs/providers/aws/r/alb.html                    /docs/providers/aws/r/lb.html
-/docs/providers/aws/r/alb_listener.html           /docs/providers/aws/r/lb_listener.html
-/docs/providers/aws/r/alb_listener_rule.html      /docs/providers/aws/r/lb_listener_rule.html
-/docs/providers/aws/r/alb_target_group.html       /docs/providers/aws/r/lb_target_group.html
-/docs/providers/aws/r/alb_target_group_attachment.html    /docs/providers/aws/r/lb_target_group_attachment.html
-/docs/providers/aws/r/code_commit_repository.html /docs/providers/aws/r/codecommit_repository.html
-/docs/providers/aws/r/code_commit_trigger.html    /docs/providers/aws/r/codecommit_trigger.html
-/docs/providers/aws/d/alb.html                    /docs/providers/aws/d/lb.html
-/docs/providers/aws/d/alb_listener.html           /docs/providers/aws/d/lb_listener.html
-/docs/providers/aws/d/alb_target_group.html       /docs/providers/aws/d/lb_target_group.html
+
 # The great TFE GA release
 /docs/enterprise-beta/api/configuration-versions.html   /docs/enterprise/api/configuration-versions.html
 /docs/enterprise-beta/api/index.html                    /docs/enterprise/api/index.html
@@ -183,3 +174,16 @@
 /docs/enterprise/workspaces/run-ui.html                  /docs/enterprise/run/ui.html
 /docs/enterprise/workspaces/run-api.html                 /docs/enterprise/run/api.html
 /docs/enterprise/workspaces/run-cli.html                 /docs/enterprise/run/cli.html
+
+# AWS Provider
+/docs/providers/aws/d/alb_listener.html                /docs/providers/aws/d/lb_listener.html
+/docs/providers/aws/d/alb_target_group.html            /docs/providers/aws/d/lb_target_group.html
+/docs/providers/aws/d/alb.html                         /docs/providers/aws/d/lb.html
+/docs/providers/aws/events/gardening-summer-2018.html  /docs/extend/community/events/2018/summer-gardening.html
+/docs/providers/aws/r/alb_listener_rule.html           /docs/providers/aws/r/lb_listener_rule.html
+/docs/providers/aws/r/alb_listener.html                /docs/providers/aws/r/lb_listener.html
+/docs/providers/aws/r/alb_target_group_attachment.html /docs/providers/aws/r/lb_target_group_attachment.html
+/docs/providers/aws/r/alb_target_group.html            /docs/providers/aws/r/lb_target_group.html
+/docs/providers/aws/r/alb.html                         /docs/providers/aws/r/lb.html
+/docs/providers/aws/r/code_commit_repository.html      /docs/providers/aws/r/codecommit_repository.html
+/docs/providers/aws/r/code_commit_trigger.html         /docs/providers/aws/r/codecommit_trigger.html
