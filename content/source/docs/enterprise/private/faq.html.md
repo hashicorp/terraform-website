@@ -158,7 +158,7 @@ You will again be asked if you want to copy the state file. Type `yes` and the s
 This is a list of hostnames that the product connects to and should be available for egress:
 
 * releases.hashicorp.com
-  * This can be avoid if customers [upload their own terraform version bundle](/docs/enterprise/run/index.html#custom-and-community-providers).
+  * This egress is not required if a [custom Terraform bundle](/docs/enterprise/run/index.html#custom-and-community-providers) is supplied.
 
 Additionally these hostnames are accessed by the Installer product in online mode:
 
