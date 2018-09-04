@@ -6,7 +6,7 @@ description: |-
   Summer 2018 community gardening event for Terraform providers.
 ---
 
-# Terraform Ecosystem Community Events - 2018 Fall Gardening
+# Terraform Ecosystem Community Events - 2018 Summer Gardening
 
 On June 21, 2018 the Terraform AWS team is going to put together a virtual, all time zones (best we can), community gardening session for the Terraform AWS provider, inspired by [Go's gardening concept](https://github.com/golang/go/wiki/Gardening). We plan to do this for other Terraform providers and OSS projects eventually.
 
