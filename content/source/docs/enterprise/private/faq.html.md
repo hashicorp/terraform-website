@@ -13,6 +13,7 @@ This page provides answers to many common questions about Private Terraform Ente
 1. [Support](#support-for-private-terraform-enterprise)
 2. [Managing Tool Versions](#managing-tool-versions)
 3. [Migration from SaaS-based Terraform Enterprise](#migrating-from-terraform-enterprise-saas)
+1. [Outbound Access](#outbound-access)
 
 ## AMI FAQ
 
@@ -146,6 +147,23 @@ terraform init
 ```
 
 You will again be asked if you want to copy the state file. Type `yes` and the state will be uploaded to your Private Terraform Enterprise installation.
+
+---
+
+## Outbound Access
+
+This is a list of hostnames that the product connects to and should be available for egress:
+
+* releases.hashicorp.com
+  * This egress is not required if a [custom Terraform bundle](/docs/enterprise/run/index.html#custom-and-community-providers) is supplied.
+
+Additionally these hostnames are accessed by the Installer product in online mode:
+
+* get.replicated.com
+* api.replicated.com
+* registry.replicated.com
+* registry-data.replicated.com
+* quay.io
 
 ---
 

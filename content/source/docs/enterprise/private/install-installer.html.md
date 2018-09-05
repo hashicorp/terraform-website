@@ -75,6 +75,12 @@ For Linux distributions other than RHEL, check Docker compatibility:
 
 ~> **Note**: It is not recommended to run Docker under a 2.x kernel.
 
+#### SELinux
+
+Private Terraform Enterprise does not support SELinux. The host running the installer must be configured in permissive mode by running: `setenforce 0`.
+
+Future releases may add native support for SELinux.
+
 #### Network Requirements
 
 1. Have the following ports available to the Linux instance:
@@ -109,6 +115,14 @@ To change the proxy settings after installation, use the Console settings page, 
 On the Console Settings page, there is a section for HTTP Proxy:
 
 ![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
+
+#### Proxy Exclusions (NO\_PROXY)
+
+If certain hostnames should not use the proxy and the instance should connect directly to them (for instance for S3), then you can pass an additional option to provide a list of domains:
+
+```
+./install.sh additional-no-proxy=s3.amazonaws.com,internal-vcs.mycompany.com,example.com
+````
 
 #### Trusting SSL/TLS Certificates
 
@@ -273,6 +287,8 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. The system will now perform a set of pre-flight checks on the instance and
    configuration thus far and indicate any failures. You can either fix the issues
    and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
+1. Set an encryption password used to encrypt the sensitive information at rest. The default value is auto-generated, but we strongly suggest you create your own password.
+   Be sure to retain the value because you will need to use this password to restore access to the data in the event of a reinstall.
 1. Configure the operational mode for this installation. See
    [Operational Modes](#operational-mode-decision) for information on what the different values
    are.
