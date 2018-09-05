@@ -77,7 +77,7 @@ application. This S3 bucket must be in the same region as the EC2 and RDS
 instances. It is recommended the VPC containing the PTFE servers be configured
 with a [VPC endpoint for
 S3](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html).
-Internally, Vault is used to encrypt all application data stored in the S3 bucket.  This
+Within the PTFE application, Vault is used to encrypt all application data stored in the S3 bucket.  This
 allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy.
@@ -173,7 +173,7 @@ as well.
 
 ### Component Interaction
 
-The ELB routes all traffic to the *PTFE* instance, which is managed by
+The Load Balancer routes all traffic to the *PTFE* instance, which is managed by
 an Auto Scaling Group with maximum and minimum instance counts set to 1.
 
 The PTFE application is connected to the PostgreSQL database via the RDS
