@@ -101,8 +101,10 @@ module "foo" {
 If the module contained the following content:
 
 ```hcl
-resource "aws_instance" "foo" {
-  ami = "ami-1234567"
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
 }
 ```
 
@@ -112,7 +114,7 @@ The following policy would evaluate to `true`:
 ```python
 import "tfplan"
 
-main = rule { tfplan.module(["foo"]).resources.aws_instance.foo[0].applied.ami is "ami-1234567" }
+main = rule { tfplan.module(["foo"]).resources.null_resource.foo[0].applied.triggers.foo is "bar" }
 ```
 
 ### Value: `module_paths`
@@ -152,8 +154,12 @@ main = rule { tfplan.module_paths contains ["foo"] }
 #### Iterating through modules
 
 Here is an example of a function to retrieve all resources of a particular type
-from all modules. Note the use of `else []` in case some modules don't have any
-resources; this is necessary to avoid the function returning undefined.
+from all modules (in this case, the
+[`azurerm_virtual_machine`][ref-tf-azurerm-vm] resource). Note the use of `else
+[]` in case some modules don't have any resources; this is necessary to avoid
+the function returning undefined.
+
+[ref-tf-azurerm-vm]: /docs/providers/azurerm/r/virtual_machine.html
 
 Remember again that this will only locate modules (and hence resources) that
 have pending changes.
@@ -207,7 +213,7 @@ populated here.
 
 As an example, given the following variable blocks:
 
-```
+```hcl
 variable "foo" {
   default = "bar"
 }
@@ -333,8 +339,10 @@ namespace](#namespace-resource-diff) to determine if a value is known or not.
 As an example, given the following resource:
 
 ```hcl
-resource "aws_instance" "foo" {
-  ami = "ami-1234567"
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
 }
 ```
 
@@ -343,7 +351,7 @@ The following policy would evaluate to `true`, if the resource was in the diff:
 ```python
 import "tfplan"
 
-main = rule { tfplan.resources.aws_instance.foo[0].applied.ami is "ami-1234567" }
+main = rule { tfplan.resources.null_resource.foo[0].applied.triggers.foo is "bar" }
 ```
 
 ### Value: `diff`
@@ -381,23 +389,27 @@ until the apply for that resource completes.
 As an example, given the following resource:
 
 ```hcl
-resource "aws_instance" "foo" {
-  # ...
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
+}
 
-  tags {
-    VPC = "${aws_vpc.vpc.id}"
+resource "null_resource" "bar" {
+  triggers = {
+    foo_id = "${null_resource.foo.id}"
   }
 }
 ```
 
 The following policy would evaluate to `true`, if the resource was in the diff,
-the value of the tag was changing, and the `id` of `aws_vpc.vpc` was currently
-not known (example: the resource has not been created yet):
+the value of the tag was changing, and the `id` of `null_resource.foo` was
+currently not known (example: the resource has not been created yet):
 
 ```python
 import "tfplan"
 
-main = rule { tfplan.resources.aws_instance.foo[0].diff["tags.VPC"].computed }
+main = rule { tfplan.resources.null_resource.foo[0].diff["triggers.foo_id"].computed }
 ```
 
 ### Value: `new`
@@ -418,11 +430,9 @@ comparison needed.
 As an example, given the following resource:
 
 ```hcl
-resource "aws_instance" "foo" {
-  ami = "ami-1234567"
-
-  tags {
-    Name = "foo"
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
   }
 }
 ```
@@ -433,10 +443,7 @@ and each of the concerned keys were changing to new values:
 ```python
 import "tfplan"
 
-new_ami = rule { tfplan.resources.aws_instance.foo[0].diff["ami"].new is "ami-1234567" }
-new_tag = rule { tfplan.resources.aws_instance.foo[0].diff["tags.Name"].new is "foo" }
-
-main = rule { new_ami and new_tag }
+main = rule { tfplan.resources.null_resource.foo[0].diff["triggers.foo"].new is "bar" }
 ```
 
 ### Value: `old`
@@ -453,16 +460,20 @@ comparison needed.
 As an example, given the following resource:
 
 ```hcl
-resource "aws_instance" "foo" {
-  ami = "ami-8901234"
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "baz"
+  }
 }
 ```
 
 If that resource was previously in config as:
 
 ```hcl
-resource "aws_instance" "foo" {
-  ami = "ami-1234567"
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
 }
 ```
 
@@ -471,5 +482,5 @@ The following policy would evaluate to `true`:
 ```python
 import "tfplan"
 
-main = rule { tfplan.resources.aws_instance.foo[0].diff["ami"].old is "ami-1234567" }
+main = rule { tfplan.resources.null_resource.foo[0].diff["triggers.foo"].old is "bar" }
 ```
