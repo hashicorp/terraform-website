@@ -10,6 +10,56 @@ description: |-
 
 The tfstate import provides access to the Terraform state.
 
+This is the Terraform state as it exists at plan time. Depending on the state of
+a Terraform workspace, the data in this import may be incomplete (such as when a
+resource has not been created yet).
+
+Depending on what you are looking for, the [`tfconfig`][import-tfconfig] and
+[`tfplan`][import-tfplan] imports can assist with providing a more complete view
+of the state and configuration of the workspace as it exists currently, or in
+the future as well. `tfplan` also has aliases to both the `tfconfig` and
+`tfplan` imports to help simplify policy.
+
+[import-tfconfig]: /docs/enterprise/sentinel/import/tfconfig.html
+[import-tfplan]: /docs/enterprise/sentinel/import/tfplan.html
+
+## The Namespace
+
+The following is a tree view of the import namespace. For more detail on a
+particular part of the namespace, see below.
+
+```
+tfstate
+├── module() (function)
+│   └── (module namespace)
+│       ├── path ([]string)
+│       ├── data
+│       │   └── TYPE.NAME.NUMBER
+│       │       ├── attr (map of keys)
+│       │       ├── depends_on ([]string)
+│       │       ├── id (string)
+│       │       └── tainted (boolean)
+│       ├── outputs
+│       │   └── NAME
+│       │       ├── sensitive (bool)
+│       │       ├── type (string)
+│       │       └── value (value)
+│       └── resources
+│           └── TYPE.NAME.NUMBER
+│               ├── attr (map of keys)
+│               ├── depends_on ([]string)
+│               ├── id (string)
+│               └── tainted (boolean)
+│
+├── module_paths ([][]string)
+├── terraform_version (string)
+│
+├── data (root module alias)
+├── outputs (root module alias)
+├── path (root module alias)
+└── resources (root module alias)
+```
+
 ### tfstate.module_paths
 
 All the module paths represented in the state. This can be used along
