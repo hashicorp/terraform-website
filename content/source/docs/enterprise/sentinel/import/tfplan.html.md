@@ -204,9 +204,15 @@ all of the variables that were set when creating the plan.
 As only root module variables when creating a plan, `variables` will only
 contain variables configured within the root module. 
 
-The actual value will be as configured. Primitives will bear the implicit type
-of its declaration (string, int, float, or bool), and maps and lists will be
-represented as such.
+Note that unlike the [`default`][import-tfconfig-variables-default] value in the
+[`tfconfig` variables namespace][import-tfconfig-variables], primitive values
+here are stringified, and type conversion will need to be performed to perform
+comparison for int, float, or boolean values. This only applies to variables
+that are primitives themselves and not primitives within maps and lists, which
+will be their original types.
+
+[import-tfconfig-variables-default]: /docs/enterprise/sentinel/import/tfconfig.html#value-default
+[import-tfconfig-variables]: /docs/enterprise/sentinel/import/tfconfig.html#namespace-variables
 
 If a default was accepted for the particular variable, the default value will be
 populated here.
@@ -221,6 +227,13 @@ variable "foo" {
 variable "number" {
   default = 42
 }
+
+variable "map" {
+  default = {
+    foo    = "bar"
+    number = 42
+  }
+}
 ```
 
 The following policy would evaluate to `true`, if no values were entered to
@@ -230,9 +243,11 @@ change them:
 import "tfplan"
 
 default_foo = rule { tfplan.variables.foo is "bar" }
-default_number = rule { tfplan.variables.number is 42 }
+default_number = rule { tfplan.variables.number is "42" }
+default_map_string = rule { tfplan.variables.map["foo"] is "bar" }
+default_map_int = rule { tfplan.variables.map["number"] is 42 }
 
-main = rule { default_foo and default_number }
+main = rule { default_foo and default_number and default_map_string and default_map_int }
 ```
 
 ## Namespace: Module
@@ -276,7 +291,7 @@ for that module:
 ```python
 import "tfplan"
 
-main = rule { tfplan.module(["foo"]).path contains ["foo"] }
+main = rule { tfplan.module(["foo"]).path contains "foo" }
 ```
 
 ## Namespace: Resources/Data Sources
@@ -386,6 +401,14 @@ happens when a value depends on a value belonging to a resource that either does
 not exist yet or is changing state in a way that the new value will not be known
 until the apply for that resource completes.
 
+-> Keep in mind when using `computed` with complex structures such as maps,
+lists, and sets, that it's sometimes necessary to test the count attribute for
+the structure, versus a key within it, depending on whether or not the diff has
+marked the whole structure as computed. This is demonstrated in the example
+below.  Count keys are `%` for maps, and `#` for lists and sets. If you are
+having trouble determining the actual type of specific field within a resource,
+contact the support team.
+
 As an example, given the following resource:
 
 ```hcl
@@ -409,7 +432,7 @@ currently not known (example: the resource has not been created yet):
 ```python
 import "tfplan"
 
-main = rule { tfplan.resources.null_resource.foo[0].diff["triggers.foo_id"].computed }
+main = rule { tfplan.resources.null_resource.bar[0].diff["triggers.%"].computed }
 ```
 
 ### Value: `new`
