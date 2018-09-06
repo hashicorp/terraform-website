@@ -132,8 +132,8 @@ address, split on the period (`.`).
 
 The root module is included in this list, represented as an empty inner list.
 
-As an example, if the following module block was the only module within a
-Terraform configuration:
+As an example, if the following module block was present within a Terraform
+configuration:
 
 ```hcl
 module "foo" {
@@ -148,6 +148,25 @@ import "tfconfig"
 
 main = rule { tfconfig.module_paths contains ["foo"] }
 ```
+
+#### Iterating through modules
+
+Here is an example of a function to retrieve all resources of a particular type
+from all modules. Note the use of `else []` in case some modules don't have any
+resources; this is necessary to avoid the function returning undefined.
+
+```
+import "tfconfig"
+
+get_vms = func() {
+	vms = []
+	for tfconfig.module_paths as path {
+		vms += values(tfconfig.module(path).resources.azurerm_virtual_machine) else []
+	}
+	return vms
+}
+```
+
 
 ## Namespace: Module
 
@@ -168,8 +187,9 @@ It's a namespace that can be used to load the following data:
 ### Root Namespace Aliases
 
 The root-level `data`, `modules`, `providers`, `resources`, and `variables` keys
-all alias to their corresponding namespaces within the module namespace. They
-are essentially the equivalent of running `module([]).KEY`.
+all alias to their corresponding namespaces within the module namespace, loaded
+for the root module. They are essentially the equivalent of running
+`module([]).KEY`.
 
 ## Namespace: Resources/Data Sources
 
