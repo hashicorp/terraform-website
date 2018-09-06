@@ -118,7 +118,7 @@ The following policy would evaluate to `true`:
 ```python
 import "tfconfig"
 
-main = rule { module(["foo"]).resources.aws_instance.foo.config.ami is "ami-1234567" }
+main = rule { tfconfig.module(["foo"]).resources.aws_instance.foo.config.ami is "ami-1234567" }
 ```
 
 ### Value: `module_paths`
@@ -146,7 +146,7 @@ The following policy would evaluate to `true`:
 ```python
 import "tfconfig"
 
-main = rule { module_paths is [[], ["foo"]] }
+main = rule { tfconfig.module_paths contains ["foo"] }
 ```
 
 ## Namespace: Module
@@ -231,10 +231,12 @@ policy would evaluate to `true`:
 ```python
 import "tfconfig"
 
-all tfconfig.resources.aws_instance.foo.config.tags as tags {
-  all tags as _, value {
-    value in ["one", "two"]
-  }
+main = rule {
+	all subject.resources.aws_instance.foo.config.tags as tags {
+		all tags as _, value {
+			value in ["one", "two"]
+		}
+	}
 }
 ```
 
@@ -317,24 +319,11 @@ main = rule { tfconfig.resources.aws_instance.foo.provisioners[0].type is "local
 ## Namespace: Module Configuration
 
 The **module configuration** namespace displays data on _module configuration_
-as it is given within a `module` block within a configuration itself.
-
-Consider the module below:
-
-```hcl
-module "foo" {
-  source = "./foo"
-
-  bar = "baz"
-}
-```
-
-As mentioned, this namespace concerns itself with the contents of the
-declaration block itself, not the data within the module. This means that data
-can be extracted such as the source and config, (example:
-`tfconfig.modules.foo.source` and `tfconfig.modules.foo.config.bar`), but not
-any information from within the module (such as resources or data sources). For
-the latter, the module instance would need to be looked up with the [`module()`
+as it is given within a `module` block. This means that the namespace concerns
+itself with the contents of the declaration block (example: the `source`
+parameter and variable assignment keys), not the data within the module
+(example: any contained resources or data sources). For the latter, the module
+instance would need to be looked up with the [`module()`
 function](#function-module-).
 
 ### Value: `source`
@@ -345,9 +334,15 @@ The `source` value within the [module configuration
 namespace](#namespace-module-configuration) represents the module source path as
 supplied to the module configuration.
 
-As an example, given the module declaration
-[above](#namespace-module-configuration), the following policy would evaluate to
-`true`:
+As an example, given the module declaration block:
+
+```hcl
+module "foo" {
+  source = "./foo"
+}
+```
+
+The following policy would evaluate to `true`:
 
 ```python
 import "tfconfig"
@@ -363,9 +358,17 @@ The `config` value within the [module configuration
 namespace](#namespace-module-configuration) represents the values of the keys
 within the module configuration.
 
-As an example, given the module declaration
-[above](#namespace-module-configuration), the following policy would evaluate to
-`true`:
+As an example, given the module declaration block:
+
+```hcl
+module "foo" {
+  source = "./foo"
+
+  bar = "baz"
+}
+```
+
+The following policy would evaluate to `true`:
 
 ```python
 import "tfconfig"
@@ -508,8 +511,8 @@ The following policy would evaluate to `true`:
 ```python
 import "tfconfig"
 
-default_foo = rule { tfconfig.variables.foo.default is "bar" } 
-default_number = rule { tfconfig.variables.number.default is 42 } 
+default_foo = rule { tfconfig.variables.foo.default is "bar" }
+default_number = rule { tfconfig.variables.number.default is 42 }
 
 main = rule { default_foo and default_number }
 ```
