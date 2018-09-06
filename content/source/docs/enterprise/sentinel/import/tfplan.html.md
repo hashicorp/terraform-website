@@ -55,6 +55,7 @@ tfplan
 ├── variables (map of keys)
 │
 ├── data (root module alias)
+├── path (root module alias)
 ├── resources (root module alias)
 │
 ├── config (tfconfig namespace alias)
@@ -65,8 +66,9 @@ tfplan
 
 The root-level namespace consists of the values and functions documented below.
 
-In addition to this, the root-level `data`, and `resources` keys alias to their
-corresponding namespaces within the [module namespace](#namespace-module).
+In addition to this, the root-level `data`, `path`, and `resources` keys alias
+to their corresponding namespaces or values within the [module
+namespace](#namespace-module).
 
 Further, the `config` and `state` keys alias to the
 [`tfconfig`][import-tfconfig] and [`tfstate`][import-tfstate] namespaces,
