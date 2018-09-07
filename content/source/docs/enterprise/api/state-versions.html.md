@@ -51,6 +51,7 @@ Key path                    | Type    | Default   | Description
 `data.attributes.md5`       | string  |           | An MD5 hash of the raw state version
 `data.attributes.lineage`   | string  | (nothing) | **Optional** Lineage of the state version. Should match the lineage extracted from the raw state file. Early versions of terraform did not have the concept of lineage, so this is an optional attribute.
 `data.attributes.state`     | string  |           | Base64 encoded raw state file
+`data.relationships.run.data.id` | string  | (nothing) | **Optional** The ID of the run to associate with the state version.
 
 ### Sample Payload
 
@@ -60,9 +61,17 @@ Key path                    | Type    | Default   | Description
     "type":"state-versions",
     "attributes": {
       "serial": 1,
-      "md5": "871d1b4a-e579-fb7c-ffdb-f0c858a647a7",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
       "lineage": "871d1b4a-e579-fb7c-ffdb-f0c858a647a7",
       "state": "..."
+    },
+    "relationships": {
+      "run": {
+        "data": {
+          "type": "runs",
+          "id": "run-bWSq4YeYpfrW4mx7"
+        }
+      }
     }
   }
 }
