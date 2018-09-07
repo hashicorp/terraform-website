@@ -257,7 +257,8 @@ main = rule { default_foo and default_number and default_map_string and default_
 The **module namespace** can be loaded by calling
 [`module()`](#function-module-) for a particular module.
 
-It's a namespace that can be used to load the following data:
+It's a namespace that can be used to load the following child namespaces, in
+addition to the values documented below:
 
 * `data` - Loads the [resource namespace](#namespace-resources-data-sources),
   filtered against data sources.
@@ -339,7 +340,7 @@ mentioned, when operating on data sources, use the same syntax, except with
 
 * **Value Type:** A string-keyed map of values.
 
-The `path` value within the [resource
+The `applied` value within the [resource
 namespace](#namespace-resources-data-sources) contains a "predicted"
 representation of the resource's state post-apply. It's created using the
 existing data from the resource's state (if any), and merging the pending
@@ -350,7 +351,7 @@ as needed to represent any state values such as maps, lists, and sets.
 
 Note that currently, computed values are represented by the placeholder value
 `74D93920-ED26-11E3-AC10-0800200C9A66`. This is not a stable API and should not
-be relied on. Instead, use the [`computed`](#) key within the [diff
+be relied on. Instead, use the [`computed`](#value-computed) key within the [diff
 namespace](#namespace-resource-diff) to determine if a value is known or not.
 
 As an example, given the following resource:
