@@ -166,7 +166,7 @@ the function returning undefined.
 Remember again that this will only locate modules (and hence resources) that
 have pending changes.
 
-```
+```python
 import "tfplan"
 
 get_vms = func() {

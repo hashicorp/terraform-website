@@ -171,7 +171,7 @@ the function returning undefined.
 Remember again that this will only locate modules (and hence resources) that are
 present in state.
 
-```
+```python
 import "tfstate"
 
 get_vms = func() {
@@ -434,7 +434,7 @@ The `sensitive` value within the [output namespace](#namespace-outputs) is
 
 As an example, given the following output:
 
-```
+```hcl
 output "foo" {
   sensitive = true
   value     = "bar"
@@ -459,7 +459,7 @@ currently the only types available for outputs in Terraform.
 
 As an example, given the following output:
 
-```
+```hcl
 output "string" {
   value = "foo"
 }
