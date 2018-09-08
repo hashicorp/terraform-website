@@ -497,15 +497,10 @@ main = rule { type_string and type_list and type_map }
 The `value` value within the [output namespace](#namespace-outputs) is the value
 of the output in question.
 
-Note that unlike the [`default`][import-tfconfig-variables-default] value in the
-[`tfconfig` variables namespace][import-tfconfig-variables], primitive values
-here are stringified, and type conversion will need to be performed to perform
-comparison for int, float, or boolean values. This only applies to values
-that are primitives themselves and not primitives within maps and lists, which
-will be their original types.
-
-[import-tfconfig-variables-default]: /docs/enterprise/sentinel/import/tfconfig.html#value-default
-[import-tfconfig-variables]: /docs/enterprise/sentinel/import/tfconfig.html#namespace-variables
+Note that the only valid primitive output type in Terraform is currently a
+string, which means that any int, float, or boolean value will need to be
+converted before it can be used in comparison. This does not apply to primitives
+within maps and lists, which will be their original types.
 
 As an example, given the following output blocks:
 
@@ -515,7 +510,7 @@ output "foo" {
 }
 
 output "number" {
-  value = 42
+  value = "42"
 }
 
 output "map" {
@@ -531,10 +526,10 @@ The following policy would evaluate to `true`:
 ```python
 import "tfstate"
 
-value_foo = rule { tfstate.outputs.foo is "bar" }
-value_number = rule { tfstate.outputs.number is "42" }
-value_map_string = rule { tfstate.outputs.map["foo"] is "bar" }
-value_map_int = rule { tfstate.outputs.map["number"] is 42 }
+value_foo = rule { tfstate.outputs.foo.value is "bar" }
+value_number = rule { int(tfstate.outputs.number.value) is 42 }
+value_map_string = rule { tfstate.outputs.map.value["foo"] is "bar" }
+value_map_int = rule { tfstate.outputs.map.value["number"] is 42 }
 
 main = rule { value_foo and value_number and value_map_string and value_map_int }
 ```
