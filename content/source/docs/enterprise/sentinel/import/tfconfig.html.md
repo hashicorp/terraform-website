@@ -107,8 +107,10 @@ module "foo" {
 If the module contained the following content:
 
 ```hcl
-resource "aws_instance" "foo" {
-  ami = "ami-1234567"
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
 }
 ```
 
@@ -118,7 +120,7 @@ The following policy would evaluate to `true`:
 ```python
 import "tfconfig"
 
-main = rule { tfconfig.module(["foo"]).resources.aws_instance.foo.config.ami is "ami-1234567" }
+main = rule { subject.module(["foo"]).resources.null_resource.foo.config.triggers[0].foo is "bar" }
 ```
 
 ### Value: `module_paths`
@@ -155,7 +157,7 @@ Here is an example of a function to retrieve all resources of a particular type
 from all modules. Note the use of `else []` in case some modules don't have any
 resources; this is necessary to avoid the function returning undefined.
 
-```
+```python
 import "tfconfig"
 
 get_vms = func() {
@@ -223,27 +225,27 @@ directly map to Terraform config keys and values.
 As a consequence of the mapping of this key to raw Terraform configuration,
 complex structures within Terraform configuration are grouped _per-instance_ as
 they are represented within the actual configuration itself. This has
-implications when defining policy correctly.
+implications when defining policy correctly. This applies to all complex
+structures - lists, sets, and maps.
 
 As an example, consider the following resource block:
 
-```
-resource "aws_instance" "foo" {
-  # ...
-
-  tags {
+```hcl
+resource "null_resource" "foo" {
+  triggers = {
     foo = "one"
   }
-
-  tags {
+  
+  triggers = {
     bar = "two"
   }
 }
 ```
 
 In this example, one would need to access both
-`tfconfig.resources.aws_instance.foo.config.tags[0].foo` and
-`tfconfig.resources.aws_instance.foo.config.tags[1].bar` to reach both tags.
+`tfconfig.resources.null_resource.foo.config.triggers[0].foo` and
+`tfconfig.resources.null_resource.foo.config.triggers[1].bar` to reach both
+triggers.
 
 This can be better represented by a loop. Given the above example, the following
 policy would evaluate to `true`:
@@ -252,8 +254,8 @@ policy would evaluate to `true`:
 import "tfconfig"
 
 main = rule {
-	all subject.resources.aws_instance.foo.config.tags as tags {
-		all tags as _, value {
+	all tfconfig.resources.null_resource.foo.config.triggers as triggers {
+		all triggers as _, value {
 			value in ["one", "two"]
 		}
 	}
@@ -289,8 +291,8 @@ represents the values of the keys within the provisioner.
 
 As an example, given the following resource block:
 
-```
-resource "aws_instance" "foo" {
+```hcl
+resource "null_resource" "foo" {
   # ...
 
   provisioner "local-exec" {
@@ -305,7 +307,7 @@ The following policy would evaluate to `true`:
 import "tfconfig"
 
 main = rule {
-	tfconfig.resources.aws_instance.foo.provisioners[0].config.command is "echo ${self.private_ip} > file.txt"
+	tfconfig.resources.null_resource.foo.provisioners[0].config.command is "echo ${self.private_ip} > file.txt"
 }
 ```
 
@@ -318,8 +320,8 @@ represents the type of the specific provisioner.
 
 As an example, in the following resource block:
 
-```
-resource "aws_instance" "foo" {
+```hcl
+resource "null_resource" "foo" {
   # ...
 
   provisioner "local-exec" {
@@ -330,10 +332,10 @@ resource "aws_instance" "foo" {
 
 The following policy would evaluate to `true`: 
 
-```
+```python
 import "tfconfig"
 
-main = rule { tfconfig.resources.aws_instance.foo.provisioners[0].type is "local-exec" }
+main = rule { tfconfig.resources.null_resource.foo.provisioners[0].type is "local-exec" }
 ```
 
 ## Namespace: Module Configuration
@@ -422,7 +424,7 @@ question loaded. The `alias` key will not be available within this namespace.
 
 As an example, given the following provider declaration block:
 
-```
+```hcl
 provider "aws" {
   alias  = "east"
   region = "us-east-1"
@@ -448,7 +450,7 @@ value](#value-version).
 
 As an example, given the following provider declaration block:
 
-```
+```hcl
 provider "aws" {
   region = "us-east-1"
 }
@@ -472,7 +474,7 @@ the pessimistic operator.
 
 As an example, given the following provider declaration block:
 
-```
+```hcl
 provider "aws" {
   version = "~> 1.34"
 }
@@ -516,7 +518,7 @@ be confused with [`undefined`][ref-sentinel-undefined]).
 
 As an example, given the following variable blocks:
 
-```
+```hcl
 variable "foo" {
   default = "bar"
 }
@@ -546,7 +548,7 @@ represents the description of the variable, as provided in configuration.
 
 As an example, given the following variable block:
 
-```
+```hcl
 variable "foo" {
   description = "foobar"
 }
