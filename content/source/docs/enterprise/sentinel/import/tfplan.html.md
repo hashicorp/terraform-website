@@ -373,9 +373,9 @@ mentioned, when operating on data sources, use the same syntax, except with
 
 The `applied` value within the [resource
 namespace](#namespace-resources-data-sources) contains a "predicted"
-representation of the resource's state post-apply. It's created using the
-existing data from the resource's state (if any), and merging the pending
-resource's diff on top of it.
+representation of the resource's state post-apply. It's created by merging the
+pending resource's diff on top of the existing data from the resource's state
+(if any).
 
 The map is a complex representation of these values with data going as far down
 as needed to represent any state values such as maps, lists, and sets.
