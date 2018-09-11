@@ -295,9 +295,10 @@ Some examples of multi-level access are below:
   `tfstate.resources.aws_instance`. This would be indexed off of the names of
   each resource (`foo`, `bar`, and so on), with each of those maps containing
   instances indexed by resource count index as per above.
-* To fetch all resources indiscriminately within the root module,
-  `tfstate.resources` will do. This is then indexed by resource type
-  (`aws_instance`, for example), with the other maps cascading down from there.
+* To fetch all resources within the root module, irrespective of type, use
+  `tfstate.resources`. This is indexed by type, as shown above with
+  `tfstate.resources.aws_instance`, with names being the next level down, and so
+  on.
 
 Further explanation of the namespace will be in the context of resources. As
 mentioned, when operating on data sources, use the same syntax, except with
