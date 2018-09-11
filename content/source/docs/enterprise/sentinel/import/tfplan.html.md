@@ -8,21 +8,20 @@ description: |-
 
 # Import: tfplan
 
-The `tfplan` import provides access to a Terraform plan. A Terraform
-plan is the file created as a result of `terraform plan` and is
-the input to `terraform apply`. The plan represents the changes that
-Terraform needs to make to infrastructure to reach the desired state
-represented by the configuration.
+The `tfplan` import provides access to a Terraform plan. A Terraform plan is the
+file created as a result of `terraform plan` and is the input to `terraform
+apply`. The plan represents the changes that Terraform needs to make to
+infrastructure to reach the desired state represented by the configuration.
 
-The Terraform plan import also allows you to access the configuration files (an
-alias to the [`tfconfig`][import-tfconfig] import) as well as the Terraform
-state (an alias to the [`tfstate`][import-tfstate] import) at the time the plan
-was run.  You can also access an "applied" state that merges the plan with the
-state to create the planned state after apply. Note that any computed values
-will not be visible in this state.
+In addition to the diff data available in the plan, there is an
+[`applied`](#value-applied) state available that merges the plan with the state
+to create the planned state after apply. Note that any computed values will not
+be visible in this state.
 
-[import-tfconfig]: /docs/enterprise/sentinel/import/tfconfig.html
-[import-tfstate]: /docs/enterprise/sentinel/import/tfstate.html
+Finally, this import also allows you to access the configuration files and the
+Terraform state at the time the plan was run. See the section on [accessing a
+plan's state and configuration
+data](#accessing-a-plan-39-s-state-and-configuration-data) for more information.
 
 ## The Namespace
 
@@ -75,9 +74,26 @@ In addition to this, the root-level `data`, `path`, and `resources` keys alias
 to their corresponding namespaces or values within the [module
 namespace](#namespace-module).
 
-Further, the `config` and `state` keys alias to the
-[`tfconfig`][import-tfconfig] and [`tfstate`][import-tfstate] namespaces,
-respectively.
+### Accessing a Plan's State and Configuration Data
+
+The `config` and `state` keys alias to the [`tfconfig`][import-tfconfig] and
+[`tfstate`][import-tfstate] namespaces, respectively, with the data sourced from
+the Terraform _plan_ (as opposed to actual configuration and state).
+
+[import-tfconfig]: /docs/enterprise/sentinel/import/tfconfig.html
+[import-tfstate]: /docs/enterprise/sentinel/import/tfstate.html
+
+-> Note that these aliases are not represented as maps. While they will appear
+empty when viewed as maps, the specific import namespace keys will still be
+accessible.
+
+-> Note that while current versions of Terraform Enterprise (TFE) source _all_
+data (including configuration and state) from the plan for the Terraform run in
+question, future versions of TFE may source data accessed through the `tfconfig`
+and `tfstate` imports (as opposed to `tfplan.config` and `tfplan.state`) from
+actual config bundles, or state as stored by TFE. When this happens, the
+distinction here will be useful - the data in the aliased namespaces will be the
+config and state data as the _plan_ sees it, versus the actual "physical" data.
 
 ### Function: `module()`
 
