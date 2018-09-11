@@ -27,6 +27,11 @@ can't see values for variables, the state, or the diff for a pending plan.
 The following is a tree view of the import namespace. For more detail on a
 particular part of the namespace, see below.
 
+-> Note that the root-level alias keys shown here (`data`, `modules`,
+`providers`, `resources`, and `variables`) are shortcuts to the [module
+namespace](#namespace-module). For more details, see the section on [root
+namespace aliases](#root-namespace-aliases).
+
 ```
 tfconfig
 ├── module() (function)
