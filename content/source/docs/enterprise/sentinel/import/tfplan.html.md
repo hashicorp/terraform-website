@@ -441,8 +441,8 @@ lists, and sets, it's sometimes necessary to test the count attribute for the
 structure, versus a key within it, depending on whether or not the diff has
 marked the whole structure as computed. This is demonstrated in the example
 below.  Count keys are `%` for maps, and `#` for lists and sets. If you are
-having trouble determining the actual type of specific field within a resource,
-contact the support team.
+having trouble determining the type of specific field within a resource, contact
+the support team.
 
 As an example, given the following resource:
 
