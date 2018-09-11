@@ -175,11 +175,12 @@ main = rule { tfstate.module_paths contains ["foo"] }
 
 #### Iterating through modules
 
-Here is an example of a function to retrieve all resources of a particular type
-from all modules (in this case, the
-[`azurerm_virtual_machine`][ref-tf-azurerm-vm] resource). Note the use of `else
-[]` in case some modules don't have any resources; this is necessary to avoid
-the function returning undefined.
+Iterating through all modules to find particular resources can be useful. This
+example shows how to use `module_paths` with the [`module()`
+function](#function-module-) to retrieve all resources of a particular type from
+all modules (in this case, the [`azurerm_virtual_machine`][ref-tf-azurerm-vm]
+resource). Note the use of `else []` in case some modules don't have any
+resources; this is necessary to avoid the function returning undefined.
 
 [ref-tf-azurerm-vm]: /docs/providers/azurerm/r/virtual_machine.html
 
