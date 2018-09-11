@@ -357,7 +357,7 @@ Some examples of multi-level access are below:
 * To fetch all `aws_instance` resources within the root module, you can specify
   `tfplan.resources.aws_instance`. This would be indexed off of the names of
   each resource (`foo`, `bar`, and so on), with each of those maps containing
-  instances indexed on count index as per above.
+  instances indexed by resource count index as per above.
 * To fetch all resources indiscriminately within the root module,
   `tfplan.resources` will do. This is then indexed by resource type
   (`aws_instance`, for example), with the other maps cascading down from there.
