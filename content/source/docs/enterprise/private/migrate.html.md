@@ -31,6 +31,17 @@ To revert to the AMI after running the migration script:
 * If the EC2 instance is still running from the migration process, run `shutdown` on it to get a new instance created.
 * Return to the original hostname used for the cluster.
 
+## Simple Upgrade (Recommended)
+
+For users that did not significantly change the reference terraform modules used to deploy
+the AMI, there is a simplified migration procedure that can be used.
+
+For users that modified the terraform modules, you're free to follow the simplified steps 
+as well, but you'll likely need to modify some terraform modules again to match the modifications
+you did in the past.
+
+If you want to do this procedure, head to the [Simplified Migration Page](./simplified-migration.html).
+
 ## Preflight
 
 Before you begin, you'll need to prepare data files and a Linux instance.
