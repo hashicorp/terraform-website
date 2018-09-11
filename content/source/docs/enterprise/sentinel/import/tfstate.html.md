@@ -39,9 +39,9 @@ The following is a tree view of the import namespace. For more detail on a
 particular part of the namespace, see below.
 
 -> Note that the root-level alias keys shown here (`data`, `modules`,
-`providers`, `resources`, and `variables`) are shortcuts to the [module
-namespace](#namespace-module). For more details, see the section on [root
-namespace aliases](#root-namespace-aliases).
+`providers`, `resources`, and `variables`) are shortcuts to a [module
+namespace](#namespace-module) scoped to the root module. For more details, see
+the section on [root namespace aliases](#root-namespace-aliases).
 
 ```
 tfstate
