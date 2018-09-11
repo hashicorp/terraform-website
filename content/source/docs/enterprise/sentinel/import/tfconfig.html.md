@@ -183,7 +183,6 @@ get_vms = func() {
 }
 ```
 
-
 ## Namespace: Module
 
 The **module namespace** can be loaded by calling [`module()`](#function-module-)
