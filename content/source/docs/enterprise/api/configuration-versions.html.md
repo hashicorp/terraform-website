@@ -144,7 +144,7 @@ Properties without a default value are required.
 Key path                          | Type    | Default | Description
 --------------------------------- | ------- | ------- | -----------
 `data.attributes.auto-queue-runs` | boolean | true    | When true, runs are queued automatically when the configuration version is uploaded.
-`data.attributes.speculative`     | boolean | false   | When true, this configuration version may only be used to create runs which are speculative, that is, cannot be confirmed nor applied.
+`data.attributes.speculative`     | boolean | false   | When true, this configuration version may only be used to create runs which are speculative, that is, can neither be confirmed nor applied.
 
 ### Sample Payload
 
@@ -200,6 +200,16 @@ curl \
   }
 }
 ```
+
+### Configuration Version Status
+
+A configuration version will be in the `pending` status when initially created. It will remain pending until configuration files are supplied via [upload](#upload-configuration-files), and while they are processed.
+
+If upload and processing succeed, the configuration version status will then be `uploaded`. An `uploaded` configuration version is ready for use.
+
+If upload and processing fail, the status will be `errored`, indicating that something went wrong.
+
+Runs cannot be created using `pending` or `errored` configuration versions.
 
 ## Upload Configuration Files
 
