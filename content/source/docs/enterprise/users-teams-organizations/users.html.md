@@ -60,7 +60,7 @@ Additionally, TFE uses [Gravatar](http://en.gravatar.com) to display a user icon
 
 Users manage their own passwords. To change your password, click the "Password" page of the user settings. You'll need to confirm your current password, and enter your new password twice.
 
-Password management isn't available if your organization uses [SAML single sign on](../saml/index.html).
+Password management isn't available if your TFE installation uses [SAML single sign on](../saml/index.html).
 
 ### Two-Factor Authentication
 

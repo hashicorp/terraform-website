@@ -19,13 +19,19 @@ If you are a member of multiple organizations, you can click the organization na
 
 ![screenshot: the organization switcher menu](./images/org-nav.png)
 
+## Adding Users to Organizations
+
+Organization membership is automatic, and is determined by team membership. To add a user to an organization, add them to one or more of that organization's teams. See [Teams][] for more information.
+
+You can only add existing user accounts to teams. If a colleague has not created their TFE account yet, send them the sign-up link (`https://app.terraform.io/account/new` for SaaS, `https://<TFE HOSTNAME>/account/new` for private installs) and ask them to send you their username.
+
 ## Creating Organizations
 
-Users can create new TFE organizations. You can navigate to the new organization page using the organization switcher menu; this page also displays automatically when the currently logged-in user does not belong to any organizations, like when a new user account is created.
+Users can create new TFE organizations by clicking the "Create new organization" button in the organization switcher menu. The new organization page also displays automatically when the currently logged-in user does not belong to any organizations, as when first logging in as a new user.
 
 ![screenshot: the new organization page](./images/org-new.png)
 
-To create a new organization, you must provide a unique name and a primary contact email address. Organization names can include numbers, letters, underscores (`_`), and hyphens (`-`).
+To create a new organization, provide a unique name and a primary contact email address. Organization names can include numbers, letters, underscores (`_`), and hyphens (`-`).
 
 Once you have created an organization, you can add other [users][] by adding them to one or more [teams][].
 
@@ -35,7 +41,7 @@ Once you have created an organization, you can add other [users][] by adding the
 
 -> **API:** See the [Organizations API](../api/organizations.html).
 
-You can view and manage an organization's settings by clicking the main "Settings" link in the top navigation bar.
+You can view and manage an organization's settings by clicking the "Settings" link in the top navigation bar.
 
 ![screenshot: the organization settings page](./images/org-settings.png)
 
@@ -51,7 +57,11 @@ The profile page is also where you can **delete your organization.**
 
 ### Teams
 
-The teams page allows organization owners to manage the organization's teams, including creating and delete teams, managing membership, and generating team API tokens. See [Teams][] for more information.
+The teams page allows organization owners to manage the organization's teams, including creating and deleting teams, managing membership, and generating team API tokens.
+
+Users who aren't organization owners can view the list of teams they belong to and the membership of those teams. They can't edit teams or view any teams they don't belong to.
+
+See [Teams][] for more information.
 
 ### VCS Provider
 
