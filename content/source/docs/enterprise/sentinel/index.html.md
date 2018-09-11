@@ -12,7 +12,7 @@ fine-grained, logic-based policy decisions, and can be extended to use
 information from external sources.
 
 To learn how to use Sentinel and begin writing policies with the Sentinel
-language, see [the Sentinel documentation](https://docs.hashicorp.com/sentinel/app/terraform/).
+language, see [the Sentinel documentation](https://docs.hashicorp.com/sentinel/writing/).
 
 ## Sentinel in Terraform Enterprise
 
