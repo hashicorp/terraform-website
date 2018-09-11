@@ -28,10 +28,10 @@ data](#accessing-a-plan-39-s-state-and-configuration-data) for more information.
 The following is a tree view of the import namespace. For more detail on a
 particular part of the namespace, see below.
 
--> Note that the root-level alias keys shown here (`data`, `modules`,
-`providers`, `resources`, and `variables`) are shortcuts to the [module
-namespace](#namespace-module). For more details, see the section on [root
-namespace aliases](#root-namespace-aliases).
+-> Note that the root-level alias keys shown here (`data`, `path`, and
+`resources`) are shortcuts to the [module namespace](#namespace-module). For
+more details, see the section on [root namespace
+aliases](#root-namespace-aliases).
 
 ```
 tfplan
