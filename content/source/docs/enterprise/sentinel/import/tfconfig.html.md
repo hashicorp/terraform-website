@@ -422,7 +422,7 @@ The **provider namespace** represents data on the declared providers within a
 namespace.
 
 This namespace is indexed by provider type and _only_ contains data about
-providers when actually declared. Hence, if you are using a completely implicit
+providers when actually declared. If you are using a completely implicit
 provider configuration, this namespace will be empty.
 
 ### Value: `alias`
