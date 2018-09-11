@@ -307,7 +307,7 @@ equivalent of running `module([]).KEY`.
 
 The `path` value within the [module namespace](#namespace-module) contains the
 path of the module that the namespace represents. This is represented as a list
-of stings.
+of strings.
 
 As an example, if the following module block was present within a Terraform
 configuration:
