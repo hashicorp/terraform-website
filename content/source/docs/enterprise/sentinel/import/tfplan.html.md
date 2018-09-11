@@ -233,10 +233,8 @@ main = rule { tfplan.terraform_version matches "^0\\.11\\.\\d+$" }
 * **Value Type:** A string-keyed map of values.
 
 The `variables` value within the [root namespace](#namespace-root) represents
-all of the variables that were set when creating the plan.
-
-As only root module variables when creating a plan, `variables` will only
-contain variables configured within the root module. 
+all of the variables that were set when creating the plan. This will only
+contain variables set for the root module.
 
 Note that unlike the [`default`][import-tfconfig-variables-default] value in the
 [`tfconfig` variables namespace][import-tfconfig-variables], primitive values
