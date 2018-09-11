@@ -318,8 +318,8 @@ module "foo" {
 }
 ```
 
-The following policy would evaluate to `true`, _only_ if the diff had changes
-for that module:
+The following policy would evaluate to `true` _only_ if the diff had changes for
+that module:
 
 ```python
 import "tfplan"
