@@ -269,7 +269,7 @@ variable "map" {
 ```
 
 The following policy would evaluate to `true`, if no values were entered to
-change them:
+change these variables:
 
 ```python
 import "tfplan"
