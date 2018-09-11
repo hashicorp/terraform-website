@@ -299,12 +299,12 @@ main = rule { tfplan.module(["foo"]).path contains "foo" }
 
 ## Namespace: Resources/Data Sources
 
-The **resource namespace** is a namespace shared between resources and data
-sources, and is identical in structure and behavior regardless of which
-classification you are loading.
+The **resource namespace** is a namespace _type_ that applies to both resources
+(accessed by using the `resources` namespace key) and data sources (accessed
+using the `data` namespace key).
 
-Accessing an individual resource or data source within this namespace can be
-accomplished by specifying the type, name, and resource number (as if the
+Accessing an individual resource or data source within each individual namespace
+can be accomplished by specifying the type, name, and resource number (as if the
 resource or data source had a `count` value in it) in the syntax
 `[resources|data].TYPE.NAME[NUMBER]`. Note that NUMBER is always needed, even if
 you did not use `count` in the resource.

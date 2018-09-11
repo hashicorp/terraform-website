@@ -195,12 +195,12 @@ for the root module. They are essentially the equivalent of running
 
 ## Namespace: Resources/Data Sources
 
-The **resource namespace** is a namespace shared between resources and data
-sources, and is identical in structure and behavior regardless of which
-classification you are loading.
+The **resource namespace** is a namespace _type_ that applies to both resources
+(accessed by using the `resources` namespace key) and data sources (accessed
+using the `data` namespace key).
 
-Accessing an individual resource or data source within this namespace can be
-accomplished by specifying the type and name, in the syntax
+Accessing an individual resource or data source within each individual namespace
+can be accomplished by specifying the type and name, in the syntax
 `[resources|data].TYPE.NAME`, depending on whether or not you are loading the
 namespace for a resource (accessed in the `resources` name space) or data
 sources (accessed in the `data`) namespace.
