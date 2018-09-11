@@ -273,8 +273,8 @@ main = rule { default_foo and default_number and default_map_string and default_
 The **module namespace** can be loaded by calling
 [`module()`](#function-module-) for a particular module.
 
-It's a namespace that can be used to load the following child namespaces, in
-addition to the values documented below:
+It can be used to load the following child namespaces, in addition to the values
+documented below:
 
 * `data` - Loads the [resource namespace](#namespace-resources-data-sources),
   filtered against data sources.

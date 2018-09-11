@@ -193,7 +193,7 @@ get_vms = func() {
 The **module namespace** can be loaded by calling [`module()`](#function-module-)
 for a particular module.
 
-It's a namespace that can be used to load the following data:
+It can be used to load the following child namespaces:
 
 * `data` - Loads the [resource namespace](#namespace-resources-data-sources),
   filtered against data sources.
