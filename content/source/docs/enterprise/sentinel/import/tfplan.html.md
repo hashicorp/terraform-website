@@ -422,7 +422,7 @@ usage examples.
 ## Namespace: Resource Diff
 
 The **diff namespace** is a namespace that represents the diff for a specific
-attribute within a resource. For particulars on reading a particular attribute,
+attribute within a resource. For details on reading a particular attribute,
 see the [`diff`](#diff) value in the [resource
 namespace](#namespace-resources-data-sources).
 
