@@ -288,9 +288,9 @@ Some examples of multi-level access are below:
 
 * To fetch all `aws_instance.foo` resource instances within the root module, you
   can specify `tfstate.resources.aws_instance.foo`. This would then be indexed
-  off of the resource count index (`0`, `1`, `2`, and so on). Note that as
-  mentioned above, these elements must be accessed using square-bracket map
-  notation (so `["0"]`, `["1"]`, `["2"]`, and so on) instead of dotted notation.
+  by resource count index (`0`, `1`, `2`, and so on). Note that as mentioned
+  above, these elements must be accessed using square-bracket map notation (so
+  `[0]`, `[1]`, `[2]`, and so on) instead of dotted notation.
 * To fetch all `aws_instance` resources within the root module, you can specify
   `tfstate.resources.aws_instance`. This would be indexed off of the names of
   each resource (`foo`, `bar`, and so on), with each of those maps containing
