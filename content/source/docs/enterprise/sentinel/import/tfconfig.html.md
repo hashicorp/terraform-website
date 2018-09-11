@@ -148,7 +148,16 @@ module "foo" {
 }
 ```
 
-The following policy would evaluate to `true`:
+The value of `module_paths` would be:
+
+```
+[
+	[],
+	["foo"],
+]
+```
+
+And the following policy would evaluate to `true`:
 
 ```python
 import "tfconfig"

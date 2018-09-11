@@ -154,14 +154,24 @@ module "foo" {
 }
 ```
 
-The following policy would evaluate to `true`, _only_ if the diff had changes
-for that module:
+The value of `module_paths` would be:
+
+```
+[
+	[],
+	["foo"],
+]
+```
+
+And the following policy would evaluate to `true`:
 
 ```python
 import "tfstate"
 
 main = rule { tfstate.module_paths contains ["foo"] }
 ```
+
+-> Note the above example only applies if the module is present in the state.
 
 #### Iterating through modules
 
