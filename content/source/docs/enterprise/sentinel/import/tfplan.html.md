@@ -460,9 +460,9 @@ resource "null_resource" "bar" {
 }
 ```
 
-The following policy would evaluate to `true`, if the resource was in the diff,
-the value of the tag was changing, and the `id` of `null_resource.foo` was
-currently not known (example: the resource has not been created yet):
+The following policy would evaluate to `true`, if the `id` of
+`null_resource.foo` was currently not known, such as when the resource is
+pending creation, or is being deleted and re-created:
 
 ```python
 import "tfplan"
