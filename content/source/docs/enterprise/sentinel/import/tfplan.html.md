@@ -416,7 +416,8 @@ Note that unlike the [`applied`](#value-applied) value, this map is not complex;
 the map is only 1 level deep with each key possibly representing a diff for a
 particular complex value within the resource.
 
-See the diff namespace for specific examples.
+See the below section for more details on the diff namespace, in addition to
+usage examples.
 
 ## Namespace: Resource Diff
 
