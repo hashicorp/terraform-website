@@ -395,7 +395,7 @@ resource "null_resource" "foo" {
 }
 ```
 
-The following policy would evaluate to `true`, if the resource was in the diff:
+The following policy would evaluate to `true` if the resource was in the diff:
 
 ```python
 import "tfplan"
