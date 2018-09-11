@@ -431,14 +431,14 @@ namespace](#namespace-resources-data-sources).
 * **Value Type:** Boolean.
 
 The `computed` value within the [diff namespace](#namespace-resource-diff) is
-`true` if a value is currently unknown in the diff, but is changing. This
-happens when a value depends on a value belonging to a resource that either does
-not exist yet or is changing state in a way that the new value will not be known
-until the apply for that resource completes.
+`true` if the resource key in question depends on another value that isn't yet
+known. Typically, that means the value it depends on belongs to a resource that
+either doesn't exist yet, or is changing state in such a way as to affect the
+dependent value so that it can't be known until the apply is complete.
 
--> Keep in mind when using `computed` with complex structures such as maps,
-lists, and sets, that it's sometimes necessary to test the count attribute for
-the structure, versus a key within it, depending on whether or not the diff has
+-> Keep in mind that when using `computed` with complex structures such as maps,
+lists, and sets, it's sometimes necessary to test the count attribute for the
+structure, versus a key within it, depending on whether or not the diff has
 marked the whole structure as computed. This is demonstrated in the example
 below.  Count keys are `%` for maps, and `#` for lists and sets. If you are
 having trouble determining the actual type of specific field within a resource,
