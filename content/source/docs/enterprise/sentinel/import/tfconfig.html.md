@@ -208,8 +208,7 @@ It can be used to load the following child namespaces:
 
 The root-level `data`, `modules`, `providers`, `resources`, and `variables` keys
 all alias to their corresponding namespaces within the module namespace, loaded
-for the root module. They are essentially the equivalent of running
-`module([]).KEY`.
+for the root module. They are the equivalent of running `module([]).KEY`.
 
 ## Namespace: Resources/Data Sources
 

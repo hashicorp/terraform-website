@@ -297,9 +297,9 @@ documented below:
 
 ### Root Namespace Aliases
 
-The root-level `data`, and `resources` keys both alias to their corresponding
-namespaces within the module namespace, loaded for the root module. They are
-essentially the equivalent of running `module([]).KEY`.
+The root-level `data` and `resources` keys both alias to their corresponding
+namespaces within the module namespace, loaded for the root module. They are the
+equivalent of running `module([]).KEY`.
 
 ### Value: `path`
 

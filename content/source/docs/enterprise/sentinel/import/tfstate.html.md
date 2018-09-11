@@ -236,7 +236,7 @@ documented below:
 
 The root-level `data`, `outputs`, and `resources` keys both alias to their
 corresponding namespaces within the module namespace, loaded for the root
-module. They are essentially the equivalent of running `module([]).KEY`.
+module. They are the equivalent of running `module([]).KEY`.
 
 ### Value: `path`
 
