@@ -33,14 +33,15 @@ To revert to the AMI after running the migration script:
 
 ## Simple Upgrade (Recommended)
 
-For users that did not significantly change the reference terraform modules used to deploy
+For users that did not significantly change the reference Terraform modules used to deploy
 the AMI, there is a simplified migration procedure that can be used.
 
 For users that modified the terraform modules, you're free to follow the simplified steps 
 as well, but you'll likely need to modify some terraform modules again to match the modifications
-you did in the past.
+you made in the past.
 
-If you want to do this procedure, head to the [Simplified Migration Page](./simplified-migration.html).
+If you want to do this procedure, please follow the steps outlined on the
+[Simplified Migration Page](./simplified-migration.html).
 
 ## Preflight
 
