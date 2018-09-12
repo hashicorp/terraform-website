@@ -477,7 +477,7 @@ main = rule { tfstate.outputs.foo.sensitive }
 * **Value Type:** String.
 
 The `type` value within the [output namespace](#namespace-outputs) gives the
-output's type. This will be one of either `string`, `list`, or `map`, which are
+output's type. This will be one of `string`, `list`, or `map`. These are
 currently the only types available for outputs in Terraform.
 
 As an example, given the following output:
