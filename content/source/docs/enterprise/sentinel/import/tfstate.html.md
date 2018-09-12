@@ -366,7 +366,7 @@ resource "null_resource" "bar" {
 }
 ```
 
-The following policy would evaluate to `true`, if the resource was in the state:
+The following policy would evaluate to `true` if the resource was in the state:
 
 ```python
 import "tfstate"
