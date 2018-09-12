@@ -441,8 +441,8 @@ during a previous apply, or if they were updated with known values during the
 pre-plan refresh.
 
 Note that this can be used to fetch both the outputs of the root module, and the
-outputs of any module in the state below the root, allowing one to see outputs
-that have not been threaded to the root module
+outputs of any module in the state below the root. This makes it possible to see
+outputs that have not been threaded to the root module.
 
 This namespace is indexed by output name.
 
