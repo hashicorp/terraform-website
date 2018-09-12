@@ -428,6 +428,17 @@ This namespace is indexed by provider type and _only_ contains data about
 providers when actually declared. If you are using a completely implicit
 provider configuration, this namespace will be empty.
 
+This namespace is populated based on the following criteria:
+
+* The top-level namespace [`config`](#value-config-3) and
+  [`version`](#value-version) values are populated with the configuration and
+  version information from the default provider (the provider declaration that
+  lacks an alias).
+* Any aliased providers are added as namespaces within the
+  [`alias`](value-alias) value.
+* If a module lacks a default provider configuration, the top-level `config` and
+  `version` values will be empty.
+
 ### Value: `alias`
 
 * **Value Type:** A map of [provider namespaces](#namespace-providers), indexed
