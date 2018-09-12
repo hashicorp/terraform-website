@@ -482,8 +482,10 @@ If the value is currently unknown, this field will be blank. Use the
 actually a known zero value or not.
 
 Note that this value is _always_ a string, regardless of the actual type of the
-value changing. Type conversion within policy may be necessary to achieve the
-comparison needed.
+value changing. [Type conversion][ref-sentinel-type-conversion] within policy
+may be necessary to achieve the comparison needed.
+
+[ref-sentinel-type-conversion]: https://docs.hashicorp.com/sentinel/language/values#type-conversion
 
 As an example, given the following resource:
 
