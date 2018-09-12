@@ -381,9 +381,7 @@ main = rule { tfstate.resources.null_resource.bar[0].depends_on contains "null_r
 The `id` value within the [resource
 namespace](#namespace-resources-data-sources) contains id of the resource.
 
-As an example, given the following data source:
-
--> Note that we use a _data source_ here because the
+-> **NOTE:** The example below uses a _data source_ here because the
 [`null_data_soruce`][ref-tf-null-data-source] data source gives a static ID,
 which makes documenting the example easier. As previously mentioned, data
 sources share the same namespace as resources, but need to be loaded with the
@@ -391,6 +389,8 @@ sources share the same namespace as resources, but need to be loaded with the
 [synopsis](#namespace-resources-data-sources) for the namespace itself.
 
 [ref-tf-null-data-source]: /docs/providers/null/d/data_source.html
+
+As an example, given the following data source:
 
 ```hcl
 data "null_data_source" "foo" {
