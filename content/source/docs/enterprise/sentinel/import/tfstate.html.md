@@ -10,9 +10,8 @@ description: |-
 
 The tfstate import provides access to the Terraform state.
 
-This is the Terraform state as it exists at plan time. Depending on the state of
-a Terraform workspace, the data in this import may be incomplete (such as when a
-resource has not been created yet).
+Depending on the state of a Terraform workspace, the data in this import may be
+incomplete (such as when a resource has not been created yet).
 
 Depending on what you are looking for, the [`tfconfig`][import-tfconfig] and
 [`tfplan`][import-tfplan] imports can assist with providing a more complete view
