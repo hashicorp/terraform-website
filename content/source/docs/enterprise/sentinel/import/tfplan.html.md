@@ -513,8 +513,8 @@ The `old` value within the [diff namespace](#namespace-resource-diff) contains
 the old value of a changing attribute.
 
 Note that this value is _always_ a string, regardless of the actual type of the
-value changing. Type conversion within policy may be necessary to achieve the
-comparison needed.
+value changing. [Type conversion][ref-sentinel-type-conversion] within policy
+may be necessary to achieve the comparison needed.
 
 As an example, given the following resource:
 
