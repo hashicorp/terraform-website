@@ -15,8 +15,7 @@ infrastructure to reach the desired state represented by the configuration.
 
 In addition to the diff data available in the plan, there is an
 [`applied`](#value-applied) state available that merges the plan with the state
-to create the planned state after apply. Note that any computed values will not
-be visible in this state.
+to create the planned state after apply.
 
 Finally, this import also allows you to access the configuration files and the
 Terraform state at the time the plan was run. See the section on [accessing a
@@ -380,9 +379,11 @@ pending resource's diff on top of the existing data from the resource's state
 The map is a complex representation of these values with data going as far down
 as needed to represent any state values such as maps, lists, and sets.
 
-Note that currently, computed values are represented by the placeholder value
-`74D93920-ED26-11E3-AC10-0800200C9A66`. This is not a stable API and should not
-be relied on. Instead, use the [`computed`](#value-computed) key within the [diff
+Note that some values will not be available in the `applied` state because they
+cannot be known until the plan is actually applied. These values are represented
+by a placeholder (the UUID value `74D93920-ED26-11E3-AC10-0800200C9A66`). This
+is not a stable API and should not be relied on. Instead, use the
+[`computed`](#value-computed) key within the [diff
 namespace](#namespace-resource-diff) to determine if a value is known or not.
 
 As an example, given the following resource:
