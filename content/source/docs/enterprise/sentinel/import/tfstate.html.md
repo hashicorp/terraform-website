@@ -212,6 +212,15 @@ import "tfstate"
 main = rule { tfstate.terraform_version matches "^0\\.11\\.\\d+$" }
 ```
 
+-> **NOTE:** This value is also available via the [`tfplan`][import-tfplan]
+import, which will be more current when a policy check is run against a plan.
+It's recommended you use the value in `tfplan` until Terraform enterprise
+supports policy checks in other stages of the workspace lifecycle. See the
+[`terraform_version`][import-tfplan-terraform-version] reference within the
+`tfplan` import for more details.
+
+[import-tfplan-terraform-version]: /docs/enterprise/sentinel/import/tfplan.html#value-terraform-version
+
 ## Namespace: Module
 
 The **module namespace** can be loaded by calling
