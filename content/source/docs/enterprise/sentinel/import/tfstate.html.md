@@ -8,29 +8,25 @@ description: |-
 
 # Import: tfstate
 
-The tfstate import provides access to the Terraform state.
+The `tfstate` import provides access to the Terraform state.
 
-Depending on the state of a Terraform workspace, the data in this import may be
-incomplete (such as when a resource has not been created yet).
+The _state_ is the data that Terraform has recorded about a workspace at a
+particular point in its lifecycle, usually after an apply. You can read more
+general information about how Terraform uses state [here][ref-tf-state].
 
-Depending on what you are looking for, the [`tfconfig`][import-tfconfig] and
-[`tfplan`][import-tfplan] imports can assist with providing a more complete view
-of the state and configuration of the workspace as it exists currently, or in
-the future as well. `tfplan` also has aliases to both the `tfconfig` and
-`tfplan` imports to help simplify policy.
+[ref-tf-state]: /docs/state/index.html
+
+`tfstate` is also the only import that can provide introspection into the
+outputs in a Terraform workspace. For more information, see the [output
+namespace](#namespace-outputs) documentation.
+
+-> **NOTE:** Terraform Enterprise currently only supports policy checks at plan
+time, limiting the usefulness of this import. This will be resolved in future
+releases. Until that time, the [`tfconfig`][import-tfconfig] and
+[`tfplan`][import-tfplan] imports will probably prove to be more useful.
 
 [import-tfconfig]: /docs/enterprise/sentinel/import/tfconfig.html
 [import-tfplan]: /docs/enterprise/sentinel/import/tfplan.html
-
--> To reiterate, this import works with the Terraform state that
-_currently exists_ at plan time, not what it will look like _after_ the plan is
-applied.  This means that resources that have not been created yet (and hence,
-can have no state) will not be present in the namespaces in this import. If you
-are looking for something state-like that also contains future data, see the
-[`applied`][import-tfplan-applied] resource namespace value in the `tfplan`
-import.
-
-[import-tfplan-applied]: /docs/enterprise/sentinel/import/tfplan.html#value-applied
 
 ## The Namespace
 
