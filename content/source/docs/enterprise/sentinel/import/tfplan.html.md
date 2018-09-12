@@ -477,9 +477,8 @@ main = rule { tfplan.resources.null_resource.bar[0].diff["triggers.%"].computed 
 The `new` value within the [diff namespace](#namespace-resource-diff) contains
 the new value of a changing attribute, _if_ the value is known at plan time.
 
-If the value is currently unknown, this field will be blank. Use the
-[`computed`](#value-computed) value to determine if the value contained here is
-actually a known zero value or not.
+-> `new` will be an empty string if the attribute's value is currently unknown.
+For more details on detecting unknown values, see [`computed`](#value-computed).
 
 Note that this value is _always_ a string, regardless of the actual type of the
 value changing. [Type conversion][ref-sentinel-type-conversion] within policy
