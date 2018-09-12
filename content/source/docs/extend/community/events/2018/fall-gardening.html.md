@@ -9,7 +9,7 @@ description: |-
 
 # Terraform Ecosystem Community Events - 2018 Fall Gardening
 
-HashiCorp does quarterly community gardening sessions for Terraform providers. Our second is September 12, 2018 for Azure. It is an all virtual event across time zones. As a user, you will be able to ask HashiCorp employees Azure Terraform provider questions in our [Slack room](https://terraform-azure.slack.com/join/shared_invite/enQtNDMzNjQ5NzcxMDc3LTJkZTJhNTg3NTE5ZTdjZjFhMThmMTVmOTg5YWJkMDU1YTMzN2YyOWJmZGM3MGI4OTQ0ODQxNTEyNjdjMDAxMjM). The concept is based on the [Go Gardening](https://github.com/golang/go/wiki/Gardening) idea.
+HashiCorp does quarterly community gardening sessions for Terraform providers. Our second is September 12, 2018 for Azure. It is an all virtual event across time zones. As a user, you will be able to ask HashiCorp employees Azure Terraform provider questions in our [Slack room](https://terraform-azure.slack.com/) ([request invite](https://terraform-azure.slack.com/join/shared_invite/enQtNDMzNjQ5NzcxMDc3LTJkZTJhNTg3NTE5ZTdjZjFhMThmMTVmOTg5YWJkMDU1YTMzN2YyOWJmZGM3MGI4OTQ0ODQxNTEyNjdjMDAxMjM)). The concept is based on the [Go Gardening](https://github.com/golang/go/wiki/Gardening) idea.
 
 What are we planning to do?
 
