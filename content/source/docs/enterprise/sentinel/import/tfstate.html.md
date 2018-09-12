@@ -451,7 +451,9 @@ This namespace is indexed by output name.
 * **Value Type:** Boolean.
 
 The `sensitive` value within the [output namespace](#namespace-outputs) is
-`true` when the output has been marked as sensitive.
+`true` when the output has been [marked as sensitive][ref-tf-sensitive-outputs].
+
+[ref-tf-sensitive-outputs]: /docs/configuration/outputs.html#sensitive-outputs
 
 As an example, given the following output:
 
