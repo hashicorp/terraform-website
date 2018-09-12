@@ -202,7 +202,7 @@ The `terraform_version` value within the [root namespace](#namespace-root)
 represents the version of Terraform in use when the state was saved. This can be
 used to enforce a specific version of Terraform in a policy check.
 
-As an example, the following policy would evaluate to `true`, as long as the
+As an example, the following policy would evaluate to `true` as long as the
 state was made with a version of Terraform in the 0.11.x series, excluding any
 pre-release versions (example: `-beta1` or `-rc1`):
 
