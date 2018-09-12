@@ -115,7 +115,7 @@ resource "null_resource" "foo" {
 ```
 
 
-The following policy would evaluate to `true`, if the resource was present in
+The following policy would evaluate to `true` if the resource was present in
 the state:
 
 ```python
