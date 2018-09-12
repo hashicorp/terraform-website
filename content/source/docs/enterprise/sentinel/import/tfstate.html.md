@@ -436,9 +436,9 @@ main = rule { tfstate.resources.null_resource.foo[0].tainted }
 ## Namespace: Outputs
 
 The **output namespace** represents all of the outputs present within a
-[module](#namespace-module). This would be any outputs that would have been
-saved to state either as the result of a previous apply, or from the pre-plan
-refresh if their values were known at plan-time.
+[module](#namespace-module). Outputs are present in a state if they were saved
+during a previous apply, or if they were updated with known values during the
+pre-plan refresh.
 
 Note that this can be used to fetch both the outputs of the root module, and the
 outputs of any module in the state below the root, allowing one to see outputs
