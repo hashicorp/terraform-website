@@ -216,16 +216,20 @@ The **resource namespace** is a namespace _type_ that applies to both resources
 (accessed by using the `resources` namespace key) and data sources (accessed
 using the `data` namespace key).
 
-Accessing an individual resource or data source within each individual namespace
+Accessing an individual resource or data source within each respective namespace
 can be accomplished by specifying the type and name, in the syntax
-`[resources|data].TYPE.NAME`, depending on whether or not you are loading the
-namespace for a resource (accessed in the `resources` name space) or data
-sources (accessed in the `data`) namespace.
+`[resources|data].TYPE.NAME`.
 
-In addition, each of these namespace levels is a map, so to access all items
-_matching_ a certain type, you can use `[resources|data].TYPE`, and to access
-all data sources _grouped by_ type, you can use a simple bareword `resources` or
-`data` map.
+In addition, each of these namespace levels is a map, allowing you to filter
+based on type and name. Some examples of multi-level access are below:
+
+* To fetch all `aws_instance` resources within the root module, you can specify
+  `tfconfig.resources.aws_instance`. This would give you a map of resource
+  namespaces indexed off of the names of each resource (`foo`, `bar`, and so
+  on).
+* To fetch all resources within the root module, irrespective of type, use
+  `tfconfig.resources`. This is indexed by type, as shown above with
+  `tfconfig.resources.aws_instance`, with names being the next level down.
 
 Further explanation of the namespace will be in the context of resources. As
 mentioned, when operating on data sources, use the same syntax, except with

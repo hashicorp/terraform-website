@@ -333,7 +333,7 @@ The **resource namespace** is a namespace _type_ that applies to both resources
 (accessed by using the `resources` namespace key) and data sources (accessed
 using the `data` namespace key).
 
-Accessing an individual resource or data source within each individual namespace
+Accessing an individual resource or data source within each respective namespace
 can be accomplished by specifying the type, name, and resource number (as if the
 resource or data source had a `count` value in it) in the syntax
 `[resources|data].TYPE.NAME[NUMBER]`. Note that NUMBER is always needed, even if
