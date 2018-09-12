@@ -399,7 +399,8 @@ main = rule { tfconfig.modules.foo.source is "./foo" }
 
 The `config` value within the [module configuration
 namespace](#namespace-module-configuration) represents the values of the keys
-within the module configuration.
+within the module configuration. This is every key within a module declaration
+block except [`source`](#value-source), which has its own value.
 
 As an example, given the module declaration block:
 
@@ -477,8 +478,9 @@ main = rule { tfconfig.providers.aws.alias.east.config.region is "us-east-1" }
 
 The `config` value within the [provider namespace](#namespace-providers)
 represents the values of the keys within the provider's configuration, with the
-exception of the provider version, which is represented by the [`version`
-value](#value-version).
+exception of the provider version, which is represented by the
+[`version`](#value-version) value. [`alias`](#value-alias) is also not included
+when the provider is aliased.
 
 As an example, given the following provider declaration block:
 
