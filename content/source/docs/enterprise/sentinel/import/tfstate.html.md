@@ -22,11 +22,11 @@ the future as well. `tfplan` also has aliases to both the `tfconfig` and
 [import-tfconfig]: /docs/enterprise/sentinel/import/tfconfig.html
 [import-tfplan]: /docs/enterprise/sentinel/import/tfplan.html
 
--> To reiterate, this import works with the Terraform state that _currently
-exists_ at plan time, not what it will look like _after_ the plan is applied.
-This means that resources that have not been created yet (and hence, can have no
-state) will not be present in the namespaces in this import. If you are looking
-for something state-like but also contains future data, see the
+-> Note: To reiterate, this import works with the Terraform state that
+_currently exists_ at plan time, not what it will look like _after_ the plan is
+applied.  This means that resources that have not been created yet (and hence,
+can have no state) will not be present in the namespaces in this import. If you
+are looking for something state-like that also contains future data, see the
 [`applied`][import-tfplan-applied] resource namespace value in the `tfplan`
 import.
 
