@@ -8,260 +8,547 @@ description: |-
 
 # Import: tfplan
 
-The tfplan import provides access to a Terraform plan. A Terraform
-plan is the file created as a result of `terraform plan` and is
-the input to `terraform apply`. The plan represents the changes that
-Terraform needs to make to infrastructure to reach the desired state
-represented by the configuration.
+The `tfplan` import provides access to a Terraform plan. A Terraform plan is the
+file created as a result of `terraform plan` and is the input to `terraform
+apply`. The plan represents the changes that Terraform needs to make to
+infrastructure to reach the desired state represented by the configuration.
 
-The Terraform plan import also allows you to access the configuration
-files as well as the Terraform state at the time the plan was run.
-You can also access an "applied" state that merges the plan with the
-state to create the planned state after apply. Note that any computed
-values will not be visible in this state.
+In addition to the diff data available in the plan, there is an
+[`applied`](#value-applied) state available that merges the plan with the state
+to create the planned state after apply.
 
-### tfplan.config
+Finally, this import also allows you to access the configuration files and the
+Terraform state at the time the plan was run. See the section on [accessing a
+plan's state and configuration
+data](#accessing-a-plan-39-s-state-and-configuration-data) for more information.
 
-The Terraform configuration when this plan was created. This value
-is the same as the `tfconfig` import. See the documentation for the
-`tfconfig` import for more information.
+## The Namespace
 
-This is useful to verify that certain values are set in the
-configuration and not only visible in the plan. For example, a policy
-may require that a certain setting is statically set on all
-load balancers. The configuration is the place to verify this.
+The following is a tree view of the import namespace. For more detail on a
+particular part of the namespace, see below.
 
-### tfplan.state
+-> Note that the root-level alias keys shown here (`data`, `path`, and
+`resources`) are shortcuts to a [module namespace](#namespace-module) scoped to
+the root module. For more details, see the section on [root namespace
+aliases](#root-namespace-aliases).
 
-The Terraform state when this plan was created, but without applying
-the plan. This can also be viewed as the "prior" state if this
-plan is applied. The returned value is the same as the `tfstate` import.
-Please see the documentation for the `tfstate` import for more
-informationon available fields.
+```
+tfplan
+├── module() (function)
+│   └── (module namespace)
+│       ├── path ([]string)
+│       ├── data
+│       │   └── TYPE.NAME[NUMBER]
+│       │       ├── applied (map of keys)
+│       │       └── diff
+│       │           └── KEY
+│       │               ├── computed (bool)
+│       │               ├── new (string)
+│       │               └── old (string)
+│       └── resources
+│           └── TYPE.NAME[NUMBER]
+│               ├── applied (map of keys)
+│               └── diff
+│                   └── KEY
+│                       ├── computed (bool)
+│                       ├── new (string)
+│                       └── old (string)
+├── module_paths ([][]string)
+├── terraform_version (string)
+├── variables (map of keys)
+│
+├── data (root module alias)
+├── path (root module alias)
+├── resources (root module alias)
+│
+├── config (tfconfig namespace alias)
+└── state (tfstate import alias)
+```
 
-This is useful for policies that may restrict behaviors depending
-on prior state. For example, a policy that doesn't allow changing
-removing old values once they're set can use this to determine what
-values were set previously.
+## Namespace: Root
 
-### tfplan.module_paths
+The root-level namespace consists of the values and functions documented below.
 
-All the module paths represented in the diff. This can be used along
-with tfplan.module() to iterate through all modules. An example of
-a function to retrive all resources in all modules is shown below:
+In addition to this, the root-level `data`, `path`, and `resources` keys alias
+to their corresponding namespaces or values within the [module
+namespace](#namespace-module).
 
-```python
-import "tfplan"
+### Accessing a Plan's State and Configuration Data
 
-all_resources = func() {
-    resources = []
-    for tfplan.module_paths as path {
-        resources += values(tfplan.module(path).resources)
-    }
+The `config` and `state` keys alias to the [`tfconfig`][import-tfconfig] and
+[`tfstate`][import-tfstate] namespaces, respectively, with the data sourced from
+the Terraform _plan_ (as opposed to actual configuration and state).
 
-    return resources
+[import-tfconfig]: /docs/enterprise/sentinel/import/tfconfig.html
+[import-tfstate]: /docs/enterprise/sentinel/import/tfstate.html
+
+-> Note that these aliases are not represented as maps. While they will appear
+empty when viewed as maps, the specific import namespace keys will still be
+accessible.
+
+-> Note that while current versions of Terraform Enterprise (TFE) source _all_
+data (including configuration and state) from the plan for the Terraform run in
+question, future versions of TFE may source data accessed through the `tfconfig`
+and `tfstate` imports (as opposed to `tfplan.config` and `tfplan.state`) from
+actual config bundles, or state as stored by TFE. When this happens, the
+distinction here will be useful - the data in the aliased namespaces will be the
+config and state data as the _plan_ sees it, versus the actual "physical" data.
+
+### Function: `module()`
+
+```
+module = func(ADDR)
+```
+
+* **Return Type:** A [module namespace](#namespace-module).
+
+The `module()` function in the [root namespace](#namespace-root) returns the
+[module namespace](#namespace-module) for a particular module address.
+
+The address must be a list and is the module address, split on the period (`.`),
+excluding the root module.
+
+Hence, a module with an address of simply `foo` (or `root.foo`) would be
+`["foo"]`, and a module within that (so address `foo.bar`) would be read as
+`["foo", "bar"]`.
+
+[`null`][ref-null] is returned if a module address is invalid, or if the module
+is not present in the plan.
+
+[ref-null]: https://docs.hashicorp.com/sentinel/language/spec#null
+
+As an example, given the following module block:
+
+```hcl
+module "foo" {
+  # ...
 }
 ```
 
-Here is an example of a function to retrieve all resources of a particular type
-from all modules. Note the use of `else []` in case some modules don't have any
-vms; this is necessary to avoid the function returning `undefined`.
+If the module contained the following content:
+
+```hcl
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
+}
+```
+
+
+The following policy would evaluate to `true`:
 
 ```python
 import "tfplan"
+
+main = rule { tfplan.module(["foo"]).resources.null_resource.foo[0].applied.triggers.foo is "bar" }
+```
+
+### Value: `module_paths`
+
+* **Value Type:** List of a list of strings.
+
+The `module_paths` value within the [root namespace](#namespace-root) is a list
+of all of the modules within the Terraform diff for the current plan.
+
+Modules not present in the diff will not be present here, even if they are
+present in the configuration or state.
+
+This data is represented as a list of a list of strings, with the inner list
+being the module address, split on the period (`.`).
+
+The root module is included in this list, represented as an empty inner list, as
+long as there are changes.
+
+As an example, if the following module block was present within a Terraform
+configuration:
+
+```hcl
+module "foo" {
+  # ...
+}
+```
+
+The value of `module_paths` would be:
+
+```
+[
+	[],
+	["foo"],
+]
+```
+
+And the following policy would evaluate to `true`:
+
+```python
+import "tfplan"
+
+main = rule { tfplan.module_paths contains ["foo"] }
+```
+
+-> Note the above example only applies if the module is present in the diff.
+
+#### Iterating through modules
+
+Iterating through all modules to find particular resources can be useful. This
+example shows how to use `module_paths` with the [`module()`
+function](#function-module-) to retrieve all resources of a particular type from
+all modules (in this case, the [`azurerm_virtual_machine`][ref-tf-azurerm-vm]
+resource). Note the use of `else []` in case some modules don't have any
+resources; this is necessary to avoid the function returning undefined.
+
+[ref-tf-azurerm-vm]: /docs/providers/azurerm/r/virtual_machine.html
+
+Remember again that this will only locate modules (and hence resources) that
+have pending changes.
+
+```python
+import "tfplan"
+
 get_vms = func() {
-    vms = []
-    for tfplan.module_paths as path {
-        vms += values(tfplan.module(path).resources.azurerm_virtual_machine) else []
-    }
-    return vms
+	vms = []
+	for tfplan.module_paths as path {
+		vms += values(tfplan.module(path).resources.azurerm_virtual_machine) else []
+	}
+	return vms
 }
 ```
 
-### tfplan.terraform_version
+### Value: `terraform_version`
 
-The terraform version that made this plan. This will be the same
-version returned by `terraform version`. This can be used to verify
-certain Terraform versions are used. An example value is "0.10.4".
+* **Value Type:** String.
 
-### tfplan.variables.NAME
+The `terraform_version` value within the [root namespace](#namespace-root)
+represents the version of Terraform used to create the plan. This can be used to
+enforce a specific version of Terraform in a policy check.
 
-Variables returns the map of set variables for the root module.
-This may also include variables that are set that don't correspond
-to any valid input for the configuration. These variables are ignored
-by Terraform but are still stored within the plan.
-
-Example, if you execute Terraform with `terraform plan -var foo=bar`,
-then you could write a policy to verify plan was executed with that
-variable as shown below. Note that we use the "else" undefined escape
-in case the variable is not set.
+As an example, the following policy would evaluate to `true`, as long as the
+plan was made with a version of Terraform in the 0.11.x series, excluding any
+pre-release versions (example: `-beta1` or `-rc1`):
 
 ```python
 import "tfplan"
 
-main = rule { tfplan.variables.foo else "" is "bar" }
+main = rule { tfplan.terraform_version matches "^0\\.11\\.\\d+$" }
 ```
 
-You can also access `tfplan.variables` which returns the map of
-available variables. For example, to verify exactly 3 variables are set:
+### Value: `variables`
+
+* **Value Type:** A string-keyed map of values.
+
+The `variables` value within the [root namespace](#namespace-root) represents
+all of the variables that were set when creating the plan. This will only
+contain variables set for the root module.
+
+Note that unlike the [`default`][import-tfconfig-variables-default] value in the
+[`tfconfig` variables namespace][import-tfconfig-variables], primitive values
+here are stringified, and type conversion will need to be performed to perform
+comparison for int, float, or boolean values. This only applies to variables
+that are primitives themselves and not primitives within maps and lists, which
+will be their original types.
+
+[import-tfconfig-variables-default]: /docs/enterprise/sentinel/import/tfconfig.html#value-default
+[import-tfconfig-variables]: /docs/enterprise/sentinel/import/tfconfig.html#namespace-variables
+
+If a default was accepted for the particular variable, the default value will be
+populated here.
+
+As an example, given the following variable blocks:
+
+```hcl
+variable "foo" {
+  default = "bar"
+}
+
+variable "number" {
+  default = 42
+}
+
+variable "map" {
+  default = {
+    foo    = "bar"
+    number = 42
+  }
+}
+```
+
+The following policy would evaluate to `true`, if no values were entered to
+change these variables:
 
 ```python
 import "tfplan"
 
-main = rule { length(tfplan.variables) is 3 }
+default_foo = rule { tfplan.variables.foo is "bar" }
+default_number = rule { tfplan.variables.number is "42" }
+default_map_string = rule { tfplan.variables.map["foo"] is "bar" }
+default_map_int = rule { tfplan.variables.map["number"] is 42 }
+
+main = rule { default_foo and default_number and default_map_string and default_map_int }
 ```
 
-### tfplan.resources
+## Namespace: Module
 
-Resources returns a map of all the resources in the root module.
-This is identical to `tfplan.module([]).resources`. If you want to
-validate a policy against all resources of a particular type, you will
-need to use logic similar to that in the second example in the
-[tfplan.module_paths](#tfplan-module_paths) section above.
+The **module namespace** can be loaded by calling
+[`module()`](#function-module-) for a particular module.
 
-### tfplan.data
+It can be used to load the following child namespaces, in addition to the values
+documented below:
 
-`data` returns a map of all the data sources in the root module.
-This is identical to `tfplan.module([]).data`. If you want to
-validate a policy against all data sources of a particular type,
-you will need to use logic similar to that in the second example in
-the [tfplan.module_paths](#tfplan-module_paths) section above.
+* `data` - Loads the [resource namespace](#namespace-resources-data-sources),
+  filtered against data sources.
+* `resources` - Loads the [resource
+  namespace](#namespace-resources-data-sources), filtered against resources.
 
-### tfplan.module(path)
+### Root Namespace Aliases
 
-The module function finds the module at the given path and returns
-the type "module". See the documentation for the type "module" for
-available attributes.
+The root-level `data` and `resources` keys both alias to their corresponding
+namespaces within the module namespace, loaded for the root module. They are the
+equivalent of running `module([]).KEY`.
 
-The path is a list. An empty list is the root module. Each element
-of the list is the name of a child module to access. For example, if
-you have a module named "child" which itself includes a module named
-"grandchild", it could be accessed like this:
+### Value: `path`
 
-```python
-tfplan.module(["child", "grandchild"])
+* **Value Type:** List of strings.
+
+The `path` value within the [module namespace](#namespace-module) contains the
+path of the module that the namespace represents. This is represented as a list
+of strings.
+
+As an example, if the following module block was present within a Terraform
+configuration:
+
+```hcl
+module "foo" {
+  # ...
+}
 ```
 
-If a module path doesn't exist, `undefined` is returned.
-
-## Type: attribute
-
-### attribute.old
-
-This is the old value. If it wasn't set before, the returned value
-will be an empty string. It is not possible to distinguish between
-an old value of an empty string and the value not being set before.
-
-This value can be used to enforce policy on the types of changes that
-can occur in certain attribute values. For example, there may be a policy
-that tag values can only be appended to, and not replaced.
-
-### attribute.new
-
-This is the new value that the attribute is going to, as a string.
-This may be the empty string if the value is computed. You can check if
-the value is computed using the `computed` field.
-
-### attribute.computed
-
-This is a boolean value that is true if this attribute's new value is
-a computed value. A computed value is a value that is not known until
-apply time. This can be because this is a dynamic value from this
-resource itself such as the IP address of a new compute instance, or
-because it is a parameter that is being populated from a dynamic
-value from another resource.
-
-If a value is computed, it cannot be known until after apply. If policy
-must be enforced on the value of this field, it must be done post-apply
-or by disallowing computed values.
-
-### attribute.removed
-
-This is a boolean value that is true if this field is being removed.
-This can be set if the entire configuration is deleted, or if the element
-of a map or list is being removed. This is set for example when a tag is
-removed from an AWS resource.
-
-When a value is removed, its `new` value will be an empty string.
-
-## Type: module
-
-### module.resources.TYPE.NAME
-
-This returns the list of resources with the given type and name.
-
-The result is a list because the plan is aware that the count may be greater
-than zero. If a resource has no `count` set and is only a single item, the
-result is still a list with a single element. Otherwise, the list is
-indexed by the count index. Note that in some cases not every index
-is populated. The Sentinel `for`, `any`, and `all` iteration mechanisms
-will not include those.
-
-You can also access a map of name to resource by accessing
-`module.resource.TYPE` or a map of types using `module.resource`.
-
-An example of accessing a resource named "app" of type "aws_instance"
-in a module named "web".
+The following policy would evaluate to `true` _only_ if the diff had changes for
+that module:
 
 ```python
 import "tfplan"
 
-m = tfplan.module(["web"])
-r = m.resources.aws_instance.app
-
-// There should only be a single app instance being created.
-main = rule { length(r) is 1 }
+main = rule { tfplan.module(["foo"]).path contains "foo" }
 ```
 
-### module.data.TYPE.NAME
+## Namespace: Resources/Data Sources
 
-This returns a list of data sources with the given type and name, and behaves
-exactly how a resource lookup behaves with the module.resources.TYPE.NAME syntax
-above. All fields that are accessible within [resources](#type-resource) are
-available within a data source.
+The **resource namespace** is a namespace _type_ that applies to both resources
+(accessed by using the `resources` namespace key) and data sources (accessed
+using the `data` namespace key).
 
-Note for a data source to be present here, it must be in the plan, which
-generally means it must have some unknown data at plan time.
+Accessing an individual resource or data source within each respective namespace
+can be accomplished by specifying the type, name, and resource number (as if the
+resource or data source had a `count` value in it) in the syntax
+`[resources|data].TYPE.NAME[NUMBER]`. Note that NUMBER is always needed, even if
+you did not use `count` in the resource.
 
-## Type: resource
+In addition, each of these namespace levels is a map, allowing you to filter
+based on type and name. 
 
-### resource.diff.FIELD
+-> The (somewhat strange) notation here of `TYPE.NAME[NUMBER]` may imply that
+the inner resource index map is actually a list, but it's not - using the square
+bracket notation over the dotted notation (`TYPE.NAME.NUMBER`) is required here
+as an identifier cannot start with number.
 
-The `FIELD` is a changed field within the resource to access.
+Some examples of multi-level access are below:
 
-Only fields that are changing within the plan are available here. If
-a field already was set in the state and wasn't changed, no change
-is required and it will not be present in the plan. You can still find
-the field in the `tfplan.state`. You can also use the `resource.applied`
-value, which will retain the old value.
+* To fetch all `aws_instance.foo` resource instances within the root module, you
+  can specify `tfplan.resources.aws_instance.foo`. This would then be indexed by
+  resource count index (`0`, `1`, `2`, and so on). Note that as mentioned above,
+  these elements must be accessed using square-bracket map notation (so `[0]`,
+  `[1]`, `[2]`, and so on) instead of dotted notation.
+* To fetch all `aws_instance` resources within the root module, you can specify
+  `tfplan.resources.aws_instance`. This would be indexed off of the names of
+  each resource (`foo`, `bar`, and so on), with each of those maps containing
+  instances indexed by resource count index as per above.
+* To fetch all resources within the root module, irrespective of type, use
+  `tfplan.resources`. This is indexed by type, as shown above with
+  `tfplan.resources.aws_instance`, with names being the next level down, and so
+  on.
 
-If FIELD contains a period, it must be accessed as a map. For example:
-`resource.diff[FIELD]`. Map and list elements may contain periods. For
-example a tag "foo" being set on an instance may require this
-sort of access:
+Further explanation of the namespace will be in the context of resources. As
+mentioned, when operating on data sources, use the same syntax, except with
+`data` in place of `resources`.
+
+### Value: `applied`
+
+* **Value Type:** A string-keyed map of values.
+
+The `applied` value within the [resource
+namespace](#namespace-resources-data-sources) contains a "predicted"
+representation of the resource's state post-apply. It's created by merging the
+pending resource's diff on top of the existing data from the resource's state
+(if any).
+
+The map is a complex representation of these values with data going as far down
+as needed to represent any state values such as maps, lists, and sets.
+
+Note that some values will not be available in the `applied` state because they
+cannot be known until the plan is actually applied. These values are represented
+by a placeholder (the UUID value `74D93920-ED26-11E3-AC10-0800200C9A66`). This
+is not a stable API and should not be relied on. Instead, use the
+[`computed`](#value-computed) key within the [diff
+namespace](#namespace-resource-diff) to determine if a value is known or not.
+
+As an example, given the following resource:
+
+```hcl
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
+}
+```
+
+The following policy would evaluate to `true` if the resource was in the diff:
 
 ```python
 import "tfplan"
 
-r = tfplan.resources.aws_instance.web
-main = rule { not r.diff["tag.foo"].computed }
+main = rule { tfplan.resources.null_resource.foo[0].applied.triggers.foo is "bar" }
 ```
 
-You can check if the value is computed by using the `computed` property,
-as in this example.
+### Value: `diff`
 
-### resource.applied.FIELD
+* **Value Type:** A map of [diff namespaces](#namespace-resource-diff).
 
-The value of `FIELD` in this resource after the plan is applied.
+The `diff` value within the [resource
+namespace](#namespace-resources-data-sources) contains the diff for a particular
+resource. Each key within the map links to a [diff
+namespace](#namespace-resource-diff) for that particular key.
 
-This merges the plan to the prior state to simulate an apply. An actual
-apply does not take place at this time. From the simulated apply, the
-value of `FIELD` can be tested.
+Note that unlike the [`applied`](#value-applied) value, this map is not complex;
+the map is only 1 level deep with each key possibly representing a diff for a
+particular complex value within the resource.
 
-This is the best method to actual do any sort of value checking for
-a plan. For any policies that require certain fields have certain values,
-this is the mechanism to use. For example, a policy that requires a certain
-tag be set on a resource should use this to find the tag.
+See the below section for more details on the diff namespace, in addition to
+usage examples.
 
-Note that if `FIELD` is a computed value, then this will return a
-special UUID marker noting it is computed.
+## Namespace: Resource Diff
+
+The **diff namespace** is a namespace that represents the diff for a specific
+attribute within a resource. For details on reading a particular attribute,
+see the [`diff`](#diff) value in the [resource
+namespace](#namespace-resources-data-sources).
+
+### Value: `computed`
+
+* **Value Type:** Boolean.
+
+The `computed` value within the [diff namespace](#namespace-resource-diff) is
+`true` if the resource key in question depends on another value that isn't yet
+known. Typically, that means the value it depends on belongs to a resource that
+either doesn't exist yet, or is changing state in such a way as to affect the
+dependent value so that it can't be known until the apply is complete.
+
+-> Keep in mind that when using `computed` with complex structures such as maps,
+lists, and sets, it's sometimes necessary to test the count attribute for the
+structure, versus a key within it, depending on whether or not the diff has
+marked the whole structure as computed. This is demonstrated in the example
+below.  Count keys are `%` for maps, and `#` for lists and sets. If you are
+having trouble determining the type of specific field within a resource, contact
+the support team.
+
+As an example, given the following resource:
+
+```hcl
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
+}
+
+resource "null_resource" "bar" {
+  triggers = {
+    foo_id = "${null_resource.foo.id}"
+  }
+}
+```
+
+The following policy would evaluate to `true`, if the `id` of
+`null_resource.foo` was currently not known, such as when the resource is
+pending creation, or is being deleted and re-created:
+
+```python
+import "tfplan"
+
+main = rule { tfplan.resources.null_resource.bar[0].diff["triggers.%"].computed }
+```
+
+### Value: `new`
+
+* **Value Type:** String.
+
+The `new` value within the [diff namespace](#namespace-resource-diff) contains
+the new value of a changing attribute, _if_ the value is known at plan time.
+
+-> `new` will be an empty string if the attribute's value is currently unknown.
+For more details on detecting unknown values, see [`computed`](#value-computed).
+
+Note that this value is _always_ a string, regardless of the actual type of the
+value changing. [Type conversion][ref-sentinel-type-conversion] within policy
+may be necessary to achieve the comparison needed.
+
+[ref-sentinel-type-conversion]: https://docs.hashicorp.com/sentinel/language/values#type-conversion
+
+As an example, given the following resource:
+
+```hcl
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
+}
+```
+
+The following policy would evaluate to `true`, if the resource was in the diff
+and each of the concerned keys were changing to new values:
+
+```python
+import "tfplan"
+
+main = rule { tfplan.resources.null_resource.foo[0].diff["triggers.foo"].new is "bar" }
+```
+
+### Value: `old`
+
+* **Value Type:** String.
+
+The `old` value within the [diff namespace](#namespace-resource-diff) contains
+the old value of a changing attribute.
+
+Note that this value is _always_ a string, regardless of the actual type of the
+value changing. [Type conversion][ref-sentinel-type-conversion] within policy
+may be necessary to achieve the comparison needed.
+
+If the value did not exist in the previous state, `old` will always be an empty
+string.
+
+As an example, given the following resource:
+
+```hcl
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "baz"
+  }
+}
+```
+
+If that resource was previously in config as:
+
+```hcl
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
+}
+```
+
+The following policy would evaluate to `true`:
+
+```python
+import "tfplan"
+
+main = rule { tfplan.resources.null_resource.foo[0].diff["triggers.foo"].old is "bar" }
+```
