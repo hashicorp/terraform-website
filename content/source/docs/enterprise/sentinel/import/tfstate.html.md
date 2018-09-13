@@ -317,7 +317,7 @@ mentioned, when operating on data sources, use the same syntax, except with
 
 * **Value Type:** A string-keyed map of values.
 
-The `applied` value within the [resource
+The `attr` value within the [resource
 namespace](#namespace-resources-data-sources) is a direct mapping to the state
 of the resource. 
 
