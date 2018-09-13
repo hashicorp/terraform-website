@@ -1,21 +1,21 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installer Migration"
-sidebar_current: "docs-enterprise2-private-installer-migration"
+page_title: "Private Terraform Enterprise Installer - Simplified Migration"
+sidebar_current: "docs-enterprise2-private-installer-simplified-migration"
 ---
 
-# Private Terraform Enterprise Installer Migration
+# Private Terraform Enterprise Installer - Simplified Migration
 
-This document outlines the procedure for migrating from the AMI-based Private Terraform Enterprise (PTFE)
-to the Installer-based PTFE.
+This document outlines a simplified procedure for migrating from the AMI-based Private Terraform Enterprise (PTFE)
+to the Installer-based PTFE that is suitable if the original Terraform modules were not modified, or the modifications were minimal.
 
 ## Terraform State
 
-To run this procedure, you'll need the terraform state file used to create the AMI-based installation. Additionally, we strongly suggest you back up this state file before proceeding with this process, in the event that you need to revert back to the AMI.
+To run this procedure, you'll need the Terraform state file used to create the AMI-based installation. Additionally, we strongly suggest you back up this state file before proceeding with this process, in the event that you need to revert back to the AMI.
 
 ## Backup
 
-Before beginning, it's best to create an additional backup of your RDS database. This will allow you to rollback the data and continue to use the AMI if necessary.
+Before beginning, it's best to create an additional backup of your RDS database. This will allow you to roll back the data and continue to use the AMI if necessary.
 
 To create an RDS backup, go to the [Amazon RDS Instances](https://console.aws.amazon.com/rds/home?region=us-east-1#dbinstances:). You may need to change the region that you are viewing in order to see your PTFE instance. Once you find it, click on the instance name. On the next page, select **Instance Actions** and then **Take snapshot**. On the **Take DB Snapshot** page, enter a name for the snapshot such as `Pre-Installer Migration`, and then click **Take Snapshot**.
 
@@ -26,7 +26,7 @@ The snapshot will take a little while to create. After it has finished, you can 
 To revert to the AMI after running the migration script:
 
 * If you've already manipulated the state file to move the resources, you'll need to restore the original state file.
-* With your original terraform state file in place, return to the [Amazon RDS Snapshots](https://console.aws.amazon.com/rds/home?region=us-east-1#db-snapshots:) and find the snapshot you created before migrating. Click on the snapshot and note its **ARN** value. Open your **.tfvars** file and add `db_snapshot = "arn-value-of-snapshot"`.
+* With your original Terraform state file in place, return to the [Amazon RDS Snapshots](https://console.aws.amazon.com/rds/home?region=us-east-1#db-snapshots:) and find the snapshot you created before migrating. Click on the snapshot and note its **ARN** value. Open your **.tfvars** file and add `db_snapshot = "arn-value-of-snapshot"`.
 * Run `terraform apply` to make sure everything is set up. This will result in a new RDS instance being built against the snapshot.
 * If the EC2 instance is still running from the migration process, run `shutdown` on it to get a new instance created.
 * Return to the original hostname used for the cluster.
@@ -35,23 +35,22 @@ To revert to the AMI after running the migration script:
 
 ### Terraform Variables and State
 
-To use this simplified procedure, you'll neeed the tfvars file and tfstate file used to deploy
-the AMI-based PTFE.
+To use this simplified procedure, you'll neeed the `.tfvars` file and `.tfstate` file used to deploy
+the AMI-based PTFE instance.
 
-These files will be used against a new terraform module set to change just the PTFE software
-and leave the state storage such as RDS and S3 in place.
+These files will be used against a new Terraform module set to change just the PTFE software
+and leave the state storage, such as RDS and S3, in place.
 
-### Perparing Modules
+### Preparing Modules
 
-Download the [new terraform modules](https://github.com/hashicorp/ptfe-migration-terraform). We'll presume
-the repository is available as `ptfe-migration-terraform`, change to that directory and we'll remain there for
-rest of the steps.
+Download the [new Terraform modules](https://github.com/hashicorp/ptfe-migration-terraform) into a local directory.
+Change to that directory, and place the `.tfvars` and `.tfstate` files for the AMI-based instance in the directory.
 
-Place your tfvars and tfstate file in the current directory.
+The rest of the steps will be executed from this directory.
 
 ### Data Migration
 
-The AMI instance must be prepared before any of the new terraform is used. Use SSH to access
+The AMI instance must be prepared before any of the new Terraform configuration is used. Use SSH to access
 the instance and download the migration tool by running:
 
 ```
@@ -66,15 +65,16 @@ $ sudo ./migrator
 
 ```
 
-It will ask you to run again to confirm that you wish to run this step as it shutdows operations
-on the instance to ensure the consistency of the data:
+The migrator will prompt you to run again with the `-confirm` flag to confirm that you wish to run this step, because it
+shuts down operations on the current instance. The shutdown is required to ensure consistency of the data.
+To confirm the shutdown and proceed, run:
 
 ```
 $ sudo ./migrator -confirm
 ```
 
-Next the migration will run and move the data into PostgreSQL and output the Encryption Password
-value that you need to specify to use this terraform module. The output will end with output
+Next, the migration will move the data into PostgreSQL and output the encryption password
+value that you need to specify to use this Terraform module. The password output will be
 similar to:
 
 ```
@@ -84,8 +84,8 @@ Provide this value as the encryption password in the migration tfvars file:
 ```
 
 
-The value `jIQzYXtNZNKfkyHbj2WHqTkrSQPkeX8gCrfPAkJHZ5s` here will be different for your run of the
-migrator tool. Copy that value and add it to your tfvars files like:
+The value of the encryption password (`jIQzYXtNZNKfkyHbj2WHqTkrSQPkeX8gCrfPAkJHZ5s` here) will be different for your run of the
+migrator tool. Copy the provided value and add it to your `.tfvars` file like this:
 
 ```
 encryption_password = "jIQzYXtNZNKfkyHbj2WHqTkrSQPkeX8gCrfPAkJHZ5s<Paste>
@@ -93,15 +93,15 @@ encryption_password = "jIQzYXtNZNKfkyHbj2WHqTkrSQPkeX8gCrfPAkJHZ5s<Paste>
 
 ### License File
 
-Place your Terraform Enterprise license file on your local disk and specify the path to it
-in the tfvars file like:
+Place your Terraform Enterprise license file (ending in `.rli`) on your local disk, and specify the path to it
+in the `.tfvars` file like this:
 
 ```
 license_file = "/path/to/license.rli"
 ```
 
-Where the value is the path on your disk. If you put it in the current directory, you can
-specify just the name rather than the full path.
+where the provided path is the path on the local disk. If you put it in the current directory, you can
+specify just the name and omit the path.
 
 ## Initialize
 
@@ -111,19 +111,31 @@ You're now ready to initialize the new terraform modules:
 terraform init ./terraform/aws-standard
 ```
 
-## Application
+## Apply the Changes
 
-Now we're ready to terraform! 
+Once the initialization has succeeded, run
 
-Run `terraform plan ./terraform/aws-standard` to see the changes that will be made. Double check that they are
-correct before continuning. You should not see any changes to your `aws_db_instance` or `aws_s3_bucket`.
-If you do, please contact support before continiuing.
+```
+terraform plan ./terraform/aws-standard
+```
 
-When you're satified with the plan, apply it: `terraform apply ./terraform/aws-standard`. This will remove the AMI
-instance and boot one running the installer in it's place, configured with all the values provided
-by the existing terraform state, plus the license and encryption password you added.
+to see the changes that will be made. Double-check that they are correct before continuing.
+There should not be any changes made to your `aws_db_instance` or `aws_s3_bucket`.
+If any changes to these resources are shown in the plan, pause the migration process and
+[contact support](./faq.html#support-for-private-terraform-enterprise).
 
-When the terraform completes, you now having a migrated instance!
+When you're satisfied with the plan, apply it:
+
+```
+terraform apply ./terraform/aws-standard
+```
+
+The apply will remove the Terraform Enterprise AMI instance and boot an instance running
+Terraform Enterprise under the installer framework in its place, configured with all the values
+provided by the existing Terraform state, along with the license information and encryption
+password you added.
+
+When the `terraform apply` completes, the instance will be fully migrated!
 
 ## Availability
 
@@ -132,15 +144,16 @@ the Auto Scaling Group and boots the new instance automatically without the need
 
 ## Software Upgrades
 
-This module installs the latest version of the software automatically upon boot. So an easy way to upgrade
-the software is simply to shutdown the instance. When the Auto Scaling Group boots a new one, it will
-install the new software and resume operation.
+This module installs the latest version of the Terraform Enterprise software automatically on boot,
+so an easy way to upgrade the application is to shut down the instance. When the Auto Scaling Group
+boots a new instance, it will install the new software and resume operation.
 
-Alternatively, you can upgrade the software from the management console, available on port 8800.
+Alternately, you can upgrade the application from the management console, available on port 8800 of the instance,
+following the [standard upgrade process for the installer](./upgrades.html).
 
 ## Management Console
 
-The ELB is modified to provide access to the management console for the installer on port 8800. It is
-configured with an autogenerated password that is available in the terraform state (you will see it
-as one of the outputs when applying the new terraform modules).
-
+As part of the migration, the ELB is modified to provide access to the management console for the
+installer on port 8800. The management console is configured for access with an autogenerated password
+that is available in the Terraform state; it is one of the outputs generated when applying the new
+Terraform modules.
