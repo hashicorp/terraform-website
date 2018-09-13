@@ -96,6 +96,11 @@ Hence, a module with an address of simply `foo` (or `root.foo`) would be
 `["foo"]`, and a module within that (so address `foo.bar`) would be read as
 `["foo", "bar"]`.
 
+[`null`][ref-null] is returned if a module address is invalid, or if the module
+is not present in the state.
+
+[ref-null]: https://docs.hashicorp.com/sentinel/language/spec#null
+
 As an example, given the following module block:
 
 ```hcl
@@ -131,8 +136,8 @@ main = rule { tfstate.module(["foo"]).resources.null_resource.foo[0].attr.trigge
 The `module_paths` value within the [root namespace](#namespace-root) is a list
 of all of the modules within the Terraform state at plan-time.
 
-Note the distinction here - this means if a module is not present in state, it
-will not be present in `module_paths`.
+Modules not present in the state will not be present here, even if they are
+present in the configuration or the diff.
 
 This data is represented as a list of a list of strings, with the inner list
 being the module address, split on the period (`.`).

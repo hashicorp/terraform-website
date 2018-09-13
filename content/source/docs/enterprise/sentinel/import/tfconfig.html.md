@@ -101,6 +101,11 @@ Hence, a module with an address of simply `foo` (or `root.foo`) would be
 `["foo"]`, and a module within that (so address `foo.bar`) would be read as
 `["foo", "bar"]`.
 
+[`null`][ref-null] is returned if a module address is invalid, or if the module
+is not present in the configuration.
+
+[ref-null]: https://docs.hashicorp.com/sentinel/language/spec#null
+
 As an example, given the following module block:
 
 ```hcl
@@ -133,9 +138,13 @@ main = rule { subject.module(["foo"]).resources.null_resource.foo.config.trigger
 * **Value Type:** List of a list of strings.
 
 The `module_paths` value within the [root namespace](#namespace-root) is a list
-of all of the modules within the Terraform configuration. This data is
-represented as a list of a list of strings, with the inner list being the module
-address, split on the period (`.`).
+of all of the modules within the Terraform configuration.
+
+Modules not present in the configuration will not be present here, even if they
+are present in the diff or state.
+
+This data is represented as a list of a list of strings, with the inner list
+being the module address, split on the period (`.`).
 
 The root module is included in this list, represented as an empty inner list.
 

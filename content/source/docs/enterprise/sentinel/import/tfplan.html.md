@@ -112,6 +112,11 @@ Hence, a module with an address of simply `foo` (or `root.foo`) would be
 `["foo"]`, and a module within that (so address `foo.bar`) would be read as
 `["foo", "bar"]`.
 
+[`null`][ref-null] is returned if a module address is invalid, or if the module
+is not present in the plan.
+
+[ref-null]: https://docs.hashicorp.com/sentinel/language/spec#null
+
 As an example, given the following module block:
 
 ```hcl
@@ -144,10 +149,10 @@ main = rule { tfplan.module(["foo"]).resources.null_resource.foo[0].applied.trig
 * **Value Type:** List of a list of strings.
 
 The `module_paths` value within the [root namespace](#namespace-root) is a list
-of all of the modules within the Terraform _diff_ for the current plan.
+of all of the modules within the Terraform diff for the current plan.
 
-Note the distinction here - this means if there are no changes for any resources
-within the module of concern, the module will not show up in `module_paths`.
+Modules not present in the diff will not be present here, even if they are
+present in the configuration or state.
 
 This data is represented as a list of a list of strings, with the inner list
 being the module address, split on the period (`.`).
