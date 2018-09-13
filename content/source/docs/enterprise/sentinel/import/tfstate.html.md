@@ -387,7 +387,7 @@ The `id` value within the [resource
 namespace](#namespace-resources-data-sources) contains the id of the resource.
 
 -> **NOTE:** The example below uses a _data source_ here because the
-[`null_data_soruce`][ref-tf-null-data-source] data source gives a static ID,
+[`null_data_source`][ref-tf-null-data-source] data source gives a static ID,
 which makes documenting the example easier. As previously mentioned, data
 sources share the same namespace as resources, but need to be loaded with the
 `data` key. For more information, see the
