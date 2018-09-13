@@ -119,7 +119,7 @@ Hence, a module with an address of simply `foo` (or `root.foo`) would be
 `["foo", "bar"]`.
 
 [`null`][ref-null] is returned if a module address is invalid, or if the module
-is not present in the plan.
+is not present in the diff.
 
 [ref-null]: https://docs.hashicorp.com/sentinel/language/spec#null
 
