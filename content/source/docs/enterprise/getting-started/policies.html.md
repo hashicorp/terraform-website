@@ -10,7 +10,7 @@ sidebar_current: "docs-enterprise2-started-policies"
 
 ## About Sentinel Policies
 
-_Policies_ in TFE are composed of [Sentinel policies](../sentinel/index.html) with some extra features. [Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code framework integrated with the HashiCorp Enterprise products. It enables fine-grained, logic-based policy decisions, and can be extended to use information from external sources. Within TFE, you can use Sentinel to apply checks to your runs.
+_Policies_ in TFE are composed of [Sentinel policies](/docs/enterprise/sentinel/index.html) with some extra features. [Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code framework integrated with the HashiCorp Enterprise products. It enables fine-grained, logic-based policy decisions, and can be extended to use information from external sources. Within TFE, you can use Sentinel to apply checks to your runs.
 
 A policy consists of:
 
@@ -55,7 +55,7 @@ You can paste the following code into the code input box. It always resolves to 
 main = rule { true }
 ```
 
-Later, you can switch `true` to `false` to see how a "FAIL" during a policy check can affect your run. You can find many more examples in our [Example Policies section](../sentinel/examples.html).
+Later, you can switch `true` to `false` to see how a "FAIL" during a policy check can affect your run. You can find many more examples in our [Example Policies section](/docs/enterprise/sentinel/examples.html).
 
 ## What Happens in a New Policy
 
