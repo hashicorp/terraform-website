@@ -50,7 +50,7 @@ tfstate
 │   └── (module namespace)
 │       ├── path ([]string)
 │       ├── data
-│       │   └── TYPE.NAME.NUMBER
+│       │   └── TYPE.NAME[NUMBER]
 │       │       ├── attr (map of keys)
 │       │       ├── depends_on ([]string)
 │       │       ├── id (string)
@@ -61,7 +61,7 @@ tfstate
 │       │       ├── type (string)
 │       │       └── value (value)
 │       └── resources
-│           └── TYPE.NAME.NUMBER
+│           └── TYPE.NAME[NUMBER]
 │               ├── attr (map of keys)
 │               ├── depends_on ([]string)
 │               ├── id (string)
