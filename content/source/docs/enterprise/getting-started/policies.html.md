@@ -17,7 +17,7 @@ A policy consists of:
 - The Sentinel policy code
 - An enforcement mode that changes how a policy affects the run lifecycle
 
-Currently, policies in an organization apply to **all** workspaces. You'll want to consider that when writing your policies so they won't fail unrelated workspace runs or configurations. In the future, TFE will provide a way to manage policies so you can apply them per-workspace.
+Currently, policies in an organization apply to **all** workspaces. You'll want to consider that when writing your policies so they don't cause unintended failures. In the future, TFE will provide a way to manage policies so you can apply them per-workspace.
 
 ## Creating a Policy
 
@@ -31,13 +31,13 @@ To create your first policy, click the "Create new policy" button in the upper r
 
 ![new button](./images/policy-new-button.png)
 
-On the "Create a new Policy" page, you need to enter at least two items: a policy name, and the policy code. When you've finished, click the "Create Policy" button.
+On the "Create a new Sentinel Policy" page, you need to enter at least two items: a policy name, and the policy code. When you've finished, click the "Create Policy" button.
 
 ![fields on new policy page](./images/policy-new-fields.png)
 
 ### Policy Name
 
-A policy name should tell your colleagues what the policy is for. Most policies are _a particular environment_ of _a particular Terraform configuration,_ so the name should include both the name of the configuration and the name of the environment.
+A policy name should tell your colleagues what the policy is for. Examples could be "Require tags on all instances" or "Enforce network ACLs". If a policy is for a particular workspace, or environment within a workspace, include the name of the workspace and/or environment.
 
 For this example, we'll just create a sample passthrough policy that will allow all runs to "PASS" our policy check. 
 
@@ -45,7 +45,7 @@ In this example, we're using a configuration named "minimum" and we're deploying
 
 ### Enforcement Mode
 
-Enforcement Mode alters how a policy result affects your run; "hard-mandatory" will always stop a run if a policy fails, "soft-mandatory" will pause a run and allow a failure to be overridden, and "advisory" will log failures but always allow a run to continue. Use "soft-mandatory" for now so we can see
+Enforcement Mode alters how a policy result affects your run; "hard-mandatory" will always stop a run if a policy fails, "soft-mandatory" will pause a run and allow a failure to be overridden, and "advisory" will log failures but always allow a run to continue. Use "soft-mandatory" for now so we can see how the "Policy Override" feature works in practice.
 
 ### Policy Code
 
@@ -55,7 +55,7 @@ You can paste the following code into the code input box. It always resolves to 
 main = rule { true }
 ```
 
-Later, you can switch `true` to `false` to see how a "FAIL" during a policy check can affect your run. You can find many more examples in our [Example policies doc](../sentinel/examples.html).
+Later, you can switch `true` to `false` to see how a "FAIL" during a policy check can affect your run. You can find many more examples in our [Example Policies section](../sentinel/examples.html).
 
 ## What Happens in a New Policy
 
@@ -63,7 +63,7 @@ When you create a new policy, it will be applied to all future runs. Runs that a
 
 ## See a Policy Check in a Run
 
-Once your policy is created, you can view its effect on the run page. Start a new run to watch it play out. Again, you can start a run with the "Queue Plan" at the upper right of the workspace page, or using the "Save & Plan" button when editing the workspace's variables.
+Once your policy is created, you can view its effect on the run page. Start a new run to watch it play out. Again, you can start a run with the "Queue Plan" button at the upper right of the workspace page, or using the "Save & Plan" button when editing the workspace's variables.
 
 Your policy code will be applied to this run and you'll see a new section in the run's timeline called "POLICY CHECK". Click "View Check" and you should see that our new "passthrough" policy has been run with a "true" result, allowing the run to continue.
 
