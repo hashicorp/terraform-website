@@ -22,6 +22,12 @@ documentation][ref-official-sentinel-documentation].
 [ref-mocking-imports]: https://docs.hashicorp.com/sentinel/writing/imports#mocking-imports
 [ref-official-sentinel-documentation]: https://docs.hashicorp.com/sentinel/
 
+-> **NOTE:** As functions cannot be mocked in the current Sentinel testing
+framework, the [module()][ref-module] function is not available. As a result,
+only root module data can be mocked at this time.
+
+[ref-module]: /docs/enterprise/sentinel/import/tfconfig.html#function-module-
+
 ```json
 {
   "mock": {
