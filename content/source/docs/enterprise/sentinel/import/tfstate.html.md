@@ -350,8 +350,8 @@ The `depends_on` value within the [resource
 namespace](#namespace-resources-data-sources) contains the dependencies for the
 resource.
 
-This is a list of strings which that contains the resource address relative to
-the module.
+This is a list of full resource addresses, relative to the module (example:
+`null_resource.foo`).
 
 As an example, given the following resources:
 
