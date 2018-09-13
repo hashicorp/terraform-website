@@ -384,7 +384,7 @@ main = rule { tfstate.resources.null_resource.bar[0].depends_on contains "null_r
 * **Value Type:** String.
 
 The `id` value within the [resource
-namespace](#namespace-resources-data-sources) contains id of the resource.
+namespace](#namespace-resources-data-sources) contains the id of the resource.
 
 -> **NOTE:** The example below uses a _data source_ here because the
 [`null_data_soruce`][ref-tf-null-data-source] data source gives a static ID,
