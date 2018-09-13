@@ -29,6 +29,12 @@ mock][ref-tfconfig-mock] and the [`tfstate` mock][ref-tfstate-mock].
 [ref-tfconfig-mock]: /docs/enterprise/sentinel/import/mock-tfconfig.html
 [ref-tfstate-mock]: /docs/enterprise/sentinel/import/mock-tfstate.html
 
+-> **NOTE:** As functions cannot be mocked in the current Sentinel testing
+framework, the [module()][ref-module] function is not available. As a result,
+only root module data can be mocked at this time.
+
+[ref-module]: /docs/enterprise/sentinel/import/tfplan.html#function-module-
+
 ```json
 {
   "mock": {
