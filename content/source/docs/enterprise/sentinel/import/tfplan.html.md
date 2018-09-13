@@ -522,6 +522,9 @@ Note that this value is _always_ a string, regardless of the actual type of the
 value changing. [Type conversion][ref-sentinel-type-conversion] within policy
 may be necessary to achieve the comparison needed.
 
+If the value did not exist in the previous state, `old` will always be an empty
+string.
+
 As an example, given the following resource:
 
 ```hcl
