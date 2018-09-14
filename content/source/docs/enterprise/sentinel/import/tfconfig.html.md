@@ -451,7 +451,7 @@ This namespace is populated based on the following criteria:
   version information from the default provider (the provider declaration that
   lacks an alias).
 * Any aliased providers are added as namespaces within the
-  [`alias`](value-alias) value.
+  [`alias`](#value-alias) value.
 * If a module lacks a default provider configuration, the top-level `config` and
   `version` values will be empty.
 
