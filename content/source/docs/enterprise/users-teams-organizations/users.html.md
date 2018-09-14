@@ -38,7 +38,11 @@ Adding a user to a team requires only their username.
 
 ## Site Admin Permissions
 
-On private installs of TFE, some user accounts have a special "site admin" permission that allows administration of the entire instance. For more information, see [Administering Private Terraform Enterprise](../private/admin/index.html).
+On private instances of TFE, some user accounts have a special "site admin" permission that allows administration of the entire instance.
+
+Admin permissions are distinct from normal organization-level permissions, and they apply to a different set of UI controls and API endpoints. Although admin users can administer any resource across the instance when using the site admin pages or the [admin API](../api/admin/index.html), they have a normal user's permissions (with access determined by the teams they belong to) when using an organization's standard UI controls and API endpoints.
+
+For more information, see [Administering Private Terraform Enterprise](../private/admin/index.html).
 
 ## User Settings
 
