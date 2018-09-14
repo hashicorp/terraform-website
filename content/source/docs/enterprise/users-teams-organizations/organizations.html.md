@@ -13,9 +13,7 @@ Organizations are a shared space for [teams][] to collaborate on workspaces in T
 
 ## Selecting Organizations
 
-On most pages within TFE, the top navigation bar displays the name of the selected organization.
-
-If you are a member of multiple organizations, you can click the organization name for a drop-down menu of all the organizations you can view. You can switch to another organization by clicking its name, or you can create a new organization.
+On most pages within TFE, the top navigation bar displays the name of the selected organization. Clicking the name reveals the organization switcher menu, which lists all of the organizations you belong to. You can switch to another organization by clicking its name, or you can create a new organization with the "Create new organization" button.
 
 ![screenshot: the organization switcher menu](./images/org-nav.png)
 

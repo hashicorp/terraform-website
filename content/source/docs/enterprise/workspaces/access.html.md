@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-workspaces-access"
 
 Terraform Enterprise (TFE) workspaces can only be accessed by users with the correct permissions. You can manage permissions for a workspace on a per-team basis.
 
-Managing access requires [admin privileges](../users-teams-organizations/permissions.html) on the affected workspace.
+Workspace access should be managed by [organization owners](../users-teams-organizations/teams.html#the-owners-team). (Although any user with [admin privileges](../users-teams-organizations/permissions.html) on the target workspace can edit its permissions, non-owners can only add permissions for teams they are members of.)
 
 ## Background
 

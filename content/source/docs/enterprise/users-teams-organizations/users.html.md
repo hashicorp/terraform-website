@@ -36,6 +36,10 @@ To add a user to an organization, a member of that organization's owners team mu
 
 Adding a user to a team requires only their username.
 
+## Site Admin Permissions
+
+On private installs of TFE, some user accounts have a special "site admin" permission that allows administration of the entire instance. For more information, see [Administering Private Terraform Enterprise](../private/admin/index.html).
+
 ## User Settings
 
 -> **API:** See the [Account API](../api/account.html).
