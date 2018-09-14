@@ -12,6 +12,7 @@ and are far from exhaustive.
 
 ### Amazon Web Services
 
+* [Enforce owner allow list on `aws_ami` data source](https://github.com/hashicorp/terraform-guides/blob/master/governance/aws/enforce-ami-owners.sentinel)
 * [Enforce mandatory tags on instances](https://github.com/hashicorp/terraform-guides/blob/master/governance/aws/enforce-mandatory-tags.sentinel)
 * [Restrict availability zones](https://github.com/hashicorp/terraform-guides/blob/master/governance/aws/restrict-aws-availability-zones.sentinel)
 * [Disallow CIDR blocks](https://github.com/hashicorp/terraform-guides/blob/master/governance/aws/restrict-aws-cidr-blocks.sentinel)
