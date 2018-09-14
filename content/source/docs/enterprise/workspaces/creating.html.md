@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-workspaces-creating"
 
 # Creating Workspaces
 
-~> **Note:** Only members of the "owners" team can create new workspaces.
+~> **Important:** Only [organization owners](../users-teams-organizations/teams.html#the-owners-team) can create new workspaces.
 
 -> **API:** See the [Create a Workspace endpoint](../api/workspaces.html#create-a-workspace) (`POST /organizations/:organization/workspaces`).
 

@@ -43,7 +43,7 @@ You can view and manage an organization's settings by clicking the "Settings" li
 
 ![screenshot: the organization settings page](./images/org-settings.png)
 
-Only members of the organization's "owners" team can manage an organization's settings. However, other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
+Only [organization owners](./teams.html#the-owners-team) can manage an organization's settings. However, other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
 
 Most of the organization settings are documented near the specific workflows they enable. What follows is a brief summary with links to more relevant sections of the documentation.
 
