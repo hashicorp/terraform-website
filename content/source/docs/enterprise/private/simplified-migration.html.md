@@ -73,7 +73,7 @@ To confirm the shutdown and proceed, run:
 $ sudo ./migrator -confirm
 ```
 
-Next, the migration will move the data into PostgreSQL and output the encryption password
+Next, the migration will move the Vault data into PostgreSQL and output the encryption password
 value that you need to specify to use this Terraform module. The password output will be
 similar to:
 
@@ -88,7 +88,7 @@ The value of the encryption password (`jIQzYXtNZNKfkyHbj2WHqTkrSQPkeX8gCrfPAkJHZ
 migrator tool. Copy the provided value and add it to your `.tfvars` file like this:
 
 ```
-encryption_password = "jIQzYXtNZNKfkyHbj2WHqTkrSQPkeX8gCrfPAkJHZ5s<Paste>
+encryption_password = "jIQzYXtNZNKfkyHbj2WHqTkrSQPkeX8gCrfPAkJHZ5s"
 ```
 
 ### License File
