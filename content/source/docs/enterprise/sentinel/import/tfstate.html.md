@@ -399,7 +399,7 @@ sources share the same namespace as resources, but need to be loaded with the
 `data` key. For more information, see the
 [synopsis](#namespace-resources-data-sources) for the namespace itself.
 
-[ref-tf-null-data-source]: /docs/providers/null/d/data_source.html
+[ref-tf-null-data-source]: /docs/providers/null/data_source.html
 
 As an example, given the following data source:
 
