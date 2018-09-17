@@ -342,3 +342,7 @@
 	path = ext/providers/netlify
 	url = https://github.com/terraform-providers/terraform-provider-netlify
 	branch = stable-website
+[submodule "ext/providers/oci"]
+	path = ext/providers/oci
+	url = https://github.com/terraform-providers/terraform-provider-oci
+	branch = stable-website
