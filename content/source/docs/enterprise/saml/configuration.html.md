@@ -51,9 +51,7 @@ The SAML settings are separated into sections:
 
 ### User Session
 
-- **API Token Session Timeout**: (default: `1209600` seconds, or 14 days) The duration of time (in seconds) for which TFE will accept [a user's API token](../users-teams-organizations/users.html#api-tokens) before requiring the user to log in again.
-
-    With SAML enabled, login events are TFE's only chance to validate a user account's existence and team memberships. A shorter timeout reduces the chance of a user taking API actions they should no longer be permitted, at the cost of added inconvenience to users.
+- **API Token Session Timeout**: (default: `1209600` seconds, or 14 days) The duration of time (in seconds) for which TFE will accept [a user's API token](../users-teams-organizations/users.html#api-tokens) before requiring the user to log in again. For more details about this behavior, see [API Token Expiration](./login.html#api-token-expiration).
 
 ## Identity Provider
 
