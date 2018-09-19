@@ -346,3 +346,7 @@
 	path = ext/providers/oci
 	url = https://github.com/terraform-providers/terraform-provider-oci
 	branch = stable-website
+[submodule "ext/providers/rightscale"]
+	path = ext/providers/rightscale
+	url = https://github.com/terraform-providers/terraform-provider-rightscale
+	branch = stable-website
