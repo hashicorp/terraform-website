@@ -29,7 +29,7 @@ Before you begin, you'll need to prepare data files and a Linux instance.
 ### Data Files
 
 * TLS private key and certificate
-  * The installer allows for using a certificate signed by a public or private CA. If you do not use a trusted certificate, your VCS provider will likely reject that certificate when sending webhooks. The key and certificate should have the X.509 format. The key should have extension \*.pem or \*.key while the certificate should have extension \*.cert or \*.crt.
+  * The installer allows for using a certificate signed by a public or private CA. If you do not use a trusted certificate, your VCS provider will likely reject that certificate when sending webhooks. The key and X.509 certificate should both be PEM (base64) encoded.
 * License key (provided by HashiCorp)
 
 ~> **Note:** If you use a certificate issued by a private Certificate
