@@ -13,9 +13,7 @@ Organizations are a shared space for [teams][] to collaborate on workspaces in T
 
 ## Selecting Organizations
 
-On most pages within TFE, the top navigation bar displays the name of the selected organization.
-
-If you are a member of multiple organizations, you can click the organization name for a drop-down menu of all the organizations you can view. You can switch to another organization by clicking its name, or you can create a new organization.
+On most pages within TFE, the top navigation bar displays the name of the selected organization. Clicking the name reveals the organization switcher menu, which lists all of the organizations you belong to. You can switch to another organization by clicking its name, or you can create a new organization with the "Create new organization" button.
 
 ![screenshot: the organization switcher menu](./images/org-nav.png)
 
@@ -45,7 +43,7 @@ You can view and manage an organization's settings by clicking the "Settings" li
 
 ![screenshot: the organization settings page](./images/org-settings.png)
 
-Only members of the organization's "owners" team can manage an organization's settings. However, other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
+Only [organization owners](./teams.html#the-owners-team) can manage an organization's settings. However, other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
 
 Most of the organization settings are documented near the specific workflows they enable. What follows is a brief summary with links to more relevant sections of the documentation.
 
