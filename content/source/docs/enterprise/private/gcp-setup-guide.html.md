@@ -1,13 +1,13 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer) - GCP Setup Guide"
-sidebar_current: "docs-enterprise2-private-installer-gcp"
+page_title: "Private Terraform Enterprise - Reference Architecture - GCP"
+sidebar_current: "docs-enterprise2-private-reference-architecture-gcp"
 description: |-
   This document provides recommended practices and a reference architecture for
   HashiCorp Private Terraform Enterprise (PTFE) implementations on GCP.
 ---
 
-# Private Terraform Enterprise GCP Setup Guide
+# Private Terraform Enterprise GCP Reference Architecture
 
 This document provides recommended practices and a reference architecture for
 HashiCorp Private Terraform Enterprise (PTFE) implementations on GCP.
@@ -147,9 +147,13 @@ Vault) all configured with or benefiting from inherent resiliency
 provided by GCP (in the case of Cloud SQL and Cloud Storage) or resiliency provided by a
 well-architected deployment (in the case of Vault).
 
--   [More information about Cloud SQL high-availability](https://cloud.google.com/sql/docs/postgres/high-availability).
--   [More information about Regional Cloud Storage](https://cloud.google.com/storage/docs/storage-classes).
--   [More information about highly available Vault deployments](https://www.vaultproject.io/guides/operations/vault-ha-consul.html)
+#### Additional Information
+
+- [Cloud SQL high-availability](https://cloud.google.com/sql/docs/postgres/high-availability).
+
+- [Regional Cloud Storage](https://cloud.google.com/storage/docs/storage-classes).
+
+- [Highly available Vault deployments](https://www.vaultproject.io/guides/operations/vault-ha-consul.html)
 
 ## Infrastructure Provisioning
 

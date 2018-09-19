@@ -17,6 +17,8 @@ Terraform Enterprise via the Installer. Customers using the AMI can follow the
 
 ## Migrating from AMI
 
+!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018.
+
 If you are migrating an installation from the AMI to the installer, please
 use the instuctions in the [migration guide](./migrate.html).
 
@@ -73,6 +75,12 @@ For Linux distributions other than RHEL, check Docker compatibility:
 
 ~> **Note**: It is not recommended to run Docker under a 2.x kernel.
 
+#### SELinux
+
+Private Terraform Enterprise does not support SELinux. The host running the installer must be configured in permissive mode by running: `setenforce 0`.
+
+Future releases may add native support for SELinux.
+
 #### Network Requirements
 
 1. Have the following ports available to the Linux instance:
@@ -107,6 +115,14 @@ To change the proxy settings after installation, use the Console settings page, 
 On the Console Settings page, there is a section for HTTP Proxy:
 
 ![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
+
+#### Proxy Exclusions (NO\_PROXY)
+
+If certain hostnames should not use the proxy and the instance should connect directly to them (for instance for S3), then you can pass an additional option to provide a list of domains:
+
+```
+./install.sh additional-no-proxy=s3.amazonaws.com,internal-vcs.mycompany.com,example.com
+````
 
 #### Trusting SSL/TLS Certificates
 
@@ -178,11 +194,12 @@ The decision you make will be entered during setup.
 
 #### Mounted Disk Guidelines
 
-The mounted disk option provides for significant flexibility in how PTFE stores its data. To help narrow down possibilites here are our guidelines about using mounted disk storage.
+The mounted disk option provides significant flexibility in how PTFE stores its data. To help narrow down the possibilites, we've provided the following guidelines for mounted disk storage.
 
 ##### Supported Mounted Disk Types
 
-The follow are **supported** mounted disk types:
+The following are **supported** mounted disk types:
+
 * AWS EBS
 * GCP Zonal Persistent Disk
 * Azure Disk Storage
@@ -190,15 +207,16 @@ The follow are **supported** mounted disk types:
 * SAN
 * Physically connected disks as in non-cloud hardware
 
-###### Additional Note about Disk Resizing
+###### Disk Resizing
 
-Depending on your Cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
+Depending on your cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
 
-For example, with RedHat-flavour (eg. RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article ["How to: Resize Linux osDisk partition on Azure"](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/)..
+For example, with RedHat-flavor (RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article [How to: Resize Linux osDisk partition on Azure](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
 
 ##### Unsupported Mounted Disk Types
 
-The follow are **not supported** mounted disk types:
+The following are **not** supported mounted disk types:
+
 * NFS
 * SMB/CIFS
 
@@ -269,6 +287,8 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. The system will now perform a set of pre-flight checks on the instance and
    configuration thus far and indicate any failures. You can either fix the issues
    and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
+1. Set an encryption password used to encrypt the sensitive information at rest. The default value is auto-generated, but we strongly suggest you create your own password.
+   Be sure to retain the value because you will need to use this password to restore access to the data in the event of a reinstall.
 1. Configure the operational mode for this installation. See
    [Operational Modes](#operational-mode-decision) for information on what the different values
    are.
@@ -310,12 +330,9 @@ CREATE SCHEMA vault;
 CREATE SCHEMA registry;
 ```
 
-When specifying which PostgreSQL database to use, the value specified must
-be a valid Database URL, as [specified in the libpq documentation](https://www.postgresql.org/docs/9.3/static/libpq-connect.html#AEN39514).
-
-Additionally, the URL must include the `sslmode` parameter indicating if SSL
-should be used to connect to the database. There is no assumed SSL mode; the
-parameter must be specified.
+When providing optional extra keyword parameters for the database connection,
+note an additional restriction on the `sslmode` parameter is that only the
+`require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
 ### Finish Bootstrapping
 

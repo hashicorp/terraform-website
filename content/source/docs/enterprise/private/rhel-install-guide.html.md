@@ -10,7 +10,7 @@ This install guide is specifically for users of Private Terraform Enterprise ins
 
 ## Install Recommendations
 
-* RedHat Enterprise Linux version 7.3 or 7.4
+* RedHat Enterprise Linux version 7.3 or later.
 * Docker 1.13.1 (available in RHEL extras), or Docker EE version 17.06 or later. The later versions are not available in the standard RHEL yum repositories.
    * For Docker EE, there are explicit RHEL instructions to follow: https://docs.docker.com/install/linux/docker-ee/rhel/ 
 * A properly configured docker storage backend, either:

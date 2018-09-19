@@ -200,7 +200,7 @@ or logical equivalences in JSON values.
   Type:     schema.TypeString,
   Required: true,
   ForceNew: true,
-  # Suppress the diff shown if the base_image name are equal when both compared in lower        #  case.
+  // Suppress the diff shown if the base_image name are equal when both compared in lower case.
   DiffSuppressFunc: func(k, old, new string, d *schema.ResourceData) bool {
     if strings.ToLower(old) == strings.ToLower(new) {
       return true 

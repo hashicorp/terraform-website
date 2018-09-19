@@ -11,11 +11,11 @@ to the Installer-based PTFE.
 
 ## Terraform State
 
-To run this procedure, you'll need the terraform state file used to create the AMI-based installation. Additionally, we strongly suggest you back up this state file before proceeding with this process, in the event that you need to revert back to the AMI.
+To run this procedure, you'll need the Terraform state file used to create the AMI-based installation. Additionally, we strongly suggest you back up this state file before proceeding with this process, in the event that you need to revert back to the AMI.
 
 ## Backup
 
-Before beginning, it's best to create an additional backup of your RDS database. This will allow you to rollback the data and continue to use the AMI if necessary.
+Before beginning, it's best to create an additional backup of your RDS database. This will allow you to roll back the data and continue to use the AMI if necessary.
 
 To create an RDS backup, go to the [Amazon RDS Instances](https://console.aws.amazon.com/rds/home?region=us-east-1#dbinstances:). You may need to change the region that you are viewing in order to see your PTFE instance. Once you find it, click on the instance name. On the next page, select **Instance Actions** and then **Take snapshot**. On the **Take DB Snapshot** page, enter a name for the snapshot such as `Pre-Installer Migration`, and then click **Take Snapshot**.
 
@@ -26,10 +26,20 @@ The snapshot will take a little while to create. After it has finished, you can 
 To revert to the AMI after running the migration script:
 
 * If you've already manipulated the state file to move the resources, you'll need to restore the original state file.
-* With your original terraform state file in place, return to the [Amazon RDS Snapshots](https://console.aws.amazon.com/rds/home?region=us-east-1#db-snapshots:) and find the snapshot you created before migrating. Click on the snapshot and note its **ARN** value. Open your **.tfvars** file and add `db_snapshot = "arn-value-of-snapshot"`.
+* With your original Terraform state file in place, return to the [Amazon RDS Snapshots](https://console.aws.amazon.com/rds/home?region=us-east-1#db-snapshots:) and find the snapshot you created before migrating. Click on the snapshot and note its **ARN** value. Open your **.tfvars** file and add `db_snapshot = "arn-value-of-snapshot"`.
 * Run `terraform apply` to make sure everything is set up. This will result in a new RDS instance being built against the snapshot.
 * If the EC2 instance is still running from the migration process, run `shutdown` on it to get a new instance created.
 * Return to the original hostname used for the cluster.
+
+## Simple Upgrade (Recommended)
+
+For users who did not significantly change the reference Terraform modules used to deploy
+the AMI, we recommend following the migration path outlined on the
+[Simplified Migration Page](./simplified-migration.html).
+
+For users who modified the Terraform modules, we recommend following the steps below. If you prefer,
+you can follow the [simplified steps](./simplified-migration.html) as well, but you'll likely need to
+modify some Terraform modules again to match the modifications you made in the past.
 
 ## Preflight
 
@@ -83,6 +93,12 @@ For Linux distributions other than RHEL, check Docker compatibility:
 
 ~> **Note**: It is not recommended to run Docker under a 2.x kernel.
 
+#### SELinux
+
+Private Terraform Enterprise does not support SELinux. The host running the installer must be configured in permissive mode by running: `setenforce 0`.
+
+Future releases may add native support for SELinux.
+
 #### Network Requirements
 
 1. Have the following ports available to the Linux instance:
@@ -117,6 +133,14 @@ To change the proxy settings after installation, use the Console settings page, 
 On the Console Settings page, there is a section for HTTP Proxy:
 
 ![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
+
+#### Proxy Exclusions (NO\_PROXY)
+
+If certain hostnames should not use the proxy and the instance should connect directly to them (for instance for S3), then you can pass an additional option to provide a list of domains:
+
+```
+./install.sh additional-no-proxy=s3.amazonaws.com,internal-vcs.mycompany.com,example.com
+````
 
 #### Trusting SSL/TLS Certificates
 
@@ -412,6 +436,8 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. The system will now perform a set of pre-flight checks on the instance and
    configuration thus far and indicate any failures. You can either fix the issues
    and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
+1. Set an encryption password used to encrypt the sensitive information at rest. The default value is auto-generated, but we strongly suggest you create your own password.
+   Be sure to retain the value because you will need to use this password to restore access to the data in the event of a reinstall.
 1. Select **External Services** under Production Type
 1. For the PostgreSQL url, copy and paste the value that was output by the `migrator` process for _PostgreSQL Database URL_.
 1. Select **S3** under Object Storage

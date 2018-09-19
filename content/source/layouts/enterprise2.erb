@@ -30,6 +30,9 @@
           <li<%= sidebar_current("docs-enterprise2-started-runs") %>>
             <a href="/docs/enterprise/getting-started/runs.html">Running Terraform</a>
           </li>
+          <li<%= sidebar_current("docs-enterprise2-started-policies") %>>
+            <a href="/docs/enterprise/getting-started/policies.html">Creating Policies</a>
+          </li>
         </ul>
       </li>
 
@@ -185,14 +188,32 @@
             <ul class="nav">
               <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfplan") %>>
                 <a href="/docs/enterprise/sentinel/import/tfplan.html">import: tfplan</a>
+                <ul class="nav">
+                  <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfplan-mock") %>>
+                    <a href="/docs/enterprise/sentinel/import/mock-tfplan.html">Mocking tfplan Data</a>
+                  </li>
+                </ul>
               </li>
               <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfconfig") %>>
                 <a href="/docs/enterprise/sentinel/import/tfconfig.html">import: tfconfig</a>
+                <ul class="nav">
+                  <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfconfig-mock") %>>
+                    <a href="/docs/enterprise/sentinel/import/mock-tfconfig.html">Mocking tfconfig Data</a>
+                  </li>
+                </ul>
               </li>
               <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfstate") %>>
                 <a href="/docs/enterprise/sentinel/import/tfstate.html">import: tfstate</a>
+                <ul class="nav">
+                  <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfstate-mock") %>>
+                    <a href="/docs/enterprise/sentinel/import/mock-tfstate.html">Mocking tfstate Data</a>
+                  </li>
+                </ul>
               </li>
             </ul>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-sentinel-examples") %>>
+            <a href="/docs/enterprise/sentinel/examples.html">Example Policies</a>
           </li>
         </ul>
       </li>
@@ -202,6 +223,22 @@
       <li<%= sidebar_current("docs-enterprise2-private") %>>
         <a href="/docs/enterprise/private/index.html">Private Terraform Enterprise</a>
         <ul class="nav">
+          <li<%= sidebar_current("docs-enterprise2-private-reference-architecture") %>>
+            <a href="/docs/enterprise/private/reference-architecture-installer.html">Reference Architecture (Installer)</a>
+            <ul class="nav">
+              <li<%= sidebar_current("docs-enterprise2-private-reference-architecture-aws") %>>
+                <a href="/docs/enterprise/private/aws-setup-guide.html">AWS Reference Architecture</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-private-reference-architecture-azure") %>>
+                <a href="/docs/enterprise/private/azure-setup-guide.html">Azure Reference Architecture</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-private-reference-architecture-gcp") %>>
+                <a href="/docs/enterprise/private/gcp-setup-guide.html">GCP Reference Architecture</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-private-reference-architecture-vmware") %>>
+                <a href="/docs/enterprise/private/vmware-setup-guide.html">VMware Reference Architecture</a>
+              </li>
+            </ul>
           <li<%= sidebar_current("docs-enterprise2-private-installer") %>>
             <a href="/docs/enterprise/private/install-installer.html">Installation (Installer)</a>
             <ul class="nav">
@@ -216,18 +253,6 @@
               </li>
               <li<%= sidebar_current("docs-enterprise2-private-installer-centos") %>>
                 <a href="/docs/enterprise/private/centos-install-guide.html">CentOS Linux Install Guide</a>
-              </li>
-              <li<%= sidebar_current("docs-enterprise2-private-installer-aws") %>>
-                <a href="/docs/enterprise/private/aws-setup-guide.html">AWS Setup Guide</a>
-              </li>
-              <li<%= sidebar_current("docs-enterprise2-private-installer-azure") %>>
-                <a href="/docs/enterprise/private/azure-setup-guide.html">Azure Setup Guide</a>
-              </li>
-              <li<%= sidebar_current("docs-enterprise2-private-installer-gcp") %>>
-                <a href="/docs/enterprise/private/gcp-setup-guide.html">GCP Setup Guide</a>
-              </li>
-              <li<%= sidebar_current("docs-enterprise2-private-installer-vmware") %>>
-                <a href="/docs/enterprise/private/vmware-setup-guide.html">VMware Setup Guide</a>
               </li>
               <li<%= sidebar_current("docs-enterprise2-private-installer-minio") %>>
                 <a href="/docs/enterprise/private/minio-setup-guide.html">Minio Setup Guide</a>
@@ -251,6 +276,20 @@
           </li>
           <li<%= sidebar_current("docs-enterprise2-private-config") %>>
             <a href="/docs/enterprise/private/config.html">Configuration</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-private-admin") %>>
+            <a href="/docs/enterprise/private/admin/index.html">Administration</a>
+            <ul class="nav">
+              <li<%= sidebar_current("docs-enterprise2-private-admin-general") %>>
+                <a href="/docs/enterprise/private/admin/general.html">General Settings</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-private-admin-integration") %>>
+                <a href="/docs/enterprise/private/admin/integration.html">Integration Settings</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-private-admin-resources") %>>
+                <a href="/docs/enterprise/private/admin/resources.html">Managing Accounts &amp; Resources</a>
+              </li>
+            </ul>
           </li>
           <li<%= sidebar_current("docs-enterprise2-private-saml") %>>
             <a href="/docs/enterprise/saml/index.html">SAML SSO</a>
@@ -309,6 +348,9 @@
           <li<%= sidebar_current("docs-enterprise2-api-account") %>>
             <a href="/docs/enterprise/api/account.html">Account</a>
           </li>
+          <li<%= sidebar_current("docs-enterprise2-api-applies") %>>
+            <a href="/docs/enterprise/api/applies.html">Applies</a>
+          </li>
           <li<%= sidebar_current("docs-enterprise2-api-configuration-versions") %>>
             <a href="/docs/enterprise/api/configuration-versions.html">Configuration Versions</a>
           </li>
@@ -341,6 +383,9 @@
           </li>
           <li<%= sidebar_current("docs-enterprise2-api-ssh-keys") %>>
             <a href="/docs/enterprise/api/ssh-keys.html">SSH Keys</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-state-versions") %>>
+            <a href="/docs/enterprise/api/state-versions.html">State Versions</a>
           </li>
           <li<%= sidebar_current("docs-enterprise2-api-team-access") %>>
             <a href="/docs/enterprise/api/team-access.html">Team Access</a>

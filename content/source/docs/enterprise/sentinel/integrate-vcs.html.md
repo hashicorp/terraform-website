@@ -13,3 +13,5 @@ To update the policies from your CI/CD pipeline you can use these API endpoints 
 - [Authentication](../api/index.html#authentication)
 - [Create](../api/policies.html#create-a-policy) and [Upload](../api/policies.html#upload-a-policy) a Policy
 - [Update a Policy](../api/policies.html#update-a-policy)
+
+You can also use the [`tfe_sentinel_policy`](/docs/providers/tfe/r/sentinel_policy.html) resource from the [Terraform Enterprise provider](/docs/providers/tfe/) to upload a policy using Terraform itself.

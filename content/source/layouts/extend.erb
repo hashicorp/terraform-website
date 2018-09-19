@@ -36,16 +36,26 @@
 %>
         </ul>
       </li>
-
+      <li<%= sidebar_current("docs-extend-resources") %>>
+        <a href="/docs/extend/resources.html">Resources</a>
+      </li>
       <li<%= sidebar_current("docs-extend-best-practices") %>>
         <a href="/docs/extend/best-practices/index.html">Best Practices</a>
         <ul class="nav">
+          <li<%= sidebar_current("docs-extend-best-practices-deprecations") %>>
+            <a href="/docs/extend/best-practices/deprecations.html">Deprecations, Removals, and Renames</a>
+          </li>
+
           <li<%= sidebar_current("docs-extend-best-practices-drift") %>>
             <a href="/docs/extend/best-practices/detecting-drift.html">Detecting Drift</a>
           </li>
 
           <li<%= sidebar_current("docs-extend-best-practices-testing") %>>
             <a href="/docs/extend/best-practices/testing.html">Testing Patterns</a>
+          </li>
+
+          <li<%= sidebar_current("docs-extend-best-practices-versioning") %>>
+            <a href="/docs/extend/best-practices/versioning.html">Versioning and Changelog</a>
           </li>
         </ul>
       </li>
@@ -75,6 +85,14 @@
           </li>
           <li<%= sidebar_current("docs-extend-community-code-of-conduct") %>>
             <a href="/docs/extend/community/code-of-conduct.html">Code of Conduct</a>
+          </li>
+          <li<%= sidebar_current("docs-extend-community-events") %>>
+            <a href="/docs/extend/community/events/index.html">Events</a>
+            <ul class="nav">
+              <li<%= sidebar_current("docs-extend-community-events-2018-fall-gardening") %>>
+                <a href="/docs/extend/community/events/2018/fall-gardening.html">Gardening - Fall 2018</a>
+              </li>
+            </ul>
           </li>
           <li<%= sidebar_current("docs-extend-community-maintainers") %>>
             <a href="/docs/extend/community/maintainers.html">Maintainers</a>

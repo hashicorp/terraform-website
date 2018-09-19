@@ -101,11 +101,64 @@ curl \
           "mode":"advisory"
         }
       ],
-      "updated-at":"2017-10-10T20:52:13.898Z"
+      "updated-at": null
     },
     "links": {
       "self":"/api/v2/policies/pol-u3S5p2Uwk21keu1s",
       "upload":"/api/v2/policies/pol-u3S5p2Uwk21keu1s/upload"
+    }
+  }
+}
+```
+
+## Show a Policy
+
+`GET /policies/:policy_id`
+
+
+Parameter            | Description
+---------------------|------------
+`:policy_id`         | The ID of the policy to show. Use the "List Policies" endpoint to find IDs.
+
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "policies"`)      | The request was successful
+[404][] | [JSON API error object][]                       | Policy not found or user unauthorized to perform action
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+
+### Sample Request
+
+```shell
+curl --request GET \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/policies/pol-oXUppaX2ximkqp8w
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "pol-oXUppaX2ximkqp8w",
+    "type": "policies",
+    "attributes": {
+      "name": "my-example-policy",
+      "enforce": [
+        {
+            "path": "my-example-policy.sentinel",
+            "mode": "soft-mandatory"
+        }
+      ],
+      "updated-at": "2018-09-11T18:21:21.784Z"
+    },
+    "links": {
+      "self": "/api/v2/policies/pol-oXUppaX2ximkqp8w",
+      "upload": "/api/v2/policies/pol-oXUppaX2ximkqp8w/upload",
+      "download": "/api/v2/policies/pol-oXUppaX2ximkqp8w/download"
     }
   }
 }
@@ -164,7 +217,7 @@ This endpoint can update the enforcement mode of an existing policy. To update t
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "policies"`)   | Successfully updated the policy
-[404][] | [JSON API error object][]                    | Organization not found, or user unauthorized to perform action
+[404][] | [JSON API error object][]                    | Policy not found, or user unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
 ### Request Body
@@ -301,7 +354,7 @@ Parameter            | Description
 Status  | Response                  | Reason
 --------|---------------------------|-------
 [204][] | Nothing                   | Successfully deleted the policy
-[404][] | [JSON API error object][] | Organization not found, or user unauthorized to perform action
+[404][] | [JSON API error object][] | Policy not found, or user unauthorized to perform action
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 

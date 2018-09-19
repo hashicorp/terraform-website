@@ -61,6 +61,6 @@ Note that until you apply or discard a plan, TFE can't start another run in that
 
 After the first run has finished applying, you can go back to the runs list and see the second run starting.
 
-## Finished
+## Next Steps
 
-You've now configured TFE and experienced its core workflows — you know how to create new workspaces, automatically and manually trigger runs on a workspace, review and monitor runs, and approve plans.
+Now that you've completed and viewed a run, you're ready to [start applying policy checks](./policies.html).

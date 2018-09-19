@@ -52,48 +52,48 @@ curl \
 {
   "data": [
     {
-      "id": "0.11.1",
+      "id": "tool-L4oe7rNwn7J4E5Yr",
       "type": "terraform-versions",
       "attributes": {
-        "version": "0.11.1",
-        "url": "https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip",
-        "sha": "4e3d5e4c6a267e31e9f95d4c1b00f5a7be5a319698f0370825b459cb786e2f35",
+        "version": "0.11.8",
+        "url": "https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip",
+        "sha": "84ccfb8e13b5fce63051294f787885b76a1fedef6bdbecf51c5e586c9e20c9b7",
         "official": true,
         "enabled": true,
-        "beta": false
+        "beta": false,
+        "usage": 0,
+        "created-at": "2018-08-15T22:34:24.561Z"
       }
     },
     {
-      "id": "0.11.0",
+      "id": "tool-qcbYn12vuRKPgPpy",
       "type": "terraform-versions",
       "attributes": {
-        "version": "0.11.0",
-        "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
-        "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
+        "version": "0.11.7",
+        "url": "https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip",
+        "sha": "6b8ce67647a59b2a3f70199c304abca0ddec0e49fd060944c26f666298e23418",
         "official": true,
         "enabled": true,
-        "beta": false
+        "beta": false,
+        "usage": 2,
+        "created-at": null
       }
     }
   ],
   "links": {
-    "self": "http://localhost:3000/api/v2/admin/terraform_versions?page%5Bnumber%5D=1&page%5Bsize%5D=20",
-    "first": "http://localhost:3000/api/v2/admin/terraform_versions?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "self": "https://tfe.example.com/api/v2/admin/terraform-versions?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://tfe.example.com/api/v2/admin/terraform-versions?page%5Bnumber%5D=1&page%5Bsize%5D=20",
     "prev": null,
-    "next": null,
-    "last": "http://localhost:3000/api/v2/admin/terraform_versions?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+    "next": "https://tfe.example.com/api/v2/admin/terraform-versions?page%5Bnumber%5D=2&page%5Bsize%5D=20",
+    "last": "https://tfe.example.com/api/v2/admin/terraform-versions?page%5Bnumber%5D=4&page%5Bsize%5D=20"
   },
   "meta": {
-    "usage-counts": {
-      "0.11.1": 2,
-      "0.11.0": 0,
-    },
     "pagination": {
       "current-page": 1,
       "prev-page": null,
-      "next-page": null,
-      "total-pages": 1,
-      "total-count": 2
+      "next-page": 2,
+      "total-pages": 4,
+      "total-count": 70
     }
   }
 }
@@ -138,9 +138,9 @@ Key path                    | Type   | Default | Description
   "data": {
     "type": "terraform-versions",
     "attributes": {
-      "version": "0.11.0",
-      "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
-      "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
+      "version": "0.11.8",
+      "url": "https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip",
+      "sha": "84ccfb8e13b5fce63051294f787885b76a1fedef6bdbecf51c5e586c9e20c9b7",
       "official": true,
       "enabled": true,
       "beta": false
@@ -165,14 +165,17 @@ curl \
 ```json
 {
   "data": {
+    "id": "tool-L4oe7rNwn7J4E5Yr",
     "type": "terraform-versions",
     "attributes": {
-      "version": "0.11.0",
-      "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
-      "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
+      "version": "0.11.8",
+      "url": "https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip",
+      "sha": "84ccfb8e13b5fce63051294f787885b76a1fedef6bdbecf51c5e586c9e20c9b7",
       "official": true,
       "enabled": true,
-      "beta": false
+      "beta": false,
+      "usage": 0,
+      "created-at": "2018-08-15T22:34:24.561Z"
     }
   }
 }
@@ -180,11 +183,11 @@ curl \
 
 ## Show a Terraform version
 
-`GET /admin/terraform-versions/:version`
+`GET /admin/terraform-versions/:id`
 
 Parameter  | Description
 -----------|------------
-`:version` | The version string of the Terraform version to show
+`:id`      | The ID of the Terraform version to show
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|----------
@@ -202,7 +205,7 @@ Status  | Response                                             | Reason
 curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/admin/terraform-versions/0.11.0
+  https://app.terraform.io/api/v2/admin/terraform-versions/tool-L4oe7rNwn7J4E5Yr
 ```
 
 ### Sample Response
@@ -210,14 +213,17 @@ curl \
 ```json
 {
   "data": {
+    "id": "tool-L4oe7rNwn7J4E5Yr",
     "type": "terraform-versions",
     "attributes": {
-      "version": "0.11.0",
-      "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
-      "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
+      "version": "0.11.8",
+      "url": "https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip",
+      "sha": "84ccfb8e13b5fce63051294f787885b76a1fedef6bdbecf51c5e586c9e20c9b7",
       "official": true,
       "enabled": true,
-      "beta": false
+      "beta": false,
+      "usage": 0,
+      "created-at": "2018-08-15T22:34:24.561Z"
     }
   }
 }
@@ -225,11 +231,11 @@ curl \
 
 ## Update a Terraform version
 
-`PATCH /admin/terraform-versions/:version`
+`PATCH /admin/terraform-versions/:id`
 
 Parameter  | Description
 -----------|------------
-`:version` | The version string of the Terraform version to update
+`:id`      | The ID of the Terraform version to update
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|----------
@@ -249,14 +255,15 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 
 Properties without a default value are required.
 
-Key path                    | Type   | Default | Description
-----------------------------|--------|---------|------------
-`data.type`                 | string |         | Must be `"terraform-versions"`
-`data.attributes.url`       | string |         | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded
-`data.attributes.sha`       | string |         | The SHA-256 checksum of the compressed Terraform binary
-`data.attributes.official`  | bool   | `false` | Whether or not this is an official release of Terraform
-`data.attributes.enabled`   | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
-`data.attributes.beta`      | bool   | `false` | Whether or not this version of Terraform is a beta pre-release
+Key path                   | Type   | Default          | Description
+---------------------------|--------|------------------|------------
+`data.type`                | string |                  | Must be `"terraform-versions"`
+`data.attributes.version`  | string | (previous value) | A semantic version string (e.g. `"0.11.0"`)
+`data.attributes.url`      | string | (previous value) | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded
+`data.attributes.sha`      | string | (previous value) | The SHA-256 checksum of the compressed Terraform binary
+`data.attributes.official` | bool   | (previous value) | Whether or not this is an official release of Terraform
+`data.attributes.enabled`  | bool   | (previous value) | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
+`data.attributes.beta`     | bool   | (previous value) | Whether or not this version of Terraform is a beta pre-release
 
 ### Sample Payload
 
@@ -265,10 +272,7 @@ Key path                    | Type   | Default | Description
   "data": {
     "type": "terraform-versions",
     "attributes": {
-      "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
-      "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
       "official": true,
-      "enabled": false,
       "beta": false
     }
   }
@@ -283,7 +287,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/admin/terraform-versions/0.11.0
+  https://app.terraform.io/api/v2/admin/terraform-versions/tool-L4oe7rNwn7J4E5Yr
 ```
 
 ### Sample Response
@@ -291,14 +295,17 @@ curl \
 ```json
 {
   "data": {
+    "id": "tool-L4oe7rNwn7J4E5Yr",
     "type": "terraform-versions",
     "attributes": {
-      "version": "0.11.0",
-      "url": "https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip",
-      "sha": "402b4333792967986383670134bb52a8948115f83ab6bda35f57fa2c3c9e9279",
+      "version": "0.11.8",
+      "url": "https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip",
+      "sha": "84ccfb8e13b5fce63051294f787885b76a1fedef6bdbecf51c5e586c9e20c9b7",
       "official": true,
-      "enabled": false,
-      "beta": false
+      "enabled": true,
+      "beta": false,
+      "usage": 0,
+      "created-at": "2018-08-15T22:34:24.561Z"
     }
   }
 }
@@ -306,13 +313,13 @@ curl \
 
 ## Delete a Terraform version
 
-`DELETE /admin/terraform-versions/:version`
+`DELETE /admin/terraform-versions/:id`
 
 This endpoint removes a Terraform version from Terraform Enterprise. Versions cannot be removed if they are labeled as official versions of Terraform or if there are workspaces using them.
 
 Parameter  | Description
 -----------|------------
-`:version` | The version string of the Terraform version to delete
+`:id`      | The ID of the Terraform version to delete
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
@@ -333,5 +340,5 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/admin/terraform-versions/0.11.0
+  https://app.terraform.io/api/v2/admin/terraform-versions/tool-L4oe7rNwn7J4E5Yr
 ```

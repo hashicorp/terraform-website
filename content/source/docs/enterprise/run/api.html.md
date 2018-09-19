@@ -26,7 +26,7 @@ The most significant difference in this workflow is that TFE _does not_ fetch co
 
 ## Pushing a New Configuration Version
 
-Pushing a new configuration to an existing workspace is a multi-step process. These steps will walk through each step in detail, using an example bash script to illustrate.
+Pushing a new configuration to an existing workspace is a multi-step process. This section walks through each step in detail, using an example bash script to illustrate.
 
 ### 1. Define Variables
 
@@ -34,7 +34,7 @@ To perform an upload, a few user parameters must be set:
 
 - **path_to_content_directory** is the folder with the terraform configuration. There must be at least one `.tf` file in the root of this path.
 - **organization** is the organization name (not ID) for your Terraform Enterprise organization.
-- **workspace** is the name of the workspace (not ID) in the Terraform Enterprise organization.
+- **workspace** is the workspace name (not ID) in the Terraform Enterprise organization.
 - **$TOKEN** is the API Token used for [authenticating with the TFE API](../api/index.html#authentication).
 
 This script extracts the `path_to_content_directory`, `organization`, and `workspace` from command line arguments, and expects the `$TOKEN` as an environment variable.
@@ -54,7 +54,7 @@ WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
 
 ### 2. Create the File for Upload
 
-The [configuration version API](../api/configuration-versions.html) expects a tar.gz file to be uploaded, so the configuration directory must be packaged into a tar.gz.
+The [configuration version API](../api/configuration-versions.html) requires a `tar.gz` file to be uploaded in order for the configration version to be used for a run, so the content directory (the directory containing the Terraform configuration) must be packaged into a `tar.gz` file.
 
 ~> **Important:** The configuration directory must be the root of the tar file, with no intermediate directories. In other words, when the tar file is extracted the result must be paths like `./main.tf` rather than `./terraform-appserver/main.tf`.
 
@@ -77,7 +77,7 @@ WORKSPACE_ID=($(curl \
 
 ### 4. Create a New Configuration Version
 
-Before uploading anything, you must create a `configuration-version` to associate uploaded content with the workspace. This API call performs two tasks: it creates the new configuration version and it extracts the upload URL to be used in the next step.
+Before uploading the configuration files, you must create a `configuration-version` to associate uploaded content with the workspace. This API call performs two tasks: it creates the new configuration version and it extracts the upload URL to be used in the next step.
 
 ```bash
 echo '{"data":{"type":"configuration-version"}}' > ./create_config_version.json
@@ -93,9 +93,9 @@ UPLOAD_URL=($(curl \
 
 ### 5. Upload the Configuration Content File
 
-Next, upload the configuration version tar.gz file to the upload URL extracted from the previous step.
+Next, upload the configuration version `tar.gz` file to the upload URL extracted from the previous step. If a file is not uploaded, the configuration version will not be usable, since it will have no Terraform configuration files.
 
-Terraform Enterprise automatically creates a new run with a plan once the new file is uploaded. If the workspace is configured to auto-apply it will also apply if the plan succeeds; otherwise, an apply can be triggered via the [Run Apply API](../api/run.html#apply).
+Terraform Enterprise automatically creates a new run with a plan once the new file is uploaded. If the workspace is configured to auto-apply, it will also apply if the plan succeeds; otherwise, an apply can be triggered via the [Run Apply API](../api/run.html#apply).
 
 ```bash
 curl \
@@ -106,7 +106,7 @@ curl \
 
 ### 6. Delete Temporary Files
 
-In the previous steps a few files were created; they are no longer needed so they should be deleted.
+In the previous steps a few files were created; they are no longer needed, so they should be deleted.
 
 ```bash
 rm $UPLOAD_FILE_NAME
@@ -122,7 +122,7 @@ chmod +x ./terraform-enterprise-push.sh
 ./terraform-enterprise-push.sh ./content my-organization/my-workspace
 ```
 
-**Note**: This script does not have error handling, so for a more robust script consider adding error checking.
+**Note**: This script does not have error handling, so for a more robust script consider adding error checking or using the [tfe-cli client](https://github.com/hashicorp/tfe-cli).
 
 **`./terraform-enterprise-push.sh`:**
 

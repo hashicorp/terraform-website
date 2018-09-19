@@ -397,7 +397,7 @@ This endpoint supports pagination [with standard URL query parameters](./index.h
 Parameter      | Description
 ---------------|------------
 `page[number]` | **Optional.** If omitted, the endpoint will return the first page.
-`page[size]`   | **Optional.** If omitted, the endpoint will return 20 workspaces per page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 150 workspaces per page.
 
 ### Sample Request
 
