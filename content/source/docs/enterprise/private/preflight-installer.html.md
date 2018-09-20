@@ -67,8 +67,8 @@ Future releases may add native support for SELinux.
 
 1. Have the following ports available to the Linux instance:
   * **22** - to access the instance via SSH from your computer
-  * **8800** - to access the Admin Console
-  * **443** and **80** - to access the TFE app (both ports are needed; HTTP will redirect to HTTPS)
+  * **8800** - to access the installer dashboard.
+  * **443** and **80** - to access the TFE app (both ports are needed; HTTP will redirect to HTTPS).
   * **9870-9880 (inclusive)** - for internal communication on the host and its subnet; not publicly accessible
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
 1. Get a domain name for the instance. Using an IP address to access the product is not supported as many systems use TLS and need to verify that the certificate is correct, which can only be done with a hostname at present.

@@ -43,86 +43,29 @@ modify some Terraform modules again to match the modifications you made in the p
 
 ## Preflight
 
-Before you begin, you'll need to prepare data files and a Linux instance.
-
-### Data Files
-
-* TLS private key and certificate
-  * HashiCorp does _not_ recommend the use of a self-signed certificate.
-* License key (provided by HashiCorp)
-
-~> **Note:** If you use your own certificate issued by a private or internal Certificate
-   Authority, you must provide the certificate for that CA in the
-   `Certificate Authority (CA) Bundle` section of the installation. This allows services
-   running within PTFE to access each other properly.
-
-### Linux Instance
-
-Install the software on a Linux instance of your choosing.
-You will start and manage this instance like any other server.
-
-The Private Terraform Enterprise Installer currently supports the following
-operating systems:
-
-* Debian 7.7+
-* Ubuntu 14.04 / 16.04
-* Red Hat Enterprise Linux 7.2+
-* CentOS 7+
-* Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09
-* Oracle Linux 7.2+
-
-#### Hardware Requirements
-
-These requirements provide the instance with enough resources to run the
-Terraform Enterprise application as well as the Terraform plans and applies.
-
- * At least 40GB of disk space on the root volume
- * At least 8GB of system memory
- * At least 2 CPU cores
-
-#### Software Requirements
-
-~> RedHat Enterprise Linux (RHEL) has a specific set of requirements. Please see the [RHEL Install Guide](./rhel-install-guide.html) before continuing.
-
-For Linux distributions other than RHEL, check Docker compatibility:
-
-  * The instance should run a current version of Docker engine (1.7.1 or later, minimum 17.06.2-ce recommended). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
-    * In Online mode, the installer will install Docker automatically
-    * In Airgapped mode, Docker should be installed before you begin
-  * For _Redhat Enterprise_, _Oracle Linux_, and _SUSE Enterprise_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
-
-~> **Note**: It is not recommended to run Docker under a 2.x kernel.
-
-#### SELinux
-
-Private Terraform Enterprise does not support SELinux. The host running the installer must be configured in permissive mode by running: `setenforce 0`.
-
-Future releases may add native support for SELinux.
-
-#### Network Requirements
-
-1. Have the following ports available to the Linux instance:
-  * **22** - to access the instance via SSH from your computer
-  * **8800** - to access the Admin Console
-  * **443** and **80** - to access the TFE app (both ports are needed; HTTP will redirect to HTTPS)
-  * **9870-9880 (inclusive)** - for internal communication on the host and its subnet; not publicly accessible
-1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
-1. Get a domain name for the instance. Using an IP address to access the product is not supported as many systems use TLS and need to verify that the certificate is correct, which can only be done with a hostname at present.
+Before you begin, consult [Preflight](./preflight.html) for pre-requisites for the installer setup. You'll need to prepare data files and a Linux instance.
 
 ### Proxy Usage
 
 If your installation requires using a proxy server, you will be asked for the proxy server information when you first
 run the installer via `ssh`. This proxy server will be used for all outbound HTTP and HTTPS connections.
 
-Optionally, if you're running the installer script in an automated manner, you can pass a `http-proxy` flag to set the address of the proxy.
-For example:
+Optionally, if you're running the installer script in an automated manner, you can pass a `http-proxy` flag to set
+the address of the proxy. For example:
 
 ```
 ./install.sh http-proxy=http://internal.mycompany.com:8080
 ```
 
-To exclude certain hosts from being accessed through the proxy (for instance, an internal VCS service), you will be
-provided a place on the Settings page available on port 8800 under `/settings` to enter in these exclusions.
+#### Proxy Exclusions (NO\_PROXY)
+
+If certain hostnames should not use the proxy and the instance should connect directly to them (for instance for S3), then you can pass an additional option to provide a list of domains:
+
+```
+./install.sh additional-no-proxy=s3.amazonaws.com,internal-vcs.mycompany.com,example.com
+````
+
+Alternately, if the only hosts you need to add are those that are not used during installation and setup, such as a private VCS instance, you can provide these hosts after initial installation, on the Settings page (available on port 8800 under `/settings`).
 
 #### Reconfiguring the Proxy
 
@@ -134,14 +77,6 @@ On the Console Settings page, there is a section for HTTP Proxy:
 
 ![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
 
-#### Proxy Exclusions (NO\_PROXY)
-
-If certain hostnames should not use the proxy and the instance should connect directly to them (for instance for S3), then you can pass an additional option to provide a list of domains:
-
-```
-./install.sh additional-no-proxy=s3.amazonaws.com,internal-vcs.mycompany.com,example.com
-````
-
 #### Trusting SSL/TLS Certificates
 
 The installer has a section that allows multiple certificates to be specified as trusted.
@@ -151,7 +86,7 @@ used to allow PTFE to connect to services that use SSL/TLS certificates issued b
 All certificates in the certificate signing chain, meaning the root certificate and any intermediate certificates,
 must be included here. These multiple certificates are listed one after another in text format.
 
-Certificates must be formatted using PEM encoding, ie as text. For example:
+Certificates must be formatted using PEM encoding, that is, as text. For example:
 
 ```
 -----BEGIN CERTIFICATE-----
@@ -173,13 +108,13 @@ The UI to upload these certificates looks like:
 
 ![ptfe-ca-ui](./assets/ptfe-ca-bundle.png)
 
-~> **Note**: PTFE needs to be able to access all services that it integrates with, such as VCS providers,
+~> **Note:** PTFE needs to be able to access all services that it integrates with, such as VCS providers,
    terraform providers, etc. Because it typically accesses them via SSL/TLS, it is critical that the
    certificates used by any service that is accessed is trusted by PTFE. This means properly configuring
    the `Certificate Authority (CA) Bundle` option so that PTFE can properly trust any certificates
    issued by private CAs.
 
-~> **Note**: If PTFE is configured with a SSL key and certificate issued against a private CA,
+~> **Note:** If PTFE is configured with a SSL key and certificate issued against a private CA,
    the certificate chain for that CA must be included here as well. This allows the instance
    to properly query itself.
 
@@ -191,10 +126,10 @@ PostgreSQL and S3 to store the objects.
 
 ## Begin Migration
 
-Now that the linux instance has been booted into the correct Linux environment, you're ready to begin
+Now that the instance has been booted into the correct Linux environment, you're ready to begin
 the migration process.
 
-~> NOTE: The migration process will render the AMI-based installation inoperable. Be sure to back up
+~> **Note:** The migration process will render the AMI-based installation inoperable. Be sure to back up
    RDS before beginning.
 
 Schedule downtime for the installation and do not continue until that downtime period has
@@ -212,23 +147,23 @@ $ chmod a+x migrator
 
 ### Migrate data out of the AMI instance
 
-~> NOTE: The AMI instance will not function after this step. Certain services are stopped and
+~> **Note:** The AMI instance will not function after this step. Certain services are stopped and
    should not be restarted after the migration. The migration moves data stored in Consul by
    the AMI (Vault data) into PostgreSQL to be used by the installer. If the AMI adds new
    data to Consul after the migration, the installer-based instance won't have access to it,
    destabilizing the system.
 
 Next, create a password that will be used to protect the migration data
-as it is passed to the installer. This password is only used for this migration process
+as it is passed to the installer. The password is only used for this migration process
 and is not used after the migration is complete. 
 
-For this example, we'll use the password `ptfemigrate` but you must change it to
+For this example, we'll use the password `ptfemigrate`, but you must change it to
 a password of your own choosing.
 
 This process shuts down certain services on the AMI instance to verify consistency
 before moving data into the RDS instance to be used by the installer.
 
-SSH into the AMI instance, and then run these commands:
+SSH into the AMI instance, then run these commands:
 
 ```shell
 $ sudo ./migrator -password ptfemigrate
@@ -382,43 +317,43 @@ and outputs the	values you'll need later in the process for the Installer web in
 
 The installer can run in two modes, Online or Airgapped. Each of these modes has a different way of executing the installer, but the result is the same.
 
-### Run The Installer - Online
+### Run the Installer - Online
 
 If your instance can access the Internet, use the Online install mode.
 
 1. From a shell on your instance:
   * To execute the installer directly, run `curl https://install.terraform.io/ptfe/stable | sudo bash`
-	* To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/stable > install.sh` and then once you are satisfied with the script's content, execute it with `sudo bash install.sh`
-1. The software will take a few minutes and you'll be presented with a message
-	 about how/where to access the rest of the setup via the web. This will be
-   `https://[hostname or ip of your instance]:8800`
-  * The Admin Console uses an internal CA to issue bootstrap certificates, so you will
-		see a security warning when first connecting. This is expected and you'll need
+	* To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/stable > install.sh` and, once you are satisfied with the script's content, execute it with `sudo bash install.sh`.
+1. The installation will take a few minutes and you'll be presented with a message
+	about how and where to access the rest of the setup via the web. This will be
+    `https://<TFE HOSTNAME>:8800`
+  * The installer uses an internal CA to issue bootstrap certificates, so you will
+	see a security warning when first connecting. This is expected and you'll need
     to proceed with the connection anyway.
 
-### Run The Installer - Airgapped
+### Run the Installer - Airgapped
 
-If the instance cannot reach the internet, then follow these steps to begin an Airgapped installation.
+If the instance cannot reach the Internet, follow these steps to begin an Airgapped installation.
 
-Preparing the instance:
+#### Prepare the Instance
 
 1. Download the `.airgap` file using the information given to you in your setup email and place that file somewhere on the the instance.
   * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
   * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
 1. [Download the installer bootstrapper](https://s3.amazonaws.com/replicated-airgap-work/replicated.tar.gz) and put it into its own directory on the instance (e.g. `/opt/tfe-installer/`)
-1. Airgap installations require Docker to be pre-installed. Double check that your instance has a supported version of Docker (see [Software Requirements](#software-requirements) above for details).
+1. Airgap installations require Docker to be pre-installed. Double check that your instance has a supported version of Docker (see [Preflight: Software Requirements](./preflight.html#software-requirements) above for details).
 
-Executing the installer:
+#### Execute the Installer
 
 From a shell on your instance, in the directory where you placed the `replicated.tar.gz` installer bootstrapper:
 
 1. Run `tar xzf replicated.tar.gz`
 1. Run `sudo ./install.sh airgap`
-1. When asked, select the interface of your primary private network interface used to access the instance.
-1. The software will take a few minutes and you'll be presented with a message about how/where to access the rest of the setup via the web. This will be https://[hostname or ip of your instance]:8800
-  1. The web interface uses an internal CA to issues certificates, so you will
-     see a security warning. This is expected and you'll need to proceed with
-     the connection anyway.
+1. When asked, select the interface of the primary private network interface used to access the instance.
+1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be https://<TFE HOSTNAME>:8800
+  1. The installer uses an internal CA to issue bootstrap certificates, so you will
+     see a security warning when first connecting. This is expected and you'll need
+     to proceed with the connection anyway.
 
 ### Continue Installation In Browser
 
@@ -430,22 +365,23 @@ From a shell on your instance, in the directory where you placed the `replicated
 	* If you are doing an Airgapped install, provide the path on the the instance
 	  to the `.airgap` file that you downloaded using the initial instructions in
     your setup email.
-1. Secure access to the Admin Console. We recommend at least setting up the
-   simple password auth. If you're so inclined, LDAP authentication can also be
-   configured for the Admin Console.
+1. Secure access to the installer dashboard. We recommend at least setting up the
+   simple password authentication. If you're so inclined, LDAP authentication can also be
+   configured.
 1. The system will now perform a set of pre-flight checks on the instance and
    configuration thus far and indicate any failures. You can either fix the issues
    and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
-1. Set an encryption password used to encrypt the sensitive information at rest. The default value is auto-generated, but we strongly suggest you create your own password.
-   Be sure to retain the value because you will need to use this password to restore access to the data in the event of a reinstall.
-1. Select **External Services** under Production Type
-1. For the PostgreSQL url, copy and paste the value that was output by the `migrator` process for _PostgreSQL Database URL_.
-1. Select **S3** under Object Storage
-1. Configure the Access Key ID and Secret Access Key _OR_ indicate that you want to use an instance profile.
+1. Set an encryption password used to encrypt the sensitive information at rest. The default value is auto-generated,
+   but we strongly suggest you create your own password. Be sure to retain the value, because you will need to use this
+   password to restore access to the data in the event of a reinstall.
+1. Select **External Services** under Production Type.
+1. For the PostgreSQL URL, copy and paste the value that was output by the `migrator` process for _PostgreSQL Database URL_.
+1. Select **S3** under Object Storage.
+1. Configure the Access Key ID and Secret Access Key, _OR_ indicate that you want to use an instance profile.
    **NOTE**: An instance profile must be previously configured on the instance.
 1. For the Bucket, copy and paste the value that was output by the `migrator` process for _S3 Bucket_.
 1. For the Region, copy and paste the value that was output by the `migrator` process for _S3 Region_.
-1. For the server-side Encrytion, copy and paste the value that was output by the `migrator` process for the server-side encryption.
+1. For the Server-side Encrytion, copy and paste the value that was output by the `migrator` process for the server-side encryption.
 1. For the KMS key, copy and paste the value that was output by the `migrator` process for _Optional KMS key_. **NOTE:** This key is not optional for migration, as it is used to read all the data in S3.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
@@ -469,19 +405,19 @@ You can now access your PTFE installation using the previously configured hostna
 
 ## Cleanup
 
-Now that the installer is using a subset of resources created by the AMI cluster terraform,
-we need to move those resources from the terraform state for the AMI cluster.
+Now that the installer is using a subset of resources created by the AMI cluster Terraform configuration,
+we need to move those resources from the Terraform state for the AMI cluster.
 
-If these resources are not removed, it's possible to accidentally delete the data when the AMI
+If these resources are not moved, it's possible to accidentally delete the data when the AMI
 cluster is removed!
 
-~> **NOTE:** If you have modified the terraform modules we have provided, you'll need to adapt these instructions
+~> **NOTE:** If you have modified the Terraform modules we have provided, you'll need to adapt these instructions
    to fit your modifications.
 
-### Move to new terraform state
+### Move to new Terraform state
 
-First, verify all the resources currently tracked in the terraform state. If the terraform.state is on your local
-disk, change to that directory. Next, list the state:
+First, verify all the resources currently tracked in the Terraform state. If the `terraform.tfstate` file is on
+your local disk, change to that directory. Next, list the state:
 
 ```shell
 $ terraform state list
@@ -511,7 +447,8 @@ module.route53.aws_route53_record.rec
 random_id.installation-id
 ```
 
-Of these resources, the ones to move from the state so they are can exist outside this terraform config are:
+Of these resources, the ones to move from the state so they are can exist outside this Terraform configuration are:
+
 ```
 aws_kms_alias.key
 aws_kms_key.key
@@ -521,7 +458,8 @@ module.db.aws_security_group.rds
 module.instance.aws_s3_bucket.tfe_bucket
 ```
 
-To remove these resources from the state, run:
+To move these resources from the state into a new state file for later use, run:
+
 ```shell
 $ terraform state mv -state-out=terraform.tfstate.installer aws_kms_alias.key aws_kms_alias.key
 $ terraform state mv -state-out=terraform.tfstate.installer aws_kms_key.key aws_kms_key.key
@@ -531,9 +469,10 @@ $ terraform state mv -state-out=terraform.tfstate.installer module.db.aws_securi
 $ terraform state mv -state-out=terraform.tfstate.installer module.instance.aws_s3_bucket.tfe_bucket module.instance.aws_s3_bucket.tfe_bucket
 ```
 
-### Destroy AMI cluster
+### Destroy AMI Cluster
 
-Now that these resources have been removed, it's safe to destroy the AMI cluster without affecting the installer-based installation.
+Now that these resources have been moved out of the AMI state, it's safe to destroy the AMI cluster
+without affecting the installer-based installation.
 
 If you're ready to perform that step, run:
 
@@ -541,11 +480,11 @@ If you're ready to perform that step, run:
 $ terraform destroy
 ```
 
-You'll be asked to confirm the resources to destroyed and should double check that the list doesn't contain the
-resources we moved earlier.
+You'll be asked to confirm the resources to be destroyed, and should double-check that the list doesn't contain the
+resources moved earlier.
 
 ### Managing Installer Resources
 
-To continue to manage the resource used by the Installer-based install, you can move the resources in the new `terraform.tfstate.installer` file
-to a large state file along with the terraform modules for them.
+To continue to manage the resources used by the Installer-based install using Terraform, you can move the resources
+in the new `terraform.tfstate.installer` file to a large state file, along with the Terraform modules for them.
 

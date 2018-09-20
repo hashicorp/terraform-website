@@ -33,8 +33,8 @@ Before you begin, consult [Preflight](./preflight.html) for pre-requisites. You'
 If your installation requires using a proxy server, you will be asked for the proxy server information when you first
 run the installer via `ssh`. This proxy server will be used for all outbound HTTP and HTTPS connections.
 
-Optionally, if you're running the installer script in an automated manner, you can pass a `http-proxy` flag to set the address of the proxy.
-For example:
+Optionally, if you're running the installer script in an automated manner, you can pass a `http-proxy` flag to set
+the address of the proxy. For example:
 
 ```
 ./install.sh http-proxy=http://internal.mycompany.com:8080
@@ -48,7 +48,7 @@ If certain hostnames should not use the proxy and the instance should connect di
 ./install.sh additional-no-proxy=s3.amazonaws.com,internal-vcs.mycompany.com,example.com
 ````
 
-Alternately, if the only hosts you need to add are those that are not used during installation and setup, such as a private VCS instance, you can provide these hosts after installation, on the Settings page (available on port 8800 under `/settings`).
+Alternately, if the only hosts you need to add are those that are not used during installation and setup, such as a private VCS instance, you can provide these hosts after initial installation, on the Settings page (available on port 8800 under `/settings`).
 
 #### Reconfiguring the Proxy
 
@@ -59,7 +59,6 @@ To change the proxy settings after installation, use the Console settings page, 
 On the Console Settings page, there is a section for HTTP Proxy:
 
 ![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
-
 
 #### Trusting SSL/TLS Certificates
 
@@ -102,27 +101,37 @@ The UI to upload these certificates looks like:
    the certificate chain for that CA must be included here as well. This allows the instance
    to query itself.
 
+### Operational Mode Decision
+
+Terraform Enterprise can store its state in a few different ways, and you'll
+need to decide which works best for your installation. Each option has a
+different approach to
+[recovering from failures](./reliability-availability.html#recovery-from-failures-1).
+The mode should be selected based on your organization's needs. See
+[Preflight: Operational Mode Decision](./preflight#operational-mode-decision)
+for more details.
+
 ## Installation
 
 The installer can run in two modes, Online or Airgapped. Each of these modes has a different way of executing the installer, but the result is the same.
 
 ### Run the Installer - Online
 
-If your instance can access the internet, you should run the Online install mode.
+If your instance can access the Internet, use the Online install mode.
 
 1. From a shell on your instance:
   * To execute the installer directly, run `curl https://install.terraform.io/ptfe/stable | sudo bash`
 	* To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/stable > install.sh` and, once you are satisfied with the script's content, execute it with `sudo bash install.sh`.
 1. The installation will take a few minutes and you'll be presented with a message
 	about how and where to access the rest of the setup via the web. This will be
-    `https://<YOUR_TFE_HOSTNAME>:8800`
+    `https://<TFE HOSTNAME>:8800`.
   * The installer uses an internal CA to issue bootstrap certificates, so you will
 	see a security warning when first connecting. This is expected and you'll need
     to proceed with the connection anyway.
 
 ### Run the Installer - Airgapped
 
-If the instance cannot reach the internet, then you can follow these steps to begin an Airgapped installation.
+If the instance cannot reach the Internet, follow these steps to begin an Airgapped installation.
 
 #### Prepare the Instance
 
@@ -130,18 +139,18 @@ If the instance cannot reach the internet, then you can follow these steps to be
   * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
   * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
 1. [Download the installer bootstrapper](https://s3.amazonaws.com/replicated-airgap-work/replicated.tar.gz) and put it into its own directory on the instance (e.g. `/opt/tfe-installer/`)
-1. Airgap installations require Docker to be pre-installed. Double check that your instance has a supported version of Docker (see [Preflight: Software Requirements](./preflight.html#software-requirements) above for details).
+1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Preflight: Software Requirements](./preflight.html#software-requirements) for details).
 
-#### Execute the Installer:
+#### Execute the Installer
 
 From a shell on your instance, in the directory where you placed the `replicated.tar.gz` installer bootstrapper:
 
 1. Run `tar xzf replicated.tar.gz`
 1. Run `sudo ./install.sh airgap`
 1. When asked, select the interface of the primary private network interface used to access the instance.
-1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be https://[<YOUR_TFE_HOSTNAME>:8800
+1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be https://<TFE HOSTNAME>:8800
   1. The installer uses an internal CA to issue bootstrap certificates, so you will
-     see a security warning when first connecting. This is expected and you'll need 
+     see a security warning when first connecting. This is expected and you'll need
      to proceed with the connection anyway.
 
 ### Continue Installation In Browser
@@ -153,14 +162,14 @@ From a shell on your instance, in the directory where you placed the `replicated
 	* If you are doing an Airgapped install, provide the path on the the instance
 	  to the `.airgap` file that you downloaded using the initial instructions in
       your setup email.
-1. Secure access to the Admin Console. We recommend at least setting up the
-   simple password auth. If you're so inclined, LDAP authentication can also be
-   configured for the Admin Console.
+1. Secure access to the installer dashboard. We recommend at least setting up the
+   simple password authentication. If you're so inclined, LDAP authentication can also be
+   configured.
 1. The system will now perform a set of pre-flight checks on the instance and
    the configuration up to this point and indicate any failures. You can either fix the issues
    and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
-1. Set an encryption password used to encrypt the sensitive information at rest. The default value is auto-generated, 
-   but we strongly suggest you create your own password. Be sure to retain the value because you will need to use this 
+1. Set an encryption password used to encrypt the sensitive information at rest. The default value is auto-generated,
+   but we strongly suggest you create your own password. Be sure to retain the value, because you will need to use this
    password to restore access to the data in the event of a reinstall.
 1. Configure the operational mode for this installation. See
    [Preflight: Operational Modes](./preflight.html#operational-mode-decision) for information on what the different values

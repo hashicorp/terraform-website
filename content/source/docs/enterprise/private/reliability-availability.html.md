@@ -208,16 +208,16 @@ provide fast recovery following these steps:
 
 ### Availability During Upgrades
 
-Upgrades for the Installer Architecture utilize the Installer Admin Console.
+Upgrades for the Installer architecture use the Installer dashboard.
 Once an upgrade has been been detected (either online or airgap), the new code
 is imported. Once ready, all services on the instance are restarted running
 the new code. The expected downtime is between 30 seconds and 5 minutes,
 depending on whether database updates have to be applied.
 
 Only application services are changed during the upgrade; data is not backed up
-or restored. The only data changes that may occur during are the application of
+or restored. The only data changes that may occur during upgrade are the application of
 migrations the new version might apply to the _PostgreSQL Database_.
 
 When an upgrade is ready to start the new code, the system waits for all
-terraform runs to finish before continuing. Once the new code has started, the
+Terraform runs to finish before continuing. Once the new code has started, the
 queue of runs is continued in the same order.
