@@ -15,7 +15,7 @@ Single sign-on setup instructions for specific identity providers (IdP).
 
 ## Request and response
 
-To help you with the configuration of your identity provider, here are example documents for the request from TFE before sign-on and the response from the identity provider after sign-on.
+To help you with the configuration of your identity provider, here are example documents for the request from Terraform Enterprise before sign-on and the response from the identity provider after sign-on.
 
 ### Example AuthnRequest
 
@@ -71,13 +71,16 @@ To help you with the configuration of your identity provider, here are example d
         <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef>
       </saml:AuthnContext>
     </saml:AuthnStatement>
-    <saml:Attribute Name="Username" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
-      <saml:AttributeValue xsi:type="xs:string">new-username</saml:AttributeValue>
-    </saml:Attribute>
     <saml:AttributeStatement>
+      <saml:Attribute Name="Username" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+        <saml:AttributeValue xsi:type="xs:string">new-username</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="SiteAdmin">
+        <saml:AttributeValue xsi:type="xs:boolean">false</saml:AttributeValue>
+      </saml:Attribute>
       <saml:Attribute Name="MemberOf" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
         <saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">devs</saml:AttributeValue>
-        <saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">site-admins</saml:AttributeValue>
+        <saml:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">reviewers</saml:AttributeValue>
       </saml:Attribute>
     </saml:AttributeStatement>
   </saml:Assertion>
