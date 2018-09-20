@@ -38,11 +38,11 @@ Properties without a default value are required.
   "data": [
     {
       "type": "users",
-      "id": "myusername"
+      "id": "user-62goNpx1ThQf689e"
     },
     {
       "type": "users",
-      "id": "username"
+      "id": "user-HqsTTbNYBStkbQBr"
     }
   ]
 }
@@ -87,11 +87,11 @@ Properties without a default value are required.
   "data": [
     {
       "type": "users",
-      "id": "myusername"
+      "id": "user-62goNpx1ThQf689e"
     },
     {
       "type": "users",
-      "id": "username"
+      "id": "user-HqsTTbNYBStkbQBr"
     }
   ]
 }

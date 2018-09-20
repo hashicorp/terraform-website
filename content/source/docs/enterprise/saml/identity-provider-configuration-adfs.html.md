@@ -35,8 +35,8 @@ This document assumes that you have already installed and configured ADFS and th
 ## Configure PTFE
 
 1. Visit `https://<TFE HOSTNAME>/app/admin/saml`.
-2. Set "Single Sign-on URL" to `https://<ADFS hostname>/<URL Path>`.
-3. Set "Single Log-out URL" to `https://<ADFS hostname>/<URL Path>?wa=wsignout1.0`.
+2. Set "Single Sign-on URL" to `https://<ADFS hostname>/<URL Path>`, using the path you noted above in step 4.
+3. Set "Single Log-out URL" to `https://<ADFS hostname>/<URL Path>?wa=wsignout1.0`. (Note that this is the same path with an additional URL parameter.)
 4. Paste the contents of the saved certificate in "IDP Certificate".
 5. Scroll to the bottom of the screen and click "Save SAML Settings".
 
@@ -68,10 +68,10 @@ This document assumes that you have already installed and configured ADFS and th
 #### LDAP Attributes as Claims
 
 1. Click "Add Rule", and then select "Send LDAP Attributes as Claims" from the `Claim rule template` dropdown. Click "Next".
-2. Set a name used to identify the claim rule. 
+2. Set a name used to identify the claim rule.
 3. Set the attribute store to "Active Directory".
    - From the `LDAP Attribute` column, select "E-Mail Addresses".
-   - From the `Outgoing Claim Type`, select "E-Mail Address". 
+   - From the `Outgoing Claim Type`, select "E-Mail Address".
 ![saml_19](./images/saml_19.png)
 
 4. Click "Finish".
@@ -93,7 +93,7 @@ This document assumes that you have already installed and configured ADFS and th
 7. Click "Add Rule", and then select "Send Group Membership as a Claim" from the `Claim rule template` dropdown. Click "Next".
 8. Click "Browse" and locate the AD User group that contains all PTFE admins.
    ![saml_26](./images/saml_26.png)
-  - Set `Outgoing claim type` to `MemberOf`. 
+  - Set `Outgoing claim type` to `MemberOf`.
   - Set `Outgoing claim value` to `site-admins`.
       ![saml_27](./images/saml_27.png)
 9. Click "Finish".

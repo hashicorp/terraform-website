@@ -48,7 +48,7 @@ $ curl \
         "users": {
           "data": [
             {
-              "id": "hashibot",
+              "id": "user-62goNpx1ThQf689e",
               "type": "users"
             }
           ]
@@ -182,7 +182,7 @@ $ curl \
       "users": {
         "data": [
           {
-            "id": "hashibot",
+            "id": "user-62goNpx1ThQf689e",
             "type": "users"
           }
         ]

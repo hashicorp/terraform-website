@@ -159,6 +159,7 @@ curl \
       "idp-cert": "SAMPLE-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
+      "attr-username": "Username",
       "attr-groups": "MemberOf",
       "attr-site-admin": "SiteAdmin",
       "site-admin-role": "site-admins",
@@ -200,6 +201,7 @@ Key path                    | Type   | Default | Description
 `data.attributes.idp-cert`   | string |         | Identity Provider Certificate specifies the PEM encoded X.509 Certificate as provided by the IdP configuration.
 `data.attributes.slo-endpoint-url` | string |         | Single Log Out URL specifies the HTTPS endpoint on your IdP for single logout requests. This value is provided by the IdP configuration.
 `data.attributes.sso-endpoint-url` | string |         | Single Sign On URL specifies the HTTPS endpoint on your IdP for single sign-on requests. This value is provided by the IdP configuration.
+`data.attributes.attr-username`| string | `"Username"` | Username  Attribute Name specifies the name of the SAML attribute that determines the user's username.
 `data.attributes.attr-groups`| string | `"MemberOf"` | Team Attribute Name specifies the name of the SAML attribute that determines team membership.
 `data.attributes.attr-site-admin`| string |`"SiteAdmin"`| Specifies the role for site admin access. Overrides the "Site Admin Role" method.
 `data.attributes.site-admin-role`| string |`"site-admins"`| Specifies the role for site admin access, provided in the list of roles sent in the Team Attribute Name attribute.
@@ -214,6 +216,7 @@ Key path                    | Type   | Default | Description
       "idp-cert": "SAMPLE-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
+      "attr-username": "Username",
       "attr-groups": "MemberOf",
       "attr-site-admin": "SiteAdmin",
       "site-admin-role": "site-admins",
@@ -247,6 +250,7 @@ curl \
       "idp-cert": "SAMPLE-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
+      "attr-username": "Username",
       "attr-groups": "MemberOf",
       "attr-site-admin": "SiteAdmin",
       "site-admin-role": "site-admins",
