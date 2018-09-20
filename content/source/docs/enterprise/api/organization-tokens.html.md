@@ -56,7 +56,7 @@ curl \
     "relationships": {
       "created-by": {
         "data": {
-          "id": "skierkowski",
+          "id": "user-62goNpx1ThQf689e",
           "type": "users"
         }
       }
