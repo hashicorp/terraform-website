@@ -29,17 +29,19 @@ You can also use the optional [TFE CLI tool](https://github.com/hashicorp/tfe-cl
 
 To view and manage a workspace's variables, navigate to that workspace and click the "Variables" navigation link at the top.
 
-![The initial appearance of a workspace's variables page](./images/vars.png)
+The variables page has separate lists of Terraform variables and environment variables:
 
-The variables page has separate lists of Terraform variables and environment variables. To edit a list, click the "Edit" switch in its upper right corner. The list will go into edit mode and the label will change to "Editing"; you can make any number of changes, then save the changes or discard them with the buttons below.
+![Screenshot: The initial appearance of a workspace's variables page](./images/vars.png)
 
-![Variable lists in edit mode](./images/vars-edit.png)
+To edit a variable, click one of its text fields or its pencil (edit) icon to reveal the editing controls. Make any desired changes to the variable's name, value, and settings, then click the "Save Variable" button.
 
-### Changing or Adding Variables
+To add a variable, click the "+ Add Variable" button, enter a name and value, and save.
 
-To change the name or value of an existing variable, edit the appropriate text fields.
+To delete a variable, click its "🗑" (trash can) icon, then confirm your decision in the dialog box that appears.
 
-In edit mode, variable lists include an empty row at the bottom. To create a new variable, enter a new key and value in that row; use the bottom row's "Add" button if you need additional empty rows.
+You can edit one variable at a time, and must save or cancel your current edits before editing other variables in the list.
+
+![Screenshot: A variable being edited](./images/vars-edit.png)
 
 ### Multi-line Values
 
@@ -47,7 +49,7 @@ The text fields for variable values can handle multi-line text (typed or pasted)
 
 ### HCL Values
 
-Variable values are strings by default. To enter list or map values, click the variable's "HCL" checkbox and enter the value with the same HCL syntax you would use when writing terraform code. For example:
+Variable values are strings by default. To enter list or map values, click the variable's "HCL" checkbox (visible when editing) and enter the value with the same HCL syntax you would use when writing Terraform code. For example:
 
 ```hcl
 {
@@ -62,12 +64,13 @@ HCL can be used for Terraform variables, but not for environment variables. The 
 
 Terraform often needs cloud provider credentials and other sensitive information that shouldn't be widely available within your organization.
 
-To protect these secrets, you can mark any any Terraform or environment variable as sensitive data by clicking its "Sensitive" checkbox in edit mode.
+To protect these secrets, you can mark any any Terraform or environment variable as sensitive data by clicking its "Sensitive" checkbox (visible when editing).
 
-Marking a variable as sensitive severely limits how users can interact with it:
+Marking a variable as sensitive prevents anybody (including you) from viewing its value in TFE's UI or API.
 
-- Nobody (including you) can view the value in TFE's UI or API. (However, Terraform runs will receive the value, and might print the value in logs if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations.)
-- Nobody can edit the variable's name or value, change whether or not it's an HCL value, or mark it as non-sensitive. To alter anything about a sensitive variable, you must delete it and create a new variable with the same name.
+Users with edit permissions can set new values for sensitive variables. However, no one can change a sensitive variable into a non-sensitive one. (If a variable was accidentally marked sensitive, you can delete it and create a new variable to replace it.)
+
+~> **Important:** Terraform runs will receive the full text of sensitive variables, and might print the value in logs if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations to avoid unnecessary credential disclosure.
 
 ### Looking Up Variable Names
 
