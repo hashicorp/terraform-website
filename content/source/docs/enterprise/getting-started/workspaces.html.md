@@ -75,15 +75,17 @@ For almost any workspace, you'll want to edit the Terraform variables and enviro
 
 You can edit variables as soon as you've created a workspace, by clicking the workspace's "Variables" tab.
 
-![the edit control](./images/work-var-edit.png)
+![Screenshot: the variables page](../workspaces/images/vars.png)
 
-The variables page has three sections: Terraform variables (as declared in your Terraform configurations), shared environment variables, and per-user environment variables. (Note that environment variables can be used to set Terraform variables, with the standard `TF_VAR_*` format.)
+The variables page has two sections: Terraform variables (as declared in your Terraform configurations) and environment variables.
 
-To edit one of these sections, click the "Edit" control. You can then add, modify, or delete variables. Make sure to click "Save" or "Save & Plan" once you've finished editing.
+Click the "+ Add Variable" button to create a new variable, or click an existing variable's text fields or pencil icon to change its values and settings. After editing a variable, be sure to click its "Save Variable" button.
 
-![editing a variables list](./images/work-var-editing.png)
+![Screenshot: editing a variable](../workspaces/images/vars-edit.png)
 
 Terraform variables start as basic string values, but you can also enter array or map values if you click the "HCL" checkbox for that variable. You can write these values with the same syntax you'd use in a Terraform configuration.
+
+For more information, see [Variables](../workspaces/variables.html).
 
 ## Granting Access
 
