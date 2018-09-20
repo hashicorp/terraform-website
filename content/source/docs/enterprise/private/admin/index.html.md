@@ -17,7 +17,9 @@ This section is about in-application administration, including general settings,
 
 ## Accessing the Admin Interface
 
-Only Private Terraform Enterprise users with the site-admin permission can access the administrative functions. (The first user account in a PTFE instance has the site-admin permission; other users can be given this permission in the "Users" section of the admin pages. See [Promoting a User to Administrator](./resources.html#promoting-a-user-to-administrator) for details.)
+Only Private Terraform Enterprise users with the site-admin permission can access the administrative functions.
+
+The initial user account for a PTFE instance is the first site admin. Site admins can grant admin permissions to other users in the "Users" section of the admin pages. See [Promoting a User to Administrator](./resources.html#promoting-a-user-to-administrator) for details.
 
 To navigate to the site admin section of the UI, click your user icon in the upper right, then click **Site Admin**:
 

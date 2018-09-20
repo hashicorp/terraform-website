@@ -23,7 +23,7 @@ Private Terraform Enterprise (PTFE) is configured as the Service Provider.
 
 Go to the SAML section of the site admin pages. You can use the "Site Admin" link in the upper-right user icon menu, or go directly to `https://<TFE HOSTNAME>/app/admin/saml`.
 
-Once there, enter values (or leave the default values) for TFE's SAML settings, then click the "Save SAML Settings" button at the bottom of the page.
+Once there, enter values for TFE's SAML settings and click the "Save SAML Settings" button at the bottom of the page.
 
 The SAML settings are separated into sections:
 
@@ -47,7 +47,7 @@ The SAML settings are separated into sections:
 
 - **Site Admin Role**: (default: `site-admins`; make blank to disable) An alternate way of managing site-admin permissions; if a role with this name is present in the value of the Team Attribute Name attribute, the user is an admin.
 
-    We recommend using the "site admin attribute name" setting instead. If you are using the site admin attribute, disable "site admin role" by deleting its value.
+    We recommend using the "site admin attribute name" setting instead. If you are using the site admin attribute, you can disable "site admin role" by deleting its value.
 
 ### User Session
 
