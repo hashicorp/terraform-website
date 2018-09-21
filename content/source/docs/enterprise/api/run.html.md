@@ -481,7 +481,7 @@ Parameter | Description
 
 The `force-cancel` action is like [cancel](#cancel-a-run), but ends the run immediately. Once invoked, the run is placed into a `canceled` state, and the running Terraform process is terminated. The workspace is immediately unlocked, allowing further runs to be queued. The `force-cancel` operation requires workspace admin privileges.
 
-This endpoint enforces a prerequisite that a [non-forceful cancel](#cancel-a-run) is performed first, and a cool-off period has elapsed. To determine if this criteria is met, it is useful to check the `data.attributes.is-force-cancelable` value of the [run details endpoint](#get-run-details). The time remaining in the cool-off period can also be found using the [run details endpoint](#get-run-details), in the key `data.attributes.force_cancel_delay_seconds`. Note that this key is only present in the payload after the initial cancel has been initiated.
+This endpoint enforces a prerequisite that a [non-forceful cancel](#cancel-a-run) is performed first, and a cool-off period has elapsed. To determine if this criteria is met, it is useful to check the `data.attributes.is-force-cancelable` value of the [run details endpoint](#get-run-details). The time at which the force-cancel action will become available can be found using the [run details endpoint](#get-run-details), in the key `data.attributes.force_cancel_available_at`. Note that this key is only present in the payload after the initial cancel has been initiated.
 
 This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
 
