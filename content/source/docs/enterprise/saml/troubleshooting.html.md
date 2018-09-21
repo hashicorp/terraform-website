@@ -66,6 +66,11 @@ The NameID that was received was blank.<br />
 The identity provider certificate is invalid or was not pasted correctly into Terraform Enterprise.<br />
 **How to resolve:** Open the identity provider settings, copy the certificate, then paste it into the "IDP Certificate" field in Terraform Enterprise.
 
+**ERROR: Issuer of assertion not found or multiple**<br />
+Terrform Enterprise was unable to determine the issuer of the SAML response.<br />
+**How to resolve:** The most common reason for this issue is that an F5 load balancer is not signing responses, resulting in the `<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">` and related elements not being present. Follow the steps under **Configuring SAML SP Connectors** on [Using APM as a SAML IdP](https://support.f5.com/kb/en-us/products/big-ip_apm/manuals/product/apm-authentication-single-sign-on-12-1-0/29.html), particularly step 9c. If you are not using an F5 as part of your SAML setup, see below to contact support.
+
+
 ## Contacting support
 
 If you're not able to resolve the error using the steps above, [reach out to support](/docs/enterprise/private/faq.html#support-for-private-terraform-enterprise). When contacting support, please provide:
