@@ -341,7 +341,7 @@ If the instance cannot reach the Internet, follow these steps to begin an Airgap
   * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
   * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
 1. [Download the installer bootstrapper](https://s3.amazonaws.com/replicated-airgap-work/replicated.tar.gz) and put it into its own directory on the instance (e.g. `/opt/tfe-installer/`)
-1. Airgap installations require Docker to be pre-installed. Double check that your instance has a supported version of Docker (see [Preflight: Software Requirements](./preflight.html#software-requirements) above for details).
+1. Airgap installations require Docker to be pre-installed. Double check that your instance has a supported version of Docker (see [Preflight: Software Requirements](./preflight-installer.html#software-requirements) above for details).
 
 #### Execute the Installer
 
