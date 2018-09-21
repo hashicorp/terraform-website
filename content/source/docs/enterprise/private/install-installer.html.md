@@ -120,14 +120,14 @@ The installer can run in two modes, Online or Airgapped. Each of these modes has
 If your instance can access the Internet, use the Online install mode.
 
 1. From a shell on your instance:
-  * To execute the installer directly, run `curl https://install.terraform.io/ptfe/stable | sudo bash`
-	* To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/stable > install.sh` and, once you are satisfied with the script's content, execute it with `sudo bash install.sh`.
+    * To execute the installer directly, run `curl https://install.terraform.io/ptfe/stable | sudo bash`
+    * To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/stable > install.sh` and, once you are satisfied with the script's content, execute it with `sudo bash install.sh`.
 1. The installation will take a few minutes and you'll be presented with a message
-	about how and where to access the rest of the setup via the web. This will be
+    about how and where to access the rest of the setup via the web. This will be
     `https://<TFE HOSTNAME>:8800`.
-  * The installer uses an internal CA to issue bootstrap certificates, so you will
-	see a security warning when first connecting. This is expected and you'll need
-    to proceed with the connection anyway.
+    * The installer uses an internal CA to issue bootstrap certificates, so you will
+      see a security warning when first connecting. This is expected and you'll need
+      to proceed with the connection anyway.
 
 ### Run the Installer - Airgapped
 
@@ -136,8 +136,8 @@ If the instance cannot reach the Internet, follow these steps to begin an Airgap
 #### Prepare the Instance
 
 1. Download the `.airgap` file using the information given to you in your setup email and place that file somewhere on the the instance.
-  * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
-  * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
+    * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
+    * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
 1. [Download the installer bootstrapper](https://s3.amazonaws.com/replicated-airgap-work/replicated.tar.gz) and put it into its own directory on the instance (e.g. `/opt/tfe-installer/`)
 1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Preflight: Software Requirements](./preflight-installer.html#software-requirements) for details).
 
@@ -149,9 +149,9 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. Run `sudo ./install.sh airgap`
 1. When asked, select the interface of the primary private network interface used to access the instance.
 1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be https://<TFE HOSTNAME>:8800
-  1. The installer uses an internal CA to issue bootstrap certificates, so you will
-     see a security warning when first connecting. This is expected and you'll need
-     to proceed with the connection anyway.
+    * The installer uses an internal CA to issue bootstrap certificates, so you will
+      see a security warning when first connecting. This is expected and you'll need
+      to proceed with the connection anyway.
 
 ### Continue Installation In Browser
 
@@ -159,8 +159,8 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. Upload the license file provided to you in your setup email.
 1. Indicate whether you're doing an Online or Airgapped installation. Choose Online if
    you're not sure.
-	* If you are doing an Airgapped install, provide the path on the the instance
-	  to the `.airgap` file that you downloaded using the initial instructions in
+    * If you are doing an Airgapped install, provide the path on the the instance
+      to the `.airgap` file that you downloaded using the initial instructions in
       your setup email.
 1. Secure access to the installer dashboard. We recommend at least setting up the
    simple password authentication. If you're so inclined, LDAP authentication can also be
