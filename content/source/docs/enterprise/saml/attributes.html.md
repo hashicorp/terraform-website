@@ -10,7 +10,7 @@ The following SAML attributes correspond to properties of a Terraform Enterprise
 
 ## Username
 
-If Username is specified, TFE will assign that username to the user instead of using an automatic name [based on their email address](./login.html). When the username is already taken or is invalid the value is not updated but login will complete.
+If Username is specified, TFE will assign that username to the user instead of using an automatic name [based on their email address](./login.html). When the username is already taken or is invalid, login will still complete, and the existing or default value will be used instead.
 
 ```xml
 <saml:AttributeStatement>
