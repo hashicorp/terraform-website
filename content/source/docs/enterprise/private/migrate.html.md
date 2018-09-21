@@ -43,7 +43,7 @@ modify some Terraform modules again to match the modifications you made in the p
 
 ## Preflight
 
-Before you begin, consult [Preflight](./preflight.html) for pre-requisites for the installer setup. You'll need to prepare data files and a Linux instance.
+Before you begin, consult [Preflight](./preflight-installer.html) for pre-requisites for the installer setup. You'll need to prepare data files and a Linux instance.
 
 ### Proxy Usage
 

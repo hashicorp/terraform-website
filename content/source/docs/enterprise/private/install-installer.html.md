@@ -24,7 +24,7 @@ use the instuctions in the [migration guide](./migrate.html).
 
 ## Preflight
 
-Before you begin, consult [Preflight](./preflight.html) for pre-requisites. You'll need to prepare data files and a Linux instance.
+Before you begin, consult [Preflight](./preflight-installer.html) for pre-requisites. You'll need to prepare data files and a Linux instance.
 
 ## Installation
 
@@ -108,7 +108,7 @@ need to decide which works best for your installation. Each option has a
 different approach to
 [recovering from failures](./reliability-availability.html#recovery-from-failures-1).
 The mode should be selected based on your organization's needs. See
-[Preflight: Operational Mode Decision](./preflight#operational-mode-decision)
+[Preflight: Operational Mode Decision](./preflight-installer.html#operational-mode-decision)
 for more details.
 
 ## Installation
@@ -172,8 +172,7 @@ From a shell on your instance, in the directory where you placed the `replicated
    but we strongly suggest you create your own password. Be sure to retain the value, because you will need to use this
    password to restore access to the data in the event of a reinstall.
 1. Configure the operational mode for this installation. See
-   [Preflight: Operational Modes](./preflight.html#operational-mode-decision) for information on what the different values
-   are. Ensure that you've met the relevant preflight requirements for the mode you chose.
+   [Preflight: Operational Modes](./preflight-installer.html#operational-mode-decision) for information on what the different values are. Ensure that you've met the relevant preflight requirements for the mode you chose.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
    configuration and you wish to increase the work that the instance does
