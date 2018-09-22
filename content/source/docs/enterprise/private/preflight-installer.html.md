@@ -157,7 +157,7 @@ When providing optional extra keyword parameters for the database connection,
 note an additional restriction on the `sslmode` parameter is that only the
 `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
-#### External Vault Option
+### External Vault Option
 
 If you choose to run the instance in the Production operational mode, during the installation, you can also choose to use an external Vault cluster, rather than the default internal Vault provided by PTFE.
 
