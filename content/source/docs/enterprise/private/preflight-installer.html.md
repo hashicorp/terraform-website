@@ -73,7 +73,7 @@ Future releases may add native support for SELinux.
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
 1. Get a domain name for the instance. Using an IP address to access the product is not supported as many systems use TLS and need to verify that the certificate is correct, which can only be done with a hostname at present.
 
-### Operational Mode Decision
+## Operational Mode Decision
 
 Terraform Enterprise can store its state in a few different ways, and you'll
 need to decide which works best for your installation. Each option has a
@@ -102,11 +102,11 @@ The operational mode is selected at install time and cannot be changed once the 
 
 The decision you make will be entered during setup.
 
-#### Mounted Disk Guidelines
+### Mounted Disk Guidelines
 
 The mounted disk option provides significant flexibility in how PTFE stores its data. To help narrow down the possibilites, we've provided the following guidelines for mounted disk storage.
 
-##### Supported Mounted Disk Types
+#### Supported Mounted Disk Types
 
 The following are **supported** mounted disk types:
 
@@ -117,13 +117,13 @@ The following are **supported** mounted disk types:
 * SAN
 * Physically connected disks as in non-cloud hardware
 
-###### Disk Resizing
+##### Disk Resizing
 
 Depending on your cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
 
 For example, with RedHat-flavor (RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article [How to: Resize Linux osDisk partition on Azure](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
 
-##### Unsupported Mounted Disk Types
+#### Unsupported Mounted Disk Types
 
 The following are **not** supported mounted disk types:
 
@@ -134,7 +134,7 @@ The supported mounted disk types provide the necessary reliability and performan
 
 If the type of mounted disk you wish to use is not listed, please contact your HashiCorp representative to get clarification on whether that type is supported.
 
-#### PostgreSQL Requirements
+### PostgreSQL Requirements
 
 When Terraform Enterprise uses an external PostgreSQL database, the
 following must be present on it:

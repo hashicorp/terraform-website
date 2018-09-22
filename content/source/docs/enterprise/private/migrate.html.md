@@ -381,7 +381,7 @@ From a shell on your instance, in the directory where you placed the `replicated
    **NOTE**: An instance profile must be previously configured on the instance.
 1. For the Bucket, copy and paste the value that was output by the `migrator` process for _S3 Bucket_.
 1. For the Region, copy and paste the value that was output by the `migrator` process for _S3 Region_.
-1. For the Server-side Encrytion, copy and paste the value that was output by the `migrator` process for the server-side encryption.
+1. For the Server-side Encryption, copy and paste the value that was output by the `migrator` process for the server-side encryption.
 1. For the KMS key, copy and paste the value that was output by the `migrator` process for _Optional KMS key_. **NOTE:** This key is not optional for migration, as it is used to read all the data in S3.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
