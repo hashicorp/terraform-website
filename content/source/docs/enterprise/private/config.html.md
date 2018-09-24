@@ -38,7 +38,7 @@ You will be able to create additional administrators once you log in.
 
 The next step will create the first organization.
 
-![Create a new organization](./assets/create-organization.png)
+![Create a new organization](../users-teams-organizations/images/org-new.png)
 
 After this is done, you can either continue with the creation of a new workspace,
 choose to configure other aspects of PTFE, or add more users.

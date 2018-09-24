@@ -39,7 +39,9 @@ To create your first workspace, click the "+ New Workspace" button in the upper 
 
 On the "Create a new Workspace" page, you need to enter at least two items: a workspace name, and a VCS repository. (You can search for a repo by typing part of its name.) When you've finished, click the "Create Workspace" button.
 
-![fields on new workspace page](./images/work-new-fields.png)
+![fields on new workspace page](../workspaces/images/creating-fields.png)
+
+-> **Note:** You can also create workspaces without a VCS repository, but doing so requires a different workflow for Terraform runs. For more information, see [About Terraform Runs in Terraform Enterprise](../run/index.html).
 
 ### Workspace Name
 
@@ -128,7 +130,7 @@ Most of your time in TFE is spent in two views:
 
 * The workspace list. Use this to get an overview of the workspaces you're responsible for, and to navigate between workspaces.
 
-    ![main page](./images/work-mainpage.png)
+    ![main page](../workspaces/images/index-list.png)
 
     To get back to the workspace list at any time, click the "Workspaces" button in the top navigation bar.
 * The individual workspace pages, which provide more detail about a workspace's status, and let you manage runs, variables, and settings.
