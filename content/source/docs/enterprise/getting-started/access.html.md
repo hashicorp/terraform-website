@@ -30,13 +30,11 @@ In your web browser, go to:
 
 ## Creating an Organization
 
-~> **Note:** If someone else has already created a TFE organization and added you to it, you can skip this process. You'll be taken to the organization's front page when you first navigate to TFE.
+-> **Note:** If someone else has already created a TFE organization and added you to it, you can skip this process. You'll be taken to the organization's front page when you first navigate to TFE.
 
 After you've navigated to TFE, it will prompt you to create a new organization. Enter a name (distinct from your legacy TFE organization, if any) and an admin email address at the prompt:
 
 ![TFE's new organization prompt](../users-teams-organizations/images/org-new.png)
-
-TFE cannot currently import settings and workspaces from an existing TFE legacy organization. We will enable migration from TFE legacy at a later date.
 
 ## Adding Other Users to an Organization
 
@@ -48,7 +46,7 @@ The list of teams starts with just one team, named "owners." Don't add users to 
 
 ![adding members to a team](../users-teams-organizations/images/teams-team-settings.png)
 
-Add as many users as you'd like by typing their TFE username in the text field and clicking "Add user." Added users won't receive a notification, but your organization will be available the next time they access TFE.
+Add as many users as you'd like by typing their TFE username in the text field and clicking "Add member". Added users won't receive a notification, but your organization will be available the next time they access TFE.
 
 Team membership is how TFE controls access to workspaces. Later, you can create more teams and assign them different permissions on a per-workspace basis. For more information, see [Teams](../users-teams-organizations/teams.html).
 

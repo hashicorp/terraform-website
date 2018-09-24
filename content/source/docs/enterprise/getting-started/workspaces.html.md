@@ -41,7 +41,7 @@ On the "Create a new Workspace" page, you need to enter at least two items: a wo
 
 ![fields on new workspace page](../workspaces/images/creating-fields.png)
 
--> **Note:** You can also create workspaces without a VCS repository, but doing so requires a more advanced workflow for Terraform runs. For more information, see [About Terraform Runs in Terraform Enterprise](../run/index.html).
+-> **Note:** You can also create workspaces without a VCS repository, but doing so requires a different workflow for Terraform runs. For more information, see [About Terraform Runs in Terraform Enterprise](../run/index.html).
 
 ### Workspace Name
 
