@@ -10,7 +10,7 @@ sidebar_current: "docs-enterprise2-api-modules"
 
 ## Listing and reading modules, providers and versions
 
-The Terraform Enterprise Module Registry implemenets the [Registry standard API](../../registry/api.html) for consuming the modules. Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
+The Terraform Enterprise Module Registry implements the [Registry standard API](../../registry/api.html) for consuming the modules. Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
 
 - Browse available modules
 - Search modules by keyword
