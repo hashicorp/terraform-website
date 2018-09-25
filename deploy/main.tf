@@ -51,7 +51,7 @@ resource "netlify_site" "main" {
 
   repo {
     repo_branch   = "${var.github_branch}"
-    command       = "cd website && bundle && middleman build --verbose"
+    command       = "make sync && cd content && bundle && middleman build --verbose"
     deploy_key_id = "${netlify_deploy_key.key.id}"
     dir           = "website/build"
     provider      = "github"

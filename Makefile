@@ -1,47 +1,50 @@
+SHELL = /bin/bash
 VERSION?="0.3.35"
 MKFILE_PATH=$(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 DEPLOY_ENV?="development"
 
-build:
+configure_cache:
+	mkdir -p tmp/cache
+
+build: configure_cache
 	@echo "==> Starting build in Docker..."
-	@mkdir -p content/build
 	@docker run \
 		--interactive \
 		--rm \
 		--tty \
-		--volume "$(shell pwd)/ext:/ext" \
-		--volume "$(shell pwd)/content:/website" \
-		--volume "$(shell pwd)/content/build:/website/build" \
-		-e "DEPLOY_ENV=${DEPLOY_ENV}" \
-		hashicorp/middleman-hashicorp:${VERSION} \
-		bundle exec middleman build --verbose --clean
+		--volume "$(shell pwd):/opt/buildhome/repo" \
+		--volume "$(shell pwd)/tmp/cache:/opt/buildhome/cache" \
+		--env "ENV=production" \
+		netlify/build \
+		build cd /opt/buildhome/repo && cd content && bundle exec middleman build --verbose
 
-website:
+website: configure_cache
 	@echo "==> Starting website in Docker..."
 	@docker run \
 		--interactive \
 		--rm \
 		--tty \
+		--volume "$(shell pwd):/opt/buildhome/repo" \
+		--volume "$(shell pwd)/tmp/cache:/opt/buildhome/cache" \
 		--publish "4567:4567" \
 		--publish "35729:35729" \
-		-e "DEPLOY_ENV=${DEPLOY_ENV}" \
-		--volume "$(shell pwd)/ext:/ext" \
-		--volume "$(shell pwd)/content:/website" \
-		hashicorp/middleman-hashicorp:${VERSION}
+		--env "ENV=production" \
+		netlify/build \
+		build cd /opt/buildhome/repo && cd content && bundle exec middleman
 
 website-test:
 	@echo "==> Testing website in Docker..."
-	-@docker stop "tf-website-temp"
 	@docker run \
 		--detach \
 		--rm \
 		--name "tf-website-temp" \
-		--publish "4567:4567" \
+		--volume "$(shell pwd):/opt/buildhome/repo" \
+		--volume "$(shell pwd)/tmp/cache:/opt/buildhome/cache" \
 		--volume "$(shell pwd)/ext:/ext" \
-		--volume "$(shell pwd)/content:/website" \
-		hashicorp/middleman-hashicorp:${VERSION}
-	until curl -sS http://localhost:4567/ > /dev/null; do sleep 1; done
-	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567" "/"
+		--publish "4567:4567" \
+		--env "ENV=production" \
+		netlify/build \
+		build /bin/bash -c 'until curl -sS http://localhost:4567/ > /dev/null; do sleep 1; done; $(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567" "/"'
 	@docker stop "tf-website-temp"
 
 website-provider:
@@ -63,14 +66,14 @@ endif
 		--tty \
 		--publish "4567:4567" \
 		--publish "35729:35729" \
-		--volume "$(PROVIDER_PATH)/website:/website" \
-		--volume "$(PROVIDER_PATH)/website:/ext/providers/$(PROVIDER_NAME)/website" \
-		--volume "$(shell pwd)/content:/terraform-website" \
-		--volume "$(shell pwd)/content/source/assets:/website/docs/assets" \
-		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
-		--workdir /terraform-website \
-		-e PROVIDER_SLUG=$(PROVIDER_SLUG) \
-		hashicorp/middleman-hashicorp:${VERSION}
+		--volume "$(shell pwd):/opt/buildhome/repo" \
+		--volume "$(shell pwd)/tmp/cache:/opt/buildhome/cache" \
+		--volume "$(PROVIDER_PATH)/website:/opt/buildhome/repo/website" \
+		--volume "$(PROVIDER_PATH)/website:/opt/buildhome/repo//ext/providers/$(PROVIDER_NAME)/website"
+		--env "ENV=production" \
+		--env PROVIDER_SLUG=$(PROVIDER_SLUG) \
+		netlify/build \
+		build cd /opt/buildhome/repo && cd content && bundle exec middleman
 
 website-provider-test:
 ifeq ($(PROVIDER_PATH),)
@@ -91,15 +94,12 @@ endif
 		--rm \
 		--name "tf-website-$(PROVIDER_NAME)-temp" \
 		--publish "4567:4567" \
-		--volume "$(PROVIDER_PATH)/website:/website" \
-		--volume "$(PROVIDER_PATH)/website:/ext/providers/$(PROVIDER_NAME)/website" \
-		--volume "$(shell pwd)/content:/terraform-website" \
-		--volume "$(shell pwd)/content/source/assets:/website/docs/assets" \
-		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
-		--workdir /terraform-website \
-		hashicorp/middleman-hashicorp:${VERSION}
-	until curl -sS http://localhost:4567/ > /dev/null; do sleep 1; done
-	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567/docs/providers/$(PROVIDER_SLUG)/"
+		--volume "$(shell pwd):/opt/buildhome/repo" \
+		--volume "$(PROVIDER_PATH)/website:/opt/buildhome/repo/website" \
+		--volume "$(PROVIDER_PATH)/website:/opt/buildhome/repo//ext/providers/$(PROVIDER_NAME)/website"
+		--volume "$(shell pwd)/tmp/cache:/opt/buildhome/cache" \
+		netlify/build \
+		build /bin/bash -c 'until curl -sS http://localhost:4567/ > /dev/null; do sleep 1; done; $(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567/docs/providers/$(PROVIDER_SLUG)/"'
 	@docker stop "tf-website-$(PROVIDER_NAME)-temp"
 
 sync:
