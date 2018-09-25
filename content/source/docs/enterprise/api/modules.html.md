@@ -48,9 +48,9 @@ $ curl \
 
 This endpoint can be used to publish a new module to the registry. The publishing process will fetch all tags in the source repository that look like SemVer versions with optional 'v' prefix. For each version, the tag is cloned and the config parsed to populate module details (input and output variables, readme, submodules, etc.). The [Module Registry Requirements](../../registry/modules/publish.html#requirements) define additional requirements on naming, standard module structure and tags for releases.
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /registry-modules |
+| Method | Path |
+| :-- | :-- |
+| `POST` | `/registry-modules` |
 
 ### Parameters
 
@@ -126,7 +126,7 @@ Creates a new registry module. After creating a module, a version must be create
 
 | Method | Path |
 | :-- | :-- |
-| POST | /organizations/:organization_name/registry-modules |
+| `POST` | `/organizations/:organization_name/registry-modules` |
 
 ### Parameters
 
@@ -200,7 +200,7 @@ Creates a new registry module version. After creating the version, the module sh
 
 | Method | Path |
 | :-- | :-- |
-| POST | /registry-modules/:organization_name/:name/:provider/:versions |
+| `POST` | `/registry-modules/:organization_name/:name/:provider/:versions` |
 
 ### Parameters
 
@@ -264,7 +264,7 @@ curl \
 
 | Method | Path |
 | :-- | :-- |
-| PUT | https://archivist.terraform.io/v1/object/:object_id |
+| `PUT` | `https://archivist.terraform.io/v1/object/:object_id` |
 
 **The URL is provided in the `upload` links attribute in the `registry-module-versions` resource.**
 
@@ -313,11 +313,11 @@ After the registry module version is successfully parsed by TFE, its status will
 
 These endpoints can delete a single version for a provider, a single provider (and all its versions) for a module, or a whole module. If the requested deletion would leave a provider with no versions or a module with no providers, the empty items will be automatically deleted as well.
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /registry-modules/actions/delete/:organization/:module/:provider/:version |
-| POST | /registry-modules/actions/delete/:organization/:module/:provider |
-| POST | /registry-modules/actions/delete/:organization/:module |
+| Method | Path |
+| :-- | :-- |
+| `POST` | `/registry-modules/actions/delete/:organization/:module/:provider/:version` |
+| `POST` | `/registry-modules/actions/delete/:organization/:module/:provider` |
+| `POST` | `/registry-modules/actions/delete/:organization/:module` |
 
 ### Parameters
 
