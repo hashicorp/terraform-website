@@ -18,6 +18,7 @@ This install guide is specifically for users of Private Terraform Enterprise ins
 * A properly configured docker storage backend, either:
    * Devicemapper configured for production usage, according to the Docker documentation: https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production. This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
    * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag ftype=1. The full documentation on this configuration is at: https://docs.docker.com/storage/storagedriver/overlayfs-driver/
+   * If using Docker from RHEL Extras, storage can be configured using the `docker-storage-setup` command
 
 ## Mandatory Configuration
 
