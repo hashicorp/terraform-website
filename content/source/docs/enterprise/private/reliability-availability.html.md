@@ -168,20 +168,18 @@ mechanism to recreate it from a previous snapshot.
 ### Mounted Disk
 
 _PostgreSQL Database_ and _Blob Storage_ use mounted disks for their
-data. Backup and restore of those volumes is the responsibility of the user, the
-system does not manage that.
+data. Backup and restore of those volumes is the responsibility of the user, and
+is not managed by PTFE's built-in systems.
 
 _Configuration Data_ and _Vault Data_ for the installation are stored in Docker
-volumes on the instance. The built-in Snapshot mechanism can be used to package up the
-Configuration and Vault data and store it off the instance. The built-in Restore
-mechanism can then be used to pull the configuration data back in and restore
-operation.
-[Configure Snapshot and Restore following these instructions](./automated-recovery.html).
+volumes on the instance. The built-in snapshot mechanism can package up the
+Configuration and Vault data and store it off the instance, and the built-in restore
+mechanism can recover the configuration data and restore
+operation in the event of a failure.
+Configure snapshot and restore by following the [automated recovery instructions](./automated-recovery.html).
 
-If the instance running Terraform Enterprise is lost, the presumption is that the
-volume storing the data is not lost. Because only Configuration and Vault data is stored
-on the instance, we recommend using an automated install mechanism to provide fast
-recovery following these steps:
+If the instance running Terraform Enterprise is lost, the use of mounted disks
+means no state data is lost.
 
 ### External Services
 
@@ -195,16 +193,14 @@ The maintenance of PostgreSQL, Blob Storage, and Vault are handled by the user,
 which includes backing up and restoring if necessary.
 
 _Configuration Data_ for the installation is stored in Docker
-volumes on the instance. The built-in Snapshot mechanism can be used to package up the
-Configuration data and store it off the instance. The built-in Restore
-mechanism can then be used to pull the configuration data back in and restore
-operations.
-[Configure Snapshot and Restore following these instructions](./automated-recovery.html).
+volumes on the instance. The built-in snapshot mechanism can package up the
+Configuration and Vault data and store it off the instance, and the built-in restore
+mechanism can recover the configuration data and restore
+operation in the event of a failure.
+Configure snapshot and restore by following the [automated recovery instructions](./automated-recovery.html).
 
-If the instance running Terraform Enterprise is lost, the utilization of
-external services means no state data is lost. Because only configuration data
-is stored on the instance, we recommend using a system snapshot mechanism to
-provide fast recovery following these steps:
+If the instance running Terraform Enterprise is lost, the use of
+external services means no state data is lost.
 
 ### Availability During Upgrades
 
