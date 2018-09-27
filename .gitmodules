@@ -354,3 +354,7 @@
 	path = ext/providers/bigip
 	url = https://github.com/terraform-providers/terraform-provider-bigip
 	branch = stable-website
+[submodule "ext/providers/tencentcloud"]
+	path = ext/providers/tencentcloud
+	url = https://github.com/terraform-providers/terraform-provider-tencentcloud
+	branch = stable-website
