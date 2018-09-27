@@ -10,7 +10,7 @@ sidebar_current: "docs-enterprise2-api-modules"
 
 ## Listing and reading modules, providers and versions
 
-The Terraform Enterprise Module Registry implemenets the [Registry standard API](../../registry/api.html) for consuming the modules. Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
+The Terraform Enterprise Module Registry implements the [Registry standard API](../../registry/api.html) for consuming the modules. Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
 
 - Browse available modules
 - Search modules by keyword
@@ -44,13 +44,13 @@ $ curl \
 ```
 
 
-## Publish a Module
+## Publish a Module from a VCS
 
 This endpoint can be used to publish a new module to the registry. The publishing process will fetch all tags in the source repository that look like SemVer versions with optional 'v' prefix. For each version, the tag is cloned and the config parsed to populate module details (input and output variables, readme, submodules, etc.). The [Module Registry Requirements](../../registry/modules/publish.html#requirements) define additional requirements on naming, standard module structure and tags for releases.
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /registry-modules |
+| Method | Path |
+| :-- | :-- |
+| `POST` | `/registry-modules` |
 
 ### Parameters
 
@@ -120,15 +120,204 @@ curl \
 }
 ```
 
-## Delete a module
+## Create a Module
+
+Creates a new registry module. After creating a module, a version must be created and uploaded in order to be usable.
+
+| Method | Path |
+| :-- | :-- |
+| `POST` | `/organizations/:organization_name/registry-modules` |
+
+### Parameters
+
+- `name` (`string: <required>`) - The name of this provider. May contain alphanumeric characters and dashes.
+- `provider` (`string: <required>`) - Specifies the Terraform provider that this module primarily is used for. For example, `aws` is a provider.
+
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "type": "registry-modules",
+    "attributes": {
+      "name": "my-module",
+      "provider": "aws"
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-modules
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "created-at": "2018-09-24T20:45:13.614Z",
+      "name": "my-module",
+      "permissions": {
+        "can-delete": true,
+        "can-resync": true,
+        "can-retry": true
+      },
+      "provider": "aws",
+      "status": "pending",
+      "updated-at": "2018-09-24T20:45:13.614Z",
+      "version-statuses": []
+    },
+    "id": "mod-kno8GMqyUFAdbExr",
+    "links": {
+      "self": "/api/v2/registry-modules/show/my-organization/my-module/aws"
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "org-qScjTapEAMHut5ky",
+          "type": "organizations"
+        }
+      }
+    },
+    "type": "registry-modules"
+  }
+}
+```
+
+## Create a Module Version
+
+Creates a new registry module version. After creating the version, the module should be uploaded to the returned upload link.
+
+| Method | Path |
+| :-- | :-- |
+| `POST` | `/registry-modules/:organization_name/:name/:provider/:versions` |
+
+### Parameters
+
+- `version` (`string: <required>`) - A valid semver version string.
+
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "type": "registry-module-versions",
+    "attributes": {
+      "version": "1.2.3"
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/registry-modules/my-organization/my-module/aws/versions
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "modver-qjjF7ArLXJSWU3WU",
+    "type": "registry-module-versions",
+    "attributes": {
+      "source": "tfe-api",
+      "status": "pending",
+      "version": "1.2.3",
+      "created-at": "2018-09-24T20:47:20.931Z",
+      "updated-at": "2018-09-24T20:47:20.931Z"
+    },
+    "relationships": {
+      "registry-module": {
+        "data": {
+          "id": "1881",
+          "type": "registry-modules"
+        }
+      }
+    },
+    "links": {
+      "upload": "https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox..."
+    }
+  }
+}
+```
+
+## Upload a Module Version
+
+| Method | Path |
+| :-- | :-- |
+| `PUT` | `https://archivist.terraform.io/v1/object/:object_id` |
+
+**The URL is provided in the `upload` links attribute in the `registry-module-versions` resource.**
+
+### Expected Archive Format
+
+Terraform Enterprise expects the module version uploaded to be a tarball with the module in the root (not in a subdirectory).
+
+Given the following folder structure:
+
+```
+terraform-null-test
+├── README.md
+├── examples
+│   └── default
+│       ├── README.md
+│       └── main.tf
+└── main.tf
+```
+
+This can be packaged in an archive format by running `tar zcvf module.tar.gz *` in the module's directory.
+
+```
+~$ cd terraform-null-test
+terraform-null-test$ tar zcvf module.tar.gz *
+a README.md
+a examples
+a examples/default
+a examples/default/main.tf
+a examples/default/README.md
+a main.tf
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Content-Type: application/octet-stream" \
+  --request PUT \
+  --data-binary @module.tar.gz \
+  https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox...
+```
+
+After the registry module version is successfully parsed by TFE, its status will become `"ok"`.
+
+## Delete a Module
 
 These endpoints can delete a single version for a provider, a single provider (and all its versions) for a module, or a whole module. If the requested deletion would leave a provider with no versions or a module with no providers, the empty items will be automatically deleted as well.
 
-| Method | Path           |
-| :----- | :------------- |
-| POST | /registry-modules/actions/delete/:organization/:module/:provider/:version |
-| POST | /registry-modules/actions/delete/:organization/:module/:provider |
-| POST | /registry-modules/actions/delete/:organization/:module |
+| Method | Path |
+| :-- | :-- |
+| `POST` | `/registry-modules/actions/delete/:organization/:module/:provider/:version` |
+| `POST` | `/registry-modules/actions/delete/:organization/:module/:provider` |
+| `POST` | `/registry-modules/actions/delete/:organization/:module` |
 
 ### Parameters
 
