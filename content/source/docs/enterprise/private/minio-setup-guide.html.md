@@ -38,7 +38,7 @@ Begin with an [online installation](./install-installer.html#run-the-installer-o
 ```
 To continue the installation, visit the following URL in your browser:
 
-  https://<this_server_address>:8800
+  https://<TFE HOSTNAME>:8800
 ```
 
 ### Start Minio
