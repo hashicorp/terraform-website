@@ -49,10 +49,6 @@ This endpoint can be used to publish a new module to the registry. The publishin
 
 `POST /registry-modules`
 
-Parameter            | Description
----------------------|------------
-`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
-
 Status  | Response                                           | Reason
 --------|----------------------------------------------------|----------
 [201][] | [JSON API document][] (`type: "registry-modules"`) | Successfully published module
@@ -77,7 +73,7 @@ Key path                                  | Type   | Default | Description
 `data.attributes.vcs-repo.identifier`     | string |         | The repository from which to ingress the configuration.
 `data.attributes.vcs-repo.oauth-token-id` | string |         | The VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 
-A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo`, where `:org` and `:repo` refer to the organization (or project key, for Bitbucket server) and repository in your VCS provider.
+A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo`, where `:org` and `:repo` refer to the organization (or project key, for Bitbucket Server) and repository in your VCS provider.
 
 ### Sample Payload
 
@@ -173,7 +169,7 @@ Properties without a default value are required.
 Key path                   | Type   | Default | Description
 ---------------------------|--------|---------|------------
 `data.type`                | string |         | Must be `"registry-modules"`.
-`data.attributes.name`     | string |         | The name of this provider. May contain alphanumeric characters and dashes.
+`data.attributes.name`     | string |         | The name of this module. May contain alphanumeric characters and dashes.
 `data.attributes.provider` | string |         | Specifies the Terraform provider that this module is used for.
 
 For example, `aws` is a provider.
@@ -376,13 +372,17 @@ After the registry module version is successfully parsed by TFE, its status will
 
 ## Delete a Module
 
-These endpoints can delete a single version for a provider, a single provider (and all its versions) for a module, or a whole module. If the requested deletion would leave a provider with no versions or a module with no providers, the empty items will be automatically deleted as well.
+When removing modules, there are three versions of the endpoint, depending on how many parameters are specified.
 
-| Method | Path                                                                           |
-| :----- | :----------------------------------------------------------------------------- |
-| `POST` | `/registry-modules/actions/delete/:organization_name/:name/:provider/:version` |
-| `POST` | `/registry-modules/actions/delete/:organization_name/:name/:provider`          |
-| `POST` | `/registry-modules/actions/delete/:organization_name/:name`                    |
+* If all parameters (module, provider, and version) are specified, the provided version for the given provider of the module is deleted.
+* If module and provider are specified, the given provider for the module is deleted along with all its versions.
+* If only module is specified, the entire module is deleted.
+
+If a version deletion would leave a provider with no versions, the provider will be deleted. If a provider deletion would leave a module with no providers, the module will be deleted.
+
+`POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
+`POST /registry-modules/actions/delete/:organization_name/:name/:provider`
+`POST /registry-modules/actions/delete/:organization_name/:name`
 
 ### Parameters
 
@@ -390,8 +390,8 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to delete a module from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 `:name`              | The module name that the deletion will affect.
-`:provider`          | The provider for the module that the deletion will affect.
-`:version`           | The version for the module and provider that will be deleted.
+`:provider`          | If specified, the provider for the module that the deletion will affect.
+`:version`           | If specified, the version for the module and provider that will be deleted.
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
