@@ -53,7 +53,7 @@ For Linux distributions other than RHEL, check Docker compatibility:
     * At this time, the **18.x and higher Docker versions are not supported**
     * In Online mode, the installer will install Docker automatically
     * In Airgapped mode, Docker should be installed before you begin
-  * For _Redhat Enterprise_, _Oracle Linux_, and _SUSE Enterprise_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
+  * For _Redhat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
 
 ~> **Note**: It is not recommended to run Docker under a 2.x kernel.
 
