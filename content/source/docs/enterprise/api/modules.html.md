@@ -43,20 +43,41 @@ $ curl \
   https://app.terraform.io/api/registry/v1/modules/my-tfe-org/consul/aws/versions
 ```
 
-
 ## Publish a Module from a VCS
 
 This endpoint can be used to publish a new module to the registry. The publishing process will fetch all tags in the source repository that look like SemVer versions with optional 'v' prefix. For each version, the tag is cloned and the config parsed to populate module details (input and output variables, readme, submodules, etc.). The [Module Registry Requirements](../../registry/modules/publish.html#requirements) define additional requirements on naming, standard module structure and tags for releases.
 
-| Method | Path |
-| :-- | :-- |
-| `POST` | `/registry-modules` |
+`POST /registry-modules`
 
-### Parameters
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 
-- `vcs-repo.identifier` (`string: <required>`) - Specifies the repository from which to ingress the configuration. For most VCS providers, the format is `<ORGANIZATION>/<REPO>`; for Bitbucket Server, the format is `<PROJECT_KEY>/<REPO>`.
-- `vcs-repo.oauth-token-id` (`string: <required>`) - Specifies the VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+Status  | Response                                           | Reason
+--------|----------------------------------------------------|----------
+[201][] | [JSON API document][] (`type: "registry-modules"`) | Successfully published module
+[422][] | [JSON API error object][]                          | Malformed request body (missing attributes, wrong types, etc.)
+[404][] | [JSON API error object][]                          | Client is not an administrator.
 
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                                  | Type   | Default | Description
+------------------------------------------|--------|---------|------------
+`data.type`                               | string |         | Must be `"registry-modules"`.
+`data.attributes.vcs-repo.identifier`     | string |         | The repository from which to ingress the configuration.
+`data.attributes.vcs-repo.oauth-token-id` | string |         | The VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+
+A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo`, where `:org` and `:repo` refer to the organization (or project key, for Bitbucket server) and repository in your VCS provider.
 
 ### Sample Payload
 
@@ -124,15 +145,38 @@ curl \
 
 Creates a new registry module. After creating a module, a version must be created and uploaded in order to be usable.
 
-| Method | Path |
-| :-- | :-- |
-| `POST` | `/organizations/:organization_name/registry-modules` |
+ `POST /organizations/:organization_name/registry-modules`
 
-### Parameters
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 
-- `name` (`string: <required>`) - The name of this provider. May contain alphanumeric characters and dashes.
-- `provider` (`string: <required>`) - Specifies the Terraform provider that this module primarily is used for. For example, `aws` is a provider.
+Status  | Response                                           | Reason
+--------|----------------------------------------------------|----------
+[201][] | [JSON API document][] (`type: "registry-modules"`) | Successfully published module
+[422][] | [JSON API error object][]                          | Malformed request body (missing attributes, wrong types, etc.)
+[404][] | [JSON API error object][]                          | Client is not an administrator.
 
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                   | Type   | Default | Description
+---------------------------|--------|---------|------------
+`data.type`                | string |         | Must be `"registry-modules"`.
+`data.attributes.name`     | string |         | The name of this provider. May contain alphanumeric characters and dashes.
+`data.attributes.provider` | string |         | Specifies the Terraform provider that this module is used for.
+
+For example, `aws` is a provider.
 
 ### Sample Payload
 
@@ -198,14 +242,37 @@ curl \
 
 Creates a new registry module version. After creating the version, the module should be uploaded to the returned upload link.
 
-| Method | Path |
-| :-- | :-- |
-| `POST` | `/registry-modules/:organization_name/:name/:provider/:versions` |
+`POST /registry-modules/:organization_name/:name/:provider/versions`
 
-### Parameters
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:name`              | The name of the module for which the version is being created.
+`:provider`          | The name of the provider for which the version is being created.
 
-- `version` (`string: <required>`) - A valid semver version string.
+Status  | Response                                                   | Reason
+--------|------------------------------------------------------------|----------
+[201][] | [JSON API document][] (`type: "registry-module-versions"`) | Successfully published module version
+[422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.)
+[404][] | [JSON API error object][]                                  | Client is not an administrator.
 
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                   | Type   | Default | Description
+---------------------------|--------|---------|------------
+`data.type`                | string |         | Must be `"registry-module-versions"`.
+`data.attributes.version`  | string |         | A valid semver version string.
 
 ### Sample Payload
 
@@ -262,9 +329,7 @@ curl \
 
 ## Upload a Module Version
 
-| Method | Path |
-| :-- | :-- |
-| `PUT` | `https://archivist.terraform.io/v1/object/:object_id` |
+`PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
 
 **The URL is provided in the `upload` links attribute in the `registry-module-versions` resource.**
 
@@ -284,7 +349,7 @@ terraform-null-test
 └── main.tf
 ```
 
-This can be packaged in an archive format by running `tar zcvf module.tar.gz *` in the module's directory.
+Package the files in an archive format by running `tar zcvf module.tar.gz *` in the module's directory.
 
 ```
 ~$ cd terraform-null-test
@@ -313,18 +378,27 @@ After the registry module version is successfully parsed by TFE, its status will
 
 These endpoints can delete a single version for a provider, a single provider (and all its versions) for a module, or a whole module. If the requested deletion would leave a provider with no versions or a module with no providers, the empty items will be automatically deleted as well.
 
-| Method | Path |
-| :-- | :-- |
-| `POST` | `/registry-modules/actions/delete/:organization/:module/:provider/:version` |
-| `POST` | `/registry-modules/actions/delete/:organization/:module/:provider` |
-| `POST` | `/registry-modules/actions/delete/:organization/:module` |
+| Method | Path                                                                           |
+| :----- | :----------------------------------------------------------------------------- |
+| `POST` | `/registry-modules/actions/delete/:organization_name/:name/:provider/:version` |
+| `POST` | `/registry-modules/actions/delete/:organization_name/:name/:provider`          |
+| `POST` | `/registry-modules/actions/delete/:organization_name/:name`                    |
 
 ### Parameters
 
-- `:organization` (`string: <required>`) - Specifies the organization for the module registry.
-- `:module` (`string: <required>`) - Specifies the module name from which to delete all versions from all providers.
-- `:provider` (`string: <optional>`) - Specifies the provider for the given module from which to delete all versions.
-- `:version` (`string: <optional>`) - Specifies the version for the given module and provider to be deleted.
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to delete a module from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:name`              | The module name that the deletion will affect.
+`:provider`          | The provider for the module that the deletion will affect.
+`:version`           | The version for the module and provider that will be deleted.
+
+Status  | Response                                             | Reason
+--------|------------------------------------------------------|-------
+[204][] | Nothing                                              | Success
+[404][] | [JSON API error object][]                            | Module, provider, or version not found or user not authorized
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 
 ### Sample Request
 
