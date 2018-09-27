@@ -65,7 +65,7 @@ If certain hostnames should not use the proxy and the instance should connect di
 ./install.sh additional-no-proxy=s3.amazonaws.com,internal-vcs.mycompany.com,example.com
 ````
 
-Passing this option to the installation script is particularly useful if the hostnames that should not use the proxy include services that the instance needs to be able to reach during installation, such as S3. Alternately, if the only hosts you need to add are those that are not used during installation, such as a private VCS instance, you can provide these hosts after initial installation is complete, in the installer settings (available on port 8800 under `/console/settings`)
+Passing this option to the installation script is particularly useful if the hostnames that should not use the proxy include services that the instance needs to be able to reach during installation, such as S3. Alternately, if the only hosts you need to add are those that are not used during installation, such as a private VCS instance, you can provide these hosts after initial installation is complete, in the installer settings (available on port 8800 under `/console/settings`).
 
 #### Reconfiguring the Proxy
 
