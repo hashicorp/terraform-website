@@ -130,7 +130,7 @@ Creates a new registry module. After creating a module, a version must be create
 
 ### Parameters
 
-- `name` (`string: <required>`) - The name of this provider. Maybe contain alphanumeric characters and dashes.
+- `name` (`string: <required>`) - The name of this provider. May contain alphanumeric characters and dashes.
 - `provider` (`string: <required>`) - Specifies the Terraform provider that this module primarily is used for. For example, `aws` is a provider.
 
 
@@ -284,7 +284,7 @@ terraform-null-test
 └── main.tf
 ```
 
-This can be package in an archive format by running `tar zcvf module.tar.gz *` in the module's directory.
+This can be packaged in an archive format by running `tar zcvf module.tar.gz *` in the module's directory.
 
 ```
 ~$ cd terraform-null-test
