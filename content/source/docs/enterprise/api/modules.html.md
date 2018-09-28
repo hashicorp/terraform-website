@@ -45,17 +45,17 @@ $ curl \
 
 ## Publish a Module from a VCS
 
-This endpoint can be used to publish a new module to the registry. The publishing process will fetch all tags in the source repository that look like SemVer versions with optional 'v' prefix. For each version, the tag is cloned and the config parsed to populate module details (input and output variables, readme, submodules, etc.). The [Module Registry Requirements](../../registry/modules/publish.html#requirements) define additional requirements on naming, standard module structure and tags for releases.
-
 `POST /registry-modules`
+
+Publishes a new registry module from a VCS repository, with module versions managed automatically by the repository's tags. The publishing process will fetch all tags in the source repository that look like [SemVer](https://semver.org/) versions with optional 'v' prefix. For each version, the tag is cloned and the config parsed to populate module details (input and output variables, readme, submodules, etc.). The [Module Registry Requirements](../../registry/modules/publish.html#requirements) define additional requirements on naming, standard module structure and tags for releases.
 
 Status  | Response                                           | Reason
 --------|----------------------------------------------------|----------
 [201][] | [JSON API document][] (`type: "registry-modules"`) | Successfully published module
 [422][] | [JSON API error object][]                          | Malformed request body (missing attributes, wrong types, etc.)
-[404][] | [JSON API error object][]                          | Client is not an administrator.
+[404][] | [JSON API error object][]                          | User not authorized
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
@@ -74,6 +74,8 @@ Key path                                  | Type   | Default | Description
 `data.attributes.vcs-repo.oauth-token-id` | string |         | The VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 
 A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo`, where `:org` and `:repo` refer to the organization (or project key, for Bitbucket Server) and repository in your VCS provider.
+
+The OAuth Token ID identifies the VCS connection, and therefore the organization, that the module will be created in.
 
 ### Sample Payload
 
@@ -139,21 +141,21 @@ curl \
 
 ## Create a Module
 
-Creates a new registry module. After creating a module, a version must be created and uploaded in order to be usable.
-
  `POST /organizations/:organization_name/registry-modules`
 
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 
+Creates a new registry module without a backing VCS repository. After creating a module, a version must be created and uploaded in order to be usable. Modules created this way do not automatically update with new versions; instead, you must explicitly create and upload each new version with the [Create a Module Version](#create-a-module-version) endpoint.
+
 Status  | Response                                           | Reason
 --------|----------------------------------------------------|----------
 [201][] | [JSON API document][] (`type: "registry-modules"`) | Successfully published module
 [422][] | [JSON API error object][]                          | Malformed request body (missing attributes, wrong types, etc.)
-[404][] | [JSON API error object][]                          | Client is not an administrator.
+[404][] | [JSON API error object][]                          | User not authorized
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
@@ -236,8 +238,6 @@ curl \
 
 ## Create a Module Version
 
-Creates a new registry module version. After creating the version, the module should be uploaded to the returned upload link.
-
 `POST /registry-modules/:organization_name/:name/:provider/versions`
 
 Parameter            | Description
@@ -246,11 +246,13 @@ Parameter            | Description
 `:name`              | The name of the module for which the version is being created.
 `:provider`          | The name of the provider for which the version is being created.
 
+Creates a new registry module version. This endpoint only applies to modules without a VCS repository; VCS-linked modules automatically create new versions for new tags. After creating the version, the module should be uploaded to the returned upload link.
+
 Status  | Response                                                   | Reason
 --------|------------------------------------------------------------|----------
 [201][] | [JSON API document][] (`type: "registry-module-versions"`) | Successfully published module version
 [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.)
-[404][] | [JSON API error object][]                                  | Client is not an administrator.
+[404][] | [JSON API error object][]                                  | User not authorized
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
@@ -372,17 +374,9 @@ After the registry module version is successfully parsed by TFE, its status will
 
 ## Delete a Module
 
-When removing modules, there are three versions of the endpoint, depending on how many parameters are specified.
-
-* If all parameters (module, provider, and version) are specified, the provided version for the given provider of the module is deleted.
-* If module and provider are specified, the given provider for the module is deleted along with all its versions.
-* If only module is specified, the entire module is deleted.
-
-If a version deletion would leave a provider with no versions, the provider will be deleted. If a provider deletion would leave a module with no providers, the module will be deleted.
-
-`POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
-`POST /registry-modules/actions/delete/:organization_name/:name/:provider`
-`POST /registry-modules/actions/delete/:organization_name/:name`
+* `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
+* `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
+* `POST /registry-modules/actions/delete/:organization_name/:name`
 
 ### Parameters
 
@@ -393,12 +387,22 @@ Parameter            | Description
 `:provider`          | If specified, the provider for the module that the deletion will affect.
 `:version`           | If specified, the version for the module and provider that will be deleted.
 
+When removing modules, there are three versions of the endpoint, depending on how many parameters are specified.
+
+* If all parameters (module, provider, and version) are specified, the specified version for the given provider of the module is deleted.
+* If module and provider are specified, the specified provider for the given module is deleted along with all its versions.
+* If only module is specified, the entire module is deleted.
+
+If a version deletion would leave a provider with no versions, the provider will be deleted. If a provider deletion would leave a module with no providers, the module will be deleted.
+
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
 [204][] | Nothing                                              | Success
 [404][] | [JSON API error object][]                            | Module, provider, or version not found or user not authorized
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
