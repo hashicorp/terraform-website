@@ -23,7 +23,7 @@ When configured to use external services, PTFE must be connected to a storage se
 
 ~> **Note:** This is not a production-ready configuration: it's intended to guide you to a working configuration that can later be automated and hardened.
 
-This guide will walk through installing Minio in a Docker container alongside PTFE on the same host, with PTFE configured in the "Production - External Services" [operational mode](./preflight-installer.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc. The guide your instance will have access to the Internet and that you will be performing an online install of PTFE.
+This guide will walk through installing Minio in a Docker container alongside PTFE on the same host, with PTFE configured in the "Production - External Services" [operational mode](./preflight-installer.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc. The guide assumes your instance will have access to the Internet and that you will be performing an online install of PTFE.
 
 ### System preparation
 
