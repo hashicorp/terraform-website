@@ -29,7 +29,7 @@ architecture.
 Services_ operational mode.
 
 Depending on the chosen [operational
-mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
+mode](https://www.terraform.io/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single AWS EC2 instance
 for demo installations to multiple instances connected to RDS, S3, and an
 external Vault cluster for a stateless production installation.
@@ -236,9 +236,9 @@ cluster endpoint URL.
 
 ### Upgrades
 
-See [the upgrading
-section](https://www.terraform.io/docs/enterprise/private/install-installer.html#upgrading)
-of the installation guide.
+See [the Upgrades
+section](https://www.terraform.io/docs/enterprise/private/upgrades.html)
+of the documentation.
 
 ## High Availability
 

@@ -32,7 +32,7 @@ architecture.
 -> **Note:** This reference architecture focuses on the _Production - External Services_ operational mode.
 
 Depending on the chosen [operational
-mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
+mode](https://www.terraform.io/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single [Azure VM
 instance](https://azure.microsoft.com/en-us/services/virtual-machines/) for
 demo or proof of concept installations, to multiple instances connected to
@@ -218,9 +218,9 @@ can be found on our website.
 
 ### Upgrades
 
-See [the upgrading
-section](https://www.terraform.io/docs/enterprise/private/install-installer.html#upgrading)
-of the installation guide.
+See [the Upgrades
+section](https://www.terraform.io/docs/enterprise/private/upgrades.html)
+of the documentation.
 
 ## High Availability
 
