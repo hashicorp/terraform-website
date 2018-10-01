@@ -84,6 +84,9 @@ your user's home directory.
 
 [`terraform init`][3] will search
 this directory for additional plugins during plugin initialization.
+Providers that are distributed by HashiCorp will use the local copy
+in this directory instead of downloading a release copy during 
+`terraform init`. 
 
 The naming scheme for plugins is `terraform-<type>-NAME_vX.Y.Z`, where `type` is
 either `provider` or `provisioner`. Terraform uses the `NAME` to understand the
