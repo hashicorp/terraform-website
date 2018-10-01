@@ -127,6 +127,8 @@ Please execute the program that consumes these plugins, which will
 load any plugins automatically
 ```
 
+Custom built providers can be [sideloaded](/docs/configuration/providers.html#third-party-plugins) for Terraform to use.
+
 This is the basic project structure and scaffolding for a Terraform plugin. To
 recap, the file structure is:
 
