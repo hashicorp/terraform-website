@@ -19,12 +19,18 @@ Can read any information on the workspace, including:
 
 Cannot do anything which alters state of the above.
 
-## Write
+## Plan
 
 Can do everything the read access level can do plus:
 
+- Create runs
+
+## Write
+
+Can do everything the plan access level can do plus:
+
 - Execute functions which alter state of the above models.
-- Create and approve runs.
+- Approve runs.
 - Edit variables on the workspace.
 - Lock and unlock the workspace.
 
