@@ -19,6 +19,11 @@ By default, PTFE allocates *256MB* of memory to each Terraform run with a defaul
 Therefore, by default PTFE requires *2.6GB* of memory for just the runs themselves. Factor in memory needed to run
 the services that makeup PTFE itself, and we get a base memory footprint of *4GB*.
 
+### Settings
+
+The settings for memory and concurrency are available in the dashboard on port 8800, on the Settings page, under the Capacity section. They can also be accessed via
+the [`replicated.conf` file when using the automated install procedure](https://www.terraform.io/docs/enterprise/private/automating-the-installer.html#available-settings).
+
 ## Increasing Capacity
 
 To increase the number of concurrent runs, the *Capacity* setting can be adjusted. Note that this setting depends upon
