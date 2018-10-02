@@ -264,12 +264,13 @@ a `main.tf` in the working directory (the same place where the plugin exists).
 resource "example_server" "my-server" {}
 ```
 
-Terraform automatically discovers the Providers when it parses configuration
-files. This only occurs when the `init` command is executed. Terraform will
-search for matching Providers via a
-[**Discovery**](https://www.terraform.io/docs/extend/how-terraform-works.html#discovery)
-process, including the current local directory. Run `terraform init` to discover
-our newly compiled Provider:
+When `terraform init` is run, Terraform parses configuration files and
+searches for providers in several locations. For the convenience of plugin
+developers, this search includes the current working directory. (For full
+details, see
+[How Terraform Works: Plugin Discovery](/docs/extend/how-terraform-works.html#discovery).)
+
+Run `terraform init` to discover our newly compiled provider:
 
 ```text
 $ terraform init

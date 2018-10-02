@@ -66,36 +66,88 @@ destruction.
 
 ## Discovery 
 
-The `terraform` CLI tool includes several provisioner plugins for immediate use.
-It does not include any Providers, due to the large number of them and the
-various supported versions. Terraform reads configuration files and installs the
-needed Providers automatically from releases.hashicorp.com. At time of writing
-Terraform can only automatically install Providers distributed by HashiCorp,
-which are found on [releases.hashicorp.com][2].
+~> **Advanced topic:** This section describes Terraform's plugin discovery
+behavior at the level of detail a plugin developer might need. For instructions
+suited to normal Terraform use, see [Configuring Providers](/docs/configuration/providers.html).
 
-Third-party providers can be manually installed by placing their plugin
-executables in one of the following locations depending on the host operating
-system:
+When `terraform init` is run, Terraform reads configuration files in the working
+directory to determine which plugins are necessary, searches for installed
+plugins in several locations, sometimes downloads additional plugins, decides
+which plugin versions to use, and writes a lock file to ensure Terraform will
+use the same plugin versions in this directory until `terraform init` runs
+again.
 
-- On Windows, in the sub-path terraform.d/plugins beneath your user's "Application
-Data" directory. 
-- On all other systems, in the sub-path .terraform.d/plugins in
-your user's home directory.
+For purposes of discovery, Terraform plugins behave in one of three ways:
 
-[`terraform init`][3] will search
-this directory for additional plugins during plugin initialization.
-Providers that are distributed by HashiCorp will use the local copy
-in this directory instead of downloading a release copy during 
-`terraform init`. 
+Kind                                   | Behavior
+---------------------------------------|------------------------------------------------
+Built-in provisioners                  | Always available; included in Terraform binary.
+Providers distributed by HashiCorp     | Automatically downloaded if not already installed.
+Third-party providers and provisioners | Must be manually installed.
 
-The naming scheme for plugins is `terraform-<type>-NAME_vX.Y.Z`, where `type` is
-either `provider` or `provisioner`. Terraform uses the `NAME` to understand the
-name and version of a particular provider binary. Third-party plugins will often
-be distributed with an appropriate filename already set in the distribution
-archive so that it can be extracted directly into the plugin directory described
-above.
+### Plugin Locations
+
+-> **Note:** Third-party plugins should usually be installed in the user
+plugins directory, which is located at `~/.terraform.d/plugins` on most
+operating systems and `<APPLICATION DATA>\plugins` on Windows.
+
+By default, `terraform init` searches the following directories for plugins.
+Some of these directories are static, and some are relative to the current
+working directory.
+
+Directory                                                                        | Purpose
+---------------------------------------------------------------------------------|------------
+`.`                                                                              | For convenience during plugin development.
+Location of the `terraform` binary (`/usr/local/bin`, for example.)              | For airgapped installations; see [`terraform bundle`][bundle].
+`terraform.d/plugins/<OS>_<ARCH>`                                                | For checking custom providers into a configuration's VCS repository. Not usually desirable, but sometimes necessary in Terraform Enterprise.
+`.terraform/plugins/<OS>_<ARCH>`                                                 | Automatically downloaded providers.
+`~/.terraform.d/plugins` or `<APPLICATION DATA>\plugins`                         | The user plugins directory.
+`~/.terraform.d/plugins/<OS>_<ARCH>` or `<APPLICATION DATA>\plugins\<OS>_<ARCH>` | The user plugins directory, with explicit OS and architecture.
+
+-> **Note:** `<OS>` and `<ARCH>` use the Go language's standard OS and
+architecture names; for example, `darwin_amd64`.
+
+If `terraform init` is run with the `-plugin-dir=<PATH>` option (with a
+non-empty `<PATH>`), it overrides the default plugin locations and searches
+only the specified path.
+
+Provider and provisioner plugins can be installed in the same directories.
+Provider plugin binaries are named with the scheme `terraform-provider-<NAME>_vX.Y.Z`,
+while provisioner plugins use the scheme `terraform-provisioner-<NAME>_vX.Y.Z`.
+Terraform relies on filenames to determine plugin types, names, and versions.
+
+[bundle]: https://github.com/hashicorp/terraform/tree/master/tools/terraform-bundle
+
+### Selecting Plugins
+
+After locating any installed plugins, `terraform init` compares them to the
+configuration's [version constraints](/docs/configuration/providers.html#provider-versions)
+and chooses a version for each plugin as follows:
+
+- If any acceptable versions are installed, Terraform uses the newest
+  _installed_ version that meets the constraint (even if releases.hashicorp.com
+  has a newer acceptable version).
+- If no acceptable versions are installed and the plugin is one of the
+  [providers distributed by HashiCorp](/docs/providers/index.html),
+  Terraform downloads the newest acceptable version from
+  releases.hashicorp.com and saves it in `.terraform/plugins/<OS>_<ARCH>`.
+
+    - This step is skipped if `terraform init` is run with the
+      `-plugin-dir=<PATH>` or `-get-plugins=false` options.
+- If no acceptable versions are installed and the plugin is not distributed
+  by HashiCorp, initialization fails and the user must manually install an
+  appropriate version.
+
+### Upgrading Plugins
+
+When `terraform init` is run with the `-upgrade` option, it re-checks
+releases.hashicorp.com for newer acceptable provider versions and downloads them
+if available.
+
+This behavior only applies to providers whose _only_ acceptable versions are in
+`.terraform/plugins/<OS>_<ARCH>` (the automatic downloads directory); if any
+acceptable version of a given provider is installed elsewhere,
+`terraform init -upgrade` will not download a newer version of it.
 
 [0]: https://en.wikipedia.org/wiki/Static_build#Static_building
 [1]: https://golang.org/
-[2]: https://releases.hashicorp.com
-[3]: https://www.terraform.io/docs/commands/init.html
