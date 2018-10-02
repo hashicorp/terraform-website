@@ -93,8 +93,8 @@ This GET endpoint can optionally return related resources, if requested with [th
 Resource Name      | Description
 -------------------|------------
 `organization`     | The full organization record.
-`latest_run`       | Additional information about the last run.
-`latest_run.plan ` | The plan used in the last run.
+`current_run`      | Additional information about the current run.
+`current_run.plan` | The plan used in the current run.
 
 
 ### Sample Payload
