@@ -47,13 +47,15 @@ Terraform Enterprise application as well as the Terraform plans and applies.
 
 ~> RedHat Enterprise Linux (RHEL) has a specific set of requirements. Please see the [RHEL Install Guide](./rhel-install-guide.html) before continuing.
 
+-> See the [CentOS Install Guide](./centos-install-guide.html) for additional guidance if installing on CentOS.
+
 For Linux distributions other than RHEL, check Docker compatibility:
 
   * The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 17.12.1). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
     * At this time, the **18.x and higher Docker versions are not supported**
     * In Online mode, the installer will install Docker automatically
     * In Airgapped mode, Docker should be installed before you begin
-  * For _Redhat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
+  * For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
 
 ~> **Note**: It is not recommended to run Docker under a 2.x kernel.
 
