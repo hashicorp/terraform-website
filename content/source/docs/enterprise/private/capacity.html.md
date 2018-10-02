@@ -6,14 +6,14 @@ sidebar_current: "docs-enterprise2-private-installer-capacity"
 
 # Private Terraform Enterprise Installer - Capacity and Performance
 
-The maximum capacity and performance of Private Terraform Enterprise (PTFE) is dependend entirely upon the resources
+The maximum capacity and performance of Private Terraform Enterprise (PTFE) is dependent entirely upon the resources
 provided by the Linux instance it is installed upon. There are a few settings which allow the capacity to be adjusted
 as well.
 
 ## Memory + Concurrency
 
-The amonut of memory to allocate to a Terraform run and the number of concurrent runs are the primary elements in
-understand capacity.
+The amount of memory to allocate to a Terraform run and the number of concurrent runs are the primary elements in
+understanding capacity.
 
 By default, PTFE allocates *256MB* of memory to each Terraform run with a default concurrency of 10 parallel runs.
 Therefore, by default PTFE requires *2.6GB* of memory for just the runs themselves. Factor in memory needed to run
@@ -21,7 +21,7 @@ the services that makeup PTFE itself, and we get a base memory footprint of *4GB
 
 ## Increasing Capacity
 
-To increase the number of concurrent runs, the *Capacity* setting can be adjust. Note that this setting depends upon
+To increase the number of concurrent runs, the *Capacity* setting can be adjusted. Note that this setting depends upon
 the operator to have enough memory in the system to accomedate the requested capacity. For instance, if *Capacity* is
 set to *100*, the instance would require, at minumum, *26GB* of memory just for the runs.
 
@@ -53,7 +53,7 @@ of storage can sustain a capacity well over 100 concurrent runs.
 
 Because of the amount of churn caused by container creation as well as terraform state management, highly concurrent setups
 will begin pushing hard on disk I/O. In cloud environments like AWS that limit disk I/O to IOPS that are credited per disk,
-it's important to provisinion a minimum number to prevent I/O related stalls.
+it's important to provision a minimum number to prevent I/O related stalls.
 
 It's hard to predict because it varies per terraform module, but in general we suggest 35 IOPS per concurrent terraform run. So
 if an instance is configured for 20 concurrent runs, the disk should have 700 IOPS allocated. For reference, on AWS, an EBS volume
