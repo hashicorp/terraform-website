@@ -81,7 +81,7 @@ different approach to
 [recovering from failures](./reliability-availability.html#recovery-from-failures-1)
 and should be selected based on your organization's preferences. 
 
-~> **Note:** This decision should be made before you begin installation, because some modes have additional preflight requirements. 
+~> **Note:** This decision should be made before you begin installation, because some modes have additional preflight requirements that are detailed below.
 The operational mode is selected at install time and cannot be changed once the install is running.
 
 1. **Production - External Services** - This mode stores the majority of the
@@ -98,7 +98,8 @@ The operational mode is selected at install time and cannot be changed once the 
    etc. This option is best for users with experience mounting performant
    block storage.
 1. **Demo** - This mode stores all data on the instance. The data can be
-   backed up with the snapshot mechanism for restore later.
+   backed up with the snapshot mechanism for restore later. This option is best for initial
+   installation and testing, and is not recommended or supported for true production use.
 
 The decision you make will be entered during setup.
 

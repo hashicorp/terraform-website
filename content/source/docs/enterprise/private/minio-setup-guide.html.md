@@ -12,28 +12,28 @@ This document provides an overview for setting up [Minio](https://minio.io) for 
 
 ## Required Reading
 
-- Ensure you are familiar with PTFE's operation and [installation requirements](./installer.html), and especially the [Operational Mode Decision](./install-installer.html#operational-mode-decision).
+- Ensure you are familiar with PTFE's operation and [installation requirements](./installer.html), and especially the [Operational Mode Decision](./preflight-installer.html#operational-mode-decision).
 - Familiarize yourself with [Minio](https://minio.io).
 
 ## Overview
 
-When configured to use external services, PTFE must be connected to a storage service to persist workspace state and other file-based data.  Native support exists for Azure Blob Storage, Amazon S3, and services that are API-compatible with Amazon S3.  If you are not using Azure or a cloud provider with an S3-compatible service, or you are running PTFE in an environment without a storage service, it may be possible to use [Minio](https://minio.io) instead.
+When configured to use external services, PTFE must be connected to a storage service to persist workspace state and other file-based data. Native support exists for Azure Blob Storage, Amazon S3, and services that are API-compatible with Amazon S3. If you are not using Azure or a cloud provider with an S3-compatible service, or you are running PTFE in an environment without a storage service, it may be possible to use [Minio](https://minio.io) instead.
 
 ## Installation
 
 ~> **Note:** This is not a production-ready configuration: it's intended to guide you to a working configuration that can later be automated and hardened.
 
-This guide will walk through installing Minio in a Docker container alongside PTFE on the same host, with PTFE configured in the "Production - External Services" [operational mode](./install-installer.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc.  It is assumed your instance will have access to the Internet and that you will be performing an online install of PTFE.
+This guide will walk through installing Minio in a Docker container alongside PTFE on the same host, with PTFE configured in the "Production - External Services" [operational mode](./preflight-installer.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc. The guide assumes your instance will have access to the Internet and that you will be performing an online install of PTFE.
 
 ### System preparation
 
-Ensure your Linux instance meets the [requirements](./install-installer.html#linux-instance).  You will need [jq](https://stedolan.github.io/jq/) (a command-line JSON processor), and the [AWS CLI](https://aws.amazon.com/cli/).
+Ensure your Linux instance meets the [requirements](./preflight-installer.html#linux-instance). You will need [jq](https://stedolan.github.io/jq/) (a command-line JSON processor), and the [AWS CLI](https://aws.amazon.com/cli/).
 
-You also need a PostgreSQL database that meets the [requirements](./install-installer.html#postgresql-requirements), as this is part of the external services operational mode.
+You also need a PostgreSQL database that meets the [requirements](./preflight-installer.html#postgresql-requirements), as this is part of the external services operational mode.
 
 ### PTFE installation
 
-Begin with an [online installation](./install-installer.html#run-the-installer-online).  Once the installation script has finished and you're presented with the following text, move on to the next section:
+Begin with an [online installation](./install-installer.html#run-the-installer-online). Once the installation script has finished and you're presented with the following text, move on to the next section:
 
 ```
 To continue the installation, visit the following URL in your browser:
@@ -67,7 +67,7 @@ You now need to collect several pieces of information about your running Minio i
 
 ### Create a bucket
 
-Like S3, Minio does not automatically create buckets.  Use the AWS CLI to create a bucket named `ptfe` that will be used to store data:
+Like S3, Minio does not automatically create buckets. Use the AWS CLI to create a bucket named `ptfe` that will be used to store data:
 
 ```bash
 export AWS_ACCESS_KEY_ID="<access key from above>"
@@ -78,7 +78,7 @@ aws --region us-east-1 --endpoint-url http://<ip address from above>:9000 s3 mb 
 
 ### PTFE installation
 
-You may now [continue the installation in the browser](./install-installer.html#continue-installation-in-browser). When you arrive at the Operational Mode choice in the installer then follow these steps:
+You may now [continue the installation in the browser](./install-installer.html#continue-installation-in-browser). When you arrive at the Operational Mode choice in the installer, follow these steps:
 
 1. Choose the "Production" installation type
 2. Choose the "External Services" production type
