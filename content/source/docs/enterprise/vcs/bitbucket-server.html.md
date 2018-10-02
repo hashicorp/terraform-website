@@ -13,7 +13,7 @@ Note that Bitbucket Server requires both OAuth authentication and an SSH key. Th
 
 -> **Version note:** TFE supports Bitbucket Server versions 4.9.1 and newer. We do not test older versions of Bitbucket Server with TFE, and they might not work as expected.
 
-~> **Important:** TFE needs to contact your Bitbucket Server instance during setup and during normal operation. For the SaaS version of TFE, this means Bitbucket Server must be internet-accessible; for private installs of TFE, you must have network connectivity between your TFE and Bitbucket Server instances.
+~> **Important:** TFE needs to contact your Bitbucket Server instance during setup and during normal operation. For the SaaS version of TFE, this means Bitbucket Server must be internet-accessible; for private installs of TFE, you must have network connectivity between your TFE and Bitbucket Server instances over HTTP or HTTPS and SSH. Bitbucket Server repository clone operations are performed over SSH on the port the Bitbucket Server instance uses.
 
 -> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
 
@@ -49,7 +49,7 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 2. The next page has a drop-down and several text fields. Select "Bitbucket Server" from the drop-down. Several text fields will vanish, leaving only two. Enter the URL of your Bitbucket Server instance in both fields. The API URL should be the same as the main URL.
 
-    ~> **Note:** If you omit the port in the URL, TFE uses the standard port for the protocol (80 for HTTP, 443 for HTTPS). If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL.
+    ~> **Note:** If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL. If you omit the port in the URL, TFE uses the standard port for the protocol (80 for HTTP, 443 for HTTPS).
 
     ![TFE screenshot: text fields for adding a Bitbucket Server VCS provider](./images/bitbucket-server-tfe-add-client-fields.png)
 
