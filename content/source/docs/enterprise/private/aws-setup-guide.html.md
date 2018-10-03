@@ -31,8 +31,8 @@ Services_ operational mode.
 Depending on the chosen [operational
 mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single AWS EC2 instance
-for demo installations to multiple instances connected to RDS, S3, and an
-external Vault cluster for a stateless production installation.
+for demo installations to multiple instances connected to RDS and S3 for a
+stateless production installation.
 
 The following table provides high-level server guidelines. Of particular
 note is the strong recommendation to avoid non-fixed performance CPUs,
@@ -77,21 +77,10 @@ application. This S3 bucket must be in the same region as the EC2 and RDS
 instances. It is recommended the VPC containing the PTFE servers be configured
 with a [VPC endpoint for
 S3](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html).
-Vault is used to encrypt all application data stored in the S3 bucket.  This
+Within the PTFE application, Vault is used to encrypt all application data stored in the S3 bucket.  This
 allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy.
-
-### Vault Cluster
-
-In order to provide a fully stateless application instance, PTFE must be
-configured to speak with an [external Vault
-cluster](https://www.terraform.io/docs/enterprise/private/vault.html).  This
-reference architecture assumes that a highly available Vault cluster is
-accessible at an endpoint the PTFE servers can reach.
-
-For more information on setting up an external Vault cluster, please visit the [Vault 
-Reference Architecture](https://www.vaultproject.io/guides/operations/reference-architecture.html).
 
 ### Other Considerations
 
@@ -148,25 +137,6 @@ certificate codified during an unattended installation.
 
 HashiCorp does not recommend the use of self-signed certificates.  
 
-## Infrastructure Diagrams
-
-Below are two recommended infrastructure modes for PTFE, including a brief description of each.
-
-### Load Balancer Mode
-
-![aws-infrastructure-diagram-elb](./assets/aws-setup-guide-ptfe-elb.png)
-
-In this design, we employ an AWS ELB or ALB to control primary/standby and traffic routing. ELB Configuration or
-target group membership is used to designate the active node, and failover is managed manually by the operator.
-Load balancers are configured in TCP passthrough so that SSL termination can occur on the Terraform instances directly.
-
-### DNS Failover Pair Mode
-
-![aws-infrastructure-diagram-route53](./assets/aws-setup-guide-ptfe-route53.png)
-
-In this design, Route 53 Failover Pairs and Health Checks are used to automatically switch over to the standby instance
-in the case of a master node failure. No human intervention is required to complete the failover action.
-
 ### Application Layer
 
 The Application Layer is composed of two PTFE servers (EC2 instances)
@@ -175,18 +145,15 @@ configuration. Traffic is routed only to *PTFE-main* via one of the above infras
 
 ### Storage Layer
 
-The Storage Layer is composed of multiple service endpoints (RDS, S3,
-Vault) all configured with or benefiting from inherent resiliency
-provided by AWS (in the case of RDS and S3) or resiliency provided by a
-well-architected deployment (in the case of Vault).
+The Storage Layer is composed of multiple service endpoints (RDS, S3) all
+configured with or benefiting from inherent resiliency
+provided by AWS.
 
 #### Additional Information
 
 - [RDS Multi-AZ deployments](https://aws.amazon.com/rds/details/multi-az/).
 
 - [S3 Standard storage class](https://aws.amazon.com/s3/storage-classes/).
-
-- [Highly available Vault deployments](https://www.vaultproject.io/guides/operations/vault-ha-consul.html)
 
 ## Infrastructure Provisioning
 
@@ -206,8 +173,8 @@ as well.
 
 ### Component Interaction
 
-The Load Balancer routes all traffic to the *PTFE-main* instance, which
-in turn handles all requests to the PTFE application.
+The Load Balancer routes all traffic to the *PTFE* instance, which is managed by
+an Auto Scaling Group with maximum and minimum instance counts set to 1.
 
 The PTFE application is connected to the PostgreSQL database via the RDS
 Multi-AZ endpoint and all database requests are routed via the RDS
@@ -216,9 +183,6 @@ Multi-AZ endpoint to the *RDS-main* database instance.
 The PTFE application is connected to object storage via the S3 endpoint
 for the defined bucket and all object storage requests are routed to the
 highly available infrastructure supporting S3.
-
-The PTFE application is connected to the Vault cluster via the Vault
-cluster endpoint URL.
 
 ### Upgrades
 
@@ -239,60 +203,39 @@ higher level of service continuity.
 
 #### Single EC2 Instance Failure
 
-In the event of the *PTFE-main* instance failing in a way that AWS can
-observe, a CloudWatch alarm can trigger [EC2
-instance
-recovery](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html)
-automatically. This would result in the EC2 instance being started on
-different physical hardware. A recovered instance is identical to the
-original instance, including the instance ID, private IP addresses,
-Elastic IP addresses, and all instance metadata. Once the EC2 instance
-is running again service would resume as normal.
+In the event of the *PTFE* instance failing in a way that AWS can
+observe, the health checks on the Auto Scaling Group trigger, causing
+a new instance to be launched. Once the new EC2 instance is launched,
+it reinitializes the software and once that is complete, service would
+resume as normal.
 
 #### Availability Zone Failure
 
 In the event of the Availability Zone hosting the main instances (EC2
-and RDS) failing, traffic must be routed to the standby instances to
-resume service.
-
-- If using a load balancer, the listener must be reconfigured to direct traffic to
-  the *PTFE-standby* instance. This can be managed manually or automated.
-
-- If using Route 53, no action is necessary, as the health checks will
-  automatically change the CNAME pointer to the healthy standby instance.
+and RDS) failing, the Auto Scaling Group for the EC2 instance will automatically
+begin booting a new one in an operational AZ.
 
 - Multi-AZ RDS automatically fails over to the RDS Standby Replica
   (*RDS-standby*). The [AWS documentation provides more
   detail](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)
   on the exact behaviour and expected impact.
 
-- Both S3 and Vault are resilient to Availability Zone failure based
-  on their architecture.
+- S3 is resilient to Availability Zone failure based on its architecture.
 
 See below for more detail on how each component handles Availability
 Zone failure.
 
-##### PTFE Servers
+##### PTFE Server
 
-Through deployment of two EC2 instances in different availability zones, the
-PTFE Reference Architecture is designed in accordance with the [Reliability
-Pillar of the AWS
-Well-Architected](https://d1.awsstatic.com/whitepapers/architecture/AWS-Reliability-Pillar.pdf)
-framework to provide improved availability and reliability. Should the
-*PTFE-main* server fail, it can be automatically recovered, or traffic can be
-routed to the *PTFE-standby* server to resume service when the failure is
-limited to the PTFE server layer.
+By utilizing an Auto Scaling Group, the PTFE instance automatically recovers
+in the event of any outage except for the loss of an entire region.
 
-With external services (PostgreSQL Database, Object Storage, Vault) in use,
+With external services (PostgreSQL Database, Object Storage) in use,
 there is still some application configuration data present on the PTFE server
 such as installation type, database connection settings, hostname. This data
-rarely changes. If the application configuration has not changed since
-installation, both *PTFE-main* and *PTFE-standby* will be using the same
-configuration and no action is required. If the configuration on *PTFE-main*
-changes you should [create a
-snapshot](https://www.terraform.io/docs/enterprise/private/automated-recovery.html#1-configure-snapshots)
-via the UI or CLI and recover this to *PTFE-standby* so both instances use the
-same configuration.
+rarely changes. If the configuration on *PTFE* changes you should update the
+Launch Configuration to include this updated configuration so that any newly
+launched EC2 instance uses this new configuration.
 
 ##### PostgreSQL Database
 
@@ -317,14 +260,6 @@ From the AWS website:
 > 99.999999999% of durability. Data is automatically distributed across
 > a minimum of three physical facilities that are geographically
 > separated within an AWS Region. ([source](https://aws.amazon.com/s3/))*
-
-##### Vault Cluster
-
-For the purposes of this guide, the external Vault cluster is expected
-to be deployed and configured in line with the [HashiCorp Vault Enterprise Reference
-Architecture](https://www.vaultproject.io/guides/operations/reference-architecture.html).
-This would provide high availability and disaster recovery support,
-minimising downtime in the event of an outage.
 
 ## Disaster Recovery
 
@@ -357,19 +292,17 @@ it along with some global services such as DNS.
 
 - [S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) must be configured so the object storage component of the Storage Layer is available in the secondary AWS Region.
 
-- [Vault Disaster Recovery (DR) Replication](https://www.vaultproject.io/docs/enterprise/replication/index.html#performance-replication-and-disaster-recovery-dr-replication) must be configured for a Vault cluster in the secondary AWS Region.
-
 - DNS must be redirected to the Load Balancer acting as the entry point for the infrastructure deployed in the secondary AWS Region.
 
 #### Data Corruption
 
 The PTFE application architecture relies on multiple service endpoints
-(RDS, S3, Vault) all providing their own backup and recovery
+(RDS, S3) all providing their own backup and recovery
 functionality to support a low MTTR in the event of data corruption.
 
 ##### PTFE Servers
 
-With external services (PostgreSQL Database, Object Storage, Vault) in
+With external services (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
 PTFE server such as installation type, database connection settings,
 hostname. This data rarely changes. We recommend [configuring automated
@@ -410,10 +343,3 @@ Standard. From the AWS website:
 > storage price and per GB retrieval fee. This combination of low cost
 > and high performance make S3 Standard-IA ideal for long-term storage,
 > backups, and as a data store for disaster recovery. ([source](https://aws.amazon.com/s3/storage-classes/))*
-
-##### Vault Cluster
-
-The recommended Vault Reference Architecture uses Consul for storage.
-Consul provides the underlying [snapshot
-functionality](https://www.consul.io/docs/commands/snapshot.html)
-to support Vault backup and recovery.
