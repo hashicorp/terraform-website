@@ -27,6 +27,11 @@ The Best Practices section is a work in progress, with more sections to come.
 
 ## Naming
 
+Most names in a Terraform provider will be drawn from the upstream API/SDK that 
+the provider is using. The upstream API names will likely need to be 
+modified for casing or changing between plural and singular to make 
+the provider more consistent with the common Terraform practices below.
+
 ### Resource Names
 
 Resource names are nouns, since resource blocks each represent a single
@@ -106,6 +111,8 @@ in the above example. The patterns described above can also apply to such
 sub-blocks. Sub-blocks are usually introduced by a singular noun, even if
 multiple instances of the same-named block are accepted, since each distinct
 instance represents a single object.
+
+
 
 ## Deprecations, Removals, and Renames
 
