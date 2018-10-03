@@ -9,9 +9,9 @@ description: |-
 
 # Terraform Plugin Best Practices
 
-A key feature of Terraform is its plugin system, separating the logic of
-managing state, configuration, and providing safe plan and apply lifecycle
-management, from the details of specific vendor APIs. Plugins are responsible
+A key feature of Terraform is its plugin system, which separates the details of 
+specific vendor APIs from the shared logic for managing state, managing configuration, 
+and providing a safe plan and apply lifecycle. Plugins are responsible
 for the  implementation of functionality for provisioning resources for a
 specific cloud provider, allowing each provider to fully support its unique
 resources and lifecycles and not settling for the lowest common denominator
@@ -19,7 +19,7 @@ across all provider resources of that type (virtual machines, networks,
 configuration management systems, et. al). While each provider is unique, over
 the years we’ve accumulated some patterns that should be adhered to, to
 ensure a consistent user experience when using Terraform for any given provider.
-Listed below are a few best practices we’ve found that generally apply most
+Listed below are a few best practices we’ve found that generally apply to most
 Providers, with a brief description of each, and link to read more. Each
 practice is also linked in navigation on the left.
 
