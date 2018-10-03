@@ -6,9 +6,9 @@ sidebar_current: "docs-enterprise2-sentinel-examples"
 
 # Example policies
 
-This page contains some example Sentinel policies. Note that these examples
-demonstrate some very common use cases of Sentinel with Terraform Enterprise
-and are far from exhaustive.
+This page lists some example Sentinel policies. These examples are not exhaustive, but they demonstrate some of the most common use cases of Sentinel with Terraform Enterprise.
+
+~> **Important:** These examples are a demonstration of Sentinel's features. They should not be used verbatim in your Terraform Enterprise organization. Make sure you fully understand the intent and behavior of a policy before relying on it in production.
 
 ### Amazon Web Services
 
