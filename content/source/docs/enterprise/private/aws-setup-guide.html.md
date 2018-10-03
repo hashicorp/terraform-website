@@ -186,9 +186,7 @@ highly available infrastructure supporting S3.
 
 ### Upgrades
 
-See [the upgrading
-section](https://www.terraform.io/docs/enterprise/private/install-installer.html#upgrading)
-of the installation guide.
+See [the upgrading section](./upgrades.html) of the installation guide.
 
 ## High Availability
 
