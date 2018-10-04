@@ -13,9 +13,12 @@ This install guide is specifically for users of Private Terraform Enterprise ins
 * RedHat Enterprise Linux version 7.3 or later.
 * Docker 1.13.1 (available in RHEL extras), or Docker EE version 17.06 or later. The later versions are not available in the standard RHEL yum repositories.
    * For Docker EE, there are explicit RHEL instructions to follow: https://docs.docker.com/install/linux/docker-ee/rhel/ 
+   * For Docker from RHEL extras, the following should enable the RHEL extras repository:
+      * `yum-config-manager --enable rhel-7-server-extras-rpms` or on AWS `yum-config-manager --enable rhui-REGION-rhel-server-extras`
 * A properly configured docker storage backend, either:
    * Devicemapper configured for production usage, according to the Docker documentation: https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production. This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
    * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag ftype=1. The full documentation on this configuration is at: https://docs.docker.com/storage/storagedriver/overlayfs-driver/
+   * If using Docker from RHEL Extras, storage can be configured using the `docker-storage-setup` command
 
 ## Mandatory Configuration
 
