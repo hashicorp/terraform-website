@@ -27,7 +27,7 @@ The Best Practices section is a work in progress, with more sections to come.
 
 ## Naming
 
-[Naming](naming) resources, data sources, and attributes in plugins is how plugin authors
+[Naming][naming] resources, data sources, and attributes in plugins is how plugin authors
 expose their functionality to operators and using patterns common to other plugins
 lays the foundation for a good user experience.
 
