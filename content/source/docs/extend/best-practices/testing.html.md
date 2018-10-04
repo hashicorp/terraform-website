@@ -63,11 +63,13 @@ correctly create the resource, and that resources attributes are what Terraform
 expects them to be. At a high level, the first basic test for a resource should
 establish the following:
 
-Terraform can plan and apply a common resource configuration without error
-Verify the expected attributes are saved to state, and contain the values
-expected. Verify the values in the remote API/Service for the resource match
-what is stored in state Verify that a subsequent terraform plan does not produce
-a diff/change
+- Terraform can plan and apply a common resource configuration without error.
+- Verify the expected attributes are saved to state, and contain the values
+expected. 
+- Verify the values in the remote API/Service for the resource match
+what is stored in state. 
+- Verify that a subsequent terraform plan does not produce
+a diff/change.
 
 The first and last item are provided by the test framework as described above in
 **Built-in Patterns**. The middle items are implemented by composing a series of

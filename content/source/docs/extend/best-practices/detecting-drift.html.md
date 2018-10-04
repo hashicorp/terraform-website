@@ -9,7 +9,7 @@ description: |-
 
 # Detecting Drift
 
-One of the core challenges of infrastructure as code is keeping an up to date
+One of the core challenges of infrastructure as code is keeping an up-to-date
 record of all deployed infrastructure and their properties. Terraform manages
 this by maintaining state information in a single file, called the state file. 
 
@@ -20,13 +20,13 @@ Terraform will be detected as deviation by Terraform and shown as a diff in
 future runs of `terraform plan`. This type of change is referred to as "drift",
 and its detection is an important responsibility of Terraform in order to inform
 users of changes in their infrastructure. Here are a few techniques for
-developers to ensure drift is detected
+developers to ensure drift is detected.
 
 ## Capture all state in READ
 
 A provider's `READ` method is where state is synchronized from the remote API to
 Terraform state. It's essential that all attributes defined in the schema are
-recorded and kept up to date in state. Consider this provider code:
+recorded and kept up-to-date in state. Consider this provider code:
 
 ```go
 // resource_example_simple.go
@@ -70,7 +70,7 @@ resource "simple" "ex" {
 ```
 
 Even though `type` is omitted from the config, it is vital that we record it
-into state in the `READ` function, as the Backend API could set it to a default
+into state in the `READ` function, as the backend API could set it to a default
 value. To illustrate the importance of capturing all state consider a
 configuration that interpolates the optional value into another resource:
 
@@ -90,7 +90,7 @@ A provider's `CREATE` and `UPDATE` functions will create or modify resources on
 the remote API. APIs might perform things like provide default values for
 unspecified attributes (as described in the above example config/provider code),
 or normalize inputs (lower or upper casing all characters in a string). The end
-result is a Backend API containing modified versions of values that Terraform
+result is a backend API containing modified versions of values that Terraform
 has in its state locally. Immediately after creation or updating of a resource,
 Terraform will have a stale state, which will result in a detected deviation on
 subsequent `plan` or `apply`s, as Terraform refreshes its state and wants to
