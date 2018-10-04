@@ -25,6 +25,12 @@ practice is also linked in navigation on the left.
 
 This section is a work in progress, with more sections to come.
 
+## Naming
+
+[Naming][naming] resources, data sources, and attributes in plugins is how plugin authors
+expose their functionality to operators and using patterns common to other plugins
+lays the foundation for a good user experience.
+
 ## Deprecations, Removals, and Renames
 
 Over time, remote services evolve and better workflows are designed.
@@ -61,6 +67,7 @@ documenting those changes, a trust is formed between the two audiences. In
 [Versioning and Changelog][versioning] we cover some guidelines when deciding
 release versions and how to relay changes through documentation.
 
+[naming]: /docs/extend/best-practices/naming.html
 [deprecations]: /docs/extend/best-practices/deprecations.html
 [drift]: /docs/extend/best-practices/detecting-drift.html
 [testing-patterns]: /docs/extend/best-practices/testing.html
