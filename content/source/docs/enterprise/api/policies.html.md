@@ -47,14 +47,15 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-Key path                         | Type            | Default          | Description
----------------------------------|-----------------|------------------|------------
-`data.type`                      | string          |                  | Must be `"policies"`.
-`data.attributes.name`           | string          |                  | The name of the policy, which cannot be modified after creation. Can include letters, numbers, `-`, and `_`.
-`data.attributes.enforce`        | array\[object\] |                  | An array of enforcement configurations which map Sentinel file paths to their enforcement modes. Currently policies only support a single file, so this array will consist of a single element. If the path in the enforcement map does not match the Sentinel policy (`<NAME>.sentinel`), then the default `hard-mandatory` will be used.
+Key path                                | Type            | Default          | Description
+----------------------------------------|-----------------|------------------|------------
+`data.type`                             | string          |                  | Must be `"policies"`.
+`data.attributes.name`                  | string          |                  | The name of the policy, which cannot be modified after creation. Can include letters, numbers, `-`, and `_`.
+`data.attributes.enforce`               | array\[object\] |                  | An array of enforcement configurations which map Sentinel file paths to their enforcement modes. Currently policies only support a single file, so this array will consist of a single element. If the path in the enforcement map does not match the Sentinel policy (`<NAME>.sentinel`), then the default `hard-mandatory` will be used.
 
-`data.attributes.enforce[].path` | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` has the same value as `data.attributes.name`.
-`data.attributes.enforce[].mode` | string          | `hard-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
+`data.attributes.enforce[].path`        | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` has the same value as `data.attributes.name`.
+`data.attributes.enforce[].mode`        | string          | `hard-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
+`data.relationships.policy-sets.data[]` | array\[object\] | `[]`             | A list of resource identifier objects to define which policy sets the new policy will be a member of. These objects must contain `id` and `type` properties, and the `type` property must be `policy-sets` (e.g. `{"id":"polset-3yVQZvHzf5j3WRJ1","type":"policy-sets"}`).
 
 
 ### Sample Payload
@@ -71,7 +72,14 @@ Key path                         | Type            | Default          | Descript
       ],
       "name": "my-example-policy"
     },
-    "type":"policies"
+    "relationships": {
+      "policy-sets": {
+        "data": [
+          { "id": "polset-3yVQZvHzf5j3WRJ1", "type": "policy-sets" }
+        ]
+      }
+    },
+    "type": "policies"
   }
 }
 ```
@@ -102,7 +110,18 @@ curl \
           "mode":"advisory"
         }
       ],
+      "policy-set-count": 1,
       "updated-at": null
+    },
+    "relationships": {
+      "organization": {
+        "data": { "id": "my-organization", "type": "organizations" }
+      },
+      "policy-sets": {
+        "data": [
+          { "id": "polset-3yVQZvHzf5j3WRJ1", "type": "policy-sets" }
+        ]
+      }
     },
     "links": {
       "self":"/api/v2/policies/pol-u3S5p2Uwk21keu1s",
@@ -154,7 +173,18 @@ curl --request GET \
             "mode": "soft-mandatory"
         }
       ],
+      "policy-set-count": 1,
       "updated-at": "2018-09-11T18:21:21.784Z"
+    },
+    "relationships": {
+      "organization": {
+        "data": { "id": "my-organization", "type": "organizations" }
+      },
+      "policy-sets": {
+        "data": [
+          { "id": "polset-3yVQZvHzf5j3WRJ1", "type": "policy-sets" }
+        ]
+      }
     },
     "links": {
       "self": "/api/v2/policies/pol-oXUppaX2ximkqp8w",
@@ -280,7 +310,13 @@ curl \
           "mode":"soft-mandatory"
         }
       ],
+      "policy-set-count": 0,
       "updated-at":"2017-10-10T20:58:04.621Z"
+    },
+    "relationships": {
+      "organization": {
+        "data": { "id": "my-organization", "type": "organizations" }
+      },
     },
     "links": {
       "self":"/api/v2/policies/pol-u3S5p2Uwk21keu1s",
@@ -305,6 +341,16 @@ Status  | Response                                             | Reason
 [404][] | [JSON API error object][]                            | Organization not found, or user unauthorized to perform action
 [422][] | [JSON API error object][]                            | Malformed request body (missing attributes, wrong types, etc.)
 
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter      | Description
+---------------|------------
+`page[number]` | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 20 policies per page.
+`search[name]` | **Optional.** Allows searching the organization's policies by name.
+
 ### Sample Request
 
 ```shell
@@ -317,27 +363,33 @@ curl \
 
 ```json
 {
-    "data": [
-        {
-            "attributes": {
-                "enforce": [
-                    {
-                        "mode": "advisory",
-                        "path": "my-example-policy.sentinel"
-                    }
-                ],
-                "name": "my-example-policy",
-                "updated-at": "2017-10-10T20:52:13.898Z"
-            },
-            "id": "pol-u3S5p2Uwk21keu1s",
-            "links": {
-                "download": "/api/v2/policies/pol-u3S5p2Uwk21keu1s/download",
-                "self": "/api/v2/policies/pol-u3S5p2Uwk21keu1s",
-                "upload": "/api/v2/policies/pol-u3S5p2Uwk21keu1s/upload"
-            },
-            "type": "policies"
-        }
-    ]
+  "data": [
+    {
+      "attributes": {
+        "enforce": [
+          {
+            "mode": "advisory",
+            "path": "my-example-policy.sentinel"
+          }
+        ],
+        "name": "my-example-policy",
+        "policy-set-count": 0,
+        "updated-at": "2017-10-10T20:52:13.898Z"
+      },
+      "id": "pol-u3S5p2Uwk21keu1s",
+      "relationships": {
+        "organization": {
+          "data": { "id": "my-organization", "type": "organizations" }
+        },
+      },
+      "links": {
+        "download": "/api/v2/policies/pol-u3S5p2Uwk21keu1s/download",
+        "self": "/api/v2/policies/pol-u3S5p2Uwk21keu1s",
+        "upload": "/api/v2/policies/pol-u3S5p2Uwk21keu1s/upload"
+      },
+      "type": "policies"
+    }
+  ]
 }
 ```
 
@@ -368,3 +420,8 @@ curl \
   https://app.terraform.io/api/v2/policies/pl-u3S5p2Uwk21keu1s
 ```
 
+## Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+* `policy-sets` - Policy sets that any returned policies are members of.
