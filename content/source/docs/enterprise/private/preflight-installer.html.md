@@ -12,12 +12,14 @@ Before installing the Private Terraform Enterprise software, you'll need to prep
 
 * TLS private key and certificate
   * The installer allows for using a certificate signed by a public or private CA. If you do not use a trusted certificate, your VCS provider will likely reject that certificate when sending webhooks. The key and X.509 certificate should both be PEM (base64) encoded.
-* License key (provided by HashiCorp)
+* License file (provided by HashiCorp)
 
 ~> **Note:** If you use a certificate issued by a private Certificate
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
    running within PTFE to access each other properly.
+   See [Installation: Trusting SSL/TLS Certificates](./install-installer#trusting-ssl-tls-certificates)
+   for more on this.
 
 ## Linux Instance
 
@@ -81,7 +83,7 @@ Terraform Enterprise can store its state in a few different ways, and you'll
 need to decide which works best for your installation. Each option has a
 different approach to
 [recovering from failures](./reliability-availability.html#recovery-from-failures-1)
-and should be selected based on your organization's preferences. 
+and should be selected based on your organization's preferences.
 
 ~> **Note:** This decision should be made before you begin installation, because some modes have additional preflight requirements that are detailed below.
 The operational mode is selected at install time and cannot be changed once the install is running.
@@ -164,6 +166,6 @@ note an additional restriction on the `sslmode` parameter is that only the
 
 If you choose to run the instance in the Production operational mode, during the installation, you can also choose to use an external Vault cluster, rather than the default internal Vault provided by PTFE.
 
-~> **Note:** This option is also selected at initial installation, and cannot be changed later. 
+~> **Note:** This option is also selected at initial installation, and cannot be changed later.
 
 If you will want to use an external Vault cluster when running Terraform Enterprise in production, select that option when initially switching to the Production operational mode. See [Externally Managed Vault Cluster](./vault.html) for more information on what this option requires.
