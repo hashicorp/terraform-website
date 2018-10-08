@@ -68,7 +68,7 @@ To protect these secrets, you can mark any any Terraform or environment variable
 
 Marking a variable as sensitive prevents anybody (including you) from viewing its value in TFE's UI or API.
 
-Users with edit permissions can set new values for sensitive variables. However, no one can change a sensitive variable's key, hcl flag, nor change a senstive variable into a non-sensitive one. (If a variable was accidentally marked sensitive, you can delete it and create a new variable to replace it.)
+Users with edit permissions can set new values for sensitive variables. No other attribute of a sensitive variable can be modified. To update other attributes, delete the variable and create a new variable to replace it.
 
 ~> **Important:** Terraform runs will receive the full text of sensitive variables, and might print the value in logs if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations to avoid unnecessary credential disclosure.
 
