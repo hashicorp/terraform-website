@@ -45,7 +45,7 @@ modify some Terraform modules again to match the modifications you made in the p
 
 Before you begin, consult [Preflight](./preflight-installer.html) for pre-requisites for the installer setup. You'll need to prepare data files and a Linux instance.
 
-### Proxy Usage
+## Proxy Usage
 
 If your installation requires using a proxy server, you will be asked for the proxy server information when you first
 run the installer via `ssh`. This proxy server will be used for all outbound HTTP and HTTPS connections.
@@ -57,7 +57,7 @@ the address of the proxy. For example:
 ./install.sh http-proxy=http://internal.mycompany.com:8080
 ```
 
-#### Proxy Exclusions (NO\_PROXY)
+### Proxy Exclusions (NO\_PROXY)
 
 If certain hostnames should not use the proxy and the instance should connect directly to them (for instance for S3), then you can pass an additional option to provide a list of domains:
 
@@ -67,7 +67,7 @@ If certain hostnames should not use the proxy and the instance should connect di
 
 Passing this option to the installation script is particularly useful if the hostnames that should not use the proxy include services that the instance needs to be able to reach during installation, such as S3. Alternately, if the only hosts you need to add are those that are not used during installation, such as a private VCS instance, you can provide these hosts after initial installation is complete, in the installer settings (available on port 8800 under `/console/settings`).
 
-#### Reconfiguring the Proxy
+### Reconfiguring the Proxy
 
 To change the proxy settings after installation, use the Console settings page, accessed from the dashboard on port 8800 under `/console/settings`.
 
@@ -77,14 +77,31 @@ On the Console Settings page, there is a section for HTTP Proxy:
 
 ![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
 
-#### Trusting SSL/TLS Certificates
+## Trusting SSL/TLS Certificates
 
-The installer has a section that allows multiple certificates to be specified as trusted.
-A collection of certificates for trusted issuers are known as a `Certificate Authority (CA) Bundle` and are
-used to allow PTFE to connect to services that use SSL/TLS certificates issued by private CAs.
+There are two primary areas for SSL configuration in the installer.
 
+### TLS Key & Cert
+
+The TLS Key & Cert field (found in the console settings after initial installation) should contain PTFE's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates a chain is required.
+
+### Certificate Authority (CA) Bundle
+
+PTFE needs to be able to access all services that it integrates with, such as VCS providers.
+Because it typically accesses them via SSL/TLS, it is critical that the certificates used by any service
+that PTFE integrates with are trusted by PTFE.
+
+This section is used to allow PTFE to connect to services that use SSL/TLS certificates issued by private CAs.
+It allows multiple certificates to be specified as trusted, and should contain all certificates that PTFE
+should trust when presented with them from itself or another application.
+
+A collection of certificates for trusted issuers is known as a `Certificate Authority (CA) Bundle`.
 All certificates in the certificate signing chain, meaning the root certificate and any intermediate certificates,
 must be included here. These multiple certificates are listed one after another in text format.
+
+~> **Note:** If PTFE is configured with a SSL key and certificate issued against a private CA,
+   the certificate chain for that CA must be included here as well. This allows the instance
+   to query itself.
 
 Certificates must be formatted using PEM encoding, that is, as text. For example:
 
@@ -108,17 +125,7 @@ The UI to upload these certificates looks like:
 
 ![ptfe-ca-ui](./assets/ptfe-ca-bundle.png)
 
-~> **Note:** PTFE needs to be able to access all services that it integrates with, such as VCS providers,
-   terraform providers, etc. Because it typically accesses them via SSL/TLS, it is critical that the
-   certificates used by any service that is accessed is trusted by PTFE. This means properly configuring
-   the `Certificate Authority (CA) Bundle` option so that PTFE can properly trust any certificates
-   issued by private CAs.
-
-~> **Note:** If PTFE is configured with a SSL key and certificate issued against a private CA,
-   the certificate chain for that CA must be included here as well. This allows the instance
-   to properly query itself.
-
-### Operational Mode
+## Operational Mode
 
 As you are migrating from the AMI, you'll be using **Production - External Services** to
 access the data previously managed by the AMI-based installation. This means using RDS for
