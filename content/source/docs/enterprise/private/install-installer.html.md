@@ -26,9 +26,7 @@ use the instuctions in the [migration guide](./migrate.html).
 
 Before you begin, consult [Preflight](./preflight-installer.html) for pre-requisites. You'll need to prepare data files and a Linux instance.
 
-## Installation
-
-### Proxy Usage
+## Proxy Usage
 
 If your installation requires using a proxy server, you will be asked for the proxy server information when you first
 run the installer via `ssh`. This proxy server will be used for all outbound HTTP and HTTPS connections.
@@ -40,7 +38,7 @@ the address of the proxy. For example:
 ./install.sh http-proxy=http://internal.mycompany.com:8080
 ```
 
-#### Proxy Exclusions (NO\_PROXY)
+### Proxy Exclusions (NO\_PROXY)
 
 If certain hostnames should not use the proxy and the instance should connect directly to them (for instance, for S3), then you can pass an additional option to provide a list of domains:
 
@@ -50,7 +48,7 @@ If certain hostnames should not use the proxy and the instance should connect di
 
 Passing this option to the installation script is particularly useful if the hostnames that should not use the proxy include services that the instance needs to be able to reach during installation, such as S3. Alternately, if the only hosts you need to add are those that are not used during installation, such as a private VCS instance, you can provide these hosts after initial installation is complete, in the installer settings (available on port 8800 under `/console/settings`).
 
-#### Reconfiguring the Proxy
+### Reconfiguring the Proxy
 
 To change the proxy settings after installation, use the Console settings page, accessed from the dashboard on port 8800 under `/console/settings`.
 
@@ -60,7 +58,7 @@ On the Console Settings page, there is a section for HTTP Proxy:
 
 ![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
 
-#### Trusting SSL/TLS Certificates
+## Trusting SSL/TLS Certificates
 
 The installer has a section that allows multiple certificates to be specified as trusted.
 A collection of certificates for trusted issuers is known as a `Certificate Authority (CA) Bundle` and is
@@ -101,7 +99,7 @@ The UI to upload these certificates looks like:
    the certificate chain for that CA must be included here as well. This allows the instance
    to query itself.
 
-### Operational Mode Decision
+## Operational Mode Decision
 
 Terraform Enterprise can store its state in a few different ways, and you'll
 need to decide which works best for your installation. Each option has a
@@ -115,6 +113,8 @@ for more details.
 
 The installer can run in two modes, Online or Airgapped. Each of these modes has a different way of executing the installer, but the result is the same.
 
+~> **Note:** After running the installation script, the remainder of the installation is done through a browser using the installer dashboard on port 8800 of the TFE instance. To complete the installation, you must be able to connect to that port via HTTPS. The installer uses an internal CA to issue bootstrap certificates, so you will see a security warning when first connecting, and you'll need to proceed with the connection anyway.
+
 ### Run the Installer - Online
 
 If your instance can access the Internet, use the Online install mode.
@@ -125,8 +125,7 @@ If your instance can access the Internet, use the Online install mode.
 1. The installation will take a few minutes and you'll be presented with a message
     about how and where to access the rest of the setup via the web. This will be
     `https://<TFE HOSTNAME>:8800`.
-    * The installer uses an internal CA to issue bootstrap certificates, so you will
-      see a security warning when first connecting. This is expected and you'll need
+    * You will see a security warning when first connecting. This is expected and you'll need
       to proceed with the connection anyway.
 
 ### Run the Installer - Airgapped
@@ -149,8 +148,7 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. Run `sudo ./install.sh airgap`
 1. When asked, select the interface of the primary private network interface used to access the instance.
 1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be https://<TFE HOSTNAME>:8800
-    * The installer uses an internal CA to issue bootstrap certificates, so you will
-      see a security warning when first connecting. This is expected and you'll need
+    * You will see a security warning when first connecting. This is expected and you'll need
       to proceed with the connection anyway.
 
 ### Continue Installation In Browser
