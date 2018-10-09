@@ -358,3 +358,7 @@
 	path = ext/providers/tencentcloud
 	url = https://github.com/terraform-providers/terraform-provider-tencentcloud
 	branch = stable-website
+[submodule "ext/providers/nutanix"]
+	path = ext/providers/nutanix
+	url = https://github.com/terraform-providers/terraform-provider-nutanix
+	branch = stable-website
