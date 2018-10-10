@@ -10,9 +10,9 @@ sidebar_current: "docs-enterprise2-api-policy-sets"
 
 [Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Enterprise.
 
-Policy sets allow you to define on which workspaces your Sentinel policies are checked during runs. By using policy sets, you can group your policies according to themes such as environment, region, or some other attribute that several workspaces may share. Policies that are a member of one of these sets will only be checked in workspaces that the set is attached to. In order for a policy to be active and checked during runs, it must be a member of at least one policy set that has been attached to workspaces.
+Policy sets are groups of policies that are applied together to related workspaces. By using policy sets, you can group your policies by attributes such as environment or region. Individual policies that are members of policy sets will only be checked for workspaces that the policy set is attached to. In order for a policy to be active and checked during runs, it must be a member of at least one policy set that is attached to workspaces.
 
-This page documents the API endpoints to create, read, update, and delete policy sets in an organization. To view and manage policies themselves, use the [Policies API](./policies.html).
+This page documents the API endpoints to create, read, update, and delete policy sets in an organization. To view and manage policies, use the [Policies API](./policies.html).
 
 ## Create a Policy Set
 
@@ -45,9 +45,9 @@ Key path                               | Type            | Default | Description
 `data.type`                            | string          |         | Must be `"policy-sets"`.
 `data.attributes.name`                 | string          |         | The name of the policy set. Can include letters, numbers, `-`, and `_`.
 `data.attributes.description`          | string          | `null`  | A description of the set's purpose. This field supports Markdown and will be rendered in the Terraform Enterprise UI.
-`data.attributes.global`               | boolean         | `false` | Whether or not this policies in this set should be checked on all of the organization's workspaces, or only on workspaces for which the policy set is directly attached.
-`data.relationships.policies.data[]`   | array\[object\] | `[]`    | A list of resource identifier objects to define which policies will be members of the new set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{"id":"pol-u3S5p2Uwk21keu1s","type":"policies"}`).
-`data.relationships.workspaces.data[]` | array\[object\] | `[]`    | A list of resource identifier objects to define which workspaces the new set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{"id":"ws-2HRvNs49EWPjDqT1","type":"workspaces"}`).
+`data.attributes.global`               | boolean         | `false` | Whether or not this policies in this set should be checked on all of the organization's workspaces, or only on workspaces the policy set is attached to.
+`data.relationships.policies.data[]`   | array\[object\] | `[]`    | A list of resource identifier objects that defines which policies will be members of the new set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{ "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }`).
+`data.relationships.workspaces.data[]` | array\[object\] | `[]`    | A list of resource identifier objects that defines which workspaces the new set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`).
 
 ### Sample Payload
 
@@ -368,7 +368,7 @@ curl \
 
 ## Add Policies to the Policy Set
 
-`POST /policies/:id/relationships/policies`
+`POST /policy-sets/:id/relationships/policies`
 
 Parameter | Description
 ----------|------------
@@ -393,7 +393,7 @@ Properties without a default value are required.
 
 Key path | Type            | Default | Description
 ---------|-----------------|---------|------------
-`data[]` | array\[object\] |         | A list of resource identifier objects to define which policies to add to the set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{"id":"pol-u3S5p2Uwk21keu1s","type":"policies"}`).
+`data[]` | array\[object\] |         | A list of resource identifier objects that defines which policies will be added to the set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{ "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }`).
 
 ### Sample Payload
 
@@ -419,7 +419,7 @@ curl \
 
 ## Attach a Policy Set to workspaces
 
-`POST /policies/:id/relationships/workspaces`
+`POST /policy-sets/:id/relationships/workspaces`
 
 Parameter | Description
 ----------|------------
@@ -444,7 +444,7 @@ Properties without a default value are required.
 
 Key path | Type            | Default | Description
 ---------|-----------------|---------|------------
-`data[]` | array\[object\] |         | A list of resource identifier objects to define which workspaces to attach the policy set to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{"id":"ws-2HRvNs49EWPjDqT1","type":"workspaces"}`).
+`data[]` | array\[object\] |         | A list of resource identifier objects that defines the workspaces the policy set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`).
 
 ### Sample Payload
 
@@ -470,7 +470,7 @@ curl \
 
 ## Remove Policies from the Policy Set
 
-`DELETE /policies/:id/relationships/policies`
+`DELETE /policy-sets/:id/relationships/policies`
 
 Parameter | Description
 ----------|------------
@@ -495,7 +495,7 @@ Properties without a default value are required.
 
 Key path | Type            | Default | Description
 ---------|-----------------|---------|------------
-`data[]` | array\[object\] |         | A list of resource identifier objects to define which policies to remove from the set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{"id":"pol-u3S5p2Uwk21keu1s","type":"policies"}`).
+`data[]` | array\[object\] |         | A list of resource identifier objects that defines which policies will be removed from the set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{ "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }`).
 
 ### Sample Payload
 
@@ -521,7 +521,7 @@ curl \
 
 ## Detach the Policy Set from workspaces
 
-`DELETE /policies/:id/relationships/workspaces`
+`DELETE /policy-sets/:id/relationships/workspaces`
 
 Parameter | Description
 ----------|------------
@@ -546,7 +546,7 @@ Properties without a default value are required.
 
 Key path | Type            | Default | Description
 ---------|-----------------|---------|------------
-`data[]` | array\[object\] |         | A list of resource identifier objects to define which workspaces to detach the policy set from. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{"id":"ws-2HRvNs49EWPjDqT1","type":"workspaces"}`).
+`data[]` | array\[object\] |         | A list of resource identifier objects that defines which workspaces the policy set will be detached from. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`).
 
 ### Sample Payload
 

@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-sentinel-manage-policies"
 
 # Managing Policies
 
-Sentinel Policies are rules which are enforced on every workspace run to validate the terraform plan and corresponding resources are in compliance with company policies. Policies are made up of a Sentinel policy file, a name, and an enforcement level. They are managed at an organization level and a user must be in the organization's owners team to create, edit or delete policies.
+Sentinel Policies are rules which are enforced on every workspace run to validate the Terraform plan and corresponding resources are in compliance with company policies. Policies are made up of a Sentinel policy file, a name, and an enforcement level. They are managed at an organization level and a user must be in the organization's owners team to create, edit or delete policies.
 
 To view the policies navigate to the organization's settings page under "Sentinel Policy". From the "Sentinel Policy" section you can view, list, edit, create and delete the policies.
 
@@ -25,7 +25,7 @@ Consider integrating with the Terraform Enterprise API in CI to test and upload 
 
 ~> **Important:** In order for Sentinel policies to be checked during runs, they must be added to at least one policy set that has been attached to a workspace. Policies that are not a member of a policy set, or are a member of a policy set that has not been attached to any workspaces, will not be checked during any runs in any workspace.
 
-To manage your organization's policy sets, navigate to the organization's settings page under "Policy Sets". From the "Policy Sets" section you can view, list, create, edit, and delete policy sets. When editing a policy set, you can change the list of member policies or workspaces that the policy set is attached to.
+To manage your organization's policy sets, navigate to the organization's settings page under "Policy Sets". From the "Policy Sets" section you can view, list, create, edit, and delete policy sets. Editing a policy set allows you to add or remove policies from the set, or attach or detach the policy set from workspaces.
 
 To create a new policy set, navigate to "Create Policy Set".
 
