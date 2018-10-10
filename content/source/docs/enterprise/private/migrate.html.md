@@ -297,7 +297,7 @@ the installer to access your data.
 Copy this block of text, including the beginning and ending lines beginning with `-----`
 to your computer's clipboard by selecting the text and typing Control-C (Windows) or Command-C (macOS).
 
-### Importing data into the installer instance
+### Import data into the installer instance
 
 To transfer the migration data to the installer-based instance, connect to it over SSH.
 
