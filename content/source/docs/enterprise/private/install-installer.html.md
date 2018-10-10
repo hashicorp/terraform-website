@@ -62,11 +62,11 @@ On the Console Settings page, there is a section for HTTP Proxy:
 
 There are two primary areas for SSL configuration in the installer.
 
-##### TLS Key & Cert
+### TLS Key & Cert
 
 The TLS Key & Cert field (found in the console settings after initial installation) should contain PTFE's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates a chain is required.
 
-##### Certificate Authority (CA) Bundle
+### Certificate Authority (CA) Bundle
 
 PTFE needs to be able to access all services that it integrates with, such as VCS providers.
 Because it typically accesses them via SSL/TLS, it is critical that the certificates used by any service
