@@ -38,7 +38,7 @@ The following table provides high-level server guidelines. Of particular
 note is the strong recommendation to avoid non-fixed performance CPUs,
 or “Burstable CPU” in AWS terms, such as T-series instances.
 
-### PTFE Server (EC2)
+### PTFE Server (EC2 via Auto Scaling Group)
 
 | Type        | CPU      | Memory       | Disk | AWS Instance Types    |
 |-------------|----------|--------------|------|-----------------------|
@@ -94,13 +94,15 @@ also be permitted to create the following AWS resources:
 - Route Table
 - Route Table Association
 - Security Group
-- Load Balancer (Network or Classic)
-- Target Group (if using Network Load Balancer)
+- Load Balancer
+- Launch Configuration
+- Auto Scaling Group
+- Target Group (if using Application or Network Load Balancer)
 - CloudWatch Alarm
 - IAM Instance Profile
 - IAM Role
 - IAM Role Policy
-- Route 53 (optional for High Availability)
+- Route 53 (optional)
 
 #### Network
 
@@ -128,14 +130,32 @@ a canonical, but not necessarily public, domain name, which then forwards to the
 pattern is required if using Route 53 Health Checks and failover pairs to automatically fail over to the standby
 instance.  This is documented further below.
 
-#### SSL/TLS
+#### SSL/TLS Certificates and Load Balancers
 
 An SSL/TLS certificate signed by a public or private CA is required for secure communication between
-clients and the PTFE application server. The certificate can be
-specified during the UI-based installation or the path to the
-certificate codified during an unattended installation.
+clients, VCS systems, and the PTFE application server. The certificate can be specified during the
+UI-based installation or in a configuration file used for an unattended installation.
 
-HashiCorp does not recommend the use of self-signed certificates.  
+If a Classic or Application Load Balancer is used, SSL/TLS will be terminated on the load balancer.
+In this configuration, the PTFE instances should still be configured to listen
+for incoming SSL/TLS connections. If a Network Load Balancer is used, SSL/TLS will be terminated on the PTFE instance.
+
+HashiCorp does not recommend the use of self-signed certificates on the PTFE instance unless you use a
+Classic or Application Load Balancer and place a public certificate (such as an AWS Certificate Manager certificate)
+on the load balancer. Note that certificates cannot be placed on Network Load Balancers.
+
+If you want to use a Network Load Balancer (NLB) with PTFE, use either an internet-facing NLB or an internal NLB that targets by IP.
+An internal NLB that targets by instance ID cannot be used with PTFE since NLBs configured in this way do not support loopbacks.
+Amazon provides [load balancer troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-troubleshooting.html)
+information for Network Load Balancers.
+
+A public AWS Certificate Manager (ACM) certificate cannot be used with a Network Load Balancer and PTFE since certificates cannot
+be placed on NLBs and AWS does not support exporting the private key for public ACM certificates. This means you cannot load
+the private key of a public ACM certificate on your PTFE instance.
+
+## Infrastructure Diagram
+
+![aws-infrastructure-diagram-asg](./assets/aws-setup-guide-ptfe-asg.png)
 
 ### Application Layer
 
