@@ -187,3 +187,6 @@
 /docs/providers/aws/r/alb.html                         /docs/providers/aws/r/lb.html
 /docs/providers/aws/r/code_commit_repository.html      /docs/providers/aws/r/codecommit_repository.html
 /docs/providers/aws/r/code_commit_trigger.html         /docs/providers/aws/r/codecommit_trigger.html
+
+# Fixing terraform-provider-google#2197
+/docs/provider/google/provider_versions.html          /docs/providers/google/provider_versions.html
