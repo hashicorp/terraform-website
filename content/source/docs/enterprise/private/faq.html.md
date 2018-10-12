@@ -254,7 +254,7 @@ By default, Private Terraform Enterprise downloads the versions of Terraform tha
 
 #### Terraform Latest Version Notifications
 
-When displaying Terraform Runs, Private Terraform Enterprise has JavaScript that reaches out to https://checkpoint-api.hashicorp.com to determine the latest released version of Terraform and notify users if there is a newer version available than the one they are running. This functionality is non-essential; new version notifications will not be displayed in the Web UI if checkpoint.hashicorp.com cannot be reached from a user's browser.
+When displaying Terraform Runs, Private Terraform Enterprise has JavaScript that reaches out to https://checkpoint-api.hashicorp.com to determine the latest released version of Terraform and notify users if there is a newer version available than the one they are running. This functionality is non-essential; new version notifications will not be displayed in the Web UI if checkpoint-api.hashicorp.com cannot be reached from a user's browser.
 
 #### Communication Functions
 
