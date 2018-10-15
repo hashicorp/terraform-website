@@ -1,0 +1,40 @@
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+    <ul class="nav docs-sidenav">
+      <li<%= sidebar_current("docs-home") %>>
+        <a class="back" href="/docs/index.html">Documentation Home</a>
+      </li>
+
+      <li<%= sidebar_current("docs-github-actions-home") %>>
+        <a class="back" href="/docs/github-actions/index.html">Terraform GitHub Actions</a>
+      </li>
+
+      <hr>
+
+      <li<%= sidebar_current("docs-github-actions-started") %>>
+        <a href="/docs/github-actions/getting-started/index.html">Getting Started</a>
+      </li>
+
+      <li<%= sidebar_current("docs-github-actions-actions") %>>
+        <a href="/docs/github-actions/actions/index.html">Actions</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-github-actions-actions-fmt") %>>
+            <a href="/docs/github-actions/actions/fmt.html">fmt</a>
+          </li>
+          <li<%= sidebar_current("docs-github-actions-actions-init") %>>
+            <a href="/docs/github-actions/actions/init.html">init</a>
+          </li>
+          <li<%= sidebar_current("docs-github-actions-actions-validate") %>>
+            <a href="/docs/github-actions/actions/validate.html">validate</a>
+          </li>
+          <li<%= sidebar_current("docs-github-actions-actions-plan") %>>
+            <a href="/docs/github-actions/actions/plan.html">plan</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+
+  <%= yield %>
+<% end %>
+
