@@ -18,7 +18,7 @@ Before installing the Private Terraform Enterprise software, you'll need to prep
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
    running within PTFE to access each other properly.
-   See [Installation: Trusting SSL/TLS Certificates](./install-installer#trusting-ssl-tls-certificates)
+   See [Installation: Trusting SSL/TLS Certificates](./install-installer.html#trusting-ssl-tls-certificates)
    for more on this.
 
 ## Linux Instance
