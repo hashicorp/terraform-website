@@ -6,7 +6,9 @@ sidebar_current: "docs-github-actions-actions"
 
 # Actions
 
-Each Action can be used individually:
+Terraform's GitHub Actions can be used individually or together.
+
+See the links below for full documentation of each Action.
 
 - [fmt](./fmt.html)
 - [init](./init.html)

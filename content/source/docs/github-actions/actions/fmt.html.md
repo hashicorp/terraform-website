@@ -5,13 +5,16 @@ sidebar_current: "docs-github-actions-actions-fmt"
 ---
 
 # Terraform Fmt Action
+
 Runs `terraform fmt` to validate all Terraform files in a directory are in the canonical format.
 If any files differ, this action will comment back on the pull request with the diffs of each file.
 
 ## Success Criteria
+
 This action succeeds if `terraform fmt` runs without error.
 
 ## Usage
+
 To use the `fmt` action, add it to your workflow file.
 
 ```hcl
@@ -31,6 +34,7 @@ action "terraform fmt" {
 ```
 
 ## Environment Variables
+
 | Name                    | Default   | Description                                                                      |
 |-------------------------|-----------|----------------------------------------------------------------------------------|
 | `TF_ACTION_WORKING_DIR` | `"."`     | Which directory `fmt` runs in. Relative to the root of the repo.            |
@@ -38,10 +42,11 @@ action "terraform fmt" {
 
 
 ## Secrets
+
 The `GITHUB_TOKEN` secret is required for posting a comment back to the pull request if `fmt` fails.
 
 If you have set `TF_ACTION_COMMENT = "false"`, then `GITHUB_TOKEN` is not required.
 
 ## Arguments
-Any arguments will be appended to the `terraform fmt` command however we do not anticipate that this will be needed.
 
+Any arguments will be appended to the `terraform fmt` command; however, we do not anticipate that this will be needed.

@@ -5,12 +5,15 @@ sidebar_current: "docs-github-actions-actions-plan"
 ---
 
 # Terraform Plan Action
+
 Runs `terraform plan` and comments back on the pull request with the plan output.
 
 ## Success Criteria
+
 This action succeeds if `terraform plan` runs without error.
 
 ## Usage
+
 To use the `plan` action, add it to your workflow file.
 
 ```hcl
@@ -43,22 +46,25 @@ action "terraform init" {
 ```
 
 ## Environment Variables
-| Name                    | Default    | Description                                                                                |
-|-------------------------|------------|--------------------------------------------------------------------------------------------|
-| `TF_ACTION_WORKING_DIR` | `"."`      | Which directory `plan` runs in. Relative to the root of the repo.                          |
-| `TF_ACTION_COMMENT`     | `"true"`   | Set to `"false"` to disable commenting back on pull request.                               |
-| `TF_ACTION_WORKSPACE`   | `"default"`| Which [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html) to run in.|
+
+| Name                    | Default    | Description                                                        |
+|-------------------------|------------|--------------------------------------------------------------------|
+| `TF_ACTION_WORKING_DIR` | `"."`      | Which directory `plan` runs in. Relative to the root of the repo.  |
+| `TF_ACTION_COMMENT`     | `"true"`   | Set to `"false"` to disable commenting back on pull request.       |
+| `TF_ACTION_WORKSPACE`   | `"default"`| Which [Terraform workspace](/docs/state/workspaces.html) to run in.|
 
 
 ## Secrets
+
 * The `GITHUB_TOKEN` secret is required for posting a comment back to the pull request if `validate` fails.
   If you have set `TF_ACTION_COMMENT = "false"`, then `GITHUB_TOKEN` is not required.
-* You'll also likely need to add secrets for your provider, ex. `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` or `GOOGLE_CREDENTIALS`.
+* You'll also likely need to add secrets for your providers, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` or `GOOGLE_CREDENTIALS`.
 
-  ⚠️ WARNING ⚠️ These secrets could be exposed if the `plan` action is run on a malicious Terraform file.
-  As a result, we recommend you do not use this action on public repos or repos where untrusted users can submit pull requests.
+  !> **⚠️ WARNING ⚠️** These secrets could be exposed if the `plan` action is run on a malicious Terraform file.
+  To avoid this, we recommend you do not use this action on public repos or repos where untrusted users can submit pull requests.
 
 ## Arguments
+
 Arguments to `plan` will be appended to the `terraform plan`
 command:
 

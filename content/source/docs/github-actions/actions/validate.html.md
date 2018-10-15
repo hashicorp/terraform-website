@@ -5,7 +5,8 @@ sidebar_current: "docs-github-actions-actions-validate"
 ---
 
 # Terraform Validate Action
-Runs `terraform validate` to validate the terraform files in a directory.
+
+Runs `terraform validate` to validate the Terraform files in a directory.
 Validation includes a basic check of syntax as well as checking that all variables declared
 in the configuration are specified in one of the possible ways:
 
@@ -16,9 +17,11 @@ in the configuration are specified in one of the possible ways:
 - default value
 
 ## Success Criteria
+
 This action succeeds if `terraform validate` runs without error.
 
 ## Usage
+
 To use the `validate` action, add it to your workflow file.
 
 ```hcl
@@ -50,6 +53,7 @@ action "terraform init" {
 ```
 
 ## Environment Variables
+
 | Name                    | Default   | Description                                                                      |
 |-------------------------|-----------|----------------------------------------------------------------------------------|
 | `TF_ACTION_WORKING_DIR` | `"."`     | Which directory `validate` runs in. Relative to the root of the repo.            |
@@ -57,11 +61,13 @@ action "terraform init" {
 
 
 ## Secrets
+
 The `GITHUB_TOKEN` secret is required for posting a comment back to the pull request if `validate` fails.
 
 If you have set `TF_ACTION_COMMENT = "false"`, then `GITHUB_TOKEN` is not required.
 
 ## Arguments
+
 Arguments to `validate` will be appended to the `terraform validate`
 command:
 
@@ -71,4 +77,3 @@ action "terraform validate" {
   args = ["-var", "foo=bar", "-var-file=foo"]
 }
 ```
-

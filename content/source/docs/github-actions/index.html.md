@@ -15,14 +15,18 @@ Terraform's GitHub Actions are designed to run on new and updated Pull Requests 
 and validate Terraform changes.
 
 If you are new to Terraform's GitHub Actions, begin with the
-[Getting Started Guide](./getting-started).
+[Getting Started Guide](./getting-started/index.html).
 
 Here are some example outputs from Terraform's GitHub Actions:
+
 ### Terraform Fmt
+
 ![Terraform Fmt Action](./actions/images/fmt.png)
 
 ### Terraform Validate
+
 ![Terraform Validate Action](./actions/images/validate.png)
 
 ### Terraform Plan
+
 ![Terraform Plan Action](./actions/images/plan.png)
