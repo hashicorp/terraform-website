@@ -115,7 +115,7 @@ Terraform's GitHub Actions on new and updated pull requests.
 
     Scroll down to the `terraform-plan` action and click **Edit**.
     This will open the action editor on the right side, where you'll be able
-    to add your secrets as environment variables, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+    to add your secrets, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
     See your [provider documentation](https://www.terraform.io/docs/providers/)
     for the specific environment variables your provider needs.
 
