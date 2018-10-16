@@ -60,12 +60,29 @@ On the Console Settings page, there is a section for HTTP Proxy:
 
 ## Trusting SSL/TLS Certificates
 
-The installer has a section that allows multiple certificates to be specified as trusted.
-A collection of certificates for trusted issuers is known as a `Certificate Authority (CA) Bundle` and is
-used to allow PTFE to connect to services that use SSL/TLS certificates issued by private CAs.
+There are two primary areas for SSL configuration in the installer.
 
+### TLS Key & Cert
+
+The TLS Key & Cert field (found in the console settings after initial installation) should contain PTFE's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates an intermediate certificate is required as well.
+
+### Certificate Authority (CA) Bundle
+
+PTFE needs to be able to access all services that it integrates with, such as VCS providers or database servers.
+Because it typically accesses them via SSL/TLS, it is critical that the certificates used by any service
+that PTFE integrates with are trusted by PTFE.
+
+This section is used to allow PTFE to connect to services that use SSL/TLS certificates issued by private CAs.
+It allows multiple certificates to be specified as trusted, and should contain all certificates that PTFE
+should trust when presented with them from itself or another application.
+
+A collection of certificates for trusted issuers is known as a `Certificate Authority (CA) Bundle`.
 All certificates in the certificate signing chain, meaning the root certificate and any intermediate certificates,
 must be included here. These multiple certificates are listed one after another in text format.
+
+~> **Note:** If PTFE is configured with a SSL key and certificate issued against a private CA,
+   the certificate chain for that CA must be included here as well. This allows the instance
+   to query itself.
 
 Certificates must be formatted using PEM encoding, that is, as text. For example:
 
@@ -88,16 +105,6 @@ c2NvMR4wHAYDVQQDExVoYXNoaWNvcnAuZW5naW5lZXJpbmcwHhcNMTgwMjI4MDYx
 The UI to upload these certificates looks like:
 
 ![ptfe-ca-ui](./assets/ptfe-ca-bundle.png)
-
-~> **Note:** PTFE needs to be able to access all services that it integrates with, such as VCS providers,
-   terraform providers, etc. Because it typically accesses them via SSL/TLS, it is critical that the
-   certificates used by any service that is accessed is trusted by PTFE. This means properly configuring
-   the `Certificate Authority (CA) Bundle` option so that PTFE can trust any certificates
-   issued by private CAs.
-
-~> **Note:** If PTFE is configured with a SSL key and certificate issued against a private CA,
-   the certificate chain for that CA must be included here as well. This allows the instance
-   to query itself.
 
 ## Operational Mode Decision
 
