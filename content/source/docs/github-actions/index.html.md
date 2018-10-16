@@ -10,7 +10,7 @@ description: |-
 
 This is the documentation for Terraform's GitHub Actions.
 
-GitHub Actions allow you to run commands in reaction to GitHub events.
+[GitHub Actions](https://developer.github.com/actions) allow you to run commands in reaction to GitHub events.
 Terraform's GitHub Actions are designed to run on new and updated Pull Requests to help you review
 and validate Terraform changes.
 

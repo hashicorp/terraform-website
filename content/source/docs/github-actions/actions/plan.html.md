@@ -53,6 +53,10 @@ action "terraform init" {
 | `TF_ACTION_COMMENT`     | `"true"`   | Set to `"false"` to disable commenting back on pull request.       |
 | `TF_ACTION_WORKSPACE`   | `"default"`| Which [Terraform workspace](/docs/state/workspaces.html) to run in.|
 
+## Workspaces
+
+The `plan` action only supports running in a single [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html).
+If you need to run `plan` in multiple workspaces, see [Workspaces](../workspaces/index.html).
 
 ## Secrets
 
