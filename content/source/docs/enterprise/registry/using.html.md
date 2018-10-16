@@ -65,6 +65,20 @@ Each registry page for a module version includes a usage example, which you can 
 
 Alternately, you can use the configuration designer, which lets you select multiple modules and fill in their variables to build a much more useful initial configuration. See [the configuration designer docs](./design.html) for details.
 
+## Referencing Modules Within Private Terraform Enterprise (PTFE)
+
+If you wish to use modules published to the current PTFE instance, you can use the hostname `localterraform.com` as the host portion of the source. For instance:
+
+```hcl
+module "vpc" {
+  source  = "localterraform.com/example_corp/vpc/aws"
+  version = "1.0.4"
+}
+```
+
+When terraform is executed on the PTFE instance, it will request modules from the same instance automatically. This allows modules to also be refactored
+and accessed by other modules without having to hardcode the hostname of a particular PTFE instance within them.
+
 ## Running Configurations with Private Modules
 
 ### In Terraform Enterprise
