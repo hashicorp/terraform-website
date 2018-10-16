@@ -6,7 +6,7 @@ sidebar_current: "docs-github-actions-directories"
 
 # Directories
 
-Currently, each Terraform GitHub Actions only supports running in a single directory.
+Currently, each Terraform GitHub Action only supports running in a single directory.
 The directory is set by the `TF_ACTION_WORKING_DIR` environment variable.
 
 If you need to run the Terraform Actions in multiple directories, you have to create separate workflows for each directory.
