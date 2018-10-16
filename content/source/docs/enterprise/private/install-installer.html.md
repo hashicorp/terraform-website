@@ -68,7 +68,7 @@ The TLS Key & Cert field (found in the console settings after initial installati
 
 ### Certificate Authority (CA) Bundle
 
-PTFE needs to be able to access all services that it integrates with, such as VCS providers.
+PTFE needs to be able to access all services that it integrates with, such as VCS providers or database servers.
 Because it typically accesses them via SSL/TLS, it is critical that the certificates used by any service
 that PTFE integrates with are trusted by PTFE.
 
