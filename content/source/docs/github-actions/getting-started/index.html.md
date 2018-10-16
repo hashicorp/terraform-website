@@ -15,7 +15,7 @@ and validate Terraform changes.
 The easiest way to get started is to copy our recommended workflow, which runs all of
 Terraform's GitHub Actions on new and updated pull requests.
 
--> **Note:** If you'd like to write your own custom workflow using our Actions, check out the [Actions Reference](../actions/index.html).
+-> **Note:** If you'd like to write your own custom workflow using our Actions, check out the [Actions Reference](../actions).
 
 1. Open up your repository in GitHub and click on the **Actions** tab.
 
@@ -94,7 +94,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     TF_ACTION_WORKING_DIR = "./terraform"
     ```
 
-    If you have multiple directories of Terraform code, see [Directories](../directories/index.html).
+    If you have multiple directories of Terraform code, see [Directories](../directories.html).
 
 1. **Workspaces** — If your Terraform runs in a different
     [Terraform workspace](/docs/state/workspaces.html) than `default`,
@@ -104,7 +104,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     TF_ACTION_WORKSPACE = "your-workspace"
     ```
 
-    If you have multiple workspaces, see [Workspaces](../workspaces/index.html).
+    If you have multiple workspaces, see [Workspaces](../workspaces.html).
 
 1. **Credentials** — If you're using a Terraform provider that requires
     credentials to run `terraform plan` (like AWS or Google Cloud Platform)
@@ -115,7 +115,7 @@ Terraform's GitHub Actions on new and updated pull requests.
 
     Scroll down to the `terraform-plan` action and click **Edit**.
     This will open the action editor on the right side, where you'll be able
-    to add your secrets, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+    to add your secrets as environment variables, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
     See your [provider documentation](https://www.terraform.io/docs/providers/)
     for the specific environment variables your provider needs.
 

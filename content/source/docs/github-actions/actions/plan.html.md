@@ -56,7 +56,7 @@ action "terraform init" {
 ## Workspaces
 
 The `plan` action only supports running in a single [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html).
-If you need to run `plan` in multiple workspaces, see [Workspaces](../workspaces/index.html).
+If you need to run `plan` in multiple workspaces, see [Workspaces](../workspaces.html).
 
 ## Secrets
 
