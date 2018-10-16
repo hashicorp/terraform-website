@@ -6,7 +6,7 @@ sidebar_current: "docs-github-actions-workspaces"
 
 # Workspaces
 
-Currently, the [Terraform Plan Action](../actions/plan.html) only supports running in a single
+Currently, the [Terraform Plan Action](./actions/plan.html) only supports running in a single
 [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html). The
 workspace is defined by the `TF_ACTION_WORKSPACE` environment variable.
 
