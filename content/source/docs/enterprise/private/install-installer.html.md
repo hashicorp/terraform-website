@@ -64,7 +64,7 @@ There are two primary areas for SSL configuration in the installer.
 
 ### TLS Key & Cert
 
-The TLS Key & Cert field (found in the console settings after initial installation) should contain PTFE's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates a chain is required.
+The TLS Key & Cert field (found in the console settings after initial installation) should contain PTFE's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates an intermediate certificate is required as well.
 
 ### Certificate Authority (CA) Bundle
 
