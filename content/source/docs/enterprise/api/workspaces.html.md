@@ -48,7 +48,7 @@ Key path                                      | Type    | Default   | Descriptio
 `data.attributes.migration-environment`       | string  | (nothing) | The legacy TFE environment to use as the source of the migration, in the form `organization/environment`. Omit this unless you are migrating a legacy environment.
 `data.attributes.working-directory`           | string  | (nothing) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 `data.attributes.vcs-repo`                    | object  | (nothing) | Settings for the workspace's VCS repository. If omitted, the workspace is created without a VCS repo. If included, you must specify at least the `oauth-token-id` and `identifier` keys below.
-`data.attributes.vcs-repo.oauth-token-id`     | string  |           | The VCS Connection (OAuth Conection + Token) to use. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+`data.attributes.vcs-repo.oauth-token-id`     | string  |           | The VCS Connection (OAuth Connection + Token) to use. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 `data.attributes.vcs-repo.branch`             | string  | (nothing) | The repository branch that Terraform will execute from. If omitted or submitted as an empty string, this defaults to the repository's default branch (e.g. `master`) .
 `data.attributes.vcs-repo.ingress-submodules` | boolean | false     | Whether submodules should be fetched when cloning the VCS repository.
 `data.attributes.vcs-repo.identifier`         | string  |           | A reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
@@ -908,10 +908,6 @@ $ curl \
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
 
 * `organization` - The full organization record.
-* `latest_run` - Additional information about the last run.
-* `latest_run.plan` - The plan used in the last run.
-* `latest_run.configuration_version` - The configuration used in the last run.
-* `latest_run.configuration_version.ingress_attributes` - The commit information used in the last run.
 * `current_run` - Additional information about the current run.
 * `current_run.plan` - The plan used in the current run.
 * `current_run.configuration_version` - The configuration used in the current run.

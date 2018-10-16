@@ -338,3 +338,31 @@
 	path = ext/providers/tfe
 	url = https://github.com/terraform-providers/terraform-provider-tfe
 	branch = stable-website
+[submodule "ext/providers/netlify"]
+	path = ext/providers/netlify
+	url = https://github.com/terraform-providers/terraform-provider-netlify
+	branch = stable-website
+[submodule "ext/providers/oci"]
+	path = ext/providers/oci
+	url = https://github.com/terraform-providers/terraform-provider-oci
+	branch = stable-website
+[submodule "ext/providers/rightscale"]
+	path = ext/providers/rightscale
+	url = https://github.com/terraform-providers/terraform-provider-rightscale
+	branch = stable-website
+[submodule "ext/providers/bigip"]
+	path = ext/providers/bigip
+	url = https://github.com/terraform-providers/terraform-provider-bigip
+	branch = stable-website
+[submodule "ext/providers/tencentcloud"]
+	path = ext/providers/tencentcloud
+	url = https://github.com/terraform-providers/terraform-provider-tencentcloud
+	branch = stable-website
+[submodule "ext/providers/nutanix"]
+	path = ext/providers/nutanix
+	url = https://github.com/terraform-providers/terraform-provider-nutanix
+	branch = stable-website
+[submodule "ext/providers/helm"]
+	path = ext/providers/helm
+	url = https://github.com/terraform-providers/terraform-provider-helm
+	branch = stable-website

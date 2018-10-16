@@ -26,7 +26,7 @@ architecture.
 ## Infrastructure Requirements
 
 Depending on the chosen [operational
-mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
+mode](https://www.terraform.io/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single virtual machine
 for demo or proof of concept installations, to multiple virtual machines
 hosting the Terraform Enterprise application, PostgreSQL, and external Vault servers for
@@ -184,8 +184,8 @@ can be found on our website.
 ### Upgrades
 
 Please reference the [upgrade
-instructions](https://www.terraform.io/docs/enterprise/private/install-installer.html#upgrading)
-on the deployment documentation website.
+instructions](https://www.terraform.io/docs/enterprise/private/upgrades.html)
+in the documentation.
 
 ## High Availability
 

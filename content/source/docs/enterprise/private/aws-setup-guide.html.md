@@ -29,7 +29,7 @@ architecture.
 Services_ operational mode.
 
 Depending on the chosen [operational
-mode](https://www.terraform.io/docs/enterprise/private/install-installer.html#operational-mode-decision),
+mode](https://www.terraform.io/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single AWS EC2 instance
 for demo installations to multiple instances connected to RDS and S3 for a
 stateless production installation.
@@ -94,7 +94,7 @@ also be permitted to create the following AWS resources:
 - Route Table
 - Route Table Association
 - Security Group
-- Load Balancer
+- Load Balancer (Application, Network, or Classic Load Balancer)
 - Launch Configuration
 - Auto Scaling Group
 - Target Group (if using Application or Network Load Balancer)
@@ -119,16 +119,16 @@ how they interrelate.
 #### DNS
 
 DNS can be configured external to AWS or using [Route 53](https://aws.amazon.com/route53/). The
-fully qualified domain name should resolve to the Load Balancer using a
+fully qualified domain name should resolve to the Load Balancer (if using one) or the PTFE instance using a
 CNAME if using external DNS or an [alias
-record](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
+record set](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
 if using Route 53. Creating the required DNS entry is outside the scope
 of this guide.
 
 Another approach would be to use an external registrar or DNS server to point to a Route 53 CNAME record using
 a canonical, but not necessarily public, domain name, which then forwards to the ALIAS record for the ELB. This
 pattern is required if using Route 53 Health Checks and failover pairs to automatically fail over to the standby
-instance.  This is documented further below.
+instance. This is documented further below.
 
 #### SSL/TLS Certificates and Load Balancers
 
@@ -206,7 +206,7 @@ highly available infrastructure supporting S3.
 
 ### Upgrades
 
-See [the upgrading section](./upgrades.html) of the installation guide.
+See [the Upgrades section](./upgrades.html) of the documentation.
 
 ## High Availability
 

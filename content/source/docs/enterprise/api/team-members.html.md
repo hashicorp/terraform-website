@@ -26,10 +26,10 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-| Key path      | Type   | Default | Description                |
-| ------------- | ------ | ------- | -------------------------- |
-| `data[].type` | string |         | Must be `"users"`.         |
-| `data[].id`   | string |         | The ID of the user to add. |
+| Key path      | Type   | Default | Description                      |
+| ------------- | ------ | ------- | -------------------------------- |
+| `data[].type` | string |         | Must be `"users"`.               |
+| `data[].id`   | string |         | The username of the user to add. |
 
 ### Sample Payload
 
@@ -38,11 +38,11 @@ Properties without a default value are required.
   "data": [
     {
       "type": "users",
-      "id": "myusername"
+      "id": "myuser1"
     },
     {
       "type": "users",
-      "id": "username"
+      "id": "myuser2"
     }
   ]
 }
@@ -75,10 +75,10 @@ This DELETE endpoint requires a JSON object with the following properties as a r
 
 Properties without a default value are required.
 
-| Key path      | Type   | Default | Description                   |
-| ------------- | ------ | ------- | ----------------------------- |
-| `data[].type` | string |         | Must be `"users"`.            |
-| `data[].id`   | string |         | The ID of the user to remove. |
+| Key path      | Type   | Default | Description                         |
+| ------------- | ------ | ------- | ----------------------------------- |
+| `data[].type` | string |         | Must be `"users"`.                  |
+| `data[].id`   | string |         | The username of the user to remove. |
 
 ### Sample Payload
 
@@ -87,11 +87,11 @@ Properties without a default value are required.
   "data": [
     {
       "type": "users",
-      "id": "myusername"
+      "id": "myuser1"
     },
     {
       "type": "users",
-      "id": "username"
+      "id": "myuser2"
     }
   ]
 }

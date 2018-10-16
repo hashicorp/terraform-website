@@ -178,7 +178,7 @@ $ curl \
       "users": {
         "data": [
           {
-              "id": "hashibot",
+              "id": "user-62goNpx1ThQf689e",
               "type": "users"
           }
         ]
@@ -188,7 +188,7 @@ $ curl \
   },
   "included": [
     {
-      "id": "hashibot",
+      "id": "user-62goNpx1ThQf689e",
       "type": "users",
       "attributes": {
         "username": "hashibot"

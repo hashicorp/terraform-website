@@ -39,7 +39,9 @@ To create your first workspace, click the "+ New Workspace" button in the upper 
 
 On the "Create a new Workspace" page, you need to enter at least two items: a workspace name, and a VCS repository. (You can search for a repo by typing part of its name.) When you've finished, click the "Create Workspace" button.
 
-![fields on new workspace page](./images/work-new-fields.png)
+![fields on new workspace page](../workspaces/images/creating-fields.png)
+
+-> **Note:** You can also create workspaces without a VCS repository, but doing so requires a different workflow for Terraform runs. For more information, see [About Terraform Runs in Terraform Enterprise](../run/index.html).
 
 ### Workspace Name
 
@@ -75,15 +77,17 @@ For almost any workspace, you'll want to edit the Terraform variables and enviro
 
 You can edit variables as soon as you've created a workspace, by clicking the workspace's "Variables" tab.
 
-![the edit control](./images/work-var-edit.png)
+![Screenshot: the variables page](../workspaces/images/vars.png)
 
-The variables page has three sections: Terraform variables (as declared in your Terraform configurations), shared environment variables, and per-user environment variables. (Note that environment variables can be used to set Terraform variables, with the standard `TF_VAR_*` format.)
+The variables page has two sections: Terraform variables (as declared in your Terraform configurations) and environment variables.
 
-To edit one of these sections, click the "Edit" control. You can then add, modify, or delete variables. Make sure to click "Save" or "Save & Plan" once you've finished editing.
+Click the "+ Add Variable" button to create a new variable, or click an existing variable's text fields or pencil icon to change its values and settings. After editing a variable, be sure to click its "Save Variable" button.
 
-![editing a variables list](./images/work-var-editing.png)
+![Screenshot: editing a variable](../workspaces/images/vars-edit.png)
 
 Terraform variables start as basic string values, but you can also enter array or map values if you click the "HCL" checkbox for that variable. You can write these values with the same syntax you'd use in a Terraform configuration.
+
+For more information, see [Variables](../workspaces/variables.html).
 
 ## Granting Access
 
@@ -126,7 +130,7 @@ Most of your time in TFE is spent in two views:
 
 * The workspace list. Use this to get an overview of the workspaces you're responsible for, and to navigate between workspaces.
 
-    ![main page](./images/work-mainpage.png)
+    ![main page](../workspaces/images/index-list.png)
 
     To get back to the workspace list at any time, click the "Workspaces" button in the top navigation bar.
 * The individual workspace pages, which provide more detail about a workspace's status, and let you manage runs, variables, and settings.

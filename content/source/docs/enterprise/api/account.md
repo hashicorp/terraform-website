@@ -10,6 +10,61 @@ sidebar_current: "docs-enterprise2-api-account"
 
 Account represents the current user interacting with Terraform.
 
+## Get your account details
+
+`GET /account/details`
+
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "users"`)         | The request was successful
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/account/details
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "user-V3R563qtJNcExAkN",
+    "type": "users",
+    "attributes": {
+      "username": "admin",
+      "is-service-account": false,
+      "avatar-url": "https://www.gravatar.com/avatar/9babb00091b97b9ce9538c45807fd35f?s=100&d=mm",
+      "v2-only": false,
+      "is-site-admin": true,
+      "is-sso-login": false,
+      "email": "admin@hashicorp.com",
+      "unconfirmed-email": null,
+      "permissions": {
+        "can-create-organizations": true,
+        "can-change-email": true,
+        "can-change-username": true
+      }
+    },
+    "relationships": {
+      "authentication-tokens": {
+        "links": {
+          "related": "/api/v2/users/user-V3R563qtJNcExAkN/authentication-tokens"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/users/user-V3R563qtJNcExAkN"
+    }
+  }
+}
+```
+
 ## Update your account info
 
 Your username and email address can be updated with this endpoint.
@@ -21,12 +76,6 @@ Status  | Response                                        | Reason
 [200][] | [JSON API document][] (`type: "users"`)         | Your info was successfully updated
 [401][] | [JSON API error object][]                       | Unauthorized
 [422][] | [JSON API error object][]                       | Malformed request body (missing attributes, wrong types, etc.)
-
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -45,7 +94,8 @@ Key path                                   | Type    | Default  | Description
   "data": {
     "type": "users",
     "attributes": {
-      "email": "admin@example.com"
+      "email": "admin@example.com",
+      "username": "admin"
     }
   }
 }
@@ -71,20 +121,78 @@ curl \
     "type": "users",
     "attributes": {
       "username": "admin",
-      "avatar-url": "https://www.gravatar.com/avatar/9babb00091b97b9ce9538c45807fd35f?s=100&d=mm"
+      "is-service-account": false,
+      "avatar-url": "https://www.gravatar.com/avatar/9babb00091b97b9ce9538c45807fd35f?s=100&d=mm",
+      "v2-only": false,
+      "is-site-admin": true,
+      "is-sso-login": false,
+      "email": "admin@hashicorp.com",
+      "unconfirmed-email": null,
+      "permissions": {
+        "can-create-organizations": true,
+        "can-change-email": true,
+        "can-change-username": true
+      }
     },
     "relationships": {
       "authentication-tokens": {
         "links": {
-          "related": "/api/v2/users/admin/authentication-tokens"
+          "related": "/api/v2/users/user-V3R563qtJNcExAkN/authentication-tokens"
         }
       }
     },
     "links": {
-      "self": "/api/v2/users/admin"
+      "self": "/api/v2/users/user-V3R563qtJNcExAkN"
     }
   }
 }
+```
+
+## Change your password
+
+`PATCH /account/password`
+
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "users"`)         | Your password was successfully changed
+[401][] | [JSON API error object][]                       | Unauthorized
+[422][] | [JSON API error object][]                       | Malformed request body (missing attributes, wrong types, etc.)
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Key path                                   | Type    | Default  | Description
+-------------------------------------------|---------|----------|------------
+`data.type`                                | string  |          | Must be `"users"`
+`data.attributes.current-password`         | string  |          | Current password
+`data.attributes.password`                 | string  |          | New password
+`data.attributes.password-confirmation`    | string  |          | New password (confirmation)
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "type": "users",
+    "attributes": {
+      "current-password": "current password 2:C)e'G4{D\n06:[d1~y",
+      "password": "new password 34rk492+jgLL0@xhfyisj",
+      "password-confirmation": "new password 34rk492+jLL0@xhfyisj",
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/account/password
 ```
 
 ### Sample Response
@@ -92,24 +200,40 @@ curl \
 ```json
 {
   "data": {
+    "id": "user-V3R563qtJNcExAkN",
+    "type": "users",
     "attributes": {
-      "avatar-url": "https://www.gravatar.com/avatar/...?s=100\u0026d=mm",
+      "username": "admin",
       "is-service-account": false,
-      "two-factor": {
-        "enabled": true,
-        "verified": false
-      },
-      "username": "user-2fa",
-      "v2-only": false
-    },
-    "id": "user_d3cab177",
-    "links": { "self": "/api/v2/users/user-2fa" },
-    "relationships": {
-      "authentication-tokens": {
-        "links": { "related": "/api/v2/users/user-2fa/authentication-tokens" }
+      "avatar-url": "https://www.gravatar.com/avatar/9babb00091b97b9ce9538c45807fd35f?s=100&d=mm",
+      "v2-only": false,
+      "is-site-admin": true,
+      "is-sso-login": false,
+      "email": "admin@hashicorp.com",
+      "unconfirmed-email": null,
+      "permissions": {
+        "can-create-organizations": true,
+        "can-change-email": true,
+        "can-change-username": true
       }
     },
-    "type": "users"
+    "relationships": {
+      "authentication-tokens": {
+        "links": {
+          "related": "/api/v2/users/user-V3R563qtJNcExAkN/authentication-tokens"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/users/user-V3R563qtJNcExAkN"
+    }
   }
 }
 ```
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects

@@ -30,6 +30,9 @@
           <li<%= sidebar_current("docs-enterprise2-started-runs") %>>
             <a href="/docs/enterprise/getting-started/runs.html">Running Terraform</a>
           </li>
+          <li<%= sidebar_current("docs-enterprise2-started-policies") %>>
+            <a href="/docs/enterprise/getting-started/policies.html">Creating Policies</a>
+          </li>
         </ul>
       </li>
 
@@ -185,14 +188,32 @@
             <ul class="nav">
               <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfplan") %>>
                 <a href="/docs/enterprise/sentinel/import/tfplan.html">import: tfplan</a>
+                <ul class="nav">
+                  <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfplan-mock") %>>
+                    <a href="/docs/enterprise/sentinel/import/mock-tfplan.html">Mocking tfplan Data</a>
+                  </li>
+                </ul>
               </li>
               <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfconfig") %>>
                 <a href="/docs/enterprise/sentinel/import/tfconfig.html">import: tfconfig</a>
+                <ul class="nav">
+                  <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfconfig-mock") %>>
+                    <a href="/docs/enterprise/sentinel/import/mock-tfconfig.html">Mocking tfconfig Data</a>
+                  </li>
+                </ul>
               </li>
               <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfstate") %>>
                 <a href="/docs/enterprise/sentinel/import/tfstate.html">import: tfstate</a>
+                <ul class="nav">
+                  <li<%= sidebar_current("docs-enterprise2-sentinel-imports-tfstate-mock") %>>
+                    <a href="/docs/enterprise/sentinel/import/mock-tfstate.html">Mocking tfstate Data</a>
+                  </li>
+                </ul>
               </li>
             </ul>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-sentinel-examples") %>>
+            <a href="/docs/enterprise/sentinel/examples.html">Example Policies</a>
           </li>
         </ul>
       </li>
@@ -221,6 +242,9 @@
           <li<%= sidebar_current("docs-enterprise2-private-installer") %>>
             <a href="/docs/enterprise/private/install-installer.html">Installation (Installer)</a>
             <ul class="nav">
+              <li<%= sidebar_current("docs-enterprise2-private-installer-preflight") %>>
+                <a href="/docs/enterprise/private/preflight-installer.html">Installer Preflight</a>
+              </li>
               <li<%= sidebar_current("docs-enterprise2-private-installer-install") %>>
                 <a href="/docs/enterprise/private/install-installer.html">Installation</a>
               </li>
@@ -288,11 +312,14 @@
               <li<%= sidebar_current("docs-enterprise2-private-saml-identity-provider-configuration") %>>
                 <a href="/docs/enterprise/saml/identity-provider-configuration.html">Identity Provider Configuration</a>
                 <ul class="nav">
-                  <li<%= sidebar_current("docs-enterprise2-private-saml-identity-provider-configuration-onelogin") %>>
-                    <a href="/docs/enterprise/saml/identity-provider-configuration-onelogin.html">OneLogin</a>
-                  </li>
                   <li<%= sidebar_current("docs-enterprise2-private-saml-identity-provider-configuration-adfs") %>>
                     <a href="/docs/enterprise/saml/identity-provider-configuration-adfs.html">ADFS</a>
+                  </li>
+                  <li<%= sidebar_current("docs-enterprise2-private-saml-identity-provider-configuration-okta") %>>
+                    <a href="/docs/enterprise/saml/identity-provider-configuration-okta.html">Okta</a>
+                  </li>
+                  <li<%= sidebar_current("docs-enterprise2-private-saml-identity-provider-configuration-onelogin") %>>
+                    <a href="/docs/enterprise/saml/identity-provider-configuration-onelogin.html">OneLogin</a>
                   </li>
                 </ul>
               </li>
@@ -309,6 +336,9 @@
           </li>
           <li<%= sidebar_current("docs-enterprise2-private-logging") %>>
             <a href="/docs/enterprise/private/logging.html">Logging</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-private-monitoring") %>>
+            <a href="/docs/enterprise/private/monitoring.html">Monitoring</a>
           </li>
           <li<%= sidebar_current("docs-enterprise2-private-diagnostics") %>>
             <a href="/docs/enterprise/private/diagnostics.html">Diagnostics</a>

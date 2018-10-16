@@ -34,7 +34,7 @@ Note that the individual members of a team can usually perform actions the team 
 
 To manage the API token for an organization service account, go to **Organization settings > API Token** and use the controls under the "Organization Tokens" header.
 
-Each organization can have **one** valid API token at a time. Only members of the owners team can generate or revoke an organization's token.
+Each organization can have **one** valid API token at a time. Only [organization owners](./teams.html#the-owners-team) can generate or revoke an organization's token.
 
 Organization service accounts are designed for creating and configuring workspaces and teams. We don't recommend using them as an all-purpose interface to TFE; their purpose is to do some initial setup before delegating a workspace to a team. For more routine interactions with workspaces, use team service accounts.
 

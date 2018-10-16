@@ -51,9 +51,10 @@ Key path                         | Type            | Default          | Descript
 ---------------------------------|-----------------|------------------|------------
 `data.type`                      | string          |                  | Must be `"policies"`.
 `data.attributes.name`           | string          |                  | The name of the policy, which cannot be modified after creation. Can include letters, numbers, `-`, and `_`.
-`data.attributes.enforce`        | array\[object\] |                  | Although `enforce` can only include one object, it is specified as an array.
+`data.attributes.enforce`        | array\[object\] |                  | An array of enforcement configurations which map Sentinel file paths to their enforcement modes. Currently policies only support a single file, so this array will consist of a single element. If the path in the enforcement map does not match the Sentinel policy (`<NAME>.sentinel`), then the default `hard-mandatory` will be used.
+
 `data.attributes.enforce[].path` | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` has the same value as `data.attributes.name`.
-`data.attributes.enforce[].mode` | string          | `soft-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
+`data.attributes.enforce[].mode` | string          | `hard-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
 
 
 ### Sample Payload
@@ -68,7 +69,7 @@ Key path                         | Type            | Default          | Descript
           "mode": "hard-mandatory"
         }
       ],
-      "name": "my-example-policy",
+      "name": "my-example-policy"
     },
     "type":"policies"
   }
@@ -106,6 +107,59 @@ curl \
     "links": {
       "self":"/api/v2/policies/pol-u3S5p2Uwk21keu1s",
       "upload":"/api/v2/policies/pol-u3S5p2Uwk21keu1s/upload"
+    }
+  }
+}
+```
+
+## Show a Policy
+
+`GET /policies/:policy_id`
+
+
+Parameter            | Description
+---------------------|------------
+`:policy_id`         | The ID of the policy to show. Use the "List Policies" endpoint to find IDs.
+
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "policies"`)      | The request was successful
+[404][] | [JSON API error object][]                       | Policy not found or user unauthorized to perform action
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+
+### Sample Request
+
+```shell
+curl --request GET \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/policies/pol-oXUppaX2ximkqp8w
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "pol-oXUppaX2ximkqp8w",
+    "type": "policies",
+    "attributes": {
+      "name": "my-example-policy",
+      "enforce": [
+        {
+            "path": "my-example-policy.sentinel",
+            "mode": "soft-mandatory"
+        }
+      ],
+      "updated-at": "2018-09-11T18:21:21.784Z"
+    },
+    "links": {
+      "self": "/api/v2/policies/pol-oXUppaX2ximkqp8w",
+      "upload": "/api/v2/policies/pol-oXUppaX2ximkqp8w/upload",
+      "download": "/api/v2/policies/pol-oXUppaX2ximkqp8w/download"
     }
   }
 }
@@ -164,7 +218,7 @@ This endpoint can update the enforcement mode of an existing policy. To update t
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "policies"`)   | Successfully updated the policy
-[404][] | [JSON API error object][]                    | Organization not found, or user unauthorized to perform action
+[404][] | [JSON API error object][]                    | Policy not found, or user unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
 ### Request Body
@@ -177,9 +231,9 @@ Key path                         | Type            | Default          | Descript
 ---------------------------------|-----------------|------------------|------------
 `data.type`                      | string          |                  | Must be `"policies"`.
 `data.attributes.name`           | string          | (Current name)   | Ignored if present.
-`data.attributes.enforce`        | array\[object\] |                  | Although `enforce` can only include one object, it is specified as an array.
+`data.attributes.enforce`        | array\[object\] |                  | An array of enforcement configurations which map Sentinel file paths to their enforcement modes. Currently policies only support a single file, so this array will consist of a single element. The value provided **replaces** the enforcement map. To make an incremental update, you can first fetch the current value of this map from the [show endpoint](#show-a-policy) and modify it. If the path in the enforcement map does not match the Sentinel policy (`<NAME>.sentinel`), then the default `hard-mandatory` will be used.
 `data.attributes.enforce[].path` | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` matches the original value of `data.attributes.name`.
-`data.attributes.enforce[].mode` | string          | `soft-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
+`data.attributes.enforce[].mode` | string          | `hard-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
 
 
 ### Sample Payload
@@ -301,7 +355,7 @@ Parameter            | Description
 Status  | Response                  | Reason
 --------|---------------------------|-------
 [204][] | Nothing                   | Successfully deleted the policy
-[404][] | [JSON API error object][] | Organization not found, or user unauthorized to perform action
+[404][] | [JSON API error object][] | Policy not found, or user unauthorized to perform action
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 

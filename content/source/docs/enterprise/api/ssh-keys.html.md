@@ -139,7 +139,6 @@ Key path                    | Type   | Default | Description
 `data.attributes.name`      | string |         | A name to identify the SSH key.
 `data.attributes.value`     | string |         | The text of the SSH private key.
 
-
 ### Sample Payload
 
 ```json
