@@ -18,7 +18,7 @@ standard [*testing.T struct from Golang’s Testing package][3], and the second 
 [TestCase][1], a Go struct that developers use to setup the acceptance tests. 
 
 Here’s an example acceptance test. Here the Provider is named `Example`, and the
-Resource under test is `Thing`. The parts of this test are explained below the
+Resource under test is `Widget`. The parts of this test are explained below the
 example.
 
 ```go
