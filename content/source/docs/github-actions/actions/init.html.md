@@ -6,7 +6,7 @@ sidebar_current: "docs-github-actions-actions-init"
 
 # Terraform Init Action
 
-Runs `terraform init` to initialize a Terraform working directory, to confirm
+Runs `terraform init` to initialize a Terraform working directory and to confirm
 that any backends, modules, and providers are configured correctly. This action
 will comment back on the pull request on failure.
 
