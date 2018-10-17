@@ -355,7 +355,7 @@ based on type and name.
 -> The (somewhat strange) notation here of `TYPE.NAME[NUMBER]` may imply that
 the inner resource index map is actually a list, but it's not - using the square
 bracket notation over the dotted notation (`TYPE.NAME.NUMBER`) is required here
-as an identifier cannot start with number.
+as an identifier cannot start with a number.
 
 Some examples of multi-level access are below:
 
