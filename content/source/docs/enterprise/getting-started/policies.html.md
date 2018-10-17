@@ -65,7 +65,7 @@ When you create a new policy, it will be applied to all future runs. Runs that a
 
 Once your policy is created, you can view its effect on the run page. Start a new run to watch it play out. Again, you can start a run with the "Queue Plan" button at the upper right of the workspace page, or using the "Save & Plan" button when editing the workspace's variables.
 
-Your policy code will be applied to this run and you'll see a new section in the run's timeline called "POLICY CHECK". Expand the section and you should see that our new "passthrough" policy has been run with a "true" result, allowing the run to continue.
+Your policy code will be applied to this run and you'll see a new policy check section in the run's timeline. Expand the section and you should see that our new "passthrough" policy has been run with a "true" result, allowing the run to continue.
 
 ![navigate](./images/policy-run-section.png)
 
