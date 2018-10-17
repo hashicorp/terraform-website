@@ -77,7 +77,7 @@ module "vpc" {
 ```
 
 When terraform is executed on the PTFE instance, it will request modules from the same instance automatically. This allows modules to also be refactored
-and accessed by other modules without having to hardcode the hostname of a particular PTFE instance within them.
+and accessed by other configuration or modules without having to hardcode the hostname of a particular PTFE instance within them.
 
 ## Running Configurations with Private Modules
 
