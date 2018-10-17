@@ -79,6 +79,8 @@ module "vpc" {
 When terraform is executed on the PTFE instance, it will then request this module from the instance automatically. This allows modules to be refactored
 and accessed by other configuration or modules without having to hardcode the hostname of a particular PTFE instance within them.
 
+~> *NOTE* localterraform.com only works within a PTFE instance. If terraform is run outside PTFE, using localterraform.com will not work. We suggest you change the module sources after development, before committing them to your VCS. We are working on ways to make this smoother in the future.
+
 ## Running Configurations with Private Modules
 
 ### In Terraform Enterprise
