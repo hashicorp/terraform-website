@@ -67,7 +67,7 @@ Alternately, you can use the configuration designer, which lets you select multi
 
 ## Referencing Modules Within Private Terraform Enterprise (PTFE)
 
-If you wish to use modules published to the current PTFE instance, you can use the hostname `localterraform.com` as the host portion of the source. For instance:
+To use modules published to the current PTFE instance, you can use the hostname `localterraform.com` as the host portion of the source rather than using the literal hostname. For instance:
 
 ```hcl
 module "vpc" {
