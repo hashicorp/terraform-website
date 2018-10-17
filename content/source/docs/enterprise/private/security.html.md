@@ -30,7 +30,9 @@ with a key instance encryption key.
 
 The consequence of how the unseal key is stored when using the internal Vault
 is that a root user on the PTFE instance can extract the plaintext unseal key
-and use it to access the encrypted data stored elsewhere.
+and use it to access the encrypted data stored elsewhere. Ergo, from a security
+perspective, access to the PTFE instance as root constitutes the ability to access
+100% of the data stored by PTFE.
 
 ## Instance Security
 
