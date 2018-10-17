@@ -65,7 +65,7 @@ Each registry page for a module version includes a usage example, which you can 
 
 Alternately, you can use the configuration designer, which lets you select multiple modules and fill in their variables to build a much more useful initial configuration. See [the configuration designer docs](./design.html) for details.
 
-## Referencing Modules Within Private Terraform Enterprise (PTFE)
+## Sourcing Modules Within Private Terraform Enterprise (PTFE)
 
 To use modules published to the current PTFE instance, you can use the hostname `localterraform.com` as the host portion of the source rather than using the literal hostname. For instance:
 
