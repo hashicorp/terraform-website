@@ -46,7 +46,7 @@ The [Vault Transit Secret Engine](https://www.vaultproject.io/docs/secrets/trans
 
 ## Vault Unseal Key
 
-The Vault data, which is stored in PostgreSQL must be unsealed in order to read its encrypted values. 
+The Vault data, which is stored in PostgreSQL, must be unsealed in order to read its encrypted values. 
 In the  case of an external Vault, the unseal key(s) are a
 concern exclusively of the external Vault cluster and are not in the path of PTFE.
 When using the interval Vault, the unseal key is encrypted and stored in a
