@@ -65,9 +65,11 @@ Each registry page for a module version includes a usage example, which you can 
 
 Alternately, you can use the configuration designer, which lets you select multiple modules and fill in their variables to build a much more useful initial configuration. See [the configuration designer docs](./design.html) for details.
 
-## Sourcing Modules Within Private Terraform Enterprise (PTFE)
+### The Generic Module Hostname (`localterraform.com`)
 
-To use modules published to the current PTFE instance, you can use the hostname `localterraform.com` as the host portion of the source rather than using the literal hostname. For instance:
+Optionally, you can use the generic hostname `localterraform.com` in module sources instead of the literal hostname of a Private Terraform Enterprise (PTFE) instance. When Terraform is executed on a PTFE instance, it automatically requests any `localterraform.com` modules from that instance.
+
+For example:
 
 ```hcl
 module "vpc" {
@@ -76,10 +78,9 @@ module "vpc" {
 }
 ```
 
-When terraform is executed on the PTFE instance, it will then request this module from the instance automatically. This allows modules to be refactored
-and accessed by other configuration or modules without having to hardcode the hostname of a particular PTFE instance within them.
+Configurations that reference modules via the generic hostname can be used without modification on any PTFE instance, which is not possible when using hardcoded hostnames.
 
-~> *NOTE* localterraform.com only works within a PTFE instance. If terraform is run outside PTFE, using localterraform.com will not work. We suggest you change the module sources after development, before committing them to your VCS. We are working on ways to make this smoother in the future.
+~> **Important:** `localterraform.com` only works within a PTFE instance — when run outside of PTFE, Terraform can only use private modules with a literal hostname. To test configurations on a developer workstation, you must replace the generic hostname with a literal hostname in any module sources, then change them back before committing to VCS. We are working on ways to make this smoother in the future; in the meantime, we only recommend `localterraform.com` for large organizations that use multiple PTFE instances.
 
 ## Running Configurations with Private Modules
 
