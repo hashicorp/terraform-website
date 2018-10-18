@@ -366,3 +366,7 @@
 	path = ext/providers/helm
 	url = https://github.com/terraform-providers/terraform-provider-helm
 	branch = stable-website
+[submodule "ext/providers/linode"]
+	path = ext/providers/linode
+	url = https://github.com/terraform-providers/terraform-provider-linode
+	branch = stable-website
