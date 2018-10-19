@@ -18,6 +18,18 @@ This page describes the basics of what a run is in TFE. Once you understand the 
 
 TFE enforces Terraform's division between _plan_ and _apply_ operations. It always plans first, saves the plan's output, and uses that output for the apply. In the default configuration, it waits for user approval before running an apply, but you can configure workspaces to automatically apply successful plans.
 
+### Speculative Plans
+
+In addition to normal runs, TFE can also run _speculative plans,_ to test changes to a configuration during editing and code review.
+
+Speculative plans are plan-only runs: they show a set of possible changes (and check them against Sentinel policies), but cannot apply those changes. They can begin at any time without waiting for other runs, since they don't affect real infrastructure. Speculative plans do not appear in a workspace's list of runs; viewing them requires a direct link, which is provided when the plan is initiated.
+
+There are three ways to run speculative plans:
+
+- In [VCS-backed workspaces](./ui.html), each pull request starts a speculative plan. TFE adds a link to the plan in the VCS provider's pull request interface. If multiple workspaces use the same repository, each of them will add a plan to the pull request.
+- With the [remote backend](/docs/backends/types/remote.html) configured, running `terraform plan` on the command line starts a speculative plan. The plan output streams to the terminal, and a link to the plan is also included.
+- The runs API creates speculative plans whenever the specified configuration version is marked as speculative. See [the `configuration-versions` API](../api/configuration-versions.html#create-a-configuration-version) for more information.
+
 ## Network Access to VCS and Infrastructure Providers
 
 In order to perform Terraform runs, TFE needs network access to all of the resources being managed by Terraform.
