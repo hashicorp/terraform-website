@@ -10,7 +10,7 @@ Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
 
 - The UI/VCS-driven run workflow described below, which is TFE's primary mode of operation.
 - The [API-driven run workflow](./api.html), which is more flexible but requires you to create some tooling.
-- The [CLI-driven run workflow](./cli.html), which is the API-driven workflow with a user-friendly command line tool.
+- The [CLI-driven run workflow](./cli.html), which uses Terraform's standard CLI tools to execute runs in TFE.
 
 ## Summary
 
@@ -49,3 +49,7 @@ If you would rather automatically apply plans that don't have errors, you can en
 When a pull request is made to a linked repository, each environment linked to that repository runs a [speculative plan][] and posts a link to the plan in the pull request. Members of your organization can consult the results of these plans when reviewing pull requests. Speculative plans are re-run if the code in a pull request is updated.
 
 Due to VCS providers' access controls, this feature only works for pull requests that originate _from_ the linked repository — pull requests that originate from other forks of the repository do not receive speculative plans, since TFE can't reliably access or monitor the contents of those forks.
+
+## Speculative Plans During Development
+
+You can also run speculative plans on demand before making a pull request, using the remote backend and the `terraform plan` command. For more information, see [the CLI-driven run workflow](./cli.html).
