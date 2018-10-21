@@ -14,18 +14,6 @@ This page describes the basics of what a run is in TFE. Once you understand the 
 - The [API-driven run workflow](./api.html), which is more flexible but requires you to create some tooling.
 - The [CLI-driven run workflow](./cli.html), which is the API-driven workflow with a user-friendly command line tool.
 
-## Plans and Applies
-
-TFE enforces Terraform's division between _plan_ and _apply_ operations. It always plans first, saves the plan's output, and uses that output for the apply. In the default configuration, it waits for user approval before running an apply, but you can configure workspaces to automatically apply successful plans.
-
-## Network Access to VCS and Infrastructure Providers
-
-In order to perform Terraform runs, TFE needs network access to all of the resources being managed by Terraform.
-
-If you are using the SaaS version of TFE, this means your VCS provider and any private infrastructure providers you manage with Terraform (including VMware vSphere, OpenStack, other private clouds, and more) _must be internet accessible._
-
-Private installs of TFE must have network connectivity to any connected VCS providers or managed infrastructure providers.
-
 ## Runs and Workspaces
 
 TFE always performs Terraform runs in the context of a [workspace](./index.html). The workspace provides the state and variables for the run, and usually specifies where the configuration should come from.
@@ -36,17 +24,21 @@ Whenever a new run is initiated, it's added to the end of the queue. If there's 
 
 When you initiate a run, TFE locks the run to the current Terraform code (usually associated with a specific VCS commit) and variable values. If you change variables or commit new code before the run finishes, it will only affect future runs, not ones that are already pending, planning, or awaiting apply.
 
-## Workers and Run Queuing
+## Plans and Applies
 
-TFE performs Terraform runs in disposable Linux environments, using multiple concurrent worker processes. These workers take jobs from a global queue of runs that are ready for processing; this includes confirmed applies, and plans that have just become the current run on their workspace.
+TFE enforces Terraform's division between _plan_ and _apply_ operations. It always plans first, saves the plan's output, and uses that output for the apply. In the default configuration, it waits for user approval before running an apply, but you can configure workspaces to automatically apply successful plans.
 
-If the global queue has more runs than the workers can handle at once, some of them must wait until a worker becomes available. When the queue is backed up, TFE gives different priorities to different kinds of runs:
+### Speculative Plans
 
-- Applies that will make changes to infrastructure have the highest priority.
-- Normal plans have the next highest priority.
-- Plan-only runs (used in pull request checks) have the lowest priority.
+In addition to normal runs, TFE can also run _speculative plans,_ to test changes to a configuration during editing and code review.
 
-TFE can also delay some runs in order to make performance more consistent across organizations. If an organization requests a large number of runs at once, TFE queues some of them immediately, and delays the rest until some of the initial batch have finished; this allows every organization to continue performing runs even during periods of especially heavy load.
+Speculative plans are plan-only runs: they show a set of possible changes (and check them against Sentinel policies), but cannot apply those changes. They can begin at any time without waiting for other runs, since they don't affect real infrastructure. Speculative plans do not appear in a workspace's list of runs; viewing them requires a direct link, which is provided when the plan is initiated.
+
+There are three ways to run speculative plans:
+
+- In [VCS-backed workspaces](./ui.html), each pull request starts a speculative plan. TFE adds a link to the plan in the VCS provider's pull request interface. If multiple workspaces use the same repository, each of them will add a plan to the pull request.
+- With the [remote backend](/docs/backends/types/remote.html) configured, running `terraform plan` on the command line starts a speculative plan. The plan output streams to the terminal, and a link to the plan is also included.
+- The runs API creates speculative plans whenever the specified configuration version is marked as speculative. See [the `configuration-versions` API](../api/configuration-versions.html#create-a-configuration-version) for more information.
 
 ## Run States
 
@@ -55,6 +47,14 @@ Each run passes through several stages of action (pending, plan, policy check, a
 In the list of workspaces on TFE's main page, each workspace shows the state of the run it's currently processing. (Or, if no run is in progress, the state of the most recent completed run.)
 
 For full details about the stages of a run under TFE, see [Run States and Stages](./states.html).
+
+## Network Access to VCS and Infrastructure Providers
+
+In order to perform Terraform runs, TFE needs network access to all of the resources being managed by Terraform.
+
+If you are using the SaaS version of TFE, this means your VCS provider and any private infrastructure providers you manage with Terraform (including VMware vSphere, OpenStack, other private clouds, and more) _must be internet accessible._
+
+Private installs of TFE must have network connectivity to any connected VCS providers or managed infrastructure providers.
 
 ## Interacting with Runs
 
@@ -98,6 +98,17 @@ You can find the lock button in [the workspace settings page](../workspaces/sett
 
 ~> **Important:** Locking a workspace prevents runs within TFE, but it **does not** prevent state from being updated. This means a user with write access can still modify the workspace's resources by running Terraform outside TFE with [the `atlas` remote backend](/docs/backends/types/terraform-enterprise.html). To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows; to perform runs from the command line, see [TFE's CLI-driven workflow](./cli.html).
 
+## Workers and Run Queuing
+
+TFE performs Terraform runs in disposable Linux environments, using multiple concurrent worker processes. These workers take jobs from a global queue of runs that are ready for processing; this includes confirmed applies, and plans that have just become the current run on their workspace.
+
+If the global queue has more runs than the workers can handle at once, some of them must wait until a worker becomes available. When the queue is backed up, TFE gives different priorities to different kinds of runs:
+
+- Applies that will make changes to infrastructure have the highest priority.
+- Normal plans have the next highest priority.
+- Plan-only runs (used in pull request checks) have the lowest priority.
+
+TFE can also delay some runs in order to make performance more consistent across organizations. If an organization requests a large number of runs at once, TFE queues some of them immediately, and delays the rest until some of the initial batch have finished; this allows every organization to continue performing runs even during periods of especially heavy load.
 
 ## Installing Terraform Providers
 
