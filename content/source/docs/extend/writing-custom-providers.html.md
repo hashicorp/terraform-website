@@ -695,9 +695,9 @@ func resourceServerRead(d *schema.ResourceData, m interface{}) error {
 
 Often the resulting data structure from the API is more complicated and contains nested structures. The following example illustrates this fact. The goal is that the `terraform.state` maps the resulting data structure as close as possible. This mapping is called `flattening` whereas mapping the terraform configuration to an API call, e.g. on create is called `expanding`.
 
-This example illustrates the `flattening`  of a nested structure which contains a `TypeSet` and `TypeMap`.
+This example illustrates the `flattening` of a nested structure which contains a `TypeSet` and `TypeMap`.
 
-Considering the following structure as result from the API:
+Considering the following structure as the response from the API:
 
 ```json
 {
@@ -725,9 +725,9 @@ Considering the following structure as result from the API:
 }
 ```
 
-The nested structures are `Spec` -> `TaskTemplate` -> `ContainerSpec` -> `Mounts`. There can be multiple `Mounts`  but have to be unique, so type `TypeSet` is the appropriate type. 
+The nested structures are `Spec` -> `TaskTemplate` -> `ContainerSpec` -> `Mounts`. There can be multiple `Mounts` but they have to be unique, so `TypeSet` is the appropriate type. 
 
-Due to the limitation of [tf-11115] (https://github.com/hashicorp/terraform/issues/11115) is not possible to nest maps.  So the workaround is to let only the innermost data structure be of the type `TypeMap`: in this case `driver_options`. The outer data structures are of `TypeList` which can only have one item.
+Due to the limitation of [tf-11115] (https://github.com/hashicorp/terraform/issues/11115) it is not possible to nest maps. So the workaround is to let only the innermost data structure be of the type `TypeMap`: in this case `driver_options`. The outer data structures are of `TypeList` which can only have one item.
 
 ```hcl
 /// ...
@@ -803,17 +803,21 @@ The `resourceServerRead` function now also sets/flattens the nested data structu
 ```go
 func resourceServerRead(d *schema.ResourceData, m interface{}) error {
   client := m.(*MyClient)
-  obj, ok := client.Get(d.Id())
+  server, ok := client.Get(d.Id())
 
   if !ok {
+    log.Printf("[WARN] No Server found: %s", d.Id())
     d.SetId("")
     return nil
   }
 
-  d.Set("address", obj.Address)
-  if err = d.Set("task_spec", flattenTaskSpec(server.Spec.TaskTemplate)); err != nil {
-        log.Printf("[WARN] failed to set task spec from API: %s", err)
+  d.Set("address", server.Address)
+
+  if server.Spec != nil && server.Spec.TaskTemplate != nil {
+    if err = d.Set("task_spec", flattenTaskSpec(server.Spec.TaskTemplate)); err != nil {
+      return err
     }
+  }
 
   return nil
 }
@@ -822,7 +826,7 @@ func resourceServerRead(d *schema.ResourceData, m interface{}) error {
 The so-called `flatteners` are in a separate file `structures_server.go`. The outermost data structure is a `map[string]interface{}` and each item a `[]interface{}`:
 
 ```go
-func flattenTaskSpec(in server.TaskSpec) []interface{} {
+func flattenTaskSpec(in *server.TaskSpec) []interface{} {
     // NOTE: the top level structure to set is a map
     m := make(map[string]interface{})
     if in.ContainerSpec != nil {
@@ -860,8 +864,8 @@ func flattenServiceMounts(in []mount.Mount) *schema.Set {
         volumeOptionsItem := make(map[string]interface{}, 0)
 
         volumeOptionsItem["no_copy"] = v.VolumeOptions.NoCopy
-        // NOTE: this is a internally written mappe from map[string]string => map[string]interface{}
-        // because terrafrom can only store map with interface{} as type of the value
+        // NOTE: this is an internally written map from map[string]string => map[string]interface{}
+        // because terraform can only store map with interface{} as the type of the value
         volumeOptionsItem["labels"] = mapStringStringToMapStringInterface(v.VolumeOptions.Labels)
         if v.VolumeOptions.DriverConfig != nil {
           if len(v.VolumeOptions.DriverConfig.Name) > 0 {
