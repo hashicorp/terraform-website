@@ -891,7 +891,6 @@ func flattenServiceMounts(in []mount.Mount) *schema.Set {
 }
 ```
 
-
 ## Next Steps
 
 This guide covers the schema and structure for implementing a Terraform provider
