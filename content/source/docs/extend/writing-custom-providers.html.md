@@ -850,44 +850,32 @@ func flattenContainerSpec(in *server.ContainerSpec) []interface{} {
     return out
 }
 
-func flattenServiceMounts(in []mount.Mount) *schema.Set {
-    var out = make([]interface{}, len(in), len(in))
-    // NOTE: for each mount of the API
-    for i, v := range in {
-      m := make(map[string]interface{})
-      m["target"] = v.Target
-      m["source"] = v.Source
-      m["type"] = string(v.Type) 
+func flattenServiceMounts(in []mount.Mount) []map[string]interface{} {
+  var out = make([]map[string]interface{}, len(in), len(in))
+  for i, v := range in {
+    m := make(map[string interface{}])
+    m["target"] = v.Target
+    m["source"] = v.Source
+    m["type"] = v.Type
 
-      if v.VolumeOptions != nil {
-        volumeOptions := make([]interface{}, 0, 0)
-        volumeOptionsItem := make(map[string]interface{}, 0)
+    if v.VolumeOptions != nil {
+      volumeOptions := make(map[string]interface{})
 
-        volumeOptionsItem["no_copy"] = v.VolumeOptions.NoCopy
-        // NOTE: this is an internally written map from map[string]string => map[string]interface{}
-        // because terraform can only store map with interface{} as the type of the value
-        volumeOptionsItem["labels"] = mapStringStringToMapStringInterface(v.VolumeOptions.Labels)
-        if v.VolumeOptions.DriverConfig != nil {
-          if len(v.VolumeOptions.DriverConfig.Name) > 0 {
-            volumeOptionsItem["driver_name"] = v.VolumeOptions.DriverConfig.Name
-          }
-          volumeOptionsItem["driver_options"] = mapStringStringToMapStringInterface(v.VolumeOptions.DriverConfig.Options)
-        }
-
-        volumeOptions = append(volumeOptions, volumeOptionsItem)
-        m["volume_options"] = volumeOptions
+      volumeOptions["no_copy"] = v.VolumeOptions.NoCopy
+      // NOTE: this is an internally written map from map[string]string => map[string]interface{}
+      // because terraform can only store map with interface{} as the type of the value
+      volumeOptions["labels"] = mapStringStringToMapStringInterface(v.VolumeOptions.Labels)
+      if v.VolumeOptions.DriverConfig != nil {
+        volumeOptions["driver_name"] = v.VolumeOptions.DriverConfig.Name
+        volumeOptionsItem["driver_options"] = mapStringStringToMapStringInterface(v.VolumeOptions.DriverConfig.Options)
       }
-      // NOTE: append each mapped mount
-      out[i] = m
+
+      m["volume_options"] = []interface{}{volumeOptions}
     }
-    // NOTE: retrieve the desired part of the schema
-    taskSpecResource := resourceServer().Schema["task_spec"].Elem.(*schema.Resource)
-    containerSpecResource := taskSpecResource.Schema["container_spec"].Elem.(*schema.Resource)
-    mountsResource := containerSpecResource.Schema["mounts"].Elem.(*schema.Resource)
-    // NOTE: so that terraform internal hashing function can be used
-    f := schema.HashResource(mountsResource)
-    // NOTE: now the mapped mounts will be hashed accordingly
-    return schema.NewSet(f, out)
+    
+    out[i] = m
+  }
+  return out
 }
 ```
 
