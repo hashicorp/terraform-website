@@ -23,7 +23,7 @@ Changing settings requires [admin privileges](../users-teams-organizations/permi
 
 The following settings are available in the "Settings" tab.
 
-### Auto Apply vs. Manual Apply
+### Auto Apply and Manual Apply
 
 Whether or not TFE should automatically apply a successful Terraform plan. If you choose manual apply, an operator must confirm a successful plan and choose to apply it.
 
