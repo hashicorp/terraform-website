@@ -51,7 +51,6 @@ Key path                                | Type            | Default          | D
 `data.type`                             | string          |                  | Must be `"policies"`.
 `data.attributes.name`                  | string          |                  | The name of the policy, which cannot be modified after creation. Can include letters, numbers, `-`, and `_`.
 `data.attributes.enforce`               | array\[object\] |                  | An array of enforcement configurations which map Sentinel file paths to their enforcement modes. Currently policies only support a single file, so this array will consist of a single element. If the path in the enforcement map does not match the Sentinel policy (`<NAME>.sentinel`), then the default `hard-mandatory` will be used.
-
 `data.attributes.enforce[].path`        | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` has the same value as `data.attributes.name`.
 `data.attributes.enforce[].mode`        | string          | `hard-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
 `data.relationships.policy-sets.data[]` | array\[object\] | `[]`             | A list of resource identifier objects to define which policy sets the new policy will be a member of. These objects must contain `id` and `type` properties, and the `type` property must be `policy-sets` (e.g. `{ "id": "polset-3yVQZvHzf5j3WRJ1","type": "policy-sets" }`).
