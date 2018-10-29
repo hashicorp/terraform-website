@@ -13,11 +13,13 @@ sidebar_current: "docs-enterprise2-migrating-workspaces"
 
 Terraform can manage multiple groups of infrastructure in one working directory by [switching workspaces][cli-workspaces].
 
-These workspaces, managed with the `terraform workspace` command, aren't the same thing as TFE's workspaces. TFE workspaces act more like completely separate working directories; CLI workspaces are just alternate state files.
+These workspaces, managed with the `terraform workspace` command, aren't the same thing as Terraform Enterprise (TFE)'s workspaces. TFE workspaces act more like completely separate working directories; CLI workspaces are just alternate state files.
 
 If you use multiple workspaces, you'll need to migrate each one to a separate TFE workspace.
 
 Migrating multiple workspaces is similar to [migrating a single workspace](./index.html), but it requires some extra steps.
+
+-> **API:** See the [State Versions API](../api/state-versions.html). This API can be a faster way to import existing state into TFE workspaces, but many of the warnings in the manual process below still apply; in particular, be sure to only import state into TFE workspaces that have never performed a run.
 
 ## Step 1: Gather Credentials, Data, and Code
 

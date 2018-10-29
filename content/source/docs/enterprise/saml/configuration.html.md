@@ -15,6 +15,8 @@ Private Terraform Enterprise (PTFE) is configured as the Service Provider.
 
 -> **Note:** For instructions for specific IdPs, see [Identity Provider Configuration](./identity-provider-configuration.html).
 
+-> **API:** See the [PTFE Settings API](../api/admin/settings.html).
+
 ## Terraform Enterprise (Service Provider)
 
 ~> **Important:** Only PTFE users with the site-admin permission can modify SAML settings. For more information about site admins, see [Administering Private Terraform Enterprise][admin].

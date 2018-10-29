@@ -14,6 +14,8 @@ Each type of account or resource is initally presented as a searchable list, acc
 
 ## Managing Users
 
+-> **API:** See the [PTFE Users API](../../api/admin/users.html).
+
 To access the list of all users in the Terraform Enterprise instance, click **Users** in the left menu.
 
 ![screenshot: the Users admin page](./images/admin-users.png)
@@ -52,6 +54,8 @@ Impersonation can be performed from multiple places:
 
 ## Managing Organizations
 
+-> **API:** See the [PTFE Organizations API](../../api/admin/organizations.html).
+
 If your institution uses multiple organizations in Terraform Enterprise, you can view the details of each organization by clicking it in the admin list of organizations. From the details page, you can impersonate an owner or delete an organization (using the red **Delete this organization** button at the bottom of the details page).
 
 Typically, in private installations, all organizations will be granted "Premium" plan status for the purpose of providing access to all available features. However, it's also possible to set other statuses. An organization whose trial period is expired will be unable to make use of features in Terraform Enterprise.
@@ -59,6 +63,8 @@ Typically, in private installations, all organizations will be granted "Premium"
 ![screenshot: an organization details admin page](./images/admin-organization-details.png)
 
 ## Managing Workspaces and Runs
+
+-> **API:** See the [PTFE Workspaces API](../../api/admin/workspaces.html) and [PTFE Runs API](../../api/admin/runs.html).
 
 The administrative view of workspaces and runs provides limited detail (name, status, and IDs) to avoid exposing sensitive data when it isn't needed. Site administrators can view and investigate workspaces and runs more deeply by impersonating a user with full access to the desired resource. (See [Impersonating a User](#impersonating-a-user) above.)
 
@@ -87,6 +93,8 @@ If history migration initially fails, the migration will be retried periodically
 A future version of Terraform Enterprise will remove Legacy environment data and code completely. Be sure to review release notes and wait to upgrade to that version until migration of desired data is complete.
 
 ## Managing Terraform Versions
+
+-> **API:** See the [PTFE Terraform Versions API](../../api/admin/terraform-versions.html).
 
 Private Terraform Enterprise ships with a default list of Terraform versions. However, the addition of new versions after installation is the responsibility of site administrators.
 

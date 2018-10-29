@@ -10,6 +10,8 @@ If you used the legacy version of Terraform Enterprise (TFE), you probably have 
 
 Follow these steps to migrate your old TFE environments to new TFE workspaces.
 
+-> **API:** See the [Create a Workspace endpoint](../api/workspaces.html#create-a-workspace); the `data.attributes.migration-environment` property enables migration from legacy environments. For end-to-end instructions for migrating many legacy environments, see [Batch Migration](./batch.html).
+
 ## Step 1: Create a New Organization
 
 You can't use the current version of TFE with a legacy organization because the internals are too different. If you don't already have an organization in the new TFE, do the following:

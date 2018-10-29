@@ -15,6 +15,8 @@ If you already use Terraform to manage infrastructure, you're probably managing 
 
 ~> **Important:** These instructions are for migrating state in a basic working directory that only uses the `default` workspace. If you use multiple [workspaces][cli-workspaces] in one working directory, the instructions are different; see [Migrating State from Multiple Terraform Workspaces](./workspaces.html) instead.
 
+-> **API:** See the [State Versions API](../api/state-versions.html). This API can be a faster way to import existing state into TFE workspaces, but many of the warnings in the manual process below still apply; in particular, be sure to only import state into TFE workspaces that have never performed a run.
+
 ## Step 1: Gather Credentials, Data, and Code
 
 Make sure you have all of the following:

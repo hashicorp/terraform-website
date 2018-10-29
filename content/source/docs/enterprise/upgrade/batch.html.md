@@ -12,7 +12,7 @@ the easiest way to migrate a legacy environment to a workspace; however, if your
 organization has many environments in need of migration this process may be
 laborious to perform in the UI.
 
-The [TFE workspace creation API](https://www.terraform.io/docs/enterprise/api/workspaces.html)
+The [TFE workspace creation API](/docs/enterprise/api/workspaces.html)
 can be used to perform the migration, which automaticaly locks the legacy
 environment and migrates the data to the new workspace. This API can be called
 using standard tools like curl, [tfe-cli tool](https://github.com/hashicorp/tfe-cli),
@@ -32,7 +32,7 @@ This guide requires the [tfe-cli tool](https://github.com/hashicorp/tfe-cli).
 
 ## Step 1: Identify OAuth Token ID
 
--> You can skip to **Step 2** if only one VCS connection is configured or if no
+-> **Note:** You can skip to **Step 2** if only one VCS connection is configured or if no
 VCS connection is needed. The `tfe` tool will automatically use the VCS
 connection if only one exists.
 
