@@ -36,16 +36,15 @@ mode](https://www.terraform.io/docs/enterprise/private/preflight-installer.html#
 the infrastructure requirements for PTFE range from a single [Azure VM
 instance](https://azure.microsoft.com/en-us/services/virtual-machines/) for
 demo or proof of concept installations, to multiple instances connected to
-[Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/),
-[Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/),
-and an external Vault cluster for a stateless production installation.
+[Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/) and
+[Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/) for a stateless production installation.
 
 The following table provides high level server recommendations, and is meant as
 a guideline. Of particular note is the strong recommendation to avoid non-fixed
 performance CPUs, or “Burstable CPU” in Azure terms, such as B-series
 instances.
 
-### PTFE Servers (Azure VMs)
+### PTFE Servers (Azure VMs via VM Scale Set)
 
 | Type        | CPU      | Memory       | Disk | Azure VM Sizes                     |
 | ----------- | -------- | ------------ | ---- | ---------------------------------- |
@@ -93,19 +92,11 @@ region as the VMs and Azure Database for PostgreSQL instance. It is recommended
 the virtual network containing the PTFE servers be configured with a
 [Virtual Network (VNet) service
 endpoint](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview)
-for Azure Storage. Vault is used to encrypt all application data stored
+for Azure Storage. Within the PTFE application, Vault is used to encrypt all application data stored
 in the Azure Blob Storage container. This allows for further
 [server-side
 encryption](https://docs.microsoft.com/en-us/azure/storage/common/storage-service-encryption)
 by Azure Blob Storage if required by your security policy.
-
-### Vault Cluster
-
-In order to provide a fully stateless application deployment, PTFE must be
-configured to speak with an [external Vault
-cluster](https://www.terraform.io/docs/enterprise/private/vault.html).
-This reference architecture assumes that a highly available Vault
-cluster is accessible at an endpoint the PTFE servers can reach.
 
 ### Other Considerations
 
@@ -117,6 +108,10 @@ also be permitted to create the following Azure resources:
   - [Resource Group(s)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#resource-groups)
 
   - [Load Balancer](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview)
+
+  - [Application Gateway] (https://docs.microsoft.com/en-us/azure/application-gateway/overview)
+
+  - [VM Scale Set](https://azure.microsoft.com/en-us/services/virtual-machine-scale-sets/)
 
   - [Virtual Network](https://azure.microsoft.com/en-us/services/virtual-network/)
 
@@ -146,10 +141,11 @@ required DNS entry is outside the scope of this guide.
 
 #### SSL/TLS
 
-An SSL/TLS certificate is required for secure communication between
-clients and the PTFE application server. The certificate can be
-specified during the UI-based installation or the path to the
-certificate codified during an unattended installation.
+An SSL/TLS certificate is required for secure communication between clients, VCS systems, and the PTFE application server. The certificate can be specified during the UI-based installation or in a configuration file used for an unattended installation.
+
+An Application Gateway will be required if SSL/TLS termination is required at the Load Balancer. In this configuration, the PTFE instances should still be configured to listen for incoming SSL/TLS connections. If a standard Load Balancer is used, SSL/TLS will be terminated on the PTFE instance.
+
+HashiCorp does not recommend the use of self-signed certificates on the PTFE instance unless you use an [Application Gateway](https://docs.microsoft.com/en-us/azure/application-gateway/create-ssl-portal) and place a public certificate on the load balancer. Note that certificates cannot be placed on an Azure Load Balancer.
 
 ## Infrastructure Diagram
 
@@ -159,29 +155,18 @@ The above diagram show the infrastructure components at a high-level.
 
 ### Application Layer
 
-The Application Layer is composed of two PTFE servers (Azure VMs)
-running in different subnets and operating in an active/standby
-configuration. Traffic is routed to the active PTFE server via the Load Balancer
-rules and health checks. In the event that the active PTFE server becomes unavailable,
-the traffic will then route to the standby PTFE server, making it the new active
-server. Routing changes can also be managed by a human triggering by triggering a change in
-the Load Balancer configuration to switch between the PTFE servers.
+The Application Layer is composed of a single-instance VM Scale Set PTFE
+running in a single subnet. Traffic is routed to this PTFE server via the Load Balancer rules and health checks. In the event of an instance failure, the VM Scale Set will launch a new instance based on the assigned autoscaling rule(s).
 
 ### Storage Layer
 
-The Storage Layer is composed of multiple service endpoints (Azure Database for PostgreSQL,
-Azure Blob Storage, Vault) all configured with or benefitting from
-inherent resiliency provided by Azure (in the case of Azure Database for PostgreSQL and Azure
-Blob Storage) or assumed resiliency provided by a well-architected
-deployment (in the case of Vault).
+The Storage Layer is composed of multiple service endpoints (Azure Database and Azure Blob Storage) all configured with or benefiting from inherent resiliency provided by Azure.
 
 #### Additional Information
 
 - [Azure Database for PostgreSQL deployments](https://docs.microsoft.com/en-us/azure/postgresql/concepts-business-continuity)
 
 - [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)
-
-- [Highly available Vault deployments](https://www.vaultproject.io/guides/operations/vault-ha-consul.html)
 
 ## Infrastructure Provisioning
 
@@ -193,8 +178,7 @@ other resources, and associated dependencies.
 
 ### Component Interaction
 
-The Load Balancer routes all traffic to the active PTFE instance, which
-handles all requests to the PTFE application.
+The Load Balancer routes all traffic to the active PTFE instance, which is managed by the VM Scale Set with maximum and minimum instance counts set to 1.
 
 The PTFE application is connected to the PostgreSQL database via the
 Azure provided database server name endpoint. All database requests are
@@ -203,9 +187,6 @@ routed to the highly available infrastructure supporting Azure Database for Post
 The PTFE application is connected to object storage via the Azure Blob
 Storage endpoint for the defined container. All object storage requests
 are routed to the highly available infrastructure supporting Azure Storage.
-
-The PTFE application is connected to the Vault cluster via the Vault
-cluster endpoint URL.
 
 ### Monitoring
 
@@ -234,22 +215,17 @@ service continuity will improve as the architecture evolves.
 
 ##### Single VM Failure
 
-In the event of the active instance failing, the Load Balancer
-should be reconfigured (manually or automatically) to route all traffic
-to the standby instance.
+In the event of the *PTFE* instance failing in a way that Azure can
+observe, the health checks on the VM Scale Set trigger, causing
+a new VM to be launched. Once the new VM is launched,
+it reinitializes the software and once that is complete, service would
+resume as normal.
 
-~> **Important:** Active-active configuration is not supported due to a serialisation requirement in the core components of PTFE; therefore, all traffic from the Load Balancer *MUST* be routed to a single instance.
-
-When using the _Production - External Services_ deployment model (PostgreSQL Database, Object Storage, Vault), there is still some application configuration data present on the
+When using the _Production - External Services_ deployment model (Azure DB and Azure Blob Storage), there is still some application configuration data present on the
 PTFE server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. If the application configuration has
-not changed since installation, both PTFE1 and PTFE2 will
+not changed since installation, the new VM will
 use the same configuration and no action is required.
-
-If the
-configuration on the active instance changes, you should [create a snapshot](https://www.terraform.io/docs/enterprise/private/automated-recovery.html#1-configure-snapshots) via the
-UI or CLI and recover this to the standby instance so that both instances use the
-same configuration.
 
 ##### PostgreSQL Database
 
@@ -265,18 +241,9 @@ documentation](https://docs.microsoft.com/en-us/azure/postgresql/concepts-high-a
 
 Using Azure Blob Storage as an external object store leverages the
 highly available infrastructure provided by Azure. More information on
-Azure Storage redundancy is available in the
+Azure Blob Storage redundancy is available in the
 [Azure
 documentation](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy).
-
-##### Vault Servers
-
-For the purposes of this guide, the external Vault cluster is expected
-to be deployed and configured in line with the
-[HashiCorp Vault Enterprise Reference
-Architecture](https://www.vaultproject.io/guides/operations/reference-architecture.html).
-This would provide high availability and disaster recovery support,
-minimising downtime in the event of an outage.
 
 ## Disaster Recovery
 
@@ -311,11 +278,6 @@ services such as DNS.
     must be configured so the object storage component of the Storage
     Layer is available in the secondary Azure Region.
 
-  - [Vault Disaster Recovery (DR)
-    Replication](https://www.vaultproject.io/docs/enterprise/replication/index.html#performance-replication-and-disaster-recovery-dr-replication)
-    must be configured for a Vault cluster in the secondary Azure
-    Region.
-
   - DNS must be redirected to the Load Balancer acting as the entry
     point for the infrastructure deployed in the secondary Azure
     Region.
@@ -323,13 +285,13 @@ services such as DNS.
 #### Data Corruption
 
 The PTFE application architecture relies on multiple service endpoints
-(Azure DB, Azure Storage, Vault) all providing their own backup and
+(Azure DB and Azure Blob Storage) all providing their own backup and
 recovery functionality to support a low MTTR in the event of data
 corruption.
 
 ##### PTFE Servers
 
-When using the _Production - External Services_ deployment model (PostgreSQL Database, Object Storage, Vault), there is still some application configuration data present on the
+When using the _Production - External Services_ deployment model (Azure DB and Azure Blob Storage), there is still some application configuration data present on the
 PTFE server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. We recommend
 [configuring automated
@@ -361,12 +323,3 @@ used by the PTFE application to a “backup container” in Azure Blob Storage
 that runs at regular intervals. It is important the copy process is not
 so frequent that data corruption in the source content is copied to the
 backup before it is identified.
-
-##### Vault Cluster
-
-The recommended Vault Reference Architecture uses Consul for storage.
-Consul provides the underlying [snapshot
-functionality](https://www.consul.io/docs/commands/snapshot.html)
-to support Vault backup and recovery. [Vault
-Backup/Restore
-doc](https://docs.google.com/document/d/1_RzV5xqgjDG-krFht0T3Deehw37HIMdU24uc2tqRwRk/edit).
