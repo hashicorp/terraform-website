@@ -35,9 +35,9 @@ issues will be fixed in future releases of the import and core runtime.
 
 * [Resource and data source][resource-and-data-source] count keys (`NUMBER` in
   `TYPE.NAME[NUMBER]`), which are actually represented as integers, cannot be
-  represented accurately JSON and as a result, mocks that depend on count keys
-  explicitly (example: `tfstate.resources.null_resource.foo[0]`) will not work
-  properly with mocks.
+  represented accurately in JSON and as a result, mocks that depend on count
+  keys explicitly (example: `tfstate.resources.null_resource.foo[0]`) will not
+  work properly with mocks.
 
 [resource-and-data-source]: /docs/enterprise/sentinel/import/tfstate.html#namespace-resources-data-sources
 
