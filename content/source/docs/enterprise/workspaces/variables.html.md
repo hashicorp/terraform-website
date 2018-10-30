@@ -90,6 +90,13 @@ Do not commit a file named `terraform.tfvars` to version control, since TFE will
 
 TFE performs Terraform runs on disposable Linux worker VMs using a POSIX-compatible shell. Before running Terraform, TFE populates the shell with environment variables using the `export` command.
 
+### Special Environment Variables
+
+TFE uses some special environment variables to control dangerous or rarely used run behaviors.
+
+- `CONFIRM_DESTROY` — If this environment variable is set to `1` in a workspace, an admin user can destroy all of the infrastructure managed by the workspace using the "Queue destroy plan" button in the settings page. The UI text for the destroy plan button includes a reminder about this safety measure.
+- `TFE_PARALLELISM` — If present, TFE uses this to set `terraform apply`'s `-parallelism=<N>` flag ([more info](/docs/internals/graph.html#walking-the-graph)). Valid values are between 1 and 256, inclusive; the default is `10`. This is rarely necessary, but can fix problems with infrastructure providers that error on concurrent operations or use non-standard rate limiting. We recommend talking to HashiCorp support before using this.
+
 ### Secure Storage of Variables
 
 TFE encrypts all variable values securely using [Vault's transit backend](https://www.vaultproject.io/docs/secrets/transit/index.html) prior to saving them. This ensures that no out-of-band party can read these values without proper authorization.
