@@ -52,7 +52,8 @@ tfconfig
 │       ├── modules
 │       │   └── NAME
 │       │       ├── config (map of keys)
-│       │       └── source (string)
+│       │       ├── source (string)
+│       │       └── version (string)
 │       ├── providers
 │       │   └── TYPE
 │       │       ├── alias
@@ -408,6 +409,37 @@ import "tfconfig"
 main = rule { tfconfig.modules.foo.source is "./foo" }
 ```
 
+### Value: `version`
+
+* **Value Type:** String.
+
+The `version` value within the [module configuration
+namespace](#namespace-module-configuration) represents the [version
+constraint][module-version-constraint] for modules that support it, such as
+modules within the [Terraform Module Registry][terraform-module-registry] or the
+[Terraform Enterprise private module registry][tfe-private-registry].
+
+[module-version-constraint]: /docs/modules/usage.html#module-versions
+[terraform-module-registry]: https://registry.terraform.io/
+[tfe-private-registry]: /docs/enterprise/registry/index.html
+
+As an example, given the module declaration block:
+
+```hcl
+module "foo" {
+  source  = "foo/bar"
+  version = "~> 1.2"
+}
+```
+
+The following policy would evaluate to `true`:
+
+```python
+import "tfconfig"
+
+main = rule { tfconfig.modules.foo.version is "~> 1.2" }
+```
+
 ### Value: `config`
 
 * **Value Type:** A string-keyed map of values.
@@ -415,7 +447,8 @@ main = rule { tfconfig.modules.foo.source is "./foo" }
 The `config` value within the [module configuration
 namespace](#namespace-module-configuration) represents the values of the keys
 within the module configuration. This is every key within a module declaration
-block except [`source`](#value-source), which has its own value.
+block except [`source`](#value-source) and [`version`](#value-version), which
+have their own values.
 
 As an example, given the module declaration block:
 
