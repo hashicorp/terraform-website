@@ -246,10 +246,6 @@
 	path = ext/providers/template
 	url = https://github.com/terraform-providers/terraform-provider-template
 	branch = stable-website
-[submodule "ext/providers/terraform"]
-	path = ext/providers/terraform
-	url = https://github.com/terraform-providers/terraform-provider-terraform
-	branch = stable-website
 [submodule "ext/providers/tls"]
 	path = ext/providers/tls
 	url = https://github.com/terraform-providers/terraform-provider-tls
