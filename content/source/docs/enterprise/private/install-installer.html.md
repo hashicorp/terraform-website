@@ -106,6 +106,29 @@ The UI to upload these certificates looks like:
 
 ![ptfe-ca-ui](./assets/ptfe-ca-bundle.png)
 
+
+## Alternative Terraform worker image
+
+TFE runs terraform plan and apply operations in a disposable docker container. There are cases where users may require additional tools that are not available in the default docker image. To work around this limitation users can build their own image and configure TFE to use that instead. In order for this to happen the name of the alternative docker image must be set in the config by using the relevant field as shown below:
+
+![ptfe-docker-image](./assets/ptfe-docker-image.png)
+
+During the first iteration of this feature it is important to impose certain limitations on what we can support. These limitations are:
+ - The base image must be ubuntu:xenial
+ - The user is responsible for making sure the image exists on the PTFE host by running `docker pull` from their own registry, or any other similar method.
+ - The user is responsible for making sure CA certificates are available when terraform runs.
+ - Terraform must not be installed in the image. TFE will take care of that on runtime.
+
+ This is a sample `Dockerfile` you can use to start building your own image:
+
+ ```
+# This Dockerfile builds the image used for the worker containers.
+FROM ubuntu:xenial
+
+# Inject the ssl certificates
+ADD ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+```
+
 ## Operational Mode Decision
 
 Terraform Enterprise can store its state in a few different ways, and you'll
