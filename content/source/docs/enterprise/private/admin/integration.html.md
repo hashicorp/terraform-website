@@ -14,7 +14,7 @@ At this time, the available site-wide integrations are:
 - SMTP
 - Twilio
 
--> **API:** See the [PTFE Settings API](../../api/admin/settings.html).
+-> **API:** See the [Admin Settings API](../../api/admin/settings.html).
 
 ## SAML Integration
 

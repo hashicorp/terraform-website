@@ -10,7 +10,7 @@ General settings control global behavior in Private Terraform Enterprise. To acc
 
 ![screenshot: the Settings admin page](./images/admin-general.png)
 
--> **API:** See the [PTFE Settings API](../../api/admin/settings.html).
+-> **API:** See the [Admin Settings API](../../api/admin/settings.html).
 
 ## Contact Info
 

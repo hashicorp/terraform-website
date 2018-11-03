@@ -15,7 +15,7 @@ Private Terraform Enterprise (PTFE) is configured as the Service Provider.
 
 -> **Note:** For instructions for specific IdPs, see [Identity Provider Configuration](./identity-provider-configuration.html).
 
--> **API:** See the [PTFE Settings API](../api/admin/settings.html).
+-> **API:** See the [Admin Settings API](../api/admin/settings.html).
 
 ## Terraform Enterprise (Service Provider)
 
