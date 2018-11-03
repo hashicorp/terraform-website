@@ -19,7 +19,7 @@ If you use multiple workspaces, you'll need to migrate each one to a separate TF
 
 Migrating multiple workspaces is similar to [migrating a single workspace](./index.html), but it requires some extra steps.
 
--> **API:** See the [State Versions API](../api/state-versions.html). This API can be a faster way to import existing state into TFE workspaces, but many of the warnings in the manual process below still apply; in particular, be sure to only import state into TFE workspaces that have never performed a run.
+-> **API:** See the [State Versions API](../api/state-versions.html). Be sure to stop Terraform runs before migrating state to TFE, and only import state into TFE workspaces that have never performed a run.
 
 ## Step 1: Gather Credentials, Data, and Code
 
