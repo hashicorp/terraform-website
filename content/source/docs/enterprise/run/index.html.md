@@ -136,7 +136,7 @@ If the global queue has more runs than the workers can handle at once, some of t
 
 - Applies that will make changes to infrastructure have the highest priority.
 - Normal plans have the next highest priority.
-- Plan-only runs (used in pull request checks) have the lowest priority.
+- Speculative plans have the lowest priority.
 
 TFE can also delay some runs in order to make performance more consistent across organizations. If an organization requests a large number of runs at once, TFE queues some of them immediately, and delays the rest until some of the initial batch have finished; this allows every organization to continue performing runs even during periods of especially heavy load.
 
