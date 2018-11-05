@@ -246,10 +246,6 @@
 	path = ext/providers/template
 	url = https://github.com/terraform-providers/terraform-provider-template
 	branch = stable-website
-[submodule "ext/providers/terraform"]
-	path = ext/providers/terraform
-	url = https://github.com/terraform-providers/terraform-provider-terraform
-	branch = stable-website
 [submodule "ext/providers/tls"]
 	path = ext/providers/tls
 	url = https://github.com/terraform-providers/terraform-provider-tls
@@ -357,4 +353,16 @@
 [submodule "ext/providers/tencentcloud"]
 	path = ext/providers/tencentcloud
 	url = https://github.com/terraform-providers/terraform-provider-tencentcloud
+	branch = stable-website
+[submodule "ext/providers/nutanix"]
+	path = ext/providers/nutanix
+	url = https://github.com/terraform-providers/terraform-provider-nutanix
+	branch = stable-website
+[submodule "ext/providers/helm"]
+	path = ext/providers/helm
+	url = https://github.com/terraform-providers/terraform-provider-helm
+	branch = stable-website
+[submodule "ext/providers/linode"]
+	path = ext/providers/linode
+	url = https://github.com/terraform-providers/terraform-provider-linode
 	branch = stable-website

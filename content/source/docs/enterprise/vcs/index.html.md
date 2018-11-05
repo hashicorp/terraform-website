@@ -6,7 +6,13 @@ sidebar_current: "docs-enterprise2-vcs"
 
 # Connecting VCS Providers to Terraform Enterprise
 
-TFE's core features require access to your version control system (VCS) provider. You'll need to configure VCS access when first setting up a TFE organization, and you might need to add additional VCS providers later depending on how your organization grows.
+Terraform Enterprise (TFE) is more powerful when you integrate it with your version control system (VCS) provider. Although you can use almost all of TFE's features without one, a VCS connection provides major workflow benefits. In particular:
+
+- When workspaces are linked to a VCS repository, TFE can [automatically initiate Terraform runs](../run/ui.html) when changes are committed to the specified branch.
+- TFE makes code review easier by [automatically predicting](../run/ui.html#speculative-plans-on-pull-requests) how pull requests will affect infrastructure.
+- Publishing new versions of a [private Terraform module](../registry/publish.html) is as easy as pushing a tag to the module's repository.
+
+We recommend configuring VCS access when first setting up a TFE organization, and you might need to add additional VCS providers later depending on how your organization grows.
 
 ## How TFE Uses VCS Access
 
@@ -25,9 +31,7 @@ To use configurations from VCS, TFE needs to do several things:
 TFE uses webhooks to monitor new commits and pull requests.
 
 - When someone adds new commits to a branch in a repository linked to TFE, any workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can prevent automatic runs by locking a workspace.
-- When someone submits a pull request/merge request to a branch from another branch in the same repository, TFE does a Terraform plan with the contents of the request and records the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
-
-    Pull request plans don't appear in a workspace's run list, and can't be applied. They're intended only as a check for merge safety.
+- When someone submits a pull request/merge request to a branch from another branch in the same repository, TFE performs a [speculative plan](../run/index.html#speculative-plans) with the contents of the request and links to the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
 
 ### SSH Keys
 

@@ -32,8 +32,8 @@ Follow these steps to configure Okta as the identity provider (IdP) for Private 
     ![Screenshot: Further down on Okta's "Configure SAML" page, with a group attribute statement partially configured.](./images/sso-okta-new-application-attributes.png)
 6. Still in the "Configure SAML" page, optionally configure a site admin permissions attribute statement. This statement determines which users can administer the entire PTFE instance (see [Administering Private Terraform Enterprise](../private/admin/index.html) for more information about site admin permissions). Under the "Attribute Statements (Optional)" header, configure a statement as follows:
     - **Name:** `SiteAdmin` (This is the default name for TFE's site admin [attribute][]; the name of this attribute can be changed in [TFE's SAML settings](./configuration.html) if necessary.)
-    - **Name Format** (drop-down): Boolean
-    - **Value:** An [Okta expression](https://developer.okta.com/reference/okta_expression_language/) that will evaluate to `true` for every user who should have site admin permissions, but `false` for any users who should **not** have site admin permissions. The exact expression depends on the user properties you use to manage admin permissions.
+    - **Name Format** (drop-down): Basic
+    - **Value:** An [Okta expression](https://developer.okta.com/reference/okta_expression_language/) that will evaluate to a boolean: `true` for every user who should have site admin permissions, but `false` for any users who should **not** have site admin permissions. The exact expression depends on the user properties you use to manage admin permissions.
 7. Preview the SAML response and make sure it matches your expectations.
 8. Finish configuring the SAML app in Okta, then copy the provided endpoint URLs and certificate to your Terraform Enterprise SAML settings at `https://<TFE_HOSTNAME>/app/admin/saml`. TFE requires a single sign-on URL, a single log-out URL, and a PEM (base64) encoded X.509 certificate.
 

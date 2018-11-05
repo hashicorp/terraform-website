@@ -64,7 +64,7 @@ their type.
 - Executing commands or scripts on the designated Resource after creation, or on
 destruction. 
 
-## Discovery 
+## Discovery
 
 ~> **Advanced topic:** This section describes Terraform's plugin discovery
 behavior at the level of detail a plugin developer might need. For instructions

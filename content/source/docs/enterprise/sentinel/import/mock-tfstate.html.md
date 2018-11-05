@@ -22,11 +22,24 @@ documentation][ref-official-sentinel-documentation].
 [ref-mocking-imports]: https://docs.hashicorp.com/sentinel/writing/imports#mocking-imports
 [ref-official-sentinel-documentation]: https://docs.hashicorp.com/sentinel/
 
--> **NOTE:** As functions cannot be mocked in the current Sentinel testing
-framework, the [module()][ref-module] function is not available. As a result,
-only root module data can be mocked at this time.
+#### Current mock limitations
+
+There are currently some limitations mocking `tfstate` data in Sentinel. These
+issues will be fixed in future releases of the import and core runtime.
+
+* As functions cannot be mocked in the current Sentinel testing framework, the
+  [module()][ref-module] function is not available. As a result, only root
+  module data can be mocked at this time.
 
 [ref-module]: /docs/enterprise/sentinel/import/tfstate.html#function-module-
+
+* [Resource and data source][resource-and-data-source] count keys (`NUMBER` in
+  `TYPE.NAME[NUMBER]`), which are actually represented as integers, cannot be
+  represented accurately in JSON and as a result, mocks that depend on count
+  keys explicitly (example: `tfstate.resources.null_resource.foo[0]`) will not
+  work properly with mocks.
+
+[resource-and-data-source]: /docs/enterprise/sentinel/import/tfstate.html#namespace-resources-data-sources
 
 ```json
 {

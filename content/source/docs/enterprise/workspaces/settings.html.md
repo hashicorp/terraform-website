@@ -23,7 +23,7 @@ Changing settings requires [admin privileges](../users-teams-organizations/permi
 
 The following settings are available in the "Settings" tab.
 
-### Auto Apply vs. Manual Apply
+### Auto Apply and Manual Apply
 
 Whether or not TFE should automatically apply a successful Terraform plan. If you choose manual apply, an operator must confirm a successful plan and choose to apply it.
 
@@ -36,6 +36,12 @@ Which version of Terraform to use for all operations in the workspace. You can c
 By default, new workspaces are locked to the current version of Terraform at the time of their creation. (You can specify a Terraform version when creating a workspace via the API.)
 
 After changing this setting you must click the "Save settings" button below it.
+
+### Terraform Working Directory
+
+The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. This is useful when working with VCS repos that contain multiple Terraform configurations. Defaults to the root of the configuration directory.
+
+-> **Note:** If you specify a working directory, TFE will still queue a plan for changes to the repository outside that working directory. This is because local modules are often outside the working directory, and changes to those modules should result in a new run. If you have a repo that manages multiple infrastructure components with different lifecycles and are experiencing too many runs, we recommend splitting the components out into independent repos. See [Repository Structure](./repo-structure.html) for more detailed explanations.
 
 ### SSH Key
 
@@ -68,7 +74,6 @@ Queueing a destroy plan destroys the infrastructure managed by a workspace. If y
 
 Before queueing a destroy plan, you must set a `CONFIRM_DESTROY` environment variable in the workspace with a value of `1`.
 
-
 ## Version Control Settings
 
 The following settings are available in the "Version Control" tab.
@@ -78,12 +83,6 @@ The following settings are available in the "Version Control" tab.
 ### VCS Connection and Repository
 
 You can use the "Select a VCS connection" buttons and "Repository" field to change which VCS repository the workspace gets configurations from. See [Creating Workspaces](./creating.html) for more details about selecting a VCS repository, and see [Connecting VCS Providers to Terraform Enterprise](../vcs/index.html) for more details about configuring VCS integrations.
-
-### Terraform Working Directory
-
-The directory where Terraform will execute, specified as a relative path from the root of the repo. This is useful when working with VCS repos that contain multiple Terraform configurations. Defaults to the root of the repo.
-
--> **Note:** If you specify a working directory, TFE will still queue a plan for changes to the repository outside that working directory. This is because local modules are often outside the working directory, and changes to those modules should result in a new run. If you have a repo that manages multiple infrastructure components with different lifecycles and are experiencing too many runs, we recommend splitting the components out into independent repos. See [Repository Structure](./repo-structure.html) for more detailed explanations.
 
 ### VCS Branch
 

@@ -17,7 +17,7 @@ To create a new policy, navigate to "Create Policy". Sentinel is designed to ena
   - **hard-mandatory (cannot override)**: This policy is required on all terraform runs. It cannot be overridden by any users.
   - **soft-mandatory (can override)**: This policy is required. If a terraform plan fails to comply, it can be overridden by a member of the organization owners team.
   - **advisory (logging only)**: This policy will allow the run to continue to an apply in both pass and failures of the policy check.
-- **Policy Code**: The [Terraform compatible sentinel](https://docs.hashicorp.com/sentinel/app/terraform/) policy which defines the rules for the terraform configurations, states and plans.
+- **Policy Code**: The [Terraform compatible sentinel](https://docs.hashicorp.com/sentinel/app/terraform/) policy which defines the rules for the terraform configurations, states and plans. Please note that custom imports are not available for use in Terraform Enterprise at this time.
 
 Consider integrating with the Terraform Enterprise API in CI to test and upload policy files. In the future, Terraform Enterprise will integrate directly with VCS providers for the Sentinel workflow.
 
