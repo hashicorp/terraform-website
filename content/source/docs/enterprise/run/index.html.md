@@ -120,6 +120,8 @@ Since force-canceling can have dangerous side-effects (including loss of state a
 
 ## Locking Workspaces (Preventing Runs)
 
+-> **API:** See the [Lock a Workspace endpoint](../api/workspaces.html#lock-a-workspace).
+
 If you need to temporarily stop runs from being queued, you can lock the workspace.
 
 A lock prevents TFE from performing any plans or applies in the workspace. This includes automatic runs due to new commits in the VCS repository, manual runs queued via the UI, and runs created with the API or the TFE CLI tool. New runs remain in the "Pending" state until the workspace is unlocked.
@@ -165,6 +167,8 @@ Currently, there are two ways to use custom provider plugins with TFE.
 - **Private TFE only:** Use [the `terraform-bundle` tool][bundle] to add custom providers to a custom Terraform version. This keeps custom providers out of your configuration repos entirely, and is easier to update when many workspaces use the same provider.
 
 ## Terraform State in TFE
+
+-> **API:** See the [State Versions API](../api/state-versions.html).
 
 Each TFE workspace has its own separate state data. In order to read and write state for the correct workspace, TFE overrides any configured [backend](/docs/backends/index.html) when running Terraform.
 

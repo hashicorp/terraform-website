@@ -17,7 +17,10 @@ sidebar_current: "docs-enterprise2-api-state-versions"
 | `:workspace_id` | The workspace ID to create the new state version. |
 
 Creates a state version and sets it as the current state version for the given
-workspace.
+workspace. This is most useful for migrating existing state from open source
+Terraform into a new TFE workspace.
+
+!> **Warning:** Use caution when uploading state to workspaces that have already performed Terraform runs. Replacing state improperly can result in orphaned or duplicated infrastructure resources.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 

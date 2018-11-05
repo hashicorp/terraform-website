@@ -17,6 +17,8 @@ A workspace consists of:
 
 ## Listing and Filtering Workspaces
 
+-> **API:** See the [Workspaces API](../api/workspaces.html).
+
 TFE's top navigation bar includes a "Workspaces" link, which takes you to the list of workspaces in the current  organization.
 
 ![Screenshot: the list of workspaces](./images/index-list.png)

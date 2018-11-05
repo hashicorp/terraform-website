@@ -21,7 +21,7 @@ You must fill out several fields to configure your new workspace:
 - **Workspace name** (required) — A name for the workspace, which must be unique in the organization. Names can include letters, numbers, `_`, and `-`. [See more advice about workspace names here](./naming.html).
 - **Source** (required; list of buttons) — Which [connected VCS provider](../vcs/index.html) the workspace should pull configurations from. If you've configured multiple VCS providers, there is a button for each of them.
 
-    If you select "None," the workspace cannot pull configurations automatically, but you can upload configurations with [the run API](../run/api.html) or the optional [TFE CLI client](https://github.com/hashicorp/tfe-cli/).
+    If you select "None," the workspace cannot pull configurations automatically, but you can upload configurations with [the remote backend](../run/cli.html), [the run API](../run/api.html), or the optional [TFE CLI client](https://github.com/hashicorp/tfe-cli/).
 - **Repository** — The VCS repository that contains the Terraform configuration for this workspace. This field is hidden when creating a workspace without a VCS source.
 
     Repository identifiers are determined by your VCS provider, and use a format like `<ORGANIZATION>/<REPO NAME>` or `<PROJECT KEY>/<REPO NAME>`.

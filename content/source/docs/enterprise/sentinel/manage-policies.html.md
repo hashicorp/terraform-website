@@ -6,6 +6,8 @@ sidebar_current: "docs-enterprise2-sentinel-manage-policies"
 
 # Managing Policies
 
+-> **API:** See the [Policies API](../api/policies.html).
+
 Sentinel Policies are rules which are enforced on every workspace run to validate the terraform plan and corresponding resources are in compliance with company policies. Policies are made up of a sentinel policy file, a name, and an enforcement level. They are managed at an organization level and a user must be in the organization's owners team to create, edit or delete policies.
 
 To view the policies navigate to the organization's settings page under "Sentinel Policy". From the "Sentinel Policy" section you can view, list, edit, create and delete the policies.
