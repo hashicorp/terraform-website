@@ -14,6 +14,8 @@ At this time, the available site-wide integrations are:
 - SMTP
 - Twilio
 
+-> **API:** See the [Admin Settings API](../../api/admin/settings.html).
+
 ## SAML Integration
 
 The SAML integration settings allow configuration of a SAML Single Sign-On integration for Terraform Enterprise. To access the SAML settings, click **SAML** in the left menu.

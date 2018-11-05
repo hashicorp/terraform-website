@@ -11,6 +11,8 @@ sidebar_current: "docs-enterprise2-users-teams-organizations-organizations"
 
 Organizations are a shared space for [teams][] to collaborate on workspaces in Terraform Enterprise (TFE).
 
+-> **API:** See the [Organizations API](../api/organizations.html).
+
 ## Selecting Organizations
 
 On most pages within TFE, the top navigation bar displays the name of the selected organization. Clicking the name reveals the organization switcher menu, which lists all of the organizations you belong to. You can switch to another organization by clicking its name, or you can create a new organization with the "Create new organization" button.
@@ -36,8 +38,6 @@ Once you have created an organization, you can add other [users][] by adding the
 -> **Note:** On the SaaS version of TFE, any user can create a new organization. On private installs of TFE, the administrators can restrict this ability, so that only site admins can create organizations. See [Administration: General Settings](../private/admin/general.html#organization-creation) for more details.
 
 ## Organization Settings
-
--> **API:** See the [Organizations API](../api/organizations.html).
 
 You can view and manage an organization's settings by clicking the "Settings" link in the top navigation bar.
 

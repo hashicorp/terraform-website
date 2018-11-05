@@ -10,6 +10,8 @@ General settings control global behavior in Private Terraform Enterprise. To acc
 
 ![screenshot: the Settings admin page](./images/admin-general.png)
 
+-> **API:** See the [Admin Settings API](../../api/admin/settings.html).
+
 ## Contact Info
 
 The support email address is used in system emails and other contact details. It defaults to support@hashicorp.com. If you'd like  users of your instance to reach out to a specific person or team when they have issues, it can be changed to a local email address.

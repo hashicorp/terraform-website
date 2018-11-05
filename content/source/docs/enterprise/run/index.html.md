@@ -120,6 +120,8 @@ Since force-canceling can have dangerous side-effects (including loss of state a
 
 ## Locking Workspaces (Preventing Runs)
 
+-> **API:** See the [Lock a Workspace endpoint](../api/workspaces.html#lock-a-workspace).
+
 If you need to temporarily stop runs from being queued, you can lock the workspace.
 
 A lock prevents TFE from performing any plans or applies in the workspace. This includes automatic runs due to new commits in the VCS repository, manual runs queued via the UI, and runs created with the API or the TFE CLI tool. New runs remain in the "Pending" state until the workspace is unlocked.
@@ -136,7 +138,7 @@ If the global queue has more runs than the workers can handle at once, some of t
 
 - Applies that will make changes to infrastructure have the highest priority.
 - Normal plans have the next highest priority.
-- Plan-only runs (used in pull request checks) have the lowest priority.
+- Speculative plans have the lowest priority.
 
 TFE can also delay some runs in order to make performance more consistent across organizations. If an organization requests a large number of runs at once, TFE queues some of them immediately, and delays the rest until some of the initial batch have finished; this allows every organization to continue performing runs even during periods of especially heavy load.
 
@@ -165,6 +167,8 @@ Currently, there are two ways to use custom provider plugins with TFE.
 - **Private TFE only:** Use [the `terraform-bundle` tool][bundle] to add custom providers to a custom Terraform version. This keeps custom providers out of your configuration repos entirely, and is easier to update when many workspaces use the same provider.
 
 ## Terraform State in TFE
+
+-> **API:** See the [State Versions API](../api/state-versions.html).
 
 Each TFE workspace has its own separate state data. In order to read and write state for the correct workspace, TFE overrides any configured [backend](/docs/backends/index.html) when running Terraform.
 

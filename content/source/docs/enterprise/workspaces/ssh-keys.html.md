@@ -10,13 +10,15 @@ Terraform configurations can pull in Terraform modules from [a variety of differ
 
 To access a private Git repository, Terraform either needs login credentials (for HTTPS access) or an SSH key. Terraform Enterprise (TFE) can store private SSH keys centrally, and you can easily use them in any workspace that clones modules from a Git server.
 
-~> **Note:** SSH keys for cloning Terraform modules from Git repos are only used during Terraform runs. They are managed separately from any [keys used for bringing VCS content into TFE](../vcs/index.html#ssh-keys).
+-> **Note:** SSH keys for cloning Terraform modules from Git repos are only used during Terraform runs. They are managed separately from any [keys used for bringing VCS content into TFE](../vcs/index.html#ssh-keys).
 
 TFE manages SSH keys used to clone Terraform modules at the organization level, and allows multiple keys to be added for the organization. You can add or delete keys via the organization's settings. Once a key is uploaded, the text of the key is not displayed to users.
 
 To assign a key to a workspace, go to its settings and choose a previously added key from the drop-down menu on Integrations under "SSH Key". Each workspace can only use one SSH key.
 
 ## Adding and Deleting Keys
+
+-> **API:** See the [SSH Keys API](../api/ssh-keys.html).
 
 To add or delete an SSH private key, use the main menu to go to your organization's settings and choose "Manage SSH Keys" from the navigation sidebar. This page has a form for adding new keys and a list of existing keys.
 
@@ -38,6 +40,8 @@ To delete a key, find it in the list of keys and click its "Delete" button. Befo
 ~> **Important:** If any workspaces are still using a key when you delete it, they will be unable to clone modules from private repos until you assign them a new key. This might cause Terraform runs to fail.
 
 ## Assigning Keys to Workspaces
+
+-> **API:** See the [Assign an SSH Key to a Workspace endpoint](../api/workspaces.html#assign-an-ssh-key-to-a-workspace).
 
 To assign a key to a workspace, navigate to that workspace's page and click the "Settings" link.
 
