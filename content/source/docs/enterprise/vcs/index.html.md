@@ -14,6 +14,19 @@ Terraform Enterprise (TFE) is more powerful when you integrate it with your vers
 
 We recommend configuring VCS access when first setting up a TFE organization, and you might need to add additional VCS providers later depending on how your organization grows.
 
+## Supported VCS Providers
+
+For details on configuring VCS access, select a supported VCS provider from the list below:
+
+- [GitHub](./github.html)
+- [GitHub Enterprise](./github-enterprise.html)
+- [GitLab.com](./gitlab-com.html)
+- [GitLab EE and CE](./gitlab-eece.html)
+- [Bitbucket Cloud](./bitbucket-cloud.html)
+- [Bitbucket Server](./bitbucket-server.html)
+
+If you use another VCS that is not supported, you can build an integration via [the API-driven run workflow](../run/api.html).
+
 ## How TFE Uses VCS Access
 
 Most workspaces in TFE are associated with a VCS repository, which provides Terraform configurations for that workspace. To find out which repos are available, access their contents, and create webhooks, TFE needs access to your VCS provider.
@@ -63,13 +76,7 @@ Provide callback URL. | &nbsp;
 &nbsp; | Request VCS access.
 Approve access request. | &nbsp;
 
-For complete details, click the link for your VCS provider below.
-
--> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
-
-### Specific Instructions for Supported VCS Providers
-
-To configure VCS access, select your VCS provider from the list below:
+For complete details, click the link for your VCS provider:
 
 - [GitHub](./github.html)
 - [GitHub Enterprise](./github-enterprise.html)
@@ -78,5 +85,4 @@ To configure VCS access, select your VCS provider from the list below:
 - [Bitbucket Cloud](./bitbucket-cloud.html)
 - [Bitbucket Server](./bitbucket-server.html)
 
-Currently, TFE cannot use other VCS providers (including generic Git servers or other Git-based providers).
-
+-> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
