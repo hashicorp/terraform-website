@@ -16,7 +16,7 @@ We recommend configuring VCS access when first setting up a TFE organization, an
 
 ## Supported VCS Providers
 
-For details on configuring VCS access, select a supported VCS provider from the list below:
+TFE supports the following VCS providers:
 
 - [GitHub](./github.html)
 - [GitHub Enterprise](./github-enterprise.html)
@@ -25,7 +25,7 @@ For details on configuring VCS access, select a supported VCS provider from the 
 - [Bitbucket Cloud](./bitbucket-cloud.html)
 - [Bitbucket Server](./bitbucket-server.html)
 
-If you use another VCS that is not supported, you can build an integration via [the API-driven run workflow](../run/api.html).
+Use the links above to see details on configuring VCS access for each supported provider. If you use another VCS that is not supported, you can build an integration via [the API-driven run workflow](../run/api.html).
 
 ## How TFE Uses VCS Access
 
