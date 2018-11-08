@@ -1,10 +1,10 @@
 ---
 layout: enterprise2
-page_title: "Sentinel - Terraform Enterprise"
+page_title: "Managing Sentinel Policies - Sentinel - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-sentinel-manage-policies"
 ---
 
-# Managing Policies
+# Managing Sentinel Policies
 
 -> **API:** See the [Policies API](../api/policies.html).
 
