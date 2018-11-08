@@ -79,7 +79,9 @@ The SSH keys page manages any keys necessary for cloning Git-based module source
 
 ### Policies and Policy Sets
 
-Sentinel is an embedded policy-as-code framework that allows you to enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information.
+The policies page is for managing Sentinel policies, and the policy sets page is for assigning groups of policies to workspaces.
+
+Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information about Sentinel, or [Managing Sentinel Policies](../sentinel/manage-policies.html) for details about these two settings pages.
 
 ## Inactive Organizations
 
