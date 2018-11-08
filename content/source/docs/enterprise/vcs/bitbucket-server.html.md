@@ -11,7 +11,7 @@ These instructions are for using Bitbucket Server for Terraform Enterprise (TFE)
 
 Note that Bitbucket Server requires both OAuth authentication and an SSH key. The instructions below include SSH key configuration.
 
--> **Version note:** TFE supports Bitbucket Server versions 4.9.1 and newer. We do not test older versions of Bitbucket Server with TFE, and they might not work as expected.
+-> **Version note:** TFE supports Bitbucket Server versions 4.9.1 and newer. HashiCorp does not test older versions of Bitbucket Server with TFE, and they might not work as expected. Also note that, although we do not deliberately remove support for versions that have reached end of life (per the [Atlassian Support End of Life Policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html)), our ability to resolve customer issues with end of life versions might be limited.
 
 ~> **Important:** TFE needs to contact your Bitbucket Server instance during setup and during normal operation. For the SaaS version of TFE, this means Bitbucket Server must be internet-accessible; for private installs of TFE, you must have network connectivity between your TFE and Bitbucket Server instances over HTTP or HTTPS and SSH. Bitbucket Server repository clone operations are performed over SSH on the port the Bitbucket Server instance uses.
 
