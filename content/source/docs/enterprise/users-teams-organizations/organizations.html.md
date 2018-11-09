@@ -11,7 +11,9 @@ sidebar_current: "docs-enterprise2-users-teams-organizations-organizations"
 
 Organizations are a shared space for [teams][] to collaborate on workspaces in Terraform Enterprise (TFE).
 
--> **API:** See the [Organizations API](../api/organizations.html).
+-> **API:** See the [Organizations API](../api/organizations.html). <br/>
+**Terraform:** See the `tfe` provider's [`tfe_organization` resource](/docs/providers/tfe/r/organization.html).
+
 
 ## Selecting Organizations
 
