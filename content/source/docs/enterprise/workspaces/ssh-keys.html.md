@@ -18,7 +18,8 @@ To assign a key to a workspace, go to its settings and choose a previously added
 
 ## Adding and Deleting Keys
 
--> **API:** See the [SSH Keys API](../api/ssh-keys.html).
+-> **API:** See the [SSH Keys API](../api/ssh-keys.html). <br/>
+**Terraform:** See the `tfe` provider's [`tfe_ssh_key` resource](/docs/providers/tfe/r/ssh_key.html).
 
 To add or delete an SSH private key, use the main menu to go to your organization's settings and choose "Manage SSH Keys" from the navigation sidebar. This page has a form for adding new keys and a list of existing keys.
 

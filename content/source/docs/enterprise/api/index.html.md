@@ -13,6 +13,8 @@ Terraform Enterprise (TFE) provides an API for a subset of its features. If you 
 
 See the navigation sidebar for the list of available endpoints.
 
+-> **Note:** Before planning an API integration, consider whether [the `tfe` Terraform provider](/docs/providers/tfe/index.html) meets your needs. It can't create or approve runs in response to arbitrary events, but it's a useful tool for managing your organizations, teams, and workspaces as code.
+
 ## Authentication
 
 All requests must be authenticated with a bearer token. Use the HTTP header `Authorization` with the value `Bearer <token>`. If the token is absent or invalid, TFE responds with [HTTP status 401][401] and a [JSON API error object][]. The 401 status code is reserved for problems with the authentication token; forbidden requests with a valid token result in a 404.
@@ -226,9 +228,11 @@ Status  | Response                                     | Reason
 }
 ```
 
-## Community client libraries and tools
+## Client libraries and tools
 
-The community client libraries and tools listed below have been built by the community of Terraform Enterprise users and vendors. These client libraries and tools are not tested nor officially maintained by HashiCorp, and are listed here in order to help users find them easily.
+HashiCorp maintains [go-tfe](https://github.com/hashicorp/go-tfe), a Go client for TFE's API.
+
+Additionally, the community of Terraform Enterprise users and vendors have built client libraries in other languages. These client libraries and tools are not tested nor officially maintained by HashiCorp, but are listed below in order to help users find them easily.
 
 If you have built a client library and would like to add it to this community list, please [contribute](https://github.com/hashicorp/terraform-website#contributions-welcome) to [this page](https://github.com/hashicorp/terraform-website/blob/master/content/source/docs/enterprise/api/index.html.md).
 

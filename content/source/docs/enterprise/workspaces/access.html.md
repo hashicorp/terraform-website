@@ -21,7 +21,8 @@ For more information see:
 
 ## Managing Workspace Access Permissions
 
--> **API:** See the [Team Access APIs](../api/team-access.html).
+-> **API:** See the [Team Access APIs](../api/team-access.html). <br/>
+**Terraform:** See the `tfe` provider's [`tfe_team_access` resource](/docs/providers/tfe/r/team_access.html).
 
 When a workspace is created, the only team able to access it is the owners team, with full admin permissions. The owners team can never be removed from a workspace.
 

@@ -48,7 +48,9 @@ Only organization owners can manage teams or view the full list of teams. Other 
 
 ### Creating and Deleting Teams
 
--> **API:** See the [Teams API](../api/teams.html).
+-> **API:** See the [Teams API](../api/teams.html). <br/>
+**Terraform:** See the `tfe` provider's [`tfe_team` resource](/docs/providers/tfe/r/team.html).
+
 
 Organization owners can create new teams from the teams page, using the controls under the "Create a New Team" header.
 
@@ -58,7 +60,8 @@ To delete a team, go to the target team's settings page and click the "Delete TE
 
 ### Managing Team Membership
 
--> **API:** See the [Team Members API](../api/team-members.html).
+-> **API:** See the [Team Members API](../api/team-members.html). <br/>
+**Terraform:** See the `tfe` provider's [`tfe_team_member` resource](/docs/providers/tfe/r/team_member.html) or [`tfe_team_members` resource](/docs/providers/tfe/r/team_members.html).
 
 Organization owners can use a team's settings page to add and remove users from the team.
 
@@ -76,7 +79,8 @@ Each team can have a special service account API token that is not associated wi
 
 ## Managing Workspace Access
 
--> **API:** See the [Team Access API](../api/team-access.html).
+-> **API:** See the [Team Access API](../api/team-access.html). <br/>
+**Terraform:** See the `tfe` provider's [`tfe_team_access` resource](/docs/providers/tfe/r/team_access.html).
 
 A team can be given read, write, or admin permissions on one or more workspaces.
 
