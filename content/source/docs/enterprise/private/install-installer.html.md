@@ -109,15 +109,15 @@ The UI to upload these certificates looks like:
 
 ## Alternative Terraform worker image
 
-TFE runs terraform plan and apply operations in a disposable docker container. There are cases where users may require additional tools that are not available in the default docker image. To work around this limitation users can build their own image and configure TFE to use that instead. In order for this to happen the name of the alternative docker image must be set in the config by using the relevant field as shown below:
+TFE runs `terraform plan` and `terraform apply` operations in a disposable Docker containers. There are cases where runs may make frequent use of additional tools that are not available in the default Docker image. To allow use of these tools for any plan or apply, users can build their own image and configure TFE to use that instead. In order for this to happen the name of the alternative docker image must be set in the config by using the `Custom image tag` field as shown below:
 
 ![ptfe-docker-image](./assets/ptfe-docker-image.png)
 
-During the first iteration of this feature it is important to impose certain limitations on what we can support. These limitations are:
- - The base image must be ubuntu:xenial
- - The user is responsible for making sure the image exists on the PTFE host by running `docker pull` from their own registry, or any other similar method.
- - The user is responsible for making sure CA certificates are available when terraform runs.
- - Terraform must not be installed in the image. TFE will take care of that on runtime.
+### Requirements
+ - The base image must be `ubuntu:xenial`.
+ - The image must exist on the PTFE host. It can be added by running `docker pull` from a local registry or any other similar method.
+ - CA certificates must available when terraform runs. During image creation a file containing all necessary PEM encoded CA certificates must be placed in `/etc/ssl/certs/ca-certificates.crt`. 
+ - Terraform must not be installed on the image. TFE will take care of that at runtime.
 
  This is a sample `Dockerfile` you can use to start building your own image:
 
