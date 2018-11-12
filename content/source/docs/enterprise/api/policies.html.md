@@ -205,6 +205,8 @@ This endpoint uploads code to an existing Sentinel policy.
 
 -> **Note**: This endpoint does not use JSON-API's conventions for HTTP headers and body serialization.
 
+-> **Note**: This endpoint limits the size of uploaded policies to 10MB. If a larger payload is uploaded, an HTTP 413 error will be returned, and the policy will not be saved. Consider refactoring policies into multiple smaller, more concise documents if you reach this limit.
+
 ### Request Body
 
 This PUT endpoint requires the text of a valid Sentinel policy, with a `Content-Type` of `application/octet-stream`.
