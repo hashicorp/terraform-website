@@ -116,7 +116,7 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
 ### Requirements
  - The base image must be `ubuntu:xenial`.
  - The image must exist on the PTFE host. It can be added by running `docker pull` from a local registry or any other similar method.
- - CA certificates must available when terraform runs. During image creation a file containing all necessary PEM encoded CA certificates must be placed in `/etc/ssl/certs/ca-certificates.crt`. 
+ - CA certificates must be available when terraform runs. During image creation, a file containing all necessary PEM encoded CA certificates must be placed in `/etc/ssl/certs/ca-certificates.crt`. 
  - Terraform must not be installed on the image. TFE will take care of that at runtime.
 
  This is a sample `Dockerfile` you can use to start building your own image:
