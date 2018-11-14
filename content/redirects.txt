@@ -190,3 +190,9 @@
 
 # Fixing terraform-provider-google#2197
 /docs/provider/google/provider_versions.html          /docs/providers/google/provider_versions.html
+
+# Move content to learn.hashicorp.com:
+# These redirects are inert in this file, because they need a "real" Varnish
+# rewrite rule. We're adding them here anyway, to ensure redirects.txt is a
+# complete record of all the rewrites this site uses.
+# /guides/running-terraform-in-automation.html            https://learn.hashicorp.com/terraform/development/running-terraform-in-automation
