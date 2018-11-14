@@ -14,7 +14,7 @@ sidebar_current: "docs-enterprise2-api-state-versions"
 
 | Parameter       | Description                                               |
 | --------------- | --------------------------------------------------------- |
-| `:workspace_id` | The workspace ID to create the new state version. |
+| `:workspace_id` | The workspace ID to create the new state version in. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. |
 
 Creates a state version and sets it as the current state version for the given
 workspace. This is most useful for migrating existing state from open source
@@ -231,7 +231,7 @@ curl \
 
 | Parameter       | Description                                               |
 | --------------- | --------------------------------------------------------- |
-| `:workspace_id` | The ID for the workspace whose current state version you want to fetch |
+| `:workspace_id` | The ID for the workspace whose current state version you want to fetch. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. |
 
 Fetches the current state version for the given workspace. This state version
 will be the input state when running terraform operations.

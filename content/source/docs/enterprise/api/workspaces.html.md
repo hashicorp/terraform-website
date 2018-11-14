@@ -282,7 +282,7 @@ _Migrating a legacy environment_
 Parameter            | Description
 -------------------- | -----------
 `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces.
-`:name`              | Specifies the name of the workspace to update, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+`:name`              | The name of the workspace to update, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 
 ### Request Body
 
@@ -498,7 +498,7 @@ This endpoint shows details for a workspace in the organization.
 | Parameter            | Description                                                                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
-| `:name`              | Specifies the name of the workspace to show details for, which can only include letters, numbers, `-`, and `_`.                                                          |
+| `:name`              | The name of the workspace to show details for, which can only include letters, numbers, `-`, and `_`.                                                          |
 
 ### Sample Request
 
@@ -567,7 +567,7 @@ This endpoint deletes a workspace.
 | Parameter            | Description                                                                                                                                                              |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
-| `:name`              | Specifies the name of the workspace to delete, which can only include letters, numbers, `-`, and `_`.                                                                    |
+| `:name`              | The name of the workspace to delete, which can only include letters, numbers, `-`, and `_`.                                                                    |
 
 ### Sample Request
 
@@ -587,7 +587,7 @@ This endpoint locks a workspace.
 
 | Parameter       | Description                                                                                                 |
 | --------------- | ----------------------------------------------------------------------------------------------------------- |
-| `:workspace_id` | Specifies the workspace ID to lock. This can be found using the [Show workspace](#show-workspace) endpoint. |
+| `:workspace_id` | The workspace ID to lock. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
 ### Request Body
 
@@ -597,7 +597,7 @@ Properties without a default value are required.
 
 | Key path | Type   | Default | Description                                     |
 | -------- | ------ | ------- | ----------------------------------------------- |
-| `reason` | string | `""`    | Specifies the reason for locking the workspace. |
+| `reason` | string | `""`    | The reason for locking the workspace. |
 
 ### Sample Payload
 
@@ -673,7 +673,7 @@ This endpoint unlocks a workspace.
 
 | Parameter       | Description                                                                                                   |
 | --------------- | ------------------------------------------------------------------------------------------------------------- |
-| `:workspace_id` | Specifies the workspace ID to unlock. This can be found using the [Show workspace](#show-workspace) endpoint. |
+| `:workspace_id` | The workspace ID to unlock. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
 ### Sample Request
 
@@ -729,7 +729,7 @@ This endpoint assigns an SSH key to a workspace.
 
 | Parameter       | Description                                                                                                                  |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `:workspace_id` | Specifies the workspace ID to assign the SSH key to. This can be found using the [Show workspace](#show-workspace) endpoint. |
+| `:workspace_id` | The workspace ID to assign the SSH key to. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
 ### Request Body
 
@@ -740,7 +740,7 @@ Properties without a default value are required.
 | Key path             | Type   | Default | Description                                                                                                |
 | -------------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------- |
 | `data.type`          | string |         | Must be `"workspaces"`.                                                                                    |
-| `data.attributes.id` | string |         | Specifies the SSH key ID to assign. This ID can be obtained from the [ssh-keys](./ssh-keys.html) endpoint. |
+| `data.attributes.id` | string |         | The SSH key ID to assign. Obtain this from the [ssh-keys](./ssh-keys.html) endpoint. |
 
 #### Sample Payload
 
@@ -823,7 +823,7 @@ This endpoint unassigns the currently assigned SSH key from a workspace.
 
 | Parameter       | Description                                                                                                                  |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `:workspace_id` | Specifies the workspace ID to assign the SSH key to. This can be found using the [Show workspace](#show-workspace) endpoint. |
+| `:workspace_id` | The workspace ID to assign the SSH key to. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
 ### Request Body
 

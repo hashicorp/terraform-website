@@ -20,7 +20,7 @@ The team access APIs are used to associate a team to permissions on a workspace.
 
 Parameter               | Description
 ------------------------|------------
-`filter[workspace][id]` | **Required.** The workspace ID for which to list the teams with access.
+`filter[workspace][id]` | **Required.** The workspace ID to list team access for. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.
 
 ### Sample Request
 

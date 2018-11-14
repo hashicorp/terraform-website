@@ -18,7 +18,7 @@ A configuration version (`configuration-version`) is a resource used to referenc
 
 | Parameter       | Description                                          |
 | --------------- | ---------------------------------------------------- |
-| `:workspace_id` | The id of the workspace to list configurations from. |
+| `:workspace_id` | The ID of the workspace to list configurations from. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. |
 
 ### Query Parameters
 
@@ -131,7 +131,7 @@ curl \
 
 | Parameter       | Description                                               |
 | --------------- | --------------------------------------------------------- |
-| `:workspace_id` | The workspace ID to create the new configuration version. |
+| `:workspace_id` | The ID of the workspace to create the new configuration version in. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. |
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 

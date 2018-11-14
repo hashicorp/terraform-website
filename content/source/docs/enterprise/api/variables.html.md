@@ -31,7 +31,7 @@ Key path                                 | Type   | Default | Description
 `data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
 `data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
 `data.relationships.workspace.data.type` | string |         | Must be `"workspaces"`.
-`data.relationships.workspace.data.id`   | string |         | The ID of the workspace that owns the variable.
+`data.relationships.workspace.data.id`   | string |         | The ID of the workspace that owns the variable. Obtain workspace IDs from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.
 
 **Deprecation warning**: The custom `filter` properties are replaced by JSON API `relationships` and will be removed from future versions of the API!
 

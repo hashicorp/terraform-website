@@ -23,11 +23,25 @@ Changing settings requires [admin privileges](../users-teams-organizations/permi
 
 The following settings are available in the "Settings" tab.
 
+### ID
+
+The permanent unique ID of the workspace, which cannot be changed. Workspace IDs are sometimes necessary when working with [TFE's API](../api/index.html).
+
+Click the icon beside the ID to copy it to the clipboard.
+
+### Name
+
+The display name of the workspace.
+
+~> **Important:** Since some API calls refer to a workspace by its name, changing the name can sometimes break existing integrations.
+
+After changing this setting you must click the "Save settings" button below the "Terraform Working Directory" field.
+
 ### Auto Apply and Manual Apply
 
 Whether or not TFE should automatically apply a successful Terraform plan. If you choose manual apply, an operator must confirm a successful plan and choose to apply it.
 
-After changing this setting you must click the "Save settings" button below the "Terraform Version" menu.
+After changing this setting you must click the "Save settings" button below the "Terraform Working Directory" field.
 
 ### Terraform Version
 
@@ -35,13 +49,15 @@ Which version of Terraform to use for all operations in the workspace. You can c
 
 By default, new workspaces are locked to the current version of Terraform at the time of their creation. (You can specify a Terraform version when creating a workspace via the API.)
 
-After changing this setting you must click the "Save settings" button below it.
+After changing this setting you must click the "Save settings" button below the "Terraform Working Directory" field.
 
 ### Terraform Working Directory
 
 The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. This is useful when working with VCS repos that contain multiple Terraform configurations. Defaults to the root of the configuration directory.
 
 -> **Note:** If you specify a working directory, TFE will still queue a plan for changes to the repository outside that working directory. This is because local modules are often outside the working directory, and changes to those modules should result in a new run. If you have a repo that manages multiple infrastructure components with different lifecycles and are experiencing too many runs, we recommend splitting the components out into independent repos. See [Repository Structure](./repo-structure.html) for more detailed explanations.
+
+After changing this setting you must click the "Save settings" button below it.
 
 ### SSH Key
 
