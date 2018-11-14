@@ -1,10 +1,10 @@
 ---
 layout: enterprise2
-page_title: "Sentinel - Terraform Enterprise"
+page_title: "Integrating with VCS - Sentinel - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-sentinel-integrate-vcs"
 ---
 
-# Integrate with VCS
+# Integrating with VCS
 
 Sentinel is designed to enable policy as code. As such, it is recommended that the policies are managed in a VCS service like Github, Bitbucket or Gitlab. Terraform Enterprise will add integration with these VCS providers to automatically ingress the policies from the VCS repository in an upcoming release. In the meantime it is recommended that the [Policy APIs](../api/policies.html) are used to automatically push changes from VCS to Terraform Enterprise using a CI/CD service like Jenkins, Drone, or Circle CI.
 

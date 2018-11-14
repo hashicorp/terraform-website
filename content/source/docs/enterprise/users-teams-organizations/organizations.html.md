@@ -79,9 +79,11 @@ The authentication page allows owners to determine when users must reauthenticat
 
 The SSH keys page manages any keys necessary for cloning Git-based module sources during Terraform runs. It does not manage keys used for accessing a connected VCS provider. See [SSH Keys for Cloning Modules](../workspaces/ssh-keys.html) for more information.
 
-### Sentinel Policies
+### Policies and Policy Sets
 
-Sentinel is an embedded policy-as-code framework that allows you to enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information.
+The policies page is for managing Sentinel policies, and the policy sets page is for assigning groups of policies to workspaces.
+
+Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information about Sentinel, or [Managing Sentinel Policies](../sentinel/manage-policies.html) for details about these two settings pages.
 
 ## Inactive Organizations
 

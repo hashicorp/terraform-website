@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "Sentinel - Terraform Enterprise"
+page_title: "Enforce and Override Policies - Sentinel - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-sentinel-enforce"
 ---
 
