@@ -13,10 +13,6 @@ encrypt sensitive information such as variables and states.
 An external Vault cluster allows the customer to have full control over how
 the Vault cluster is managed, for example how it is sealed and unsealed, replicated, etc.
 
-When an external Vault cluster is configured along with the External Services installation mode,
-Private Terraform Enterprise becomes fully stateless and can be run in a hot-standby
-configuration to provide failover.
-
 -> **NOTE:** The external Vault option must be selected at initial installation, and cannot be changed later.
 Do not attempt to migrate an existing Terraform Enterprise instance between internal and external
 Vault options.
