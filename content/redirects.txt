@@ -196,3 +196,14 @@
 # rewrite rule. We're adding them here anyway, to ensure redirects.txt is a
 # complete record of all the rewrites this site uses.
 # /guides/running-terraform-in-automation.html            https://learn.hashicorp.com/terraform/development/running-terraform-in-automation
+# /intro/getting-started/build.html                       https://learn.hashicorp.com/terraform/getting-started/build
+# /intro/getting-started/change.html                      https://learn.hashicorp.com/terraform/getting-started/change
+# /intro/getting-started/dependencies.html                https://learn.hashicorp.com/terraform/getting-started/dependencies
+# /intro/getting-started/destroy.html                     https://learn.hashicorp.com/terraform/getting-started/destroy
+# /intro/getting-started/install.html                     https://learn.hashicorp.com/terraform/getting-started/install
+# /intro/getting-started/modules.html                     https://learn.hashicorp.com/terraform/getting-started/modules
+# /intro/getting-started/next-steps.html                  https://learn.hashicorp.com/terraform/getting-started/next-steps
+# /intro/getting-started/outputs.html                     https://learn.hashicorp.com/terraform/getting-started/outputs
+# /intro/getting-started/provision.html                   https://learn.hashicorp.com/terraform/getting-started/provision
+# /intro/getting-started/remote.html                      https://learn.hashicorp.com/terraform/getting-started/remote
+# /intro/getting-started/variables.html                   https://learn.hashicorp.com/terraform/getting-started/variables

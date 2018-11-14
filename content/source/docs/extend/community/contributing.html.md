@@ -15,7 +15,7 @@ between HashiCorp employees, independent cloud vendors, and a large open source
 community. HashiCorp and the Terraform team truly value every issue, pull
 request, and feature request received on any of its many GitHub repositories.
 The only prerequisite to contributing to Terraform is an interest to improve the
-project! 
+project!
 
 While you do not need to be an expert in any of the following, these are things
 that are helpful to have or know if you're wanting to contribute more:
@@ -26,11 +26,11 @@ that are helpful to have or know if you're wanting to contribute more:
 [the Go programming language](https://golang.org), but even if you've never
 written a line of Go before, you're still welcome to take a dive into the code
 and submit patches. The community is happy to assist with code reviews and offer
-guidance specific to Go. 
+guidance specific to Go.
 - Infrastructure as Code. If this is a new term for you, check out
 [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_Code)
 on Wikipedia for a brief introduction. Our [Getting Started
-guide](/intro/getting-started/install.html) is a great way to get started as
+guide](https://learn.hashicorp.com/terraform/getting-started/install) is a great way to get started as
 well.
 
 ## HashiCorp vs. Community Providers
@@ -192,11 +192,11 @@ easy for anybody to help us improve our docs.
  - [ ] __Relevant Terraform version__: Is this update worth deploying to the
    site immediately, or is it referencing an upcoming version of Terraform and
    should get pushed out with the next release?
-   
+
 As mentioned above, each Terraform Provider has its own code repository in the
 [Terraform Providers][tfproviders]. Each repository has its own folder named
 `website` that contains that Providers documentation. Updates for documentation
-for a specific provider should be reported or posted there. 
+for a specific provider should be reported or posted there.
 
 #### Enhancement/Bugfix to a Resource
 
