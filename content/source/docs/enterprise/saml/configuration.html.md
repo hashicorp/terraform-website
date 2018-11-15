@@ -23,8 +23,8 @@ Private Terraform Enterprise (PTFE) is configured as the Service Provider.
 
 Prior to activating SAML, we recommend that you create a TFE user who has:
 
-* the site-admin permission
-* an email address that will never be used for any SAML user
+* The site-admin permission
+* An email address that will never be used for any SAML user
 
 In case of any issues during SAML configuration, this ensures that there will be an admin able to log in and make necessary adjustments.
 
