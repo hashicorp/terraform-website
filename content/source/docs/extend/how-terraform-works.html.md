@@ -89,7 +89,7 @@ Third-party providers and provisioners | Must be manually installed.
 
 -> **Note:** Third-party plugins should usually be installed in the user
 plugins directory, which is located at `~/.terraform.d/plugins` on most
-operating systems and `<APPLICATION DATA>\plugins` on Windows.
+operating systems and `%APPDATA%/terraform.d/plugins` on Windows.
 
 By default, `terraform init` searches the following directories for plugins.
 Some of these directories are static, and some are relative to the current
