@@ -19,7 +19,7 @@ When repositories are interrelated, using [remote state](https://www.terraform.i
 
 ## Structuring Repos for Multiple Environments
 
-Even though each repository represents a manageable chunk of Terraform code, it may still be useful to attach a single repository to multiple workspaces in order to handle multiple environments or other cases where similar infrastructure is used in a different context. There are three primary ways to structure the Terraform code in your repository to manage multiple environments (such as dev, stage, prod).
+When each repository represents a manageable chunk of Terraform code, it's often still useful to attach a single repository to multiple workspaces in order to handle multiple environments or other cases where similar infrastructure is used in a different context. There are three primary ways to structure the Terraform code in your repository to manage multiple environments (such as dev, stage, prod).
 
 Depending on your organization's use of version control, one method for multi-environment management may be better than another.
 
