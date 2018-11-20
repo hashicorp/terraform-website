@@ -7,13 +7,19 @@ sidebar_current: "docs-enterprise2-workspaces-repo-structure"
 # Repository Structure
 
 Terraform Enterprise integrates with version control repositories to obtain
-configurations and trigger Terraform runs. Structuring the repo properly is
+configurations and trigger Terraform runs. Structuring these repos properly is
 important because it determines which files Terraform has access to when
 Terraform is executed within Terraform Enterprise, and when Terraform plans will run.
 
+## Manageable Repos
+
+As a best practice for repository structure, each repository containing Terraform code should be a [manageable chunk of infrastructure](/docs/enterprise/guides/recommended-practices/part1.html#the-recommended-terraform-workspace-structure), such as an application, service, or specific type of infrastructure (like common networking infrastructure).
+
+When repositories are interrelated, using [remote state](https://www.terraform.io/docs/enterprise/guides/recommended-practices/part3.3.html#3-design-your-organization-s-workspace-structure) to transfer information between workspaces is recommended. Using small configurations connected by remote state means that each workspace will only run plans on relevant updates. It prevents the situation where a single repository is connected to a large number of workspaces and many plans run on every update, only a few of which have potential changes.
+
 ## Structuring Repos for Multiple Environments
 
-There are three ways to structure the Terraform code in your repository to manage multiple environments (such as dev, stage, prod).
+Even though each repository represents a manageable chunk of Terraform code, it may still be useful to attach a single repository to multiple workspaces in order to handle multiple environments or other cases where similar infrastructure is used in a different context. There are three primary ways to structure the Terraform code in your repository to manage multiple environments (such as dev, stage, prod).
 
 Depending on your organization's use of version control, one method for multi-environment management may be better than another.
 
