@@ -20,7 +20,7 @@ To access the list of all users in the Terraform Enterprise instance, click **Us
 
 ![screenshot: the Users admin page](./images/admin-users.png)
 
-Selecting a user from the list shows their detail page, which includes their status and any organizations they belong to. The detail page offers four actions: promoting to administrator, suspending, deleting, and impersonating. For users with active [two-factor authentication (2FA)](../users-teams-organizations/2fa.html), it also offers an administrative option to disable their 2FA in the event that a reset is needed.
+Selecting a user from the list shows their detail page, which includes their status and any organizations they belong to. The detail page offers four actions: promoting to administrator, suspending, deleting, and impersonating. For users with active [two-factor authentication (2FA)](../../users-teams-organizations/2fa.html), it also offers an administrative option to disable their 2FA in the event that a reset is needed.
 
 ![screenshot: a user detail admin page](./images/admin-user-details.png)
 
@@ -58,7 +58,7 @@ If a user has lost access to their Terraform Enterprise 2FA device, a site admin
 
 Be sure that the user's identity and the validity of their request have been verified according to appropriate security procedures before disabling their configured 2FA.
 
--> **Note:** If the user belongs to an organization that requires 2FA, upon login, they will be redirected to [set it up again](../users-teams-organizations/2fa.html) before they can view any other part of TFE.
+-> **Note:** If the user belongs to an organization that requires 2FA, upon login, they will be redirected to [set it up again](../../users-teams-organizations/2fa.html) before they can view any other part of TFE.
 
 ## Managing Organizations
 
