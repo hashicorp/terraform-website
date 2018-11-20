@@ -15,7 +15,7 @@ Terraform is executed within Terraform Enterprise, and when Terraform plans will
 
 As a best practice for repository structure, each repository containing Terraform code should be a [manageable chunk of infrastructure](/docs/enterprise/guides/recommended-practices/part1.html#the-recommended-terraform-workspace-structure), such as an application, service, or specific type of infrastructure (like common networking infrastructure).
 
-When repositories are interrelated, using [remote state](/docs/enterprise/guides/recommended-practices/part3.3.html#3-design-your-organization-s-workspace-structure) to transfer information between workspaces is recommended. Using small configurations connected by remote state means that each workspace will only run plans on relevant updates. It prevents the situation where a single repository is connected to a large number of workspaces and many plans run on every update, only a few of which have potential changes.
+When repositories are interrelated, we recommend using [remote state](/docs/enterprise/guides/recommended-practices/part3.3.html#3-design-your-organization-s-workspace-structure) to transfer information between workspaces. Small configurations connected by remote state are more efficient for collaboration than monolithic repos, because they let you update infrastructure without running unnecessary plans in unrelated workspaces.
 
 ## Structuring Repos for Multiple Environments
 
