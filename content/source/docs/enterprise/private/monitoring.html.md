@@ -28,6 +28,11 @@ Beginning in version 201811-1, PTFE includes internal monitoring of critical app
 Error starting userland proxy: listen udp 0.0.0.0:8125: bind: address already in use
 ```
 
-To prevent this conflict, disable metrics collection by PTFE. Access the installer dashboard on port 8800 of your instance and locate **Advanced Configuration** on the configuration page under **Terraform Build Worker image**, and uncheck "Enable metrics collection". Then, restart the application from the dashboard if it does not restart automatically.
+To prevent this conflict, disable metrics collection by PTFE:
+
+1. Access the installer dashboard on port 8800 of your instance.
+2. Locate **Advanced Configuration** on the configuration page under **Terraform Build Worker image**.
+3. Uncheck "Enable metrics collection".
+4. Restart the application from the dashboard if it does not restart automatically.
 
 We recommend that internal monitoring only be disabled if it is causing issues, as it otherwise provides useful detail in diagnosing issues.
