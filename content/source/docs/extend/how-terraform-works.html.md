@@ -8,7 +8,7 @@ description: |-
 ---
 
 
-# How Terraform Works 
+# How Terraform Works
 
 Terraform is a tool for building, changing, and versioning infrastructure safely
 and efficiently. Terraform is built on a plugin-based architecture, enabling
@@ -21,24 +21,24 @@ communicate with Terraform Plugins, and offers multiple ways to discover and
 load plugins to use.  Terraform Plugins expose an implementation for a specific
 service, such as AWS, or provisioner, such as bash.
 
-## Terraform Core 
+## Terraform Core
 
 Terraform Core is a [statically-compiled binary][0] written in the [Go
 programming language][1]. The compiled binary is the command line tool (CLI)
 `terraform`, the entrypoint for anyone using Terraform. The code is open source
-and hosted at github.com/hashicorp/terraform. 
+and hosted at github.com/hashicorp/terraform.
 
 ### The primary responsibilities of Terraform Core are:
 
 - Infrastructure as code: reading and interpolating configuration files and
-modules 
-- Resource state management 
+modules
+- Resource state management
 - Construction of the [Resource Graph](/docs/internals/graph.html)
-- Plan execution 
+- Plan execution
 - Communication with plugins over RPC
 
 
-## Terraform Plugins 
+## Terraform Plugins
 
 Terraform Plugins are written in Go and are executable binaries invoked by
 Terraform Core over RPC. Each plugin exposes an implementation for a specific
@@ -51,18 +51,18 @@ a high-level framework that abstracts away the details of plugin discovery and
 RPC communication so developers do not need to manage either.
 
 Terraform Plugins are responsible for the domain specific implementation of
-their type. 
+their type.
 
 ### The primary responsibilities of Provider Plugins are:
 
-- Initialization of any included libraries used to make API calls 
-- Authentication with the Infrastructure Provider 
+- Initialization of any included libraries used to make API calls
+- Authentication with the Infrastructure Provider
 - Define Resources that map to specific Services
 
 ### The primary responsibilities of Provisioner Plugins are:
 
 - Executing commands or scripts on the designated Resource after creation, or on
-destruction. 
+destruction.
 
 ## Discovery
 
@@ -89,20 +89,20 @@ Third-party providers and provisioners | Must be manually installed.
 
 -> **Note:** Third-party plugins should usually be installed in the user
 plugins directory, which is located at `~/.terraform.d/plugins` on most
-operating systems and `<APPLICATION DATA>\plugins` on Windows.
+operating systems and `%APPDATA%\terraform.d\plugins` on Windows.
 
 By default, `terraform init` searches the following directories for plugins.
 Some of these directories are static, and some are relative to the current
 working directory.
 
-Directory                                                                        | Purpose
----------------------------------------------------------------------------------|------------
-`.`                                                                              | For convenience during plugin development.
-Location of the `terraform` binary (`/usr/local/bin`, for example.)              | For airgapped installations; see [`terraform bundle`][bundle].
-`terraform.d/plugins/<OS>_<ARCH>`                                                | For checking custom providers into a configuration's VCS repository. Not usually desirable, but sometimes necessary in Terraform Enterprise.
-`.terraform/plugins/<OS>_<ARCH>`                                                 | Automatically downloaded providers.
-`~/.terraform.d/plugins` or `<APPLICATION DATA>\plugins`                         | The user plugins directory.
-`~/.terraform.d/plugins/<OS>_<ARCH>` or `<APPLICATION DATA>\plugins\<OS>_<ARCH>` | The user plugins directory, with explicit OS and architecture.
+Directory                                                                           | Purpose
+------------------------------------------------------------------------------------|------------
+`.`                                                                                 | For convenience during plugin development.
+Location of the `terraform` binary (`/usr/local/bin`, for example.)                 | For airgapped installations; see [`terraform bundle`][bundle].
+`terraform.d/plugins/<OS>_<ARCH>`                                                   | For checking custom providers into a configuration's VCS repository. Not usually desirable, but sometimes necessary in Terraform Enterprise.
+`.terraform/plugins/<OS>_<ARCH>`                                                    | Automatically downloaded providers.
+`~/.terraform.d/plugins` or `%APPDATA%\terraform.d\plugins`                         | The user plugins directory.
+`~/.terraform.d/plugins/<OS>_<ARCH>` or `%APPDATA%\terraform.d\plugins\<OS>_<ARCH>` | The user plugins directory, with explicit OS and architecture.
 
 -> **Note:** `<OS>` and `<ARCH>` use the Go language's standard OS and
 architecture names; for example, `darwin_amd64`.
