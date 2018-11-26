@@ -165,7 +165,7 @@ Additionally these hostnames are accessed by the Installer product in online mod
 * registry-data.replicated.com
 * quay.io
 
-### Network Ports
+## Inbound Access
 
 * Access to the product is done on port 443
 * To access the admin dashboard, port 8800 must be accessible.
