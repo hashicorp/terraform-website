@@ -167,7 +167,7 @@ Additionally these hostnames are accessed by the Installer product in online mod
 
 ## Inbound Access
 
-* Access to the product is done on port 443
+* To access Private TFE, ports 80 and 443 must be accessible. Port 80 will redirect to port 443.
 * To access the admin dashboard, port 8800 must be accessible.
 * The port ranges **9870-9880** and **23000-23100** must be accessible to the host and the subnet it is on. These ports are used for internal communication between internal services.
 
