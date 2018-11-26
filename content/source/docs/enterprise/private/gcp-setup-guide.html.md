@@ -57,7 +57,7 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
   deployments, or for development/testing environments.
 
 - The recommended size is for production environments where there is a
-  consistent high workload in the form of concurrent terraform runs.
+  consistent high workload in the form of concurrent Terraform runs.
 
 ### PostgreSQL Database (Cloud SQL PostgreSQL Production)
 
@@ -72,7 +72,7 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
   deployments, or for development/testing environments.
 
 - The recommended size is for production environments where there is a
-  consistent high workload in the form of concurrent terraform runs.
+  consistent high workload in the form of concurrent Terraform runs.
 
 ### Object Storage (Cloud Storage)
 

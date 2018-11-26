@@ -50,7 +50,7 @@ The required CPU resources for an individual Terraform run vary considerably, bu
 factor than memory due to Terraform mostly waiting on IO from APIs to return.
 
 Our rule of thumb is 10 Terraform runs per CPU core, with 2 CPU cores allocated for the base PTFE services.
-So an 8-core instance with 8GB of memory could comfortably run 20 terraform runs, if the runs are allocated the default
+So an 8-core instance with 8GB of memory could comfortably run 20 Terraform runs, if the runs are allocated the default
 256 MB each.
 
 ## Disk
@@ -66,6 +66,6 @@ I/O to IOPS that are credited per disk, it's important to provision a minimum nu
 stalls.
 
 This resource is harder to predict than memory or CPU usage because it varies per Terraform module,
-but in general we suggest 35 IOPS per concurrent terraform run. So if an instance is configured for
+but in general we suggest 35 IOPS per concurrent Terraform run. So if an instance is configured for
 20 concurrent runs, the disk should have 700 IOPS allocated. For reference, on AWS, an EBS volume
 with an allocated size of 250 GB comes with a steady state of 750 IOPS.
