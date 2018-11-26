@@ -183,6 +183,9 @@ from the ELB is routed. Many other internal Private Terraform Enterprise service
 but they do not require external traffic. The AWS security group for the
 instance as well as software firewall rules within the runtime enforce this.
 
+Additionally, the port ranges **9870-9880** and **23000-23100** must be accessible to the host and
+the subnet it is on. These ports are used for internal communication between internal services.
+
 ### `ulimits`
 
 The necessary limits on open file descriptors are raised within
