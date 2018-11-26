@@ -65,6 +65,23 @@ Each registry page for a module version includes a usage example, which you can 
 
 Alternately, you can use the configuration designer, which lets you select multiple modules and fill in their variables to build a much more useful initial configuration. See [the configuration designer docs](./design.html) for details.
 
+### The Generic Module Hostname (`localterraform.com`)
+
+Optionally, you can use the generic hostname `localterraform.com` in module sources instead of the literal hostname of a Private Terraform Enterprise (PTFE) instance. When Terraform is executed on a PTFE instance, it automatically requests any `localterraform.com` modules from that instance.
+
+For example:
+
+```hcl
+module "vpc" {
+  source  = "localterraform.com/example_corp/vpc/aws"
+  version = "1.0.4"
+}
+```
+
+Configurations that reference modules via the generic hostname can be used without modification on any PTFE instance, which is not possible when using hardcoded hostnames.
+
+~> **Important:** `localterraform.com` only works within a PTFE instance — when run outside of PTFE, Terraform can only use private modules with a literal hostname. To test configurations on a developer workstation, you must replace the generic hostname with a literal hostname in any module sources, then change them back before committing to VCS. We are working on ways to make this smoother in the future; in the meantime, we only recommend `localterraform.com` for large organizations that use multiple PTFE instances.
+
 ## Running Configurations with Private Modules
 
 ### In Terraform Enterprise
