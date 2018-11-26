@@ -165,6 +165,12 @@ Additionally these hostnames are accessed by the Installer product in online mod
 * registry-data.replicated.com
 * quay.io
 
+### Network Ports
+
+* Access to the product is done on port 443
+* To access the admin dashboard, port 8800 must be accessible.
+* The port ranges **9870-9880** and **23000-23100** must be accessible to the host and the subnet it is on. These ports are used for internal communication between internal services.
+
 ---
 
 ## About the Private Terraform Enterprise AMI
