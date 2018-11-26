@@ -25,7 +25,6 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  --data @payload.json \
   https://app.terraform.io/api/v2/account/details
 ```
 
