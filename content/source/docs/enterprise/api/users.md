@@ -10,6 +10,8 @@ sidebar_current: "docs-enterprise2-api-users"
 
 ## Show a User
 
+Shows details for a user. The ID for a user can be obtained from the [Team Membership](/docs/enterprise/api/team-members.html) endpoints.
+
 `GET /users/:user_id`
 
 Status  | Response                                | Reason
