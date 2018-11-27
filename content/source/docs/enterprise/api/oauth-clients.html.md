@@ -148,7 +148,7 @@ Key path                             | Type   | Default | Description
       "service-provider": "github",
       "http-url": "https://github.com",
       "api-url": "https://api.github.com",
-      "key": "key"
+      "key": "key",
       "secret": "secret"
     }
   }
