@@ -24,9 +24,6 @@ Parameter            | Description
 
 This creates a new policy object for the organization, but does not upload the actual policy code. After creation, you must use the [Upload a Policy endpoint (below)](#upload-a-policy) with the new policy's upload path. (This endpoint's response body includes the upload path in its `links.upload` property.)
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
-
-
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "policies"`)   | Successfully created a policy
@@ -38,7 +35,6 @@ Status  | Response                                     | Reason
 [422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
-
 
 ### Request Body
 
@@ -201,8 +197,6 @@ Parameter            | Description
 
 This endpoint uploads code to an existing Sentinel policy.
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
-
 -> **Note**: This endpoint does not use JSON-API's conventions for HTTP headers and body serialization.
 
 -> **Note**: This endpoint limits the size of uploaded policies to 10MB. If a larger payload is uploaded, an HTTP 413 error will be returned, and the policy will not be saved. Consider refactoring policies into multiple smaller, more concise documents if you reach this limit.
@@ -230,7 +224,6 @@ curl \
   https://app.terraform.io/api/v2/policies/pol-u3S5p2Uwk21keu1s/upload
 ```
 
-
 ## Update a Policy
 
 `PATCH /policies/:policy_id`
@@ -240,8 +233,6 @@ Parameter            | Description
 `:policy_id`         | The ID of the policy to update. Use the "List Policies" endpoint to find IDs.
 
 This endpoint can update the enforcement mode of an existing policy. To update the policy code itself, use the upload endpoint.
-
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
@@ -262,7 +253,6 @@ Key path                         | Type            | Default          | Descript
 `data.attributes.enforce`        | array\[object\] |                  | An array of enforcement configurations which map Sentinel file paths to their enforcement modes. Currently policies only support a single file, so this array will consist of a single element. The value provided **replaces** the enforcement map. To make an incremental update, you can first fetch the current value of this map from the [show endpoint](#show-a-policy) and modify it. If the path in the enforcement map does not match the Sentinel policy (`<NAME>.sentinel`), then the default `hard-mandatory` will be used.
 `data.attributes.enforce[].path` | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` matches the original value of `data.attributes.name`.
 `data.attributes.enforce[].mode` | string          | `hard-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
-
 
 ### Sample Payload
 
@@ -397,9 +387,6 @@ curl \
 Parameter            | Description
 ---------------------|------------
 `:policy_id`         | The ID of the policy to delete. Use the "List Policies" endpoint to find IDs.
-
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
-
 
 Status  | Response                  | Reason
 --------|---------------------------|-------
