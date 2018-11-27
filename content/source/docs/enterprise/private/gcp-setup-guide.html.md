@@ -48,10 +48,10 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 #### Hardware Sizing Considerations
 
 - \*PTFE requires 50GB for installation, but 
-[GCP documentation for storage performance](https://cloud.google.com/compute/docs/disks/#performance)
-recomends "to ensure consistent performance for more general use of the boot device,
-use either an SSD persistent disk as your boot disk or use a standard persistent disk
-that is at least 200 GB in size."
+  [GCP documentation for storage performance](https://cloud.google.com/compute/docs/disks/#performance)
+  recommends "to ensure consistent performance for more general use of the boot device,
+  use either an SSD persistent disk as your boot disk or use a standard persistent disk
+  that is at least 200 GB in size."
 
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
