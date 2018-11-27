@@ -111,6 +111,100 @@ curl \
 }
 ```
 
+## Update an OAuth Client
+
+`PATCH /oauth-clients/:id`
+
+Parameter            | Description
+---------------------|------------
+`:id`                | The ID of the OAuth Client to update.
+
+Result  | Status and response
+--------|------------------------
+Success | HTTP 200 and a JSON API document (`type: "oauth-clients"`).
+Failure | HTTP 4XX and a JSON API list of error messages.
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Key path                             | Type   | Default | Description
+-------------------------------------|--------|---------|------------
+`data.type`                          | string |         | Must be `"oauth-clients"`.
+`data.attributes.service-provider`   | string |         | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"bitbucket_hosted"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, or `"gitlab_enterprise_edition"`.
+`data.attributes.http-url`           | string |         | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
+`data.attributes.api-url`            | string |         | The base URL of your VCS provider's API (e.g. `https://api.github.com` or `"https://ghe.example.com/api/v3"`)
+`data.attributes.key`                | string |         | The OAuth client key.
+`data.attributes.secret`             | string |         | The OAuth client secret.
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "id": "oc-XKFwG6ggfA9n7t1K",
+    "type": "oauth-clients",
+    "attributes": {
+      "service-provider": "github",
+      "http-url": "https://github.com",
+      "api-url": "https://api.github.com",
+      "key": "key"
+      "secret": "secret"
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/oauth-clients/oc-XKFwG6ggfA9n7t1K
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "oc-XKFwG6ggfA9n7t1K",
+    "type": "oauth-clients",
+    "attributes": {
+      "created-at": "2018-04-16T20:42:53.771Z",
+      "callback-url": "https://app.terraform.io/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a/callback",
+      "connect-path": "/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a?organization_id=1",
+      "service-provider": "github",
+      "service-provider-display-name": "GitHub",
+      "http-url": "https://github.com",
+      "api-url": "https://api.github.com",
+      "key": null,
+      "rsa-public-key": null
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        },
+        "links": {
+          "related": "/api/v2/organizations/my-organization"
+        }
+      },
+      "oauth-tokens": {
+        "data": [],
+        "links": {
+          "related": "/api/v2/oauth-tokens/oc-XKFwG6ggfA9n7t1K"
+        }
+      }
+    }
+  }
+}
+```
+
 ## Destroy an OAuth Client
 
 `DELETE /organizations/:organization_name/oauth-clients/:id`
