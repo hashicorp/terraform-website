@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "Sentinel - Terraform Enterprise"
+page_title: "Mocking tfconfig Data - Sentinel - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-sentinel-imports-tfconfig-mock"
 description: |-
     This page provides a mock for the tfconfig Sentinel import.

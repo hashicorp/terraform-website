@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "Sentinel - Terraform Enterprise"
+page_title: "tfplan - Imports - Sentinel - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-sentinel-imports-tfplan"
 description: |-
     The tfplan import provides access to a Terraform plan. A Terraform plan is the file created as a result of `terraform plan` and is the input to `terraform apply`. The plan represents the changes that Terraform needs to make to infrastructure to reach the desired state represented by the configuration.
@@ -350,7 +350,7 @@ resource or data source had a `count` value in it) in the syntax
 you did not use `count` in the resource.
 
 In addition, each of these namespace levels is a map, allowing you to filter
-based on type and name. 
+based on type and name.
 
 -> The (somewhat strange) notation here of `TYPE.NAME[NUMBER]` may imply that
 the inner resource index map is actually a list, but it's not - using the square
