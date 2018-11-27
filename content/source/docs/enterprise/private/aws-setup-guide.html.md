@@ -159,9 +159,8 @@ the private key of a public ACM certificate on your PTFE instance.
 
 ### Application Layer
 
-The Application Layer is composed of two PTFE servers (EC2 instances)
-running in different Availability Zones and operating in a main/standby
-configuration. Traffic is routed only to *PTFE-main* via one of the above infrastructure options. 
+The Application Layer is composed of an Auto Scaling Group and a Launch Configuration
+providing an auto-recovery mechanism in the event of an instance or Availablity Zone failure.
 
 ### Storage Layer
 
@@ -194,7 +193,7 @@ as well.
 ### Component Interaction
 
 The Load Balancer routes all traffic to the *PTFE* instance, which is managed by
-an Auto Scaling Group with maximum and minimum instance counts set to 1.
+an Auto Scaling Group with maximum and minimum instance counts set to one.
 
 The PTFE application is connected to the PostgreSQL database via the RDS
 Multi-AZ endpoint and all database requests are routed via the RDS
@@ -240,8 +239,7 @@ begin booting a new one in an operational AZ.
 
 - S3 is resilient to Availability Zone failure based on its architecture.
 
-See below for more detail on how each component handles Availability
-Zone failure.
+See below for more detail on how each component handles Availability Zone failure.
 
 ##### PTFE Server
 
