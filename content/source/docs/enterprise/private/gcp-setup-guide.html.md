@@ -25,14 +25,14 @@ architecture.
 
 ## Infrastructure Requirements
 
+-> **Note:** This reference architecture focuses on the _Production - External
+Services_ operational mode.
+
 Depending on the chosen [operational
 mode](https://www.terraform.io/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single Cloud Compute VM instance
-for demo installations to multiple instances connected to Cloud SQL, Cloud Storage, and an
-external Vault cluster for a stateless production installation.
-
-This reference architecture focuses on the “Production - External
-Services” operational mode.
+for demo installations to multiple instances connected to Cloud SQL and for a
+stateless production installation.
 
 The following table provides high-level server guidelines. Of particular
 note is the strong recommendation to avoid non-fixed performance CPUs,
@@ -62,9 +62,11 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 
 #### Hardware Sizing Considerations
 
-- The minimum size would be appropriate for most initial production deployments, or for development/testing environments.
+- The minimum size would be appropriate for most initial production
+  deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a consistent high workload in the form of concurrent terraform runs.
+- The recommended size is for production environments where there is a
+  consistent high workload in the form of concurrent terraform runs.
 
 ### Object Storage (Cloud Storage)
 
@@ -74,17 +76,9 @@ securely and redundantly away from the Compute Engine VMs running the PTFE
 application. This Cloud Storage bucket must be in the same region as the Compute Engine and Cloud SQL
 instances.
 Vault is used to encrypt all application data stored in the Cloud Storage bucket.  This
-still allows for the further [server-side
+allows for further [server-side
 encryption](https://cloud.google.com/storage/docs/encryption/)
-that Cloud Storage performs.
-
-### Vault Cluster
-
-In order to provide a fully stateless application instance, PTFE must be
-configured to speak with an [external Vault
-cluster](https://www.terraform.io/docs/enterprise/private/vault.html).  This
-reference architecture assumes that a highly available Vault cluster is
-accessible at an endpoint the PTFE servers can reach.
+by Cloud Storage if required by your security policy.
 
 ### Other Considerations
 
@@ -94,31 +88,36 @@ In order to successfully provision this reference architecture you must
 also be permitted to create the following GCP resources:
 
 - Project
-- Network
+- [VPC Network](https://cloud.google.com/vpc/docs/vpc)
 - Subnet
 - Firewall
+- [Target Pool](https://cloud.google.com/load-balancing/docs/target-pools)
+- [Forwarding Rule](https://cloud.google.com/load-balancing/docs/forwarding-rules)
+- Compute Instance Template
+- Region Instance Group Manager
+- Cloud DNS (optional)
 
 #### Network
 
 To deploy PTFE in GCP you will need to create new or use existing
 networking infrastructure. The below infrastructure diagram highlights
 some of the key components (network, subnets) and you will
-also have firewalls and gateway requirements. These
+also have firewall and gateway requirements. These
 elements are likely to be very unique to your environment and not
 something this Reference Architecture can specify in detail.
 
 #### DNS
 
 DNS can be configured external to GCP or using [Cloud DNS](https://cloud.google.com/dns/). The
-fully qualified domain name should resolve to the Alias IP using an A record.
-Creating the required DNS entry is outside the scope of this guide.
+fully qualified domain name should resolve to the Forwarding Rules associated with the PTFE deployment.
+Creating the required DNS entry is outside the scope
+of this guide.
 
-#### SSL/TLS
+#### SSL/TLS Certificates and Load Balancers
 
-An SSL/TLS certificate is required for secure communication between
-clients and the PTFE application server. The certificate can be
-specified during the UI-based installation or the path to the
-certificate codified during an unattended installation.
+An SSL/TLS certificate signed by a public or private CA is required for secure communication between
+clients, VCS systems, and the PTFE application server. The certificate can be specified during the
+UI-based installation or in a configuration file used for an unattended installation.
 
 If a Classic or Application Load Balancer is used, SSL/TLS will be terminated there.
 In this configuration, the PTFE instances should still be configured to listen
