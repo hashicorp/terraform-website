@@ -48,10 +48,10 @@ or “Burstable CPU” in AWS terms, such as T-series instances.
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
-- deployments, or for development/testing environments.
+  deployments, or for development/testing environments.
 
 - The recommended size is for production environments where there is a
-- consistent high workload in the form of concurrent terraform runs.
+  consistent high workload in the form of concurrent terraform runs.
 
 ### PostgreSQL Database (RDS Multi-AZ)
 
