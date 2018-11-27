@@ -198,7 +198,7 @@ From a shell on your instance, in the directory where you placed the `replicated
    and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
 1. Set an encryption password used to encrypt the sensitive information at rest. The default value is auto-generated,
    but we strongly suggest you create your own password. Be sure to retain the value, because you will need to use this
-   password to restore access to the data in the event of a reinstall.
+   password to restore access to the data in the event of a reinstall. See [encryption password](https://www.terraform.io/docs/enterprise/private/encryption-password.html) for more information.
 1. Configure the operational mode for this installation. See
    [Preflight: Operational Modes](./preflight-installer.html#operational-mode-decision) for information on what the different values are. Ensure that you've met the relevant preflight requirements for the mode you chose.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
