@@ -42,16 +42,16 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 
 | Type        | CPU      | Memory       | Disk | GCP Machine Types              |
 |-------------|----------|--------------|------|--------------------------------|
-| Minimum     | 2-4 core | 8-16 GB RAM  | 50GB | n1-standard-2, n1-standard-4   |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB | n1-standard-4, n1-standard-8   |
+| Minimum     | 2-4 core | 8-16 GB RAM  | 50GB SSD Persistant Disk/200GB Standard Persistant Disk* | n1-standard-2, n1-standard-4   |
+| Recommended | 4-8 core | 16-32 GB RAM | 50GB+ SSD Persistant Disk/200GB+ Standard Persistant Disk* | n1-standard-4, n1-standard-8   |
 
 #### Hardware Sizing Considerations
 
-- The minimum size would be appropriate for most initial production
-- deployments, or for development/testing environments.
+- \*Even though PTFE itself only requires 50GB for installation, the GCP documentation for storage performance recomends that to ensure consistent performance "[use either an SSD persistent disk as your boot disk or use a standard persistent disk that is at least 200 GB in size](https://cloud.google.com/compute/docs/disks/#performance)".
 
-- The recommended size is for production environments where there is a
-- consistent high workload in the form of concurrent terraform runs.
+- The minimum size would be appropriate for most initial production deployments, or for development/testing environments.
+
+- The recommended size is for production environments where there is a consistent high workload in the form of concurrent terraform runs.
 
 ### PostgreSQL Database (Cloud SQL PostgreSQL Production)
 
