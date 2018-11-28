@@ -589,6 +589,18 @@ This endpoint locks a workspace.
 | --------------- | ----------------------------------------------------------------------------------------------------------- |
 | `:workspace_id` | The workspace ID to lock. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "workspaces"`) | Successfully locked the workspace
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
+[409][] | [JSON API error object][]                    | Workspace already locked by another entity
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
 ### Request Body
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
@@ -675,6 +687,16 @@ This endpoint unlocks a workspace.
 | --------------- | ------------------------------------------------------------------------------------------------------------- |
 | `:workspace_id` | The workspace ID to unlock. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "workspaces"`) | Successfully unlocked the workspace
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
 ### Sample Request
 
 ```shell
@@ -720,6 +742,73 @@ $ curl \
   }
 }
 ```
+
+## Force Unlock a workspace
+
+This endpoint force unlocks a workspace. Only users with admin access are authorized to force unlock a workspace.
+
+`POST /workspaces/:workspace_id/actions/force-unlock`
+
+| Parameter       | Description                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| `:workspace_id` | The workspace ID to force unlock. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "workspaces"`) | Successfully force unlocked the workspace
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/actions/force-unlock
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "auto-apply": false,
+      "can-queue-destroy-plan": false,
+      "created-at": "2017-11-02T23:23:53.765Z",
+      "environment": "default",
+      "locked": false,
+      "name": "workspace-2",
+      "permissions": {
+        "can-destroy": true,
+        "can-lock": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-update": true,
+        "can-update-variable": true
+      },
+      "terraform-version": "0.10.8",
+      "vcs-repo": {
+        "branch": "",
+        "identifier": "my-organization/my-repository",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
+      },
+      "working-directory": null
+    },
+    "id": "ws-SihZTyXKfNXUWuUa",
+    "type": "workspaces"
+  }
+}
+```
+
 
 ## Assign an SSH key to a workspace
 
