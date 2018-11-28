@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "Sentinel - Terraform Enterprise"
+page_title: "tfconfig - Imports - Sentinel - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-sentinel-imports-tfconfig"
 description: |-
   The tfconfig import provides access to a Terraform configuration.
@@ -272,7 +272,7 @@ resource "null_resource" "foo" {
   triggers = {
     foo = "one"
   }
-  
+
   triggers = {
     bar = "two"
   }
@@ -367,7 +367,7 @@ resource "null_resource" "foo" {
 }
 ```
 
-The following policy would evaluate to `true`: 
+The following policy would evaluate to `true`:
 
 ```python
 import "tfconfig"

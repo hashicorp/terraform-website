@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "Sentinel - Terraform Enterprise"
+page_title: "Mocking tfstate Data - Sentinel - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-sentinel-imports-tfstate-mock"
 description: |-
     This page provides a mock for the tfstate Sentinel import.

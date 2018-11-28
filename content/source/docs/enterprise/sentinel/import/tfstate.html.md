@@ -1,6 +1,6 @@
 ---
 layout: enterprise2
-page_title: "Sentinel - Terraform Enterprise"
+page_title: "tfstate - Imports - Sentinel - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-sentinel-imports-tfstate"
 description: |-
   The tfstate import provides access to a Terraform state.
@@ -292,7 +292,7 @@ resource or data source had a `count` value in it) in the syntax
 you did not use `count` in the resource.
 
 In addition, each of these namespace levels is a map, allowing you to filter
-based on type and name. 
+based on type and name.
 
 -> The (somewhat strange) notation here of `TYPE.NAME[NUMBER]` may imply that
 the inner resource index map is actually a list, but it's not - using the square
@@ -325,7 +325,7 @@ mentioned, when operating on data sources, use the same syntax, except with
 
 The `attr` value within the [resource
 namespace](#namespace-resources-data-sources) is a direct mapping to the state
-of the resource. 
+of the resource.
 
 The map is a complex representation of these values with data going as far down
 as needed to represent any state values such as maps, lists, and sets.
