@@ -112,6 +112,19 @@ also have firewall and gateway requirements. These
 elements are likely to be very unique to your environment and not
 something this Reference Architecture can specify in detail.
 
+-> **Note:** GCP uses MTU of 1460
+
+GCP uses a MTU of 1460, this is documented on 
+[mtu-considerations](https://cloud.google.com/vpn/docs/concepts/mtu-considerations)
+
+In order to configure docker to use MTU of 1460, create ` /etc/docker/daemon.conf`
+with the following content:
+```
+{
+  "mtu": 1460
+}
+```
+
 #### DNS
 
 DNS can be configured external to GCP or using [Cloud DNS](https://cloud.google.com/dns/). The
