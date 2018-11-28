@@ -83,7 +83,7 @@ application. This Cloud Storage bucket must be in the same region as the Compute
 instances.
 Vault is used to encrypt all application data stored in the Cloud Storage bucket.  This
 allows for further [server-side
-encryption](https://cloud.google.com/storage/docs/encryption/)
+encryption](https://cloud.google.com/storage/docs/encryption/).
 by Cloud Storage.
 
 ### Other Considerations
