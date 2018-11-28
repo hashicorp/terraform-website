@@ -73,6 +73,8 @@ After changing this setting, you must click the "Update SSH key" button below it
 
 If you need to prevent Terraform runs for any reason, you can lock a workspace. This prevents users with write access from manually queueing runs, prevents automatic runs due to changes to the backing VCS repo, and prevents the creation of runs via the API. To enable runs again, a user must unlock the workspace.
 
+Users with write access are permitted to lock an unlocked workspace; however, they are not allowed to unlock a workspace if another user locked it. Users with admin privileges are able to force unlock a workspace if another user has locked it.
+
 Locks are managed with a single "Lock/Unlock `<WORKSPACE NAME>`" button. TFE asks for confirmation when unlocking.
 
 ~> **Important:** Locking a workspace prevents runs within TFE, but it **does not** prevent state from being updated. This means a user with write access can still modify the workspace's resources by running Terraform outside TFE with [the `atlas` remote backend](/docs/backends/types/terraform-enterprise.html). To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows; to perform runs from the command line, see [TFE's CLI-driven workflow](../run/cli.html).
