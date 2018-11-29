@@ -1,10 +1,10 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Reference Architecture (Installer)"
+page_title: "Private Terraform Enterprise Reference Architecture"
 sidebar_current: "docs-enterprise2-private-reference-architecture"
 ---
 
-# Private Terraform Enterprise Reference Architecture (Installer)
+# Private Terraform Enterprise Reference Architectures
 
 HashiCorp provides Reference Architectures detailing the recommended
 infrastructure and resources that should be provisioned in order to

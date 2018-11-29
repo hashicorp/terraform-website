@@ -1,10 +1,10 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Automated Installation (Installer)"
+page_title: "Private Terraform Enterprise Automated Installation"
 sidebar_current: "docs-enterprise2-private-installer-automating"
 ---
 
-# Private Terraform Enterprise Automated Installation (Installer)
+# Private Terraform Enterprise Automated Installation
 
 The installation of Private Terraform Enterprise can be automated for both online and airgapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
 

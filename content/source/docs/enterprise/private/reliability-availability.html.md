@@ -50,74 +50,8 @@ role when considering the reliability of the overall system:
   - _Configuration Data_ - The information provided and/or generated at
     install-time (e.g. database credentials, hostname, etc.)
 
-## AMI Architecture
 
-In the AMI Architecture, both the **Application Layer** and the **Coordination
-Layer** execute on a single EC2 instance.
-
-_Configuration Data_ is provided via inputs to the [Terraform modules that are
-published alongside the AMI][tf-modules]. These inputs are interpolated into an
-encrypted file on S3. The EC2 instance is granted access to download this file
-via its IAM instance profile and configured to do so on boot via its User Data
-script.
-
-This setup allows the instance to automatically reconfigure itself on each
-boot, making for a consistent story for upgrades and recovery. The instance is
-launched in an Auto Scaling Group of size one, which facilitates automatic
-re-launch in the case of instance loss.
-
-The **Storage Layer** is delegated to Amazon services and inherits their
-respective reliability and availability properties:
-
-- _PostgreSQL Database_ - Amazon RDS is configured by default to use a
-  [Multi-AZ][multi-az] deployment, which provides high availability and
-  automated failover of the database instance. Nightly database snapshots are
-  automatically configured and retained for 31 days. The [Amazon RDS
-  Documentation][rds-docs] has much more information about the reliability and
-  availability of this service.
-
-- _Blob Storage_ - Amazon S3 is used for all blob storage. The [Amazon S3
-  Documentation][s3-docs] has much more information about the reliability and
-  availability of this service.
-
-- _HashiCorp Vault_ - Consul is run on the PTFE EC2 instance and stores all
-  Vault data. Consul data is backed up hourly to S3 alongside of the
-  _Configuration Data_ and is set to automatically restore on boot.
-
-[tf-modules]: https://github.com/hashicorp/terraform-enterprise-modules
-[multi-az]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html
-[rds-docs]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html
-[s3-docs]: https://aws.amazon.com/documentation/s3/
-
-### Availability During Upgrades
-
-Upgrades for the AMI Architecture are delivered as new AMIs. Switching AMI IDs
-within the Terraform config that manages your PTFE installation will cause the
-plan to include replacement of the Launch Configuration and Auto Scaling Group
-associate with your Terraform Enterprise instance.
-
-Applying this plan will result in the instance being relaunched. It will
-automatically recover the latest backup of _Configuration Data_ from S3 and
-resume normal operations.
-
-In normal conditions, Terraform Enterprise will be unavailable for less than
-five minutes as the old instance terminates and the new instance launches and
-boots the application.
-
-### Recovery From Failures
-
-The boot behavior and Auto Scaling Group configuration described above means
-that the system can automatically recover from any failure that results in loss
-of the instance. This recovery generally completes in less than five minutes.
-
-The Multi-AZ setup used for RDS protects against failures that affect the
-Database Instance, and the nightly automated RDS Snapshots provide coverage
-against data corruption.
-
-The redundancy guarantees of Amazon S3 serve to protect the files that PTFE
-stores there.
-
-## Installer Architecture
+## Operation Modes
 
 This section describes how to set up your PTFE deployment to recover from
 failures in the various operational modes (demo, mounted disk, external

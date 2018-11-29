@@ -4,7 +4,7 @@ page_title: "Private Terraform Enterprise Capacity and Performance"
 sidebar_current: "docs-enterprise2-private-installer-capacity"
 ---
 
-# Private Terraform Enterprise Capacity and Performance (Installer)
+# Private Terraform Enterprise Capacity and Performance
 
 The maximum capacity and performance of Private Terraform Enterprise (PTFE) is dependent entirely on the resources
 provided by the Linux instance it is installed on. There are a few settings that allow the capacity that PTFE

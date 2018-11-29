@@ -1,10 +1,10 @@
 ---
 layout: "enterprise2"
-page_title: "Private Terraform Enterprise Installation (Installer) - CentOS Linux Install Guide"
+page_title: "Private Terraform Enterprise Installation - CentOS Linux Install Guide"
 sidebar_current: "docs-enterprise2-private-installer-centos"
 ---
 
-# Private Terraform Enterprise Installation (Installer) - CentOS Install Guide
+# Private Terraform Enterprise Installation - CentOS Install Guide
 
 This install guide is specifically for users of Private Terraform Enterprise installing the product on CentOS Linux.
 
