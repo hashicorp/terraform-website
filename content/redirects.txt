@@ -207,3 +207,6 @@
 # /intro/getting-started/provision.html                   https://learn.hashicorp.com/terraform/getting-started/provision
 # /intro/getting-started/remote.html                      https://learn.hashicorp.com/terraform/getting-started/remote
 # /intro/getting-started/variables.html                   https://learn.hashicorp.com/terraform/getting-started/variables
+# /docs/providers/aws/guides/eks-getting-started.html     https://learn.hashicorp.com/terraform/aws/eks-intro
+# /docs/providers/aws/guides/iam-policy-documents.html    https://learn.hashicorp.com/terraform/aws/iam-policy
+# /docs/providers/aws/guides/serverless-with-aws-lambda-and-api-gateway.html    https://learn.hashicorp.com/terraform/aws/lambda-api-gateway
