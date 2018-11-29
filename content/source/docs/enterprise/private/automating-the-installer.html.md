@@ -111,6 +111,7 @@ The following apply to every installation:
 
 - `hostname` — (Required) this is the hostname you will use to access your installation
 - `installation_type` — (Required) one of `poc` or `production`
+- `enc_password` — Set the [encryption password](https://www.terraform.io/docs/enterprise/private/encryption-password.html) for the install
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`
 - `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
