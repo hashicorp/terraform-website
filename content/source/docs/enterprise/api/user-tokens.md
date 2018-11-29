@@ -217,6 +217,8 @@ Parameter   | Description
 ------------|------------
 `:id`       | The ID of the User Token to destroy.
 
+-> **Note:** You must access this endpoint with a [user token](../users-teams-organizations/users.html#api-tokens), and it will only delete tokens for that token's user account.
+
 Status  | Response                                        | Reason
 --------|---------------------------|----------
 [204][] | Empty response            | The User Token was successfully destroyed
