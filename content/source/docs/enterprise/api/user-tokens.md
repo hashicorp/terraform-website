@@ -23,6 +23,7 @@ The objects returned by this endpoint only contain metadata, and do not include 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "authentication-tokens"`) | The request was successful
+[200][] | Empty [JSON API document][] (no type)    | User has no authentication tokens, or request was made by someone other than the user
 [404][] | [JSON API error object][]               | User not found, or unauthorized to view the User
 
 ### Sample Request
