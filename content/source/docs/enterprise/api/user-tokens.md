@@ -86,6 +86,10 @@ Parameter   | Description
 ------------|------------
 `:id`       | The ID of the User Token.
 
+The objects returned by this endpoint only contain metadata, and do not include the secret text of any authentication tokens. A token is only shown upon creation, and cannot be recovered later.
+
+-> **Note:** You must access this endpoint with a [user token](../users-teams-organizations/users.html#api-tokens), and it will only return useful data for that token's user account.
+
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "authentication-tokens"`) | The request was successful
