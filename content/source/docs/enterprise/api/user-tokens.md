@@ -138,6 +138,10 @@ Parameter   | Description
 ------------|------------
 `:user_id`  | The ID of the User.
 
+This endpoint returns the secret text of the created authentication token. A token is only shown upon creation, and cannot be recovered later.
+
+-> **Note:** You must access this endpoint with a [user token](../users-teams-organizations/users.html#api-tokens), and it will only create new tokens for that token's user account.
+
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [201][] | [JSON API document][] (`type: "authentication-tokens"`) | The request was successful
