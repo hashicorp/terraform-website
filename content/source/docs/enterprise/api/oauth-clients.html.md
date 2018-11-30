@@ -26,10 +26,12 @@ This endpoint allows you to create a VCS connection between an organization and 
 
 ~> **Note:** This endpoint does not currently support creation of a Bitbucket Server OAuth Client.
 
-Result  | Status and response
---------|------------------------
-Success | HTTP 201 and a JSON API document (`type: "oauth-clients"`).
-Failure | HTTP 4XX and a JSON API list of error messages.
+Status  | Response                                | Reason
+--------|-----------------------------------------|----------
+[201][] | [JSON API document][] (`type: "oauth-clients"`) | The request was successful
+[404][] | [JSON API error object][]               | Organization not found or user unauthorized to perform action
+[422][] | [JSON API error object][]               | Malformed request body (missing attributes, wrong types, etc.)
+[500][] | [JSON API error object][]               | Failure during OAuth Client creation
 
 ### Request Body
 
@@ -121,10 +123,12 @@ Parameter            | Description
 
 When a VCS service provider changes their API URL, use this endpoint to update the value of `data.attributes.api-url`. Use caution when changing other attributes with this endpoint; editing an OAuth client that workspaces are currently using can have unexpected effects.
 
-Result  | Status and response
---------|------------------------
-Success | HTTP 200 and a JSON API document (`type: "oauth-clients"`).
-Failure | HTTP 4XX and a JSON API list of error messages.
+Status  | Response                                | Reason
+--------|-----------------------------------------|----------
+[200][] | [JSON API document][] (`type: "oauth-clients"`) | The request was successful
+[404][] | [JSON API error object][]               | OAuth Client not found or user unauthorized to perform action
+[422][] | [JSON API error object][]               | Malformed request body (missing attributes, wrong types, etc.)
+[500][] | [JSON API error object][]               | Failure during OAuth Client creation
 
 ### Request Body
 
@@ -133,11 +137,11 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 Key path                             | Type   | Default | Description
 -------------------------------------|--------|---------|------------
 `data.type`                          | string |         | Must be `"oauth-clients"`.
-`data.attributes.service-provider`   | string |         | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"bitbucket_hosted"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, or `"gitlab_enterprise_edition"`.
-`data.attributes.http-url`           | string |         | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
-`data.attributes.api-url`            | string |         | The base URL of your VCS provider's API (e.g. `https://api.github.com` or `"https://ghe.example.com/api/v3"`)
-`data.attributes.key`                | string |         | The OAuth client key.
-`data.attributes.secret`             | string |         | The OAuth client secret.
+`data.attributes.service-provider`   | string | (previous value) | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"bitbucket_hosted"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, or `"gitlab_enterprise_edition"`.
+`data.attributes.http-url`           | string | (previous value) | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
+`data.attributes.api-url`            | string | (previous value) | The base URL of your VCS provider's API (e.g. `https://api.github.com` or `"https://ghe.example.com/api/v3"`)
+`data.attributes.key`                | string | (previous value) | The OAuth client key.
+`data.attributes.secret`             | string | (previous value) | The OAuth client secret.
 
 ### Sample Payload
 
@@ -220,7 +224,7 @@ This endpoint allows you to remove an existing connection between an organizatio
 
 **Note:** Removing the OAuth Client will unlink workspaces that use this connection from their repositories, and these workspaces will need to be manually linked to another repository.
 
-Status  | Response                                        | Reason
+Status  | Response                  | Reason
 --------|---------------------------|----------
 [204][] | Empty response            | The OAuth Client was successfully destroyed
 [404][] | [JSON API error object][] | Organization or OAuth Client not found, or user unauthorized to perform action
@@ -234,3 +238,10 @@ curl \
   --request DELETE \
   https://app.terraform.io/api/v2/organizations/my-organization/oauth-clients/oc-XKFwG6ggfA9n7t1K
 ```
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
