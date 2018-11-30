@@ -119,6 +119,8 @@ Parameter            | Description
 ---------------------|------------
 `:id`                | The ID of the OAuth Client to update.
 
+When a VCS service provider changes their API URL, use this endpoint to update the value of `data.attributes.api-url`. Use caution when changing other attributes with this endpoint; editing an OAuth client that workspaces are currently using can have unexpected effects.
+
 Result  | Status and response
 --------|------------------------
 Success | HTTP 200 and a JSON API document (`type: "oauth-clients"`).
