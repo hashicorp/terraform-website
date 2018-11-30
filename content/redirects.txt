@@ -103,66 +103,7 @@
 /docs/enterprise-beta/workspaces/run-basics.html        /docs/enterprise/workspaces/run-basics.html
 /docs/enterprise-beta/workspaces/run-ui.html            /docs/enterprise/workspaces/run-ui.html
 /docs/enterprise-beta/workspaces/settings.html          /docs/enterprise/workspaces/settings.html
-
 /docs/enterprise-beta/api/o-auth-tokens.html            /docs/enterprise/api/oauth-tokens.html
-
-# Temporary enterprise-legacy redirects: delete after EOL
-/docs/enterprise/artifacts/artifact-provider.html        /docs/enterprise-legacy/artifacts/artifact-provider.html
-/docs/enterprise/artifacts/creating-amis.html            /docs/enterprise-legacy/artifacts/creating-amis.html
-/docs/enterprise/artifacts/index.html                    /docs/enterprise-legacy/artifacts/index.html
-/docs/enterprise/artifacts/managing-versions.html        /docs/enterprise-legacy/artifacts/managing-versions.html
-/docs/enterprise/faq/index.html                          /docs/enterprise-legacy/faq/index.html
-/docs/enterprise/faq/monolithic-artifacts.html           /docs/enterprise-legacy/faq/monolithic-artifacts.html
-/docs/enterprise/faq/rolling-deployments.html            /docs/enterprise-legacy/faq/rolling-deployments.html
-/docs/enterprise/faq/vagrant-cloud-migration.html        /docs/enterprise-legacy/faq/vagrant-cloud-migration.html
-/docs/enterprise/glossary/index.html                     /docs/enterprise-legacy/glossary/index.html
-/docs/enterprise/organizations/authentication-policy.html        /docs/enterprise-legacy/organizations/authentication-policy.html
-/docs/enterprise/organizations/create.html               /docs/enterprise-legacy/organizations/create.html
-/docs/enterprise/organizations/credit-card.html          /docs/enterprise-legacy/organizations/credit-card.html
-/docs/enterprise/organizations/index.html                /docs/enterprise-legacy/organizations/index.html
-/docs/enterprise/organizations/membership.html           /docs/enterprise-legacy/organizations/membership.html
-/docs/enterprise/organizations/migrate.html              /docs/enterprise-legacy/organizations/migrate.html
-/docs/enterprise/organizations/trials.html               /docs/enterprise-legacy/organizations/trials.html
-/docs/enterprise/packer/artifacts/creating-amis.html     /docs/enterprise-legacy/packer/artifacts/creating-amis.html
-/docs/enterprise/packer/artifacts/creating-vagrant-boxes.html    /docs/enterprise-legacy/packer/artifacts/creating-vagrant-boxes.html
-/docs/enterprise/packer/artifacts/index.html             /docs/enterprise-legacy/packer/artifacts/index.html
-/docs/enterprise/packer/builds/build-environment.html    /docs/enterprise-legacy/packer/builds/build-environment.html
-/docs/enterprise/packer/builds/how-builds-run.html       /docs/enterprise-legacy/packer/builds/how-builds-run.html
-/docs/enterprise/packer/builds/index.html                /docs/enterprise-legacy/packer/builds/index.html
-/docs/enterprise/packer/builds/installing-software.html  /docs/enterprise-legacy/packer/builds/installing-software.html
-/docs/enterprise/packer/builds/managing-packer-versions.html     /docs/enterprise-legacy/packer/builds/managing-packer-versions.html
-/docs/enterprise/packer/builds/notifications.html        /docs/enterprise-legacy/packer/builds/notifications.html
-/docs/enterprise/packer/builds/rebuilding.html           /docs/enterprise-legacy/packer/builds/rebuilding.html
-/docs/enterprise/packer/builds/scheduling-builds.html    /docs/enterprise-legacy/packer/builds/scheduling-builds.html
-/docs/enterprise/packer/builds/starting.html             /docs/enterprise-legacy/packer/builds/starting.html
-/docs/enterprise/packer/builds/troubleshooting.html      /docs/enterprise-legacy/packer/builds/troubleshooting.html
-/docs/enterprise/runs/automatic-applies.html             /docs/enterprise-legacy/runs/automatic-applies.html
-/docs/enterprise/runs/how-runs-execute.html              /docs/enterprise-legacy/runs/how-runs-execute.html
-/docs/enterprise/runs/index.html                         /docs/enterprise-legacy/runs/index.html
-/docs/enterprise/runs/installing-software.html           /docs/enterprise-legacy/runs/installing-software.html
-/docs/enterprise/runs/managing-terraform-versions.html   /docs/enterprise-legacy/runs/managing-terraform-versions.html
-/docs/enterprise/runs/multifactor-authentication.html    /docs/enterprise-legacy/runs/multifactor-authentication.html
-/docs/enterprise/runs/notifications.html                 /docs/enterprise-legacy/runs/notifications.html
-/docs/enterprise/runs/scheduling-runs.html               /docs/enterprise-legacy/runs/scheduling-runs.html
-/docs/enterprise/runs/starting.html                      /docs/enterprise-legacy/runs/starting.html
-/docs/enterprise/runs/variables-and-configuration.html   /docs/enterprise-legacy/runs/variables-and-configuration.html
-/docs/enterprise/state/collaborating.html                /docs/enterprise-legacy/state/collaborating.html
-/docs/enterprise/state/index.html                        /docs/enterprise-legacy/state/index.html
-/docs/enterprise/state/pushing.html                      /docs/enterprise-legacy/state/pushing.html
-/docs/enterprise/state/resolving-conflicts.html          /docs/enterprise-legacy/state/resolving-conflicts.html
-/docs/enterprise/support.html                            /docs/enterprise-legacy/support.html
-/docs/enterprise/user-accounts/access.html               /docs/enterprise-legacy/user-accounts/access.html
-/docs/enterprise/user-accounts/authentication.html       /docs/enterprise-legacy/user-accounts/authentication.html
-/docs/enterprise/user-accounts/index.html                /docs/enterprise-legacy/user-accounts/index.html
-/docs/enterprise/user-accounts/recovery.html             /docs/enterprise-legacy/user-accounts/recovery.html
-/docs/enterprise/api/configurations.html                 /docs/enterprise-legacy/api/configurations.html
-/docs/enterprise/api/environments.html                   /docs/enterprise-legacy/api/environments.html
-/docs/enterprise/api/states.html                         /docs/enterprise-legacy/api/states.html
-/docs/enterprise/api/users.html                          /docs/enterprise-legacy/api/users.html
-/docs/enterprise/api/runs.html                           /docs/enterprise-legacy/api/runs.html
-/docs/enterprise/vcs/bitbucket.html                      /docs/enterprise/vcs/bitbucket-cloud.html
-/docs/enterprise/vcs/git.html                            /docs/enterprise-legacy/vcs/git.html
-/docs/enterprise/vcs/gitlab.html                         /docs/enterprise/vcs/gitlab-eece.html
 
 
 # Extending Terraform section
