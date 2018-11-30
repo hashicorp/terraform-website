@@ -45,6 +45,9 @@ The settings file is JSON formatted. All values must be strings.  The example be
 
 One the easiest ways to get the settings is to [perform a manual install](./install-installer.html#installation) and configure all the settings how you want them. Then you can ssh in and request the settings in JSON format and use that file in a future automated install.
 
+
+> Note: replicatedctl is located at `/usr/local/bin/replicatedctl`. On some operating systems, `/usr/local/bin` is not part of the local shell. In these cases, you should either add `/usr/local/bin` to your path or refer to `replicatedctl` with the full path
+
 To extract the settings as JSON, run via ssh on the instance:
 
 ```
