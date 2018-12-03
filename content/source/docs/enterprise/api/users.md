@@ -10,7 +10,7 @@ sidebar_current: "docs-enterprise2-api-users"
 
 ## Show a User
 
-Shows details for a user. The ID for a user can be obtained from the [Team Membership](/docs/enterprise/api/team-members.html) endpoints.
+Shows details for a user. The ID for a user can be obtained from the [Team](/docs/enterprise/api/teams.html#list-teams) endpoint. `?include=users` should be included in the query string in order to have usernames be included in the response.
 
 `GET /users/:user_id`
 
