@@ -31,7 +31,6 @@ Status  | Response                                | Reason
 [201][] | [JSON API document][] (`type: "oauth-clients"`) | The request was successful
 [404][] | [JSON API error object][]               | Organization not found or user unauthorized to perform action
 [422][] | [JSON API error object][]               | Malformed request body (missing attributes, wrong types, etc.)
-[500][] | [JSON API error object][]               | Failure during OAuth Client creation
 
 ### Request Body
 
@@ -128,7 +127,6 @@ Status  | Response                                | Reason
 [200][] | [JSON API document][] (`type: "oauth-clients"`) | The request was successful
 [404][] | [JSON API error object][]               | OAuth Client not found or user unauthorized to perform action
 [422][] | [JSON API error object][]               | Malformed request body (missing attributes, wrong types, etc.)
-[500][] | [JSON API error object][]               | Failure during OAuth Client creation
 
 ### Request Body
 
