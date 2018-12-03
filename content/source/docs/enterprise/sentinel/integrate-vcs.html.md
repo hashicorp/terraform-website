@@ -53,15 +53,7 @@ Once your policy management process is fully implemented, the repo will contain 
 - **Sentinel tests,** stored in a `test/` directory.
 - Optionally: other information or metadata, which might include a README file, editor configurations, and CI configurations.
 
-### Important Note About Security
-
-When managing policies with TFE's UI, only organization owners can make changes. When managing policies with Terraform, changes are made automatically.
-
-This means write access to your policies is governed by the policy repository, so you should strictly control access to it. In particular, make sure to:
-
-- Limit merge permissions to a small number of trusted users.
-- Prohibit direct pushes to master.
-- Enforce a consistent process for reviewing and merging changes to policy code.
+~> **Important:** When managing policies with Terraform, the security of your policy repo determines the security of your policies. You should strictly control merge access to this repo, prohibit direct pushes to master, and enforce a consistent process for reviewing and merging changes to policy code.
 
 ## Sentinel Policies
 
@@ -69,19 +61,13 @@ This means write access to your policies is governed by the policy repository, s
 
 Write some [Sentinel policies for TFE][defining_policies], and commit them to your repo as `.sentinel` files. If you're already enforcing Sentinel policies in TFE, copy them into the new repo.
 
-### A Meta-Policy to Protect the Policies Workspace
-
-The workspace that manages your Sentinel policies will be using [the `tfe` provider][tfe_provider] with very elevated permissions, which means it can change any of your organization's settings if the Terraform configuration dictates.
-
-You can make this less likely by using Sentinel to restrict which resources the workspace can manage. The example repo includes [a Sentinel policy to forbid the other `tfe` resources](https://github.com/hashicorp/tfe-policies-example/blob/master/tfe_policies_only.sentinel), so that the policies workspace can only manage policies and policy sets.
-
-This doesn't protect the repo from untrusted users; an attacker able to write to the Terraform configuration could also change the policy to allow their changes. However, it's an efficient way to keep trusted users from misusing the policies workspace by accident or by misunderstanding.
+-> **Note:** Since your Terraform configuration for policies will be using [the `tfe` provider][tfe_provider] with very elevated permissions, you might want to use a Sentinel policy to restrict which `tfe` resources the workspace can manage. The example policy repo [includes a policy](https://github.com/hashicorp/tfe-policies-example/blob/master/tfe_policies_only.sentinel) that only allows `tfe_sentinel_policy` and `tfe_policy_set` resources in the policy workspace.
 
 ## Terraform Configuration
 
--> **Example:** The example policy repo includes a [complete Terraform configuration for policies](https://github.com/hashicorp/tfe-policies-example/blob/master/main.tf).
-
 Next, write a Terraform configuration to manage your policies and policy sets in TFE using [the `tfe` provider][tfe_provider].
+
+-> **Example:** The example policy repo includes a [complete Terraform configuration for policies](https://github.com/hashicorp/tfe-policies-example/blob/master/main.tf), with comments for clarity. If you prefer to read the Terraform code without a guided walkthrough, you can [skip to the next section][inpage_workspace].
 
 ### Define Variables for Accessing TFE
 
@@ -107,7 +93,7 @@ variable "tfe_organization" {
 
 ### Optional: Define a Workspace IDs Variable
 
-[workspace_ids]: #optional-define-a-workspace-ids-variable
+[inpage_ids]: #optional-define-a-workspace-ids-variable
 
 -> **Note:** This is a temporary workaround. A future version of the `tfe` provider will provide a way to look up workspace IDs without pre-populating a map.
 
@@ -121,9 +107,6 @@ variable "tfe_workspace_ids" {
   default = {
     "app-prod"                = "ws-LbK9gZEL4beEw9A2"
     "app-dev"                 = "ws-uMM93B6XrmCwh3Bj"
-    "app-staging"             = "ws-Mp6tkwtspVNZ5DSf"
-    "app-dev-sandbox-bennett" = "ws-s7jPpcQG4AGrSsTb"
-    "tfe-policies"            = "ws-Vt9UKZE5ejqGMp94"
   }
 }
 ```
@@ -140,7 +123,7 @@ $ curl \
 
 ### Configure the `tfe` Provider
 
-Configure the `tfe` provider with your API token and hostname variables. Make sure the provider is set to version 0.3 or higher.
+Configure the `tfe` provider (version 0.3 or higher) with your API token and hostname variables.
 
 ```hcl
 provider "tfe" {
@@ -177,6 +160,7 @@ Create a [`tfe_policy_set` resource][tfe_policy_set] for each policy set you wis
 - To build the `workspace_external_ids` list, interpolate values from your name-to-ID map variable, like `"${var.tfe_workspace_ids["app-prod"]}"`
 
 ```hcl
+# A global policy set
 resource "tfe_policy_set" "global" {
   name         = "global"
   description  = "Policies that should be enforced on ALL infrastructure."
@@ -184,16 +168,11 @@ resource "tfe_policy_set" "global" {
   global       = true
 
   policy_ids = [
-    "${tfe_sentinel_policy.passthrough.id}",
-    "${tfe_sentinel_policy.aws-block-allow-all-cidr.id}",
-    "${tfe_sentinel_policy.azurerm-block-allow-all-cidr.id}",
-    "${tfe_sentinel_policy.gcp-block-allow-all-cidr.id}",
     "${tfe_sentinel_policy.aws-restrict-instance-type-default.id}",
-    "${tfe_sentinel_policy.azurerm-restrict-vm-size.id}",
-    "${tfe_sentinel_policy.gcp-restrict-machine-type.id}",
   ]
 }
 
+# A non-global policy set
 resource "tfe_policy_set" "production" {
   name         = "production"
   description  = "Policies that should be enforced on production infrastructure."
@@ -211,35 +190,17 @@ resource "tfe_policy_set" "production" {
 
 ### Importing Resources
 
-If your TFE organization already has some unmanaged policies or policy sets, make sure to include them when writing your Terraform configuration.
+If your TFE organization already has some policies or policy sets, make sure to include them when writing your Terraform configuration.
 
-To bring the old resources under management, you can either delete them and allow Terraform to re-create them, or [import them into the Terraform state][import]. Deleting is easier, but importing lets you ensure that you correctly transcribed the information.
+To bring the old resources under management, you can either delete them and let Terraform re-create them, or [import them into the Terraform state][import].
 
-To import Sentinel resources, perform the following steps **after** you have created a TFE workspace for managing policies, but **before** you have performed any runs in that workspace.
+For the specific `terraform import` commands to use, see the documentation for [the `tfe_sentinel_policy` resource][tfe_sentinel_policy] and [the `tfe_policy_set` resource][tfe_policy_set]. You can find policy and set IDs in the URL bar when viewing a policy or set page in TFE.
 
-1. In a local checkout of your policy management repo, configure [the remote backend][remote] to use your TFE policies workspace. (You can do this in `main.tf`, or in a separate `.tf` file that is excluded from version control.)
-2. Run `terraform init`.
-3. For each existing Sentinel policy, run:
-
-    ```
-    $ terraform import tfe_sentinel_policy.<NAME> <ORGANIZATION>/<POLICY ID>
-    ```
-
-    `<NAME>` is the name you used for the corresponding resource in the Terraform configuration. You can find the policy ID in the URL bar when viewing a policy page.
-
-    Note that this resource uses the organization name as part of the import ID.
-4. For each existing policy set, run:
-
-    ```
-    $terraform import tfe_policy_set.<NAME> <POLICY SET ID>
-    ```
-
-    `<NAME>` is the name you used for the corresponding resource in the Terraform configuration. You can find the policy set ID in the URL bar when viewing a policy set page.
-
-    Note that this resource _doesn't_ use the organization name as part of the import ID.
-
+Be sure to import any resources **after** you have created a TFE workspace for managing policies, but **before** you have performed any runs in that workspace.
 
 ## TFE Workspace
+
+[inpage_workspace]: #tfe-workspace
 
 Create a [new TFE workspace](../workspaces/creating.html) linked to to your policy management repo. Use a short and obvious name like `tfe-policies`.
 
@@ -253,7 +214,7 @@ Before performing any runs, go to the workspace's "Variables" page and set the f
     - A [user token][] from a member of the owners team
 - `tfe_organization` — The name of the organization you want to manage policies for.
 - `tfe_hostname` — The hostname of your TFE instance.
-- `tfe_workspace_ids` (mark as "HCL") — A map of workspace names to workspace IDs. ([See above][workspace_ids].)
+- `tfe_workspace_ids` (mark as "HCL") — A map of workspace names to workspace IDs. ([See above][inpage_ids].)
 
 Once the variables are configured, you can queue a Terraform run to begin managing policies.
 
@@ -275,7 +236,7 @@ See the [Sentinel testing documentation][test] to learn how to write and run tes
     - `test` — Expected results for the policy's rules in this test case. (If the only expected result is `"main": true`, you can omit the `test` key.)
 
     For each policy, make at least two tests: one that obeys the policy, and one that violates the policy (using `"test": {"main": false}` so that the failed policy results in a passing test). Add more test cases for more complex policies.
-- Run `sentinel test` (in the root of the policy repo) to see results for every test in the `test` directory.
+- Run `sentinel test` (in the root of the policy repo) to see results for all of your tests.
 
 An example Sentinel test:
 
@@ -311,5 +272,5 @@ An example Sentinel test:
 
 Once you have working Sentinel tests, use your preferred continuous integration (CI) system to automatically run those tests on pull requests to your policy repo.
 
--> **Example:** The example policy repo uses [GitHub Actions](https://developer.github.com/actions/) to run `sentinel test` for every PR. View [the repo's Actions workflow](https://github.com/hashicorp/tfe-policies-example/blob/master/.github/main.workflow), or the code for the [example Sentinel test action](https://github.com/thrashr888/sentinel-github-actions/tree/master/test).
+-> **Example:** The example policy repo uses [GitHub Actions](https://developer.github.com/actions/) to run `sentinel test` for every PR. You can view [the repo's Actions workflow](https://github.com/hashicorp/tfe-policies-example/blob/master/.github/main.workflow), as well as the code for the [example Sentinel test action](https://github.com/thrashr888/sentinel-github-actions/tree/master/test).
 
