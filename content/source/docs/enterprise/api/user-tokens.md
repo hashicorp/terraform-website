@@ -24,7 +24,7 @@ Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [200][] | [JSON API document][] (`type: "authentication-tokens"`) | The request was successful
 [200][] | Empty [JSON API document][] (no type)    | User has no authentication tokens, or request was made by someone other than the user
-[404][] | [JSON API error object][]               | User not found, or unauthorized to view the User
+[404][] | [JSON API error object][]               | User not found
 
 ### Sample Request
 
@@ -145,7 +145,7 @@ This endpoint returns the secret text of the created authentication token. A tok
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
 [201][] | [JSON API document][] (`type: "authentication-tokens"`) | The request was successful
-[404][] | [JSON API error object][]               | User not found, or unauthorized to view the User
+[404][] | [JSON API error object][]               | User not found or user unauthorized to perform action
 [422][] | [JSON API error object][]               | Malformed request body (missing attributes, wrong types, etc.)
 [500][] | [JSON API error object][]               | Failure during User Token creation
 
