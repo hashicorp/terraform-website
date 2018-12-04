@@ -54,17 +54,17 @@ instances.
 
 #### Hardware Sizing Considerations
 
-- The minimum size would be appropriate for most initial production
-  deployments or for development/testing environments.
-
-- The recommended size is for production environments where there is a
-  consistently high workload in the form of concurrent terraform runs.
-
 - The default osDisk size for most Linux images on Azure is 30GB. When
   increasing the size of the osDisk partition, there may be additional
   steps required to fully utilize the disk space, such as using a tool
   like `fdisk`. This process is documented in the Azure knowledge base
   article ["How to: Resize Linux osDisk partition on Azure"](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
+
+- The minimum size would be appropriate for most initial production
+  deployments or for development/testing environments.
+
+- The recommended size is for production environments where there is a
+  consistently high workload in the form of concurrent terraform runs.
 
 ### PostgreSQL Database (Azure Database for PostgreSQL)
 
