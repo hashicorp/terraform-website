@@ -22,6 +22,16 @@ On the next page, click the _Download Support Bundle_ button which will download
 
 Then, attach the bundle to your support ticket. If possible, use the SendSafely integration (as it allows for large file uploads).
 
+### Scrubbing Sensitive Information
+
+Installer-based support bundles contain high level information about the configuration of your instance. This could include items such as repository names, branch names, and VCS hostnames. If these items are extremely sensitive, you may opt to omit these from the support bundle. However, this may impede our efforts to diagnose any problems you are encountering. The following directories may contain sensitive information:
+
+* `/atlas/admin-settings` - Configuration details for SAML, SMTP, and other integrations
+* `/atlas/vcs-settings` - Configuration for VCS providers, the workspaces they're associated with and repository names.
+* `/system/journald` - Recent system logs from journald.
+* `/system/root-ca` - Root CA bundle on the host system.
+
+To create a custom support bundle, extract the file you downloaded above and remove any directories that may be sensitive. You can then re-compress the archive and send the support bundle to us as outlined above. Please note in your support ticket how the bundle has been modified so we can account for the information's absense.
 
 ## AMI-based installs
 
