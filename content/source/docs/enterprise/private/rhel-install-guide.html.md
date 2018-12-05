@@ -21,6 +21,16 @@ This install guide is specifically for users of Private Terraform Enterprise ins
    * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag ftype=1. The full documentation on this configuration is at: https://docs.docker.com/storage/storagedriver/overlayfs-driver/
    * If using Docker from RHEL Extras, storage can be configured using the `docker-storage-setup` command
 
+**Note:** Using `docker-1.13.1-84.git07f3374.el7.x86_64` will result in an RPC error as well as 502 errors and inability to use the application. 
+
+#### Pinning the Docker Version
+
+If docker-1.13.1-84.git07f3374.el7.x86_64 is already installed, first run:
+
+```sudo yum downgrade docker docker-client docker-common docker-rhel-push-plugin```
+
+Then, restart Docker and ensure the installed version changes to 1.13.1-72.git6f36bd4el7.x86_64. To pin the version and prevent an inadvertent upgrade, follow [this guide](https://access.redhat.com/solutions/98873)from RedHat.
+
 ## Mandatory Configuration
 
 If you opt to use Docker from RHEL extras, then you must make a change to its default configuration to avoid hitting an out of memory bug.
