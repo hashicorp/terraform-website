@@ -23,7 +23,6 @@ This install guide is specifically for users of Private Terraform Enterprise ins
 
 **Note:** Using `docker-1.13.1-84.git07f3374.el7.x86_64` will result in an RPC error as well as 502 errors and inability to use the application. 
 
-<<<<<<< HEAD
 #### Pinning the Docker Version
 
 If docker-1.13.1-84.git07f3374.el7.x86_64 is already installed, first run:
@@ -31,25 +30,6 @@ If docker-1.13.1-84.git07f3374.el7.x86_64 is already installed, first run:
 ```sudo yum downgrade docker docker-client docker-common docker-rhel-push-plugin```
 
 Then, restart Docker and ensure the installed version changes to 1.13.1-72.git6f36bd4el7.x86_64. To pin the version and prevent an inadvertent upgrade, follow [this guide](https://access.redhat.com/solutions/98873)from RedHat.
-=======
-
-#### Workaround
-
-To work around the issue, we recommend running the following on the PTFE server to downgrade docker and related packages to `1.13.1-72.git6f36bd4el7.x86_64`: 
-
-
-```sudo yum downgrade docker docker-client docker-common docker-rhel-push-plugin```
-
-
-Once the above command is run the customer should restart Docker, restart PTFE and be back up and running. 
-
-
-#### Prevention
-
-To avoid the issue or prevent a recurrence, follow [this guide](https://access.redhat.com/solutions/98873) from RedHat to pin the Docker package versions so that they are not inadvertently upgraded.
-
-
->>>>>>> 36ce8acaf... include warning for docker bug
 
 ## Mandatory Configuration
 
