@@ -48,7 +48,7 @@ as the snapshots contain only configuration data, not application data.
 
 ## Version Checking
 
-> Note: replicatedctl is located at `/usr/local/bin/replicatedctl`. On some operating systems, `/usr/local/bin` is not part of the local shell. In these cases, you should either add `/usr/local/bin` to your path or refer to `replicatedctl` with the full path
+-> **Note**: `replicatedctl` is located at `/usr/local/bin/replicatedctl`. On some operating systems, `/usr/local/bin` is not in the user's `$PATH`. In these cases, either add `/usr/local/bin` to the path or refer to `replicatedctl` with the full path.
 
 Using the restore mechanism requires Replicated version 2.17.0 or greater.
 You can check the version using `replicatedctl version`.
