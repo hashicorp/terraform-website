@@ -593,7 +593,7 @@ Status  | Response                                     | Reason(s)
 --------|----------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully locked the workspace
 [404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
-[409][] | [JSON API error object][]                    | Workspace already locked by another entity
+[409][] | [JSON API error object][]                    | Workspace already locked
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
@@ -691,7 +691,7 @@ Status  | Response                                     | Reason(s)
 --------|----------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully unlocked the workspace
 [404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
-[409][] | [JSON API error object][]                    | Unable to unlock workspace
+[409][] | [JSON API error object][]                    | Workspace already unlocked, or locked by a different user
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
@@ -759,9 +759,11 @@ Status  | Response                                     | Reason(s)
 --------|----------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully force unlocked the workspace
 [404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
+[409][] | [JSON API error object][]                    | Workspace already unlocked
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
