@@ -97,7 +97,7 @@ variable "tfe_organization" {
 
 -> **Note:** This is a temporary workaround. A future version of the `tfe` provider will provide a way to look up workspace IDs without pre-populating a map.
 
-The `tfe_policy_set` resource uses opaque workspace IDs, but you can refer to workspaces by name if you provide a map of names to IDs. Use a Terraform variable for this map, so you can update it in TFE without changing the configuration:
+The `tfe_policy_set` resource uses workspace IDs, which can be found on a workspace's [settings page](../workspaces/settings.html#id). You can use these IDs directly, but the configuration will be more readable if you provide a map of names to IDs and refer to workspaces by name throughout the configuration. Use a Terraform variable for this map, so you can update it in TFE without changing the configuration:
 
 ```hcl
 variable "tfe_workspace_ids" {
