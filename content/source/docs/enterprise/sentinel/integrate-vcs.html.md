@@ -20,11 +20,11 @@ sidebar_current: "docs-enterprise2-sentinel-integrate-vcs"
 [user token]: ../users-teams-organizations/users.html#api-tokens
 [owners team]: ../users-teams-organizations/teams.html#the-owners-team
 
-Terraform Enterprise (TFE)'s [UI for managing Sentinel policies](./manage-policies.html) is designed primarily for _viewing_ your organization's policies and policy sets. It also works well for demos, proofs of concept, and other simple use cases.
+Terraform Enterprise (TFE)'s [UI for managing Sentinel policies](./manage-policies.html) is designed primarily for _viewing_ your organization's policies and policy sets. It also works well for demos and other simple use cases.
 
 For complex day-to-day use, we recommend keeping Sentinel code in version control and using Terraform to automatically deploy your policies. This approach is a better fit with Sentinel's policy-as-code design, and scales better for organizations with multiple owners and administrators.
 
-This page describes an end-to-end process for managing TFE's Sentinel policies with version control and Terraform. Use this outline and the [example repository][example_repo] as a starting point for managing your own organization.
+This page describes an end-to-end process for managing TFE's Sentinel policies with version control and Terraform. Use this outline and the [example repository][example_repo] as a starting point for managing your own organization's policies.
 
 ## Summary
 
@@ -46,11 +46,11 @@ Managing policies with version control and Terraform requires the following step
 
 Create a single VCS repository for managing your organization's Sentinel policies. We recommend a short and descriptive name like "tfe-policies". Later, you will create a TFE workspace based on this repo.
 
-Once your policy management process is fully implemented, the repo will contain the following:
+Once the policy management process is fully implemented, the repo will contain the following:
 
-- **Sentinel policies,** stored as `.sentinel` files in the root of the repo.
-- **A Terraform configuration,** stored in the root of the repo. This can be a single `main.tf` file, or several smaller configuration files.
-- **Sentinel tests,** stored in a `test/` directory.
+- **Sentinel policies** stored as `.sentinel` files in the root of the repo.
+- **A Terraform configuration** stored in the root of the repo. This can be a single `main.tf` file, or several smaller configuration files.
+- **Sentinel tests** stored in a `test/` directory.
 - Optionally: other information or metadata, which might include a README file, editor configurations, and CI configurations.
 
 ~> **Important:** When managing policies with Terraform, the security of your policy repo determines the security of your policies. You should strictly control merge access to this repo, prohibit direct pushes to master, and enforce a consistent process for reviewing and merging changes to policy code.
@@ -95,7 +95,6 @@ variable "tfe_organization" {
 
 [inpage_ids]: #optional-define-a-workspace-ids-variable
 
--> **Note:** This is a temporary workaround. A future version of the `tfe` provider will provide a way to look up workspace IDs without pre-populating a map.
 
 The `tfe_policy_set` resource uses workspace IDs, which can be found on a workspace's [settings page](../workspaces/settings.html#id). You can use these IDs directly, but the configuration will be more readable if you provide a map of names to IDs and refer to workspaces by name throughout the configuration. Use a Terraform variable for this map, so you can update it in TFE without changing the configuration:
 
@@ -111,7 +110,7 @@ variable "tfe_workspace_ids" {
 }
 ```
 
-To quickly get a list of workspace names and IDs, you can make an API call to the [List Workspaces endpoint](../api/workspaces.html#list-workspaces) (with a large enough page size to include all workspaces) and pipe the result to a `jq` program:
+To quickly get a list of workspace names and IDs, you can make an API call to the [List Workspaces endpoint](../api/workspaces.html#list-workspaces) and pipe the result to a `jq` command:
 
 ```
 $ curl \
@@ -120,6 +119,8 @@ $ curl \
   https://app.terraform.io/api/v2/organizations/my-organization/workspaces?page%5Bnumber%5D=1&page%5Bsize%5D=100 \
   | jq --raw-output '.data[] | "\"\(.attributes.name)\" = \"\(.id)\""'
 ```
+
+-> **Note:** If you have a very large number of workspaces, you might need to make multiple API calls to fetch subsequent pages. See [API Docs: Pagination](../api/index.html#pagination) for more details.
 
 ### Configure the `tfe` Provider
 
@@ -194,7 +195,7 @@ If your TFE organization already has some policies or policy sets, make sure to 
 
 To bring the old resources under management, you can either delete them and let Terraform re-create them, or [import them into the Terraform state][import].
 
-For the specific `terraform import` commands to use, see the documentation for [the `tfe_sentinel_policy` resource][tfe_sentinel_policy] and [the `tfe_policy_set` resource][tfe_policy_set]. You can find policy and set IDs in the URL bar when viewing a policy or set page in TFE.
+For the specific `terraform import` commands to use, see the documentation for [the `tfe_sentinel_policy` resource][tfe_sentinel_policy] and [the `tfe_policy_set` resource][tfe_policy_set]. You can find policy and policy set IDs in the URL bar when viewing them in TFE.
 
 Be sure to import any resources **after** you have created a TFE workspace for managing policies, but **before** you have performed any runs in that workspace.
 
@@ -202,7 +203,7 @@ Be sure to import any resources **after** you have created a TFE workspace for m
 
 [inpage_workspace]: #tfe-workspace
 
-Create a [new TFE workspace](../workspaces/creating.html) linked to to your policy management repo. Use a short and obvious name like `tfe-policies`.
+Create a [new TFE workspace](../workspaces/creating.html) linked to to your policy management repo.
 
 -> **Note:** This workspace doesn't have to belong to the organization whose policies it manages. If you use multiple TFE organizations, one of them can manage policies for the others.
 
@@ -220,7 +221,7 @@ Once the variables are configured, you can queue a Terraform run to begin managi
 
 ## Policy Tests
 
-It's easier and safer to collaborate on policy as code when your code is well tested. Take advantage of Sentinel's built-in testing capabilities by adding tests to your policy repo.
+It's easier and safer to collaborate on policy as code when your code is well-tested. Take advantage of Sentinel's built-in testing capabilities by adding tests to your policy repo.
 
 -> **Example:** The example policy repo includes [tests for every policy](https://github.com/hashicorp/tfe-policies-example/tree/master/test/).
 

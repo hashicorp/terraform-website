@@ -67,7 +67,7 @@ This example function handles several things that are tricky about finding resou
 - It uses `else` expressions to recover from `undefined` values, for modules that don't have any resources of that type.
 - It falls back to the `resources` namespace if the real tfplan import isn't available, to support [testing](https://docs.hashicorp.com/sentinel/writing/testing). Since current versions of Sentinel don't allow you to mock tfplan's `module()` function, it isn't possible to test Sentinel code that accesses non-root modules. However, you can still test the rest of the policy by mocking resource data under the `resources` namespace.
 
-    This example is checking whether it's in a test by looking for an empty `module_paths` namespace, which assumes that our organization is omitting that key in our mock data for Sentinel tests. For policies that need to test mocked `module_paths` data for other purposes, you might need to use a different method to check for the real Terraform imports.
+-> **Note:** This example is checking whether it's in a test by looking for an empty `module_paths` namespace, which assumes that our organization is omitting that key in our mock data for Sentinel tests. For policies that need to test mocked `module_paths` data for other purposes, you might need to use a different method to check for the real Terraform imports.
 
 ### To Test Resources, Use Nested `all` or `any` Expressions
 
