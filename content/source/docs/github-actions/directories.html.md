@@ -24,7 +24,7 @@ action "filter-to-pr-open-synced" {
 }
 
 action "terraform-fmt-dir1" {
-  uses    = "hashicorp/terraform-github-actions/fmt@v0.1"
+  uses    = "hashicorp/terraform-github-actions/fmt@v0.1.1"
   needs   = "filter-to-pr-open-synced"
   secrets = ["GITHUB_TOKEN"]
 
@@ -34,7 +34,7 @@ action "terraform-fmt-dir1" {
 }
 
 action "terraform-init-dir1" {
-  uses    = "hashicorp/terraform-github-actions/init@v0.1"
+  uses    = "hashicorp/terraform-github-actions/init@v0.1.1"
   secrets = ["GITHUB_TOKEN"]
   needs   = "terraform-fmt-dir1"
 
@@ -44,7 +44,7 @@ action "terraform-init-dir1" {
 }
 
 action "terraform-validate-dir1" {
-  uses    = "hashicorp/terraform-github-actions/validate@v0.1"
+  uses    = "hashicorp/terraform-github-actions/validate@v0.1.1"
   secrets = ["GITHUB_TOKEN"]
   needs   = "terraform-init-dir1"
 
@@ -54,7 +54,7 @@ action "terraform-validate-dir1" {
 }
 
 action "terraform-plan-dir1" {
-  uses    = "hashicorp/terraform-github-actions/plan@v0.1"
+  uses    = "hashicorp/terraform-github-actions/plan@v0.1.1"
   needs   = "terraform-validate-dir1"
   secrets = ["GITHUB_TOKEN"]
 
@@ -69,7 +69,7 @@ workflow "terraform-dir2" {
 }
 
 action "terraform-fmt-dir2" {
-  uses    = "hashicorp/terraform-github-actions/fmt@v0.1"
+  uses    = "hashicorp/terraform-github-actions/fmt@v0.1.1"
   needs   = "filter-to-pr-open-synced"
   secrets = ["GITHUB_TOKEN"]
 
@@ -79,7 +79,7 @@ action "terraform-fmt-dir2" {
 }
 
 action "terraform-init-dir2" {
-  uses    = "hashicorp/terraform-github-actions/init@v0.1"
+  uses    = "hashicorp/terraform-github-actions/init@v0.1.1"
   secrets = ["GITHUB_TOKEN"]
   needs   = "terraform-fmt-dir2"
 
@@ -89,7 +89,7 @@ action "terraform-init-dir2" {
 }
 
 action "terraform-validate-dir2" {
-  uses    = "hashicorp/terraform-github-actions/validate@v0.1"
+  uses    = "hashicorp/terraform-github-actions/validate@v0.1.1"
   secrets = ["GITHUB_TOKEN"]
   needs   = "terraform-init-dir2"
 
@@ -99,7 +99,7 @@ action "terraform-validate-dir2" {
 }
 
 action "terraform-plan-dir2" {
-  uses    = "hashicorp/terraform-github-actions/plan@v0.1"
+  uses    = "hashicorp/terraform-github-actions/plan@v0.1.1"
   needs   = "terraform-validate-dir2"
   secrets = ["GITHUB_TOKEN"]
 
