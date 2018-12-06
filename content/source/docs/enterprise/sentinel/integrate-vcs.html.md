@@ -272,5 +272,5 @@ An example Sentinel test:
 
 Once you have working Sentinel tests, use your preferred continuous integration (CI) system to automatically run those tests on pull requests to your policy repo.
 
--> **Example:** The example policy repo uses [GitHub Actions](https://developer.github.com/actions/) to run `sentinel test` for every PR. You can view [the repo's Actions workflow](https://github.com/hashicorp/tfe-policies-example/blob/master/.github/main.workflow), as well as the code for the [example Sentinel test action](https://github.com/thrashr888/sentinel-github-actions/tree/master/test).
+-> **Example:** The example policy repo uses [GitHub Actions](https://developer.github.com/actions/) to run `sentinel test` for every PR. You can view [the repo's Actions workflow](https://github.com/hashicorp/tfe-policies-example/blob/master/.github/main.workflow), as well as the code for the [example Sentinel test action](https://github.com/hashicorp/sentinel-github-actions/tree/master/test).
 
