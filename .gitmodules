@@ -370,3 +370,7 @@
 	path = ext/providers/selvpc
 	url = https://github.com/terraform-providers/terraform-provider-selvpc
 	branch = stable-website
+[submodule "ext/providers/skytap"]
+	path = ext/providers/skytap
+	url = https://github.com/terraform-providers/terraform-provider-skytap
+	branch = stable-website
