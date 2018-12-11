@@ -110,4 +110,13 @@ deinit:
 	@echo "==> Deinitializing submodules"
 	@git submodule deinit --all -f
 
+spellcheck:
+	@echo "==> Spell checking website and running fixes..."
+	@find content/ -type f | xargs docker run \
+	 -v $(CURDIR):/scripts \
+	 --workdir=/scripts \
+	 nickg/misspell:latest \
+	 misspell -w -source=text
+	@echo "==> Spell check complete"
+
 .PHONY: build website sync
