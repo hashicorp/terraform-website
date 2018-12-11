@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-api-teams"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-The Teams API is used to create and destroy teams. The [Team Membership API](./team-members.html) is used to add or remove users from a team. To give a team access to a workspace use the [Team Access API](./team-access.html) to associate a team with privileges on a workspace.
+The Teams API is used to create, edit, and destroy teams as well as manage a team's organization-level permissions. The [Team Membership API](./team-members.html) is used to add or remove users from a team. Use the [Team Access API](./team-access.html) to associate a team with privileges on an individual workspace.
 
 ## List teams
 
@@ -34,31 +34,31 @@ $ curl \
 {
   "data": [
     {
-      "id": "257529",
+      "id": "team-6p5jTwJQXwqZBncC",
       "type": "teams",
       "attributes": {
-        "name": "owners",
-        "users-count": 1,
+        "name": "team-creation-test",
+        "users-count": 0,
         "permissions": {
-          "can-update-membership": false,
-          "can-destroy": false
+          "can-update-membership": true,
+          "can-destroy": true
+        },
+        "organization-access": {
+          "manage-policies": true,
+          "manage-workspaces": false,
+          "manage-vcs-settings": false
         }
       },
       "relationships": {
         "users": {
-          "data": [
-            {
-              "id": "user-62goNpx1ThQf689e",
-              "type": "users"
-            }
-          ]
+          "data": []
         },
         "authentication-token": {
           "meta": {}
         }
       },
       "links": {
-        "self": "/api/v2/teams/team-n8UQ6wfhyym25sMe"
+        "self": "/api/v2/teams/team-6p5jTwJQXwqZBncC"
       }
     }
   ]
@@ -95,10 +95,11 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-Key path               | Type   | Default | Description
------------------------|--------|---------|------------
-`data.type`            | string |         | Must be `"teams"`.
-`data.attributes.name` | string |         | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+Key path                              | Type   | Default   | Description
+-----------------------               |--------|-----------|------------
+`data.type`                           | string |           | Must be `"teams"`.
+`data.attributes.name`                | string |           | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+`data.attributes.organization-access` | object | (nothing) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
 
 ### Sample Payload
 
@@ -107,7 +108,10 @@ Key path               | Type   | Default | Description
   "data": {
     "type": "teams",
     "attributes": {
-      "name": "team-creation-test"
+      "name": "team-creation-test",
+      "organization-access": {
+        "manage-workspaces": true
+      }
     }
   }
 }
@@ -129,19 +133,33 @@ $ curl \
 
 ```json
 {
-  "id": "257528",
-  "type": "teams",
-  "attributes": {
-    "name": "team-creation-test",
-    "users-count": 0
-  },
-  "relationships": {
-    "users": {
-      "data": []
-    }
-  },
-  "links": {
-    "self": "/api/v2/teams/257528"
+  "data": {
+    "attributes": {
+      "name": "team-creation-test",
+      "organization-access": {
+        "manage-policies": false,
+        "manage-vcs-settings": false,
+        "manage-workspaces": true
+      },
+      "permissions": {
+        "can-destroy": true,
+        "can-update-membership": true
+      },
+      "users-count": 0
+    },
+    "id": "team-6p5jTwJQXwqZBncC",
+    "links": {
+      "self": "/api/v2/teams/team-6p5jTwJQXwqZBncC"
+    },
+    "relationships": {
+      "authentication-token": {
+        "meta": {}
+      },
+      "users": {
+        "data": []
+      }
+    },
+    "type": "teams"
   }
 }
 ```
@@ -161,38 +179,38 @@ $ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://app.terraform.io/api/v2/teams/257529
+  https://app.terraform.io/api/v2/teams/team-6p5jTwJQXwqZBncC
 ```
 
 ### Sample Response
 ```json
 {
   "data": {
-    "id": "257529",
+    "id": "team-6p5jTwJQXwqZBncC",
     "type": "teams",
     "attributes": {
-      "name": "owners",
-      "users-count": 1,
+      "name": "team-creation-test",
+      "users-count": 0,
       "permissions": {
-        "can-update-membership": false,
-        "can-destroy": false
+        "can-update-membership": true,
+        "can-destroy": true
+      },
+      "organization-access": {
+        "manage-policies": true,
+        "manage-workspaces": false,
+        "manage-vcs-settings": false
       }
     },
     "relationships": {
       "users": {
-        "data": [
-          {
-            "id": "user-62goNpx1ThQf689e",
-            "type": "users"
-          }
-        ]
+        "data": []
       },
       "authentication-token": {
         "meta": {}
       }
     },
     "links": {
-      "self": "/api/v2/teams/257529"
+      "self": "/api/v2/teams/team-6p5jTwJQXwqZBncC"
     }
   }
 }
@@ -214,7 +232,7 @@ $ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/teams/257529
+  https://app.terraform.io/api/v2/teams/team-6p5jTwJQXwqZBncC
 ```
 
 ## Available Related Resources
