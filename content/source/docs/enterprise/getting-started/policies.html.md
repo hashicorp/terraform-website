@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-started-policies"
 
 # Creating and Managing Terraform Policies
 
-**Prerequisites:** Before starting this guide, make sure you've [sucessfully completed a run](./runs.html).
+**Prerequisites:** Before starting this guide, make sure you've [successfully completed a run](./runs.html).
 
 ## About Sentinel Policies
 

@@ -264,7 +264,7 @@ func resourceExampleWidgetUpdate(d *schema.ResourceData, meta interface{}) error
 
 ### Renaming an Optional Attribute
 
-~> **NOTE:** If the schema defintion does not contain `Optional` or `Required`, see the [Renaming a Computed Attribute section](#renaming-a-computed-attribute) instead. If the schema definition contains `Required` instead of `Optional`, see the [Renaming a Required Attribute section](#renaming-a-required-attribute).
+~> **NOTE:** If the schema definition does not contain `Optional` or `Required`, see the [Renaming a Computed Attribute section](#renaming-a-computed-attribute) instead. If the schema definition contains `Required` instead of `Optional`, see the [Renaming a Required Attribute section](#renaming-a-required-attribute).
 
 -> [Optional attributes](/docs/extend/schemas/schema-behaviors.html#optional) are also referred to as optional "arguments" throughout the Terraform documentation.
 

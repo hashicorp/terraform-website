@@ -10,7 +10,7 @@ Site administrators have access to all organizations, users, runs, and workspace
 
 ## Viewing, Searching, and Filtering Lists
 
-Each type of account or resource is initally presented as a searchable list, accessed by clicking the name of the resource on the left. In addition to searching or filtering (typically by email, name, or other relevant attribute), there are pre-existing filters to show useful sets, such as site administrators (users) or "Needs Attention" (workspaces, runs).
+Each type of account or resource is initially presented as a searchable list, accessed by clicking the name of the resource on the left. In addition to searching or filtering (typically by email, name, or other relevant attribute), there are pre-existing filters to show useful sets, such as site administrators (users) or "Needs Attention" (workspaces, runs).
 
 ## Managing Users
 

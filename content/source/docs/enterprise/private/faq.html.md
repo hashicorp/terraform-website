@@ -240,7 +240,7 @@ Terraform Enterprise makes several categories of outbound requests, detailed in 
 
 Private Terraform Enterprise can be configured to connect to a number of [Version Control Systems (VCSs)](https://www.terraform.io/docs/enterprise/vcs/index.html), some supporting both SaaS and private-network installations.
 
-In order to perform ingress of Terraform configuration from a configured VCS, Private Terraform Enterprise will need to be able to communciate with that provider's API, and webhooks from that provider will need to be able to reach Private Terraform Enterprise.
+In order to perform ingress of Terraform configuration from a configured VCS, Private Terraform Enterprise will need to be able to communicate with that provider's API, and webhooks from that provider will need to be able to reach Private Terraform Enterprise.
 
 For example, an integration with GitHub.com will require Private Terraform Enterprise to have access to https://github.com and for GitHub's webhooks to be able to route back to Terraform. Similarly, an integration with GitHub Enterprise will require Terraform to have access to the local GitHub instance.
 

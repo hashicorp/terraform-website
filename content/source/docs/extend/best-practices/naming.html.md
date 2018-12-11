@@ -81,7 +81,7 @@ List and set attributes use the same bracket syntax, and differ only in how
 they are described to and used by the user. In lists, the ordering is
 significant and duplicate values are often accepted. In sets, the ordering is
 *not* significant and duplicated values are usually *not* accepted, since
-presence or absense is what is important.
+presence or absence is what is important.
 
 Map blocks use the same syntax as other configuration blocks, but the keys in
 maps are arbitrary and not explicitly named by the plugin, so in some cases

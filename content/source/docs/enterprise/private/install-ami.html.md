@@ -25,7 +25,7 @@ Before setup begins, a few resources need to be provisioned. We consider these o
 The following are **required** to complete installation:
 
 * **AWS IAM credentials** capable of creating new IAM roles configuring various services. We strongly suggest you use the `AdministratorAccess` policy for this. The credentials are only used for setup; during runtime only an assumed role is used.
-* **AWS VPC** containing at least 2 subnets. These will be used to launch the cluster into. Subnets do not need to be public, but they do need an internet gateway at present. If two private subnets are used they should each be in a seperate Availability Zone (AZ). Also, if a third public subnet is used, and the instance resides in a private subnet, the public subnet must be in the same AZ as the instance.
+* **AWS VPC** containing at least 2 subnets. These will be used to launch the cluster into. Subnets do not need to be public, but they do need an internet gateway at present. If two private subnets are used they should each be in a separate Availability Zone (AZ). Also, if a third public subnet is used, and the instance resides in a private subnet, the public subnet must be in the same AZ as the instance.
 * **SSH Key Pair** configured with AWS EC2. This will be used to configure support access to the cluster. This SSH key can be optionally removed from the instance once installation is complete.
   * To create a new one, [see Amazon's docs for EC2 key pairs.](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 * A **Publicly Trusted TLS certificate** registered with AWS Certificate Manager. This can be one created by ACM for a hostname or the certificate can be imported into it.
@@ -68,7 +68,7 @@ The values for these variables should be placed in the `terraform.tfvars` file. 
 * `cert_id`: An AWS certificate ARN. This is the certification that will be used by the ELB for the cluster. Example: `arn:aws:acm:us-west-2:241656615859:certificate/f32fa674-de62-4681-8035-21a4c81474c6`
 * `instance_subnet_id`: Subnet ID of the subnet that the cluster's instance will be placed into. If this is a public subnet, the instance will be assigned a public IP. This is not required as the primary cluster interface is an ELB registered with the hostname. Example: `subnet-0de26b6a`
 * `elb_subnet_id`: Subnet ID of the subnet that the cluster's load balancer will be placed into. If this is a public subnet, the load balancer will be accessible from the public internet. This is not required — the ELB can be marked as private via the `internal_elb` option below.
-* `data_subnet_ids`: Subnet IDs that will be used to create the data services (RDS and ElastiCache) used by the cluster. There must be 2 subnet IDs given for proper redundency. Example: `["subnet-0ce26b6b", "subnet-d0f35099"]`
+* `data_subnet_ids`: Subnet IDs that will be used to create the data services (RDS and ElastiCache) used by the cluster. There must be 2 subnet IDs given for proper redundancy. Example: `["subnet-0ce26b6b", "subnet-d0f35099"]`
 * `db_password`: Password that will be used to access RDS. Example: `databaseshavesecrets`
 * `bucket_name`: Name of the S3 bucket to store artifacts used by the cluster into. This bucket is automatically created. We suggest you name it `tfe-<HOSTNAME>-data`, as convention.
 

@@ -71,7 +71,7 @@ Key path                                  | Type   | Default | Description
 ------------------------------------------|--------|---------|------------
 `data.type`                               | string |         | Must be `"registry-modules"`.
 `data.attributes.vcs-repo.identifier`     | string |         | The repository from which to ingress the configuration.
-`data.attributes.vcs-repo.oauth-token-id` | string |         | The VCS Connection (OAuth Conection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+`data.attributes.vcs-repo.oauth-token-id` | string |         | The VCS Connection (OAuth Connection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 
 A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo`, where `:org` and `:repo` refer to the organization (or project key, for Bitbucket Server) and repository in your VCS provider.
 

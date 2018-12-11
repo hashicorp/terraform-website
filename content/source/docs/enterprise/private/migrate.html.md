@@ -191,7 +191,7 @@ later running this program on the linux instance being used
 to run the installer.
 
 This program will now shutdown some primary services before
-continuning to be sure that the database is consistent
+continuing to be sure that the database is consistent
 Shutting down services...
 2018/05/25 17:37:04 Generated new root token to transmit
 2018/05/25 17:37:04 connecting to postgresql at postgres://atlas:xxyyzz@tfe-aabbcc.ddeeff.us-west-2.rds.amazonaws.com:5432/atlas_production?&options=-c%20search%5Fpath%3Dvault

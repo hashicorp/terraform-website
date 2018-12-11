@@ -47,7 +47,7 @@ Back in the open GitLab tab, select the Terraform Enterprise OAuth application a
 
 ### Connect a GitLab User to Organization
 
-Back on the **Configuration** page for your Terraform Enterprise Organization, in the **OAuth Connections** pane, you can now connect your organization to GitLab by clicking **Connect**. You will be briefly redirected to GitLab in order to authenticate the client. You should be successfuly redirected back to Terraform Enterprise. If you are not, check the values in your OAuth client and make sure they match exactly with the values associated with your GitLab OAuth application.
+Back on the **Configuration** page for your Terraform Enterprise Organization, in the **OAuth Connections** pane, you can now connect your organization to GitLab by clicking **Connect**. You will be briefly redirected to GitLab in order to authenticate the client. You should be successfully redirected back to Terraform Enterprise. If you are not, check the values in your OAuth client and make sure they match exactly with the values associated with your GitLab OAuth application.
 
 The Terraform Enterprise GitLab integration is now ready your Organization to start using.
 

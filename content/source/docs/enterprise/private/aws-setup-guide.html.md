@@ -160,7 +160,7 @@ the private key of a public ACM certificate on your PTFE instance.
 ### Application Layer
 
 The Application Layer is composed of an Auto Scaling Group and a Launch Configuration
-providing an auto-recovery mechanism in the event of an instance or Availablity Zone failure.
+providing an auto-recovery mechanism in the event of an instance or Availability Zone failure.
 
 ### Storage Layer
 

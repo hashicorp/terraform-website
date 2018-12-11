@@ -18,7 +18,7 @@ Read is the lowest level of access within Terraform Enterprise. Users with read 
 
 ### Write
 
-Write access allows collaborating users the abilty to view the resource and perform create, update, and edit actions on a resource. Users with write access are not able to destroy resources. For example, users with write access are able to view and edit Terraform environment variables as well as push new configuration.
+Write access allows collaborating users the ability to view the resource and perform create, update, and edit actions on a resource. Users with write access are not able to destroy resources. For example, users with write access are able to view and edit Terraform environment variables as well as push new configuration.
 
 ### Admin
 

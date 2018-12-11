@@ -209,9 +209,9 @@ results to other `TestCheckFunc` methods. The below example uses
 `ComposeTestCheckFunc` to group a set of `TestCheckFunc` functions together. The
 first function `testAccCheckExampleWidgetExists` uses the `Example` service SDK
 directly, and queries it for the ID of the widget we have in state. Once found,
-the result is stored into the `widget` struct declared at the begining of the
+the result is stored into the `widget` struct declared at the beginning of the
 test function. The next check function `testAccCheckExampleWidgetAttributes`
-recieves the updated `widget` and checks its attributes. The final check
+receives the updated `widget` and checks its attributes. The final check
 `TestCheckResourceAttr` verifies that the same value is stored in state.
  
 ```go  
