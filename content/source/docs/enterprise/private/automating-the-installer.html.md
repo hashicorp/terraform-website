@@ -41,6 +41,32 @@ The settings file is JSON formatted. All values must be strings.  The example be
 }
 ```
 
+> Note: The JSON file must be valid JSON for the install to work, so it's best to validate it before using for an install.
+
+The easiest way to check the application config is valid JSON would be with `python`, which will be present on most Linux installs:
+
+```
+$ python -m json.tool settings.json
+Expecting property name enclosed in double quotes: line 8 column 5 (char 171)
+```
+
+After fixing the JSON file, the command will return the valid JSON:
+
+```
+$ python -m json.tool settings.json
+{
+    "hostname": {
+        "value": "terraform.example.com"
+    },
+    "installation_type": {
+        "value": "poc"
+    },
+    "capacity_concurrency": {
+        "value": "5"
+    }
+}
+```
+
 ### Discovery
 
 One the easiest ways to get the settings is to [perform a manual install](./install-installer.html#installation) and configure all the settings how you want them. Then you can ssh in and request the settings in JSON format and use that file in a future automated install.
