@@ -14,15 +14,15 @@ Allow one individual (or a small group) in your engineering team to get familiar
 
 ## 1. Install Terraform
 
-[Follow the instructions here to install Terraform OSS](https://www.terraform.io/intro/getting-started/install.html).
+[Follow the instructions here to install Terraform OSS](https://learn.hashicorp.com/terraform/getting-started/install).
 
 ## 2. Write Some Code
 
-Write your first [Terraform Configuration file](https://www.terraform.io/intro/getting-started/build.html).
+Write your first [Terraform Configuration file](https://learn.hashicorp.com/terraform/getting-started/build).
 
 ## 3. Read the Getting Started Guide
 
-Follow the rest of the [Terraform getting started guide](https://www.terraform.io/intro/getting-started/change.html). These pages will walk you through [changing](https://www.terraform.io/intro/getting-started/change.html) and [destroying](https://www.terraform.io/intro/getting-started/destroy.html) resources, working with [resource dependencies](https://www.terraform.io/intro/getting-started/dependencies.html), and more.
+Follow the rest of the [Terraform getting started guide](https://learn.hashicorp.com/terraform/getting-started/change). These pages will walk you through [changing](https://learn.hashicorp.com/terraform/getting-started/change) and [destroying](https://learn.hashicorp.com/terraform/getting-started/destroy) resources, working with [resource dependencies](https://learn.hashicorp.com/terraform/getting-started/dependencies), and more.
 
 ## 4. Implement a Real Infrastructure Project
 
