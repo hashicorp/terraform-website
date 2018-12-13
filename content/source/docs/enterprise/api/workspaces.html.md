@@ -44,8 +44,9 @@ Key path                                      | Type    | Default   | Descriptio
 `data.type`                                   | string  |           | Must be `"workspaces"`.
 `data.attributes.name`                        | string  |           | The name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 `data.attributes.auto-apply`                  | boolean | false     | Whether to automatically apply changes when a Terraform plan is successful.
-`data.attributes.terraform-version`           | string  | (nothing) | The version of Terraform to use for this workspace. Upon creating a workspace, the latest version is selected unless otherwise specified (e.g. `"0.11.1"`).
 `data.attributes.migration-environment`       | string  | (nothing) | The legacy TFE environment to use as the source of the migration, in the form `organization/environment`. Omit this unless you are migrating a legacy environment.
+`data.attributes.queue-all-runs`              | boolean | false     | Whether all runs should be queued. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
+`data.attributes.terraform-version`           | string  | (nothing) | The version of Terraform to use for this workspace. Upon creating a workspace, the latest version is selected unless otherwise specified (e.g. `"0.11.1"`).
 `data.attributes.working-directory`           | string  | (nothing) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 `data.attributes.vcs-repo`                    | object  | (nothing) | Settings for the workspace's VCS repository. If omitted, the workspace is created without a VCS repo. If included, you must specify at least the `oauth-token-id` and `identifier` keys below.
 `data.attributes.vcs-repo.oauth-token-id`     | string  |           | The VCS Connection (OAuth Connection + Token) to use. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
@@ -129,14 +130,12 @@ _Without a VCS repository_
     "id": "ws-YnyXLq9fy38afEeb",
     "type": "workspaces",
     "attributes": {
-      "name": "workspace-1",
-      "environment": "default",
       "auto-apply": false,
-      "locked": false,
-      "created-at": "2017-11-18T00:43:59.384Z",
-      "working-directory": "",
-      "terraform-version": "0.11.0",
       "can-queue-destroy-plan": false,
+      "created-at": "2017-11-18T00:43:59.384Z",
+      "environment": "default",
+      "locked": false,
+      "name": "workspace-1",
       "permissions": {
         "can-update": true,
         "can-destroy": false,
@@ -146,7 +145,10 @@ _Without a VCS repository_
         "can-lock": false,
         "can-read-settings": true
       },
-      "vcs-repo": null
+      "queue-all-runs": false,
+      "terraform-version": "0.11.0",
+      "vcs-repo": null,
+      "working-directory": ""
     },
     "relationships": {
       "organization": {
@@ -177,20 +179,12 @@ _With a VCS repository_
     "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces",
     "attributes": {
-      "name": "workspace-2",
-      "environment": "default",
       "auto-apply": false,
-      "locked": false,
-      "created-at": "2017-11-02T23:55:16.142Z",
-      "working-directory": null,
-      "terraform-version": "0.10.8",
       "can-queue-destroy-plan": true,
-      "vcs-repo": {
-        "identifier": "skierkowski/terraform-test-proj",
-        "branch": "",
-        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
-        "ingress-submodules": false
-      },
+      "created-at": "2017-11-02T23:55:16.142Z",
+      "environment": "default",
+      "locked": false,
+      "name": "workspace-2",
       "permissions": {
         "can-update": true,
         "can-destroy": false,
@@ -199,7 +193,16 @@ _With a VCS repository_
         "can-update-variable": false,
         "can-lock": false,
         "can-read-settings": true
-      }
+      },
+      "queue-all-runs": false,
+      "terraform-version": "0.10.8",
+      "vcs-repo": {
+        "identifier": "skierkowski/terraform-test-proj",
+        "branch": "",
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "ingress-submodules": false
+      },
+      "working-directory": null
     },
     "relationships": {
       "organization": {
@@ -230,20 +233,12 @@ _Migrating a legacy environment_
     "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces",
     "attributes": {
-      "name": "workspace-2",
-      "environment": "default",
       "auto-apply": false,
-      "locked": false,
-      "created-at": "2017-11-02T23:55:16.142Z",
-      "working-directory": null,
-      "terraform-version": "0.10.8",
       "can-queue-destroy-plan": true,
-      "vcs-repo": {
-        "identifier": "skierkowski/terraform-test-proj",
-        "branch": "",
-        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
-        "ingress-submodules": false
-      },
+      "created-at": "2017-11-02T23:55:16.142Z",
+      "environment": "default",
+      "locked": false,
+      "name": "workspace-2",
       "permissions": {
         "can-update": true,
         "can-destroy": false,
@@ -252,7 +247,16 @@ _Migrating a legacy environment_
         "can-update-variable": false,
         "can-lock": false,
         "can-read-settings": true
-      }
+      },
+      "queue-all-runs": false,
+      "terraform-version": "0.10.8",
+      "vcs-repo": {
+        "identifier": "skierkowski/terraform-test-proj",
+        "branch": "",
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "ingress-submodules": false
+      },
+      "working-directory": null
     },
     "relationships": {
       "organization": {
@@ -297,6 +301,7 @@ Key path                                      | Type           | Default        
 `data.type`                                   | string         |                  | Must be `"workspaces"`.
 `data.attributes.name`                        | string         | (previous value) | A new name for the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization. **Warning:** Changing a workspace's name changes its URL in the API and UI.
 `data.attributes.auto-apply`                  | boolean        | (previous value) | Whether to automatically apply changes when a Terraform plan is successful.
+`data.attributes.queue-all-runs`              | boolean        | (previous value) | Whether all runs should be queued. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
 `data.attributes.terraform-version`           | string         | (previous value) | The version of Terraform to use for this workspace.
 `data.attributes.working-directory`           | string         | (previous value) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 `data.attributes.vcs-repo`                    | object or null | (previous value) | To delete a workspace's existing VCS repo, specify `null` instead of an object. To modify a workspace's existing VCS repo, include whichever of the keys below you wish to modify. To add a new VCS repo to a workspace that didn't previously have one, include at least the `oauth-token-id` and `identifier` keys.
@@ -345,19 +350,20 @@ $ curl \
     "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces",
     "attributes": {
-      "name": "workspace-2",
-      "environment": "default",
       "auto-apply": false,
-      "locked": false,
-      "created-at": "2017-11-02T23:24:05.997Z",
-      "working-directory": "",
-      "terraform-version": "0.10.8",
       "can-queue-destroy-plan": false,
+      "created-at": "2017-11-02T23:24:05.997Z",
+      "environment": "default",
       "ingress-trigger-attributes": {
         "branch": "",
         "default-branch": true,
         "ingress-submodules": false
-      }
+      },
+      "locked": false,
+      "name": "workspace-2",
+      "queue-all-runs": false,
+      "terraform-version": "0.10.8",
+      "working-directory": ""
     },
     "relationships": {
       "organization": {
@@ -417,19 +423,20 @@ $ curl \
       "id": "ws-SihZTyXKfNXUWuUa",
       "type": "workspaces",
       "attributes": {
-        "name": "workspace-2",
-        "environment": "default",
         "auto-apply": false,
-        "locked": false,
-        "created-at": "2017-11-02T23:24:05.997Z",
-        "working-directory": "",
-        "terraform-version": "0.10.8",
         "can-queue-destroy-plan": false,
+        "created-at": "2017-11-02T23:24:05.997Z",
+        "environment": "default",
         "ingress-trigger-attributes": {
           "branch": "",
           "default-branch": true,
           "ingress-submodules": false
-        }
+        },
+        "locked": false,
+        "name": "workspace-2",
+        "queue-all-runs": false,
+        "terraform-version": "0.10.8",
+        "working-directory": ""
       },
       "relationships": {
         "organization": {
@@ -453,19 +460,20 @@ $ curl \
       "id": "ws-YnyXLq9fy38afEeb",
       "type": "workspaces",
       "attributes": {
-        "name": "workspace-1",
-        "environment": "default",
         "auto-apply": false,
-        "locked": false,
-        "created-at": "2017-11-02T23:23:53.765Z",
-        "working-directory": "",
-        "terraform-version": "0.10.8",
         "can-queue-destroy-plan": false,
+        "created-at": "2017-11-02T23:23:53.765Z",
+        "environment": "default",
         "ingress-trigger-attributes": {
           "branch": "",
           "default-branch": true,
           "ingress-submodules": false
-        }
+        },
+        "locked": false,
+        "name": "workspace-1",
+        "queue-all-runs": false,
+        "terraform-version": "0.10.8",
+        "working-directory": ""
       },
       "relationships": {
         "organization": {
@@ -517,13 +525,14 @@ $ curl \
     "id": "ws-mD5bmJ8ry3uTzuHi",
     "type": "workspaces",
     "attributes": {
-      "name": "workspace-1",
-      "environment": "default",
+      "actions": {
+        "is-destroyable": true
+      },
       "auto-apply": false,
-      "locked": false,
       "created-at": "2018-03-08T22:30:00.404Z",
-      "working-directory": null,
-      "terraform-version": "0.11.3",
+      "environment": "default",
+      "locked": false,
+      "name": "workspace-1",
       "permissions": {
         "can-update": true,
         "can-destroy": true,
@@ -533,9 +542,9 @@ $ curl \
         "can-lock": true,
         "can-read-settings": true
       },
-      "actions": {
-        "is-destroyable": true
-      }
+      "queue-all-runs": false,
+      "terraform-version": "0.11.3",
+      "working-directory": null
     },
     "relationships": {
       "organization": {
@@ -651,6 +660,7 @@ $ curl \
         "can-update": true,
         "can-update-variable": true
       },
+      "queue-all-runs": false,
       "terraform-version": "0.10.8",
       "vcs-repo": {
         "branch": "",
@@ -730,6 +740,7 @@ $ curl \
         "can-update": true,
         "can-update-variable": true
       },
+      "queue-all-runs": false,
       "terraform-version": "0.10.8",
       "vcs-repo": {
         "branch": "",
@@ -798,6 +809,7 @@ $ curl \
         "can-update": true,
         "can-update-variable": true
       },
+      "queue-all-runs": false,
       "terraform-version": "0.10.8",
       "vcs-repo": {
         "branch": "",
@@ -876,6 +888,7 @@ $ curl \
       },
       "locked": false,
       "name": "workspace-2",
+      "queue-all-runs": false,
       "terraform-version": "0.10.8",
       "working-directory": ""
     },
@@ -970,6 +983,7 @@ $ curl \
       },
       "locked": false,
       "name": "workspace-2",
+      "queue-all-runs": false,
       "terraform-version": "0.10.8",
       "working-directory": ""
     },
