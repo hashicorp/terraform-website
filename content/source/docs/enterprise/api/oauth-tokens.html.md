@@ -12,22 +12,25 @@ The `oauth-token` object represents a VCS configuration which includes the OAuth
 
 ## List OAuth Tokens
 
-List all the OAuth Tokens for a given organization
+List all the OAuth Tokens for a given OAuth Client
 
-| Method | Path           |
-| :----- | :------------- |
-| GET | /organizations/:organization_name/oauth-tokens |
+`GET /oauth-clients/:oauth_client_id/oauth-tokens`
 
-### Parameters
+Parameter            | Description
+---------------------|------------
+`:oauth_client_id`   | The ID of the OAuth Client
 
-- `:organization_name` (`string: <required>`) - specifies the organization name where the OAuth Token is defined
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "oauth-tokens"`) | Success
+[404][] | [JSON API error object][]                    | OAuth Client not found, or user unauthorized to perform action
 
 ### Sample Request
 
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
-  https://app.terraform.io/api/v2/organizations/my-organization/oauth-tokens
+  https://app.terraform.io/api/v2/oauth-clients/oc-GhHqb5rkeK19mLB8/oauth-tokens
 ```
 
 ### Sample Response
@@ -36,26 +39,193 @@ curl \
 {
   "data": [
     {
-      "id":"ot-hmAyP66qk2AMVdbJ",
-      "type":"oauth-tokens",
+      "id": "ot-hmAyP66qk2AMVdbJ",
+      "type": "oauth-tokens",
       "attributes": {
-        "uid":"885724",
         "created-at":"2017-11-02T06:37:49.284Z",
         "service-provider-user":"skierkowski",
-        "has-ssh-key":false
+        "has-ssh-key": false
       },
       "relationships": {
         "oauth-client": {
           "data": {
-            "id":"oc-GhHqb5rkeK19mLB8",
-            "type":"oauth-clients"
+            "id": "oc-GhHqb5rkeK19mLB8",
+            "type": "oauth-clients"
+          },
+          "links": {
+            "related": "/api/v2/oauth-clients/oc-GhHqb5rkeK19mLB8"
           }
         }
       },
       "links": {
-        "self":"/api/v2/oauth-tokens/ot-hmAyP66qk2AMVdbJ"
+        "self": "/api/v2/oauth-tokens/ot-hmAyP66qk2AMVdbJ"
       }
     }
   ]
 }
 ```
+
+## Show an OAuth Token
+
+`GET /oauth-tokens/:id`
+
+Parameter            | Description
+---------------------|------------
+`:id`                | The ID of the OAuth token to show
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "oauth-tokens"`) | Success
+[404][] | [JSON API error object][]                    | OAuth Token not found, or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/oauth-tokens/ot-29t7xkUKiNC2XasL
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "ot-29t7xkUKiNC2XasL",
+    "type": "oauth-tokens",
+    "attributes": {
+      "created-at": "2018-08-29T14:07:22.144Z",
+      "service-provider-user": "EM26Jj0ikRsIFFh3fE5C",
+      "has-ssh-key": false
+    },
+    "relationships": {
+      "oauth-client": {
+        "data": {
+          "id": "oc-WMipGbuW8q7xCRmJ",
+          "type": "oauth-clients"
+        },
+        "links": {
+          "related": "/api/v2/oauth-clients/oc-WMipGbuW8q7xCRmJ"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/oauth-tokens/ot-29t7xkUKiNC2XasL"
+    }
+  }
+}
+```
+
+## Update an OAuth Token
+
+`PATCH /oauth-tokens/:id`
+
+Parameter            | Description
+---------------------|------------
+`:id`                | The ID of the OAuth token to update
+
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "oauth-tokens"`)  | OAuth Token successfully updated
+[404][] | [JSON API error object][]                       | OAuth Token not found or user unauthorized to perform action
+[422][] | [JSON API error object][]                       | Malformed request body (missing attributes, wrong types, etc.)
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                             | Type   | Default | Description
+-------------------------------------|--------|---------|------------
+`data.type`                          | string |         | Must be `"oauth-tokens"`.
+`data.attributes.ssh-key`            | string |         | **Optional.** The SSH key
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "id": "ot-29t7xkUKiNC2XasL",
+    "type": "oauth-tokens",
+    "attributes": {
+      "ssh-key": "..."
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/oauth-tokens/ot-29t7xkUKiNC2XasL
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "ot-29t7xkUKiNC2XasL",
+    "type": "oauth-tokens",
+    "attributes": {
+      "created-at": "2018-08-29T14:07:22.144Z",
+      "service-provider-user": "EM26Jj0ikRsIFFh3fE5C",
+      "has-ssh-key": false
+    },
+    "relationships": {
+      "oauth-client": {
+        "data": {
+          "id": "oc-WMipGbuW8q7xCRmJ",
+          "type": "oauth-clients"
+        },
+        "links": {
+          "related": "/api/v2/oauth-clients/oc-WMipGbuW8q7xCRmJ"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/oauth-tokens/ot-29t7xkUKiNC2XasL"
+    }
+  }
+}
+```
+
+## Destroy an OAuth Token
+
+`DELETE /oauth-tokens/:id`
+
+Parameter            | Description
+---------------------|------------
+`:id`                | The ID of the OAuth Token to destroy
+
+Status  | Response                                        | Reason
+--------|---------------------------|----------
+[204][] | Empty response            | The OAuth Token was successfully destroyed
+[404][] | [JSON API error object][] | OAuth Token not found, or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/oauth-tokens/ot-29t7xkUKiNC2XasL
+```
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects

@@ -127,3 +127,110 @@ curl \
   }
 }
 ```
+
+## Show a workspace
+
+`GET /admin/workspaces/:id`
+
+This endpoint lists all workspaces in the Terraform Enterprise installation.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "workspaces"`) | Successfully listed workspaces
+[404][] | [JSON API error object][]                    | Client is not an administrator.
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Query Parameters
+
+Parameter                     | Description
+------------------------------|------------
+`:workspace_id`               | The workspace ID
+
+### Available Related Resources
+
+This GET endpoint can optionally return related resources, if requested with [the `include` query parameter](../index.html#inclusion-of-related-resources). The following resource types are available:
+
+Resource Name         | Description
+----------------------|------------
+`organization`        | The organization for each returned workspace.
+`organization.owners` | A list of owners for each workspace's associated organization.
+`current_run`         | The current run for each returned workspace.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  "https://app.terraform.io/api/v2/admin/workspaces/ws-2HRvNs49EWPjDqT1"
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "ws-2HRvNs49EWPjDqT1",
+    "type": "workspaces",
+    "attributes": {
+      "name": "my-workspace",
+      "locked": false,
+      "vcs-repo": {
+        "identifier": "my-organization/my-repository"
+      }
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "current-run": {
+        "data": {
+          "id": "run-jm8ekSaW3F52FACN",
+          "type": "runs"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/my-workspace"
+    }
+  }
+}
+```
+
+## Destroy a workspace
+
+`DELETE /admin/workspaces/:id`
+
+Parameter                     | Description
+------------------------------|------------
+`:workspace_id`               | The workspace ID
+
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[204][] |                                                 | The workspace was successfully destroyed
+[404][] | [JSON API error object][]                       | Workspace not found or user unauthorized to perform action
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/admin/workspaces/ws-2HRvNs49EWPjDqT1
+```
+
+### Sample Response
+
+The response body will be empty if successful.
