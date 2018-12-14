@@ -163,7 +163,7 @@ Key path                             | Type   | Default | Description
 curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  --request POST \
+  --request PATCH \
   --data @payload.json \
   https://app.terraform.io/api/v2/oauth-tokens/ot-29t7xkUKiNC2XasL
 ```
