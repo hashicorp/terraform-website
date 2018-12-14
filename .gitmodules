@@ -100,7 +100,7 @@
 	branch = stable-website
 [submodule "ext/providers/google"]
 	path = ext/providers/google
-	url = https://github.com/terraform-providers/terraform-provider-google
+	url = https://github.com/terraform-providers/terraform-provider-google-beta
 	branch = stable-website
 [submodule "ext/providers/grafana"]
 	path = ext/providers/grafana
