@@ -10,6 +10,134 @@ sidebar_current: "docs-enterprise2-api-oauth-clients"
 
 An OAuth Client represents the connection between an organization and a VCS provider.
 
+## List OAuth Clients
+
+`GET /organizations/:organization_name/oauth-clients`
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization.
+
+This endpoint allows you to list VCS connections between an organization and a VCS provider (GitHub, Bitbucket, or GitLab) for use when creating or setting up workspaces.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "oauth-clients"`) | Success
+[404][] | [JSON API error object][]                    | Organization not found, or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/organizations/my-organization/oauth-clients
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "oc-XKFwG6ggfA9n7t1K",
+      "type": "oauth-clients",
+      "attributes": {
+        "created-at": "2018-04-16T20:42:53.771Z",
+        "callback-url": "https://app.terraform.io/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a/callback",
+        "connect-path": "/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a?organization_id=1",
+        "service-provider": "github",
+        "service-provider-display-name": "GitHub",
+        "http-url": "https://github.com",
+        "api-url": "https://api.github.com",
+        "key": null,
+        "rsa-public-key": null
+      },
+      "relationships": {
+        "organization": {
+          "data": {
+            "id": "my-organization",
+            "type": "organizations"
+          },
+          "links": {
+            "related": "/api/v2/organizations/my-organization"
+          }
+        },
+        "oauth-tokens": {
+          "data": [],
+          "links": {
+            "related": "/api/v2/oauth-tokens/oc-XKFwG6ggfA9n7t1K"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+## Show an OAuth Client
+
+`GET /oauth-clients/:id`
+
+Parameter            | Description
+---------------------|------------
+`:id`                | The ID of the OAuth Client to show
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "oauth-clients"`) | Success
+[404][] | [JSON API error object][]                    | OAuth Client not found, or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/oauth-clients/oc-XKFwG6ggfA9n7t1K
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "oc-XKFwG6ggfA9n7t1K",
+    "type": "oauth-clients",
+    "attributes": {
+      "created-at": "2018-04-16T20:42:53.771Z",
+      "callback-url": "https://app.terraform.io/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a/callback",
+      "connect-path": "/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a?organization_id=1",
+      "service-provider": "github",
+      "service-provider-display-name": "GitHub",
+      "http-url": "https://github.com",
+      "api-url": "https://api.github.com",
+      "key": null,
+      "rsa-public-key": null
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        },
+        "links": {
+          "related": "/api/v2/organizations/my-organization"
+        }
+      },
+      "oauth-tokens": {
+        "data": [],
+        "links": {
+          "related": "/api/v2/oauth-tokens/oc-XKFwG6ggfA9n7t1K"
+        }
+      }
+    }
+  }
+}
+```
+
 ## Create an OAuth Client
 
 `POST /organizations/:organization_name/oauth-clients`
@@ -26,11 +154,11 @@ This endpoint allows you to create a VCS connection between an organization and 
 
 ~> **Note:** This endpoint does not currently support creation of a Bitbucket Server OAuth Client.
 
-Status  | Response                                | Reason
---------|-----------------------------------------|----------
-[201][] | [JSON API document][] (`type: "oauth-clients"`) | The request was successful
-[404][] | [JSON API error object][]               | Organization not found or user unauthorized to perform action
-[422][] | [JSON API error object][]               | Malformed request body (missing attributes, wrong types, etc.)
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[201][] | [JSON API document][] (`type: "oauth-clients"`) | OAuth Client successfully created
+[404][] | [JSON API error object][]                       | Organization not found or user unauthorized to perform action
+[422][] | [JSON API error object][]                       | Malformed request body (missing attributes, wrong types, etc.)
 
 ### Request Body
 
@@ -211,12 +339,11 @@ curl \
 
 ## Destroy an OAuth Client
 
-`DELETE /organizations/:organization_name/oauth-clients/:id`
+`DELETE /oauth-clients/:id`
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization that owns the OAuth connection.
-`:id`                | The ID of the OAuth client to destroy.
+`:id`                | The ID of the OAuth Client to destroy
 
 This endpoint allows you to remove an existing connection between an organization and a VCS provider (GitHub, Bitbucket, or GitLab).
 
@@ -234,12 +361,14 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/organizations/my-organization/oauth-clients/oc-XKFwG6ggfA9n7t1K
+  https://app.terraform.io/api/v2/oauth-clients/oc-XKFwG6ggfA9n7t1K
 ```
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
 [JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
