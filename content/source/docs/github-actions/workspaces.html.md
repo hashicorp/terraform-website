@@ -25,8 +25,8 @@ workflow "terraform-workspace2" {
 }
 
 action "filter-to-pr-open-synced" {
-  uses = "docker://superbbears/filter:0.2.0"
-  args = ["action", "opened|synchronize"]
+  uses = "actions/bin/filter@master"
+  args = ["action", "'opened|synchronize'"]
 }
 
 action "terraform-fmt" {
