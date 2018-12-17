@@ -339,3 +339,52 @@ curl \
 ### Sample Response
 
 The response body will be empty if successful.
+
+## Show the Entitlement Set
+This endpoint shows the [entitlements](../users-teams-organizations/entitlements.html) for an organization.
+
+`GET /organizations/:organization_name/entitlement-set`
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization's entitlement set to view
+
+Status  | Response                                           | Reason
+--------|----------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "entitlement-sets"`) | The request was successful
+[404][] | [JSON API error object][]                          | Organization not found or user unauthorized to perform action
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/organizations/hashicorp/entitlement-set
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "hashicorp",
+    "type": "entitlement-sets",
+    "attributes": {
+      "state-storage": true,
+      "operations": true,
+      "vcs-integrations": true,
+      "sentinel": true,
+      "private-module-registry": true,
+      "teams": true
+    },
+    "links":{
+      "self": "api/v2/entitlement-sets/hashicorp"
+    }
+  }
+}
+```
