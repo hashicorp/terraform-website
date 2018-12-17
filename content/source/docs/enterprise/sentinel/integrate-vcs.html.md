@@ -195,9 +195,11 @@ If your TFE organization already has some policies or policy sets, make sure to 
 
 To bring the old resources under management, you can either delete them and let Terraform re-create them, or [import them into the Terraform state][import].
 
-For the specific `terraform import` commands to use, see the documentation for [the `tfe_sentinel_policy` resource][tfe_sentinel_policy] and [the `tfe_policy_set` resource][tfe_policy_set]. You can find policy and policy set IDs in the URL bar when viewing them in TFE.
+To import existing resources into your TFE workspace, you must configure [the `atlas` backend](/docs/backends/types/terraform-enterprise.html) and run `terraform import` on your local workstation. Be sure to import resources **after** you have created a TFE workspace for managing policies, but **before** you have performed any runs in that workspace.
 
-Be sure to import any resources **after** you have created a TFE workspace for managing policies, but **before** you have performed any runs in that workspace.
+For the specific import syntax to use, see the documentation for [the `tfe_sentinel_policy` resource][tfe_sentinel_policy] and [the `tfe_policy_set` resource][tfe_policy_set]. You can find policy and policy set IDs in the URL bar when viewing them in TFE.
+
+~> **Important:** [The `remote` backend](/docs/backends/types/remote.html) does not currently support the `terraform import` command. If you plan to import, configure [the `atlas` backend](/docs/backends/types/terraform-enterprise.html) instead.
 
 ## TFE Workspace
 
