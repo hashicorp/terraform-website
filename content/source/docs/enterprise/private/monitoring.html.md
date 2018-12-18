@@ -35,4 +35,4 @@ To prevent this conflict, disable metrics collection by PTFE:
 3. Uncheck "Enable metrics collection".
 4. Restart the application from the dashboard if it does not restart automatically.
 
-We recommend that internal monitoring only be disabled if it is causing issues, as it otherwise provides useful detail in diagnosing issues. From version 201812-1, the collector is configured on port 23010, and the 23000-23100 range should be [reserved for PTFE](./preflight-installer.html#network) to run any services of this nature.
+We recommend that internal monitoring only be disabled if it is causing issues, as it otherwise provides useful detail in diagnosing issues. From version 201812-1, the collector is configured on port 23010, and the 23000-23100 range should be [reserved for PTFE](./preflight-installer.html#network-requirements) to run any services of this nature.
