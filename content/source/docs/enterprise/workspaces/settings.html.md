@@ -73,13 +73,15 @@ After changing this setting, you must click the "Update SSH key" button below it
 
 If you need to prevent Terraform runs for any reason, you can lock a workspace. This prevents users with write access from manually queueing runs, prevents automatic runs due to changes to the backing VCS repo, and prevents the creation of runs via the API. To enable runs again, a user must unlock the workspace.
 
-Locking a workspace also restricts state uploads. In order to upload state, the workspace must be locked by the user who is uploading state. Note that the atlas backend does not respect this restriction, so state uploads when using the atlas backend are still allowed when the workspace is locked.
+Locking a workspace also restricts state uploads. In order to upload state, the workspace must be locked by the user who is uploading state. 
+
+~> **Important:** [The `atlas` backend][atlas-backend] ignores this restriction, and allows users with write access to modify state when the workspace is locked. To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows and use the `remote` backend instead; see [TFE's CLI-driven workflow](../run/cli.html) for details.
+
+[atlas-backend]: /docs/backends/types/terraform-enterprise.html
 
 Users with write access can lock and unlock a workspace, but can't unlock a workspace which was locked by another user. Users with admin privileges can force unlock a workspace even if another user has locked it.
 
 Locks are managed with a single "Lock/Unlock/Force unlock `<WORKSPACE NAME>`" button. TFE asks for confirmation when unlocking.
-
-~> **Important:** Locking a workspace prevents runs within TFE, but it **does not** prevent state from being updated when using the atlas backend. This means a user with write access can still modify the workspace's resources by running Terraform outside TFE with [the `atlas` remote backend](/docs/backends/types/terraform-enterprise.html). To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows; to perform runs from the command line, see [TFE's CLI-driven workflow](../run/cli.html).
 
 ### Workspace Delete
 
