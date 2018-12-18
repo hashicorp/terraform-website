@@ -467,17 +467,17 @@ curl \
 
 Parameter   | Description
 ------------|------------
-`:id` | The ID of the user to impersonate.
+`:id` | The ID of the user to impersonate. It is not possible to impersonate service accounts or your own account.
 
-Impersonation allows an admin to begin a new session as another user in the system. This can be helpful in reproducing issues that a user is experiencing with their account that the admin cannot reproduce themselves. While an admin is impersonating a user, any actions that are logged to the audit log will reflect that an admin was acting on another user's behalf. The `"actor"` key will reference the impersonated user, and an added `"admin"` key will contain the username of the admin acting on the user's behalf. For more information, see the [audit logging documentation][audit logging].
+[impersonate-ui]: ../../private/admin/resources.html#impersonating-a-user
 
--> **Note**: It is not possible to impersonate service accounts or your own account.
+Impersonation allows an admin to begin a new session as another user in the system; for more information, see [Impersonating a User][impersonate-ui] in the Private Terraform Enterprise administration section.
 
-This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session. As such, this endpoint will have no effect unless the client is able to persist and use cookies.
+-> **Note:** Impersonation is [intended as a UI feature][impersonate-ui], and this endpoint exists to support that UI. We do not recommend impersonating users via the API.
 
-Because of the requirement to provide a valid admin user session cookie in order to impersonate, it's normally simpler to impersonate another user via the Terraform Enterprise Admin UI. However, if the need arises, the cookie can be retrieved through the browser and used in the API, or retrieved via an automation tool that can handle cookies.
+This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session.
 
-[audit logging]: /docs/enterprise/private/logging.html#audit-logs
+~> **Important:** Impersonating via the API requires you to switch to an alternate authentication flow that is not based on TFE's normal API tokens; instead, you must acquire and persist both an `_atlas_session_data=...` cookie and an `X-CSRF-Token` header. Instructions for doing this are beyond the scope of this document. If you believe you need to automate user impersonation, please contact HashiCorp Support for assistance.
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
