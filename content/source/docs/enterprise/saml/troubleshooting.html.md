@@ -14,7 +14,9 @@ Before starting, disable SAML SSO by going to `https://<TFE HOSTNAME>/app/admin/
 
 ## Create a non-SSO admin account for recovery
 
-Before proceeding with troubleshooting, create a non-SSO admin account that can be used to log in if admin access gets revoked for other admins. Open `https://<TFE HOSTNAME>/account/new` to create the account. Make sure to grant admin access to this user and verify they can log in at `https://<TFE HOSTNAME>/`.
+Before proceeding with troubleshooting, create a non-SSO admin account that can be used to log in if admin access gets revoked for other admins. The email address assigned to this user should not be one that will be used for SAML.
+
+Open `https://<TFE HOSTNAME>/account/new` to create the account. Make sure to grant admin access to this user and verify they can log in at `https://<TFE HOSTNAME>/`.
 
 ## Enable SAML SSO and SAML debugging
 
