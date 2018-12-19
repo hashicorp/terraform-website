@@ -142,6 +142,7 @@ The following apply to every installation:
 - `enc_password` — Set the [encryption password](https://www.terraform.io/docs/enterprise/private/encryption-password.html) for the install
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`
+- `enable_metrics_collection` — whether PTFE's [internal metrics collection](./monitoring#internal-monitoring) should be enabled; defaults to true
 - `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
 - `ca_certs` — (Optional) custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
   in the data with `\n`. For instance:
