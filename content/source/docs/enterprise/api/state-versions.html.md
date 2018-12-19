@@ -16,9 +16,7 @@ sidebar_current: "docs-enterprise2-api-state-versions"
 | --------------- | --------------------------------------------------------- |
 | `:workspace_id` | The workspace ID to create the new state version in. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. |
 
-Creates a state version and sets it as the current state version for the given
-workspace. This is most useful for migrating existing state from open source
-Terraform into a new TFE workspace.
+Creates a state version and sets it as the current state version for the given workspace. The workspace must be locked by the user creating a state version. The workspace may be locked [with the API](./workspaces.html#lock-a-workspace) or [with the UI](../workspaces/settings.html#workspace-lock). This is most useful for migrating existing state from open source Terraform into a new TFE workspace.
 
 !> **Warning:** Use caution when uploading state to workspaces that have already performed Terraform runs. Replacing state improperly can result in orphaned or duplicated infrastructure resources.
 
