@@ -374,3 +374,7 @@
 	path = ext/providers/skytap
 	url = https://github.com/terraform-providers/terraform-provider-skytap
 	branch = stable-website
+[submodule "ext/providers/ucloud"]
+	path = ext/providers/ucloud
+	url = https://github.com/terraform-providers/terraform-provider-ucloud
+	branch = stable-website
