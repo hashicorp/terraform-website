@@ -378,3 +378,7 @@
 	path = ext/providers/ucloud
 	url = https://github.com/terraform-providers/terraform-provider-ucloud
 	branch = stable-website
+[submodule "ext/providers/hedvig"]
+	path = ext/providers/hedvig
+	url = https://github.com/terraform-providers/terraform-provider-hedvig
+	branch = stable-website
