@@ -164,7 +164,8 @@ note an additional restriction on the `sslmode` parameter is that only the
 
 ### External Vault Option
 
-If you choose to run the instance in the Production operational mode, during the installation, you can also choose to use an external Vault cluster, rather than the default internal Vault provided by PTFE.
+If you already manage your own Vault cluster, you can choose to use it in Production 
+operational mode, rather than the default internal Vault provided by PTFE.
 
 ~> **Note:** This option is also selected at initial installation, and cannot be changed later.
 
