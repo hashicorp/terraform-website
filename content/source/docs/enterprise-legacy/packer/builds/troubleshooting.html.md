@@ -75,7 +75,7 @@ Build 'vmware-iso' errored: Error starting VM: VMware error: Error: The operatio
 ### Local Debugging
 
 Sometimes it's faster to debug failing builds locally. In this case,
-you'll want to [install Packer](https://www.packer.io/intro/getting-started/setup.html) and any providers (like Virtualbox) necessary.
+you'll want to [install Packer](https://www.packer.io/intro/getting-started/install.html) and any providers (like Virtualbox) necessary.
 
 Because Terraform Enterprise runs the open source version of Packer, there
 should be no difference in execution between the two, other than the environment
