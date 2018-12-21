@@ -1,20 +1,8 @@
 <% wrap_layout :inner do %>
   <% content_for :sidebar do %>
+    <h4><a href="/docs/enterprise/index.html">Terraform Enterprise</a></h4>
+
     <ul class="nav docs-sidenav">
-      <li<%= sidebar_current("docs-home") %>>
-        <a class="back" href="/docs/index.html">Documentation Home</a>
-      </li>
-
-      <li<%= sidebar_current("docs-enterprise2-home") %>>
-        <a class="back" href="/docs/enterprise/index.html">Terraform Enterprise</a>
-      </li>
-
-      <li<%= sidebar_current("docs-enterprise-home") %>>
-        <a class="back" href="/docs/enterprise-legacy/index.html">Terraform Enterprise (legacy)</a>
-      </li>
-
-      <hr>
-
       <li<%= sidebar_current("docs-enterprise2-started") %>>
         <a href="/docs/enterprise/getting-started/index.html">Getting Started</a>
         <ul class="nav">
@@ -218,6 +206,104 @@
         </ul>
       </li>
 
+      <li<%= sidebar_current("docs-enterprise2-api") %>>
+        <a href="/docs/enterprise/api/index.html">API</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-enterprise2-api-account") %>>
+            <a href="/docs/enterprise/api/account.html">Account</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-applies") %>>
+            <a href="/docs/enterprise/api/applies.html">Applies</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-configuration-versions") %>>
+            <a href="/docs/enterprise/api/configuration-versions.html">Configuration Versions</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-oauth-clients") %>>
+            <a href="/docs/enterprise/api/oauth-clients.html">OAuth Clients</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-oauth-tokens") %>>
+            <a href="/docs/enterprise/api/oauth-tokens.html">OAuth Tokens</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-organizations") %>>
+            <a href="/docs/enterprise/api/organizations.html">Organizations</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-organization-tokens") %>>
+            <a href="/docs/enterprise/api/organization-tokens.html">Organization Tokens</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-plans") %>>
+            <a href="/docs/enterprise/api/plans.html">Plans</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-policies") %>>
+            <a href="/docs/enterprise/api/policies.html">Policies</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-policy-checks") %>>
+            <a href="/docs/enterprise/api/policy-checks.html">Policy Checks</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-policy-sets") %>>
+            <a href="/docs/enterprise/api/policy-sets.html">Policy Sets</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-modules") %>>
+            <a href="/docs/enterprise/api/modules.html">Registry Modules</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-run") %>>
+            <a href="/docs/enterprise/api/run.html">Runs</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-ssh-keys") %>>
+            <a href="/docs/enterprise/api/ssh-keys.html">SSH Keys</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-state-versions") %>>
+            <a href="/docs/enterprise/api/state-versions.html">State Versions</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-team-access") %>>
+            <a href="/docs/enterprise/api/team-access.html">Team Access</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-team-members") %>>
+            <a href="/docs/enterprise/api/team-members.html">Team Membership</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-team-tokens") %>>
+            <a href="/docs/enterprise/api/team-tokens.html">Team Tokens</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-teams") %>>
+            <a href="/docs/enterprise/api/teams.html">Teams</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-user-tokens") %>>
+            <a href="/docs/enterprise/api/user-tokens.html">User Tokens</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-users") %>>
+            <a href="/docs/enterprise/api/users.html">Users</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-variables") %>>
+            <a href="/docs/enterprise/api/variables.html">Variables</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-workspaces") %>>
+            <a href="/docs/enterprise/api/workspaces.html">Workspaces</a>
+          </li>
+          <li<%= sidebar_current("docs-enterprise2-api-admin") %>>
+            <a href="/docs/enterprise/api/admin/index.html">Admin</a>
+            <ul class="nav">
+              <li<%= sidebar_current("docs-enterprise2-api-admin-organizations") %>>
+                <a href="/docs/enterprise/api/admin/organizations.html">Organizations</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-api-admin-runs") %>>
+                <a href="/docs/enterprise/api/admin/runs.html">Runs</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-api-admin-settings") %>>
+                <a href="/docs/enterprise/api/admin/settings.html">Settings</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-api-admin-terraform-versions") %>>
+                <a href="/docs/enterprise/api/admin/terraform-versions.html">Terraform Versions</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-api-admin-users") %>>
+                <a href="/docs/enterprise/api/admin/users.html">Users</a>
+              </li>
+              <li<%= sidebar_current("docs-enterprise2-api-admin-workspaces") %>>
+                <a href="/docs/enterprise/api/admin/workspaces.html">Workspaces</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
       <hr>
 
       <li<%= sidebar_current("docs-enterprise2-private") %>>
@@ -354,104 +440,41 @@
 
       <hr>
 
-      <li<%= sidebar_current("docs-enterprise2-api") %>>
-        <a href="/docs/enterprise/api/index.html">API</a>
-        <ul class="nav">
-          <li<%= sidebar_current("docs-enterprise2-api-account") %>>
-            <a href="/docs/enterprise/api/account.html">Account</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-applies") %>>
-            <a href="/docs/enterprise/api/applies.html">Applies</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-configuration-versions") %>>
-            <a href="/docs/enterprise/api/configuration-versions.html">Configuration Versions</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-oauth-clients") %>>
-            <a href="/docs/enterprise/api/oauth-clients.html">OAuth Clients</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-oauth-tokens") %>>
-            <a href="/docs/enterprise/api/oauth-tokens.html">OAuth Tokens</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-organizations") %>>
-            <a href="/docs/enterprise/api/organizations.html">Organizations</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-organization-tokens") %>>
-            <a href="/docs/enterprise/api/organization-tokens.html">Organization Tokens</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-plans") %>>
-            <a href="/docs/enterprise/api/plans.html">Plans</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-policies") %>>
-            <a href="/docs/enterprise/api/policies.html">Policies</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-policy-checks") %>>
-            <a href="/docs/enterprise/api/policy-checks.html">Policy Checks</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-policy-sets") %>>
-            <a href="/docs/enterprise/api/policy-sets.html">Policy Sets</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-modules") %>>
-            <a href="/docs/enterprise/api/modules.html">Registry Modules</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-run") %>>
-            <a href="/docs/enterprise/api/run.html">Runs</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-ssh-keys") %>>
-            <a href="/docs/enterprise/api/ssh-keys.html">SSH Keys</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-state-versions") %>>
-            <a href="/docs/enterprise/api/state-versions.html">State Versions</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-team-access") %>>
-            <a href="/docs/enterprise/api/team-access.html">Team Access</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-team-members") %>>
-            <a href="/docs/enterprise/api/team-members.html">Team Membership</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-team-tokens") %>>
-            <a href="/docs/enterprise/api/team-tokens.html">Team Tokens</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-teams") %>>
-            <a href="/docs/enterprise/api/teams.html">Teams</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-user-tokens") %>>
-            <a href="/docs/enterprise/api/user-tokens.html">User Tokens</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-users") %>>
-            <a href="/docs/enterprise/api/users.html">Users</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-variables") %>>
-            <a href="/docs/enterprise/api/variables.html">Variables</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-workspaces") %>>
-            <a href="/docs/enterprise/api/workspaces.html">Workspaces</a>
-          </li>
-          <li<%= sidebar_current("docs-enterprise2-api-admin") %>>
-            <a href="/docs/enterprise/api/admin/index.html">Admin</a>
-            <ul class="nav">
-              <li<%= sidebar_current("docs-enterprise2-api-admin-organizations") %>>
-                <a href="/docs/enterprise/api/admin/organizations.html">Organizations</a>
-              </li>
-              <li<%= sidebar_current("docs-enterprise2-api-admin-runs") %>>
-                <a href="/docs/enterprise/api/admin/runs.html">Runs</a>
-              </li>
-              <li<%= sidebar_current("docs-enterprise2-api-admin-settings") %>>
-                <a href="/docs/enterprise/api/admin/settings.html">Settings</a>
-              </li>
-              <li<%= sidebar_current("docs-enterprise2-api-admin-terraform-versions") %>>
-                <a href="/docs/enterprise/api/admin/terraform-versions.html">Terraform Versions</a>
-              </li>
-              <li<%= sidebar_current("docs-enterprise2-api-admin-users") %>>
-                <a href="/docs/enterprise/api/admin/users.html">Users</a>
-              </li>
-              <li<%= sidebar_current("docs-enterprise2-api-admin-workspaces") %>>
-                <a href="/docs/enterprise/api/admin/workspaces.html">Workspaces</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+      <li<%= sidebar_current("docs-enterprise-home") %>>
+        <a class="back" href="/docs/enterprise-legacy/index.html">Terraform Enterprise (legacy)</a>
+      </li>
+    </ul>
+
+    <h4>Other Docs</h4>
+
+    <ul class="nav docs-sidenav">
+      <li>
+        <a class="back" href="/downloads.html">Download Terraform</a>
       </li>
 
+      <li>
+        <a class="back" href="/intro/index.html">Introduction to Terraform</a>
+      </li>
+
+      <li>
+        <a class="back" href="/docs/index.html">Terraform CLI</a>
+      </li>
+
+      <li>
+        <a class="back" href="/guides/index.html">Guides and Whitepapers</a>
+      </li>
+
+      <li>
+        <a class="back" href="/docs/registry/index.html">Terraform Registry</a>
+      </li>
+
+      <li>
+        <a class="back" href="/docs/github-actions/index.html">Terraform GitHub Actions</a>
+      </li>
+
+      <li>
+        <a class="back" href="/docs/extend/index.html">Extending Terraform</a>
+      </li>
     </ul>
   <% end %>
 
