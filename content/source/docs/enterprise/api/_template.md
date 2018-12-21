@@ -82,6 +82,20 @@ them from unquoted values like booleans and nulls.
 - If a limited number of values are valid, list them in the description.
 - In the rare case where a parameter is optional but has no default, you can
   list something like "(nothing)" as the default and explain in the description.
+- List the properties in the simplest order you can... but the concept of
+  "simple" can be a little complex. ;) As a general guideline:
+    - The first level of sorting is _importance._ This is open to interpretation,
+      but at least put the type and name first.
+    - The second level of sorting is _complexity._ If one of the properties is a
+      huge object with a bunch of sub-properties, put it last — this lets the
+      reader clear the simpler properties out of their head before dealing with
+      it, without having to remember where they were in the list and without
+      having to remember to pop back out of the "big sub-object" context when
+      they hit the end of it.
+    - The third order of sorting is _predictability,_ which basically means that
+      within a group of properties of equal relative importance and complexity,
+      you should probably list them alphabetically so it's easier to find a
+      specific property.
 -->
 
 ### Available Related Resources
