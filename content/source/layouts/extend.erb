@@ -1,9 +1,8 @@
 <% wrap_layout :inner do %>
   <% content_for :sidebar do %>
+    <h4><a href="/docs/extend/index.html">Extending Terraform</a></h4>
+
     <ul class="nav docs-sidenav">
-      <li<%= sidebar_current("docs-extend-home") %>>
-        <a href="/docs/extend/index.html">Extending Terraform</a>
-      </li>
       <li<%= sidebar_current("docs-extend-how-terraform-works") %>>
         <a href="/docs/extend/how-terraform-works.html">How Terraform Works</a>
       </li>
@@ -45,7 +44,7 @@
           <li<%= sidebar_current("docs-extend-best-practices-naming") %>>
             <a href="/docs/extend/best-practices/naming.html">Naming</a>
           </li>
-          
+
           <li<%= sidebar_current("docs-extend-best-practices-deprecations") %>>
             <a href="/docs/extend/best-practices/deprecations.html">Deprecations, Removals, and Renames</a>
           </li>
@@ -69,6 +68,17 @@
         <ul class="nav">
           <li<%= sidebar_current("docs-extend-testing-acceptance") %>>
             <a href="/docs/extend/testing/acceptance-tests/index.html">Acceptance Tests</a>
+              <ul class="nav">
+                <li<%= sidebar_current("docs-extend-testing-acceptance-testcase") %>>
+                  <a href="/docs/extend/testing/acceptance-tests/testcase.html">Test Cases</a>
+                </li>
+                <li<%= sidebar_current("docs-extend-testing-acceptance-teststep") %>>
+                  <a href="/docs/extend/testing/acceptance-tests/teststep.html">Test Steps</a>
+                </li>
+                <li<%= sidebar_current("docs-extend-testing-acceptance-sweepers") %>>
+                  <a href="/docs/extend/testing/acceptance-tests/sweepers.html">Sweepers</a>
+                </li>
+              </ul>
           </li>
           <li<%= sidebar_current("docs-extend-testing-unit") %>>
             <a href="/docs/extend/testing/unit-testing.html">Unit Testing</a>
@@ -104,13 +114,42 @@
         </ul>
       </li>
 
+      <li<%= sidebar_current("guides-terraform-provider-development-program") %>>
+        <a href="/guides/terraform-provider-development-program.html">Terraform Provider Development Program</a>
+      </li>
+
       <hr>
 
       <li<%= sidebar_current("docs-extend-internals") %>>
         <a class="back" href="/docs/internals/index.html">Terraform Internals</a>
       </li>
-      <li<%= sidebar_current("docs-extend-provider-dev-program") %>>
-        <a class="back" href="/guides/terraform-provider-development-program.html">Terraform Provider Development Program</a>
+    </ul>
+
+    <h4>Other Docs</h4>
+
+    <ul class="nav docs-sidenav">
+      <li>
+        <a class="back" href="/downloads.html">Download Terraform</a>
+      </li>
+
+      <li>
+        <a class="back" href="/intro/index.html">Introduction to Terraform</a>
+      </li>
+
+      <li>
+        <a class="back" href="/docs/index.html">Terraform CLI</a>
+      </li>
+
+      <li>
+        <a class="back" href="/docs/enterprise/index.html">Terraform Enterprise</a>
+      </li>
+
+      <li>
+        <a class="back" href="/guides/index.html">Guides and Whitepapers</a>
+      </li>
+
+      <li>
+        <a class="back" href="/docs/github-actions/index.html">Terraform GitHub Actions</a>
       </li>
     </ul>
   <% end %>
