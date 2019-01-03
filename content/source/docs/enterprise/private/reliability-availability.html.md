@@ -172,7 +172,7 @@ data. Backup and restore of those volumes is the responsibility of the user, and
 is not managed by PTFE's built-in systems.
 
 _Vault Data_ is stored in PostgreSQL and accordingly lives on the mounted disk. As
-long as the user has restored the mounted disk successively, the built-in restore 
+long as the user has restored the mounted disk successfully, the built-in restore
 mechanism will restore Vault operations in the event of a failure.
 
 _Configuration Data_ for the installation is stored in Docker
@@ -196,7 +196,7 @@ The maintenance of PostgreSQL and Blob Storage are handled by the user,
 which includes backing up and restoring if necessary.
 
 _Vault Data_ is stored in PostgreSQL. As long as PostgreSQL has been restored
-successively by the user, the built-in restore mechanism will restore Vault 
+successfully by the user, the built-in restore mechanism will restore Vault
 operations in the event of a failure.
 
 _Configuration Data_ for the installation is stored in Docker
@@ -208,8 +208,8 @@ Configure snapshot and restore by following the [automated recovery instructions
 If the instance running Terraform Enterprise is lost, the use of
 external services means no state data is lost.
 
--> **NOTE:** Customers running an [optional external vault cluster](./vault.html) are 
-responsible for backing up the data and restoring it if necessary. 
+-> **NOTE:** Customers running an [optional external Vault cluster](./vault.html) are
+responsible for backing up the Vault data and restoring it if necessary.
 
 ### Availability During Upgrades
 

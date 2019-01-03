@@ -6,21 +6,22 @@ sidebar_current: "docs-enterprise2-private-installer-vault"
 
 # Private Terraform Enterprise Externally Managed Vault
 
-For enhanced security, Private Terraform Enterprise (PTFE) can be configured to use an external 
-Vault cluster rather than the internal Vault instance. Within PTFE, Vault is 
+For enhanced security, Private Terraform Enterprise (PTFE) can be configured to use an external
+Vault cluster rather than the internal Vault instance. Within PTFE, Vault is
 used to encrypt sensitive information such as variables and states.
 
-!> **Warning**: This is only recommended if you currently run your own Vault cluster in production. Choosing this option means you assume full responsibility for how the Vault cluster is managed, 
-for example how it is sealed and unsealed, replicated, etc.
+!> **Warning**: This is only recommended if you currently run your own Vault cluster in production.
+Choosing this option means you assume full responsibility for how the Vault cluster is managed;
+for example, how it is sealed and unsealed, replicated, etc.
 
 
 ## Setup
 
-Use the following as a guide to configure an external Vault instance:
-
--> **Note:** The external Vault option must be selected at initial installation, and cannot be changed later.
+~> **Note:** The external Vault option must be selected at initial installation, and cannot be changed later.
 Do not attempt to migrate an existing Terraform Enterprise instance between internal and external
 Vault options.
+
+Use the following as a guide to configure an external Vault instance:
 
 1. Enable AppRole: `vault auth enable approle`
 1. Enable transit: `vault secrets enable transit`
