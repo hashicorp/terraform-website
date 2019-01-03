@@ -28,6 +28,44 @@ There are three kinds of token available:
 - [Team tokens](../users-teams-organizations/service-accounts.html#team-service-accounts) — each team has an associated service account, which can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.
 - [Organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts) — each organization also has a service account, which can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.
 
+## Feature Entitlements
+
+TFE is available at multiple pricing tiers (including free), which offer different subsets of TFE's features.
+
+Each organization has a set of _entitlements_ that corresponds to its pricing tier. These entitlements determine which TFE features the organization can use.
+
+If an organization doesn't have the necessary entitlement to use a given feature, TFE returns a 404 error for API requests to any endpoints devoted to that feature.
+
+The [show entitlement set](./organizations.html#show-the-entitlement-set) endpoint can return information about an organization's current entitlements, which is useful if your client needs to change its interface when a given feature isn't available.
+
+The following entitlements are available:
+
+- `state-storage` — Allows an organization to store state versions in its workspaces, which enables local Terraform runs with the remote backend. Affects the [state versions][] endpoints.
+- `operations` — Allows an organization to perform runs within TFE. Affects the [runs][], [plans][], and [applies][] endpoints.
+- `vcs-integrations` — Allows an organization to [connect with a VCS provider][vcs integrations] and link VCS repositories to workspaces. Affects the [OAuth Clients][o-clients], and [OAuth Tokens][o-tokens] endpoints, and determines whether the `data.attributes.vcs-repo` property can be set for [workspaces][].
+- `sentinel` — Allows an organization to use [Sentinel][]. Affects the [policies][], [policy sets][], and [policy checks][] endpoints.
+- `private-module-registry` — Allows an organization to publish and use modules with the [private module registry][]. Affects the [registry modules][] endpoints.
+- `teams` — Allows an organization to manage access to its workspaces with [teams](../users-teams-organizations/teams.html). Without this entitlement, an organization only has an owners team. Affects the [teams][], [team members][], [team access][], and [team tokens][] endpoints.
+
+[state versions]: ./state-versions.html
+[runs]: ./run.html
+[applies]: ./applies.html
+[plans]: ./plans.html
+[vcs integrations]: ../vcs/index.html
+[o-tokens]: ./oauth-tokens.html
+[o-clients]: ./oauth-clients.html
+[workspaces]: ./workspaces.html
+[Sentinel]: ../sentinel/index.html
+[policies]: ./policies.html
+[policy sets]: ./policy-sets.html
+[policy checks]: ./policy-checks.html
+[private module registry]: ../registry/index.html
+[registry modules]: ./modules.html
+[teams]: ./teams.html
+[team members]: ./team-members.html
+[team access]: ./team-access.html
+[team tokens]: ./team-tokens.html
+
 ## Response Codes
 
 This API returns standard HTTP response codes.

@@ -341,7 +341,8 @@ curl \
 The response body will be empty if successful.
 
 ## Show the Entitlement Set
-This endpoint shows the [entitlements](../users-teams-organizations/entitlements.html) for an organization.
+
+This endpoint shows the [entitlements](./index.html#feature-entitlements) for an organization.
 
 `GET /organizations/:organization_name/entitlement-set`
 
