@@ -14,7 +14,6 @@ used to encrypt sensitive information such as variables and states.
 Choosing this option means you assume full responsibility for how the Vault cluster is managed;
 for example, how it is sealed and unsealed, replicated, etc.
 
-
 ## Setup
 
 ~> **Note:** The external Vault option must be selected at initial installation, and cannot be changed later.
