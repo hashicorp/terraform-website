@@ -21,10 +21,7 @@ Private Terraform Enterprise (PTFE) is configured as the Service Provider.
 
 ~> **Important:** Only PTFE users with the site-admin permission can modify SAML settings. For more information about site admins, see [Administering Private Terraform Enterprise][admin].
 
-Prior to activating SAML, we recommend that you create a TFE user who has:
-
-* The site-admin permission
-* An email address that will never be used for any SAML user
+Prior to activating SAML, we recommend that you create a [non-SSO admin account for recovery](./troubleshooting.html#create-a-non-sso-admin-account-for-recovery).
 
 In case of any issues during SAML configuration, this ensures that there will be an admin able to log in and make necessary adjustments.
 
