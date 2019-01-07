@@ -99,4 +99,4 @@ Allows members to create, edit, and delete the organization's Sentinel policies 
 - **Manage Workspaces**  
 Allows members to create and administrate all workspaces within the organization. This is synonymous to giving the [admin permission level](./permissions.html) to all workspaces.
 - **Manage VCS Settings**  
-Allows members to manage the organization's VCS Providers and SSH keys
+Allows members to manage the organization's VCS Providers and SSH keys.
