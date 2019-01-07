@@ -97,6 +97,6 @@ A team can be granted permissions to manage Sentinel policies, workspaces, and/o
 - **Manage Policies**  
 Allows members to create, edit, and delete the organization's Sentinel policies and override soft-mandatory policy checks. Note that this setting implicitly gives read access to all workspaces to set enforcement of [policy sets](../sentinel/manage-policies.html).
 - **Manage Workspaces**  
-Allows members to create and administrate all workspaces within the organization. This is synonymous to giving the [admin permission level](./permissions.html) to all workspaces.
+Allows members to create and administrate all workspaces within the organization. This is synonymous to giving the team [admin permission level](./permissions.html) to all workspaces, plus the ability to create new workspaces (otherwise only available to the owners team). 
 - **Manage VCS Settings**  
 Allows members to manage the organization's VCS Providers and SSH keys.
