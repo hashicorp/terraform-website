@@ -29,14 +29,14 @@ the [application settings JSON file when using the automated install procedure](
 
 To increase the number of concurrent runs, adjust the **Capacity** setting. Note that this setting is not limited by
 system checks; it depends on the operator to provide enough memory to the system to accommodate the requested
-concurrent capacity. For instance, if **Capacity** is set to `100`, the instance would require, at a minumum,
+concurrent capacity. For instance, if **Capacity** is set to `100`, the instance would require, at a minimum,
 26 GB of memory reserved for Terraform runs.
 
 ## Adjusting Memory
 
 The default memory limit of 256 MB per Terraform run is also configurable. Note that this setting is not limited by
 system checks; it depends on the operator to provide enough memory to the system to accommodate the requested limits.
-If the memory limit is adjusted to 512 MB with the default capacity of 10, the instance would require, at a minumum,
+If the memory limit is adjusted to 512 MB with the default capacity of 10, the instance would require, at a minimum,
 5.2 GB of memory reserved for Terraform runs.
 
 ### Downward Adjustment

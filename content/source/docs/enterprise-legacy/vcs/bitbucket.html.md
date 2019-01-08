@@ -55,7 +55,7 @@ Back in the open Bitbucket tab, select the Terraform Enterprise OAuth consumer a
 
 ### Connect a Bitbucket Cloud User to Organization
 
-Back on the **Configuration** page for your Terraform Enterprise Organization, in the **OAuth Connections** pane, you can now connect your organization to Bitbucket Cloud by clicking **Connect**. You will be briefly redirected to Bitbucket Cloud in order to authenticate the client. You should be successfuly redirected back to Terraform Enterprise. If you are not, check the values in your OAuth client and make sure they match exactly with the values associated with your Bitbucket OAuth consumer.
+Back on the **Configuration** page for your Terraform Enterprise Organization, in the **OAuth Connections** pane, you can now connect your organization to Bitbucket Cloud by clicking **Connect**. You will be briefly redirected to Bitbucket Cloud in order to authenticate the client. You should be successfully redirected back to Terraform Enterprise. If you are not, check the values in your OAuth client and make sure they match exactly with the values associated with your Bitbucket OAuth consumer.
 
 The Terraform Enterprise Bitbucket Cloud integration is now ready your Organization to start using.
 
