@@ -292,6 +292,13 @@ while ! curl -ksfS --connect-timeout 5 https://tfe.example.com/_health_check; do
 done
 ```
 
+## If the installation does not appear to be configured correctly
+
+If the installation is successful, but prompts for additional configuration rather than skipping that step, it's likely that the supplied configuration files were not applied during installation.
+
+* Verify the locations of the files: `/etc/replicated.conf` for the Replicated configuration file, and the path specified in the Replicated configuration file for the application settings. 
+* Run a JSON validator on the files to check their validity.
+
 ## References
 
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
