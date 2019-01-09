@@ -78,7 +78,7 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
     ![TFE screenshot: add client fields](./images/gitlab-eece-tfe-add-client-fields.png)
 
-    Note that TFE uses GitLab's v3 API.
+    Note that TFE uses GitLab's v4 API.
 
 3. Click "Create connection." This will take you back to the VCS Provider page, which now includes your new GitLab client.
 
