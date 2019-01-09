@@ -22,6 +22,10 @@
 	path = ext/providers/azure
 	url = https://github.com/terraform-providers/terraform-provider-azure
 	branch = stable-website
+[submodule "ext/providers/azuread"]
+	path = ext/providers/azuread
+	url = https://github.com/terraform-providers/terraform-provider-azuread
+	branch = stable-website
 [submodule "ext/providers/azurerm"]
 	path = ext/providers/azurerm
 	url = https://github.com/terraform-providers/terraform-provider-azurerm
