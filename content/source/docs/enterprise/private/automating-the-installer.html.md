@@ -294,9 +294,9 @@ done
 
 ## If the installation does not appear to be configured correctly
 
-If the installation is successful, but prompts for additional configuration rather than skipping that step, it's likely that the supplied configuration files were not applied during installation.
+If the installation script (`install.sh`) exits successfully, but the Replicated web UI prompts for additional configuration rather than skipping that step, it's likely that the supplied configuration files were not applied during installation.
 
-* Verify the locations of the files: `/etc/replicated.conf` for the Replicated configuration file, and the path specified in the Replicated configuration file for the application settings. 
+* Verify the locations and permissions of the files: `/etc/replicated.conf` for the Replicated configuration file, and the path specified in the Replicated configuration file for the application settings. 
 * Run a JSON validator on the files to check their validity.
 
 ## References
