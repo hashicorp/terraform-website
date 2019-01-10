@@ -28,7 +28,7 @@ TFE uses webhooks to get new configurations. To support this, Bitbucket Server n
 
     Make sure to install the correct plugin. TFE is designed to work with [Web Post Hooks for Bitbucket Server by Atlassian ](https://marketplace.atlassian.com/apps/1211539/web-post-hooks-for-bitbucket-server?hosting=server&tab=overview).
 
-    ![Atlassian Marketplace screenshot: The Atlassian Labs Bitbucket Server Web Post Hooks Plugin](./images/bitbucket-server-webhooks-plugin.png)
+    ![Atlassian Marketplace screenshot: the Web Post Hooks for Bitbucket Server plugin, published by Atlassian](./images/bitbucket-server-webhooks-plugin.png)
 
 5. Visit the repository's settings, click on `Hooks` and check that the plugin is *enabled* there as well.
 
