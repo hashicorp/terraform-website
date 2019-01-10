@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-registry-publish"
 
 # Publishing Modules to the Terraform Enterprise Private Module Registry
 
--> **Note:** Currently, the private module registry works with all supported VCS providers except Bitbucket Cloud.
+-> **Note:** Currently, the private module registry works with all supported VCS providers except Bitbucket Cloud; however, the private module registry does not support [GitLab subgroups](https://about.gitlab.com/features/subgroups/).
 
 Terraform Enterprise (TFE)'s private module registry lets you publish Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
 
@@ -33,7 +33,8 @@ Since the registry relies on VCS repositories for most of its data, you must ens
 - **Available in a connected VCS provider.** The repository must be in one of
 your configured [VCS providers][vcs], and TFE's VCS user account must have admin
 access to the repository. (Since the registry uses webhooks to import new module
-versions, it needs admin access to create those webhooks.)
+versions, it needs admin access to create those webhooks.) For GitLab, the repository
+must be in the main organization or group, not in any subgroups.
 
 - **One module per repository.** The registry cannot use combined repositories
 with multiple modules.
