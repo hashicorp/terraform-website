@@ -23,10 +23,10 @@ TFE uses webhooks to get new configurations. To support this, Bitbucket Server n
 
 1. Open your Bitbucket server instance in your browser and log in as an admin user.
 2. Go to the "Manage add-ons" page. You can click the gear icon in the upper right corner and then use the "Manage add-ons" link in the sidebar, or go directly to `https://<BITBUCKET INSTANCE HOSTNAME>/plugins/servlet/upm`.
-3. Look for an add-on named "Bitbucket Server Web Post Hooks Plugin," and make sure it is installed and enabled. The plugin is disabled by default. Clicking `Enabled` will toggle the plugin on.
+3. Look for an add-on named "Web Post Hooks for Bitbucket Server", and make sure it is installed and enabled. The plugin is disabled by default. Clicking `Enabled` will toggle the plugin on.
 4. If the plugin isn't present, click "Find new add-ons" in the sidebar navigation. Search for the plugin by name and install it.
 
-    Make sure to install the correct plugin. TFE is designed to work with the [Bitbucket Server Web Post Hooks Plugin published by Atlassian Labs.](https://marketplace.atlassian.com/plugins/com.atlassian.stash.plugin.stash-web-post-receive-hooks-plugin/server/overview)
+    Make sure to install the correct plugin. TFE is designed to work with [Web Post Hooks for Bitbucket Server by Atlassian ](https://marketplace.atlassian.com/apps/1211539/web-post-hooks-for-bitbucket-server?hosting=server&tab=overview).
 
     ![Atlassian Marketplace screenshot: The Atlassian Labs Bitbucket Server Web Post Hooks Plugin](./images/bitbucket-server-webhooks-plugin.png)
 
