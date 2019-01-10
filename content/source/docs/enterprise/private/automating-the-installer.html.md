@@ -299,6 +299,8 @@ If the installation script (`install.sh`) exits successfully, but the Replicated
 * Verify the locations and permissions of the files: `/etc/replicated.conf` for the Replicated configuration file, and the path specified in the Replicated configuration file for the application settings. 
 * Run a JSON validator on the files to check their validity.
 
+After resolving any issues with file validity or permissions, re-run the installer to verify that the configuration is applied.
+
 ## References
 
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
