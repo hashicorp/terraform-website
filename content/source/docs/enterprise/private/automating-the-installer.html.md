@@ -292,6 +292,15 @@ while ! curl -ksfS --connect-timeout 5 https://tfe.example.com/_health_check; do
 done
 ```
 
+## If the installation does not appear to be configured correctly
+
+If the installation script (`install.sh`) exits successfully, but the Replicated web UI prompts for additional configuration rather than skipping that step, it's likely that the supplied configuration files were not applied during installation.
+
+* Verify the locations and permissions of the files. The Replicated configuration file should be placed in `/etc/replicated.conf`, and the application settings file should be placed in the path specified in the Replicated configuration file. The permissions of both files should be `600` if owned by the `replicated` user, or `644`.
+* Run a JSON validator on the files to check their validity.
+
+After resolving any issues with file validity or permissions, re-run the installer to verify that the configuration is applied.
+
 ## References
 
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
