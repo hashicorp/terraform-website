@@ -64,7 +64,7 @@ instances.
   deployments or for development/testing environments.
 
 - The recommended size is for production environments where there is a
-  consistently high workload in the form of concurrent terraform runs.
+  consistently high workload in the form of concurrent Terraform runs.
 
 ### PostgreSQL Database (Azure Database for PostgreSQL)
 
@@ -79,7 +79,7 @@ instances.
   deployments, or for development/testing environments.
 
 - The recommended size is for production environments where there is
-  a consistent high workload in the form of concurrent terraform
+  a consistent high workload in the form of concurrent Terraform
   runs.
 
 ### Object Storage (Azure Blob Storage)

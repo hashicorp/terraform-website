@@ -51,7 +51,7 @@ or “Burstable CPU” in AWS terms, such as T-series instances.
   deployments, or for development/testing environments.
 
 - The recommended size is for production environments where there is a
-  consistent high workload in the form of concurrent terraform runs.
+  consistent high workload in the form of concurrent Terraform runs.
 
 ### PostgreSQL Database (RDS Multi-AZ)
 
@@ -66,7 +66,7 @@ or “Burstable CPU” in AWS terms, such as T-series instances.
   deployments, or for development/testing environments.
 
 - The recommended size is for production environments where there is a
-  consistent high workload in the form of concurrent terraform runs.
+  consistent high workload in the form of concurrent Terraform runs.
 
 ### Object Storage (S3)
 
