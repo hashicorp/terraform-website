@@ -165,6 +165,12 @@ Additionally these hostnames are accessed by the Installer product in online mod
 * registry-data.replicated.com
 * quay.io
 
+## Inbound Access
+
+* To access Private TFE, ports 80 and 443 must be accessible. Port 80 will redirect to port 443.
+* To access the admin dashboard, port 8800 must be accessible.
+* The port ranges **9870-9880** and **23000-23100** must be accessible to the host and the subnet it is on. These ports are used for communication between internal services.
+
 ---
 
 ## About the Private Terraform Enterprise AMI
@@ -182,6 +188,9 @@ The Private Terraform Enterprise AMI requires that port :8080 be accessible. Thi
 from the ELB is routed. Many other internal Private Terraform Enterprise services listen on the host,
 but they do not require external traffic. The AWS security group for the
 instance as well as software firewall rules within the runtime enforce this.
+
+Additionally, the port ranges **9870-9880** and **23000-23100** must be accessible to the host and
+the subnet it is on. These ports are used for internal communication between internal services.
 
 ### `ulimits`
 
