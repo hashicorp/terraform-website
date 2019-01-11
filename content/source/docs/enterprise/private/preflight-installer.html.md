@@ -76,6 +76,15 @@ Future releases may add native support for SELinux.
   * **9870-9880 (inclusive)** - for internal communication on the host and its subnet; not publicly accessible.
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
 1. Get a domain name for the instance. Using an IP address to access the product is not supported as many systems use TLS and need to verify that the certificate is correct, which can only be done with a hostname at present.
+1. **For GCP only:** Configure Docker to use an MTU (maximum transmission unit) of 1460, as required by Google ([GCP Cloud VPN Documentation: MTU Considerations](https://cloud.google.com/vpn/docs/concepts/mtu-considerations)).
+
+    To configure Docker's MTU, create an `/etc/docker/daemon.conf` file with the following content:
+
+    ```json
+    {
+      "mtu": 1460
+    }
+    ```
 
 ## Operational Mode Decision
 
