@@ -94,5 +94,5 @@ Organization-level permissions (see [Managing Organization Access](./teams.html#
 
 A team can be granted permissions to manage Sentinel policies, workspaces, and/or VCS settings across an organization. 
 
-- As an organization owner you can manage team permissions to the organization on the team's settings page under "Organization Access".
+- Organization owners can manage a team's organization-level permissions on the team's settings page under "Organization Access".
 - For detailed information about the available permissions, see [Permissions](./permissions.html#organization-level-permissions)
