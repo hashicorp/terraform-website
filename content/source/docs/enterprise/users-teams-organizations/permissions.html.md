@@ -49,6 +49,7 @@ Can do everything the write access level can do, plus:
 Teams can be granted permissions to **manage Sentinel policies, workspaces,** and/or **VCS settings** across an organization.
 
 ### Manage Policies
+
 Allows members to create, edit, and delete the organization's Sentinel policies and override soft-mandatory policy checks. Note that this setting implicitly gives read access to all workspaces to set enforcement of [policy sets](../sentinel/manage-policies.html).
 
 ### Manage Workspaces
