@@ -24,11 +24,8 @@ An organization's creator is the first member of its owners team; other members 
 
 Members of the owners team have full access to every workspace in the organization. Additionally, the following tasks can only be performed by organization owners:
 
-- Creating new workspaces
-- Managing Sentinel policies
-- Overriding `soft mandatory` Sentinel policies
 - Creating and deleting teams
-- Managing team membership
+- Managing team membership and organization-level permissions granted to the team
 - Viewing the full list of teams
 - Managing [organization settings][]
 
@@ -85,6 +82,17 @@ Each team can have a special service account API token that is not associated wi
 A team can be given read, write, or admin permissions on one or more workspaces.
 
 - Use any workspace's "Access" tab to manage team permissions on that workspace. For full instructions, see [Managing Access to Workspaces](../workspaces/access.html).
-- For detailed information about the available permissions levels, see [Permissions](./permissions.html).
+- For detailed information about the available permissions levels, see [Permissions](./permissions.html#workspace-level-permissions).
 
-When determining whether a user can take an action on a resource, TFE uses the highest permission level from that user's teams. (For example, if a user belongs to a team with read permissions on a workspace and another team with admin permissions on that workspace, that user has admin permissions.)
+When determining whether a user can take an action on a resource, TFE uses the highest permission level from that user's teams. For example, if a user belongs to a team with read permissions on a workspace and another team with admin permissions on that workspace, that user has admin permissions.
+
+Organization-level permissions (see [Managing Organization Access](./teams.html#managing-organization-access), below) can also supersede lower workspace permissions. For example, if a user belongs to a team with read permissions on a workspace but also has workspace management enabled, that user has admin permissions on the workspace. Conversely, if the team is allowed to manage the organization's Sentinel policies (which gives read access to all workspaces for enforcing policy sets) and has admin access on the workspace, the higher admin permission level is granted to the workspace.
+
+## Managing Organization Access
+
+-> **API:** See the [Teams API](../api/teams.html).
+
+A team can be granted permissions to manage Sentinel policies, workspaces, and/or VCS settings across an organization. 
+
+- Organization owners can manage a team's organization-level permissions on the team's settings page under "Organization Access".
+- For detailed information about the available permissions, see [Permissions](./permissions.html#organization-level-permissions)
