@@ -86,7 +86,7 @@ Properties without a default value are required.
 Key path                                 | Type   | Default | Description
 -----------------------------------------|--------|---------|------------
 `data.type`                              | string |         | Must be `"team-workspaces"`.
-`data.attributes.access`                 | string |         | The type of access to grant. Valid values are `read`, `write`, or `admin`.
+`data.attributes.access`                 | string |         | The type of access to grant. Valid values are `read`, `plan`, `write`, or `admin`.
 `data.relationships.workspace.data.type` | string |         | Must be `workspaces`.
 `data.relationships.workspace.data.id`   | string |         | The workspace ID to which the team is to be added.
 `data.relationships.team.data.type`      | string |         | Must be `teams`.
