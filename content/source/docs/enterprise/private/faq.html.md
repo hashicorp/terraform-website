@@ -56,7 +56,9 @@ PTFE has the ability to automatically generate a support bundle including logs a
 
 ## Managing Tool Versions
 
-Terraform Enterprise has a control panel that allows admins to manage the versions of Terraform and Packer and their download locations.
+Terraform Enterprise has a control panel that allows admins to manage the versions of Terraform and Packer and their download locations. 
+
+In Terraform Enterprise installations 201807-1 or later, see [Managing Tool Versions](admin/resources.html#managing-terraform-versions).
 
 In older Terraform Enterprise installations (prior to 201807-1) this control panel is available at the `/admin/tools` path or as a link in the sidebar from the general administrative interface at `/admin/manager`.
 
@@ -69,8 +71,6 @@ Here you'll find a list of Packer and Terraform versions as well as a link to ad
 * **SHA256 Checksum Value** - must match the SHA256 checksum value of the download
 
 ![admin-tools-edit](assets/admin-tools-edit.png)
-
-In Terraform Enterprise installations 201807-1 or later, see [Managing Tool Versions](admin/resources.html#managing-terraform-versions).
 
 ## Migrating from Terraform Enterprise SaaS
 
@@ -188,9 +188,6 @@ The Private Terraform Enterprise AMI requires that port :8080 be accessible. Thi
 from the ELB is routed. Many other internal Private Terraform Enterprise services listen on the host,
 but they do not require external traffic. The AWS security group for the
 instance as well as software firewall rules within the runtime enforce this.
-
-Additionally, the port ranges **9870-9880** and **23000-23100** must be accessible to the host and
-the subnet it is on. These ports are used for internal communication between internal services.
 
 ### `ulimits`
 
