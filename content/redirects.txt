@@ -156,3 +156,8 @@
 # /docs/providers/aws/guides/eks-getting-started.html     https://learn.hashicorp.com/terraform/aws/eks-intro
 # /docs/providers/aws/guides/iam-policy-documents.html    https://learn.hashicorp.com/terraform/aws/iam-policy
 # /docs/providers/aws/guides/serverless-with-aws-lambda-and-api-gateway.html    https://learn.hashicorp.com/terraform/aws/lambda-api-gateway
+
+# Temporary redirects until 0.12 site is live
+/docs/configuration/functions/file.html /docs/configuration/interpolation.html
+/docs/configuration/functions/templatefile.html /docs/configuration/interpolation.html
+/docs/configuration/expressions.html /docs/configuration/interpolation.html
