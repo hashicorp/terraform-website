@@ -107,17 +107,18 @@ Terraform's GitHub Actions on new and updated pull requests.
     If you have multiple workspaces, see [Workspaces](../workspaces.html).
 
 1. **Credentials** — If you're using a Terraform provider that requires
-    credentials to run `terraform plan` (like AWS or Google Cloud Platform)
-    then you need to add those credentials as secrets to the `terraform-plan` action.
-    Secrets can only be added from the **Visual Editor,** so switch to that tab.
+    credentials to run `terraform init` and `terraform plan` (like AWS or Google Cloud Platform)
+    then you need to add those credentials as secrets to the `terraform-init` and `terraform-plan`
+    actions. Secrets can be added from the **Visual Editor,** so switch to that tab.
 
     ![Visual Editor](./images/visual-editor.png)
 
-    Scroll down to the `terraform-plan` action and click **Edit**.
+    Scroll down to the `terraform-init` or `terraform-plan` actions and click **Edit**.
     This will open the action editor on the right side, where you'll be able
     to add your secrets as environment variables, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
     See your [provider documentation](https://www.terraform.io/docs/providers/)
-    for the specific environment variables your provider needs.
+    for the specific environment variables your provider needs. If you've already added 
+    these secrets to the repository, they will be available for selection.
 
     ![Add Secrets](./images/add-secrets.png)
 
