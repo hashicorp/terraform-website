@@ -15,7 +15,7 @@ in the event of an outage. There are two steps in the automated recovery process
 
 This guide will walk through both of these steps.
 
-## 1. Configure snapshots
+## Configure snapshots
 
 Snapshots are taken on the Private TFE instance. That instance can
 have two types of data on it:
@@ -30,21 +30,21 @@ connection settings, hostname. This data rarely changes.
 In demo mode, both application data and installer data are
 stored on the PTFE instance. In mounted disk and external services mode, only
 installer data is stored on the instance. Application data
-is stored in the mounted disk or in an external Postgres.
+is stored in the mounted disk or in an external PostgreSQL instance.
 
 Automated snapshots are more effective when using mounted disk or
 external services as the amount of backed up data is smaller and
 less risky.
 
 Snapshots are configured in the dashboard under `Console Settings`,
-in the `Snapshot & Restore` section. We suggest you also select
+in the `Snapshot & Restore` section. We suggest you select
 `Enable Automatic Scheduled Snapshots`. For the interval, it depends
 on the mode of operation you're using. If you're in Demo mode,
 one hour is recommended as that will minimize the data loss to one
 hour only. For Mounted Disk or External Services, Daily is recommended
 as the snapshots contain only configuration data, not application data.
 
-## 2. Restore a snapshot in a new PTFE instance
+## Restore a snapshot in a new PTFE instance
 
 ## Version Checking
 
@@ -222,3 +222,12 @@ done
 echo
 echo "Application booted!"
 ```
+
+## Airgap recovery considerations
+
+The instructions above are tailored for the online install method. When restoring on an airgap instance, there are several additional considerations:
+
+1. The minimum version of Replicated is 2.31.0, rather than 2.17.0.
+1. The license file and airgap package must be in place on the new instance prior to restore. The restore process expects to find them in the same locations as they were on the original instance.
+1. The snapshot being used must also be from an airgap instance.
+1. The `install.sh` script and method used must be from the Replicated airgap installer boostrapper, using the process described for [airgap installation](./install-installer.html#run-the-installer-airgapped).
