@@ -48,6 +48,12 @@ The `GITHUB_TOKEN` secret is required for posting a comment back to the pull req
 
 If you have set `TF_ACTION_COMMENT = "false"`, then `GITHUB_TOKEN` is not required.
 
+* You may also need to add secrets for your providers, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` or `GOOGLE_CREDENTIALS`,
+if you're using a Terraform feature that uses them during `init` (such as Remote State).
+
+  !> **⚠️ WARNING ⚠️** These secrets could be exposed if the `plan` action is run on a malicious Terraform file.
+  To avoid this, we recommend you do not use this action on public repos or repos where untrusted users can submit pull requests.
+
 ## Arguments
 
 Arguments to `init` will be appended to the `terraform init` command:
@@ -58,4 +64,3 @@ action "terraform init" {
   args = ["-lock=false"]
 }
 ```
-
