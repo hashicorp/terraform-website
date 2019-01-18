@@ -54,6 +54,12 @@ tfconfig
 │       │       ├── config (map of keys)
 │       │       ├── source (string)
 │       │       └── version (string)
+│       ├──outputs
+│       │   └── NAME
+│       │       ├── depends_on (list of strings)
+│       │       ├── description (string)
+│       │       ├── sensitive (boolean)
+│       │       └── value (value)
 │       ├── providers
 │       │   └── TYPE
 │       │       ├── alias
@@ -77,6 +83,7 @@ tfconfig
 │
 ├── data (root module alias)
 ├── modules (root module alias)
+├── outputs (root module alias)
 ├── providers (root module alias)
 ├── resources (root module alias)
 └── variables (root module alias)
@@ -215,6 +222,7 @@ It can be used to load the following child namespaces:
   filtered against data sources.
 * `modules` - Loads the [module configuration
   namespace](#namespace-module-configuration).
+* `outputs` - Loads the [output namespace](#namespace-outputs).
 * `providers` - Loads the [provider namespace](#namespace-providers).
 * `resources` - Loads the [resource
   namespace](#namespace-resources-data-sources), filtered against resources.
@@ -466,6 +474,123 @@ The following policy would evaluate to `true`:
 import "tfconfig"
 
 main = rule { tfconfig.modules.foo.config.bar is "baz" }
+```
+
+## Namespace: Outputs
+
+The **output namespace** represents _declared_ output data within a
+configuration. As such, configuration for the [`value`](#value-value) attribute
+will be in its raw form, and not yet interpolated. For fully interpolated output
+values, see the [`tfstate` import][ref-tfe-sentinel-tfstate].
+
+[ref-tfe-sentinel-tfstate]: /docs/enterprise/sentinel/import/tfstate.html
+
+This namespace is indexed by output name.
+
+### Value: `depends_on`
+
+* **Value Type:** A list of strings.
+
+The `depends_on` value within the [output namespace](#namespace-outputs)
+represents any _explicit_ dependencies for this output. For more information,
+see the [depends_on output setting][ref-depends_on] within the general Terraform
+documentation.
+
+[ref-depends_on]: https://www.terraform.io/docs/configuration/outputs.html#depends_on
+
+As an example, given the following output declaration block:
+
+```hcl
+output "id" {
+  depends_on = ["null_resource.bar"]
+  value      = "${null_resource.foo.id}"
+}
+```
+
+The following policy would evaluate to `true`:
+
+```python
+import "tfconfig"
+
+main = rule { tfconfig.outputs.id.depends_on[0] is "null_resource.bar" }
+```
+
+### Value: `description`
+
+* **Value Type:** String.
+
+The `description` value within the [output namespace](#namespace-outputs)
+represents the defined description for this output.
+
+As an example, given the following output declaration block:
+
+```hcl
+output "id" {
+  description = "foobar"
+  value       = "${null_resource.foo.id}"
+}
+```
+
+The following policy would evaluate to `true`:
+
+```python
+import "tfconfig"
+
+main = rule { tfconfig.outputs.id.description is "foobar" }
+```
+
+### Value: `sensitive`
+
+* **Value Type:** Boolean.
+
+The `sensitive` value within the [output namespace](#namespace-outputs)
+represents if this value has been marked as sensitive or not.
+
+As an example, given the following output declaration block:
+
+```hcl
+output "id" {
+  sensitive = true
+  value     = "${null_resource.foo.id}"
+}
+```
+
+The following policy would evaluate to `true`:
+
+```python
+import "tfconfig"
+
+main = rule { subject.outputs.id.sensitive }
+```
+
+### Value: `value`
+
+* **Value Type:** Any primitive type, list or map.
+
+The `value` value within the [output namespace](#namespace-outputs) represents
+the defined value for the output as declared in the configuration.
+
+The actual value will be as configured. Primitives will bear the implicit type
+of its declaration (string, int, float, or bool), and maps and lists will be
+represented as such.
+
+More often than not, the value will show up in its raw, non-interpolated string,
+unless the output is defined to a static value.
+
+As an example, given the following output declaration block:
+
+```hcl
+output "id" {
+  value = "${null_resource.foo.id}"
+}
+```
+
+The following policy would evaluate to `true`:
+
+```python
+import "tfconfig"
+
+main = rule { tfconfig.outputs.id.value is "${null_resource.foo.id}" }
 ```
 
 ## Namespace: Providers
