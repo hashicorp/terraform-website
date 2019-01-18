@@ -30,26 +30,26 @@ version of the simulator, see the [downloads page][ref-downloads-page].
 
 [ref-downloads-page]: https://docs.hashicorp.com/sentinel/downloads
 
-These mocks are configured differently than JSON mocks: 
+These mocks are configured differently than JSON mocks:
 
-* Save the contents below to a `.sentinel` file within your project directory.
-   The example below uses `mock-tfstate.sentinel`.
+* Save the mock file contents below to a `.sentinel` file within your project
+  directory. The example below uses `mock-tfstate.sentinel`.
 * Add the following to your Sentinel configuration file, example
-   `sentinel.json`:
+  `sentinel.json`:
 
-```json
-{
-  "mock": {
-    "tfstate": "mock-tfstate.sentinel"
-  }
-}
-```
+    ```json
+    {
+      "mock": {
+        "tfstate": "mock-tfstate.sentinel"
+      }
+    }
+    ```
 
 * Run the Sentinel Simulator:
 
-```
-sentinel apply -config=sentinel.json policy.sentinel
-```
+    ```
+    sentinel apply -config=sentinel.json policy.sentinel
+    ```
 
 The above can be adjusted for use with `sentinel test` as well. As an example,
 assuming you save the mock to `test/shared/mock-tfstate.sentinel`, and you are
