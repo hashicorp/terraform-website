@@ -29,139 +29,223 @@ mock][ref-tfconfig-mock] and the [`tfstate` mock][ref-tfstate-mock].
 [ref-tfconfig-mock]: /docs/enterprise/sentinel/import/mock-tfconfig.html
 [ref-tfstate-mock]: /docs/enterprise/sentinel/import/mock-tfstate.html
 
-#### Current mock limitations
+## Configuring Sentinel Simulator for Terraform Mocks
 
-There are currently some limitations mocking `tfplan` data in Sentinel. These
-issues will be fixed in future releases of the import and core runtime.
+Terraform mocks make use of the ability to provide mocks as Sentinel code,
+which requires Sentinel Simulator 0.8.0 or higher to use. To get the latest
+version of the simulator, see the [downloads page][ref-downloads-page].
 
-* As functions cannot be mocked in the current Sentinel testing framework, the
-  [module()][ref-module] function is not available. As a result, only root
-  module data can be mocked at this time.
+[ref-downloads-page]: https://docs.hashicorp.com/sentinel/downloads
 
-[ref-module]: /docs/enterprise/sentinel/import/tfplan.html#function-module-
+These mocks are configured differently than JSON mocks: 
 
-* [Resource and data source][resource-and-data-source] count keys (`NUMBER` in
-  `TYPE.NAME[NUMBER]`), which are actually represented as integers, cannot be
-  represented accurately in JSON, and as a result, mocks that depend on count keys
-  explicitly (example: `tfplan.resources.null_resource.foo[0]`) will not work
-  properly with mocks.
-
-[resource-and-data-source]: /docs/enterprise/sentinel/import/tfplan.html#namespace-resources-data-sources
+* Save the contents below to a `.sentinel` file within your project directory.
+   The example below uses `mock-tfplan.sentinel`.
+* Add the following to your Sentinel configuration file, example
+   `sentinel.json`:
 
 ```json
 {
   "mock": {
-    "tfplan": {
-      "terraform_version": "0.11.7",
-      "variables": {
-        "foo": "bar",
-        "map": {
-          "foo": "bar",
-          "number": 42
-        },
-        "number": "42"
-      },
-      "module_paths": [
-        [],
-        [
-          "foo"
-        ]
-      ],
-      "path": [],
-      "data": {
-        "null_data_source": {
-          "baz": {
-            "0": {
-              "diff": {
-                "has_computed_default": {
-                  "old": "",
-                  "new": "",
-                  "computed": true
-                },
-                "id": {
-                  "old": "",
-                  "new": "",
-                  "computed": true
-                },
-                "inputs.%": {
-                  "old": "",
-                  "new": "",
-                  "computed": true
-                },
-                "outputs.%": {
-                  "old": "",
-                  "new": "",
-                  "computed": true
-                },
-                "random": {
-                  "old": "",
-                  "new": "",
-                  "computed": true
-                }
-              },
-              "applied": {
-                "has_computed_default": "74D93920-ED26-11E3-AC10-0800200C9A66",
-                "id": "74D93920-ED26-11E3-AC10-0800200C9A66",
-                "inputs": {},
-                "outputs": {},
-                "random": "74D93920-ED26-11E3-AC10-0800200C9A66"
-              }
-            }
-          }
-        }
-      },
-      "resources": {
-        "null_resource": {
-          "bar": {
-            "0": {
-              "diff": {
-                "id": {
-                  "old": "",
-                  "new": "",
-                  "computed": true
-                },
-                "triggers.%": {
-                  "old": "",
-                  "new": "",
-                  "computed": true
-                }
-              },
-              "applied": {
-                "id": "74D93920-ED26-11E3-AC10-0800200C9A66",
-                "triggers": {}
-              }
-            }
-          },
-          "foo": {
-            "0": {
-              "diff": {
-                "id": {
-                  "old": "",
-                  "new": "",
-                  "computed": true
-                },
-                "triggers.%": {
-                  "old": "",
-                  "new": "1",
-                  "computed": false
-                },
-                "triggers.foo": {
-                  "old": "",
-                  "new": "bar",
-                  "computed": false
-                }
-              },
-              "applied": {
-                "id": "74D93920-ED26-11E3-AC10-0800200C9A66",
-                "triggers": {
-                  "foo": "bar"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    "tfplan": "mock-tfplan.sentinel"
   }
 }
+```
+
+* Run the Sentinel Simulator:
+
+```
+sentinel apply -config=sentinel.json policy.sentinel
+```
+
+The above can be adjusted for use with `sentinel test` as well. As an example,
+assuming you save the mock to `test/shared/mock-tfplan.sentinel`, and you are
+editing a `test/policy/pass.json` test case:
+
+```json
+{
+  "mock": {
+    "tfplan": "../shared/mock-tfplan.sentinel"
+  },
+  "test": {
+    "main": true
+  }
+}
+```
+
+More information on configuring mocks using Sentinel code can be found
+[here][ref-sentinel-mocking-with-sentinel-code].
+
+[ref-sentinel-mocking-with-sentinel-code]: https://docs.hashicorp.com/sentinel/commands/config#mocking-with-sentinel-code
+
+## Mock File Contents
+
+```python
+_root = {
+  "data": {
+    "null_data_source": {
+      "baz": {
+        0: {
+          "applied": {
+            "has_computed_default": "74D93920-ED26-11E3-AC10-0800200C9A66",
+            "id":      "74D93920-ED26-11E3-AC10-0800200C9A66",
+            "inputs":  {},
+            "outputs": {},
+            "random":  "74D93920-ED26-11E3-AC10-0800200C9A66",
+          },
+          "diff": {
+            "has_computed_default": {
+              "computed": true,
+              "new":      "",
+              "old":      "",
+            },
+            "id": {
+              "computed": true,
+              "new":      "",
+              "old":      "",
+            },
+            "inputs.%": {
+              "computed": true,
+              "new":      "",
+              "old":      "",
+            },
+            "outputs.%": {
+              "computed": true,
+              "new":      "",
+              "old":      "",
+            },
+            "random": {
+              "computed": true,
+              "new":      "",
+              "old":      "",
+            },
+          },
+        },
+      },
+    },
+  },
+  "path": [],
+  "resources": {
+    "null_resource": {
+      "bar": {
+        0: {
+          "applied": {
+            "id":       "74D93920-ED26-11E3-AC10-0800200C9A66",
+            "triggers": {},
+          },
+          "diff": {
+            "id": {
+              "computed": true,
+              "new":      "",
+              "old":      "",
+            },
+            "triggers.%": {
+              "computed": true,
+              "new":      "",
+              "old":      "",
+            },
+          },
+        },
+      },
+      "foo": {
+        0: {
+          "applied": {
+            "id": "74D93920-ED26-11E3-AC10-0800200C9A66",
+            "triggers": {
+              "foo": "bar",
+            },
+          },
+          "diff": {
+            "id": {
+              "computed": true,
+              "new":      "",
+              "old":      "",
+            },
+            "triggers.%": {
+              "computed": false,
+              "new":      "1",
+              "old":      "",
+            },
+            "triggers.foo": {
+              "computed": false,
+              "new":      "bar",
+              "old":      "",
+            },
+          },
+        },
+      },
+    },
+  },
+}
+
+module_foo = {
+  "data": {},
+  "path": [
+    "foo",
+  ],
+  "resources": {
+    "null_resource": {
+      "foo": {
+        0: {
+          "applied": {
+            "id": "74D93920-ED26-11E3-AC10-0800200C9A66",
+            "triggers": {
+              "foo": "bar",
+            },
+          },
+          "diff": {
+            "id": {
+              "computed": true,
+              "new":      "",
+              "old":      "",
+            },
+            "triggers.%": {
+              "computed": false,
+              "new":      "1",
+              "old":      "",
+            },
+            "triggers.foo": {
+              "computed": false,
+              "new":      "bar",
+              "old":      "",
+            },
+          },
+        },
+      },
+    },
+  },
+}
+
+module_paths = [
+  [],
+  [
+    "foo",
+  ],
+]
+
+terraform_version = "0.11.11"
+
+variables = {
+  "foo": "bar",
+  "map": {
+    "foo":    "bar",
+    "number": 42,
+  },
+  "number": "42",
+}
+
+module = func(path) {
+  if length(path) == 0 {
+    return _root
+  }
+  if length(path) == 1 and path[0] is "foo" {
+    return module_foo
+  }
+
+  return undefined
+}
+
+data = _root.data
+path = _root.path
+resources = _root.resources
 ```
