@@ -14,7 +14,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
 
 1. In the Azure portal, navigate to "Azure Active Directory" > "Enterprise Applications" and select "Add an Application".
   ![Screenshot: AAD's "Add Application" page](./images/sso-aad-saml-add-application.png)
-2. Select Non-gallery application. Provide a name for the application and click Add.
+2. Select "Non-gallery application". Provide a name for the application and click "Add".
   ![Screenshot: AAD's dialog for beginning a new application](./images/sso-aad-saml-new-application-form)
 3. AAD should automatically redirect to your new application settings, navigate to Single sign-on and select SAML
   ![Screenshot: the first page of AAD's new app configuration workflow, called "General Settings"](./images/sso-aad-saml-sso-method.png)
