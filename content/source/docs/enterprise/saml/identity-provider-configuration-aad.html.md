@@ -32,7 +32,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
     ![Screenshot: Add MemberOf claim](./images/sso-aad-saml-user-claims-memberof.png)
 7. Under the "SAML Signing Certificate" header, download the signing certificate in base64 format
     ![Screenshot: Download the SAML signing certificate](./images/sso-aad-saml-signing-certificate.png)
-8. Still in the "Single Sign On Configuration" page, under the "Set up <AAD App Name>", copy the following urls that we will enter in our TFE configuration to link TFE to AAD:
+8. Under the "Set up <AAD App Name>" header, copy the following urls that we will enter in our TFE configuration to link TFE to AAD:
     - **Login URL:**
     - **Logout URL:**
     ![Screenshot: Azure Login/Logout URLs](./images/sso-aad-saml-urls.png)
