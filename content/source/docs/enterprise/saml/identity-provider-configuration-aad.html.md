@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-private-saml-identity-provider-configuration-
 
 Follow these steps to configure Azure Active Directory (AAD) as the identity provider (IdP) for Private Terraform Enterprise (PTFE).
 
-This guide assumes you have an appropriate licensing agreement for Azure Active Directory that supports non-gallery appplication single sign-on.
+-> **Note:** This guide assumes you have an appropriate licensing agreement for Azure Active Directory that supports non-gallery application single sign-on.
 
 ## Configure a New AAD Non-Gallery Application
 
