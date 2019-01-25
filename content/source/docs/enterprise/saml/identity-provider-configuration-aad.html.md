@@ -12,7 +12,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
 
 ## Configure a New AAD Non-Gallery Application
 
-1. In the Azure portal, navigate to Azure Active Directy > Enterprise Applications and select Add an Application.
+1. In the Azure portal, navigate to "Azure Active Directory" > "Enterprise Applications" and select "Add an Application".
   ![Screenshot: AAD's "Add Application" page](./images/sso-aad-saml-add-application.png)
 2. Select Non-gallery application. Provide a name for the application and click Add.
   ![Screenshot: AAD's dialog for beginning a new application](./images/sso-aad-saml-new-application-form)
