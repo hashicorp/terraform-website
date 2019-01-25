@@ -16,7 +16,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
   ![Screenshot: AAD's "Add Application" page](./images/sso-aad-saml-add-application.png)
 2. Select "Non-gallery application". Provide a name for the application and click "Add".
   ![Screenshot: AAD's dialog for beginning a new application](./images/sso-aad-saml-new-application-form)
-3. AAD should automatically redirect to your new application settings, navigate to Single sign-on and select SAML
+3. AAD should automatically redirect to your new application settings. Navigate to "Single sign-on" and select "SAML".
   ![Screenshot: the first page of AAD's new app configuration workflow, called "General Settings"](./images/sso-aad-saml-sso-method.png)
 4. Select the pencil within the Basic SAML Configuration and configure these settings:
     - **Identifier (Entity ID):** `https://<TFE HOSTNAME>/users/saml/metadata` (listed as "Metadata (audience) URL" in TFE's SAML settings).
