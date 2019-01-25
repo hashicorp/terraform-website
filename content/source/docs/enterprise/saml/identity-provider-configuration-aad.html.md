@@ -23,7 +23,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
     - **Reply URL (Assertion Consumer Service URL):** `https://<TFE HOSTNAME>/users/saml/auth` (listed as "ACS consumer (recipient) URL" in TFE's SAML settings).
     - **Sign on URL:** `https://<TFE HOSTNAME>/`
     ![Screenshot: The "Configure SAML" page of ADD's new app workflow, with the specified settings entered.](./images/sso-aad-saml-configuration.png)
-5. In the User Attributes & Claims section select the pencil and configure the following items:
+5. In the "User Attributes & Claims" section, select the pencil and configure the following items:
     - **Name Identifier value:** `user.mail`
     ![Screenshot: Modifying the name identifier value.](./images/sso-aad-saml-user-claims-name-identifier.png)
 6. Still in the "User Attributes & Claims" page, configure a user claim to map which team a user belongs to. Under "Manage user claims" page, configure the following:
