@@ -62,7 +62,8 @@ This guide assumes you have an appropriate licensing agreement for Azure Active 
     "isEnabled": true,
     "description": "Dev Team",
     "value": "Dev"
-    }```
+    }
+    ```
     ![Screenshot: New role in Manifest Editor](./images/sso-aad-saml-manifest-devapprole.png)
 5. Back in your application properties, under "Manage" heading, select "Users and Groups". This is where you will enable access to TFE by adding either users or groups to your application. During the process of adding users or groups you will select a role to be assigned to the user or group. Select the role that matches the user or groups TFE team.
     ![Screenshot: Role Assignment](./images/sso-aad-saml-role-assignment.png)
