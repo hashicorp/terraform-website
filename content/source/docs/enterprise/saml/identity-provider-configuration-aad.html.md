@@ -46,7 +46,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
 ## Configure Custom Roles for Team Membership Mapping
 
 1. Create teams in TFE as outlined in [TFE Team Membership](./team-membership.html)
-2. Return to the Azure Portal, navigate to "App Registration" page, and search for the application you created for TFE. Select your app and select "Manifest".
+2. Return to the Azure Portal, navigate to the "App Registration" page, and search for the application you created for TFE. Select your app and select "Manifest".
     ![Screenshot: AAD App Registration](./images/sso-aad-saml-app-registration.png)
 3. In the manifest editor, locate the "appRoles" block. This is where you will add additional roles that map users and groups to teams in TFE.
     ![Screenshot: Manifest Editor](./images/sso-aad-saml-manifest-approles.png)
