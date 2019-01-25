@@ -68,4 +68,5 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
     ![Screenshot: New role in Manifest Editor](./images/sso-aad-saml-manifest-devapprole.png)
 5. Back in your application properties, under "Manage" heading, select "Users and Groups". This is where you will enable access to TFE by adding either users or groups to your application. During the process of adding users or groups you will select a role to be assigned to the user or group. Select the role that matches the user or groups TFE team.
     ![Screenshot: Role Assignment](./images/sso-aad-saml-role-assignment.png)
-6. Once users have been added they can begin logging into TFE with their AAD username and password.
+
+Once users have been added, the initial configuration is complete, and they can begin logging into TFE with their AAD username and password.
