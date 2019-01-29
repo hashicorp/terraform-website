@@ -276,6 +276,26 @@ structures - lists, sets, and maps.
 As an example, consider the following resource block:
 
 ```hcl
+resource "local_file" "accounts" {
+  content  = "some text"
+  filename = "accounts.txt"
+}
+```
+
+In this example, one might want to access `filename` to validate that the correct
+file name is used. Given the above example, the following policy would evaluate to `true`:
+
+```python
+import "tfconfig"
+
+main = rule {
+	tfconfig.resources.local_file.accounts.config.filename is "accounts.txt"
+}
+```
+
+For a slightly more complicated example, consider the following resource block:
+
+```hcl
 resource "null_resource" "foo" {
   triggers = {
     foo = "one"
