@@ -28,7 +28,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
     ![Screenshot: Modifying the name identifier value.](./images/sso-aad-saml-user-claims-name-identifier.png)
 6. Still in the "User Attributes & Claims" page, under "Manage user claims", configure a user claim to map the team a user belongs to:
     - **Name:** `MemberOf`. This is the default name for TFE's group [attribute](./attributes.html); the name of this attribute can be changed in [TFE's SAML settings](./configuration.html) if necessary.
-    - **Source attribute:** (drop-down): user.assignedroles (Custom roles will be created in Azure Active Directory that will be used to map users and groups to TFE teams.)
+    - **Source attribute:** (drop-down): `user.assignedroles`. Custom roles will be created in Azure Active Directory that will be used to map users and groups to TFE teams.
     ![Screenshot: Add MemberOf claim](./images/sso-aad-saml-user-claims-memberof.png)
 7. Under the "SAML Signing Certificate" header, download the signing certificate in base64 format
     ![Screenshot: Download the SAML signing certificate](./images/sso-aad-saml-signing-certificate.png)
