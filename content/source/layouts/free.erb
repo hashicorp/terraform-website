@@ -1,0 +1,15 @@
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+    <ul class="nav docs-sidenav">
+      <li<%= sidebar_current("docs-free-overview") %>>
+        <a href="/docs/enterprise/free/overview.html">Overview</a>
+      </li>
+
+      <li<%= sidebar_current("docs-free-gettingstarted") %>>
+        <a href="/docs/enterprise/free/index.html">Getting Started</a>
+      </li>
+    </ul>
+  <% end %>
+
+  <%= yield %>
+<% end %>
