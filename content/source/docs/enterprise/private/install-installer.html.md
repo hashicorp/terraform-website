@@ -187,7 +187,7 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. Run `tar xzf replicated.tar.gz`
 1. Run `sudo ./install.sh airgap`
 1. When asked, select the interface of the primary private network interface used to access the instance.
-1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be https://<TFE HOSTNAME>:8800
+1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be `https://<TFE HOSTNAME>:8800`.
     * You will see a security warning when first connecting. This is expected and you'll need
       to proceed with the connection anyway.
 
