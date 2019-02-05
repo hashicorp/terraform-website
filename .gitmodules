@@ -370,10 +370,6 @@
 	path = ext/providers/linode
 	url = https://github.com/terraform-providers/terraform-provider-linode
 	branch = stable-website
-[submodule "ext/providers/selvpc"]
-	path = ext/providers/selvpc
-	url = https://github.com/terraform-providers/terraform-provider-selvpc
-	branch = stable-website
 [submodule "ext/providers/skytap"]
 	path = ext/providers/skytap
 	url = https://github.com/terraform-providers/terraform-provider-skytap
@@ -385,4 +381,8 @@
 [submodule "ext/providers/hedvig"]
 	path = ext/providers/hedvig
 	url = https://github.com/terraform-providers/terraform-provider-hedvig
+	branch = stable-website
+[submodule "ext/providers/selectel"]
+	path = ext/providers/selectel
+	url = https://github.com/terraform-providers/terraform-provider-selectel
 	branch = stable-website
