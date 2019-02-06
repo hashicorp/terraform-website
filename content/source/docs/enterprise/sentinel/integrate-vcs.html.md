@@ -91,37 +91,6 @@ variable "tfe_organization" {
 }
 ```
 
-### Optional: Define a Workspace IDs Variable
-
-[inpage_ids]: #optional-define-a-workspace-ids-variable
-
-
-The `tfe_policy_set` resource uses workspace IDs, which can be found on a workspace's [settings page](../workspaces/settings.html#id). You can use these IDs directly, but the configuration will be more readable if you provide a map of names to IDs and refer to workspaces by name throughout the configuration. Use a Terraform variable for this map, so you can update it in TFE without changing the configuration:
-
-```hcl
-variable "tfe_workspace_ids" {
-  description = "Mapping of workspace names to IDs, for easier use in policy sets."
-  type        = "map"
-
-  default = {
-    "app-prod"                = "ws-LbK9gZEL4beEw9A2"
-    "app-dev"                 = "ws-uMM93B6XrmCwh3Bj"
-  }
-}
-```
-
-To quickly get a list of workspace names and IDs, you can make an API call to the [List Workspaces endpoint](../api/workspaces.html#list-workspaces) and pipe the result to a `jq` command:
-
-```
-$ curl \
-  --header "Authorization: Bearer $TOKEN" \
-  --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/organizations/my-organization/workspaces?page%5Bnumber%5D=1&page%5Bsize%5D=100 \
-  | jq --raw-output '.data[] | "\"\(.attributes.name)\" = \"\(.id)\""'
-```
-
--> **Note:** If you have a very large number of workspaces, you might need to make multiple API calls to fetch subsequent pages. See [API Docs: Pagination](../api/index.html#pagination) for more details.
-
 ### Configure the `tfe` Provider
 
 Configure the `tfe` provider (version 0.3 or higher) with your API token and hostname variables.
@@ -130,9 +99,38 @@ Configure the `tfe` provider (version 0.3 or higher) with your API token and hos
 provider "tfe" {
   hostname = "${var.tfe_hostname}"
   token    = "${var.tfe_token}"
-  version  = "~> 0.4"
+  version  = "~> 0.6"
 }
 ```
+
+### Optional: Use a Data Source to Get Workspace IDs
+
+[inpage_ids]: #optional-use-a-data-source-to-get-workspace-ids
+
+The `tfe_policy_set` resource uses workspace IDs, which can be found on a workspace's [settings page](../workspaces/settings.html#id). There are several ways to work with these IDs in your configuration, all of which have advantages and disadvantages:
+
+Method | Pros | Cons
+-------|------|-----
+Use literal ID strings. | Highly secure, since workspace IDs never change. | Policy set configs are opaque. Accidental misconfigurations are difficult to spot.
+Use a data source to look up IDs by name. | Convenient and easy to read. | Renaming a workspace (requires admin permissions) can remove it from a policy set.
+Use a variable to map workspace names to IDs. | Secure and easy to read. | Keeping the variable up-to-date is inconvenient.
+Use `external_id` attribute of `tfe_workspace` resources. | Secure, readable, automatically updated. | Only available if you already manage your TFE workspaces with the `tfe` Terraform provider.
+
+In our examples, we want to clearly show what our policy sets are doing, which is much easier if we can refer to workspaces by name. The [`tfe_workspace_ids` data source](/docs/providers/tfe/d/workspace_ids.html) (in `tfe` provider versions ≥ 0.6) makes it easy to use workspace names:
+
+```hcl
+data "tfe_workspace_ids" "all" {
+  names        = ["*"]
+  organization = "${var.tfe_organization}"
+}
+
+locals {
+  # Use a shorter name for this map in policy set resources:
+  workspaces = "${data.tfe_workspace_ids.all.external_ids}"
+}
+```
+
+~> **Important:** Before using this approach in your organization, make sure you understand the security and usability trade-offs.
 
 ### Create Policy Resources
 
@@ -153,12 +151,14 @@ resource "tfe_sentinel_policy" "aws-block-allow-all-cidr" {
 
 ### Create Policy Set Resources
 
-Create a [`tfe_policy_set` resource][tfe_policy_set] for each policy set you wish to create, and specify which policies are part of the set. Each policy set must also set a value for either `global` or `workspace_external_ids`, to specify which workspaces it should be enforced on.
-
 -> **Note:** See [Managing Sentinel Policies](./manage-policies.html) for a complete description of TFE's policy sets.
 
-- To build the `policy_ids` list, interpolate `id` attributes from your policy resources, like `"${tfe_sentinel_policy.aws-block-allow-all-cidr.id}"`.
-- To build the `workspace_external_ids` list, interpolate values from your name-to-ID map variable, like `"${var.tfe_workspace_ids["app-prod"]}"`
+Create a [`tfe_policy_set` resource][tfe_policy_set] for each policy set you wish to create.
+
+- Use the `policy_ids` list to specify which policies to include. Reference the `id` attributes from your policy resources, like `"${tfe_sentinel_policy.aws-block-allow-all-cidr.id}"`.
+- Set a value for either `global` or `workspace_external_ids`, to specify which workspaces these policies should be enforced on.
+
+    -> **Note:** In our examples, we use a data source to reference workspace IDs by name. Your configuration might handle workspace IDs differently; see the [section about workspace IDs][inpage_ids] above for more info.
 
 ```hcl
 # A global policy set
@@ -184,7 +184,7 @@ resource "tfe_policy_set" "production" {
   ]
 
   workspace_external_ids = [
-    "${var.tfe_workspace_ids["app-prod"]}",
+    "${local.workspaces["app-prod"]}",
   ]
 }
 ```
@@ -217,7 +217,6 @@ Before performing any runs, go to the workspace's "Variables" page and set the f
     - A [user token][] from a member of the owners team
 - `tfe_organization` — The name of the organization you want to manage policies for.
 - `tfe_hostname` — The hostname of your TFE instance.
-- `tfe_workspace_ids` (mark as "HCL") — A map of workspace names to workspace IDs. ([See above][inpage_ids].)
 
 Once the variables are configured, you can queue a Terraform run to begin managing policies.
 
