@@ -28,7 +28,7 @@ The complete output is the IACT, which will be used in the next step. This is pr
 
 The option `iact_subnet_list` can be set to a cidr mask that will allow clients in that address range to query the retrieval API directly. This allows installers the ability to create the installation and then immediately request the IACT token without running a command on the installation machine.
 
-The API will relative to the installation, for example `https://ptfe.mycompany.com/admin/retrieve-iact`, with `/admin/retrieve-iact` being the path that returns the token.
+The API will be relative to the installation, for example `https://ptfe.mycompany.com/admin/retrieve-iact`, with `/admin/retrieve-iact` being the path that returns the token.
 
 When this feature is used, it is governed by another setting `iact_subnet_time_limit`. This is a time limit, measured from the installation starting, that controls external access to the IACT. By default this is set to 60 minutes, meaning that 60 minutes after the installation boots, the API can be used by a client within the subnet list. After that time, access is not allowed.
 
