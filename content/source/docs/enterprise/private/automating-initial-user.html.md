@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-private-installer-automating-initial-user"
 
 After Private Terraform Enterprise is installed, the initial admin user must then be created to begin using the product.
 Normally this user is created via a web browser but one can use an API to create this initial user as well.
-This allows user that wish to automate installation even more to do so, including the ability to begin using the Terraform Enterprise API directly after initial user creation.
+This allows users that wish to automate installation even more to do so, allowing them to begin using the Terraform Enterprise API directly after initial user creation.
 
 ## Initial Admin Creation Token (IACT)
 
