@@ -11,6 +11,7 @@ Single sign-on setup instructions for specific identity providers (IdP).
 ## Identity Providers
 
 * [ADFS](./identity-provider-configuration-adfs.html)
+* [Azure Active Directory](./identity-provider-configuration-aad.html)
 * [Okta](./identity-provider-configuration-okta.html)
 * [OneLogin](./identity-provider-configuration-onelogin.html)
 
