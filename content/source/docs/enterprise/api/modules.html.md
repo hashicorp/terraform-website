@@ -411,5 +411,5 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://app.terraform.io/api/v2/registry-modules/actions/delete/skierkowski-v2/instance
+  https://app.terraform.io/api/v2/registry-modules/actions/delete/my-organization/my-module
 ```
