@@ -40,7 +40,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
     - **Enable SAML single sign-on** (check box): enabled.
     - **Single Sign-On URL:** Enter the login url from step 8.
     - **Single Log-out URL:** Enter the logout url from step 8.
-    - **IDP Certificate:** Enter the contents of the PEM (Based64) encoded X.509 certificate captured in step 7.
+    - **IDP Certificate:** Enter the contents of the PEM (Base64) encoded X.509 certificate captured in step 7.
   ![Screenshot: PTFE SAML Settings](./images/sso-aad-saml-ptfe-saml-settings.png)
 
 ## Configure Custom Roles for Team Membership Mapping
