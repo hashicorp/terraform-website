@@ -43,7 +43,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-fmt" {
-      uses = "hashicorp/terraform-github-actions/fmt@v0.1.1"
+      uses = "hashicorp/terraform-github-actions/fmt@v0.1.2"
       needs = "filter-to-pr-open-synced"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -52,7 +52,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-init" {
-      uses = "hashicorp/terraform-github-actions/init@v0.1.1"
+      uses = "hashicorp/terraform-github-actions/init@v0.1.2"
       needs = "terraform-fmt"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -61,7 +61,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-validate" {
-      uses = "hashicorp/terraform-github-actions/validate@v0.1.1"
+      uses = "hashicorp/terraform-github-actions/validate@v0.1.2"
       needs = "terraform-init"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -70,7 +70,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-plan" {
-      uses = "hashicorp/terraform-github-actions/plan@v0.1.1"
+      uses = "hashicorp/terraform-github-actions/plan@v0.1.2"
       needs = "terraform-validate"
       secrets = ["GITHUB_TOKEN"]
       env = {
