@@ -91,19 +91,20 @@ For more information, see [Variables](../workspaces/variables.html).
 
 ## Granting Access
 
-The user account that created your organization is part of the "owners" team, which can do any action on any workspace. Most of your colleagues don't need that level of access; instead, an administrator can give them access to the specific workspaces they need to use.
+The user account that created your organization is part of [the "owners" team](../users-teams-organizations/teams.html#the-owners-team), which can do any action on any workspace. Most of your colleagues don't need that level of access; instead, an administrator can give them access to the specific workspaces they need to use.
 
 TFE manages access with _teams._ In your organization's settings, you can create any number of teams and add users to them — earlier in this getting started guide, you might have [already created a team](./access.html#adding-other-users-to-an-organization) to bring other users into your organization. If you haven't done that yet, do it now.
 
-Once you have some teams, you can add them to a workspace by clicking the "Access" tab:
+Once you have some teams, you can add them to a workspace by choosing "Access" from the "Settings" menu:
 
-![managing team access to a workspace](./images/work-access.png)
+![managing team access to a workspace](../workspaces/images/access.png)
 
 A newly created workspace can't be used by anyone but the "owners" team; other teams can't even see it. To enable collaboration on a workspace, you must add other teams to it.
 
 To add a team to a workspace, select it from the dropdown menu and choose which permissions the team should have. There are three levels of permissions available:
 
-- **Read** access lets team members view the workspace's variables and settings, view its run history, and view its StateVersions and ConfigurationVersions. They can't queue run plans, apply existing run plans, or change any variables or settings.
+- **Read** access lets team members view the workspace's variables and settings, view its run history, and view its StateVersions and ConfigurationVersions. They can't queue plans, apply existing plans, or change any variables or settings.
+- **Plan** access lets team members queue plans (and run speculative plans from the command line), but doesn't let them approve infrastructure changes; a user with write access must confirm the plan.
 - **Write** access lets team members create and approve runs, and lock or unlock the workspace. It doesn't let them change variables or settings.
 - **Admin** access lets team members change variables and settings, add other teams to the workspace, remove other teams from the workspace, and delete the workspace.
 
@@ -113,16 +114,9 @@ To change a team's permissions on a workspace, you must first delete their exist
 
 ## Configuring a Workspace
 
-Each workspace has a "Settings" page (available from the top links when viewing that workspace), where you can change the behavior of the workspace. Currently, this page has the following settings:
+Each workspace has a "Settings" menu (available from the top links when viewing that workspace), which links to several pages where you can change the behavior of the workspace.
 
-- **Auto apply vs. manual apply:** By default, TFE only performs a Terraform plan when you start a run (either manually or by adding new commits to the repo). You can then view the outcome of the plan and decide whether to go forward with applying it.
-
-    This is called "manual apply." If you'd rather have TFE automatically apply successful plans, you can switch to "auto apply."
-- **Terraform version:** TFE can use any released version of Terraform to manage a workspace. Different workspaces can use different versions, and TFE won't automatically upgrade a workspace.
-
-    To stay up to date, you should visit workspace settings periodically and update the Terraform version.
-- **Workspace lock:** A user with write privileges on a workspace can _lock_ the workspace, which prevents plans and applies from running. Use this when recovering from a bad commit or performing other maintenance.
-- **Workspace delete:** When deleting a workspace, you usually also want to de-provision any infrastructure it's managing. This section of the settings has a button for queueing a destroy plan (to de-provision), and a button for deleting the workspace data. Note that destroy plans require an extra environment variable for confirmation; see the settings page for more details.
+For more information, see [Workspace Settings](../workspaces/settings.html).
 
 ## Navigating Workspaces
 
