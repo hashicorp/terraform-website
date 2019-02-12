@@ -95,7 +95,7 @@ The user account that created your organization is part of [the "owners" team](.
 
 TFE manages access with _teams._ In your organization's settings, you can create any number of teams and add users to them — earlier in this getting started guide, you might have [already created a team](./access.html#adding-other-users-to-an-organization) to bring other users into your organization. If you haven't done that yet, do it now.
 
-Once you have some teams, you can add them to a workspace by choosing "Access" from the "Settings" menu:
+Once you have some teams, you can add them to a workspace by choosing "Team Access" from the "Settings" menu:
 
 ![managing team access to a workspace](../workspaces/images/access.png)
 
