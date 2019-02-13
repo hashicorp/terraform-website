@@ -26,7 +26,14 @@ be presented with the installer dashboard:
 
 ![PTFE Installer Dashboard](./assets/post-install-repl-console.png)
 
-### Creating an Administrator
+### Creating an Administrator (API)
+
+The initial Admin user can be created via a special API. Customers can use this
+method to more easily perform automated installations of PTFE.
+
+The API and usage documents are under [Automating Initial User](./automating-initial-user.html).
+
+### Creating an Administrator (UI)
 
 After clicking on the "Open", right below the "Stop Now" button, you will
 be brought to a page asking you to create the first PTFE administrator account.

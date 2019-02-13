@@ -40,35 +40,78 @@ With the IACT in hand, the initial admin creation API can now be used. This API 
 
 This API requires the IACT as well as a JSON document describing the username, email address, and password of the initial admin user.
 
-Here is a simple sample for using the API:
+## Creating the Initial Admin User API
 
-```shell
-$ export IACT=$(cat iact.txt)
-$ curl https://ptfe.company.com/admin/inital-admin-user?token=$IACT -H "Content-Type: application/json" -d ‘{"username": "admin", "email": "admin@mycompany.com", "password": "this-is-a-bad-password"}’ | tee admin-token.txt
-{"status": "created", "token": "xxyyzz"}
+`POST /admin/initial-admin-user`
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | JSON document                                | Successfully created the user
+[404][] | JSON error document                          | Unauthorized to perform action
+[422][] | JSON error document                          | Malformed request body (missing attributes, wrong types, etc.)
+[500][] | JSON error document                         | Failure during user creation
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+
+### Query Parameters
+
+[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter               | Description
+------------------------|------------
+`token`                 | **Required.** The IACT token retrieved via API or command
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                    | Type   | Default | Description
+----------------------------|--------|---------|------------
+`username`                  | string |         | The username to assign the new user.
+`email`                     | string |         | The email address of the new user.
+`password`                  | string |         | The password of the new user.
+
+### Response Body
+
+The POST endpoint will return a JSON object with the following properties.
+
+Key path                    | Type   | Description
+----------------------------|--------|------------
+`status`                    | string | Either `"created"` or `"error"`.
+`token`                     | string | If status is `"created"`, this contains a TFE user token for the new user.
+`error`                     | string | If status is `"error"`, this contains the reason for the error.
+
+### Sample Payload
+
+```json
+{
+  "username": "admin",
+  "email": "it@mycompany.com",
+  "password": "thisisabadpassword"
+}
 ```
 
-### API Schema
+### Sample Request
 
-#### Request
+```shell
+curl \
+  --header "Content-Type: application/json" \
+  --request POST \
+  --data @payload.json \
+  https://ptfe.company.com/admin/inital-admin-user?token=$(cat iact.txt)
+```
 
-*Path:* _/admin/initial-admin-user_
-*Query Parameters:* _token_, the IACT previously retrieved
-*HTTP Method:* POST
-*HTTP Headers:*
-- *Content-Type*: must be the literal _application/json_
-*Request Body:* A JSON Document with the following keys set:
-- *username:* the username to give the initial admin user
-- *email:* email address of the user
-- *password:* password for the user
+### Sample Response
 
-#### Response
-
-The response status code will be 200 if the request was successful. Otherwise it will be a 400 or a 500.
-
-The response body will be a JSON document with the following schema:
-
-- *status:* if successful, _created_. Otherwise _error_
-- *error:* if status is _error_, this will be a string describing the error
-- *token:* if the status is _created_, this will be a TFE token that can be used to access the TFE API
-
+```json
+{
+  "status": "created",
+  "token": "aabbccdd.v1.atlas.ddeeffgghhiijjkkllmmnnooppqqrrssttuuvvxxyyzz"
+}
+```
