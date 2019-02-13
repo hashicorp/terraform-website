@@ -15,7 +15,7 @@ Performing a run on a new configuration is a multi-step process.
 1. [Create a configuration version on the workspace](./configuration-versions.html#create-a-configuration-version).
 2. [Upload configuration files to the configuration version](./configuration-versions.html#upload-configuration-files).
 3. [Create a run on the workspace](#create-a-run); this is done automatically when a configuration file is uploaded.
-4. [Create and queue an apply on the run](#apply-a-run); if auto-apply is not enabled.
+4. [Create and queue an apply on the run](#apply-a-run); if the run can't be auto-applied.
 
 Alternatively, you can create a run with a pre-existing configuration version, even one from another workspace. This is useful for promoting known good code from one workspace to another.
 
@@ -152,7 +152,7 @@ Parameter | Description
 ----------|------------
 `run_id`  | The run ID to apply
 
-Applies a run that is paused waiting for confirmation after a plan. This includes runs in the "needs confirmation" and "policy checked" states. This action is only required for workspaces without auto-apply enabled.
+Applies a run that is paused waiting for confirmation after a plan. This includes runs in the "needs confirmation" and "policy checked" states. This action is only required for runs that can't be auto-applied. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace, the plan is not a destroy plan, and the plan was not queued by a user without write permissions.)
 
 This endpoint queues the request to perform an apply; the apply might not happen immediately.
 

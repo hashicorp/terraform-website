@@ -36,8 +36,8 @@ _Leaving this stage:_
 - If the plan succeeded and doesn't require any changes (since it already matches the current infrastructure state), TFE skips to completion (**No Changes** state).
 - If the plan succeeded and requires changes:
     - If [Sentinel policies][] are enabled, TFE proceeds automatically to the policy check stage.
-    - If there are no Sentinel policies and auto-apply is enabled on the workspace, TFE proceeds automatically to the apply stage.
-    - If there are no Sentinel policies and auto-apply is disabled, TFE pauses in the **Needs Confirmation** state until a user with write access to the workspace takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
+    - If there are no Sentinel policies and the plan can be auto-applied, TFE proceeds automatically to the apply stage. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace, the plan is not a destroy plan, and the plan was not queued by a user without write permissions.)
+    - If there are no Sentinel policies and the plan can't be auto-applied, TFE pauses in the **Needs Confirmation** state until a user with write access to the workspace takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
 
 ## 3. The Policy Check Stage
 
@@ -58,8 +58,8 @@ _Leaving this stage:_
     - If a member of the owners team overrides the failed policy, the run proceeds to the **Policy Checked** state.
     - If an owner or a user with write access discards the run, TFE skips to completion (**Discarded** state).
 - If the run reaches the **Policy Checked** state (no mandatory policies failed, or soft-mandatory policies were overridden):
-    - If auto-apply is enabled on the workspace, TFE proceeds automatically to the apply stage.
-    - If auto-apply is disabled, TFE pauses in the **Policy Checked** state until a user with write access takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
+    - If the plan can be auto-applied, TFE proceeds automatically to the apply stage. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace, the plan is not a destroy plan, and the plan was not queued by a user without write permissions.)
+    - If the plan can't be auto-applied, TFE pauses in the **Policy Checked** state until a user with write access takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
 
 
 ## 4. The Apply Stage
