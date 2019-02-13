@@ -136,19 +136,21 @@ of the user.
 
 |  | Configuration | Vault | PostgreSQL | Blob Storage |
 |-------------------|--------------------------------------|----------------------------------------------------------------------------------------------|--------------------------------------|--------------------------------------|
-| Demo | Stored in Docker volumes on instance | Key material is stored in Docker volumes on instance, storage backend is internal PostgreSQL | Stored in Docker volumes on instance | Stored in Docker volumes on instance |
-| Mounted Disk | Stored in Docker volumes on instance | Key material on host in `/var/lib/tfe-vault`, storage backend is mounted disk PostgreSQL | Stored in mounted disks | Stored in mounted disks |
-| External Services | Stored in Docker volumes on instance | Key material on host in `/var/lib/tfe-vault`, storage backend is external PostgreSQL | Stored in external service | Stored in external service |
+| Demo | Stored in Docker volumes on instance | Key material stored in Docker volumes on instance; storage backend is internal PostgreSQL | Stored in Docker volumes on instance | Stored in Docker volumes on instance |
+| Mounted Disk | Stored in Docker volumes on instance | Key material encrypted with [encryption password][] and stored in PostgreSQL; storage backend is mounted disk PostgreSQL | Stored in mounted disks | Stored in mounted disks |
+| External Services | Stored in Docker volumes on instance | Key material encrypted with [encryption password][] and stored in PostgreSQL; storage backend is external PostgreSQL | Stored in external service | Stored in external service |
 | External Vault | - | Key material in external Vault with user-defined storage backend | - | - |
+
+[Encryption password]: ./encryption-password.html
 
 *Backup and Restore Responsibility*
 
-|                   | Configuration | Vault | PostgreSQL | Blob Storage |
-|-------------------|---------------|-------|------------|--------------|
-| Demo              | PTFE          | PTFE  | PTFE       | PTFE         |
-| Mounted Disk      | PTFE          | PTFE  | User       | User         |
-| External Services | PTFE          | PTFE  | User       | User         |
-| External Vault    | -             | User  | -          | -            |
+|                   | Configuration | Vault | Password | PostgreSQL | Blob Storage |
+|-------------------|---------------|-------|----------|------------|--------------|
+| Demo              | PTFE          | PTFE  | -        | PTFE       | PTFE         |
+| Mounted Disk      | PTFE          | PTFE  | User     | User       | User         |
+| External Services | PTFE          | PTFE  | User     | User       | User         |
+| External Vault    | -             | User  | -        | -          | -            |
 
 ### Demo
 
