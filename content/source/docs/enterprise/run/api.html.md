@@ -95,7 +95,7 @@ UPLOAD_URL=($(curl \
 
 Next, upload the configuration version `tar.gz` file to the upload URL extracted from the previous step. If a file is not uploaded, the configuration version will not be usable, since it will have no Terraform configuration files.
 
-Terraform Enterprise automatically creates a new run with a plan once the new file is uploaded. If the workspace is configured to auto-apply, it will also apply if the plan succeeds; otherwise, an apply can be triggered via the [Run Apply API](../api/run.html#apply).
+Terraform Enterprise automatically creates a new run with a plan once the new file is uploaded. If the workspace is configured to auto-apply, it will also apply if the plan succeeds; otherwise, an apply can be triggered via the [Run Apply API](../api/run.html#apply). (If the API token used for the upload only has plan permissions, the run can't be auto-applied.)
 
 ```bash
 curl \

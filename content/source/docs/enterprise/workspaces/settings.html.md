@@ -46,6 +46,11 @@ The display name of the workspace.
 
 Whether or not TFE should automatically apply a successful Terraform plan. If you choose manual apply, an operator must confirm a successful plan and choose to apply it.
 
+Auto-apply has a few exceptions:
+
+- [Destroy plans](#destruction-and-deletion) must always be manually applied.
+- Plans queued by users with [plan permissions](../users-teams-organizations/permissions.html#plan) must be approved by a user with write or admin permissions.
+
 ### Terraform Version
 
 Which version of Terraform to use for all operations in the workspace. The default value is whichever release was current when the workspace was created.
