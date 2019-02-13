@@ -1,25 +1,21 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Encryption Password"
-sidebar_current: "docs-enterprise2-private-encryption-password"
+sidebar_current: "docs-enterprise2-private-installer-encryption-password"
 ---
 
 # Private Terraform Enterprise Encryption Password
 
-During the installation of Private Terraform Enterprise,
-a password is used to encrypt sensitive information at
-rest. The default value is auto-generated, but we
-strongly suggest you create your own password.
+During the installation of Private Terraform Enterprise (PTFE),
+a password is used to encrypt Vault's unseal key and root token at
+rest. The encrypted Vault credentials are stored in PostgreSQL,
+so they are included in normal backups and can be recovered with the password.
 
-Be sure to retain the value, because you will need
-to use this password to restore access to the data
-in the event of a reinstall.
+The default password is auto-generated, but we
+strongly suggest you create your own.
 
-The Encryption Password is used to protect the vault unseal
-key and root token when the internal Vault is used.
-It allows us to store those details in PostgreSQL,
-which means that Vault is only dependent on the
-encryption password itself and details in PostgreSQL.
+Be sure to retain the password, because it is necessary for
+restoring access to PTFE's data in the event of a reinstall.
 
 ## Specifying the Encryption Password
 
