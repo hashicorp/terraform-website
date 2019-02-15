@@ -10,11 +10,11 @@ description: |-
 # Schema Behaviors
 
 Schema fields that can have an effect at plan or apply time are collectively
-referred to as "Behavioral fields", or an elements _behaviors_. These fields are
+referred to as "Behavioral fields", or an element's _behaviors_. These fields are
 often combined in several ways to create different behaviors, depending on the
 need of the element in question, typically customized to match the behavior of a
-cloud service API. For example, at time of writing AWS Launch Configurations
-cannot be updated through the AWS API. As a result all of the schema elements in
+cloud service API. For example, at time of writing, AWS Launch Configurations
+cannot be updated through the AWS API. As a result, all of the schema elements in
 the corresponding Terraform Provider resource `aws_launch_configuration` are
 marked as `ForceNew: true`. This behavior instructs Terraform to first destroy
 and then recreate the resource if any of the attributes change in the
@@ -214,7 +214,7 @@ or logical equivalences in JSON values.
 
 Here we assume the service API accepts capitalizations of the `base_image` name
 and converts it to a lowercase string. The API then returns the lower case value
-in it’s responses. 
+in its responses. 
 
 ```hcl
 resource "example_instance" "ex" {
@@ -230,13 +230,13 @@ resource "example_instance" "ex" {
 
 - Cannot be used if `Default` is specified
 
-When `DefaultFunc` will be used to compute a dynamic default for this element.
+When provided `DefaultFunc` will be used to compute a dynamic default for this element.
 The return value of this function should be "stable", such that it is uncommon
 to return different values in subsequent plans without any other changes being
 made, to avoid unnecessary diffs in `terraform plan`. 
 
-`DefaultFunc` is most commonly used in Provider schemas, allows elements to have
-a default read from the environment. 
+`DefaultFunc` is most commonly used in Provider schemas to allow elements to have
+defaults that are read from the environment. 
 
 **Schema example:**
 
@@ -329,13 +329,13 @@ Value in statefile:
 
 - Only works with primitive types  
 
-`SchemaValidateFunc` is a function used to validate the value of a primitive type. Common use cases include ensuring an integer falls within a range or a string value is present in a list of valid options. The function returns two slices, the first for warnings, the second is errors which can be used to catch multiple invalid cases. Terraform will only halt execution if an error is returned. Returning warnings will warn the user but the data provided is considered valid.
+`SchemaValidateFunc` is a function used to validate the value of a primitive type. Common use cases include ensuring an integer falls within a range or a string value is present in a list of valid options. The function returns two slices; the first for warnings, the second for errors which can be used to catch multiple invalid cases. Terraform will only halt execution if an error is returned. Returning warnings will warn the user but the data provided is considered valid.
 
 Terraform includes a number of validators for use in plugins in the validation package. A full list can be found here: https://godoc.org/github.com/hashicorp/terraform/helper/validation 
 
 **Schema example:**
 
-In this example, the `ValidateFunc` ensures the integer provider is a value between 0 and 10.
+In this example, the `ValidateFunc` ensures the integer provided is a value between 0 and 10.
 
 ```go
 "amount": &schema.Schema{
