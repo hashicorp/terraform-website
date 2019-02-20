@@ -12,9 +12,10 @@ This allows users that wish to automate installation even more to do so, allowin
 
 ## Initial Admin Creation Token (IACT)
 
-### Via Command
+To create the initial admin user via the API, the request must be authenticated with the Initial Admin Creation Token (IACT). This token is one time use,
+only working to create the admin user when there are no users configured in the system. The IACT can be found a couple of different ways:
 
-To create the initial admin user, the IACT must be retrieved. It will be presented to creation API to protect the security of the installation.
+### Via Command
 
 Once the product is installed, simply run:
 
