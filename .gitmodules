@@ -386,3 +386,7 @@
 	path = ext/providers/selectel
 	url = https://github.com/terraform-providers/terraform-provider-selectel
 	branch = stable-website
+[submodule "ext/providers/yandex"]
+	path = ext/providers/yandex
+	url = https://github.com/terraform-providers/terraform-provider-yandex
+	branch = stable-website
