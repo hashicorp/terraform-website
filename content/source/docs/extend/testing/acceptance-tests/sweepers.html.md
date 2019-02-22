@@ -77,9 +77,10 @@ func init() {
             for _, instance := range instances {
                 if strings.HasPrefix(instance.Name, "test-acc") {
                     err := conn.DestroyInstance(instance.ID)
-                }
-                if err != nil {
-                    log.Printf("Error destroying %s during sweep: %s", instance.Name, err)
+
+                    if err != nil {
+                        log.Printf("Error destroying %s during sweep: %s", instance.Name, err)
+                    }
                 }
             }
         },
