@@ -152,15 +152,15 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-Key path                                   | Type    | Default  | Description
--------------------------------------------|---------|----------|------------
-`data.type`                                | string  |          | Must be `"organizations"`
-`data.attributes.name`                     | string  |          | Name of the organization
-`data.attributes.email`                    | string  |          | Admin email address
-`data.attributes.session-timeout`          | integer |    20160 | Session timeout after inactivity (minutes)
-`data.attributes.session-remember`         | integer |    20160 | Session expiration (minutes)
-`data.attributes.collaborator-auth-policy` | string  | password | Authentication policy (`password` or `two_factor_mandatory`)
-`data.attributes.owners-team-saml-role-id` | string  |          | **SAML only** The name of the ["owners" team](../saml/team-membership.html#managing-membership-of-the-owners-team)
+Key path                                   | Type    | Default   | Description
+-------------------------------------------|---------|-----------|------------
+`data.type`                                | string  |           | Must be `"organizations"`
+`data.attributes.name`                     | string  |           | Name of the organization
+`data.attributes.email`                    | string  |           | Admin email address
+`data.attributes.session-timeout`          | integer |    20160  | Session timeout after inactivity (minutes)
+`data.attributes.session-remember`         | integer |    20160  | Session expiration (minutes)
+`data.attributes.collaborator-auth-policy` | string  | password  | Authentication policy (`password` or `two_factor_mandatory`)
+`data.attributes.owners-team-saml-role-id` | string  | (nothing) | **Optional.** **SAML only** The name of the ["owners" team](../saml/team-membership.html#managing-membership-of-the-owners-team)
 
 ### Sample Payload
 
@@ -245,15 +245,15 @@ Status  | Response                                        | Reason
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
-Key path                                   | Type    | Default  | Description
--------------------------------------------|---------|----------|------------
-`data.type`                                | string  |          | Must be `"organizations"`
-`data.attributes.name`                     | string  |          | Name of the organization
-`data.attributes.email`                    | string  |          | Admin email address
-`data.attributes.session-timeout`          | integer |    20160 | Session timeout after inactivity (minutes)
-`data.attributes.session-remember`         | integer |    20160 | Session expiration (minutes)
-`data.attributes.collaborator-auth-policy` | string  | password | Authentication policy (`password` or `two_factor_mandatory`)
-`data.attributes.owners-team-saml-role-id` | string  |          | **SAML only** The name of the ["owners" team](../saml/team-membership.html#managing-membership-of-the-owners-team)
+Key path                                   | Type    | Default   | Description
+-------------------------------------------|---------|-----------|------------
+`data.type`                                | string  |           | Must be `"organizations"`
+`data.attributes.name`                     | string  |           | Name of the organization
+`data.attributes.email`                    | string  |           | Admin email address
+`data.attributes.session-timeout`          | integer |    20160  | Session timeout after inactivity (minutes)
+`data.attributes.session-remember`         | integer |    20160  | Session expiration (minutes)
+`data.attributes.collaborator-auth-policy` | string  | password  | Authentication policy (`password` or `two_factor_mandatory`)
+`data.attributes.owners-team-saml-role-id` | string  | (nothing) | **Optional.** **SAML only** The name of the ["owners" team](../saml/team-membership.html#managing-membership-of-the-owners-team)
 
 ### Sample Payload
 
