@@ -22,7 +22,7 @@ After installation, run:
 ptfe-admin retrieve-iact
 ```
 
-The complete output is the IACT, which will be used in the next step. This is provided as a command to allow for simplicity with automating its invocation.
+The command outputs only the complete IACT, which facilitates use in automation.
 
 ### Via API
 
