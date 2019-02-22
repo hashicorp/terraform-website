@@ -12,6 +12,8 @@ sidebar_current: "docs-enterprise2-api-policy-checks"
 
 This endpoint lists the policy checks in a run.
 
+-> **Note**: The `sentinel` value is passed through directly from Sentinel and is likely to be absent or change.
+
 | Method | Path           |
 | :----- | :------------- |
 | GET | /runs/:run_id/policy-checks |
@@ -45,42 +47,7 @@ curl \
           "soft-failed": 1,
           "advisory-failed": 0,
           "duration-ms": 0,
-          "sentinel": {
-            "can-override": true,
-            "error": null,
-            "policies": [
-              {
-                "allowed-failure": false,
-                "error": null,
-                "policy": "contains-billing-tag.sentinel",
-                "result": false,
-                "trace": {
-                  "description": "",
-                  "error": null,
-                  "print": "",
-                  "result": false,
-                  "rules": {
-                    "main": {
-                      "ident": "main",
-                      "root": {
-                        "children": [
-                          {
-                            "children": null,
-                            "expression": "r.applied contains \"tags\"",
-                            "value": "false"
-                          }
-                        ],
-                        "expression": "all tfplan.resources.aws_instance as _, instances {\n\tall instances as _, r {\n\t\tr.applied contains \"tags\" and r.applied.tags contains \"billing-id\"\n\t}\n}",
-                        "value": "false"
-                      },
-                      "string": "Rule \"main\" (byte offset 18) = false\n  false (offset 120): r.applied contains \"tags\"\n"
-                    }
-                  }
-                }
-              }
-            ],
-            "result": false
-          }
+          "sentinel": {...}
         },
         "scope": "organization",
         "status": "soft_failed",
@@ -106,6 +73,8 @@ curl \
 ## Override Policy
 
 This endpoint overrides a soft-mandatory or warning policy.
+
+-> **Note**: The `sentinel` value is passed through directly from Sentinel and is likely to be absent or change.
 
 | Method | Path           |
 | :----- | :------------- |
@@ -141,42 +110,7 @@ curl \
         "soft-failed": 1,
         "advisory-failed": 0,
         "duration-ms": 0,
-        "sentinel": {
-          "can-override": true,
-          "error": null,
-          "policies": [
-            {
-              "allowed-failure": false,
-              "error": null,
-              "policy": "contains-billing-tag.sentinel",
-              "result": false,
-              "trace": {
-                "description": "",
-                "error": null,
-                "print": "",
-                "result": false,
-                "rules": {
-                  "main": {
-                    "ident": "main",
-                    "root": {
-                      "children": [
-                        {
-                          "children": null,
-                          "expression": "r.applied contains \"tags\"",
-                          "value": "false"
-                        }
-                      ],
-                      "expression": "all tfplan.resources.aws_instance as _, instances {\n\tall instances as _, r {\n\t\tr.applied contains \"tags\" and r.applied.tags contains \"billing-id\"\n\t}\n}",
-                      "value": "false"
-                    },
-                    "string": "Rule \"main\" (byte offset 18) = false\n  false (offset 120): r.applied contains \"tags\"\n"
-                  }
-                }
-              }
-            }
-          ],
-          "result": false
-        }
+        "sentinel": {...}
       },
       "scope": "organization",
       "status": "overridden",
