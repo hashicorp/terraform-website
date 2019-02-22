@@ -16,7 +16,7 @@ can only be used to create the admin user when there are no users configured in 
 
 ### Via Command
 
-Once the product is installed, simply run:
+After installation, run:
 
 ```shell
 ptfe-admin retrieve-iact
