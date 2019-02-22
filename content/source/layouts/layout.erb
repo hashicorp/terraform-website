@@ -13,17 +13,20 @@
     <link rel="mask-icon" href="<%= image_path("favicons/safari-pinned-tab.svg") %>" color="#5C4EE5">
     <meta name="msapplication-config" content="/microsoft-tile.xml" />
     <meta name="theme-color" content="#ffffff">
-
-    <meta name="twitter:card" content="summary" />
+    <% if content_for?(:custom_share) %><%# large, charismatic unfurl when sharing marketing pages %>
+      <%= yield_content :custom_share %>
+    <% else %><%# small, Slack-friendly unfurl when sharing many docs/downloads links in a row %>
+      <meta name="twitter:card" content="summary" />
+      <meta property="og:image" content="<%= image_url("og-image.png") %>"/>
+      <meta property="og:image:width" content="100"/>
+      <meta property="og:image:height" content="100"/>
+    <% end %>
     <meta name="twitter:site" content="@HashiCorp" />
     <meta name="twitter:creator" content="@HashiCorp" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="<%= File.join(base_url, current_page.url) %>" />
     <meta property="og:title" content="<%= title_for(current_page) %>" />
     <meta property="og:site_name" content="Terraform by HashiCorp"/>
-    <meta property="og:image" content="<%= image_url("og-image.png") %>"/>
-    <meta property="og:image:width" content="100"/>
-    <meta property="og:image:height" content="100"/>
     <meta property="og:description" content="<%= description_for(current_page) %>" />
 
     <title><%= title_for(current_page) %></title>

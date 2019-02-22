@@ -3,6 +3,11 @@ layout: "inner"
 page_title: "Terraform Logos"
 ---
 
+<% content_for(:custom_share) do %>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="<%= image_url("og-image-large.png") %>"/>
+<% end %>
+
 # Terraform Logos
 
 The following logos can be used in the `README` files for the core Terraform
