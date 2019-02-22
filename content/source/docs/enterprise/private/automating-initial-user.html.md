@@ -4,7 +4,7 @@ page_title: "Private Terraform Enterprise Automating Initial User"
 sidebar_current: "docs-enterprise2-private-installer-automating-initial-user"
 ---
 
-# Private Terraform Enterprise Automating Initial User
+# Private Terraform Enterprise - Automating Initial User Creation
 
 After Private Terraform Enterprise is installed, the initial admin user must then be created to begin using the product.
 Normally this user is created via a web browser but one can use an API to create this initial user as well.
