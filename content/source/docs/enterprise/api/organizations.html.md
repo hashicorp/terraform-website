@@ -160,7 +160,7 @@ Key path                                   | Type    | Default  | Description
 `data.attributes.session-timeout`          | integer |    20160 | Session timeout after inactivity (minutes)
 `data.attributes.session-remember`         | integer |    20160 | Session expiration (minutes)
 `data.attributes.collaborator-auth-policy` | string  | password | Authentication policy (`password` or `two_factor_mandatory`)
-`data.attributes.owners-team-saml-role-id` | string  |   owners | **SAML only** The name of the ["owners" team](../saml/team-membership.html#managing-membership-of-the-owners-team)
+`data.attributes.owners-team-saml-role-id` | string  |          | **SAML only** The name of the ["owners" team](../saml/team-membership.html#managing-membership-of-the-owners-team)
 
 ### Sample Payload
 
@@ -253,7 +253,7 @@ Key path                                   | Type    | Default  | Description
 `data.attributes.session-timeout`          | integer |    20160 | Session timeout after inactivity (minutes)
 `data.attributes.session-remember`         | integer |    20160 | Session expiration (minutes)
 `data.attributes.collaborator-auth-policy` | string  | password | Authentication policy (`password` or `two_factor_mandatory`)
-`data.attributes.owners-team-saml-role-id` | string  |   owners | **SAML only** The name of the ["owners" team](../saml/team-membership.html#managing-membership-of-the-owners-team)
+`data.attributes.owners-team-saml-role-id` | string  |          | **SAML only** The name of the ["owners" team](../saml/team-membership.html#managing-membership-of-the-owners-team)
 
 ### Sample Payload
 
