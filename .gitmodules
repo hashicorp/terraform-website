@@ -390,3 +390,7 @@
 	path = ext/providers/yandex
 	url = https://github.com/terraform-providers/terraform-provider-yandex
 	branch = stable-website
+[submodule "ext/providers/ciscoasa"]
+	path = ext/providers/ciscoasa
+	url = https://github.com/terraform-providers/terraform-provider-ciscoasa
+	branch = stable-website
