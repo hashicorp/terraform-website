@@ -42,7 +42,9 @@ Speculative plans are plan-only runs: they show a set of possible changes (and c
 
 There are three ways to run speculative plans:
 
-- In [VCS-backed workspaces](./ui.html), each pull request starts a speculative plan. TFE adds a link to the plan in the VCS provider's pull request interface. If multiple workspaces use the same repository, each of them will add a plan to the pull request.
+- In [VCS-backed workspaces](./ui.html), a pull request to the linked VCS branch (from another branch in the same repository) starts a speculative plan. Each workspace linked to the destination branch will perform a plan and post a link to it in the VCS provider's pull request interface.
+
+    -> **Note:** To avoid executing malicious code or exposing sensitive information, TFE doesn't run speculative plans for pull requests that originate from other forks of a repository.
 - With the [remote backend](/docs/backends/types/remote.html) configured, running `terraform plan` on the command line starts a speculative plan. The plan output streams to the terminal, and a link to the plan is also included.
 - The runs API creates speculative plans whenever the specified configuration version is marked as speculative. See [the `configuration-versions` API](../api/configuration-versions.html#create-a-configuration-version) for more information.
 

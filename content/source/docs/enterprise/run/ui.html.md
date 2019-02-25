@@ -48,9 +48,9 @@ If you would rather automatically apply plans that don't have errors, you can [e
 
 ## Speculative Plans on Pull Requests
 
-When a pull request is made to a linked repository, each environment linked to that repository runs a [speculative plan][] and posts a link to the plan in the pull request. Members of your organization can consult the results of these plans when reviewing pull requests. Speculative plans are re-run if the code in a pull request is updated.
+When a pull request is opened between two branches in a linked repository, TFE runs a [speculative plan][] in every workspace linked to the destination branch and posts links to those plans in the pull request. Members of your organization can consult the plan results when reviewing pull requests. Speculative plans are re-run if the code in a pull request is updated.
 
-Due to VCS providers' access controls, this feature only works for pull requests that originate _from_ the linked repository — pull requests that originate from other forks of the repository do not receive speculative plans, since TFE can't reliably access or monitor the contents of those forks.
+-> **Note:** To avoid executing malicious code or exposing sensitive information, TFE doesn't run speculative plans for pull requests that originate from other forks of a repository.
 
 ## Speculative Plans During Development
 
