@@ -49,6 +49,7 @@ curl \
         "connect-path": "/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a?organization_id=1",
         "service-provider": "github",
         "service-provider-display-name": "GitHub",
+        "name": null,
         "http-url": "https://github.com",
         "api-url": "https://api.github.com",
         "key": null,
@@ -112,6 +113,7 @@ curl \
       "connect-path": "/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a?organization_id=1",
       "service-provider": "github",
       "service-provider-display-name": "GitHub",
+      "name": null,
       "http-url": "https://github.com",
       "api-url": "https://api.github.com",
       "key": null,
@@ -170,6 +172,7 @@ Key path                             | Type   | Default | Description
 -------------------------------------|--------|---------|------------
 `data.type`                          | string |         | Must be `"oauth-clients"`.
 `data.attributes.service-provider`   | string |         | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"bitbucket_hosted"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, or `"gitlab_enterprise_edition"`.
+`data.attributes.name`               | string | `null`  | An optional display name for the OAuth Client. If left `null`, the Terraform Enterprise UI will default to the display name of the VCS provider.
 `data.attributes.http-url`           | string |         | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
 `data.attributes.api-url`            | string |         | The base URL of your VCS provider's API (e.g. `https://api.github.com` or `"https://ghe.example.com/api/v3"`)
 `data.attributes.oauth-token-string` | string |         | The token string you were given by your VCS provider
@@ -214,6 +217,7 @@ curl \
       "connect-path": "/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a?organization_id=1",
       "service-provider": "github",
       "service-provider-display-name": "GitHub",
+      "name": null,
       "http-url": "https://github.com",
       "api-url": "https://api.github.com",
       "key": null,
@@ -264,6 +268,7 @@ Key path                             | Type   | Default | Description
 -------------------------------------|--------|---------|------------
 `data.type`                          | string |         | Must be `"oauth-clients"`.
 `data.attributes.service-provider`   | string | (previous value) | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"bitbucket_hosted"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, or `"gitlab_enterprise_edition"`.
+`data.attributes.name`               | string | (previous value)  | An optional display name for the OAuth Client. If set to `null`, the Terraform Enterprise UI will default to the display name of the VCS provider.
 `data.attributes.http-url`           | string | (previous value) | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
 `data.attributes.api-url`            | string | (previous value) | The base URL of your VCS provider's API (e.g. `https://api.github.com` or `"https://ghe.example.com/api/v3"`)
 `data.attributes.key`                | string | (previous value) | The OAuth client key.
@@ -311,6 +316,7 @@ curl \
       "connect-path": "/auth/35936d44-842c-4ddd-b4d4-7c741383dc3a?organization_id=1",
       "service-provider": "github",
       "service-provider-display-name": "GitHub",
+      "name": null,
       "http-url": "https://github.com",
       "api-url": "https://api.github.com",
       "key": null,
