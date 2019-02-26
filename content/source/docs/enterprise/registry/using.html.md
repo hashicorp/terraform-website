@@ -6,8 +6,6 @@ sidebar_current: "docs-enterprise2-registry-using"
 
 # Using Modules from the Terraform Enterprise Private Module Registry
 
--> **Note:** Currently, the private module registry works with all supported VCS providers except Bitbucket Cloud.
-
 By design, Terraform Enterprise (TFE)'s private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already familiar with the public registry, here are the main differences:
 
 - Use TFE's web UI to browse and search for modules.
