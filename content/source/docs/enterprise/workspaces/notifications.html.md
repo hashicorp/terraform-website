@@ -37,12 +37,12 @@ Go to the workspace's notifications settings and press the "Add Notification" bu
 
 Fill in the following fields to configure your notifications:
 
-- **Destination Type:** TFE can deliver either a generic payload or a payload formatted specifically for Slack. Choose which type you want from the drop-down. Payload contents are [documented below][inpage-payload].
+- **Destination:** TFE can deliver either a generic payload or a payload formatted specifically for Slack. Choose which type you want from the drop-down. Payload contents are [documented below][inpage-payload].
 - **Name:** An arbitrary display name to use for this notification configuration.
-- **URL:** The destination URL to send the webhook payload to. This URL must accept HTTP or HTTPS `POST` requests, and should be able to do something useful with the chosen payload type.
+- **Webhook URL:** The destination URL to send the webhook payload to. This URL must accept HTTP or HTTPS `POST` requests, and should be able to do something useful with the chosen payload type.
     - If you are sending notifications to Slack, see Slack's documentation on [how to create an incoming webhook](https://api.slack.com/incoming-webhooks#create_a_webhook).
 - **Token** _(optional; only available for generic webhooks):_ An arbitrary secret string, which TFE will use to sign its notification webhooks. ([See "Notification Authenticity" below][inpage-hmac].) This setting is encrypted for storage, and cannot be viewed after it is saved.
-- **Trigger:** Checkboxes to choose which run events should trigger notifications to this destination. The following triggers are available:
+- **Triggers:** Whether to notify this destination for all events, or only for selected events. The following specific events are available:
     - **Created**: When a run is created and enters the "Pending" state.
     - **Planning**: When a run acquires the lock and starts to execute.
     - **Needs Attention**: Human decision required. When a plan has changes and is not auto-applied, or requires a policy override.
@@ -56,7 +56,7 @@ Next, you must enable the configuration; see the next section for details.
 
 ## Enabling and Verifying a Configuration
 
-Before a destination can start receiving notifications, the configuration must first be verified by making a successful test request. Clicking the "Enable Configuration" button will attempt the verification automatically, and enable the notifications configuration if successful. Verification can also be performed on demand with the "Verify Configuration" button.
+To enable a new configuration, click the enable/disable switch on its detail page (located near the configuration's title). TFE will attempt to verify the configuration by sending a test message, and will enable the notification configuration if the test succeeds.
 
 For a verification to be successful, the destination must respond with a `2xx` HTTP code.
 
@@ -66,7 +66,7 @@ If verification fails, TFE will display an error message (with the HTTP status c
 
 ![Screenshot: a failed notification verification](./images/notifications-error.png)
 
-For both successful and unsuccessful verifications, you can click on the "Response Details" box to view more information about the verification results.
+For both successful and unsuccessful verifications, you can click on the "Last Response" box to view more information about the verification results. You can also send additional test messages with the "Send a Test" link.
 
 ## Notification Payloads
 
