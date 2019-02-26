@@ -149,6 +149,11 @@ The UI to upload these certificates looks like:
    the certificate chain for that CA must be included here as well. This allows the instance
    to properly query itself.
 
+
+As of version 201902-01, TLS versions 1.0 and 1.1 are no longer support in Private Terraform Enterprise. TLS v1.3 is now supported, and configurable:
+
+![ptfe-tls-ui](./assets/ptfe-tls-ui.png)
+
 ### Operational Mode Decision
 
 Terraform Enterprise can store its state in a few different ways and you'll
