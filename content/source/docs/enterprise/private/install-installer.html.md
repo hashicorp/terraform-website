@@ -152,7 +152,7 @@ The UI to upload these certificates looks like:
 
 #### TLS Versions
 
-As of version 201902-01, TLS versions 1.0 and 1.1 are no longer support in Private Terraform Enterprise. Your options now include TLS v1.2 and TLS v1.3:
+As of version 201902-01, TLS versions 1.0 and 1.1 are no longer supported in Private Terraform Enterprise. Your options now include TLS v1.2 and TLS v1.3:
 
 ![ptfe-tls-ui](./assets/ptfe-tls-ui.png)
 
