@@ -207,7 +207,12 @@ From a shell on your instance, in the directory where you placed the `replicated
       your setup email.
 1. Secure access to the installer dashboard. We recommend at least setting up the
    simple password authentication. If you're so inclined, LDAP authentication can also be
-   configured.
+   configured using the following steps:
+      1. Navigate to your installer dashboard at https://<TFE_HOSTNAME>:8800
+      1. Click the gear on the top right of the page
+      1. Under security, select "Change console security settings"
+      1. Once in the console security settings you can select LDAP from the options list, and then configure your LDAP connection as appropriate.   
+
 1. The system will now perform a set of pre-flight checks on the instance and
    the configuration up to this point and indicate any failures. You can either fix the issues
    and re-run the checks, or ignore the warnings and proceed. If the system is running behind a proxy and is unable to connect to `releases.hashicorp.com:443`, it is likely safe to proceed; this check does not currently use the proxy. For any other issues, if you proceed despite the warnings, you are assuming the support responsibility.
