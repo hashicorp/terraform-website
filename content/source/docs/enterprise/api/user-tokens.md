@@ -16,6 +16,8 @@ Parameter   | Description
 ------------|------------
 `:user_id`  | The ID of the User.
 
+Use the [Account API](./account.html) to find your own user ID.
+
 The objects returned by this endpoint only contain metadata, and do not include the secret text of any authentication tokens. A token is only shown upon creation, and cannot be recovered later.
 
 -> **Note:** You must access this endpoint with a [user token](../users-teams-organizations/users.html#api-tokens), and it will only return useful data for that token's user account.
@@ -137,6 +139,8 @@ curl \
 Parameter   | Description
 ------------|------------
 `:user_id`  | The ID of the User.
+
+Use the [Account API](./account.html) to find your own user ID.
 
 This endpoint returns the secret text of the created authentication token. A token is only shown upon creation, and cannot be recovered later.
 

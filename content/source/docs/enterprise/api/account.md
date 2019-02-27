@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-api-account"
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-Account represents the current user interacting with Terraform.
+Account represents the current user interacting with Terraform. It returns the same type of object as the [Users](./users.html) API, but also includes an email address, which is hidden when viewing info about other users.
 
 ## Get your account details
 
