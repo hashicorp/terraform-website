@@ -211,7 +211,7 @@ From a shell on your instance, in the directory where you placed the `replicated
       1. Navigate to the installer dashboard at https://<TFE_HOSTNAME>:8800
       1. Click the gear on the top right of the page.
       1. Under security, select "Change console security settings".
-      1. Once in the console security settings you can select LDAP from the options list, and then configure your LDAP connection as appropriate.   
+      1. Once in the console security settings, select LDAP from the options list and then configure your LDAP connection as appropriate.   
 
 1. The system will now perform a set of pre-flight checks on the instance and
    the configuration up to this point and indicate any failures. You can either fix the issues
