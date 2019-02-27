@@ -24,7 +24,7 @@ The Terraform code for a normal run always comes from version control, and is al
 
 ## Starting Runs
 
-Most of the time, runs start automatically whenever you commit changes to version control through a merge or direct commit to the target branch.
+Most of the time, runs start automatically whenever you commit changes to version control through a merge or direct commit to the linked branch.
 
 When you initially set up the workspace and add variables, or when the code in version control hasn't changed but you've modified some variables in TFE, you can manually queue a plan from the UI. Each workspace has a "Queue Plan" button for this purpose. Manually queueing a plan requires write or admin access.
 
@@ -48,9 +48,13 @@ If you would rather automatically apply plans that don't have errors, you can [e
 
 ## Speculative Plans on Pull Requests
 
-When a pull request is made to a linked repository, each environment linked to that repository runs a [speculative plan][] and posts a link to the plan in the pull request. Members of your organization can consult the results of these plans when reviewing pull requests. Speculative plans are re-run if the code in a pull request is updated.
+When branch in a linked repo receives a pull request (PR) from another branch in that repo, TFE runs a [speculative plan][] in every workspace linked to the destination branch. Links to those plans appear in the PR, and members of your TFE organization with read access to those workspaces can view the plan results when reviewing PRs.
 
-Due to VCS providers' access controls, this feature only works for pull requests that originate _from_ the linked repository — pull requests that originate from other forks of the repository do not receive speculative plans, since TFE can't reliably access or monitor the contents of those forks.
+Speculative plans are re-run if the code in a pull request is updated.
+
+Speculative plans for PRs are based on the contents of the head branch (the branch that the PR proposes to merge into the destination branch), and they compare against the workspace's current state at the time the plan was run. This means that if the destination branch changes significantly after the head branch is created, the speculative plan might not accurately show the results of accepting the PR. To get a more accurate view, you can rebase the head branch onto a more recent commit, or merge the destination branch into the head branch.
+
+-> **Note:** To avoid executing malicious code or exposing sensitive information, TFE doesn't run speculative plans for pull requests that originate from other forks of a repository.
 
 ## Speculative Plans During Development
 
