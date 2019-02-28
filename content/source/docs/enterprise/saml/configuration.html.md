@@ -43,7 +43,7 @@ The SAML settings are separated into sections:
 - **Single Log-Out URL**: The HTTP(s) endpoint on your IdP for single logout requests. This value is provided by your IdP configuration. Single Logout is not yet supported.
 - **IdP Certificate**: The PEM encoded X.509 Certificate as provided by the IdP configuration.
 
--> **Note:** When reconfiguring the IdP certificate, TFE will retain the old IdP certificate to allow for a rotation period. When you are sure that the new certificate is functioning correctly, you must explicitly remove the old IdP certificate. You can do this via TFE's web UI or an [API endpoint](../api/admin/settings.html#revoke-previous-saml-idp-certificate).
+-> **Note:** When reconfiguring the IdP certificate, TFE will retain the old IdP certificate to allow for a rotation period. When you are sure that the new certificate is functioning correctly, you must explicitly remove the old IdP certificate. A button labeled "Revoke old IDP certificate" will appear below the IdP Certificate field if you are in a rotation period. You can also remove the old certificate via an [API endpoint](../api/admin/settings.html#revoke-previous-saml-idp-certificate).
 
 ### Attributes
 
