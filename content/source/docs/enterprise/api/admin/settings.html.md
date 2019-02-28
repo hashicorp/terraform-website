@@ -266,6 +266,8 @@ curl \
 
 ## Revoke previous SAML IdP Certificate
 
+`PUT /api/v2/admin/saml-settings/actions/revoke-old-certificate`
+
 When reconfiguring the IdP certificate, TFE will retain the old IdP certificate to allow for a rotation period. This PUT endpoint will revoke the older IdP certificate when the new IdP certificate is known to be functioning correctly.
 
 See [SAML Configuration](../../saml/configuration.html) for more details.
