@@ -164,3 +164,8 @@
 # to the interpolation page tend to use section headers that no longer exist,
 # and so landing in the 0.11 interpolation docs gives a better result.
 /docs/configuration/interpolation.html /docs/configuration-0-11/interpolation.html
+
+# Environment variables are now covered in "commands" rather than in
+# "configuration", because they relate to CLI functionality rather than the
+# configuration language.
+/docs/configuration/environment-variables.html /docs/commands/environment-variables.html
