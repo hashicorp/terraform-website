@@ -26,7 +26,7 @@ seriously. This table lists which parts of the PTFE app can contain sensitive da
 | Twilio Account Configuration         | PostgreSQL    | Vault Transit Encryption              |
 | SMTP Configuration                   | PostgreSQL    | Vault Transit Encryption              |
 | SAML Configuration                   | PostgreSQL    | Vault Transit Encryption              |
-| Vault Unseal Key                     | Host          | No                                    |
+| Vault Unseal Key                     | PostgreSQL    | ChaCha20+Poly1305                     |
 
 ## Vault Transit Encryption
 The [Vault Transit Secret Engine](https://www.vaultproject.io/docs/secrets/transit/index.html) handles encryption for data in-transit and is used when encrypting data from the application to the applicable [storage layer](https://www.terraform.io/docs/enterprise/private/reliability-availability.html#components).
