@@ -32,7 +32,7 @@ The recommended process for removing an attribute from a data source or resource
 1. Ensure the changelog has an entry noting the deprecation.
 1. Release a `MINOR` version with the deprecation.
 1. In the next `MAJOR` version, remove all code associated with the attribute except for its schema definition.
-1. Replace `Deprecated` with `Removed` in the attribute schema definition. After an operator upgrades to this version, they will be shown an error with the message provided when using the attribute.
+1. Replace `Deprecated` with `Removed` in the attribute schema definition. Add `Computed: true` if not present. Ensure all `ConflictsWith`, `DiffSuppressFunc`, `ForceNew`, and `Set` are removed. After an operator upgrades to this version, they will be shown an error with the message provided when using the attribute and their plans should show no updates related to removing this attribute.
 1. Ensure the changelog has an entry noting the removal.
 1. Release the `MAJOR` version.
 1. In the next `MAJOR` version afterwards, completely remove the attribute schema definition. No changelog is necessary.
@@ -582,8 +582,10 @@ The recommended process for removing a data source or resource from a provider i
 1. Add `DeprecationMessage` in the data source or resource schema definition. After an operator upgrades to this version, they will be shown a warning with the message provided when using the deprecated data source or resource, but the Terraform run will still complete.
 1. Ensure the changelog has an entry noting the deprecation.
 1. Release a `MINOR` version with the deprecation.
-1. In the next `MAJOR` version, remove all code associated with the deprecated data source or resource. After an operator upgrades to this version, they will be shown an error about the missing data source or resource.
+1. In the next `MAJOR` version, remove all code associated with the deprecated data source or resource except for the schema and replace the `Create` and `Read` functions to always return an error. Remove the documentation sidebar link and update the resource or data source documentation page to include information about the removal and any potential migration infromation. After an operator upgrades to this version, they will be shown an error about the missing data source or resource.
 1. Ensure the changelog has an entry noting the removal.
+1. Release the `MAJOR` version.
+1. In the next `MAJOR` version, remove all code associated with the removed data source or resource. Remove the resource or data source documentation page.
 1. Release the `MAJOR` version.
 
 ### Example Resource Removal
@@ -628,6 +630,34 @@ func resourceExampleWidget() *schema.Resource {
         // ... other configuration ...
 
         DeprecationMessage: "use example_thing resource instead"
+    }
+}
+```
+
+To soft remove `example_widget` with a friendly error message, this sample can be written as:
+
+```go
+func Provider() terraform.ResourceProvider {
+    return &schema.Provider{
+        // ... other configuration ...
+
+        ResourcesMap: map[string]*schema.Resource{
+            // ... other resources ...
+            "example_widget": resourceExampleWidget(),
+        },
+    }
+}
+
+func resourceExampleWidget() *schema.Resource {
+    return &schema.Resource{
+        // ... other configuration ...
+
+        Create: func(d *schema.ResourceData, meta interface{}) error {
+            return errors.New("use example_thing resource instead")
+        },
+        Read: func(d *schema.ResourceData, meta interface{}) error {
+            return errors.New("use example_thing resource instead")
+        },
     }
 }
 ```
@@ -704,6 +734,42 @@ func resourceExampleExistingWidget() *schema.Resource {
         // ... other configuration ...
 
         DeprecationMessage: "use example_new_widget resource instead"
+    }
+}
+
+func resourceExampleNewWidget() *schema.Resource {
+    return &schema.Resource{
+        // ... other configuration ...
+    }
+}
+```
+
+To soft remove `example_existing_widget` with a friendly error message:
+
+```go
+func Provider() terraform.ResourceProvider {
+    return &schema.Provider{
+        // ... other configuration ...
+
+        ResourcesMap: map[string]*schema.Resource{
+            // ... other resources ...
+
+            "example_existing_widget": resourceExampleExistingWidget(),
+            "example_new_widget":      resourceExampleNewWidget(),
+        },
+    }
+}
+
+func resourceExampleExistingWidget() *schema.Resource {
+    return &schema.Resource{
+        // ... other configuration ...
+
+        Create: func(d *schema.ResourceData, meta interface{}) error {
+            return errors.New("use example_new_widget resource instead")
+        },
+        Read: func(d *schema.ResourceData, meta interface{}) error {
+            return errors.New("use example_new_widget resource instead")
+        },
     }
 }
 
