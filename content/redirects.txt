@@ -169,3 +169,6 @@
 # "configuration", because they relate to CLI functionality rather than the
 # configuration language.
 /docs/configuration/environment-variables.html /docs/commands/environment-variables.html
+
+# Module usage docs are now consolidated into the Configuration/Modules page.
+/docs/modules/usage.html /docs/configuration/modules.html
