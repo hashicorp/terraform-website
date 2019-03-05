@@ -172,3 +172,6 @@
 
 # Module usage docs are now consolidated into the Configuration/Modules page.
 /docs/modules/usage.html /docs/configuration/modules.html
+
+# Module creation docs are now on the modules section index page.
+/docs/modules/create.html /docs/modules/index.html
