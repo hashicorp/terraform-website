@@ -6,7 +6,7 @@ These are downloaded from the [Google Search Console](https://search.google.com/
 
 The top 1000 can be opened in Google Sheets. Only links to `www.terraform.io` can be tested in this repository, make sure to filter out `registry.` or `app.` subdomain links.
 
-Strip the host and protocol from the urls and sorth alphabetically so the `incoming-links.txt` file looks like:
+Strip the host and protocol from the urls and sort alphabetically so the `incoming-links.txt` file looks like:
 
 ```
 /
