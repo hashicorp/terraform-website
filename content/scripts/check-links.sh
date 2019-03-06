@@ -9,24 +9,26 @@ if [ -n "$REJECT_PATH" ]; then
 	REJECT_REGEX_ARG="--reject-regex ${URL}${REJECT_PATH}"
 fi
 
-redirects_file="$(mktemp)"
-cat content/redirects.txt| awk -F' ' '{print $1}' | grep -v '^#' | sort | uniq > "$redirects_file"
+if [[ $a == */ ]]; then
+	redirects_file="$(mktemp)"
+	cat content/redirects.txt| awk -F' ' '{print $1}' | grep -v '^#' | sort | uniq > "$redirects_file"
 
-echo "Checking known incoming links..."
-grep -v -x -f "$redirects_file" content/scripts/testdata/incoming-links.txt \
-	| awk "{print \"${URL}\" \$0}" \
-	| wget \
-		--tries=120 \
-		--accept-regex "${URL}${ACCEPT_PATH}*" \
-		--delete-after \
-		--no-directories \
-		--no-host-directories \
-		--no-verbose \
-		--spider \
-		--waitretry=120 \
-		--input-file -
+	echo "Checking known incoming links..."
+	grep -v -x -f "$redirects_file" content/scripts/testdata/incoming-links.txt \
+		| awk "{print \"${URL}\" \$0}" \
+		| wget \
+			--tries=120 \
+			--accept-regex "${URL}${ACCEPT_PATH}*" \
+			--delete-after \
+			--no-directories \
+			--no-host-directories \
+			--no-verbose \
+			--spider \
+			--waitretry=120 \
+			--input-file -
 
-rm "$redirects_file"
+	rm "$redirects_file"
+fi
 
 echo "Crawling site..."
 wget \
