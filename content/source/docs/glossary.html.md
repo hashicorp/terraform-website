@@ -308,15 +308,13 @@ HCL establishes the syntax Terraform uses for things like [arguments][], [blocks
 [id]: glossary.html#id
 [ids]: glossary.html#id
 
--> Terraform Enterprise
+An identifier; an opaque string permanently associated with a specific object, which doesn't contain any information about the object but which can be used to retrieve information about it or perform actions on it via an [API][].
 
-Also "external ID".
+In Terraform, many [resource][] types have an ID [attribute][] that helps link Terraform's [state][] to the real infrastructure resource being managed.
 
-An identifier; an opaque string permanently associated with a specific object, which doesn't contain any information about the object but which can be used to retrieve information about it or perform actions on it via the [API][].
+In Terraform Enterprise, most internal application objects (like [workspaces][], users, [policies][], etc.) can be identified by both a name (possibly including the parents, for disambiguation) and by an opaque, permanent ID. Most API endpoints use IDs instead of names, since names sometimes change. IDs for TFE's application objects are sometimes called "external IDs."
 
-Most application objects within Terraform Enterprise (like [workspaces][], users, [policies][policy], etc.) can be identified by both a name and an opaque, permanent ID. Most API endpoints use IDs instead of names, since names sometimes change.
-
-You can usually copy an ID from the URL bar when viewing an object in TFE's UI. Workspaces don't display an ID in the URL bar, but their general settings page includes a UI control for viewing and copying the ID.
+You can usually copy an external ID from the URL bar when viewing an object in TFE's UI. Workspaces don't display an ID in the URL bar, but their general settings page includes a UI control for viewing and copying the ID.
 
 ## Ingress
 
