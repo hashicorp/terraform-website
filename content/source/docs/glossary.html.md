@@ -1,5 +1,92 @@
-Terraform Enterprise (TFE) Glossary
+---
+layout: intro
+page_title: "Terraform Glossary"
+sidebar_current: "terraform-glossary"
+description: |-
+  Brief definitions of technical terms and jargon used in Terraform and
+  Terraform Enterprise's documentation and throughout the Terraform community.
+---
 
+# Terraform Glossary
+
+This page collects brief definitions of some of the technical terms and jargon used in the documentation for Terraform and Terraform Enterprise, as well as some terms that come up frequently in conversations throughout the Terraform community.
+
+<div style="column-width: 14em;">
+
+- [API](#api)
+- [Apply (noun)](#apply-noun)
+- [Apply (verb)](#apply-verb)
+- [Argument](#argument)
+- [Attribute](#attribute)
+- [Backend](#backend)
+- [Blob Storage](#blob-storage)
+- [Block](#block)
+- [Branch](#branch)
+- [CLI](#cli)
+- [Commit](#commit)
+- [(Terraform) Configuration](#terraform-configuration)
+- [Configuration Version](#configuration-version)
+- [Data Source](#data-source)
+- [Expression](#expression)
+- [Fork](#fork)
+- [Git](#git)
+- [HCL](#hcl)
+- [ID](#id)
+- [Ingress](#ingress)
+- [JSON](#json)
+- [Locking](#locking)
+- [Log](#log)
+- [Module](#module)
+- [OAuth](#oauth)
+- [OAuth Client](#oauth-client)
+- [OAuth Token](#oauth-token)
+- [Organization](#organization)
+- [Output Values](#output-values)
+- [OSS](#oss)
+- [Permissions](#permissions)
+- [Plan (verb)](#plan-verb)
+- [Plan (noun, 1)](#plan-noun-1)
+- [Plan File](#plan-file)
+- [Policy Check](#policy-check)
+- [Policy](#policy)
+- [Policy Set](#policy-set)
+- [Private Module Registry](#private-module-registry)
+- [Private Terraform Enterprise (PTFE)](#private-terraform-enterprise-ptfe)
+- [(Terraform) Provider](#terraform-provider)
+- [TFE Provider](#tfe-provider)
+- [Pull Request (PR)](#pull-request-pr)
+- [Queue](#queue)
+- [(Terraform) Registry](#terraform-registry)
+- [Remote Operations](#remote-operations)
+- [Remote Backend](#remote-backend)
+- [Repository](#repository)
+- [Resource](#resource)
+- [Root Module](#root-module)
+- [Root Outputs](#root-outputs)
+- [Run](#run)
+- [S3](#s3)
+- [SAML](#saml)
+- [Service Account](#service-account)
+- [Sentinel](#sentinel)
+- [Site Admin](#site-admin)
+- [Speculative Plan](#speculative-plan)
+- [SSH Key](#ssh-key)
+- [State](#state)
+- [State Version](#state-version)
+- [Team](#team)
+- [Terraform](#terraform)
+- [TFE](#tfe)
+- [Trigger](#trigger)
+- [(API) Token](#api-token)
+- [Terraform Version](#terraform-version)
+- [Variables](#variables)
+- [VCS](#vcs)
+- [VCS Provider](#vcs-provider)
+- [Webhook](#webhook)
+- [Working Directory](#working-directory)
+- [Workspace](#workspace)
+
+</div>
 
 ## API
 

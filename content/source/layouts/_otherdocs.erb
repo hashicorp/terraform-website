@@ -1,9 +1,9 @@
 <%# Call with partial("layouts/otherdocs", :locals => { :skip => "Terraform CLI" }) -%>
 <% other_docs = {
-    "Download Terraform" => "/downloads.html",
-    "Introduction to Terraform" => "/intro/index.html",
     "Terraform CLI" => "/docs/index.html",
     "Terraform Enterprise" => "/docs/enterprise/index.html",
+    "Download Terraform" => "/downloads.html",
+    "Introduction to Terraform" => "/intro/index.html",
     "Guides and Whitepapers" => "/guides/index.html",
     "Terraform Registry" => "/docs/registry/index.html",
     "Terraform GitHub Actions" => "/docs/github-actions/index.html",
@@ -12,6 +12,9 @@
     <h4>Other Docs</h4>
 
     <ul class="nav docs-sidenav">
+      <li<%= sidebar_current("terraform-glossary") %>>
+        <a class="back" href="/docs/glossary.html">Terraform Glossary</a>
+      </li>
 <% other_docs.each do |name, path| -%>
 <% unless name.downcase == skip.downcase -%>
       <li>
