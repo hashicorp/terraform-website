@@ -162,7 +162,11 @@ In a general computer science sense, a backend is any lower-level implementation
 
 [blob storage]: glossary.html#blob-storage
 
-An API service for storing and retrieving arbitrary chunks of data using opaque addresses.
+-> Terraform Enterprise
+
+An API service for storing and retrieving arbitrary chunks of data using opaque addresses, which are indexed by a directory of some kind. The most notable example is AWS's [S3][].
+
+You do not need to be familiar with the properties and advantages of blob storage services in order to work with Terraform or TFE. However, you might need to administer or configure an S3-compatible blob storage service if you are responsible for administering a [Private Terraform Enterprise][] instance.
 
 ## Block
 
