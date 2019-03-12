@@ -17,7 +17,7 @@ Your free account allows you to share unlimited workspaces with an unlimited num
 
 To begin using Terraform Enterprise for state storage, do the following steps:
 
-1. Upgrade Terraform to 0.11.12 or later.
+1. Upgrade Terraform to 0.11.13 or later.
 1. Create (or join) an organization, and optionally add other users to it.
 1. Configure credentials for Terraform to use.
 1. Update your Terraform configurations to use remote workspaces.
@@ -29,9 +29,9 @@ Currently, only users who have been added to the beta can create free organizati
 
 If you aren't participating in the beta, you were probably sent here by a beta participant who added you to their organization. You can ignore the instructions about creating an organization.
 
-## Upgrade to Terraform 0.11.12 or later
+## Upgrade to Terraform 0.11.13 or later
 
-The Terraform Enterprise Free Tier requires Terraform 0.11.12 or later. [Upgrade Terraform](https://releases.hashicorp.com/terraform/) on any systems where you or your collaborators plan to run Terraform.
+The Terraform Enterprise Free Tier requires Terraform 0.11.13 or later. [Upgrade Terraform](https://releases.hashicorp.com/terraform/) on any systems where you or your collaborators plan to run Terraform.
 
 The newest 0.12 preview releases (as of alpha 4) also support the Terraform Enterprise Free Tier.
 
