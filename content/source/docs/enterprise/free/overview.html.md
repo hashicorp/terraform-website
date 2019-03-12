@@ -29,13 +29,13 @@ The application manages access in two ways:
 
 ## The Backend
 
-The `remote` backend, built into Terraform 0.11.12 and later, allows the Terraform CLI to seamlessly work with state in the Terraform Free State Storage application.
+The `remote` backend, built into Terraform 0.11.13 and later, allows the Terraform CLI to seamlessly work with state in the Terraform Free State Storage application.
 
 The backend requires an API token, which is created by an application user and then stored in Terraform's [CLI config file](/docs/commands/cli-config.html). Once a token is configured, Terraform can work with any workspace accessible to the user who created the token.
 
 Terraform still defaults to storing state locally, but any Terraform configuration can enable remote state with [a backend configuration](/docs/backends/config.html) that specifies which remote workspace to use.
 
--> **Note:** Several earlier versions of Terraform included preview versions of the `remote` backend. The Terraform Enterprise Free Tier relies on enhancements added in 0.11.12, and does not work with these earlier versions.
+-> **Note:** Several earlier versions of Terraform included preview versions of the `remote` backend. The Terraform Enterprise Free Tier relies on enhancements added in 0.11.13, and does not work with these earlier versions.
 
 ## The Workflow
 
