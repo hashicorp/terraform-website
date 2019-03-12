@@ -14,7 +14,7 @@ Normally this user is created by opening the application from the installer dash
 To create the initial admin user via the API, the request must be authenticated with the Initial Admin Creation Token (IACT). This token
 can only be used to create the admin user when there are no users configured in the system. The IACT can be retrieved in several different ways.
 
-### Via Command
+### Shell Command
 
 After installation, run:
 
