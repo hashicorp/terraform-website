@@ -15,6 +15,10 @@ There are a lot of things a user of Terraform might need to know about. To help 
 
 You can navigate the docs via this index page, or you can jump from section to section using the "Other Docs" area of the navigation sidebar, available in most areas of this site.
 
+<div class="container-fluid"><div class="row">
+
+<div class="col-md-6 col-sm-12">
+
 ### [Terraform Glossary](/docs/glossary.html)
 
 Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
@@ -49,6 +53,15 @@ A broad overview of what Terraform is and why people use it.
 
 Interactive guides to teach you how to use Terraform's features. Begin with the [Getting Started guide](https://learn.hashicorp.com/terraform/getting-started/install.html), then continue with task-specific advanced guides or go directly to the [Terraform CLI docs](/docs/cli-index.html).
 
+</div>
+
+
+
+
+
+
+<div class="col-md-6 col-sm-12">
+
 ### [Guides and Whitepapers](/guides/index.html)
 
 -> Intermediate users can go here for a deeper understanding of what's possible with Terraform.
@@ -77,3 +90,6 @@ Documentation about developing Terraform providers, with extensive information a
 
 Terraform relies on provider plugins to manage infrastructure resources across a wide variety of infrastructure services. Anyone can make and distribute a Terraform provider for their own service.
 
+</div>
+
+</div></div>
