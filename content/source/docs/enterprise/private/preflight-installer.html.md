@@ -53,8 +53,8 @@ Terraform Enterprise application as well as the Terraform plans and applies.
 
 For Linux distributions other than RHEL, check Docker compatibility:
 
-  * The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 17.12.1). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
-    * At this time, the **18.x and higher Docker versions are not supported**
+  * The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 18.09.2). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
+    * Replicated 2.32.0 and above required when running Docker 18+
     * In Online mode, the installer will install Docker automatically
     * In Airgapped mode, Docker should be installed before you begin
   * For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
@@ -187,7 +187,7 @@ CREATE EXTENSION IF NOT EXISTS "citext";
 
 ### External Vault Option
 
-If you already manage your own Vault cluster, you can choose to use it in Production 
+If you already manage your own Vault cluster, you can choose to use it in Production
 operational mode, rather than the default internal Vault provided by PTFE.
 
 ~> **Note:** This option is also selected at initial installation, and cannot be changed later.
