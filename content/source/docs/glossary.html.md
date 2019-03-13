@@ -793,7 +793,7 @@ Without state, Terraform has no way to identify the real resources it created du
 
 A snapshot of your infrastructure's [state][] at a point in time. Can be manually uploaded to TFE or created as the result of an [apply][].
 
-Unlike TFE, Terraform CLI doesn't track historical state versions, and only retains the most recent state.
+Terraform CLI doesn't have any concept of historical state data; it only interacts with the most recent state, and writes a snapshot of the new state to the configured [backend][] after making changes. Whatever system that backend writes to can choose to retain previous state; Terraform Enterprise does this, and some other backends (like S3) can also be configured to keep historical snapshots. The `local` backend does not.
 
 ## Team
 
