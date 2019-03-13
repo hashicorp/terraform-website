@@ -9,7 +9,7 @@ if [ -n "$REJECT_PATH" ]; then
 	REJECT_REGEX_ARG="--reject-regex ${URL}${REJECT_PATH}"
 fi
 
-if [[ $a == */ ]]; then
+if [[ $ACCEPT_PATH == "/" ]]; then
 	redirects_file="$(mktemp)"
 	cat content/redirects.txt| awk -F' ' '{print $1}' | grep -v '^#' | sort | uniq > "$redirects_file"
 
