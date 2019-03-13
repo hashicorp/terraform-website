@@ -49,8 +49,8 @@ for more information on configuring element behaviors.
 ## Types
 
 The schema attribute `Type` determines what data is valid in configuring the
-element, as well as the type of data returned when used in
-[interpolation](/docs/configuration/interpolation.html). Schemas attributes must
+element, as well as the type of data returned when used in an
+[expression](/docs/configuration/expressions.html). Schemas attributes must
 be one of the types defined below, and can be loosely categorized as either
 **Primitive** or **Aggregate** types:  
 
