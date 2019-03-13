@@ -402,11 +402,13 @@ An OAuth client needs an [OAuth token][] in order to actually access data belong
 
 -> Terraform Enterprise
 
-The access token that a TFE organization needs in order to access data belonging to a user or organization in a specific [VCS provider][]. The token is granted by the VCS provider, and allows access with whatever permissions that VCS provider assigns to the token.
+**In general:** A secret string that allows an application to authenticate itself to another application. The token is generated ahead of time by the application being accessed (either during the OAuth authorization exchange or in response to a direct request by a user), and allows access with whatever permissions that application assigns to the token. The [VCS providers][] supported by Terraform Enterprise allow access via OAuth tokens; that access is generally restricted to data belonging to a given user or organization within that provider.
 
-An OAuth token has a one-to-one relationship with an [OAuth client][], but the client can outlive a specific token, to allow revoking and re-requesting VCS access.
+**Within Terraform Enterprise:** An entity in the TFE application that associates an OAuth token (in the "secret string" sense) with a permanent ID and with metadata about which VCS provider it applies to and which VCS user approved the token. When documentation refers specifically to this kind of entity, the name is often styled as `oauth-token` to indicate that it's an entity you can interact with via the [API][].
 
-[Workspaces][] that are linked to a VCS [repo][] have a relationship with one OAuth client.
+An `oauth-token` has a one-to-one relationship with an [OAuth client][], but the client can outlive a specific token, to allow revoking and re-requesting VCS access.
+
+[Workspaces][] that are linked to a VCS [repo][] have a relationship with one `oauth-token`.
 
 - [TFE docs: VCS Integration](/docs/enterprise/vcs/index.html)
 - [TFE API docs: OAuth Tokens](/docs/enterprise/api/oauth-tokens.html)
