@@ -447,7 +447,7 @@ constraint][module-version-constraint] for modules that support it, such as
 modules within the [Terraform Module Registry][terraform-module-registry] or the
 [Terraform Enterprise private module registry][tfe-private-registry].
 
-[module-version-constraint]: /docs/modules/usage.html#module-versions
+[module-version-constraint]: /docs/configuration/modules.html#module-versions
 [terraform-module-registry]: https://registry.terraform.io/
 [tfe-private-registry]: /docs/enterprise/registry/index.html
 
