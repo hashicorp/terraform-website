@@ -65,7 +65,7 @@ For Linux distributions other than RHEL, check Docker compatibility:
 
 Private Terraform Enterprise does not support SELinux when running in `Demo` and `Mounted Disk` modes. When running in these modes the host running the installer must be configured in permissive mode by running: `setenforce 0`.
 
-SELinux is supported when Private Terraform Enterprise runs in `External Services` mode and only the default SELinux policies provided by RedHat are used.
+SELinux is supported when Private Terraform Enterprise runs in `External Services` mode and only the default SELinux policies provided by RedHat are used. Private Terraform Enterprise v201812-1 or later is required for this support.
 
 ### Network Requirements
 
