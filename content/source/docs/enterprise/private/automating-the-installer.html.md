@@ -139,7 +139,7 @@ The following apply to every installation:
 
 - `hostname` — (Required) this is the hostname you will use to access your installation
 - `installation_type` — (Required) one of `poc` or `production`
-- `enc_password` — Set the [encryption password](https://www.terraform.io/docs/enterprise/private/encryption-password.html) for the install
+- `enc_password` — Set the [encryption password](/docs/enterprise/private/encryption-password.html) for the install
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`
 - `enable_metrics_collection` — whether PTFE's [internal metrics collection](./monitoring.html#internal-monitoring) should be enabled; defaults to true

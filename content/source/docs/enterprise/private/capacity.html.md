@@ -23,7 +23,7 @@ After factoring in the memory needed to run the base services that make up the a
 ### Settings
 
 The settings for per-run memory and concurrency are available in the dashboard on port 8800, on the Settings page, under the Capacity section. They can also be set via
-the [application settings JSON file when using the automated install procedure](https://www.terraform.io/docs/enterprise/private/automating-the-installer.html#available-settings).
+the [application settings JSON file when using the automated install procedure](/docs/enterprise/private/automating-the-installer.html#available-settings).
 
 ## Increasing Capacity
 

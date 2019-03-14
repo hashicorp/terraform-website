@@ -46,7 +46,7 @@ Status  | Response                               | Reason
 [404][] | [JSON API error object][]              | Organization or workspace not found, or user unauthorized to perform action
 [422][] | [JSON API error object][]              | Malformed request body (missing attributes, wrong types, etc.)
 
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 [201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422

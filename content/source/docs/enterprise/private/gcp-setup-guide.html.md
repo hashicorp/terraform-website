@@ -16,10 +16,10 @@ HashiCorp Private Terraform Enterprise (PTFE) implementations on GCP.
 
 Prior to making hardware sizing and architectural decisions, read through the
 [installation information available for
-PTFE](https://www.terraform.io/docs/enterprise/private/install-installer.html)
+PTFE](/docs/enterprise/private/install-installer.html)
 to familiarise yourself with the application components and architecture.
 Further, read the [reliability and availability
-guidance](https://www.terraform.io/docs/enterprise/private/reliability-availability.html)
+guidance](/docs/enterprise/private/reliability-availability.html)
 as a primer to understanding the recommendations in this reference
 architecture.
 
@@ -29,7 +29,7 @@ architecture.
 Services_ operational mode.
 
 Depending on the chosen [operational
-mode](https://www.terraform.io/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
+mode](/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single Cloud Compute VM instance
 for demo installations to multiple instances connected to Cloud SQL and Cloud Storage for a
 stateless production installation.
@@ -285,7 +285,7 @@ With external services (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
 PTFE server such as installation type, database connection settings,
 hostname. This data rarely changes. We recommend [configuring automated
-snapshots](https://www.terraform.io/docs/enterprise/private/automated-recovery.html#1-configure-snapshots)
+snapshots](/docs/enterprise/private/automated-recovery.html#1-configure-snapshots)
 for this installation data so it can be recovered in the event of data
 corruption.
 

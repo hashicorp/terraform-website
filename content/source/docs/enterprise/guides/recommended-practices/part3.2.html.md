@@ -33,11 +33,11 @@ Make sure you've picked a VCS system that Terraform Enterprise will be able to a
 
 Start moving infrastructure code into version control. New Terraform code should all be going into version control; if you have existing Terraform code that’s outside version control, start moving it in so that everyone in your organization knows where to look for things and can track the history and purpose of changes.
 
--> **Note:** There are several ways to structure Terraform repositories. If you want to learn more about how your repo structure can affect your Terraform Enterprise workflows, see [VCS Repository Structure](https://www.terraform.io/docs/enterprise/workspaces/repo-structure.html) in the Terraform Enterprise documentation.
+-> **Note:** There are several ways to structure Terraform repositories. If you want to learn more about how your repo structure can affect your Terraform Enterprise workflows, see [VCS Repository Structure](/docs/enterprise/workspaces/repo-structure.html) in the Terraform Enterprise documentation.
 
 ## 3. Create Your First Module
 
-[Terraform modules](https://www.terraform.io/docs/modules/index.html) are reusable configuration units. They let you manage pieces of infrastructure as a single package you can call and define multiple times in the main configuration for a workspace. Examples of a good Terraform module candidate would be an auto-scaling group on AWS that wraps a launch configuration, auto-scaling group, and EC2 Elastic Load Balancer (ELB). If you are already using Terraform modules, make sure you’re following the best practices and keep an eye on places where your modules could improve.
+[Terraform modules](/docs/modules/index.html) are reusable configuration units. They let you manage pieces of infrastructure as a single package you can call and define multiple times in the main configuration for a workspace. Examples of a good Terraform module candidate would be an auto-scaling group on AWS that wraps a launch configuration, auto-scaling group, and EC2 Elastic Load Balancer (ELB). If you are already using Terraform modules, make sure you’re following the best practices and keep an eye on places where your modules could improve.
 
 The diagram below can help you decide when to write a module:
 
@@ -63,7 +63,7 @@ Here are a few examples of good build patterns from several cloud providers:
 
 ## 6. Integrate Terraform With Configuration Management
 
-If your organization already has a configuration management tool, then it’s time to integrate it with Terraform — you can use [Terraform’s provisioners](https://www.terraform.io/docs/provisioners/index.html) to pass control to configuration management after a resource is created. Terraform should handle the infrastructure, and other tools should handle user data and applications.
+If your organization already has a configuration management tool, then it’s time to integrate it with Terraform — you can use [Terraform’s provisioners](/docs/provisioners/index.html) to pass control to configuration management after a resource is created. Terraform should handle the infrastructure, and other tools should handle user data and applications.
 
 If your organization doesn't use a configuration management tool yet, and the configuration of the infrastructure being managed is mutable, you should consider adopting a configuration management tool. This might be a large task, but it supports the same goals that drove you to infrastructure as code, by making application configuration more controllable, understandable, and repeatable across teams.
 
@@ -71,7 +71,7 @@ If you’re just getting started, try this tutorial on how to [create a Chef coo
 
 ## 7. Manage Secrets
 
-Integrate Terraform with [Vault](https://www.terraform.io/docs/providers/vault/index.html) or another secret management tool. Secrets like service provider credentials must stay secret, but they also must be easy to use when needed. The best way to address those needs is to use a dedicated secret management tool. We believe HashiCorp’s Vault is the best choice for most people, but Terraform can integrate with other secret management tools as well.
+Integrate Terraform with [Vault](/docs/providers/vault/index.html) or another secret management tool. Secrets like service provider credentials must stay secret, but they also must be easy to use when needed. The best way to address those needs is to use a dedicated secret management tool. We believe HashiCorp’s Vault is the best choice for most people, but Terraform can integrate with other secret management tools as well.
 
 ## Next
 

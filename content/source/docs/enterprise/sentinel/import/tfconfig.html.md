@@ -516,7 +516,7 @@ represents any _explicit_ dependencies for this output. For more information,
 see the [depends_on output setting][ref-depends_on] within the general Terraform
 documentation.
 
-[ref-depends_on]: https://www.terraform.io/docs/configuration/outputs.html#depends_on
+[ref-depends_on]: /docs/configuration/outputs.html#depends_on
 
 As an example, given the following output declaration block:
 
