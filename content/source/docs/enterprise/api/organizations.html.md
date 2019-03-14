@@ -21,7 +21,7 @@ Status  | Response                                        | Reason
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 
 ### Sample Request
 
@@ -84,7 +84,7 @@ Status  | Response                                        | Reason
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 
 ### Sample Request
 
@@ -143,7 +143,7 @@ Status  | Response                                        | Reason
 [201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
@@ -238,7 +238,7 @@ Status  | Response                                        | Reason
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body

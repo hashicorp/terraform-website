@@ -447,7 +447,7 @@ constraint][module-version-constraint] for modules that support it, such as
 modules within the [Terraform Module Registry][terraform-module-registry] or the
 [Terraform Enterprise private module registry][tfe-private-registry].
 
-[module-version-constraint]: /docs/modules/usage.html#module-versions
+[module-version-constraint]: /docs/configuration/modules.html#module-versions
 [terraform-module-registry]: https://registry.terraform.io/
 [tfe-private-registry]: /docs/enterprise/registry/index.html
 
@@ -516,7 +516,7 @@ represents any _explicit_ dependencies for this output. For more information,
 see the [depends_on output setting][ref-depends_on] within the general Terraform
 documentation.
 
-[ref-depends_on]: https://www.terraform.io/docs/configuration/outputs.html#depends_on
+[ref-depends_on]: /docs/configuration/outputs.html#depends_on
 
 As an example, given the following output declaration block:
 

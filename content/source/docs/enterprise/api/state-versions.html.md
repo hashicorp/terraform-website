@@ -35,7 +35,7 @@ Status  | Response                                     | Reason
 [409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
 [412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
 [422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
@@ -102,7 +102,7 @@ curl \
             "vcs-commit-sha": null,
             "vcs-commit-url": null,
             "created-at": "2018-07-12T20:32:01.490Z",
-            "hosted-state-download-url": "https://terraform.io/v1/object/f55b739b-ff03-4716-b436-726466b96dc4",
+            "hosted-state-download-url": "https://archivist.terraform.io/v1/object/f55b739b-ff03-4716-b436-726466b96dc4",
             "serial": 1
         },
         "links": {
@@ -241,7 +241,7 @@ Status  | Response                                     | Reason
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
