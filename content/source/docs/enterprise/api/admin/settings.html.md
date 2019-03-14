@@ -156,6 +156,7 @@ curl \
     "attributes": {
       "enabled": true,
       "debug": false,
+      "old-idp-cert": null,
       "idp-cert": "SAMPLE-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
@@ -213,7 +214,7 @@ Key path                    | Type   | Default | Description
     "attributes": {
       "enabled": true,
       "debug": false,
-      "idp-cert": "SAMPLE-CERTIFICATE",
+      "idp-cert": "NEW-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
       "attr-username": "Username",
@@ -247,7 +248,52 @@ curl \
     "attributes": {
       "enabled": true,
       "debug": false,
-      "idp-cert": "SAMPLE-CERTIFICATE",
+      "old-idp-cert": "SAMPLE-CERTIFICATE",
+      "idp-cert": "NEW-CERTIFICATE",
+      "slo-endpoint-url": "https://example.com/slo",
+      "sso-endpoint-url": "https://example.com/sso",
+      "attr-username": "Username",
+      "attr-groups": "MemberOf",
+      "attr-site-admin": "SiteAdmin",
+      "site-admin-role": "site-admins",
+      "sso-api-token-session-timeout": 1209600,
+      "acs-consumer-url": "https://example.com/users/saml/auth",
+      "metadata-url": "https://example.com/users/saml/metadata"
+    }
+  }
+}
+```
+
+## Revoke previous SAML IdP Certificate
+
+`PUT /api/v2/admin/saml-settings/actions/revoke-old-certificate`
+
+When reconfiguring the IdP certificate, TFE will retain the old IdP certificate to allow for a rotation period. This PUT endpoint will revoke the older IdP certificate when the new IdP certificate is known to be functioning correctly.
+
+See [SAML Configuration](../../saml/configuration.html) for more details.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PUT \
+  https://app.terraform.io/api/v2/admin/saml-settings/actions/revoke-old-certificate
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id":"saml",
+    "type":"saml-settings",
+    "attributes": {
+      "enabled": true,
+      "debug": false,
+      "old-idp-cert": null,
+      "idp-cert": "NEW-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
       "attr-username": "Username",
