@@ -19,9 +19,11 @@ You can navigate the docs via this index page, or you can jump from section to s
 
 <div class="col-md-6 col-sm-12">
 
-### [Terraform Glossary](/docs/glossary.html)
+### [Introduction to Terraform](/intro/index.html)
 
-Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
+-> Visitors who are curious about Terraform can start here.
+
+A broad overview of what Terraform is and why people use it.
 
 ### [Terraform CLI](/docs/cli-index.html)
 
@@ -35,32 +37,11 @@ Documentation for Terraform's core functionality, including:
 
 ...and much more.
 
-### [Terraform Enterprise](/docs/enterprise/index.html)
-
-Documentation for Terraform Enterprise.
-
-Terraform Enterprise is a supplementary paid product that makes it easier for teams to manage infrastructure together. It provides a way to share access to sensitive data, a consistent and reliable environment for Terraform runs, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more.
-
-### [Introduction to Terraform](/intro/index.html)
-
--> Visitors who are curious about Terraform can start here.
-
-A broad overview of what Terraform is and why people use it.
-
 ### [Learn Terraform](https://learn.hashicorp.com/terraform/) (➡︎ external site)
 
 -> New users can start here.
 
 Interactive guides to teach you how to use Terraform's features. Begin with the [Getting Started guide](https://learn.hashicorp.com/terraform/getting-started/install.html), then continue with task-specific advanced guides or go directly to the [Terraform CLI docs](/docs/cli-index.html).
-
-</div>
-
-
-
-
-
-
-<div class="col-md-6 col-sm-12">
 
 ### [Guides and Whitepapers](/guides/index.html)
 
@@ -73,6 +54,25 @@ Detailed descriptions of various Terraform workflows, both general and specific.
 - [Tasks for upgrading to major new Terraform versions](/upgrade-guides/index.html)
 
 This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the guides at [Learn Terraform](https://learn.hashicorp.com/terraform/)), but to explain best practices and show how the different pieces of a workflow fit together.
+
+</div>
+
+
+
+
+
+
+<div class="col-md-6 col-sm-12">
+
+### [Terraform Glossary](/docs/glossary.html)
+
+Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
+
+### [Terraform Enterprise](/docs/enterprise/index.html)
+
+Documentation for Terraform Enterprise.
+
+Terraform Enterprise is a supplementary paid product that makes it easier for teams to manage infrastructure together. It provides a way to share access to sensitive data, a consistent and reliable environment for Terraform runs, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more.
 
 ### [Terraform Registry](/docs/registry/index.html)
 
