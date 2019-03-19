@@ -38,6 +38,9 @@ visualization.
 
 [ref-mock-tfconfig-data]: /docs/enterprise/sentinel/import/mock-tfconfig.html
 
+-> The `references` attribute in every namespace that supports it is only
+available when working with Terraform 0.12 and higher.
+
 ```
 tfconfig
 ├── module() (function)
@@ -45,19 +48,23 @@ tfconfig
 │       ├── data
 │       │   └── TYPE.NAME
 │       │       ├── config (map of keys)
+│       │       ├── references (keyed map of lists)
 │       │       └── provisioners
 │       │           └── NUMBER
 │       │               ├── config (map of keys)
+│       │               ├── references (keyed map of lists)
 │       │               └── type (string)
 │       ├── modules
 │       │   └── NAME
 │       │       ├── config (map of keys)
+│       │       ├── references (map of keys)
 │       │       ├── source (string)
 │       │       └── version (string)
 │       ├──outputs
 │       │   └── NAME
 │       │       ├── depends_on (list of strings)
 │       │       ├── description (string)
+│       │       ├── references (list)
 │       │       ├── sensitive (boolean)
 │       │       └── value (value)
 │       ├── providers
@@ -67,13 +74,16 @@ tfconfig
 │       │       │       ├── config (map of keys)
 │       │       │       └── version (string)
 │       │       ├── config (map of keys)
+│       │       ├── references (keyed map of lists)
 │       │       └── version (string)
 │       ├── resources
 │       │   └── TYPE.NAME
 │       │       ├── config (map of keys)
+│       │       ├── references (keyed map of lists)
 │       │       └── provisioners
 │       │           └── NUMBER
 │       │               ├── config (map of keys)
+│       │               ├── references (keyed map of lists)
 │       │               └── type (string)
 │       └── variables
 │           └── NAME
@@ -267,11 +277,15 @@ The `config` value within the [resource
 namespace](##namespace-resources-data-sources) is a map of key-value pairs that
 directly map to Terraform config keys and values.
 
-As a consequence of the mapping of this key to raw Terraform configuration,
-complex structures within Terraform configuration are grouped _per-instance_ as
-they are represented within the actual configuration itself. This has
-implications when defining policy correctly. This applies to all complex
-structures - lists, sets, and maps.
+Note that values will be present in this map only when the expression supplied
+to the particular config key refers to a constant value. If references to other
+variables or expressions are made, the respective key in the map will return
+undefined. To validate any references made to variables or other dynamic nodes,
+see the [`references`](#value-references) field.
+
+-> In Terraform versions below 0.12, `references` does not exist and
+interpolations can be checked on their raw string, example: checking for
+`"${var.foo}"` is acceptable.
 
 As an example, consider the following resource block:
 
@@ -282,8 +296,9 @@ resource "local_file" "accounts" {
 }
 ```
 
-In this example, one might want to access `filename` to validate that the correct
-file name is used. Given the above example, the following policy would evaluate to `true`:
+In this example, one might want to access `filename` to validate that the
+correct file name is used. Given the above example, the following policy would
+evaluate to `true`:
 
 ```python
 import "tfconfig"
@@ -293,7 +308,16 @@ main = rule {
 }
 ```
 
-For a slightly more complicated example, consider the following resource block:
+#### Handling blocks in legacy configurations
+
+-> The following section only applies to Terraform versions below 0.12.
+
+In Terraform versions below 0.12, complex structures within configuration are
+grouped _per-instance_ as they are represented within the actual configuration
+itself. This has implications when defining policy correctly. This applies to
+all complex structures - lists, sets, and maps.
+
+As an example, consider the following resource block:
 
 ```hcl
 resource "null_resource" "foo" {
@@ -324,6 +348,35 @@ main = rule {
 			value in ["one", "two"]
 		}
 	}
+}
+```
+
+### Value: `references`
+
+* **Value Type:** A string-keyed map of lists.
+
+The `references` value within the [resource
+namespace](##namespace-resources-data-sources) is a map of keys that mirrors the
+[`config`](#value-config), pointing to lists containing any references to
+variables or other nodes when the value assigned to the key is not constant. The
+value of this list is empty when the value is constant.
+
+As an example, given the following resource block:
+
+```hcl
+resource "local_file" "accounts" {
+  content  = "some text"
+  filename = var.accounts_filename
+}
+```
+
+The following example will evaluate to `true`:
+
+```python
+import "tfconfig"
+
+main = rule {
+	tfconfig.resources.local_file.accounts.references.filename contains "var.accounts_filename"
 }
 ```
 
