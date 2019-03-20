@@ -14,8 +14,8 @@ This page collects brief definitions of some of the technical terms used in the 
 <div style="column-width: 14em;">
 
 - [API](#api)
-- [Apply (noun)](#apply-noun)
-- [Apply (verb)](#apply-verb)
+- [Apply (noun)](#apply-noun-)
+- [Apply (verb)](#apply-verb-)
 - [Argument](#argument)
 - [Attribute](#attribute)
 - [Backend](#backend)
@@ -44,17 +44,17 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Output Values](#output-values)
 - [OSS](#oss)
 - [Permissions](#permissions)
-- [Plan (verb)](#plan-verb)
-- [Plan (noun, 1)](#plan-noun-1)
+- [Plan (verb)](#plan-verb-)
+- [Plan (noun, 1)](#plan-noun-1-)
 - [Plan File](#plan-file)
 - [Policy Check](#policy-check)
 - [Policy](#policy)
 - [Policy Set](#policy-set)
 - [Private Module Registry](#private-module-registry)
-- [Private Terraform Enterprise (PTFE)](#private-terraform-enterprise-ptfe)
+- [Private Terraform Enterprise (PTFE)](#private-terraform-enterprise-ptfe-)
 - [(Terraform) Provider](#terraform-provider)
 - [TFE Provider](#tfe-provider)
-- [Pull Request (PR)](#pull-request-pr)
+- [Pull Request (PR)](#pull-request-pr-)
 - [Queue](#queue)
 - [(Terraform) Registry](#terraform-registry)
 - [Remote Operations](#remote-operations)
@@ -104,8 +104,8 @@ Terraform Enterprise also offers its own API, for managing resources like team m
 
 ## Apply (noun)
 
-[apply]: glossary.html#apply-noun
-[applies]: glossary.html#apply-noun
+[apply]: glossary.html#apply-noun-
+[applies]: glossary.html#apply-noun-
 
 One of the stages of a [run][], in which changes are made to real infrastructure resources in order to make them match their desired state. The counterpart of a [plan][].
 
@@ -116,7 +116,7 @@ In Terraform's CLI, applies are performed with the `terraform apply` command. TF
 
 ## Apply (verb)
 
-[apply-v]: glossary.html#apply-verb
+[apply-v]: glossary.html#apply-verb-
 
 To make changes to real infrastructure in order to make it match the desired state (as specified by a Terraform [config][] and set of [variables][]).
 
@@ -456,7 +456,7 @@ Specific levels of access allowed within TFE. Can be managed at the [workspace][
 
 ## Plan (verb)
 
-[plan-v]: glossary.html#plan-verb
+[plan-v]: glossary.html#plan-verb-
 
 Also "queue plan".
 
@@ -466,8 +466,8 @@ To start a new [run][], which begins by running a Terraform [plan (noun)][plan].
 
 ## Plan (noun, 1)
 
-[plan]: glossary.html#plan-noun-1
-[plans]: glossary.html#plan-noun-1
+[plan]: glossary.html#plan-noun-1-
+[plans]: glossary.html#plan-noun-1-
 
 One of the stages of a [run][], in which Terraform compares the managed infrastructure's real state to the [configuration][] and [variables][], determines which changes are necessary to make the real state match the desired state, and presents a human-readable summary to the user. The counterpart of an [apply][].
 
@@ -548,8 +548,8 @@ A version of the [Terraform Registry][] that is built-in to TFE, to enable code 
 
 ## Private Terraform Enterprise (PTFE)
 
-[private terraform enterprise]: glossary.html#private-terraform-enterprise-ptfe
-[private installs]: glossary.html#private-terraform-enterprise-ptfe
+[private terraform enterprise]: glossary.html#private-terraform-enterprise-ptfe-
+[private installs]: glossary.html#private-terraform-enterprise-ptfe-
 
 -> Terraform Enterprise
 
@@ -582,10 +582,10 @@ A Terraform provider that manages Terraform Enterprise. Allows you to manage TFE
 
 ## Pull Request (PR)
 
-[pull request]: glossary.html#pull-request-pr
-[pull requests]: glossary.html#pull-request-pr
-[pr]: glossary.html#pull-request-pr
-[prs]: glossary.html#pull-request-pr
+[pull request]: glossary.html#pull-request-pr-
+[pull requests]: glossary.html#pull-request-pr-
+[pr]: glossary.html#pull-request-pr-
+[prs]: glossary.html#pull-request-pr-
 
 A mechanism created by GitHub to review and discuss changes made to a [Git][] [repository][] [branch][] that a user wants to merge into another branch. Other collaborators can request changes, approve, or reject these changes.
 
