@@ -33,6 +33,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [HCL](#hcl)
 - [ID](#id)
 - [Ingress](#ingress)
+- [Input Variables](#input-variables)
 - [JSON](#json)
 - [Locking](#locking)
 - [Log](#log)
@@ -326,6 +327,10 @@ You can usually copy an external ID from the URL bar when viewing an object in T
 The process of bringing content into Terraform Enterprise. Usually that content is a [configuration version][], but it can also be a [private module][] version or some other kind of content.
 
 This term comes from TFE's internal subsystems. Most documentation and UI avoids using "ingress," but it can sometimes appear in API contexts or support conversations.
+
+## Input Variables
+
+See [Variables][].
 
 ## JSON
 
@@ -871,9 +876,11 @@ Something that causes a new [run][] to queue. Runs can be UI/VCS-driven (in whic
 
 Also "input variables".
 
-Key/value pairs used in a [run][]. Terraform [modules][] can declare variables to allow customization. For child modules, the parent module provides a value when calling the module; for the [root module][], values are provided at run time.
+In general-purpose programming, a variable is a symbolic name associated with a value.
 
-TFE lets you set root input variables in a [workspace][], so all collaborators can use the same values. Variable values marked as "sensitive" become unreadable in the UI and API, and all variable values are protected by Vault.
+In Terraform, "variables" almost always refers to _input variables,_ which are key/value pairs used in a [run][]. Terraform [modules][] can declare variables to allow customization. For child modules, the parent module provides a value when calling the module; for the [root module][], values are provided at run time.
+
+TFE lets you set values for root input variables in a [workspace][], so all collaborators can use the same values. Variable values marked as "sensitive" become unreadable in the UI and API, and all variable values are protected by Vault.
 
 - [Terraform docs: Input Variables](/docs/configuration/variables.html)
 - [TFE docs: Variables](/docs/enterprise/workspaces/variables.html)
