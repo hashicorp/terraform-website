@@ -34,6 +34,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [ID](#id)
 - [Ingress](#ingress)
 - [Input Variables](#input-variables)
+- [Interpolation](#interpolation)
 - [JSON](#json)
 - [Locking](#locking)
 - [Log](#log)
@@ -269,6 +270,8 @@ Data sources are implemented by [providers][].
 
 In Terraform's [configuration][] language: a piece of syntax that represents a value, either literally or by referencing and combining other values. Expressions appear as values for [arguments][], or within other expressions.
 
+Prior to Terraform 0.12, [interpolation][] was the only way to use non-literal expressions in Terraform configurations; in 0.12 and later, expressions can be used independently.
+
 - [Terraform docs: Expressions](/docs/configuration/expressions.html)
 
 ## Fork
@@ -331,6 +334,22 @@ This term comes from TFE's internal subsystems. Most documentation and UI avoids
 ## Input Variables
 
 See [Variables][].
+
+## Interpolation
+
+Using a special placeholder to insert a computed value into a string.
+
+[Terraform's configuration language][hcl] supports interpolation in strings using `${<EXPRESSION>}` placeholders. For example:
+
+```hcl
+"Hello, ${var.name}!"
+```
+
+Prior to Terraform 0.12, interpolation was the only way to use non-literal [expressions][] in Terraform configurations; in 0.12 and later, expressions can be used independently.
+
+Interpolation is a very common feature in programming languages; for example, Ruby uses `#{<EXPRESSION>}` placeholders in double-quoted strings, and JavaScript (ES6 and up) uses `${<EXPRESSION>}` placeholders in backtick-quoted strings.
+
+- [Terraform docs: Expressions - String Templates](/docs/configuration/expressions.html#string-templates)
 
 ## JSON
 
