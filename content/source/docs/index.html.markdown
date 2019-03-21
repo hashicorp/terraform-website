@@ -19,13 +19,13 @@ You can navigate the docs via this index page, or you can jump from section to s
 
 <div class="col-md-6 col-sm-12">
 
-### [Introduction to Terraform ➡︎](/intro/index.html)
+### [Introduction to Terraform ➜](/intro/index.html)
 
 -> Visitors who are curious about Terraform can start here.
 
 A broad overview of what Terraform is and why people use it.
 
-### [Terraform CLI ➡︎](/docs/cli-index.html)
+### [Terraform CLI ➜](/docs/cli-index.html)
 
 -> Intermediate and advanced users spend most of their time here.
 
@@ -37,13 +37,13 @@ Documentation for Terraform's core functionality, including:
 
 ...and much more.
 
-### [Learn Terraform ➡︎](https://learn.hashicorp.com/terraform/) (external site)
+### [Learn Terraform ➜](https://learn.hashicorp.com/terraform/) (external site)
 
 -> New users can start here.
 
 Interactive guides to teach you how to use Terraform's features. Begin with the [Getting Started guide](https://learn.hashicorp.com/terraform/getting-started/install.html), then continue with task-specific advanced guides or go directly to the [Terraform CLI docs](/docs/cli-index.html).
 
-### [Guides and Whitepapers ➡︎](/guides/index.html)
+### [Guides and Whitepapers ➜](/guides/index.html)
 
 -> Intermediate users can go here for a deeper understanding of what's possible with Terraform.
 
@@ -64,25 +64,25 @@ This section is devoted to overviews and explanations of complex systems; the go
 
 <div class="col-md-6 col-sm-12">
 
-### [Terraform Glossary ➡︎](/docs/glossary.html)
+### [Terraform Glossary ➜](/docs/glossary.html)
 
 Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
 
-### [Terraform Enterprise ➡︎](/docs/enterprise/index.html)
+### [Terraform Enterprise ➜](/docs/enterprise/index.html)
 
 Documentation for Terraform Enterprise.
 
 Terraform Enterprise is a supplementary paid product that makes it easier for teams to manage infrastructure together. It provides a way to share access to sensitive data, a consistent and reliable environment for Terraform runs, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more.
 
-### [Terraform Registry ➡︎](/docs/registry/index.html)
+### [Terraform Registry ➜](/docs/registry/index.html)
 
 Documentation about the [Terraform Registry](https://registry.terraform.io/), a web service for distributing Terraform modules. Includes information about publishing, finding, and using modules.
 
-### [Terraform GitHub Actions ➡︎](/docs/github-actions/index.html)
+### [Terraform GitHub Actions ➜](/docs/github-actions/index.html)
 
 Documentation about the Terraform GitHub Actions. [GitHub Actions](https://developer.github.com/actions) is GitHub's service for running commands in reaction to events in a Git repository, and HashiCorp publishes several actions for validating repositories that contain Terraform configurations.
 
-### [Extending Terraform ➡︎](/docs/extend/index.html)
+### [Extending Terraform ➜](/docs/extend/index.html)
 
 -> If you need to create a new Terraform provider (for a public cloud service or a purely internal service), go here.
 
