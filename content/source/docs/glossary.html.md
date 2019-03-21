@@ -47,13 +47,12 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Plan (verb)](#plan-verb-)
 - [Plan (noun, 1)](#plan-noun-1-)
 - [Plan File](#plan-file)
-- [Policy Check](#policy-check)
 - [Policy](#policy)
+- [Policy Check](#policy-check)
 - [Policy Set](#policy-set)
 - [Private Module Registry](#private-module-registry)
 - [Private Terraform Enterprise (PTFE)](#private-terraform-enterprise-ptfe-)
 - [(Terraform) Provider](#terraform-provider)
-- [TFE Provider](#tfe-provider)
 - [Pull Request (PR)](#pull-request-pr-)
 - [Queue](#queue)
 - [(Terraform) Registry](#terraform-registry)
@@ -75,10 +74,11 @@ This page collects brief definitions of some of the technical terms used in the 
 - [State Version](#state-version)
 - [Team](#team)
 - [Terraform](#terraform)
-- [TFE](#tfe)
-- [Trigger](#trigger)
-- [(API) Token](#api-token)
 - [Terraform Version](#terraform-version)
+- [TFE](#tfe)
+- [TFE Provider](#tfe-provider)
+- [(API) Token](#api-token)
+- [Trigger](#trigger)
 - [Variables](#variables)
 - [VCS](#vcs)
 - [VCS Provider](#vcs-provider)
@@ -495,17 +495,6 @@ A binary artifact optionally produced by the `terraform plan` command, which `te
 
 TFE always uses a saved plan as the input to an [apply][], so that applies never make changes that weren't shown to the user after the plan (in cases where the config or the variables changed in the meantime).
 
-## Policy Check
-
-[policy check]: glossary.html#policy-check
-[policy checks]: glossary.html#policy-check
-
--> Terraform Enterprise
-
-Part of a [run][]. After gathering the [configuration][], [state][], and [plan file][] for a run, TFE runs [Sentinel][] to check that data against the active [policies][]. Policy checks end in success or failure. If a failure occurs in a required policy, this can prevent the run from proceeding to the [apply][] stage.
-
-- [TFE docs: Run States and Stages](/docs/enterprise/run/states.html)
-
 ## Policy
 
 [policy]: glossary.html#policy
@@ -518,6 +507,17 @@ Part of a [run][]. After gathering the [configuration][], [state][], and [plan f
 [Sentinel][] code that can be enforced on runs. Combined into [policy sets][].
 
 - [TFE docs: Managing Sentinel Policies](/docs/enterprise/sentinel/manage-policies.html)
+
+## Policy Check
+
+[policy check]: glossary.html#policy-check
+[policy checks]: glossary.html#policy-check
+
+-> Terraform Enterprise
+
+Part of a [run][]. After gathering the [configuration][], [state][], and [plan file][] for a run, TFE runs [Sentinel][] to check that data against the active [policies][]. Policy checks end in success or failure. If a failure occurs in a required policy, this can prevent the run from proceeding to the [apply][] stage.
+
+- [TFE docs: Run States and Stages](/docs/enterprise/run/states.html)
 
 ## Policy Set
 
@@ -571,14 +571,6 @@ Terraform providers are generally tied to a specific _infrastructure provider,_ 
 There are many existing providers available, but providers can also be custom-built to work with any API.
 
 - [Terraform docs: Providers](/docs/providers/index.html)
-
-## TFE Provider
-
-[tfe provider]: glossary.html#tfe-provider
-
-A Terraform provider that manages Terraform Enterprise. Allows you to manage TFE using a Terraform [configuration][].
-
-- [Provider docs: tfe](/docs/providers/tfe/index.html)
 
 ## Pull Request (PR)
 
@@ -814,6 +806,19 @@ A tool for building, changing, and versioning infrastructure safely and efficien
 
 - [Intro to Terraform](/intro/index.html)
 
+## Terraform Version
+
+[terraform version]: glossary.html#tool-version
+[terraform versions]: glossary.html#tool-version
+
+-> Terraform Enterprise
+
+A particular version of the `terraform` binary available for use in TFE workspaces. Specifies a URL, a SHA256 checksum and enabled/beta flags.
+
+Available Terraform versions are configured at a per-instance level in [Private Terraform Enterprise][], and can be managed by [site admins][].
+
+- [PTFE docs: Managing Terraform Versions](/docs/enterprise/private/admin/resources.html#managing-terraform-versions)
+
 ## TFE
 
 [tfe]: glossary.html#tfe
@@ -823,16 +828,13 @@ Terraform Enterprise.
 
 - [TFE docs](/docs/enterprise/index.html)
 
-## Trigger
+## TFE Provider
 
-[trigger]: glossary.html#trigger
-[triggers]: glossary.html#trigger
+[tfe provider]: glossary.html#tfe-provider
 
--> Terraform Enterprise
+A Terraform provider that manages Terraform Enterprise. Allows you to manage TFE using a Terraform [configuration][].
 
-Something that causes a new [run][] to queue. Runs can be UI/VCS-driven (in which case the trigger is a new VCS commit or a UI action), API-driven (in which case the trigger is an API call) or CLI-driven (in which case the trigger is a CLI command).
-
-- [TFE docs: UI/VCS-based Run Workflow](/docs/enterprise/run/ui.html)
+- [Provider docs: tfe](/docs/providers/tfe/index.html)
 
 ## (API) Token
 
@@ -851,18 +853,16 @@ Many applications other than TFE use token-based authentication, but within TFE'
 - [TFE docs: Team Tokens](/docs/enterprise/users-teams-organizations/teams.html#api-tokens)
 - [TFE docs: Organization Tokens](/docs/enterprise/users-teams-organizations/organizations.html#api-tokens)
 
-## Terraform Version
+## Trigger
 
-[terraform version]: glossary.html#tool-version
-[terraform versions]: glossary.html#tool-version
+[trigger]: glossary.html#trigger
+[triggers]: glossary.html#trigger
 
 -> Terraform Enterprise
 
-A particular version of the `terraform` binary available for use in TFE workspaces. Specifies a URL, a SHA256 checksum and enabled/beta flags.
+Something that causes a new [run][] to queue. Runs can be UI/VCS-driven (in which case the trigger is a new VCS commit or a UI action), API-driven (in which case the trigger is an API call) or CLI-driven (in which case the trigger is a CLI command).
 
-Available Terraform versions are configured at a per-instance level in [Private Terraform Enterprise][], and can be managed by [site admins][].
-
-- [PTFE docs: Managing Terraform Versions](/docs/enterprise/private/admin/resources.html#managing-terraform-versions)
+- [TFE docs: UI/VCS-based Run Workflow](/docs/enterprise/run/ui.html)
 
 ## Variables
 
