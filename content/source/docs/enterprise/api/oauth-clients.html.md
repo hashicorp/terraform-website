@@ -8,7 +8,7 @@ sidebar_current: "docs-enterprise2-api-oauth-clients"
 
 -> **Note:** These API endpoints are in beta and are subject to change.
 
--> **Note:** Before working with the runs or configuration versions APIs, read the [API-driven run workflow](../run/api.html) page, which includes both a full overview of this workflow and a walkthrough of a simple implementation of it.
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
 An OAuth Client represents the connection between an organization and a VCS provider.
 
