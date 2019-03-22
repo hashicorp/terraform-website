@@ -26,7 +26,7 @@ Key path                                 | Type   | Default | Description
 -----------------------------------------|--------|---------|------------
 `data.type`                              | string |         | Must be `"vars"`.
 `data.attributes.key`                    | string |         | The name of the variable.
-`data.attributes.value`                  | string |         | The value of the variable.
+`data.attributes.value`                  | string | `""`    | The value of the variable.
 `data.attributes.category`               | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
 `data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
 `data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
