@@ -22,7 +22,7 @@ Choose and implement a version control system (VCS) if your organization doesn�
 
 You might be able to get by with a minimalist Git/Mercurial/SVN server, but we recommend adopting a more robust collaborative VCS application that supports code reviews/approvals and has APIs for accessing data and administering repositories and accounts. Bitbucket, GitLab, and GitHub are popular tools in this space.
 
-If you already have established VCS workflows, layouts, and access control practices, great! If not, this is a good time to make these decisions. (We consider [this advice](https://www.drupalwatchdog.com/volume-4/issue-2/version-control-workflow-strategies) to be a good starting point.) Make sure you have a plan for who is allowed to merge changes and under what circumstances — since this code will be managing your whole infrastructure, it’s important to maintain its integrity and quality.
+If you already have established VCS workflows, layouts, and access control practices, great! If not, this is a good time to make these decisions. (We consider [this advice](http://www.drupalwatchdog.net/volume-4/issue-2/version-control-workflow-strategies) to be a good starting point.) Make sure you have a plan for who is allowed to merge changes and under what circumstances — since this code will be managing your whole infrastructure, it’s important to maintain its integrity and quality.
 
 Also, make sure to write down your organization’s expectations and socialize them widely among your teams.
 
