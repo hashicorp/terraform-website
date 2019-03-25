@@ -19,7 +19,7 @@ can only be used to create the admin user when there are no users configured in 
 After installation, run:
 
 ```shell
-replicated admin retrieve-iact
+replicated admin --no-tty retrieve-iact
 ```
 
 The command outputs only the complete IACT, which facilitates use in automation.
