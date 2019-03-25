@@ -184,7 +184,7 @@ resource "example_spot_request" "ex" {
 
 `TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://godoc.org/github.com/hashicorp/terraform/helper/validation#ValidateRFC3339TimeString)).
 
-**Example:** `2006-01-02T15:04:05Z07:00`
+**Example:** `2006-01-02T15:04:05+07:00`
 
 **Schema example:**
 
@@ -199,14 +199,14 @@ resource "example_spot_request" "ex" {
 
 ```hcl
 resource "example_resource" "ex" {
-  expiration = "2006-01-02T15:04:05Z07:00"
+  expiration = "2006-01-02T15:04:05+07:00"
 }
 ```
 
 **State representation:**  
 
 ```json
-"expiration": "2006-01-02T15:04:05Z07:00",
+"expiration": "2006-01-02T15:04:05+07:00",
 ```
 
 ## Aggregate Types
