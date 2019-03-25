@@ -1,5 +1,25 @@
 Follow this template to format each API method. There are usually multiple sections like this on a given API endpoint page.
 
+<!-- Boilerplate link references: This entire list should be included at the top of every API page, so that the tables can use short links freely. This SHOULD be all of the status codes we use in TFE's API; if we need to add more, update the list on every page. -->
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
+
 ## Create a Something
 
 <!-- Header: "Verb a Noun" or "Verb Nouns." -->
@@ -28,15 +48,10 @@ Status  | Response                                     | Reason
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 [500][] | [JSON API error object][]                    | Failure during team creation
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
-
-<!-- ^ Include status codes even if they're plain 200/404. If a JSON API document is returned, specify the `type`. If the table includes links, use reference-style links to keep the table size small. -->
+<!-- ^ Include status codes even if they're plain 200/404.
+If a JSON API document is returned, specify the `type`.
+If the table includes links, use reference-style links to keep the table size small. The references should be included once per API page, at the very top.
+ -->
 
 ### Query Parameters
 
