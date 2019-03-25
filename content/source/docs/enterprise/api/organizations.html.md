@@ -19,9 +19,6 @@ Status  | Response                                        | Reason
 [200][] | [JSON API document][] (`type: "organizations"`) | The request was successful
 [404][] | [JSON API error object][]                       | Organization not found or user unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 
 ### Sample Request
 
@@ -82,9 +79,6 @@ Status  | Response                                        | Reason
 [200][] | [JSON API document][] (`type: "organizations"`) | The request was successful
 [404][] | [JSON API error object][]                       | Organization not found or user unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 
 ### Sample Request
 
@@ -140,11 +134,6 @@ Status  | Response                                        | Reason
 [404][] | [JSON API error object][]                       | Organization not found or user unauthorized to perform action
 [422][] | [JSON API error object][]                       | Malformed request body (missing attributes, wrong types, etc.)
 
-[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -235,11 +224,6 @@ Status  | Response                                        | Reason
 [404][] | [JSON API error object][]                       | Organization not found or user unauthorized to perform action
 [422][] | [JSON API error object][]                       | Malformed request body (missing attributes, wrong types, etc.)
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -326,9 +310,6 @@ Status  | Response                                        | Reason
 [204][] |                                                 | The organization was successfully destroyed
 [404][] | [JSON API error object][]                       | Organization not found or user unauthorized to perform action
 
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -359,9 +340,6 @@ Status  | Response                                           | Reason
 [200][] | [JSON API document][] (`type: "entitlement-sets"`) | The request was successful
 [404][] | [JSON API error object][]                          | Organization not found or user unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 

@@ -221,11 +221,3 @@ curl \
   https://app.terraform.io/api/v2/oauth-tokens/ot-29t7xkUKiNC2XasL
 ```
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
-[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects

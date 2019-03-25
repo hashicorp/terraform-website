@@ -23,10 +23,6 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully listed workspaces
 [404][] | [JSON API error object][]                    | Client is not an administrator.
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Query Parameters
 
@@ -139,10 +135,6 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully listed workspaces
 [404][] | [JSON API error object][]                    | Client is not an administrator.
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Query Parameters
 
@@ -217,9 +209,6 @@ Status  | Response                                        | Reason
 [204][] |                                                 | The workspace was successfully destroyed
 [404][] | [JSON API error object][]                       | Workspace not found or user unauthorized to perform action
 
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 

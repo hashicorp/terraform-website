@@ -30,13 +30,6 @@ Status  | Response                                     | Reason
 [412][] | [JSON API error object][]                    | Precondition failed; check the error object for more information
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
-[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
-[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -239,10 +232,6 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace
 [404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 

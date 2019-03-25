@@ -26,10 +26,6 @@ Status  | Response                                | Reason
 [200][] | [JSON API document][] (`type: "plans"`) | The request was successful
 [404][] | [JSON API error object][]               | Plan not found, or user unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 

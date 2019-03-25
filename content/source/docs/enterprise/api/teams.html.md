@@ -81,13 +81,6 @@ Status  | Response                                | Reason
 [422][] | [JSON API error object][]               | Malformed request body (missing attributes, wrong types, etc.)
 [500][] | [JSON API error object][]               | Failure during team creation
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 

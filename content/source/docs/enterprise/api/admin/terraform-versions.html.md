@@ -23,10 +23,6 @@ Status  | Response                                             | Reason
 [200][] | [JSON API document][] (`type: "terraform-versions"`) | Successfully listed Terraform versions
 [404][] | [JSON API error object][]                            | Client is not an administrator.
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Query Parameters
 
@@ -109,11 +105,6 @@ Status  | Response                                             | Reason
 [404][] | [JSON API error object][]                            | Client is not an administrator
 [422][] | [JSON API error object][]                            | Validation errors
 
-[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -194,10 +185,6 @@ Status  | Response                                             | Reason
 [200][] | [JSON API document][] (`type: "terraform-versions"`) | The request was successful
 [404][] | [JSON API error object][]                            | Terraform version not found, or client is not an administrator
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -243,11 +230,6 @@ Status  | Response                                             | Reason
 [404][] | [JSON API error object][]                            | Terraform version not found, or client is not an administrator
 [422][] | [JSON API error object][]                            | Validation errors
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -327,11 +309,6 @@ Status  | Response                  | Reason
 [404][] | [JSON API error object][] | Terraform version not found, or client is not an administrator
 [422][] | [JSON API error object][] | The Terraform version cannot be removed (it is official or is in use)
 
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 

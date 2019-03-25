@@ -19,8 +19,6 @@ See the navigation sidebar for the list of available endpoints.
 
 All requests must be authenticated with a bearer token. Use the HTTP header `Authorization` with the value `Bearer <token>`. If the token is absent or invalid, TFE responds with [HTTP status 401][401] and a [JSON API error object][]. The 401 status code is reserved for problems with the authentication token; forbidden requests with a valid token result in a 404.
 
-[JSON API error object]: http://jsonapi.org/format/#error-objects
-[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
 
 There are three kinds of token available:
 
@@ -251,8 +249,6 @@ Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
 [429][] | [JSON API error object][]                    | Rate limit has been reached.
 
-[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ```json
 {

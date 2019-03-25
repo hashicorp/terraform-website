@@ -25,10 +25,6 @@ Status  | Response                                                | Reason
 [201][] | [JSON API document][] (`type: "authentication-tokens"`) | Success
 [404][] | [JSON API error object][]                               | User not authorized
 
-[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -80,7 +76,6 @@ Status  | Response                                             | Reason
 [204][] | Nothing                                              | Success
 [404][] | [JSON API error object][]                            | User not authorized
 
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 
 ### Sample Request
 

@@ -238,12 +238,3 @@ curl \
   https://app.terraform.io/api/v2/authentication-tokens/at-6yEmxNAhaoQLH1Da
 ```
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
-[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects

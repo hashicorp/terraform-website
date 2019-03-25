@@ -46,10 +46,6 @@ Status  | Response                               | Reason
 [404][] | [JSON API error object][]              | Organization or workspace not found, or user unauthorized to perform action
 [422][] | [JSON API error object][]              | Malformed request body (missing attributes, wrong types, etc.)
 
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
 
 
 ### Sample Payload
@@ -166,9 +162,6 @@ Status  | Response                  | Reason(s)
 [202][] | none                      | Successfully queued an apply request.
 [409][] | [JSON API error object][] | Run was not paused for confirmation; apply not allowed.
 
-[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
-[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 
 ### Request Body
@@ -213,7 +206,6 @@ Status  | Response                                         | Reason
 --------|--------------------------------------------------|-------
 [200][] | Array of [JSON API document][]s (`type: "runs"`) | Successfully listed runs
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200 
 
 ### Query Parameters
 

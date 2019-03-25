@@ -23,10 +23,6 @@ Status  | Response                               | Reason
 [200][] | [JSON API document][] (`type: "runs"`) | Successfully listed runs
 [404][] | [JSON API error object][]              | Client is not an administrator.
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Query Parameters
 
@@ -138,10 +134,6 @@ Status  | Response                               | Reason
 [200][] | [JSON API document][] (`type: "runs"`) | Successfully canceled the run.
 [404][] | [JSON API error object][]              | Run not found, or client is not an administrator.
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request body
 

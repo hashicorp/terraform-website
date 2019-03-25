@@ -32,10 +32,6 @@ Status  | Response                                             | Reason
 [200][] | Array of [JSON API document][]s (`type: "ssh-keys"`) | Success
 [404][] | [JSON API error object][]                            | Organization not found or user not authorized
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -123,8 +119,6 @@ Status  | Response                                   | Reason
 [422][] | [JSON API error object][]                  | Malformed request body (missing attributes, wrong types, etc.)
 [404][] | [JSON API error object][]                  | User not authorized
 
-[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
 
 
 ### Request Body
@@ -269,7 +263,6 @@ Status  | Response                                             | Reason
 [204][] | Nothing                                              | Success
 [404][] | [JSON API error object][]                            | SSH key not found or user not authorized
 
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 
 
 ### Sample Request
