@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-sentinel-examples"
 
 # Example Policies
 
-This page lists some example Sentinel policies. These examples are not exhaustive, but they demonstrate some of the most common use cases of Sentinel with Terraform Enterprise. For more examples, see the [Terraform Guides Governance repository](https://github.com/hashicorp/terraform-guides/tree/master/governance).  
+This page lists some example Sentinel policies. These examples are not exhaustive, but they demonstrate some of the most common use cases of Sentinel with Terraform Enterprise. For more examples, see the [Governance section of the Terraform Guides repository](https://github.com/hashicorp/terraform-guides/tree/master/governance).  
 
 ~> **Important:** These examples are a demonstration of Sentinel's features. They should not be used verbatim in your Terraform Enterprise organization. Make sure you fully understand the intent and behavior of a policy before relying on it in production.
 
