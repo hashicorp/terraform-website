@@ -4,6 +4,23 @@ page_title: "Private Terraform Enterprise Settings - API Docs - Terraform Enterp
 sidebar_current: "docs-enterprise2-api-admin-settings"
 ---
 
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
 # Private Terraform Enterprise Settings API
 
 -> **Note**: These API endpoints are in beta and are subject to change.
@@ -20,10 +37,6 @@ Status  | Response                                         | Reason
 [200][] | [JSON API document][] (`type: "general-settings"`) | Successfully listed General settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -61,11 +74,6 @@ Status  | Response                                     | Reason
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -131,10 +139,6 @@ Status  | Response                                         | Reason
 [200][] | [JSON API document][] (`type: "saml-settings"`) | Successfully listed SAML settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -181,11 +185,6 @@ Status  | Response                                         | Reason
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -316,10 +315,6 @@ Status  | Response                                         | Reason
 [200][] | [JSON API document][] (`type: "smtp-settings"`) | Successfully listed SMTP settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -364,14 +359,6 @@ Status  | Response                                     | Reason
 [500][] | [JSON API error object][]                    | SMTP server returned a server error
 [504][] | [JSON API error object][]                    | SMTP server timed out
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
-[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -447,10 +434,6 @@ Status  | Response                                         | Reason
 [200][] | [JSON API document][] (`type: "twilio-settings"`) | Successfully listed Twilio settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -487,11 +470,6 @@ Status  | Response                                         | Reason
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -557,11 +535,6 @@ Status  | Response                                         | Reason
 [400][] | [JSON API error object][]                    | Verification settings invalid (missing test number, Twilio disabled, etc.)
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
