@@ -1,4 +1,4 @@
-VERSION?="0.3.35"
+VERSION?="0.3.39"
 MKFILE_PATH=$(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 DEPLOY_ENV?="development"
 
