@@ -10,6 +10,6 @@
 document.addEventListener("turbolinks:load", function() {
     "use strict";
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
-    var activeListItems = docsSidebar.find("li").has("a.current-page");
-    activeListItems.addClass("active");
+    docsSidebar.find("ul.nav").addClass("nav-hidden");
+    docsSidebar.find("li").has("a.current-page").addClass("active");
 });
