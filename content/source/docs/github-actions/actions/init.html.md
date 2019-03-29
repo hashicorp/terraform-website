@@ -36,19 +36,20 @@ action "terraform init" {
 
 ## Environment Variables
 
-| Name                    | Default   | Description                                                                      |
-|-------------------------|-----------|----------------------------------------------------------------------------------|
-| `TF_ACTION_WORKING_DIR` | `"."`     | Which directory `init` runs in. Relative to the root of the repo.            |
-| `TF_ACTION_COMMENT`     | `"true"`  | Set to `"false"` to disable commenting back on pull on error. |
+| Name                     | Default              | Description                                                       |
+|--------------------------|----------------------|-------------------------------------------------------------------|
+| `TF_ACTION_WORKING_DIR`  | `"."`                | Which directory `init` runs in. Relative to the root of the repo. |
+| `TF_ACTION_COMMENT`      | `"true"`             | Set to `"false"` to disable commenting back on pull on error.     |
+| `TF_ACTION_TFE_HOSTNAME` | `"app.terraform.io"` | If using Private Terraform Enterprise set this to its hostname.   |
 
 
 ## Secrets
+| Name                  | Description                                                                                                                                                                                                                                   |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `GITHUB_TOKEN`        | Required for posting comments to the pull request unless `TF_ACTION_COMMENT = "false"`.                                                                                                                                                       |
+| `TF_ACTION_TFE_TOKEN` | If using the Terraform Enterprise [remote backend](/docs/backends/types/remote.html) set this secret to a [user API token](/docs/enterprise/users-teams-organizations/users.html#api-tokens). |
 
-The `GITHUB_TOKEN` secret is required for posting a comment back to the pull request if `init` fails.
-
-If you have set `TF_ACTION_COMMENT = "false"`, then `GITHUB_TOKEN` is not required.
-
-* You may also need to add secrets for your providers, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` or `GOOGLE_CREDENTIALS`,
+**NOTE:** You may also need to add secrets for your providers, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` or `GOOGLE_CREDENTIALS`,
 if you're using a Terraform feature that uses them during `init` (such as Remote State).
 
   !> **⚠️ WARNING ⚠️** These secrets could be exposed if the `plan` action is run on a malicious Terraform file.
