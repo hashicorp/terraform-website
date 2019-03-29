@@ -301,11 +301,19 @@ If the installation script (`install.sh`) exits successfully, but the Replicated
 * Verify the locations and permissions of the files. The Replicated configuration file should be placed in `/etc/replicated.conf`, and the application settings file should be placed in the path specified in the Replicated configuration file. The permissions of both files should be `600` if owned by the `replicated` user, or `644`.
 * Run a JSON validator on the files to check their validity.
 
-After resolving any issues with file validity or permissions, re-run the installer to verify that the configuration is applied.
+After resolving any issues with file validity or permissions, run the following commands to reload your configuration:
+
+``` bash
+sudo systemctl stop replicated replicated-ui replicated-operator 
+sudo rm -rf /var/lib/replicated 
+sudo systemctl start replicated replicated-ui replicated-operator
+```
+
 
 ## References
 
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
 - [`/etc/replicated.conf`](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically)
 - [application settings](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-app-settings-automatically)
+- [`app-config import` flags](https://help.replicated.com/api/replicatedctl/replicatedctl_app-config_import/)
 
