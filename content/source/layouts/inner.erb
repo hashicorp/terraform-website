@@ -2,11 +2,14 @@
 <div class="container">
   <div class="row">
     <div id="docs-sidebar" class="col-sm-4 col-md-3 col-xs-12 hidden-print" role="complementary">
-      <% sidebar_text = yield_content(:sidebar) || ''
-         fuzzy_url = current_page.url.sub(%r{(/|/index\.html)$}, '/(index\.html)?')
-         sidebar_text.gsub!(/href=["']#{fuzzy_url}['"]/, '\0 class="current-page"')
+      <% if content_for?(:sidebar) %>
+      <%
+        sidebar_text = yield_content(:sidebar)
+        fuzzy_url = current_page.url.sub(%r{(/|/index\.html)$}, '/(index\.html)?')
+        sidebar_text.gsub!(/href=["']#{fuzzy_url}['"]/, '\0 class="current-page"')
       %>
       <%= sidebar_text %>
+      <% end %>
     </div>
 
     <div id="inner" class="col-sm-8 col-md-9 col-xs-12" role="main">
