@@ -86,15 +86,23 @@
             <div class="buttons hidden-xs">
               <nav class="navigation-links" role="navigation">
                 <ul class="main-links nav navbar-nav navbar-right">
-                  <li><a href="/intro/index.html">Intro</a></li>
-                  <li><a href="https://learn.hashicorp.com/terraform/">Learn</a></li>
+                  <li class="visible-sm"><span><a href="/index.html">Info</a><svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span>
+                    <ul class="dropdown">
+                      <li><a href="/intro/index.html">Intro</a></li>
+                      <li><a href="https://learn.hashicorp.com/terraform/">Learn</a></li>
+                      <li><a href="/community.html">Community</a></li>
+                      <li><a href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
+                    </ul>
+                  </li>
+                  <li class="hidden-sm"><a href="/intro/index.html">Intro</a></li>
+                  <li class="hidden-sm"><a href="https://learn.hashicorp.com/terraform/">Learn</a></li>
                   <li><span><a href="/docs/index.html">Docs</a><svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span>
                     <ul class="dropdown">
                       <%= docs_items %>
                     </ul>
                   </li>
-                  <li><a href="/community.html">Community</a></li>
-                  <li><a href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
+                  <li class="hidden-sm"><a href="/community.html">Community</a></li>
+                  <li class="hidden-sm"><a href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
                   <li>
                     <a href="/downloads.html">
                       <%= inline_svg "download.svg" %> Download
