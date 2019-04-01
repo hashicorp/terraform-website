@@ -1,13 +1,4 @@
 #inner {
-  p a code {
-    text-decoration: underline;
-  }
-
-  p code {
-    background-color: $terraform-purple-light;
-    color: $terraform-purple;
-  }
-  
   p, li, .alert {
     font-size: $font-size;
     font-family: $font-family-open-sans;
@@ -23,11 +14,15 @@
 
   pre,
   code,
-  pre code,
   tt {
     font-family: $font-family-monospace;
-    font-size: $font-size - 2;
+    font-size: 90%;
     line-height: 1.6;
+  }
+
+  code {
+    background-color: $terraform-purple-light;
+    color: inherit;
   }
 
   pre {
@@ -39,6 +34,9 @@
     code {
       overflow-wrap: normal;
       white-space: pre;
+      background-color: transparent;
+      // Fix too-small default font size for pre
+      font-size: $font-size - 2;
     }
   }
 
@@ -51,7 +49,6 @@
     }
 
     code {
-      background: inherit;
       color: $body-link-color;
     }
   }
@@ -76,24 +73,6 @@
   h2 {
     padding-bottom: 3px;
     border-bottom: 1px solid $gray-light;
-  }
-
-  h1 > code,
-  h2 > code,
-  h3 > code,
-  h4 > code,
-  h5 > code
-  h6 > code,
-  li code,
-  table code,
-  p code,
-  tt,
-  .alert code {
-    font-family: $font-family-monospace;
-    font-size: 90%;
-    background-color: transparent;
-    color: inherit;
-    padding: 0;
   }
 
   table {
