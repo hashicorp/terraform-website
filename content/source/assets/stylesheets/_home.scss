@@ -19,7 +19,8 @@
 
     ul.nav {
       li {
-        a {
+        a,
+        span {
           color: $home-header-link-color;
 
           &:hover, &:focus, &:active {
@@ -30,10 +31,20 @@
               fill: $home-header-link-color-hover;
             }
           }
+        }
 
+        span {
           svg {
             fill: $home-header-link-color;
           }
+        }
+
+        svg {
+          fill: $home-header-link-color;
+        }
+
+        ul {
+          background-color: $home-header-background-color;
         }
       }
     }
