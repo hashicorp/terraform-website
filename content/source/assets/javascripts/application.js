@@ -7,6 +7,9 @@
 
 //= require analytics
 
+// In navigation sidebars, hide most sub-lists and reveal any that contain the
+// current page. The a.current-page class is added during build by
+// layouts/inner.erb.
 document.addEventListener("turbolinks:load", function() {
     "use strict";
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
@@ -14,6 +17,8 @@ document.addEventListener("turbolinks:load", function() {
     docsSidebar.find("li").has("a.current-page").addClass("active");
 });
 
+// On docs/content pages, add a hierarchical quick nav menu if there are any
+// H2/H3/H4 headers.
 document.addEventListener("turbolinks:load", function() {
     "use strict";
     var headers = $('#inner').find('h2, h3, h4');
