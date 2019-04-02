@@ -46,15 +46,16 @@
         display: block;
         position: relative;
         margin-bottom: 0;
+        margin-left: 0;
         padding-top: 0;
         padding-bottom: 0;
 
         $toc-indent: 30px;
-        &.level-h2 { margin-left: $toc-indent * 0 }
-        &.level-h3 { margin-left: $toc-indent * 1 }
-        &.level-h4 { margin-left: $toc-indent * 2 }
-        &.level-h5 { margin-left: $toc-indent * 3 }
-        &.level-h6 { margin-left: $toc-indent * 4 }
+        &.level-h2 { padding-left: $toc-indent * 0 }
+        &.level-h3 { padding-left: $toc-indent * 1 }
+        &.level-h4 { padding-left: $toc-indent * 2 }
+        &.level-h5 { padding-left: $toc-indent * 3 }
+        &.level-h6 { padding-left: $toc-indent * 4 }
 
         a {
           text-decoration: none;
