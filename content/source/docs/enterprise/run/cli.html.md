@@ -19,8 +19,6 @@ Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
 - The [API-driven run workflow](./api.html), which is more flexible but requires you to create some tooling.
 - The CLI-driven run workflow described below, which uses Terraform's standard CLI tools to execute runs in TFE.
 
--> **Preview Release:** As of Terraform 0.11.8, the remote backend is a preview release, and we do not recommend using it with production workloads. Please continue to use the existing Terraform Enterprise (`atlas`) backend or the [TFE CLI tool][tfe-cli] for production workspaces.
-
 ## Summary
 
 The [Terraform remote backend][remote] brings Terraform Enterprise's collaboration features into the familiar Terraform CLI workflow. It offers the best of both worlds to developers who are already comfortable with using Terraform, and can work with existing CI/CD pipelines.
