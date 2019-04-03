@@ -26,6 +26,10 @@ document.addEventListener("turbolinks:load", function() {
         }
         e.stopPropagation();
     });
+    docsSidebar.find("a[href^='#']").on("click", function(e) {
+        e.preventDefault();
+        $(this).parent("li").trigger("click");
+    });
 
 
     // On docs/content pages, add a hierarchical quick nav menu if there are any
