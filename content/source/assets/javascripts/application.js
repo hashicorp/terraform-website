@@ -16,7 +16,17 @@ document.addEventListener("turbolinks:load", function() {
     // layouts/inner.erb.
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
     docsSidebar.find("ul.nav").addClass("nav-hidden");
-    docsSidebar.find("li").has("a.current-page").addClass("active");
+    docsSidebar.find("li").has("a.current-page, ul.nav-visible").addClass("active");
+
+    // Make sidebar navs expandable
+    var subNavs = $("ul.nav.docs-sidenav li").has("ul");
+    subNavs.addClass("has-subnav");
+    subNavs.on("click", function(e) {
+        if (e.target == this) {
+            $(this).toggleClass("active");
+        }
+        e.stopPropagation();
+    });
 
 
     // On docs/content pages, add a hierarchical quick nav menu if there are any

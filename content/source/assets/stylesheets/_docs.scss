@@ -15,48 +15,43 @@
   ul.nav.docs-sidenav {
     display: block;
     padding-bottom: 15px;
+    padding-top: 10px;
 
     li {
+      &:before {
+        color: $sidebar-link-color-active;
+        content: '\276f';
+        font-size: .8em;
+        left: -3px;
+        top: 1px;
+        opacity: 0.4;
+        position: absolute;
+      }
+      &.active:before {
+        opacity: 1;
+      }
+      &.has-subnav {
+        &:before {
+          content: '\25b6\fe0e';
+          cursor: pointer;
+        }
+        &.active:before {
+          content: '\25bc';
+        }
+      }
+
       a {
         color: $sidebar-link-color;
         font-size: $sidebar-font-size;
         overflow-wrap: break-word;
-        padding: 10px 0 10px 15px;
-
-        &:before {
-          color: $sidebar-link-color-active;
-          content: '\203A';
-          font-size: $font-size;
-          left: 0;
-          line-height: 100%;
-          opacity: 0.4;
-          position: absolute;
-
-          height: 100%;
-          width: 8px
-        }
+        margin: 0 0 0 15px;
+        padding: 0 0 11px 0;
 
         &:focus,
         &:hover {
           background-color: transparent;
           color: $sidebar-link-color-hover;
-
-          &:before {
-            opacity: 1;
-          }
         }
-
-        &.back {
-          &:before {
-            content: '\2039';
-          }
-        }
-      }
-
-      // For forcing sub-navs to appear - in the long term, this should not
-      // be a thing anymore...
-      > ul.nav-visible {
-        display: block;
       }
     }
 
@@ -80,14 +75,10 @@
       display: none;
     }
     ul.nav {
-      margin: 10px;
+      padding: 10px;
 
       li {
         margin-left: 10px;
-
-        a {
-          padding: 6px 15px;
-        }
       }
     }
   }
