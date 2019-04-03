@@ -15,11 +15,10 @@ document.addEventListener("turbolinks:load", function() {
     // current page. The a.current-page class is added during build by
     // layouts/inner.erb.
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
-    docsSidebar.find("ul.nav").addClass("nav-hidden");
-    docsSidebar.find("li").has("a.current-page, ul.nav-visible").addClass("active");
+    docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active");
+    var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li");
 
     // Make sidebar navs expandable
-    var subNavs = $("ul.nav.docs-sidenav li").has("ul");
     subNavs.addClass("has-subnav");
     subNavs.on("click", function(e) {
         if (e.target == this) {
