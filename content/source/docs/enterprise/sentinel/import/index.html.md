@@ -21,12 +21,12 @@ To create test data for rules, Terraform Enterprise allows you to create mocks
 of these imports from executable plans for use with the mocking or testing
 features of the [Sentinel Simulator](https://docs.hashicorp.com/sentinel/commands/).
 To download tfplan, tfconfig, and tfstate mocks of an executable plan in your
-organization, navigate to any run for you'd like to download mock data, and expand
-the run's plan information to find a button to download mock data:
+organization, navigate to any run for which you'd like to download mock data, and expand
+the run's plan information to find the button to download the data:
 
 ![Download Sentinel Mocks](/assets/images/guides/sentinel/download-mocks.png)
 
-Terraform Enterprise retains the executable plan for seven days, so as long as the
+Terraform Enterprise retains the executable plan for seven days. As long as the
 plan is finished and is not over seven days old, mock data can be downloaded.
 
 -> **Note:** Terraform Enterprise does not currently support custom imports.
