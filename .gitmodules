@@ -394,3 +394,11 @@
 	path = ext/providers/ciscoasa
 	url = https://github.com/terraform-providers/terraform-provider-ciscoasa
 	branch = stable-website
+[submodule "ext/providers/ncloud"]
+	path = ext/providers/ncloud
+	url = https://github.com/terraform-providers/terraform-provider-ncloud
+	branch = stable-website
+[submodule "ext/providers/jdcloud"]
+	path = ext/providers/jdcloud
+	url = https://github.com/terraform-providers/terraform-provider-jdcloud
+	branch = stable-website

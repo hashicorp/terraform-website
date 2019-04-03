@@ -1,0 +1,12 @@
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+    <h4><a href="/docs/index.html">Terraform Docs</a></h4>
+
+    <%= partial(
+                "layouts/otherdocs", :locals => { :skip => "none" }
+        ).sub(%r{^ *<h4>Other Docs</h4> *$}, '').gsub(/class="back" /, '') %>
+
+  <% end %>
+
+  <%= yield %>
+<% end %>

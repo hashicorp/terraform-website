@@ -43,7 +43,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-fmt" {
-      uses = "hashicorp/terraform-github-actions/fmt@v0.1.3"
+      uses = "hashicorp/terraform-github-actions/fmt@v0.2.0"
       needs = "filter-to-pr-open-synced"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -52,7 +52,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-init" {
-      uses = "hashicorp/terraform-github-actions/init@v0.1.3"
+      uses = "hashicorp/terraform-github-actions/init@v0.2.0"
       needs = "terraform-fmt"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -61,7 +61,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-validate" {
-      uses = "hashicorp/terraform-github-actions/validate@v0.1.3"
+      uses = "hashicorp/terraform-github-actions/validate@v0.2.0"
       needs = "terraform-init"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -70,7 +70,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-plan" {
-      uses = "hashicorp/terraform-github-actions/plan@v0.1.3"
+      uses = "hashicorp/terraform-github-actions/plan@v0.2.0"
       needs = "terraform-validate"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -116,7 +116,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     Scroll down to the `terraform-init` or `terraform-plan` actions and click **Edit**.
     This will open the action editor on the right side, where you'll be able
     to add your secrets as environment variables, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
-    See your [provider documentation](https://www.terraform.io/docs/providers/)
+    See your [provider documentation](/docs/providers/)
     for the specific environment variables your provider needs. If you've already added 
     these secrets to the repository, they will be available for selection.
 
@@ -127,3 +127,4 @@ Terraform's GitHub Actions on new and updated pull requests.
     on public repos or repos where untrusted users can submit pull requests.
 1. Click **Start commit** to commit the Workflow.
 1. On your next pull request, you should see the Actions running.
+

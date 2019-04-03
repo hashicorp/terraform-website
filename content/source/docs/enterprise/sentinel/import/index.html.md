@@ -44,6 +44,8 @@ The most basic Sentinel task for Terraform is to enforce a rule on all resources
 The easiest way to do that is to copy a function like the following into any policies that examine every resource in a configuration:
 
 ```python
+import "tfplan"
+
 # Get an array of all resources of the given type (or an empty array).
 get_resources = func(type) {
 	if length(tfplan.module_paths else []) > 0 { # always true in the real tfplan import

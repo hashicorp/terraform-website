@@ -4,6 +4,23 @@ page_title: "Workspaces - Admin - API Docs - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-api-admin-workspaces"
 ---
 
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
 # Admin Workspaces API
 
 -> **Note**: These API endpoints are in beta and are subject to change.
@@ -23,10 +40,6 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully listed workspaces
 [404][] | [JSON API error object][]                    | Client is not an administrator.
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Query Parameters
 
@@ -139,10 +152,6 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully listed workspaces
 [404][] | [JSON API error object][]                    | Client is not an administrator.
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Query Parameters
 
@@ -217,9 +226,6 @@ Status  | Response                                        | Reason
 [204][] |                                                 | The workspace was successfully destroyed
 [404][] | [JSON API error object][]                       | Workspace not found or user unauthorized to perform action
 
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 

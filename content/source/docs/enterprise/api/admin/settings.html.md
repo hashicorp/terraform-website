@@ -4,6 +4,23 @@ page_title: "Private Terraform Enterprise Settings - API Docs - Terraform Enterp
 sidebar_current: "docs-enterprise2-api-admin-settings"
 ---
 
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
 # Private Terraform Enterprise Settings API
 
 -> **Note**: These API endpoints are in beta and are subject to change.
@@ -20,10 +37,6 @@ Status  | Response                                         | Reason
 [200][] | [JSON API document][] (`type: "general-settings"`) | Successfully listed General settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -61,11 +74,6 @@ Status  | Response                                     | Reason
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -131,10 +139,6 @@ Status  | Response                                         | Reason
 [200][] | [JSON API document][] (`type: "saml-settings"`) | Successfully listed SAML settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -156,6 +160,7 @@ curl \
     "attributes": {
       "enabled": true,
       "debug": false,
+      "old-idp-cert": null,
       "idp-cert": "SAMPLE-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
@@ -180,11 +185,6 @@ Status  | Response                                         | Reason
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -213,7 +213,7 @@ Key path                    | Type   | Default | Description
     "attributes": {
       "enabled": true,
       "debug": false,
-      "idp-cert": "SAMPLE-CERTIFICATE",
+      "idp-cert": "NEW-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
       "attr-username": "Username",
@@ -247,7 +247,52 @@ curl \
     "attributes": {
       "enabled": true,
       "debug": false,
-      "idp-cert": "SAMPLE-CERTIFICATE",
+      "old-idp-cert": "SAMPLE-CERTIFICATE",
+      "idp-cert": "NEW-CERTIFICATE",
+      "slo-endpoint-url": "https://example.com/slo",
+      "sso-endpoint-url": "https://example.com/sso",
+      "attr-username": "Username",
+      "attr-groups": "MemberOf",
+      "attr-site-admin": "SiteAdmin",
+      "site-admin-role": "site-admins",
+      "sso-api-token-session-timeout": 1209600,
+      "acs-consumer-url": "https://example.com/users/saml/auth",
+      "metadata-url": "https://example.com/users/saml/metadata"
+    }
+  }
+}
+```
+
+## Revoke previous SAML IdP Certificate
+
+`PUT /api/v2/admin/saml-settings/actions/revoke-old-certificate`
+
+When reconfiguring the IdP certificate, TFE will retain the old IdP certificate to allow for a rotation period. This PUT endpoint will revoke the older IdP certificate when the new IdP certificate is known to be functioning correctly.
+
+See [SAML Configuration](../../saml/configuration.html) for more details.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PUT \
+  https://app.terraform.io/api/v2/admin/saml-settings/actions/revoke-old-certificate
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id":"saml",
+    "type":"saml-settings",
+    "attributes": {
+      "enabled": true,
+      "debug": false,
+      "old-idp-cert": null,
+      "idp-cert": "NEW-CERTIFICATE",
       "slo-endpoint-url": "https://example.com/slo",
       "sso-endpoint-url": "https://example.com/sso",
       "attr-username": "Username",
@@ -270,10 +315,6 @@ Status  | Response                                         | Reason
 [200][] | [JSON API document][] (`type: "smtp-settings"`) | Successfully listed SMTP settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -318,14 +359,6 @@ Status  | Response                                     | Reason
 [500][] | [JSON API error object][]                    | SMTP server returned a server error
 [504][] | [JSON API error object][]                    | SMTP server timed out
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
-[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -401,10 +434,6 @@ Status  | Response                                         | Reason
 [200][] | [JSON API document][] (`type: "twilio-settings"`) | Successfully listed Twilio settings
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
@@ -441,11 +470,6 @@ Status  | Response                                         | Reason
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 [422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 
@@ -511,11 +535,6 @@ Status  | Response                                         | Reason
 [400][] | [JSON API error object][]                    | Verification settings invalid (missing test number, Twilio disabled, etc.)
 [404][] | [JSON API error object][]                    | User unauthorized to perform action
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ### Request Body
 

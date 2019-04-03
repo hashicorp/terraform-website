@@ -46,23 +46,27 @@ action "terraform init" {
 ```
 
 ## Environment Variables
-
-| Name                    | Default    | Description                                                        |
-|-------------------------|------------|--------------------------------------------------------------------|
-| `TF_ACTION_WORKING_DIR` | `"."`      | Which directory `plan` runs in. Relative to the root of the repo.  |
-| `TF_ACTION_COMMENT`     | `"true"`   | Set to `"false"` to disable commenting back on pull request.       |
-| `TF_ACTION_WORKSPACE`   | `"default"`| Which [Terraform workspace](/docs/state/workspaces.html) to run in.|
+| Name                     | Default              | Description                                                         |
+|--------------------------|----------------------|---------------------------------------------------------------------|
+| `TF_ACTION_WORKING_DIR`  | `"."`                | Which directory `plan` runs in. Relative to the root of the repo.   |
+| `TF_ACTION_COMMENT`      | `"true"`             | Set to `"false"` to disable commenting back on pull request.        |
+| `TF_ACTION_WORKSPACE`    | `"default"`          | Which [Terraform workspace](/docs/state/workspaces.html) to run in. |
+| `TF_ACTION_TFE_HOSTNAME` | `"app.terraform.io"` | If using Private Terraform Enterprise set this to its hostname.     |
 
 ## Workspaces
 
-The `plan` action only supports running in a single [Terraform workspace](https://www.terraform.io/docs/state/workspaces.html).
+The `plan` action only supports running in a single [Terraform workspace](/docs/state/workspaces.html)
+defined by the `TF_ACTION_WORKSPACE` environment variable.
+
 If you need to run `plan` in multiple workspaces, see [Workspaces](../workspaces.html).
 
 ## Secrets
+| Name                  | Description                                                                                                                                                                                                                                   |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `GITHUB_TOKEN`        | Required for posting comments to the pull request unless `TF_ACTION_COMMENT = "false"`.                                                                                                                                                       |
+| `TF_ACTION_TFE_TOKEN` | If using the Terraform Enterprise [remote backend](/docs/backends/types/remote.html) set this secret to a [user API token](/docs/enterprise/users-teams-organizations/users.html#api-tokens). |
 
-* The `GITHUB_TOKEN` secret is required for posting a comment back to the pull request if `validate` fails.
-  If you have set `TF_ACTION_COMMENT = "false"`, then `GITHUB_TOKEN` is not required.
-* You'll also likely need to add secrets for your providers, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` or `GOOGLE_CREDENTIALS`.
+You'll also likely need to add secrets for your providers, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` or `GOOGLE_CREDENTIALS`.
 
   !> **⚠️ WARNING ⚠️** These secrets could be exposed if the `plan` action is run on a malicious Terraform file.
   To avoid this, we recommend you do not use this action on public repos or repos where untrusted users can submit pull requests.

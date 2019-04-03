@@ -4,6 +4,23 @@ page_title: "OAuth Clients - API Docs - Terraform Enterprise"
 sidebar_current: "docs-enterprise2-api-oauth-clients"
 ---
 
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
+
 # OAuth Clients API
 
 -> **Note:** These API endpoints are in beta and are subject to change.
@@ -148,13 +165,12 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization that will be connected to the VCS provider. The organization must already exist in the system, and the user must have permissions to initiate the connection.
 
-This endpoint allows you to create a VCS connection between an organization and a VCS provider (GitHub, Bitbucket, or GitLab) for use when creating or setting up workspaces. By using this API endpoint, you can provide a pre-generated OAuth token string instead of going through the process of creating a GitHub/GitLab OAuth Application or Bitbucket App Link. To learn how to generate one of these token strings for your VCS provider, you can read the following documentation:
+This endpoint allows you to create a VCS connection between an organization and a VCS provider (GitHub or GitLab) for use when creating or setting up workspaces. By using this API endpoint, you can provide a pre-generated OAuth token string instead of going through the process of creating a GitHub or GitLab OAuth Application. To learn how to generate one of these token strings for your VCS provider, you can read the following documentation:
 
 * [GitHub and GitHub Enterprise](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
-* [Bitbucket Cloud](https://confluence.atlassian.com/bitbucket/app-passwords-828781300.html)
 * [GitLab, GitLab Community Edition, and GitLab Enterprise Edition](https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html#creating-a-personal-access-token)
 
-~> **Note:** This endpoint does not currently support creation of a Bitbucket Server OAuth Client.
+~> **Note:** This endpoint does not currently support creation of a Bitbucket Cloud or Bitbucket Server OAuth Client.
 
 Status  | Response                                        | Reason
 --------|-------------------------------------------------|----------
@@ -370,11 +386,3 @@ curl \
   https://app.terraform.io/api/v2/oauth-clients/oc-XKFwG6ggfA9n7t1K
 ```
 
-[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
-[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
-[JSON API document]: https://www.terraform.io/docs/enterprise/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects

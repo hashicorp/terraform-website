@@ -16,10 +16,6 @@ general information about how Terraform uses state [here][ref-tf-state].
 
 [ref-tf-state]: /docs/state/index.html
 
-`tfstate` is also the only import that can provide introspection into the
-outputs in a Terraform workspace. For more information, see the [output
-namespace](#namespace-outputs) documentation.
-
 -> **NOTE:** Terraform Enterprise currently only supports policy checks at plan
 time, limiting the usefulness of this import. This will be resolved in future
 releases. Until that time, the [`tfconfig`][import-tfconfig] and

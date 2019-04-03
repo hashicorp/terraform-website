@@ -4,6 +4,22 @@ layout: "enterprise2"
 sidebar_current: "docs-enterprise2-api"
 ---
 
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
+[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 # Terraform Enterprise API Documentation
 
@@ -19,8 +35,6 @@ See the navigation sidebar for the list of available endpoints.
 
 All requests must be authenticated with a bearer token. Use the HTTP header `Authorization` with the value `Bearer <token>`. If the token is absent or invalid, TFE responds with [HTTP status 401][401] and a [JSON API error object][]. The 401 status code is reserved for problems with the authentication token; forbidden requests with a valid token result in a 404.
 
-[JSON API error object]: http://jsonapi.org/format/#error-objects
-[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
 
 There are three kinds of token available:
 
@@ -251,8 +265,6 @@ Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
 [429][] | [JSON API error object][]                    | Rate limit has been reached.
 
-[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
-[JSON API error object]: http://jsonapi.org/format/#error-objects
 
 ```json
 {

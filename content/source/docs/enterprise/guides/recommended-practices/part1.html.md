@@ -15,7 +15,7 @@ There are two major challenges everyone faces when trying to improve their provi
 
 1. Technical complexity — Different infrastructure providers use different interfaces to provision new resources, and the inconsistency between these interfaces imposes extra costs on daily operations. These costs get worse as you add more infrastructure providers and more collaborators.
 
-    Terraform addresses this complexity by separating the provisioning workload. It uses a single core engine to read infrastructure as code configurations and determine the relationships between resources, then uses many [provider plugins](https://www.terraform.io/docs/providers/index.html) to create, modify, and destroy resources on the infrastructure providers. These provider plugins can talk to IaaS (e.g. AWS, GCP, Microsoft Azure, OpenStack), PaaS (e.g. Heroku), or SaaS services (e.g. GitHub, DNSimple, Cloudflare).
+    Terraform addresses this complexity by separating the provisioning workload. It uses a single core engine to read infrastructure as code configurations and determine the relationships between resources, then uses many [provider plugins](/docs/providers/index.html) to create, modify, and destroy resources on the infrastructure providers. These provider plugins can talk to IaaS (e.g. AWS, GCP, Microsoft Azure, OpenStack), PaaS (e.g. Heroku), or SaaS services (e.g. GitHub, DNSimple, Cloudflare).
 
     In other words, Terraform uses a model of workflow-level abstraction, rather than resource-level abstraction. It lets you use a single workflow for managing  infrastructure, but acknowledges the uniqueness of each provider instead of imposing generic concepts on non-equivalent resources.
 
@@ -23,7 +23,7 @@ There are two major challenges everyone faces when trying to improve their provi
 
     To delegate a large application, companies often split it into small, focused microservice components that are owned by specific teams. Each microservice provides an API, and as long as those APIs don't change, microservice teams can make changes in parallel despite relying on each others' functionality.
 
-    Similarly, infrastructure code can be split into smaller Terraform configurations, which have limited scope and are owned by specific teams. These independent configurations use [output variables](https://www.terraform.io/docs/configuration/outputs.html) to publish information and [remote state resources](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) to access output data from other workspaces. Just like microservices communicate and connect via APIs, Terraform workspaces connect via remote state.
+    Similarly, infrastructure code can be split into smaller Terraform configurations, which have limited scope and are owned by specific teams. These independent configurations use [output variables](/docs/configuration/outputs.html) to publish information and [remote state resources](/docs/providers/terraform/d/remote_state.html) to access output data from other workspaces. Just like microservices communicate and connect via APIs, Terraform workspaces connect via remote state.
 
     Once you have loosely-coupled Terraform configurations, you can delegate their development and maintenance to different teams. To do this effectively, you need to control access to that code. Version control systems can regulate who can commit code, but since Terraform affects real infrastructure, you also need to regulate who can run the code.
 

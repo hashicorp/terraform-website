@@ -11,7 +11,7 @@ sidebar_current: "docs-enterprise2-workspaces-variables"
 Terraform Enterprise (TFE) workspaces can set values for two kinds of variables:
 
 - [Terraform input variables][variables], which define the parameters of a Terraform configuration.
-- Shell environment variables, which many providers can use for credentials and other data. You can also set [environment variables that affect Terraform's behavior](/docs/configuration/environment-variables.html), like `TF_LOG`.
+- Shell environment variables, which many providers can use for credentials and other data. You can also set [environment variables that affect Terraform's behavior](/docs/commands/environment-variables.html), like `TF_LOG`.
 
 You can edit a workspace's variables via the UI or the API. All runs in a workspace use its variables.
 

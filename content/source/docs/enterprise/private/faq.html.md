@@ -244,7 +244,7 @@ Terraform Enterprise makes several categories of outbound requests, detailed in 
 
 #### Version Control System Integrations
 
-Private Terraform Enterprise can be configured to connect to a number of [Version Control Systems (VCSs)](https://www.terraform.io/docs/enterprise/vcs/index.html), some supporting both SaaS and private-network installations.
+Private Terraform Enterprise can be configured to connect to a number of [Version Control Systems (VCSs)](/docs/enterprise/vcs/index.html), some supporting both SaaS and private-network installations.
 
 In order to perform ingress of Terraform configuration from a configured VCS, Private Terraform Enterprise will need to be able to communicate with that provider's API, and webhooks from that provider will need to be able to reach Private Terraform Enterprise.
 
@@ -281,7 +281,7 @@ HashiCorp recommends storing the Terraform state for the install in an encrypted
 
 ### Recommended State Storage Setup
 
-Terraform supports various [remote state](https://www.terraform.io/docs/state/remote.html) backends that can be used to securely store the Terraform state produced by the install.
+Terraform supports various [remote state](/docs/state/remote.html) backends that can be used to securely store the Terraform state produced by the install.
 
 HashiCorp recommends a versioned, encrypted-at-rest S3 bucket as a good default choice.
 

@@ -139,10 +139,12 @@ The following apply to every installation:
 
 - `hostname` — (Required) this is the hostname you will use to access your installation
 - `installation_type` — (Required) one of `poc` or `production`
-- `enc_password` — Set the [encryption password](https://www.terraform.io/docs/enterprise/private/encryption-password.html) for the install
+- `enc_password` — Set the [encryption password](/docs/enterprise/private/encryption-password.html) for the install
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`
 - `enable_metrics_collection` — whether PTFE's [internal metrics collection](./monitoring.html#internal-monitoring) should be enabled; defaults to true
+- `iact_subnet_list` - A comma separated list of CIDR masks that configure the ability to retrieve the IACT from outside the host. For example: 10.0.0.0/24. If not set, no subnets can retrieve the IACT.
+- `iact_subnet_time_limit` - The time limit that requests from the subnets listed can request the IACT, as measured from the instance creation in minutes; defaults to 60.
 - `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
 - `ca_certs` — (Optional) custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
   in the data with `\n`. For instance:

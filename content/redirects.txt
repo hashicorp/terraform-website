@@ -164,8 +164,15 @@
 # to the interpolation page tend to use section headers that no longer exist,
 # and so landing in the 0.11 interpolation docs gives a better result.
 /docs/configuration/interpolation.html /docs/configuration-0-11/interpolation.html
+/docs/configuration/load.html          /docs/configuration-0-11/load.html
 
 # Environment variables are now covered in "commands" rather than in
 # "configuration", because they relate to CLI functionality rather than the
 # configuration language.
 /docs/configuration/environment-variables.html /docs/commands/environment-variables.html
+
+# Module usage docs are now consolidated into the Configuration/Modules page.
+/docs/modules/usage.html /docs/configuration/modules.html
+
+# Module creation docs are now on the modules section index page.
+/docs/modules/create.html /docs/modules/index.html

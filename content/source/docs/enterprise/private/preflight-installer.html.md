@@ -53,8 +53,8 @@ Terraform Enterprise application as well as the Terraform plans and applies.
 
 For Linux distributions other than RHEL, check Docker compatibility:
 
-  * The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 17.12.1). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
-    * At this time, the **18.x and higher Docker versions are not supported**
+  * The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 18.09.2). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
+    * Replicated 2.32.0 and above required when running Docker 18+
     * In Online mode, the installer will install Docker automatically
     * In Airgapped mode, Docker should be installed before you begin
   * For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
@@ -63,9 +63,17 @@ For Linux distributions other than RHEL, check Docker compatibility:
 
 ### SELinux
 
-Private Terraform Enterprise does not support SELinux. The host running the installer must be configured in permissive mode by running: `setenforce 0`.
+SELinux is supported when Private Terraform Enterprise runs in `External Services` mode and only the default SELinux policies provided by RedHat are used. Private Terraform Enterprise v201812-1 or later is required for this support.
 
-Future releases may add native support for SELinux.
+SELinux is not supported when Private Terraform Enterprise runs in in `Demo` and `Mounted Disk` modes. When running in these modes the host running the installer must have SELinux configured in permissive mode.
+
+To configure SELinux in permissive mode for the runtime only, run `setenforce 0` as root.
+
+To configure SELinux in permissive mode persistently on boot, ensure the `/etc/selinux/config` file contains the following content:
+
+```
+SELINUX=permissive
+```
 
 ### Network Requirements
 
@@ -155,14 +163,15 @@ When Terraform Enterprise uses an external PostgreSQL database, the
 following must be present on it:
 
 * PostgreSQL version 9.4 or greater
-* User with all privileges granted on the schemas created and the ability to run "CREATE EXTENSION" on the database
+* User with the ability to create/modify/read tables and indices on all schemas created
+  * If it's not feasible to have a user with "CREATE EXTENSION", then create the [extensions](#extensions) below before installation
 * The following PostgreSQL schemas must be installed into the database: `rails`, `vault`, `registry`
 
 To create schemas in PostgreSQL, the `CREATE SCHEMA` command is used. So to
 create the above required schemas, the following snippet must be run on the
 database:
 
-```
+```sql
 CREATE SCHEMA rails;
 CREATE SCHEMA vault;
 CREATE SCHEMA registry;
@@ -172,9 +181,21 @@ When providing optional extra keyword parameters for the database connection,
 note an additional restriction on the `sslmode` parameter is that only the
 `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
+
+#### Extensions
+
+If the configured PostgreSQL user does not have permission to create PostgreSQL extensions
+(ie is not a superuser), then run the following SQL commands to create the proper extensions:
+
+```sql
+CREATE EXTENSION IF NOT EXISTS "hstore";
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "citext";
+```
+
 ### External Vault Option
 
-If you already manage your own Vault cluster, you can choose to use it in Production 
+If you already manage your own Vault cluster, you can choose to use it in Production
 operational mode, rather than the default internal Vault provided by PTFE.
 
 ~> **Note:** This option is also selected at initial installation, and cannot be changed later.
