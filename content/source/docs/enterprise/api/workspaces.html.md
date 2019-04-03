@@ -298,16 +298,24 @@ _Migrating a legacy environment_
 
 ## Update a Workspace
 
+A workspace can be updated via two endpoints, which behave identically. One refers to a workspace by its ID, and the other by its name and organization.
+
+`PATCH /workspaces/:workspace_id`
+
+Parameter            | Description                       |
+-------------------- | ----------------------------------|
+`:workspace_id`      | The ID of the workspace to update |
+
 `PATCH /organizations/:organization_name/workspaces/:name`
 
 Parameter            | Description
 -------------------- | -----------
-`:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces.
+`:organization_name` | The name of the organization the workspace belongs to.
 `:name`              | The name of the workspace to update, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 
 ### Request Body
 
-This POST endpoint requires a JSON object with the following properties as a request payload.
+These PATCH endpoints require a JSON object with the following properties as a request payload.
 
 Properties without a default value are required.
 
@@ -410,8 +418,8 @@ This endpoint lists workspaces in the organization.
 `GET /organizations/:organization_name/workspaces`
 
 | Parameter            | Description                                                                                                                                                              |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
+| -------------------- | --------------------------------------------------------|
+| `:organization_name` | The name of the organization to list the workspaces of. |
 
 ### Query Parameters
 
@@ -516,14 +524,20 @@ $ curl \
 
 ## Show workspace
 
-This endpoint shows details for a workspace in the organization.
+Details on a workspace can be retrieved from two endpoints, which behave identically. One refers to a workspace by its ID, and the other by its name and organization.
+
+`GET /workspaces/:workspace_id`
+
+| Parameter            | Description      |
+| -------------------- | -----------------|
+| `:workspace_id`      | The workspace ID |
 
 `GET /organizations/:organization_name/workspaces/:name`
 
 | Parameter            | Description                                                                                                                                                              |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
-| `:name`              | The name of the workspace to show details for, which can only include letters, numbers, `-`, and `_`.                                                          |
+| -------------------- | ----------------------------------------------------------------------------------------------------- |
+| `:organization_name` | The name of the organization the workspace belongs to.                                                |
+| `:name`              | The name of the workspace to show details for, which can only include letters, numbers, `-`, and `_`. |
 
 ### Sample Request
 
@@ -586,14 +600,20 @@ $ curl \
 
 ## Delete a workspace
 
-This endpoint deletes a workspace.
+A workspace can be deleted via two endpoints, which behave identically. One refers to a workspace by its ID, and the other by its name and organization.
+
+`DELETE /workspaces/:workspace_id`
+
+Parameter            | Description                      |
+-------------------- | ---------------------------------|
+`:workspace_id`      | The ID of the workspace to delete|
 
 `DELETE /organizations/:organization_name/workspaces/:name`
 
 | Parameter            | Description                                                                                                                                                              |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces. |
-| `:name`              | The name of the workspace to delete, which can only include letters, numbers, `-`, and `_`.                                                                    |
+| -------------------- | ------------------------------------------------------------------------------------------- |
+| `:organization_name` | The name of the organization the workspace belongs to.                                      |
+| `:name`              | The name of the workspace to delete, which can only include letters, numbers, `-`, and `_`. |
 
 ### Sample Request
 
