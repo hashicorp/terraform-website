@@ -7,20 +7,20 @@
 
 //= require analytics
 
-// In navigation sidebars, hide most sub-lists and reveal any that contain the
-// current page. The a.current-page class is added during build by
-// layouts/inner.erb.
+// Set up terraform.io UI helpers
 document.addEventListener("turbolinks:load", function() {
     "use strict";
+
+    // In navigation sidebars, hide most sub-lists and reveal any that contain the
+    // current page. The a.current-page class is added during build by
+    // layouts/inner.erb.
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
     docsSidebar.find("ul.nav").addClass("nav-hidden");
     docsSidebar.find("li").has("a.current-page").addClass("active");
-});
 
-// On docs/content pages, add a hierarchical quick nav menu if there are any
-// H2/H3/H4 headers.
-document.addEventListener("turbolinks:load", function() {
-    "use strict";
+
+    // On docs/content pages, add a hierarchical quick nav menu if there are any
+    // H2/H3/H4 headers.
     var headers = $('#inner').find('h2, h3, h4');
     if (headers.length > 0) {
         $("#inner #inner-quicknav").html(
@@ -28,7 +28,7 @@ document.addEventListener("turbolinks:load", function() {
         );
         var quickNavTrigger = $('#inner-quicknav #inner-quicknav-trigger');
         var quickNav = $('#inner-quicknav > ul.dropdown');
-        headers.each( function(index, element) {
+        headers.each(function(index, element) {
             var level = element.nodeName.toLowerCase();
             var header_text = $(element).text();
             var header_id = $(element).attr('id');
