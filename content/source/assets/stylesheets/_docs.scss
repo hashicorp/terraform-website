@@ -34,6 +34,7 @@
         &:before {
           content: '\276F';
           cursor: pointer;
+          transition: transform .1s linear;
         }
         &.active:before {
           transform: rotate(90deg);
