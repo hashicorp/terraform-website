@@ -106,7 +106,7 @@ curl \
   --header "Content-Type: application/json" \
   --request POST \
   --data @payload.json \
-  https://ptfe.company.com/admin/inital-admin-user?token=$(cat iact.txt)
+  https://ptfe.company.com/admin/initial-admin-user?token=$(cat iact.txt)
 ```
 
 ### Sample Response
