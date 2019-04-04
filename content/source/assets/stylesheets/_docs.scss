@@ -20,10 +20,10 @@
     li {
       &:before {
         color: $sidebar-link-color-active;
-        content: '\276f';
-        font-size: .8em;
+        content: '\2022';
+        font-size: 1em;
         left: -3px;
-        top: 1px;
+        top: -3px;
         opacity: 0.4;
         position: absolute;
       }
@@ -32,11 +32,11 @@
       }
       &.has-subnav {
         &:before {
-          content: '\25b6\fe0e';
+          content: '\276F';
           cursor: pointer;
         }
         &.active:before {
-          content: '\25bc';
+          transform: rotate(90deg);
         }
       }
 
