@@ -26,9 +26,23 @@ document.addEventListener("turbolinks:load", function() {
         }
         e.stopPropagation();
     });
+    // For subnavs that don't link to a page, use the whole header as a toggle.
     docsSidebar.find("a[href^='#']").on("click", function(e) {
         e.preventDefault();
         $(this).parent("li").trigger("click");
+    });
+    // Navs can include an optional global toggle like this:
+    // <a href="#" class="subnav-toggle">(Expand/collapse all)</a>
+    // Navs that don't want that can leave it out.
+    var globalExpand = true;
+    $("#docs-sidebar a.subnav-toggle").on("click", function(e) {
+        e.preventDefault();
+        if (globalExpand) {
+            subNavs.addClass("active");
+        } else {
+            subNavs.removeClass("active");
+        }
+        globalExpand = !globalExpand;
     });
 
 

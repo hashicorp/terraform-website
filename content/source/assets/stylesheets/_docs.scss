@@ -12,6 +12,24 @@
     margin-top: 30px;
   }
 
+  %sidebar-link {
+    color: $sidebar-link-color;
+    font-size: $sidebar-font-size;
+    overflow-wrap: break-word;
+    margin: 0 0 0 15px;
+    padding: 0 0 11px 0;
+
+    &:focus,
+    &:hover {
+      background-color: transparent;
+      color: $sidebar-link-color-hover;
+    }
+  }
+
+  a.subnav-toggle {
+    @extend %sidebar-link;
+  }
+
   ul.nav.docs-sidenav {
     display: block;
     padding-bottom: 15px;
@@ -19,17 +37,7 @@
 
     li {
       a {
-        color: $sidebar-link-color;
-        font-size: $sidebar-font-size;
-        overflow-wrap: break-word;
-        margin: 0 0 0 15px;
-        padding: 0 0 11px 0;
-
-        &:focus,
-        &:hover {
-          background-color: transparent;
-          color: $sidebar-link-color-hover;
-        }
+        @extend %sidebar-link;
       }
 
       &:before {
