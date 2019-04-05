@@ -12,67 +12,68 @@
     margin-top: 30px;
   }
 
+  %sidebar-link {
+    color: $sidebar-link-color;
+    font-size: $sidebar-font-size;
+    overflow-wrap: break-word;
+    margin: 0 0 0 15px;
+    padding: 0 0 11px 0;
+
+    &:focus,
+    &:hover {
+      background-color: transparent;
+      color: $sidebar-link-color-hover;
+    }
+  }
+
+  a.subnav-toggle {
+    @extend %sidebar-link;
+  }
+
   ul.nav.docs-sidenav {
     display: block;
     padding-bottom: 15px;
+    padding-top: 10px;
 
     li {
       a {
-        color: $sidebar-link-color;
-        font-size: $sidebar-font-size;
-        overflow-wrap: break-word;
-        padding: 10px 0 10px 15px;
-
-        &:before {
-          color: $sidebar-link-color-active;
-          content: '\203A';
-          font-size: $font-size;
-          left: 0;
-          line-height: 100%;
-          opacity: 0.4;
-          position: absolute;
-
-          height: 100%;
-          width: 8px
-        }
-
-        &:focus,
-        &:hover {
-          background-color: transparent;
-          color: $sidebar-link-color-hover;
-
-          &:before {
-            opacity: 1;
-          }
-        }
-
-        &.back {
-          &:before {
-            content: '\2039';
-          }
-        }
+        @extend %sidebar-link;
       }
 
-      // For forcing sub-navs to appear - in the long term, this should not
-      // be a thing anymore...
-      > ul.nav-visible {
-        display: block;
-      }
-    }
-
-    li.active {
-      > a {
+      &:before {
         color: $sidebar-link-color-active;
+        content: '\2022';
+        font-size: 1em;
+        left: -3px;
+        top: -3px;
+        opacity: 0.4;
+        position: absolute;
+      }
 
+      &.has-subnav {
+        &:before {
+          content: '\276F';
+          cursor: pointer;
+          transition: transform .1s linear;
+        }
+        &.active:before {
+          transform: rotate(90deg);
+        }
+      }
+
+      &.active {
+        > a {
+          color: $sidebar-link-color-active;
+        }
+        // Open nested navigations
+        > ul.nav {
+          display: block;
+        }
         &:before {
           opacity: 1;
         }
       }
 
-      // Open nested navigations
-      > ul.nav {
-        display: block;
-      }
     }
 
     // subnav
@@ -80,14 +81,10 @@
       display: none;
     }
     ul.nav {
-      margin: 10px;
+      padding: 10px;
 
       li {
         margin-left: 10px;
-
-        a {
-          padding: 6px 15px;
-        }
       }
     }
   }

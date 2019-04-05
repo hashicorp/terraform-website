@@ -15,8 +15,35 @@ document.addEventListener("turbolinks:load", function() {
     // current page. The a.current-page class is added during build by
     // layouts/inner.erb.
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
-    docsSidebar.find("ul.nav").addClass("nav-hidden");
-    docsSidebar.find("li").has("a.current-page").addClass("active");
+    docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active");
+    var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li");
+
+    // Make sidebar navs expandable
+    subNavs.addClass("has-subnav");
+    subNavs.on("click", function(e) {
+        if (e.target == this) {
+            $(this).toggleClass("active");
+        }
+        e.stopPropagation();
+    });
+    // For subnavs that don't link to a page, use the whole header as a toggle.
+    docsSidebar.find("a[href^='#']").on("click", function(e) {
+        e.preventDefault();
+        $(this).parent("li").trigger("click");
+    });
+    // Navs can include an optional global toggle like this:
+    // <a href="#" class="subnav-toggle">(Expand/collapse all)</a>
+    // Navs that don't want that can leave it out.
+    var globalExpand = true;
+    $("#docs-sidebar a.subnav-toggle").on("click", function(e) {
+        e.preventDefault();
+        if (globalExpand) {
+            subNavs.addClass("active");
+        } else {
+            subNavs.removeClass("active");
+        }
+        globalExpand = !globalExpand;
+    });
 
 
     // On docs/content pages, add a hierarchical quick nav menu if there are any
