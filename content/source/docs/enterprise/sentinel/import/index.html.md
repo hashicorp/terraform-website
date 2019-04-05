@@ -26,7 +26,7 @@ run's plan information to find the button to download the data:
 
 ![Download Sentinel Mocks](/assets/images/guides/sentinel/download-mocks.png)
 
-Terraform Enterprise retains the executable plan for seven days. As long as the
+Terraform Enterprise retains a run's [plan file](/docs/glossary.html#plan-file) for seven days. As long as the
 plan is finished and is not over seven days old, mock data can be downloaded.
 
 -> **Note:** Terraform Enterprise does not currently support custom imports.
