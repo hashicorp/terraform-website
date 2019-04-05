@@ -1,5 +1,8 @@
-<%# Call with partial("layouts/otherdocs", :locals => { :skip => "Terraform CLI" }) -%>
-<% other_docs = {
+<%# Call with partial("layouts/otherdocs", locals: { skip: "Terraform CLI", header: "Optional Header" }) -%>
+<%
+  skip ||= ""
+  header ||= "Other Docs"
+  other_docs = {
     "Terraform CLI" => "/docs/cli-index.html",
     "Terraform Enterprise" => "/docs/enterprise/index.html",
     "Provider References" => "/docs/providers/index.html",
@@ -9,8 +12,9 @@
     "Terraform Registry" => "/docs/registry/index.html",
     "Terraform GitHub Actions" => "/docs/github-actions/index.html",
     "Extending Terraform" => "/docs/extend/index.html"
-} -%>
-    <h4>Other Docs</h4>
+  }
+-%>
+    <h4><%= header %></h4>
 
     <ul class="nav docs-sidenav">
 <% other_docs.each do |name, path| -%>
