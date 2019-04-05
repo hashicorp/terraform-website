@@ -20,7 +20,7 @@ Status  | Response                                       | Reason
 --------|------------------------------------------------|----------
 [201][] | [JSON API document][] (`type: "plan-exports"`) | Successfully created a plan export
 [404][] | [JSON API error object][]                      | Plan not found, or user unauthorized to perform action
-[422][] | [JSON API error object][]                      | Malformed request body (missing attributes, wrong types, etc.), or a plan export of the provided `data-type` is already pending or downloadable for this Plan
+[422][] | [JSON API error object][]                      | Malformed request body (missing attributes, wrong types, etc.), or a plan export of the provided `data-type` is already pending or downloadable for this plan
 
 [201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
