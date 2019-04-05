@@ -18,29 +18,6 @@
     padding-top: 10px;
 
     li {
-      &:before {
-        color: $sidebar-link-color-active;
-        content: '\2022';
-        font-size: 1em;
-        left: -3px;
-        top: -3px;
-        opacity: 0.4;
-        position: absolute;
-      }
-      &.active:before {
-        opacity: 1;
-      }
-      &.has-subnav {
-        &:before {
-          content: '\276F';
-          cursor: pointer;
-          transition: transform .1s linear;
-        }
-        &.active:before {
-          transform: rotate(90deg);
-        }
-      }
-
       a {
         color: $sidebar-link-color;
         font-size: $sidebar-font-size;
@@ -54,21 +31,41 @@
           color: $sidebar-link-color-hover;
         }
       }
-    }
 
-    li.active {
-      > a {
+      &:before {
         color: $sidebar-link-color-active;
+        content: '\2022';
+        font-size: 1em;
+        left: -3px;
+        top: -3px;
+        opacity: 0.4;
+        position: absolute;
+      }
 
+      &.has-subnav {
+        &:before {
+          content: '\276F';
+          cursor: pointer;
+          transition: transform .1s linear;
+        }
+        &.active:before {
+          transform: rotate(90deg);
+        }
+      }
+
+      &.active {
+        > a {
+          color: $sidebar-link-color-active;
+        }
+        // Open nested navigations
+        > ul.nav {
+          display: block;
+        }
         &:before {
           opacity: 1;
         }
       }
 
-      // Open nested navigations
-      > ul.nav {
-        display: block;
-      }
     }
 
     // subnav
