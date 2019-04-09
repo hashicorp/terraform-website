@@ -58,6 +58,8 @@
         }
         &.active:before {
           transform: rotate(90deg);
+          left: -1px;
+          top: -1px;
         }
       }
 
