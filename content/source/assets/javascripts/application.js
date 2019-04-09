@@ -15,8 +15,12 @@ document.addEventListener("turbolinks:load", function() {
     // current page. The a.current-page class is added during build by
     // layouts/inner.erb.
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
-    docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active");
-    var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li");
+    var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li"); // we never manipulate the nav-hidden class again.
+    var sidebarReset = function() {
+        subNavs.removeClass("active");
+        docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active"); // not just subnavs.
+    };
+    sidebarReset();
 
     // Make sidebar navs expandable
     subNavs.addClass("has-subnav");
@@ -34,16 +38,72 @@ document.addEventListener("turbolinks:load", function() {
     // Navs can include an optional global toggle like this:
     // <a href="#" class="subnav-toggle">(Expand/collapse all)</a>
     // Navs that don't want that can leave it out.
-    var globalExpand = true;
-    $("#docs-sidebar a.subnav-toggle").on("click", function(e) {
-        e.preventDefault();
-        if (globalExpand) {
-            subNavs.addClass("active");
-        } else {
-            subNavs.removeClass("active");
+    var subnavToggle;
+    if (subnavToggle = $("#docs-sidebar a.subnav-toggle")) {
+        subnavToggle.html("Expand all");
+        subnavToggle.addClass('btn btn-default');
+        subnavToggle.attr('role', 'button');
+        var globalExpand = true;
+        subnavToggle.on("click", function(e) {
+            e.preventDefault();
+            if (globalExpand) {
+                subNavs.addClass("active");
+                $(this).html("Reset")
+            } else {
+                sidebarReset();
+                $(this).html("Expand all")
+            }
+            globalExpand = !globalExpand;
+        });
+
+        // Create a filter field for searching sidebar:
+        if ($('div#sidebar-filter').length === 0) {
+            subnavToggle.before(
+                '<div id="sidebar-filter"><label for="sidebar-filter-field">Filter page titles</label><input type="text" id="sidebar-filter-field" name="sidebar-filter-field" /><a href="#" id="sidebar-filter-field-clear" title="Clear Filter">x</a></div>'
+            );
         }
-        globalExpand = !globalExpand;
-    });
+        var filterField = $('input#sidebar-filter-field');
+        var filterClear = $('a#sidebar-filter-field-clear');
+        var sidebarLinks = docsSidebar.find('a');
+        var resetFilter = function() {
+            filterField.val('');
+            filterField.trigger('blur');
+            sidebarLinks.parent('li').show();
+            sidebarReset();
+        };
+        // Clear button clears:
+        filterClear.on('click', function(e) {
+            e.preventDefault();
+            resetFilter();
+        });
+        // Filter as you type:
+        filterField.on('keyup', function(e) {
+            if (e.keyCode === 27) { // escape key
+                resetFilter();
+            } else {
+                var filterRegexp = new RegExp(filterField.val(), 'i');
+                var matchingLinks = sidebarLinks.filter(function(index) {
+                    return $(this).text().match(filterRegexp);
+                });
+                sidebarLinks.parent('li').hide();
+                matchingLinks.parents('li').show();
+                matchingLinks.parents('li').filter(subNavs).addClass('active');
+            }
+        });
+        // Type slash to focus sidebar filter:
+        $(document).keydown(function(e) {
+            var _target = $(e.target);
+            var _focused = $(document.activeElement);
+            var _inputting = _focused.get(0).tagName.toLowerCase() === "textarea" || _focused.get(0).tagName.toLowerCase() === "input";
+
+            // / (forward slash) key = search
+            if (!_inputting && e.keyCode === 191) {
+                e.preventDefault();
+                filterField.focus();
+                return;
+            }
+        });
+    }
 
 
     // On docs/content pages, add a hierarchical quick nav menu if there are

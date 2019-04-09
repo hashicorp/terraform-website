@@ -27,7 +27,20 @@
   }
 
   a.subnav-toggle {
-    @extend %sidebar-link;
+    margin-top: 4px;
+  }
+  div#sidebar-filter {
+    a#sidebar-filter-field-clear {
+      border: 1px solid $terraform-purple-dark;
+      border-radius: 2px;
+      padding: 3px;
+      margin-left: 3px;
+      width: 1em;
+      @extend %sidebar-link;
+    }
+    label {
+      font-size: .8em;
+    }
   }
 
   ul.nav.docs-sidenav {
