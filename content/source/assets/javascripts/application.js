@@ -122,7 +122,11 @@ document.addEventListener("turbolinks:load", function() {
     if (headers.length > 2) {
         // Build the quick-nav HTML:
         $("#inner #inner-quicknav").html(
-            '<span id="inner-quicknav-trigger">Page Quick Nav<svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span><ul class="dropdown"></ul>'
+            '<span id="inner-quicknav-trigger">' +
+                'Page Quick Nav' +
+                '<svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg>' +
+            '</span>' +
+            '<ul class="dropdown"></ul>'
         );
         var quickNav = $('#inner-quicknav > ul.dropdown');
         headers.each(function(index, element) {
