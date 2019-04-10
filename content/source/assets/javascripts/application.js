@@ -15,10 +15,12 @@ document.addEventListener("turbolinks:load", function() {
     // current page. The a.current-page class is added during build by
     // layouts/inner.erb.
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
-    var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li"); // we never manipulate the nav-hidden class again.
+    var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li");
+        // we leave the nav-hidden class alone after this.
     var sidebarReset = function() {
         subNavs.removeClass("active");
-        docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active"); // not just subnavs.
+        // Activate current page, locked-open navs, and all their parents:
+        docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active");
     };
     sidebarReset();
 
@@ -40,73 +42,61 @@ document.addEventListener("turbolinks:load", function() {
     // and filter it.
     var sidebarLinks = docsSidebar.find("a");
     if (sidebarLinks.length > 30) {
-        var sidebarControlsHTML =
-            '<div id="sidebar-controls">' +
-                '<div id="sidebar-filter">' +
-                    '<label for="sidebar-filter-field">Filter page titles</label>' +
-                    '<input type="text" id="sidebar-filter-field" name="sidebar-filter-field" />' +
-                    '<a href="#" id="sidebar-filter-field-clear" class="btn btn-default" role="button" title="Clear Filter">x</a>' +
-                '</div>' +
-                '<a href="#" class="subnav-toggle btn btn-default" role="button">Expand all</a>' +
-            '</div>';
         if ($("#sidebar-controls").length === 0) { // then add it!
+            var sidebarControlsHTML =
+                '<div id="sidebar-controls">' +
+                    '<div id="sidebar-filter">' +
+                        '<label for="sidebar-filter-field">Filter page titles</label>' +
+                        '<input type="text" id="sidebar-filter-field" name="sidebar-filter-field" />' +
+                    '</div>' +
+                    '<a href="#" class="subnav-toggle btn btn-default" role="button">Expand all</a>' +
+                '</div>';
             if ($("#docs-sidebar a.subnav-toggle").length === 0) { // ...in default location
                 $("#docs-sidebar #controls-placeholder").replaceWith(sidebarControlsHTML);
             } else { // ...at a manually chosen location
                 $("#docs-sidebar a.subnav-toggle").replaceWith(sidebarControlsHTML);
             }
         }
-        var expandAllState = true;
+
         var subnavToggle = $("#sidebar-controls a.subnav-toggle");
+        var filterField = $("#sidebar-controls input#sidebar-filter-field");
+
+        // Expand/reset button behavior:
         subnavToggle.on({
-            "sayReset": function(e) {
-                $(this).html("Reset")
-                expandAllState = false;
+            "taint": function(e) {
+                $(this).html("Reset");
             },
-            "sayExpand": function(e) {
-                $(this).html("Expand all")
-                expandAllState = true;
+            "reset": function(e) {
+                filterField.val("");
+                filterField.trigger("blur");
+                sidebarLinks.parent("li").show();
+                sidebarReset();
+                $(this).html("Expand all");
             },
             "click": function(e) {
                 e.preventDefault();
-                if (expandAllState) {
+                if ($(this).text() === "Expand all") {
                     subNavs.addClass("active");
-                    $(this).trigger("sayReset");
+                    $(this).trigger("taint");
                 } else {
-                    sidebarReset();
-                    resetFilter();
-                    $(this).trigger("sayExpand");
+                    $(this).trigger("reset");
                 }
             }
         });
 
-        var filterField = $("#sidebar-controls input#sidebar-filter-field");
-        var filterClear = $("#sidebar-controls a#sidebar-filter-field-clear");
-        var resetFilter = function() {
-            filterField.val("");
-            filterField.trigger("blur");
-            sidebarLinks.parent("li").show();
-            sidebarReset();
-            subnavToggle.trigger("sayExpand");
-        };
-        // Clear button clears:
-        filterClear.on('click', function(e) {
-            e.preventDefault();
-            resetFilter();
-        });
         // Filter as you type:
         filterField.on('keyup', function(e) {
             if (e.keyCode === 27) { // escape key
-                resetFilter();
+                subnavToggle.trigger("reset");
             } else {
-                subnavToggle.trigger("sayReset");
+                subnavToggle.trigger("taint");
                 var filterRegexp = new RegExp(filterField.val(), 'i');
                 var matchingLinks = sidebarLinks.filter(function(index) {
                     return $(this).text().match(filterRegexp);
                 });
                 sidebarLinks.parent('li').hide();
                 subNavs.removeClass('active'); // cleans up partial as-you-type searches
-                // make parents visible and active/open:
+                // make matches and their parents visible and expanded:
                 matchingLinks.parents('li').show().filter(subNavs).addClass('active');
                 // make direct children visible (if your search caught a subnav directly):
                 matchingLinks.parent('li').find('li').show();
@@ -114,15 +104,13 @@ document.addEventListener("turbolinks:load", function() {
         });
         // Type slash to focus sidebar filter:
         $(document).keydown(function(e) {
-            var _target = $(e.target);
-            var _focused = $(document.activeElement);
-            var _inputting = _focused.get(0).tagName.toLowerCase() === "textarea" || _focused.get(0).tagName.toLowerCase() === "input";
+            var focusedElementType = $(document.activeElement).get(0).tagName.toLowerCase();
+            var inputting = focusedElementType === "textarea" || focusedElementType === "input";
 
             // / (forward slash) key = search
-            if (!_inputting && e.keyCode === 191) {
+            if (!inputting && e.keyCode === 191) {
                 e.preventDefault();
                 filterField.focus();
-                return;
             }
         });
     }
