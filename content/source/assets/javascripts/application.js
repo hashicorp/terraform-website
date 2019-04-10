@@ -113,12 +113,13 @@ document.addEventListener("turbolinks:load", function() {
             }
         });
         // Type slash to focus sidebar filter:
-        $(document).keydown(function(e) {
+        $("body").keydown(function(e) {
+            // 191 = / (forward slash) key
+            if (e.keyCode !== 191) {
+                return;
+            }
             var focusedElementType = $(document.activeElement).get(0).tagName.toLowerCase();
-            var inputting = focusedElementType === "textarea" || focusedElementType === "input";
-
-            // / (forward slash) key = search
-            if (!inputting && e.keyCode === 191) {
+            if (focusedElementType !== "textarea" && focusedElementType !== "input") {
                 e.preventDefault();
                 filterField.focus();
             }
