@@ -35,41 +35,59 @@ document.addEventListener("turbolinks:load", function() {
         e.preventDefault();
         $(this).parent("li").trigger("click");
     });
-    // Navs can include an optional global toggle like this:
-    // <a href="#" class="subnav-toggle">(Expand/collapse all)</a>
-    // Navs that don't want that can leave it out.
-    var subnavToggle;
-    if (subnavToggle = $("#docs-sidebar a.subnav-toggle")) {
-        subnavToggle.html("Expand all");
-        subnavToggle.addClass('btn btn-default');
-        subnavToggle.attr('role', 'button');
-        var globalExpand = true;
-        subnavToggle.on("click", function(e) {
-            e.preventDefault();
-            if (globalExpand) {
-                subNavs.addClass("active");
-                $(this).html("Reset")
-            } else {
-                sidebarReset();
-                $(this).html("Expand all")
+
+    // If this is a Very Large Sidebar, add extra controls to expand/collapse
+    // and filter it.
+    var sidebarLinks = docsSidebar.find("a");
+    if (sidebarLinks.length > 30) {
+        var sidebarControlsHTML =
+            '<div id="sidebar-controls">' +
+                '<div id="sidebar-filter">' +
+                    '<label for="sidebar-filter-field">Filter page titles</label>' +
+                    '<input type="text" id="sidebar-filter-field" name="sidebar-filter-field" />' +
+                    '<a href="#" id="sidebar-filter-field-clear" class="btn btn-default" role="button" title="Clear Filter">x</a>' +
+                '</div>' +
+                '<a href="#" class="subnav-toggle btn btn-default" role="button">Expand all</a>' +
+            '</div>';
+        if ($("#sidebar-controls").length === 0) { // then add it!
+            if ($("#docs-sidebar a.subnav-toggle").length === 0) { // ...in default location
+                $("#docs-sidebar").prepend(sidebarControlsHTML);
+            } else { // ...at a manually chosen location
+                $("#docs-sidebar a.subnav-toggle").replaceWith(sidebarControlsHTML);
             }
-            globalExpand = !globalExpand;
+        }
+        var expandAllState = true;
+        var subnavToggle = $("#sidebar-controls a.subnav-toggle");
+        subnavToggle.on({
+            "sayReset": function(e) {
+                $(this).html("Reset")
+                expandAllState = false;
+            },
+            "sayExpand": function(e) {
+                $(this).html("Expand all")
+                expandAllState = true;
+            },
+            "click": function(e) {
+                e.preventDefault();
+                if (expandAllState) {
+                    subNavs.addClass("active");
+                    $(this).trigger("sayReset");
+                } else {
+                    sidebarReset();
+                    resetFilter();
+                    $(this).trigger("sayExpand");
+                }
+            }
         });
 
-        // Create a filter field for searching sidebar:
-        if ($('div#sidebar-filter').length === 0) {
-            subnavToggle.before(
-                '<div id="sidebar-filter"><label for="sidebar-filter-field">Filter page titles</label><input type="text" id="sidebar-filter-field" name="sidebar-filter-field" /><a href="#" id="sidebar-filter-field-clear" title="Clear Filter">x</a></div>'
-            );
-        }
-        var filterField = $('input#sidebar-filter-field');
-        var filterClear = $('a#sidebar-filter-field-clear');
-        var sidebarLinks = docsSidebar.find('a');
+        var filterField = $("#sidebar-controls input#sidebar-filter-field");
+        var filterClear = $("#sidebar-controls a#sidebar-filter-field-clear");
         var resetFilter = function() {
-            filterField.val('');
-            filterField.trigger('blur');
-            sidebarLinks.parent('li').show();
+            filterField.val("");
+            filterField.trigger("blur");
+            sidebarLinks.parent("li").show();
             sidebarReset();
+            subnavToggle.trigger("sayExpand");
         };
         // Clear button clears:
         filterClear.on('click', function(e) {
@@ -81,13 +99,17 @@ document.addEventListener("turbolinks:load", function() {
             if (e.keyCode === 27) { // escape key
                 resetFilter();
             } else {
+                subnavToggle.trigger("sayReset");
                 var filterRegexp = new RegExp(filterField.val(), 'i');
                 var matchingLinks = sidebarLinks.filter(function(index) {
                     return $(this).text().match(filterRegexp);
                 });
                 sidebarLinks.parent('li').hide();
-                matchingLinks.parents('li').show();
-                matchingLinks.parents('li').filter(subNavs).addClass('active');
+                subNavs.removeClass('active'); // cleans up partial as-you-type searches
+                // make parents visible and active/open:
+                matchingLinks.parents('li').show().filter(subNavs).addClass('active');
+                // make direct children visible (if your search caught a subnav directly):
+                matchingLinks.parent('li').find('li').show();
             }
         });
         // Type slash to focus sidebar filter:
