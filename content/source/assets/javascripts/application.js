@@ -51,7 +51,7 @@ document.addEventListener("turbolinks:load", function() {
             '</div>';
         if ($("#sidebar-controls").length === 0) { // then add it!
             if ($("#docs-sidebar a.subnav-toggle").length === 0) { // ...in default location
-                $("#docs-sidebar").prepend(sidebarControlsHTML);
+                $("#docs-sidebar #controls-placeholder").replaceWith(sidebarControlsHTML);
             } else { // ...at a manually chosen location
                 $("#docs-sidebar a.subnav-toggle").replaceWith(sidebarControlsHTML);
             }
