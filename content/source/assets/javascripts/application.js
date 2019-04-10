@@ -11,28 +11,36 @@
 document.addEventListener("turbolinks:load", function() {
     "use strict";
 
-    // In navigation sidebars, hide most sub-lists and reveal any that contain the
+    // SIDEBAR STUFF:
+    // - "subNavs" are <li> elements with a nested <ul> as a direct child.
+    // - The <a> child is the "header" of the subnav, and the <ul> is its "content."
+    // - Subnavs are collapsed (<ul> hidden) or expanded (<ul> visible).
+    // - Collapse/expand is managed by the "active" class on the <li>.
+
+    // Collapse most subnavs, but reveal any that contain the
     // current page. The a.current-page class is added during build by
     // layouts/inner.erb.
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
     var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li");
         // we leave the nav-hidden class alone after this.
-    var sidebarReset = function() {
+    var resetActiveSubnavs = function() {
         subNavs.removeClass("active");
         // Activate current page, locked-open navs, and all their parents:
         docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active");
     };
-    sidebarReset();
+    resetActiveSubnavs();
 
-    // Make sidebar navs expandable
+    // CSS class that adds toggle controls:
     subNavs.addClass("has-subnav");
+    // Toggle subnav expansion when clicking an area that isn't claimed by the
+    // header or content (usually the :before pseudo-element)
     subNavs.on("click", function(e) {
         if (e.target == this) {
             $(this).toggleClass("active");
         }
         e.stopPropagation();
     });
-    // For subnavs that don't link to a page, use the whole header as a toggle.
+    // If the subnav header doesn't link to a different page, use it as a toggle.
     docsSidebar.find("a[href^='#']").on("click", function(e) {
         e.preventDefault();
         $(this).parent("li").trigger("click");
@@ -68,7 +76,7 @@ document.addEventListener("turbolinks:load", function() {
                 filterField.val("");
                 filterField.trigger("blur");
                 sidebarLinks.parent("li").show();
-                sidebarReset();
+                resetActiveSubnavs();
                 $(this).html("Expand all");
             },
             "click": function(e) {
@@ -82,7 +90,11 @@ document.addEventListener("turbolinks:load", function() {
             }
         });
 
-        // Filter as you type:
+        // Filter as you type. This alters three things:
+        // - "active" class on subnavs
+        // - direct show/hide of <li>s
+        // - state of subnavToggle button
+        // We rely on subnavToggle's "reset" event to clean up when done.
         filterField.on('keyup', function(e) {
             if (e.keyCode === 27) { // escape key
                 subnavToggle.trigger("reset");
