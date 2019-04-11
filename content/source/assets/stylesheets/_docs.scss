@@ -37,20 +37,15 @@
       z-index: -1;
     }
     input {
-      display: inline-block;
       font-size: 1rem;
       height: 100%;
-      width: 61%;
-      margin-right: 1%;
       margin-bottom: 1px;
       padding-left: 28px;
       background: transparent;
     }
     a.subnav-toggle {
-      display: inline-block;
       font-size: 1rem;
-      width: 38%;
-      padding: .4em 0;
+      padding: .2em 1.4em;
     }
   }
 
