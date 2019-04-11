@@ -53,8 +53,8 @@ document.addEventListener("turbolinks:load", function() {
         if ($("#sidebar-controls").length === 0) { // then add it!
             var sidebarControlsHTML =
                 '<div id="sidebar-controls">' +
-                    '<label for="sidebar-filter-field">Filter page titles</label>' +
-                    '<input type="text" id="sidebar-filter-field" name="sidebar-filter-field" />' +
+                    '<span class="glyphicon glyphicon-search"></span>' +
+                    '<input type="search" id="sidebar-filter-field" class="form-control" name="sidebar-filter-field" role="search" placeholder="Filter page titles" />' +
                     '<a href="#" class="subnav-toggle btn btn-default" role="button">Expand all</a>' +
                 '</div>';
             if ($("#docs-sidebar a.subnav-toggle").length === 0) { // ...in default location
