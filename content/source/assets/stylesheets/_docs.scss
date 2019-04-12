@@ -1,6 +1,6 @@
 #docs-sidebar {
   margin-bottom: 30px;
-  margin-top: 50px;
+  margin-top: 20px;
   overflow: hidden;
 
   h1,
@@ -9,7 +9,7 @@
   h4,
   h5,
   h6 {
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   %sidebar-link {
@@ -26,8 +26,27 @@
     }
   }
 
-  a.subnav-toggle {
-    @extend %sidebar-link;
+  div#sidebar-controls {
+    box-sizing: border-box;
+    position: relative;
+    .glyphicon-search {
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      opacity: .7;
+      z-index: -1;
+    }
+    input {
+      font-size: 1rem;
+      height: 100%;
+      margin-bottom: 1px;
+      padding-left: 28px;
+      background: transparent;
+    }
+    a.subnav-toggle {
+      font-size: 1rem;
+      padding: .2em 1.4em;
+    }
   }
 
   ul.nav.docs-sidenav {
@@ -58,6 +77,8 @@
         }
         &.active:before {
           transform: rotate(90deg);
+          left: -1px;
+          top: -1px;
         }
       }
 

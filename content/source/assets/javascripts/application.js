@@ -11,48 +11,133 @@
 document.addEventListener("turbolinks:load", function() {
     "use strict";
 
-    // In navigation sidebars, hide most sub-lists and reveal any that contain the
+    // SIDEBAR STUFF:
+    // - "subNavs" are <li> elements with a nested <ul> as a direct child.
+    // - The <a> child is the "header" of the subnav, and the <ul> is its "content."
+    // - Subnavs are collapsed (<ul> hidden) or expanded (<ul> visible).
+    // - Collapse/expand is managed by the "active" class on the <li>.
+
+    // Collapse most subnavs, but reveal any that contain the
     // current page. The a.current-page class is added during build by
     // layouts/inner.erb.
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
-    docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active");
     var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li");
+        // we leave the nav-hidden class alone after this.
+    function resetActiveSubnavs() {
+        subNavs.removeClass("active");
+        // Activate current page, locked-open navs, and all their parents:
+        docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active");
+    }
+    resetActiveSubnavs();
 
-    // Make sidebar navs expandable
+    // CSS class that adds toggle controls:
     subNavs.addClass("has-subnav");
+    // Toggle subnav expansion when clicking an area that isn't claimed by the
+    // header or content (usually the :before pseudo-element)
     subNavs.on("click", function(e) {
         if (e.target == this) {
             $(this).toggleClass("active");
         }
         e.stopPropagation();
     });
-    // For subnavs that don't link to a page, use the whole header as a toggle.
+    // If the subnav header doesn't link to a different page, use it as a toggle.
     docsSidebar.find("a[href^='#']").on("click", function(e) {
         e.preventDefault();
         $(this).parent("li").trigger("click");
     });
-    // Navs can include an optional global toggle like this:
-    // <a href="#" class="subnav-toggle">(Expand/collapse all)</a>
-    // Navs that don't want that can leave it out.
-    var globalExpand = true;
-    $("#docs-sidebar a.subnav-toggle").on("click", function(e) {
-        e.preventDefault();
-        if (globalExpand) {
-            subNavs.addClass("active");
-        } else {
-            subNavs.removeClass("active");
+
+    // If this is a Very Large Sidebar, add extra controls to expand/collapse
+    // and filter it.
+    var sidebarLinks = docsSidebar.find("a");
+    if (sidebarLinks.length > 30) {
+        if ($("#sidebar-controls").length === 0) { // then add it!
+            var sidebarControlsHTML =
+                '<div id="sidebar-controls">' +
+                    '<span class="glyphicon glyphicon-search"></span>' +
+                    '<input type="search" id="sidebar-filter-field" class="form-control" name="sidebar-filter-field" role="search" placeholder="Filter page titles" />' +
+                    '<a href="#" class="subnav-toggle btn btn-default" role="button">Expand all</a>' +
+                '</div>';
+            if ($("#docs-sidebar a.subnav-toggle").length === 0) { // ...in default location
+                $("#docs-sidebar #controls-placeholder").replaceWith(sidebarControlsHTML);
+            } else { // ...at a manually chosen location
+                $("#docs-sidebar a.subnav-toggle").replaceWith(sidebarControlsHTML);
+            }
         }
-        globalExpand = !globalExpand;
-    });
+
+        var subnavToggle = $("#sidebar-controls a.subnav-toggle");
+        var filterField = $("#sidebar-controls input#sidebar-filter-field");
+
+        // Expand/reset button behavior:
+        subnavToggle.on({
+            "taint": function(e) {
+                $(this).html("Reset");
+            },
+            "reset": function(e) {
+                filterField.val("");
+                filterField.trigger("blur");
+                sidebarLinks.parent("li").show();
+                resetActiveSubnavs();
+                $(this).html("Expand all");
+            },
+            "click": function(e) {
+                e.preventDefault();
+                if ($(this).text() === "Expand all") {
+                    subNavs.addClass("active");
+                    $(this).trigger("taint");
+                } else {
+                    $(this).trigger("reset");
+                }
+            }
+        });
+
+        // Filter as you type. This alters three things:
+        // - "active" class on subnavs
+        // - direct show/hide of <li>s
+        // - state of subnavToggle button
+        // We rely on subnavToggle's "reset" event to clean up when done.
+        filterField.on('keyup', function(e) {
+            if (e.keyCode === 27) { // escape key
+                subnavToggle.trigger("reset");
+            } else {
+                subnavToggle.trigger("taint");
+                var filterRegexp = new RegExp(filterField.val(), 'i');
+                var matchingLinks = sidebarLinks.filter(function(index) {
+                    return $(this).text().match(filterRegexp);
+                });
+                sidebarLinks.parent('li').hide();
+                subNavs.removeClass('active'); // cleans up partial as-you-type searches
+                // make matches and their parents visible and expanded:
+                matchingLinks.parents('li').show().filter(subNavs).addClass('active');
+                // make direct children visible (if your search caught a subnav directly):
+                matchingLinks.parent('li').find('li').show();
+            }
+        });
+        // Type slash to focus sidebar filter:
+        $("body").keydown(function(e) {
+            // 191 = / (forward slash) key
+            if (e.keyCode !== 191) {
+                return;
+            }
+            var focusedElementType = $(document.activeElement).get(0).tagName.toLowerCase();
+            if (focusedElementType !== "textarea" && focusedElementType !== "input") {
+                e.preventDefault();
+                filterField.focus();
+            }
+        });
+    }
 
 
-    // On docs/content pages, add a hierarchical quick nav menu if there are any
-    // H2/H3/H4 headers.
+    // On docs/content pages, add a hierarchical quick nav menu if there are
+    // more than two H2/H3/H4 headers.
     var headers = $('#inner').find('h2, h3, h4');
-    if (headers.length > 0) {
+    if (headers.length > 2) {
         // Build the quick-nav HTML:
         $("#inner #inner-quicknav").html(
-            '<span id="inner-quicknav-trigger">Page Quick Nav<svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span><ul class="dropdown"></ul>'
+            '<span id="inner-quicknav-trigger">' +
+                'Page Quick Nav' +
+                '<svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg>' +
+            '</span>' +
+            '<ul class="dropdown"></ul>'
         );
         var quickNav = $('#inner-quicknav > ul.dropdown');
         headers.each(function(index, element) {
