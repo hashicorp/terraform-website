@@ -23,11 +23,11 @@ document.addEventListener("turbolinks:load", function() {
     var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
     var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li");
         // we leave the nav-hidden class alone after this.
-    var resetActiveSubnavs = function() {
+    function resetActiveSubnavs() {
         subNavs.removeClass("active");
         // Activate current page, locked-open navs, and all their parents:
         docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active");
-    };
+    }
     resetActiveSubnavs();
 
     // CSS class that adds toggle controls:
