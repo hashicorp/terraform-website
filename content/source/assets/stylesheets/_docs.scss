@@ -76,9 +76,9 @@
       }
 
       &.has-subnav {
+        cursor: pointer;
         &:before {
           content: '\276F';
-          cursor: pointer;
           transition: transform .1s linear;
         }
         &.active:before {
