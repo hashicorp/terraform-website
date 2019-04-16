@@ -10,6 +10,9 @@
   h5,
   h6 {
     margin-top: 10px;
+    a {
+        color: $body-link-color;
+    }
   }
 
   %sidebar-link {
