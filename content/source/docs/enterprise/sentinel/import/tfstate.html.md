@@ -34,12 +34,6 @@ and `resources`) are shortcuts to a [module namespace](#namespace-module) scoped
 to the root module. For more details, see the section on [root namespace
 aliases](#root-namespace-aliases).
 
--> You may also be interested in how to [mock `tfstate`
-data][ref-mock-tfstate-data], which can help with further namespace
-visualization.
-
-[ref-mock-tfstate-data]: /docs/enterprise/sentinel/import/mock-tfstate.html
-
 ```
 tfstate
 ├── module() (function)

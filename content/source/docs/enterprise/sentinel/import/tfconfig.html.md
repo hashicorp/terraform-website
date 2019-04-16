@@ -32,12 +32,6 @@ particular part of the namespace, see below.
 namespace](#namespace-module) scoped to the root module. For more details, see
 the section on [root namespace aliases](#root-namespace-aliases).
 
--> You may also be interested in how to [mock `tfconfig`
-data][ref-mock-tfconfig-data], which can help with further namespace
-visualization.
-
-[ref-mock-tfconfig-data]: /docs/enterprise/sentinel/import/mock-tfconfig.html
-
 ```
 tfconfig
 ├── module() (function)
