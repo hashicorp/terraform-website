@@ -33,8 +33,8 @@ Some use cases for `tfconfig` include:
 Note with these use cases that this import is concerned with object _names_
 in the configuration. Since this is the configuration and not an invocation
 of Terraform, you can't see values for variables, the state, or the diff for
-a pending plan. If you're looking to write policy around expressions used
-within configuration blocks, you're likely wanting to use the
+a pending plan. If you want to write policy around expressions used
+within configuration blocks, you likely want to use the
 [`tfplan`](/docs/enterprise/sentinel/import/tfplan.html) import.
 
 ## Namespace Overview
@@ -42,7 +42,7 @@ within configuration blocks, you're likely wanting to use the
 The following is a tree view of the import namespace. For more detail on a
 particular part of the namespace, see below.
 
--> Note that the root-level alias keys shown here (`data`, `modules`,
+-> **Note:** The root-level alias keys shown here (`data`, `modules`,
 `providers`, `resources`, and `variables`) are shortcuts to a [module
 namespace](#namespace-module) scoped to the root module. For more details, see
 the section on [root namespace aliases](#root-namespace-aliases).
@@ -163,11 +163,11 @@ The `references` value is present in any namespace where non-constant
 configuration values can be expressed. This is essentially every namespace
 which has a `config` value as well as the `outputs` namespace.
 
--> Remember, this import enforces policy around the literal Terraform
+-> **Note:** Remember, this import enforces policy around the literal Terraform
 configuration and not the final values as a result of invoking Terraform. If
-you're looking to write policy around the _result_ of expressions used within
+you want to write policy around the _result_ of expressions used within
 configuration blocks (for example, if you wanted to ensure the final value of
-`filename` above includes `accounts.txt`), you're likely wanting to use the
+`filename` above includes `accounts.txt`), you likely want to use the
 [`tfplan`](/docs/enterprise/sentinel/import/tfplan.html) import.
 
 ## Namespace: Root
@@ -404,7 +404,7 @@ main = rule {
 
 * **Value Type:** A string-keyed map of list values containing strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [resource namespace](#namespace-resources-data-sources)
 contains the identifiers within non-constant expressions found in [`config`](#resources-value-config).
@@ -475,7 +475,7 @@ main = rule {
 
 * **Value Type:** A string-keyed map of list values containing strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [provisioner namespace](#namespace-provisioners)
 contains the identifiers within non-constant expressions found in [`config`](#provisioners-value-config).
@@ -621,7 +621,7 @@ main = rule { tfconfig.modules.foo.config.bar is "baz" }
 
 * **Value Type:** A string-keyed map of list values containing strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [module configuration namespace](#namespace-module-configuration)
 contains the identifiers within non-constant expressions found in [`config`](#modules-value-config).
@@ -759,7 +759,7 @@ main = rule { tfconfig.outputs.id.value is "${null_resource.foo.id}" }
 
 * **Value Type:**. List of strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [output namespace](#namespace-outputs)
 contains the names of any referenced identifiers when [`value`](#outputs-value-value)
@@ -875,7 +875,7 @@ main = rule { tfconfig.providers.aws.config.region is "us-east-1" }
 
 * **Value Type:** A string-keyed map of list values containing strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [provider namespace](#namespace-providers)
 contains the identifiers within non-constant expressions found in [`config`](#providers-value-config).
