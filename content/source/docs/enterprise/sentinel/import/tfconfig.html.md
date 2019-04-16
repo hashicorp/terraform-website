@@ -33,8 +33,8 @@ Some use cases for `tfconfig` include:
 Note with these use cases that this import is concerned with object _names_
 in the configuration. Since this is the configuration and not an invocation
 of Terraform, you can't see values for variables, the state, or the diff for
-a pending plan. If you're looking to write policy around expressions used
-within configuration blocks, you're likely wanting to use the
+a pending plan. If you want to write policy around expressions used
+within configuration blocks, you likely want to use the
 [`tfplan`](/docs/enterprise/sentinel/import/tfplan.html) import.
 
 ## Namespace Overview
@@ -42,7 +42,7 @@ within configuration blocks, you're likely wanting to use the
 The following is a tree view of the import namespace. For more detail on a
 particular part of the namespace, see below.
 
--> Note that the root-level alias keys shown here (`data`, `modules`,
+-> **Note:** The root-level alias keys shown here (`data`, `modules`,
 `providers`, `resources`, and `variables`) are shortcuts to a [module
 namespace](#namespace-module) scoped to the root module. For more details, see
 the section on [root namespace aliases](#root-namespace-aliases).
@@ -163,11 +163,11 @@ The `references` value is present in any namespace where non-constant
 configuration values can be expressed. This is essentially every namespace
 which has a `config` value as well as the `outputs` namespace.
 
--> Remember, this import enforces policy around the literal Terraform
+-> **Note:** Remember, this import enforces policy around the literal Terraform
 configuration and not the final values as a result of invoking Terraform. If
-you're looking to write policy around the _result_ of expressions used within
+you want to write policy around the _result_ of expressions used within
 configuration blocks (for example, if you wanted to ensure the final value of
-`filename` above includes `accounts.txt`), you're likely wanting to use the
+`filename` above includes `accounts.txt`), you likely want to use the
 [`tfplan`](/docs/enterprise/sentinel/import/tfplan.html) import.
 
 ## Namespace: Root
@@ -177,6 +177,8 @@ The root-level namespace consists of the values and functions documented below.
 In addition to this, the root-level `data`, `modules`, `providers`, `resources`,
 and `variables` keys all alias to their corresponding namespaces within the
 [module namespace](#namespace-module).
+
+<a id="root-function-module" />
 
 ### Function: `module()`
 
@@ -228,6 +230,8 @@ import "tfconfig"
 main = rule { subject.module(["foo"]).resources.null_resource.foo.config.triggers[0].foo is "bar" }
 ```
 
+<a id="root-value-module_paths" />
+
 ### Value: `module_paths`
 
 * **Value Type:** List of a list of strings.
@@ -273,7 +277,7 @@ main = rule { tfconfig.module_paths contains ["foo"] }
 
 Iterating through all modules to find particular resources can be useful. This
 example shows how to use `module_paths` with the [`module()`
-function](#function-module-) to retrieve all resources of a particular type from
+function](#root-function-module) to retrieve all resources of a particular type from
 all modules (in this case, the [`azurerm_virtual_machine`][ref-tf-azurerm-vm]
 resource). Note the use of `else []` in case some modules don't have any
 resources; this is necessary to avoid the function returning undefined.
@@ -294,7 +298,7 @@ get_vms = func() {
 
 ## Namespace: Module
 
-The **module namespace** can be loaded by calling [`module()`](#function-module-)
+The **module namespace** can be loaded by calling [`module()`](#root-function-module)
 for a particular module.
 
 It can be used to load the following child namespaces:
@@ -358,6 +362,8 @@ Further explanation of the namespace will be in the context of resources. As
 mentioned, when operating on data sources, use the same syntax, except with
 `data` in place of `resources`.
 
+<a id="resources-value-config" />
+
 ### Value: `config`
 
 * **Value Type:** A string-keyed map of values.
@@ -370,7 +376,7 @@ directly map to Terraform config keys and values.
 expression (and not a static value), the value will be in its raw,
 non-interpolated string. **With Terraform 0.12 or later**, any non-static
 values (such as interpolated strings) are not present and
-[`references`](#value-references) should be used instead.
+[`references`](#resources-value-references) should be used instead.
 
 As an example, consider the following resource block:
 
@@ -392,15 +398,19 @@ main = rule {
 }
 ```
 
+<a id="resources-value-provisioners" />
+
 ### Value: `references`
 
 * **Value Type:** A string-keyed map of list values containing strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [resource namespace](#namespace-resources-data-sources)
-contains the identifiers within non-constant expressions found in [`config`](#value-config).
+contains the identifiers within non-constant expressions found in [`config`](#resources-value-config).
 See the [documentation on `references`](#references-with-terraform-0-12) for more information.
+
+<a id="resources-value-provisioners" />
 
 ### Value: `provisioners`
 
@@ -422,6 +432,8 @@ namespace](#namespace-provisioners).
 The **provisioner namespace** represents the configuration for a particular
 [provisioner][ref-tf-provisioners] within a specific resource or data source.
 
+<a id="provisioners-value-config" />
+
 ### Value: `config`
 
 * **Value Type:** A string-keyed map of values.
@@ -433,7 +445,7 @@ represents the values of the keys within the provisioner.
 expression (and not a static value), the value will be in its raw,
 non-interpolated string. **With Terraform 0.12 or later**, any non-static
 values (such as interpolated strings) are not present and
-[`references`](#value-references-1) should be used instead.
+[`references`](#provisioners-value-references) should be used instead.
 
 As an example, given the following resource block:
 
@@ -456,15 +468,20 @@ main = rule {
 	tfconfig.resources.null_resource.foo.provisioners[0].config.command is "echo ${self.private_ip} > file.txt"
 }
 ```
+
+<a id="provisioners-value-references" />
+
 ### Value: `references`
 
 * **Value Type:** A string-keyed map of list values containing strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [provisioner namespace](#namespace-provisioners)
-contains the identifiers within non-constant expressions found in [`config`](#value-config-1).
+contains the identifiers within non-constant expressions found in [`config`](#provisioners-value-config).
 See the [documentation on `references`](#references-with-terraform-0-12) for more information.
+
+<a id="provisioners-value-type" />
 
 ### Value: `type`
 
@@ -501,7 +518,9 @@ itself with the contents of the declaration block (example: the `source`
 parameter and variable assignment keys), not the data within the module
 (example: any contained resources or data sources). For the latter, the module
 instance would need to be looked up with the [`module()`
-function](#function-module-).
+function](#root-function-module).
+
+<a id="modules-value-source" />
 
 ### Value: `source`
 
@@ -526,6 +545,8 @@ import "tfconfig"
 
 main = rule { tfconfig.modules.foo.source is "./foo" }
 ```
+
+<a id="modules-value-version" />
 
 ### Value: `version`
 
@@ -558,6 +579,8 @@ import "tfconfig"
 main = rule { tfconfig.modules.foo.version is "~> 1.2" }
 ```
 
+<a id="modules-value-config" />
+
 ### Value: `config`
 
 * **Value Type:** A string-keyed map of values.
@@ -566,12 +589,12 @@ main = rule { tfconfig.modules.foo.version is "~> 1.2" }
 expression (and not a static value), the value will be in its raw,
 non-interpolated string. **With Terraform 0.12 or later**, any non-static
 values (such as interpolated strings) are not present and
-[`references`](#value-references-2) should be used instead.
+[`references`](#modules-value-references) should be used instead.
 
 The `config` value within the [module configuration
 namespace](#namespace-module-configuration) represents the values of the keys
 within the module configuration. This is every key within a module declaration
-block except [`source`](#value-source) and [`version`](#value-version), which
+block except [`source`](#modules-value-source) and [`version`](#modules-value-version), which
 have their own values.
 
 As an example, given the module declaration block:
@@ -592,26 +615,30 @@ import "tfconfig"
 main = rule { tfconfig.modules.foo.config.bar is "baz" }
 ```
 
+<a id="modules-value-references" />
+
 ### Value: `references`
 
 * **Value Type:** A string-keyed map of list values containing strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [module configuration namespace](#namespace-module-configuration)
-contains the identifiers within non-constant expressions found in [`config`](#value-config-2).
+contains the identifiers within non-constant expressions found in [`config`](#modules-value-config).
 See the [documentation on `references`](#references-with-terraform-0-12) for more information.
 
 ## Namespace: Outputs
 
 The **output namespace** represents _declared_ output data within a
-configuration. As such, configuration for the [`value`](#value-value) attribute
+configuration. As such, configuration for the [`value`](#outputs-value-value) attribute
 will be in its raw form, and not yet interpolated. For fully interpolated output
 values, see the [`tfstate` import][ref-tfe-sentinel-tfstate].
 
 [ref-tfe-sentinel-tfstate]: /docs/enterprise/sentinel/import/tfstate.html
 
 This namespace is indexed by output name.
+
+<a id="outputs-value-depends_on" />
 
 ### Value: `depends_on`
 
@@ -641,6 +668,8 @@ import "tfconfig"
 main = rule { tfconfig.outputs.id.depends_on[0] is "null_resource.bar" }
 ```
 
+<a id="outputs-value-description" />
+
 ### Value: `description`
 
 * **Value Type:** String.
@@ -664,6 +693,8 @@ import "tfconfig"
 
 main = rule { tfconfig.outputs.id.description is "foobar" }
 ```
+
+<a id="outputs-value-sensitive" />
 
 ### Value: `sensitive`
 
@@ -689,6 +720,8 @@ import "tfconfig"
 main = rule { subject.outputs.id.sensitive }
 ```
 
+<a id="outputs-value-value" />
+
 ### Value: `value`
 
 * **Value Type:** Any primitive type, list or map.
@@ -702,7 +735,7 @@ and maps and lists will be represented as such.
 expression (and not a static value), the value will be in its raw,
 non-interpolated string. **With Terraform 0.12 or later**, any non-static
 values (such as interpolated strings) are not present and
-[`references`](#value-references-3) should be used instead.
+[`references`](#outputs-value-references) should be used instead.
 
 As an example, given the following output declaration block:
 
@@ -720,14 +753,16 @@ import "tfconfig"
 main = rule { tfconfig.outputs.id.value is "${null_resource.foo.id}" }
 ```
 
+<a id="outputs-value-references" />
+
 ### Value: `references`
 
 * **Value Type:**. List of strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [output namespace](#namespace-outputs)
-contains the names of any referenced identifiers when [`value`](#value-value)
+contains the names of any referenced identifiers when [`value`](#outputs-value-value)
 is a non-constant expression.
 
 As an example, given the following output declaration block:
@@ -757,14 +792,16 @@ provider configuration, this namespace will be empty.
 
 This namespace is populated based on the following criteria:
 
-* The top-level namespace [`config`](#value-config-3) and
-  [`version`](#value-version) values are populated with the configuration and
+* The top-level namespace [`config`](#providers-value-config) and
+  [`version`](#providers-value-version) values are populated with the configuration and
   version information from the default provider (the provider declaration that
   lacks an alias).
 * Any aliased providers are added as namespaces within the
-  [`alias`](#value-alias) value.
+  [`alias`](#providers-value-alias) value.
 * If a module lacks a default provider configuration, the top-level `config` and
   `version` values will be empty.
+
+<a id="providers-value-alias" />
 
 ### Value: `alias`
 
@@ -798,6 +835,8 @@ import "tfconfig"
 main = rule { tfconfig.providers.aws.alias.east.config.region is "us-east-1" }
 ```
 
+<a id="providers-value-config" />
+
 ### Value: `config`
 
 * **Value Type:** A string-keyed map of values.
@@ -806,12 +845,12 @@ main = rule { tfconfig.providers.aws.alias.east.config.region is "us-east-1" }
 expression (and not a static value), the value will be in its raw,
 non-interpolated string. **With Terraform 0.12 or later**, any non-static
 values (such as interpolated strings) are not present and
-[`references`](#value-references-4) should be used instead.
+[`references`](#providers-value-references) should be used instead.
 
 The `config` value within the [provider namespace](#namespace-providers)
 represents the values of the keys within the provider's configuration, with the
 exception of the provider version, which is represented by the
-[`version`](#value-version) value. [`alias`](#value-alias) is also not included
+[`version`](#providers-value-version) value. [`alias`](#providers-value-alias) is also not included
 when the provider is aliased.
 
 As an example, given the following provider declaration block:
@@ -830,15 +869,19 @@ import "tfconfig"
 main = rule { tfconfig.providers.aws.config.region is "us-east-1" }
 ```
 
+<a id="providers-value-references" />
+
 ### Value: `references`
 
 * **Value Type:** A string-keyed map of list values containing strings.
 
--> Note: This value is only present when using Terraform 0.12 or later.
+-> **Note:** This value is only present when using Terraform 0.12 or later.
 
 The `references` value within the [provider namespace](#namespace-providers)
-contains the identifiers within non-constant expressions found in [`config`](#value-config-3).
+contains the identifiers within non-constant expressions found in [`config`](#providers-value-config).
 See the [documentation on `references`](#references-with-terraform-0-12) for more information.
+
+<a id="providers-value-version" />
 
 ### Value: `version`
 
@@ -874,6 +917,8 @@ this can be extracted within the [`tfplan` import][ref-tfe-sentinel-tfplan]).
 [ref-tfe-sentinel-tfplan]: /docs/enterprise/sentinel/import/tfplan.html
 
 This namespace is indexed by variable name.
+
+<a id="variables-value-default" />
 
 ### Value: `default`
 
@@ -914,6 +959,8 @@ default_number = rule { tfconfig.variables.number.default is 42 }
 
 main = rule { default_foo and default_number }
 ```
+
+<a id="variables-value-description" />
 
 ### Value: `description`
 
