@@ -24,7 +24,7 @@ releases. Until that time, the [`tfconfig`][import-tfconfig] and
 [import-tfconfig]: /docs/enterprise/sentinel/import/tfconfig.html
 [import-tfplan]: /docs/enterprise/sentinel/import/tfplan.html
 
-## The Namespace
+## Namespace Overview
 
 The following is a tree view of the import namespace. For more detail on a
 particular part of the namespace, see below.
@@ -51,7 +51,7 @@ tfstate
 │       │       ├── depends_on ([]string)
 │       │       ├── id (string)
 │       │       └── tainted (boolean)
-│       ├── outputs
+│       ├── outputs (root module only in TF 0.12 or later)
 │       │   └── NAME
 │       │       ├── sensitive (bool)
 │       │       ├── type (string)
@@ -239,7 +239,8 @@ documented below:
 * `data` - Loads the [resource namespace](#namespace-resources-data-sources),
   filtered against data sources.
 * `outputs` - Loads the [output namespace](#namespace-outputs), which supply the
-  outputs present in this module's state.
+  outputs present in this module's state. Note that with Terraform 0.12 or
+  later, this value is only available for the root namespace.
 * `resources` - Loads the [resource
   namespace](#namespace-resources-data-sources), filtered against resources.
 
@@ -447,9 +448,13 @@ The **output namespace** represents all of the outputs present within a
 during a previous apply, or if they were updated with known values during the
 pre-plan refresh.
 
-Note that this can be used to fetch both the outputs of the root module, and the
-outputs of any module in the state below the root. This makes it possible to see
-outputs that have not been threaded to the root module.
+**With Terraform 0.11 or earlier** this can be used to fetch both the outputs
+of the root module, and the outputs of any module in the state below the root.
+This makes it possible to see outputs that have not been threaded to the root
+module.
+
+**With Terraform 0.12 or later** outputs are available in the top-level (root
+module) namespace only and not accessible within submodules.
 
 This namespace is indexed by output name.
 
