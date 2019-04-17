@@ -268,7 +268,7 @@ Parameter            | Description
 ---------------------|------------
 `:id`                | The ID of the OAuth Client to update.
 
-When a VCS service provider changes their API URL, use this endpoint to update the value of `data.attributes.api-url`. Use caution when changing other attributes with this endpoint; editing an OAuth client that workspaces are currently using can have unexpected effects.
+Use caution when changing attributes with this endpoint; editing an OAuth client that workspaces are currently using can have unexpected effects.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------
@@ -283,10 +283,7 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 Key path                             | Type   | Default | Description
 -------------------------------------|--------|---------|------------
 `data.type`                          | string |         | Must be `"oauth-clients"`.
-`data.attributes.service-provider`   | string | (previous value) | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"bitbucket_hosted"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, or `"gitlab_enterprise_edition"`.
 `data.attributes.name`               | string | (previous value)  | An optional display name for the OAuth Client. If set to `null`, the Terraform Enterprise UI will default to the display name of the VCS provider.
-`data.attributes.http-url`           | string | (previous value) | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
-`data.attributes.api-url`            | string | (previous value) | The base URL of your VCS provider's API (e.g. `https://api.github.com` or `"https://ghe.example.com/api/v3"`)
 `data.attributes.key`                | string | (previous value) | The OAuth client key.
 `data.attributes.secret`             | string | (previous value) | The OAuth client secret.
 
@@ -298,9 +295,6 @@ Key path                             | Type   | Default | Description
     "id": "oc-XKFwG6ggfA9n7t1K",
     "type": "oauth-clients",
     "attributes": {
-      "service-provider": "github",
-      "http-url": "https://github.com",
-      "api-url": "https://api.github.com",
       "key": "key",
       "secret": "secret"
     }
