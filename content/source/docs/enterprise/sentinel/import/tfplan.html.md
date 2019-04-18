@@ -32,12 +32,6 @@ particular part of the namespace, see below.
 the root module. For more details, see the section on [root namespace
 aliases](#root-namespace-aliases).
 
--> You may also be interested in how to [mock `tfplan`
-data][ref-mock-tfplan-data], which can help with further namespace
-visualization.
-
-[ref-mock-tfplan-data]: /docs/enterprise/sentinel/import/mock-tfplan.html
-
 ```
 tfplan
 ├── module() (function)

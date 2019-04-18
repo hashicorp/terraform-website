@@ -230,11 +230,7 @@ See the [Sentinel testing documentation][test] to learn how to write and run tes
 
 - Create a `test/<NAME>` directory for each policy file.
 - Add JSON files (one per test case) to those directories. The object in each file should include the following keys:
-    - `mock` — Mock data that represents the test case. Usually you'll mock data for one or more of the Terraform imports; some policies might also require additional imports. For more details about mocking Terraform imports, see:
-
-        - [Mocking `tfplan` data](./import/mock-tfplan.html)
-        - [Mocking `tfconfig` data](./import/mock-tfconfig.html)
-        - [Mocking `tfstate` data](./import/mock-tfstate.html)
+    - `mock` — Mock data that represents the test case. Usually you'll mock data for one or more of the Terraform imports; some policies might also require additional imports. For more details about mocking Terraform imports, see see [Mocking Terraform Sentinel Data](./mock.html).
     - `test` — Expected results for the policy's rules in this test case. (If the only expected result is `"main": true`, you can omit the `test` key.)
 
     For each policy, make at least two tests: one that obeys the policy, and one that violates the policy (using `"test": {"main": false}` so that the failed policy results in a passing test). Add more test cases for more complex policies.
@@ -249,23 +245,7 @@ An example Sentinel test:
     "instance_type_allowed": false
   },
   "mock": {
-    "tfplan": {
-      "resources": {
-        "aws_instance": {
-          "always-bad": {
-            "0": {
-              "applied": {
-                "ami": "ami-0afae182eed9d2b46",
-                "instance_type": "t3.2xlarge",
-                "tags": {
-                  "Name": "HelloWorld"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    "tfplan": "../../testdata/mock-tfplan.sentinel"
   }
 }
 ```

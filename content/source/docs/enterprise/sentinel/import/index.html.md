@@ -18,16 +18,9 @@ state and plan.
 - [tfstate](./tfstate.html) - This provides access to the Terraform state, the file used by Terraform to map real world resources to your configuration.
 
 Terraform Enterprise allows you to create mocks of these imports from plans for
-use with the mocking or testing features of the
-[Sentinel Simulator](https://docs.hashicorp.com/sentinel/commands/). To download
-tfplan, tfconfig, and tfstate mocks of a plan in your organization, navigate to
-any run for which you'd like to download mock data, and expand the
-run's plan information to find the button to download the data:
-
-![Download Sentinel Mocks](/assets/images/guides/sentinel/download-mocks.png)
-
-Terraform Enterprise retains a run's [plan file](/docs/glossary.html#plan-file) for seven days. As long as the
-plan is finished and is not over seven days old, mock data can be downloaded.
+use with the mocking or testing features of the [Sentinel
+Simulator](https://docs.hashicorp.com/sentinel/commands/). For more information,
+see [Mocking Terraform Sentinel Data](../mock.html).
 
 -> **Note:** Terraform Enterprise does not currently support custom imports.
 
