@@ -402,3 +402,7 @@
 	path = ext/providers/jdcloud
 	url = https://github.com/terraform-providers/terraform-provider-jdcloud
 	branch = stable-website
+[submodule "ext/providers/fortios"]
+	path = ext/providers/fortios
+	url = https://github.com/terraform-providers/terraform-provider-fortios
+	branch = stable-website
