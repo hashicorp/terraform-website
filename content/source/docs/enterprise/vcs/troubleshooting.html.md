@@ -97,6 +97,7 @@ TFE does not allow you to change the API URL for an existing VCS connection, but
 1. Iterate over the list of workspaces and [PATCH each one](../api/workspaces.html#update-a-workspace) to use the new `oauth-token-id`.
 1. [List all registry modules](../api/modules.html#listing-and-reading-modules-providers-and-versions) and use their `source` property to determine which ones came from the old VCS connection.
 1. [Delete each affected module](../api/modules.html#delete-a-module), then [create a new module](../api/modules.html#publish-a-module-from-a-vcs) from the new connection's version of the relevant repo.
+1. Delete the old VCS connection.
 
 ## Certificate Errors on Private Terraform Enterprise
 
