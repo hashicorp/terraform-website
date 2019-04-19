@@ -112,6 +112,8 @@ You can use the "Select a VCS connection" buttons and "Repository" field to chan
 - [Creating Workspaces](./creating.html) for more details about selecting a VCS repository.
 - [Connecting VCS Providers to Terraform Enterprise](../vcs/index.html) for more details about configuring VCS integrations.
 
+-> **API:** If you need to change VCS connections for many workspaces at once, consider automating the changes with the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace). This is most common when moving a VCS server, or when a vendor deprecates an older API version.
+
 ### VCS Branch
 
 Which branch of the repository to use. If left blank, TFE will use the repository's default branch.

@@ -85,6 +85,19 @@ The domain name for Terraform Enterprise changed on 02/22 at 9AM from atlas.hash
 
 The fix is to update the OAuth Callback URL in your VCS provider to use app.terraform.io instead of atlas.hashicorp.com.
 
+### Changing the API URL for a VCS provider
+
+On rare occasions, you might need TFE to change the URL it uses to reach your VCS provider. This usually only happens if you move your VCS server or the VCS vendor changes their supported API versions.
+
+TFE does not allow you to change the API URL for an existing VCS connection, but you can create a new VCS connection and update existing resources to use it. This is most efficient if you script the necessary updates using TFE's API. In brief:
+
+1. Configure a new VCS connection with the updated URL.
+1. Obtain the [oauth-token IDs](../api/oauth-tokens.html) for the old and new OAuth clients.
+1. [List all workspaces](../api/workspaces.html#list-workspaces) (dealing with pagination if necessary), and use a JSON filtering tool like `jq` to make a list of all workspace IDs whose `attributes.vcs-repo.oauth-token-id` matches the old VCS connection.
+1. Iterate over the list of workspaces and [PATCH each one](../api/workspaces.html#update-a-workspace) to use the new `oauth-token-id`.
+1. [List all registry modules](../api/modules.html#listing-and-reading-modules-providers-and-versions) and use their `source` property to determine which ones came from the old VCS connection.
+1. [Delete each affected module](../api/modules.html#delete-a-module), then [create a new module](../api/modules.html#publish-a-module-from-a-vcs) from the new connection's version of the relevant repo.
+
 ## Certificate Errors on Private Terraform Enterprise
 
 When debugging failures of VCS connections due to certifcate errors, running additional diagnostics using the OpenSSL command may provide more information about the failure.
