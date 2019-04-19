@@ -85,7 +85,7 @@ curl \
         "oauth-tokens": {
           "data": [],
           "links": {
-            "related": "/api/v2/oauth-tokens/oc-XKFwG6ggfA9n7t1K"
+            "related": "/api/v2/oauth-tokens/ot-KaeqH4cy72VPXFQT"
           }
         }
       }
@@ -149,7 +149,7 @@ curl \
       "oauth-tokens": {
         "data": [],
         "links": {
-          "related": "/api/v2/oauth-tokens/oc-XKFwG6ggfA9n7t1K"
+          "related": "/api/v2/oauth-tokens/ot-KaeqH4cy72VPXFQT"
         }
       }
     }
@@ -252,7 +252,7 @@ curl \
       "oauth-tokens": {
         "data": [],
         "links": {
-          "related": "/api/v2/oauth-tokens/oc-XKFwG6ggfA9n7t1K"
+          "related": "/api/v2/oauth-tokens/ot-KaeqH4cy72VPXFQT"
         }
       }
     }
@@ -345,7 +345,7 @@ curl \
       "oauth-tokens": {
         "data": [],
         "links": {
-          "related": "/api/v2/oauth-tokens/oc-XKFwG6ggfA9n7t1K"
+          "related": "/api/v2/oauth-tokens/ot-KaeqH4cy72VPXFQT"
         }
       }
     }
