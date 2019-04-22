@@ -26,7 +26,7 @@
 
       svg.logo {
         transition: opacity 0.15s ease-in-out;
-        @extend svg.logo.white;
+        @extend %logo-white;
 
         &:hover,
         &:focus,
