@@ -10,6 +10,9 @@
   h5,
   h6 {
     margin-top: 10px;
+    a {
+        color: $body-link-color;
+    }
   }
 
   %sidebar-link {
@@ -73,9 +76,9 @@
       }
 
       &.has-subnav {
+        cursor: pointer;
         &:before {
           content: '\276F';
-          cursor: pointer;
           transition: transform .1s linear;
         }
         &.active:before {
