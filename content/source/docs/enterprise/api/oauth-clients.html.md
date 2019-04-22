@@ -40,7 +40,7 @@ This endpoint allows you to list VCS connections between an organization and a V
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "oauth-clients"`) | Success
-[404][] | [JSON API error object][]                    | Organization not found, or user unauthorized to perform action
+[404][] | [JSON API error object][]                    | Organization not found
 
 ### Sample Request
 
