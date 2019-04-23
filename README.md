@@ -201,7 +201,7 @@ If you previously activated a hundred submodules and regret it, you can run `git
 
 ### ...Unless You Have to Search Every Page
 
-On rare occasions, you just to search every page on the site for something (usually a broken link). If that's the job, then you do need to init everything. Here's how to make that easier:
+On rare occasions, you may need to search every page on the site for something (usually a broken link). If that's the job, then you do need to init everything. Here's how to make that easier:
 
 - `export PS1='$ '` if your prompt includes Git status, so your shell can at least run normal commands without becoming ill.
 - If you're using a CLI search tool like [`ag`](https://github.com/ggreer/the_silver_searcher), `cd` into the `content/source` directory and use the `--follow` / `-f` option with your search (or whatever option makes your tool of choice follow symlinks).
