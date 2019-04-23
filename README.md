@@ -181,7 +181,7 @@ Using submodules lets us keep the docs for providers and Terraform core right ne
 
 ### Basics
 
-In your local checkout of this repo, Git submodules can be active or sleeping. The `git submodule init` and `git submodule deinit` commands switch them between the two states.
+In your local checkout of this repo, Git submodules can be active or sleeping. The `git submodule init <PATH>` and `git submodule deinit <PATH>` commands switch them between the two states.
 
 Once you `init` a submodule, you usually need to run `git submodule update`, which will either do the initial checkout or update the working copy to the commit that `terraform-website` currently expects.
 
@@ -193,7 +193,7 @@ Avoid running `git rm` on a submodule unless you know what you're doing. You usu
 
 ### Don't Keep Every Submodule Active
 
-Earlier instructions for working with this repo said to use `git submodule init` or `git submodule update --init` or `make sync` to activate everything. **Don't do that.** Git commands will take forever to run, and if your `$PS1` includes hints about the current directory's Git status, your entire terminal will slow to a **c r a w l.**
+Earlier instructions for working with this repo said to use `git submodule init` (with no `<PATH>` argument) or `git submodule update --init` or `make sync` to activate everything. **Don't do that.** Git commands will take forever to run, and if your `$PS1` includes hints about the current directory's Git status, your entire terminal will slow to a **c r a w l.**
 
 Instead, only init the specific submodules you currently need to work with (`git submodule init ext/providers/aws`), and feel free to de-init them when you're done. De-initting is non-destructive as long as you've committed your changes within the submodule (and preferably pushed your branch) -- Git keeps the repository data cached out of the way, so it dosen't even need to clone the entire repo again the next time you init it.
 
