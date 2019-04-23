@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-private-saml-troubleshooting"
 
 # Troubleshooting Guide
 
-**Note**: Verify you are on release version 201807-2 as that is the version that has the debugging functionality that is described in this guide. If you would like assistance with upgrading, please [contact support](/docs/enterprise/private/faq.html#support-for-private-terraform-enterprise).
+**Note**: Verify you are on release version 201807-2 or later, as that is the version that introduced the debugging functionality that is described in this guide. If you would like assistance with upgrading, please [contact support](/docs/enterprise/private/faq.html#support-for-private-terraform-enterprise).
 
 ## Disable SAML Single Sign-On
 
