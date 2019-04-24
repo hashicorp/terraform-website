@@ -406,3 +406,7 @@
 	path = ext/providers/fortios
 	url = https://github.com/terraform-providers/terraform-provider-fortios
 	branch = stable-website
+[submodule "ext/providers/gridscale"]
+	path = ext/providers/gridscale
+	url = https://github.com/terraform-providers/terraform-provider-gridscale
+	branch = stable-website
