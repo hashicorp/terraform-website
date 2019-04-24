@@ -17,8 +17,6 @@ A policy consists of:
 - The Sentinel policy code
 - An enforcement mode that changes how a policy affects the run lifecycle
 
-Currently, policies in an organization apply to **all** workspaces. You'll want to consider that when writing your policies so they don't cause unintended failures. In the future, TFE will provide a way to manage policies so you can apply them per-workspace.
-
 ## Creating a Policy
 
 First, make sure you're viewing the organization settings. If you're still on a run page (or any other page), click the "Settings" button in the top navigation bar.
