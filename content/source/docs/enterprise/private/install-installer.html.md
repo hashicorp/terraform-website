@@ -208,7 +208,7 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. Secure access to the installer dashboard. We recommend at least setting up the
    simple password authentication. If you're so inclined, LDAP authentication can also be
    configured using the following steps:
-      1. Navigate to the installer dashboard at https://<TFE_HOSTNAME>:8800
+      1. Navigate to the installer dashboard at `https://<TFE_HOSTNAME>:8800`
       1. Click the gear on the top right of the page.
       1. Under security, select "Change console security settings".
       1. Once in the console security settings, select LDAP from the options list and then configure your LDAP connection as appropriate.   
