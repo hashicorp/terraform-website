@@ -42,6 +42,10 @@ The following changes are considered to be backwards compatible:
 
 Any endpoints that are not generally available (i.e., endpoints that are in beta), incorrect, or suspectible to security vulnerabilities are subject to change without notice.
 
+## Deprecation policy
+
+The deprecation policy provides users the opportunity to continue to consume API endpoints for a period of time after they have been superseded. Deprecation notices for endpoints should be readily available through various channels of communication, including documentation and HTTP responses. An endpoint should be available for at least three (3) months from the date on which it has been declared deprecated.
+
 ## Authentication
 
 All requests must be authenticated with a bearer token. Use the HTTP header `Authorization` with the value `Bearer <token>`. If the token is absent or invalid, TFE responds with [HTTP status 401][401] and a [JSON API error object][]. The 401 status code is reserved for problems with the authentication token; forbidden requests with a valid token result in a 404.
