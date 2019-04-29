@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-oauth-clients"
 
 # OAuth Clients API
 
--> **Note:** These API endpoints are in beta and are subject to change.
-
 An OAuth Client represents the connection between an organization and a VCS provider.
 
 ## List OAuth Clients

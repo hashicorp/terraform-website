@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-organizations"
 
 # Organizations API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 The Organizations API is used to list, show, create, update, and destroy organizations.
 
 ## List Organizations

@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-team-access"
 
 # Team access API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 The team access APIs are used to associate a team to permissions on a workspace. A single `team-workspace` resource contains the relationship between the Team and Workspace, including the privileges the team has on the workspace.
 
 -> **Note**: A `team-workspace` resource represents a team's _local_ permissions on a specific workspace. Teams can also have _organization-level_ permissions that grant access to workspaces, and TFE uses whichever access level is higher. (For example: a team with the "manage workspaces" permission has admin access on all workspaces, even if their `team-workspace` on a particular workspace only grants read access.) For more information, see [Managing Workspace Access](../users-teams-organizations/teams.html#managing-workspace-access).

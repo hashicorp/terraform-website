@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-state-versions"
 
 # State Versions API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 ## Create a State Version
 
 `POST /workspaces/:workspace_id/state-versions`

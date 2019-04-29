@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-organization-tokens"
 
 # Organization Token API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 ## Generate a new organization token
 
 `POST /organizations/:organization_name/authentication-token`

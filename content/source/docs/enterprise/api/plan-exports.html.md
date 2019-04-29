@@ -6,8 +6,6 @@ sidebar_current: "docs-enterprise2-api-plan-exports"
 
 # Plans API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 Plan exports allow users to download data exported from the plan of a Run in a Terraform workspace. Currently, the only supported format for exporting plan data is to generate mock data for Sentinel.
 
 ## Create a plan export

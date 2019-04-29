@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-team-tokens"
 
 # Team Token API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 ## Generate a new team token
 
 Generates a new team token and overrides existing token if one exists.

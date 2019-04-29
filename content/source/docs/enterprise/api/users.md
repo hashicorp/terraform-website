@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-users"
 
 # Users API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 Terraform Enterprise (TFE)'s user objects do not contain any identifying information about a user, other than their TFE username and avatar image; they are intended for displaying names and avatars in contexts that refer to a user by ID, like lists of team members or the details of a run. Most of these contexts can already include user objects via an `?include` parameter, so you shouldn't usually need to make a separate call to this endpoint.
 
 ## Show a User

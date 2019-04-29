@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-notification-configurations"
 
 # Notification Configurations API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 Terraform Enterprise can be configured to send notifications for run state transitions. The configuration allows you to specify a destination URL, request type, and what events will trigger the notification. Each workspace can have up to 20 notification configurations, and they apply to all runs for that workspace.
 
 ## Notification Triggers

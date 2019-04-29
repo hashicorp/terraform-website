@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-ssh-keys"
 
 # SSH Keys
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 The `ssh-key` object represents an SSH key which includes a name and the SSH private key. An organization can have multiple SSH keys available.
 
 SSH keys can be used in two places:

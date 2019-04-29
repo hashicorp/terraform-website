@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-policy-checks"
 
 # Policy Checks API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 ## List policy checks
 
 This endpoint lists the policy checks in a run.

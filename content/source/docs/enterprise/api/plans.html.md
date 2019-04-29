@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-plans"
 
 # Plans API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 A plan represents the execution plan of a Run in a Terraform workspace.
 
 ## Show a plan

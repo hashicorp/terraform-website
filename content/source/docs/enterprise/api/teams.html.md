@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-teams"
 
 # Teams API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 The Teams API is used to create, edit, and destroy teams as well as manage a team's organization-level permissions. The [Team Membership API](./team-members.html) is used to add or remove users from a team. Use the [Team Access API](./team-access.html) to associate a team with privileges on an individual workspace.
 
 ## List teams
