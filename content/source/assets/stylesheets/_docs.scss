@@ -2,6 +2,19 @@
   margin-bottom: 30px;
   overflow: hidden;
 
+  // Re-using the .nav class name on lists means we inherit some
+  // unfortunate behavior from Bootstrap, so reset all that.
+  .nav {
+    ul, li, a {
+      float: none;
+      position: static;
+      padding: 0;
+    }
+    ul { display: block; }
+    li { display: list-item; }
+    a { display: inline; }
+  }
+
   // hide an outdated implementation of expand/collapse link
   a.subnav-toggle {
     display: none;
@@ -27,8 +40,6 @@
     color: $sidebar-link-color;
     font-size: $sidebar-font-size;
     overflow-wrap: break-word;
-    margin: 0 0 0 15px;
-    padding: 0 0 11px 0;
 
     &:focus,
     &:hover {
@@ -97,18 +108,25 @@
     padding-top: 10px;
 
     li {
+      padding: 0 0 11px 0;
+
       a {
         @extend %sidebar-link;
+        padding-left: 6px;
+        // Hanging indent for long sidebar links:
+        // * like   (<-yes)   * like
+        //   this   (no ->)   this
+        display: table-cell;
       }
 
       &:before {
         color: $sidebar-link-color-active;
         content: '\2022';
         font-size: 1em;
-        left: -3px;
-        top: -3px;
         opacity: 0.4;
-        position: absolute;
+        position: relative;
+        // Hanging indent for long sidebar links:
+        display: table-cell;
       }
 
       &.has-subnav {
@@ -119,8 +137,7 @@
         }
         &.active:before {
           transform: rotate(90deg);
-          left: -1px;
-          top: -1px;
+          top: 2px;
         }
       }
 
@@ -144,7 +161,8 @@
       display: none;
     }
     ul.nav {
-      padding: 10px;
+      padding-top: 10px;
+      padding-left: 10px;
 
       li {
         margin-left: 10px;
