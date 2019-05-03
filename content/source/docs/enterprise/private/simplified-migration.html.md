@@ -144,12 +144,14 @@ the Auto Scaling Group and boots the new instance automatically without the need
 
 ## Software Upgrades
 
-This module installs the latest version of the Terraform Enterprise software automatically on boot,
+By default, this module installs the latest version of the Terraform Enterprise software automatically on boot,
 so an easy way to upgrade the application is to shut down the instance. When the Auto Scaling Group
 boots a new instance, it will install the new software and resume operation.
 
 Alternately, you can upgrade the application from the management console, available on port 8800 of the instance,
 following the [standard upgrade process for the installer](./upgrades.html).
+
+If you are using the capability of the modules to pin the PTFE version to a specific sequence number, you must update the sequence number and perform a `terraform apply` to upgrade.
 
 ## Installer Dashboard
 
