@@ -410,3 +410,7 @@
 	path = ext/providers/gridscale
 	url = https://github.com/terraform-providers/terraform-provider-gridscale
 	branch = stable-website
+[submodule "ext/providers/vra7"]
+	path = ext/providers/vra7
+	url = https://github.com/terraform-providers/terraform-provider-vra7
+	branch = stable-website
