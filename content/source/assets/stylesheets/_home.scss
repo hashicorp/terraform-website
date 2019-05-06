@@ -282,10 +282,11 @@
     }
 
     &#enterprise {
-      background-image: image-url('enterprise-callout-bg.svg');
-      background-position: right bottom;
-      background-repeat: no-repeat;
-      background-size: 80%;
+      background: #0F1013;
+
+      & .button {
+        margin: 5px;
+      }
     }
   }
 
