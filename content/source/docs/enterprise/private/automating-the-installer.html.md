@@ -69,17 +69,17 @@ $ python -m json.tool settings.json
 
 ### Discovery
 
-One the easiest ways to get the settings is to [perform a manual install](./install-installer.html#installation) and configure all the settings how you want them. Then you can ssh in and request the settings in JSON format and use that file in a future automated install.
+One the easiest ways to get the settings is to [perform a manual install](./install-installer.html#installation) and configure all the settings the way you want them. Then you can SSH in, request the settings in JSON format and use that file in a future automated install.
 
--> **Note**: `replicatedctl` is located at `/usr/local/bin/replicatedctl`. On some operating systems, `/usr/local/bin` is not in the user's `$PATH`. In these cases, either add `/usr/local/bin` to the path or refer to `replicatedctl` with the full path.
+-> **Note**: `replicatedctl` is located at `/usr/local/bin/replicatedctl`. On some operating systems, `/usr/local/bin` is not in the user's `$PATH`. In these cases, either add `/usr/local/bin` to the `$PATH` or refer to `replicatedctl` with the full path.
 
-To extract the settings as JSON, run via ssh on the instance:
+To extract the settings as JSON, access the instance via SSH, then run:
 
 ```
 ptfe$ replicatedctl app-config export > settings.json
 ```
 
-Here is an example app-config export for an instance configured in demo mode:
+Here is an example `app-config export` output for an instance configured in demo mode:
 
 ```
 ptfe$ replicatedctl app-config export > settings.json
@@ -133,20 +133,20 @@ Note that when you build your own settings file, you do not need to include para
 
 ### Available settings
 
-A number of settings are available to configure and tune your installation.  They are summarized below; it is expected the user will have completed a manual installation first and already be familiar with the nature of these parameters from the settings screen.
+The settings available to configure your installation are summarized below. It is expected the user will have completed a manual installation first and will already be familiar with the nature of these parameters from the settings screen.
 
-The following apply to every installation:
+The following settings apply to every installation:
 
-- `hostname` — (Required) this is the hostname you will use to access your installation
-- `installation_type` — (Required) one of `poc` or `production`
+- `hostname` — (Required) The hostname you will use to access your installation.
+- `installation_type` — (Required) One of `poc` or `production`.
 - `enc_password` — Set the [encryption password](/docs/enterprise/private/encryption-password.html) for the install
-- `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`
-- `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`
-- `enable_metrics_collection` — whether PTFE's [internal metrics collection](./monitoring.html#internal-monitoring) should be enabled; defaults to true
-- `iact_subnet_list` - A comma separated list of CIDR masks that configure the ability to retrieve the IACT from outside the host. For example: 10.0.0.0/24. If not set, no subnets can retrieve the IACT.
-- `iact_subnet_time_limit` - The time limit that requests from the subnets listed can request the IACT, as measured from the instance creation in minutes; defaults to 60.
-- `extra_no_proxy` — (Optional) when configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
-- `ca_certs` — (Optional) custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
+- `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`.
+- `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`.
+- `enable_metrics_collection` — Whether PTFE's [internal metrics collection](./monitoring.html#internal-monitoring) should be enabled; defaults to `true`.
+- `iact_subnet_list` - A comma-separated list of CIDR masks that configure the ability to retrieve the [IACT](./automating-initial-user.html) from outside the host. For example: 10.0.0.0/24. If not set, no subnets can retrieve the IACT.
+- `iact_subnet_time_limit` - The time limit that requests from the subnets listed can request the [IACT](./automating-initial-user.html), as measured from the instance creation in minutes; defaults to 60.
+- `extra_no_proxy` — (Optional) When configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
+- `ca_certs` — (Optional) Custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
   in the data with `\n`. For instance:
 
   ```
@@ -162,34 +162,32 @@ The following apply to every installation:
   ```
 
 - `extern_vault_enable` — (Optional) Indicate if an external Vault cluster is being used. Set to `1` if so.
-  - These variables are only used if `extern_vault_enable` is set to `1`
-  - `extern_vault_addr` — (Required) URL of external Vault cluster
-  - `extern_vault_role_id` — (Required) AppRole RoleId to use to authenticate with the Vault cluster
-  - `extern_vault_secret_id` — (Required) AppRole SecretId to use to authenticate with the Vault cluster
-  - `extern_vault_path` — (Optional) Path on the Vault server for the AppRole auth. Defaults to `auth/approle`
-  - `extern_vault_token_renew` — (Optional) How often (in seconds) to renew the Vault token. Defaults to `3600`
+  - These variables are only used if `extern_vault_enable` is set to `1`.
+  - `extern_vault_addr` — (Required) URL of external Vault cluster.
+  - `extern_vault_role_id` — (Required) AppRole RoleId to use to authenticate with the Vault cluster.
+  - `extern_vault_secret_id` — (Required) AppRole SecretId to use to authenticate with the Vault cluster.
+  - `extern_vault_path` — (Optional) Path on the Vault server for the AppRole auth. Defaults to `auth/approle`.
+  - `extern_vault_token_renew` — (Optional) How often (in seconds) to renew the Vault token. Defaults to `3600`.
 - `vault_path` — (Optional) Path on the host system to store the vault files. If `extern_vault_enable` is set, this has no effect.
-- `vault_store_snapshot` — (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not, Defaults to `1`.
+- `vault_store_snapshot` — (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not. Defaults to `1`.
 
 #### `production_type` is required if you've chosen `production` for the `installation_type`:
 
-- `production_type` — one of `external` or `disk`
+- `production_type` — One of `external` or `disk`.
 
 #### `disk_path` is required if you've chosen `disk` for `production_type`:
 
-- `disk_path` — path on instance to persistent storage
+- `disk_path` — Path on instance to persistent storage.
 
-#### The following apply if you've chosen `external` for `production_type`:
+#### The following settings apply if you've chosen `external` for `production_type`:
 
-- `pg_user` — (Required) PostgreSQL user to connect as
-- `pg_password` — (Required) The password for the PostgreSQL user
-- `pg_netloc` — (Required) The hostname and port of the target PostgreSQL server in the format `hostname:port`
-- `pg_dbname` — (Required) The database name
+- `pg_user` — (Required) PostgreSQL user to connect as.
+- `pg_password` — (Required) The password for the PostgreSQL user.
+- `pg_netloc` — (Required) The hostname and port of the target PostgreSQL server, in the format `hostname:port`.
+- `pg_dbname` — (Required) The database name.
 - `pg_extra_params` — (Optional) Parameter keywords of the form `param1=value1&param2=value2` to support additional options that may be necessary for your specific PostgreSQL server.  Allowed values are [documented on the PostgreSQL site](https://www.postgresql.org/docs/9.4/static/libpq-connect.html#LIBPQ-PARAMKEYWORDS).  An additional restriction on the `sslmode` parameter is that only the `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
-The system can use either S3 or Azure, so you only need to provide one set of the following variables.
-
-Select which will be used, S3 or Azure:
+Select which placememt will be used for blob storage: S3, Azure, or GCS. Based on this value, you only need to provide one set of the following variables.
 
 - `placement` — (Required) Set to `placement_s3` for S3, `placement_azure` for Azure, or `placement_gcs` for GCS
 
@@ -199,27 +197,29 @@ For S3 (or S3-compatible storage providers):
 - `aws_access_key_id` — (Required unless `aws_instance_profile` is set) AWS access key ID for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
 - `aws_secret_access_key` — (Required unless `aws_instance_profile` is set) AWS secret access key for S3 bucket access. To use AWS instance profiles for this information, set it to `""`.
 - `s3_endpoint` — (Optional) Endpoint URL (hostname only or fully qualified URI). Usually only needed if using a VPC endpoint or an S3-compatible storage provider.
-- `s3_bucket` — (Required) the S3 bucket where resources will be stored
-- `s3_region` — (Required) the region where the S3 bucket exists
-- `s3_sse` — (Optional) enables server-side encryption of objects in S3; if provided, must be set to `aws:kms`
-- `s3_sse_kms_key_id` — (Optional) An optional KMS key for use when S3 server-side encryption is enabled
+- `s3_bucket` — (Required) The S3 bucket where resources will be stored.
+- `s3_region` — (Required) The region where the S3 bucket exists.
+- `s3_sse` — (Optional)Eenables server-side encryption of objects in S3; if provided, must be set to `aws:kms`.
+- `s3_sse_kms_key_id` — (Optional) An optional KMS key for use when S3 server-side encryption is enabled.
 
 For Azure:
 
-- `azure_account_name` — (Required) The account name for the Azure account to access the container
-- `azure_account_key` — (Required) The account key to access the account specified in `azure_account_name`
-- `azure_container` — (Required) The identifer for the Azure blob storage container
+- `azure_account_name` — (Required) The account name for the Azure account to access the container.
+- `azure_account_key` — (Required) The account key to access the account specified in `azure_account_name`.
+- `azure_container` — (Required) The identifer for the Azure blob storage container.
 - `azure_endpoint` — (Optional) The URL for the Azure cluster to use. By default this is the global cluster.
 
 For GCS:
 
-- `gcs_credentials` — (Required) JSON blob containing the GCP credentials document. **Note:** this is a string, so ensure value is properly escaped.
+- `gcs_credentials` — (Required) JSON blob containing the GCP credentials document. **Note:** This is a string, so ensure values are properly escaped.
 - `gcs_project` — (Required) The GCP project where the bucket resides.
 - `gcs_bucket` — (Required) The storage bucket name.
 
-## Online
+## Installer settings
 
-The following is an example `/etc/replicated.conf` suitable for an automated online install using a certificate trusted by a public or private CA.  `ImportSettingsFrom` must be the full path to the application settings file.  You also need to provide the full path to your license file in `LicenseFileLocation`.
+### Online
+
+The following is an example `/etc/replicated.conf` suitable for an automated online install using a certificate trusted by a public or private CA. `ImportSettingsFrom` must be the full path to the application settings file. You also need to provide the full path to your license file in `LicenseFileLocation`.
 
 See the full set of configuration parameters in the [Replicated documentation](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically).
 
@@ -236,7 +236,7 @@ See the full set of configuration parameters in the [Replicated documentation](h
     "LicenseFileLocation":          "/path/to/license.rli"
 }
 ```
-### Invoking the installation
+#### Invoking the online installation script
 
 Once `/etc/replicated.conf` has been created, you can retrieve and execute the install script as `root`:
 
@@ -248,9 +248,9 @@ bash ./install.sh \
     public-address=5.6.7.8
 ```
 
-Note the `private-address` and `public-address` flags provided to the installer.  These may be left out, but the installer will prompt for them if it is unable to determine appropriate values automatically.
+Note the `private-address` and `public-address` flags provided to the installer.  These may be left out, but the installer will prompt for them if it is unable to determine appropriate values automatically. If the instance will not have a separate public address, you may provide the private address for both values.
 
-## Airgapped
+### Airgapped
 
 The following is an example `/etc/replicated.conf` suitable for an automated airgapped install, which builds on the online example above.  Note the addition of `LicenseBootstrapAirgapPackagePath`, which is a path to the `.airgap` bundle on the instance.
 
@@ -269,7 +269,7 @@ The following is an example `/etc/replicated.conf` suitable for an automated air
 }
 ```
 
-### Invoking the installation
+#### Invoking the airgap installation script
 
 Following on from the [manual airgapped install](./install-installer.html#run-the-installer-airgapped) steps, you must also have the installer bootstrapper already on the instance.  For illustrative purposes, it is assumed the installer bootstrapper has been unarchived in `/tmp`.
 
@@ -308,4 +308,3 @@ After resolving any issues with file validity or permissions, re-run the install
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
 - [`/etc/replicated.conf`](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically)
 - [application settings](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-app-settings-automatically)
-
