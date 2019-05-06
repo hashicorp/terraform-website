@@ -20,8 +20,6 @@ Approve access request. | &nbsp;
 
 The rest of this page explains the Bitbucket Cloud-specific versions of these steps.
 
--> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with an app password. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
-
 ## Step 1: On Bitbucket Cloud, Create a New OAuth Consumer
 
 1. Open [Bitbucket Cloud](https://bitbucket.org) in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.

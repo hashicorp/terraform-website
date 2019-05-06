@@ -15,8 +15,6 @@ Note that Bitbucket Server requires both OAuth authentication and an SSH key. Th
 
 ~> **Important:** TFE needs to contact your Bitbucket Server instance during setup and during normal operation. For the SaaS version of TFE, this means Bitbucket Server must be internet-accessible; for private installs of TFE, you must have network connectivity between your TFE and Bitbucket Server instances over HTTP or HTTPS and SSH. Bitbucket Server repository clone operations are performed over SSH on the port the Bitbucket Server instance uses.
 
--> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
-
 ## Step 1: On Bitbucket Server, Ensure the Webhooks Plugin is Installed
 
 TFE uses webhooks to get new configurations. To support this, Bitbucket Server needs Atlassian's webhooks plugin.
