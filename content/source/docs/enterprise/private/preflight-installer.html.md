@@ -188,9 +188,9 @@ If the configured PostgreSQL user does not have permission to create PostgreSQL 
 (ie is not a superuser), then run the following SQL commands to create the proper extensions:
 
 ```sql
-CREATE EXTENSION IF NOT EXISTS "hstore";
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-CREATE EXTENSION IF NOT EXISTS "citext";
+CREATE EXTENSION IF NOT EXISTS "hstore" WITH SCHEMA "rails";
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA "rails";
+CREATE EXTENSION IF NOT EXISTS "citext" WITH SCHEMA "registry";
 ```
 
 ### External Vault Option
