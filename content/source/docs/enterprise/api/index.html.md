@@ -31,7 +31,7 @@ See the navigation sidebar for the list of available endpoints.
 
 ## Stability promise
 
-The TFE API is considered generally available. It promises that all generally available endpoints will be maintained in a backwards compatible manner. If a change is considered to be backwards incompatible, then a new endpoint will be created, while the old endpoint will be maintained until declared [deprecated](#deprecation-policy).
+The TFE API will continue to evolve, but we consider it stable for general use, and HashiCorp will maintain all stable API endpoints in a backwards compatible manner. (Stable endpoints are any endpoints _not_ marked as beta.) If we need to make a change that we consider backwards incompatible, then we will create a new endpoint that serves the same purpose; the old endpoint will be maintained until declared [deprecated](#deprecation-policy).
 
 The following changes are considered to be backwards compatible:
 
