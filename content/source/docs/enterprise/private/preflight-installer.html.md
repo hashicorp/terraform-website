@@ -172,9 +172,9 @@ create the above required schemas, the following snippet must be run on the
 database:
 
 ```sql
-CREATE SCHEMA rails;
-CREATE SCHEMA vault;
-CREATE SCHEMA registry;
+CREATE EXTENSION IF NOT EXISTS "hstore" WITH SCHEMA "rails";
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA "rails";
+CREATE EXTENSION IF NOT EXISTS "citext" WITH SCHEMA "registry";
 ```
 
 When providing optional extra keyword parameters for the database connection,
