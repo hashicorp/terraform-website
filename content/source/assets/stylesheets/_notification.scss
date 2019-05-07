@@ -1,55 +1,58 @@
 .notification {
-  background: #f7f7fd;
-  border-radius: 3px;
+  align-items: flex-start;
+  background: #f5f3ff;
+  border-radius: 2px;
   color: $black;
-  display: inline-block;
-  font-size: 1.4rem;
-  padding: 7px 6px 6px;
-  line-height: 1.7;
-  transition: all 0.3s ease-in-out;
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: $font-weight-bold;
+  line-height: 2.8rem;
+  margin: 48px 0 64px;
+  padding: 6px 13px;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
-    background: #f1f1fe;
+    background: #f0eefa;
     color: $black;
     text-decoration: none;
   }
 
-  @media (min-width: 768px) {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+  & .notification-tag {
+    margin: -1px 18px 0 0;
 
-  @media (min-width: 992px) {
-    line-height: 1.4;
+    & span {
+      border: 1px solid $terraform-purple;
+      background-color: $white;
+      border-radius: 2px;
+      font-size: 1.1rem;
+      font-weight: $font-weight-reg;
+      line-height: 2;
+      padding: 3px 11px;
+      text-transform: uppercase;
+    }
 
-    .notification-details{
-      display: flex;
+    @media (min-width: $screen-md-min) {
+      margin-right: 32px;
     }
   }
 
-  .notification-tag {
-    border: 1px solid $terraform-purple;
-    background-color: $white;
-    border-radius: 3px;
-    color: $terraform-purple;
-    display: inline-block;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-top: -1px;
-    margin-right: 4px;
-    padding: 2px 9px;
-    text-transform: uppercase;
+  & .notification-text {
+    text-align: left;
+  }
 
-    @media (min-width: 992px) {
-      float: left;
-      margin-right: 8px;
+  .notification-link {
+    align-items: center;
+    color: $terraform-purple;
+    display: none;
+    margin-left: 32px;
+    text-decoration: underline;
+    
+    @media (min-width: $screen-md-min) {
+      display: inline-flex;
     }
   }
 
   svg {
-    margin-left: 4px;
-    margin-right: 6px;
-    align-self: center;
+    margin: 0 10px 0 16px;
   }
 }

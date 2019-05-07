@@ -2,6 +2,11 @@
   // Override the main header
   #header {
     background: $home-header-background-color;
+    margin-bottom: 56px;
+    
+    @media (min-width: $screen-sm-min) {
+      margin-bottom: 128px;
+    }
 
     .navbar-toggle {
       .icon-bar {
@@ -50,10 +55,19 @@
     }
   }
 
+  .notification {
+    display: inline-flex;
+    margin-top: 0;
+  }
+
   header {
     .hero {
-      margin: 140px auto 160px auto;
+      margin: 80px auto;
       text-align: center;
+
+      @media (max-width: $screen-xs-max) {
+        margin-bottom: 0;
+      }
 
       .button {
         margin: 5px;
