@@ -5,6 +5,7 @@ sidebar_current: "docs-frontpage"
 description: |-
   A brief map of the documentation for Terraform CLI, Terraform Enterprise, the
   Terraform GitHub Actions, and the rest of the Terraform ecosystem.
+show_notification: true
 ---
 
 # Terraform Documentation
