@@ -172,9 +172,9 @@ create the above required schemas, the following snippet must be run on the
 database:
 
 ```sql
-CREATE EXTENSION IF NOT EXISTS "hstore" WITH SCHEMA "rails";
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA "rails";
-CREATE EXTENSION IF NOT EXISTS "citext" WITH SCHEMA "registry";
+CREATE SCHEMA rails;
+CREATE SCHEMA vault;
+CREATE SCHEMA registry;
 ```
 
 When providing optional extra keyword parameters for the database connection,
@@ -188,9 +188,9 @@ If the configured PostgreSQL user does not have permission to create PostgreSQL 
 (ie is not a superuser), then run the following SQL commands to create the proper extensions:
 
 ```sql
-CREATE EXTENSION IF NOT EXISTS "hstore";
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-CREATE EXTENSION IF NOT EXISTS "citext";
+CREATE EXTENSION IF NOT EXISTS "hstore" WITH SCHEMA "rails";
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA "rails";
+CREATE EXTENSION IF NOT EXISTS "citext" WITH SCHEMA "registry";
 ```
 
 ### External Vault Option
