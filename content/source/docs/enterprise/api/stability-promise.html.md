@@ -13,7 +13,9 @@ The following changes are considered to be backwards compatible:
 * Adding new attributes, links, or relationships to existing API requests and responses.
 * Adding new optional query paramters to existing API requests.
 
-Any endpoints that are not stable (i.e., endpoints that are in beta) or suspectible to security vulnerabilities are subject to change without notice.
+Security vulnerabilities are an exception to this stability promise; we will make backwards incompatible changes to stable endpoints if it is necessary to protect our security or the security of our users.
+
+Endpoints that are in beta are subject to change without notice.
 
 ## Deprecation policy
 
