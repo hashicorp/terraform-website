@@ -95,6 +95,9 @@ ptfe$ cat settings.json
     "ca_certs": {},
     "capacity_concurrency": {},
     "capacity_memory": {},
+    "custom_image_tag": {
+        "value": "hashicorp/build-worker:now"
+    },
     "disk_path": {},
     "extern_vault_addr": {},
     "extern_vault_enable": {},
@@ -124,6 +127,9 @@ ptfe$ cat settings.json
     "s3_region": {},
     "s3_sse": {},
     "s3_sse_kms_key_id": {},
+    "tbw_image": {
+        "value": "default_image"
+    },
     "vault_path": {},
     "vault_store_snapshot": {}
 }
@@ -178,6 +184,11 @@ The following settings apply to every installation:
 #### `disk_path` is required if you've chosen `disk` for `production_type`:
 
 - `disk_path` — Path on instance to persistent storage.
+
+#### The following settings apply if you want to use an [alternative Terraform build worker image](./install-installer.html#alternative-terraform-worker-image):
+
+- `tbw_image` - Set this to `custom_image` if you want to use an alternative Terraform build worker image. (The default is `default_image`.)
+- `custom_image_tag` - The name and tag for your alternative Terraform build worker image in the format `<name>:<tag>`. (The default is `hashicorp/build-worker:now`.)
 
 #### The following settings apply if you've chosen `external` for `production_type`:
 
