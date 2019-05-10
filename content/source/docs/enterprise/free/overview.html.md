@@ -37,6 +37,8 @@ Terraform still defaults to storing state locally, but any Terraform configurati
 
 -> **Note:** Several earlier versions of Terraform included preview versions of the `remote` backend. The Terraform Enterprise Free Tier relies on enhancements added in 0.11.13, and does not work with these earlier versions.
 
+-> **Note:** For Free Tier organizations, TFE always retains at least the last 100 states (across all workspaces) and at least the most recent state for every workspace. Additional states beyond the last 100 are retained for six months, and are then deleted. 
+
 ## The Workflow
 
 The Terraform Enterprise Free Tier uses the standard Terraform CLI workflow, with some enhancements:
