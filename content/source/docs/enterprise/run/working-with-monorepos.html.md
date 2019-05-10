@@ -15,7 +15,7 @@ If you have several Terraform Enterprise (TFE) workspaces attached to a [monolit
 
 ## Configuring Run Triggers
 
-You can configure which parts of a repo will trigger runs in a workspace on its ["General" settings page](../workspaces/settings.html#general), as well as when creating a new workspace:
+You can configure which parts of a repo will trigger runs in a workspace on its ["Version Control" settings page](../workspaces/settings.html#version-control), as well as when creating a new workspace:
 
 ![Automatic run triggering UI](./images/automatic-run-triggering-ui.png)
 
