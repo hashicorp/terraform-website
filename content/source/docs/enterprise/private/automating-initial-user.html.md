@@ -14,12 +14,18 @@ Normally this user is created by opening the application from the installer dash
 To create the initial admin user via the API, the request must be authenticated with the Initial Admin Creation Token (IACT). This token
 can only be used to create the admin user when there are no users configured in the system. The IACT can be retrieved in several different ways.
 
-### Shell Command
+### Shell Command or Automated Deployment Script
 
-After installation, run:
+After installation, run the following from a shell connected to your PTFE instance:
 
 ```shell
-replicated admin --no-tty retrieve-iact
+replicated admin --tty=0 retrieve-iact
+```
+
+If you want to create the initial user in an automated deployment script, run a command like the following instead so that you can capture the IACT:
+
+```shell
+initial_token=$(replicated admin --tty=0 retrieve-iact)
 ```
 
 The command outputs only the complete IACT, which facilitates use in automation.
