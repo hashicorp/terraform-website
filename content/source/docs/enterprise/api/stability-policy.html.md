@@ -1,9 +1,9 @@
 ---
-page_title: "API Docs - Terraform Enterprise"
+page_title: "API Docs - Terraform Enterprise - API Stability Policy"
 layout: "enterprise2"
 ---
 
-# Stability policy
+# API Stability Policy
 
 The Terraform Enterprise API will continue to evolve, but we consider it stable for general use, and HashiCorp will maintain all stable API endpoints in a backwards compatible manner. (Stable endpoints are any endpoints _not_ marked as beta.) If we need to make a change that we consider backwards incompatible, then we will create a new endpoint that serves the same purpose; the old endpoint will be maintained until declared [deprecated](#deprecation-policy).
 
@@ -17,6 +17,6 @@ Security vulnerabilities are an exception to this stability policy; we will make
 
 Endpoints that are in beta are subject to change without notice.
 
-## Deprecation policy
+## Deprecation Policy
 
 The deprecation policy provides users the opportunity to continue to consume API endpoints for a period of time after they have been superseded. Deprecation notices for endpoints should be readily available through various channels of communication, including documentation and HTTP responses. An endpoint should be available for at least three (3) months from the date on which it has been declared deprecated. (This time is cited as a minimum; endpoint availability may be longer based on contracted agreements.)
