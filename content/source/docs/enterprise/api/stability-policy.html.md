@@ -3,7 +3,7 @@ page_title: "API Docs - Terraform Enterprise"
 layout: "enterprise2"
 ---
 
-# Stability promise
+# Stability policy
 
 The Terraform Enterprise API will continue to evolve, but we consider it stable for general use, and HashiCorp will maintain all stable API endpoints in a backwards compatible manner. (Stable endpoints are any endpoints _not_ marked as beta.) If we need to make a change that we consider backwards incompatible, then we will create a new endpoint that serves the same purpose; the old endpoint will be maintained until declared [deprecated](#deprecation-policy).
 
@@ -13,7 +13,7 @@ The following changes are considered to be backwards compatible:
 * Adding new attributes, links, or relationships to existing API requests and responses.
 * Adding new optional query paramters to existing API requests.
 
-Security vulnerabilities are an exception to this stability promise; we will make backwards incompatible changes to stable endpoints if it is necessary to protect our security or the security of our users.
+Security vulnerabilities are an exception to this stability policy; we will make backwards incompatible changes to stable endpoints if it is necessary to protect our security or the security of our users.
 
 Endpoints that are in beta are subject to change without notice.
 
