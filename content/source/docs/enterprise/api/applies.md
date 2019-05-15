@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-applies"
 
 # Applies API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 An apply represents the results of applying a Terraform Run's execution plan.
 
 ## Show an apply

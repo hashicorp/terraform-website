@@ -23,18 +23,17 @@ sidebar_current: "docs-enterprise2-api"
 
 # Terraform Enterprise API Documentation
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 Terraform Enterprise (TFE) provides an API for a subset of its features. If you have any questions or want to request new API features, please email support@hashicorp.com.
 
 See the navigation sidebar for the list of available endpoints.
 
 -> **Note:** Before planning an API integration, consider whether [the `tfe` Terraform provider](/docs/providers/tfe/index.html) meets your needs. It can't create or approve runs in response to arbitrary events, but it's a useful tool for managing your organizations, teams, and workspaces as code.
 
+HashiCorp provides a [stability policy](./stability-policy.html) for the Terraform Enterprise API, ensuring backwards compatibility for stable endpoints.
+
 ## Authentication
 
 All requests must be authenticated with a bearer token. Use the HTTP header `Authorization` with the value `Bearer <token>`. If the token is absent or invalid, TFE responds with [HTTP status 401][401] and a [JSON API error object][]. The 401 status code is reserved for problems with the authentication token; forbidden requests with a valid token result in a 404.
-
 
 There are three kinds of token available:
 

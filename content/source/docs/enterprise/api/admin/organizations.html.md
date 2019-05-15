@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-admin-organizations"
 
 # Admin Organizations API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 -> These API endpoints are available in Private Terraform Enterprise as of version 201807-1.
 
 The Organizations Admin API contains endpoints to help site administrators manage organizations.

@@ -6,8 +6,6 @@ sidebar_current: "docs-enterprise2-api-admin"
 
 # Private Terraform Enterprise Admin API Documentation
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 -> These API endpoints are available in Private Terraform Enterprise as of version 201807-1.
 
 Private Terraform Enterprise provides an API to allow administrators to configure and support their installation.

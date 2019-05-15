@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-user-tokens"
 
 # User Tokens API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 ## List User Tokens
 
 `GET /api/v2/users/:user_id/authentication-tokens`

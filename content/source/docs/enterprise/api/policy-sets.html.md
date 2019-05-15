@@ -23,8 +23,6 @@ sidebar_current: "docs-enterprise2-api-policy-sets"
 
 # Policy Sets API
 
--> **Note**: These API endpoints are in beta and are subject to change.
-
 [Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Enterprise.
 
 Policy sets are groups of policies that are applied together to related workspaces. By using policy sets, you can group your policies by attributes such as environment or region. Individual policies that are members of policy sets will only be checked for workspaces that the policy set is attached to. In order for a policy to be active and checked during runs, it must be a member of at least one policy set that is attached to workspaces.
