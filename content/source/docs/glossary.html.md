@@ -27,6 +27,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [(Terraform) Configuration](#terraform-configuration)
 - [Configuration Version](#configuration-version)
 - [Data Source](#data-source)
+- [Deposed](#deposed)
 - [Expression](#expression)
 - [Fork](#fork)
 - [Git](#git)
@@ -262,6 +263,16 @@ Unlike resources, data sources do not create or manage infrastructure. Instead, 
 Data sources are implemented by [providers][].
 
 - [Terraform docs: Data Sources](/docs/configuration/data-sources.html)
+
+## Deposed
+
+[deposed]: glossary.html#deposed
+[deposed resource]: glossary.html#deposed
+[deposed resources]: glossary.html#deposed
+
+This status tracks a [resource][] that was marked for deletion from a previous replacement and is no longer used in references, but still remains in the Terraform [state][] and infrastructure due an error from that previous [apply][]. Terraform expected to replace the existing resource by creating a new resource then destroying the existing resource, but the error occurred before the destruction. Terraform will destroy the existing (now previous) resource next apply. This only can occur in resource [configurations][] that include the `lifecycle` configuration block `create_before_destroy` [argument][] set to `true`.
+
+- [Terraform docs: Resources](/docs/configuration/resources.html)
 
 ## Expression
 
