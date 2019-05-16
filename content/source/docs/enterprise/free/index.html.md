@@ -53,7 +53,7 @@ To add or remove organization members, click the "Settings" link in the top navi
 
 To add a new member, enter their username and click the "Add member" button. You must know someone's exact username on `app.terraform.io` to add them to your organization; users cannot be added by email address.
 
-If the person you want to add doesn't have an account, ask them to sign up at `https://app.terraform.io/account/new` and send you their username.
+If the person you want to add doesn't have an account, ask them to sign up at `https://app.terraform.io/signup` and send you their username.
 
 You can add any `app.terraform.io` user to your organization. 
 
