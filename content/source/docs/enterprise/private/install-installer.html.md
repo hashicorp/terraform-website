@@ -132,8 +132,6 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
 
  This is a sample `Dockerfile` you can use to start building your own image:
 
-### Image initialisation
-If you wish to run certain initialisation commands, during runtime, in your image before it gets used by TFE then you can create a script in `/usr/local/bin/init_custom_worker.sh`. The only requirement is for the script to be executable. This script, and all commands invoked by it, will be executed right before TFE runs `terraform init`.
  ```
 # This Dockerfile builds the image used for the worker containers.
 FROM ubuntu:xenial
@@ -145,6 +143,9 @@ ADD ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo unzip daemontools git-core ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd
 ```
+
+### Image initialisation
+If you wish to run certain initialisation commands, during runtime, in your image before it gets used by TFE then you can create a script in `/usr/local/bin/init_custom_worker.sh`. The only requirement is for the script to be executable. This script, and all commands invoked by it, will be executed right before TFE runs `terraform init`.
 
 ## Operational Mode Decision
 
