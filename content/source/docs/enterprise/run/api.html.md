@@ -47,7 +47,7 @@ if [ -z "$1" ] || [ -z "$2" ]; then
   exit 0
 fi
 
-CONTENT_DIRECTORY=$1
+CONTENT_DIRECTORY="$1"
 ORG_NAME="$(cut -d'/' -f1 <<<"$2")"
 WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
 ```
@@ -60,7 +60,7 @@ The [configuration version API](../api/configuration-versions.html) requires a `
 
 ```bash
 UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
-tar cvzf $UPLOAD_FILE_NAME -C $CONTENT_DIRECTORY .
+tar -zcvf "$UPLOAD_FILE_NAME" "$CONTENT_DIRECTORY" .
 ```
 
 ### 3. Look Up the Workspace ID
@@ -99,8 +99,9 @@ Terraform Enterprise automatically creates a new run with a plan once the new fi
 
 ```bash
 curl \
+  --header "Content-Type: application/octet-stream" \
   --request PUT \
-  -F "data=@$UPLOAD_FILE_NAME" \
+  --data-binary @"$UPLOAD_FILE_NAME" \
   $UPLOAD_URL
 ```
 
@@ -109,7 +110,7 @@ curl \
 In the previous steps a few files were created; they are no longer needed, so they should be deleted.
 
 ```bash
-rm $UPLOAD_FILE_NAME
+rm "$UPLOAD_FILE_NAME"
 rm ./create_config_version.json
 ```
 
@@ -122,28 +123,43 @@ chmod +x ./terraform-enterprise-push.sh
 ./terraform-enterprise-push.sh ./content my-organization/my-workspace
 ```
 
-**Note**: This script does not have error handling, so for a more robust script consider adding error checking or using the [tfe-cli client](https://github.com/hashicorp/tfe-cli).
+**Note**: This script does not have error handling, so for a more robust script consider adding error checking.
 
 **`./terraform-enterprise-push.sh`:**
 
 ```bash
 #!/bin/bash
 
+# Complete script for API-driven runs.
+# Documentation can be found at:
+# https://www.terraform.io/docs/enterprise/run/api.html
+
+# 1. Define Variables
+
 if [ -z "$1" ] || [ -z "$2" ]; then
   echo "Usage: $0 <path_to_content_directory> <organization>/<workspace>"
   exit 0
 fi
 
-CONTENT_DIRECTORY=$1
+CONTENT_DIRECTORY="$1"
 ORG_NAME="$(cut -d'/' -f1 <<<"$2")"
 WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
+
+# 2. Create the File for Upload
+
 UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
-tar -zcvf $UPLOAD_FILE_NAME $CONTENT_DIRECTORY
+tar -zcvf "$UPLOAD_FILE_NAME" "$CONTENT_DIRECTORY"
+
+# 3. Look Up the Workspace ID
+
 WORKSPACE_ID=($(curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   https://app.terraform.io/api/v2/organizations/$ORG_NAME/workspaces/$WORKSPACE_NAME \
   | jq -r '.data.id'))
+
+# 4. Create a New Configuration Version
+
 echo '{"data":{"type":"configuration-version"}}' > ./create_config_version.json
 
 UPLOAD_URL=($(curl \
@@ -153,13 +169,19 @@ UPLOAD_URL=($(curl \
   --data @create_config_version.json \
   https://app.terraform.io/api/v2/workspaces/$WORKSPACE_ID/configuration-versions \
   | jq -r '.data.attributes."upload-url"'))
-curl \
-  --request PUT \
-  -F "data=@$UPLOAD_FILE_NAME" \
-  $UPLOAD_URL
-rm $UPLOAD_FILE_NAME
-rm ./create_config_version.json
 
+# 5. Upload the Configuration Content File
+
+curl \
+  --header "Content-Type: application/octet-stream" \
+  --request PUT \
+  --data-binary @"$UPLOAD_FILE_NAME" \
+  $UPLOAD_URL
+
+# 6. Delete Temporary Files
+
+rm "$UPLOAD_FILE_NAME"
+rm ./create_config_version.json
 ```
 
 ## Advanced Use Cases
