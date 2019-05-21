@@ -47,7 +47,7 @@ if [ -z "$1" ] || [ -z "$2" ]; then
   exit 0
 fi
 
-CONTENT_DIRECTORY=$1
+CONTENT_DIRECTORY="$1"
 ORG_NAME="$(cut -d'/' -f1 <<<"$2")"
 WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
 ```
@@ -60,7 +60,7 @@ The [configuration version API](../api/configuration-versions.html) requires a `
 
 ```bash
 UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
-tar cvzf $UPLOAD_FILE_NAME -C $CONTENT_DIRECTORY .
+tar -zcvf "$UPLOAD_FILE_NAME" "$CONTENT_DIRECTORY" .
 ```
 
 ### 3. Look Up the Workspace ID
@@ -101,7 +101,7 @@ Terraform Enterprise automatically creates a new run with a plan once the new fi
 curl \
   --header "Content-Type: application/octet-stream" \
   --request PUT \
-  --data-binary @$UPLOAD_FILE_NAME \
+  --data-binary @"$UPLOAD_FILE_NAME" \
   $UPLOAD_URL
 ```
 
@@ -110,7 +110,7 @@ curl \
 In the previous steps a few files were created; they are no longer needed, so they should be deleted.
 
 ```bash
-rm $UPLOAD_FILE_NAME
+rm "$UPLOAD_FILE_NAME"
 rm ./create_config_version.json
 ```
 
@@ -141,14 +141,14 @@ if [ -z "$1" ] || [ -z "$2" ]; then
   exit 0
 fi
 
-CONTENT_DIRECTORY=$1
+CONTENT_DIRECTORY="$1"
 ORG_NAME="$(cut -d'/' -f1 <<<"$2")"
 WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
 
 # 2. Create the File for Upload
 
 UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
-tar -zcvf $UPLOAD_FILE_NAME $CONTENT_DIRECTORY
+tar -zcvf "$UPLOAD_FILE_NAME" "$CONTENT_DIRECTORY"
 
 # 3. Look Up the Workspace ID
 
@@ -175,12 +175,12 @@ UPLOAD_URL=($(curl \
 curl \
   --header "Content-Type: application/octet-stream" \
   --request PUT \
-  --data-binary @$UPLOAD_FILE_NAME \
+  --data-binary @"$UPLOAD_FILE_NAME" \
   $UPLOAD_URL
 
 # 6. Delete Temporary Files
 
-rm $UPLOAD_FILE_NAME
+rm "$UPLOAD_FILE_NAME"
 rm ./create_config_version.json
 ```
 
