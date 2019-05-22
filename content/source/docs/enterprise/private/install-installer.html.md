@@ -145,7 +145,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ```
 
 ### Image initialisation
-If you wish to run certain initialisation commands, during runtime, in your image before it gets used by TFE then you can create a script in `/usr/local/bin/init_custom_worker.sh`. The only requirement is for the script to be executable. This script, and all commands invoked by it, will be executed right before TFE runs `terraform init`.
+To run initialization commands in your image during runtime, create a script at `/usr/local/bin/init_custom_worker.sh` and make it executable. This script, and all commands it invokes, will be executed before TFE runs `terraform init`. 
+
+The name, location, and permissions of the script are not customizable.
 
 ## Operational Mode Decision
 
