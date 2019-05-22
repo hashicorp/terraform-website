@@ -39,7 +39,7 @@ Using Sentinel with Terraform Enterprise involves:
   a run is performed, after the `terraform plan` but before it can be confirmed
   or the `terraform apply` is executed.
 - [Mocking Sentinel Terraform data](./mock.html) - Terraform Enterprise provides
-  the ability to generate mock data for any run within a workspace.  This data
+  the ability to generate mock data for any run within a workspace. This data
   can be used with the [Sentinel
   Simulator](https://docs.hashicorp.com/sentinel/commands/) to test policies
   before deployment.
