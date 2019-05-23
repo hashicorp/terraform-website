@@ -173,7 +173,7 @@ Most of the endpoints that return lists of objects support pagination. A client 
 Parameter      | Description
 ---------------|------------
 `page[number]` | **Optional.** If omitted, the endpoint will return the first page.
-`page[size]`   | **Optional.** If omitted, the endpoint will return 20 items per page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 20 items per page. The maximum page size is 150.
 
 Additional data is returned in the `links` and `meta` top level attributes of the response.
 
