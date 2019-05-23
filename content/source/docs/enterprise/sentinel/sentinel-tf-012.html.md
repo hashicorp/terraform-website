@@ -200,3 +200,116 @@ main = rule {
 	tfstate.module(["foo"]).outputs.foo is "bar"
 }
 ```
+
+## Testing a Policy With 0.11 and 0.12 Simultaneously
+
+It's strongly advised that you test your Sentinel policies after upgrading to
+Terraform 0.12 to ensure they continue to work as expected. [Mock
+generation](/docs/enterprise/sentinel/mock.html) has also been updated to
+produce mock data for the Sentinel imports as they appear in Terraform 0.12.
+
+It's possible to set up a policy to be tested against both 0.11 and 0.12
+simultaneously by generating the mock data necessary for both configurations,
+and setting up your Sentinel repository appropriately.
+
+### Generating Mock Data for Both Terraform Versions
+
+~> **NOTE:** The following steps will **permanently** upgrade your workspace's
+state file to Terraform 0.12. This cannot be rolled back! Only carry these steps
+out on a workspace that you are okay with upgrading, or use a workspace solely
+devoted to testing.
+
+Use the steps below to generate mock data for both Terraform versions:
+
+1. Follow the instructions on [configuring the Terraform version of the
+   workspace](/docs/enterprise/workspaces/settings.html#terraform-version) and
+   ensure that it set to the latest 0.11 release.
+1. [Start a run](/docs/enterprise/run/ui.html#starting-runs) for the workspace
+   and let it finish the plan phase.
+1. Follow the instructions to [generate mock data using the
+   UI](/docs/enterprise/sentinel/mock.html#generating-mock-data-using-the-ui)
+   for a plan on the workspace. Save this data to a file reflective of its
+   version, example: `run-abcdEFgH-sentinel-mocks-011.tar.gz`.
+1. [Discard the plan](/docs/enterprise/run/ui.html#confirming-or-discarding-plans).
+1. Re-configure the Terraform version for the workspace, this time selecting the
+   latest 0.12 release.
+1. Start a run for the workspace again.
+1. Generate the mock data for the plan again, this time saving it in something
+   similar to `run-abcdEFgH-sentinel-mocks-012.tar.gz`.
+1. Discard the plan again.
+
+### Data and Test Structure
+
+Once you have the mock data for both versions, it needs to be laid out
+properly so that it can be utilized by the tests that require a specific
+version.
+
+Building on the file layout we use in [using mock
+data](/docs/enterprise/sentinel/mock.html#using-mock-data) section of our
+[mocking guide](/docs/enterprise/sentinel/mock.html), the following layout will
+allow you to have mock data for two versions co-exist at the same time:
+
+```
+.
+├── test
+│   └── test_tf_011_012
+│       ├── tf011.json
+│       └── tf012.json
+├── test_tf_011_012.sentinel
+└── testdata
+    ├── tf-011
+    │   ├── mock-tfconfig.sentinel
+    │   ├── mock-tfplan.sentinel
+    │   └── mock-tfstate.sentinel
+    └── tf-012
+        ├── mock-tfconfig.sentinel
+        ├── mock-tfplan.sentinel
+        └── mock-tfstate.sentinel
+```
+
+In this example, the `test_tf_011_012.sentinel` policy is a poilcy that would
+work for both Terraform 0.11 and Terraform 0.12. In the test suite
+(`test/test_tf_011_012`), we have two tests, one for each Terraform version,
+`tf011.json` (for Terraform 0.11) and `tf012.json` (for Terraform 0.12).
+
+The contents of each file indicates the test data to be used:
+
+`tf011.json`:
+
+```
+{
+  "mock": {
+    "tfconfig": "../../testdata/tf-011/mock-tfconfig.sentinel",
+    "tfplan": "../../testdata/tf-011/mock-tfplan.sentinel",
+    "tfstate": "../../testdata/tf-011/mock-tfstate.sentinel"
+  },
+  "test": {
+    "main": true
+  }
+}
+```
+
+`tf012.json`:
+
+```
+{
+  "mock": {
+    "tfconfig": "../../testdata/tf-012/mock-tfconfig.sentinel",
+    "tfplan": "../../testdata/tf-012/mock-tfplan.sentinel",
+    "tfstate": "../../testdata/tf-012/mock-tfstate.sentinel"
+  },
+  "test": {
+    "main": true
+  }
+}
+```
+
+With this setup, you can now run `sentinel test` and have the test assert
+against both sets of mock data at once:
+
+```
+$ sentinel test
+PASS - test_tf_011_012.sentinel
+  PASS - test/test_tf_011_012/tf011.json
+  PASS - test/test_tf_011_012/tf012.json
+```
