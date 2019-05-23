@@ -68,7 +68,7 @@ improvements to the SDK.
 
 After all of these commands are complete, you should find your version control
 detects changes to the `go.mod` and `go.sum` files as well as various files
-in the `vendor` subdirectory. While vendoring is mot mandatory for providers,
+in the `vendor` subdirectory. While vendoring is not mandatory for providers,
 we still recommend using it to ensure dependencies remain consistent for now,
 until the Go team has finished deploying its new solutions for module
 distribution.
