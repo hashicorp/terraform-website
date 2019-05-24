@@ -285,5 +285,6 @@ Additionally, the community of Terraform Enterprise users and vendors have built
 
 If you have built a client library and would like to add it to this community list, please [contribute](https://github.com/hashicorp/terraform-website#contributions-welcome) to [this page](https://github.com/hashicorp/terraform-website/blob/master/content/source/docs/enterprise/api/index.html.md).
 
+- [tfh](https://github.com/hashicorp-community/tf-helper): UNIX shell console app
 - [tf_api_gateway](https://github.com/PlethoraOfHate/tf_api_gateway): Python API library and console app
 - [terraform-enterprise-client](https://github.com/skierkowski/terraform-enterprise-client): Ruby API library and console app
