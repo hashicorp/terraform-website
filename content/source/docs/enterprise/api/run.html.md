@@ -533,6 +533,51 @@ curl \
   https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/force-cancel
 ```
 
+## Forcefully execute a run
+
+`POST /runs/:run_id/actions/force-execute`
+
+Parameter | Description
+----------|------------
+`run_id`  | The run ID to execute
+
+The `force-execute` action is analogous to executing the latest queued run after discarding or canceling all prior runs that are not already complete. It initiates the same actions as the "Run this plan now" button at the top of the view of a pending run.
+
+This endpoint enforces the following prerequisites:
+
+* the target run is in the Pending state
+* the workspace is locked by another run
+* the run locking the workspace can be discarded 
+
+Runs can currently be discarded if they are in the Planned, Policy Checked, or Policy Override states.
+
+This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
+
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+
+~> **Warning:** This endpoint, while safer than a force-cancel, is not intended for regular use. If you find yourself using it frequently, please reach out to HashiCorp Support for help in developing an alternative approach.
+
+Status  | Response                  | Reason(s)
+--------|---------------------------|----------
+[202][] | none                      | Successfully initiated the force-execution process.
+[403][] | [JSON API error object][] | Run is not pending, its workspace was not locked, or its workspace association was not found.
+[409][] | [JSON API error object][] | The run locking the workspace was not in a discardable state.
+[404][] | [JSON API error object][] | Run was not found or user not authorized.
+
+### Request Body
+
+This POST endpoint does not take a request body.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  https://app.terraform.io/api/v2/runs/run-DQGdmrWMX8z9yWQB/actions/force-execute
+```
+
 ## Available Related Resources
 
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
