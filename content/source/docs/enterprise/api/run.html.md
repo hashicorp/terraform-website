@@ -541,21 +541,19 @@ Parameter | Description
 ----------|------------
 `run_id`  | The run ID to execute
 
-The `force-execute` action is analogous to executing the latest queued run after discarding or canceling all prior runs that are not already complete. It initiates the same actions as the "Run this plan now" button at the top of the view of a pending run.
+The force-execute action cancels all prior runs that are not already complete, unlocking the run's workspace and allowing the run to be executed. (It initiates the same actions as the "Run this plan now" button at the top of the view of a pending run.)
 
 This endpoint enforces the following prerequisites:
 
-* the target run is in the Pending state
-* the workspace is locked by another run
-* the run locking the workspace can be discarded 
-
-Runs can currently be discarded if they are in the Planned, Policy Checked, or Policy Override states.
+* The target run is in the "pending" state.
+* The workspace is locked by another run.
+* The run locking the workspace can be discarded.
 
 This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
-~> **Warning:** This endpoint, while safer than a force-cancel, is not intended for regular use. If you find yourself using it frequently, please reach out to HashiCorp Support for help in developing an alternative approach.
+~> **Note:** While useful at times, force-executing a run circumvents the typical workflow of applying runs using Terraform Enterprise. It is not intended for regular use. If you find yourself using it frequently, please reach out to HashiCorp Support for help in developing an alternative approach.
 
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------
