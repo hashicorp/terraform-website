@@ -203,7 +203,7 @@ resouce_maps = find_resources_from_state("google_sql_database")
 You would then iterate over the `resource_maps` variable to get the maps of the
 specified resource in each module and iterate over the resources in those maps to
 access their attributes. Remember that this function will only locate modules (and
-hence resources) that are present in state.
+hence resources) that are present in the current state.
 
 You could define a similar `find_data_sources_from_state` function to find all data
 sources of a particular type from all modules by simply changing `resources[type]`
