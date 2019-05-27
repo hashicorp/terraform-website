@@ -132,8 +132,8 @@ import "tfconfig"
 filename_value = tfconfig.resources.local_file.accounts.config.filename
 
 main = rule {
-	filename_value contains "${var.domain}" and
-	filename_value contains "${var.subdomain}"
+  filename_value contains "${var.domain}" and
+  filename_value contains "${var.subdomain}"
 }
 ```
 
@@ -254,8 +254,8 @@ The value of `module_paths` would be:
 
 ```
 [
-	[],
-	["foo"],
+  [],
+  ["foo"],
 ]
 ```
 
@@ -387,8 +387,8 @@ in your configuration. Consider the following resource block:
 
 ```hcl
 resource "local_file" "foo" {
-    content     = "foo!"
-    filename = "${path.module}/foo.bar"
+  content     = "foo!"
+  filename = "${path.module}/foo.bar"
 }
 ```
 
@@ -436,7 +436,7 @@ file name is used. Given the above example, the following policy would evaluate 
 import "tfconfig"
 
 main = rule {
-	tfconfig.resources.local_file.accounts.config.filename is "accounts.txt"
+  tfconfig.resources.local_file.accounts.config.filename is "accounts.txt"
 }
 ```
 
@@ -507,7 +507,7 @@ The following policy would evaluate to `true`:
 import "tfconfig"
 
 main = rule {
-	tfconfig.resources.null_resource.foo.provisioners[0].config.command is "echo ${self.private_ip} > file.txt"
+  tfconfig.resources.null_resource.foo.provisioners[0].config.command is "echo ${self.private_ip} > file.txt"
 }
 ```
 
