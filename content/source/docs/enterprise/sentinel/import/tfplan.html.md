@@ -191,9 +191,8 @@ main = rule { tfplan.module_paths contains ["foo"] }
 #### Iterating through modules
 
 Iterating through all modules to find particular resources can be useful. The
-following example function shows how to use `module_paths` with the [`module()`
-function](#function-module-) to retrieve all resources of a particular type
-from all modules that have pending changes.
+following example function shows how to use `module_paths` with the [`module()`](#function-module-)
+function to retrieve all resources of a particular type from all modules that have pending changes.
 
 ```python
 find_resources_from_plan = func(type) {
