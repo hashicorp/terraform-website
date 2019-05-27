@@ -173,8 +173,8 @@ The value of `module_paths` would be:
 
 ```
 [
-	[],
-	["foo"],
+  [],
+  ["foo"],
 ]
 ```
 
