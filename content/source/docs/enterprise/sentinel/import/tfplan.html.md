@@ -224,7 +224,7 @@ You could define a similar `find_data_sources_from_plan` function to find all da
 sources of a particular type from all modules by simply changing `resources[type]`
 to `data[type]` and `resource_maps` to `data_source_maps`.
 
-If you want to print out the [address][resource-addressing] of a resource or data source returned by
+If you want to determine the [address][resource-addressing] of a resource or data source returned by
 functions like `find_resources_from_plan` using the form `module.A.module.B.<type>.<name>`
 that is used in plan and apply logs, you can use a function like this one:
 
@@ -244,7 +244,7 @@ get_address = func(module_path, type, name) {
 ```
 
 This function takes the module path in the list of lists form described above along
-with the type and name of the resource as arguments. To get the complete address of
+with the type and name of the resource as arguments. To print the complete address of
 an instance of a resource having multiple instances, you could use the following Sentinel
 code in which `module_path`, `resource_type`, `name`, and `index` are pre-existing
 variables in your Sentinel policy that refer to a specific instance of a specific resource
@@ -253,11 +253,13 @@ in a specific module discovered by the above function:
 ```python
 resource_address = get_address(module_path, resource_type, name)
 instance_address = resource_address + "[" + string(index) + "]"
+print(instance_address, "violated the policy")
 ```
 
-This would print out something like `aws_instance.test[1]` for an `aws_instance` resource
-in the root module and something like `module.compute.aws_instance.web[2]` for an
-`aws_instance` resource in the compute module.
+This would print out `aws_instance.test[0] violated the policy` for the first
+instance of an `aws_instance` resource in the root module named `test` and 
+`module.compute.aws_instance.web[1] violated the policy` for the second instance
+of an `aws_instance` resource named `web` in the `compute` module.
 
 ### Value: `terraform_version`
 
