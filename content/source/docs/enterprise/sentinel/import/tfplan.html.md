@@ -224,10 +224,11 @@ You could define a similar `find_data_sources_from_plan` function to find all da
 sources of a particular type from all modules by simply changing `resources[type]`
 to `data[type]` and `resource_maps` to `data_source_maps`.
 
-If you want to print out the [address](/docs/internals/resource-addressing.html)
-of a resource or data source returned by functions like `find_resources_from_plan`
-using the form `module.A.module.B.<type>.<name>` that is used in plan and apply logs,
-you can use a function like this one: 
+If you want to print out the [address][resource-addressing] of a resource or data source returned by
+functions like `find_resources_from_plan` using the form `module.A.module.B.<type>.<name>`
+that is used in plan and apply logs, you can use a function like this one:
+
+[resource-addressing]: /docs/internals/resource-addressing.html
 
 ```python
 get_address = func(module_path, type, name) {
