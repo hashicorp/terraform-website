@@ -297,7 +297,8 @@ resouce_maps = find_resources_from_config("azurerm_lb")
 ```
 You would then iterate over the `resource_maps` variable to get the maps of the
 specified resource in each module and iterate over the resources in those maps to
-access their attributes.
+access their attributes. Remember that this function will only locate modules (and
+hence resources) in the current configuration.
 
 You could define a similar `find_data_sources_from_config` function to find all data
 sources of a particular type from all modules by simply changing `resources[type]`
