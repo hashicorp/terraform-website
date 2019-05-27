@@ -257,7 +257,7 @@ print(instance_address, "violated the policy")
 ```
 
 This would print out `aws_instance.test[0] violated the policy` for the first
-instance of an `aws_instance` resource in the root module named `test` and 
+instance of an `aws_instance` resource named `test` in the root module and 
 `module.compute.aws_instance.web[1] violated the policy` for the second instance
 of an `aws_instance` resource named `web` in the `compute` module.
 
