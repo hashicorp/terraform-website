@@ -174,13 +174,7 @@ main = rule { tfstate.module_paths contains ["foo"] }
 Iterating through all modules to find particular resources can be useful. This
 example shows how to use `module_paths` with the [`module()`](#function-module-)
 function to retrieve all resources of a particular type from all modules in the
-current state of a workspace. Note the use of `else []` in case some modules don't have any
-resources; this is necessary to avoid the function returning undefined.
-
-[ref-tf-azurerm-vm]: /docs/providers/azurerm/r/virtual_machine.html
-
-Remember again that this will only locate modules (and hence resources) that are
-present in state.
+current state of a workspace.
 
 ```python
 find_resources_from_state = func(type) {
@@ -208,7 +202,8 @@ resouce_maps = find_resources_from_state("google_sql_database")
 ```
 You would then iterate over the `resource_maps` variable to get the maps of the
 specified resource in each module and iterate over the resources in those maps to
-access their attributes.
+access their attributes. Remember that this function will only locate modules (and
+hence resources) that are present in state.
 
 You could define a similar `find_data_sources_from_state` function to find all data
 sources of a particular type from all modules by simply changing `resources[type]`
