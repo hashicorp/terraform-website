@@ -207,7 +207,7 @@ find_resources_from_plan = func(type) {
 This function creates a map for which the keys are the module paths and the values
 are maps of all resources of the specified type within the modules. Note the use of
 `else {}` in case some modules don't have any resources of the specified type; this
-is necessary to avoid the function returning undefined.
+is necessary to avoid the function returning `undefined`.
 
 To invoke this function for a specific resource type, pass it the resource type as a
 string. For example, to get all instances of the `aws_instance` resource, you could
