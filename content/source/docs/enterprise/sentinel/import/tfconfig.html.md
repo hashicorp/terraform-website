@@ -269,26 +269,74 @@ main = rule { tfconfig.module_paths contains ["foo"] }
 
 #### Iterating through modules
 
-Iterating through all modules to find particular resources can be useful. This
-example shows how to use `module_paths` with the [`module()`
-function](#root-function-module) to retrieve all resources of a particular type from
-all modules (in this case, the [`azurerm_virtual_machine`][ref-tf-azurerm-vm]
-resource). Note the use of `else []` in case some modules don't have any
-resources; this is necessary to avoid the function returning undefined.
-
-[ref-tf-azurerm-vm]: /docs/providers/azurerm/r/virtual_machine.html
+Iterating through all modules to find particular resources can be useful. The
+following example function shows how to use `module_paths` with the
+[`module()`](#root-function-module) function to retrieve all resources of a
+particular type from all modules.
 
 ```python
-import "tfconfig"
-
-get_vms = func() {
-	vms = []
-	for tfconfig.module_paths as path {
-		vms += values(tfconfig.module(path).resources.azurerm_virtual_machine) else []
-	}
-	return vms
+find_resources_from_config = func(type) {
+  resource_maps = {}
+  for tfconfig.module_paths else []  as path {
+    resource_maps[path] = tfconfig.module(path).resources[type] else {}
+  }
+  return resource_maps
 }
 ```
+
+This function creates a map for which the keys are the module paths and the values
+are maps of all resources of the specified type within the modules. Note the use of
+`else {}` in case some modules don't have any resources of the specified type; this
+is necessary to avoid the function returning `undefined`.
+
+To invoke this function for a specific resource type, pass it the resource type as a
+string. For example, to get all instances of the `azurerm_lb` resource, you could
+use this:
+```python
+resouce_maps = find_resources_from_config("azurerm_lb")
+```
+You would then iterate over the `resource_maps` variable to get the maps of the
+specified resource in each module and iterate over the resources in those maps to
+access their attributes.
+
+You could define a similar `find_data_sources_from_config` function to find all data
+sources of a particular type from all modules by simply changing `resources[type]`
+to `data[type]` and `resource_maps` to `data_source_maps`.
+
+If you want to determine the [address][resource-addressing] of a resource or data source returned by
+functions like `find_resources_from_confign` using the form `module.A.module.B.<type>.<name>`
+that is used in plan and apply logs, you can use a function like this one:
+
+[resource-addressing]: /docs/internals/resource-addressing.html
+
+```python
+get_address = func(module_path, type, name) {
+  if length(module_path) == 0 {
+    # root module
+    address = type + "." + name
+  } else {
+    # non-root module
+    address = "module." + strings.join(module_path, ".module.") + "." + type + "." + name
+  }
+  return address
+}
+```
+
+This function takes the module path in the list of lists form described above along
+with the type and name of the resource as arguments. To print the complete address of
+a resource in the configuration, you could use the following Sentinel
+code in which `module_path`, `resource_type`, and `name` are pre-existing
+variables in your Sentinel policy that refer to a specific resource
+in a specific module discovered by the above function:
+
+```python
+resource_address = get_address(module_path, resource_type, name)
+print(resource_address, "violated the policy")
+```
+
+This would print out `azurerm_lb.test violated the policy` for an `azurerm_lb` resource named
+`test` in the root module and `module.loadbalancer.azurerm_lb.web violated the policy` for
+an `azurerm_lb` resource named `web` in the `loadbalancer` module.
 
 ## Namespace: Module
 
