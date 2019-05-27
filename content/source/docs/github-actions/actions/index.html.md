@@ -14,3 +14,4 @@ See the links below for full documentation of each Action.
 - [init](./init.html)
 - [validate](./validate.html)
 - [plan](./plan.html)
+- [apply](./apply.html)
