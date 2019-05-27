@@ -217,8 +217,8 @@ resouce_maps = find_resources_from_plan("aws_instance")
 ```
 You would then iterate over the `resource_maps` variable to get the maps of the
 specified resource in each module and iterate over the resources in those maps to
-access their attributes. Remember again that this function will only locate modules
-(and hence resources) that have pending changes.
+access their attributes. Remember that this function will only locate modules
+(and hence resources) that have pending changes in the plan.
 
 You could define a similar `find_data_sources_from_plan` function to find all data
 sources of a particular type from all modules by simply changing `resources[type]`
