@@ -43,7 +43,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-fmt" {
-      uses = "hashicorp/terraform-github-actions/fmt@v0.2.0"
+      uses = "hashicorp/terraform-github-actions/fmt@v<latest version>"
       needs = "filter-to-pr-open-synced"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -52,7 +52,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-init" {
-      uses = "hashicorp/terraform-github-actions/init@v0.2.0"
+      uses = "hashicorp/terraform-github-actions/init@v<latest version>"
       needs = "terraform-fmt"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -61,7 +61,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-validate" {
-      uses = "hashicorp/terraform-github-actions/validate@v0.2.0"
+      uses = "hashicorp/terraform-github-actions/validate@v<latest version>"
       needs = "terraform-init"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -70,7 +70,7 @@ Terraform's GitHub Actions on new and updated pull requests.
     }
 
     action "terraform-plan" {
-      uses = "hashicorp/terraform-github-actions/plan@v0.2.0"
+      uses = "hashicorp/terraform-github-actions/plan@v<latest version>"
       needs = "terraform-validate"
       secrets = ["GITHUB_TOKEN"]
       env = {
@@ -80,6 +80,8 @@ Terraform's GitHub Actions on new and updated pull requests.
       }
     }
     ```
+1. Find the latest version from [https://github.com/hashicorp/terraform-github-actions/releases](https://github.com/hashicorp/terraform-github-actions/releases)
+   and replace all instances of `@v<latest version>`. For example: `uses = "hashicorp/terraform-github-actions/plan@v3.0"`.
 
 1. **Directories** — If your Terraform configuration is not in the root
     of your repo, replace all instances of:
