@@ -1,9 +1,9 @@
 default_link_text: 'Read more'
 
 featured_post:
-  title: Terraform 0.11.0 Released
-  body: Terraform 0.11.0 is out! The latest update includes improvements to Terraform Registry integration, per-module provider configuration, and improvements to CLI workflow. There have also been improvements to a number of major providers. See the blog post for all the details!
-  link_url: https://www.hashicorp.com/blog/hashicorp-terraform-0-11
+  title: Terraform 0.12.0 Released
+  body: Terraform 0.12.0 is out! The latest update includes improvements to the configuration language such as iteration support, rich types, and enhanced readability. There have also been improvements to the difference output and error messaging. See the blog post for all the details!
+  link_url: https://www.hashicorp.com/blog/announcing-terraform-0-12
 
 additional_posts:
   -
