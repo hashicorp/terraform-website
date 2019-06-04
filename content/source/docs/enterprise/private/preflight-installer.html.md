@@ -88,7 +88,7 @@ SELINUX=permissive
 
 #### Egress
 
-The following hostnames are accessed online mode:
+The following hostnames are accessed in online mode:
 
 * api.replicated.com
 * get.replicated.com
