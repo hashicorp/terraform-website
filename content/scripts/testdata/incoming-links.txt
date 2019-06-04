@@ -170,7 +170,6 @@
 /docs/providers/alicloud/r/dns.html
 /docs/providers/alicloud/r/eip_association.html
 /docs/providers/alicloud/r/ess_scaling_rule.html
-/docs/providers/alicloud/r/forward.html
 /docs/providers/alicloud/r/instance.html
 /docs/providers/alicloud/r/key_pair.html
 /docs/providers/alicloud/r/nat_gateway.html
