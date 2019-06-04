@@ -24,7 +24,7 @@ The new Terraform Enterprise does not support the `terraform push` command, whic
 
 This does not mean we're dropping support for a CLI-based workflow — we want push to be better, and the integrated `push` command was holding us back because we built it on an outdated understanding of how Terraform Enterprise should work. Users of `terraform push` have a few options:
 
-- Use [the add-on Terraform Enterprise command line tools](https://github.com/hashicorp/tfe-cli). These are designed as a one-to-one replacement for `terraform push`, with a modified syntax and some new features.
+- Use the [community supported Terraform CLI helper](https://github.com/hashicorp-community/tf-helper). This was designed as a one-to-one replacement for `terraform push`, with a modified syntax and some new features.
 - Use the [API-based run workflow](../run/api.html) to upload a configuration tabrall and queue a run. This is a more powerful option for integration with automated systems.
 
 We're also working on a more deeply integrated CLI workflow that combines the collaborative benefits of centrally managed Terraform runs with the interactive responsiveness of running Terraform on your laptop. This doesn't have a release date yet, but we hope our current replacements for `terraform push` offer a comfortable migration path in the meantime.
@@ -42,7 +42,6 @@ The new audit log is available on private installs of Terraform Enterprise. See 
 In order to queue a destroy plan on an environment (legacy) or workspace (current), you have to confirm your intentions by setting a special environment variable. The name of that variable has changed to `CONFIRM_DESTROY`, as part of our move away from the Atlas brand name.
 
 ## Gone But Returning Soon
-
 
 ### Notifications
 
@@ -83,4 +82,3 @@ Legacy Terraform Enterprise had a personal variables feature, where each user co
 We removed this feature because it worked against Terraform Enterprise's goal of collaborative and predictable infrastructure. Not only did it make runs inconsistent and less reliable, it also expected that users would be queueing most runs manually in the UI, when we've found that people want most runs to happen in response to changes in a VCS repo or other automatic triggers.
 
 If you used personal variables to avoid sharing credentials, you can [mark workspace variables as sensitive](../workspaces/variables.html#sensitive-values).
-

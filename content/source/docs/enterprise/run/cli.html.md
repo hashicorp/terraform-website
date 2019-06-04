@@ -8,8 +8,8 @@ sidebar_current: "docs-enterprise2-run-cli"
 [private]: ../registry/index.html
 [remote]: /docs/backends/types/remote.html
 [speculative plan]: ./index.html#speculative-plans
-[tfe-cli]: https://github.com/hashicorp/tfe-cli/
 [permissions]: ../users-teams-organizations/permissions.html
+[tfe-provider]: /docs/providers/tfe/index.html
 
 # The CLI-driven Run Workflow
 
@@ -29,12 +29,13 @@ Terraform Enterprise offers two kinds of CLI-driven runs, to support different s
 
 - `terraform plan` starts a [speculative plan][] in a Terraform Enterprise workspace, for fast feedback while developing Terraform configurations. Developers can quickly check the results of their edits (including compliance with Sentinel policies) without needing to copy sensitive variables to their local machine.
 
-    Speculative plans work with all workspaces, and can co-exist with the [VCS-driven workflow](./ui.html).
+  Speculative plans work with all workspaces, and can co-exist with the [VCS-driven workflow](./ui.html).
+
 - `terraform apply` starts a normal plan and apply in a Terraform Enterprise workspace, using configuration files from a local directory.
 
-    Remote `terraform apply` is for workspaces without a linked VCS repository. It replaces the VCS-driven workflow with a more traditional CLI workflow.
+  Remote `terraform apply` is for workspaces without a linked VCS repository. It replaces the VCS-driven workflow with a more traditional CLI workflow.
 
-To supplement these remote operations, you can also use the optional [TFE CLI tool][tfe-cli], which is a flexible CLI interface to Terraform Enterprise's API. This tool isn’t required for initiating runs, but it can be useful for editing variables and workspace settings from your terminal. Downloads and documentation for the TFE CLI tool are [available at its GitHub repository][tfe-cli].
+To supplement these remote operations, you can also use the optional [Terraform Enterprise Provider](tfe-provider). This provider is used to interact with the resources supported by [Terraform Cloud](https://app.terraform.io/signup) and private instances of Terraform Enterprise. It can be useful for editing variables and workspace settings through the terraform CLI.
 
 ## Remote Backend Configuration
 
