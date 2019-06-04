@@ -35,7 +35,7 @@ Terraform Enterprise offers two kinds of CLI-driven runs, to support different s
 
   Remote `terraform apply` is for workspaces without a linked VCS repository. It replaces the VCS-driven workflow with a more traditional CLI workflow.
 
-To supplement these remote operations, you can also use the optional [Terraform Enterprise Provider](tfe-provider). This provider is used to interact with the resources supported by [Terraform Cloud](https://app.terraform.io/signup) and private instances of Terraform Enterprise. It can be useful for editing variables and workspace settings through the terraform CLI.
+To supplement these remote operations, you can also use the optional [Terraform Enterprise Provider][tfe-provider]. This provider is used to interact with the resources supported by [Terraform Cloud](https://app.terraform.io/signup) and private instances of Terraform Enterprise. It can be useful for editing variables and workspace settings through the terraform CLI.
 
 ## Remote Backend Configuration
 
