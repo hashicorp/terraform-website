@@ -13,7 +13,7 @@ This page provides answers to many common questions about Private Terraform Ente
 1. [Support](#support-for-private-terraform-enterprise)
 2. [Managing Tool Versions](#managing-tool-versions)
 3. [Migration from SaaS-based Terraform Enterprise](#migrating-from-terraform-enterprise-saas)
-1. [Outbound Access](#outbound-access)
+1. [Network Requirements](#network-requirements)
 
 ## AMI FAQ
 
@@ -150,26 +150,10 @@ You will again be asked if you want to copy the state file. Type `yes` and the s
 
 ---
 
-## Outbound Access
+## Network Requirements
 
-This is a list of hostnames that the product connects to and should be available for egress:
-
-* releases.hashicorp.com
-  * This egress is not required if a [custom Terraform bundle](/docs/enterprise/run/index.html#custom-and-community-providers) is supplied.
-
-Additionally these hostnames are accessed by the Installer product in online mode:
-
-* get.replicated.com
-* api.replicated.com
-* registry.replicated.com
-* registry-data.replicated.com
-* quay.io
-
-## Inbound Access
-
-* To access Private TFE, ports 80 and 443 must be accessible. Port 80 will redirect to port 443.
-* To access the admin dashboard, port 8800 must be accessible.
-* The port ranges **9870-9880** and **23000-23100** must be accessible to the host and the subnet it is on. These ports are used for communication between internal services.
+The network requirements for Terraform Enterprise are located on the
+[preflight requirements page](/docs/enterprise/private/preflight-installer.html#network-requirements).
 
 ---
 
