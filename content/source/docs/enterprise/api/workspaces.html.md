@@ -35,8 +35,6 @@ Parameter            | Description
 
 -> **Note:** Workspace creation is restricted to members of the owners team, the owners team [service account](../users-teams-organizations/service-accounts.html#team-service-accounts), and the [organization service account](../users-teams-organizations/service-accounts.html#organization-service-accounts).
 
--> **Note:** Migrating legacy workspaces (with the `migration-environment` attribute) can only be done with a [user token](../users-teams-organizations/users.html#api-tokens). The user must be a member of the owners team in both the legacy organization and the new organization.
-
 ### Request Body
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
@@ -45,28 +43,18 @@ Properties without a default value are required.
 
 By supplying the necessary attributes under a `vcs-repository` object, you can create a workspace that is configured against a VCS Repository.
 
-By supplying a `migration-environment` attribute, you can create a workspace which is migrated from a legacy environment. When you do this, the following will happen:
-
-* Environment and Terraform variables will be copied to the workspace.
-* Teams which are associated with the legacy environment will be created in the destination workspace's organization, if teams with those names don't already exist.
-* Members of those teams will be added as members of the corresponding teams in the destination workspace's organization.
-* Each team will be given the same access level on the workspace as it had on the legacy environment.
-* The latest state of the legacy environment will be copied over into the workspace and set as the workspace's current state.
-* VCS repo ingress settings (like branch and working directory) will be copied over into the workspace.
-
 Key path                                      | Type    | Default   | Description
 ----------------------------------------------|---------|-----------|------------
 `data.type`                                   | string  |           | Must be `"workspaces"`.
 `data.attributes.name`                        | string  |           | The name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-`data.attributes.auto-apply`                  | boolean | false     | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
-`data.attributes.migration-environment`       | string  | (nothing) | The legacy TFE environment to use as the source of the migration, in the form `organization/environment`. Omit this unless you are migrating a legacy environment.
-`data.attributes.queue-all-runs`              | boolean | false     | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
+`data.attributes.auto-apply`                  | boolean | `false`   | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
+`data.attributes.queue-all-runs`              | boolean | `false`   | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
 `data.attributes.terraform-version`           | string  | (nothing) | The version of Terraform to use for this workspace. Upon creating a workspace, the latest version is selected unless otherwise specified (e.g. `"0.11.1"`).
 `data.attributes.working-directory`           | string  | (nothing) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 `data.attributes.vcs-repo`                    | object  | (nothing) | Settings for the workspace's VCS repository. If omitted, the workspace is created without a VCS repo. If included, you must specify at least the `oauth-token-id` and `identifier` keys below.
 `data.attributes.vcs-repo.oauth-token-id`     | string  |           | The VCS Connection (OAuth Connection + Token) to use. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 `data.attributes.vcs-repo.branch`             | string  | (nothing) | The repository branch that Terraform will execute from. If omitted or submitted as an empty string, this defaults to the repository's default branch (e.g. `master`) .
-`data.attributes.vcs-repo.ingress-submodules` | boolean | false     | Whether submodules should be fetched when cloning the VCS repository.
+`data.attributes.vcs-repo.ingress-submodules` | boolean | `false`   | Whether submodules should be fetched when cloning the VCS repository.
 `data.attributes.vcs-repo.identifier`         | string  |           | A reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider.
 
 ### Sample Payload
@@ -98,25 +86,6 @@ _With a VCS repository_
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
         "branch": "",
         "default-branch": true
-      }
-    },
-    "type": "workspaces"
-  }
-}
-```
-
-_Migrating a legacy environment_
-
-```json
-{
-  "data": {
-    "attributes": {
-      "name": "workspace-2",
-      "migration-environment":
-        "legacy-hashicorp-organization/legacy-environment",
-      "vcs-repo": {
-        "identifier": "skierkowski/terraform-test-proj",
-        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       }
     },
     "type": "workspaces"
@@ -187,60 +156,6 @@ _Without a VCS repository_
 ```
 
 _With a VCS repository_
-
-```json
-{
-  "data": {
-    "id": "ws-SihZTyXKfNXUWuUa",
-    "type": "workspaces",
-    "attributes": {
-      "auto-apply": false,
-      "can-queue-destroy-plan": true,
-      "created-at": "2017-11-02T23:55:16.142Z",
-      "environment": "default",
-      "locked": false,
-      "name": "workspace-2",
-      "permissions": {
-        "can-update": true,
-        "can-destroy": false,
-        "can-queue-destroy": false,
-        "can-queue-run": false,
-        "can-update-variable": false,
-        "can-lock": false,
-        "can-read-settings": true
-      },
-      "queue-all-runs": false,
-      "terraform-version": "0.10.8",
-      "vcs-repo": {
-        "identifier": "skierkowski/terraform-test-proj",
-        "branch": "",
-        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
-        "ingress-submodules": false
-      },
-      "working-directory": null
-    },
-    "relationships": {
-      "organization": {
-        "data": {
-          "id": "my-organization",
-          "type": "organizations"
-        }
-      },
-      "ssh-key": {
-        "data": null
-      },
-      "latest-run": {
-        "data": null
-      }
-    },
-    "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
-    }
-  }
-}
-```
-
-_Migrating a legacy environment_
 
 ```json
 {
@@ -377,15 +292,16 @@ $ curl \
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
       "environment": "default",
-      "ingress-trigger-attributes": {
-        "branch": "",
-        "default-branch": true,
-        "ingress-submodules": false
-      },
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "vcs-repo": {
+        "identifier": "skierkowski/terraform-test-proj",
+        "branch": "",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
+      },
       "working-directory": ""
     },
     "relationships": {
@@ -450,15 +366,15 @@ $ curl \
         "can-queue-destroy-plan": false,
         "created-at": "2017-11-02T23:24:05.997Z",
         "environment": "default",
-        "ingress-trigger-attributes": {
-          "branch": "",
-          "default-branch": true,
-          "ingress-submodules": false
-        },
         "locked": false,
         "name": "workspace-2",
         "queue-all-runs": false,
         "terraform-version": "0.10.8",
+        "vcs-repo": {
+          "branch": "",
+          "default-branch": true,
+          "ingress-submodules": false
+        },
         "working-directory": ""
       },
       "relationships": {
@@ -487,15 +403,15 @@ $ curl \
         "can-queue-destroy-plan": false,
         "created-at": "2017-11-02T23:23:53.765Z",
         "environment": "default",
-        "ingress-trigger-attributes": {
-          "branch": "",
-          "default-branch": true,
-          "ingress-submodules": false
-        },
         "locked": false,
         "name": "workspace-1",
         "queue-all-runs": false,
         "terraform-version": "0.10.8",
+        "vcs-repo": {
+          "branch": "",
+          "default-branch": true,
+          "ingress-submodules": false
+        },
         "working-directory": ""
       },
       "relationships": {
@@ -901,15 +817,15 @@ $ curl \
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
       "environment": "default",
-      "ingress-trigger-attributes": {
-        "branch": "",
-        "default-branch": true,
-        "ingress-submodules": false
-      },
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "vcs-repo": {
+        "branch": "",
+        "default-branch": true,
+        "ingress-submodules": false
+      },
       "working-directory": ""
     },
     "id": "ws-SihZTyXKfNXUWuUa",
@@ -996,15 +912,15 @@ $ curl \
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
       "environment": "default",
-      "ingress-trigger-attributes": {
-        "branch": "",
-        "default-branch": true,
-        "ingress-submodules": false
-      },
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "vcs-repo": {
+        "branch": "",
+        "default-branch": true,
+        "ingress-submodules": false
+      },
       "working-directory": ""
     },
     "id": "ws-erEAnPmgtm5mJr77",
