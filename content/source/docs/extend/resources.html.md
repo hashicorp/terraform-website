@@ -23,6 +23,145 @@ A key component to Provider development is defining a resource. Aspects of this 
 
 Resources define the data types and API interactions required to create, update, and destroy infrastructure with a cloud vendor while the [Terraform state](/docs/state/index.html) stores mapping and metadata information for those remote objects. There are several reasons why a resource implementation needs to change: backend APIs Terraform interacts with will change overtime, or the current implementation might be incorrect or unmaintainable. Some of these changes may not be backward compatible and a migration is needed for resources provisioned in the wild with old schema configurations.
 
+The mechanism that is used for state migrations changed between v0.11 and v0.12 of the SDK bundled with Terraform core. Be sure to choose the method that matches your Terraform dependency.
+
+### Terraform v0.12 SDK State Migrations
+
+~> *NOTE:* This method of state migration does not work if the provider has a dependency on the Terraform v0.11 SDK. See the [Terraform v0.11 SDK State Migrations](#terraform-v0-11-sdk-state-migrations) section for details on using `MigrateState` instead.
+
+For this task provider developers should use a resource's `SchemaVersion` and `StateUpgraders` fields. Resources typically do not have these fields configured unless state migrations have been perfomed in the past.
+
+When Terraform encounters a newer resource `SchemaVersion` during planning, it will automatically migrate the state through each `StateUpgrader` function until it matches the current `SchemaVersion`.
+
+State migrations performed with `StateUpgraders` are compatible with the Terraform 0.11 runtime, if the provider still supports the Terraform 0.11 protocol. Additional `MigrateState` implementation is not necessary and any existing `MigrateState` implementations do not need to be converted to `StateUpgraders`.
+
+The general overview of this process is:
+
+- Create a new function that copies the existing `schema.Resource`, but only includes the `Schema` field. Terraform needs the type information of each attribute in the previous schema version to successfully migrate the state.
+- Change the existing resource `Schema` as necessary.
+- If the `SchemaVersion` field for the resource is already defined, increase its value by one. If `SchemaVersion` is not defined for the resource, add `SchemaVersion: 1` to the resource (resources default to `SchemaVersion: 0` if undefined).
+- Implement the `StateUpgraders` field for the resource, which is a list of `StateUpgrade`. The new `StateUpgrade` should be configured with the following:
+  - `Type` set to `CoreConfigSchema().ImpliedType()` of the saved `schema.Resource` function above.
+  - `Upgrade` set to a function that modifies the attribute(s) appropriately for the migration.
+  - `Version` set to the version of the schema before this migration. If no previous state migrations were performed, this should be set to `0`.
+
+For example, with a resource without previous state migrations:
+
+```go
+package example
+
+import "github.com/hashicorp/terraform/helper/schema"
+
+func resourceExampleInstance() *schema.Resource {
+    return &schema.Resource{
+        Create: resourceExampleInstanceCreate,
+        Read:   resourceExampleInstanceRead,
+        Update: resourceExampleInstanceUpdate,
+        Delete: resourceExampleInstanceDelete,
+
+        Schema: map[string]*schema.Schema{
+            "name": {
+                Type:     schema.TypeString,
+                Required: true,
+            },
+        },
+    }
+}
+```
+
+Say the `instance` resource API now requires the `name` attribute to end with a period `"."`
+
+```go
+package example
+
+import (
+    "fmt"
+    "strings"
+
+    "github.com/hashicorp/terraform/helper/schema"
+)
+
+func resourceExampleInstance() *schema.Resource {
+    return &schema.Resource{
+        Create: resourceExampleInstanceCreate,
+        Read:   resourceExampleInstanceRead,
+        Update: resourceExampleInstanceUpdate,
+        Delete: resourceExampleInstanceDelete,
+
+        Schema: map[string]*schema.Schema{
+            "name": {
+                Type:     schema.TypeString,
+                Required: true,
+                ValidateFunc: func(v interface{}, k string) (warns []string, errs []error) {
+                    if !strings.HasSuffix(v.(string), ".") {
+                        errs = append(errs, fmt.Errorf("%q must end with a period '.'", k))
+                    }
+                    return
+                },
+            },
+        },
+        SchemaVersion: 1,
+        StateUpgraders: []schema.StateUpgrader{
+            {
+                Type:    resourceExampleInstanceResourceV0().CoreConfigSchema().ImpliedType(),
+                Upgrade: resourceExampleInstanceStateUpgradeV0,
+                Version: 0,
+            },
+        },
+    }
+}
+
+func resourceExampleInstanceResourceV0() *schema.Resource {
+    return &schema.Resource{
+        Schema: map[string]*schema.Schema{
+            "name": {
+                Type:     schema.TypeString,
+                Required: true,
+            },
+        },
+    }
+}
+
+func resourceExampleInstanceStateUpgradeV0(rawState map[string]interface{}, meta interface{}) (map[string]interface{}, error) {
+    rawState["name"] = rawState["name"] + "."
+
+    return rawState, nil
+}
+```
+
+To unit test this migration, the following can be written:
+
+```go
+func testResourceExampleInstanceStateDataV0() map[string]interface{} {
+    return map[string]interface{}{
+        "name": "test",
+    }
+}
+
+func testResourceExampleInstanceStateDataV1() map[string]interface{} {
+    v0 := testResourceExampleInstanceStateDataV0()
+    return map[string]interface{}{
+        "name": v0["name"] + ".",
+    }
+}
+
+func TestResourceExampleInstanceStateUpgradeV0(t *testing.T) {
+    expected := testResourceExampleInstanceStateDataV1()
+    actual, err := resourceExampleInstanceStateUpgradeV0(testResourceExampleInstanceStateDataV0(), nil)
+    if err != nil {
+        t.Fatalf("error migrating state: %s", err)
+    }
+
+    if !reflect.DeepEqual(expected, actual) {
+        t.Fatalf("\n\nexpected:\n\n%#v\n\ngot:\n\n%#v\n\n", expected, actual)
+    }
+}
+```
+
+### Terraform v0.11 SDK State Migrations
+
+~> *NOTE:* This method of state migration does not work if the provider has a dependency on the Terraform v0.12 SDK.  See the [Terraform v0.12 SDK State Migrations](#terraform-v0-12-sdk-state-migrations) section for details on using `StateUpgraders` instead.
+
 For this task provider developers should use a resource's `SchemaVersion` and `MigrateState` function. Resources do not have these options set on first implementation, the `SchemaVersion` defaults to `0`.
 
 ```go
