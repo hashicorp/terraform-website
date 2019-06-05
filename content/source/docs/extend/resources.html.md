@@ -160,7 +160,7 @@ func TestResourceExampleInstanceStateUpgradeV0(t *testing.T) {
 
 ### Terraform v0.11 SDK State Migrations
 
-~> *NOTE:* This method of state migration does not work if the provider has a dependency on the Terraform v0.12 SDK.  See the [Terraform v0.11 SDK State Migrations](#terraform-v0-11-sdk-state-migrations) section for details on using `StateUpgraders` instead.
+~> *NOTE:* This method of state migration does not work if the provider has a dependency on the Terraform v0.12 SDK.  See the [Terraform v0.12 SDK State Migrations](#terraform-v0-12-sdk-state-migrations) section for details on using `StateUpgraders` instead.
 
 For this task provider developers should use a resource's `SchemaVersion` and `MigrateState` function. Resources do not have these options set on first implementation, the `SchemaVersion` defaults to `0`.
 
