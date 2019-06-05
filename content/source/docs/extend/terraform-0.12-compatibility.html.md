@@ -54,17 +54,10 @@ packages accordingly. Once your provider codebase is a Go Module, you can
 use the following commands to upgrade for Terraform 0.12 compatibility:
 
 ```
-go get github.com/hashicorp/terraform@v0.12.0-rc1
+go get github.com/hashicorp/terraform@v0.12.0
 go mod tidy
 go mod vendor
 ```
-
--> The above uses the `v0.12.0-rc1` tag so that providers can be upgraded
-prior to the final v0.12.0 release. Once the final release is out, we will
-update this documentation to use the `v0.12.0` tag. In practice, any
-v0.12 release at least as new as RC1 is acceptable, and if newer releases
-are available we recommend using them to obtain any subsequent fixes and
-improvements to the SDK.
 
 After all of these commands are complete, you should find your version control
 detects changes to the `go.mod` and `go.sum` files as well as various files
