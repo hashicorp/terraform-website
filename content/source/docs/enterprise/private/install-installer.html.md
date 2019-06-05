@@ -144,7 +144,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo unzip daemontools git-core ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd
 ```
 
-### Image initialisation
+### Image initialization
 To run initialization commands in your image during runtime, create a script at `/usr/local/bin/init_custom_worker.sh` and make it executable. This script, and all commands it invokes, will be executed before TFE runs `terraform init`. 
 
 The name, location, and permissions of the script are not customizable.
