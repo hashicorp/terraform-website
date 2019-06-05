@@ -214,7 +214,7 @@ When creating a completely new provider repository, a few extra steps are requir
 - Start by creating a layout in `terraform-provider-your-provider/website`.
   See [Navigation Sidebars](#navigation-sidebars) for more details.
 
-- To simplify the following steps, set the appropriate repository name, e.g.:
+- To simplify the following steps, set an environment variable in your shell with your provider name, like
   `export PROVIDER_REPO=your-provider`
 
 - Finally, set up symlinks allowing `terraform-website` to correctly generate and link your files.
