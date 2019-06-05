@@ -212,7 +212,7 @@ On rare occasions, you may need to search every page on the site for something (
 When creating a completely new provider repository, a few extra steps are required to be able to render the docs.
 
 - Start by creating a layout in `terraform-provider-your-provider/website`.
-  See [#navigation-sidebars] for more details.
+  See [Navigation Sidebars](#navigation-sidebars) for more details.
 
 - To simplify the following steps, set the appropriate repository name, e.g.:
   `export PROVIDER_REPO=your-provider`
