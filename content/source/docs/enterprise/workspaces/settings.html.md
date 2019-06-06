@@ -63,7 +63,7 @@ You can choose "latest" to automatically update a workspace to new versions, or 
 
 The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. This is useful when working with VCS repos that contain multiple Terraform configurations. Defaults to the root of the configuration directory.
 
--> **Note:** If you specify a working directory, TFE will still queue a plan for changes to the repository outside that working directory. This is because local modules are often outside the working directory, and changes to those modules should result in a new run. If you have a repo that manages multiple infrastructure components with different lifecycles and are experiencing too many runs, we recommend splitting the components out into independent repos. See [Repository Structure](./repo-structure.html) for more detailed explanations.
+- **Note** — If you specify a working directory, TFE will by default only queue a plan for changes to the repository inside that working directory. You can override this behaviour with [Automatic Run Triggering](#automatic-run-triggering) settings.
 
 ## Locking
 
@@ -113,6 +113,25 @@ You can use the "Select a VCS connection" buttons and "Repository" field to chan
 - [Connecting VCS Providers to Terraform Enterprise](../vcs/index.html) for more details about configuring VCS integrations.
 
 -> **API:** If you need to change VCS connections for many workspaces at once, consider automating the changes with the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace). This is most common when moving a VCS server, or when a vendor deprecates an older API version.
+
+### Automatic Run Triggering
+
+For workspaces that **don't** specify a Terraform working directory, TFE assumes that the entire repository is relevant to the workspace. Any change will trigger a run.
+
+For workspaces that **do** specify a Terraform working directory, TFE assumes that only _some_ content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. By default, only the working directory is considered relevant.
+
+You can adjust this behavior in two ways:
+
+- **Add more trigger directories.** TFE will queue runs for changes in any of the specified trigger directories (including the working directory).
+
+    For example, if you use a top-level `modules` directory to share Terraform code across multiple configurations, changes to the shared modules are relevant to every workspace that uses that repo. You can add `modules` as a trigger directory for each workspace to make sure they notice any changes to shared code.
+- **Mark the entire repository as relevant.** If you set the "Automatic Run Triggering" setting to "Always Trigger Runs," TFE will assume that anything in the repository might affect the workspace's configuration, and will queue runs for any change.
+
+    This can be useful for repos that don't have multiple configurations but require a working directory for some other reason. It's usually not what you want for true monorepos, since it queues unnecessary runs and slows down your ability to provision infrastructure.
+
+-> **Note:** Trigger directories also apply to [speculative plans](./index.html#speculative-plans) on pull requests — TFE won't queue plans for changes that aren't marked as relevant.
+
+-> **Error Handling:** Terraform Enterprise retrieves the changed files for each push or pull request using your VCS provider's API. If for some reason the list of changed files cannot be retrieved, or if it is too large to process, the default behaviour is to trigger runs on all attached workspaces. Should this happen, you may see several runs with state "Planned", due to the push resulting in no changes to infrastructure.
 
 ### VCS Branch
 
