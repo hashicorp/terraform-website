@@ -86,20 +86,6 @@ A run can be administratively force-canceled if it becomes stuck or is presentin
 
 We recommend impersonating a user (if necessary) to view run details prior to force-canceling a run, to ensure that graceful cancellation was attempted, and that the run is no longer progressing.
 
-### Migration of Workspace History from Legacy Environments
-
-The Migrations section, accessed by clicking **Migrations** on the left, shows the progress of migrating history from legacy Terraform Enterprise environments to Terraform Enterprise workspaces. While all workspaces are listed in this area, history migration is only relevant for those workspaces created by [setting up migration from older environments](../../upgrade/index.html).
-
-During the initial setup, current data is migrated, and history data is migrated in the background, with the progress being visible in this admin area. This process is intended to have minimal impact on the running system, so if a large number of workspaces have been migrated, it may take some time before they're all complete.
-
-![screenshot: the migrations admin page](./images/admin-migrations.png)
-
--> **Note:** Workspaces that weren't created by migrating a legacy environment have an empty "migration status" field on this page.
-
-If history migration initially fails, the migration will be retried periodically. If you see a migration that continually errors, [contact HashiCorp Support](../faq.html#support-for-private-terraform-enterprise).
-
-A future version of Terraform Enterprise will remove Legacy environment data and code completely. Be sure to review release notes and wait to upgrade to that version until migration of desired data is complete.
-
 ## Managing Terraform Versions
 
 -> **API:** See the [Admin Terraform Versions API](../../api/admin/terraform-versions.html).

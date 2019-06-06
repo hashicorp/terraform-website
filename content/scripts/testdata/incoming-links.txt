@@ -94,9 +94,6 @@
 /docs/enterprise/guides/recommended-practices/part3.4.html
 /docs/enterprise/guides/recommended-practices/part3.html
 /docs/enterprise/index.html
-/docs/enterprise-legacy/faq/vagrant-cloud-migration.html
-/docs/enterprise-legacy/index.html
-/docs/enterprise-legacy/packer/artifacts/creating-vagrant-boxes.html
 /docs/enterprise/private/azure-setup-guide.html
 /docs/enterprise/private/install-installer.html
 /docs/enterprise/private/logging.html

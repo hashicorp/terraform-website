@@ -47,12 +47,6 @@ VCS-backed workspaces support several optional fields, which you can reveal by c
 
   -> **Note:** The [SSH key for cloning Git submodules](../vcs/index.html#ssh-keys) is set in the VCS provider settings for the organization, and is not necessarily related to the SSH key set in the workspace's settings.
 
-### Importing Legacy Environments
-
-The new workspace page includes an "Import from legacy (Atlas) environment" tab, located above all of the workspace settings. If you previously used the legacy version of Terraform Enterprise, you can use this tab to migrate legacy environments to your new organization, preserving their existing state and settings.
-
-The process of migrating a legacy environment to a new Terraform Enterprise workspace is covered in detail at [Upgrading from Legacy Terraform Enterprise](../upgrade/index.html).
-
 ## After Creating a Workspace
 
 When you create a new workspace, a few things happen:
