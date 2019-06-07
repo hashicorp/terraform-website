@@ -1,14 +1,15 @@
 #inner {
 
   #inner-quicknav {
-    margin-top: 35px;
-    &+h1 {
-      margin-top: 20px;
-    }
+    margin-top: -15px;
+    margin-bottom: 25px;
+    margin-left: 10px;
 
     span {
       line-height: 20px;
       cursor: pointer;
+      font-variant-caps: all-small-caps;
+      color: #666;
 
       svg {
         fill: $body-font-color;
@@ -37,7 +38,7 @@
         visibility: visible;
         opacity: 1;
         display: block;
-        transition: all 0.5s ease;
+        transition-duration: 0s;
       }
 
       li {
