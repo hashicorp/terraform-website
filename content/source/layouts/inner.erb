@@ -2,8 +2,9 @@
 <div class="container">
   <div class="row">
     <div id="docs-sidebar" class="col-sm-4 col-md-3 col-xs-12 hidden-print" role="complementary">
-      <a href="#inner" class="visible-xs">(Jump to content ⤵︎)</a>
-      <div id="controls-placeholder"></div>
+      <a href="#inner" id="screenreader-skip" class="sr-only sr-only-focusable">Skip to content</a>
+      <a href="#inner" id="mobile-skip" class="visible-xs">(Skip to content ⤵︎)</a>
+      <div id="controls-placeholder" style="display: none;"></div>
       <% if content_for?(:sidebar) %>
       <%
         sidebar_text = yield_content(:sidebar)
