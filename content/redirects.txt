@@ -175,3 +175,7 @@
 
 # Module creation docs are now on the modules section index page.
 /docs/modules/create.html /docs/modules/index.html
+
+# Upgrade docs are gone, but there is an unfixable dangling link, so we ahve to
+# redirect somewhere I guess
+/docs/enterprise/upgrade/differences.html /docs/enterprise/index.html
