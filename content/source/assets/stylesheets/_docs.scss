@@ -1,6 +1,5 @@
 #docs-sidebar {
   margin-bottom: 30px;
-  margin-top: 20px;
   overflow: hidden;
 
   // hide an outdated implementation of expand/collapse link
@@ -12,13 +11,13 @@
     color: $body-link-color;
   }
 
-  h1,
-  h2,
   h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 10px;
+  h4 {
+    min-height: 35px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
     a {
       color: $body-link-color;
     }
@@ -38,7 +37,12 @@
     }
   }
 
+  h4 + div#sidebar-controls {
+    margin-top: 0;
+  }
+
   div#sidebar-controls {
+    margin-top: 65px; // if no header
     box-sizing: border-box;
     position: relative;
     height: 37px;
