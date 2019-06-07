@@ -53,19 +53,44 @@ document.addEventListener("turbolinks:load", function() {
         if ($("#sidebar-controls").length === 0) { // then add it!
             var sidebarControlsHTML =
                 '<div id="sidebar-controls">' +
-                    '<span class="glyphicon glyphicon-search"></span>' +
-                    '<input type="search" id="sidebar-filter-field" class="form-control" name="sidebar-filter-field" role="search" placeholder="Filter page titles" />' +
-                    '<a href="#" class="subnav-toggle btn btn-default" role="button">Expand all</a>' +
+                    '<div id="sidebar-filter">' +
+                        '<span class="glyphicon glyphicon-search"></span>' +
+                        '<label for="sidebar-filter-field" class="sr-only sr-only-focusable">Filter page titles in sidebar navigation</label>' +
+                        '<input type="search" id="sidebar-filter-field" class="form-control" name="sidebar-filter-field" role="search" placeholder="Filter page titles" />' +
+                        '<button id="filter-close" class="glyphicon glyphicon-remove-circle" title="Reset filter"><span class="sr-only sr-only-focusable">Reset sidebar filter</span></button>' +
+                    '</div>' +
+                    '<div id="sidebar-buttons">' +
+                        '<button id="toggle-button">Expand all</button>' +
+                        ' | ' +
+                        '<button id="filter-button" title="Shortcut: type the / key">Filter</button>' +
+                    '</div>' +
                 '</div>';
-            if ($("#docs-sidebar a.subnav-toggle").length === 0) { // ...in default location
+            var sidebarHeader = $("#docs-sidebar").children("h1,h2,h3,h4,h5,h6").not("#otherdocs").first();
+            if (sidebarHeader.length === 1) { // under first header
+                sidebarHeader.after(sidebarControlsHTML);
+            } else { // under skip link
                 $("#docs-sidebar #controls-placeholder").replaceWith(sidebarControlsHTML);
-            } else { // ...at a manually chosen location
-                $("#docs-sidebar a.subnav-toggle").replaceWith(sidebarControlsHTML);
             }
         }
 
-        var subnavToggle = $("#sidebar-controls a.subnav-toggle");
+        var filterDiv = $("div#sidebar-filter");
+        var buttonsDiv = $("div#sidebar-buttons");
+        var subnavToggle = $("#sidebar-controls #toggle-button");
         var filterField = $("#sidebar-controls input#sidebar-filter-field");
+        var filterButton = $("#filter-button");
+
+        filterDiv.hide();
+
+        filterButton.on("click", function(e) {
+            buttonsDiv.hide();
+            filterDiv.show();
+            filterField.focus();
+        });
+
+        // Filter field's close button: defer to reset button.
+        $("#filter-close").on("click", function(e) {
+            subnavToggle.trigger("reset");
+        });
 
         // Expand/reset button behavior:
         subnavToggle.on({
@@ -78,6 +103,8 @@ document.addEventListener("turbolinks:load", function() {
                 sidebarLinks.parent("li").show();
                 resetActiveSubnavs();
                 $(this).html("Expand all");
+                buttonsDiv.show();
+                filterDiv.hide();
             },
             "click": function(e) {
                 e.preventDefault();
@@ -121,7 +148,7 @@ document.addEventListener("turbolinks:load", function() {
             var focusedElementType = $(document.activeElement).get(0).tagName.toLowerCase();
             if (focusedElementType !== "textarea" && focusedElementType !== "input") {
                 e.preventDefault();
-                filterField.focus();
+                filterButton.trigger("click");
             }
         });
     }
