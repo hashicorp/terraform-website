@@ -896,8 +896,6 @@
 /docs/providers/template/r/dir.html
 /docs/providers/tencentcloud/index.html
 /docs/providers/terraform/d/remote_state.html
-/docs/providers/terraform-enterprise/index.html
-/docs/providers/terraform-enterprise/r/artifact.html
 /docs/providers/terraform/index.html
 /docs/providers/tls/d/public_key.html
 /docs/providers/tls/index.html
