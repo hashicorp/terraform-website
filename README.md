@@ -207,6 +207,44 @@ On rare occasions, you may need to search every page on the site for something (
 - If you're using a CLI search tool like [`ag`](https://github.com/ggreer/the_silver_searcher), `cd` into the `content/source` directory and use the `--follow` / `-f` option with your search (or whatever option makes your tool of choice follow symlinks).
 - Deinit all when you're done, and close your terminal tab so you can get your normal prompt back.
 
+### New provider repositories
+
+When creating a completely new provider repository, a few extra steps are required to be able to render the docs.
+
+- Start by creating a layout in `terraform-provider-your-provider/website`.
+  See [Navigation Sidebars](#navigation-sidebars) for more details.
+
+- To simplify the following steps, set an environment variable in your shell with your provider name, like
+  `export PROVIDER_REPO=your-provider`
+
+- Finally, set up symlinks allowing `terraform-website` to correctly generate and link your files.
+
+```bash
+# link the new provider repo
+pushd "$GOPATH/src/github.com/hashicorp/terraform-website/ext/providers"
+ln -sf "$GOPATH/src/github.com/terraform-provider-$PROVIDER_REPO" "$PROVIDER_REPO"
+popd
+
+# link the layout file
+pushd "$GOPATH/src/github.com/hashicorp/terraform-website/content/source/layouts"
+ln -sf "../../../ext/providers/$PROVIDER_REPO/website/$PROVIDER_REPO.erb" "$PROVIDER_REPO.erb"
+popd
+
+# link the content
+pushd "$GOPATH/src/github.com/hashicorp/terraform-website/content/source/docs/providers"
+ln -sf "../../../../ext/providers/$PROVIDER_REPO/website/docs" "$PROVIDER_REPO"
+popd
+
+# start middleman
+cd "$GOPATH/src/github.com/terraform-provider-$PROVIDER_REPO"
+make website
+
+# Note: if you haven't already, copy a GNUmakefile from one of the other provider repos
+# e.g.: https://github.com/terraform-providers/terraform-provider-google/blob/master/GNUmakefile
+```
+
+- Finally, open `http://localhost:4567/docs/providers/[your-provider]` in your web browser to visualize your provider's docs.
+
 ## More About `stable-website`
 
 [inpage-stable]: #more-about-stable-website

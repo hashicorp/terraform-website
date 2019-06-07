@@ -48,8 +48,10 @@ Key path                                      | Type    | Default   | Descriptio
 `data.type`                                   | string  |           | Must be `"workspaces"`.
 `data.attributes.name`                        | string  |           | The name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 `data.attributes.auto-apply`                  | boolean | `false`   | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
+`data.attributes.file-triggers-enabled`       | boolean | `true`    | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
 `data.attributes.queue-all-runs`              | boolean | `false`   | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
 `data.attributes.terraform-version`           | string  | (nothing) | The version of Terraform to use for this workspace. Upon creating a workspace, the latest version is selected unless otherwise specified (e.g. `"0.11.1"`).
+`data.attributes.trigger-prefixes`            | array   | `[]`      | List of repository-root-relative paths which should be tracked for changes, in addition to the working directory.
 `data.attributes.working-directory`           | string  | (nothing) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 `data.attributes.vcs-repo`                    | object  | (nothing) | Settings for the workspace's VCS repository. If omitted, the workspace is created without a VCS repo. If included, you must specify at least the `oauth-token-id` and `identifier` keys below.
 `data.attributes.vcs-repo.oauth-token-id`     | string  |           | The VCS Connection (OAuth Connection + Token) to use. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
@@ -93,6 +95,30 @@ _With a VCS repository_
 }
 ```
 
+_For a monorepo_
+
+A run will be triggered in this workspace when changes are detected in any of the specified directories: `/networking`, `/modules`, or `/vendor`.
+
+```json
+{
+  "data": {
+    "attributes": {
+      "name": "workspace-3",
+      "terraform_version": "0.12.1",
+      "trigger-prefixes": ["/modules", "/vendor"],
+      "working-directory": "/networking",
+      "vcs-repo": {
+        "identifier": "skierkowski/terraform-test-proj-monorepo",
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "branch": "",
+        "default-branch": true
+      }
+    },
+    "type": "workspaces"
+  }
+}
+```
+
 ### Sample Request
 
 ```shell
@@ -118,6 +144,7 @@ _Without a VCS repository_
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-18T00:43:59.384Z",
       "environment": "default",
+      "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-1",
       "permissions": {
@@ -131,6 +158,7 @@ _Without a VCS repository_
       },
       "queue-all-runs": false,
       "terraform-version": "0.11.0",
+      "trigger-prefixes": [],
       "vcs-repo": null,
       "working-directory": ""
     },
@@ -167,6 +195,7 @@ _With a VCS repository_
       "can-queue-destroy-plan": true,
       "created-at": "2017-11-02T23:55:16.142Z",
       "environment": "default",
+      "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-2",
       "permissions": {
@@ -180,6 +209,7 @@ _With a VCS repository_
       },
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "trigger-prefixes": [],
       "vcs-repo": {
         "identifier": "skierkowski/terraform-test-proj",
         "branch": "",
@@ -239,8 +269,10 @@ Key path                                      | Type           | Default        
 `data.type`                                   | string         |                  | Must be `"workspaces"`.
 `data.attributes.name`                        | string         | (previous value) | A new name for the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization. **Warning:** Changing a workspace's name changes its URL in the API and UI.
 `data.attributes.auto-apply`                  | boolean        | (previous value) | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
+`data.attributes.file-triggers-enabled`       | boolean        | (previous value) | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
 `data.attributes.queue-all-runs`              | boolean        | (previous value) | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
 `data.attributes.terraform-version`           | string         | (previous value) | The version of Terraform to use for this workspace.
+`data.attributes.trigger-prefixes`            | array          | (previous value) | List of repository-root-relative paths which should be tracked for changes, in addition to the working directory.
 `data.attributes.working-directory`           | string         | (previous value) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 `data.attributes.vcs-repo`                    | object or null | (previous value) | To delete a workspace's existing VCS repo, specify `null` instead of an object. To modify a workspace's existing VCS repo, include whichever of the keys below you wish to modify. To add a new VCS repo to a workspace that didn't previously have one, include at least the `oauth-token-id` and `identifier` keys.
 `data.attributes.vcs-repo.oauth-token-id`     | string         | (previous value) | The VCS Connection (OAuth Connection + Token) to use. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
@@ -292,10 +324,12 @@ $ curl \
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
       "environment": "default",
+      "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "trigger-prefixes": [],
       "vcs-repo": {
         "identifier": "skierkowski/terraform-test-proj",
         "branch": "",
@@ -366,10 +400,12 @@ $ curl \
         "can-queue-destroy-plan": false,
         "created-at": "2017-11-02T23:24:05.997Z",
         "environment": "default",
+        "file-triggers-enabled": true,
         "locked": false,
         "name": "workspace-2",
         "queue-all-runs": false,
         "terraform-version": "0.10.8",
+        "trigger-prefixes": [],
         "vcs-repo": {
           "branch": "",
           "default-branch": true,
@@ -403,10 +439,12 @@ $ curl \
         "can-queue-destroy-plan": false,
         "created-at": "2017-11-02T23:23:53.765Z",
         "environment": "default",
+        "file-triggers-enabled": true,
         "locked": false,
         "name": "workspace-1",
         "queue-all-runs": false,
         "terraform-version": "0.10.8",
+        "trigger-prefixes": [],
         "vcs-repo": {
           "branch": "",
           "default-branch": true,
@@ -476,6 +514,7 @@ $ curl \
       "auto-apply": false,
       "created-at": "2018-03-08T22:30:00.404Z",
       "environment": "default",
+      "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-1",
       "permissions": {
@@ -489,6 +528,7 @@ $ curl \
       },
       "queue-all-runs": false,
       "terraform-version": "0.11.3",
+      "trigger-prefixes": [],
       "working-directory": null
     },
     "relationships": {
@@ -595,6 +635,7 @@ $ curl \
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:23:53.765Z",
       "environment": "default",
+      "file-triggers-enabled": true,
       "locked": true,
       "name": "workspace-2",
       "permissions": {
@@ -608,6 +649,7 @@ $ curl \
       },
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "trigger-prefixes": [],
       "vcs-repo": {
         "branch": "",
         "identifier": "my-organization/my-repository",
@@ -670,6 +712,7 @@ $ curl \
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:23:53.765Z",
       "environment": "default",
+      "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-2",
       "permissions": {
@@ -683,6 +726,7 @@ $ curl \
       },
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "trigger-prefixes": [],
       "vcs-repo": {
         "branch": "",
         "identifier": "my-organization/my-repository",
@@ -734,6 +778,7 @@ $ curl \
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:23:53.765Z",
       "environment": "default",
+      "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-2",
       "permissions": {
@@ -747,6 +792,7 @@ $ curl \
       },
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "trigger-prefixes": [],
       "vcs-repo": {
         "branch": "",
         "identifier": "my-organization/my-repository",
@@ -817,10 +863,12 @@ $ curl \
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
       "environment": "default",
+      "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "trigger-prefixes": [],
       "vcs-repo": {
         "branch": "",
         "default-branch": true,
@@ -912,10 +960,12 @@ $ curl \
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
       "environment": "default",
+      "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
       "terraform-version": "0.10.8",
+      "trigger-prefixes": [],
       "vcs-repo": {
         "branch": "",
         "default-branch": true,
