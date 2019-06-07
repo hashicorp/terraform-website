@@ -109,7 +109,6 @@
 /docs/enterprise/sentinel/index.html
 /docs/enterprise/sentinel/integrate-vcs.html
 /docs/enterprise/sentinel/manage-policies.html
-/docs/enterprise/upgrade/index.html
 /docs/enterprise/users-teams-organizations/index.html
 /docs/enterprise/users-teams-organizations/users.html
 /docs/enterprise/vcs/github.html
