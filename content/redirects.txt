@@ -82,7 +82,6 @@
 /docs/enterprise-beta/sentinel/index.html               /docs/enterprise/sentinel/index.html
 /docs/enterprise-beta/sentinel/integrate-vcs.html       /docs/enterprise/sentinel/integrate-vcs.html
 /docs/enterprise-beta/sentinel/manage-policies.html     /docs/enterprise/sentinel/manage-policies.html
-/docs/enterprise-beta/upgrade/index.html                /docs/enterprise/upgrade/index.html
 /docs/enterprise-beta/users-teams-organizations/index.html              /docs/enterprise/users-teams-organizations/index.html
 /docs/enterprise-beta/users-teams-organizations/organizations.html      /docs/enterprise/users-teams-organizations/organizations.html
 /docs/enterprise-beta/users-teams-organizations/permissions.html        /docs/enterprise/users-teams-organizations/permissions.html
