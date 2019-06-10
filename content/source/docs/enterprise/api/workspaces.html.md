@@ -35,8 +35,6 @@ Parameter            | Description
 
 -> **Note:** Workspace creation is restricted to members of the owners team, the owners team [service account](../users-teams-organizations/service-accounts.html#team-service-accounts), and the [organization service account](../users-teams-organizations/service-accounts.html#organization-service-accounts).
 
--> **Note:** Migrating legacy workspaces (with the `migration-environment` attribute) can only be done with a [user token](../users-teams-organizations/users.html#api-tokens). The user must be a member of the owners team in both the legacy organization and the new organization.
-
 ### Request Body
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
@@ -45,22 +43,12 @@ Properties without a default value are required.
 
 By supplying the necessary attributes under a `vcs-repository` object, you can create a workspace that is configured against a VCS Repository.
 
-By supplying a `migration-environment` attribute, you can create a workspace which is migrated from a legacy environment. When you do this, the following will happen:
-
-* Environment and Terraform variables will be copied to the workspace.
-* Teams which are associated with the legacy environment will be created in the destination workspace's organization, if teams with those names don't already exist.
-* Members of those teams will be added as members of the corresponding teams in the destination workspace's organization.
-* Each team will be given the same access level on the workspace as it had on the legacy environment.
-* The latest state of the legacy environment will be copied over into the workspace and set as the workspace's current state.
-* VCS repo ingress settings (like branch and working directory) will be copied over into the workspace.
-
 Key path                                      | Type    | Default   | Description
 ----------------------------------------------|---------|-----------|------------
 `data.type`                                   | string  |           | Must be `"workspaces"`.
 `data.attributes.name`                        | string  |           | The name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 `data.attributes.auto-apply`                  | boolean | `false`   | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
 `data.attributes.file-triggers-enabled`       | boolean | `true`    | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
-`data.attributes.migration-environment`       | string  | (nothing) | The legacy TFE environment to use as the source of the migration, in the form `organization/environment`. Omit this unless you are migrating a legacy environment.
 `data.attributes.queue-all-runs`              | boolean | `false`   | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
 `data.attributes.terraform-version`           | string  | (nothing) | The version of Terraform to use for this workspace. Upon creating a workspace, the latest version is selected unless otherwise specified (e.g. `"0.11.1"`).
 `data.attributes.trigger-prefixes`            | array   | `[]`      | List of repository-root-relative paths which should be tracked for changes, in addition to the working directory.
@@ -124,25 +112,6 @@ A run will be triggered in this workspace when changes are detected in any of th
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
         "branch": "",
         "default-branch": true
-      }
-    },
-    "type": "workspaces"
-  }
-}
-```
-
-_Migrating a legacy environment_
-
-```json
-{
-  "data": {
-    "attributes": {
-      "name": "workspace-2",
-      "migration-environment":
-        "legacy-hashicorp-organization/legacy-environment",
-      "vcs-repo": {
-        "identifier": "skierkowski/terraform-test-proj",
-        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       }
     },
     "type": "workspaces"

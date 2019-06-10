@@ -22,7 +22,6 @@ This page provides answers to many common questions about Private Terraform Ente
 1. [About the AMI](#about-the-private-terraform-enterprise-ami)
 2. [AMI IDs](#ami-ids)
 3. [Additional Configuration Info](#additional-configuration-info)
-4. [Upgrade Information](#migrating-from-a-legacy-terraform-enterprise-installation)
 5. [Required Network Access](#network-access)
 6. [Managing the Terraform State of the Install Process](#storing-terraform-enterprise-state)
 7. [Private Terraform Enterprise Architecture](#private-terraform-enterprise-architecture)
