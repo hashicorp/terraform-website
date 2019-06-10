@@ -6,7 +6,7 @@ sidebar_current: "docs-enterprise2-workspaces"
 
 # Workspaces
 
-Workspaces are how Terraform Enterprise (TFE) organizes infrastructure. If you've used the legacy version of TFE, workspaces used to be called environments.
+Workspaces are how Terraform Enterprise (TFE) organizes infrastructure.
 
 A workspace consists of:
 

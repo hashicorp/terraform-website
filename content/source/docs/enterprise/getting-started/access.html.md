@@ -15,7 +15,7 @@ To start using Terraform Enterprise (TFE), you must:
 
 ## Creating a TFE Account
 
-If you don't already have a TFE account, you must create one. You can use the same user account to access the new TFE and the previous legacy version of TFE, although you'll use separate organizations.
+If you don't already have a TFE account, you must create one.
 
 [Click here to request a free trial of TFE][signup], or contact HashiCorp sales to purchase a TFE subscription.
 
@@ -32,7 +32,7 @@ In your web browser, go to:
 
 -> **Note:** If someone else has already created a TFE organization and added you to it, you can skip this process. You'll be taken to the organization's front page when you first navigate to TFE.
 
-After you've navigated to TFE, it will prompt you to create a new organization. Enter a name (distinct from your legacy TFE organization, if any) and an admin email address at the prompt:
+After you've navigated to TFE, it will prompt you to create a new organization. Enter a name and an admin email address at the prompt:
 
 ![TFE's new organization prompt](../users-teams-organizations/images/org-new.png)
 

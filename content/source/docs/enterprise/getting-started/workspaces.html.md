@@ -12,9 +12,7 @@ At this point, you've done all the setup TFE needs, and can start using it for r
 
 ## About Workspaces
 
-_Workspaces_ are how TFE organizes infrastructure. If you've used the legacy version of TFE, workspaces used to be called environments.
-
-A workspace consists of:
+_Workspaces_ are how TFE organizes infrastructure. A workspace consists of:
 
 - A collection of Terraform configurations (retrieved from a VCS repo).
 - Values for any variables those configurations require.
