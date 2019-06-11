@@ -140,8 +140,12 @@
   h1 {
     min-height: 60px;
     margin-top: 5px;
+    // This is just for vertical alignment. We don't need "real" flex behavior,
+    // we just need to align the text on the bottom of the box instead of the
+    // top.
     display: flex;
     align-items: flex-end;
+    flex-wrap: wrap; // in case of inner inline elements
   }
 
   h2,

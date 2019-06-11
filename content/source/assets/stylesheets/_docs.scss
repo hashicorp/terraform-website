@@ -28,8 +28,12 @@
   h4 {
     min-height: 35px;
     margin-top: 30px;
+    // This is just for vertical alignment. We don't need "real" flex behavior,
+    // we just need to align the text to the middle of the box instead of the
+    // top.
     display: flex;
     align-items: center;
+    flex-wrap: wrap; // in case of inner inline elements
     margin-bottom: 0;
     a {
       color: $body-link-color;
