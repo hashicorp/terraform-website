@@ -20,7 +20,9 @@ On the next page, click the _Download Support Bundle_ button which will download
 
 ![PTFE Support](./assets/ptfe-support.png)
 
-Then, attach the bundle to your support ticket. If possible, use the SendSafely integration (as it allows for large file uploads).
+Then, attach the bundle to your support ticket. If possible, use the SendSafely integration available in the support portal at support.hashicorp.com, as it allows for large file uploads.
+
+If you are unable to use the integration in the portal, please upload directly to https://hashicorp.sendsafely.com/u/ptfe-support-bundles. This includes pre-sales customers.
 
 
 ## AMI-based installs
@@ -119,4 +121,4 @@ in Private Terraform Enterprise. It may also include log data from Terraform bui
 
 ## Pre-Sales uploads
 
-Customers in the pre-sales phase can upload support bundle files directly at https://hashicorp.sendsafely.com/u/ptfe-support-bundles.
+As noted above, customers in the pre-sales phase can upload support bundle files directly at https://hashicorp.sendsafely.com/u/ptfe-support-bundles.
