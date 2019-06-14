@@ -12,7 +12,7 @@ Terraform Enterprise (TFE) can automatically add users to teams based on their S
 
 Team membership mapping is controlled with the "Use SAML to manage team memberships" checkbox on the SAML page of the TFE Site Admin area.
 
-![Screenshot: the TFE SAML admin page](./images/sso-tfe-admin.png)
+![Screenshot: the TFE SAML team membership checkbox](./images/saml-team-membership.png)
 
 When you enable it, you must specify the name of a SAML attribute in the [Team Attribute Name](./configuration.html#attributes) setting, and make sure the AttributeStatement in the SAMLResponse contains a list of AttributeValue items in the correct format.
 
