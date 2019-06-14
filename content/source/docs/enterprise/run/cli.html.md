@@ -126,7 +126,7 @@ Remote applies use the configuration code from the local working directory, but 
 $ terraform apply
 
 Running apply in the remote backend. Output will stream here. Pressing Ctrl-C
-will cancel the remote apply if its still pending. If the apply started it
+will cancel the remote apply if it's still pending. If the apply started it
 will stop streaming the logs, but will not stop the apply running remotely.
 To view this run in a browser, visit:
 https://app.terraform.io/app/my-org/my-app-dev/runs/run-PEekqv44Fs8NkiFx
