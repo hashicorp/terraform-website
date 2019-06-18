@@ -97,19 +97,14 @@ Here is a function that validates that the instance types of all EC2 instances b
 # Validate that all EC2 instances have instance_type
 # in the allowed_types list
 validate_instance_types = func(allowed_types) {
-
         validated = true
-
         aws_instances = find_resources_from_plan("aws_instance")
-
         # Loop through the resource maps, resources, and instances
         for aws_instances as joined_path, resource_map {
                 for resource_map as name, instances {
                         for instances as index, r {
-
                                 # Get address of the resource instance
                                 address = get_instance_address(joined_path, resource_type, name, index)
-
                                 # Validate that each instance has allowed value
                                 # If not, print violation message
                                 if r.applied.instance_type not in allowed_types {
@@ -120,7 +115,6 @@ validate_instance_types = func(allowed_types) {
                         }
                 }
         }
-
         return validated
 }
 ```
@@ -146,19 +140,12 @@ allowed_types = [
 # Call the validation function and assign results
 instance_types_validated = validate_instance_types(allowed_types)
 
-# Rule to restrict instance types
-instance_type_allowed = rule {
-        instance_types_validated is true
-}
-
 # Main rule
 main = rule {
-        instance_type_allowed is true
+        instance_types_validated
 }
 
 ```
-
-Note that you could leave out the `instance_type_allowed` rule and place `instance_types_validated is true` directly inside your `main` rule. You could also leave out `is true` in both rules; we included it here to be more explicit.
 
 ### Validating Multiple Conditions in a Single Policy
 
@@ -167,22 +154,18 @@ If you want a policy to validate multiple conditions against resources of a spec
 ```python
 # Function to validate that S3 buckets have private ACL and use KMS encryption
 validate_private_acl_and_kms_encryption = func() {
-
-        # Initialize booleans to true
-        # They will be set to false if any instances violate rules
         private = true
         encrypted_by_kms = true
 
-        #s3_buckets = find_resources_from_plan("aws_s3_bucket")
+        s3_buckets = find_resources_from_plan("aws_s3_bucket")
         # Iterate over resource instances and check that S3 buckets
         # have private ACL and are encrypted by a KMS key
         # If an S3 bucket is not private, set private to false
-        # If an S3 bucket is not encrypted by KMS, set encrypted_by_kms to false
+        # If an S3 bucket is not encrypted, set encrypted_by_kms to false
         for s3_buckets as joined_path, resource_map {
                 #...
         }
 
-        # Return list of booleans
         return [private, encrypted_by_kms]
 
 }
