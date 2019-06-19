@@ -100,9 +100,12 @@
       font-variant-caps: all-small-caps;
       color: #666;
       display: inline-block;
-      width: 40%;
       border: none;
       background: transparent;
+
+      &:first-child {
+        min-width: 6em;
+      }
     }
   }
 
