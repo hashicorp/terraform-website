@@ -28,135 +28,121 @@ see [Mocking Terraform Sentinel Data](../mock.html).
 
 The following functions and idioms will be useful as you start writing Sentinel policies for Terraform.
 
-### To Find Resources, Iterate over Modules
+### Iterate over Modules and Find Resources
 
-The most basic Sentinel task for Terraform is to enforce a rule on all resources of a given type. Before you can do that, you need to get a collection of all the relevant resources. The easiest way to do that is to copy a function like the following into your policies:
+The most basic Sentinel task for Terraform is to enforce a rule on all resources of a given type. Before you can do that, you need to get a collection of all the relevant resources from all modules. The easiest way to do that is to copy and use a function like the following into your policies:
 
 ```python
 import "tfplan"
 import "strings"
 
-# Find all resources of a specific type from all modules using the tfplan import
+# Find all resources of specific type from all modules using the tfplan import
 find_resources_from_plan = func(type) {
-        resource_maps = {}
-        for tfplan.module_paths as path {
-                # Compute joined_path from the module path
+    resources = {}
+    for tfplan.module_paths as path {
+        for tfplan.module(path).resources[type] else {} as name, instances {
+            for instances as index, r {
+                # Get the address of the resource instance
                 if length(path) == 0 {
-                        joined_path = ""
+                    # root module
+                    address = type + "." + name + "[" + string(index) + "]"
                 } else {
-                        joined_path = "module." + strings.join(path, ".module.") + "."
+                    # non-root module
+                    address = "module." + strings.join(path, ".module.") + "." +
+                              type + "." + name + "[" + string(index) + "]"
                 }
-                # Append all resources of the specified type from the current module
-                resource_maps[joined_path] = tfplan.module(path).resources[type] else {}
+                # Add the instance to resources, setting the key to the address
+                resources[address] = r
+            }
         }
-        return resource_maps
+    }
+    return resources
 }
 ```
 
--> **Note:** This example uses the `tfplan` import to find all resources of the specified type that have pending changes. You can easily substitute `tfconfig` or `tfstate` and change the name of the function, depending on your needs.
+-> **Note:** This example uses the `tfplan` import. You can find similar functions that iterate over the `tfconfig` and `tfstate` imports [here](https://github.com/hashicorp/terraform-guides/tree/master/governance/second-generation/common-functions).
 
-Later, you can call this function to get all resources of a desired type by passing the type as a string in quotes:
+You can call this function to get all resources of a desired type by passing the type as a string in quotes:
 
 ```python
 aws_instances = find_resources_from_plan("aws_instance")
 ```
 
-This example function handles several things that are tricky about finding resources:
+This example function does several useful things while finding resources:
 
-- It checks every module for resources (including the root module) by looping over the `module_paths` namespace. The top-level `resources` namespace is more convenient, but it only reveals resources from the root module.
-- It computes a `joined_path` variable from Sentinel's module path structure and uses this as the key for the module-specific maps added to the `resource_maps` map.
-- It sets the values of these module-level maps to `tfplan.module(path).resources[type]` which gives a series of nested maps keyed by resource name and instance [`count`](/docs/configuration/resources.html#count-multiple-resource-instances). When combined with the `joined_path` keys, the resource names and instance counts allow writers of Sentinel policies to print the full [addresses](/docs/internals/resource-addressing.html) of resource instances that violate policies. This makes it easier for users who see violation messages to know exactly which resources they need to modify. (See the `validate_instance_types` function below for an example.)
-- It uses the Sentinel `else` operator to recover from `undefined` values which would occur for modules that don't have any resources of the specified type.
+- It checks every module (including the root module) for resources of the specified type by iterating over the `module_paths` namespace. The top-level `resources` namespace is more convenient, but it only reveals resources from the root module.
+- It iterates over the named resources and [resource instances](/docs/configuration/resources.html#count-multiple-resource-instances) found in each module, starting with `tfplan.module(path).resources[type]` which is a series of nested maps keyed by resource names and instance counts.
+- It uses the Sentinel [`else` operator](https://docs.hashicorp.com/sentinel/language/spec#else-operator) to recover from `undefined` values which would occur for modules that don't have any resources of the specified type.
+- It builds a flat `resources` map of all resource instances of the specified type. Using a flat map simplifies the code used by Sentinel policies to evaluate rules.
+- It computes an `address` variable for each resource instance and uses this as the key in the `resources` map. This allows writers of Sentinel policies to print the full [address](/docs/internals/resource-addressing.html) of each resource instance that violate a policy, using the same address format used in plan and apply logs. Doing this tells users who see violation messages exactly which resources they need to modify in their Terraform code to comply with the Sentinel policies.
+- It sets the value of the `resources` map to the data associated with the resource instance (`r`). This is the data that Sentinel policies apply rules against.
 
-### A Function to Give the Full Addresses of Resources
+### Validate Resource Attributes
 
-Here is a function which can be used to give the full [address](/docs/internals/resource-addressing.html) of a resource instance that violates a policy.
+Once you have a collection of resources instances of a desired type indexed by their addresses, you usually want to validate that one or more resource attributes meets some conditions by iterating over the resource instances.
 
-```python
-# Get the full address of a resource instance including modules, type,
-# name, and index in form module.<A>.module.<B>.<type>.<name>[<index>]
-get_instance_address = func(joined_path, type, name, index) {
-        address = joined_path + type + "." + name + "[" + string(index) + "]"
-        return address
-}
-```
+While you could use Sentinel's [`all` and `any` expressions](https://docs.hashicorp.com/sentinel/language/boolexpr#any-all-expressions) directly inside Sentinel rules, your rules would only report the first violation because Sentinel uses short-circuit logic. It is therefore usually preferred to use a [`for` loop](https://docs.hashicorp.com/sentinel/language/loops) outside of your rules so that you can report all violations that occur. You can do this inside functions or directly in the policy itself.
 
--> **Note:** This example is intended for use with the tfplan and tfstate imports. For printing resource addresses with the tfconfig import, you could use a function called `get_resource_address` which would leave out the `index` argument and set `address` to `joined_path + type + "." + name`. For all three imports, `joined_path` should be formatted as it is in the `find_resources_from_plan` function above.
-
-We show this function being called in the next section.
-
-### To Validate Resources, Use `for` Loops Inside Functions
-
-Once you have a collection of resources instances of a desired type and know how to give resource instance addresses, you usually want to validate that a particular resource attribute meets some condition.
-
-While you could use Sentinel's [`all` and `any` expressions](https://docs.hashicorp.com/sentinel/language/boolexpr#any-all-expressions) directly inside Sentinel rules, your rules would only report the first violation because Sentinel uses short-circuit logic. It is therefore usually preferred to use [`for` loops](https://docs.hashicorp.com/sentinel/language/loops) inside functions called from your rules so that you can report all violations that occur. Another benefit of calling a function from a rule is that the standard Sentinel output is streamlined allowing users to focus on the warnings your print in your policies.
-
-Here is a function that validates that the instance types of all EC2 instances being provisioned are in a given list:
+Here is a function that calls the `find_resources_from_plan` function and validates that the instance types of all EC2 instances being provisioned are in a given list:
 
 ```python
-# Validate that all EC2 instances have instance_type
-# in the allowed_types list
-validate_instance_types = func(allowed_types) {
-        validated = true
-        aws_instances = find_resources_from_plan("aws_instance")
-        # Loop through the resource maps, resources, and instances
-        for aws_instances as joined_path, resource_map {
-                for resource_map as name, instances {
-                        for instances as index, r {
-                                # Get address of the resource instance
-                                address = get_instance_address(joined_path, resource_type, name, index)
-                                # Validate that each instance has allowed value
-                                # If not, print violation message
-                                if r.applied.instance_type not in allowed_types {
-                                        print("EC2 instance", address, "has attribute",
-                                                r.applied.instance_type, "that is not in the list", allowed_types)
-                                        validated = false
-                                }
-                        }
-                }
+# Validate that all EC2 instances have instance_type in the allowed_types list
+validate_ec2_instance_types = func(allowed_types) {
+    validated = true
+    aws_instances = find_resources_from_plan("aws_instance")
+    for aws_instances as address, r {
+        # Determine if the attribute is computed
+        if r.diff["instance_type"].computed else false is true {
+            print("EC2 instance", address,
+                  "has attribute, instance_type, that is computed.")
+        } else {
+            # Validate that each instance has allowed value
+            if (r.applied.instance_type else "") not in allowed_types {
+                print("EC2 instance", address, "has instance_type",
+                    r.applied.instance_type, "that is not in the allowed list:",
+                    allowed_types)
+                validated = false
+            }
         }
-        return validated
+    }
+    return validated
 }
 ```
-
-This function calls the `find_resources_from_plan` and `get_instance_address` functions described above.
 
 The boolean variable `validated` is initially set to `true`, but it is set to `false` if any resource instance violates the condition requiring that the `instance_type` attribute be in the `allowed_types` list. Since the function returns `true` or `false`, it can be called inside Sentinel rules.
 
-Note that this function prints a warning message for each resource instance that violates the condition. This allows the writer of a Sentinel rule that calls it to tell a user about **all** resource instances that violate it. This is much better than just reporting the first violation since a user with multiple violations learns about all of them in a single shot.
+Note that this function prints a warning message for **every** resource instance that violates the condition. This allows writers of Terraform code to fix all violations after just one policy check. It also prints warnings when the attribute being evaluated is [computed](/docs/enterprise/sentinel/import/tfplan.html#value-computed) and does not evaluate the condition in this case since the applied value will not be known.
 
-### Call Functions From Rules
+While this function allows a rule to validate an attribute against a list, some rules will only need to validate an attribute against a single value; in those cases, you could either use a list with a single value or embed that value inside the function itself, drop the `allowed_types` parameter from the function definition, and use the `is` operator instead of the `in` operator to compare the resource attribute against the embedded value.
 
-Finally, having re-used the standardized `find_resources_from_plan` and `get_instance_address` functions and having written your own function to validate that resources instances of a specific type satisfy some condition, you can define a list with allowed values and write a rule that calls your function:
+### Write Rules
+
+Having used the standardized `find_resources_from_plan` function and having written your own function to validate that resources instances of a specific type satisfy some condition, you can define a list with allowed values and write a rule that evaluates the value returned by your validation function.
 
 ```python
 # Allowed Types
 allowed_types = [
-        "t2.small",
-        "t2.medium",
-        "t2.large",
+    "t2.small",
+    "t2.medium",
+    "t2.large",
 ]
-
-# Call the validation function and assign results
-instance_types_validated = validate_instance_types(allowed_types)
 
 # Main rule
 main = rule {
-        instance_types_validated
+    validate_ec2_instance_types(allowed_types)
 }
 
 ```
 
-### Validating Multiple Conditions in a Single Policy
+### Validate Multiple Conditions in a Single Policy
 
-If you want a policy to validate multiple conditions against resources of a specific type, we recommend that you use a single function to iterate over all resource instances of that type and make this function return a list of boolean values, using one for each condition.  You can then use multiple Sentinel rules that evaluate those boolean values or evaluate them all in your `main` rule. Here is a partial example:
+If you want a policy to validate multiple conditions against resources of a specific type, you could define a separate validation function for each condition or use a single function to evaluate all the conditions. In the latter case, you would make this function return a list of boolean values, using one for each condition.  You can then use multiple Sentinel rules that evaluate those boolean values or evaluate all of them in your `main` rule. Here is a partial example:
 
 ```python
 # Function to validate that S3 buckets have private ACL and use KMS encryption
 validate_private_acl_and_kms_encryption = func() {
         private = true
         encrypted_by_kms = true
-
         s3_buckets = find_resources_from_plan("aws_s3_bucket")
         # Iterate over resource instances and check that S3 buckets
         # have private ACL and are encrypted by a KMS key
@@ -165,9 +151,7 @@ validate_private_acl_and_kms_encryption = func() {
         for s3_buckets as joined_path, resource_map {
                 #...
         }
-
         return [private, encrypted_by_kms]
-
 }
 
 # Call the validation function and assign results
@@ -175,9 +159,19 @@ validations = validate_private_acl_and_kms_encryption()
 private = validations[0]
 encrypted_by_kms = validations[1]
 
+# ACL rule
+is_private = rule {
+    private
+}
+
+# KMS Encryption Rule
+is_encrypted_by_kms = rule {
+    encrypted_by_kms
+}
+
 # Main rule
 main = rule {
-        private and encrypted_by_kms
+    is_private and is_encrypted_by_kms
 }
 ```
 
