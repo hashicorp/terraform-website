@@ -141,17 +141,17 @@ If you want a policy to validate multiple conditions against resources of a spec
 ```python
 # Function to validate that S3 buckets have private ACL and use KMS encryption
 validate_private_acl_and_kms_encryption = func() {
-        private = true
-        encrypted_by_kms = true
-        s3_buckets = find_resources_from_plan("aws_s3_bucket")
-        # Iterate over resource instances and check that S3 buckets
-        # have private ACL and are encrypted by a KMS key
-        # If an S3 bucket is not private, set private to false
-        # If an S3 bucket is not encrypted, set encrypted_by_kms to false
-        for s3_buckets as joined_path, resource_map {
-                #...
-        }
-        return [private, encrypted_by_kms]
+    private = true
+    encrypted_by_kms = true
+    s3_buckets = find_resources_from_plan("aws_s3_bucket")
+    # Iterate over resource instances and check that S3 buckets
+    # have private ACL and are encrypted by a KMS key
+    # If an S3 bucket is not private, set private to false
+    # If an S3 bucket is not encrypted, set encrypted_by_kms to false
+    for s3_buckets as joined_path, resource_map {
+        #...
+    }
+    return [private, encrypted_by_kms]
 }
 
 # Call the validation function and assign results
