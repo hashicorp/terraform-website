@@ -178,7 +178,7 @@ particular type from all modules using the `tfplan` import. By changing `tfplan`
 in this function to `tfstate`, you could make a similar function find all
 resources of a specific type in the current state.
 
-[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#to-find-resources-iterate-over-modules
+[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#iterate-over-modules-and-find-resources
 
 ### Value: `terraform_version`
 

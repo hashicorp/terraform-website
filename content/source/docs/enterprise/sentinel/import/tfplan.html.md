@@ -196,7 +196,7 @@ Iterating through all modules to find particular resources can be useful. This
 particular type from all modules that have pending changes using the `tfplan`
 import.
 
-[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#to-find-resources-iterate-over-modules
+[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#iterate-over-modules-and-find-resources
 
 ### Value: `terraform_version`
 
