@@ -414,3 +414,7 @@
 	path = ext/providers/rancher2
 	url = https://github.com/terraform-providers/terraform-provider-rancher2
 	branch = stable-website
+[submodule "ext/providers/akamai"]
+	path = ext/providers/akamai
+	url = https://github.com/terraform-providers/terraform-provider-akamai
+	branch = stable-website
