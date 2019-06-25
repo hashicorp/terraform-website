@@ -188,31 +188,15 @@ main = rule { tfplan.module_paths contains ["foo"] }
 
 -> Note the above example only applies if the module is present in the diff.
 
-#### Iterating through modules
+#### Iterating Through Modules
 
 Iterating through all modules to find particular resources can be useful. This
-example shows how to use `module_paths` with the [`module()`
-function](#function-module-) to retrieve all resources of a particular type from
-all modules (in this case, the [`azurerm_virtual_machine`][ref-tf-azurerm-vm]
-resource). Note the use of `else []` in case some modules don't have any
-resources; this is necessary to avoid the function returning undefined.
+[example](iterate-over-modules) shows how to use `module_paths` with the
+[`module()` function](#function-module-) to find all resources of a
+particular type from all modules that have pending changes using the `tfplan`
+import.
 
-[ref-tf-azurerm-vm]: /docs/providers/azurerm/r/virtual_machine.html
-
-Remember again that this will only locate modules (and hence resources) that
-have pending changes.
-
-```python
-import "tfplan"
-
-get_vms = func() {
-	vms = []
-	for tfplan.module_paths as path {
-		vms += values(tfplan.module(path).resources.azurerm_virtual_machine) else []
-	}
-	return vms
-}
-```
+[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#to-find-resources-iterate-over-modules
 
 ### Value: `terraform_version`
 

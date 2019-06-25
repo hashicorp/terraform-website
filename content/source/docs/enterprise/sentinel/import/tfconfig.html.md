@@ -267,28 +267,16 @@ import "tfconfig"
 main = rule { tfconfig.module_paths contains ["foo"] }
 ```
 
-#### Iterating through modules
+#### Iterating Through Modules
 
 Iterating through all modules to find particular resources can be useful. This
-example shows how to use `module_paths` with the [`module()`
-function](#root-function-module) to retrieve all resources of a particular type from
-all modules (in this case, the [`azurerm_virtual_machine`][ref-tf-azurerm-vm]
-resource). Note the use of `else []` in case some modules don't have any
-resources; this is necessary to avoid the function returning undefined.
+[example](iterate-over-modules) shows how to use `module_paths` with the
+[`module()` function](#function-module-) to find all resources of a
+particular type from all modules using the `tfplan` import. By changing `tfplan`
+in this function to `tfconfig`, you could make a similar function find all
+resources of a specific type in the Terraform configuration.
 
-[ref-tf-azurerm-vm]: /docs/providers/azurerm/r/virtual_machine.html
-
-```python
-import "tfconfig"
-
-get_vms = func() {
-	vms = []
-	for tfconfig.module_paths as path {
-		vms += values(tfconfig.module(path).resources.azurerm_virtual_machine) else []
-	}
-	return vms
-}
-```
+[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#to-find-resources-iterate-over-modules
 
 ## Namespace: Module
 
