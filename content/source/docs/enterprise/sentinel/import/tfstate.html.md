@@ -172,7 +172,7 @@ main = rule { tfstate.module_paths contains ["foo"] }
 #### Iterating Through Modules
 
 Iterating through all modules to find particular resources can be useful. This
-[example](iterate-over-modules) shows how to use `module_paths` with the
+[example][iterate-over-modules] shows how to use `module_paths` with the
 [`module()` function](#function-module-) to find all resources of a
 particular type from all modules using the `tfplan` import. By changing `tfplan`
 in this function to `tfstate`, you could make a similar function find all
