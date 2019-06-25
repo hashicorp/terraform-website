@@ -191,12 +191,12 @@ main = rule { tfplan.module_paths contains ["foo"] }
 #### Iterating Through Modules
 
 Iterating through all modules to find particular resources can be useful. This
-[example](iterate-over-modules) shows how to use `module_paths` with the
+[example][iterate-over-modules] shows how to use `module_paths` with the
 [`module()` function](#function-module-) to find all resources of a
 particular type from all modules that have pending changes using the `tfplan`
 import.
 
-[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#to-find-resources-iterate-over-modules
+[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#iterate-over-modules-and-find-resources
 
 ### Value: `terraform_version`
 
