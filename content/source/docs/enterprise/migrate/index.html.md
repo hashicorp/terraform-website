@@ -8,6 +8,8 @@ sidebar_current: "docs-enterprise2-migrating"
 [backend]: /docs/backends/index.html
 [cli-workspaces]: /docs/state/workspaces.html
 [user-token]: ../users-teams-organizations/users.html#api-tokens
+[remote-backend]: /docs/backends/types/remote.html
+[cli-credentials]: /docs/commands/cli-config.html#credentials
 
 # Migrating State from Terraform Open Source
 
@@ -17,7 +19,11 @@ If you already use Terraform to manage infrastructure, you're probably managing 
 
 -> **API:** See the [State Versions API](../api/state-versions.html). Be sure to stop Terraform runs before migrating state to TFE, and only import state into TFE workspaces that have never performed a run.
 
-## Step 1: Gather Credentials, Data, and Code
+## Step 1: Ensure Terraform ≥ 0.11.8 is Installed
+
+To follow these instructions, you need Terraform 0.11.8 or later on the workstation where you are performing the migration. The remote backend this process relies on is not present in older versions.
+
+## Step 2: Gather Credentials, Data, and Code
 
 Make sure you have all of the following:
 
@@ -27,19 +33,7 @@ Make sure you have all of the following:
     - If you were using the default `local` backend, your state is a file on disk. You need the original working directory where you've been running Terraform, or a copy of the `terraform.tfstate` file to copy into a fresh working directory.
     - For remote backends, you need the path to the particular storage being used (usually already included in the configuration) and access credentials (which you usually must set as an environment variable).
 - A TFE user account which is a member of your organization's owners team, so you can create workspaces.
-- A [user API token][user-token] for your TFE user account. (Organization and team tokens will not work; the token must be associated with an individual user.)
-
-    In your shell, set an `ATLAS_TOKEN` environment variable with your API token as the value.
-
-    ``` bash
-    export ATLAS_TOKEN=<USER TOKEN>
-    ```
-
-## Step 2: Create a New TFE Workspace
-
-Create a new workspace in your TFE organization to take over management of this infrastructure. Set the VCS repository and any necessary variable values appropriately. You can set team access permissions now or later, whichever is more convenient.
-
-**Do not perform any runs in this workspace yet,** and consider locking the workspace to be sure. If an apply happens prematurely, you'll need to destroy the workspace and start the process over.
+- A [user API token][user-token] for your TFE user account configured using your [CLI configuration file][cli-credentials]. (Organization and team tokens will not work; the token must be associated with an individual user.)
 
 ## Step 3: Stop Terraform Runs
 
@@ -63,40 +57,49 @@ Add a `terraform { backend ...` block to the configuration.
 
 ``` hcl
 terraform {
-  backend "atlas" {
-    name = "<TFE ORG>/<WORKSPACE NAME>"
-    address = "https://<TFE HOSTNAME>"
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "my-org"
+
+    workspaces {
+      name = "my-workspace"
+    }
   }
 }
 ```
 
-- Use the `atlas` backend. (This is TFE's backend; the Atlas name is used here for historical reasons.)
-- In the `name` attribute, specify the name of your TFE organization and the target workspace, separated by a slash. (For example, `example_corp/database-prod`.)
-- The `address` attribute is only necessary with private TFE instances. You can omit it if you're using the SaaS version of TFE.
-
-~> **Note:** The `atlas` backend block is temporary; it isn't needed once TFE takes over Terraform runs. It's easiest to put the backend block in a separate `backend.tf` file which isn't checked into version control.
+- Use the `remote` backend.
+- In the `organization` attribute, specify the name of your TFE organization.
+- The `hostname` attribute is only necessary with private TFE instances. You can omit it if you're using the SaaS version of TFE.
+- In the `name` attribute in the `workspaces` block, specify the name of a new workspace to create with your state. You should ensure that a workspace with this name does not already exist in your organization. See [the remote backend documentation][remote-backend] for details.
 
 ## Step 6: Run `terraform init` and Answer "Yes"
 
 Run `terraform init`.
 
-The init command will notice that your new TFE workspace doesn't have any state, and will offer to migrate the previous state to it. The prompt usually looks like this:
+The init command will offer to migrate the previous state to a new TFE workspace. The prompt usually looks like this:
 
 ```
 Do you want to copy existing state to the new backend?
   Pre-existing state was found while migrating the previous "local" backend to the
-  newly configured "atlas" backend. No existing state was found in the newly
-  configured "atlas" backend. Do you want to copy this state to the new "atlas"
+  newly configured "remote" backend. No existing state was found in the newly
+  configured "remote" backend. Do you want to copy this state to the new "remote"
   backend? Enter "yes" to copy and "no" to start with an empty state.
 ```
 
 Answer "yes," and Terraform will migrate your state.
 
-After the init has finished, you can delete the temporary `atlas` backend block.
+## Step 7: Configure the TFE Workspace
 
-## Step 7: Enable Runs in the New Workspace
+Make any settings changes necessary for your new workspace.
 
-In TFE, unlock the new workspace and queue a plan. Examine the results.
+- [Set the VCS repository](../workspaces/settings.html#vcs-connection-and-repository)
+- [Set variable values appropriately](../workspaces/variables.html)
+- [Set team access permissions](../workspaces/access.html)
+
+## Step 8: Queue a Run in the New Workspace
+
+In TFE, queue a plan in the new workspace. Examine the results.
 
 If all went well, the plan should result in no changes or very small changes. TFE can now take over all Terraform runs for this infrastructure.
 
@@ -106,5 +109,4 @@ If all went well, the plan should result in no changes or very small changes. TF
 
     In the case of a wrong state file, you can recover by fixing your local working directory and trying again. You'll need to re-set to the local backend, run `terraform init`, replace the state file with the correct one, change back to the `atlas` backend, run `terraform init` again, and confirm that you want to replace the remote state with the current local state.
 - If the plan recognizes the existing resources but would make unexpected changes, check whether the designated VCS branch for the workspace is the same branch you've been running Terraform on, and update it, if it is not. You can also check whether variables in the TFE workspace have the correct values.
-
-
+- If you try to migrate state into a workspace which already exists in TFE and already has state, Terraform will indicate that you can overwrite your existing state in TFE. However, this will not work and result in a state mismatched lineage conflict.
