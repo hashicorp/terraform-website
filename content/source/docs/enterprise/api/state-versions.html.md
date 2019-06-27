@@ -177,6 +177,14 @@ curl \
                     "links": {
                         "related": "/api/v2/runs/sv-SDboVZC8TCxXEneJ/created-by"
                     }
+                },
+                "outputs": {
+                    "data": [
+                        {
+                            "id": "wsout-J2zM24JPFbfc7bE5",
+                            "type": "state-version-outputs"
+                        }
+                    ]
                 }
             },
             "links": {
@@ -207,6 +215,14 @@ curl \
                     "links": {
                         "related": "/api/v2/runs/sv-UdqGARTddt8SEJEi/created-by"
                     }
+                },
+                "outputs": {
+                    "data": [
+                        {
+                            "id": "wsout-J2zM24JPFbfc7bE5",
+                            "type": "state-version-outputs"
+                        }
+                    ]
                 }
             },
             "links": {
@@ -289,6 +305,14 @@ curl \
                 "links": {
                     "related": "/api/v2/runs/sv-SDboVZC8TCxXEneJ/created-by"
                 }
+            },
+            "outputs": {
+                "data": [
+                    {
+                        "id": "wsout-J2zM24JPFbfc7bE5",
+                        "type": "state-version-outputs"
+                    }
+                ]
             }
         },
         "links": {
@@ -297,3 +321,79 @@ curl \
     }
 }
 ```
+
+## Show a State Version
+
+`GET /state-versions/:state_version_id
+
+Parameter | Description
+----------|---------
+`:state_version_id` | The ID of the desired state version.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace
+[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action
+
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/state-versions/sv-SDboVZC8TCxXEneJ
+```
+
+### Sample Response
+
+-> **Note**: The `hosted-state-download-url` attribute provides a url from which you can download the raw state.
+
+```json
+{
+    "data": {
+        "id": "sv-SDboVZC8TCxXEneJ",
+        "type": "state-versions",
+        "attributes": {
+            "vcs-commit-sha": null,
+            "vcs-commit-url": null,
+            "created-at": "2018-08-27T14:49:47.902Z",
+            "hosted-state-download-url": "https://archivist.terraform.io/v1/object/...",
+            "serial": 3
+        },
+        "relationships": {
+            "run": {
+                "data": {
+                    "type": "runs"
+                }
+            },
+            "created-by": {
+                "data": {
+                    "id": "api-org-hashicorp",
+                    "type": "users"
+                },
+                "links": {
+                    "related": "/api/v2/runs/sv-SDboVZC8TCxXEneJ/created-by"
+                }
+            },
+            "outputs": {
+                "data": [
+                    {
+                        "id": "wsout-J2zM24JPFbfc7bE5",
+                        "type": "state-version-outputs"
+                    }
+                ]
+            }
+        },
+        "links": {
+            "self": "/api/v2/state-versions/sv-SDboVZC8TCxXEneJ"
+        }
+    }
+}
+```
+
+### Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+* `outputs` - The parsed outputs for this state version.
