@@ -61,7 +61,7 @@ Key path                                      | Type            | Default | Desc
 `data.attributes.vcs-repo.identifier`         | string          |         | The identifier of the VCS repository in the format `<namespace>/<repo>`. For example, on GitHub, this would be something like `hashicorp/my-policy-set`.
 `data.attributes.vcs-repo.oauth-token-id`     | string          |         | The OAuth Token ID to use to connect to the VCS host.
 `data.attributes.vcs-repo.ingress-submodules` | boolean         | `false` | Determines whether repository submodules will be instantiated during the clone operation.
-`data.attributes.policies-path`               | string          | `null`  | The sub-path within the attached VCS repository to ingress. All files and directories outside of this sub-path will be ignored. This option may only be specified when a VCS repo is present.
+`data.attributes.policies-path`               | string          | `null`  | The sub-path within the attached VCS repository to clone. All files and directories outside of this sub-path will be ignored. This option may only be specified when a VCS repo is present. **Note:** When this option is configured, commits in the repository which are outside of the given policies-path will be ignored.
 `data.relationships.policies.data[]`          | array\[object\] | `[]`    | A list of resource identifier objects that defines which policies will be members of the new set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{ "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }`). **Note:** This option will be deprecated in the future in favor of VCS policy sets.
 `data.relationships.workspaces.data[]`        | array\[object\] | `[]`    | A list of resource identifier objects that defines which workspaces the new set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`). Obtain workspace IDs from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. Individual workspaces cannot be attached to the policy set when `data.attributes.global` is `true`.
 
@@ -145,8 +145,9 @@ curl \
       "global": false,
       "policy-count": 1,
       "workspace-count": 1,
+      "versioned": false,
       "created-at": "2018-09-11T18:21:21.784Z",
-      "updated-at": "2018-09-11T18:21:21.784Z",
+      "updated-at": "2018-09-11T18:21:21.784Z"
     },
     "relationships": {
       "organization": {
@@ -182,6 +183,7 @@ curl \
       "global": false,
       "workspace-count": 1,
       "policies-path": "/policy-sets/foo",
+      "versioned": true,
       "vcs-repo": {
         "branch": "master",
         "identifier": "hashicorp/my-policy-sets",
@@ -226,11 +228,13 @@ Status  | Response                                      | Reason
 
 This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
-Parameter      | Description
----------------|------------
-`page[number]` | **Optional.** If omitted, the endpoint will return the first page.
-`page[size]`   | **Optional.** If omitted, the endpoint will return 20 policy sets per page.
-`search[name]` | **Optional.** Allows searching the organization's policy sets by name.
+Parameter           | Description
+--------------------|------------
+`filter[versioned]` | **Optional.** Allows filtering policy sets based on whether they are versioned (VCS or API), or manually updated. Accepts a boolean true/false value. If omitted, all policy sets are returned.
+`include`           | **Optional.** Allows including the current policy set version, for versioned policy sets. Value must be set to `current_version`.
+`page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`        | **Optional.** If omitted, the endpoint will return 20 policy sets per page.
+`search[name]`      | **Optional.** Allows searching the organization's policy sets by name.
 
 ### Sample Request
 
@@ -254,8 +258,9 @@ curl \
         "global": false,
         "policy-count": 1,
         "workspace-count": 1,
+        "versioned": false,
         "created-at": "2018-09-11T18:21:21.784Z",
-        "updated-at": "2018-09-11T18:21:21.784Z",
+        "updated-at": "2018-09-11T18:21:21.784Z"
       },
       "relationships": {
         "organization": {
@@ -293,6 +298,11 @@ Status  | Response                                      | Reason
 [200][] | [JSON API document][] (`type: "policy-sets"`) | The request was successful
 [404][] | [JSON API error object][]                     | Policy set not found or user unauthorized to perform action
 
+### Query Parameters
+
+Parameter | Description
+----------|------------
+`include` | **Optional.** Allows including the current policy set version, for versioned policy sets. Value must be `current_version`.
 
 ### Sample Request
 
@@ -300,7 +310,7 @@ Status  | Response                                      | Reason
 curl --request GET \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1
+  https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1?include=current_version
 ```
 
 ### Sample Response
@@ -316,6 +326,7 @@ curl --request GET \
       "global": false,
       "policy-count": 1,
       "workspace-count": 1,
+      "versioned": false,
       "created-at": "2018-09-11T18:21:21.784Z",
       "updated-at": "2018-09-11T18:21:21.784Z",
     },
@@ -354,8 +365,10 @@ curl --request GET \
       "name": "production",
       "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
       "global": false,
+      "policy-count": 0,
       "workspace-count": 1,
       "policies-path": "/policy-sets/foo",
+      "versioned": true,
       "vcs-repo": {
         "branch": "master",
         "identifier": "hashicorp/my-policy-sets",
@@ -369,6 +382,12 @@ curl --request GET \
       "organization": {
         "data": { "id": "my-organization", "type": "organizations" }
       },
+      "current-version": {
+        "data": {
+          "id": "polsetver-m4yhbUBCgyDVpDL4",
+          "type": "policy-set-versions"
+        }
+      },
       "workspaces": {
         "data": [
           { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
@@ -378,7 +397,40 @@ curl --request GET \
     "links": {
       "self":"/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1"
     }
-  }
+  },
+  "included": [
+    {
+      "id": "polsetver-m4yhbUBCgyDVpDL4",
+      "type": "policy-set-versions",
+      "attributes": {
+        "source": "github",
+        "status": "ready",
+        "status-timestamps": {
+          "ready-at": "2019-06-21T21:29:48+00:00",
+          "ingressing-at": "2019-06-21T21:29:47+00:00"
+        },
+        "error": null,
+        "ingress-attributes": {
+          "commit-sha": "8766a423cb902887deb0f7da4d9beaed432984bb",
+          "commit-url": "https://github.com/hashicorp/my-policy-sets/commit/8766a423cb902887deb0f7da4d9beaed432984bb",
+          "identifier": "hashicorp/my-policy-sets"
+        },
+        "created-at": "2019-06-21T21:29:47.792Z",
+        "updated-at": "2019-06-21T21:29:48.887Z"
+      },
+      "relationships": {
+        "policy-set": {
+          "data": {
+            "id": "polset-a2mJwtmKygrA11dh",
+            "type": "policy-sets"
+          }
+        }
+      },
+      "links": {
+        "self": "/api/v2/policy-set-versions/polsetver-E4S7jz8HMjBienLS"
+      }
+    }
+  ]
 }
 ```
 
@@ -396,19 +448,24 @@ Status  | Response                                      | Reason
 [404][] | [JSON API error object][]                     | Policy set not found or user unauthorized to perform action
 [422][] | [JSON API error object][]                     | Malformed request body (missing attributes, wrong types, etc.)
 
-
 ### Request Body
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
 Properties without a default value are required.
 
-Key path                      | Type    | Default          | Description
-------------------------------|-------- |------------------|------------
-`data.type`                   | string  |                  | Must be `"policy-sets"`.
-`data.attributes.name`        | string  | (previous value) | The name of the policy set. Can include letters, numbers, `-`, and `_`.
-`data.attributes.description` | string  | (previous value) | A description of the set's purpose. This field supports Markdown and will be rendered in the Terraform Enterprise UI.
-`data.attributes.global`      | boolean | (previous value) | Whether or not this policies in this set should be checked on all of the organization's workspaces, or only on workspaces directly attached to the set.
+Key path                                      | Type    | Default          | Description
+----------------------------------------------|-------- |------------------|------------
+`data.type`                                   | string  |                  | Must be `"policy-sets"`.
+`data.attributes.name`                        | string  | (previous value) | The name of the policy set. Can include letters, numbers, `-`, and `_`.
+`data.attributes.description`                 | string  | (previous value) | A description of the set's purpose. This field supports Markdown and will be rendered in the Terraform Enterprise UI.
+`data.attributes.global`                      | boolean | (previous value) | Whether or not this policies in this set should be checked on all of the organization's workspaces, or only on workspaces directly attached to the set.
+`data.attributes.vcs-repo`                    | object  | (previous value) | VCS repository information. When present, the policies and configuration will be sourced from the specified VCS repository instead of being defined within TFE. Note that this option and `policies` relationships are mutually exclusive and may not be used simultaneously.
+`data.attributes.vcs-repo.branch`             | string  | (previous value) | The branch of the VCS repo. If empty, the VCS provider's default branch value will be used.
+`data.attributes.vcs-repo.identifier`         | string  | (previous value) | The identifier of the VCS repository in the format `<namespace>/<repo>`. For example, on GitHub, this would be something like `hashicorp/my-policy-set`.
+`data.attributes.vcs-repo.oauth-token-id`     | string  | (previous value) | The OAuth Token ID to use to connect to the VCS host.
+`data.attributes.vcs-repo.ingress-submodules` | boolean | (previous value) | Determines whether repository submodules will be instantiated during the clone operation.
+`data.attributes.policies-path`               | boolean | (previous value) | The sub-path within the attached VCS repository to clone. All files and directories outside of this sub-path will be ignored. This option may only be specified when a VCS repo is present. **Note:** When this option is configured, commits in the repository which are outside of the given policies-path will be ignored. When this option is changed, the repository will be automatically cloned again to ensure this path value is reflected in the policy set contents.
 
 ### Sample Payload
 
@@ -449,8 +506,9 @@ curl \
       "global": true,
       "policy-count": 1,
       "workspace-count": 4,
+      "versioned": false,
       "created-at": "2018-09-11T18:21:21.784Z",
-      "updated-at": "2018-09-11T18:21:21.784Z",
+      "updated-at": "2018-09-11T18:21:21.784Z"
     },
     "relationships": {
       "organization": {
