@@ -57,7 +57,7 @@ Key path                               | Type            | Default | Description
 `data.attributes.description`          | string          | `null`  | A description of the set's purpose. This field supports Markdown and will be rendered in the Terraform Enterprise UI.
 `data.attributes.global`               | boolean         | `false` | Whether or not this policies in this set should be checked on all of the organization's workspaces, or only on workspaces the policy set is attached to.
 `data.relationships.policies.data[]`   | array\[object\] | `[]`    | A list of resource identifier objects that defines which policies will be members of the new set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{ "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }`).
-`data.relationships.workspaces.data[]` | array\[object\] | `[]`    | A list of resource identifier objects that defines which workspaces the new set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`). Obtain workspace IDs from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.
+`data.relationships.workspaces.data[]` | array\[object\] | `[]`    | A list of resource identifier objects that defines which workspaces the new set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`). Obtain workspace IDs from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. Individual Workspaces cannot be attached to the policy set when `data.attributes.global` is `true`.
 
 ### Sample Payload
 
@@ -268,6 +268,8 @@ curl --request GET \
 }
 ```
 
+-> **Note:** The `data.relationships.workspaces` refers to workspaces directly attached to the policy set. This key is omitted for policy sets marked as global; in this case, global policy sets are implicitly related to all of the organization's workspaces.
+
 ## Update a Policy Set
 
 `PATCH /policy-sets/:id`
@@ -345,14 +347,6 @@ curl \
       "policies": {
         "data": [
           { "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }
-        ]
-      },
-      "workspaces": {
-        "data": [
-          { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" },
-          { "id": "ws-UZuU7aTTjch2TG19", "type": "workspaces" },
-          { "id": "ws-sVHFvWAf2wRkGzD7", "type": "workspaces" },
-          { "id": "ws-nt3Jm4hSFtuHF5fi", "type": "workspaces" }
         ]
       }
     },
