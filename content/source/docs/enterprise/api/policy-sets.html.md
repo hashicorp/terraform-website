@@ -210,7 +210,7 @@ curl \
 }
 ```
 
-## List policy sets
+## List Policy Sets
 
 `GET /organizations/:organization_name/policy-sets`
 
@@ -223,7 +223,6 @@ Status  | Response                                      | Reason
 [200][] | [JSON API document][] (`type: "policy-sets"`) | Request was successful
 [404][] | [JSON API error object][]                     | Organization not found, or user unauthorized to perform action
 
-
 ### Query Parameters
 
 This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
@@ -231,7 +230,7 @@ This endpoint supports pagination [with standard URL query parameters](./index.h
 Parameter           | Description
 --------------------|------------
 `filter[versioned]` | **Optional.** Allows filtering policy sets based on whether they are versioned (VCS or API), or manually updated. Accepts a boolean true/false value. If omitted, all policy sets are returned.
-`include`           | **Optional.** Allows including the current policy set version, for versioned policy sets. Value must be set to `current_version`.
+`include`           | **Optional.** Allows including related resource data. Value must be one of `workspaces`, `policies`, or `current_version`.
 `page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`        | **Optional.** If omitted, the endpoint will return 20 policy sets per page.
 `search[name]`      | **Optional.** Allows searching the organization's policy sets by name.
@@ -298,11 +297,9 @@ Status  | Response                                      | Reason
 [200][] | [JSON API document][] (`type: "policy-sets"`) | The request was successful
 [404][] | [JSON API error object][]                     | Policy set not found or user unauthorized to perform action
 
-### Query Parameters
-
 Parameter | Description
 ----------|------------
-`include` | **Optional.** Allows including the current policy set version, for versioned policy sets. Value must be `current_version`.
+`include` | **Optional.** Allows including related resource data. Value must be one of `workspaces`, `policies`, or `current_version`.
 
 ### Sample Request
 
@@ -745,9 +742,60 @@ curl \
   https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1
 ```
 
-## Available Related Resources
+## Create a Policy Set Version
 
-The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+For versioned policy sets which have no VCS repository attached, versions of policy code may be uploaded directly to the API by creating a new Policy Set Version, and uploading a tarball (tar.gz) of data to it.
 
-* `policies` - Policies that are a member of this set.
-* `workspaces` - Workspaces that this set are attached to.
+`POST /policy-sets/:id/versions`
+
+Parameter | Description
+----------|------------
+`:id`     | The ID of the policy set to create a new version for.
+
+Status  | Response                                            | Reason
+--------|-----------------------------------------------------|-------
+[201][] | [JSON API document] (`type: "policy-set-versions"`) | The request was successful.
+[404][] | [JSON API error object][]                           | Policy set not found or user unauthorized to perform action
+[422][] | [JSON API error object][]                           | The policy set does not support uploading versions.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --request POST \
+  https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1/versions
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "polsetver-cXciu9nQwmk9Cfrn",
+    "type": "policy-set-versions",
+    "attributes": {
+      "source": "tfe-api",
+      "status": "pending",
+      "status-timestamps": {},
+      "error": null,
+      "created-at": "2019-06-28T23:53:15.875Z",
+      "updated-at": "2019-06-28T23:53:15.875Z"
+    },
+    "relationships": {
+      "policy-set": {
+        "data": {
+          "id": "polset-ws1CZBzm2h5K6ZT5",
+          "type": "policy-sets"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/policy-set-versions/polsetver-cXciu9nQwmk9Cfrn",
+      "upload": "https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox..."
+    }
+  }
+}
+```
+
+The `upload` link URL in the above response is valid for one hour after creation. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the "Show Policy Set" endpoint again to verify that the status has changed from `pending` to `ready`.
