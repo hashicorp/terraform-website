@@ -412,6 +412,8 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the policy set to attach to workspaces. Use the "List Policy Sets" endpoint to find IDs.
 
+-> **Note:** Policy sets marked as global cannot be attached to individual workspaces.
+
 Status  | Response                  | Reason
 --------|---------------------------|----------
 [204][] | Nothing                   | The request was successful
@@ -505,6 +507,8 @@ curl \
 Parameter | Description
 ----------|------------
 `:id`     | The ID of the policy set to detach from workspaces. Use the "List Policy Sets" endpoint to find IDs.
+
+-> **Note:** Policy sets marked as global cannot be detached from individual workspaces.
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
