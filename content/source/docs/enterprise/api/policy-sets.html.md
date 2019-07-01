@@ -268,7 +268,7 @@ curl --request GET \
 }
 ```
 
--> **Note:** The `data.relationships.workspaces` refers to workspaces directly attached to the policy set. This key is omitted for policy sets marked as global; in this case, global policy sets are implicitly related to all of the organization's workspaces.
+-> **Note:** The `data.relationships.workspaces` object refers to workspaces directly attached to the policy set. This key is omitted for policy sets marked as global, which are implicitly related to all of the organization's workspaces.
 
 ## Update a Policy Set
 
