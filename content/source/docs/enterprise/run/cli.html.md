@@ -10,6 +10,7 @@ sidebar_current: "docs-enterprise2-run-cli"
 [speculative plan]: ./index.html#speculative-plans
 [permissions]: ../users-teams-organizations/permissions.html
 [tfe-provider]: /docs/providers/tfe/index.html
+[tf working directory]: ../workspaces/settings.html#terraform-working-directory
 
 # The CLI-driven Run Workflow
 
