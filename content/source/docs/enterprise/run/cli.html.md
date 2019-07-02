@@ -81,6 +81,24 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
+### Terraform Init and Terraform Working Directory
+
+~> **Important:** If the [Terraform working directory][tf working directory] is configured in the `remote` VCS-connected workspace, then `terraform init` must be invoked from the root of the local copy of the Terraform configuration repository.
+
+Consider a Terraform configuration repository with the following nested directory structure.
+
+```shell
+$ tree
+.
+└── nested
+    ├── backend.tf
+    └── main.tf
+
+1 directory, 2 files
+```
+
+If the [Terraform working directory][tf working directory] in the `remote` VCS-connected workspace is configured to be `nested/`, then the backend can be initialized by invoking `terraform init nested/` from the root of the local copy of the Terraform configuration repository.
+
 ## Remote Speculative Plans
 
 To run a [speculative plan][] on your configuration, use the `terraform plan` command. The plan will run in Terraform Enterprise, and the logs will stream back to the command line along with a URL to view the plan in the Terraform Enterprise UI.
@@ -111,6 +129,24 @@ persisted to local or remote state storage.
 
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
+
+### Terraform Plan and Terraform Working Directory
+
+~> **Important:** If the [Terraform working directory][tf working directory] is configured in the `remote` VCS-connected workspace, then `terraform plan` must be invoked from the root of the local copy of the Terraform configuration repository.
+
+Consider a Terraform configuration repository with the following nested directory structure.
+
+```shell
+$ tree
+.
+└── nested
+    ├── backend.tf
+    └── main.tf
+
+1 directory, 2 files
+```
+
+If the [Terraform working directory][tf working directory] in the `remote` VCS-connected workspace is configured to be `nested/`, then the speculative plan can be triggered by invoking `terraform plan nested/` from the root of the local copy of the Terraform configuration repository.
 
 ## Remote Applies
 
