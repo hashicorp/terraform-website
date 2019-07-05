@@ -230,7 +230,7 @@ This endpoint supports pagination [with standard URL query parameters](./index.h
 Parameter           | Description
 --------------------|------------
 `filter[versioned]` | **Optional.** Allows filtering policy sets based on whether they are versioned (VCS or API), or manually updated. Accepts a boolean true/false value. If omitted, all policy sets are returned.
-`include`           | **Optional.** Allows including related resource data. Value must be one of `workspaces`, `policies`, or `current_version`.
+`include`           | **Optional.** Allows including related resource data. Value must be a comma-separated list containing one or more of `workspaces`, `policies`, `newest_version`, or `current_version`. See the [relationships section](#relationships) for details.
 `page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`        | **Optional.** If omitted, the endpoint will return 20 policy sets per page.
 `search[name]`      | **Optional.** Allows searching the organization's policy sets by name.
@@ -299,7 +299,7 @@ Status  | Response                                      | Reason
 
 Parameter | Description
 ----------|------------
-`include` | **Optional.** Allows including related resource data. Value must be one of `workspaces`, `policies`, or `current_version`.
+`include` | **Optional.** Allows including related resource data. Value must be a comma-separated list containing one or more of `workspaces`, `policies`, `newest_version`, or `current_version`. See the [relationships section](#relationships) for details.
 
 ### Sample Request
 
@@ -799,3 +799,12 @@ curl \
 ```
 
 The `upload` link URL in the above response is valid for one hour after creation. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the "Show Policy Set" endpoint again to verify that the status has changed from `pending` to `ready`.
+
+## Relationships
+
+The following relationships may be present in various responses:
+
+* `workspaces`: The workspaces to which the policy set applies.
+* `policies`: Individually managed policies which are associated with the policy set.
+* `newest-version`: The most recently created policy set version, regardless of status. Note that this relationship may include an errored and unusable version, and is intended to allow checking for VCS errors.
+* `current-version`: The most recent **successful** policy set version.
