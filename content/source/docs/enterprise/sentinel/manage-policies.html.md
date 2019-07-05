@@ -6,10 +6,10 @@ sidebar_current: "docs-enterprise2-sentinel-manage-policies"
 
 # Managing Sentinel Policies
 
--> **API:** See the [Policies API](../api/policies.html) and [Policy Sets API](../api/policy-sets.html).<br/>
-**Terraform:** See the `tfe` provider's [`tfe_sentinel_policy` resource](/docs/providers/tfe/r/sentinel_policy.html) and [`tfe_policy_set` resource](/docs/providers/tfe/r/policy_set.html).
+-> **API:** See the [Policy Sets API](../api/policy-sets.html).<br/>
+**Terraform:** See the `tfe` provider's [`tfe_policy_set` resource](/docs/providers/tfe/r/policy_set.html).
 
-Sentinel Policies are rules which are enforced on every Terraform run to validate that the plan and corresponding resources are in compliance with company policies.
+Sentinel Policies are rules which are enforced on Terraform runs to validate that the plan and corresponding resources are in compliance with company policies.
 
 ## Policies and Policy Sets
 
@@ -17,38 +17,46 @@ Sentinel Policies are rules which are enforced on every Terraform run to validat
 [users]: ../users-teams-organizations/users.html
 [workspaces]: ../workspaces/index.html
 
-**Policies** consist of a Sentinel policy file, a name, and an enforcement level.
+**Policies** consist of a Sentinel policy file and an enforcement level.
 
 **Policy sets** are groups of policies that can be enforced on [workspaces][]. A policy set can be enforced on designated workspaces, or to all workspaces in the organization.
 
 After the plan stage of a Terraform run, Terraform Enterprise (TFE) checks every Sentinel policy that should be enforced on the run's workspace. This includes policies from global policy sets, and from any policy sets that are explicitly assigned to the workspace.
 
-~> **Important:** In order for a policy to take effect, it must be in one or more policy sets. Individual policies cannot be assigned to workspaces, and policies that are not in any policy sets will never be checked.
+Policy sets are managed at an organization level, and only [organization owners](../users-teams-organizations/teams.html#the-owners-team) can create, edit or delete them.
 
-Policies and policy sets are managed at an organization level, and only [organization owners](../users-teams-organizations/teams.html#the-owners-team) can create, edit or delete them.
+## Enforcement Levels
 
--> **Note:** The UI controls for managing Sentinel policies are designed for demos and other simple use cases; for complex usage with multiple policies, we recommend [storing Sentinel code in version control](./integrate-vcs.html) and using your CI system to test and upload policies via TFE's API. In the future, Terraform Enterprise will integrate directly with VCS providers for the Sentinel workflow.
+Enforcement levels in Sentinel are used for defining behavior when policies fail to evaluate successfully. Sentinel provides three enforcement modes:
 
-## Managing Policies
+* `hard-mandatory` requires that the policy passes. If a policy fails, the run is halted and may not be applied until the failure is resolved.
+* `soft-mandatory` is much like `hard-mandatory`, but allows an administrator to override policy failures on a case-by-case basis.
+* `advisory` will never interrupt the run, and instead will only surface policy failures as informational to the user.
 
-[organization settings]: ../users-teams-organizations/organizations.html#organization-settings
+## Constructing a policy set
 
-To manage an organization's Sentinel policies, go to the [organization settings][] and navigate to the "Policies" page.
+In order to use Sentinel in Terraform Enterprise, you'll first need to create a policy set. A policy set is simply a directory structure containing a Sentinel configuration file and some policy files. We recommend that these files and configurations be treated like any other code and be checked in to a source control system. An added benefit to this is TFE's VCS integration for Sentinel policies. See the [managing policy sets](#managing-policy-sets) section for details.
 
-To create a new policy, click the "Create a new policy" button; to edit an existing policy, click its entry in the list. Click the "Create policy" or "Update policy" button when finished.
+### The `sentinel.hcl` configuration file
 
-When creating or editing a policy, the following fields are available:
+Every policy set requires a configuration file named `sentinel.hcl`. This configuration file defines:
 
-- **Policy Name:** The name of the policy, which is used in the UI and Sentinel output. Accepts letters, numbers, `-`, and `_`. (Names cannot be modified after creation, and this field is disabled when editing an existing policy.)
-- **Description:** A brief note about the policy's purpose, displayed in the policy list.
-- **Enforcement Mode:** How the policy is enforced when performing a run. The following modes are available:
-  - **hard-mandatory (cannot override):** This policy is required on all Terraform runs. It cannot be overridden by any users.
-  - **soft-mandatory (can override):** This policy is required, but organization owners can override the policy and allow a non-compliant run to continue.
-  - **advisory (logging only):** This policy will allow the run to continue regardless of whether it passes or fails.
-- **Policy Code:** The text of the [Terraform-compatible Sentinel](https://docs.hashicorp.com/sentinel/app/terraform/) policy which defines the rules for the Terraform configurations, states and plans. Please note that custom imports are not available for use in Terraform Enterprise at this time.
-- **Policy Sets:** Which policy sets your policy will belong to. Use the drop-down menu and "Add policy set" button to add the policy to a set, and the trash can (🗑) button to remove the policy from a set.
+* Each policy that should be checked in the set
+* The [enforcement level](#enforcement-levels) of each policy in the set.
 
-To delete an existing policy, navigate to its edit page and use the "Delete policy" button at the bottom of the page.
+The `sentinel.hcl` configuration file may contain any number of entries which look like this:
+
+```python
+policy "sunny-day" {
+    enforcement_level = "hard-mandatory"
+}
+```
+
+In the above, a policy named `sunny-day` is defined with a `hard-mandatory` [enforcement level](#enforcement-levels).
+
+### Sentinel policy code files
+
+Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `sunny-day.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set.
 
 ## Managing Policy Sets
 
@@ -61,5 +69,6 @@ When creating or editing a policy set, the following fields are available:
 - **Name**: The name of the policy set, which is used in the UI. Must be unique to your organization. Accepts letters, numbers, `-`, and `_`.
 - **Description**: A description of the policy set's purpose. The description can be any length and supports Markdown rendering.
 - **Scope of policies:** Whether the set should be enforced on all workspaces, or only on a chosen list of workspaces.
-- **Policies:** Which policies to include in the set. Any policy can be in multiple policy sets. Use the drop-down menu and "Add policy" button to add policies to the set, and the trash can (🗑) button to remove policies.
+- **VCS repo or "Upload via API"**: This area allows selecting a VCS repository from an existing OAuth client connection. Choosing "Upload via API" will not configure VCS integration, and instead tarballs of policy sets may be uploaded via the API. See the [policy set versions](../api/policy-sets.html#create-a-policy-set-version) for more information on uploading policy sets using the API.
+- **Policies Path**: This field allows specifying a sub-directory within a VCS repository for the policy set files. This allows maintaining multiple policy sets within a single repository. The value of this field should be the path to the directory containing the `sentinel.hcl` configuration file of the policy set you wish to configure. Any files in the repository which are not within this path will not be included when the policy set is cloned. Commits to the repository which do not match the specified directory will be ignored. If left blank, the root of the repository is used.
 - **Workspaces:** Which workspaces the policy set should be enforced on. This is only shown when the scope of policies is set to "Policies enforced on selected workspaces." Use the drop-down menu and "Add workspace" button to add workspaces, and the trash can (🗑) button to remove them.
