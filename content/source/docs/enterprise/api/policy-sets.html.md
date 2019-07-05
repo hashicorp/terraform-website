@@ -73,14 +73,16 @@ Key path                                      | Type            | Default | Desc
     "attributes": {
       "name": "production",
       "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
-      "global": false
+      "global": false,
+      "policies-path": "/policy-sets/foo",
+      "vcs-repo": {
+        "branch": "master",
+        "identifier": "hashicorp/my-policy-sets",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-7Fr9d83jWsi8u23A"
+      }
     },
     "relationships": {
-      "policies": {
-        "data": [
-          { "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }
-        ]
-      },
       "workspaces": {
         "data": [
           { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
@@ -92,7 +94,7 @@ Key path                                      | Type            | Default | Desc
 }
 ```
 
-### Sample Payload with VCS repository
+### Sample payload with individual policy relationships (deprecated)
 
 ```json
 {
@@ -100,16 +102,14 @@ Key path                                      | Type            | Default | Desc
     "attributes": {
       "name": "production",
       "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
-      "global": false,
-      "policies-path": "/policy-sets/foo",
-      "vcs-repo": {
-        "branch": "master",
-        "identifier": "hashicorp/my-policy-sets",
-        "ingress-submodules": false,
-        "oauth-token-id": "ot-7Fr9d83jWsi8u23A"
-      }
+      "global": false
     },
     "relationships": {
+      "policies": {
+        "data": [
+          { "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }
+        ]
+      },
       "workspaces": {
         "data": [
           { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
@@ -133,44 +133,6 @@ curl \
 ```
 
 ### Sample Response
-
-```json
-{
-  "data": {
-    "id":"polset-3yVQZvHzf5j3WRJ1",
-    "type":"policy-sets",
-    "attributes": {
-      "name": "production",
-      "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
-      "global": false,
-      "policy-count": 1,
-      "workspace-count": 1,
-      "versioned": false,
-      "created-at": "2018-09-11T18:21:21.784Z",
-      "updated-at": "2018-09-11T18:21:21.784Z"
-    },
-    "relationships": {
-      "organization": {
-        "data": { "id": "my-organization", "type": "organizations" }
-      },
-      "policies": {
-        "data": [
-          { "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }
-        ]
-      },
-      "workspaces": {
-        "data": [
-          { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
-        ]
-      }
-    },
-    "links": {
-      "self":"/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1"
-    }
-  }
-}
-```
-### Sample Response with VCS repository
 
 ```json
 {
@@ -210,6 +172,45 @@ curl \
 }
 ```
 
+### Sample response with individual policy relationships (deprecated)
+
+```json
+{
+  "data": {
+    "id":"polset-3yVQZvHzf5j3WRJ1",
+    "type":"policy-sets",
+    "attributes": {
+      "name": "production",
+      "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
+      "global": false,
+      "policy-count": 1,
+      "workspace-count": 1,
+      "versioned": false,
+      "created-at": "2018-09-11T18:21:21.784Z",
+      "updated-at": "2018-09-11T18:21:21.784Z"
+    },
+    "relationships": {
+      "organization": {
+        "data": { "id": "my-organization", "type": "organizations" }
+      },
+      "policies": {
+        "data": [
+          { "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }
+        ]
+      },
+      "workspaces": {
+        "data": [
+          { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
+        ]
+      }
+    },
+    "links": {
+      "self":"/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1"
+    }
+  }
+}
+```
+
 ## List Policy Sets
 
 `GET /organizations/:organization_name/policy-sets`
@@ -229,7 +230,7 @@ This endpoint supports pagination [with standard URL query parameters](./index.h
 
 Parameter           | Description
 --------------------|------------
-`filter[versioned]` | **Optional.** Allows filtering policy sets based on whether they are versioned (VCS or API), or manually updated. Accepts a boolean true/false value. If omitted, all policy sets are returned.
+`filter[versioned]` | **Optional.** Allows filtering policy sets based on whether they are versioned (VCS-managed or API-managed), or use individual policy relationships. Accepts a boolean true/false value. A `true` value returns versioned sets, and a `false` value returns sets with individual policy relationships. If omitted, all policy sets are returned.
 `include`           | **Optional.** Allows including related resource data. Value must be a comma-separated list containing one or more of `workspaces`, `policies`, `newest_version`, or `current_version`. See the [relationships section](#relationships) for details.
 `page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`        | **Optional.** If omitted, the endpoint will return 20 policy sets per page.
@@ -462,7 +463,7 @@ Key path                                      | Type    | Default          | Des
 `data.attributes.vcs-repo.identifier`         | string  | (previous value) | The identifier of the VCS repository in the format `<namespace>/<repo>`. For example, on GitHub, this would be something like `hashicorp/my-policy-set`.
 `data.attributes.vcs-repo.oauth-token-id`     | string  | (previous value) | The OAuth Token ID to use to connect to the VCS host.
 `data.attributes.vcs-repo.ingress-submodules` | boolean | (previous value) | Determines whether repository submodules will be instantiated during the clone operation.
-`data.attributes.policies-path`               | boolean | (previous value) | The sub-path within the attached VCS repository to clone. All files and directories outside of this sub-path will be ignored. This option may only be specified when a VCS repo is present. **Note:** When this option is configured, commits in the repository which are outside of the given policies-path will be ignored. When this option is changed, the repository will be automatically cloned again to ensure this path value is reflected in the policy set contents.
+`data.attributes.policies-path`               | boolean | (previous value) | The subdirectory of the attached VCS repository that contains the policies for this policy set. Files and directories outside of this sub-path will be ignored, and changes to those unrelated files won't cause the policy set to be updated. This option may only be specified when a VCS repo is present.
 
 ### Sample Payload
 

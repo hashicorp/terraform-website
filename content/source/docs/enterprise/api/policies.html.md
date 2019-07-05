@@ -29,7 +29,7 @@ Policies are configured on a per-organization level and are organized and groupe
 
 This page documents the API endpoints to create, read, update, and delete the Sentinel policies in an organization. Use of these endpoints provides a method to manually manage individual policies within Terraform Enterprise. To view and manage the results of a specific run's policy check, use the [Runs API](./run.html).
 
-~> **Note**: Use of these endpoints is not required to use Sentinel features in Terraform Enterprise. Alternatively, you can manage versioned policy sets, which allows integrating with VCS or uploading policy set data and configuration as a whole. Use the [policy sets API](./policy-sets.html) to leverage versioned policy sets.
+~> **Note**: These endpoints are no longer the recommended way to use Sentinel features in Terraform Enterprise. We suggest using versioned policy sets, which allows integrating with VCS or uploading policy set data and configuration as a whole. Use the [policy sets API](./policy-sets.html) to leverage versioned policy sets.
 
 ## Create a Policy
 
