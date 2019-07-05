@@ -25,7 +25,7 @@ sidebar_current: "docs-enterprise2-api-policy-sets"
 
 [Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Enterprise.
 
-Policy sets are groups of policies that are applied together to related workspaces. By using policy sets, you can group your policies by attributes such as environment or region. Individual policies within a policy set will only be checked for workspaces that the policy set is attached to. Policy sets can group indidual policies created via the [policies API](./policies.html), or act as versioned sets which are sourced from either a version control system (such as GitHub) or uploaded as a whole via the [policy set versions API](#create-a-policy-set-version).
+Policy sets are groups of policies that are applied together to related workspaces. By using policy sets, you can group your policies by attributes such as environment or region. Individual policies within a policy set will only be checked for workspaces that the policy set is attached to. Policy sets can group indidual policies created via the [policies API](./policies.html), or act as versioned sets which are either sourced from a version control system (such as GitHub) or uploaded as a whole via the [policy set versions API](#create-a-policy-set-version).
 
 This page documents the API endpoints to create, read, update, and delete policy sets in an organization. To view and manage policies, use the [Policies API](./policies.html).
 
@@ -61,9 +61,9 @@ Key path                                      | Type            | Default | Desc
 `data.attributes.vcs-repo.identifier`         | string          |         | The identifier of the VCS repository in the format `<namespace>/<repo>`. For example, on GitHub, this would be something like `hashicorp/my-policy-set`.
 `data.attributes.vcs-repo.oauth-token-id`     | string          |         | The OAuth Token ID to use to connect to the VCS host.
 `data.attributes.vcs-repo.ingress-submodules` | boolean         | `false` | Determines whether repository submodules will be instantiated during the clone operation.
-`data.attributes.policies-path`               | string          | `null`  | The sub-path within the attached VCS repository to clone. All files and directories outside of this sub-path will be ignored. This option may only be specified when a VCS repo is present. **Note:** When this option is configured, commits in the repository which are outside of the given policies-path will be ignored.
-`data.relationships.policies.data[]`          | array\[object\] | `[]`    | A list of resource identifier objects that defines which policies will be members of the new set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{ "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }`). **Note:** This option will be deprecated in the future in favor of VCS policy sets.
 `data.relationships.workspaces.data[]`        | array\[object\] | `[]`    | A list of resource identifier objects that defines which workspaces the new set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`). Obtain workspace IDs from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. Individual workspaces cannot be attached to the policy set when `data.attributes.global` is `true`.
+`data.attributes.policies-path`               | string          | `null`  | The subdirectory of the attached VCS repository that contains the policies for this policy set. Files and directories outside of this sub-path will be ignored, and changes to those unrelated files won't cause the policy set to be updated. This option may only be specified when a VCS repo is present.
+`data.relationships.policies.data[]`          | array\[object\] | `[]`    | **DEPRECATED.** A list of resource identifier objects that defines which policies will be members of the new set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{ "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }`). **Important:** This deprecated option will be removed in the future in favor of VCS policy sets.
 
 ### Sample Payload
 
@@ -744,7 +744,7 @@ curl \
 
 ## Create a Policy Set Version
 
-For versioned policy sets which have no VCS repository attached, versions of policy code may be uploaded directly to the API by creating a new Policy Set Version, and uploading a tarball (tar.gz) of data to it.
+For versioned policy sets which have no VCS repository attached, versions of policy code may be uploaded directly to the API by creating a new policy set version and, in a subsequent request, uploading a tarball (tar.gz) of data to it.
 
 `POST /policy-sets/:id/versions`
 
