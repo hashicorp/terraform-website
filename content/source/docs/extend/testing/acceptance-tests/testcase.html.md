@@ -241,7 +241,7 @@ func testAccCheckExampleResourceDestroy(s *terraform.State) error {
 
     // If the error is equivalent to 404 not found, the widget is destroyed.
     // Otherwise return the error
-    if !strings.Contains(err.Error(), "Widget not found" {
+    if !strings.Contains(err.Error(), "Widget not found") {
       return err
     }
   }
