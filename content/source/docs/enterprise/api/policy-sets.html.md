@@ -793,11 +793,11 @@ Parameter | Description
 ----------|------------
 `:id`     | The ID of the policy set to create a new version for.
 
-Status  | Response                                            | Reason
---------|-----------------------------------------------------|-------
-[201][] | [JSON API document] (`type: "policy-set-versions"`) | The request was successful.
-[404][] | [JSON API error object][]                           | Policy set not found or user unauthorized to perform action
-[422][] | [JSON API error object][]                           | The policy set does not support uploading versions.
+Status  | Response                                              | Reason
+--------|-------------------------------------------------------|-------
+[201][] | [JSON API document][] (`type: "policy-set-versions"`) | The request was successful.
+[404][] | [JSON API error object][]                             | Policy set not found or user unauthorized to perform action
+[422][] | [JSON API error object][]                             | The policy set does not support uploading versions.
 
 ### Sample Request
 
