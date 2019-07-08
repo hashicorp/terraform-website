@@ -72,3 +72,18 @@ When creating or editing a policy set, the following fields are available:
 - **VCS repo or "Upload via API"**: This area allows selecting a VCS repository from an existing OAuth client connection. Choosing "Upload via API" will not configure VCS integration, and instead tarballs of policy sets may be uploaded via the API. See the [policy set versions](../api/policy-sets.html#create-a-policy-set-version) for more information on uploading policy sets using the API.
 - **Policies Path**: This field allows specifying a sub-directory within a VCS repository for the policy set files. This allows maintaining multiple policy sets within a single repository. The value of this field should be the path to the directory containing the `sentinel.hcl` configuration file of the policy set you wish to configure. Any files in the repository which are not within this path will not be included when the policy set is cloned. Commits to the repository which do not match the specified directory will be ignored. If left blank, the root of the repository is used.
 - **Workspaces:** Which workspaces the policy set should be enforced on. This is only shown when the scope of policies is set to "Policies enforced on selected workspaces." Use the drop-down menu and "Add workspace" button to add workspaces, and the trash can (🗑) button to remove them.
+
+## Migrating individually managed policies to versioned policy sets
+
+Individually managed policies were a proof-of-concept feature in Terraform Enterprise which allowed editing policy code directly in the UI and combining these policies into policy sets. This workflow is deprecated and is being replaced by versioned policy sets, which are managed as an immutable, atomic, and versioned unit, using VCS or directly uploading entire policy sets through the API.
+
+If you already have policy sets defined which reference individually managed policies directly, you can quickly and easily migrate them to versioned policy sets.
+
+### Migration Utility
+
+We've created a simple migration utility which you can run on the command line to mirror all of your policy sets to local disk. This is the first step in moving to versioned policy sets. You can [view the source][migrate-source] of the migration utility or [download a release][migrate-binary] to get started quickly.
+
+[migrate-source]: https://github.com/hashicorp/tfc-policy-sets-migration
+[migrate-binary]: https://github.com/hashicorp/tfc-policy-sets-migration/releases
+
+Once you've got your policies and configurations mirrored to disk, you can follow the steps in the [managing policy sets](#managing-policy-sets) section to configure your new versioned policy sets using the migrated source files created by the migration utility program.
