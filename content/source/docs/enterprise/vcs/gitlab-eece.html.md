@@ -24,6 +24,8 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
 -> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using TFE's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
 
+-> **Version Note:** TFE supports GitLab versions 9.0 and newer. HashiCorp does not test older versions of GitLab with TFE, and they might not work as expected. Also note that, although we do not deliberately remove support for versions that have reached end of life (per the [GitLab Support End of Life Policy](https://docs.gitlab.com/ee/policy/maintenance.html#patch-releases)), our ability to resolve customer issues with end of life versions might be limited.
+
 ## Step 1: On GitLab, Create a New Application
 
 1. Open your GitLab instance in your browser and log in as whichever account you want TFE to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
