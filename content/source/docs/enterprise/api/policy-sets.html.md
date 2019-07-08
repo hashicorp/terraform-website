@@ -61,8 +61,8 @@ Key path                                      | Type            | Default | Desc
 `data.attributes.vcs-repo.identifier`         | string          |         | The identifier of the VCS repository in the format `<namespace>/<repo>`. For example, on GitHub, this would be something like `hashicorp/my-policy-set`.
 `data.attributes.vcs-repo.oauth-token-id`     | string          |         | The OAuth Token ID to use to connect to the VCS host.
 `data.attributes.vcs-repo.ingress-submodules` | boolean         | `false` | Determines whether repository submodules will be instantiated during the clone operation.
-`data.relationships.workspaces.data[]`        | array\[object\] | `[]`    | A list of resource identifier objects that defines which workspaces the new set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`). Obtain workspace IDs from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. Individual workspaces cannot be attached to the policy set when `data.attributes.global` is `true`.
 `data.attributes.policies-path`               | string          | `null`  | The subdirectory of the attached VCS repository that contains the policies for this policy set. Files and directories outside of this sub-path will be ignored, and changes to those unrelated files won't cause the policy set to be updated. This option may only be specified when a VCS repo is present.
+`data.relationships.workspaces.data[]`        | array\[object\] | `[]`    | A list of resource identifier objects that defines which workspaces the new set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`). Obtain workspace IDs from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. Individual workspaces cannot be attached to the policy set when `data.attributes.global` is `true`.
 `data.relationships.policies.data[]`          | array\[object\] | `[]`    | **DEPRECATED.** A list of resource identifier objects that defines which policies will be members of the new set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{ "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }`). **Important:** This deprecated option will be removed in the future in favor of VCS policy sets.
 
 ### Sample Payload
@@ -70,6 +70,7 @@ Key path                                      | Type            | Default | Desc
 ```json
 {
   "data": {
+    "type": "policy-sets",
     "attributes": {
       "name": "production",
       "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
@@ -88,8 +89,7 @@ Key path                                      | Type            | Default | Desc
           { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
         ]
       }
-    },
-    "type": "policy-sets"
+    }
   }
 }
 ```
@@ -99,6 +99,7 @@ Key path                                      | Type            | Default | Desc
 ```json
 {
   "data": {
+    "type": "policy-sets",
     "attributes": {
       "name": "production",
       "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
@@ -115,8 +116,7 @@ Key path                                      | Type            | Default | Desc
           { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
         ]
       }
-    },
-    "type": "policy-sets"
+    }
   }
 }
 ```
@@ -256,6 +256,48 @@ curl \
         "name": "production",
         "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
         "global": false,
+        "workspace-count": 1,
+        "policies-path": "/policy-sets/foo",
+        "versioned": true,
+        "vcs-repo": {
+          "branch": "master",
+          "identifier": "hashicorp/my-policy-sets",
+          "ingress-submodules": false,
+          "oauth-token-id": "ot-7Fr9d83jWsi8u23A"
+        },
+        "created-at": "2018-09-11T18:21:21.784Z",
+        "updated-at": "2018-09-11T18:21:21.784Z"
+      },
+      "relationships": {
+        "organization": {
+          "data": { "id": "my-organization", "type": "organizations" }
+        },
+        "workspaces": {
+          "data": [
+            { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
+          ]
+        }
+      },
+      "links": {
+        "self":"/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1"
+      }
+    }
+  ]
+}
+```
+
+### Sample response with individual policy relationships (deprecated)
+
+```json
+{
+  "data": [
+    {
+      "id":"polset-3yVQZvHzf5j3WRJ1",
+      "type":"policy-sets",
+      "attributes": {
+        "name": "production",
+        "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
+        "global": false,
         "policy-count": 1,
         "workspace-count": 1,
         "versioned": false,
@@ -312,47 +354,6 @@ curl --request GET \
 ```
 
 ### Sample Response
-
-```json
-{
-  "data": {
-    "id":"polset-3yVQZvHzf5j3WRJ1",
-    "type":"policy-sets",
-    "attributes": {
-      "name": "production",
-      "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
-      "global": false,
-      "policy-count": 1,
-      "workspace-count": 1,
-      "versioned": false,
-      "created-at": "2018-09-11T18:21:21.784Z",
-      "updated-at": "2018-09-11T18:21:21.784Z",
-    },
-    "relationships": {
-      "organization": {
-        "data": { "id": "my-organization", "type": "organizations" }
-      },
-      "policies": {
-        "data": [
-          { "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }
-        ]
-      },
-      "workspaces": {
-        "data": [
-          { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
-        ]
-      }
-    },
-    "links": {
-      "self":"/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1"
-    }
-  }
-}
-```
-
--> **Note:** The `data.relationships.workspaces` object refers to workspaces directly attached to the policy set. This key is omitted for policy sets marked as global, which are implicitly related to all of the organization's workspaces.
-
-### Sample Response with VCS repository
 
 ```json
 {
@@ -431,6 +432,47 @@ curl --request GET \
   ]
 }
 ```
+
+### Sample response with individual policy relationships (deprecated)
+
+```json
+{
+  "data": {
+    "id":"polset-3yVQZvHzf5j3WRJ1",
+    "type":"policy-sets",
+    "attributes": {
+      "name": "production",
+      "description": "This set contains policies that should be checked on all production infrastructure workspaces.",
+      "global": false,
+      "policy-count": 1,
+      "workspace-count": 1,
+      "versioned": false,
+      "created-at": "2018-09-11T18:21:21.784Z",
+      "updated-at": "2018-09-11T18:21:21.784Z",
+    },
+    "relationships": {
+      "organization": {
+        "data": { "id": "my-organization", "type": "organizations" }
+      },
+      "policies": {
+        "data": [
+          { "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }
+        ]
+      },
+      "workspaces": {
+        "data": [
+          { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
+        ]
+      }
+    },
+    "links": {
+      "self":"/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1"
+    }
+  }
+}
+```
+
+-> **Note:** The `data.relationships.workspaces` object refers to workspaces directly attached to the policy set. This key is omitted for policy sets marked as global, which are implicitly related to all of the organization's workspaces.
 
 ## Update a Policy Set
 
@@ -541,7 +583,6 @@ Status  | Response                  | Reason
 
 ~> **Note:** This endpoint may only be used when there is no VCS repository associated with the policy set.
 
-
 ### Request Body
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
@@ -589,7 +630,6 @@ Status  | Response                  | Reason
 [204][] | Nothing                   | The request was successful
 [404][] | [JSON API error object][] | Policy set not found or user unauthorized to perform action
 [422][] | [JSON API error object][] | Malformed request body (one or more workspaces not found, wrong types, etc.)
-
 
 ### Request Body
 
