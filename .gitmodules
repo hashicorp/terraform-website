@@ -418,3 +418,7 @@
 	path = ext/providers/akamai
 	url = https://github.com/terraform-providers/terraform-provider-akamai
 	branch = stable-website
+[submodule "ext/providers/signalfx"]
+	path = ext/providers/signalfx
+	url = https://github.com/terraform-providers/terraform-provider-signalfx
+	branch = stable-website
