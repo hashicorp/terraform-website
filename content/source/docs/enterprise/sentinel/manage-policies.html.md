@@ -81,7 +81,7 @@ If you already have policy sets defined which reference individually managed pol
 
 ### Migration Utility
 
-We've created a simple migration utility which you can run on the command line to mirror all of your policy sets to local disk. This is the first step in moving to versioned policy sets. You can [view the source][migrate-source] of the migration utility or [download a release][migrate-binary] to get started quickly.
+We've created a simple migration utility which you can run on the command line to mirror all of your policy sets to local disk. This is the first step in moving to versioned policy sets. You can [view the documentation and source][migrate-source] of the migration utility or [download a release][migrate-binary] to get started quickly.
 
 [migrate-source]: https://github.com/hashicorp/tfc-policy-sets-migration
 [migrate-binary]: https://github.com/hashicorp/tfc-policy-sets-migration/releases
