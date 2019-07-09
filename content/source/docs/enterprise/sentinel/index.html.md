@@ -23,8 +23,8 @@ policy using Terraform itself.
 ## Sentinel in Terraform Enterprise
 
 ~> Sentinel now supports native VCS integration and direct policy set uploads.
-   See the [manage policies](./manage-policies.html) page for details or to read
-   about the [migration utility](./manage-policies.html#migration-utility).
+   See [Managing policies for organizations](./manage-policies.html) for details
+   or to read about the [migration utility](./manage-policies.html#migration-utility).
 
 Using Sentinel with Terraform Enterprise involves:
 

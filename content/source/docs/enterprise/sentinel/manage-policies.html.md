@@ -60,7 +60,11 @@ Sentinel policies themselves are defined in individual files (one per policy) in
 
 ## Managing Policy Sets
 
-To manage policy sets, go to the organization settings page (click "Settings" in the top navigation bar) and click the "Policy Sets" link on the left side of the page. Policy sets enforced on all workspaces are marked with a "GLOBAL" tag in this list; other policy sets show how many workspaces they are enforced on.
+To manage policy sets, go to the "Policy Sets" section on the organization settings page.
+
+![policy-sets-navigate](./images/policy-sets-navigate.png)
+
+Policy sets enforced on all workspaces are marked "All workspaces" in this list; other policy sets show how many workspaces they are enforced on. You may also notice policy sets with an informational tag that reads "Policies managed individually", which indicates that the policy set is not versioned and uses policy relationships (deprecated). These policy sets will need to be [migrated](#migrating-individually-managed-policies-to-versioned-policy-sets) in the future.
 
 To create a new policy set, click the "Create a new policy set" button; to edit an existing set, click its entry in the list. Click the "Create policy set" or "Update policy set" button when finished.
 
