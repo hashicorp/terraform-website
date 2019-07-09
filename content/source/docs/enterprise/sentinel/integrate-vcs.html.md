@@ -6,6 +6,8 @@ sidebar_current: "docs-enterprise2-sentinel-integrate-vcs"
 
 # Managing Sentinel Policies with Version Control
 
+~> **Note**: This guide uses deprecated features in Terraform Enterprise. It is recommended to use the first-class VCS integration with [policy sets](./manage-policies.html#managing-policy-sets) instead.
+
 [test]: https://docs.hashicorp.com/sentinel/writing/testing
 [tfe_sentinel_policy]: /docs/providers/tfe/r/sentinel_policy.html
 [tfe_policy_set]: /docs/providers/tfe/r/policy_set.html

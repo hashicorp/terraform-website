@@ -27,14 +27,10 @@ Using Sentinel with Terraform Enterprise involves:
 - [Defining the policies](./import/index.html) - Policies are defined using the
   [policy language](https://docs.hashicorp.com/sentinel/concepts/language) with
   imports for parsing the Terraform plan, state and configuration.
-- [Managing the policies for organizations](./manage-policies.html) -
-  Organization owners add policies to their organization by setting the policy
-  name, policy file, and the enforcement level. They then group these policies
-  into policy sets to define which workspaces the policies are checked against
-  during runs.
-- [Managing policies with VCS](./integrate-vcs.html) - After getting an
-  understanding of policy management, organizations can manage their policies
-  with VCS, which will assist with the deployment of policies at scale.
+- [Managing policies for organizations](./manage-policies.html) -
+  Organization owners add policies to their organization by configuring VCS
+  integration or uploading policy sets through the API. They also define which
+  workspaces the policy sets are checked against during runs.
 - [Enforcing policy checks on runs](./enforce.html) - Policies are checked when
   a run is performed, after the `terraform plan` but before it can be confirmed
   or the `terraform apply` is executed.
