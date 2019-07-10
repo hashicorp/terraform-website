@@ -1,25 +1,30 @@
 ---
 layout: "enterprise2"
-page_title: "ServiceNow Service Catalog Integration - Terraform Enterprise"
+page_title: "Setup Instructions - ServiceNow Service Catalog Integration - Terraform Enterprise"
 description: |-
-  ServiceNow integration to enable your users to order infrastructure from ServiceNow
+  ServiceNow integration to enable your users to order Terraform-built infrastructure from ServiceNow
 ---
 
-# Terraform ServiceNow Service Catalog Integration Setup Guide
+# Terraform ServiceNow Service Catalog Integration Setup Instructions
 
--> **Version:**  v1.0.0
+-> **Integration version:**  v1.0.0
 
-The Terraform ServiceNow Service Catalog integration enables your end-users to self-serve infrastructure via ServiceNow. The integration is a building block for administrators to connect ServiceNow with Terraform Enterprise to deliver infrastructure. With this integration, users can create, plan, and apply workspaces from prepared Terraform configurations hosted in VCS repositories.
+The Terraform ServiceNow Service Catalog integration enables your end-users to provision self-serve infrastructure via ServiceNow. By connecting ServiceNow with Terraform Enterprise, this integration lets ServiceNow users create workspaces and perform Terraform runs, using prepared Terraform configurations hosted in VCS repositories.
 
-Integrating ServiceNow with Terraform Enterprise involves:
+Integrating ServiceNow with Terraform Enterprise involves several configuration steps. You will perform some of these steps in ServiceNow, and some of them in Terraform Enterprise.
 
-|Terraform ServiceNow Service Catalog | Terraform Enterprise |
+| ServiceNow | Terraform Enterprise |
 --|--
-| | Prepare an organization for the ServiceNow Catalog and a team to manage workspaces created by the integration. |
-| Import the integration from source control. |
-| Connect the integration with Terraform Enterprise. | Team API token to manage workspaces for an organization from the integration client. |
-| Add VCS repositories with Terraform configurations as catalog items. |
-| Self-serve infrastructure available through the ServiceNow Catalog. | Provisioned infrastructure are served and managed in Terraform Enterprise. |
+| | Prepare an organization for use with the ServiceNow Catalog. |
+| | Create a team that can manage workspaces in that organization. |
+| | Create a team API token so the integration can use that team's permissions. |
+| | Retrieve the unique ID that Terraform Enterprise uses to identify your VCS provider. |
+| Import the integration from source control. | |
+| Connect the integration with Terraform Enterprise, using the team API token you prepared. | |
+| Add the Terraform Service Catalog to enable it for your users. | |
+| Add VCS repositories with Terraform configurations as catalog items. | |
+
+Once these steps are completed, self-serve infrastructure will be available through the ServiceNow Catalog. Terraform Enterprise will provision and manage any requested infrastructure.
 
 ## Prerequisites
 
@@ -32,13 +37,13 @@ To start using Terraform with ServiceNow Catalog Integration, you must already h
 
 ## Terraform Enterprise Setup
 
-In order to prepare for installing the ServiceNow integration, you'll need to create and copy a few things from the Terraform side.
+Before installing the ServiceNow integration, you need to perform some setup and gather some information in Terraform Enterprise.
 
 1. [Create an organization](../../users-teams-organizations/organizations.html) (or choose an existing organization) where ServiceNow will create new workspaces.
-1. [Create a team](../../users-teams-organizations/teams.html) for that organization called ServiceNow, and ensure that it has "Manage Workspaces" enabled.
-    - Generate a Team Token and save it for later.
-1. If not yet done for this Terraform organization, [connect a VCS Provider](../../vcs/index.html).
-    - Save the OAuth Token ID for later.
+1. [Create a team](../../users-teams-organizations/teams.html) for that organization called "ServiceNow", and ensure that it has the organization-level ["Manage Workspaces" permission](../../users-teams-organizations/permissions.html#manage-workspaces). You do not need to add any users to this team.
+1. On the "ServiceNow" team's settings page, generate a [team API token](../../users-teams-organizations/service-accounts.html#team-service-accounts). **Save this API token for later.**
+1. If you haven't yet done so, [connect a VCS provider](../../vcs/index.html) for this Terraform organization.
+1. On the organization's VCS provider settings page, find the "OAuth Token ID" for your VCS provider. This is an opaque ID that Terraform Enterprise uses to identify this VCS provider. **Save the OAuth Token ID for later.**
 
 ## Installing the ServiceNow Integration
 
@@ -47,28 +52,28 @@ In order to prepare for installing the ServiceNow integration, you'll need to cr
 Import the integration using the [ServiceNow Studio](https://docs.servicenow.com/bundle/madrid-application-development/page/build/applications/concept/c_ServiceNowStudio.html).
 
 1. Launch the ServiceNow Studio by typing "studio" in the search on the left-hand side.
-1. Click "Import from Source Control" and
+1. Click "Import from Source Control."
     - If this is not your first time opening the Studio, you can also access this from File > Import from Source Control.
 1. Fill in the information required to import the integration:
-    - URL: https://github.com/YOUR_ORG/terraform-servicenow-integration
-    - Username: [your VCS username]
-    - Password: [a VCS Personal Access Token or your password]
+    - URL: `https://github.com/<YOUR_ORG>/terraform-servicenow-integration`
+    - Username: `<your VCS username>`
+    - Password: `<a VCS Personal Access Token or your password>`
 1. Select the Terraform application.
     - Application > Terraform
 1. You can now close the ServiceNow Studio or continue customizing the application.
 
-#### Enable Polling Workers [Recommended]
+#### Enable Polling Workers (Recommended)
 
-The integration includes 2 ServiceNow Workflow Schedules to poll Terraform Enterprise API using ServiceNow Outbound HTTP REST requests. By default, all workflow schedules are set to On-Demand. These can be customized inside the ServiceNow Server Studio:
+The integration includes 2 ServiceNow Workflow Schedules to poll the Terraform Enterprise API using ServiceNow Outbound HTTP REST requests. By default, all workflow schedules are set to On-Demand. These can be customized inside the ServiceNow Server Studio:
 
-1. Select the Worker Poll Run State (Workflow > Workflow Schedule)
-1. Change the value for the Run field from On-Demand to Periodically
-1. Repeat Intervals 1-5 minutes
-1. Click “Update”
+1. Select the Worker Poll Run State (Workflow > Workflow Schedule).
+1. Change the value for the Run field from "On-Demand" to "Periodically".
+1. Set Repeat Intervals to 1-5 minutes.
+1. Click "Update".
 
 ##### Worker Poll Apply Run
 
-The worker executes Terraform Run Apply to workspaces that have been planned and are ready to be applied. The worker adds a comment on the request item for those workspaces notifying a run has been triggered.
+This worker approves runs for any workspaces that have finished a Terraform plan and are ready to apply their changes. It also adds a comment on the request item for those workspaces notifying that a run has been triggered.
 
 ##### Worker Poll Run State
 
@@ -76,15 +81,15 @@ The worker synchronizes ServiceNow with the current run state of Terraform works
 
 ![screenshot: ServiceNow integration comments](./images/service-now-comments.png)
 
-### Connecting to Terraform Enterprise
+## Connecting to Terraform Enterprise
 
 -> **Roles Required:** `admin` or `x_terraform.config_user`
 
 1. Using the left-hand navigation, open the configuration table for the integration to manage the Terraform Enterprise connection.
     - Terraform > Configs
 1. Click on "New" to create a new Terraform Enterprise connection:
-    - Set API Team Token to the Terraform Enterprise [Team Token](../../users-teams-organizations/teams.html) you created earlier.
-    - If you're using Terraform Enterprise instead of the SaaS version of Terraform Cloud, change Hostname to the hostname of your Terraform Enterprise instance.
+    - Set API Team Token to the Terraform Enterprise [Team Token](../../users-teams-organizations/service-accounts.html#team-service-accounts) you created earlier.
+    - Set Hostname to the hostname of your Terraform Enterprise instance. (If you're using the SaaS version of Terraform Cloud, this is app.terraform.io.)
     - Set Org Name to the name of the Terraform Enterprise organization you wish to use for new workspaces created by ServiceNow.
 
 ## Adding the Terraform Service Catalog
@@ -93,18 +98,22 @@ The worker synchronizes ServiceNow with the current run state of Terraform works
 1. Click the plus sign in the top right.
 1. Select Terraform and choose a place to add it.
 
+At this point, your users can request Terraform infrastructure via ServiceNow, but there are not yet any infrastructure items available to request.
+
 ## Configuring VCS Repositories
 
 -> **Roles Required:** `admin` or `x_terraform.vcs_repositories_user`
 
-1. In ServiceNow, open the Terraform > VCS Repositories table by searching for "terraform" in the left-hand navigation.
-1. Click "New" to add a VCS Repository for to be available for fulfillment through the Terraform Service Catalog.
-    - Name: The name for this workspace template that you want users to see.
-    - OAuth Token ID: The OAuth Token ID that you copied from your Terraform Enterprise organization in Settings > VCS Providers.
-    - Identifier: The name you want your user to choose when ordering infrastructure. This can be the repository name, it can include organization or user(mycompany/foo), or it can be a description of what infrastructure the configuration in the repo will create (Full Azure stack)
-    - The remaining fields are all optional.
+To make infrastructure available to your users, you must add one or more workspace templates to the Terraform service catalog. A workspace template is a VCS repository that contains a Terraform configuration; any repository that could be connected to a manually-created Terraform Enterprise workspace can also be used as a workspace template in the ServiceNow integration.
 
--> **Note:** Currently, the implementation uses the [auto-apply](../../api/workspaces.html#request-body) attribute by default when creating workspaces. When creating a new workspace from a VCS repository, Terraform Enterprise inherits webhooks that are used to notify it of changes. Changes to the original repository may cause changes to the Terraform workspaces created from it.
+1. In ServiceNow, open the Terraform > VCS Repositories table by searching for "terraform" in the left-hand navigation.
+1. Click "New" to add a VCS repository for fulfillment through the Terraform Service Catalog.
+    - Name: The name for this workspace template that you want users to see.
+    - OAuth Token ID: The OAuth Token ID that you copied from your Terraform Enterprise organization's VCS providers settings. This ID specifies which VCS provider hosts the desired repository.
+    - Identifier: The VCS repository that contains the Terraform configuration for this workspace template. Repository identifiers are determined by your VCS provider; they typically use a format like `<ORGANIZATION>/<REPO NAME>` or `<PROJECT KEY>/<REPO NAME>`.
+    - The remaining fields are optional.
+
+-> **Note:** Currently, the integration defaults to creating workspaces with [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) enabled. Since VCS-backed workspaces [start Terraform runs when changes are merged](../../run/ui.html), changes to a workspace template repository may cause new runs in any Terraform workspaces created from it.
 
 ## Terraform Variables and ServiceNow Variable Sets
 
