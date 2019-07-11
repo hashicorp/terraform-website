@@ -53,7 +53,7 @@ Terraform. Providers (with Resources and/or Data Sources), and Provisioners
 are all defined in terms of the Schema package, which includes builtin types
 and methods for developers to use when writing plugins.
 
-## [Resources](/docs/extend/resources.html)
+## [Resources](/docs/extend/resources/index.html)
 
 The Resource package provides several utilities and conveniences for handling
 tasks such as state migrations and customized difference behavior, these tasks

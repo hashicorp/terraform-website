@@ -212,7 +212,7 @@ that `null_resource.example.triggers["foo"]` was interpolated into, rather than
 the resource that caused the problem: `null_resource.example`.
 
 If you see either of these errors, the remedy is the same: implement
-[`CustomizeDiff`](https://www.terraform.io/docs/extend/resources.html#customizing-differences)
+[`CustomizeDiff`](https://www.terraform.io/docs/extend/resources/customizing-differences.html)
 for the resource type that is causing the problem, and write logic to more
 accurately predict the outcome of any changes to `Computed` attributes.
 If you can predict the exact new value then that is preferable, but if you
