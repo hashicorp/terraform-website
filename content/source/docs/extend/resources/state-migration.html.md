@@ -1,31 +1,18 @@
 ---
 layout: "extend"
-page_title: "Resources - Guides"
-sidebar_current: "docs-extend-resources"
+page_title: "Resources - State Migration"
+sidebar_current: "docs-extend-resources-stage-migration"
 description: |-
-  Resources are a key component to provider development. This guide covers using advanced resource APIs.
+  Migrating state values within resources.
 ---
 
-# Resources
-
-A key component to Provider development is defining a resource. Aspects of this component have already been covered in [Writing Custom Providers](/docs/extend/writing-custom-providers.html) and [Schemas](/docs/extend/schemas/), this document will cover the other features of `schema.Resource`.
-
-## Table of Contents
-
-- [State Migrations](#state-migrations)
-- [Retry Helpers](#retry-helpers)
-  - [Retry](#retry)
-  - [StateChangeConf](#statechangeconf)
-- [Importers](#importers)
-- [Customizing Differences](#customizing-differences)
-
-## State Migrations
+# Resources - State Migration
 
 Resources define the data types and API interactions required to create, update, and destroy infrastructure with a cloud vendor while the [Terraform state](/docs/state/index.html) stores mapping and metadata information for those remote objects. There are several reasons why a resource implementation needs to change: backend APIs Terraform interacts with will change overtime, or the current implementation might be incorrect or unmaintainable. Some of these changes may not be backward compatible and a migration is needed for resources provisioned in the wild with old schema configurations.
 
 The mechanism that is used for state migrations changed between v0.11 and v0.12 of the SDK bundled with Terraform core. Be sure to choose the method that matches your Terraform dependency.
 
-### Terraform v0.12 SDK State Migrations
+## Terraform v0.12 SDK State Migrations
 
 ~> *NOTE:* This method of state migration does not work if the provider has a dependency on the Terraform v0.11 SDK. See the [Terraform v0.11 SDK State Migrations](#terraform-v0-11-sdk-state-migrations) section for details on using `MigrateState` instead.
 
@@ -158,7 +145,7 @@ func TestResourceExampleInstanceStateUpgradeV0(t *testing.T) {
 }
 ```
 
-### Terraform v0.11 SDK State Migrations
+## Terraform v0.11 SDK State Migrations
 
 ~> *NOTE:* This method of state migration does not work if the provider has a dependency on the Terraform v0.12 SDK.  See the [Terraform v0.12 SDK State Migrations](#terraform-v0-12-sdk-state-migrations) section for details on using `StateUpgraders` instead.
 
@@ -288,222 +275,3 @@ func migrateExampleInstanceStateV1toV2(inst *terraform.InstanceState) (*terrafor
 ```
 
 The fallthrough allows a very old state to move from 0 to 1 and now to 2. Sometimes state migrations are more complicated, and requires making API calls, to allow this the configured `meta interface{}` is also passed to the `MigrateState` function.
-
-## Retry Helpers
-
-The reality of cloud infrastructure is that it typically takes time to do things like boot operating systems, discover services, and replicate state across network edges. As the provider developer you should take known delays in resource APIs into account in the CRUD functions of the resource. Terraform supports configurable timeouts to assist in these situations.
-
-```go
-package example
-
-import (
-    "fmt"
-
-    "github.com/hashicorp/terraform/helper/resource"
-    "github.com/hashicorp/terraform/helper/schema"
-)
-
-func resourceExampleInstance() *schema.Resource {
-    return &schema.Resource{
-        Create: resourceExampleInstanceCreate,
-        Read:   resourceExampleInstanceRead,
-        Update: resourceExampleInstanceUpdate,
-        Delete: resourceExampleInstanceDelete,
-
-        Schema: map[string]*schema.Schema{
-            "name": {
-                Type:     schema.TypeString,
-                Required: true,
-            },
-        },
-        Timeouts: &schema.ResourceTimeout{
-            Create: schema.DefaultTimeout(45 * time.Minute),
-        },
-    }
-}
-```
-
-In the above example we see the usage of the timeouts in the schema being configured for what is deemed the appropriate amount of time for the `Create` function. `Read`, `Update`, and `Delete` are also configurable as well as a `Default`. These configured timeouts can be fetched later in the CRUD functions from the passed in `*schema.ResourceData`.
-
-### Retry
-
-A common case for requiring retries or polling is when the backend infrastructure being provisioned is designed to be asynchronous, requiring the developer to repeatedly check the status of the resource. The retry helper takes a timeout and a function that is retried repeatedly. The timeout can be retrieved from the `*schema.ResourceData` struct, using the `Timeout` method, passing in the appropriate timeout key (`scheme.TimeoutCreate`). The retry function provided should return either a `resource.NonRetryableError` for unexpected errors or states, otherwise continue to retry with a `resource.RetryableError`. In the context of a `CREATE` function, once the backend responds with the desired state, finish the function with a `resource.NonRetryableError` wrapping the `READ` function (anything that goes wrong in there is considered unexpected).
-
-```go
-func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) error {
-    name := d.Get("name").(string)
-    client := meta.(*ExampleClient)
-    resp, err := client.CreateInstance(name)
-
-    if err != nil {
-        return fmt.Errorf("Error creating instance: %s", err)
-    }
-
-    return resource.Retry(d.Timeout(schema.TimeoutCreate), func() *resource.RetryError {
-        resp, err := client.DescribeInstance(name)
-
-        if err != nil {
-            return resource.NonRetryableError(fmt.Errorf("Error describing instance: %s", err))
-        }
-
-        if resp.Status != "CREATED" {
-            return resource.RetryableError(fmt.Errorf("Expected instance to be created but was in state %s", resp.Status))
-        }
-
-        return resource.NonRetryableError(resourceExampleInstanceRead(d, meta))
-    })
-}
-```
-
-### StateChangeConf
-
-`resource.Retry` is useful for simple scenarios, particularly when the API response is either success or failure, but sometimes handling an APIs latency or eventual consistency requires more fine tuning. `resource.Retry` is in fact a wrapper for a another helper: `resource.StateChangeConf`.
-
-Use `resource.StateChangeConf` when your resource has multiple states to progress though, you require fine grained control of retry and delay timing, or you want to ensure a minimum number of occurrences of a target state is reached (this is very common when dealing with eventually consistent APIs, where a response can reply back with an old state between calls before becoming consistent).
-
-```go
-func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) error {
-    name := d.Get("name").(string)
-    client := meta.(*ExampleClient)
-    resp, err := client.CreateInstance(name)
-
-    createStateConf := &resource.StateChangeConf{
-        Pending: []string{
-            client.ExampleInstaceStateRequesting,
-            client.ExampleInstaceStatePending,
-            client.ExampleInstaceStateCreating,
-            client.ExampleInstaceStateVerifying,
-        },
-        Target: []string{
-            client.ExampleInstaceStateCreateComplete,
-        },
-        Refresh: func() (interface{}, string, error) {
-            resp, err := client.DescribeInstance(name)
-            if err != nil {
-                0, "", err
-            }
-            return resp, resp.Status, nil
-        },
-        Timeout:    d.Timeout(schema.TimeoutCreate),
-        Delay:      10 * time.Second,
-        MinTimeout: 5 * time.Second,
-        ContinuousTargetOccurence: 5,
-    }
-    _, err = createStateConf.WaitForState()
-    if err != nil {
-        return fmt.Errorf("Error waiting for example instance (%s) to be created: %s", d.Id(), err)
-    }
-
-    return resourceExampleInstanceRead(d, meta)
-}
-```
-
-## Importers
-
-Many users migrating to Terraform often have manually managed infrastructure they want to bring under the management of Terraform. Terraform provides a mechanism known as an importer to consolidate those resources into state. As of writing the user will still have to write configuration that will be associated to the import.
-
-When importing the user will specify the configuration address and id of the resource
-
-```
-terraform import example_instance.foo 000-0000
-```
-
-A resources `READ` function will perform a lookup based on the configured `id`. To support this Terraform provides a convenience that allows this passthrough.
-
-```go
-package example
-
-import (
-    "fmt"
-
-    "github.com/hashicorp/terraform/helper/schema"
-)
-
-func resourceExampleInstance() *schema.Resource {
-    return &schema.Resource{
-        Create: resourceExampleInstanceCreate,
-        Read:   resourceExampleInstanceRead,
-        Update: resourceExampleInstanceUpdate,
-        Delete: resourceExampleInstanceDelete,
-
-        Schema: map[string]*schema.Schema{
-            "name": {
-                Type:     schema.TypeString,
-                Required: true,
-            },
-        },
-        Importer: &schema.ResourceImporter{
-            State: schema.ImportStatePassthrough,
-        },
-    }
-}
-
-func resourceExampleInstanceRead(d *schema.ResourceData, meta interface{}) error {
-    client := m.(*MyClient)
-
-    obj, err := client.Get(d.Id())
-
-    if err != nil {
-        d.SetId("")
-        return fmt.Errorf("Error retrieving example instance: %s: %s", d.Id(), err)
-    }
-
-    d.Set("name", obj.Name)
-    return nil
-}
-```
-
-There are other cases where the `READ` function uses configuration parameters as the identifier or support for importing multiple resources, as seen in the [AWS Provider](https://github.com/terraform-providers/terraform-provider-aws/blob/d3fe7e9907263b1aa41ddc0736a34b42899d1536/aws/import_aws_dx_gateway.go#L12) is needed. In general it is advised to stick to the passthrough importer when possible.
-
-## Customizing Differences
-
-Terraform tracks the state of provisioned resources in its state file. The user passed configuration is compared against what is in the state file. When there is a detected discrepancy the user is presented with the difference of what is configured versus what is in state. Sometimes these scenarios require special handling, this is where the `CustomizeDiff` function is used. It is passed a `*schema.ResourceDiff`, a structure similar to `schema.ResourceData` but lacking most write functions like `Set`, while introducing new functions that work with the difference such as `SetNew`, `SetNewComputed`, and `ForceNew`.
-
-While any function can be provided for difference customization, it is recommended to try and compose the behavior using the [customdiff](https://godoc.org/github.com/hashicorp/terraform/helper/customdiff) helper package. This will allow for a more declarative configuration; however, it should not be overused, so for highly custom requirements, opt for a tailor-made function.
-
-```go
-package example
-
-import (
-    "fmt"
-
-    "github.com/hashicorp/terraform/helper/customdiff"
-    "github.com/hashicorp/terraform/helper/schema"
-)
-
-func resourceExampleInstance() *schema.Resource {
-    return &schema.Resource{
-        Create: resourceExampleInstanceCreate,
-        Read:   resourceExampleInstanceRead,
-        Update: resourceExampleInstanceUpdate,
-        Delete: resourceExampleInstanceDelete,
-
-        Schema: map[string]*schema.Schema{
-            "size": {
-                Type:     schema.TypeInt,
-                Required: true,
-            },
-        },
-        CustomizeDiff: customdiff.All(
-            customdiff.ValidateChange("size", func (old, new, meta interface{}) error {
-                // If we are increasing "size" then the new value must be
-                // a multiple of the old value.
-                if new.(int) <= old.(int) {
-                    return nil
-                }
-                if (new.(int) % old.(int)) != 0 {
-                    return fmt.Errorf("new size value must be an integer multiple of old value %d", old.(int))
-                }
-                return nil
-            }),
-            customdiff.ForceNewIfChange("size", func (old, new, meta interface{}) bool {
-                // "size" can only increase in-place, so we must create a new resource
-                // if it is decreased.
-                return new.(int) < old.(int)
-            }),
-       ),
-    }
-}
-```
-
-In this example we use the helpers to ensure the size can only be increased to multiples of the original size, and that if it is ever decreased it forces a new resource. The `customdiff.All` helper will run all the customization functions, collecting any errors as a `multierror`. To have the functions short-circuit on error, please use `customdiff.Sequence`.
