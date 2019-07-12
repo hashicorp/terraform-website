@@ -29,7 +29,7 @@ prior experience using the service in question, e.g. via a web UI it provides.
 Similar to resource names, data source names should be nouns. The main difference 
 is that in some cases data sources are used to return a list and can in 
 those cases be plural. For example the data source 
-[`aws_availability_zones`](https://www.terraform.io/docs/providers/aws/d/availability_zones.html) 
+[`aws_availability_zones`](/docs/providers/aws/d/availability_zones.html) 
 in the AWS provider returns a list of availability zones.
 
 ### Attribute Names

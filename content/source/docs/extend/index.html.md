@@ -10,12 +10,12 @@ description: |-
 # Extending Terraform
 
 Terraform can be extended to allow users to manage more infrastructure providers with
-[Providers](https://www.terraform.io/docs/providers/index.html)
-(containing [Resources](https://www.terraform.io/docs/configuration/resources.html)
-and/or [Data Sources](https://www.terraform.io/docs/configuration/data-sources.html)),
-more options to store Terraform state with [Backends](https://www.terraform.io/docs/backends)
+[Providers](/docs/providers/index.html)
+(containing [Resources](/docs/configuration/resources.html)
+and/or [Data Sources](/docs/configuration/data-sources.html)),
+more options to store Terraform state with [Backends](/docs/backends)
 and more options to provision instance with
-[Provisioners](https://www.terraform.io/docs/provisioners/index.html). **Providers**
+[Provisioners](/docs/provisioners/index.html). **Providers**
 and **Provisioners** are collectively categorized as "Plugins".
 
 ~> This is an advanced section! If you are looking for information on using

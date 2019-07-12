@@ -185,9 +185,9 @@ set for unset attributes. These situations expectedly result in drift, but can
 be reconciled by using Terraform's [schema functions][2], such as
 `DiffSuppressFunc` or `DefaultFunc`.
 
-[0]: https://www.terraform.io/docs/extend/schemas/schema-types.html#primitive-types
-[1]: https://www.terraform.io/docs/extend/schemas/schema-types.html#aggregate-types
-[2]: https://www.terraform.io/docs/extend/schemas/schema-behaviors.html#function-behaviors
+[0]: /docs/extend/schemas/schema-types.html#primitive-types
+[1]: /docs/extend/schemas/schema-types.html#aggregate-types
+[2]: /docs/extend/schemas/schema-behaviors.html#function-behaviors
 
 
 
