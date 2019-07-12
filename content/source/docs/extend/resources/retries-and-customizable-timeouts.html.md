@@ -42,7 +42,7 @@ func resourceExampleInstance() *schema.Resource {
 
 In the above example we see the usage of the timeouts in the schema being configured for what is deemed the appropriate amount of time for the `Create` function. `Read`, `Update`, and `Delete` are also configurable as well as a `Default`. These configured timeouts can be fetched later in the CRUD functions from the passed in `*schema.ResourceData`.
 
-### Retry
+## Retry
 
 A common case for requiring retries or polling is when the backend infrastructure being provisioned is designed to be asynchronous, requiring the developer to repeatedly check the status of the resource. The retry helper takes a timeout and a function that is retried repeatedly. The timeout can be retrieved from the `*schema.ResourceData` struct, using the `Timeout` method, passing in the appropriate timeout key (`scheme.TimeoutCreate`). The retry function provided should return either a `resource.NonRetryableError` for unexpected errors or states, otherwise continue to retry with a `resource.RetryableError`. In the context of a `CREATE` function, once the backend responds with the desired state, finish the function with a `resource.NonRetryableError` wrapping the `READ` function (anything that goes wrong in there is considered unexpected).
 
@@ -72,7 +72,7 @@ func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) err
 }
 ```
 
-### StateChangeConf
+## StateChangeConf
 
 `resource.Retry` is useful for simple scenarios, particularly when the API response is either success or failure, but sometimes handling an APIs latency or eventual consistency requires more fine tuning. `resource.Retry` is in fact a wrapper for a another helper: `resource.StateChangeConf`.
 

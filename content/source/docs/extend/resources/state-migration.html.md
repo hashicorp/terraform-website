@@ -14,7 +14,7 @@ The mechanism that is used for state migrations changed between v0.11 and v0.12 
 
 ## Terraform v0.12 SDK State Migrations
 
-~> *NOTE:* This method of state migration does not work if the provider has a dependency on the Terraform v0.11 SDK. See the [Terraform v0.11 SDK State Migrations](#terraform-v0-11-sdk-state-migrations) section for details on using `MigrateState` instead.
+~> **Note:** This method of state migration does not work if the provider has a dependency on the Terraform v0.11 SDK. See the [Terraform v0.11 SDK State Migrations](#terraform-v0-11-sdk-state-migrations) section for details on using `MigrateState` instead.
 
 For this task provider developers should use a resource's `SchemaVersion` and `StateUpgraders` fields. Resources typically do not have these fields configured unless state migrations have been perfomed in the past.
 

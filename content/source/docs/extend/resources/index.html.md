@@ -20,8 +20,10 @@ The reality of cloud infrastructure is that it typically takes time to perform o
 
 ## Customizing Differences
 
-Terraform tracks the state of provisioned resources in its state file. The user passed configuration is compared against what is in the state file. When there is a detected discrepancy the user is presented with the difference of what is configured versus what is in state. Sometimes these scenarios require special handling, which is where [Customizing Differences](/docs/extend/resources/customizing-differences.html) can help.
+Terraform tracks the state of provisioned resources in its state file, and compares the user-passed configuration against that state. When Terraform detects a discrepancy, it presents the user with the differences between the configuration and the state. Sometimes these scenarios require special handling, which is where [Customizing Differences](/docs/extend/resources/customizing-differences.html) can help.
 
 ## State Migrations
 
-Resources define the data types and API interactions required to create, update, and destroy infrastructure with a cloud vendor while the [Terraform state](/docs/state/index.html) stores mapping and metadata information for those remote objects. There are several reasons why a resource implementation needs to change: backend APIs Terraform interacts with will change overtime, or the current implementation might be incorrect or unmaintainable. Some of these changes may not be backward compatible and a migration is needed for resources provisioned in the wild with old schema configurations. Terraform resources support migrating state values in these scenarios via [State Migration](/docs/extend/resources/state-migration.html).
+Resources define the data types and API interactions required to create, update, and destroy infrastructure with a cloud vendor, while the [Terraform state](/docs/state/index.html) stores mapping and metadata information for those remote objects. 
+
+When resource implementations change (due to bug fixes, improvements, or changes to the backend APIs Terraform interacts with), they can sometimes become incompatible with existing state. When this happens, a migration is needed for resources provisioned in the wild with old schema configurations. Terraform resources support migrating state values in these scenarios via [State Migration](/docs/extend/resources/state-migration.html).

@@ -8,9 +8,13 @@ description: |-
 
 # Resources - Customizing Differences
 
-Terraform tracks the state of provisioned resources in its state file. The user passed configuration is compared against what is in the state file. When there is a detected discrepancy the user is presented with the difference of what is configured versus what is in state. Sometimes these scenarios require special handling, this is where the `CustomizeDiff` function is used. It is passed a `*schema.ResourceDiff`, a structure similar to `schema.ResourceData` but lacking most write functions like `Set`, while introducing new functions that work with the difference such as `SetNew`, `SetNewComputed`, and `ForceNew`.
+Terraform tracks the state of provisioned resources in its state file, and compares the user-passed configuration against that state. When Terraform detects a discrepancy, it presents the user with the differences between the configuration and the state. 
 
-While any function can be provided for difference customization, it is recommended to try and compose the behavior using the [customdiff](https://godoc.org/github.com/hashicorp/terraform/helper/customdiff) helper package. This will allow for a more declarative configuration; however, it should not be overused, so for highly custom requirements, opt for a tailor-made function.
+Sometimes determining the differences between state and configuration requires special handling, which can be managed with the `CustomizeDiff` function. 
+
+`CustomizeDiff` is passed a `*schema.ResourceDiff`. This is a structure similar to `schema.ResourceData` — it lacks most write functions (like `Set`), but adds some functions for working with the difference, such as `SetNew`, `SetNewComputed`, and `ForceNew`.
+
+Any function can be provided for difference customization. For the majority of simple cases, we recommend that you first try to compose the behavior using the [customdiff](https://godoc.org/github.com/hashicorp/terraform/helper/customdiff) helper package, which allows for a more declarative configuration. However, for highly custom requirements, a custom-made function is usually easier and more maintainable than working around the helper's limitations.
 
 ```go
 package example

@@ -10,15 +10,15 @@ description: |-
 
 Many users migrating to Terraform often have manually managed infrastructure they want to bring under the management of Terraform. Terraform provides a mechanism known as an importer to consolidate those resources into state.
 
-~> *NOTE:* Operators are responsible for writing the appropriate configuration that will be associated with the resource import. This restriction may be removed in a future version of Terraform.
+~> **Note:** Operators are responsible for writing the appropriate configuration that will be associated with the resource import. This restriction may be removed in a future version of Terraform.
 
-When importing the user will specify the configuration address and id of the resource
+When importing, the user will specify the configuration address and id of the resource:
 
 ```
 terraform import example_instance.foo 000-0000
 ```
 
-A resources `READ` function will perform a lookup based on the configured `id`. To support this Terraform provides a convenience that allows this passthrough.
+A resource's `READ` function will perform a lookup based on the configured `id`. As a convenience, Terraform provides a `schema.ImportStatePassthrough` importer that just uses the read function. 
 
 ```go
 package example
