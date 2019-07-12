@@ -58,7 +58,7 @@ be one of the types defined below, and can be loosely categorized as either
 
 Primitive types are simple values such as integers, booleans, and strings.
 Primitives are stored in the
-[state file](https://www.terraform.io/docs/state/index.html) as `"key": "value"`
+[state file](/docs/state/index.html) as `"key": "value"`
 string pairs, where both `key` and `value` are string representations. 
 
 

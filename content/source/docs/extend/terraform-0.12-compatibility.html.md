@@ -91,7 +91,7 @@ lots of details on the common situations in
 
 If you see an error you're not sure how to resolve, it may help to copy the
 configuration snippet into a separate `.tf` file in a new directory and use
-[the `terraform 0.12upgrade` command](https://www.terraform.io/docs/commands/0.12upgrade.html)
+[the `terraform 0.12upgrade` command](/docs/commands/0.12upgrade.html)
 to see what changes Terraform itself proposes.
 
 One particular situation that we've seen crop up a lot in provider upgrades
@@ -212,7 +212,7 @@ that `null_resource.example.triggers["foo"]` was interpolated into, rather than
 the resource that caused the problem: `null_resource.example`.
 
 If you see either of these errors, the remedy is the same: implement
-[`CustomizeDiff`](https://www.terraform.io/docs/extend/resources.html#customizing-differences)
+[`CustomizeDiff`](/docs/extend/resources/customizing-differences.html)
 for the resource type that is causing the problem, and write logic to more
 accurately predict the outcome of any changes to `Computed` attributes.
 If you can predict the exact new value then that is preferable, but if you
@@ -252,7 +252,7 @@ Terraform v0.12 does not support using `Computed` with a collection of
 sub-resources, but to avoid breaking existing uses of that mechanism for the
 reason described above, we introduced a compromise which you can read more
 about from the end-user perspective in
-[Attributes as Blocks](https://www.terraform.io/docs/configuration/attr-as-blocks.html).
+[Attributes as Blocks](/docs/configuration/attr-as-blocks.html).
 
 If you have an existing `Computed` attribute that has `Elem: *schema.Resource`
 and which expects to treat explicit assignment of an empty list differently

@@ -10,12 +10,12 @@ description: |-
 # Extending Terraform
 
 Terraform can be extended to allow users to manage more infrastructure providers with
-[Providers](https://www.terraform.io/docs/providers/index.html)
-(containing [Resources](https://www.terraform.io/docs/configuration/resources.html)
-and/or [Data Sources](https://www.terraform.io/docs/configuration/data-sources.html)),
-more options to store Terraform state with [Backends](https://www.terraform.io/docs/backends)
+[Providers](/docs/providers/index.html)
+(containing [Resources](/docs/configuration/resources.html)
+and/or [Data Sources](/docs/configuration/data-sources.html)),
+more options to store Terraform state with [Backends](/docs/backends)
 and more options to provision instance with
-[Provisioners](https://www.terraform.io/docs/provisioners/index.html). **Providers**
+[Provisioners](/docs/provisioners/index.html). **Providers**
 and **Provisioners** are collectively categorized as "Plugins".
 
 ~> This is an advanced section! If you are looking for information on using
@@ -53,7 +53,7 @@ Terraform. Providers (with Resources and/or Data Sources), and Provisioners
 are all defined in terms of the Schema package, which includes builtin types
 and methods for developers to use when writing plugins.
 
-## [Resources](/docs/extend/resources.html)
+## [Resources](/docs/extend/resources/index.html)
 
 The Resource package provides several utilities and conveniences for handling
 tasks such as state migrations and customized difference behavior, these tasks
