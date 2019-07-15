@@ -839,7 +839,62 @@ curl \
 }
 ```
 
-The `upload` link URL in the above response is valid for one hour after creation. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the "Show Policy Set" endpoint again to verify that the status has changed from `pending` to `ready`.
+The `upload` link URL in the above response is valid for one hour after creation. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the [Show Policy Set](#show-a-policy-set) endpoint again to verify that the status has changed from `pending` to `ready`.
+
+## Show a Policy Set Version
+
+`GET /policy-set-versions/:id`
+
+Parameter | Description
+----------|------------
+`:id`     | The ID of the policy set version to show.
+
+Status  | Response                                              | Reason
+--------|-------------------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "policy-set-versions"`) | The request was successful.
+[404][] | [JSON API error object][]                             | Policy set version not found or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --request GET \
+  https://app.terraform.io/api/v2/policy-set-versions/polsetver-cXciu9nQwmk9Cfrn
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "polsetver-cXciu9nQwmk9Cfrn",
+    "type": "policy-set-versions",
+    "attributes": {
+      "source": "tfe-api",
+      "status": "pending",
+      "status-timestamps": {},
+      "error": null,
+      "created-at": "2019-06-28T23:53:15.875Z",
+      "updated-at": "2019-06-28T23:53:15.875Z"
+    },
+    "relationships": {
+      "policy-set": {
+        "data": {
+          "id": "polset-ws1CZBzm2h5K6ZT5",
+          "type": "policy-sets"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/policy-set-versions/polsetver-cXciu9nQwmk9Cfrn",
+      "upload": "https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox..."
+    }
+  }
+}
+```
+
+The `upload` link URL in the above response is valid for one hour after the `created_at` timestamp of the policy set version. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the [Show Policy Set Version](#show-a-policy-set-version) endpoint again to verify that the status has changed from `pending` to `ready`.
 
 ## Relationships
 
