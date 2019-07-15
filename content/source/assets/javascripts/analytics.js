@@ -13,4 +13,15 @@ document.addEventListener('turbolinks:load', function() {
       product: 'terraform'
     }
   })
+
+  track('a.notification', function(el) {
+    var params = {
+      name: 'Alert Banner',
+      variant: el.innerText.replace(/\s+/g, ' ').trim()
+    }
+    // Create a stringified `label` prop of the event for GA tracking purposes
+    params.label = JSON.stringify(params)
+    params.event = 'CTA Clicked'
+    return params
+  })
 })
