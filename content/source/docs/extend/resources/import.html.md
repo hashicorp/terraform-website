@@ -12,7 +12,7 @@ Adding import support for Terraform resources will allow existing infrastructure
 
 ~> **Note:** Operators are responsible for writing the appropriate configuration that will be associated with the resource import. This restriction may be removed in a future version of Terraform.
 
-When importing, the operator will specify the Terraform configuration address for the resource they wish to import, along with an identifier for import. The import identifier may be different than the resource identifier (`ResourceData.SetId()`) for compatibility reasons outlined [#importer-state-function] in the below.
+When importing, the operator will specify the Terraform configuration address for the resource they wish to import, along with an identifier for import. The import identifier may be different than the resource identifier (`ResourceData.SetId()`) for compatibility reasons outlined below in the [Importer State Function](#importer-state-function) section.
 
 ```console
 $ terraform import example_thing.foo abc123
@@ -20,9 +20,11 @@ $ terraform import example_thing.foo abc123
 
 ## Overview of Implementation
 
+Implementing import support requires three changes: an `Importer` `State` function in the resource code, a `TestStep` with `ImportState: true` in the acceptance tests, and documentation of the import ID format.
+
 ### Resource Code Implementation
 
-In the resource code (e.g. `resource_example_thing.go`), an implementation of `Importer` `State` function:
+In the resource code (e.g. `resource_example_thing.go`), implement an `Importer` `State` function:
 
 ```go
 func resourceExampleThing() *schema.Resource {
@@ -37,7 +39,7 @@ func resourceExampleThing() *schema.Resource {
 
 ### Resource Acceptance Testing Implementation
 
-In the resource acceptance testing (e.g. `resource_example_thing_test.go`), an implementation of `TestStep`s with `ImportState: true`:
+In the resource acceptance testing (e.g. `resource_example_thing_test.go`), implement `TestStep`s with `ImportState: true`:
 
 ```go
 func TestAccExampleThing_basic(t *testing.T) {
@@ -59,7 +61,7 @@ func TestAccExampleThing_basic(t *testing.T) {
 
 ### Resource Documentation Implementation
 
-In the resource documentation (e.g. `website/docs/r/example_thing.html.markdown`), the addition of `Import` documentation section at the bottom of the page:
+In the resource documentation (e.g. `website/docs/r/example_thing.html.markdown`), add an `Import` documentation section at the bottom of the page:
 
 ``````markdown
 ## Import
