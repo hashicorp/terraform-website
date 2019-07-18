@@ -106,7 +106,7 @@ Key path                              | Type   | Default   | Description
 -----------------------               |--------|-----------|------------
 `data.type`                           | string |           | Must be `"teams"`.
 `data.attributes.name`                | string |           | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-`data.attributes.visible` **(beta)**  | boolean | `false` | The visibility of the team within its organization. When `true`, the team can be seen by every user within that organization.
+`data.attributes.visibility` **(beta)**  | boolean | `secret` | The visibility of the team within its organization. When `visible`, the team can be seen by every user within that organization. Valid options are `secret` and `visible`.
 `data.attributes.organization-access` | object | (nothing) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
 
 ### Sample Payload
@@ -144,7 +144,7 @@ $ curl \
   "data": {
     "attributes": {
       "name": "team-creation-test",
-      "visible": false,
+      "visibility": "secret",
       "organization-access": {
         "manage-policies": false,
         "manage-vcs-settings": false,
@@ -200,7 +200,7 @@ $ curl \
     "type": "teams",
     "attributes": {
       "name": "team-creation-test",
-      "visible": false,
+      "visibility": "secret",
       "users-count": 0,
       "permissions": {
         "can-update-membership": true,
@@ -254,7 +254,7 @@ Key path                              | Type   | Default   | Description
 -----------------------               |--------|-----------|------------
 `data.type`                           | string |           | Must be `"teams"`.
 `data.attributes.name`                | string |           | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-`data.attributes.visible` **(beta)**  | boolean | (previous value) | The visibility of the team within its organization. When `true`, the team can be seen by every user within that organization.
+`data.attributes.visibility` **(beta)**  | boolean | (previous value) | The visibility of the team within its organization. When `visible`, the team can be seen by every user within that organization. Valid options are `secret` and `visible`.
 `data.attributes.organization-access` | object | (nothing) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
 
 ### Sample Payload
@@ -264,7 +264,7 @@ Key path                              | Type   | Default   | Description
   "data": {
     "type": "teams",
     "attributes": {
-      "visible": true,
+      "visibility": "visible",
       "organization-access": {
         "manage-vcs-settings": true
       }
@@ -292,7 +292,7 @@ $ curl \
   "data": {
     "attributes": {
       "name": "team-creation-test",
-      "visible": true,
+      "visibility": "visible",
       "organization-access": {
         "manage-policies": false,
         "manage-vcs-settings": true,
