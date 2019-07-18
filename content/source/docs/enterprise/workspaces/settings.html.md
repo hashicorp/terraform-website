@@ -63,9 +63,11 @@ You can choose "latest" to automatically update a workspace to new versions, or 
 
 The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. This is useful when working with VCS repos that contain multiple Terraform configurations. Defaults to the root of the configuration directory. TFE will cd into the working directory and report an error if it does not exist.
 
-- **Note** — If you specify a working directory, TFE will by default only queue a plan for changes to the repository inside that working directory. You can override this behaviour with [Automatic Run Triggering](#automatic-run-triggering) settings.
+If you specify a working directory and are running the Terraform cli locally, *not* using a VCS root, Terraform will send the entire contents of the root-level configuration directory to TFE, regardless of the local directory in which `terraform plan` is run. 
 
-- **Note** If you specify a working directory and are *not* using a VCS root, Terraform will send your entire configuration directory to TFE, not just the configured working directory, regardless of the directory `terraform plan` is run from locally.
+The configuration directory is determined relative to the configured working directory. For example, if your directory structure is "/Home/myuser/terraform/production" and you configure "production" as the Terrafrom Working Directory, Terraform will upload the contents of "/Home/myuser/terraform" to TFE.
+
+- **Note** — If you specify a working directory, TFE will by default only queue a plan for changes to the repository inside that working directory. You can override this behaviour with [Automatic Run Triggering](#automatic-run-triggering) settings.
 
 ## Locking
 
