@@ -426,3 +426,7 @@
 	path = ext/providers/avi
 	url = https://github.com/terraform-providers/terraform-provider-avi
 	branch = stable-website
+[submodule "ext/providers/aci"]
+	path = ext/providers/aci
+	url = https://github.com/terraform-providers/terraform-provider-aci
+	branch = stable-website
