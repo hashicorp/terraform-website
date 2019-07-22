@@ -148,10 +148,10 @@
         }
       }
 
+      &.current > a {
+        color: $sidebar-link-color-active;
+      }
       &.active {
-        > a {
-          color: $sidebar-link-color-active;
-        }
         // Open nested navigations
         > ul.nav {
           display: block;
