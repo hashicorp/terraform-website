@@ -394,6 +394,9 @@ are `undefined`. **In either case**, you should instead use the
 namespace](#namespace-resource-diff) to determine that a computed value will
 exist.
 
+-> If a resource is being destroyed, its `applied` value is omitted from the
+namespace and trying to fetch it will return undefined.
+
 ### Value: `diff`
 
 * **Value Type:** A map of [diff namespaces](#namespace-resource-diff).
