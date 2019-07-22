@@ -27,6 +27,8 @@ document.addEventListener("turbolinks:load", function() {
         subNavs.removeClass("active");
         // Activate current page, locked-open navs, and all their ancestors:
         docsSidebar.find("li").has(".current-page, .nav-visible").addClass("active");
+        // Activate auto-expand navs, but leave their ancestors alone:
+        docsSidebar.find(".nav-auto-expand").parent("li").addClass("active");
         // Colored links for current page and its ancestors
         docsSidebar.find("li").has(".current-page").addClass("current");
     }
