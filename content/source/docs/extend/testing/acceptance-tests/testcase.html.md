@@ -190,7 +190,7 @@ func init() {
 **Default:** `nil`  
 **Required:** no  
 
-**CheckDestroy** is called after all test steps have been ran, and Terraform
+**CheckDestroy** is called after all test steps have been run, and Terraform
 has ran `destroy` on the remaining state. This allows developers to ensure any
 resource created is truly destroyed. This method receives the last known
 Terraform state as input, and commonly uses infrastructure SDKs to query APIs
