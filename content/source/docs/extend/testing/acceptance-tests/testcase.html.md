@@ -54,7 +54,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
 ## Creating Acceptance Tests Functions
 
 Terraform acceptance tests are declared with the naming pattern `TestAccXxx`
-with the standard Go test function signature of `func TestAccXxx(*testing.T)`.
+and with the standard Go test function signature of `func TestAccXxx(*testing.T)`.
 Using the above test as an example:
 
 ```go
@@ -74,7 +74,7 @@ a new testcase object:
 package example
 
 func TestAccExampleWidget_basic(t *testing.T) {
-  resource.Test(t, resource.TestCase{
+  resource.Test(t, resource.TestCase){
   	// ...
   }
 }
