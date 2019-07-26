@@ -78,8 +78,8 @@ The `config` and `state` keys alias to the [`tfconfig`][import-tfconfig] and
 [`tfstate`][import-tfstate] namespaces, respectively, with the data sourced from
 the Terraform _plan_ (as opposed to actual configuration and state).
 
-[import-tfconfig]: /docs/enterprise/sentinel/import/tfconfig.html
-[import-tfstate]: /docs/enterprise/sentinel/import/tfstate.html
+[import-tfconfig]: ./tfconfig.html
+[import-tfstate]: ./tfstate.html
 
 -> Note that these aliases are not represented as maps. While they will appear
 empty when viewed as maps, the specific import namespace keys will still be
@@ -195,7 +195,7 @@ Iterating through all modules to find particular resources can be useful. This
 particular type from all modules that have pending changes using the `tfplan`
 import.
 
-[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#iterate-over-modules-and-find-resources
+[iterate-over-modules]: ./index.html#iterate-over-modules-and-find-resources
 
 ### Value: `terraform_version`
 
@@ -230,8 +230,8 @@ comparison for int, float, or boolean values. This only applies to variables
 that are primitives themselves and not primitives within maps and lists, which
 will be their original types.
 
-[import-tfconfig-variables-default]: /docs/enterprise/sentinel/import/tfconfig.html#value-default
-[import-tfconfig-variables]: /docs/enterprise/sentinel/import/tfconfig.html#namespace-variables
+[import-tfconfig-variables-default]: ./tfconfig.html#value-default
+[import-tfconfig-variables]: ./tfconfig.html#namespace-variables
 
 If a default was accepted for the particular variable, the default value will be
 populated here.

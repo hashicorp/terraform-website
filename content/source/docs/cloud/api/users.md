@@ -17,7 +17,7 @@ page_title: "Users - API Docs - Terraform Enterprise"
 [429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
 # Users API
@@ -34,7 +34,7 @@ Parameter   | Description
 ------------|------------
 `:user_id`  | The ID of the desired user.
 
-To find the ID that corresponds to a given username, you can request a [team object](/docs/enterprise/api/teams.html) for a team that user belongs to, specify `?include=users` in the request, and look for the user's name in the included list of user objects.
+To find the ID that corresponds to a given username, you can request a [team object](./teams.html) for a team that user belongs to, specify `?include=users` in the request, and look for the user's name in the included list of user objects.
 
 Status  | Response                                | Reason
 --------|-----------------------------------------|----------

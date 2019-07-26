@@ -25,7 +25,7 @@ any and all data within the configuration, plan, and state, including any
 sensitive data. Treat this data with care, and avoid generating mocks with live
 sensitive data if at all possible. To help secure access to this information,
 [write
-permission](/docs/enterprise/users-teams-organizations/permissions.html#write)
+permission](/docs/cloud/users-teams-organizations/permissions.html#write)
 on the workspace is necessary to generate mock data.
 
 ## Generating Mock Data Using the UI
@@ -36,8 +36,8 @@ the run page, and clicking on the **Download Sentinel mocks** button.
 ![sentinel mock generate ui](/assets/images/guides/sentinel/download-mocks.png)
 
 For more information on creating a run, see [Running
-Terraform](/docs/enterprise/getting-started/runs.html) in the [Getting
-Started](/docs/enterprise/getting-started/index.html) guide.
+Terraform](/docs/cloud/getting-started/runs.html) in the [Getting
+Started](/docs/cloud/getting-started/index.html) guide.
 
 If the button is not visible, then the plan is ineligible for mock generation or
 the user doesn't have the necessary permissions. See [Mock Data
@@ -46,24 +46,24 @@ Availability](#mock-data-availability) for more details.
 ## Generating Mock Data Using the API
 
 Mock data can also be created with the [Plan Export
-API](/docs/enterprise/api/plan-exports.html).
+API](/docs/cloud/api/plan-exports.html).
 
 Multiple steps are required for mock generation. The export process is
 asynchronous, so you must monitor the request to know when the data is generated
 and available for download.
 
 1. Get the plan ID for the run that you want to generate the mock for by
-   [getting the run details](/docs/enterprise/api/run.html#get-run-details).
+   [getting the run details](/docs/cloud/api/run.html#get-run-details).
    Look for the `id` of the `plan` object within the `relationships` section of
    the return data.
 1. [Request a plan
-  export](/docs/enterprise/api/plan-exports.html#create-a-plan-export) using the
+  export](/docs/cloud/api/plan-exports.html#create-a-plan-export) using the
   discovered plan ID. Supply the Sentinel export type `sentinel-mock-bundle-v0`.
 1. Monitor the export request by [viewing the plan
-  export](/docs/enterprise/api/plan-exports.html#show-a-plan-export). When the
+  export](/docs/cloud/api/plan-exports.html#show-a-plan-export). When the
   status is `finished`, the data is ready for download.
 1. Finally, [download the export
-   data](/docs/enterprise/api/plan-exports.html#download-exported-plan-data).
+   data](/docs/cloud/api/plan-exports.html#download-exported-plan-data).
    You have up to an hour from the completion of the export request - after
    that, the mock data expires and must be re-generated.
 
@@ -135,7 +135,7 @@ file. For example, the contents of `pass.json`, asserting that the result of the
 The following factors can affect your ability to generate mock data:
 
 * You do not have [write
-  access](/docs/enterprise/users-teams-organizations/permissions.html#write) to
+  access](/docs/cloud/users-teams-organizations/permissions.html#write) to
   the workspace. This is to protect the possibly sensitive data which can be
   produced via mock generation.
 * The run has not progressed past the planning stage, or did not create a plan

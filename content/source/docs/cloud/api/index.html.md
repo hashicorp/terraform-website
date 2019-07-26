@@ -17,7 +17,7 @@ layout: "cloud"
 [429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
 # Terraform Enterprise API Documentation
@@ -282,7 +282,7 @@ HashiCorp maintains [go-tfe](https://github.com/hashicorp/go-tfe), a Go client f
 
 Additionally, the community of Terraform Enterprise users and vendors have built client libraries in other languages. These client libraries and tools are not tested nor officially maintained by HashiCorp, but are listed below in order to help users find them easily.
 
-If you have built a client library and would like to add it to this community list, please [contribute](https://github.com/hashicorp/terraform-website#contributions-welcome) to [this page](https://github.com/hashicorp/terraform-website/blob/master/content/source/docs/enterprise/api/index.html.md).
+If you have built a client library and would like to add it to this community list, please [contribute](https://github.com/hashicorp/terraform-website#contributions-welcome) to [this page](https://github.com/hashicorp/terraform-website/blob/master/content/source/docs/cloud/api/index.html.md).
 
 - [tfh](https://github.com/hashicorp-community/tf-helper): UNIX shell console app
 - [tf_api_gateway](https://github.com/PlethoraOfHate/tf_api_gateway): Python API library and console app

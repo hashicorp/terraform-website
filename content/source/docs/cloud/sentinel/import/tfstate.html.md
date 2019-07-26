@@ -20,8 +20,8 @@ time, limiting the usefulness of this import. This will be resolved in future
 releases. Until that time, the [`tfconfig`][import-tfconfig] and
 [`tfplan`][import-tfplan] imports will probably prove to be more useful.
 
-[import-tfconfig]: /docs/enterprise/sentinel/import/tfconfig.html
-[import-tfplan]: /docs/enterprise/sentinel/import/tfplan.html
+[import-tfconfig]: ./tfconfig.html
+[import-tfplan]: ./tfplan.html
 
 ## Namespace Overview
 
@@ -177,7 +177,7 @@ particular type from all modules using the `tfplan` import. By changing `tfplan`
 in this function to `tfstate`, you could make a similar function find all
 resources of a specific type in the current state.
 
-[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#iterate-over-modules-and-find-resources
+[iterate-over-modules]: ./index.html#iterate-over-modules-and-find-resources
 
 ### Value: `terraform_version`
 
@@ -204,7 +204,7 @@ supports policy checks in other stages of the workspace lifecycle. See the
 [`terraform_version`][import-tfplan-terraform-version] reference within the
 `tfplan` import for more details.
 
-[import-tfplan-terraform-version]: /docs/enterprise/sentinel/import/tfplan.html#value-terraform-version
+[import-tfplan-terraform-version]: ./tfplan.html#value-terraform-version
 
 ## Namespace: Module
 

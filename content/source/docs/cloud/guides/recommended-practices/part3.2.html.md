@@ -32,7 +32,7 @@ Make sure you've picked a VCS system that Terraform Enterprise will be able to a
 
 Start moving infrastructure code into version control. New Terraform code should all be going into version control; if you have existing Terraform code that’s outside version control, start moving it in so that everyone in your organization knows where to look for things and can track the history and purpose of changes.
 
--> **Note:** There are several ways to structure Terraform repositories. If you want to learn more about how your repo structure can affect your Terraform Enterprise workflows, see [VCS Repository Structure](/docs/enterprise/workspaces/repo-structure.html) in the Terraform Enterprise documentation.
+-> **Note:** There are several ways to structure Terraform repositories. If you want to learn more about how your repo structure can affect your Terraform Enterprise workflows, see [VCS Repository Structure](/docs/cloud/workspaces/repo-structure.html) in the Terraform Enterprise documentation.
 
 ## 3. Create Your First Module
 

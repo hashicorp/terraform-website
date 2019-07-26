@@ -8,9 +8,9 @@ description: |-
 # Using Sentinel with Terraform 0.12
 
 The Terraform Sentinel imports
-([`tfconfig`](/docs/enterprise/sentinel/import/tfconfig.html),
-[`tfplan`](/docs/enterprise/sentinel/import/tfplan.html), and
-[`tfstate`](/docs/enterprise/sentinel/import/tfstate.html)) have been updated to
+([`tfconfig`](./import/tfconfig.html),
+[`tfplan`](./import/tfplan.html), and
+[`tfstate`](./import/tfstate.html)) have been updated to
 work with Terraform 0.12. Care has been taken to ensure that the API is as
 backwards compatible as possible and most policies will continue to work without
 modification.
@@ -24,7 +24,7 @@ Your policies will need to be adjusted if they are affected by these changes.
 ## Changes to `tfconfig`
 
 Terraform 0.12 no longer exports raw configuration to Sentinel and as such the
-[`tfconfig`](/docs/enterprise/sentinel/import/tfconfig.html) import has seen the
+[`tfconfig`](./import/tfconfig.html) import has seen the
 most profound changes, with the introduction of the `references` key in several
 of the namespaces within the import. Certain block values (such as maps) are
 also referenced slightly differently on part of the greater emphasis on
@@ -73,7 +73,7 @@ main = rule {
 ```
 
 You can read more about `references` in `tfconfig`
-For more information, see [`references` in the `tfconfig` import](/docs/enterprise/sentinel/import/tfconfig.html#references-with-terraform-0-12).
+For more information, see [`references` in the `tfconfig` import](./import/tfconfig.html#references-with-terraform-0-12).
 
 ### Referencing Map Values
 
@@ -146,17 +146,17 @@ at the expected block index for the relevant data.
 ## Changes to `tfplan`
 
 When used as directed, the
-[`tfplan`](/docs/enterprise/sentinel/import/tfplan.html) import behaves
+[`tfplan`](./import/tfplan.html) import behaves
 exactly the same way with Terraform 0.12 as it does with Terraform 0.11. The
 only change that has been made is to the behavior of unknown values within
-[`applied`](/docs/enterprise/sentinel/import/tfplan.html#value-applied).
+[`applied`](./import/tfplan.html#value-applied).
 
 ### Changes to Unknown Values in `applied`
 
 Unknown values within
-[`applied`](/docs/enterprise/sentinel/import/tfplan.html#value-applied) in the
+[`applied`](./import/tfplan.html#value-applied) in the
 [resource
-namespace](/docs/enterprise/sentinel/import/tfplan.html#namespace-resources-data-sources)
+namespace](./import/tfplan.html#namespace-resources-data-sources)
 no longer return the magic UUID value (defined as
 `74D93920-ED26-11E3-AC10-0800200C9A66` in Terraform 0.11 or earlier). Instead,
 unknown values are now returned as undefined.
@@ -164,24 +164,24 @@ unknown values are now returned as undefined.
 As mentioned within the documentation for `tfplan`, relying on specific behavior
 of unknown data within `applied` is not supported. Instead, it is recommended to
 check the
-[`computed`](/docs/enterprise/sentinel/import/tfplan.html#value-computed) key
+[`computed`](./import/tfplan.html#value-computed) key
 within the [diff
-namespace](/docs/enterprise/sentinel/import/tfplan.html#namespace-resource-diff)
+namespace](./import/tfplan.html#namespace-resource-diff)
 to validate whether or not a value is unknown before looking for it in
 `applied`.
 
 ## Changes to `tfstate`
 
-The [`tfstate`](/docs/enterprise/sentinel/import/tfstate.html) import has had
+The [`tfstate`](./import/tfstate.html) import has had
 the availability of outputs restricted to the top-level of the namespace,
 effectively restricting it to the root module only.
 
 ###  Non-Root `outputs` are no Longer Available
 
 The [output
-namespace](/docs/enterprise/sentinel/import/tfstate.html#namespace-outputs) is
+namespace](./import/tfstate.html#namespace-outputs) is
 no longer available within `tfstate`'s [module
-namespace](/docs/enterprise/sentinel/import/tfstate.html#namespace-module). The
+namespace](./import/tfstate.html#namespace-module). The
 namespace must now be accessed from the top-level `tfstate` namespace,
 effectively allowing outputs to be viewed for the root module only.
 
@@ -204,7 +204,7 @@ main = rule {
 
 It's strongly advised that you test your Sentinel policies after upgrading to
 Terraform 0.12 to ensure they continue to work as expected. [Mock
-generation](/docs/enterprise/sentinel/mock.html) has also been updated to
+generation](./mock.html) has also been updated to
 produce mock data for the Sentinel imports as they appear in Terraform 0.12.
 
 It's possible to set up a policy to be tested against both 0.11 and 0.12
@@ -221,15 +221,15 @@ devoted to testing.
 Use the steps below to generate mock data for both Terraform versions:
 
 1. Follow the instructions on [configuring the Terraform version of the
-   workspace](/docs/enterprise/workspaces/settings.html#terraform-version) and
+   workspace](/docs/cloud/workspaces/settings.html#terraform-version) and
    ensure that it set to the latest 0.11 release.
-1. [Start a run](/docs/enterprise/run/ui.html#starting-runs) for the workspace
+1. [Start a run](/docs/cloud/run/ui.html#starting-runs) for the workspace
    and let it finish the plan phase.
 1. Follow the instructions to [generate mock data using the
-   UI](/docs/enterprise/sentinel/mock.html#generating-mock-data-using-the-ui)
+   UI](./mock.html#generating-mock-data-using-the-ui)
    for a plan on the workspace. Save this data to a file reflective of its
    version, example: `run-abcdEFgH-sentinel-mocks-011.tar.gz`.
-1. [Discard the plan](/docs/enterprise/run/ui.html#confirming-or-discarding-plans).
+1. [Discard the plan](/docs/cloud/run/ui.html#confirming-or-discarding-plans).
 1. Re-configure the Terraform version for the workspace, this time selecting the
    latest 0.12 release.
 1. Start a run for the workspace again.
@@ -244,8 +244,8 @@ properly so that it can be utilized by the tests that require a specific
 version.
 
 Building on the file layout we use in [using mock
-data](/docs/enterprise/sentinel/mock.html#using-mock-data) section of our
-[mocking guide](/docs/enterprise/sentinel/mock.html), the following layout will
+data](./mock.html#using-mock-data) section of our
+[mocking guide](./mock.html), the following layout will
 allow you to have mock data for two versions co-exist at the same time:
 
 ```

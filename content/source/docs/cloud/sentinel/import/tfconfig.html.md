@@ -34,7 +34,7 @@ in the configuration. Since this is the configuration and not an invocation
 of Terraform, you can't see values for variables, the state, or the diff for
 a pending plan. If you want to write policy around expressions used
 within configuration blocks, you likely want to use the
-[`tfplan`](/docs/enterprise/sentinel/import/tfplan.html) import.
+[`tfplan`](./tfplan.html) import.
 
 ## Namespace Overview
 
@@ -161,7 +161,7 @@ configuration and not the final values as a result of invoking Terraform. If
 you want to write policy around the _result_ of expressions used within
 configuration blocks (for example, if you wanted to ensure the final value of
 `filename` above includes `accounts.txt`), you likely want to use the
-[`tfplan`](/docs/enterprise/sentinel/import/tfplan.html) import.
+[`tfplan`](./tfplan.html) import.
 
 ## Namespace: Root
 
@@ -275,7 +275,7 @@ particular type from all modules using the `tfplan` import. By changing `tfplan`
 in this function to `tfconfig`, you could make a similar function find all
 resources of a specific type in the Terraform configuration.
 
-[iterate-over-modules]: /docs/enterprise/sentinel/import/index.html#iterate-over-modules-and-find-resources
+[iterate-over-modules]: ./index.html#iterate-over-modules-and-find-resources
 
 ## Namespace: Module
 
@@ -541,7 +541,7 @@ modules within the [Terraform Module Registry][terraform-module-registry] or the
 
 [module-version-constraint]: /docs/configuration/modules.html#module-versions
 [terraform-module-registry]: https://registry.terraform.io/
-[tfe-private-registry]: /docs/enterprise/registry/index.html
+[tfe-private-registry]: /docs/cloud/registry/index.html
 
 As an example, given the module declaration block:
 
@@ -615,7 +615,7 @@ configuration. As such, configuration for the [`value`](#outputs-value-value) at
 will be in its raw form, and not yet interpolated. For fully interpolated output
 values, see the [`tfstate` import][ref-tfe-sentinel-tfstate].
 
-[ref-tfe-sentinel-tfstate]: /docs/enterprise/sentinel/import/tfstate.html
+[ref-tfe-sentinel-tfstate]: ./tfstate.html
 
 This namespace is indexed by output name.
 
@@ -895,7 +895,7 @@ configuration. As such, static data can be extracted, such as defaults, but not
 dynamic data, such as the current value of a variable within a plan (although
 this can be extracted within the [`tfplan` import][ref-tfe-sentinel-tfplan]).
 
-[ref-tfe-sentinel-tfplan]: /docs/enterprise/sentinel/import/tfplan.html
+[ref-tfe-sentinel-tfplan]: ./tfplan.html
 
 This namespace is indexed by variable name.
 

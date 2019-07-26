@@ -131,7 +131,7 @@ chmod +x ./terraform-enterprise-push.sh
 
 # Complete script for API-driven runs.
 # Documentation can be found at:
-# https://www.terraform.io/docs/enterprise/run/api.html
+# https://www.terraform.io/docs/cloud/run/api.html
 
 # 1. Define Variables
 

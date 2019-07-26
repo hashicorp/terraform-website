@@ -17,7 +17,7 @@ page_title: "Users - Admin - API Docs - Terraform Enterprise"
 [429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
-[JSON API document]: /docs/enterprise/api/index.html#json-api-documents
+[JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
 # Admin Users API

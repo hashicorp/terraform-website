@@ -159,7 +159,7 @@ Note that this function prints a warning message for **every** resource instance
 that violates the condition. This allows writers of Terraform code to fix all
 violations after just one policy check. It also prints warnings when the
 attribute being evaluated is
-[computed](/docs/enterprise/sentinel/import/tfplan.html#value-computed) and does
+[computed](./tfplan.html#value-computed) and does
 not evaluate the condition in this case since the applied value will not be
 known.
 
@@ -206,7 +206,7 @@ partial example:
 # Function to validate that S3 buckets have private ACL and use KMS encryption
 validate_private_acl_and_kms_encryption = func() {
     result = {
-        "private":          true,   
+        "private":          true,
         "encrypted_by_kms": true,
     }
     s3_buckets = find_resources_from_plan("aws_s3_bucket")
@@ -215,8 +215,8 @@ validate_private_acl_and_kms_encryption = func() {
     # If an S3 bucket is not private, set result["private"] to false
     # If an S3 bucket is not encrypted, set result["encrypted_by_kms"] to false
     for s3_buckets as joined_path, resource_map {
-        #...    
-    }   
+        #...
+    }
     return result
 }
 

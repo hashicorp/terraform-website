@@ -65,7 +65,7 @@ To add a user, enter their username in the "Username" text field (located under 
 
 To remove a user, click the "🗑" (trash can) button by their entry in the member list.
 
-Typically, your team structure will mirror your company's group structure. The [Terraform Recommended Practices guide](/docs/enterprise/guides/recommended-practices/index.html) offers more in-depth discussion of how team structure interacts with the structure of your Terraform configurations and the IT infrastructure they manage.
+Typically, your team structure will mirror your company's group structure. The [Terraform Recommended Practices guide](/docs/cloud/guides/recommended-practices/index.html) offers more in-depth discussion of how team structure interacts with the structure of your Terraform configurations and the IT infrastructure they manage.
 
 ### API Tokens
 
