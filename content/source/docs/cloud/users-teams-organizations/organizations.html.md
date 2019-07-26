@@ -36,7 +36,7 @@ To create a new organization, provide a unique name and a primary contact email 
 
 Once you have created an organization, you can add other [users][] by adding them to one or more [teams][].
 
--> **Note:** On the SaaS version of TFE, any user can create a new organization. On private installs of TFE, the administrators can restrict this ability, so that only site admins can create organizations. See [Administration: General Settings](../private/admin/general.html#organization-creation) for more details.
+-> **Note:** On the SaaS version of TFE, any user can create a new organization. On private installs of TFE, the administrators can restrict this ability, so that only site admins can create organizations. See [Administration: General Settings](/docs/enterprise/admin/general.html#organization-creation) for more details.
 
 ## Organization Settings
 

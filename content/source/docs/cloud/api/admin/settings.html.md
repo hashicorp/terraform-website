@@ -189,7 +189,7 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 
 If `data.attributes.enabled` is set to `true`, all remaining attributes must have valid values. You can omit attributes if they have a default value, or if a value was set by a previous update. Omitted attributes keep their previous values.
 
-See [SAML Configuration](../../saml/configuration.html) for more details on attribute values.
+See [SAML Configuration](/docs/enterprise/saml/configuration.html) for more details on attribute values.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
@@ -266,7 +266,7 @@ curl \
 
 When reconfiguring the IdP certificate, TFE will retain the old IdP certificate to allow for a rotation period. This PUT endpoint will revoke the older IdP certificate when the new IdP certificate is known to be functioning correctly.
 
-See [SAML Configuration](../../saml/configuration.html) for more details.
+See [SAML Configuration](/docs/enterprise/saml/configuration.html) for more details.
 
 ### Sample Request
 

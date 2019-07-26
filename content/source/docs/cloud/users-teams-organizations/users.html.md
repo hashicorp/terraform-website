@@ -41,7 +41,7 @@ On private instances of TFE, some user accounts have a special "site admin" perm
 
 Admin permissions are distinct from normal organization-level permissions, and they apply to a different set of UI controls and API endpoints. Although admin users can administer any resource across the instance when using the site admin pages or the [admin API](../api/admin/index.html), they have a normal user's permissions (with access determined by the teams they belong to) when using an organization's standard UI controls and API endpoints.
 
-For more information, see [Administering Private Terraform Enterprise](../private/admin/index.html).
+For more information, see [Administering Private Terraform Enterprise](/docs/enterprise/admin/index.html).
 
 ## User Settings
 
@@ -67,7 +67,7 @@ Additionally, TFE uses [Gravatar](http://en.gravatar.com) to display a user icon
 
 Users manage their own passwords. To change your password, click the "Password" page of the user settings. You'll need to confirm your current password, and enter your new password twice.
 
-Password management isn't available if your TFE installation uses [SAML single sign on](../saml/index.html).
+Password management isn't available if your TFE installation uses [SAML single sign on](/docs/enterprise/saml/index.html).
 
 ### Two-Factor Authentication
 

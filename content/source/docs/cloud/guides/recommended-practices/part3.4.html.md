@@ -16,7 +16,7 @@ The following suggestions don’t have to be done in order, and some of them mig
 * Apply policy to your Terraform configurations with [Sentinel](../../sentinel/index.html) to enforce compliance with business and
 regulatory rules.
 
-* Monitor and retain TFE's audit logs. [Learn more about logging in Terraform Enterprise private installs here.](../../private/logging.html)
+* Monitor and retain TFE's audit logs. [Learn more about logging in Terraform Enterprise private installs here.](/docs/enterprise/logging.html)
 
 * Add infrastructure monitoring and performance metrics. This can help make environment promotion safer, and safeguard the performance of your applications. There are many tools available in this space, and we recommend monitoring both the infrastructure itself, and the user’s-eye-view performance of your applications.
 

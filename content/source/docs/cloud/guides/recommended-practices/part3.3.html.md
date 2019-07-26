@@ -66,9 +66,9 @@ Managing an accurate and complete map of how responsibilities are delegated is o
 
 When managing team membership, you have two options:
 
-- Manage user accounts with [SAML single sign-on](../../saml/index.html). SAML support is available with the Premium tier on private installs, and lets users log into TFE via your organization's existing identity provider. If your organization is at a scale where you use a SAML-compatible identity provider, we recommend this option.
+- Manage user accounts with [SAML single sign-on](/docs/enterprise/saml/index.html). SAML support is available with the Premium tier on private installs, and lets users log into TFE via your organization's existing identity provider. If your organization is at a scale where you use a SAML-compatible identity provider, we recommend this option.
 
-    If your identity provider already has information about your colleagues' teams or groups, you can [manage team membership via your identity provider](../../saml/team-membership.html). Otherwise, you can add users to teams with the UI or with [the team membership API](../../api/team-members.html).
+    If your identity provider already has information about your colleagues' teams or groups, you can [manage team membership via your identity provider](/docs/enterprise/saml/team-membership.html). Otherwise, you can add users to teams with the UI or with [the team membership API](../../api/team-members.html).
 - Manage user accounts in TFE. Your colleagues must create their own TFE user accounts, and you can add them to your organization by adding their username to at least one team. You can manage team membership with the UI or with [the team membership API](../../api/team-members.html).
 
 ## 6. Assign Permissions
