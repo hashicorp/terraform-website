@@ -303,9 +303,11 @@ If the installation script (`install.sh`) exits successfully, but the Replicated
 
 After resolving any issues with file validity or permissions, run the following commands to reload your configuration:
 
+~> **Important:** These commands are only for fixing a new installation. Do not run these commands on an existing installation, as they will destroy important data.
+
 ``` bash
-sudo systemctl stop replicated replicated-ui replicated-operator 
-sudo rm -rf /var/lib/replicated 
+sudo systemctl stop replicated replicated-ui replicated-operator
+sudo rm -rf /var/lib/replicated
 sudo systemctl start replicated replicated-ui replicated-operator
 ```
 
@@ -315,5 +317,4 @@ sudo systemctl start replicated replicated-ui replicated-operator
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
 - [`/etc/replicated.conf`](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically)
 - [application settings](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-app-settings-automatically)
-- [`app-config import` flags](https://help.replicated.com/api/replicatedctl/replicatedctl_app-config_import/)
 
