@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "Using Sentinel with Terraform 0.12 - Terraform Enterprise"
 description: |-
   Read about the changes made to Sentinel in Terraform 0.12.

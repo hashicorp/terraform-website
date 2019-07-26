@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "Private Terraform Enterprise Settings - API Docs - Terraform Enterprise"
 ---
 

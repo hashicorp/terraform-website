@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "Migrating from Terraform Open Source - Terraform Enterprise"
 ---
 

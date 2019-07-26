@@ -1,5 +1,5 @@
 ---
-layout: "enterprise2"
+layout: "cloud"
 page_title: "Publishing Private Modules - Private Module Registry - Terraform Enterprise"
 ---
 

@@ -1,6 +1,6 @@
 ---
 page_title: "API Docs - Terraform Enterprise - API Stability Policy"
-layout: "enterprise2"
+layout: "cloud"
 ---
 
 # API Stability Policy

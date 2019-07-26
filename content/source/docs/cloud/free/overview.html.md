@@ -1,5 +1,5 @@
 ---
-layout: "free"
+layout: "cloud"
 page_title: "Overview - Free Tier - Terraform Enterprise"
 description: |-
   Terraform Enterprise's free accounts, now in closed beta, offer unlimited Terraform state storage for you and your colleagues.

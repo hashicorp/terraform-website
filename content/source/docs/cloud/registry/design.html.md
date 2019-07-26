@@ -1,5 +1,5 @@
 ---
-layout: "enterprise2"
+layout: "cloud"
 page_title: "Using the Configuration Designer - Private Module Registry - Terraform Enterprise"
 ---
 

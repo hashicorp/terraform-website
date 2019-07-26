@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "Bitbucket Cloud - VCS Providers - Terraform Enterprise"
 ---
 

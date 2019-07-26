@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "Mocking Terraform Sentinel Data - Sentinel - Terraform Enterprise"
 ---
 

@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "Managing Policies with VCS - Sentinel - Terraform Enterprise"
 ---
 

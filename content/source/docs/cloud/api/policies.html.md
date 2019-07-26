@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "Policies - API Docs - Terraform Enterprise"
 ---
 

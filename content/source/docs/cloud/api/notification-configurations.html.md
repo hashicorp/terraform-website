@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "Notification Configurations - API Docs - Terraform Enterprise"
 ---
 

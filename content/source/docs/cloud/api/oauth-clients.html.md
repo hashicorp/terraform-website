@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "OAuth Clients - API Docs - Terraform Enterprise"
 ---
 

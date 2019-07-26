@@ -1,5 +1,5 @@
 ---
-layout: "enterprise2"
+layout: "cloud"
 page_title: "Installing Software in the Run Environment - Runs - Terraform Enterprise"
 ---
 

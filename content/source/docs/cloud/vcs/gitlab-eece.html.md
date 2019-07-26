@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "GitLab EE and CE - VCS Providers - Terraform Enterprise"
 ---
 

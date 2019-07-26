@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "cloud"
 page_title: "Users - Admin - API Docs - Terraform Enterprise"
 ---
 
