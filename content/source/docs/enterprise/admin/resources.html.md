@@ -1,5 +1,5 @@
 ---
-layout: "enterprise2"
+layout: "enterprise"
 page_title: "Accounts and Resources - Admin - Private Terraform Enterprise"
 ---
 

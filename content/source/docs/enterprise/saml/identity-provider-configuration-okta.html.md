@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "enterprise"
 page_title: "SAML Okta Identity Provider Configuration - Terraform Enterprise"
 ---
 

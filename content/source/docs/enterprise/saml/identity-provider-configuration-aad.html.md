@@ -1,5 +1,5 @@
 ---
-layout: enterprise2
+layout: "enterprise"
 page_title: "SAML Azure Active Directory Identity Provider Configuration - Terraform Enterprise"
 ---
 

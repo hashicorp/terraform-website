@@ -1,5 +1,5 @@
 ---
-layout: "enterprise2"
+layout: "enterprise"
 page_title: "Private Terraform Enterprise - Reference Architecture - AWS"
 description: |-
   This document provides recommended practices and a reference architecture for

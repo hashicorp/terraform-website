@@ -1,5 +1,5 @@
 ---
-layout: "enterprise2"
+layout: "enterprise"
 page_title: "General Settings - Admin - Private Terraform Enterprise"
 ---
 
