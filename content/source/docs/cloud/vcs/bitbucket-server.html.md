@@ -14,26 +14,27 @@ Note that Bitbucket Server requires both OAuth authentication and an SSH key. Th
 
 ~> **Important:** Terraform Cloud needs to contact your Bitbucket Server instance during setup and during normal operation. For the SaaS version of Terraform Cloud, this means Bitbucket Server must be internet-accessible; for Terraform Enterprise, you must have network connectivity between your Terraform Enterprise and Bitbucket Server instances over both SSH and HTTP or HTTPS. Bitbucket Server repository clone operations are performed over SSH on the port the Bitbucket Server instance uses.
 
-## Step 1: On Bitbucket Server, Ensure the Webhooks Plugin is Installed
+## Before You Begin: Determine Your Bitbucket Server Version
 
-Terraform Cloud uses webhooks to get new configurations. To support this, Bitbucket Server needs Atlassian's webhooks plugin.
+Terraform Cloud requires support for the delivery of webhooks to perform many operations, including tracking newly available configuration versions. When using Bitbucket Server version 5.3 or lower, Atlassian's webhooks plugin is required to be configured on Bitbucket Server. If using version 5.4 or higher, no plugin is required, as webhooks are supported natively.
 
 1. Open your Bitbucket server instance in your browser and log in as an admin user.
-2. Go to the "Manage add-ons" page. You can click the gear icon in the upper right corner and then use the "Manage add-ons" link in the sidebar, or go directly to `https://<BITBUCKET INSTANCE HOSTNAME>/plugins/servlet/upm`.
-3. Look for an add-on named "Web Post Hooks for Bitbucket Server", and make sure it is installed and enabled. The plugin is disabled by default. Clicking `Enabled` will toggle the plugin on.
-4. If the plugin isn't present, click "Find new add-ons" in the sidebar navigation. Search for the plugin by name and install it.
+2. In the footer of every page is a reference to the instance's current version. **If your version is greater than v5.4.0, you may skip all remaining steps in this section.**
+3. Go to the "Manage add-ons" page. You can click the gear icon in the upper right corner and then use the "Manage add-ons" link in the sidebar, or go directly to `https://<BITBUCKET INSTANCE HOSTNAME>/plugins/servlet/upm`.
+4. Look for an add-on named "Web Post Hooks for Bitbucket Server", and make sure it is installed and enabled. The plugin is disabled by default. Clicking `Enabled` will toggle the plugin on.
+5. If the plugin isn't present, click "Find new add-ons" in the sidebar navigation. Search for the plugin by name and install it.
 
     Make sure to install the correct plugin. Terraform Cloud is designed to work with [Web Post Hooks for Bitbucket Server by Atlassian ](https://marketplace.atlassian.com/apps/1211539/web-post-hooks-for-bitbucket-server?hosting=server&tab=overview).
 
     ![Atlassian Marketplace screenshot: the Web Post Hooks for Bitbucket Server plugin, published by Atlassian](./images/bitbucket-server-webhooks-plugin.png)
 
-5. Visit the repository's settings, click on `Hooks` and check that the plugin is *enabled* there as well.
+6. Visit the repository's settings, click on `Hooks` and check that the plugin is *enabled* there as well.
 
 There is an option to configure a `webhook URL` on the plugin. Leave this optional field blank. Terraform Cloud will dynamically update the `webhook URL` after the VCS connection is established.
 
 Leave the page open in a browser tab, and remain logged in as an admin user.
 
-## Step 2: On Terraform Cloud, Add a VCS Provider
+## Step 1: On Terraform Cloud, Add a VCS Provider
 
 1. Open Terraform Cloud in your browser and navigate to the "VCS Provider" settings for your organization. Click the "Add VCS Provider" button.
 
@@ -44,19 +45,27 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
     1. On the next page, click "VCS Provider" in the left sidebar.
     1. Click the "Add VCS Provider" button.
 
-2. The next page has a drop-down and several text fields. Select "Bitbucket Server" from the drop-down. Several text fields will vanish, leaving only two. Enter the URL of your Bitbucket Server instance in both fields. The API URL should be the same as the main URL.
+2. The next page has a drop-down and several text fields. Select "Bitbucket Server" from the drop-down.
+
+3. Select your appropriate "Server Version". See the "Before You Begin" section in this document for assistance.
+
+4. (Optional) Enter a display name for your Bitbucket Server VCS Provider.
+
+5. Enter the URL of your Bitbucket Server instance in the HTTP URL and API URL fields. The API URL should be the same as the HTTP URL.
 
     ~> **Note:** If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL. If you omit the port in the URL, Terraform Cloud uses the standard port for the protocol (80 for HTTP, 443 for HTTPS).
 
     ![Terraform Cloud screenshot: text fields for adding a Bitbucket Server VCS provider](./images/bitbucket-server-tfe-add-client-fields.png)
 
-3. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket Server client.
+6. Select your appropriate "Server Version". See the "Before You Begin" section in this document for assistance.
 
-4. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Consumer Key** and **Public Key.**
+7. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket Server client.
+
+8. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Consumer Key** and **Public Key.**
 
     ![Terraform Cloud screenshot: Consumer key and public key](./images/bitbucket-server-tfe-consumer-and-public-key.png)
 
-## Step 3: On Bitbucket Server, Create a New Application Link
+## Step 2: On Bitbucket Server, Create a New Application Link
 
 1. While logged in as an admin user, go to Bitbucket Server's "Application Links" administration page. You can use the sidebar navigation in the admin pages, or go directly to `https://<BITBUCKET INSTANCE HOSTNAME>/plugins/servlet/applinks/listApplicationLinks`.
 
@@ -89,7 +98,7 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
     ![Bitbucket Server screenshot: filling the second page of the link applications form](./images/bitbucket-server-link-applications-2.png)
 
-## Step 4: On Workstation: Create an SSH Key for Terraform Cloud
+## Step 3: On Workstation: Create an SSH Key for Terraform Cloud
 
 On a secure workstation, create an SSH keypair that Terraform Cloud can use to connect to Bitbucket Server. The exact command depends on your OS, but is usually something like `ssh-keygen -t rsa -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
 
@@ -101,7 +110,7 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 - In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to Bitbucket Server.
 - **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
 
-## Step 5: On Bitbucket Server, Switch Users and Add an SSH Key
+## Step 4: On Bitbucket Server, Switch Users and Add an SSH Key
 
 1. If you are still logged in to Bitbucket Server as an administrator, log out now.
 2. Log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
@@ -114,7 +123,7 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 
 4. Click the "Add key" button. Paste the text of the **SSH public key** you created in step 4 (from the `.pub` file) into the text field, then click the "Add key" button to confirm.
 
-## Step 6: On Terraform Cloud, Request Access and Add an SSH Private Key
+## Step 5: On Terraform Cloud, Request Access and Add an SSH Private Key
 
 1. Go back to your Terraform Cloud browser tab and click the "Connect organization `<NAME>`" button on the VCS Provider page.
 
