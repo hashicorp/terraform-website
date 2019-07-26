@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Accounts and Resources - Admin - Private Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-admin-resources"
 ---
 
 # Administration: Managing Accounts and Resources

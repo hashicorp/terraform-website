@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Automating Initial User"
-sidebar_current: "docs-enterprise2-private-installer-automating-initial-user"
 ---
 
 # Private Terraform Enterprise - Automating Initial User Creation

@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Accessing TFE - Getting Started - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-started-access"
 ---
 
 # Accessing Terraform Enterprise

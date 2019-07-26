@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Organizations - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-users-teams-organizations-organizations"
 ---
 
 [teams]: ./teams.html

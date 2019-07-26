@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Defining Policies - Sentinel - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-sentinel-imports"
 ---
 
 # Defining Policies

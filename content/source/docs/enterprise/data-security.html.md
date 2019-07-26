@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Security"
-sidebar_current: "docs-enterprise2-private-data-security"
 ---
 
 # Private Terraform Enterprise - Security

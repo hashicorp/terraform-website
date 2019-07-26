@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Managing Policies with VCS - Sentinel - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-sentinel-integrate-vcs"
 ---
 
 # Managing Sentinel Policies with Version Control

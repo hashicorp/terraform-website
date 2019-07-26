@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "OAuth Clients - API Docs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-api-oauth-clients"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

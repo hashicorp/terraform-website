@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Reference Architecture (Installer)"
-sidebar_current: "docs-enterprise2-private-reference-architecture"
 ---
 
 # Private Terraform Enterprise Reference Architecture (Installer)

@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Installer"
-sidebar_current: "docs-enterprise2-private-installer"
 ---
 
 # Private Terraform Enterprise

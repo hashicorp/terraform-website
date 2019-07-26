@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Encryption Password"
-sidebar_current: "docs-enterprise2-private-encryption-password"
 ---
 
 # Private Terraform Enterprise Encryption Password

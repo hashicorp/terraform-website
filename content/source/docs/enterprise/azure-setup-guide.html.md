@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise - Reference Architecture - Azure"
-sidebar_current: "docs-enterprise2-private-reference-architecture-azure"
 description: |-  
   This document provides recommended practices and a reference
   architecture for HashiCorp Private Terraform Enterprise (PTFE)

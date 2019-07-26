@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "SAML SSO Troubleshooting Guide - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-saml-troubleshooting"
 ---
 
 # Troubleshooting Guide

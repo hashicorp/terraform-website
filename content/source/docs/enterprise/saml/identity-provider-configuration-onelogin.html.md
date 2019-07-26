@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "SAML OneLogin Identity Provider Configuration - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-saml-identity-provider-configuration-onelogin"
 ---
 
 # OneLogin Configuration

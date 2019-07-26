@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "CLI-driven Runs - Runs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-run-cli"
 ---
 
 [sentinel]: ../sentinel/index.html

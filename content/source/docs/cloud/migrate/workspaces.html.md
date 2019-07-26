@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Migrating Multiple Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-migrating-workspaces"
 ---
 
 [cli-workspaces]: /docs/state/workspaces.html

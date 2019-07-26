@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Installer Migration"
-sidebar_current: "docs-enterprise2-private-installer-migration"
 ---
 
 # Private Terraform Enterprise Installer Migration

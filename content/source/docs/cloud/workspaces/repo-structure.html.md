@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "VCS Repository Structure - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-repo-structure"
 ---
 
 # Repository Structure

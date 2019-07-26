@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "GitLab.com - VCS Providers - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-vcs-gitlab-com"
 ---
 
 # Configuring GitLab.com Access

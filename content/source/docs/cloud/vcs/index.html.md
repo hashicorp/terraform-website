@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Connecting VCS Providers - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-vcs"
 ---
 
 # Connecting VCS Providers to Terraform Enterprise

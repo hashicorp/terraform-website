@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Creating Workspaces - Getting Started - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-started-workspaces"
 ---
 
 # Creating and Managing Terraform Workspaces

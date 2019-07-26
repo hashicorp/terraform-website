@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Monitoring Private Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-installer-monitoring"
 ---
 
 # Monitoring a Private Terraform Enterprise Instance

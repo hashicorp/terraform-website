@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Installation (Preflight)"
-sidebar_current: "docs-enterprise2-private-installer-preflight"
 ---
 
 # Private Terraform Enterprise Installation (Preflight Requirements)

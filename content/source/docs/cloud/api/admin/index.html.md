@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Admin - API Docs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-api-admin"
 ---
 
 # Private Terraform Enterprise Admin API Documentation

@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Team Membership - API Docs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-api-team-members"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

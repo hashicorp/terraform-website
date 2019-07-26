@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Service Accounts - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-users-teams-organizations-service-accounts"
 ---
 
 # Service Accounts

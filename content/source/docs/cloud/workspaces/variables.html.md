@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Variables - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-variables"
 ---
 
 [variables]: /docs/configuration/variables.html

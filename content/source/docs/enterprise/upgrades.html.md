@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Upgrades"
-sidebar_current: "docs-enterprise2-private-installer-upgrades"
 ---
 # Upgrading
 

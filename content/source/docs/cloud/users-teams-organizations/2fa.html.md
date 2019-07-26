@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Two-factor Authentication - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-users-teams-organizations-2fa"
 ---
 
 # Two-factor Authentication

@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Capacity and Performance"
-sidebar_current: "docs-enterprise2-private-installer-capacity"
 ---
 
 # Private Terraform Enterprise Capacity and Performance (Installer)

@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Troubleshooting - VCS Providers - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-vcs-troubleshooting"
 ---
 
 # Troubleshooting VCS Integration in Terraform Enterprise

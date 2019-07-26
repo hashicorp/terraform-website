@@ -1,7 +1,6 @@
 ---
 page_title: "API Docs - Terraform Enterprise"
 layout: "enterprise2"
-sidebar_current: "docs-enterprise2-api"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

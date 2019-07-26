@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Bitbucket Server - VCS Providers - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-vcs-bitbucket-server"
 ---
 
 

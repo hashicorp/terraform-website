@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "tfstate - Imports - Sentinel - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-sentinel-imports-tfstate"
 description: |-
   The tfstate import provides access to a Terraform state.
 ---

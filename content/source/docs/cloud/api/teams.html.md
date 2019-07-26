@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Teams - API Docs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-api-teams"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

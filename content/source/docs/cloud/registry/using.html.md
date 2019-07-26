@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Using Private Modules - Private Module Registry - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-registry-using"
 ---
 
 # Using Modules from the Terraform Enterprise Private Module Registry

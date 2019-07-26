@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Example Policies - Sentinel - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-sentinel-examples"
 ---
 
 # Example Policies

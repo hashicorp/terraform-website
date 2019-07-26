@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Plan Exports - API Docs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-api-plan-exports"
 ---
 
 # Plans API

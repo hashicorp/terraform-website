@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "UI/VCS-driven Runs - Runs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-run-ui"
 ---
 
 # The UI- and VCS-driven Run Workflow

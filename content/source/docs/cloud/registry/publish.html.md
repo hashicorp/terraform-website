@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Publishing Private Modules - Private Module Registry - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-registry-publish"
 ---
 
 [vcs]: ../vcs/index.html

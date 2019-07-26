@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Installing Software in the Run Environment - Runs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-run-install"
 ---
 
 #  Installing Software in the Run Environment

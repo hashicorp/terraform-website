@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Installer - Simplified Migration"
-sidebar_current: "docs-enterprise2-private-installer-simplified-migration"
 ---
 
 # Private Terraform Enterprise Installer - Simplified Migration

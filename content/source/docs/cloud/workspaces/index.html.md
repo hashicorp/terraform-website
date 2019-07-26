@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces"
 ---
 
 # Workspaces

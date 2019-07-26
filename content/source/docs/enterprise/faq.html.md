@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise FAQ"
-sidebar_current: "docs-enterprise2-private-faq"
 ---
 
 # Private Terraform Enterprise Frequently Asked Questions

@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Externally Managed Vault"
-sidebar_current: "docs-enterprise2-private-installer-vault"
 ---
 
 # Private Terraform Enterprise Externally Managed Vault

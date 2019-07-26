@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Using Sentinel with Terraform 0.12 - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-sentinel-sentinel-tf-012"
 description: |-
   Read about the changes made to Sentinel in Terraform 0.12.
 ---

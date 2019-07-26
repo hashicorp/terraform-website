@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise - Reliability & Availability"
-sidebar_current: "docs-enterprise2-private-reliability-availability"
 ---
 
 # Private Terraform Enterprise Reliability & Availability

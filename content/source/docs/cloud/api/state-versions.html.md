@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "State Versions - API Docs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-api-state-versions"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Runs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-run"
 ---
 
 # About Terraform Runs in Terraform Enterprise

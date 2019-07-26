@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "SSH Keys for Cloning Modules - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-ssh-keys"
 ---
 
 # Using SSH Keys for Cloning Modules

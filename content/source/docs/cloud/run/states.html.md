@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Run States and Stages - Runs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-run-states"
 ---
 
 # Run States and Stages

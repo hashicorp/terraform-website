@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Terraform Enterprise Logging"
-sidebar_current: "docs-enterprise2-private-logging"
 ---
 
 # Terraform Enterprise Logs

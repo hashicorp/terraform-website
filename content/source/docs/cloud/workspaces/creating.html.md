@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Creating Workspaces - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-creating"
 ---
 
 # Creating Workspaces

@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Configuration"
-sidebar_current: "docs-enterprise2-private-config"
 ---
 
 # Private Terraform Enterprise Configuration

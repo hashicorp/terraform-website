@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Private Terraform Enterprise Installation (AMI)"
-sidebar_current: "docs-enterprise2-private-install-ami"
 ---
 
 # Private Terraform Enterprise Installation (AMI)

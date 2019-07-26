@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "SAML Configuration - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-saml-configuration"
 ---
 
 # Configuration

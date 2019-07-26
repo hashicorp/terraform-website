@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Notifications - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-notifications"
 ---
 
 # Run Notifications

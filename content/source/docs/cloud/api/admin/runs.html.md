@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Runs - Admin - API Docs - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-api-admin-runs"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

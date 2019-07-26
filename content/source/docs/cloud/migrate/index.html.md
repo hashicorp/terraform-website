@@ -1,7 +1,6 @@
 ---
 layout: enterprise2
 page_title: "Migrating from Terraform Open Source - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-migrating"
 ---
 
 [state]: /docs/state/index.html

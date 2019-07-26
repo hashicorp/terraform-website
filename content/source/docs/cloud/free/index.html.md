@@ -1,7 +1,6 @@
 ---
 layout: "free"
 page_title: "Getting Started - Free Tier - Terraform Cloud"
-sidebar_current: "docs-free-gettingstarted"
 description: |-
   Terraform Cloud's free accounts offer Terraform state storage for you and your colleagues.
 ---

@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Settings - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-settings"
 ---
 
 # Workspace Settings

@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Naming - Workspaces - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-workspaces-naming"
 ---
 
 # Workspace Naming

@@ -1,7 +1,6 @@
 ---
 layout: "enterprise2"
 page_title: "Configuring Sentinel Policies - Getting Started - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-started-sentinel"
 ---
 
 # Configuring Sentinel Policies
