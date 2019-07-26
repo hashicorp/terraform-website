@@ -13,13 +13,13 @@ At this time, the available site-wide integrations are:
 - SMTP
 - Twilio
 
--> **API:** See the [Admin Settings API](../../api/admin/settings.html).
+-> **API:** See the [Admin Settings API](/docs/cloud/api/admin/settings.html).
 
 ## SAML Integration
 
 The SAML integration settings allow configuration of a SAML Single Sign-On integration for Terraform Enterprise. To access the SAML settings, click **SAML** in the left menu.
 
--> **Note:** Since enabling SAML is an involved process, there is a [separate SAML section of the documentation](../../saml/index.html). Consult those pages for detailed requirements and configuration instructions for both Terraform Enterprise and your IdP.
+-> **Note:** Since enabling SAML is an involved process, there is a [separate SAML section of the documentation](../saml/index.html). Consult those pages for detailed requirements and configuration instructions for both Terraform Enterprise and your IdP.
 
 To enable SAML, click **Enable SAML single sign-on** under "SAML Settings". Configure the fields below, then click **Save SAML settings**. To update the settings, update the field values, and save.
 

@@ -13,13 +13,13 @@ Each type of account or resource is initially presented as a searchable list, ac
 
 ## Managing Users
 
--> **API:** See the [Admin Users API](../../api/admin/users.html).
+-> **API:** See the [Admin Users API](/docs/cloud/api/admin/users.html).
 
 To access the list of all users in the Terraform Enterprise instance, click **Users** in the left menu.
 
 ![screenshot: the Users admin page](./images/admin-users.png)
 
-Selecting a user from the list shows their detail page, which includes their status and any organizations they belong to. The detail page offers four actions: promoting to administrator, suspending, deleting, and impersonating. For users with active [two-factor authentication (2FA)](../../users-teams-organizations/2fa.html), it also offers an administrative option to disable their 2FA in the event that a reset is needed.
+Selecting a user from the list shows their detail page, which includes their status and any organizations they belong to. The detail page offers four actions: promoting to administrator, suspending, deleting, and impersonating. For users with active [two-factor authentication (2FA)](/docs/cloud/users-teams-organizations/2fa.html), it also offers an administrative option to disable their 2FA in the event that a reset is needed.
 
 ![screenshot: a user detail admin page](./images/admin-user-details.png)
 
@@ -57,11 +57,11 @@ If a user has lost access to their Terraform Enterprise 2FA device, a site admin
 
 Be sure that the user's identity and the validity of their request have been verified according to appropriate security procedures before disabling their configured 2FA.
 
--> **Note:** If the user belongs to an organization that requires 2FA, upon login, they will be redirected to [set it up again](../../users-teams-organizations/2fa.html) before they can view any other part of TFE.
+-> **Note:** If the user belongs to an organization that requires 2FA, upon login, they will be redirected to [set it up again](/docs/cloud/users-teams-organizations/2fa.html) before they can view any other part of TFE.
 
 ## Managing Organizations
 
--> **API:** See the [Admin Organizations API](../../api/admin/organizations.html).
+-> **API:** See the [Admin Organizations API](/docs/cloud/api/admin/organizations.html).
 
 If your institution uses multiple organizations in Terraform Enterprise, you can view the details of each organization by clicking it in the admin list of organizations. From the details page, you can impersonate an owner or delete an organization (using the red **Delete this organization** button at the bottom of the details page).
 
@@ -71,7 +71,7 @@ Typically, in private installations, all organizations will be granted "Premium"
 
 ## Managing Workspaces and Runs
 
--> **API:** See the [Admin Workspaces API](../../api/admin/workspaces.html) and [Admin Runs API](../../api/admin/runs.html).
+-> **API:** See the [Admin Workspaces API](/docs/cloud/api/admin/workspaces.html) and [Admin Runs API](/docs/cloud/api/admin/runs.html).
 
 The administrative view of workspaces and runs provides limited detail (name, status, and IDs) to avoid exposing sensitive data when it isn't needed. Site administrators can view and investigate workspaces and runs more deeply by impersonating a user with full access to the desired resource. (See [Impersonating a User](#impersonating-a-user) above.)
 
@@ -87,7 +87,7 @@ We recommend impersonating a user (if necessary) to view run details prior to fo
 
 ## Managing Terraform Versions
 
--> **API:** See the [Admin Terraform Versions API](../../api/admin/terraform-versions.html).
+-> **API:** See the [Admin Terraform Versions API](/docs/cloud/api/admin/terraform-versions.html).
 
 Private Terraform Enterprise ships with a default list of Terraform versions. However, the addition of new versions after installation is the responsibility of site administrators.
 
@@ -97,6 +97,6 @@ To add a new version of Terraform, click **Terraform Versions** in the left menu
 
 ![screenshot: the Add Terraform Version page](./images/admin-version-add.png)
 
-The versions you add may be recent standard Terraform releases from HashiCorp, or custom Terraform versions. One common use for custom versions is to add a Terraform bundle that includes [pre-installed providers](../../run/index.html#custom-and-community-providers) commonly needed by the instance.
+The versions you add may be recent standard Terraform releases from HashiCorp, or custom Terraform versions. One common use for custom versions is to add a Terraform bundle that includes [pre-installed providers](/docs/cloud/run/index.html#custom-and-community-providers) commonly needed by the instance.
 
 Versions of Terraform can also be modified by clicking them in the list. They can be set to disabled (unavailable for use) if no workspaces are currently using them. The list indicates how many workspaces are currently using a given version.

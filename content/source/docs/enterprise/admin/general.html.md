@@ -9,7 +9,7 @@ General settings control global behavior in Private Terraform Enterprise. To acc
 
 ![screenshot: the Settings admin page](./images/admin-general.png)
 
--> **API:** See the [Admin Settings API](../../api/admin/settings.html).
+-> **API:** See the [Admin Settings API](/docs/cloud/api/admin/settings.html).
 
 ## Contact Info
 
@@ -23,4 +23,4 @@ When new user accounts are created, if they cannot create their own organization
 
 ## API Rate Limiting
 
-By default, requests to the Terraform Enterprise API from a single user or IP address are [limited to 30 requests per second](../../api/index.html#rate-limiting) to prevent abuse or hogging of resources. Since usage patterns may vary for a given instance, this can be updated to match local needs.
+By default, requests to the Terraform Enterprise API from a single user or IP address are [limited to 30 requests per second](/docs/cloud/api/index.html#rate-limiting) to prevent abuse or hogging of resources. Since usage patterns may vary for a given instance, this can be updated to match local needs.

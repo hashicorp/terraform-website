@@ -44,7 +44,7 @@ The API and usage documents are under [Automating Initial User](./automating-ini
 
 The next step will create the first organization.
 
-![Create a new organization](../users-teams-organizations/images/org-new.png)
+![Create a new organization](/docs/cloud/users-teams-organizations/images/org-new.png)
 
 After this is done, you can either continue with the creation of a new workspace,
 choose to configure other aspects of PTFE, or add more users.
@@ -54,5 +54,5 @@ choose to configure other aspects of PTFE, or add more users.
 You have successfully configured the installation and configuration steps that
 are specific to Private Terraform Enterprise! You can now configure SMTP
 (`https://<TFE HOSTNAME>/app/admin/smtp/`), Twilio (`https://<TFE HOSTNAME>/app/admin/twillio`),
-SAML (`https://<TFE HOSTNAME>/app/admin/saml`), or head to the [Getting Started](/docs/enterprise/getting-started/index.html)
+SAML (`https://<TFE HOSTNAME>/app/admin/saml`), or head to the [Getting Started](/docs/cloud/getting-started/index.html)
 section to start using the software.

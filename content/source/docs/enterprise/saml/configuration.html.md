@@ -14,7 +14,7 @@ Private Terraform Enterprise (PTFE) is configured as the Service Provider.
 
 -> **Note:** For instructions for specific IdPs, see [Identity Provider Configuration](./identity-provider-configuration.html).
 
--> **API:** See the [Admin Settings API](../api/admin/settings.html).
+-> **API:** See the [Admin Settings API](/docs/cloud/api/admin/settings.html).
 
 ## Terraform Enterprise (Service Provider)
 
@@ -24,7 +24,7 @@ Prior to activating SAML, we recommend that you create a [non-SSO admin account 
 
 In case of any issues during SAML configuration, this ensures that there will be an admin able to log in and make necessary adjustments.
 
-[admin]: ../private/admin/index.html
+[admin]: ../admin/index.html
 
 Go to the SAML section of the site admin pages. You can use the "Site Admin" link in the upper-right user icon menu, or go directly to `https://<TFE HOSTNAME>/app/admin/saml`.
 
@@ -42,7 +42,7 @@ The SAML settings are separated into sections:
 - **Single Log-Out URL**: The HTTP(s) endpoint on your IdP for single logout requests. This value is provided by your IdP configuration. Single Logout is not yet supported.
 - **IdP Certificate**: The PEM encoded X.509 Certificate as provided by the IdP configuration.
 
--> **Note:** When reconfiguring the IdP certificate, TFE will retain the old IdP certificate to allow for a rotation period. When you are sure that the new certificate is functioning correctly, you must explicitly remove the old IdP certificate. A button labeled "Revoke old IDP certificate" will appear below the IdP Certificate field if you are in a rotation period. You can also remove the old certificate via an [API endpoint](../api/admin/settings.html#revoke-previous-saml-idp-certificate).
+-> **Note:** When reconfiguring the IdP certificate, TFE will retain the old IdP certificate to allow for a rotation period. When you are sure that the new certificate is functioning correctly, you must explicitly remove the old IdP certificate. A button labeled "Revoke old IDP certificate" will appear below the IdP Certificate field if you are in a rotation period. You can also remove the old certificate via an [API endpoint](/docs/cloud/api/admin/settings.html#revoke-previous-saml-idp-certificate).
 
 ### Attributes
 
@@ -58,7 +58,7 @@ The SAML settings are separated into sections:
 
 ### User Session
 
-- **API Token Session Timeout**: (default: `1209600` seconds, or 14 days) The duration of time (in seconds) for which TFE will accept [a user's API token](../users-teams-organizations/users.html#api-tokens) before requiring the user to log in again. For more details about this behavior, see [API Token Expiration](./login.html#api-token-expiration).
+- **API Token Session Timeout**: (default: `1209600` seconds, or 14 days) The duration of time (in seconds) for which TFE will accept [a user's API token](/docs/cloud/users-teams-organizations/users.html#api-tokens) before requiring the user to log in again. For more details about this behavior, see [API Token Expiration](./login.html#api-token-expiration).
 
 ## Identity Provider
 

@@ -54,7 +54,7 @@ PTFE has the ability to automatically generate a support bundle including logs a
 
 ## Managing Tool Versions
 
-Terraform Enterprise has a control panel that allows admins to manage the versions of Terraform and Packer and their download locations. 
+Terraform Enterprise has a control panel that allows admins to manage the versions of Terraform and Packer and their download locations.
 
 In Terraform Enterprise installations 201807-1 or later, see [Managing Tool Versions](admin/resources.html#managing-terraform-versions).
 
@@ -226,7 +226,7 @@ Terraform Enterprise makes several categories of outbound requests, detailed in 
 
 #### Version Control System Integrations
 
-Private Terraform Enterprise can be configured to connect to a number of [Version Control Systems (VCSs)](/docs/enterprise/vcs/index.html), some supporting both SaaS and private-network installations.
+Private Terraform Enterprise can be configured to connect to a number of [Version Control Systems (VCSs)](/docs/cloud/vcs/index.html), some supporting both SaaS and private-network installations.
 
 In order to perform ingress of Terraform configuration from a configured VCS, Private Terraform Enterprise will need to be able to communicate with that provider's API, and webhooks from that provider will need to be able to reach Private Terraform Enterprise.
 
@@ -291,7 +291,7 @@ terraform {
 EOF
 
 # Initialize Terraform with the Remote Backend
-terraform init 
+terraform init
 ```
 
 Now, if you keep the `backend.tf` file in scope when you run `terraform` operations, all state will be stored in the configured bucket.
@@ -442,5 +442,5 @@ sudo atlas-backup
 
 ## Minimum Viable IAM Access Policy
 
-HashiCorp does not recommend using the minimum viable IAM access policy. You will need to edit this policy to account for any and all actions you wish Terraform to be able to perform against your AWS account. We do, however, provide a [git repo](https://github.com/hashicorp/terraform-enterprise-modules/tree/master/aws-extra/minimum-viable-iam) you can use as a base example to start from. 
+HashiCorp does not recommend using the minimum viable IAM access policy. You will need to edit this policy to account for any and all actions you wish Terraform to be able to perform against your AWS account. We do, however, provide a [git repo](https://github.com/hashicorp/terraform-enterprise-modules/tree/master/aws-extra/minimum-viable-iam) you can use as a base example to start from.
 

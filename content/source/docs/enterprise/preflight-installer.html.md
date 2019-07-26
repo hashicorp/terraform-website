@@ -96,7 +96,7 @@ The following hostnames are accessed in online mode:
 * registry.replicated.com
 
 Additionally, the following hostnames are accessed unless a
-[custom Terraform bundle](/docs/enterprise/run/index.html#custom-and-community-providers)
+[custom Terraform bundle](/docs/cloud/run/index.html#custom-and-community-providers)
 is supplied:
 
 * registry.terraform.io (when using Terraform 0.12 and later)

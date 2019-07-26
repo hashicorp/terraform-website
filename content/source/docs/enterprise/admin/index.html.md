@@ -12,7 +12,7 @@ Administration of a PTFE instance has two main domains:
 - Installation, upgrades, and operational tasks like backups and monitoring, which take place outside the Terraform Enterprise application.
 - Administrative tasks and configuration within the application itself.
 
-This section is about in-application administration, including general settings, systemwide integration settings, and management of accounts and resources. Administration functions can be managed via user interface (the focus of this guide) or via the [Admin API](../../api/admin/index.html).
+This section is about in-application administration, including general settings, systemwide integration settings, and management of accounts and resources. Administration functions can be managed via user interface (the focus of this guide) or via the [Admin API](/docs/cloud/api/admin/index.html).
 
 ## Accessing the Admin Interface
 
