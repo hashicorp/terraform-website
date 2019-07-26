@@ -27,7 +27,7 @@ Users can start runs with the standard `terraform plan` and `terraform apply` co
 
 Terraform Enterprise offers two kinds of CLI-driven runs, to support different stages of your workflow:
 
-- `terraform plan` starts a [speculative plan][] in a Terraform Enterprise workspace, for fast feedback while developing Terraform configurations. Developers can quickly check the results of their edits (including compliance with Sentinel policies) without needing to copy sensitive variables to their local machine.
+- `terraform plan` starts a [speculative plan][] in a Terraform Enterprise workspace, using configuration files from a local directory. Developers can quickly check the results of edits (including compliance with Sentinel policies) without needing to copy sensitive variables to their local machine.
 
   Speculative plans work with all workspaces, and can co-exist with the [VCS-driven workflow](./ui.html).
 
@@ -80,6 +80,12 @@ If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
+
+## Remote Working Directories
+
+If you manage your Terraform configurations in self-contained repositories, the remote working directory always has the same content as the local working directory.
+
+If you use a combined repository and [specify a working directory on workspaces](../workspaces/settings.html#terraform-working-directory), you can run Terraform from either the real working directory or from the root of the combined configuration directory. In both cases, Terraform will upload the entire combined configuration directory.
 
 ## Remote Speculative Plans
 

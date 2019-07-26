@@ -61,9 +61,26 @@ You can choose "latest" to automatically update a workspace to new versions, or 
 
 ### Terraform Working Directory
 
-The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. This is useful when working with VCS repos that contain multiple Terraform configurations. Defaults to the root of the configuration directory.
+The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. Defaults to the root of the configuration directory.
 
-- **Note** — If you specify a working directory, TFE will by default only queue a plan for changes to the repository inside that working directory. You can override this behaviour with [Automatic Run Triggering](#automatic-run-triggering) settings.
+TFE will change to this directory before starting a Terraform run, and will report an error if the directory does not exist.
+
+Setting a working directory creates a default filter for automatic run triggering, and  sometimes causes CLI-driven runs to upload additional configuration content.
+
+#### Default Run Trigger Filtering
+
+In VCS-backed workspaces that specify a working directory, TFE assumes that only changes within that working directory should trigger a run. You can override this behavior with the [Automatic Run Triggering](#automatic-run-triggering) settings.
+
+#### Parent Directory Uploads
+
+If a working directory is configured, TFE always expects the complete shared configuration directory to be available, since the configuration might use local modules from outside its working directory.
+
+In [runs triggered by VCS commits](../run/ui.html), this is automatic. In [CLI-driven runs](../run/cli.html), Terraform's CLI sometimes uploads additional content:
+
+- When the local working directory _does not match_ the name of the configured working directory, Terraform assumes it is the root of the configuration directory, and uploads only the local working directory.
+- When the local working directory _matches_ the name of the configured working directory, Terraform uploads one or more parents of the local working directory, according to the depth of the configured working directory. (For example, a working directory of `production` is only one level deep, so Terraform would upload the immediate parent directory. `consul/production` is two levels deep, so Terraform would upload the parent and grandparent directories.)
+
+If you use the working directory setting, always run Terraform from a complete copy of the configuration directory. Moving one subdirectory to a new location can result in unexpected content uploads.
 
 ## Locking
 
