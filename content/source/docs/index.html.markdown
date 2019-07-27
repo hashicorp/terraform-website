@@ -69,11 +69,17 @@ This section is devoted to overviews and explanations of complex systems; the go
 
 Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
 
+### [Terraform Cloud ➜](/docs/cloud/index.html)
+
+Documentation for Terraform Cloud.
+
+Terraform Cloud is an application that helps teams use Terraform together. It manages Terraform runs in a consistent and reliable environment, and includes easy access to shared state and secret data, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more. Terraform Cloud offers free accounts for small teams, and paid plans with additional feature sets for medium-sized businesses.
+
 ### [Terraform Enterprise ➜](/docs/enterprise/index.html)
 
 Documentation for Terraform Enterprise.
 
-Terraform Enterprise is a supplementary paid product that makes it easier for teams to manage infrastructure together. It provides a way to share access to sensitive data, a consistent and reliable environment for Terraform runs, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more.
+Terraform Enterprise is an on-premise distribution of Terraform Cloud. It offers enterprises a private instance of the Terraform Cloud application, with no resource limits and with additional enterprise-grade architectural features like audit logging and SAML single sign-on.
 
 ### [Terraform Registry ➜](/docs/registry/index.html)
 
