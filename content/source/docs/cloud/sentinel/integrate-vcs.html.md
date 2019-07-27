@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Managing Policies with VCS - Sentinel - Terraform Enterprise"
+page_title: "Managing Policies with VCS - Sentinel - Terraform Cloud"
 ---
 
 # Managing Sentinel Policies with Version Control

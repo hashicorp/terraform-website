@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "permissions - Terraform Enterprise"
+page_title: "permissions - Terraform Cloud"
 ---
 
 # Permissions

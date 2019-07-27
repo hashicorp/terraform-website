@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "SSH Keys for Cloning Modules - Workspaces - Terraform Enterprise"
+page_title: "SSH Keys for Cloning Modules - Workspaces - Terraform Cloud"
 ---
 
 # Using SSH Keys for Cloning Modules

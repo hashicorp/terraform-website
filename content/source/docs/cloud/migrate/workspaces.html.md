@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Migrating Multiple Workspaces - Terraform Enterprise"
+page_title: "Migrating Multiple Workspaces - Terraform Cloud"
 ---
 
 [cli-workspaces]: /docs/state/workspaces.html

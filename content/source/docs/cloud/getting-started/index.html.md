@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Getting Started - Terraform Enterprise"
+page_title: "Getting Started - Terraform Cloud"
 ---
 
 # Getting Started with Terraform Enterprise

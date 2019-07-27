@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "VCS Repository Structure - Workspaces - Terraform Enterprise"
+page_title: "VCS Repository Structure - Workspaces - Terraform Cloud"
 ---
 
 # Repository Structure

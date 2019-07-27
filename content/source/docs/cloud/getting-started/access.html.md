@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Accessing TFE - Getting Started - Terraform Enterprise"
+page_title: "Accessing TFE - Getting Started - Terraform Cloud"
 ---
 
 # Accessing Terraform Enterprise

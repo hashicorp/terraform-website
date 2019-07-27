@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Workspaces - Terraform Enterprise"
+page_title: "Workspaces - Terraform Cloud"
 ---
 
 # Workspaces

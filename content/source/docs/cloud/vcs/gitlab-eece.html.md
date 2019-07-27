@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "GitLab EE and CE - VCS Providers - Terraform Enterprise"
+page_title: "GitLab EE and CE - VCS Providers - Terraform Cloud"
 ---
 
 # Configuring GitLab EE and CE Access

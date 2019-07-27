@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Admin - API Docs - Terraform Enterprise"
+page_title: "Admin - API Docs - Terraform Cloud"
 ---
 
 # Private Terraform Enterprise Admin API Documentation

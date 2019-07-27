@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Home - Terraform Enterprise"
+page_title: "Home - Terraform Cloud"
 description: |-
   Terraform Enterprise is a tool for safely and efficiently changing infrastructure across providers.
 ---

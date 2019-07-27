@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Sentinel - Terraform Enterprise"
+page_title: "Sentinel - Terraform Cloud"
 ---
 
 # Sentinel Overview

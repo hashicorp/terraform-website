@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Creating Workspaces - Workspaces - Terraform Enterprise"
+page_title: "Creating Workspaces - Workspaces - Terraform Cloud"
 ---
 
 # Creating Workspaces

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Run States and Stages - Runs - Terraform Enterprise"
+page_title: "Run States and Stages - Runs - Terraform Cloud"
 ---
 
 # Run States and Stages

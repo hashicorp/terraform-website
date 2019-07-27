@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Runs - Terraform Enterprise"
+page_title: "Runs - Terraform Cloud"
 ---
 
 # About Terraform Runs in Terraform Enterprise

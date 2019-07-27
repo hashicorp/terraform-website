@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "SSH Keys - API Docs - Terraform Enterprise"
+page_title: "SSH Keys - API Docs - Terraform Cloud"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

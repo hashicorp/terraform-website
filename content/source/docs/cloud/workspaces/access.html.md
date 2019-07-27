@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Managing Access - Workspaces - Terraform Enterprise"
+page_title: "Managing Access - Workspaces - Terraform Cloud"
 ---
 
 # Managing Access to Workspaces

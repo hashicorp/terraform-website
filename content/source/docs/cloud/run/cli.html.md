@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "CLI-driven Runs - Runs - Terraform Enterprise"
+page_title: "CLI-driven Runs - Runs - Terraform Cloud"
 ---
 
 [sentinel]: ../sentinel/index.html

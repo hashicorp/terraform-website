@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Organizations - Terraform Enterprise"
+page_title: "Organizations - Terraform Cloud"
 ---
 
 [teams]: ./teams.html

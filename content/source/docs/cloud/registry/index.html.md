@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Private Module Registry - Terraform Enterprise"
+page_title: "Private Module Registry - Terraform Cloud"
 ---
 
 # Private Module Registry

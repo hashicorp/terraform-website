@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Two-factor Authentication - Terraform Enterprise"
+page_title: "Two-factor Authentication - Terraform Cloud"
 ---
 
 # Two-factor Authentication

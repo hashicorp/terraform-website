@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Creating Workspaces - Getting Started - Terraform Enterprise"
+page_title: "Creating Workspaces - Getting Started - Terraform Cloud"
 ---
 
 # Creating and Managing Terraform Workspaces

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Migrating from Terraform Open Source - Terraform Enterprise"
+page_title: "Migrating from Terraform Open Source - Terraform Cloud"
 ---
 
 [state]: /docs/state/index.html

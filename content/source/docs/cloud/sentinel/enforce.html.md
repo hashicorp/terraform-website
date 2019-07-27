@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Enforce and Override Policies - Sentinel - Terraform Enterprise"
+page_title: "Enforce and Override Policies - Sentinel - Terraform Cloud"
 ---
 
 # Enforce and Override Policies

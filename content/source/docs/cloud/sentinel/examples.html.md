@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Example Policies - Sentinel - Terraform Enterprise"
+page_title: "Example Policies - Sentinel - Terraform Cloud"
 ---
 
 # Example Policies

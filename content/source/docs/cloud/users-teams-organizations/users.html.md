@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Users - Terraform Enterprise"
+page_title: "Users - Terraform Cloud"
 ---
 
 [organizations]: ./organizations.html

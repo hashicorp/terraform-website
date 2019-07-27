@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Defining Policies - Sentinel - Terraform Enterprise"
+page_title: "Defining Policies - Sentinel - Terraform Cloud"
 ---
 
 # Defining Policies

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Bitbucket Cloud - VCS Providers - Terraform Enterprise"
+page_title: "Bitbucket Cloud - VCS Providers - Terraform Cloud"
 ---
 
 # Configuring Bitbucket Cloud Access

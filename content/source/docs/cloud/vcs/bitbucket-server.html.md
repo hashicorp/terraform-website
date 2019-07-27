@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Bitbucket Server - VCS Providers - Terraform Enterprise"
+page_title: "Bitbucket Server - VCS Providers - Terraform Cloud"
 ---
 
 

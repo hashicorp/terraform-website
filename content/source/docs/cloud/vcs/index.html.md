@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Connecting VCS Providers - Terraform Enterprise"
+page_title: "Connecting VCS Providers - Terraform Cloud"
 ---
 
 # Connecting VCS Providers to Terraform Enterprise

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Service Accounts - Terraform Enterprise"
+page_title: "Service Accounts - Terraform Cloud"
 ---
 
 # Service Accounts

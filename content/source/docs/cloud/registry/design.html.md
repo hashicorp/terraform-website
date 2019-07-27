@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Using the Configuration Designer - Private Module Registry - Terraform Enterprise"
+page_title: "Using the Configuration Designer - Private Module Registry - Terraform Cloud"
 ---
 
 # Using the Configuration Designer

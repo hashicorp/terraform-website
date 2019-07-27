@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "tfstate - Imports - Sentinel - Terraform Enterprise"
+page_title: "tfstate - Imports - Sentinel - Terraform Cloud"
 description: |-
   The tfstate import provides access to a Terraform state.
 ---

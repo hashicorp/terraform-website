@@ -1,5 +1,5 @@
 ---
-page_title: "API Docs - Terraform Enterprise"
+page_title: "API Docs - Terraform Cloud"
 layout: "cloud"
 ---
 

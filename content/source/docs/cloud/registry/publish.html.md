@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Publishing Private Modules - Private Module Registry - Terraform Enterprise"
+page_title: "Publishing Private Modules - Private Module Registry - Terraform Cloud"
 ---
 
 [vcs]: ../vcs/index.html

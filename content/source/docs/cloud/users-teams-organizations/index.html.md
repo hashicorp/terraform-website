@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Users, Teams, and Organizations - Terraform Enterprise"
+page_title: "Users, Teams, and Organizations - Terraform Cloud"
 ---
 
 # Users, Teams, and Organizations

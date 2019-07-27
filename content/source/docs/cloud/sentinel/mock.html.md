@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Mocking Terraform Sentinel Data - Sentinel - Terraform Enterprise"
+page_title: "Mocking Terraform Sentinel Data - Sentinel - Terraform Cloud"
 ---
 
 # Mocking Terraform Sentinel Data

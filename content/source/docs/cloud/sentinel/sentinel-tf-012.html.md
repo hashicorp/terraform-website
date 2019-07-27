@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Using Sentinel with Terraform 0.12 - Terraform Enterprise"
+page_title: "Using Sentinel with Terraform 0.12 - Terraform Cloud"
 description: |-
   Read about the changes made to Sentinel in Terraform 0.12.
 ---

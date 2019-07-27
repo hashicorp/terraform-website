@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Configuring Sentinel Policies - Getting Started - Terraform Enterprise"
+page_title: "Configuring Sentinel Policies - Getting Started - Terraform Cloud"
 ---
 
 # Configuring Sentinel Policies

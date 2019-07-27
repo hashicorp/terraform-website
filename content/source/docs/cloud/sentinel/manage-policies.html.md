@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Managing Sentinel Policies - Sentinel - Terraform Enterprise"
+page_title: "Managing Sentinel Policies - Sentinel - Terraform Cloud"
 ---
 
 # Managing Sentinel Policies
