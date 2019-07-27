@@ -5,7 +5,7 @@ page_title: "Naming - Workspaces - Terraform Cloud"
 
 # Workspace Naming
 
-Terraform Enterprise organizes workspaces by name, so it's important to use a consistent and informative naming strategy. And although future releases of TFE will add more organizational tools, the name will always be the most important piece of information about a workspace.
+Terraform Cloud organizes workspaces by name, so it's important to use a consistent and informative naming strategy. And although future releases of Terraform Cloud will add more organizational tools, the name will always be the most important piece of information about a workspace.
 
 Note that workspace names can only include letters, numbers, -, and _.
 

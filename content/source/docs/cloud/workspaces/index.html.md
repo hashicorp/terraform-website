@@ -5,7 +5,7 @@ page_title: "Workspaces - Terraform Cloud"
 
 # Workspaces
 
-Workspaces are how Terraform Enterprise (TFE) organizes infrastructure.
+Workspaces are how Terraform Cloud organizes infrastructure.
 
 A workspace consists of:
 
@@ -18,7 +18,7 @@ A workspace consists of:
 
 -> **API:** See the [Workspaces API](../api/workspaces.html).
 
-TFE's top navigation bar includes a "Workspaces" link, which takes you to the list of workspaces in the current  organization.
+Terraform Cloud's top navigation bar includes a "Workspaces" link, which takes you to the list of workspaces in the current  organization.
 
 ![Screenshot: the list of workspaces](./images/index-list.png)
 
@@ -39,7 +39,7 @@ The following filters are available:
 
 ## Planning and Organizing Workspaces
 
-We recommend that organizations break down large monolithic Terraform configurations into smaller ones, then assign each one to its own workspace and delegate permissions and responsibilities for them. TFE can manage monolithic configurations just fine, but managing smaller infrastructure components like this is the best way to take full advantage of TFE's governance and delegation features.
+We recommend that organizations break down large monolithic Terraform configurations into smaller ones, then assign each one to its own workspace and delegate permissions and responsibilities for them. Terraform Cloud can manage monolithic configurations just fine, but managing smaller infrastructure components like this is the best way to take full advantage of Terraform Cloud's governance and delegation features.
 
 For example, the code that manages your production environment's infrastructure could be split into a networking configuration, the main application's configuration, and a monitoring configuration. After splitting the code, you would create "networking-prod", "app1-prod", "monitoring-prod" workspaces, and assign separate teams to manage them.
 

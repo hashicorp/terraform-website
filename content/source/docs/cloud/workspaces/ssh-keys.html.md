@@ -7,13 +7,13 @@ page_title: "SSH Keys for Cloning Modules - Workspaces - Terraform Cloud"
 
 Terraform configurations can pull in Terraform modules from [a variety of different sources](/docs/modules/sources.html), and private Git repositories are a common source for private modules.
 
--> **Note:** The [private module registry](../registry/index.html) is an easier way to manage private Terraform modules in TFE, and doesn't require setting SSH keys for workspaces. The rest of this page only applies to configurations that fetch modules directly from a private Git repository.
+-> **Note:** The [private module registry](../registry/index.html) is an easier way to manage private Terraform modules in Terraform Cloud, and doesn't require setting SSH keys for workspaces. The rest of this page only applies to configurations that fetch modules directly from a private Git repository.
 
-To access a private Git repository, Terraform either needs login credentials (for HTTPS access) or an SSH key. Terraform Enterprise (TFE) can store private SSH keys centrally, and you can easily use them in any workspace that clones modules from a Git server.
+To access a private Git repository, Terraform either needs login credentials (for HTTPS access) or an SSH key. Terraform Cloud can store private SSH keys centrally, and you can easily use them in any workspace that clones modules from a Git server.
 
--> **Note:** SSH keys for cloning Terraform modules from Git repos are only used during Terraform runs. They are managed separately from any [keys used for bringing VCS content into TFE](../vcs/index.html#ssh-keys).
+-> **Note:** SSH keys for cloning Terraform modules from Git repos are only used during Terraform runs. They are managed separately from any [keys used for bringing VCS content into Terraform Cloud](../vcs/index.html#ssh-keys).
 
-TFE manages SSH keys used to clone Terraform modules at the organization level, and allows multiple keys to be added for the organization. You can add or delete keys via the organization's settings. Once a key is uploaded, the text of the key is not displayed to users.
+Terraform Cloud manages SSH keys used to clone Terraform modules at the organization level, and allows multiple keys to be added for the organization. You can add or delete keys via the organization's settings. Once a key is uploaded, the text of the key is not displayed to users.
 
 To assign a key to a workspace, go to its settings and choose a previously added key from the drop-down menu on Integrations under "SSH Key". Each workspace can only use one SSH key.
 
@@ -24,18 +24,18 @@ To assign a key to a workspace, go to its settings and choose a previously added
 
 To add or delete an SSH private key, use the main menu to go to your organization's settings and choose "Manage SSH Keys" from the navigation sidebar. This page has a form for adding new keys and a list of existing keys.
 
-![TFE screenshot: the manage SSH keys page](./images/keys-manage.png)
+![Terraform Cloud screenshot: the manage SSH keys page](./images/keys-manage.png)
 
 To add a key:
 
-1. Obtain an SSH keypair that TFE can use to download modules during a Terraform run. You might already have an appropriate key; if not, create one on a secure workstation and distribute the public key to your VCS provider(s). Do not use or generate a key that has a passphrase; Git is running non-interactively and won't be able to prompt for it.
+1. Obtain an SSH keypair that Terraform Cloud can use to download modules during a Terraform run. You might already have an appropriate key; if not, create one on a secure workstation and distribute the public key to your VCS provider(s). Do not use or generate a key that has a passphrase; Git is running non-interactively and won't be able to prompt for it.
 
-    The exact command to create a keypair depends on your OS, but is usually something like `ssh-keygen -t rsa -f "/Users/<NAME>/.ssh/service_tfe" -C "service_terraform_enterprise"`. This creates a `service_tfe` file with the private key, and a `service_tfe.pub` file with the public key.
+    The exact command to create a keypair depends on your OS, but is usually something like `ssh-keygen -t rsa -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
 2. Enter a name for the key in the "Name" field. Choose something identifiable, since the name is the only way to tell two SSH keys apart once the key text is hidden.
 3. Paste the text of the **private key** in the "Private SSH Key" field.
 4. Click the "Add Private SSH Key" button.
 
-After the key is saved, it will appear below in the list of keys. Keys are only listed by name; TFE retains the text of the private key, but will never again display it for any purpose.
+After the key is saved, it will appear below in the list of keys. Keys are only listed by name; Terraform Cloud retains the text of the private key, but will never again display it for any purpose.
 
 To delete a key, find it in the list of keys and click its "Delete" button. Before deleting a key, you should assign a new key to any workspaces that are using it.
 
@@ -47,10 +47,10 @@ To delete a key, find it in the list of keys and click its "Delete" button. Befo
 
 To assign a key to a workspace, navigate to that workspace's page and choose "SSH Key" from the "Settings" menu.
 
-![TFE screenshot: the settings menu on a workspace's page](./images/settings-tabs.png)
+![Terraform Cloud screenshot: the settings menu on a workspace's page](./images/settings-tabs.png)
 
 Select a named key from the "SSH Key" dropdown menu, then click the "Update SSH key" button.
 
-![TFE screenshot: the SSH key dropdown menu](./images/keys-dropdown.png)
+![Terraform Cloud screenshot: the SSH key dropdown menu](./images/keys-dropdown.png)
 
-In subsequent runs, TFE will use the selected SSH key in this workspace when cloning modules from Git.
+In subsequent runs, Terraform Cloud will use the selected SSH key in this workspace when cloning modules from Git.

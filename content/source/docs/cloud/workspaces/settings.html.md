@@ -7,7 +7,7 @@ page_title: "Settings - Workspaces - Terraform Cloud"
 
 -> **API:** See the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace) (`PATCH /organizations/:organization_name/workspaces/:name`).
 
-Terraform Enterprise (TFE) workspaces can be reconfigured after creation.
+Terraform Cloud workspaces can be reconfigured after creation.
 
 Workspace settings are separated into several pages, which are listed in the drop-down "Settings" menu in each workspace's header. The following groups of settings are available:
 
@@ -31,7 +31,7 @@ After changing any of these settings, you must click the "Save settings" button 
 
 ### ID
 
-Every workspace has a unique ID that cannot be changed. Workspace IDs are sometimes necessary when working with [TFE's API](../api/index.html).
+Every workspace has a unique ID that cannot be changed. Workspace IDs are sometimes necessary when working with [Terraform Cloud's API](../api/index.html).
 
 Click the icon beside the ID to copy it to the clipboard.
 
@@ -43,7 +43,7 @@ The display name of the workspace.
 
 ### Auto Apply and Manual Apply
 
-Whether or not TFE should automatically apply a successful Terraform plan. If you choose manual apply, an operator must confirm a successful plan and choose to apply it.
+Whether or not Terraform Cloud should automatically apply a successful Terraform plan. If you choose manual apply, an operator must confirm a successful plan and choose to apply it.
 
 Auto-apply has a few exceptions:
 
@@ -62,17 +62,17 @@ You can choose "latest" to automatically update a workspace to new versions, or 
 
 The directory where Terraform will execute, specified as a relative path from the root of the configuration directory. Defaults to the root of the configuration directory.
 
-TFE will change to this directory before starting a Terraform run, and will report an error if the directory does not exist.
+Terraform Cloud will change to this directory before starting a Terraform run, and will report an error if the directory does not exist.
 
 Setting a working directory creates a default filter for automatic run triggering, and  sometimes causes CLI-driven runs to upload additional configuration content.
 
 #### Default Run Trigger Filtering
 
-In VCS-backed workspaces that specify a working directory, TFE assumes that only changes within that working directory should trigger a run. You can override this behavior with the [Automatic Run Triggering](#automatic-run-triggering) settings.
+In VCS-backed workspaces that specify a working directory, Terraform Cloud assumes that only changes within that working directory should trigger a run. You can override this behavior with the [Automatic Run Triggering](#automatic-run-triggering) settings.
 
 #### Parent Directory Uploads
 
-If a working directory is configured, TFE always expects the complete shared configuration directory to be available, since the configuration might use local modules from outside its working directory.
+If a working directory is configured, Terraform Cloud always expects the complete shared configuration directory to be available, since the configuration might use local modules from outside its working directory.
 
 In [runs triggered by VCS commits](../run/ui.html), this is automatic. In [CLI-driven runs](../run/cli.html), Terraform's CLI sometimes uploads additional content:
 
@@ -89,17 +89,17 @@ If you need to prevent Terraform runs for any reason, you can lock a workspace. 
 
 Locking a workspace also restricts state uploads. In order to upload state, the workspace must be locked by the user who is uploading state.
 
-~> **Important:** [The `atlas` backend][atlas-backend] ignores this restriction, and allows users with write access to modify state when the workspace is locked. To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows and use the `remote` backend instead; see [TFE's CLI-driven workflow](../run/cli.html) for details.
+~> **Important:** [The `atlas` backend][atlas-backend] ignores this restriction, and allows users with write access to modify state when the workspace is locked. To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows and use the `remote` backend instead; see [Terraform Cloud's CLI-driven workflow](../run/cli.html) for details.
 
 [atlas-backend]: /docs/backends/types/terraform-enterprise.html
 
 Users with write access can lock and unlock a workspace, but can't unlock a workspace which was locked by another user. Users with admin privileges can force unlock a workspace even if another user has locked it.
 
-Locks are managed with a single "Lock/Unlock/Force unlock `<WORKSPACE NAME>`" button. TFE asks for confirmation when unlocking.
+Locks are managed with a single "Lock/Unlock/Force unlock `<WORKSPACE NAME>`" button. Terraform Cloud asks for confirmation when unlocking.
 
 ## Notifications
 
-The "Notifications" page allows TFE to send webhooks to external services whenever specific run events occur in a workspace.
+The "Notifications" page allows Terraform Cloud to send webhooks to external services whenever specific run events occur in a workspace.
 
 See [Run Notifications](./notifications.html) for detailed information about configuring notifications.
 
@@ -126,32 +126,32 @@ After changing any of these settings, you must click the "Update VCS settings" b
 You can use the "Select a VCS connection" buttons and "Repository" field to change which VCS repository the workspace gets configurations from. See also:
 
 - [Creating Workspaces](./creating.html) for more details about selecting a VCS repository.
-- [Connecting VCS Providers to Terraform Enterprise](../vcs/index.html) for more details about configuring VCS integrations.
+- [Connecting VCS Providers to Terraform Cloud](../vcs/index.html) for more details about configuring VCS integrations.
 
 -> **API:** If you need to change VCS connections for many workspaces at once, consider automating the changes with the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace). This is most common when moving a VCS server, or when a vendor deprecates an older API version.
 
 ### Automatic Run Triggering
 
-For workspaces that **don't** specify a Terraform working directory, TFE assumes that the entire repository is relevant to the workspace. Any change will trigger a run.
+For workspaces that **don't** specify a Terraform working directory, Terraform Cloud assumes that the entire repository is relevant to the workspace. Any change will trigger a run.
 
-For workspaces that **do** specify a Terraform working directory, TFE assumes that only _some_ content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. By default, only the working directory is considered relevant.
+For workspaces that **do** specify a Terraform working directory, Terraform Cloud assumes that only _some_ content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. By default, only the working directory is considered relevant.
 
 You can adjust this behavior in two ways:
 
-- **Add more trigger directories.** TFE will queue runs for changes in any of the specified trigger directories (including the working directory).
+- **Add more trigger directories.** Terraform Cloud will queue runs for changes in any of the specified trigger directories (including the working directory).
 
     For example, if you use a top-level `modules` directory to share Terraform code across multiple configurations, changes to the shared modules are relevant to every workspace that uses that repo. You can add `modules` as a trigger directory for each workspace to make sure they notice any changes to shared code.
-- **Mark the entire repository as relevant.** If you set the "Automatic Run Triggering" setting to "Always Trigger Runs," TFE will assume that anything in the repository might affect the workspace's configuration, and will queue runs for any change.
+- **Mark the entire repository as relevant.** If you set the "Automatic Run Triggering" setting to "Always Trigger Runs," Terraform Cloud will assume that anything in the repository might affect the workspace's configuration, and will queue runs for any change.
 
     This can be useful for repos that don't have multiple configurations but require a working directory for some other reason. It's usually not what you want for true monorepos, since it queues unnecessary runs and slows down your ability to provision infrastructure.
 
--> **Note:** Trigger directories also apply to [speculative plans](./index.html#speculative-plans) on pull requests — TFE won't queue plans for changes that aren't marked as relevant.
+-> **Note:** Trigger directories also apply to [speculative plans](./index.html#speculative-plans) on pull requests — Terraform Cloud won't queue plans for changes that aren't marked as relevant.
 
--> **Error Handling:** Terraform Enterprise retrieves the changed files for each push or pull request using your VCS provider's API. If for some reason the list of changed files cannot be retrieved, or if it is too large to process, the default behaviour is to trigger runs on all attached workspaces. Should this happen, you may see several runs with state "Planned", due to the push resulting in no changes to infrastructure.
+-> **Error Handling:** Terraform Cloud retrieves the changed files for each push or pull request using your VCS provider's API. If for some reason the list of changed files cannot be retrieved, or if it is too large to process, the default behaviour is to trigger runs on all attached workspaces. Should this happen, you may see several runs with state "Planned", due to the push resulting in no changes to infrastructure.
 
 ### VCS Branch
 
-Which branch of the repository to use. If left blank, TFE will use the repository's default branch.
+Which branch of the repository to use. If left blank, Terraform Cloud will use the repository's default branch.
 
 ### Include submodules on clone
 
@@ -164,7 +164,7 @@ Whether to recursively clone all of the repository's Git submodules when fetchin
 This page includes two buttons:
 
 - "Queue destroy Plan"
-- "Delete from Terraform Enterprise"
+- "Delete from Terraform Cloud"
 
 In almost all cases, you should perform both actions in that order when destroying a workspace.
 
