@@ -5,7 +5,7 @@ page_title: "Service Accounts - Terraform Cloud"
 
 # Service Accounts
 
-Terraform Enterprise (TFE) provides two types of service accounts: team, and organization. These accounts can access Terraform Enterprise APIs, but cannot be used interactively. The service accounts are designed to support server-to-server API calls using the service identity as opposed to individual user identities.
+Terraform Cloud provides two types of service accounts: team, and organization. These accounts can access Terraform Cloud APIs, but cannot be used interactively. The service accounts are designed to support server-to-server API calls using the service identity as opposed to individual user identities.
 
 Team and organization service accounts don't have API tokens by default; you must generate a token before you can use them.
 
@@ -31,7 +31,7 @@ Note that the individual members of a team can usually perform actions the team 
 
 -> **API:** See the [Organization Token API](../api/organization-tokens.html).
 
-Organization service accounts are designed for creating and configuring workspaces and teams. We don't recommend using them as an all-purpose interface to TFE; their purpose is to do some initial setup before delegating a workspace to a team. For more routine interactions with workspaces, use team service accounts.
+Organization service accounts are designed for creating and configuring workspaces and teams. We don't recommend using them as an all-purpose interface to Terraform Cloud; their purpose is to do some initial setup before delegating a workspace to a team. For more routine interactions with workspaces, use team service accounts.
 
 To manage the API token for an organization service account, go to **Organization settings > API Token** and use the controls under the "Organization Tokens" header.
 

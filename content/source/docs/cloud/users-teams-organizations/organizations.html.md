@@ -8,7 +8,7 @@ page_title: "Organizations - Terraform Cloud"
 
 # Organizations
 
-Organizations are a shared space for [teams][] to collaborate on workspaces in Terraform Enterprise (TFE).
+Organizations are a shared space for [teams][] to collaborate on workspaces in Terraform Cloud.
 
 -> **API:** See the [Organizations API](../api/organizations.html). <br/>
 **Terraform:** See the `tfe` provider's [`tfe_organization` resource](/docs/providers/tfe/r/organization.html).
@@ -16,7 +16,7 @@ Organizations are a shared space for [teams][] to collaborate on workspaces in T
 
 ## Selecting Organizations
 
-On most pages within TFE, the top navigation bar displays the name of the selected organization. Clicking the name reveals the organization switcher menu, which lists all of the organizations you belong to. You can switch to another organization by clicking its name, or you can create a new organization with the "Create new organization" button.
+On most pages within Terraform Cloud, the top navigation bar displays the name of the selected organization. Clicking the name reveals the organization switcher menu, which lists all of the organizations you belong to. You can switch to another organization by clicking its name, or you can create a new organization with the "Create new organization" button.
 
 ![screenshot: the organization switcher menu](./images/org-nav.png)
 
@@ -24,11 +24,11 @@ On most pages within TFE, the top navigation bar displays the name of the select
 
 Organization membership is automatic, and is determined by team membership. To add a user to an organization, add them to one or more of that organization's teams. See [Teams][] for more information.
 
-You can only add existing user accounts to teams. If a colleague has not created their TFE account yet, send them the sign-up link (`https://app.terraform.io/account/new` for SaaS, `https://<TFE HOSTNAME>/account/new` for private installs) and ask them to send you their username.
+You can only add existing user accounts to teams. If a colleague has not created their account yet, send them the sign-up link (`https://app.terraform.io/account/new` for SaaS, `https://<TFE HOSTNAME>/account/new` for private installs) and ask them to send you their username.
 
 ## Creating Organizations
 
-Users can create new TFE organizations by clicking the "Create new organization" button in the organization switcher menu. The new organization page also displays automatically when the currently logged-in user does not belong to any organizations, as when first logging in as a new user.
+Users can create new organizations by clicking the "Create new organization" button in the organization switcher menu. The new organization page also displays automatically when the currently logged-in user does not belong to any organizations, as when first logging in as a new user.
 
 ![screenshot: the new organization page](./images/org-new.png)
 
@@ -36,7 +36,7 @@ To create a new organization, provide a unique name and a primary contact email 
 
 Once you have created an organization, you can add other [users][] by adding them to one or more [teams][].
 
--> **Note:** On the SaaS version of TFE, any user can create a new organization. On private installs of TFE, the administrators can restrict this ability, so that only site admins can create organizations. See [Administration: General Settings](/docs/enterprise/admin/general.html#organization-creation) for more details.
+-> **Note:** On the SaaS version of Terraform Cloud, any user can create a new organization. On Terraform Enterprise, the administrators can restrict this ability, so that only site admins can create organizations. See [Administration: General Settings](/docs/enterprise/admin/general.html#organization-creation) for more details.
 
 ## Organization Settings
 
@@ -64,7 +64,7 @@ See [Teams][] for more information.
 
 ### VCS Provider
 
-The VCS provider page is used for setting up VCS access for TFE. See [Connecting VCS Providers](../vcs/index.html) for more information.
+The VCS provider page is used for setting up VCS access for Terraform Cloud. See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 ### API Tokens
 
@@ -86,11 +86,11 @@ Sentinel is an embedded policy-as-code framework that can enforce rules about Te
 
 ## Inactive Organizations
 
-TFE is a paid product offered to organizations on a subscription basis; for more information about billing, please speak to a HashiCorp sales representative. TFE is also available as a free trial to organizations evaluating its features.
+Terraform Cloud is a paid product offered to organizations on a subscription basis; for more information about billing, please speak to a HashiCorp sales representative. Terraform Cloud is also available as a free trial to organizations evaluating its features.
 
 When a free trial has expired, or when paid billing has been canceled, an organization becomes inactive. Inactive organizations display a banner reading "TRIAL EXPIRED — Upgrade Required" in the top navigation bar:
 
 ![screenshot: the trial expiration banner](./images/org-inactive.png)
 
-Members of an inactive organization can still log into TFE, view data about past runs, manage team memberships, and manage access permissions on workspaces. However, inactive organizations cannot initiate new [Terraform runs](../run/index.html).
+Members of an inactive organization can still log into Terraform Cloud, view data about past runs, manage team memberships, and manage access permissions on workspaces. However, inactive organizations cannot initiate new [Terraform runs](../run/index.html).
 

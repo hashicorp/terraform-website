@@ -5,7 +5,7 @@ page_title: "Users, Teams, and Organizations - Terraform Cloud"
 
 # Users, Teams, and Organizations
 
-Terraform Enterprise's organizational and access control model is based on three units: users, teams, and organizations.
+Terraform Cloud's organizational and access control model is based on three units: users, teams, and organizations.
 
 - [Users](./users.html) are individual members of an organization. They belong to teams, which
 are granted permissions on an organization’s workspaces.

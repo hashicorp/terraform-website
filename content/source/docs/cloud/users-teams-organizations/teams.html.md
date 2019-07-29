@@ -9,7 +9,7 @@ page_title: "Teams - Terraform Cloud"
 
 # Teams
 
-Teams are groups of Terraform Enterprise (TFE) [users][] within an [organization][organizations]. To delegate provisioning work, the organization's owners can grant workspace permissions to specific teams.
+Teams are groups of Terraform Cloud [users][] within an [organization][organizations]. To delegate provisioning work, the organization's owners can grant workspace permissions to specific teams.
 
 Teams can only have permissions on workspaces within their organization, although any user in a team can belong to teams in other organizations.
 
@@ -17,7 +17,7 @@ If a user belongs to at least one team in an organization, they are considered a
 
 ## The Owners Team
 
-Every organization has a team named `owners`, whose members have special permissions. In TFE's documentation and UI, members of the owners team are sometimes called organization owners.
+Every organization has a team named `owners`, whose members have special permissions. In Terraform Cloud's documentation and UI, members of the owners team are sometimes called organization owners.
 
 An organization's creator is the first member of its owners team; other members can be added or removed in the same way as other teams. Unlike other teams, the owners team can't be deleted and can't be empty; if there is only one member, you must add another before removing the current member.
 
@@ -61,7 +61,7 @@ To delete a team, go to the target team's settings page and click the "Delete TE
 
 Organization owners can use a team's settings page to add and remove users from the team.
 
-To add a user, enter their username in the "Username" text field (located under the "Add a New Team Member" header) and click the "Add member" button. (You must know the user's TFE username; users cannot be added using email addresses or other personal information.)
+To add a user, enter their username in the "Username" text field (located under the "Add a New Team Member" header) and click the "Add member" button. (You must know the user's exact username; users cannot be added using email addresses or other personal information.)
 
 To remove a user, click the "🗑" (trash can) button by their entry in the member list.
 
@@ -83,7 +83,7 @@ A team can be given read, write, or admin permissions on one or more workspaces.
 - Use any workspace's "Access" tab to manage team permissions on that workspace. For full instructions, see [Managing Access to Workspaces](../workspaces/access.html).
 - For detailed information about the available permissions levels, see [Permissions](./permissions.html#workspace-level-permissions).
 
-When determining whether a user can take an action on a resource, TFE uses the highest permission level from that user's teams. For example, if a user belongs to a team with read permissions on a workspace and another team with admin permissions on that workspace, that user has admin permissions.
+When determining whether a user can take an action on a resource, Terraform Cloud uses the highest permission level from that user's teams. For example, if a user belongs to a team with read permissions on a workspace and another team with admin permissions on that workspace, that user has admin permissions.
 
 Organization-level permissions (see [Managing Organization Access](./teams.html#managing-organization-access), below) can also supersede lower workspace permissions. For example, if a user belongs to a team with read permissions on a workspace but also has workspace management enabled, that user has admin permissions on the workspace. Conversely, if the team is allowed to manage the organization's Sentinel policies (which gives read access to all workspaces for enforcing policy sets) and has admin access on the workspace, the higher admin permission level is granted to the workspace.
 
@@ -91,7 +91,7 @@ Organization-level permissions (see [Managing Organization Access](./teams.html#
 
 -> **API:** See the [Teams API](../api/teams.html).
 
-A team can be granted permissions to manage Sentinel policies, workspaces, and/or VCS settings across an organization. 
+A team can be granted permissions to manage Sentinel policies, workspaces, and/or VCS settings across an organization.
 
 - Organization owners can manage a team's organization-level permissions on the team's settings page under "Organization Access".
 - For detailed information about the available permissions, see [Permissions](./permissions.html#organization-level-permissions)
