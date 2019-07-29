@@ -61,8 +61,10 @@ On the Console Settings page, there is a section for HTTP Proxy:
 This change updates the proxy settings for the PTFE application services. To update the proxy settings for the installer (for example, to handle configuration tests correctly), additional steps are necessary:
 
 1. Locate the Replicated configuration files on the instance under either `/etc/sysconfig/` or `/etc/default`: `replicated` and `replicated-operator`.
-1. Open the files for editing. On the line that includes `REPLICATED_OPTS`, add `-e HTTP_PROXY=<your proxy url> -e NO_PROXY=<list of no_proxy hosts>` to the existing command options. The list of `no_proxy` hosts is a comma-separated list with no spaces.
-1. Restart the Replicated services following [the instructions for your distribution](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#restarting-replicated).
+2. Open the files for editing. On the line that includes `REPLICATED_OPTS` for `replicated` or `REPLICATED_OPERATOR_OPTS` for `replicated-operator`, add `-e HTTP_PROXY=<your proxy url> -e NO_PROXY=<list of no_proxy hosts>` to the existing command options. The list of `no_proxy` hosts is a comma-separated list with no spaces, and should include following addresses `127.0.0.1,<DOCKER0 INTERFACE IP>,<IP ADDRESS OF PTFE INSTANCE>,<HOSTNAME OF PTFE INSTANCE>` but not limited to.
+3. Docker also needs to be able to communicate to endpoints with the same rules of proxy settings as `replicated` and `replicated-operator`, the steps 1-6 of this [document](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) are required.
+`NOTE: Please take precautions on application outage when applying configuration change, i.e. wait for all runs to finish, prevent new runs to trigger`
+4. Restart the Replicated services following [the instructions for your distribution](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#restarting-replicated).
 
 ## Trusting SSL/TLS Certificates
 
