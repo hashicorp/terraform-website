@@ -9,9 +9,7 @@ Terraform Enterprise (TFE) provides two types of service accounts: team, and org
 
 Team and organization service accounts don't have API tokens by default; you must generate a token before you can use them.
 
-Like with [user tokens](./users.html#api-tokens), service account tokens are displayed only once when they are created, and are obfuscated thereafter. If the token is lost, it must be regenerated. When a token is regenerated, the previous token immediately becomes invalid.
-
-~> **Important:** Unlike [user tokens][user token], team and organization tokens cannot authenticate with Terraform's `atlas` backend. This means they can't be used to run Terraform locally against state stored in TFE, access `terraform_remote_state` data sources during a run, or [migrate local state into TFE](../migrate/index.html). If you need to use the `atlas` backend for any reason, use a [user token][].
+Like with [user tokens][], service account tokens are displayed only once when they are created, and are obfuscated thereafter. If the token is lost, it must be regenerated. When a token is regenerated, the previous token immediately becomes invalid.
 
 [user token]: ./users.html#api-tokens
 
