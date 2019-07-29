@@ -2,19 +2,19 @@
 layout: "cloud"
 page_title: "Overview - Free Tier - Terraform Cloud"
 description: |-
-  Terraform Enterprise's free accounts, now in closed beta, offer unlimited Terraform state storage for you and your colleagues.
+  Terraform Cloud's free accounts, now in closed beta, offer unlimited Terraform state storage for you and your colleagues.
 ---
 
 
-# How the Terraform Enterprise Free Tier Works
+# How the Terraform Cloud Free Tier Works
 
-Terraform Enterprise is a service that makes it easy for small teams to manage shared infrastructure with Terraform. This page provides a brief overview of the components of the Free Tier and of the changes it makes to your existing Terraform workflow.
+Terraform Cloud is a service that makes it easy for small teams to manage shared infrastructure with Terraform. This page provides a brief overview of the components of the Free Tier and of the changes it makes to your existing Terraform workflow.
 
-For practical instructions on using the Terraform Enterprise Free Tier, see [Getting Started](./index.html).
+For practical instructions on using the Terraform Cloud Free Tier, see [Getting Started](./index.html).
 
 ## The Application
 
-The Terraform Enterprise application, located at [`https://app.terraform.io`](https://app.terraform.io), provides a UI and API for storing, viewing, and controlling access to Terraform state. The application manages state in terms of organizations and workspaces:
+The Terraform Cloud application, located at [`https://app.terraform.io`](https://app.terraform.io), provides a UI and API for storing, viewing, and controlling access to Terraform state. The application manages state in terms of organizations and workspaces:
 
 - A **workspace** is a named container for a single timeline of Terraform state, used to manage a collection of infrastructure resources over time.
 
@@ -34,19 +34,19 @@ The backend requires an API token, which is created by an application user and t
 
 Terraform still defaults to storing state locally, but any Terraform configuration can enable remote state with [a backend configuration](/docs/backends/config.html) that specifies which remote workspace to use.
 
--> **Note:** Several earlier versions of Terraform included preview versions of the `remote` backend. The Terraform Enterprise Free Tier relies on enhancements added in 0.11.13, and does not work with these earlier versions.
+-> **Note:** Several earlier versions of Terraform included preview versions of the `remote` backend. The Terraform Cloud Free Tier relies on enhancements added in 0.11.13, and does not work with these earlier versions.
 
--> **Note:** For Free Tier organizations, TFE always retains at least the last 100 states (across all workspaces) and at least the most recent state for every workspace. Additional states beyond the last 100 are retained for six months, and are then deleted. 
+-> **Note:** For Free Tier organizations, Terraform Cloud always retains at least the last 100 states (across all workspaces) and at least the most recent state for every workspace. Additional states beyond the last 100 are retained for six months, and are then deleted.
 
 ## The Workflow
 
-The Terraform Enterprise Free Tier uses the standard Terraform CLI workflow, with some enhancements:
+The Terraform Cloud Free Tier uses the standard Terraform CLI workflow, with some enhancements:
 
 - Users continue to run Terraform on their local machines, but state is stored remotely instead of in the local working directory.
 - Remote workspaces are automatically created when you need them. To create a new workspace, specify a new workspace name in a Terraform configuration's `backend` block.
 - Terraform protects state from conflicts by locking the remote state during plans and applies; other users can't begin new plans or applies until the current one ends.
 
-Access management tasks outside the scope of Terraform's CLI workflow are available in the Terraform Enterprise UI and API. These tasks include:
+Access management tasks outside the scope of Terraform's CLI workflow are available in the Terraform Cloud UI and API. These tasks include:
 
 - Adding and removing organization members
 - Deleting workspaces
