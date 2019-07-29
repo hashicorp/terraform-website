@@ -5,11 +5,11 @@ page_title: "API-driven Runs - Runs - Terraform Cloud"
 
 # The API-driven Run Workflow
 
-Terraform Enterprise (TFE) has three workflows for managing Terraform runs.
+Terraform Cloud has three workflows for managing Terraform runs.
 
-- The [UI/VCS-driven run workflow](./ui.html), which is TFE's primary mode of operation.
+- The [UI/VCS-driven run workflow](./ui.html), which is the primary mode of operation.
 - The API-driven run workflow described below, which is more flexible but requires you to create some tooling.
-- The [CLI-driven run workflow](./cli.html), which uses Terraform's standard CLI tools to execute runs in TFE.
+- The [CLI-driven run workflow](./cli.html), which uses Terraform's standard CLI tools to execute runs in Terraform Cloud.
 
 ## Summary
 
@@ -17,11 +17,11 @@ In the API-driven workflow, workspaces are not directly associated with a VCS re
 
 Instead, one of your organization's other tools is in charge of deciding when configuration has changed and a run should occur. Usually this is something like a CI system, or something else capable of monitoring changes to your Terraform code and performing actions in response.
 
-Once your other tooling has decided a run should occur, it must make a series of calls to TFE's `runs` and `configuration-versions` APIs to upload configuration files and perform a run with them. For the exact series of API calls, see the [pushing a new configuration version](#pushing-a-new-configuration-version) section.
+Once your other tooling has decided a run should occur, it must make a series of calls to Terraform Cloud's `runs` and `configuration-versions` APIs to upload configuration files and perform a run with them. For the exact series of API calls, see the [pushing a new configuration version](#pushing-a-new-configuration-version) section.
 
-The most significant difference in this workflow is that TFE _does not_ fetch configuration files from version control. Instead, your own tooling must upload the configurations as a `.tar.gz` file. This allows you to work with configurations from unsupported version control systems, automatically generate Terraform configurations from some other source of data, or build a variety of other integrations.
+The most significant difference in this workflow is that Terraform Cloud _does not_ fetch configuration files from version control. Instead, your own tooling must upload the configurations as a `.tar.gz` file. This allows you to work with configurations from unsupported version control systems, automatically generate Terraform configurations from some other source of data, or build a variety of other integrations.
 
-~> **Important:** The script below is provided to illustrate the run process, and is not intended for production use. If you want to drive TFE runs from the command line, please see the [CLI-driven run workflow](./cli.html).
+~> **Important:** The script below is provided to illustrate the run process, and is not intended for production use. If you want to drive Terraform Cloud runs from the command line, please see the [CLI-driven run workflow](./cli.html).
 
 ## Pushing a New Configuration Version
 
@@ -32,9 +32,9 @@ Pushing a new configuration to an existing workspace is a multi-step process. Th
 To perform an upload, a few user parameters must be set:
 
 - **path_to_content_directory** is the folder with the terraform configuration. There must be at least one `.tf` file in the root of this path.
-- **organization** is the organization name (not ID) for your Terraform Enterprise organization.
-- **workspace** is the workspace name (not ID) in the Terraform Enterprise organization.
-- **$TOKEN** is the API Token used for [authenticating with the TFE API](../api/index.html#authentication).
+- **organization** is the organization name (not ID) for your Terraform Cloud organization.
+- **workspace** is the workspace name (not ID) in the Terraform Cloud organization.
+- **$TOKEN** is the API Token used for [authenticating with the Terraform Cloud API](../api/index.html#authentication).
 
 This script extracts the `path_to_content_directory`, `organization`, and `workspace` from command line arguments, and expects the `$TOKEN` as an environment variable.
 
@@ -94,7 +94,7 @@ UPLOAD_URL=($(curl \
 
 Next, upload the configuration version `tar.gz` file to the upload URL extracted from the previous step. If a file is not uploaded, the configuration version will not be usable, since it will have no Terraform configuration files.
 
-Terraform Enterprise automatically creates a new run with a plan once the new file is uploaded. If the workspace is configured to auto-apply, it will also apply if the plan succeeds; otherwise, an apply can be triggered via the [Run Apply API](../api/run.html#apply). (If the API token used for the upload only has plan permissions, the run can't be auto-applied.)
+Terraform Cloud automatically creates a new run with a plan once the new file is uploaded. If the workspace is configured to auto-apply, it will also apply if the plan succeeds; otherwise, an apply can be triggered via the [Run Apply API](../api/run.html#apply). (If the API token used for the upload only has plan permissions, the run can't be auto-applied.)
 
 ```bash
 curl \
@@ -185,6 +185,6 @@ rm ./create_config_version.json
 
 ## Advanced Use Cases
 
-For advanced use cases see the [TFE Automation Script](https://github.com/hashicorp/terraform-guides/tree/master/operations/automation-script) repository for automating interactions with Terraform Enterprise, including the creation of a workspace, uploading TFE code, setting of variables, and triggering a plan/apply.
+For advanced use cases see the [TFE Automation Script](https://github.com/hashicorp/terraform-guides/tree/master/operations/automation-script) repository for automating interactions with Terraform Cloud, including the creation of a workspace, uploading code, setting variables, and triggering a plan/apply.
 
-In addition to uploading configurations and starting runs, you can use TFE's APIs to create and modify workspaces, edit variable values, and more. See the [API documentation](../api/index.html) for more details.
+In addition to uploading configurations and starting runs, you can use Terraform Cloud's APIs to create and modify workspaces, edit variable values, and more. See the [API documentation](../api/index.html) for more details.
