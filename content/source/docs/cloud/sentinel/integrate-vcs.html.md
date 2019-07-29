@@ -5,7 +5,7 @@ page_title: "Managing Policies with VCS - Sentinel - Terraform Cloud"
 
 # Managing Sentinel Policies with Version Control
 
-~> **Note**: This guide uses deprecated features in Terraform Enterprise. It is recommended to use the first-class VCS integration with [policy sets](./manage-policies.html#managing-policy-sets) instead.
+~> **Note**: This guide uses deprecated features in Terraform Cloud. It is recommended to use the first-class VCS integration with [policy sets](./manage-policies.html#managing-policy-sets) instead.
 
 [test]: https://docs.hashicorp.com/sentinel/writing/testing
 [tfe_sentinel_policy]: /docs/providers/tfe/r/sentinel_policy.html
@@ -21,11 +21,11 @@ page_title: "Managing Policies with VCS - Sentinel - Terraform Cloud"
 [user token]: ../users-teams-organizations/users.html#api-tokens
 [owners team]: ../users-teams-organizations/teams.html#the-owners-team
 
-Terraform Enterprise (TFE)'s [UI for managing Sentinel policies](./manage-policies.html) is designed primarily for _viewing_ your organization's policies and policy sets. It also works well for demos and other simple use cases.
+Terraform Cloud's [UI for managing Sentinel policies](./manage-policies.html) is designed primarily for _viewing_ your organization's policies and policy sets. It also works well for demos and other simple use cases.
 
 For complex day-to-day use, we recommend keeping Sentinel code in version control and using Terraform to automatically deploy your policies. This approach is a better fit with Sentinel's policy-as-code design, and scales better for organizations with multiple owners and administrators.
 
-This page describes an end-to-end process for managing TFE's Sentinel policies with version control and Terraform. Use this outline and the [example repository][example_repo] as a starting point for managing your own organization's policies.
+This page describes an end-to-end process for managing Terraform Cloud's Sentinel policies with version control and Terraform. Use this outline and the [example repository][example_repo] as a starting point for managing your own organization's policies.
 
 ## Summary
 
@@ -33,11 +33,11 @@ Managing policies with version control and Terraform requires the following step
 
 - Create a VCS repository for policies.
 - Write Sentinel policies and add them to the policy repo.
-- Write a Terraform configuration for managing policies in TFE, and add it to the policy repo. This configuration must:
+- Write a Terraform configuration for managing policies in Terraform Cloud, and add it to the policy repo. This configuration must:
     - Configure [the `tfe` provider][tfe_provider].
     - Manage individual policies with `tfe_sentinel_policy` resources.
     - Manage policy sets with `tfe_policy_set` resources.
-- Create a TFE workspace linked to the policy repo.
+- Create a Terraform Cloud workspace linked to the policy repo.
 - Write tests for your Sentinel policies.
 - Use CI to run Sentinel tests automatically.
 
@@ -45,7 +45,7 @@ Managing policies with version control and Terraform requires the following step
 
 -> **Example:** We've provided a complete and working [example policy repo][example_repo], which you can use as a template for your own policy repo.
 
-Create a single VCS repository for managing your organization's Sentinel policies. We recommend a short and descriptive name like "tfe-policies". Later, you will create a TFE workspace based on this repo.
+Create a single VCS repository for managing your organization's Sentinel policies. We recommend a short and descriptive name like "tfe-policies". Later, you will create a Terraform Cloud workspace based on this repo.
 
 Once the policy management process is fully implemented, the repo will contain the following:
 
@@ -60,25 +60,25 @@ Once the policy management process is fully implemented, the repo will contain t
 
 -> **Example:** See the `.sentinel` files included in the [example policy repo][example_repo], or browse the [list of example policies][example_policies].
 
-Write some [Sentinel policies for TFE][defining_policies], and commit them to your repo as `.sentinel` files. If you're already enforcing Sentinel policies in TFE, copy them into the new repo.
+Write some [Sentinel policies for Terraform Cloud][defining_policies], and commit them to your repo as `.sentinel` files. If you're already enforcing Sentinel policies in Terraform Cloud, copy them into the new repo.
 
 -> **Note:** Since your Terraform configuration for policies will be using [the `tfe` provider][tfe_provider] with very elevated permissions, you might want to use a Sentinel policy to restrict which `tfe` resources the workspace can manage. The example policy repo [includes a policy](https://github.com/hashicorp/tfe-policies-example/blob/master/tfe_policies_only.sentinel) that only allows `tfe_sentinel_policy` and `tfe_policy_set` resources in the policy workspace.
 
 ## Terraform Configuration
 
-Next, write a Terraform configuration to manage your policies and policy sets in TFE using [the `tfe` provider][tfe_provider].
+Next, write a Terraform configuration to manage your policies and policy sets in Terraform Cloud using [the `tfe` provider][tfe_provider].
 
 -> **Example:** The example policy repo includes a [complete Terraform configuration for policies](https://github.com/hashicorp/tfe-policies-example/blob/master/main.tf), with comments for clarity. If you prefer to read the Terraform code without a guided walkthrough, you can [skip to the next section][inpage_workspace].
 
-### Define Variables for Accessing TFE
+### Define Variables for Accessing Terraform Cloud
 
-The `tfe` provider needs a highly privileged Terraform Enterprise API token in order to manage policies. The best way to handle this type of secret is with a sensitive variable in a TFE workspace. To enable this, define a variable in the configuration.
+The `tfe` provider needs a highly privileged Terraform Cloud API token in order to manage policies. The best way to handle this type of secret is with a sensitive variable in a Terraform Cloud workspace. To enable this, define a variable in the configuration.
 
 ```hcl
 variable "tfe_token" {}
 ```
 
-If you use a private install of TFE or multiple TFE organizations (or if you might do so in the future), you can set your TFE hostname and TFE organization as variables:
+If you use a Terraform Enterprise instance or multiple Terraform Cloud organizations (or if you might do so in the future), you can set your hostname and organization as variables:
 
 ```hcl
 variable "tfe_hostname" {
@@ -87,7 +87,7 @@ variable "tfe_hostname" {
 }
 
 variable "tfe_organization" {
-  description = "The TFE organization to apply your changes to."
+  description = "The organization to apply your changes to."
   default     = "example_corp"
 }
 ```
@@ -115,7 +115,7 @@ Method | Pros | Cons
 Use literal ID strings. | Highly secure, since workspace IDs never change. | Policy set configs are opaque. Accidental misconfigurations are difficult to spot.
 Use a data source to look up IDs by name. | Convenient and easy to read. | Renaming a workspace (requires admin permissions) can remove it from a policy set.
 Use a variable to map workspace names to IDs. | Secure and easy to read. | Keeping the variable up-to-date is inconvenient.
-Use `external_id` attribute of `tfe_workspace` resources. | Secure, readable, automatically updated. | Only available if you already manage your TFE workspaces with the `tfe` Terraform provider.
+Use `external_id` attribute of `tfe_workspace` resources. | Secure, readable, automatically updated. | Only available if you already manage your Terraform Cloud workspaces with the `tfe` Terraform provider.
 
 In our examples, we want to clearly show what our policy sets are doing, which is much easier if we can refer to workspaces by name. The [`tfe_workspace_ids` data source](/docs/providers/tfe/d/workspace_ids.html) (in `tfe` provider versions ≥ 0.6) makes it easy to use workspace names:
 
@@ -152,7 +152,7 @@ resource "tfe_sentinel_policy" "aws-block-allow-all-cidr" {
 
 ### Create Policy Set Resources
 
--> **Note:** See [Managing Sentinel Policies](./manage-policies.html) for a complete description of TFE's policy sets.
+-> **Note:** See [Managing Sentinel Policies](./manage-policies.html) for a complete description of Terraform Cloud's policy sets.
 
 Create a [`tfe_policy_set` resource][tfe_policy_set] for each policy set you wish to create.
 
@@ -192,32 +192,32 @@ resource "tfe_policy_set" "production" {
 
 ### Importing Resources
 
-If your TFE organization already has some policies or policy sets, make sure to include them when writing your Terraform configuration.
+If your organization already has some policies or policy sets, make sure to include them when writing your Terraform configuration.
 
 To bring the old resources under management, you can either delete them and let Terraform re-create them, or [import them into the Terraform state][import].
 
-To import existing resources into your TFE workspace, you must configure [the `atlas` backend](/docs/backends/types/terraform-enterprise.html) and run `terraform import` on your local workstation. Be sure to import resources **after** you have created a TFE workspace for managing policies, but **before** you have performed any runs in that workspace.
+To import existing resources into your workspace, you must configure [the `atlas` backend](/docs/backends/types/terraform-enterprise.html) and run `terraform import` on your local workstation. Be sure to import resources **after** you have created a workspace for managing policies, but **before** you have performed any runs in that workspace.
 
-For the specific import syntax to use, see the documentation for [the `tfe_sentinel_policy` resource][tfe_sentinel_policy] and [the `tfe_policy_set` resource][tfe_policy_set]. You can find policy and policy set IDs in the URL bar when viewing them in TFE.
+For the specific import syntax to use, see the documentation for [the `tfe_sentinel_policy` resource][tfe_sentinel_policy] and [the `tfe_policy_set` resource][tfe_policy_set]. You can find policy and policy set IDs in the URL bar when viewing them in Terraform Cloud.
 
 ~> **Important:** [The `remote` backend](/docs/backends/types/remote.html) does not currently support the `terraform import` command. If you plan to import, configure [the `atlas` backend](/docs/backends/types/terraform-enterprise.html) instead.
 
-## TFE Workspace
+## Workspace
 
 [inpage_workspace]: #tfe-workspace
 
-Create a [new TFE workspace](../workspaces/creating.html) linked to to your policy management repo.
+Create a [new workspace](../workspaces/creating.html) linked to to your policy management repo.
 
--> **Note:** This workspace doesn't have to belong to the organization whose policies it manages. If you use multiple TFE organizations, one of them can manage policies for the others.
+-> **Note:** This workspace doesn't have to belong to the organization whose policies it manages. If you use multiple organizations, one of them can manage policies for the others.
 
 Before performing any runs, go to the workspace's "Variables" page and set the following Terraform variables (using whichever names you used in the configuration):
 
-- `tfe_token` (mark as "Sensitive") — A TFE API token that can manage your organization's Sentinel policies. This token must be one of the following:
+- `tfe_token` (mark as "Sensitive") — A Terraform Cloud API token that can manage your organization's Sentinel policies. This token must be one of the following:
     - The [organization token][] (recommended)
     - The [team token][] for the [owners team][]
     - A [user token][] from a member of the owners team
 - `tfe_organization` — The name of the organization you want to manage policies for.
-- `tfe_hostname` — The hostname of your TFE instance.
+- `tfe_hostname` — The hostname of your Terraform Enterprise instance.
 
 Once the variables are configured, you can queue a Terraform run to begin managing policies.
 

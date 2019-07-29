@@ -19,13 +19,13 @@ You can also use the
 from the [Terraform Enterprise provider](/docs/providers/tfe/) to upload a
 policy using Terraform itself.
 
-## Sentinel in Terraform Enterprise
+## Sentinel in Terraform Cloud
 
 ~> Sentinel now supports native VCS integration and direct policy set uploads.
    See [Managing policies for organizations](./manage-policies.html) for details
    or to read about the [migration utility](./manage-policies.html#migration-utility).
 
-Using Sentinel with Terraform Enterprise involves:
+Using Sentinel with Terraform Cloud involves:
 
 - [Defining the policies](./import/index.html) - Policies are defined using the
   [policy language](https://docs.hashicorp.com/sentinel/concepts/language) with
@@ -37,7 +37,7 @@ Using Sentinel with Terraform Enterprise involves:
 - [Enforcing policy checks on runs](./enforce.html) - Policies are checked when
   a run is performed, after the `terraform plan` but before it can be confirmed
   or the `terraform apply` is executed.
-- [Mocking Sentinel Terraform data](./mock.html) - Terraform Enterprise provides
+- [Mocking Sentinel Terraform data](./mock.html) - Terraform Cloud provides
   the ability to generate mock data for any run within a workspace. This data
   can be used with the [Sentinel
   Simulator](https://docs.hashicorp.com/sentinel/commands/) to test policies

@@ -22,12 +22,12 @@ state and plan.
 - [tfstate](./tfstate.html) - This provides access to the Terraform state, the
   file used by Terraform to map real world resources to your configuration.
 
-Terraform Enterprise allows you to create mocks of these imports from plans for
+Terraform Cloud allows you to create mocks of these imports from plans for
 use with the mocking or testing features of the [Sentinel
 Simulator](https://docs.hashicorp.com/sentinel/commands/). For more information,
 see [Mocking Terraform Sentinel Data](../mock.html).
 
--> **Note:** Terraform Enterprise does not currently support custom imports.
+-> **Note:** Terraform Cloud does not currently support custom imports.
 
 ## Useful Functions and Idioms for Terraform Sentinel Policies
 

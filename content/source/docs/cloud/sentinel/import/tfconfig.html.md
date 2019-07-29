@@ -537,7 +537,7 @@ The `version` value within the [module configuration
 namespace](#namespace-module-configuration) represents the [version
 constraint][module-version-constraint] for modules that support it, such as
 modules within the [Terraform Module Registry][terraform-module-registry] or the
-[Terraform Enterprise private module registry][tfe-private-registry].
+[Terraform Cloud private module registry][tfe-private-registry].
 
 [module-version-constraint]: /docs/configuration/modules.html#module-versions
 [terraform-module-registry]: https://registry.terraform.io/

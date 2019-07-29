@@ -15,7 +15,7 @@ general information about how Terraform uses state [here][ref-tf-state].
 
 [ref-tf-state]: /docs/state/index.html
 
--> **NOTE:** Terraform Enterprise currently only supports policy checks at plan
+-> **NOTE:** Terraform Cloud currently only supports policy checks at plan
 time, limiting the usefulness of this import. This will be resolved in future
 releases. Until that time, the [`tfconfig`][import-tfconfig] and
 [`tfplan`][import-tfplan] imports will probably prove to be more useful.
@@ -199,7 +199,7 @@ main = rule { tfstate.terraform_version matches "^0\\.11\\.\\d+$" }
 
 -> **NOTE:** This value is also available via the [`tfplan`][import-tfplan]
 import, which will be more current when a policy check is run against a plan.
-It's recommended you use the value in `tfplan` until Terraform enterprise
+It's recommended you use the value in `tfplan` until Terraform Cloud
 supports policy checks in other stages of the workspace lifecycle. See the
 [`terraform_version`][import-tfplan-terraform-version] reference within the
 `tfplan` import for more details.

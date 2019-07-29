@@ -20,7 +20,7 @@ Sentinel Policies are rules which are enforced on Terraform runs to validate tha
 
 **Policy sets** are groups of policies that can be enforced on [workspaces][]. A policy set can be enforced on designated workspaces, or to all workspaces in the organization.
 
-After the plan stage of a Terraform run, Terraform Enterprise (TFE) checks every Sentinel policy that should be enforced on the run's workspace. This includes policies from global policy sets, and from any policy sets that are explicitly assigned to the workspace.
+After the plan stage of a Terraform run, Terraform Cloud checks every Sentinel policy that should be enforced on the run's workspace. This includes policies from global policy sets, and from any policy sets that are explicitly assigned to the workspace.
 
 Policy sets are managed at an organization level, and only [organization owners](../users-teams-organizations/teams.html#the-owners-team) can create, edit or delete them.
 
@@ -34,7 +34,7 @@ Enforcement levels in Sentinel are used for defining behavior when policies fail
 
 ## Constructing a policy set
 
-In order to use Sentinel in Terraform Enterprise, you'll first need to create a policy set. A policy set is simply a directory structure containing a Sentinel configuration file and some policy files. We recommend that these files and configurations be treated like any other code and be checked in to a source control system. An added benefit to this is TFE's VCS integration for Sentinel policies. See the [managing policy sets](#managing-policy-sets) section for details.
+In order to use Sentinel in Terraform Cloud, you'll first need to create a policy set. A policy set is simply a directory structure containing a Sentinel configuration file and some policy files. We recommend that these files and configurations be treated like any other code and be checked in to a source control system. An added benefit to this is Terraform Cloud's VCS integration for Sentinel policies. See the [managing policy sets](#managing-policy-sets) section for details.
 
 ### The `sentinel.hcl` configuration file
 
@@ -78,7 +78,7 @@ When creating or editing a policy set, the following fields are available:
 
 ## Migrating individually managed policies to versioned policy sets
 
-Individually managed policies were a proof-of-concept feature in Terraform Enterprise which allowed editing policy code directly in the UI and combining these policies into policy sets. This workflow is deprecated and is being replaced by versioned policy sets, which are managed as an immutable, atomic, and versioned unit, using VCS or directly uploading entire policy sets through the API.
+Individually managed policies were a proof-of-concept feature in Terraform Cloud which allowed editing policy code directly in the UI and combining these policies into policy sets. This workflow is deprecated and is being replaced by versioned policy sets, which are managed as an immutable, atomic, and versioned unit, using VCS or directly uploading entire policy sets through the API.
 
 If you already have policy sets defined which reference individually managed policies directly, you can quickly and easily migrate them to versioned policy sets.
 
@@ -89,4 +89,4 @@ We've created a simple migration utility which you can run on the command line t
 [migrate-source]: https://github.com/hashicorp/tfc-policy-sets-migration
 [migrate-binary]: https://github.com/hashicorp/tfc-policy-sets-migration/releases
 
-The goal of the migration utility is only to copy your policy sets and configuration from TFE onto your local disk in a directory structure ready to be uploaded or checked in to version control. From there, follow the steps in the [managing policy sets](#managing-policy-sets) section to create new policy sets. You'll be able to leverage VCS or direct API uploads using the migrated source files.
+The goal of the migration utility is only to copy your policy sets and configuration from Terraform Cloud onto your local disk in a directory structure ready to be uploaded or checked in to version control. From there, follow the steps in the [managing policy sets](#managing-policy-sets) section to create new policy sets. You'll be able to leverage VCS or direct API uploads using the migrated source files.
