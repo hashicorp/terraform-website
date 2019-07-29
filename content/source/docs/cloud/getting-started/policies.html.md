@@ -7,9 +7,9 @@ page_title: "Configuring Sentinel Policies - Getting Started - Terraform Cloud"
 
 **Prerequisites:** Before starting this guide, make sure you've [configured VCS access](./vcs.html) and [successfully completed a run](./runs.html).
 
-## About Sentinel Policies in Terraform Enterprise
+## About Sentinel Policies in Terraform Cloud
 
-[Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code framework integrated with various HashiCorp products. It enables fine-grained, logic-based policy decisions, and can be extended to use information from external sources. Terraform Enterprise enables users to enforce Sentinel policies during runs.
+[Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code framework integrated with various HashiCorp products. It enables fine-grained, logic-based policy decisions, and can be extended to use information from external sources. Terraform Cloud enables users to enforce Sentinel policies during runs.
 
 A policy consists of:
 
@@ -102,7 +102,7 @@ git push origin master
 ```
 
 That's it! Your policy code should now be available on GitHub. The next step is
-configure Terraform Enterprise to use the new policy set repository.
+configure Terraform Cloud to use the new policy set repository.
 
 ### Integrating with VCS
 
@@ -132,4 +132,4 @@ Now that the policy set is configured and ready, navigate to a workspace and que
 
 ## Finished
 
-You've now configured TFE and experienced its core workflows — you know how to create new workspaces, automatically and manually trigger runs on a workspace, review and monitor runs, approve plans, and add policy checks to your runs.
+You've now configured Terraform Cloud and experienced its core workflows — you know how to create new workspaces, automatically and manually trigger runs on a workspace, review and monitor runs, approve plans, and add policy checks to your runs.

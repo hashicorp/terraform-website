@@ -5,13 +5,13 @@ page_title: "Creating Workspaces - Getting Started - Terraform Cloud"
 
 # Creating and Managing Terraform Workspaces
 
-**Prerequisites:** Before starting this guide, you should [get access to Terraform Enterprise](./access.html) and [configure VCS access](./vcs.html).
+**Prerequisites:** Before starting this guide, you should [get access to Terraform Cloud](./access.html) and [configure VCS access](./vcs.html).
 
-At this point, you've done all the setup TFE needs, and can start using it for real work. Your first task should be to set up some workspaces.
+At this point, you've done all the setup Terraform Cloud needs, and can start using it for real work. Your first task should be to set up some workspaces.
 
 ## About Workspaces
 
-_Workspaces_ are how TFE organizes infrastructure. A workspace consists of:
+_Workspaces_ are how Terraform Cloud organizes infrastructure. A workspace consists of:
 
 - A collection of Terraform configurations (retrieved from a VCS repo).
 - Values for any variables those configurations require.
@@ -38,7 +38,7 @@ On the "Create a new Workspace" page, you need to enter at least two items: a wo
 
 ![fields on new workspace page](../workspaces/images/creating-fields.png)
 
--> **Note:** You can also create workspaces without a VCS repository, but doing so requires a different workflow for Terraform runs. For more information, see [About Terraform Runs in Terraform Enterprise](../run/index.html).
+-> **Note:** You can also create workspaces without a VCS repository, but doing so requires a different workflow for Terraform runs. For more information, see [About Terraform Runs in Terraform Cloud](../run/index.html).
 
 ### Workspace Name
 
@@ -56,17 +56,17 @@ In this example, we're using the `nfagerlund/terraform-minimum` repo.
 
 Optionally, you can set three other settings for a new workspace:
 
-- **Terraform Working Directory:** The directory in this repo where TFE will execute Terraform commands. If the Terraform configuration files you want aren't in the root of the repository, use this to specify where they are.
+- **Terraform Working Directory:** The directory in this repo where Terraform Cloud will execute Terraform commands. If the Terraform configuration files you want aren't in the root of the repository, use this to specify where they are.
 - **VCS Branch:** Which branch to use. Defaults to the repo's default branch, which is usually `master`.
 
 ## What Happens in a New Workspace
 
 When you create a new workspace, a few things happen:
 
-- TFE _doesn't_ immediately queue a plan for the workspace. Instead, it presents you with a dialog, with shortcut links to either queue a plan or edit variables.
+- Terraform Cloud _doesn't_ immediately queue a plan for the workspace. Instead, it presents you with a dialog, with shortcut links to either queue a plan or edit variables.
 
     ![finish dialog](./images/work-finished.png)
-- TFE automatically registers a webhook with your VCS service. The next time new commits appear in the selected branch of that repo, TFE will automatically queue a Terraform plan for the workspace.
+- Terraform Cloud automatically registers a webhook with your VCS service. The next time new commits appear in the selected branch of that repo, Terraform Cloud will automatically queue a Terraform plan for the workspace.
 
 ## Editing Variables
 
@@ -90,7 +90,7 @@ For more information, see [Variables](../workspaces/variables.html).
 
 The user account that created your organization is part of [the "owners" team](../users-teams-organizations/teams.html#the-owners-team), which can do any action on any workspace. Most of your colleagues don't need that level of access; instead, an administrator can give them access to the specific workspaces they need to use.
 
-TFE manages access with _teams._ In your organization's settings, you can create any number of teams and add users to them — earlier in this getting started guide, you might have [already created a team](./access.html#adding-other-users-to-an-organization) to bring other users into your organization. If you haven't done that yet, do it now.
+Terraform Cloud manages access with _teams._ In your organization's settings, you can create any number of teams and add users to them — earlier in this getting started guide, you might have [already created a team](./access.html#adding-other-users-to-an-organization) to bring other users into your organization. If you haven't done that yet, do it now.
 
 Once you have some teams, you can add them to a workspace by choosing "Team Access" from the "Settings" menu:
 
@@ -107,7 +107,7 @@ To add a team to a workspace, select it from the dropdown menu and choose which 
 
 To change a team's permissions on a workspace, you must first delete their existing permissions, then add their new permissions.
 
-~> **Note:** These permissions only affect actions via TFE's UI and API. If a person can push commits to a workspace's VCS repo and the workspace is set to automatically apply changes, that person can still make infrastructure changes. Take this into account when planning your teams and workspace permissions.
+~> **Note:** These permissions only affect actions via Terraform Cloud's UI and API. If a person can push commits to a workspace's VCS repo and the workspace is set to automatically apply changes, that person can still make infrastructure changes. Take this into account when planning your teams and workspace permissions.
 
 ## Configuring a Workspace
 
@@ -117,7 +117,7 @@ For more information, see [Workspace Settings](../workspaces/settings.html).
 
 ## Navigating Workspaces
 
-Most of your time in TFE is spent in two views:
+Most of your time in Terraform Cloud is spent in two views:
 
 * The workspace list. Use this to get an overview of the workspaces you're responsible for, and to navigate between workspaces.
 
