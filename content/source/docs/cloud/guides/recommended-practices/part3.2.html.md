@@ -25,14 +25,14 @@ If you already have established VCS workflows, layouts, and access control pract
 
 Also, make sure to write down your organization’s expectations and socialize them widely among your teams.
 
-Make sure you've picked a VCS system that Terraform Enterprise will be able to access. Currently, Terraform Enterprise supports integrations with GitHub, GitLab and Atlassian Bitbucket (both Server and Cloud).
+Make sure you've picked a VCS system that Terraform Cloud will be able to access. Currently, Terraform Cloud supports integrations with GitHub, GitLab and Atlassian Bitbucket (both Server and Cloud).
 
 
 ## 2. Put Terraform Code in VCS Repos
 
 Start moving infrastructure code into version control. New Terraform code should all be going into version control; if you have existing Terraform code that’s outside version control, start moving it in so that everyone in your organization knows where to look for things and can track the history and purpose of changes.
 
--> **Note:** There are several ways to structure Terraform repositories. If you want to learn more about how your repo structure can affect your Terraform Enterprise workflows, see [VCS Repository Structure](/docs/cloud/workspaces/repo-structure.html) in the Terraform Enterprise documentation.
+-> **Note:** There are several ways to structure Terraform repositories. If you want to learn more about how your repo structure can affect your Terraform Cloud workflows, see [VCS Repository Structure](/docs/cloud/workspaces/repo-structure.html) in the Terraform Cloud documentation.
 
 ## 3. Create Your First Module
 

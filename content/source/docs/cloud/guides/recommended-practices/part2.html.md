@@ -6,7 +6,7 @@ layout: "cloud"
 
 # Part 2: Evaluating Your Current Provisioning Practices
 
-Terraform Enterprise depends on several foundational IT practices. Before you can implement Terraform Enterprise's collaborative infrastructure as code workflows, you need to understand which of those practices you're already using, and which ones you still need to implement.
+Terraform Cloud depends on several foundational IT practices. Before you can implement Terraform Cloud's collaborative infrastructure as code workflows, you need to understand which of those practices you're already using, and which ones you still need to implement.
 
 We've written the section below in the form of a quiz or interview, with multiple-choice answers that represent the range of operational maturity levels we've seen across many organizations. You should read it with a notepad handy, and take note of any questions where your organization can improve its use of automation and collaboration.
 
@@ -37,13 +37,13 @@ Each question has several answers, each of which aligns with a different level o
     * Users across the organization can safely provision infrastructure with Terraform, without conflicts and with clear understanding of their access permissions.
     * Expert users within an organization can produce standardized infrastructure templates, and beginner users can consume those to follow infrastructure best practices for the organization.
     * Per-workspace access control helps committers and approvers on workspaces protect production environments.
-    * Functional groups that don't directly write Terraform code have visibility into infrastructure status and changes through Terraform Enterprise's UI.
+    * Functional groups that don't directly write Terraform code have visibility into infrastructure status and changes through Terraform Cloud's UI.
 
 By the end of this section, you should have a clear understanding of which operational maturity stage you are in. Section 3 will explain the recommended steps to move from your current stage to the next one.
 
 Answering these questions will help you understand your organization's method for provisioning infrastructure, its change workflow, its operation model, and its security model.
 
-Once you understand your current practices, you can identify the remaining steps for implementing Terraform Enterprise.
+Once you understand your current practices, you can identify the remaining steps for implementing Terraform Cloud.
 
 ## Your Current Configuration and Provisioning Practices
 
