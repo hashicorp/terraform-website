@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Migrating Multiple Workspaces - Terraform Cloud"
+page_title: "Migrating State from Multiple Local Workspaces - Terraform Cloud"
 ---
 
 [cli-workspaces]: /docs/state/workspaces.html
@@ -9,17 +9,17 @@ page_title: "Migrating Multiple Workspaces - Terraform Cloud"
 [remote-backend]: /docs/backends/types/remote.html
 [cli-credentials]: /docs/commands/cli-config.html#credentials
 
-# Migrating State from Multiple Terraform Workspaces
+# Migrating State from Multiple Local Workspaces
 
 Terraform can manage multiple groups of infrastructure in one working directory by [switching workspaces][cli-workspaces].
 
-These workspaces, managed with the `terraform workspace` command, aren't the same thing as Terraform Enterprise (TFE)'s workspaces. TFE workspaces act more like completely separate working directories; CLI workspaces are just alternate state files.
+These workspaces, managed with the `terraform workspace` command, aren't the same thing as Terraform Cloud's workspaces. Terraform Cloud workspaces act more like completely separate working directories; CLI workspaces are just alternate state files.
 
-If you use multiple workspaces, you'll need to migrate each one to a separate TFE workspace.
+If you use multiple workspaces, you'll need to migrate each one to a separate Terraform Cloud workspace.
 
 Migrating multiple workspaces is similar to [migrating a single workspace](./index.html), but it requires a slightly different backend configuration.
 
--> **API:** See the [State Versions API](../api/state-versions.html). Be sure to stop Terraform runs before migrating state to TFE, and only import state into TFE workspaces that have never performed a run.
+-> **API:** See the [State Versions API](../api/state-versions.html). Be sure to stop Terraform runs before migrating state to Terraform Cloud, and only import state into Terraform Cloud workspaces that have never performed a run.
 
 ## Step 1: Ensure Terraform ≥ 0.11.13 is Installed
 
@@ -34,10 +34,10 @@ Make sure you have all of the following:
 - The existing state data. The location of the state depends on which [backend][] you've been using:
     - If you were using the `local` backend, your state is files on disk. You need the original working directory where you've been running Terraform, or a copy of the `terraform.tfstate` and `terraform.tfstate.d` files to copy into a fresh working directory.
     - For remote backends, you need the path to the particular storage being used (usually already included in the configuration) and access credentials (which you usually must set as an environment variable).
-- A TFE user account.
+- A Terraform Cloud user account.
 
     This account must be a member of your organization's [owners team][], so you can create workspaces.
-- A [user API token][user-token] for your TFE user account.
+- A [user API token][user-token] for your Terraform Cloud user account.
 - A [CLI configuration file][cli-credentials], with your user API token configured in a `credentials` block.
 
 ## Step 3: Stop Terraform Runs
@@ -74,15 +74,15 @@ terraform {
 ```
 
 - Use the `remote` backend.
-- In the `organization` attribute, specify the name of your TFE organization.
-- The `hostname` attribute is only necessary with private TFE instances. You can omit it if you're using the SaaS version of TFE.
-- In the `prefix` attribute in the `workspaces` block, specify a prefix to use when naming newly created TFE workspaces. You'll use short workspace names on the CLI, and long workspace names with the prefix added in TFE's UI and API. See [the remote backend documentation][remote-backend] for details.
+- In the `organization` attribute, specify the name of your Terraform Cloud organization.
+- The `hostname` attribute is only necessary with Terraform Enterprise instances. You can omit it if you're using the SaaS version of Terraform Cloud.
+- In the `prefix` attribute in the `workspaces` block, specify a prefix to use when naming newly created Terraform Cloud workspaces. You'll use short workspace names on the CLI, and long workspace names with the prefix added in Terraform Cloud's UI and API. See [the remote backend documentation][remote-backend] for details.
 
 ## Step 6: Run `terraform init` to Migrate the Workspaces
 
 Run `terraform init`.
 
-The init command will offer to migrate each previous state to a new TFE workspace. The prompt usually looks like this:
+The init command will offer to migrate each previous state to a new Terraform Cloud workspace. The prompt usually looks like this:
 
 ```
 Initializing the backend...
@@ -104,7 +104,7 @@ Do you want to migrate all workspaces to "remote"?
 
 Answer "yes".
 
-Some backends, including the default `local` backend, allow a special `default` workspace that doesn't have a specific name. If you previously used a combination of named workspaces and the special `default` workspace, the prompt will next ask you to choose a new name for the `default` workspace, since TFE doesn't support unnamed workspaces:
+Some backends, including the default `local` backend, allow a special `default` workspace that doesn't have a specific name. If you previously used a combination of named workspaces and the special `default` workspace, the prompt will next ask you to choose a new name for the `default` workspace, since Terraform Cloud doesn't support unnamed workspaces:
 
 ```
 The "remote" backend configuration only allows named workspaces!
@@ -116,10 +116,10 @@ The "remote" backend configuration only allows named workspaces!
 
 After both questions are answered, Terraform will migrate your state.
 
-## Step 7: Configure the TFE Workspaces
+## Step 7: Configure the Terraform Cloud Workspaces
 
 
-In Terraform Enterprise's UI, make any settings changes necessary for your new workspaces.
+In Terraform Cloud's UI, make any settings changes necessary for your new workspaces.
 
 - [Set the VCS repository](../workspaces/settings.html#vcs-connection-and-repository). This is optional, but enables automatic Terraform runs on code changes and automatic plans on pull requests. For more information, see [The UI- and VCS-driven Run Workflow](../run/ui.html).
 - [Set values for variables](../workspaces/variables.html).
@@ -127,13 +127,13 @@ In Terraform Enterprise's UI, make any settings changes necessary for your new w
 
 ## Step 8: Queue Runs in the New Workspaces
 
-For each migrated workspace, either run `terraform plan` on the CLI or navigate to the workspace in TFE's UI and [queue a plan](../run/ui.html#starting-runs). Examine the results.
+For each migrated workspace, either run `terraform plan` on the CLI or navigate to the workspace in Terraform Cloud's UI and [queue a plan](../run/ui.html#starting-runs). Examine the results.
 
-If all went well, each plan should result in no changes or very small changes. TFE can now take over all Terraform runs for this infrastructure.
+If all went well, each plan should result in no changes or very small changes. Terraform Cloud can now take over all Terraform runs for this infrastructure.
 
 ## Troubleshooting
 
 - If the plan would create an entirely new set of infrastructure resources, you probably have the wrong state file.
 
     In the case of a wrong state file, you can recover by fixing your local working directory and trying again. You'll need to re-set to the local backend, run `terraform init`, replace the state file with the correct one, change back to the `atlas` backend, run `terraform init` again, and confirm that you want to replace the remote state with the current local state.
-- If the plan recognizes the existing resources but would make unexpected changes, check whether the designated VCS branch for the workspace is the same branch you've been running Terraform on, and update it, if it is not. You can also check whether variables in the TFE workspace have the correct values.
+- If the plan recognizes the existing resources but would make unexpected changes, check whether the designated VCS branch for the workspace is the same branch you've been running Terraform on, and update it, if it is not. You can also check whether variables in the Terraform Cloud workspace have the correct values.
