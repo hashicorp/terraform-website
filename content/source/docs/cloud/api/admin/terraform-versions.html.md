@@ -22,9 +22,11 @@ page_title: "Terraform Versions - Admin - API Docs - Terraform Cloud"
 
 # Admin Terraform Versions API
 
--> These API endpoints are available in Private Terraform Enterprise as of version 201807-1.
+-> **Terraform Enterprise feature:** The admin API is exclusive to Terraform Enterprise, and can only be used by the admins and operators who install and maintain their organization's Terraform Enterprise instance.
 
-The Terraform Versions Admin API contains endpoints to help site administrators manage known versions of Terraform.
+-> These API endpoints are available in Terraform Enterprise as of version 201807-1.
+
+The Terraform Versions Admin API lets site administrators manage which versions of Terraform are available to the Terraform Cloud users within their enterprise.
 
 ## List all Terraform versions
 
@@ -133,7 +135,7 @@ Key path                    | Type   | Default | Description
 `data.attributes.url`       | string |         | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded
 `data.attributes.sha`       | string |         | The SHA-256 checksum of the compressed Terraform binary
 `data.attributes.official`  | bool   | `false` | Whether or not this is an official release of Terraform
-`data.attributes.enabled`   | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
+`data.attributes.enabled`   | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Cloud
 `data.attributes.beta`      | bool   | `false` | Whether or not this version of Terraform is a beta pre-release
 
 ### Sample Payload
@@ -258,7 +260,7 @@ Key path                   | Type   | Default          | Description
 `data.attributes.url`      | string | (previous value) | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded
 `data.attributes.sha`      | string | (previous value) | The SHA-256 checksum of the compressed Terraform binary
 `data.attributes.official` | bool   | (previous value) | Whether or not this is an official release of Terraform
-`data.attributes.enabled`  | bool   | (previous value) | Whether or not this version of Terraform is enabled for use in Terraform Enterprise
+`data.attributes.enabled`  | bool   | (previous value) | Whether or not this version of Terraform is enabled for use in Terraform Cloud
 `data.attributes.beta`     | bool   | (previous value) | Whether or not this version of Terraform is a beta pre-release
 
 ### Sample Payload
@@ -311,7 +313,7 @@ curl \
 
 `DELETE /admin/terraform-versions/:id`
 
-This endpoint removes a Terraform version from Terraform Enterprise. Versions cannot be removed if they are labeled as official versions of Terraform or if there are workspaces using them.
+This endpoint removes a Terraform version from Terraform Cloud. Versions cannot be removed if they are labeled as official versions of Terraform or if there are workspaces using them.
 
 Parameter  | Description
 -----------|------------

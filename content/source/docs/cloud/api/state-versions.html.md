@@ -30,11 +30,11 @@ page_title: "State Versions - API Docs - Terraform Cloud"
 | --------------- | --------------------------------------------------------- |
 | `:workspace_id` | The workspace ID to create the new state version in. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. |
 
-Creates a state version and sets it as the current state version for the given workspace. The workspace must be locked by the user creating a state version. The workspace may be locked [with the API](./workspaces.html#lock-a-workspace) or [with the UI](../workspaces/settings.html#workspace-lock). This is most useful for migrating existing state from open source Terraform into a new TFE workspace.
+Creates a state version and sets it as the current state version for the given workspace. The workspace must be locked by the user creating a state version. The workspace may be locked [with the API](./workspaces.html#lock-a-workspace) or [with the UI](../workspaces/settings.html#workspace-lock). This is most useful for migrating existing state from open source Terraform into a new Terraform Cloud workspace.
 
 !> **Warning:** Use caution when uploading state to workspaces that have already performed Terraform runs. Replacing state improperly can result in orphaned or duplicated infrastructure resources.
 
--> **Note:** For Free Tier organizations, TFE always retains at least the last 100 states (across all workspaces) and at least the most recent state for every workspace. Additional states beyond the last 100 are retained for six months, and are then deleted.
+-> **Note:** For Free Tier organizations, Terraform Cloud always retains at least the last 100 states (across all workspaces) and at least the most recent state for every workspace. Additional states beyond the last 100 are retained for six months, and are then deleted.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 

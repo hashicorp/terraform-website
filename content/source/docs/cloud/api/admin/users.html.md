@@ -22,7 +22,9 @@ page_title: "Users - Admin - API Docs - Terraform Cloud"
 
 # Admin Users API
 
--> These API endpoints are available in Private Terraform Enterprise as of version 201807-1.
+-> **Terraform Enterprise feature:** The admin API is exclusive to Terraform Enterprise, and can only be used by the admins and operators who install and maintain their organization's Terraform Enterprise instance.
+
+-> These API endpoints are available in Terraform Enterprise as of version 201807-1.
 
 The Users Admin API contains endpoints to help site administrators manage user accounts.
 
@@ -451,13 +453,13 @@ Parameter   | Description
 
 [impersonate-ui]: /docs/enterprise/admin/resources.html#impersonating-a-user
 
-Impersonation allows an admin to begin a new session as another user in the system; for more information, see [Impersonating a User][impersonate-ui] in the Private Terraform Enterprise administration section.
+Impersonation allows an admin to begin a new session as another user in the system; for more information, see [Impersonating a User][impersonate-ui] in the Terraform Enterprise administration section.
 
 -> **Note:** Impersonation is [intended as a UI feature][impersonate-ui], and this endpoint exists to support that UI. We do not recommend impersonating users via the API.
 
 This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session.
 
-~> **Important:** Impersonating via the API requires you to switch to an alternate authentication flow that is not based on TFE's normal API tokens; instead, you must acquire and persist both an `_atlas_session_data=...` cookie and an `X-CSRF-Token` header. Instructions for doing this are beyond the scope of this document. If you believe you need to automate user impersonation, please [contact HashiCorp Support](/docs/enterprise/faq.html#support-for-private-terraform-enterprise) for assistance.
+~> **Important:** Impersonating via the API requires you to switch to an alternate authentication flow that is not based on Terraform Cloud's normal API tokens; instead, you must acquire and persist both an `_atlas_session_data=...` cookie and an `X-CSRF-Token` header. Instructions for doing this are beyond the scope of this document. If you believe you need to automate user impersonation, please [contact HashiCorp Support](/docs/enterprise/faq.html#support-for-private-terraform-enterprise) for assistance.
 
 Status  | Response                  | Reason
 --------|---------------------------|----------

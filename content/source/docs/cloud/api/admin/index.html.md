@@ -3,11 +3,13 @@ layout: "cloud"
 page_title: "Admin - API Docs - Terraform Cloud"
 ---
 
-# Private Terraform Enterprise Admin API Documentation
+# Terraform Enterprise Admin API Documentation
 
--> These API endpoints are available in Private Terraform Enterprise as of version 201807-1.
+-> **Terraform Enterprise feature:** The admin API is exclusive to Terraform Enterprise, and can only be used by the admins and operators who install and maintain their organization's Terraform Enterprise instance.
 
-Private Terraform Enterprise provides an API to allow administrators to configure and support their installation.
+-> These API endpoints are available in Terraform Enterprise as of version 201807-1.
+
+Terraform Enterprise provides an API to allow administrators to configure and support their installation.
 
 See the navigation sidebar for the list of available endpoints.
 

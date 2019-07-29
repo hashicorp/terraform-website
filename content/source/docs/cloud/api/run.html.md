@@ -552,7 +552,7 @@ This endpoint represents an action as opposed to a resource. As such, it does no
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
 
-~> **Note:** While useful at times, force-executing a run circumvents the typical workflow of applying runs using Terraform Enterprise. It is not intended for regular use. If you find yourself using it frequently, please reach out to HashiCorp Support for help in developing an alternative approach.
+~> **Note:** While useful at times, force-executing a run circumvents the typical workflow of applying runs using Terraform Cloud. It is not intended for regular use. If you find yourself using it frequently, please reach out to HashiCorp Support for help in developing an alternative approach.
 
 Status  | Response                  | Reason(s)
 --------|---------------------------|----------

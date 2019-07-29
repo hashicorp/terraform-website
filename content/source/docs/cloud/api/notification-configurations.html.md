@@ -22,7 +22,7 @@ page_title: "Notification Configurations - API Docs - Terraform Cloud"
 
 # Notification Configurations API
 
-Terraform Enterprise can be configured to send notifications for run state transitions. The configuration allows you to specify a destination URL, request type, and what events will trigger the notification. Each workspace can have up to 20 notification configurations, and they apply to all runs for that workspace.
+Terraform Cloud can be configured to send notifications for run state transitions. The configuration allows you to specify a destination URL, request type, and what events will trigger the notification. Each workspace can have up to 20 notification configurations, and they apply to all runs for that workspace.
 
 ## Notification Triggers
 
@@ -55,7 +55,7 @@ Name                             | Type   | Description
 `workspace_id`                   | string | ID of the run's workspace.
 `workspace_name`                 | string | Human-readable name of the run's workspace.
 `organization_name`              | string | Human-readable name of the run's organization.
-`notifications`                  | array  | List of events which caused this notification to be sent, with each event represented by an object. At present, this is always one event, but in the future TFE may roll up several notifications for a run into a single request.
+`notifications`                  | array  | List of events which caused this notification to be sent, with each event represented by an object. At present, this is always one event, but in the future Terraform Cloud may roll up several notifications for a run into a single request.
 `notifications[].message`        | string | Human-readable reason for the notification.
 `notifications[].trigger`        | string | Value of the trigger which caused the notification to be sent.
 `notifications[].run_status`     | string | Status of the run at the time of notification.
@@ -90,7 +90,7 @@ Name                             | Type   | Description
 
 ## Notification Authenticity
 
-If a `token` is configured, Terraform Enterprise provides an HMAC signature on all `"generic"` notification requests, using the `token` as the key. This is sent in the `X-TFE-Notification-Signature` header. The digest algorithm used is SHA-512. Notification target servers should verify the source of the HTTP request by computing the HMAC of the request body using the same shared secret, and dropping any requests with invalid signatures.
+If a `token` is configured, Terraform Cloud provides an HMAC signature on all `"generic"` notification requests, using the `token` as the key. This is sent in the `X-TFE-Notification-Signature` header. The digest algorithm used is SHA-512. Notification target servers should verify the source of the HTTP request by computing the HMAC of the request body using the same shared secret, and dropping any requests with invalid signatures.
 
 Sample Ruby code for verifying the HMAC:
 
@@ -102,7 +102,7 @@ fail "Invalid HMAC" if hmac != @request.headers["X-TFE-Notification-Signature"]
 
 ## Notification Verification and Delivery Responses
 
-When saving a configuration with `enabled` set to `true`, or when using the [verify API][], Terraform Enterprise sends a verification request to the configured URL. The response to this request is stored and available in the `delivery-responses` array of the `notification-configuration` resource.
+When saving a configuration with `enabled` set to `true`, or when using the [verify API][], Terraform Cloud sends a verification request to the configured URL. The response to this request is stored and available in the `delivery-responses` array of the `notification-configuration` resource.
 
 Configurations cannot be enabled if the verification request fails. Success is defined as an HTTP response with status code of `2xx`.
 
@@ -116,7 +116,7 @@ Name         | Type   | Description
 `code`       | string | HTTP status code, e.g. `400`.
 `headers`    | object | All HTTP headers received, represented as an object with keys for each header name (lowercased) and an array of string values (most arrays will be size one).
 `sent-at`    | date   | The UTC timestamp when the notification was sent.
-`successful` | bool   | Whether or not TFE considers this response to be successful.
+`successful` | bool   | Whether or not Terraform Cloud considers this response to be successful.
 `url`        | string | The URL to which the request was sent.
 
 [verify API]: #verify-a-notification-configuration
@@ -527,7 +527,7 @@ Parameter                        | Description
 -------------------------------- | ---------------------------------------------------
 `:notification-configuration-id` | The id of the notification configuration to update.
 
-If the `enabled` attribute is true, updating the configuration will cause Terraform Enterprise to send a verification request. If a response is received, it will be stored and returned in the `delivery-responses` attribute. More details in the [Notification Verification and Delivery Responses][] section above.
+If the `enabled` attribute is true, updating the configuration will cause Terraform Cloud to send a verification request. If a response is received, it will be stored and returned in the `delivery-responses` attribute. More details in the [Notification Verification and Delivery Responses][] section above.
 
 [Notification Verification and Delivery Responses]: #notification-verification-and-delivery-responses
 
@@ -636,7 +636,7 @@ Parameter                        | Description
 -------------------------------- | ---------------------------------------------------
 `:notification-configuration-id` | The id of the notification configuration to verify.
 
-This will cause Terraform Enterprise to send a verification request for the specified configuration. If a response is received, it will be stored and returned in the `delivery-responses` attribute. More details in the [Notification Verification and Delivery Responses][] section above.
+This will cause Terraform Cloud to send a verification request for the specified configuration. If a response is received, it will be stored and returned in the `delivery-responses` attribute. More details in the [Notification Verification and Delivery Responses][] section above.
 
 Status  | Response                                                      | Reason
 --------|---------------------------------------------------------------|----------

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Private Terraform Enterprise Settings - API Docs - Terraform Cloud"
+page_title: "Terraform Enterprise Settings - API Docs - Terraform Cloud"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -20,11 +20,11 @@ page_title: "Private Terraform Enterprise Settings - API Docs - Terraform Cloud"
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
-# Private Terraform Enterprise Settings API
+# Terraform Enterprise Settings API
 
--> **Note**: These endpoints are only available in Private Terraform instances and only accessible by site administrators.
+-> **Terraform Enterprise feature:** The admin API is exclusive to Terraform Enterprise, and can only be used by the admins and operators who install and maintain their organization's Terraform Enterprise instance.
 
--> These API endpoints are available in Private Terraform Enterprise as of version 201807-1.
+-> These API endpoints are available in Terraform Enterprise as of version 201807-1.
 
 ## List General Settings
 `GET /api/v2/admin/general-settings`
@@ -264,7 +264,7 @@ curl \
 
 `POST /api/v2/admin/saml-settings/actions/revoke-old-certificate`
 
-When reconfiguring the IdP certificate, TFE will retain the old IdP certificate to allow for a rotation period. This PUT endpoint will revoke the older IdP certificate when the new IdP certificate is known to be functioning correctly.
+When reconfiguring the IdP certificate, Terraform Enterprise will retain the old IdP certificate to allow for a rotation period. This PUT endpoint will revoke the older IdP certificate when the new IdP certificate is known to be functioning correctly.
 
 See [SAML Configuration](/docs/enterprise/saml/configuration.html) for more details.
 

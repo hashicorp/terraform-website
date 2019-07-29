@@ -22,7 +22,7 @@ page_title: "Policy Sets - API Docs - Terraform Cloud"
 
 # Policy Sets API
 
-[Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Enterprise.
+[Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Cloud.
 
 Policy sets are groups of policies that are applied together to related workspaces. By using policy sets, you can group your policies by attributes such as environment or region. Individual policies within a policy set will only be checked for workspaces that the policy set is attached to. Policy sets can group indidual policies created via the [policies API](./policies.html), or act as versioned sets which are either sourced from a version control system (such as GitHub) or uploaded as a whole via the [policy set versions API](#create-a-policy-set-version).
 
@@ -53,9 +53,9 @@ Key path                                      | Type            | Default | Desc
 ----------------------------------------------|-----------------|---------|------------
 `data.type`                                   | string          |         | Must be `"policy-sets"`.
 `data.attributes.name`                        | string          |         | The name of the policy set. Can include letters, numbers, `-`, and `_`.
-`data.attributes.description`                 | string          | `null`  | A description of the set's purpose. This field supports Markdown and will be rendered in the Terraform Enterprise UI.
+`data.attributes.description`                 | string          | `null`  | A description of the set's purpose. This field supports Markdown and will be rendered in the Terraform Cloud UI.
 `data.attributes.global`                      | boolean         | `false` | Whether or not this policies in this set should be checked on all of the organization's workspaces, or only on workspaces the policy set is attached to.
-`data.attributes.vcs-repo`                    | object          | `null`  | VCS repository information. When present, the policies and configuration will be sourced from the specified VCS repository instead of being defined within TFE. Note that this option and `policies` relationships are mutually exclusive and may not be used simultaneously.
+`data.attributes.vcs-repo`                    | object          | `null`  | VCS repository information. When present, the policies and configuration will be sourced from the specified VCS repository instead of being defined within Terraform Cloud. Note that this option and `policies` relationships are mutually exclusive and may not be used simultaneously.
 `data.attributes.vcs-repo.branch`             | string          | `null`  | The branch of the VCS repo. If empty, the VCS provider's default branch value will be used.
 `data.attributes.vcs-repo.identifier`         | string          |         | The identifier of the VCS repository in the format `<namespace>/<repo>`. For example, on GitHub, this would be something like `hashicorp/my-policy-set`.
 `data.attributes.vcs-repo.oauth-token-id`     | string          |         | The OAuth Token ID to use to connect to the VCS host.
@@ -497,9 +497,9 @@ Key path                                      | Type    | Default          | Des
 ----------------------------------------------|-------- |------------------|------------
 `data.type`                                   | string  |                  | Must be `"policy-sets"`.
 `data.attributes.name`                        | string  | (previous value) | The name of the policy set. Can include letters, numbers, `-`, and `_`.
-`data.attributes.description`                 | string  | (previous value) | A description of the set's purpose. This field supports Markdown and will be rendered in the Terraform Enterprise UI.
+`data.attributes.description`                 | string  | (previous value) | A description of the set's purpose. This field supports Markdown and will be rendered in the Terraform Cloud UI.
 `data.attributes.global`                      | boolean | (previous value) | Whether or not this policies in this set should be checked on all of the organization's workspaces, or only on workspaces directly attached to the set.
-`data.attributes.vcs-repo`                    | object  | (previous value) | VCS repository information. When present, the policies and configuration will be sourced from the specified VCS repository instead of being defined within TFE. Note that this option and `policies` relationships are mutually exclusive and may not be used simultaneously.
+`data.attributes.vcs-repo`                    | object  | (previous value) | VCS repository information. When present, the policies and configuration will be sourced from the specified VCS repository instead of being defined within Terraform Cloud. Note that this option and `policies` relationships are mutually exclusive and may not be used simultaneously.
 `data.attributes.vcs-repo.branch`             | string  | (previous value) | The branch of the VCS repo. If empty, the VCS provider's default branch value will be used.
 `data.attributes.vcs-repo.identifier`         | string  | (previous value) | The identifier of the VCS repository in the format `<namespace>/<repo>`. For example, on GitHub, this would be something like `hashicorp/my-policy-set`.
 `data.attributes.vcs-repo.oauth-token-id`     | string  | (previous value) | The OAuth Token ID to use to connect to the VCS host.

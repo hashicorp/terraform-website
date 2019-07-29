@@ -22,7 +22,9 @@ page_title: "Runs - Admin - API Docs - Terraform Cloud"
 
 # Admin Runs API
 
--> These API endpoints are available in Private Terraform Enterprise as of version 201807-1.
+-> **Terraform Enterprise feature:** The admin API is exclusive to Terraform Enterprise, and can only be used by the admins and operators who install and maintain their organization's Terraform Enterprise instance.
+
+-> These API endpoints are available in Terraform Enterprise as of version 201807-1.
 
 The Runs Admin API contains endpoints to help site administrators manage runs.
 

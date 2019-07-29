@@ -185,7 +185,7 @@ Key path                             | Type   | Default | Description
 -------------------------------------|--------|---------|------------
 `data.type`                          | string |         | Must be `"oauth-clients"`.
 `data.attributes.service-provider`   | string |         | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"bitbucket_hosted"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, or `"gitlab_enterprise_edition"`.
-`data.attributes.name`               | string | `null`  | An optional display name for the OAuth Client. If left `null`, the Terraform Enterprise UI will default to the display name of the VCS provider.
+`data.attributes.name`               | string | `null`  | An optional display name for the OAuth Client. If left `null`, the UI will default to the display name of the VCS provider.
 `data.attributes.http-url`           | string |         | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
 `data.attributes.api-url`            | string |         | The base URL of your VCS provider's API (e.g. `https://api.github.com` or `"https://ghe.example.com/api/v3"`)
 `data.attributes.oauth-token-string` | string |         | The token string you were given by your VCS provider
@@ -280,7 +280,7 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 Key path                             | Type   | Default | Description
 -------------------------------------|--------|---------|------------
 `data.type`                          | string |         | Must be `"oauth-clients"`.
-`data.attributes.name`               | string | (previous value)  | An optional display name for the OAuth Client. If set to `null`, the Terraform Enterprise UI will default to the display name of the VCS provider.
+`data.attributes.name`               | string | (previous value)  | An optional display name for the OAuth Client. If set to `null`, the UI will default to the display name of the VCS provider.
 `data.attributes.key`                | string | (previous value) | The OAuth client key.
 `data.attributes.secret`             | string | (previous value) | The OAuth client secret.
 

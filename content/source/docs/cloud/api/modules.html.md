@@ -26,7 +26,7 @@ page_title: "Modules - API Docs - Terraform Cloud"
 
 ## Listing and reading modules, providers and versions
 
-The Terraform Enterprise Module Registry implements the [Registry standard API](../../registry/api.html) for consuming the modules. Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
+The Terraform Cloud Module Registry implements the [Registry standard API](../../registry/api.html) for consuming the modules. Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
 
 - Browse available modules
 - Search modules by keyword
@@ -37,11 +37,11 @@ The Terraform Enterprise Module Registry implements the [Registry standard API](
 - Get a specific module
 - Download the latest version of a module
 
-The TFE Module Registry endpoints differs from the Module Registry endpoints in the following ways:
+The Terraform Cloud Module Registry endpoints differs from the Module Registry endpoints in the following ways:
 
 - The `:namespace` parameter should be replaced with the organization name.
 - The module registry discovery endpoints have the path prefix provided in the [discovery document](../../registry/api.html#service-discovery) which is currently `/api/registry/v1`.
-- [Authentication](./index.html#authentication) is handled the same as all other TFE endpoints.
+- [Authentication](./index.html#authentication) is handled the same as all other Terraform Cloud endpoints.
 
 ### Sample Request
 
@@ -51,12 +51,12 @@ List available versions for the `consul` module for the `aws` provider on the mo
 $ curl https://registry.terraform.io/v1/modules/my-gh-repo-org/consul/aws/versions
 ```
 
-The same request for the same module and provider on the TFE module registry for `my-tfe-org` TFE organization:
+The same request for the same module and provider on the Terraform Cloud module registry for the `my-cloud-org` organization:
 
 ```shell
 $ curl \
   --header "Authorization: Bearer $TOKEN" \
-  https://app.terraform.io/api/registry/v1/modules/my-tfe-org/consul/aws/versions
+  https://app.terraform.io/api/registry/v1/modules/my-cloud-org/consul/aws/versions
 ```
 
 ## Publish a Module from a VCS
@@ -334,7 +334,7 @@ curl \
 
 ### Expected Archive Format
 
-Terraform Enterprise expects the module version uploaded to be a tarball with the module in the root (not in a subdirectory).
+Terraform Cloud expects the module version uploaded to be a tarball with the module in the root (not in a subdirectory).
 
 Given the following folder structure:
 
@@ -371,7 +371,7 @@ curl \
   https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox...
 ```
 
-After the registry module version is successfully parsed by TFE, its status will become `"ok"`.
+After the registry module version is successfully parsed, its status will become `"ok"`.
 
 ## Delete a Module
 

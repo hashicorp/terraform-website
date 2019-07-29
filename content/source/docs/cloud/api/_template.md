@@ -1,6 +1,6 @@
 Follow this template to format each API method. There are usually multiple sections like this on a given API endpoint page.
 
-<!-- Boilerplate link references: This entire list should be included at the top of every API page, so that the tables can use short links freely. This SHOULD be all of the status codes we use in TFE's API; if we need to add more, update the list on every page. -->
+<!-- Boilerplate link references: This entire list should be included at the top of every API page, so that the tables can use short links freely. This SHOULD be all of the status codes we use in Terraform Cloud's API; if we need to add more, update the list on every page. -->
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201

@@ -20,40 +20,40 @@ layout: "cloud"
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
-# Terraform Enterprise API Documentation
+# Terraform Cloud API Documentation
 
-Terraform Enterprise (TFE) provides an API for a subset of its features. If you have any questions or want to request new API features, please email support@hashicorp.com.
+Terraform Cloud provides an API for a subset of its features. If you have any questions or want to request new API features, please email support@hashicorp.com.
 
 See the navigation sidebar for the list of available endpoints.
 
 -> **Note:** Before planning an API integration, consider whether [the `tfe` Terraform provider](/docs/providers/tfe/index.html) meets your needs. It can't create or approve runs in response to arbitrary events, but it's a useful tool for managing your organizations, teams, and workspaces as code.
 
-HashiCorp provides a [stability policy](./stability-policy.html) for the Terraform Enterprise API, ensuring backwards compatibility for stable endpoints.
+HashiCorp provides a [stability policy](./stability-policy.html) for the Terraform Cloud API, ensuring backwards compatibility for stable endpoints.
 
 ## Authentication
 
-All requests must be authenticated with a bearer token. Use the HTTP header `Authorization` with the value `Bearer <token>`. If the token is absent or invalid, TFE responds with [HTTP status 401][401] and a [JSON API error object][]. The 401 status code is reserved for problems with the authentication token; forbidden requests with a valid token result in a 404.
+All requests must be authenticated with a bearer token. Use the HTTP header `Authorization` with the value `Bearer <token>`. If the token is absent or invalid, Terraform Cloud responds with [HTTP status 401][401] and a [JSON API error object][]. The 401 status code is reserved for problems with the authentication token; forbidden requests with a valid token result in a 404.
 
 There are three kinds of token available:
 
-- [User tokens](../users-teams-organizations/users.html#api-tokens) — each TFE user can have any number of API tokens, which can make requests on their behalf.
+- [User tokens](../users-teams-organizations/users.html#api-tokens) — each Terraform Cloud user can have any number of API tokens, which can make requests on their behalf.
 - [Team tokens](../users-teams-organizations/service-accounts.html#team-service-accounts) — each team has an associated service account, which can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.
 - [Organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts) — each organization also has a service account, which can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.
 
 ## Feature Entitlements
 
-TFE is available at multiple pricing tiers (including free), which offer different subsets of TFE's features.
+Terraform Cloud is available at multiple pricing tiers (including free), which offer different feature sets.
 
-Each organization has a set of _entitlements_ that corresponds to its pricing tier. These entitlements determine which TFE features the organization can use.
+Each organization has a set of _entitlements_ that corresponds to its pricing tier. These entitlements determine which Terraform Cloud features the organization can use.
 
-If an organization doesn't have the necessary entitlement to use a given feature, TFE returns a 404 error for API requests to any endpoints devoted to that feature.
+If an organization doesn't have the necessary entitlement to use a given feature, Terraform Cloud returns a 404 error for API requests to any endpoints devoted to that feature.
 
 The [show entitlement set](./organizations.html#show-the-entitlement-set) endpoint can return information about an organization's current entitlements, which is useful if your client needs to change its interface when a given feature isn't available.
 
 The following entitlements are available:
 
 - `state-storage` — Allows an organization to store state versions in its workspaces, which enables local Terraform runs with the remote backend. Affects the [state versions][] endpoints.
-- `operations` — Allows an organization to perform runs within TFE. Affects the [runs][], [plans][], and [applies][] endpoints.
+- `operations` — Allows an organization to perform runs within Terraform Cloud. Affects the [runs][], [plans][], and [applies][] endpoints.
 - `vcs-integrations` — Allows an organization to [connect with a VCS provider][vcs integrations] and link VCS repositories to workspaces. Affects the [OAuth Clients][o-clients], and [OAuth Tokens][o-tokens] endpoints, and determines whether the `data.attributes.vcs-repo` property can be set for [workspaces][].
 - `sentinel` — Allows an organization to use [Sentinel][]. Affects the [policies][], [policy sets][], and [policy checks][] endpoints.
 - `private-module-registry` — Allows an organization to publish and use modules with the [private module registry][]. Affects the [registry modules][] endpoints.
@@ -86,7 +86,7 @@ We return 404 Not Found codes for resources that a user doesn't have access to, 
 
 ## Versioning
 
-The API documented in these pages is the second version of TFE's API, and resides under the `/v2` prefix.
+The API documented in these pages is the second version of Terraform Cloud's API, and resides under the `/v2` prefix.
 
 Future APIs will increment this version, leaving the `/v1` API intact, though in the future we might deprecate certain features. In that case, we'll provide ample notice to migrate to the new API.
 
@@ -98,7 +98,7 @@ For example, if the API endpoint documentation defines the path `/runs` then the
 
 ## JSON API Formatting
 
-The TFE endpoints use the [JSON API specification](http://jsonapi.org/), which specifies key aspects of the API. Most notably:
+The Terraform Cloud endpoints use the [JSON API specification](http://jsonapi.org/), which specifies key aspects of the API. Most notably:
 
 - [HTTP error codes](http://jsonapi.org/examples/#error-objects-error-codes)
 - [Error objects](http://jsonapi.org/examples/#error-objects-basics)
@@ -278,9 +278,9 @@ Status  | Response                                     | Reason
 
 ## Client libraries and tools
 
-HashiCorp maintains [go-tfe](https://github.com/hashicorp/go-tfe), a Go client for TFE's API.
+HashiCorp maintains [go-tfe](https://github.com/hashicorp/go-tfe), a Go client for Terraform Cloud's API.
 
-Additionally, the community of Terraform Enterprise users and vendors have built client libraries in other languages. These client libraries and tools are not tested nor officially maintained by HashiCorp, but are listed below in order to help users find them easily.
+Additionally, the community of Terraform Cloud users and vendors have built client libraries in other languages. These client libraries and tools are not tested nor officially maintained by HashiCorp, but are listed below in order to help users find them easily.
 
 If you have built a client library and would like to add it to this community list, please [contribute](https://github.com/hashicorp/terraform-website#contributions-welcome) to [this page](https://github.com/hashicorp/terraform-website/blob/master/content/source/docs/cloud/api/index.html.md).
 
