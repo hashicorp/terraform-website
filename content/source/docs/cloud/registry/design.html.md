@@ -5,7 +5,7 @@ page_title: "Using the Configuration Designer - Private Module Registry - Terraf
 
 # Using the Configuration Designer
 
-Terraform Enterprise (TFE)'s private module registry includes a configuration designer, which can help you spend less time writing boilerplate code in a module-centric Terraform workflow.
+Terraform Cloud's private module registry includes a configuration designer, which can help you spend less time writing boilerplate code in a module-centric Terraform workflow.
 
 The configuration designer is sort of like interactive documentation for your private modules, or very advanced autocompletion. It results in the same Terraform code you would have written in your text editor, but saves time by automatically discovering variables and searching module and workspace outputs for reusable values.
 
@@ -19,13 +19,13 @@ Once you finish, the designer returns the text of a `main.tf` configuration, whi
 
 Navigate to the modules list with the top-level "Modules" button, then click the "+ Design Configuration" button in the upper right.
 
-![TFE screenshot: the design configuration button](./images/design-start.png)
+![Terraform Cloud screenshot: the design configuration button](./images/design-start.png)
 
 This brings you to the "Select Modules" page.
 
 ## Adding Modules
 
-![TFE screenshot: the select modules page](./images/design-add-module.png)
+![Terraform Cloud screenshot: the select modules page](./images/design-add-module.png)
 
 The left side of the "Select Modules" page has a filterable and searchable list of your organization's private modules. Choose any number of modules you want to add to your configuration.
 
@@ -35,13 +35,13 @@ When you click a module's "Add Module" button, it appears in the "Selected Modul
 
 By default, selecting a module adds its most recent version to the configuration. You can specify a different version by clicking the module's version number in the "Selected Modules" list on the right, which reveals a drop-down menu of available versions.
 
-![TFE screenshot: setting a module version with the drop-down](./images/design-set-version.png)
+![Terraform Cloud screenshot: setting a module version with the drop-down](./images/design-set-version.png)
 
 ## Setting Variables
 
 When you finish selecting modules, click the "Next »" button in the upper right to go to the "Set Variables" page.
 
-![TFE screenshot: the set variables page](./images/design-variables-finished.png)
+![Terraform Cloud screenshot: the set variables page](./images/design-variables-finished.png)
 
 The left side of this page lists your chosen modules, and the right side lists all variables for the currently selected module. You can freely switch between modules without losing your work; click a module's "Configure" button to switch to its variable list.
 
@@ -49,9 +49,9 @@ Each variable is labeled as required or optional. Once you've set a value for al
 
 ### Interpolation Searching
 
-Variable values can be literal strings, or can interpolate other values. When you start typing an interpolation token (`${`), the designer displays a help message. As you continue typing, it searches the available outputs in your other selected modules, as well as workspace-level outputs from other workspaces. You can select one of these search results, or type a full name if you need to reference a value TFE doesn't know about.
+Variable values can be literal strings, or can interpolate other values. When you start typing an interpolation token (`${`), the designer displays a help message. As you continue typing, it searches the available outputs in your other selected modules, as well as workspace-level outputs from other workspaces. You can select one of these search results, or type a full name if you need to reference a value Terraform Cloud doesn't know about.
 
-![TFE screenshot: interpolation help](./images/design-variables-help.png)
+![Terraform Cloud screenshot: interpolation help](./images/design-variables-help.png)
 
 ### Deferring Variables
 
@@ -61,8 +61,8 @@ Some variables should be set by the author of a configuration (as static or inte
 
 When you've finished setting variables, click the "Next" button to view the completed output of the configuration designer.
 
-![TFE screenshot: configuration designer output](./images/design-verify.png)
+![Terraform Cloud screenshot: configuration designer output](./images/design-verify.png)
 
-This page has a large textarea that contains a Terraform configuration. You must copy and paste this code into your text editor, save it as the `main.tf` file in a new directory, and commit it to version control to enable creating TFE workspaces with the configuration. You can also make arbitrary changes to the code, like adding non-module resources or public Terraform Registry modules.
+This page has a large textarea that contains a Terraform configuration. You must copy and paste this code into your text editor, save it as the `main.tf` file in a new directory, and commit it to version control to enable creating workspaces with the configuration. You can also make arbitrary changes to the code, like adding non-module resources or public Terraform Registry modules.
 
-After you click "Next" again and click "Done," TFE will discard the configuration you've created. Text from previous configuration designer runs is not preserved within TFE.
+After you click "Next" again and click "Done," Terraform Cloud will discard the configuration you've created. Text from previous configuration designer runs is not preserved within Terraform Cloud.

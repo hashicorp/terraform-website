@@ -3,12 +3,12 @@ layout: "cloud"
 page_title: "Using Private Modules - Private Module Registry - Terraform Cloud"
 ---
 
-# Using Modules from the Terraform Enterprise Private Module Registry
+# Using Modules from the Terraform Cloud Private Module Registry
 
-By design, Terraform Enterprise (TFE)'s private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already familiar with the public registry, here are the main differences:
+By design, Terraform Cloud's private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already familiar with the public registry, here are the main differences:
 
-- Use TFE's web UI to browse and search for modules.
-- Module `source` strings are slightly different. The public registry uses a three-part `<NAMESPACE>/<MODULE NAME>/<PROVIDER>` format, and private modules use a four-part `<TFE HOSTNAME>/<TFE ORGANIZATION>/<MODULE NAME>/<PROVIDER>` format. For example, to load a module from the `example_corp` organization on the SaaS version of TFE:
+- Use Terraform Cloud's web UI to browse and search for modules.
+- Module `source` strings are slightly different. The public registry uses a three-part `<NAMESPACE>/<MODULE NAME>/<PROVIDER>` format, and private modules use a four-part `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>` format. For example, to load a module from the `example_corp` organization on the SaaS version of Terraform Cloud:
 
     ```hcl
     module "vpc" {
@@ -16,19 +16,19 @@ By design, Terraform Enterprise (TFE)'s private module registry works much like 
       version = "1.0.4"
     }
     ```
-- TFE can automatically access your private modules during Terraform runs. However, when running Terraform on the command line, you must configure a `credentials` block in your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html). See below for the [credentials format](#on-the-command-line).
+- Terraform Cloud can automatically access your private modules during Terraform runs. However, when running Terraform on the command line, you must configure a `credentials` block in your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html). See below for the [credentials format](#on-the-command-line).
 
 ## Finding Modules
 
 All users in your organization can view your private module registry.
 
-To see which modules are available, click the "Modules" button in TFE's main navigation bar.
+To see which modules are available, click the "Modules" button in Terraform Cloud's main navigation bar.
 
-![TFE screenshot: Navigation bar with modules button highlighted](./images/using-modules-button.png)
+![Terraform Cloud screenshot: Navigation bar with modules button highlighted](./images/using-modules-button.png)
 
 This brings you to the modules page, which lists all available modules.
 
-![TFE screenshot: the list of available modules](./images/using-modules-list.png)
+![Terraform Cloud screenshot: the list of available modules](./images/using-modules-list.png)
 
 You can browse the complete list, or shrink the list by searching or filtering.
 
@@ -39,11 +39,11 @@ You can browse the complete list, or shrink the list by searching or filtering.
 
 Click a module's "Details" button to view its details page. Use the "Versions" dropdown in the upper right to switch between the available versions, and use the Readme/Inputs/Outputs/Dependencies/Resources tabs to view detailed documentation and information about a version.
 
-![TFE screenshot: a module details page](./images/publish-module-details.png)
+![Terraform Cloud screenshot: a module details page](./images/publish-module-details.png)
 
 ## Using Private Modules in Terraform Configurations
 
-In Terraform configurations, you can use any private module from your organization's registry. The syntax for referencing private modules in `source` attributes is `<TFE HOSTNAME>/<TFE ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
+In Terraform configurations, you can use any private module from your organization's registry. The syntax for referencing private modules in `source` attributes is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
 
 ```hcl
 module "vpc" {
@@ -52,7 +52,7 @@ module "vpc" {
 }
 ```
 
-If you're using the SaaS version of TFE, the hostname is `app.terraform.io`; private installs have their own hostnames. The second part of the source string (the namespace) is the name of your TFE organization.
+If you're using the SaaS version of Terraform Cloud, the hostname is `app.terraform.io`; Terraform Enterprise instances have their own hostnames. The second part of the source string (the namespace) is the name of your organization.
 
 For more details on using modules in Terraform configurations, see ["Configuration Language: Modules"](/docs/configuration/modules.html) in the Terraform docs.
 
@@ -64,7 +64,7 @@ Alternately, you can use the configuration designer, which lets you select multi
 
 ### The Generic Module Hostname (`localterraform.com`)
 
-Optionally, you can use the generic hostname `localterraform.com` in module sources instead of the literal hostname of a Private Terraform Enterprise (PTFE) instance. When Terraform is executed on a PTFE instance, it automatically requests any `localterraform.com` modules from that instance.
+Optionally, you can use the generic hostname `localterraform.com` in module sources instead of the literal hostname of a Terraform Enterprise instance. When Terraform is executed on a Terraform Enterprise instance, it automatically requests any `localterraform.com` modules from that instance.
 
 For example:
 
@@ -75,21 +75,21 @@ module "vpc" {
 }
 ```
 
-Configurations that reference modules via the generic hostname can be used without modification on any PTFE instance, which is not possible when using hardcoded hostnames.
+Configurations that reference modules via the generic hostname can be used without modification on any Terraform Enterprise instance, which is not possible when using hardcoded hostnames.
 
-~> **Important:** `localterraform.com` only works within a PTFE instance — when run outside of PTFE, Terraform can only use private modules with a literal hostname. To test configurations on a developer workstation, you must replace the generic hostname with a literal hostname in any module sources, then change them back before committing to VCS. We are working on ways to make this smoother in the future; in the meantime, we only recommend `localterraform.com` for large organizations that use multiple PTFE instances.
+~> **Important:** `localterraform.com` only works within a Terraform Enterprise instance — when run outside of Terraform Enterprise, Terraform can only use private modules with a literal hostname. To test configurations on a developer workstation without the remote backend configured, you must replace the generic hostname with a literal hostname in any module sources, then change them back before committing to VCS. We are working on ways to make this smoother in the future; in the meantime, we only recommend `localterraform.com` for large organizations that use multiple Terraform Enterprise instances.
 
 ## Running Configurations with Private Modules
 
-### In Terraform Enterprise
+### In Terraform Cloud
 
-TFE can use your private modules during plans and applies with no extra configuration, _as long as the workspace is configured to use Terraform 0.11 or higher._
+Terraform Cloud can use your private modules during plans and applies with no extra configuration, _as long as the workspace is configured to use Terraform 0.11 or higher._
 
 A given workspace can only use private modules from the organization it belongs to. If you want to use the same module in multiple organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html#sharing-modules-across-organizations).)
 
 ### On the Command Line
 
-If you're using Terraform 0.11 or higher, you can use private modules when applying configurations on the CLI. To do this, you must provide a valid [TFE API token](../users-teams-organizations/users.html#api-tokens).
+If you're using Terraform 0.11 or higher, you can use private modules when applying configurations on the CLI. To do this, you must provide a valid [Terraform Cloud API token](../users-teams-organizations/users.html#api-tokens).
 
 #### Permissions
 
@@ -107,8 +107,8 @@ credentials "app.terraform.io" {
 }
 ```
 
-The block label for the `credentials` block must be TFE's hostname (`app.terraform.io` or the hostname of your private install), and the block body must contain a `token` attribute whose value is a TFE authentication token. You can generate a personal API token from your user settings page in TFE.
+The block label for the `credentials` block must be Terraform Cloud's hostname (`app.terraform.io` or the hostname of your Terraform Enterprise instance), and the block body must contain a `token` attribute whose value is a Terraform Cloud authentication token. You can generate a personal API token from your user settings page in Terraform Cloud.
 
-Make sure the hostname matches the hostname you use in module sources — if the same TFE server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, you can add two `credentials` blocks with the same `token`.
+Make sure the hostname matches the hostname you use in module sources — if the same Terraform Cloud server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, you can add two `credentials` blocks with the same `token`.
 
 ~> **Important:** Make sure to protect your API token. When adding an authentication token to your CLI config file, check the file permissions and make sure other users on the same computer cannot view its contents.

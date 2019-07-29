@@ -5,11 +5,11 @@ page_title: "Publishing Private Modules - Private Module Registry - Terraform Cl
 
 [vcs]: ../vcs/index.html
 
-# Publishing Modules to the Terraform Enterprise Private Module Registry
+# Publishing Modules to the Terraform Cloud Private Module Registry
 
 -> **Note:** Currently, the private module registry works with all supported VCS providers; however, the private module registry does not support [GitLab subgroups](https://about.gitlab.com/features/subgroups/).
 
-Terraform Enterprise (TFE)'s private module registry lets you publish Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
+Terraform Cloud's private module registry lets you publish Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
 
 Only members of the "owners" team can publish new modules. Once a module is published, the ability to release new versions is managed by your VCS provider.
 
@@ -23,14 +23,14 @@ After configuring at least one [connection to a VCS provider][vcs], you can publ
 
 To release a new version of an existing module, push a new tag to its repo. The registry updates automatically.
 
-Consumers of a module don't need access to its source repository, even when running Terraform from the command line; the registry handles downloads, and uses TFE's API tokens to control access.
+Consumers of a module don't need access to its source repository, even when running Terraform from the command line; the registry handles downloads, and controls access with Terraform Cloud API tokens.
 
 ## Preparing a Module Repository
 
 Since the registry relies on VCS repositories for most of its data, you must ensure your module repositories are in a format it can understand. A module repository must meet all of the following requirements before you can add it to the registry:
 
 - **Available in a connected VCS provider.** The repository must be in one of
-your configured [VCS providers][vcs], and TFE's VCS user account must have admin
+your configured [VCS providers][vcs], and Terraform Cloud's VCS user account must have admin
 access to the repository. (Since the registry uses webhooks to import new module
 versions, it needs admin access to create those webhooks.) For GitLab, the repository
 must be in the main organization or group, not in any subgroups.
@@ -59,21 +59,21 @@ that don't look like version numbers are ignored.
 
 To publish a module, navigate to the modules list with the "Modules" button and click the "+ Add Module" button in the upper right.
 
-![TFE screenshot: the "modules" button and the "+Add Module" button](./images/publish-add-button.png)
+![Terraform Cloud screenshot: the "modules" button and the "+Add Module" button](./images/publish-add-button.png)
 
 This brings you to the "Add a New Module" page, which has a text field and at least one VCS provider button.
 
-![TFE screenshot: the "add a new module" page, with a repository name entered](./images/publish-add-module.png)
+![Terraform Cloud screenshot: the "add a new module" page, with a repository name entered](./images/publish-add-module.png)
 
 If you have multiple VCS providers configured, use the buttons to select one. In the text field, enter the name of the repository for the module you're adding. Then click the "Publish Module" button.
 
 ~> **Note:** The name you type into the repo field will usually be something like `hashicorp/terraform-aws-vpc` or `INFRA/terraform-azure-appserver`. Module repo names use a `terraform-<PROVIDER>-<NAME>` format, and VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. (For most providers the namespace is an organization name, but Bitbucket Server uses project keys, like `INFRA`.)
 
-TFE will display a loading page while it imports the module versions from version control, and will then take you to the new module's details page. On the details page you can view available versions, read documentation, and copy a usage example.
+Terraform Cloud will display a loading page while it imports the module versions from version control, and will then take you to the new module's details page. On the details page you can view available versions, read documentation, and copy a usage example.
 
-![TFE screenshot: the module loading page](./images/publish-loading.png)
+![Terraform Cloud screenshot: the module loading page](./images/publish-loading.png)
 
-![TFE screenshot: a module details page](./images/publish-module-details.png)
+![Terraform Cloud screenshot: a module details page](./images/publish-module-details.png)
 
 ## Releasing New Versions of a Module
 
@@ -98,10 +98,10 @@ To delete a module or version:
 
 ~> **Note:** If a deletion would leave a module with no versions, the module will be automatically deleted.
 
-![TFE screenshot: the deletion dialog](./images/publish-delete.png)
+![Terraform Cloud screenshot: the deletion dialog](./images/publish-delete.png)
 
 ## Sharing Modules Across Organizations
 
-In normal operation, TFE doesn't allow one organization's workspaces to use private modules from a different organization. (When TFE runs Terraform, it provides temporary credentials that are only valid for the workspace's organization, and uses those credentials to access modules.) And although it's possible to mix modules from multiple organizations when running Terraform on the command line, we strongly recommend against it.
+In normal operation, Terraform Cloud doesn't allow one organization's workspaces to use private modules from a different organization. (When Terraform Cloud runs Terraform, it provides temporary credentials that are only valid for the workspace's organization, and uses those credentials to access modules.) And although it's possible to mix modules from multiple organizations when running Terraform on the command line, we strongly recommend against it.
 
 However, you can easily share modules across organizations by sharing the underlying VCS repository. Grant each organization access to the module's repo, then add the module to each organization's registry. When you push tags to publish new module versions, both organizations will update appropriately.
