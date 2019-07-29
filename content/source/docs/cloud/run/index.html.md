@@ -127,8 +127,6 @@ A lock prevents TFE from performing any plans or applies in the workspace. This 
 
 You can find the lock button in [the workspace settings page](../workspaces/settings.html). Locking a workspace requires write or admin permissions.
 
-~> **Important:** Locking a workspace prevents runs within TFE, but it **does not** prevent state from being updated. This means a user with write access can still modify the workspace's resources by running Terraform outside TFE with [the `atlas` remote backend](/docs/backends/types/terraform-enterprise.html). To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows; to perform runs from the command line, see [TFE's CLI-driven workflow](./cli.html).
-
 ## Workers and Run Queuing
 
 TFE performs Terraform runs in disposable Linux environments, using multiple concurrent worker processes. These workers take jobs from a global queue of runs that are ready for processing; this includes confirmed applies, and plans that have just become the current run on their workspace.
