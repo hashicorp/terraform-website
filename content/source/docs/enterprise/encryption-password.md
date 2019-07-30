@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Encryption Password"
+page_title: "Encryption Password - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Encryption Password

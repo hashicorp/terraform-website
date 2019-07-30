@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Reference Architecture (Installer)"
+page_title: "Reference Architecture (Installer) - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Reference Architecture (Installer)

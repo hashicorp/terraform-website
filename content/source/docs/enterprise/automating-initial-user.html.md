@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Automating Initial User"
+page_title: "Automating Initial User - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise - Automating Initial User Creation

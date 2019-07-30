@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Diagnostics"
+page_title: "Diagnostics - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Diagnostics

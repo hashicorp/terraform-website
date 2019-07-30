@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Security"
+page_title: "Security - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise - Security

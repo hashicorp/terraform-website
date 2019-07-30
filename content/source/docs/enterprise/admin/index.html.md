@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Admin - Private Terraform Enterprise"
+page_title: "Admin - Terraform Enterprise"
 ---
 
 # Administering Private Terraform Enterprise

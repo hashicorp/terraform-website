@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise - Reference Architecture - VMware"
+page_title: "VMware Reference Architecture - Terraform Enterprise"
 description: |-
   This document provides recommended practices and a reference architecture for
   HashiCorp Private Terraform Enterprise (PTFE) implementations on VMware.
@@ -96,9 +96,9 @@ application. This object storage must be accessible via the network to the PTFE 
 machine. Vault is used to encrypt all
 application data stored in this location. This allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
-by S3 if required by your security policy. 
+by S3 if required by your security policy.
 
-Recommended object storage solutions are AWS S3, Google Cloud storage, Azure blob storage. Other options for S3-compatible storage are [minio](https://www.minio.io/) and [ceph](https://ceph.com/), among many others. Please feel free to reach out to [support](https://www.hashicorp.com/support) with questions. 
+Recommended object storage solutions are AWS S3, Google Cloud storage, Azure blob storage. Other options for S3-compatible storage are [minio](https://www.minio.io/) and [ceph](https://ceph.com/), among many others. Please feel free to reach out to [support](https://www.hashicorp.com/support) with questions.
 
 ### Vault Servers
 
@@ -235,7 +235,7 @@ From the AWS website:
 > separated within an AWS Region.
 > ([source](https://aws.amazon.com/s3/))*
 
-Other cloud providers (Azure, GCP) also provide highly available storage. If you choose to utilize an on-premises storage solution, such as ceph, it will be your responsibility to configure HA as required by your implementation. 
+Other cloud providers (Azure, GCP) also provide highly available storage. If you choose to utilize an on-premises storage solution, such as ceph, it will be your responsibility to configure HA as required by your implementation.
 
 #### Vault Servers
 
@@ -311,7 +311,7 @@ In the event of a server outage ESX will vMotion the PTFE virtual
 machine to a functioning ESX host. This typically does not result in any
 visible outage to the end-user.
 
-### Failure by Application Tier 
+### Failure by Application Tier
 
 #### PTFE Servers
 

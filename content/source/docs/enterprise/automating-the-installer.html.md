@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Automated Installation (Installer)"
+page_title: "Automated Installation (Installer) - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Automated Installation (Installer)

@@ -1,13 +1,13 @@
 ---
 layout: "enterprise"
-page_title: "Terraform Enterprise Logging"
+page_title: "Logging - Terraform Enterprise"
 ---
 
 # Terraform Enterprise Logs
 
 This document contains information about interacting with Private Terraform Enterprise logs. There are two types of logs, application logs and audit logs. Application logs emit information about the services that comprise Terraform Enterprise. Audit logs emit information whenever any resource managed by Terraform Enterprise is changed.
 
-## Application Logs 
+## Application Logs
 
 ### Installer
 

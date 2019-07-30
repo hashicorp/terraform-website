@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Installation (AMI)"
+page_title: "Installation (AMI) - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Installation (AMI)

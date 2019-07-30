@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Installation (Preflight)"
+page_title: "Installation (Preflight) - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Installation (Preflight Requirements)

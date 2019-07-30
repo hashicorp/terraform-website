@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Accounts and Resources - Admin - Private Terraform Enterprise"
+page_title: "Accounts and Resources - Admin - Terraform Enterprise"
 ---
 
 # Administration: Managing Accounts and Resources

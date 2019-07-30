@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Capacity and Performance"
+page_title: "Capacity and Performance - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Capacity and Performance (Installer)

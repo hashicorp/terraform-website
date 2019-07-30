@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Externally Managed Vault"
+page_title: "Externally Managed Vault - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Externally Managed Vault

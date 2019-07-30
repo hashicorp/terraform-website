@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Upgrades"
+page_title: "Upgrades - Terraform Enterprise"
 ---
 # Upgrading
 

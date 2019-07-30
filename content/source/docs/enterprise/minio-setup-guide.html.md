@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Installation (Installer) - Minio Setup Guide"
+page_title: "Minio Setup Guide - Installation (Installer) - Terraform Enterprise"
 description: |-
   This document provides an overview for setting up Minio for external object storage for HashiCorp Private Terraform Enterprise (PTFE).
 ---

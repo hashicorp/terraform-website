@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise - Reference Architecture - GCP"
+page_title: "GCP Reference Architecture - Terraform Enterprise"
 description: |-
   This document provides recommended practices and a reference architecture for
   HashiCorp Private Terraform Enterprise (PTFE) implementations on GCP.
@@ -46,7 +46,7 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 
 #### Hardware Sizing Considerations
 
-- \*PTFE requires 50GB for installation, but 
+- \*PTFE requires 50GB for installation, but
   [GCP documentation for storage performance](https://cloud.google.com/compute/docs/disks/#performance)
   recommends "to ensure consistent performance for more general use of the boot device,
   use either an SSD persistent disk as your boot disk or use a standard persistent disk
@@ -222,7 +222,7 @@ launched Compute VM uses this new configuration.
 Using Cloud SQL as an external database service leverages the highly
 available infrastructure provided by GCP. From the GCP website:
 
-> *A Cloud SQL instance configured for high availability is also called a regional instance. 
+> *A Cloud SQL instance configured for high availability is also called a regional instance.
 > A regional instance is located in two zones within the configured region, so if it cannot
 > serve data from its primary zone, it fails over and continues to serve data from its secondary zone.
 > ([source](https://cloud.google.com/sql/docs/postgres/high-availability))*
@@ -234,10 +234,10 @@ infrastructure provided by GCP. Regional Cloud Storage buckets are resilient to 
 within the region selected during bucket creation.
 From the GCP website:
 
-> *Regional Storage is appropriate for storing data in the same regional location 
-> as Compute Engine instances or Kubernetes Engine clusters that use the data. 
-> Doing so gives you better performance for data-intensive computations, as opposed 
-> to storing your data in a multi-regional location. 
+> *Regional Storage is appropriate for storing data in the same regional location
+> as Compute Engine instances or Kubernetes Engine clusters that use the data.
+> Doing so gives you better performance for data-intensive computations, as opposed
+> to storing your data in a multi-regional location.
 > ([source](https://cloud.google.com/storage/docs/storage-classes))*
 
 ## Disaster Recovery

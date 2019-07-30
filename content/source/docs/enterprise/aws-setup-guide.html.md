@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise - Reference Architecture - AWS"
+page_title: "AWS Reference Architecture - Terraform Enterprise"
 description: |-
   This document provides recommended practices and a reference architecture for
   HashiCorp Private Terraform Enterprise (PTFE) implementations on AWS.

@@ -1,13 +1,13 @@
 ---
 layout: "enterprise"
-page_title: "Monitoring Private Terraform Enterprise"
+page_title: "Monitoring - Terraform Enterprise"
 ---
 
 # Monitoring a Private Terraform Enterprise Instance
 
 This document outlines best practices for monitoring a Private Terraform Enterprise (PTFE) instance.
 
-## Health Check 
+## Health Check
 
 PTFE provides a `/_health_check` endpoint on the instance. If PTFE is up, the health check will return a `200 OK`.
 

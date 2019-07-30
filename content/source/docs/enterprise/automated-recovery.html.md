@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Automated Recovery (Installer)"
+page_title: "Automated Recovery (Installer) - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Automated Recovery (Installer)

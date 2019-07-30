@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Installer - Simplified Migration"
+page_title: "Installer - Simplified Migration - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Installer - Simplified Migration

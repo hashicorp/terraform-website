@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise Configuration"
+page_title: "Configuration - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Configuration

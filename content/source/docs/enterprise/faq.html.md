@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise FAQ"
+page_title: "FAQ - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Frequently Asked Questions

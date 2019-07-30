@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Private Terraform Enterprise - Reliability & Availability"
+page_title: "Reliability & Availability - Terraform Enterprise"
 ---
 
 # Private Terraform Enterprise Reliability & Availability
