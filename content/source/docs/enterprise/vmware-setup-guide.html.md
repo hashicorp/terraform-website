@@ -15,17 +15,17 @@ HashiCorp Terraform Enterprise implementations on VMware.
 
 Prior to making hardware sizing and architectural decisions, read through the
 [installation information available for
-Terraform Enterprise](/docs/enterprise/private/install-installer.html)
+Terraform Enterprise](/docs/enterprise/install-installer.html)
 to familiarise yourself with the application components and architecture.
 Further, read the [reliability and availability
-guidance](/docs/enterprise/private/reliability-availability.html)
+guidance](/docs/enterprise/reliability-availability.html)
 as a primer to understanding the recommendations in this reference
 architecture.
 
 ## Infrastructure Requirements
 
 Depending on the chosen [operational
-mode](/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
+mode](/docs/enterprise/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for Terraform Enterprise range from a single virtual machine
 for demo or proof of concept installations, to multiple virtual machines
 hosting the Terraform Cloud application, PostgreSQL, and external Vault servers for
@@ -174,16 +174,16 @@ endpoint URL.
 ### Monitoring
 
 While there is not currently a monitoring guide for Terraform Enterprise, information around
-[logging](/docs/enterprise/private/logging.html),
-[diagnostics](/docs/enterprise/private/diagnostics.html)
+[logging](/docs/enterprise/logging.html),
+[diagnostics](/docs/enterprise/diagnostics.html)
 as well as [reliability and
-availability](/docs/enterprise/private/reliability-availability.html)
+availability](/docs/enterprise/reliability-availability.html)
 can be found on our website.
 
 ### Upgrades
 
 Please reference the [upgrade
-instructions](/docs/enterprise/private/upgrades.html)
+instructions](/docs/enterprise/upgrades.html)
 in the documentation.
 
 ## High Availability

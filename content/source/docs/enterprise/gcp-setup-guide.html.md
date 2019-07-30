@@ -15,10 +15,10 @@ HashiCorp Terraform Enterprise implementations on GCP.
 
 Prior to making hardware sizing and architectural decisions, read through the
 [installation information available for
-Terraform Enterprise](/docs/enterprise/private/install-installer.html)
+Terraform Enterprise](/docs/enterprise/install-installer.html)
 to familiarise yourself with the application components and architecture.
 Further, read the [reliability and availability
-guidance](/docs/enterprise/private/reliability-availability.html)
+guidance](/docs/enterprise/reliability-availability.html)
 as a primer to understanding the recommendations in this reference
 architecture.
 
@@ -28,7 +28,7 @@ architecture.
 Services_ operational mode.
 
 Depending on the chosen [operational
-mode](/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
+mode](/docs/enterprise/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for Terraform Enterprise range from a single Cloud Compute VM instance
 for demo installations to multiple instances connected to Cloud SQL and Cloud Storage for a
 stateless production installation.
@@ -284,7 +284,7 @@ With external services (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
 Terraform Enterprise server such as installation type, database connection settings,
 hostname. This data rarely changes. We recommend [configuring automated
-snapshots](/docs/enterprise/private/automated-recovery.html#1-configure-snapshots)
+snapshots](/docs/enterprise/automated-recovery.html#1-configure-snapshots)
 for this installation data so it can be recovered in the event of data
 corruption.
 

@@ -5,7 +5,7 @@ page_title: "SAML SSO Troubleshooting Guide - Terraform Enterprise"
 
 # Troubleshooting Guide
 
-**Note**: Verify you are on release version 201807-2 or later, as that is the version that introduced the debugging functionality that is described in this guide. If you would like assistance with upgrading, please [contact support](/docs/enterprise/private/faq.html#support-for-private-terraform-enterprise).
+**Note**: Verify you are on release version 201807-2 or later, as that is the version that introduced the debugging functionality that is described in this guide. If you would like assistance with upgrading, please [contact support](/docs/enterprise/faq.html#support-for-private-terraform-enterprise).
 
 ## Disable SAML Single Sign-On
 
@@ -74,9 +74,9 @@ Terrform Enterprise was unable to determine the issuer of the SAML response.<br 
 
 ## Contacting support
 
-If you're not able to resolve the error using the steps above, [reach out to support](/docs/enterprise/private/faq.html#support-for-private-terraform-enterprise). When contacting support, please provide:
+If you're not able to resolve the error using the steps above, [reach out to support](/docs/enterprise/faq.html#support-for-private-terraform-enterprise). When contacting support, please provide:
 
   * A screenshot of "SAML Response" and "Processed attributes" shown on the login page after failed login
   * A screenshot of the error on the login page
   * The [SAMLResponse XML document](./identity-provider-configuration.html#example-samlresponse)
-  * A [support bundle](/docs/enterprise/private/faq.html#diagnostics)
+  * A [support bundle](/docs/enterprise/faq.html#diagnostics)

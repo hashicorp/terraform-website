@@ -19,10 +19,10 @@ implementations on Azure.
 
 Prior to making hardware sizing and architectural decisions, read through the
 [installation information available for
-Terraform Enterprise](/docs/enterprise/private/install-installer.html)
+Terraform Enterprise](/docs/enterprise/install-installer.html)
 to familiarize yourself with the application components and architecture.
 Further, read the [reliability and availability
-guidance](/docs/enterprise/private/reliability-availability.html)
+guidance](/docs/enterprise/reliability-availability.html)
 as a primer to understanding the recommendations in this reference
 architecture.
 
@@ -31,7 +31,7 @@ architecture.
 -> **Note:** This reference architecture focuses on the _Production - External Services_ operational mode.
 
 Depending on the chosen [operational
-mode](/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
+mode](/docs/enterprise/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for Terraform Enterprise range from a single [Azure VM
 instance](https://azure.microsoft.com/en-us/services/virtual-machines/) for
 demo or proof of concept installations to multiple instances connected to
@@ -193,16 +193,16 @@ are routed to the highly available infrastructure supporting Azure Storage.
 ### Monitoring
 
 While there is not currently a monitoring guide for Terraform Enterprise, information around
-[logging](/docs/enterprise/private/logging.html),
-[diagnostics](/docs/enterprise/private/diagnostics.html)
+[logging](/docs/enterprise/logging.html),
+[diagnostics](/docs/enterprise/diagnostics.html)
 as well as [reliability and
-availability](/docs/enterprise/private/reliability-availability.html)
+availability](/docs/enterprise/reliability-availability.html)
 can be found on our website.
 
 ### Upgrades
 
 See [the Upgrades
-section](/docs/enterprise/private/upgrades.html)
+section](/docs/enterprise/upgrades.html)
 of the documentation.
 
 ## High Availability
@@ -230,7 +230,7 @@ not changed since installation, both TFE1 and TFE2 will
 use the same configuration and no action is required.
 
 If the
-configuration on the active instance changes, you should [create a snapshot](/docs/enterprise/private/automated-recovery.html#1-configure-snapshots) via the
+configuration on the active instance changes, you should [create a snapshot](/docs/enterprise/automated-recovery.html#1-configure-snapshots) via the
 UI or CLI and recover this to the standby instance so that both instances use the
 same configuration.
 
@@ -302,7 +302,7 @@ When using the _Production - External Services_ deployment model (PostgreSQL Dat
 Terraform Enterprise server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. We recommend
 [configuring automated
-snapshots](/docs/enterprise/private/automated-recovery.html#1-configure-snapshots)
+snapshots](/docs/enterprise/automated-recovery.html#1-configure-snapshots)
 for this installation data so it can be recovered in the event of data
 corruption.
 
