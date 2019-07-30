@@ -10,7 +10,7 @@ page_title: "Installation (Installer) - Terraform Enterprise"
 This document outlines the procedure for using the Terraform Enterprise
 installer to set up Terraform Enterprise on a customer-controlled machine.
 
-~> **Note**: This document is only meant for those customers using Private
+~> **Note**: This document is only meant for those customers using
 Terraform Enterprise via the Installer. Customers using the AMI can follow the
 [instructions for the AMI-based install](./install-ami.html).
 

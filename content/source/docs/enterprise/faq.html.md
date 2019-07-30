@@ -9,7 +9,7 @@ This page provides answers to many common questions about Terraform Enterprise.
 
 ## General FAQ
 
-1. [Support](#support-for-private-terraform-enterprise)
+1. [Support](#support-for-terraform-enterprise)
 2. [Managing Tool Versions](#managing-tool-versions)
 3. [Migration from the Terraform Cloud SaaS](#migrating-from-the-terraform-cloud-saas)
 1. [Network Requirements](#network-requirements)
@@ -18,7 +18,7 @@ This page provides answers to many common questions about Terraform Enterprise.
 
 !> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Terraform Enterprise Installer.
 
-1. [About the AMI](#about-the-private-terraform-enterprise-ami)
+1. [About the AMI](#about-the-terraform-enterprise-ami)
 2. [AMI IDs](#ami-ids)
 3. [Additional Configuration Info](#additional-configuration-info)
 5. [Required Network Access](#network-access)
@@ -137,7 +137,7 @@ terraform {
 }
 ```
 
-Assign your Private TFE API token to `ATLAS_TOKEN` and run `terraform init`:
+Assign your Terraform Enterprise API token to `ATLAS_TOKEN` and run `terraform init`:
 
 ```
 export ATLAS_TOKEN=$PTFE_ATLAS_TOKEN

@@ -38,7 +38,7 @@ Terraform Enterprise's application-level services all log to CloudWatch logs, wi
 {hostname}-{servicename}
 ```
 
-Where `hostname` is the fqdn you provided when setting up Terraform Enterprise, and `servicename` is the name of the service whose logs can be found in the stream. More information about each service can be found in [`tfe-architecture`](#private-terraform-enterprise-architecture).
+Where `hostname` is the fqdn you provided when setting up Terraform Enterprise, and `servicename` is the name of the service whose logs can be found in the stream. More information about each service can be found in [Terraform Enterprise Architecture](./faq.html#terraform-enterprise-architecture).
 
 For example, if your Terraform Enterprise installation is available at `tfe.mycompany.io`, you'll find CloudWatch Log streams like the following:
 

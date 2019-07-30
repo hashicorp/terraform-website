@@ -121,7 +121,7 @@ terraform plan ./terraform/aws-standard
 to see the changes that will be made. Double-check that they are correct before continuing.
 There should not be any changes made to your `aws_db_instance` or `aws_s3_bucket`.
 If any changes to these resources are shown in the plan, pause the migration process and
-[contact support](./faq.html#support-for-private-terraform-enterprise).
+[contact support](./faq.html#support-for-terraform-enterprise).
 
 When you're satisfied with the plan, apply it:
 
