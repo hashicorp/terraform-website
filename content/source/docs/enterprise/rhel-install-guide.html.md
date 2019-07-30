@@ -1,9 +1,9 @@
 ---
 layout: "enterprise"
-page_title: "RHEL Install Guide - Installation (Installer) - Terraform Enterprise"
+page_title: "RHEL Install Guide - Installation - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Installation (Installer) - RHEL Install Guide
+# Terraform Enterprise Installation - RHEL Install Guide
 
 This install guide is specifically for users of Terraform Enterprise installing the product on RedHat Enterprise Linux (RHEL).
 

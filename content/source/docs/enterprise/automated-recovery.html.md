@@ -1,9 +1,9 @@
 ---
 layout: "enterprise"
-page_title: "Automated Recovery (Installer) - Terraform Enterprise"
+page_title: "Automated Recovery - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Automated Recovery (Installer)
+# Terraform Enterprise Automated Recovery
 
 This guide explains how to configure automated recovery for a Terraform
 Enterprise installation. The goal is to provide a short Mean-Time-To-Recovery (MTTR)

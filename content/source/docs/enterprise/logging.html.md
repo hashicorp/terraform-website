@@ -9,9 +9,7 @@ This document contains information about interacting with Terraform Enterprise l
 
 ## Application Logs
 
-### Installer
-
-Installer-based Terraform Enterprise runs in a set of Docker containers. As such, any tooling that can interact with Docker logs can read the logs. This includes the command `docker logs`, as well as access via the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
+Terraform Enterprise runs in a set of Docker containers. As such, any tooling that can interact with Docker logs can read the logs. This includes the command `docker logs`, as well as access via the [Docker API](https://docs.docker.com/engine/api/v1.36/#operation/ContainerLogs).
 
 An example of a tool that can automatically pull logs for all docker containers is [logspout](https://github.com/gliderlabs/logspout).
 Logspout can be configured to take the Docker logs and send them to a syslog endpoint. Here's an example invocation:
@@ -30,50 +28,13 @@ The logspout container uses the Docker API internally to find other running cont
    All other log drivers prevent the support bundle functionality from gathering logs, making it
    impossible to provide product support. **DO NOT** change the log driver of an installation to anything other than `json-file` or `journald`.
 
-### AMI based installs
-
-Terraform Enterprise's application-level services all log to CloudWatch logs, with one stream per service. The stream names take the format:
-
-```
-{hostname}-{servicename}
-```
-
-Where `hostname` is the fqdn you provided when setting up Terraform Enterprise, and `servicename` is the name of the service whose logs can be found in the stream. More information about each service can be found in [Terraform Enterprise Architecture](./faq.html#terraform-enterprise-architecture).
-
-For example, if your Terraform Enterprise installation is available at `tfe.mycompany.io`, you'll find CloudWatch Log streams like the following:
-
-```
-tfe.mycompany.io-atlas-frontend
-tfe.mycompany.io-atlas-worker
-tfe.mycompany.io-binstore
-tfe.mycompany.io-logstream
-tfe.mycompany.io-packer-build-manager
-tfe.mycompany.io-packer-build-worker
-tfe.mycompany.io-slug-extract
-tfe.mycompany.io-slug-ingress
-tfe.mycompany.io-slug-merge
-tfe.mycompany.io-storagelocker
-tfe.mycompany.io-terraform-build-manager
-tfe.mycompany.io-terraform-build-worker
-tfe.mycompany.io-terraform-state-parser
-```
-
-CloudWatch logs can be searched, filtered, and read from either from the AWS Web Console or (recommended) the command line [`awslogs`](https://github.com/jorgebastida/awslogs) tool.
-
--> **Note:** All other system-level logs can be found in the standard locations for an Ubuntu 16.04 system.
-
 ## Audit Logs
 
-Audit log entries are written to the application logs. To distinguish audit Log entries from other log entries, the JSON is prefixed with `[Audit Log]`.
+The audit logs are emitted along with other logs by the `ptfe_atlas` container. To distinguish audit log entries from other log entries, the JSON is prefixed with `[Audit Log]`. For example:
 
-### Installer
-
-The audit logs are emitted along with other logs by the `ptfe_atlas` container.
-
-### AMI based installs
-
-As of Terraform Enterprise release v201802-1, audit logging is available in Terraform Enterprise. These are written out to CloudWatch logs just like all other application-level logs.
-
+```
+2018-03-27 21:55:29 [INFO] [Audit Log] {"resource":"oauth_client","action":"create","resource_id":"oc-FErAhnuHHwcad3Kx","actor":"atlasint","timestamp":"2018-03-27T21:55:29Z","actor_ip":"11.22.33.44"}
+```
 
 ### Log Contents
 
@@ -108,7 +69,7 @@ When requests occur, these pieces of information will be logged:
 
 ### Log Format
 
-Log entries are in JSON, just like other Terraform logs. Most audit log entries are formatted like this:
+Log entries are in JSON, just like other Terraform Enterprise logs. Most audit log entries are formatted like this:
 
 ``` json
 {
@@ -123,12 +84,3 @@ Log entries are in JSON, just like other Terraform logs. Most audit log entries 
 
 Certain entries will contain additional information in the payload, but all audit log entries will contain the above keys.
 
-### Log Location
-
-Audit log entries are written to the application logs. To distinguish audit log entries from other log entries, the JSON is prefixed with `[Audit Log]`. These are written out to CloudWatch logs just like all other application-level logs. For example:
-
-```
-2018-03-27 21:55:29 [INFO] [Audit Log] {"resource":"oauth_client","action":"create","resource_id":"oc-FErAhnuHHwcad3Kx","actor":"atlasint","timestamp":"2018-03-27T21:55:29Z","actor_ip":"11.22.33.44"}
-```
-
----

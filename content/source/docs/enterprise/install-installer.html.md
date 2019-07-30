@@ -1,29 +1,16 @@
 ---
 layout: "enterprise"
-page_title: "Installation (Installer) - Terraform Enterprise"
+page_title: "Installation - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Installation (Installer)
+# Terraform Enterprise Installation
 
 ## Delivery
 
 This document outlines the procedure for using the Terraform Enterprise
 installer to set up Terraform Enterprise on a customer-controlled machine.
 
-~> **Note**: This document is only meant for those customers using
-Terraform Enterprise via the Installer. Customers using the AMI can follow the
-[instructions for the AMI-based install](./install-ami.html).
-
-## Migrating from AMI
-
-!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018.
-
-If you are migrating an installation from the AMI to the installer, please
-use the instuctions in the [migration guide](./migrate.html).
-
-## Preflight
-
-Before you begin, consult [Preflight](./preflight-installer.html) for pre-requisites. You'll need to prepare data files and a Linux instance.
+-> **Important:** Before you begin, consult [Preflight](./preflight-installer.html) for prerequisites. You'll need to prepare data files and a Linux instance.
 
 ## Proxy Usage
 
@@ -45,7 +32,7 @@ If certain hostnames should not use the proxy and the instance should connect di
 ./install.sh additional-no-proxy=s3.amazonaws.com,internal-vcs.mycompany.com,example.com
 ````
 
-Passing this option to the installation script is particularly useful if the hostnames that should not use the proxy include services that the instance needs to be able to reach during installation, such as S3. Alternately, if the only hosts you need to add are those that are not used during installation, such as a private VCS instance, you can provide these hosts after initial installation is complete, in the installer settings (available on port 8800 under `/console/settings`).
+Passing this option to the installation script is particularly useful if the hostnames that should not use the proxy include services that the instance needs to be able to reach during installation, such as S3. Alternately, if the only hosts you need to add are those that are not used during installation, such as a private VCS instance, you can provide these hosts after initial installation is complete, in the settings tab in your dashboard (available on port 8800 under `/console/settings`).
 
 ### Reconfiguring the Proxy
 
@@ -65,7 +52,7 @@ This change updates the proxy settings for the Terraform Enterprise application 
 
 ## Trusting SSL/TLS Certificates
 
-There are two primary areas for SSL configuration in the installer.
+There are two primary areas for SSL configuration.
 
 ### TLS Key & Cert
 

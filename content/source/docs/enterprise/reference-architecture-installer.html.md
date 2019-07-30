@@ -1,9 +1,9 @@
 ---
 layout: "enterprise"
-page_title: "Reference Architecture (Installer) - Terraform Enterprise"
+page_title: "Reference Architecture - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Reference Architecture (Installer)
+# Terraform Enterprise Reference Architecture
 
 HashiCorp provides Reference Architectures detailing the recommended
 infrastructure and resources that should be provisioned in order to

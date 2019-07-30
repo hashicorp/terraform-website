@@ -1,9 +1,9 @@
 ---
 layout: "enterprise"
-page_title: "CentOS Linux Install Guide - Installation (Installer) - Terraform Enterprise"
+page_title: "CentOS Linux Install Guide - Installation - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Installation (Installer) - CentOS Install Guide
+# Terraform Enterprise Installation - CentOS Install Guide
 
 This install guide is specifically for users of Terraform Enterprise installing the product on CentOS Linux.
 

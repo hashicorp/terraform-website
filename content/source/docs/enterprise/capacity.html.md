@@ -3,7 +3,7 @@ layout: "enterprise"
 page_title: "Capacity and Performance - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Capacity and Performance (Installer)
+# Terraform Enterprise Capacity and Performance
 
 The maximum capacity and performance of Terraform Enterprise is dependent entirely on the resources
 provided by the Linux instance it is installed on. There are a few settings that allow Terraform Enterprise's capacity to be adjusted to suit the instance.
