@@ -11,7 +11,7 @@ This page provides answers to many common questions about Private Terraform Ente
 
 1. [Support](#support-for-private-terraform-enterprise)
 2. [Managing Tool Versions](#managing-tool-versions)
-3. [Migration from SaaS-based Terraform Enterprise](#migrating-from-terraform-enterprise-saas)
+3. [Migration from the Terraform Cloud SaaS](#migrating-from-the-terraform-cloud-saas)
 1. [Network Requirements](#network-requirements)
 
 ## AMI FAQ
@@ -70,15 +70,15 @@ Here you'll find a list of Packer and Terraform versions as well as a link to ad
 
 ![admin-tools-edit](assets/admin-tools-edit.png)
 
-## Migrating from Terraform Enterprise SaaS
+## Migrating from the Terraform Cloud SaaS
 
-If you are already a user of the Terraform Enterprise SaaS (hereafter "the SaaS"), you may have Environments that you want to migrate over to your new Private Terraform Enterprise installation.
+If you are already a user of the Terraform Cloud SaaS (hereafter "the SaaS"), you may have workspaces that you want to migrate over to your new Private Terraform Enterprise installation.
 
 These instructions assume Terraform 0.9 or greater. See [docs on legacy remote state](/docs/backends/legacy-0-8.html) for information on upgrading usage of remote state in prior versions of Terraform.
 
 ### Prerequisites
 
-Have a Terraform Enterprise user API token ("Atlas token") handy for both Private Terraform Enterprise and the SaaS. The following examples will assume you have these stored in `PTFE_ATLAS_TOKEN` and `SAAS_ATLAS_TOKEN`, respectively.
+Have a Terraform Cloud user API token ("Atlas token") handy for both Private Terraform Enterprise and the SaaS. The following examples will assume you have these stored in `PTFE_ATLAS_TOKEN` and `SAAS_ATLAS_TOKEN`, respectively.
 
 ### Step 1: Connect local config to SaaS
 

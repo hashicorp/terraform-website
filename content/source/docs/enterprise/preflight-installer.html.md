@@ -38,7 +38,7 @@ operating systems:
 ### Hardware Requirements
 
 These requirements provide the instance with enough resources to run the
-Terraform Enterprise application as well as the Terraform plans and applies.
+Terraform Cloud application as well as the Terraform plans and applies.
 
  * At least 40GB of disk space on the root volume
  * At least 8GB of system memory
@@ -79,8 +79,8 @@ SELINUX=permissive
 #### Ingress
 
   * **22**: To access the instance via SSH from your computer. SSH access to the instance is required for administration and debugging.
-  * **80**: To access the Terraform Enterprise appplication via HTTP. This port redirects to port 443 for HTTPS.
-  * **443**: To access the Terraform Enterprise appplication via HTTPS.
+  * **80**: To access the Terraform Cloud application via HTTP. This port redirects to port 443 for HTTPS.
+  * **443**: To access the Terraform Cloud appplication via HTTPS.
   * **8800**: To access the installer dashboard.
   * **9870-9880 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
   * **23000-23100 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
@@ -102,7 +102,7 @@ is supplied:
 * registry.terraform.io (when using Terraform 0.12 and later)
 * releases.hashicorp.com
 
-#### Other Configuration 
+#### Other Configuration
 
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
 1. Get a domain name for the instance. Using an IP address to access the product is not supported as many systems use TLS and need to verify that the certificate is correct, which can only be done with a hostname at present.

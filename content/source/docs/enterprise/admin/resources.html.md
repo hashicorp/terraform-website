@@ -5,7 +5,7 @@ page_title: "Accounts and Resources - Admin - Terraform Enterprise"
 
 # Administration: Managing Accounts and Resources
 
-Site administrators have access to all organizations, users, runs, and workspaces. This visibility is intended to provide access to management actions such as adding administrators, updating Terraform versions or adding custom Terraform bundles, suspending or deleting users, and creating or deleting organizations. It also allows for "impersonation" to aid in assisting regular users with issues in Terraform Enterprise.
+Site administrators have access to all organizations, users, runs, and workspaces. This visibility is intended to provide access to management actions such as adding administrators, updating Terraform versions or adding custom Terraform bundles, suspending or deleting users, and creating or deleting organizations. It also allows for "impersonation" to aid in assisting regular users with issues in the Terraform Cloud application.
 
 ## Viewing, Searching, and Filtering Lists
 
@@ -31,7 +31,7 @@ To promote a user, click **Promote to admin** at the top right of the user detai
 
 ### Suspending or Deleting a User
 
-Suspending a user retains their account, but does not allow them to access any Terraform Enterprise resources. Deleting a user removes their account completely; they would have to create a new account in order to log in again.
+Suspending a user retains their account, but does not allow them to access any Terraform Cloud resources. Deleting a user removes their account completely; they would have to create a new account in order to log in again.
 
 Suspended users can be unsuspended at any time. Deleted users cannot be recovered.
 
@@ -53,7 +53,7 @@ Impersonation can be performed from multiple places:
 
 ### Resetting Two-Factor Authentication
 
-If a user has lost access to their Terraform Enterprise 2FA device, a site admin can disable the configured 2FA and allow the user to log in using only their username and password or perform a standard password reset. If the user has active 2FA, a button labeled **Disable 2FA** will appear to the left of the admin promotion button.
+If a user has lost access to their 2FA device, a site admin can disable the configured 2FA and allow the user to log in using only their username and password or perform a standard password reset. If the user has active 2FA, a button labeled **Disable 2FA** will appear to the left of the admin promotion button.
 
 Be sure that the user's identity and the validity of their request have been verified according to appropriate security procedures before disabling their configured 2FA.
 
@@ -65,7 +65,7 @@ Be sure that the user's identity and the validity of their request have been ver
 
 If your institution uses multiple organizations in Terraform Enterprise, you can view the details of each organization by clicking it in the admin list of organizations. From the details page, you can impersonate an owner or delete an organization (using the red **Delete this organization** button at the bottom of the details page).
 
-Typically, in private installations, all organizations will be granted "Premium" plan status for the purpose of providing access to all available features. However, it's also possible to set other statuses. An organization whose trial period is expired will be unable to make use of features in Terraform Enterprise.
+Typically, in private installations, all organizations will be granted "Premium" plan status for the purpose of providing access to all available features. However, it's also possible to set other statuses. An organization whose trial period is expired will be unable to make use of features in the Terraform Cloud application.
 
 ![screenshot: an organization details admin page](./images/admin-organization-details.png)
 

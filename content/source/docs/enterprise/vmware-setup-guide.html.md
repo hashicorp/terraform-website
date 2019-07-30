@@ -28,7 +28,7 @@ Depending on the chosen [operational
 mode](/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
 the infrastructure requirements for PTFE range from a single virtual machine
 for demo or proof of concept installations, to multiple virtual machines
-hosting the Terraform Enterprise application, PostgreSQL, and external Vault servers for
+hosting the Terraform Cloud application, PostgreSQL, and external Vault servers for
 a stateless production installation.
 
 This reference architecture focuses on the “Production - External Services”

@@ -19,7 +19,7 @@ This guide will walk through both of these steps.
 Snapshots are taken on the Private TFE instance. That instance can
 have two types of data on it:
 
-- Terraform Enterprise application data: The core product data such as
+- Terraform Cloud application data: The core product data such as
 run history, configuration history, state history. This data
 changes frequently.
 - Terraform Enterprise installer data: The data used

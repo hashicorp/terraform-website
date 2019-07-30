@@ -19,8 +19,8 @@ The support email address is used in system emails and other contact details. It
 
 Organization creation can be limited to site administrators or allowed for all users. Limiting organization creation to administrators means that the need for new organizations can be audited and their creation easily monitored.
 
-When new user accounts are created, if they cannot create their own organizations, they will be unable to access any Terraform Enterprise resources until they are added to a team.
+When new user accounts are created, if they cannot create their own organizations, they will be unable to access any Terraform Cloud resources until they are added to a team.
 
 ## API Rate Limiting
 
-By default, requests to the Terraform Enterprise API from a single user or IP address are [limited to 30 requests per second](/docs/cloud/api/index.html#rate-limiting) to prevent abuse or hogging of resources. Since usage patterns may vary for a given instance, this can be updated to match local needs.
+By default, requests to the Terraform Cloud API from a single user or IP address are [limited to 30 requests per second](/docs/cloud/api/index.html#rate-limiting) to prevent abuse or hogging of resources. Since usage patterns may vary for a given instance, this can be updated to match local needs.
