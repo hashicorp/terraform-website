@@ -66,7 +66,7 @@ The rest of this page explains the GitLab.com versions of these steps.
 
     ![Terraform Cloud screenshot: add client fields](./images/gitlab-com-tfe-add-client-fields.png)
 
-3. Click "Create connection." This will take you back to the VCS Provider page, which now includes your new GitLab client.
+3. Click "Create VCS Connection." This will take you back to the VCS Provider page, which now includes your new GitLab client.
 
 4. Locate the new client's "Callback URL," and copy it to your clipboard; you'll paste it in the next step. Leave this page open in a browser tab.
 
