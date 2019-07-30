@@ -3,9 +3,9 @@ layout: "enterprise"
 page_title: "RHEL Install Guide - Installation (Installer) - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Installation (Installer) - RHEL Install Guide
+# Terraform Enterprise Installation (Installer) - RHEL Install Guide
 
-This install guide is specifically for users of Private Terraform Enterprise installing the product on RedHat Enterprise Linux (RHEL).
+This install guide is specifically for users of Terraform Enterprise installing the product on RedHat Enterprise Linux (RHEL).
 
 ## Install Recommendations
 
@@ -49,7 +49,7 @@ Sure! Just be sure to have at least 1.13.1 and authorization plugins disabled.
 Yes, Docker CE is compatible with the current installer. However, it is not directly [supported by RedHat](https://access.redhat.com/articles/2726611). You still need to be sure that the storage backend is configured properly as by default, Docker will be using devicemapper in loopback, an entirely unsupported mode.
 
 ### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
-No. This is an installation that docker provides as sample and is not supported by Private Terraform Enterprise due to the significant instability in it. Docker themselves do not suggest using this mode: https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-loop-lvm-mode-for-testing
+No. This is an installation that docker provides as sample and is not supported by Terraform Enterprise due to the significant instability in it. Docker themselves do not suggest using this mode: https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-loop-lvm-mode-for-testing
 
 ### How do I know if an installation is in devicemapper loopback mode?
 Run the command `sudo docker info | grep dev/loop`. If there is any output, you’re in devicemapper loopback mode. Docker may also print warning about loopback mode when you run the above command, which is another indicator.

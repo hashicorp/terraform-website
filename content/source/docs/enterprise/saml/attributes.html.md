@@ -56,7 +56,7 @@ or in one AttributeValue as a comma-separated list:
 </saml:AttributeStatement>
 ```
 
-There is a special-case role `site-admins` that will add a user as a site admin to your private Terraform Enterprise instance.
+There is a special-case role `site-admins` that will add a user as a site admin to your Terraform Enterprise instance.
 
 ```xml
 <saml:AttributeStatement>

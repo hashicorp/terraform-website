@@ -3,31 +3,31 @@ layout: "enterprise"
 page_title: "Automated Recovery (Installer) - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Automated Recovery (Installer)
+# Terraform Enterprise Automated Recovery (Installer)
 
-This guide explains how to configure automated recovery for a Private Terraform
+This guide explains how to configure automated recovery for a Terraform
 Enterprise installation. The goal is to provide a short Mean-Time-To-Recovery (MTTR)
 in the event of an outage. There are two steps in the automated recovery process:
 
 1. Configure snapshots on your current install to backup data
-1. Provision a new PTFE instance using the latest snapshot
+1. Provision a new Terraform Enterprise instance using the latest snapshot
 
 This guide will walk through both of these steps.
 
 ## Configure snapshots
 
-Snapshots are taken on the Private TFE instance. That instance can
+Snapshots are taken on the Terraform Enterprise instance. That instance can
 have two types of data on it:
 
 - Terraform Cloud application data: The core product data such as
 run history, configuration history, state history. This data
 changes frequently.
 - Terraform Enterprise installer data: The data used
-to configure Private TFE itself such as installation type, database
+to configure Terraform Enterprise itself such as installation type, database
 connection settings, hostname. This data rarely changes.
 
 In demo mode, both application data and installer data are
-stored on the PTFE instance. In mounted disk and external services mode, only
+stored on the Terraform Enterprise instance. In mounted disk and external services mode, only
 installer data is stored on the instance. Application data
 is stored in the mounted disk or in an external PostgreSQL instance.
 
@@ -43,7 +43,7 @@ one hour is recommended as that will minimize the data loss to one
 hour only. For Mounted Disk or External Services, Daily is recommended
 as the snapshots contain only configuration data, not application data.
 
-## Restore a snapshot in a new PTFE instance
+## Restore a snapshot in a new Terraform Enterprise instance
 
 ## Version Checking
 

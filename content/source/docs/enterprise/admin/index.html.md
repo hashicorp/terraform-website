@@ -3,11 +3,11 @@ layout: "enterprise"
 page_title: "Admin - Terraform Enterprise"
 ---
 
-# Administering Private Terraform Enterprise
+# Administering Terraform Enterprise
 
-Private Terraform Enterprise (PTFE) is software provided to customers that allows full use of Terraform Cloud in a private, isolated environment.
+Terraform Enterprise is software provided to customers that allows full use of Terraform Cloud in a private, isolated environment.
 
-Administration of a PTFE instance has two main domains:
+Administration of a Terraform Enterprise instance has two main domains:
 
 - Installation, upgrades, and operational tasks like backups and monitoring, which take place outside the Terraform Cloud application.
 - Administrative tasks and configuration within the application itself.
@@ -16,9 +16,9 @@ This section is about in-application administration, including general settings,
 
 ## Accessing the Admin Interface
 
-Only Private Terraform Enterprise users with the site-admin permission can access the administrative functions.
+Only Terraform Enterprise users with the site-admin permission can access the administrative functions.
 
-The initial user account for a PTFE instance is the first site admin. Site admins can grant admin permissions to other users in the "Users" section of the admin pages. See [Promoting a User to Administrator](./resources.html#promoting-a-user-to-administrator) for details.
+The initial user account for a Terraform Enterprise instance is the first site admin. Site admins can grant admin permissions to other users in the "Users" section of the admin pages. See [Promoting a User to Administrator](./resources.html#promoting-a-user-to-administrator) for details.
 
 To navigate to the site admin section of the UI, click your user icon in the upper right, then click **Site Admin**:
 

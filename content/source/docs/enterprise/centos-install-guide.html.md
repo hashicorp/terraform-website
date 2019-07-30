@@ -3,9 +3,9 @@ layout: "enterprise"
 page_title: "CentOS Linux Install Guide - Installation (Installer) - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Installation (Installer) - CentOS Install Guide
+# Terraform Enterprise Installation (Installer) - CentOS Install Guide
 
-This install guide is specifically for users of Private Terraform Enterprise installing the product on CentOS Linux.
+This install guide is specifically for users of Terraform Enterprise installing the product on CentOS Linux.
 
 ## Install Recommendations
 
@@ -26,7 +26,7 @@ If you choose to have Docker installed via the install script, ensure that `/etc
 Sure! Just be sure to have at least 1.13.1.
 
 ### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
-No. This is an installation that Docker provides as sample and is not supported by Private Terraform Enterprise due to the significant instability in it. Docker themselves [do not suggest using this mode](https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-loop-lvm-mode-for-testing).
+No. This is an installation that Docker provides as sample and is not supported by Terraform Enterprise due to the significant instability in it. Docker themselves [do not suggest using this mode](https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-loop-lvm-mode-for-testing).
 
 ### How do I know if an installation is in devicemapper loopback mode?
 Run the command `docker info | grep dev/loop`. If there is any output, you’re in devicemapper loopback mode. Docker may also print warning about loopback mode when you run the above command, which is another indicator.

@@ -2,27 +2,27 @@
 layout: "enterprise"
 page_title: "Minio Setup Guide - Installation (Installer) - Terraform Enterprise"
 description: |-
-  This document provides an overview for setting up Minio for external object storage for HashiCorp Private Terraform Enterprise (PTFE).
+  This document provides an overview for setting up Minio for external object storage for HashiCorp Terraform Enterprise.
 ---
 
-# Private Terraform Enterprise Installation (Installer) - Minio Setup Guide
+# Terraform Enterprise Installation (Installer) - Minio Setup Guide
 
-This document provides an overview for setting up [Minio](https://minio.io) for external object storage for HashiCorp Private Terraform Enterprise (PTFE).
+This document provides an overview for setting up [Minio](https://minio.io) for external object storage for HashiCorp Terraform Enterprise.
 
 ## Required Reading
 
-- Ensure you are familiar with PTFE's operation and [installation requirements](./installer.html), and especially the [Operational Mode Decision](./preflight-installer.html#operational-mode-decision).
+- Ensure you are familiar with Terraform Enterprise's operation and [installation requirements](./installer.html), and especially the [Operational Mode Decision](./preflight-installer.html#operational-mode-decision).
 - Familiarize yourself with [Minio](https://minio.io).
 
 ## Overview
 
-When configured to use external services, PTFE must be connected to a storage service to persist workspace state and other file-based data. Native support exists for Azure Blob Storage, Amazon S3, and services that are API-compatible with Amazon S3. If you are not using Azure or a cloud provider with an S3-compatible service, or you are running PTFE in an environment without a storage service, it may be possible to use [Minio](https://minio.io) instead.
+When configured to use external services, Terraform Enterprise must be connected to a storage service to persist workspace state and other file-based data. Native support exists for Azure Blob Storage, Amazon S3, and services that are API-compatible with Amazon S3. If you are not using Azure or a cloud provider with an S3-compatible service, or you are running Terraform Enterprise in an environment without a storage service, it may be possible to use [Minio](https://minio.io) instead.
 
 ## Installation
 
 ~> **Note:** This is not a production-ready configuration: it's intended to guide you to a working configuration that can later be automated and hardened.
 
-This guide will walk through installing Minio in a Docker container alongside PTFE on the same host, with PTFE configured in the "Production - External Services" [operational mode](./preflight-installer.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc. The guide assumes your instance will have access to the Internet and that you will be performing an online install of PTFE.
+This guide will walk through installing Minio in a Docker container alongside Terraform Enterprise on the same host, with Terraform Enterprise configured in the "Production - External Services" [operational mode](./preflight-installer.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc. The guide assumes your instance will have access to the Internet and that you will be performing an online install of Terraform Enterprise.
 
 ### System preparation
 
@@ -30,7 +30,7 @@ Ensure your Linux instance meets the [requirements](./preflight-installer.html#l
 
 You also need a PostgreSQL database that meets the [requirements](./preflight-installer.html#postgresql-requirements), as this is part of the external services operational mode.
 
-### PTFE installation
+### Terraform Enterprise installation
 
 Begin with an [online installation](./install-installer.html#run-the-installer-online). Once the installation script has finished and you're presented with the following text, move on to the next section:
 
@@ -66,16 +66,16 @@ You now need to collect several pieces of information about your running Minio i
 
 ### Create a bucket
 
-Like S3, Minio does not automatically create buckets. Use the AWS CLI to create a bucket named `ptfe` that will be used to store data:
+Like S3, Minio does not automatically create buckets. Use the AWS CLI to create a bucket named `tfe` that will be used to store data:
 
 ```bash
 export AWS_ACCESS_KEY_ID="<access key from above>"
 export AWS_SECRET_ACCESS_KEY="<secret key from above>"
 
-aws --region us-east-1 --endpoint-url http://<ip address from above>:9000 s3 mb s3://ptfe
+aws --region us-east-1 --endpoint-url http://<ip address from above>:9000 s3 mb s3://tfe
 ```
 
-### PTFE installation
+### Terraform Enterprise installation
 
 You may now [continue the installation in the browser](./install-installer.html#continue-installation-in-browser). When you arrive at the Operational Mode choice in the installer, follow these steps:
 
@@ -85,7 +85,7 @@ You may now [continue the installation in the browser](./install-installer.html#
 4. Choose "S3" for object storage
 5. Enter the access key and secret access key using the information retrieved from Minio
 6. Provide the endpoint URL, like: `http://<ip address from above>:9000`
-7. Enter the name of the bucket you created above (`ptfe` in the example)
+7. Enter the name of the bucket you created above (`tfe` in the example)
 8. Enter `us-east-1` for the region; this is arbitrary, but must be a valid AWS region
    **Note:** The "Test Authentication" button does not currently work for non-AWS endpoints
 9. Click "Save"

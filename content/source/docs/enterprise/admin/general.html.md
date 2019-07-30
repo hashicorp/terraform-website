@@ -5,7 +5,7 @@ page_title: "General Settings - Admin - Terraform Enterprise"
 
 # Administration: General Settings
 
-General settings control global behavior in Private Terraform Enterprise. To access general settings, visit the site admin area and click **Settings** in the left menu. To save the settings, click **Save Settings** at the bottom of the page.
+General settings control global behavior in Terraform Enterprise. To access general settings, visit the site admin area and click **Settings** in the left menu. To save the settings, click **Save Settings** at the bottom of the page.
 
 ![screenshot: the Settings admin page](./images/admin-general.png)
 

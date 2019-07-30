@@ -3,10 +3,10 @@ layout: "enterprise"
 page_title: "Installer Migration - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Installer Migration
+# Terraform Enterprise Installer Migration
 
-This document outlines the procedure for migrating from the AMI-based Private Terraform Enterprise (PTFE)
-to the Installer-based PTFE.
+This document outlines the procedure for migrating from the AMI-based Terraform Enterprise
+to the Installer-based Terraform Enterprise.
 
 ## Terraform State
 
@@ -16,7 +16,7 @@ To run this procedure, you'll need the Terraform state file used to create the A
 
 Before beginning, it's best to create an additional backup of your RDS database. This will allow you to roll back the data and continue to use the AMI if necessary.
 
-To create an RDS backup, go to the [Amazon RDS Instances](https://console.aws.amazon.com/rds/home?region=us-east-1#dbinstances:). You may need to change the region that you are viewing in order to see your PTFE instance. Once you find it, click on the instance name. On the next page, select **Instance Actions** and then **Take snapshot**. On the **Take DB Snapshot** page, enter a name for the snapshot such as `Pre-Installer Migration`, and then click **Take Snapshot**.
+To create an RDS backup, go to the [Amazon RDS Instances](https://console.aws.amazon.com/rds/home?region=us-east-1#dbinstances:). You may need to change the region that you are viewing in order to see your Terraform Enterprise instance. Once you find it, click on the instance name. On the next page, select **Instance Actions** and then **Take snapshot**. On the **Take DB Snapshot** page, enter a name for the snapshot such as `Pre-Installer Migration`, and then click **Take Snapshot**.
 
 The snapshot will take a little while to create. After it has finished, you can continue with the rest of the migration steps.
 
@@ -70,11 +70,11 @@ Passing this option to the installation script is particularly useful if the hos
 
 To change the proxy settings after installation, use the Console settings page, accessed from the dashboard on port 8800 under `/console/settings`.
 
-![PTFE Console Settings](./assets/ptfe-console-settings.png)
+![Terraform Enterprise Console Settings](./assets/ptfe-console-settings.png)
 
 On the Console Settings page, there is a section for HTTP Proxy:
 
-![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
+![Terraform Enterprise HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
 
 ## Trusting SSL/TLS Certificates
 
@@ -82,23 +82,23 @@ There are two primary areas for SSL configuration in the installer.
 
 ### TLS Key & Cert
 
-The TLS Key & Cert field (found in the console settings after initial installation) should contain PTFE's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates an intermediate certificate is required as well.
+The TLS Key & Cert field (found in the console settings after initial installation) should contain Terraform Enterprise's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates an intermediate certificate is required as well.
 
 ### Certificate Authority (CA) Bundle
 
-PTFE needs to be able to access all services that it integrates with, such as VCS providers.
+Terraform Enterprise needs to be able to access all services that it integrates with, such as VCS providers.
 Because it typically accesses them via SSL/TLS, it is critical that the certificates used by any service
-that PTFE integrates with are trusted by PTFE.
+that Terraform Enterprise integrates with are trusted by Terraform Enterprise.
 
-This section is used to allow PTFE to connect to services that use SSL/TLS certificates issued by private CAs.
-It allows multiple certificates to be specified as trusted, and should contain all certificates that PTFE
+This section is used to allow Terraform Enterprise to connect to services that use SSL/TLS certificates issued by private CAs.
+It allows multiple certificates to be specified as trusted, and should contain all certificates that Terraform Enterprise
 should trust when presented with them from itself or another application.
 
 A collection of certificates for trusted issuers is known as a `Certificate Authority (CA) Bundle`.
 All certificates in the certificate signing chain, meaning the root certificate and any intermediate certificates,
 must be included here. These multiple certificates are listed one after another in text format.
 
-~> **Note:** If PTFE is configured with a SSL key and certificate issued against a private CA,
+~> **Note:** If Terraform Enterprise is configured with a SSL key and certificate issued against a private CA,
    the certificate chain for that CA must be included here as well. This allows the instance
    to query itself.
 
@@ -122,7 +122,7 @@ c2NvMR4wHAYDVQQDExVoYXNoaWNvcnAuZW5naW5lZXJpbmcwHhcNMTgwMjI4MDYx
 
 The UI to upload these certificates looks like:
 
-![ptfe-ca-ui](./assets/ptfe-ca-bundle.png)
+![Terraform Enterprise ca ui](./assets/ptfe-ca-bundle.png)
 
 ## Operational Mode
 
@@ -143,7 +143,7 @@ arrived.
 
 ### Prepare for migration
 
-SSH to the instance currently running in your PTFE AutoScaling group. Then download
+SSH to the instance currently running in your Terraform Enterprise AutoScaling group. Then download
 the migrator tool onto it to run the migration procedure:
 
 ```shell
@@ -319,7 +319,7 @@ When prompted, paste the data you previously copied to your computer's clipboard
 The migrator process places the Vault data in the default path for the installer to find,
 and outputs the values you'll need later in the process for the Installer web interface.
 
-## Installing PTFE
+## Installing Terraform Enterprise
 
 The installer can run in two modes, Online or Airgapped. Each of these modes has a different way of executing the installer, but the result is the same.
 
@@ -397,7 +397,7 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. _Optional:_ Provide the text version of a certificate (or certificates) that will be added to the trusted
    list for the product. This is used when services the product communicates with do not use
    globally trusted certificates but rather a private Certificate Authority (CA). This is typically
-   used when Private Terraform Enterprise uses a private certificate (it must trust itself) or a
+   used when Terraform Enterprise uses a private certificate (it must trust itself) or a
    VCS provider uses a private CA.
 
 ### Finish Installing
@@ -407,7 +407,7 @@ will indicate so and there will be an Open link to click to access the Terraform
 
 ## Access
 
-You can now access your PTFE installation using the previously configured hostname.
+You can now access your Terraform Enterprise installation using the previously configured hostname.
 
 ## Cleanup
 

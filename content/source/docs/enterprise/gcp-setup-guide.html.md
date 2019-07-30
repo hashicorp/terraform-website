@@ -3,19 +3,19 @@ layout: "enterprise"
 page_title: "GCP Reference Architecture - Terraform Enterprise"
 description: |-
   This document provides recommended practices and a reference architecture for
-  HashiCorp Private Terraform Enterprise (PTFE) implementations on GCP.
+  HashiCorp Terraform Enterprise implementations on GCP.
 ---
 
-# Private Terraform Enterprise GCP Reference Architecture
+# Terraform Enterprise GCP Reference Architecture
 
 This document provides recommended practices and a reference architecture for
-HashiCorp Private Terraform Enterprise (PTFE) implementations on GCP.
+HashiCorp Terraform Enterprise implementations on GCP.
 
 ## Required Reading
 
 Prior to making hardware sizing and architectural decisions, read through the
 [installation information available for
-PTFE](/docs/enterprise/private/install-installer.html)
+Terraform Enterprise](/docs/enterprise/private/install-installer.html)
 to familiarise yourself with the application components and architecture.
 Further, read the [reliability and availability
 guidance](/docs/enterprise/private/reliability-availability.html)
@@ -29,7 +29,7 @@ Services_ operational mode.
 
 Depending on the chosen [operational
 mode](/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
-the infrastructure requirements for PTFE range from a single Cloud Compute VM instance
+the infrastructure requirements for Terraform Enterprise range from a single Cloud Compute VM instance
 for demo installations to multiple instances connected to Cloud SQL and Cloud Storage for a
 stateless production installation.
 
@@ -37,7 +37,7 @@ The following table provides high-level server guidelines. Of particular
 note is the strong recommendation to avoid non-fixed performance CPUs,
 or “Shared-core machine types” in GCP terms, such as f1-series and g1-series instances.
 
-### PTFE Server (Compute Engine VM via Regional Managed Instance Group)
+### Terraform Enterprise Server (Compute Engine VM via Regional Managed Instance Group)
 
 | Type        | CPU      | Memory       | Disk        | GCP Machine Types              |
 |-------------|----------|--------------|-------------|--------------------------------|
@@ -46,7 +46,7 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 
 #### Hardware Sizing Considerations
 
-- \*PTFE requires 50GB for installation, but
+- \*Terraform Enterprise requires 50GB for installation, but
   [GCP documentation for storage performance](https://cloud.google.com/compute/docs/disks/#performance)
   recommends "to ensure consistent performance for more general use of the boot device,
   use either an SSD persistent disk as your boot disk or use a standard persistent disk
@@ -76,8 +76,8 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 ### Object Storage (Cloud Storage)
 
 A [Regional Cloud Storage](https://cloud.google.com/storage/docs/storage-classes#regional) bucket must be
-specified during the PTFE installation for application data to be stored
-securely and redundantly away from the Compute Engine VMs running the PTFE
+specified during the Terraform Enterprise installation for application data to be stored
+securely and redundantly away from the Compute Engine VMs running the
 application. This Cloud Storage bucket must be in the same region as the Compute Engine and Cloud SQL
 instances.
 Vault is used to encrypt all application data stored in the Cloud Storage bucket.  This
@@ -104,7 +104,7 @@ also be permitted to create the following GCP resources:
 
 #### Network
 
-To deploy PTFE in GCP you will need to create new or use existing
+To deploy Terraform Enterprise in GCP you will need to create new or use existing
 networking infrastructure. The below infrastructure diagram highlights
 some of the key components (network, subnets) and you will
 also have firewall and gateway requirements. These
@@ -114,14 +114,14 @@ something this Reference Architecture can specify in detail.
 #### DNS
 
 DNS can be configured external to GCP or using [Cloud DNS](https://cloud.google.com/dns/). The
-fully qualified domain name should resolve to the Forwarding Rules associated with the PTFE deployment.
+fully qualified domain name should resolve to the Forwarding Rules associated with the Terraform Enterprise deployment.
 Creating the required DNS entry is outside the scope
 of this guide.
 
 #### SSL/TLS Certificates and Load Balancers
 
 An SSL/TLS certificate signed by a public or private CA is required for secure communication between
-clients, VCS systems, and the PTFE application server. The certificate can be specified during the
+clients, VCS systems, and the Terraform Enterprise application server. The certificate can be specified during the
 UI-based installation or in a configuration file used for an unattended installation.
 
 ## Infrastructure Diagram
@@ -149,7 +149,7 @@ provided by GCP.
 
 ## Infrastructure Provisioning
 
-The recommended way to deploy PTFE is through use of a Terraform configuration
+The recommended way to deploy Terraform Enterprise is through use of a Terraform configuration
 that defines the required resources, their references to other resources, and
 dependencies.
 
@@ -157,13 +157,13 @@ dependencies.
 
 ### Component Interaction
 
-The Forwarding Rule routes all traffic to the *PTFE* instance, which is managed by
+The Forwarding Rule routes all traffic to the *Terraform Enterprise* instance, which is managed by
 a Regional Managed Instance Group with maximum and minimum instance counts set to one.
 
-The PTFE application is connected to the PostgreSQL database via the Cloud SQL
+The Terraform Enterprise application is connected to the PostgreSQL database via the Cloud SQL
 endpoint and all database requests are routed via the Cloud SQL endpoint to the database instance.
 
-The PTFE application is connected to object storage via the Cloud Storage endpoint
+The Terraform Enterprise application is connected to object storage via the Cloud Storage endpoint
 for the defined bucket and all object storage requests are routed to the
 highly available infrastructure supporting Cloud Storage.
 
@@ -176,18 +176,18 @@ See [the Upgrades section](./upgrades.html) of the documentation.
 ### Failure Scenarios
 
 GCP provides guidance on [designing robust systems](https://cloud.google.com/compute/docs/tutorials/robustsystems).
-Working in accordance with those recommendations the PTFE Reference
+Working in accordance with those recommendations the Terraform Enterprise Reference
 Architecture is designed to handle different failure scenarios with
 different probabilities. As the architecture evolves it may provide a
 higher level of service continuity.
 
 #### Single Compute Engine Instance Failure
 
-In the event of the *PTFE* instance failing in a way that GCP can
+In the event of the *Terraform Enterprise* instance failing in a way that GCP can
 observe, [Live Migration](https://cloud.google.com/compute/docs/instances/live-migration)
 is used to move the instance to new physical hardware automatically.
 In the event that Live Migration is not possible the instance will crash and be restarted
-on new physical hardware automatically. During instance startup the PTFE services will
+on new physical hardware automatically. During instance startup the Terraform Enterprise services will
 be started and service will resume.
 
 #### Zone Failure
@@ -205,15 +205,15 @@ begin booting a new one in an operational Zone.
 
 See below for more detail on how each component handles Zone failure.
 
-##### PTFE Server
+##### Terraform Enterprise Server
 
-By utilizing a Regional Managed Instance Group, the PTFE instance automatically recovers
+By utilizing a Regional Managed Instance Group, the Terraform Enterprise instance automatically recovers
 in the event of any outage except for the loss of an entire region.
 
 With external services (PostgreSQL Database, Object Storage) in use,
-there is still some application configuration data present on the PTFE server
+there is still some application configuration data present on the Terraform Enterprise server
 such as installation type, database connection settings, hostname. This data
-rarely changes. If the configuration on *PTFE* changes you should update the
+rarely changes. If the configuration on *Terraform Enterprise* changes you should update the
 Instance Template to include this updated configuration so that any newly
 launched Compute VM uses this new configuration.
 
@@ -245,14 +245,14 @@ From the GCP website:
 ### Failure Scenarios
 
 GCP provides guidance on [designing robust systems](https://cloud.google.com/compute/docs/tutorials/robustsystems).
-Working in accordance with those recommendations the PTFE Reference Architecture is designed to handle
+Working in accordance with those recommendations the Terraform Enterprise Reference Architecture is designed to handle
 different failure scenarios that have different probabilities. As the
 architecture evolves it may provide a higher level of service
 continuity.
 
 #### Region Failure
 
-PTFE is currently architected to provide high availability within a
+Terraform Enterprise is currently architected to provide high availability within a
 single GCP Region. Using multiple GCP Regions will give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional GCP service. In this section, we’ll discuss
@@ -262,7 +262,7 @@ An identical infrastructure should be provisioned in a secondary GCP
 Region. Depending on recovery time objectives and tolerances for
 additional cost to support GCP Region failure, the infrastructure can be
 running (Warm Standby) or stopped (Cold Standby). In the event of the
-primary GCP Region hosting the PTFE application failing, the secondary
+primary GCP Region hosting the Terraform Enterprise application failing, the secondary
 GCP Region will require some configuration before traffic is directed to
 it along with some global services such as DNS.
 
@@ -274,15 +274,15 @@ it along with some global services such as DNS.
 
 #### Data Corruption
 
-The PTFE application architecture relies on multiple service endpoints
+The Terraform Enterprise application architecture relies on multiple service endpoints
 (Cloud SQL, Cloud Storage) all providing their own backup and recovery
 functionality to support a low MTTR in the event of data corruption.
 
-##### PTFE Servers
+##### Terraform Enterprise Servers
 
 With external services (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
-PTFE server such as installation type, database connection settings,
+Terraform Enterprise server such as installation type, database connection settings,
 hostname. This data rarely changes. We recommend [configuring automated
 snapshots](/docs/enterprise/private/automated-recovery.html#1-configure-snapshots)
 for this installation data so it can be recovered in the event of data
@@ -303,7 +303,7 @@ More details of Cloud SQL (PostgreSQL) features are available [here](https://clo
 ##### Object Storage
 
 There is no automatic backup/snapshot of Cloud Storage by GCP, so it is recommended
-to script a bucket copy process from the bucket used by the PTFE
+to script a bucket copy process from the bucket used by the Terraform Enterprise
 application to a “backup bucket” in Cloud Storage that runs at regular intervals.
 The [Nearline Storage](https://cloud.google.com/storage/docs/storage-classes#nearline) storage class
 is identified as a solution targeted more for DR backups. From the GCP website:

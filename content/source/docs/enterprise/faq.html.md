@@ -3,9 +3,9 @@ layout: "enterprise"
 page_title: "FAQ - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Frequently Asked Questions
+# Terraform Enterprise Frequently Asked Questions
 
-This page provides answers to many common questions about Private Terraform Enterprise.
+This page provides answers to many common questions about Terraform Enterprise.
 
 ## General FAQ
 
@@ -16,23 +16,23 @@ This page provides answers to many common questions about Private Terraform Ente
 
 ## AMI FAQ
 
-!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Private Terraform Enterprise Installer.
+!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Terraform Enterprise Installer.
 
 1. [About the AMI](#about-the-private-terraform-enterprise-ami)
 2. [AMI IDs](#ami-ids)
 3. [Additional Configuration Info](#additional-configuration-info)
 5. [Required Network Access](#network-access)
 6. [Managing the Terraform State of the Install Process](#storing-terraform-enterprise-state)
-7. [Private Terraform Enterprise Architecture](#private-terraform-enterprise-architecture)
+7. [Terraform Enterprise Architecture](#terraform-enterprise-architecture)
 8. [Advanced Terraform](#advanced-terraform)
-9. [Rekeying the Vault instance used by Private Terraform Enterprise](#rekeying-vault)
+9. [Rekeying the Vault instance used by Terraform Enterprise](#rekeying-vault)
 10. [Minimum Viable IAM Access Policy](#minimum-viable-iam-access-policy)
 
 ---
 
-## Support for Private Terraform Enterprise
+## Support for Terraform Enterprise
 
-If some aspect of Private Terraform Enterprise is not working as
+If some aspect of Terraform Enterprise is not working as
 expected, please reach out to support for help.
 
 ### Email
@@ -47,7 +47,7 @@ response.
 
 For most technical issues, HashiCorp support will ask you to include diagnostic
 information in your support request. To ensure the required information is included,
-PTFE has the ability to automatically generate a support bundle including logs and configuration details.
+Terraform Enterprise has the ability to automatically generate a support bundle including logs and configuration details.
 
 * [AMI-based instance bundle generation](./diagnostics.html#ami-based-installs)
 * [Installer-based instance bundle generation](./diagnostics.html#installer-based-instances)
@@ -72,13 +72,13 @@ Here you'll find a list of Packer and Terraform versions as well as a link to ad
 
 ## Migrating from the Terraform Cloud SaaS
 
-If you are already a user of the Terraform Cloud SaaS (hereafter "the SaaS"), you may have workspaces that you want to migrate over to your new Private Terraform Enterprise installation.
+If you are already a user of the Terraform Cloud SaaS (hereafter "the SaaS"), you may have workspaces that you want to migrate over to your new Terraform Enterprise installation.
 
 These instructions assume Terraform 0.9 or greater. See [docs on legacy remote state](/docs/backends/legacy-0-8.html) for information on upgrading usage of remote state in prior versions of Terraform.
 
 ### Prerequisites
 
-Have a Terraform Cloud user API token ("Atlas token") handy for both Private Terraform Enterprise and the SaaS. The following examples will assume you have these stored in `PTFE_ATLAS_TOKEN` and `SAAS_ATLAS_TOKEN`, respectively.
+Have a Terraform Cloud user API token ("Atlas token") handy for both Terraform Enterprise and the SaaS. The following examples will assume you have these stored in `PTFE_ATLAS_TOKEN` and `SAAS_ATLAS_TOKEN`, respectively.
 
 ### Step 1: Connect local config to SaaS
 
@@ -103,7 +103,7 @@ terraform init
 
 ### Step 2: Copy state locally
 
-This step fetches the latest copy of the state locally so it can be pushed to Private Terraform Enterprise. First, comment out the `backend` section of the config:
+This step fetches the latest copy of the state locally so it can be pushed to Terraform Enterprise. First, comment out the `backend` section of the config:
 
 ```tf
 # Temporarily commented out to copy state locally
@@ -122,16 +122,16 @@ terraform init
 
 This will cause Terraform to detect the change in backend and ask you if you want to copy the state.
 
-Type `yes` to allow the state to be copied locally. Your state should now be present on disk as `terraform.tfstate`, ready to be uploaded to Private Terraform Enterprise.
+Type `yes` to allow the state to be copied locally. Your state should now be present on disk as `terraform.tfstate`, ready to be uploaded to Terraform Enterprise.
 
-### Step 3: Update backend configuration for Private Terraform Enterprise
+### Step 3: Update backend configuration for Terraform Enterprise
 
-Change the backend config to point to the Private Terraform Enterprise installation:
+Change the backend config to point to the Terraform Enterprise installation:
 
 ```tf
 terraform {
   backend "atlas" {
-    address = "https://tfe.mycompany.example.com" # the address of your PTFE installation
+    address = "https://tfe.mycompany.example.com" # the address of your TFE installation
     name    = "my-organization/my-environment"
   }
 }
@@ -144,7 +144,7 @@ export ATLAS_TOKEN=$PTFE_ATLAS_TOKEN
 terraform init
 ```
 
-You will again be asked if you want to copy the state file. Type `yes` and the state will be uploaded to your Private Terraform Enterprise installation.
+You will again be asked if you want to copy the state file. Type `yes` and the state will be uploaded to your Terraform Enterprise installation.
 
 ---
 
@@ -155,19 +155,19 @@ The network requirements for Terraform Enterprise are located on the
 
 ---
 
-## About the Private Terraform Enterprise AMI
+## About the Terraform Enterprise AMI
 
 This section contains information about the Terraform Enterprise AMI.
 
 ### Operating System
 
-The Private Terraform Enterprise AMI is based on the latest release of Ubuntu 16.04 with all security
+The Terraform Enterprise AMI is based on the latest release of Ubuntu 16.04 with all security
 patches applied.
 
 ### Network Ports
 
-The Private Terraform Enterprise AMI requires that port :8080 be accessible. This is where all traffic
-from the ELB is routed. Many other internal Private Terraform Enterprise services listen on the host,
+The Terraform Enterprise AMI requires that port :8080 be accessible. This is where all traffic
+from the ELB is routed. Many other internal Terraform Enterprise services listen on the host,
 but they do not require external traffic. The AWS security group for the
 instance as well as software firewall rules within the runtime enforce this.
 
@@ -178,7 +178,7 @@ The necessary limits on open file descriptors are raised within
 
 ### Critical Services
 
-The Private Terraform Enterprise AMI contains dozens of services that are required for proper operation
+The Terraform Enterprise AMI contains dozens of services that are required for proper operation
 of Terraform Enterprise. These services are all configured to launch on boot.
 Application-level services are managed via Nomad and system-level automation is
 managed via `systemd`.
@@ -189,7 +189,7 @@ For the most up-to-date list of AMI IDs, see the [list maintained on our GitHub 
 
 ## Additional Configuration Info
 
- * [`base-vpc`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/base-vpc) - Configuration for creating a basic VPC and subnets that meet [the documented requirements for Private Terraform Enterprise installation](/docs/enterprise/private/install-ami.html#preflight).
+ * [`base-vpc`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/base-vpc) - Configuration for creating a basic VPC and subnets that meet [the documented requirements for Terraform Enterprise installation](/docs/enterprise/private/install-ami.html#preflight).
  * [`minimum-viable-iam`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/aws-extra/minimum-viable-iam) - Configuration for creating an AWS user with a minimum access policy required to perform a Terraform Enterprise installation. Please note using the `AdministratorAccess` policy is recommended. This access is only required for the initial deployment.
 
 ## Network Access
@@ -204,7 +204,7 @@ Here are the two SGs in the system relevant for user access and the ports they r
 
 * **Load Balancer SG**: Applied to the Elastic Load Balancer (ELB), controls incoming HTTP traffic from users
   * **Port 443** must be accessible to users for basic functionality, must also be accessible from the VPC itself, as certain internal services reach over the ELB to access cross-service APIs
-  * **Port 80** is recommended to leave open for convenience - the system is set up to force SSL by redirecting users who visit Private Terraform Enterprise over HTTP to the HTTPS equivalent URL. If this port is not available, users who mistakenly visit the site over HTTP will see hanging requests in their browser
+  * **Port 80** is recommended to leave open for convenience - the system is set up to force SSL by redirecting users who visit Terraform Enterprise over HTTP to the HTTPS equivalent URL. If this port is not available, users who mistakenly visit the site over HTTP will see hanging requests in their browser
 * **Instance SG**: Applied to the EC2 Instance running the application
   * **Port 8080** must be accessible to the ELB to serve traffic
   * **Port 22** must be accessible to operators to perform diagnostics and troubleshooting over SSH
@@ -226,38 +226,38 @@ Terraform Enterprise makes several categories of outbound requests, detailed in 
 
 #### Version Control System Integrations
 
-Private Terraform Enterprise can be configured to connect to a number of [Version Control Systems (VCSs)](/docs/cloud/vcs/index.html), some supporting both SaaS and private-network installations.
+Terraform Enterprise can be configured to connect to a number of [Version Control Systems (VCSs)](/docs/cloud/vcs/index.html), some supporting both SaaS and private-network installations.
 
-In order to perform ingress of Terraform configuration from a configured VCS, Private Terraform Enterprise will need to be able to communicate with that provider's API, and webhooks from that provider will need to be able to reach Private Terraform Enterprise.
+In order to perform ingress of Terraform configuration from a configured VCS, Terraform Enterprise will need to be able to communicate with that provider's API, and webhooks from that provider will need to be able to reach Terraform Enterprise.
 
-For example, an integration with GitHub.com will require Private Terraform Enterprise to have access to https://github.com and for GitHub's webhooks to be able to route back to Terraform. Similarly, an integration with GitHub Enterprise will require Terraform to have access to the local GitHub instance.
+For example, an integration with GitHub.com will require Terraform Enterprise to have access to https://github.com and for GitHub's webhooks to be able to route back to Terraform. Similarly, an integration with GitHub Enterprise will require Terraform to have access to the local GitHub instance.
 
 #### Terraform Execution
 
-As a part of its primary mode of operation, Terraform makes API calls out to infrastructure provider APIs. Since Private Terraform Enterprise runs Terraform on behalf of users, Private Terraform Enterprise will therefore need access to any Provider APIs that your colleagues want to manage with Private Terraform Enterprise.
+As a part of its primary mode of operation, Terraform makes API calls out to infrastructure provider APIs. Since Terraform Enterprise runs Terraform on behalf of users, Terraform Enterprise will therefore need access to any Provider APIs that your colleagues want to manage with Terraform.
 
 #### Terraform Release Downloading
 
-By default, Private Terraform Enterprise downloads the versions of Terraform that it executes from https://releases.hashicorp.com/. This behavior can be customized by specifying different download locations. See [Managing Tool Versions](#managing-tool-versions).
+By default, Terraform Enterprise downloads the versions of Terraform that it executes from https://releases.hashicorp.com/. This behavior can be customized by specifying different download locations. See [Managing Tool Versions](#managing-tool-versions).
 
 #### Terraform Latest Version Notifications
 
-When displaying Terraform Runs, Private Terraform Enterprise has JavaScript that reaches out to https://checkpoint-api.hashicorp.com to determine the latest released version of Terraform and notify users if there is a newer version available than the one they are running. This functionality is non-essential; new version notifications will not be displayed in the Web UI if checkpoint-api.hashicorp.com cannot be reached from a user's browser.
+When displaying Terraform Runs, Terraform Enterprise has JavaScript that reaches out to https://checkpoint-api.hashicorp.com to determine the latest released version of Terraform and notify users if there is a newer version available than the one they are running. This functionality is non-essential; new version notifications will not be displayed in the Web UI if checkpoint-api.hashicorp.com cannot be reached from a user's browser.
 
 #### Communication Functions
 
-* Private Terraform Enterprise uses the configured SMTP endpoint for sending emails
+* Terraform Enterprise uses the configured SMTP endpoint for sending emails
 * Twilio can optionally be set up for for SMS-based 2FA. (Virtual TOTP support is available separately, which does not make external API calls.)
 
 ## Storing Terraform Enterprise State
 
-The Private Terraform Enterprise AMI install process uses Terraform, and therefore must store Terraform state. This presents a bootstrapping problem, because while generally you can use Terraform Enterprise to securely store versioned Terraform state, in this case Terraform Enterprise is not ready yet.
+The Terraform Enterprise AMI install process uses Terraform, and therefore must store Terraform state. This presents a bootstrapping problem, because while generally you can use Terraform Enterprise to securely store versioned Terraform state, in this case Terraform Enterprise is not ready yet.
 
 Therefore, you must choose a separate mechanism for storing the Terraform State produced by the install process.
 
 ### Security Considerations for Terraform State
 
-The Terraform state file for the Private Terraform Enterprise instance will contain the RDS Database password used by the application. While sensitive fields are separately encrypted-at-rest via Vault, this credential and network access to the database would yield access to all of the unencrypted metadata stored by Terraform Enterprise.
+The Terraform state file for the Terraform Enterprise instance will contain the RDS Database password used by the application. While sensitive fields are separately encrypted-at-rest via Vault, this credential and network access to the database would yield access to all of the unencrypted metadata stored by Terraform Enterprise.
 
 HashiCorp recommends storing the Terraform state for the install in an encrypted data store.
 
@@ -270,7 +270,7 @@ HashiCorp recommends a versioned, encrypted-at-rest S3 bucket as a good default 
 Here are steps for setting up and using an S3 bucket for remote state storage:
 
 ```bash
-# From the root dir of your Private Terraform Enterprise installation config
+# From the root dir of your Terraform Enterprise installation config
 BUCKETNAME="mycompany-terraform-enterprise-state"
 
 # Create bucket
@@ -296,13 +296,13 @@ terraform init
 
 Now, if you keep the `backend.tf` file in scope when you run `terraform` operations, all state will be stored in the configured bucket.
 
-## Private Terraform Enterprise Architecture
+## Terraform Enterprise Architecture
 
-This document describes aspects of the architecture of Private Terraform Enterprise as deployed via the AMI.
+This document describes aspects of the architecture of Terraform Enterprise as deployed via the AMI.
 
 ### Services
 
-These are the services used to run Private Terraform Enterprise. Each service contains a description of what actions it performs, a policy for restarts, impact of failing or degraded performance, and the service's dependencies.
+These are the services used to run Terraform Enterprise. Each service contains a description of what actions it performs, a policy for restarts, impact of failing or degraded performance, and the service's dependencies.
 
 - [`atlas-frontend` and `atlas-worker`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/docs/services/atlas.md)
 - [`archivist`, `binstore`, `storagelocker`, and `logstream`](https://github.com/hashicorp/terraform-enterprise-modules/blob/master/docs/services/archivist.md)
@@ -365,7 +365,7 @@ resource "aws_iam_role_policy" "extra-s3-perms" {
 
 (Requires an AMI version `201709-1` or later)
 
-The Vault instance used by Private Terraform Enterprise self-manages its unseal key by
+The Vault instance used by Terraform Enterprise self-manages its unseal key by
 default. This unseal key is stored in a KMS-encrypted file on S3 and is
 downloaded by the instance on boot to automatically unseal Vault.
 
@@ -373,7 +373,7 @@ If the above configuration is insufficient for your security needs, you can
 choose to rekey the Vault instance after bootstrapping is completed. This
 allows you to change the key shares and key threshold settings, places the
 Vault unseal keys under your control, and deactivates the auto-unseal behavior
-of the Private Terraform Enterprise instance.
+of the Terraform Enterprise instance.
 
 The Vault documentation has a
 [guide](https://www.vaultproject.io/guides/rekeying-and-rotating.html#rekeying-vault)
@@ -382,8 +382,8 @@ full docs on the various options available.
 
 ### Walkthrough of Rekey Operation
 
-Here is an example of rekeying the Private Terraform Enterprise vault to use 5 key shares with a key
-threshold of 2. These commands are executed from an SSH session on the Private Terraform Enterprise
+Here is an example of rekeying the Terraform Enterprise vault to use 5 key shares with a key
+threshold of 2. These commands are executed from an SSH session on the Terraform Enterprise
 instance as the `tfe-admin` user.
 
 ```
@@ -432,7 +432,7 @@ your Vault will remain permanently sealed.
 ### IMPORTANT: After Rekeying
 
 **Note**: After performing a rekey it's important to remove the old unseal key
-and trigger a backup before rebooting the machine. This will ensure that Private Terraform Enterprise
+and trigger a backup before rebooting the machine. This will ensure that Terraform Enterprise
 knows to prompt for Vault unseal keys.
 
 ```

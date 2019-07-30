@@ -3,9 +3,9 @@ layout: "enterprise"
 page_title: "Diagnostics - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Diagnostics
+# Terraform Enterprise Diagnostics
 
-This document contains information on how to provide HashiCorp with diagnostic information about a Private Terraform Enterprise (PTFE) installation that requires assistance from HashiCorp support.
+This document contains information on how to provide HashiCorp with diagnostic information about a Terraform Enterprise installation that requires assistance from HashiCorp support.
 
 ## Installer-based Instances
 
@@ -13,11 +13,11 @@ Diagnostic information is available via in the Installer dashboard on port 8800 
 
 On the dashboard, click on the Support tab:
 
-![PTFE Dashboard Top](./assets/ptfe-dashboard.png)
+![Terraform Enterprise Dashboard Top](./assets/ptfe-dashboard.png)
 
 On the next page, click the _Download Support Bundle_ button which will download the support bundle directly to your web browser.
 
-![PTFE Support](./assets/ptfe-support.png)
+![Terraform Enterprise Support](./assets/ptfe-support.png)
 
 Then, attach the bundle to your support ticket. If possible, use the SendSafely integration available in the support portal at support.hashicorp.com, as it allows for large file uploads.
 
@@ -26,7 +26,7 @@ If you are unable to use the integration in the portal, please upload directly t
 
 ## AMI-based installs
 
-!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Private Terraform Enterprise Installer.
+!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Terraform Enterprise Installer.
 
 To generate a support bundle, connect to the instance via ssh and run `sudo hashicorp-support`. Below is a sample session:
 
@@ -115,7 +115,7 @@ On Microsoft Windows, tools such as [PSCP](https://www.ssh.com/ssh/putty/putty-m
 ## About the Bundle
 
 The support bundle contains logging and telemetry data from various components
-in Private Terraform Enterprise. It may also include log data from Terraform builds you have executed on your Private Terraform Enterprise installation.
+in Terraform Enterprise. It may also include log data from Terraform builds you have executed on your Terraform Enterprise installation.
 
 
 ## Pre-Sales uploads

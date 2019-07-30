@@ -3,9 +3,9 @@ layout: "enterprise"
 page_title: "Encryption Password - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Encryption Password
+# Terraform Enterprise Encryption Password
 
-During the installation of Private Terraform Enterprise,
+During the installation of Terraform Enterprise,
 a password is used to encrypt sensitive information at
 rest. The default value is auto-generated, but we
 strongly suggest you create your own password.

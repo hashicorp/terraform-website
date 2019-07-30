@@ -3,9 +3,9 @@ layout: "enterprise"
 page_title: "Installation (AMI) - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Installation (AMI)
+# Terraform Enterprise Installation (AMI)
 
-!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Private Terraform Enterprise Installer.
+!> **Deprecation warning**: The AMI will no longer be actively developed as of 201808-1 and will be fully decommissioned on November 30, 2018. Please see our [Migration Guide](./migrate.html) for instructions to migrate to the new Terraform Enterprise Installer.
 
 ## Delivery
 
@@ -13,7 +13,7 @@ The goal of this installation procedure is to set up a Terraform Enterprise
 cluster that is available on a DNS name that is accessed via HTTPS. This
 standard configuration package uses Terraform to create both the compute and data layer resources, and optionally uses Route53 to configure the DNS automatically.
 
--> **Note**: This document applies to the standard AMI-based deliverable of Private Terraform Enterprise. If you are using the Installer, please see the [instructions for the Installer](./install-installer.html).
+-> **Note**: This document applies to the standard AMI-based deliverable of Terraform Enterprise. If you are using the Installer, please see the [instructions for the Installer](./install-installer.html).
 
 ## Preflight
 
@@ -35,9 +35,9 @@ The following are **required** to complete installation:
 
 ### Clone the Installer Git Repo
 
-Private Terraform Enterprise installs via Terraform. It is expected you have downloaded the Terraform Open Source binary to the machine where you will be doing the install from. To get started you will also need to clone a repo that contains the necessary modules and variable files.
+Terraform Enterprise installs via Terraform. It is expected you have downloaded the Terraform Open Source binary to the machine where you will be doing the install from. To get started you will also need to clone a repo that contains the necessary modules and variable files.
 
-* Open a terminal on a machine that has full network access to the AWS account where Private Terraform Enterprise will be deployed. Enter the following to clone the repo
+* Open a terminal on a machine that has full network access to the AWS account where Terraform Enterprise will be deployed. Enter the following to clone the repo
 
 ```
 git clone git@github.com:hashicorp/terraform-enterprise-modules.git

@@ -3,21 +3,20 @@ layout: "enterprise"
 page_title: "Capacity and Performance - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Capacity and Performance (Installer)
+# Terraform Enterprise Capacity and Performance (Installer)
 
-The maximum capacity and performance of Private Terraform Enterprise (PTFE) is dependent entirely on the resources
-provided by the Linux instance it is installed on. There are a few settings that allow the capacity that PTFE
-uses to be adjusted to suit the instance.
+The maximum capacity and performance of Terraform Enterprise is dependent entirely on the resources
+provided by the Linux instance it is installed on. There are a few settings that allow Terraform Enterprise's capacity to be adjusted to suit the instance.
 
 ## Memory + Concurrency
 
 The amount of memory to allocate to a Terraform run and the number of concurrent runs are the primary elements in
 understanding capacity above the base services.
 
-By default, PTFE allocates 256 MB of memory to each Terraform run, with a default concurrency of 10 parallel runs.
-Therefore, by default PTFE requires 2.6 GB of memory reserved for runs.
+By default, Terraform Enterprise allocates 256 MB of memory to each Terraform run, with a default concurrency of 10 parallel runs.
+Therefore, by default Terraform Enterprise requires 2.6 GB of memory reserved for runs.
 
-After factoring in the memory needed to run the base services that make up the application, the default memory footprint of PTFE is approximately 4 GB.
+After factoring in the memory needed to run the base services that make up the application, the default memory footprint of Terraform Enterprise is approximately 4 GB.
 
 ### Settings
 
@@ -48,7 +47,7 @@ becomes easy for it to go above smaller limits and be terminated mid-run by the 
 The required CPU resources for an individual Terraform run vary considerably, but in general they are a much more minor
 factor than memory due to Terraform mostly waiting on IO from APIs to return.
 
-Our rule of thumb is 10 Terraform runs per CPU core, with 2 CPU cores allocated for the base PTFE services.
+Our rule of thumb is 10 Terraform runs per CPU core, with 2 CPU cores allocated for the base Terraform Enterprise services.
 So an 8-core instance with 8GB of memory could comfortably run 20 Terraform runs, if the runs are allocated the default
 256 MB each.
 

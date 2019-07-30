@@ -39,7 +39,7 @@ Before enabling membership mapping for owners, double-check that your chosen rol
 
 ## Site Admins
 
-If the "Site Admin Role" setting (in [the SAML settings](./configuration.html)) is enabled, the selected special team name (default: `site-admins`) will add a user as a [site admin](../admin/index.html) for the private Terraform Enterprise instance.
+If the "Site Admin Role" setting (in [the SAML settings](./configuration.html)) is enabled, the selected special team name (default: `site-admins`) will add a user as a [site admin](../admin/index.html) for the Terraform Enterprise instance.
 
 -> **Note:** Instead of treating site admins like a team, we recommend using the "Site Admin Attribute Name" setting, which manages admin access via a dedicated SAML attribute. If enabled, this attribute overrides the special site admin team name.
 

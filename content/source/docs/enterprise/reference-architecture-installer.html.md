@@ -3,13 +3,13 @@ layout: "enterprise"
 page_title: "Reference Architecture (Installer) - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Reference Architecture (Installer)
+# Terraform Enterprise Reference Architecture (Installer)
 
 HashiCorp provides Reference Architectures detailing the recommended
 infrastructure and resources that should be provisioned in order to
-support a highly-available Private Terraform Enterprise deployment.
+support a highly-available Terraform Enterprise deployment.
 
-Depending on where you choose to deploy Private Terraform Enterprise,
+Depending on where you choose to deploy Terraform Enterprise,
 there are different services available to maximise the resiliency of
 the deployment, for example, most major cloud service providers offer
 a resilient relational database service offering, removing the need

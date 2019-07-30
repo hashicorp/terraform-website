@@ -3,11 +3,11 @@ layout: "enterprise"
 page_title: "Installation (Installer) - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Installation (Installer)
+# Terraform Enterprise Installation (Installer)
 
 ## Delivery
 
-This document outlines the procedure for using the Private Terraform Enterprise (PTFE)
+This document outlines the procedure for using the Terraform Enterprise
 installer to set up Terraform Enterprise on a customer-controlled machine.
 
 ~> **Note**: This document is only meant for those customers using Private
@@ -51,13 +51,13 @@ Passing this option to the installation script is particularly useful if the hos
 
 To change the proxy settings after installation, use the Console settings page, accessed from the dashboard on port 8800 under `/console/settings`.
 
-![PTFE Console Settings](./assets/ptfe-console-settings.png)
+![Terraform Enterprise Console Settings](./assets/ptfe-console-settings.png)
 
 On the Console Settings page, there is a section for HTTP Proxy:
 
-![PTFE HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
+![Terraform Enterprise HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
 
-This change updates the proxy settings for the PTFE application services. To update the proxy settings for the installer (for example, to handle configuration tests correctly), additional steps are necessary:
+This change updates the proxy settings for the Terraform Enterprise application services. To update the proxy settings for the installer (for example, to handle configuration tests correctly), additional steps are necessary:
 
 1. Locate the Replicated configuration files on the instance under either `/etc/sysconfig/` or `/etc/default`: `replicated` and `replicated-operator`.
 1. Open the files for editing. On the line that includes `REPLICATED_OPTS`, add `-e HTTP_PROXY=<your proxy url> -e NO_PROXY=<list of no_proxy hosts>` to the existing command options. The list of `no_proxy` hosts is a comma-separated list with no spaces.
@@ -69,23 +69,23 @@ There are two primary areas for SSL configuration in the installer.
 
 ### TLS Key & Cert
 
-The TLS Key & Cert field (found in the console settings after initial installation) should contain PTFE's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates an intermediate certificate is required as well.
+The TLS Key & Cert field (found in the console settings after initial installation) should contain Terraform Enterprise's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates an intermediate certificate is required as well.
 
 ### Certificate Authority (CA) Bundle
 
-PTFE needs to be able to access all services that it integrates with, such as VCS providers or database servers.
+Terraform Enterprise needs to be able to access all services that it integrates with, such as VCS providers or database servers.
 Because it typically accesses them via SSL/TLS, it is critical that the certificates used by any service
-that PTFE integrates with are trusted by PTFE.
+that Terraform Enterprise integrates with are trusted by Terraform Enterprise.
 
-This section is used to allow PTFE to connect to services that use SSL/TLS certificates issued by private CAs.
-It allows multiple certificates to be specified as trusted, and should contain all certificates that PTFE
+This section is used to allow Terraform Enterprise to connect to services that use SSL/TLS certificates issued by private CAs.
+It allows multiple certificates to be specified as trusted, and should contain all certificates that Terraform Enterprise
 should trust when presented with them from itself or another application.
 
 A collection of certificates for trusted issuers is known as a `Certificate Authority (CA) Bundle`.
 All certificates in the certificate signing chain, meaning the root certificate and any intermediate certificates,
 must be included here. These multiple certificates are listed one after another in text format.
 
-~> **Note:** If PTFE is configured with a SSL key and certificate issued against a private CA,
+~> **Note:** If Terraform Enterprise is configured with a SSL key and certificate issued against a private CA,
    the certificate chain for that CA must be included here as well. This allows the instance
    to query itself.
 
@@ -109,23 +109,23 @@ c2NvMR4wHAYDVQQDExVoYXNoaWNvcnAuZW5naW5lZXJpbmcwHhcNMTgwMjI4MDYx
 
 The UI to upload these certificates looks like:
 
-![ptfe-ca-ui](./assets/ptfe-ca-bundle.png)
+![Terraform Enterprise ca ui](./assets/ptfe-ca-bundle.png)
 
 #### TLS Versions
 
-As of version 201902-01, TLS versions 1.0 and 1.1 are no longer supported in Private Terraform Enterprise. Your options now include TLS v1.2 and TLS v1.3:
+As of version 201902-01, TLS versions 1.0 and 1.1 are no longer supported in Terraform Enterprise. Your options now include TLS v1.2 and TLS v1.3:
 
-![ptfe-tls-ui](./assets/ptfe-tls-ui.png)
+![Terraform Enterprise tls ui](./assets/ptfe-tls-ui.png)
 
 ## Alternative Terraform worker image
 
 TFE runs `terraform plan` and `terraform apply` operations in a disposable Docker containers. There are cases where runs may make frequent use of additional tools that are not available in the default Docker image. To allow use of these tools for any plan or apply, users can build their own image and configure TFE to use that instead. In order for this to happen the name of the alternative docker image must be set in the config by using the `Custom image tag` field as shown below:
 
-![ptfe-docker-image](./assets/ptfe-docker-image.png)
+![Terraform Enterprise docker image](./assets/ptfe-docker-image.png)
 
 ### Requirements
  - The base image must be `ubuntu:xenial`.
- - The image must exist on the PTFE host. It can be added by running `docker pull` from a local registry or any other similar method.
+ - The image must exist on the Terraform Enterprise host. It can be added by running `docker pull` from a local registry or any other similar method.
  - CA certificates must be available when Terraform runs. During image creation, a file containing all necessary PEM encoded CA certificates must be placed in `/etc/ssl/certs/ca-certificates.crt`.
  - Terraform must not be installed on the image. TFE will take care of that at runtime.
 
@@ -144,7 +144,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ```
 
 ### Image initialization
-To run initialization commands in your image during runtime, create a script at `/usr/local/bin/init_custom_worker.sh` and make it executable. This script, and all commands it invokes, will be executed before TFE runs `terraform init`. 
+To run initialization commands in your image during runtime, create a script at `/usr/local/bin/init_custom_worker.sh` and make it executable. This script, and all commands it invokes, will be executed before TFE runs `terraform init`.
 
 The name, location, and permissions of the script are not customizable.
 
@@ -228,7 +228,7 @@ From a shell on your instance, in the directory where you placed the `replicated
 1. _Optional:_ Provide the text version of a certificate (or certificates) that will be added to the trusted
    list for the product. This is used when services the product communicates with do not use
    globally trusted certificates but rather a private Certificate Authority (CA). This is typically
-   used when Private Terraform Enterprise uses a private certificate (it must trust itself) or a
+   used when Terraform Enterprise uses a private certificate (it must trust itself) or a
    VCS provider uses a private CA.
 1. _Optional:_ Adjust the path used to store the vault files that are used to encrypt
    sensitive data. This is a path on the host system, which allows you

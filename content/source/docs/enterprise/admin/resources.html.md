@@ -65,7 +65,7 @@ Be sure that the user's identity and the validity of their request have been ver
 
 If your institution uses multiple organizations in Terraform Enterprise, you can view the details of each organization by clicking it in the admin list of organizations. From the details page, you can impersonate an owner or delete an organization (using the red **Delete this organization** button at the bottom of the details page).
 
-Typically, in private installations, all organizations will be granted "Premium" plan status for the purpose of providing access to all available features. However, it's also possible to set other statuses. An organization whose trial period is expired will be unable to make use of features in the Terraform Cloud application.
+Typically, all organizations on a Terraform Enterprise instance are granted "Premium" plan status to ensure access to all available features. However, it's also possible to set other statuses. An organization whose trial period is expired will be unable to make use of features in the Terraform Cloud application.
 
 ![screenshot: an organization details admin page](./images/admin-organization-details.png)
 
@@ -89,7 +89,7 @@ We recommend impersonating a user (if necessary) to view run details prior to fo
 
 -> **API:** See the [Admin Terraform Versions API](/docs/cloud/api/admin/terraform-versions.html).
 
-Private Terraform Enterprise ships with a default list of Terraform versions. However, the addition of new versions after installation is the responsibility of site administrators.
+Terraform Enterprise ships with a default list of Terraform versions. However, the addition of new versions after installation is the responsibility of site administrators.
 
 ![screenshot: the Terraform Versions admin page](./images/admin-versions.png)
 

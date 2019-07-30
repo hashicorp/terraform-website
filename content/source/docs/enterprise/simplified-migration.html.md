@@ -3,10 +3,10 @@ layout: "enterprise"
 page_title: "Installer - Simplified Migration - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Installer - Simplified Migration
+# Terraform Enterprise Installer - Simplified Migration
 
-This document outlines a simplified procedure for migrating from the AMI-based Private Terraform Enterprise (PTFE)
-to the Installer-based PTFE that is suitable if the original Terraform modules were not modified, or the modifications were minimal.
+This document outlines a simplified procedure for migrating from the AMI-based Terraform Enterprise
+to the Installer-based Terraform Enterprise that is suitable if the original Terraform modules were not modified, or the modifications were minimal.
 
 ## Terraform State
 
@@ -16,7 +16,7 @@ To run this procedure, you'll need the Terraform state file used to create the A
 
 Before beginning, it's best to create an additional backup of your RDS database. This will allow you to roll back the data and continue to use the AMI if necessary.
 
-To create an RDS backup, go to the [Amazon RDS Instances](https://console.aws.amazon.com/rds/home?region=us-east-1#dbinstances:). You may need to change the region that you are viewing in order to see your PTFE instance. Once you find it, click on the instance name. On the next page, select **Instance Actions** and then **Take snapshot**. On the **Take DB Snapshot** page, enter a name for the snapshot such as `Pre-Installer Migration`, and then click **Take Snapshot**.
+To create an RDS backup, go to the [Amazon RDS Instances](https://console.aws.amazon.com/rds/home?region=us-east-1#dbinstances:). You may need to change the region that you are viewing in order to see your Terraform Enterprise instance. Once you find it, click on the instance name. On the next page, select **Instance Actions** and then **Take snapshot**. On the **Take DB Snapshot** page, enter a name for the snapshot such as `Pre-Installer Migration`, and then click **Take Snapshot**.
 
 The snapshot will take a little while to create. After it has finished, you can continue with the rest of the migration steps.
 
@@ -35,9 +35,9 @@ To revert to the AMI after running the migration script:
 ### Terraform Variables and State
 
 To use this simplified procedure, you'll neeed the `.tfvars` file and `.tfstate` file used to deploy
-the AMI-based PTFE instance.
+the AMI-based Terraform Enterprise instance.
 
-These files will be used against a new Terraform module set to change just the PTFE software
+These files will be used against a new Terraform module set to change just the Terraform Enterprise software
 and leave the state storage, such as RDS and S3, in place.
 
 ### Preparing Modules
@@ -150,7 +150,7 @@ boots a new instance, it will install the new software and resume operation.
 Alternately, you can upgrade the application from the management console, available on port 8800 of the instance,
 following the [standard upgrade process for the installer](./upgrades.html).
 
-If you are using the capability of the modules to pin the PTFE version to a specific sequence number, you must update the sequence number and perform a `terraform apply` to upgrade.
+If you are using the capability of the modules to pin the Terraform Enterprise version to a specific sequence number, you must update the sequence number and perform a `terraform apply` to upgrade.
 
 ## Installer Dashboard
 

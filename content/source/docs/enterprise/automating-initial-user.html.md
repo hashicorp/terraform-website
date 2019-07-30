@@ -3,9 +3,9 @@ layout: "enterprise"
 page_title: "Automating Initial User - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise - Automating Initial User Creation
+# Terraform Enterprise - Automating Initial User Creation
 
-After Private Terraform Enterprise is installed, the initial admin user must then be created to begin using the product.
+After Terraform Enterprise is installed, the initial admin user must then be created to begin using the product.
 Normally this user is created by opening the application from the installer dashboard. However, if further automation is desired, an API is available to create this user.
 
 ## Initial Admin Creation Token (IACT)
@@ -15,7 +15,7 @@ can only be used to create the admin user when there are no users configured in 
 
 ### Shell Command or Automated Deployment Script
 
-After installation, run the following from a shell connected to your PTFE instance:
+After installation, run the following from a shell connected to your Terraform Enterprise instance:
 
 ```shell
 replicated admin --tty=0 retrieve-iact
@@ -35,7 +35,7 @@ The option `iact_subnet_list` can be set to a cidr mask that will allow clients 
 
 ~> NOTE: `iact_subnet_list` has no default value, so if unset, this no clients will be able to request the IACT token via the API.
 
-The API will be relative to the installation, for example `https://ptfe.mycompany.com/admin/retrieve-iact`, with `/admin/retrieve-iact` being the path that returns the token.
+The API will be relative to the installation, for example `https://tfe.mycompany.com/admin/retrieve-iact`, with `/admin/retrieve-iact` being the path that returns the token.
 
 When this feature is used, it is governed by another setting: `iact_subnet_time_limit`. This is a time limit, measured from the installation starting, that controls external access to the IACT. By default this is set to 60 minutes, meaning that during the initial 60 minutes after the installation boots, the API can be used by a client within the subnet list. After that time, access is not allowed.
 
@@ -43,7 +43,7 @@ If a customer wishes to disable the time limit and allow access to the IACT fore
 
 ## Initial Admin Creation API
 
-With the IACT in hand, the initial admin creation API can now be used. This API is available under the path `/admin/initial-admin-user` of your primary hostname. For instance, if your PTFE instance was located at `ptfe.mycompany.com`, the initial admin creation API would be `https://ptfe.mycompany.com/admin/initial-admin-user`.
+With the IACT in hand, the initial admin creation API can now be used. This API is available under the path `/admin/initial-admin-user` of your primary hostname. For instance, if your Terraform Enterprise instance was located at `tfe.mycompany.com`, the initial admin creation API would be `https://tfe.mycompany.com/admin/initial-admin-user`.
 
 This API requires the IACT as well as a JSON document describing the username, email address, and password of the initial admin user.
 
@@ -111,7 +111,7 @@ curl \
   --header "Content-Type: application/json" \
   --request POST \
   --data @payload.json \
-  https://ptfe.company.com/admin/initial-admin-user?token=$(cat iact.txt)
+  https://tfe.company.com/admin/initial-admin-user?token=$(cat iact.txt)
 ```
 
 ### Sample Response

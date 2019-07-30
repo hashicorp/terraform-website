@@ -5,7 +5,7 @@ page_title: "Integrations - Admin - Terraform Enterprise"
 
 # Administration: Service Integrations
 
-Private Terraform Enterprise can integrate with several external services to send communications and authenticate users. Each of these integrations has a separate page in the site admin section.
+Terraform Enterprise can integrate with several external services to send communications and authenticate users. Each of these integrations has a separate page in the site admin section.
 
 At this time, the available site-wide integrations are:
 

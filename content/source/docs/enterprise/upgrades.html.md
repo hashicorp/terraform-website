@@ -4,7 +4,7 @@ page_title: "Upgrades - Terraform Enterprise"
 ---
 # Upgrading
 
-This section explains how to upgrade Private Terraform Enterprise to a new
+This section explains how to upgrade Terraform Enterprise to a new
 version. [Learn more about availability during upgrades here](./reliability-availability.html#availability-during-upgrades-1).
 
 ## Online

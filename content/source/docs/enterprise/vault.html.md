@@ -3,10 +3,10 @@ layout: "enterprise"
 page_title: "Externally Managed Vault - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Externally Managed Vault
+# Terraform Enterprise Externally Managed Vault
 
-For enhanced security, Private Terraform Enterprise (PTFE) can be configured to use an external
-Vault cluster rather than the internal Vault instance. Within PTFE, Vault is
+For enhanced security, Terraform Enterprise can be configured to use an external
+Vault cluster rather than the internal Vault instance. Within Terraform Enterprise, Vault is
 used to encrypt sensitive information such as variables and states.
 
 !> **Warning**: This is only recommended if you currently run your own Vault cluster in production.
@@ -36,9 +36,9 @@ Use the following as a guide to configure an external Vault instance:
 ## role\_id and secret\_id
 
 The `role_id` and `secret_id` values created during configuration will be input during
-the PTFE installation along with the Vault cluster URL such as
+the Terraform Enterprise installation along with the Vault cluster URL such as
 `https://vault.mycompany.com:8200`. If you use SSL to access the Vault cluster,
-the certificate must be trusted by PTFE. That means the issuer of the certificate
+the certificate must be trusted by Terraform Enterprise. That means the issuer of the certificate
 is either globally trusted or you have provided the certificate for the issuer
 in the "Certificate Authority bundle" section of the installer configuration.
 
@@ -48,7 +48,7 @@ Vault utilizes policies to restrict portions of the data. See [the official
 Vault docs](https://www.vaultproject.io/docs/concepts/policies.html) for a
 more extensive overview.
 
-The following policy is required for the correct operations of PTFE:
+The following policy is required for the correct operations of Terraform Enterprise:
 
 ```
 path "auth/approle/login" {

@@ -3,10 +3,10 @@ layout: "enterprise"
 page_title: "Security - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise - Security
+# Terraform Enterprise - Security
 
-Private Terraform Enterprise (PTFE) takes the security of the data it manages
-seriously. This table lists which parts of the PTFE app can contain sensitive data, what storage is used, and what encryption is used.
+Terraform Enterprise takes the security of the data it manages
+seriously. This table lists which parts of the Terraform Enterprise app can contain sensitive data, what storage is used, and what encryption is used.
 
 | Object                               | Storage       | Encrypted                             |
 |:-------------------------------------|:--------------|:--------------------------------------|

@@ -3,12 +3,12 @@ layout: "enterprise"
 page_title: "Reliability & Availability - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Reliability & Availability
+# Terraform Enterprise Reliability & Availability
 
 This section covers details relating to the reliability and availability of
-Private Terraform Enterprise (PTFE) installations. This documentation may be
-useful to Customers evaluating PTFE or Operators responsible for installing and
-maintaining PTFE.
+Terraform Enterprise installations. This documentation may be
+useful to customers evaluating Terraform Enterprise or operators responsible for installing and
+maintaining Terraform Enterprise.
 
 ## Components
 
@@ -42,7 +42,7 @@ role when considering the reliability of the overall system:
     configuration, and output logs
 
   - _HashiCorp Vault_ - Used for encryption of sensitive data. There are
-    two types of Vault data in PTFE -
+    two types of Vault data in Terraform Enterprise -
     [key material](https://www.vaultproject.io/docs/concepts/seal.html) and
     [storage backend data](https://www.vaultproject.io/docs/configuration/storage/index.html).
 
@@ -79,7 +79,7 @@ respective reliability and availability properties:
   Documentation][s3-docs] has much more information about the reliability and
   availability of this service.
 
-- _HashiCorp Vault_ - Consul is run on the PTFE EC2 instance and stores all
+- _HashiCorp Vault_ - Consul is run on the Terraform Enterprise EC2 instance and stores all
   Vault data. Consul data is backed up hourly to S3 alongside of the
   _Configuration Data_ and is set to automatically restore on boot.
 
@@ -91,7 +91,7 @@ respective reliability and availability properties:
 ### Availability During Upgrades
 
 Upgrades for the AMI Architecture are delivered as new AMIs. Switching AMI IDs
-within the Terraform config that manages your PTFE installation will cause the
+within the Terraform config that manages your Terraform Enterprise installation will cause the
 plan to include replacement of the Launch Configuration and Auto Scaling Group
 associate with your Terraform Enterprise instance.
 
@@ -113,12 +113,12 @@ The Multi-AZ setup used for RDS protects against failures that affect the
 Database Instance, and the nightly automated RDS Snapshots provide coverage
 against data corruption.
 
-The redundancy guarantees of Amazon S3 serve to protect the files that PTFE
+The redundancy guarantees of Amazon S3 serve to protect the files that Terraform Enterprise
 stores there.
 
 ## Installer Architecture
 
-This section describes how to set up your PTFE deployment to recover from
+This section describes how to set up your Terraform Enterprise deployment to recover from
 failures in the various operational modes (demo, mounted disk, external
 services). The operational mode is selected at install time and can not be
 changed once the install is running.
@@ -126,7 +126,7 @@ changed once the install is running.
 The below tables explain where each data type in the
 [Storage Layer](#components) is stored and
 the corresponding snapshot and restore procedure. For the data types that use
-PTFE's built-in snapshot and restore function, follow
+Terraform Enterprise's built-in snapshot and restore function, follow
 [these instructions](./automated-recovery.html). For the data types that do
 **not** use the built-in functionality, backup and restore is the responsibility
 of the user.
@@ -144,10 +144,10 @@ of the user.
 
 |                   | Configuration | Vault | PostgreSQL | Blob Storage |
 |-------------------|---------------|-------|------------|--------------|
-| Demo              | PTFE          | PTFE  | PTFE       | PTFE         |
-| Mounted Disk      | PTFE          | PTFE  | User       | User         |
-| External Services | PTFE          | PTFE  | User       | User         |
-| External Vault    | -             | User  | -          | -            |
+| Demo              | Terraform Enterprise | Terraform Enterprise | Terraform Enterprise | Terraform Enterprise |
+| Mounted Disk      | Terraform Enterprise | Terraform Enterprise | User                 | User                 |
+| External Services | Terraform Enterprise | Terraform Enterprise | User                 | User                 |
+| External Vault    | -                    | User                 | -                    | -                    |
 
 ### Demo
 
@@ -168,7 +168,7 @@ mechanism to recreate it from a previous snapshot.
 
 _PostgreSQL Database_ and _Blob Storage_ use mounted disks for their
 data. Backup and restore of those volumes is the responsibility of the user, and
-is not managed by PTFE's built-in systems.
+is not managed by Terraform Enterprise's built-in systems.
 
 _Vault Data_ is stored in PostgreSQL and accordingly lives on the mounted disk. As
 long as the user has restored the mounted disk successfully, the built-in restore

@@ -3,23 +3,23 @@ layout: "enterprise"
 page_title: "Azure Reference Architecture - Terraform Enterprise"
 description: |-
   This document provides recommended practices and a reference
-  architecture for HashiCorp Private Terraform Enterprise (PTFE)
+  architecture for HashiCorp Terraform Enterprise
   implementations on Azure.
 ---
 
-# Private Terraform Enterprise Azure Reference Architecture
+# Terraform Enterprise Azure Reference Architecture
 
 ## Introduction
 
 This document provides recommended practices and a reference
-architecture for HashiCorp Private Terraform Enterprise (PTFE)
+architecture for HashiCorp Terraform Enterprise
 implementations on Azure.
 
 ## Required Reading
 
 Prior to making hardware sizing and architectural decisions, read through the
 [installation information available for
-PTFE](/docs/enterprise/private/install-installer.html)
+Terraform Enterprise](/docs/enterprise/private/install-installer.html)
 to familiarize yourself with the application components and architecture.
 Further, read the [reliability and availability
 guidance](/docs/enterprise/private/reliability-availability.html)
@@ -32,7 +32,7 @@ architecture.
 
 Depending on the chosen [operational
 mode](/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
-the infrastructure requirements for PTFE range from a single [Azure VM
+the infrastructure requirements for Terraform Enterprise range from a single [Azure VM
 instance](https://azure.microsoft.com/en-us/services/virtual-machines/) for
 demo or proof of concept installations to multiple instances connected to
 [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/) and
@@ -43,7 +43,7 @@ a guideline. Of particular note is the strong recommendation to avoid non-fixed
 performance CPUs, or “Burstable CPU” in Azure terms, such as B-series
 instances.
 
-### PTFE Servers (Azure VMs)
+### Terraform Enterprise Servers (Azure VMs)
 
 | Type        | CPU      | Memory       | Disk | Azure VM Sizes                     |
 | ----------- | -------- | ------------ | ---- | ---------------------------------- |
@@ -84,11 +84,11 @@ instances.
 
 An Azure Blob Storage
 [container](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction#container)
-must be specified during the PTFE installation for application data to
+must be specified during the Terraform Enterprise installation for application data to
 be stored securely and redundantly away from the Azure VMs running the
-PTFE application. This Azure Blob Storage container must be in the same
+Terraform Enterprise application. This Azure Blob Storage container must be in the same
 region as the VMs and Azure Database for PostgreSQL instance. It is recommended
-the virtual network containing the PTFE servers be configured with a
+the virtual network containing the Terraform Enterprise servers be configured with a
 [Virtual Network (VNet) service
 endpoint](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview)
 for Azure Storage. Vault is used to encrypt all application data stored
@@ -120,7 +120,7 @@ also be permitted to create the following Azure resources:
 
 #### Network
 
-To deploy PTFE in Azure you will need to create new or use existing
+To deploy Terraform Enterprise in Azure you will need to create new or use existing
 networking infrastructure. The infrastructure diagram highlights some of
 the key components. These elements are likely to be very unique to your
 environment and not something this Reference Architecture can specify in
@@ -137,7 +137,7 @@ required DNS entry is outside the scope of this guide.
 #### SSL/TLS
 
 An SSL/TLS certificate is required for secure communication between
-clients and the PTFE application server. The certificate can be
+clients and the Terraform Enterprise application server. The certificate can be
 specified during the UI-based installation or the path to the
 certificate codified during an unattended installation.
 
@@ -149,13 +149,13 @@ The above diagram show the infrastructure components at a high-level.
 
 ### Application Layer
 
-The Application Layer is composed of two PTFE servers (Azure VMs)
+The Application Layer is composed of two Terraform Enterprise servers (Azure VMs)
 running in different subnets and operating in an active/standby
-configuration. Traffic is routed to the active PTFE server via the Load Balancer
-rules and health checks. In the event that the active PTFE server becomes unavailable,
-the traffic will then route to the standby PTFE server, making it the new active
-server. Routing changes can also be managed by a human triggering by triggering a change in
-the Load Balancer configuration to switch between the PTFE servers.
+configuration. Traffic is routed to the active Terraform Enterprise server via the Load Balancer
+rules and health checks. In the event that the active Terraform Enterprise server becomes unavailable,
+the traffic will then route to the standby server, making it the new active
+server. Routing changes can also be managed by a human triggering a change in
+the Load Balancer configuration to switch between the servers.
 
 ### Storage Layer
 
@@ -171,7 +171,7 @@ inherent resiliency provided by Azure.
 
 ## Infrastructure Provisioning
 
-The recommended way to deploy PTFE is through use of a Terraform
+The recommended way to deploy Terraform Enterprise is through use of a Terraform
 configuration that defines the required resources, their references to
 other resources, and associated dependencies.
 
@@ -179,20 +179,20 @@ other resources, and associated dependencies.
 
 ### Component Interaction
 
-The Load Balancer routes all traffic to the active PTFE instance, which
-handles all requests to the PTFE application.
+The Load Balancer routes all traffic to the active Terraform Enterprise instance, which
+handles all requests to the Terraform Enterprise application.
 
-The PTFE application is connected to the PostgreSQL database via the
+The Terraform Enterprise application is connected to the PostgreSQL database via the
 Azure provided database server name endpoint. All database requests are
 routed to the highly available infrastructure supporting Azure Database for PostgreSQL.
 
-The PTFE application is connected to object storage via the Azure Blob
+The Terraform Enterprise application is connected to object storage via the Azure Blob
 Storage endpoint for the defined container. All object storage requests
 are routed to the highly available infrastructure supporting Azure Storage.
 
 ### Monitoring
 
-While there is not currently a monitoring guide for PTFE, information around
+While there is not currently a monitoring guide for Terraform Enterprise, information around
 [logging](/docs/enterprise/private/logging.html),
 [diagnostics](/docs/enterprise/private/diagnostics.html)
 as well as [reliability and
@@ -209,7 +209,7 @@ of the documentation.
 
 ### Failure Scenarios
 
-The PTFE Reference Architecture is designed to handle different failure
+The Terraform Enterprise Reference Architecture is designed to handle different failure
 scenarios that have different probabilities. The ability to provide better
 service continuity will improve as the architecture evolves.
 
@@ -221,12 +221,12 @@ In the event of the active instance failing, the Load Balancer
 should be reconfigured (manually or automatically) to route all traffic
 to the standby instance.
 
-~> **Important:** Active-active configuration is not supported due to a serialisation requirement in the core components of PTFE; therefore, all traffic from the Load Balancer *MUST* be routed to a single instance.
+~> **Important:** Active-active configuration is not supported due to a serialisation requirement in the core components of Terraform Enterprise; therefore, all traffic from the Load Balancer *MUST* be routed to a single instance.
 
 When using the _Production - External Services_ deployment model (PostgreSQL Database and Object Storage), there is still some application configuration data present on the
-PTFE server such as installation type, database connection settings, and
+Terraform Enterprise server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. If the application configuration has
-not changed since installation, both PTFE1 and PTFE2 will
+not changed since installation, both TFE1 and TFE2 will
 use the same configuration and no action is required.
 
 If the
@@ -256,20 +256,20 @@ documentation](https://docs.microsoft.com/en-us/azure/storage/common/storage-red
 
 ### Failure Scenarios
 
-The PTFE Reference Architecture is designed to handle different failure
+The Terraform Enterprise Reference Architecture is designed to handle different failure
 scenarios that have different probabilities. The ability to provide better
 service continuity will improve as the architecture evolves.
 
 #### Region Failure
 
-PTFE is currently architected to provide high availability within a
+Terraform Enterprise is currently architected to provide high availability within a
 single Azure Region. Using multiple Azure Regions will give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional Azure service. In this section, we’ll discuss
 various implementation patterns and their typical availability.
 
 An identical infrastructure should be provisioned in a secondary Azure
-Region. In the event of the primary Azure Region hosting the PTFE
+Region. In the event of the primary Azure Region hosting the Terraform Enterprise
 application failing, the secondary Azure Region will require some
 configuration before traffic is directed to it along with some global
 services such as DNS.
@@ -291,15 +291,15 @@ services such as DNS.
 
 #### Data Corruption
 
-The PTFE application architecture relies on multiple service endpoints
+The Terraform Enterprise application architecture relies on multiple service endpoints
 (Azure DB and Azure Storage) all providing their own backup and
 recovery functionality to support a low MTTR in the event of data
 corruption.
 
-##### PTFE Servers
+##### Terraform Enterprise Servers
 
 When using the _Production - External Services_ deployment model (PostgreSQL Database and Object Storage), there is still some application configuration data present on the
-PTFE server such as installation type, database connection settings, and
+Terraform Enterprise server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. We recommend
 [configuring automated
 snapshots](/docs/enterprise/private/automated-recovery.html#1-configure-snapshots)
@@ -326,7 +326,7 @@ and summarised below:
 
 There is no automatic backup/snapshot of Azure Blob Storage by Azure, so it
 is recommended to script a container copy process from the container
-used by the PTFE application to a “backup container” in Azure Blob Storage
+used by the Terraform Enterprise application to a “backup container” in Azure Blob Storage
 that runs at regular intervals. It is important the copy process is not
 so frequent that data corruption in the source content is copied to the
 backup before it is identified.

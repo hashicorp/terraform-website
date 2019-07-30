@@ -3,9 +3,9 @@ layout: "enterprise"
 page_title: "Installation (Preflight) - Terraform Enterprise"
 ---
 
-# Private Terraform Enterprise Installation (Preflight Requirements)
+# Terraform Enterprise Installation (Preflight Requirements)
 
-Before installing the Private Terraform Enterprise software, you'll need to prepare an appropriate instance and relevant data files. Please make careful note of these requirements, as the installation may not be successful if these requirements are not met.
+Before installing the Terraform Enterprise software, you'll need to prepare an appropriate instance and relevant data files. Please make careful note of these requirements, as the installation may not be successful if these requirements are not met.
 
 ## Data Files
 
@@ -16,7 +16,7 @@ Before installing the Private Terraform Enterprise software, you'll need to prep
 ~> **Note:** If you use a certificate issued by a private Certificate
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
-   running within PTFE to access each other properly.
+   running within Terraform Enterprise to access each other properly.
    See [Installation: Trusting SSL/TLS Certificates](./install-installer.html#trusting-ssl-tls-certificates)
    for more on this.
 
@@ -25,7 +25,7 @@ Before installing the Private Terraform Enterprise software, you'll need to prep
 Install the software on a Linux instance of your choosing.
 You will start and manage this instance like any other server.
 
-The Private Terraform Enterprise Installer currently supports the following
+The Terraform Enterprise Installer currently supports the following
 operating systems:
 
 * Debian 7.7+
@@ -62,9 +62,9 @@ For Linux distributions other than RHEL, check Docker compatibility:
 
 ### SELinux
 
-SELinux is supported when Private Terraform Enterprise runs in `External Services` mode and only the default SELinux policies provided by RedHat are used. Private Terraform Enterprise v201812-1 or later is required for this support.
+SELinux is supported when Terraform Enterprise runs in `External Services` mode and only the default SELinux policies provided by RedHat are used. Terraform Enterprise v201812-1 or later is required for this support.
 
-SELinux is not supported when Private Terraform Enterprise runs in in `Demo` and `Mounted Disk` modes. When running in these modes the host running the installer must have SELinux configured in permissive mode.
+SELinux is not supported when Terraform Enterprise runs in in `Demo` and `Mounted Disk` modes. When running in these modes the host running the installer must have SELinux configured in permissive mode.
 
 To configure SELinux in permissive mode for the runtime only, run `setenforce 0` as root.
 
@@ -148,7 +148,7 @@ The decision you make will be entered during setup.
 
 ### Mounted Disk Guidelines
 
-The mounted disk option provides significant flexibility in how PTFE stores its data. To help narrow down the possibilites, we've provided the following guidelines for mounted disk storage.
+The mounted disk option provides significant flexibility in how Terraform Enterprise stores its data. To help narrow down the possibilites, we've provided the following guidelines for mounted disk storage.
 
 #### Supported Mounted Disk Types
 
@@ -163,7 +163,7 @@ The following are **supported** mounted disk types:
 
 #### Disk Resizing
 
-Depending on your cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
+Depending on your cloud or storage application, you may need to confirm the disk has been resized to above Terraform Enterprise's minimum disk size of 40GB.
 
 For example, with RedHat-flavor (RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article [How to: Resize Linux osDisk partition on Azure](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
 
@@ -174,7 +174,7 @@ The following are **not** supported mounted disk types:
 * NFS
 * SMB/CIFS
 
-The supported mounted disk types provide the necessary reliability and performance for data storage and retrieval in PTFE.
+The supported mounted disk types provide the necessary reliability and performance for data storage and retrieval in Terraform Enterprise.
 
 If the type of mounted disk you wish to use is not listed, please contact your HashiCorp representative to get clarification on whether that type is supported.
 
@@ -217,7 +217,7 @@ CREATE EXTENSION IF NOT EXISTS "citext" WITH SCHEMA "registry";
 ### External Vault Option
 
 If you already manage your own Vault cluster, you can choose to use it in Production
-operational mode, rather than the default internal Vault provided by PTFE.
+operational mode, rather than the default internal Vault provided by Terraform Enterprise.
 
 ~> **Note:** This option is also selected at initial installation, and cannot be changed later.
 

@@ -10,7 +10,7 @@ SAML requires the configuration of two parties:
 - The Identity Provider (IdP).
 - The Service Provider (SP), which is also sometimes referred to as Relying Party (RP).
 
-Private Terraform Enterprise (PTFE) is configured as the Service Provider.
+Terraform Enterprise is configured as the Service Provider.
 
 -> **Note:** For instructions for specific IdPs, see [Identity Provider Configuration](./identity-provider-configuration.html).
 
@@ -18,7 +18,7 @@ Private Terraform Enterprise (PTFE) is configured as the Service Provider.
 
 ## Terraform Enterprise (Service Provider)
 
-~> **Important:** Only PTFE users with the site-admin permission can modify SAML settings. For more information about site admins, see [Administering Private Terraform Enterprise][admin].
+~> **Important:** Only Terraform Enterprise users with the site-admin permission can modify SAML settings. For more information about site admins, see [Administering Terraform Enterprise][admin].
 
 Prior to activating SAML, we recommend that you create a [non-SSO admin account for recovery](./troubleshooting.html#create-a-non-sso-admin-account-for-recovery).
 
@@ -47,7 +47,7 @@ The SAML settings are separated into sections:
 ### Attributes
 
 - **Username Attribute Name**: (default: `Username`) The name of the SAML attribute that determines the TFE username for a user logging in via SSO.
-- **Site Admin Attribute Name**: (default: `SiteAdmin`) The name of the SAML attribute that determines whether a user has site-admin permissions. The value of this attribute in the SAML assertion must be a boolean. Site admins can manage settings and resources for the entire PTFE instance; see [Administering Private Terraform Enterprise][admin] for details.
+- **Site Admin Attribute Name**: (default: `SiteAdmin`) The name of the SAML attribute that determines whether a user has site-admin permissions. The value of this attribute in the SAML assertion must be a boolean. Site admins can manage settings and resources for the entire Terraform Enterprise instance; see [Administering Terraform Enterprise][admin] for details.
 - **Team Attribute Name**: (default: `MemberOf`) The name of the SAML attribute that determines [team membership](./team-membership.html). The value of this attribute in the SAML assertion must be a string containing a comma-separated list of team names.
 
 ### Team Membership Mapping

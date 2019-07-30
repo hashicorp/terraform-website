@@ -3,19 +3,19 @@ layout: "enterprise"
 page_title: "VMware Reference Architecture - Terraform Enterprise"
 description: |-
   This document provides recommended practices and a reference architecture for
-  HashiCorp Private Terraform Enterprise (PTFE) implementations on VMware.
+  HashiCorp Terraform Enterprise implementations on VMware.
 ---
 
-# Private Terraform Enterprise VMware Reference Architecture
+# Terraform Enterprise VMware Reference Architecture
 
 This document provides recommended practices and a reference architecture for
-HashiCorp Private Terraform Enterprise (PTFE) implementations on VMware.
+HashiCorp Terraform Enterprise implementations on VMware.
 
 ## Required Reading
 
 Prior to making hardware sizing and architectural decisions, read through the
 [installation information available for
-PTFE](/docs/enterprise/private/install-installer.html)
+Terraform Enterprise](/docs/enterprise/private/install-installer.html)
 to familiarise yourself with the application components and architecture.
 Further, read the [reliability and availability
 guidance](/docs/enterprise/private/reliability-availability.html)
@@ -26,13 +26,13 @@ architecture.
 
 Depending on the chosen [operational
 mode](/docs/enterprise/private/preflight-installer.html#operational-mode-decision),
-the infrastructure requirements for PTFE range from a single virtual machine
+the infrastructure requirements for Terraform Enterprise range from a single virtual machine
 for demo or proof of concept installations, to multiple virtual machines
 hosting the Terraform Cloud application, PostgreSQL, and external Vault servers for
 a stateless production installation.
 
 This reference architecture focuses on the “Production - External Services”
-operational mode. If you require all of the pTFE infrastructure to be on-prem,
+operational mode. If you require all of the Terraform Enterprise infrastructure to be on-prem,
 you can either deploy S3-compatible storage [such as ceph](http://ceph.com/) or select the
 “Production - Mounted Disk” option. This option will require you to specify the
 local path for the storage where PostgreSQL data will be stored and where the
@@ -47,7 +47,7 @@ provisioned is only recommended if you are using an external PostgreSQL database
 as well as an external vault server. Using thin provisioned disks when using
 the internal database or vault may result in serious performance issues.
 
-### PTFE Servers
+### Terraform Enterprise Servers
 
 | Type        | CPU Sockets | Total Cores\* | Memory       | Disk |
 | ----------- | ----------- | ------------- | ------------ | ---- |
@@ -90,9 +90,9 @@ the internal database or vault may result in serious performance issues.
 ### Object Storage (S3)
 
 An [S3 Standard](https://aws.amazon.com/s3/storage-classes/) bucket, or compatible storage, must be
-specified during the PTFE installation for application data to be stored
-securely and redundantly away from the virtual servers running the PTFE
-application. This object storage must be accessible via the network to the PTFE virtual
+specified during the Terraform Enterprise installation for application data to be stored
+securely and redundantly away from the virtual servers running the Terraform Enterprise
+application. This object storage must be accessible via the network to the Terraform Enterprise virtual
 machine. Vault is used to encrypt all
 application data stored in this location. This allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
@@ -102,20 +102,20 @@ Recommended object storage solutions are AWS S3, Google Cloud storage, Azure blo
 
 ### Vault Servers
 
-In order to provide a fully stateless application instance, PTFE must be
+In order to provide a fully stateless application instance, Terraform Enterprise must be
 configured to speak with an external Vault server/cluster. This reference
 architecture assumes that a highly available Vault cluster is accessible at an
-endpoint the PTFE servers can reach.
+endpoint the Terraform Enterprise servers can reach.
 
 ### Other Considerations
 
 #### Network
 
-To deploy PTFE on VMWare you will need to create new or use existing networking
+To deploy Terraform Enterprise on VMWare you will need to create new or use existing networking
 infrastructure that has access to not only the S3 bucket, the PostgreSQL
 instance, and the Vault server, but also any infrastructure you expect to
-manage with the PTFE server. If you plan to use your PTFE server to manage or
-deploy AWS, you will need to make sure the PTFE server has unimpeded access to
+manage with the Terraform Enterprise server. If you plan to use your Terraform Enterprise server to manage or
+deploy AWS, you will need to make sure the Terraform Enterprise server has unimpeded access to
 AWS. The same goes for any other cloud or datacenter the server will need to
 connect with.
 
@@ -128,7 +128,7 @@ of this guide.
 #### SSL/TLS
 
 A valid, signed SSL/TLS certificate is required for secure communication between clients and
-the PTFE application server. Requesting a certificate is outside the scope
+the Terraform Enterprise application server. Requesting a certificate is outside the scope
 of this guide. You will be prompted for the public and private certificates during installation.
 
 ## Infrastructure Diagram
@@ -149,7 +149,7 @@ provided by a well-architected deployment (in the case of Vault).
 
 ## Infrastructure Provisioning
 
-The recommended way to deploy PTFE for production is through use of a Terraform configuration
+The recommended way to deploy Terraform Enterprise for production is through use of a Terraform configuration
 that defines the required resources, their references to other resources and
 dependencies. An [example Terraform
 configuration](https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/vmware)
@@ -162,18 +162,18 @@ template.
 
 ### Component Interaction
 
-The PTFE application is connect to the PostgreSQL database via the PostgreSQL URL.
+The Terraform Enterprise application is connect to the PostgreSQL database via the PostgreSQL URL.
 
-The PTFE application is connected to object storage via the API endpoint for the
+The Terraform Enterprise application is connected to object storage via the API endpoint for the
 defined storage location and all object storage requests are routed to the highly
 available infrastructure supporting the storage location.
 
-The PTFE application is connected to the Vault cluster via the Vault cluster
+The Terraform Enterprise application is connected to the Vault cluster via the Vault cluster
 endpoint URL.
 
 ### Monitoring
 
-While there is not currently a monitoring guide for PTFE, information around
+While there is not currently a monitoring guide for Terraform Enterprise, information around
 [logging](/docs/enterprise/private/logging.html),
 [diagnostics](/docs/enterprise/private/diagnostics.html)
 as well as [reliability and
@@ -198,20 +198,20 @@ provides recovery in the case of a total data center outage.
 
 #### Single ESX Server Failure
 
-In the event of a server outage ESX will vMotion the PTFE virtual
+In the event of a server outage ESX will vMotion the Terraform Enterprise virtual
 machine to a functioning ESX host. This typically does not result in any
 visible outage to the end-user.
 
 ### Failure by Application Tier
 
-#### PTFE Servers
+#### Terraform Enterprise Servers
 
 Through deployment of two virtual machines in different ESX clusters,
-the PTFE Reference Architecture is designed to provide improved
-availability and reliability. Should the *PTFE-main* server fail, it can
-be recovered, or traffic can be routed to the *PTFE-standby* server to
-resume service when the failure is limited to the PTFE server layer. The
-load balancer should be manually updated to point to the stand-by PTFE
+the Terraform Enterprise Reference Architecture is designed to provide improved
+availability and reliability. Should the *TFE-main* server fail, it can
+be recovered, or traffic can be routed to the *TFE-standby* server to
+resume service when the failure is limited to the Terraform Enterprise server layer. The
+load balancer should be manually updated to point to the stand-by Terraform Enterprise
 VM after services have been started on it in the event of a failure.
 
 #### PostgreSQL Database
@@ -247,10 +247,10 @@ downtime in the event of an outage.
 
 ## Disaster Recovery
 
-### PTFE Servers
+### Terraform Enterprise Servers
 
 The assumption of this architecture is that ESX replication to a DR site is
-configured and validated. In the event of a DR the Primary PTFE virtual machine
+configured and validated. In the event of a DR the Primary Terraform Enterprise virtual machine
 should be recovered and powered on. Services are configured to start on boot,
 so the secondary virtual machine should only be powered on if there is an issue
 with the primary. If the DR site will be active for an extended amount of time,
@@ -288,7 +288,7 @@ State and other data that would otherwise be written to S3 will be
 written to the specified local path (which should be a mounted storage
 device, replicated and/or backed up frequently.)
 
-The PTFE application is connected to the Vault cluster via the Vault
+The Terraform Enterprise application is connected to the Vault cluster via the Vault
 cluster endpoint URL.
 
 ### Infrastructure Diagram
@@ -307,20 +307,20 @@ provides recovery in the case of a total data center outage.
 
 #### Single ESX Server Failure
 
-In the event of a server outage ESX will vMotion the PTFE virtual
+In the event of a server outage ESX will vMotion the Terraform Enterprise virtual
 machine to a functioning ESX host. This typically does not result in any
 visible outage to the end-user.
 
 ### Failure by Application Tier
 
-#### PTFE Servers
+#### Terraform Enterprise Servers
 
 Through deployment of two virtual machines in different ESX clusters,
-the PTFE Reference Architecture is designed to provide improved
-availability and reliability. Should the *PTFE-main* server fail, it can
-be recovered, or traffic can be routed to the *PTFE-standby* server to
-resume service when the failure is limited to the PTFE server layer. The
-load balancer should be manually updated to point to the stand-by PTFE
+the Terraform Enterprise Reference Architecture is designed to provide improved
+availability and reliability. Should the *TFE-main* server fail, it can
+be recovered, or traffic can be routed to the *TFE-standby* server to
+resume service when the failure is limited to the Terraform Enterprise server layer. The
+load balancer should be manually updated to point to the stand-by Terraform Enterprise
 VM after services have been started on it in the event of a failure.
 
 #### PostgreSQL Database
@@ -328,7 +328,7 @@ VM after services have been started on it in the event of a failure.
 When running in mounted storage mode the PostgreSQL server runs inside a
 Docker container. If the PostgreSQL service fails a new container should
 be automatically created. However, if the service is hung, or otherwise
-fails without triggering a new container deployment, the pTFE server
+fails without triggering a new container deployment, the Terraform Enterprise server
 should be stopped and the standby server started. All PostgreSQL data will
 have been written to the mounted storage and will then be accessible on
 the standby node.
@@ -353,10 +353,10 @@ minimising downtime in the event of an outage.
 
 ### Disaster Recovery
 
-#### PTFE Servers
+#### Terraform Enterprise Servers
 
 The assumption of this architecture is that ESX replication to a DR site
-is configured and validated. In the event of a DR the Primary PTFE
+is configured and validated. In the event of a DR the Primary Terraform Enterprise
 virtual machine should be recovered and powered on. Services are
 configured to start on boot, so the secondary virtual machine should
 only be powered on if there is an issue with the primary. If the DR site
