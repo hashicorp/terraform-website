@@ -54,7 +54,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
 ## Creating Acceptance Tests Functions
 
 Terraform acceptance tests are declared with the naming pattern `TestAccXxx`
-with the standard Go test function signature of `func TestAccXxx(*testing.T)`.
+and with the standard Go test function signature of `func TestAccXxx(*testing.T)`.
 Using the above test as an example:
 
 ```go
@@ -74,7 +74,7 @@ a new testcase object:
 package example
 
 func TestAccExampleWidget_basic(t *testing.T) {
-  resource.Test(t, resource.TestCase{
+  resource.Test(t, resource.TestCase){
   	// ...
   }
 }
@@ -190,8 +190,8 @@ func init() {
 **Default:** `nil`  
 **Required:** no  
 
-**CheckDestroy** is called after all test steps have been ran, and Terraform
-has ran `destroy` on the remaining state. This allows developers to ensure any
+**CheckDestroy** is called after all test steps have been run and Terraform
+has run `destroy` on the remaining state. This allows developers to ensure any
 resource created is truly destroyed. This method receives the last known
 Terraform state as input, and commonly uses infrastructure SDKs to query APIs
 directly to verify the expected objects are no longer found, and should return
@@ -241,7 +241,7 @@ func testAccCheckExampleResourceDestroy(s *terraform.State) error {
 
     // If the error is equivalent to 404 not found, the widget is destroyed.
     // Otherwise return the error
-    if !strings.Contains(err.Error(), "Widget not found" {
+    if !strings.Contains(err.Error(), "Widget not found") {
       return err
     }
   }

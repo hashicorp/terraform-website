@@ -167,6 +167,7 @@ Sidebars generally look like this:
 
 - `nav` -- Every `<ul>` in the sidebar should have this.
 - `docs-sidenav` -- The outermost `<ul>` should also have this.
+- `nav-auto-expand` -- Used for inner `<ul>`s that should default to "open" whenever their parent is opened. Useful for when you want to separate things into subcategories but don't want to require an extra click to navigate into those subcategories.
 - `nav-visible` -- Used for inner `<ul>`s that should always display as "open," regardless of the current page. Use this sparingly, and avoid using it for large sections; readers can use the "expand all" control if they need to see everything at once.
 
 A lot of existing sidebars have a ton of ERB tags that call a `sidebar_current` method. Ignore these, and don't worry about including them when making updates. They were for a hack that isn't needed anymore.

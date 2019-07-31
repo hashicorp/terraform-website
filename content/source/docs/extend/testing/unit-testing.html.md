@@ -26,7 +26,7 @@ demonstrating a typical `flattener` type method that's commonly used to convert
 structures returned from APIs into data structures used by Terraform in saving
 to state. This example is truncated for brevity, but you can see the full test in the
 [aws/structure_test.go in the Terraform AWS Provider
-repository on GitHUb](https://github.com/terraform-providers/terraform-provider-aws/blob/f22ae122d8407672bd38951f80a2813b8b9af683/aws/structure_test.go#L930-L1027)
+repository on GitHub](https://github.com/terraform-providers/terraform-provider-aws/blob/f22ae122d8407672bd38951f80a2813b8b9af683/aws/structure_test.go#L930-L1027)
 
 ```go
 func TestFlattenSecurityGroups(t *testing.T) {

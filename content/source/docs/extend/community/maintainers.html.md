@@ -25,7 +25,7 @@ All community members are responsible for their interactions with the rest of th
 
 ## Provider Development Program
 
-Providers in the development program get vetted and hosted in the terraform-providers GitHub organization. Please see [the website](https://www.terraform.io/guides/terraform-provider-development-program.html#checklist) for instructions on following that process.
+Providers in the development program get vetted and hosted in the terraform-providers GitHub organization. Please see [the website](/guides/terraform-provider-development-program.html#checklist) for instructions on following that process.
 
 ## Maintainer Responsibilities 
 
@@ -46,7 +46,7 @@ Pull requests should cover the following:
 
 - Acceptance test coverage of new behavior: these tests should exercise all the behavior of the resource. Sometimes it is sufficient to "enhance" an existing test by adding an assertion or tweaking the config that is used, but often a new test is better. Tests should also pass with the `TF_SCHEMA_PANIC_ON_ERROR` environment variable set, ensuring the schema is properly configured and not silently failing.
 - Documentation updates: All relevant changes (schema, unique behaviors) should be documented and be covered in the same pull request.
-- Well-formed code: Ensure code passes linting (go fmt, go vet). Ensure code follows [provider development best practices](https://www.terraform.io/docs/extend/index.html).
+- Well-formed code: Ensure code passes linting (go fmt, go vet). Ensure code follows [provider development best practices](/docs/extend/index.html).
 - Vendoring updates: Updating the vendor folder should be done in a separate pull request. This is to avoid conflicts as the versions of dependencies tend to be fast moving targets.
 
 ### Merging
@@ -63,4 +63,4 @@ To keep the CHANGELOG up to date, we recommend updating the CHANGELOG after ever
 
 Release cadence will vary project to project. There is no explicit timeline for provider releases, we tend to evaluate each provider release based on a few factors such as the collection of small bug fixes and features or conversely one critical fix or highly demanded feature. Releases can be requested in our slack channel. Smaller providers typically have no consistent cadence, larger ones such as AWS have leaned towards weekly releases. We feel this is probably the most frequent a project should cut releases.
 
-Our release process is automated. That process tags, cross compiles, signs, and uploads the binaries to our [release site](https://releases.hashicorp.com/), the list of our official providers can be found on [terraform.io](https://www.terraform.io/docs/providers/index.html). HashiCorp handles all releases internally, and requests for provider releases can be made in the #committers-terraform Slack channel by mentioning @provider-releases. The employee cutting the release will notify maintainers via Slack before and after release so pull request merging can be avoided during that interval. We compile binaries for all platforms & architectures supported by  [Terraform core](https://www.terraform.io/downloads.html) (currently MacOS, FreeBSD, Linux, OpenBSD, Solaris, Windows). Exceptions can be made if there’s a strong reason a provider cannot be compiled for any of these. Such cases have to be discussed with a HashiCorp employee.
+Our release process is automated. That process tags, cross compiles, signs, and uploads the binaries to our [release site](https://releases.hashicorp.com/), the list of our official providers can be found on [terraform.io](/docs/providers/index.html). HashiCorp handles all releases internally, and requests for provider releases can be made in the #committers-terraform Slack channel by mentioning @provider-releases. The employee cutting the release will notify maintainers via Slack before and after release so pull request merging can be avoided during that interval. We compile binaries for all platforms & architectures supported by  [Terraform core](/downloads.html) (currently MacOS, FreeBSD, Linux, OpenBSD, Solaris, Windows). Exceptions can be made if there’s a strong reason a provider cannot be compiled for any of these. Such cases have to be discussed with a HashiCorp employee.

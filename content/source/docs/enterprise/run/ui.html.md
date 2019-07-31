@@ -22,9 +22,13 @@ TFE also performs a [speculative plan][] when a pull request is opened against t
 
 The Terraform code for a normal run always comes from version control, and is always associated with a specific commit.
 
-## Starting Runs
+## Automatically Starting Runs
 
-Most of the time, runs start automatically whenever you commit changes to version control through a merge or direct commit to the linked branch.
+In a workspace linked to a VCS repo, runs start automatically when you merge or commit changes to version control.
+
+A workspace is linked to one branch of its repository, and ignores changes to other branches. Workspaces can also ignore some changes within their branch: if a Terraform working directory is configured, TFE assumes that only some of the content in the repository is relevant to Terraform, and ignores changes outside of that content. (This behavior can be configured; for details, see [Settings: Automatic Run Triggering](../workspaces/settings.html#automatic-run-triggering).)
+
+## Manually Starting Runs
 
 When you initially set up the workspace and add variables, or when the code in version control hasn't changed but you've modified some variables in TFE, you can manually queue a plan from the UI. Each workspace has a "Queue Plan" button for this purpose. Manually queueing a plan requires write or admin access.
 

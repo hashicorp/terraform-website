@@ -27,7 +27,9 @@ sidebar_current: "docs-enterprise2-api-policies"
 
 Policies are configured on a per-organization level and are organized and grouped into [policy sets](../sentinel/manage-policies.html#organizing-policies-with-policy-sets), which define the workspaces on which policies are enforced during runs. In these workspaces, the plan's changes are validated against the relevant policies after the plan step. (For details, see [Run States and Stages](../run/states.html).)
 
-This page documents the API endpoints to create, read, update, and delete the Sentinel policies in an organization. To view and manage the results of a specific run's policy check, use the [Runs API](./run.html).
+This page documents the API endpoints to create, read, update, and delete the Sentinel policies in an organization. Use of these endpoints provides a method to manually manage individual policies within Terraform Enterprise. To view and manage the results of a specific run's policy check, use the [Runs API](./run.html).
+
+~> **Note**: These endpoints are no longer the recommended way to use Sentinel features in Terraform Enterprise. We suggest using versioned policy sets, which allows integrating with VCS or uploading policy set data and configuration as a whole. Use the [policy sets API](./policy-sets.html) to leverage versioned policy sets.
 
 ## Create a Policy
 
@@ -56,6 +58,7 @@ Key path                                | Type            | Default          | D
 ----------------------------------------|-----------------|------------------|------------
 `data.type`                             | string          |                  | Must be `"policies"`.
 `data.attributes.name`                  | string          |                  | The name of the policy, which cannot be modified after creation. Can include letters, numbers, `-`, and `_`.
+`data.attributes.description`           | string          | `null`           | A description of the policy's purpose. This field supports Markdown and will be rendered in the Terraform Enterprise UI.
 `data.attributes.enforce`               | array\[object\] |                  | An array of enforcement configurations which map Sentinel file paths to their enforcement modes. Currently policies only support a single file, so this array will consist of a single element. If the path in the enforcement map does not match the Sentinel policy (`<NAME>.sentinel`), then the default `hard-mandatory` will be used.
 `data.attributes.enforce[].path`        | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` has the same value as `data.attributes.name`.
 `data.attributes.enforce[].mode`        | string          | `hard-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
@@ -73,7 +76,8 @@ Key path                                | Type            | Default          | D
           "mode": "hard-mandatory"
         }
       ],
-      "name": "my-example-policy"
+      "name": "my-example-policy",
+      "description": "An example policy."
     },
     "relationships": {
       "policy-sets": {
@@ -107,6 +111,7 @@ curl \
     "type":"policies",
     "attributes": {
       "name":"my-example-policy",
+      "description":"An example policy.",
       "enforce": [
         {
           "path":"my-example-policy.sentinel",
@@ -166,6 +171,7 @@ curl --request GET \
     "type": "policies",
     "attributes": {
       "name": "my-example-policy",
+      "description":"An example policy.",
       "enforce": [
         {
           "path": "my-example-policy.sentinel",
@@ -257,6 +263,7 @@ Key path                         | Type            | Default          | Descript
 ---------------------------------|-----------------|------------------|------------
 `data.type`                      | string          |                  | Must be `"policies"`.
 `data.attributes.name`           | string          | (Current name)   | Ignored if present.
+`data.attributes.description`    | string          | `null`           | A description of the policy's purpose. This field supports Markdown and will be rendered in the Terraform Enterprise UI.
 `data.attributes.enforce`        | array\[object\] |                  | An array of enforcement configurations which map Sentinel file paths to their enforcement modes. Currently policies only support a single file, so this array will consist of a single element. The value provided **replaces** the enforcement map. To make an incremental update, you can first fetch the current value of this map from the [show endpoint](#show-a-policy) and modify it. If the path in the enforcement map does not match the Sentinel policy (`<NAME>.sentinel`), then the default `hard-mandatory` will be used.
 `data.attributes.enforce[].path` | string          |                  | Must be `<NAME>.sentinel`, where `<NAME>` matches the original value of `data.attributes.name`.
 `data.attributes.enforce[].mode` | string          | `hard-mandatory` | The enforcement level of the policy. Valid values are `"hard-mandatory"`, `"soft-mandatory"`, and `"advisory"`. For more details, see [Managing Policies](../sentinel/manage-policies.html).
@@ -299,6 +306,7 @@ curl \
     "type":"policies",
     "attributes": {
       "name":"my-example-policy",
+      "description":"An example policy.",
       "enforce": [
         {
           "path":"my-example-policy.sentinel",
@@ -367,6 +375,7 @@ curl \
           }
         ],
         "name": "my-example-policy",
+        "description": "An example policy.",
         "policy-set-count": 0,
         "updated-at": "2017-10-10T20:52:13.898Z"
       },

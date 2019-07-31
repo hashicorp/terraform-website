@@ -21,6 +21,8 @@ sidebar_current: "docs-enterprise2-api-workspaces"
 [JSON API document]: /docs/enterprise/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
+[speculative plans]: ../run/index.html#speculative-plans
+
 # Workspaces API
 
 Workspaces represent running infrastructure managed by Terraform.
@@ -48,8 +50,12 @@ Key path                                      | Type    | Default   | Descriptio
 `data.type`                                   | string  |           | Must be `"workspaces"`.
 `data.attributes.name`                        | string  |           | The name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 `data.attributes.auto-apply`                  | boolean | `false`   | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
+`data.attributes.description`                 | string  | (nothing) | A description for the workspace.
 `data.attributes.file-triggers-enabled`       | boolean | `true`    | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
+`data.attributes.source-name` **(beta)**      | string  | (nothing) | A friendly name for the application or client creating this workspace. If set, this will be displayed on the workspace as "Created via `<SOURCE NAME>`".
+`data.attributes.source-url` **(beta)**       | string  | (nothing) | A URL for the application or client creating this workspace. This can be the URL of a related resource in another app, or a link to documentation or other info about the client.
 `data.attributes.queue-all-runs`              | boolean | `false`   | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
+`data.attributes.speculative-enabled`         | boolean | true      | Whether this workspace allows [speculative plans][]. Setting this to `false` prevents TFE from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors.
 `data.attributes.terraform-version`           | string  | (nothing) | The version of Terraform to use for this workspace. Upon creating a workspace, the latest version is selected unless otherwise specified (e.g. `"0.11.1"`).
 `data.attributes.trigger-prefixes`            | array   | `[]`      | List of repository-root-relative paths which should be tracked for changes, in addition to the working directory.
 `data.attributes.working-directory`           | string  | (nothing) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
@@ -194,6 +200,7 @@ _With a VCS repository_
       "auto-apply": false,
       "can-queue-destroy-plan": true,
       "created-at": "2017-11-02T23:55:16.142Z",
+      "description": null,
       "environment": "default",
       "file-triggers-enabled": true,
       "locked": false,
@@ -208,6 +215,9 @@ _With a VCS repository_
         "can-read-settings": true
       },
       "queue-all-runs": false,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -268,9 +278,11 @@ Key path                                      | Type           | Default        
 ----------------------------------------------|----------------|------------------|------------
 `data.type`                                   | string         |                  | Must be `"workspaces"`.
 `data.attributes.name`                        | string         | (previous value) | A new name for the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization. **Warning:** Changing a workspace's name changes its URL in the API and UI.
+`data.attributes.description`                 | string         | (previous value) | A description for the workspace.
 `data.attributes.auto-apply`                  | boolean        | (previous value) | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
 `data.attributes.file-triggers-enabled`       | boolean        | (previous value) | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
 `data.attributes.queue-all-runs`              | boolean        | (previous value) | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
+`data.attributes.speculative-enabled`         | boolean        | (previous value) | Whether this workspace allows [speculative plans][]. Setting this to `false` prevents TFE from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors.
 `data.attributes.terraform-version`           | string         | (previous value) | The version of Terraform to use for this workspace.
 `data.attributes.trigger-prefixes`            | array          | (previous value) | List of repository-root-relative paths which should be tracked for changes, in addition to the working directory.
 `data.attributes.working-directory`           | string         | (previous value) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
@@ -323,11 +335,15 @@ $ curl \
       "auto-apply": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
+      "description": null,
       "environment": "default",
       "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -399,11 +415,15 @@ $ curl \
         "auto-apply": false,
         "can-queue-destroy-plan": false,
         "created-at": "2017-11-02T23:24:05.997Z",
+        "description": null,
         "environment": "default",
         "file-triggers-enabled": true,
         "locked": false,
         "name": "workspace-2",
         "queue-all-runs": false,
+        "source": "tfe-ui",
+        "source-name": null,
+        "source-url": null,
         "terraform-version": "0.10.8",
         "trigger-prefixes": [],
         "vcs-repo": {
@@ -438,11 +458,15 @@ $ curl \
         "auto-apply": false,
         "can-queue-destroy-plan": false,
         "created-at": "2017-11-02T23:23:53.765Z",
+        "description": null,
         "environment": "default",
         "file-triggers-enabled": true,
         "locked": false,
         "name": "workspace-1",
         "queue-all-runs": false,
+        "source": "tfe-ui",
+        "source-name": null,
+        "source-url": null,
         "terraform-version": "0.10.8",
         "trigger-prefixes": [],
         "vcs-repo": {
@@ -513,6 +537,7 @@ $ curl \
       },
       "auto-apply": false,
       "created-at": "2018-03-08T22:30:00.404Z",
+      "description": null,
       "environment": "default",
       "file-triggers-enabled": true,
       "locked": false,
@@ -527,6 +552,9 @@ $ curl \
         "can-read-settings": true
       },
       "queue-all-runs": false,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
       "terraform-version": "0.11.3",
       "trigger-prefixes": [],
       "working-directory": null
@@ -634,6 +662,7 @@ $ curl \
       "auto-apply": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:23:53.765Z",
+      "description": null,
       "environment": "default",
       "file-triggers-enabled": true,
       "locked": true,
@@ -648,6 +677,9 @@ $ curl \
         "can-update-variable": true
       },
       "queue-all-runs": false,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -711,6 +743,7 @@ $ curl \
       "auto-apply": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:23:53.765Z",
+      "description": null,
       "environment": "default",
       "file-triggers-enabled": true,
       "locked": false,
@@ -725,6 +758,9 @@ $ curl \
         "can-update-variable": true
       },
       "queue-all-runs": false,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -777,6 +813,7 @@ $ curl \
       "auto-apply": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:23:53.765Z",
+      "description": null,
       "environment": "default",
       "file-triggers-enabled": true,
       "locked": false,
@@ -791,6 +828,9 @@ $ curl \
         "can-update-variable": true
       },
       "queue-all-runs": false,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -862,11 +902,15 @@ $ curl \
       "auto-apply": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
+      "description": null,
       "environment": "default",
       "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -959,11 +1003,15 @@ $ curl \
       "auto-apply": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
+      "description": null,
       "environment": "default",
       "file-triggers-enabled": true,
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {

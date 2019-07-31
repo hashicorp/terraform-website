@@ -1,73 +1,135 @@
 ---
 layout: "enterprise2"
-page_title: "Managing Sentinel Policies - Getting Started - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-started-policies"
+page_title: "Configuring Sentinel Policies - Getting Started - Terraform Enterprise"
+sidebar_current: "docs-enterprise2-started-sentinel"
 ---
 
-# Creating and Managing Terraform Policies
+# Configuring Sentinel Policies
 
-**Prerequisites:** Before starting this guide, make sure you've [successfully completed a run](./runs.html).
+**Prerequisites:** Before starting this guide, make sure you've [configured VCS access](./vcs.html) and [successfully completed a run](./runs.html).
 
-## About Sentinel Policies
+## About Sentinel Policies in Terraform Enterprise
 
-_Policies_ in TFE are composed of [Sentinel policies](/docs/enterprise/sentinel/index.html) with some extra features. [Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code framework integrated with the HashiCorp Enterprise products. It enables fine-grained, logic-based policy decisions, and can be extended to use information from external sources. Within TFE, you can use Sentinel to apply checks to your runs.
+[Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code framework integrated with various HashiCorp products. It enables fine-grained, logic-based policy decisions, and can be extended to use information from external sources. Terraform Enterprise enables users to enforce Sentinel policies during runs.
 
 A policy consists of:
 
 - The Sentinel policy code
-- An enforcement mode that changes how a policy affects the run lifecycle
+- An enforcement level that changes how a policy affects the run lifecycle
 
-## Creating a Policy
+### Enforcement Levels
 
-First, make sure you're viewing the organization settings. If you're still on a run page (or any other page), click the "Settings" button in the top navigation bar.
+Enforcement levels in Sentinel are used for defining behavior when policies fail to evaluate successfully. Sentinel provides three enforcement modes:
 
-![navigate](./images/policy-navigate.png)
+* `hard-mandatory` requires that the policy passes. If a policy fails, the run is halted and may not be applied until the failure is resolved.
+* `soft-mandatory` is much like `hard-mandatory`, but allows an administrator to override policy failures on a case-by-case basis.
+* `advisory` will never interrupt the run, and instead will only surface policy failures as informational to the user.
 
-The policy list shows all of the policies you have access to; if you haven't created any, it's empty.
+Starting with `soft-mandatory` is a safe practice that will allow the policy author to enforce a policy without completely blocking the run workflow for users if the policy fails.
 
-To create your first policy, click the "Create new policy" button in the upper right.
+## About Policy Sets
 
-![new button](./images/policy-new-button.png)
+Policy sets are a named grouping of Sentinel policies and their configuration. Each policy must belong to a policy set before it can be evaluated during a run. Each policy set may be applied to specific workspaces, or all workspaces within an organization. Policy sets are the mapping between Sentinel policies and workspaces.
 
-On the "Create a new Sentinel Policy" page, you need to enter at least two items: a policy name, and the policy code. When you've finished, click the "Create Policy" button.
+## Creating a Policy Set
 
-![fields on new policy page](./images/policy-new-fields.png)
+In this guide, we'll be using version control to create a policy set. Before you start, make sure you've [configured version control access](./vcs.html) for your organization.
 
-### Policy Name
+To create a policy set, we'll need a VCS repository to host the code. Create a new repository in your VCS system, clone the empty repository locally, and change directory into the local copy of the repository. We'll use the `sentinel-policies` repository hosted on GitHub for this example:
 
-A policy name should tell your colleagues what the policy is for. Examples could be "Require tags on all instances" or "Enforce network ACLs". If a policy is for a particular workspace, or environment within a workspace, include the name of the workspace and/or environment.
+```bash
+git clone git@github.com:<your-org>/sentinel-policies
+cd sentinel-policies
+```
 
-For this example, we'll just create a sample passthrough policy that will allow all runs to "PASS" our policy check. 
+With the VCS repository ready to go, the next step is to start adding configuration and policy code to it.
 
-In this example, we're using a configuration named "minimum" and we're deploying it in a production environment, so we named it `passthrough`.
+### The `sentinel.hcl` configuration file
 
-### Enforcement Mode
+The first file we'll create should be named `sentinel.hcl`. This is the configuration file which identifies Sentinel policy files and provides their configuration. Edit the configuration file using your editor of choice (we'll use `vim` for this example):
 
-Enforcement Mode alters how a policy result affects your run; "hard-mandatory" will always stop a run if a policy fails, "soft-mandatory" will pause a run and allow a failure to be overridden, and "advisory" will log failures but always allow a run to continue. Use "soft-mandatory" for now so we can see how the "Policy Override" feature works in practice.
+```bash
+vi sentinel.hcl
+```
+
+The configuration file takes a very basic structure, like this:
+
+```hcl
+policy "sunny-day" {
+    enforcement_level = "soft-mandatory"
+}
+```
+
+The above configuration is declaring the following:
+
+* We have a policy named `sunny-day`. Its policy code is located in a file named `sunny-day.sentinel` in the same directory as the `sentinel.hcl` file.
+* The `sunny-day` policy has a `soft-mandatory` [enforcement level](#enforcement-levels).
+
+Multiple `policy` blocks may be defined in the `sentinel.hcl` file to configure more policies.
 
 ### Policy Code
 
-You can paste the following code into the code input box. It always resolves to `true` and will allow all runs to pass. This is a good way to see policy checks applied to your run without having a policy "FAIL".
+In the example above we created a configuration file which assumes that a `sunny-day.sentinel` policy code file will be present. Sentinel code files must follow the naming convention of `<policy name>.sentinel`. Create a `sunny-day.sentinel` policy file in the same directory as the `sentinel.hcl` file:
+
+```bash
+vi sunny-day.sentinel
+```
+
+The following policy code can be used to perform the most basic check:
 
 ```python
 main = rule { true }
 ```
 
-Later, you can switch `true` to `false` to see how a "FAIL" during a policy check can affect your run. You can find many more examples in our [Example Policies section](/docs/enterprise/sentinel/examples.html).
+This policy will always pass, as it always returns true. It is useful to experiment with policy failure scenarios by changing `true` to `false`.
 
-## What Happens in a New Policy
+### Check in the code
 
-When you create a new policy, it will be applied to all future runs. Runs that are currently queued or in progress will not be affected.
+You've created all of the files necessary for your policy set. The directory structure should now look like this:
 
-## See a Policy Check in a Run
+```bash
+.
+├── sentinel.hcl
+└── sunny-day.sentinel
+```
 
-Once your policy is created, you can view its effect on the run page. Start a new run to watch it play out. Again, you can start a run with the "Queue Plan" button at the upper right of the workspace page, or using the "Save & Plan" button when editing the workspace's variables.
+It's time to check the code into the Git repository and push the changes to the
+VCS system:
 
-Your policy code will be applied to this run and you'll see a new policy check section in the run's timeline. Expand the section and you should see that our new "passthrough" policy has been run with a "true" result, allowing the run to continue.
+```bash
+git add .
+git commit -m "Adding initial policy code"
+git push origin master
+```
 
-![navigate](./images/policy-run-section.png)
+That's it! Your policy code should now be available on GitHub. The next step is
+configure Terraform Enterprise to use the new policy set repository.
 
-If you change your policy code to `true` false, the "soft-mandatory" option will allow you to override at this stage and continue to the apply stage of the run.
+### Integrating with VCS
+
+First, make sure you're viewing the organization settings. Click the "Settings" button in the top navigation bar.
+
+![navigate](./images/policy-sets-navigate-1.png)
+
+The navigation bar on the left hand side lists various settings pages. Click the "Policy Sets" link.
+
+![navigate](./images/policy-sets-navigate-2.png)
+
+The Policy Sets page lists all existing policy sets. The list will be empty if this is your first policy set. Click on the "Create a new policy set" button.
+
+![navigate](./images/policy-sets-navigate-3.png)
+
+The policy set creation page offers a few options for creating your policy set. In this example, we'll be using a very simple VCS configuration to source the policy set from GitHub. Fill in the name (`hello-world` is used in this example), an optional description, and enter the repository identifier (`<your-org>/sentinel-policies` from the above example). Select "Policies enforced on all workspaces" (the default), and click the "Create policy set" button.
+
+![create](./images/policy-sets-create.png)
+
+After creating the policy set, you'll be taken back to the policy sets index page. You should notice that the list now contains your new policy set. The VCS information, including the latest commit SHA, should appear within the policy set (if it's empty at first, allow a few moments and refresh).
+
+![index](./images/policy-sets-index.png)
+
+Now that the policy set is configured and ready, navigate to a workspace and queue a new plan. You should see the policy check phase appear in the run details, and you should see the `hello-world/sunny-day` policy execute and pass in the policy check output.
+
+![run](./images/policy-sets-run.png)
 
 ## Finished
 

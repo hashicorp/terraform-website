@@ -162,7 +162,7 @@ The following are **supported** mounted disk types:
 * SAN
 * Physically connected disks as in non-cloud hardware
 
-##### Disk Resizing
+#### Disk Resizing
 
 Depending on your cloud or storage application, you may need to confirm the disk has been resized to above Private Terraform Enterprise's minimum disk size of 40GB.
 
