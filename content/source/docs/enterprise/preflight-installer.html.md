@@ -25,7 +25,7 @@ Before installing the Terraform Enterprise software, you'll need to prepare an a
 Install the software on a Linux instance of your choosing.
 You will start and manage this instance like any other server.
 
-The Terraform Enterprise Installer currently supports the following
+The Terraform Enterprise installer currently supports the following
 operating systems:
 
 * Debian 7.7+

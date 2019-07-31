@@ -119,7 +119,7 @@ means no state data is lost.
 
 ### External Services
 
-In the External Services mode of the Installer Architecture, the
+In the External Services operation mode, the
 **Application Layer** and **Coordination Layer** execute on a Linux instance,
 but the **Storage Layer** is configured to use external services in the form of
 a PostgreSQL server and an S3-compatible Blob Storage.
@@ -145,7 +145,7 @@ responsible for backing up the Vault data and restoring it if necessary.
 
 ### Availability During Upgrades
 
-Upgrades for the Installer architecture use the Installer dashboard.
+Upgrades use the installer dashboard.
 Once an upgrade has been been detected (either online or airgap), the new code
 is imported. Once ready, all services on the instance are restarted running
 the new code. The expected downtime is between 30 seconds and 5 minutes,

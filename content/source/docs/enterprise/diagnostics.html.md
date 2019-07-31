@@ -9,7 +9,7 @@ This document contains information on how to provide HashiCorp with diagnostic i
 
 ## Downloading the Support Bundle
 
-Diagnostic information is available via in the Installer dashboard on port 8800 of your installation.
+Diagnostic information is available via in the installer dashboard on port 8800 of your installation.
 
 On the dashboard, click on the Support tab:
 
