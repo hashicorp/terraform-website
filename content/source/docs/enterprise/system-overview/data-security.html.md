@@ -1,9 +1,9 @@
 ---
 layout: "enterprise"
-page_title: "Security - Terraform Enterprise"
+page_title: "Data Security - System Overview - Terraform Enterprise"
 ---
 
-# Terraform Enterprise - Security
+# Data Security
 
 Terraform Enterprise takes the security of the data it manages
 seriously. This table lists which parts of the Terraform Enterprise app can contain sensitive data, what storage is used, and what encryption is used.

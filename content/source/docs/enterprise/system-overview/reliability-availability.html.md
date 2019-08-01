@@ -1,9 +1,9 @@
 ---
 layout: "enterprise"
-page_title: "Reliability & Availability - Terraform Enterprise"
+page_title: "Reliability and Availability - System Overview - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Reliability & Availability
+# Reliability and Availability
 
 This section covers details relating to the reliability and availability of
 Terraform Enterprise installations. This documentation may be
