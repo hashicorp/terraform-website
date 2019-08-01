@@ -1,7 +1,8 @@
 ---
 layout: "enterprise"
-page_title: "Upgrades - Terraform Enterprise"
+page_title: "Upgrades - Infrastructure Administration - Terraform Enterprise"
 ---
+
 # Upgrading
 
 This section explains how to upgrade Terraform Enterprise to a new

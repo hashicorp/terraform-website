@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Automated Recovery - Terraform Enterprise"
+page_title: "Automated Recovery - Infrastructure Administration - Terraform Enterprise"
 ---
 
 # Terraform Enterprise Automated Recovery

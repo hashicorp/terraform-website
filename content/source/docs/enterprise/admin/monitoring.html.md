@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Monitoring - Terraform Enterprise"
+page_title: "Monitoring - Infrastructure Administration - Terraform Enterprise"
 ---
 
 # Monitoring a Terraform Enterprise Instance

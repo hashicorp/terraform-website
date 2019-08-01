@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "General Settings - Admin - Terraform Enterprise"
+page_title: "General Settings - Application Administration - Terraform Enterprise"
 ---
 
 # Administration: General Settings

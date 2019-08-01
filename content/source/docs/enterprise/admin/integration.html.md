@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Integrations - Admin - Terraform Enterprise"
+page_title: "Integrations - Application Administration - Terraform Enterprise"
 ---
 
 # Administration: Service Integrations

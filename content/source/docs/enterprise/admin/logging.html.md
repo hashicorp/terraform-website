@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Logging - Terraform Enterprise"
+page_title: "Logging - Infrastructure Administration - Terraform Enterprise"
 ---
 
 # Terraform Enterprise Logs
