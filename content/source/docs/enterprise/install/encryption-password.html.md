@@ -25,7 +25,7 @@ encryption password itself and details in PostgreSQL.
 The password can be specified during an unattended
 installation with the installer option `enc_password`
 within the [application settings JSON file when
-using the automated install procedure](/docs/enterprise/automating-the-installer.html#available-settings):
+using the automated install procedure](./automating-the-installer.html#available-settings):
 
 ```json
 {

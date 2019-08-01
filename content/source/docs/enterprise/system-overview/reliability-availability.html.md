@@ -60,7 +60,7 @@ The below tables explain where each data type in the
 [Storage Layer](#components) is stored and
 the corresponding snapshot and restore procedure. For the data types that use
 Terraform Enterprise's built-in snapshot and restore function, follow
-[these instructions](./automated-recovery.html). For the data types that do
+[these instructions](../admin/automated-recovery.html). For the data types that do
 **not** use the built-in functionality, backup and restore is the responsibility
 of the user.
 
@@ -95,7 +95,7 @@ be configured hourly such that the worst-case data loss can be as low as 1 hour.
 mechanism in demo mode is to create a new instance and use the builtin Restore
 mechanism to recreate it from a previous snapshot.
 
-[Configure Snapshot and Restore following these instructions](./automated-recovery.html).
+[Configure Snapshot and Restore following these instructions](../admin/automated-recovery.html).
 
 ### Mounted Disk
 
@@ -112,7 +112,7 @@ volumes on the instance. The built-in snapshot mechanism can package up the
 Configuration data and store it off the instance, and the built-in restore
 mechanism can recover the configuration data and restore
 operation in the event of a failure.
-Configure snapshot and restore by following the [automated recovery instructions](./automated-recovery.html).
+Configure snapshot and restore by following the [automated recovery instructions](../admin/automated-recovery.html).
 
 If the instance running Terraform Enterprise is lost, the use of mounted disks
 means no state data is lost.
@@ -135,12 +135,12 @@ _Configuration Data_ for the installation is stored in Docker
 volumes on the instance. The built-in snapshot mechanism can package up the
 data and store it off the instance, and the built-in restore
 mechanism can recover the data and restore operation in the event of a failure.
-Configure snapshot and restore by following the [automated recovery instructions](./automated-recovery.html).
+Configure snapshot and restore by following the [automated recovery instructions](../admin/automated-recovery.html).
 
 If the instance running Terraform Enterprise is lost, the use of
 external services means no state data is lost.
 
--> **NOTE:** Customers running an [optional external Vault cluster](./vault.html) are
+-> **NOTE:** Customers running an [optional external Vault cluster](../before-installing/vault.html) are
 responsible for backing up the Vault data and restoring it if necessary.
 
 ### Availability During Upgrades

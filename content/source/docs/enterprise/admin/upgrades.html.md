@@ -6,7 +6,7 @@ page_title: "Upgrades - Infrastructure Administration - Terraform Enterprise"
 # Upgrading
 
 This section explains how to upgrade Terraform Enterprise to a new
-version. [Learn more about availability during upgrades here](./reliability-availability.html#availability-during-upgrades-1).
+version. [Learn more about availability during upgrades here](../system-overview/reliability-availability.html#availability-during-upgrades-1).
 
 ## Online
 

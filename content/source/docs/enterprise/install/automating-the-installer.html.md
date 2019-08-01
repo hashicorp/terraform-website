@@ -16,7 +16,7 @@ Before starting the install process, you must:
 
 You may also need to provide additional flags (such as the instance's public and private IP addresses) in order to avoid being prompted for those values when running the installer (which may result in either a failure of the installer or a unbounded delay while waiting for input).
 
-It's expected that the user is already familiar with how to do a [manual install](./install-installer.html#installation).
+This document expects that the user is already familiar with how to do a [manual install](./installer.html#installation).
 
 ## Application settings
 
@@ -68,7 +68,7 @@ $ python -m json.tool settings.json
 
 ### Discovery
 
-One the easiest ways to get the settings is to [perform a manual install](./install-installer.html#installation) and configure all the settings the way you want them. Then you can SSH in, request the settings in JSON format and use that file in a future automated install.
+One the easiest ways to get the settings is to [perform a manual install](./installer.html#installation) and configure all the settings the way you want them. Then you can SSH in, request the settings in JSON format and use that file in a future automated install.
 
 -> **Note**: `replicatedctl` is located at `/usr/local/bin/replicatedctl`. On some operating systems, `/usr/local/bin` is not in the user's `$PATH`. In these cases, either add `/usr/local/bin` to the `$PATH` or refer to `replicatedctl` with the full path.
 
@@ -144,10 +144,10 @@ The following settings apply to every installation:
 
 - `hostname` — (Required) The hostname you will use to access your installation.
 - `installation_type` — (Required) One of `poc` or `production`.
-- `enc_password` — Set the [encryption password](/docs/enterprise/encryption-password.html) for the install
+- `enc_password` — Set the [encryption password](./encryption-password.html) for the install
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`.
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`.
-- `enable_metrics_collection` — Whether Terraform Enterprise's [internal metrics collection](./monitoring.html#internal-monitoring) should be enabled; defaults to `true`.
+- `enable_metrics_collection` — Whether Terraform Enterprise's [internal metrics collection](../admin/monitoring.html#internal-monitoring) should be enabled; defaults to `true`.
 - `iact_subnet_list` - A comma-separated list of CIDR masks that configure the ability to retrieve the [IACT](./automating-initial-user.html) from outside the host. For example: 10.0.0.0/24. If not set, no subnets can retrieve the IACT.
 - `iact_subnet_time_limit` - The time limit that requests from the subnets listed can request the [IACT](./automating-initial-user.html), as measured from the instance creation in minutes; defaults to 60.
 - `extra_no_proxy` — (Optional) When configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
@@ -184,7 +184,7 @@ The following settings apply to every installation:
 
 - `disk_path` — Path on instance to persistent storage.
 
-#### The following settings apply if you want to use an [alternative Terraform build worker image](./install-installer.html#alternative-terraform-worker-image):
+#### The following settings apply if you want to use an [alternative Terraform build worker image](./installer.html#alternative-terraform-worker-image):
 
 - `tbw_image` - Set this to `custom_image` if you want to use an alternative Terraform build worker image. (The default is `default_image`.)
 - `custom_image_tag` - The name and tag for your alternative Terraform build worker image in the format `<name>:<tag>`. (The default is `hashicorp/build-worker:now`.)
@@ -281,7 +281,7 @@ The following is an example `/etc/replicated.conf` suitable for an automated air
 
 #### Invoking the airgap installation script
 
-Following on from the [manual airgapped install](./install-installer.html#run-the-installer-airgapped) steps, you must also have the installer bootstrapper already on the instance.  For illustrative purposes, it is assumed the installer bootstrapper has been unarchived in `/tmp`.
+Following on from the [manual airgapped install](./installer.html#run-the-installer-airgapped) steps, you must also have the installer bootstrapper already on the instance.  For illustrative purposes, it is assumed the installer bootstrapper has been unarchived in `/tmp`.
 
 Once `/etc/replicated.conf` has been created, you can now execute the install script as `root`:
 

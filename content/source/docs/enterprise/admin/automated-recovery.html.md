@@ -229,4 +229,4 @@ The instructions above are tailored for the online install method. When restorin
 1. The minimum version of Replicated is 2.31.0, rather than 2.17.0.
 1. The license file and airgap package must be in place on the new instance prior to restore. The restore process expects to find them in the same locations as they were on the original instance.
 1. The snapshot being used must also be from an airgap instance.
-1. The `install.sh` script and method used must be from the Replicated airgap installer boostrapper, using the process described for [airgap installation](./install-installer.html#run-the-installer-airgapped).
+1. The `install.sh` script and method used must be from the Replicated airgap installer boostrapper, using the process described for [airgap installation](../install/installer.html#run-the-installer-airgapped).

@@ -14,11 +14,10 @@ HashiCorp Terraform Enterprise implementations on AWS.
 ## Required Reading
 
 Prior to making hardware sizing and architectural decisions, read through the
-[installation information available for
-Terraform Enterprise](/docs/enterprise/install-installer.html)
+[pre-install checklist](../index.html)
 to familiarise yourself with the application components and architecture.
 Further, read the [reliability and availability
-guidance](/docs/enterprise/reliability-availability.html)
+guidance](../../system-overview/reliability-availability.html)
 as a primer to understanding the recommendations in this reference
 architecture.
 
@@ -28,7 +27,7 @@ architecture.
 Services_ operational mode.
 
 Depending on the chosen [operational
-mode](/docs/enterprise/preflight-installer.html#operational-mode-decision),
+mode](../index.html#operational-mode-decision),
 the infrastructure requirements for Terraform Enterprise range from a single AWS EC2 instance
 for demo installations to multiple instances connected to RDS and S3 for a
 stateless production installation.
@@ -204,7 +203,7 @@ highly available infrastructure supporting S3.
 
 ### Upgrades
 
-See [the Upgrades section](./upgrades.html) of the documentation.
+See [the Upgrades section](../../admin/upgrades.html) of the documentation.
 
 ## High Availability
 
@@ -321,7 +320,7 @@ With external services (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
 Terraform Enterprise server such as installation type, database connection settings,
 hostname. This data rarely changes. We recommend [configuring automated
-snapshots](/docs/enterprise/automated-recovery.html#1-configure-snapshots)
+snapshots](../../admin/automated-recovery.html#1-configure-snapshots)
 for this installation data so it can be recovered in the event of data
 corruption.
 

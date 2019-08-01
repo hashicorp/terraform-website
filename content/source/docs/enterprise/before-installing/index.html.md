@@ -28,7 +28,7 @@ Prepare all of the following before installing:
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
    running within Terraform Enterprise to access each other properly.
-   See [Installation: Trusting SSL/TLS Certificates](./install-installer.html#trusting-ssl-tls-certificates)
+   See [Installation: Trusting SSL/TLS Certificates](../install/installer.html#trusting-ssl-tls-certificates)
    for more on this.
 
 ## Operational Mode Decision
@@ -36,7 +36,7 @@ Prepare all of the following before installing:
 Terraform Enterprise can store its state in a few different ways, and you'll
 need to decide which works best for your installation. Each option has a
 different approach to
-[recovering from failures](./reliability-availability.html#recovery-from-failures-1)
+[recovering from failures](../system-overview/reliability-availability.html#recovery-from-failures-1)
 and should be selected based on your organization's preferences.
 
 ~> **Important:** Make this decision before you begin installation, because some modes have additional preflight requirements.
@@ -107,8 +107,8 @@ See [Network Requirements](./network-requirements.html) for details.
 
 Some operating systems have specific configuration requirements:
 
-- [RedHat Enterprise Linux (RHEL) Requirements](./rhel-install-guide.html)
-- [CentOS Requirements](./centos-install-guide.html)
+- [RedHat Enterprise Linux (RHEL) Requirements](./rhel-requirements.html)
+- [CentOS Requirements](./centos-requirements.html)
 
 For other Linux distributions, check Docker compatibility:
 

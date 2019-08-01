@@ -11,7 +11,7 @@ This document provides an overview for setting up [Minio](https://minio.io) for 
 
 ## Required Reading
 
-- Ensure you are familiar with Terraform Enterprise's operation and [installation requirements](./installer.html), and especially the [Operational Mode Decision](./preflight-installer.html#operational-mode-decision).
+- Ensure you are familiar with Terraform Enterprise's operation and [installation requirements](./index.html), and especially the [Operational Mode Decision](./index.html#operational-mode-decision).
 - Familiarize yourself with [Minio](https://minio.io).
 
 ## Overview
@@ -22,17 +22,17 @@ When configured to use external services, Terraform Enterprise must be connected
 
 ~> **Note:** This is not a production-ready configuration: it's intended to guide you to a working configuration that can later be automated and hardened.
 
-This guide will walk through installing Minio in a Docker container alongside Terraform Enterprise on the same host, with Terraform Enterprise configured in the "Production - External Services" [operational mode](./preflight-installer.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc. The guide assumes your instance will have access to the Internet and that you will be performing an online install of Terraform Enterprise.
+This guide will walk through installing Minio in a Docker container alongside Terraform Enterprise on the same host, with Terraform Enterprise configured in the "Production - External Services" [operational mode](./index.html#operational-mode-decision). Data will not be persisted outside of an ephemeral Docker volume, Minio will not start on system boot, etc. The guide assumes your instance will have access to the Internet and that you will be performing an online install of Terraform Enterprise.
 
 ### System preparation
 
-Ensure your Linux instance meets the [requirements](./preflight-installer.html#linux-instance). You will need [jq](https://stedolan.github.io/jq/) (a command-line JSON processor), and the [AWS CLI](https://aws.amazon.com/cli/).
+Ensure your Linux instance meets the [requirements](./index.html#linux-instance). You will need [jq](https://stedolan.github.io/jq/) (a command-line JSON processor), and the [AWS CLI](https://aws.amazon.com/cli/).
 
-You also need a PostgreSQL database that meets the [requirements](./preflight-installer.html#postgresql-requirements), as this is part of the external services operational mode.
+You also need a PostgreSQL database that meets the [requirements](./postgres-requirements.html), as this is part of the external services operational mode.
 
 ### Terraform Enterprise installation
 
-Begin with an [online installation](./install-installer.html#run-the-installer-online). Once the installation script has finished and you're presented with the following text, move on to the next section:
+Begin with an [online installation](../install/installer.html#run-the-installer-online). Once the installation script has finished and you're presented with the following text, move on to the next section:
 
 ```
 To continue the installation, visit the following URL in your browser:
@@ -77,7 +77,7 @@ aws --region us-east-1 --endpoint-url http://<ip address from above>:9000 s3 mb 
 
 ### Terraform Enterprise installation
 
-You may now [continue the installation in the browser](./install-installer.html#continue-installation-in-browser). When you arrive at the Operational Mode choice in the installer, follow these steps:
+You may now [continue the installation in the browser](../install/installer.html#continue-installation-in-browser). When you arrive at the Operational Mode choice in the installer, follow these steps:
 
 1. Choose the "Production" installation type
 2. Choose the "External Services" production type
