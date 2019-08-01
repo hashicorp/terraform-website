@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Automating Initial User - Terraform Enterprise"
+page_title: "Automating Initial User - Install and Config - Terraform Enterprise"
 ---
 
 # Terraform Enterprise - Automating Initial User Creation

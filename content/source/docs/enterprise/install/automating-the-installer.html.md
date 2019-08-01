@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Automated Installation - Terraform Enterprise"
+page_title: "Automated Installation - Install and Config - Terraform Enterprise"
 ---
 
 # Terraform Enterprise Automated Installation

@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Configuration - Terraform Enterprise"
+page_title: "Configuration - Install and Config - Terraform Enterprise"
 ---
 
 # Terraform Enterprise Configuration

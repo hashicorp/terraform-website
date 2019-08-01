@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Encryption Password - Terraform Enterprise"
+page_title: "Encryption Password - Install and Config - Terraform Enterprise"
 ---
 
 # Terraform Enterprise Encryption Password
