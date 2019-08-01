@@ -3,21 +3,21 @@ layout: "enterprise"
 page_title: "Externally Managed Vault - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Externally Managed Vault
+# Externally Managed Vault Requirements for Terraform Enterprise
 
 For enhanced security, Terraform Enterprise can be configured to use an external
 Vault cluster rather than the internal Vault instance. Within Terraform Enterprise, Vault is
 used to encrypt sensitive information such as variables and states.
 
-!> **Warning**: This is only recommended if you currently run your own Vault cluster in production.
+!> **Warning:** This is only recommended if you currently run your own Vault cluster in production.
 Choosing this option means you assume full responsibility for how the Vault cluster is managed;
 for example, how it is sealed and unsealed, replicated, etc.
 
-## Setup
-
-~> **Note:** The external Vault option must be selected at initial installation, and cannot be changed later.
+~> **Important:** The external Vault option must be selected at initial installation, and cannot be changed later.
 Do not attempt to migrate an existing Terraform Enterprise instance between internal and external
 Vault options.
+
+## Setup
 
 Use the following as a guide to configure an external Vault instance:
 

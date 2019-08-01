@@ -1,13 +1,13 @@
 ---
 layout: "enterprise"
-page_title: "RHEL Install Guide - Installation - Terraform Enterprise"
+page_title: "RHEL Requirements - Installation - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Installation - RHEL Install Guide
+# RHEL Requirements for Terraform Enterprise
 
-This install guide is specifically for users of Terraform Enterprise installing the product on RedHat Enterprise Linux (RHEL).
+When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure your OS and Docker configuration meat the following requirements:
 
-## Install Recommendations
+## Install Requirements
 
 * RedHat Enterprise Linux version 7.3 or later.
 * Docker 1.13.1 (available in RHEL extras), or Docker EE version 17.06 or later. The later versions are not available in the standard RHEL yum repositories.
@@ -41,15 +41,20 @@ If you opt to use Docker from RHEL extras, then you must make a change to its de
    If nothing is printed, your installation is properly configured. If anything is printed, please
    contact support for further assistance.
 
-## FAQ:
+## FAQ
+
 ### Can I use the Docker version in rpm-extras?
+
 Sure! Just be sure to have at least 1.13.1 and authorization plugins disabled.
 
 ### When I run the installer, it allows me to download and install Docker CE on RedHat. Can I use that?
+
 Yes, Docker CE is compatible with the current installer. However, it is not directly [supported by RedHat](https://access.redhat.com/articles/2726611). You still need to be sure that the storage backend is configured properly as by default, Docker will be using devicemapper in loopback, an entirely unsupported mode.
 
 ### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
+
 No. This is an installation that docker provides as sample and is not supported by Terraform Enterprise due to the significant instability in it. Docker themselves do not suggest using this mode: https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-loop-lvm-mode-for-testing
 
 ### How do I know if an installation is in devicemapper loopback mode?
+
 Run the command `sudo docker info | grep dev/loop`. If there is any output, you’re in devicemapper loopback mode. Docker may also print warning about loopback mode when you run the above command, which is another indicator.

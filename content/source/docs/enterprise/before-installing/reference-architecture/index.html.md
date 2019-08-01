@@ -1,11 +1,11 @@
 ---
 layout: "enterprise"
-page_title: "Reference Architecture - Terraform Enterprise"
+page_title: "Reference Architectures - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Reference Architecture
+# Terraform Enterprise Reference Architectures
 
-HashiCorp provides Reference Architectures detailing the recommended
+HashiCorp provides reference architectures detailing the recommended
 infrastructure and resources that should be provisioned in order to
 support a highly-available Terraform Enterprise deployment.
 
@@ -15,7 +15,7 @@ the deployment, for example, most major cloud service providers offer
 a resilient relational database service offering, removing the need
 for the customer to manage a complex database cluster/failover
 architecture. We have taken this into consideration and created a
-Reference Architecture for the most common deployment configurations,
+reference architecture for the most common deployment configurations,
 making the most appropriate use of those cloud vendor services.
 
 ## Reference Architectures

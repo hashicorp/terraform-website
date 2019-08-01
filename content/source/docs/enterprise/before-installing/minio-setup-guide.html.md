@@ -5,7 +5,7 @@ description: |-
   This document provides an overview for setting up Minio for external object storage for HashiCorp Terraform Enterprise.
 ---
 
-# Terraform Enterprise Installation - Minio Setup Guide
+# Minio Setup Guide for Terraform Enterprise
 
 This document provides an overview for setting up [Minio](https://minio.io) for external object storage for HashiCorp Terraform Enterprise.
 

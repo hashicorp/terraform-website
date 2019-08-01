@@ -132,13 +132,6 @@ You will again be asked if you want to copy the state file. Type `yes` and the s
 
 ---
 
-## Network Requirements
-
-The network requirements for Terraform Enterprise are located on the
-[preflight requirements page](/docs/enterprise/preflight-installer.html#network-requirements).
-
----
-
 ## Terraform Enterprise Architecture
 
 This section describes aspects of the architecture of Terraform Enterprise. It was written for a prior implementation of Terraform Enterprise, and may be outdated; we plan to review our architecture docs in the near future.
