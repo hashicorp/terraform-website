@@ -40,7 +40,7 @@ To access the SMTP settings, click **SMTP** in the left menu. To enable SMTP, ch
 * **Username**: Username used to authenticate to the server. Not required if the authentication setting is `none`.
 * **Password**: Password to authenticate to the server. Not required if the authentication setting is `none`.
 
--> **Note**: The SMTP server used with Terraform Enterprise must support connection via SSL with a valid certificate.
+-> **Note**: The SMTP server used with Terraform Enterprise must support connection via SSL with a valid certificate and *STARTTLS* secure communication, *SMTPS* is not supported in Terraform Enterprise.
 
 ## Twilio Integration
 
