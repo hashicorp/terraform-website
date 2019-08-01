@@ -459,7 +459,7 @@ Impersonation allows an admin to begin a new session as another user in the syst
 
 This endpoint does not respond with a body, but the response does include a `Set-Cookie` header to persist a new session.
 
-~> **Important:** Impersonating via the API requires you to switch to an alternate authentication flow that is not based on Terraform Cloud's normal API tokens; instead, you must acquire and persist both an `_atlas_session_data=...` cookie and an `X-CSRF-Token` header. Instructions for doing this are beyond the scope of this document. If you believe you need to automate user impersonation, please [contact HashiCorp Support](/docs/enterprise/faq.html#support-for-private-terraform-enterprise) for assistance.
+~> **Important:** Impersonating via the API requires you to switch to an alternate authentication flow that is not based on Terraform Cloud's normal API tokens; instead, you must acquire and persist both an `_atlas_session_data=...` cookie and an `X-CSRF-Token` header. Instructions for doing this are beyond the scope of this document. If you believe you need to automate user impersonation, please [contact HashiCorp Support](/docs/enterprise/support/index.html) for assistance.
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
