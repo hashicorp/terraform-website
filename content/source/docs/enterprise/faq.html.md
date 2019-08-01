@@ -9,50 +9,11 @@ This page provides answers to many common questions about Terraform Enterprise.
 
 ## General FAQ
 
-1. [Support](#support-for-terraform-enterprise)
-2. [Managing Tool Versions](#managing-tool-versions)
 3. [Migration from the Terraform Cloud SaaS](#migrating-from-the-terraform-cloud-saas)
-1. [Network Requirements](#network-requirements)
 7. [Terraform Enterprise Architecture](#terraform-enterprise-architecture)
 
 ---
 
-## Support for Terraform Enterprise
-
-If some aspect of Terraform Enterprise is not working as
-expected, please reach out to support for help.
-
-### Email
-
-You can engage HashiCorp support via the web portal at https://support.hashicorp.com or
-by email at <support@hashicorp.com>. Please make sure
-to use your organization email (not your personal email) when contacting us so
-we can associate the support request with your organization and expedite our
-response.
-
-### Diagnostics
-
-For most technical issues, HashiCorp support will ask you to include diagnostic
-information in your support request. To ensure the required information is included,
-Terraform Enterprise can [automatically generate a support bundle](./diagnostics.html) including logs and configuration details.
-
-## Managing Tool Versions
-
-Terraform Enterprise has a control panel that allows admins to manage the versions of Terraform and Packer and their download locations.
-
-In Terraform Enterprise installations 201807-1 or later, see [Managing Tool Versions](admin/resources.html#managing-terraform-versions).
-
-In older Terraform Enterprise installations (prior to 201807-1) this control panel is available at the `/admin/tools` path or as a link in the sidebar from the general administrative interface at `/admin/manager`.
-
-![admin-tools-index](assets/admin-tools-index.png)
-
-Here you'll find a list of Packer and Terraform versions as well as a link to add tool versions. If you click the `Edit` button on an individual tool version, you'll see that each version consists of:
-
-* **Version Number** - will show up in dropdown lists for users to select
-* **Download URL** - must point to a `linux-amd64` build of the tool
-* **SHA256 Checksum Value** - must match the SHA256 checksum value of the download
-
-![admin-tools-edit](assets/admin-tools-edit.png)
 
 ## Migrating from the Terraform Cloud SaaS
 
