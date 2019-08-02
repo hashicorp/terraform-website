@@ -20,10 +20,10 @@ making the most appropriate use of those cloud vendor services.
 
 ## Reference Architectures
 
-- [Amazon Web Services](./aws-setup-guide.html)
+- [Amazon Web Services](./aws.html)
 
-- [Microsoft Azure](./azure-setup-guide.html)
+- [Microsoft Azure](./azure.html)
 
-- [Google Cloud Platform](./gcp-setup-guide.html)
+- [Google Cloud Platform](./gcp.html)
 
-- [VMware](./vmware-setup-guide.html)
+- [VMware](./vmware.html)

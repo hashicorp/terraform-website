@@ -46,7 +46,7 @@ The operational mode is selected at install time and cannot be changed once Terr
    stateful data used by the instance in an external PostgreSQL database and
    an external S3-compatible endpoint or Azure blob storage. There is still critical data
    stored on the instance that must be managed with snapshots. Be sure to
-   check the [PostgreSQL Requirements](#postgresql-requirements) for information that
+   check the [PostgreSQL Requirements](./postgres-requirements.html) for information that
    needs to be present for Terraform Enterprise to work. This option is best
    for users with expertise managing PostgreSQL or users that have access
    to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/).

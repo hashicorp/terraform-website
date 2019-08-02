@@ -229,7 +229,7 @@ not changed since installation, both TFE1 and TFE2 will
 use the same configuration and no action is required.
 
 If the
-configuration on the active instance changes, you should [create a snapshot](../../admin/automated-recovery.html#1-configure-snapshots) via the
+configuration on the active instance changes, you should [create a snapshot](../../admin/automated-recovery.html#configure-snapshots) via the
 UI or CLI and recover this to the standby instance so that both instances use the
 same configuration.
 
@@ -301,7 +301,7 @@ When using the _Production - External Services_ deployment model (PostgreSQL Dat
 Terraform Enterprise server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. We recommend
 [configuring automated
-snapshots](../../admin/automated-recovery.html#1-configure-snapshots)
+snapshots](../../admin/automated-recovery.html#configure-snapshots)
 for this installation data so it can be recovered in the event of data
 corruption.
 

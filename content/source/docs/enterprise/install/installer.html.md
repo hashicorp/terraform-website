@@ -10,7 +10,7 @@ page_title: "Installation - Install and Config - Terraform Enterprise"
 This document outlines the procedure for using the Terraform Enterprise
 installer to set up Terraform Enterprise on a customer-controlled machine.
 
--> **Important:** Before you begin, consult [Preflight](../before-installing/index.html) for prerequisites. You'll need to prepare data files and a Linux instance.
+-> **Important:** Before you begin, consult the [Pre-Install Checklist](../before-installing/index.html) for prerequisites. You'll need to prepare data files and a Linux instance.
 
 ## Proxy Usage
 
@@ -142,7 +142,7 @@ need to decide which works best for your installation. Each option has a
 different approach to
 [recovering from failures](../system-overview/reliability-availability.html#recovery-from-failures-1).
 The mode should be selected based on your organization's needs. See
-[Preflight: Operational Mode Decision](../before-installing/index.html#operational-mode-decision)
+[Pre-Install Checklist: Operational Mode Decision](../before-installing/index.html#operational-mode-decision)
 for more details.
 
 ## Installation
@@ -174,7 +174,7 @@ If the instance cannot reach the Internet, follow these steps to begin an Airgap
     * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
     * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
 1. [Download the installer bootstrapper](https://install.terraform.io/airgap/latest.tar.gz) and put it into its own directory on the instance (e.g. `/opt/tfe-installer/`)
-1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Preflight: Software Requirements](../before-installing.html#software-requirements) for details).
+1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Pre-Install Checklist: Software Requirements](../before-installing/index.html#software-requirements) for details).
 
 #### Execute the Installer
 
@@ -206,7 +206,7 @@ From a shell on your instance, in the directory where you placed the `replicated
    but we strongly suggest you create your own password. Be sure to retain the value, because you will need to use this
    password to restore access to the data in the event of a reinstall. See [Encryption Password](./encryption-password.html) for more information.
 1. Configure the operational mode for this installation. See
-   [Pre-Install Checklist: Operational Modes](../before-installing/index.html#operational-mode-decision) for information on what the different values are. Ensure that you've met the relevant preflight requirements for the mode you chose.
+   [Pre-Install Checklist: Operational Modes](../before-installing/index.html#operational-mode-decision) for information on what the different values are. Ensure that you've met the relevant pre-install requirements for the mode you chose.
 1. _Optional:_ Adjust the concurrent capacity of the instance. This should
    only be used if the hardware provides more resources than the baseline
    configuration and you wish to increase the work that the instance does

@@ -283,7 +283,7 @@ With external services (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
 Terraform Enterprise server such as installation type, database connection settings,
 hostname. This data rarely changes. We recommend [configuring automated
-snapshots](../../system-overview/automated-recovery.html#1-configure-snapshots)
+snapshots](../../system-overview/automated-recovery.html#configure-snapshots)
 for this installation data so it can be recovered in the event of data
 corruption.
 

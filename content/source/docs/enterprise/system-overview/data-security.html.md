@@ -28,4 +28,5 @@ seriously. This table lists which parts of the Terraform Enterprise app can cont
 | Vault Unseal Key                     | PostgreSQL    | ChaCha20+Poly1305                     |
 
 ## Vault Transit Encryption
-The [Vault Transit Secret Engine](https://www.vaultproject.io/docs/secrets/transit/index.html) handles encryption for data in-transit and is used when encrypting data from the application to the applicable [storage layer](/docs/enterprise/reliability-availability.html#components).
+
+The [Vault Transit Secret Engine](https://www.vaultproject.io/docs/secrets/transit/index.html) handles encryption for data in-transit and is used when encrypting data from the application to the applicable [storage layer](./reliability-availability.html#components).
