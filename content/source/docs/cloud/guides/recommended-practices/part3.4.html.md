@@ -1,6 +1,6 @@
 ---
 page_title: "Part 3.4: Advanced Workflow Improvements - Terraform Recommended Practices"
-layout: "cloud"
+layout: "guides"
 ---
 
 # Part 3.4: Advanced Improvements to Collaborative Infrastructure as Code

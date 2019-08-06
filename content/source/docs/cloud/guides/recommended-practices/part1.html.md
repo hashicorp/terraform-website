@@ -1,6 +1,6 @@
 ---
 page_title: "Part 1: Overview of Our Recommended Workflow - Terraform Recommended Practices"
-layout: "cloud"
+layout: "guides"
 ---
 
 
