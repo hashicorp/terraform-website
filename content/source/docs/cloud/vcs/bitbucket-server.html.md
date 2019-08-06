@@ -57,11 +57,9 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
     ![Terraform Cloud screenshot: text fields for adding a Bitbucket Server VCS provider](./images/bitbucket-server-tfe-add-client-fields.png)
 
-6. Select your appropriate "Server Version". See the "Before You Begin" section in this document for assistance.
+6. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket Server client.
 
-7. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket Server client.
-
-8. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Consumer Key** and **Public Key.**
+7. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Consumer Key** and **Public Key.**
 
     ![Terraform Cloud screenshot: Consumer key and public key](./images/bitbucket-server-tfe-consumer-and-public-key.png)
 
