@@ -51,7 +51,7 @@ Interactive guides to teach you how to use Terraform's features. Begin with the 
 Detailed descriptions of various Terraform workflows, both general and specific. This includes things like:
 
 - [The end-to-end loop of making infrastructure changes with Terraform](/guides/core-workflow.html)
-- [The long-term process of evolving provisioning practices in a large organization](/docs/enterprise/guides/recommended-practices/index.html)
+- [The long-term process of evolving provisioning practices in a large organization](/docs/cloud/guides/recommended-practices/index.html)
 - [Tasks for upgrading to major new Terraform versions](/upgrade-guides/index.html)
 
 This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the guides at [Learn Terraform](https://learn.hashicorp.com/terraform/)), but to explain best practices and show how the different pieces of a workflow fit together.
