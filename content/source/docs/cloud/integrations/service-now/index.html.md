@@ -35,6 +35,10 @@ To start using Terraform with ServiceNow Catalog Integration, you must already h
 - A [supported version control system](../../vcs/index.html#supported-vcs-providers) (VCS) with read access to repositories with Terraform configuration.
 - A git repository to host the ServiceNow integration.
 
+It does not require additional ServiceNow modules and has been tested on the following ServiceNow server versions:
+- Madrid
+- London
+
 ## Terraform Enterprise Setup
 
 Before installing the ServiceNow integration, you need to perform some setup and gather some information in Terraform Enterprise.
