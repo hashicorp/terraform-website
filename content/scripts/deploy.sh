@@ -102,6 +102,8 @@ if [ -z "$NO_UPLOAD" ]; then
     --exclude "*" \
     --include "*.png" \
     --include "*.gif" \
+    --include "*.jpg" \
+    --include "*.jpeg" \
     --acl-public \
     --recursive \
     setacl "s3://hc-sites/$PROJECT/latest/"
