@@ -1,14 +1,13 @@
 ---
-layout: enterprise2
+layout: "enterprise"
 page_title: "ADFS Configuration - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-saml-identity-provider-configuration-adfs"
 ---
 
 # ADFS Configuration
 
-This guide explains how to configure Active Directory Federated Services (ADFS) in order to use it as an Identity Provider (IdP) for PTFE's SAML authentication feature. The screenshots below were taken on Windows Server 2016, and the UI may not look the same on previous Windows versions.
+This guide explains how to configure Active Directory Federated Services (ADFS) in order to use it as an Identity Provider (IdP) for Terraform Enterprise's SAML authentication feature. The screenshots below were taken on Windows Server 2016, and the UI may not look the same on previous Windows versions.
 
-This document assumes that you have already installed and configured ADFS and that you are using PTFE version v201807-1 or later.
+This document assumes that you have already installed and configured ADFS and that you are using Terraform Enterprise version v201807-1 or later.
 
 ## Gather ADFS information
 
@@ -32,7 +31,7 @@ This document assumes that you have already installed and configured ADFS and th
 10. Review the settings and click "Finish".
   ![saml_10](./images/saml_10.png)
 
-## Configure PTFE
+## Configure Terraform Enterprise
 
 1. Visit `https://<TFE HOSTNAME>/app/admin/saml`.
 2. Set "Single Sign-on URL" to `https://<ADFS hostname>/<URL Path>`, using the path you noted above in step 4.
@@ -91,7 +90,7 @@ This document assumes that you have already installed and configured ADFS and th
 #### Send Group Membership as a Claim
 
 7. Click "Add Rule", and then select "Send Group Membership as a Claim" from the `Claim rule template` dropdown. Click "Next".
-8. Click "Browse" and locate the AD User group that contains all PTFE admins.
+8. Click "Browse" and locate the AD User group that contains all Terraform Enterprise admins.
    ![saml_26](./images/saml_26.png)
   - Set `Outgoing claim type` to `MemberOf`.
   - Set `Outgoing claim value` to `site-admins`.

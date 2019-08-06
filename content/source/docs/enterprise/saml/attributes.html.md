@@ -1,7 +1,6 @@
 ---
-layout: enterprise2
+layout: "enterprise"
 page_title: "SAML User Attributes - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-saml-attributes"
 ---
 
 # Attributes
@@ -22,7 +21,7 @@ If Username is specified, TFE will assign that username to the user instead of u
 
 ## SiteAdmin
 
-If the SiteAdmin attribute is present, the system will grant or revoke [site admin access](../private/admin/index.html) for the user. Site admin access can be also be granted or revoked in the [MemberOf attribute](#memberof); however the SiteAdmin attribute is the recommended method of managing access and will override the other value.
+If the SiteAdmin attribute is present, the system will grant or revoke [site admin access](../admin/admin-access.html) for the user. Site admin access can be also be granted or revoked in the [MemberOf attribute](#memberof); however the SiteAdmin attribute is the recommended method of managing access and will override the other value.
 
 ```xml
 <saml:AttributeStatement>
@@ -57,7 +56,7 @@ or in one AttributeValue as a comma-separated list:
 </saml:AttributeStatement>
 ```
 
-There is a special-case role `site-admins` that will add a user as a site admin to your private Terraform Enterprise instance.
+There is a special-case role `site-admins` that will add a user as a site admin to your Terraform Enterprise instance.
 
 ```xml
 <saml:AttributeStatement>

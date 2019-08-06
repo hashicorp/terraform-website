@@ -1,0 +1,248 @@
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+    <h4><a href="/docs/enterprise/index.html">Terraform Enterprise</a></h4>
+
+    <a href="#" class="subnav-toggle">(Expand/collapse all)</a>
+
+    <ul class="nav docs-sidenav">
+      <li>
+        <a href="/docs/enterprise/index.html">Overview</a>
+      </li>
+
+      <li>
+        <a href="#">Before Installing</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/enterprise/before-installing/index.html">Pre-Install Checklist</a>
+          </li>
+
+          <li>
+            <a href="#">Reference Architectures</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/enterprise/before-installing/reference-architecture/index.html">Overview</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/before-installing/reference-architecture/aws.html">AWS Reference Architecture</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/before-installing/reference-architecture/azure.html">Azure Reference Architecture</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/before-installing/reference-architecture/gcp.html">GCP Reference Architecture</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/before-installing/reference-architecture/vmware.html">VMware Reference Architecture</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">Data Storage Requirements</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/enterprise/before-installing/postgres-requirements.html">PostgreSQL Requirements</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/before-installing/disk-requirements.html">Mounted Disk Requirements</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/before-installing/minio-setup-guide.html">Minio Setup Guide</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/before-installing/vault.html">Externally Managed Vault</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="/docs/enterprise/before-installing/network-requirements.html">Network Requirements</a>
+          </li>
+
+          <li>
+            <a href="#">OS-Specific Requirements</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/enterprise/before-installing/rhel-requirements.html">RedHat Enterprise Linux Requirements</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/before-installing/centos-requirements.html">CentOS Requirements</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </li> <%# end before installing %>
+
+      <li>
+        <a href="#">Install and Configure</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/enterprise/install/index.html">Overview</a>
+          </li>
+
+          <li>
+            <a href="#">Interactive</a>
+            <ul class="nav nav-auto-expand">
+              <li>
+                <a href="/docs/enterprise/install/installer.html">1. Run Installer</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/install/config.html">2. Configure in Browser</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">Automated</a>
+            <ul class="nav nav-auto-expand">
+              <li>
+                <a href="/docs/enterprise/install/automating-the-installer.html">Automated Installation</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/install/automating-initial-user.html">Initial User Automation </a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/install/encryption-password.html">Encryption Password</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </li> <%# End install and configure %>
+
+
+      <li>
+        <a href="#">User Management</a>
+        <ul class="nav">
+          <li>
+            <a href="#">SAML SSO</a>
+            <ul class="nav nav-auto-expand">
+              <li>
+                <a href="/docs/enterprise/saml/index.html">Overview</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/saml/configuration.html">Configuration</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/saml/team-membership.html">Team Membership</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/saml/attributes.html">Attributes</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/saml/login.html">Login</a>
+              </li>
+              <li>
+                <a href="#">IdP Configuration</a>
+                <ul class="nav nav-auto-expand">
+                  <li>
+                    <a href="/docs/enterprise/saml/identity-provider-configuration.html">Overview</a>
+                  </li>
+                  <li>
+                    <a href="/docs/enterprise/saml/identity-provider-configuration-adfs.html">ADFS</a>
+                  </li>
+                  <li>
+                    <a href="/docs/enterprise/saml/identity-provider-configuration-aad.html">Azure Active Directory</a>
+                  </li>
+                  <li>
+                    <a href="/docs/enterprise/saml/identity-provider-configuration-okta.html">Okta</a>
+                  </li>
+                  <li>
+                    <a href="/docs/enterprise/saml/identity-provider-configuration-onelogin.html">OneLogin</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="/docs/enterprise/saml/troubleshooting.html">Troubleshooting</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </li> <%# End users / saml %>
+
+
+      <li>
+        <a href="#">Administration</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/enterprise/admin/index.html">Overview</a>
+          </li>
+
+          <li>
+            <a href="#">Infrastructure</a>
+            <ul class="nav nav-auto-expand">
+              <li>
+                <a href="/docs/enterprise/admin/automated-recovery.html">Automated Recovery</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/admin/upgrades.html">Upgrades</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/admin/logging.html">Logging</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/admin/monitoring.html">Monitoring</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">Application</a>
+            <ul class="nav nav-auto-expand">
+              <li>
+                <a href="/docs/enterprise/admin/admin-access.html">Accessing the Admin Interface</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/admin/general.html">General Settings</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/admin/integration.html">Integration Settings</a>
+              </li>
+              <li>
+                <a href="/docs/enterprise/admin/resources.html">Managing Accounts &amp; Resources</a>
+              </li>
+              <li>
+                <a href="/docs/cloud/api/admin/index.html">Admin API</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </li> <%# End administration %>
+
+
+      <li>
+        <a href="#">System Overview</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/enterprise/system-overview/index.html">Introduction</a>
+          </li>
+          <li>
+            <a href="/docs/enterprise/system-overview/architecture.html">Architecture Summary</a>
+          </li>
+          <li>
+            <a href="/docs/enterprise/system-overview/reliability-availability.html">Reliability &amp; Availability</a>
+          </li>
+          <li>
+            <a href="/docs/enterprise/system-overview/data-security.html">Data Security</a>
+          </li>
+          <li>
+            <a href="/docs/enterprise/system-overview/capacity.html">Capacity &amp; Performance</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/enterprise/support/index.html">Support</a>
+      </li>
+
+    </ul>
+
+    <%= partial("layouts/otherdocs", :locals => { :skip => "Terraform Enterprise" }) %>
+
+  <% end %>
+
+  <%= yield %>
+<% end %>
