@@ -36,6 +36,7 @@ To start using Terraform with ServiceNow Catalog Integration, you must already h
 - A git repository to host the ServiceNow integration.
 
 It does not require additional ServiceNow modules and has been tested on the following ServiceNow server versions:
+
 - Madrid
 - London
 
