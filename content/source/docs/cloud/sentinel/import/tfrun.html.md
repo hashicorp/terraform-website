@@ -22,7 +22,7 @@ tfrun
     └── vcs_repo (map of keys)
 ```
 
--> Note: When policies using this import, keep in mind that workspace
+-> **Note:** When writing policies using this import, keep in mind that workspace
 data is generally editable by users outside of the context of policy
 enforcement. For example, consider the case of omitting the enforcement of
 policy rules for development workspaces by the workspace name (allowing the
@@ -79,14 +79,14 @@ This value can be `null`.
 * **Value Type:** Boolean.
 
 The `auto_apply` value within the [workspace namespace](#namespace-workspace)
-contains the workspace [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) setting.
+contains the workspace's [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) setting.
 
 ### Value: `working_directory`
 
 * **Value Type:** String.
 
 The `working_directory` value within the [workspace namespace](#namespace-workspace)
-contains the working directory of the workspace.
+contains the configured [Terraform working directory](../../workspaces/settings.html#terraform-working-directory) of the workspace.
 
 This value is an empty string (`""`) when no working directory is set.
 
@@ -95,7 +95,7 @@ This value is an empty string (`""`) when no working directory is set.
 * **Value Type:** A string-keyed map of values.
 
 The `vcs_repo` value within the [workspace namespace](#namespace-workspace)
-data associated with a VCS repository connected to the workspace.
+contains data associated with a VCS repository connected to the workspace.
 
 Details regarding each attribute can be found in the documentation for the Terraform Cloud [Workspaces API](../../api/workspaces.html).
 
