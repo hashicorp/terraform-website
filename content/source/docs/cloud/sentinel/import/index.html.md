@@ -22,7 +22,7 @@ state, and plan associated with runs.
 - [tfstate](./tfstate.html) - This provides access to the Terraform state, the
   file used by Terraform to map real world resources to your configuration.
 - [tfrun](./tfrun.html) - This provides access to data associated with a run
-  in Terraform Enterprise, such as the run's workspace.
+  in Terraform Cloud, such as the run's workspace.
 
 Terraform Cloud allows you to create mocks of these imports from plans for
 use with the mocking or testing features of the [Sentinel

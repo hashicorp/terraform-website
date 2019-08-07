@@ -1,7 +1,6 @@
 ---
-layout: enterprise2
-page_title: "tfrun - Imports - Sentinel - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-sentinel-imports-tfrun"
+layout: cloud
+page_title: "tfrun - Imports - Sentinel - Terraform Cloud"
 description: |-
     The `tfrun` import provides access to data associated with a Terraform run.
 ---
@@ -31,7 +30,7 @@ policy to pass if the workspace ends in `-dev`). While this is useful for
 extremely granular exceptions, the workspace name could be edited by
 workspace admins, effectively bypassing the policy. In this case, where an
 extremely strict separation of policy managers vs. workspace practitioners is
-required, using [policy sets](/docs/enterprise/sentinel/manage-policies.html)
+required, using [policy sets](../manage-policies.html)
 to only enforce the policy on non-development workspaces is more appropriate.
 
 [run-glossary]: /docs/glossary.html#run
@@ -63,7 +62,7 @@ main = rule {
         true
     } else
         meets_production_policy
-    } 
+    }
 }
 ```
 
@@ -80,7 +79,7 @@ This value can be `null`.
 * **Value Type:** Boolean.
 
 The `auto_apply` value within the [workspace namespace](#namespace-workspace)
-contains the workspace [auto-apply](/docs/enterprise/workspaces/settings.html#auto-apply-and-manual-apply) setting.
+contains the workspace [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) setting.
 
 ### Value: `working_directory`
 
@@ -98,7 +97,7 @@ This value is an empty string (`""`) when no working directory is set.
 The `vcs_repo` value within the [workspace namespace](#namespace-workspace)
 data associated with a VCS repository connected to the workspace.
 
-Details regarding each attribute can be found in the documentation for the Terraform Cloud [Workspaces API](/docs/enterprise/api/workspaces.html).
+Details regarding each attribute can be found in the documentation for the Terraform Cloud [Workspaces API](../../api/workspaces.html).
 
 ```
 vcs_repo (map of keys)
