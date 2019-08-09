@@ -23,7 +23,7 @@ configuration, as opposed to trying to update the existing resource.
 ## Primitive Behaviors 
 ### Optional
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
-**Values:** `true` or `false`  
+**Values:** `true` 
 **Restrictions:**
 
 - Cannot be used if `Required` is `true`
@@ -52,7 +52,7 @@ resource "example_volume" "ex" {
 
 ### Required
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
-**Values:** `true` or `false`  
+**Values:** `true`
 **Restrictions:**  
 
 - Cannot be used if `Optional` is `true`
@@ -122,7 +122,7 @@ resource "example_volume" "ex" {
 
 ### Computed
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
-**Value:** `true` or `false`    
+**Value:** `true`   
 **Restrictions:**  
 
 - Cannot be used when `Required` is `true`
@@ -159,7 +159,7 @@ output "volume_uuid" {
 
 ### ForceNew
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
-**Value:** `true` or `false`  
+**Value:** `true` 
 
 `ForceNew` indicates that any change in this field requires the resource to be
 destroyed and recreated. 
