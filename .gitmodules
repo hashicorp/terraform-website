@@ -430,3 +430,7 @@
 	path = ext/providers/aci
 	url = https://github.com/terraform-providers/terraform-provider-aci
 	branch = stable-website
+[submodule "ext/providers/exoscale"]
+	path = ext/providers/exoscale
+	url = https://github.com/exoscale/terraform-provider-exoscale
+	branch = master
