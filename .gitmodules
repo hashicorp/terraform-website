@@ -433,4 +433,4 @@
 [submodule "ext/providers/exoscale"]
 	path = ext/providers/exoscale
 	url = https://github.com/exoscale/terraform-provider-exoscale
-	branch = master
+	branch = stable-website
