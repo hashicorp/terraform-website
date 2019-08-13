@@ -21,6 +21,9 @@ and then recreate the resource if any of the attributes change in the
 configuration, as opposed to trying to update the existing resource.
 
 ## Primitive Behaviors 
+
+-> **Note:** The primitive behavior fields cannot be set to `false`. You can opt out of a behavior by omitting it.
+
 ### Optional
 **Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
 **Values:** `true` 
