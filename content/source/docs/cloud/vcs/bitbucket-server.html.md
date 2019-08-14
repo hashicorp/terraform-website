@@ -47,11 +47,9 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 2. The next page has a drop-down and several text fields. Select "Bitbucket Server" from the drop-down.
 
-3. Select your appropriate "Server Version". See the "Before You Begin" section in this document for assistance.
+3. (Optional) Enter a display name for your Bitbucket Server VCS Provider.
 
-4. (Optional) Enter a display name for your Bitbucket Server VCS Provider.
-
-5. Enter the URL of your Bitbucket Server instance in the HTTP URL and API URL fields. The API URL should be the same as the HTTP URL.
+4. Enter the URL of your Bitbucket Server instance in the HTTP URL and API URL fields. The API URL should be the same as the HTTP URL.
 
     ~> **Note:** If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL. If you omit the port in the URL, Terraform Cloud uses the standard port for the protocol (80 for HTTP, 443 for HTTPS).
 
