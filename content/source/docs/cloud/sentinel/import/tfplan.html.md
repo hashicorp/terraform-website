@@ -47,6 +47,8 @@ tfplan
 │       └── resources
 │           └── TYPE.NAME[NUMBER]
 │               ├── applied (map of keys)
+│               ├── destroy (bool)
+│               ├── requires_new (bool)
 │               └── diff
 │                   └── KEY
 │                       ├── computed (bool)
@@ -411,6 +413,63 @@ particular complex value within the resource.
 
 See the below section for more details on the diff namespace, in addition to
 usage examples.
+
+### Value: `destroy`
+
+* **Value Type:** Boolean.
+
+The `destroy` value within the [resource
+namespace](#namespace-resources-data-sources) is `true` if a resource is being
+destroyed for _any_ reason, including cases where it's being deleted as part of
+a resource re-creation, in which case [`requires_new`](#value-requires_new) will
+also be set.
+
+As an example, given the following resource:
+
+```hcl
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
+}
+```
+
+The following policy would evaluate to `true` when `null_resource.foo` is being
+destroyed:
+
+```python
+import "tfplan"
+
+main = rule { tfplan.resources.null_resource.foo[0].destroy }
+```
+
+### Value: `requires_new`
+
+* **Value Type:** Boolean.
+
+The `requires_new` value within the [resource
+namespace](#namespace-resources-data-sources) is `true` if the resource is still
+present in the configuration, but must be replaced to satisfy its current diff.
+Whenever `requires_new` is `true`, [`destroy`](#value-destroy) is also `true`.
+
+As an example, given the following resource:
+
+```hcl
+resource "null_resource" "foo" {
+  triggers = {
+    foo = "bar"
+  }
+}
+```
+
+The following policy would evaluate to `true` if one of the `triggers` in
+`null_resource.foo` was being changed:
+
+```python
+import "tfplan"
+
+main = rule { tfplan.resources.null_resource.foo[0].requires_new }
+```
 
 ## Namespace: Resource Diff
 
