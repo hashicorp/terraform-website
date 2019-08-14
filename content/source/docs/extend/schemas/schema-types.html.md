@@ -218,11 +218,16 @@ resource "example_resource" "ex" {
 A key based map (also known as a dictionary) with string keys and values defined
 by the `Elem` property. 
 
+~> **NOTE:** Using the `Elem` block to define specific keys for the map is currently not possible. A potential workaround would be to confirm the required keys are set when expanding the Map object inside the resource code.
+
 **Schema example:**
 
 ```go
 "tags": {
   Type:     schema.TypeMap,
+  Elem: &schema.Schema{
+    Type: schema.TypeString,
+  },
 },
 ```
 
