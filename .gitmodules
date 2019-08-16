@@ -434,3 +434,7 @@
 	path = ext/providers/exoscale
 	url = https://github.com/terraform-providers/terraform-provider-exoscale
 	branch = stable-website
+[submodule "ext/providers/mongodbatlas"]
+	path = ext/providers/mongodbatlas
+	url = https://github.com/terraform-providers/terraform-provider-mongodbatlas
+	branch = stable-website
