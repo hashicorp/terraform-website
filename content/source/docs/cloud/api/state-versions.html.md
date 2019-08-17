@@ -323,7 +323,7 @@ curl \
 
 ## Show a State Version
 
-`GET /state-versions/:state_version_id
+`GET /state-versions/:state_version_id`
 
 Parameter | Description
 ----------|---------
