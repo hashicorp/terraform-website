@@ -23,7 +23,9 @@
         span {
           color: $home-header-link-color;
 
-          &:hover, &:focus, &:active {
+          &:hover,
+          &:focus,
+          &:active {
             background-color: transparent;
             color: $home-header-link-color-hover;
 
@@ -214,7 +216,9 @@
           }
         }
 
-        &:hover, &:active, &:focus {
+        &:hover,
+        &:active,
+        &:focus {
           border: 1px solid $terraform-purple;
           color: $terraform-purple;
           text-decoration: none;
@@ -236,7 +240,8 @@
     }
 
     &#news {
-      img, iframe {
+      img,
+      iframe {
         box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
         margin: 0 0 20px 0;
         max-width: 100%;
@@ -261,14 +266,14 @@
 
       div.latest-item {
         + .latest-item {
-          border-top: 1px solid rgba(white, .5);
+          border-top: 1px solid rgba(white, 0.5);
           margin-top: 20px;
           padding-top: 20px;
         }
 
         @media (max-width: $screen-sm-max) {
           &:last-child {
-            border-bottom: 1px solid rgba(white, .5);
+            border-bottom: 1px solid rgba(white, 0.5);
             margin-bottom: 20px;
             padding-bottom: 20px;
           }
@@ -288,15 +293,21 @@
     }
 
     &#examples {
-      background: #EDEDED;
+      background: #ededed;
 
-      h1, h2, h3, h4, h5, h6, p {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
         color: $black;
       }
     }
 
     &#enterprise {
-      background: #0F1013;
+      background: #0f1013;
 
       & .button {
         margin: 5px;
@@ -339,7 +350,7 @@
 
     span.circle {
       &:before {
-        content: '\25CF';
+        content: "\25CF";
         color: $white;
         font-size: 20px;
         line-height: 100%;
@@ -348,19 +359,19 @@
     }
 
     span.txt-spe {
-      color: #7190EA;
+      color: #7190ea;
     }
 
     span.txt-str {
-      color: #64E86C;
+      color: #64e86c;
     }
 
     span.txt-int {
-      color: #E89264;
+      color: #e89264;
     }
 
     span.txt-var {
-      color: #9A56f9;
+      color: #9a56f9;
     }
   }
 }

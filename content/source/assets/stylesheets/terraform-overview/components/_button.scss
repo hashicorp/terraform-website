@@ -1,0 +1,99 @@
+.g-btn {
+  background-color: $button-primary-background;
+  border: 2px solid $button-primary-background;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: $white;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 24px;
+  min-width: 129px;
+  outline: 0;
+  padding: 13px 24px;
+  position: relative;
+  text-align: center;
+  transition: all 0.25s ease;
+
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
+    min-width: 144px;
+    padding: 10px 28px;
+  }
+
+  &:focus,
+  &:hover {
+    background: lighten($button-primary-background, 5%);
+    border-color: lighten($button-primary-background, 5%);
+    color: $white;
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  path {
+    fill: $white;
+  }
+
+  &.white {
+    background: $white;
+    border: 2px solid $white;
+    color: $black;
+
+    &:hover {
+      background: $black;
+      border-color: $black;
+      color: $white;
+
+      path {
+        fill: $white;
+      }
+    }
+
+    path {
+      fill: $black;
+    }
+  }
+
+  &.dark-outline {
+    background: none;
+    border: 2px solid $black;
+    color: $black;
+
+    &:hover {
+      background: $black;
+      color: $white;
+    }
+  }
+  &.purple-outline {
+    background: none;
+    border: 2px solid $terraform-purple;
+    color: $black;
+
+    &:hover {
+      background: $terraform-purple;
+      color: $white;
+    }
+  }
+
+  &.white-outline {
+    background: none;
+    border: 2px solid $white;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $black;
+    }
+  }
+
+  &.download {
+    svg {
+      margin: 0 4px -14px 0;
+      fill: $black;
+      path {
+        transition: fill 0.25s ease;
+      }
+    }
+  }
+}
