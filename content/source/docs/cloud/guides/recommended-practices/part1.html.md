@@ -96,20 +96,6 @@ Since each workspace is one environment of one infrastructure component, you can
 
 To use Terraform Cloud effectively, you must make sure the division of workspaces and permissions matches your organization's division of responsibilities. If it's difficult to separate your workspaces effectively, it might reveal an area of your infrastructure where responsibility is muddled and unclear. If so, this is a chance to disentangle the code and enforce better boundaries of ownership.
 
-## Promoting Changes Between Related Workspaces (Coming Soon)
-
-In a future version, Terraform Cloud will let you create automatic promotion pipelines across workspaces, to help guarantee that high environments only run known good code.
-
-Today, you have two options for manually promoting configurations from one workspace to another:
-
-- Once a new configuration has passed a testing environment, update the code in the next environment's VCS repository to match that configuration. Usually this is done by with a branch merging workflow, but there are other ways to accomplish it.
-- Use the runs API to handle promotion. Each run is associated with a static configuration version, and the API allows you to specify an existing version by its ID. You can create your high-environment workspaces without a backing VCS repository (to prevent automatic plans), look up the configuration version from the last successful run in a lower environment, then re-use that known-good configuration version when starting a run in the higher environment.
-
-    This method is advanced, but it takes advantage of the same APIs that the upcoming pipelines feature will use. For more information about using the runs API, see:
-
-    - [The API-driven Run Workflow](../../run/api.html)
-    - [The Runs API reference](../../api/run.html) (in particular, the "Create a Run" endpoint and the "List Runs in a Workspace" endpoint)
-
 ## Next
 
 Now that you're familiar with the outlines of the Terraform Cloud workflow, it's time to assess your organization's provisioning practices. Continue on to [Part 2: Evaluating Your Current Provisioning Practices](./part2.html).
