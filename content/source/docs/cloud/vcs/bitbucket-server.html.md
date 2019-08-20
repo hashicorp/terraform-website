@@ -6,9 +6,9 @@ page_title: "Bitbucket Server and Data Center - VCS Providers - Terraform Cloud"
 
 # Configuring Bitbucket Server/Data Center Access
 
-These instructions are for using Bitbucket Server/Data Center for Terraform Cloud's VCS features. Bitbucket Server/Data Center are the on-premises versions of Bitbucket; [Bitbucket Cloud has separate instructions,](./bitbucket-cloud.html) as do the [other supported VCS providers.](./index.html)
+These instructions are for using Bitbucket Server for Terraform Cloud's VCS features. Bitbucket Server is the on-premises version of Bitbucket; [Bitbucket Cloud has separate instructions,](./bitbucket-cloud.html) as do the [other supported VCS providers.](./index.html)
 
-Note that Bitbucket Server/Data Center requires both OAuth authentication and an SSH key. The instructions below include SSH key configuration.
+Note that Bitbucket Server requires both OAuth authentication and an SSH key. The instructions below include SSH key configuration.
 
 -> **Version note:** Terraform Cloud supports Bitbucket Server versions 4.9.1 and newer. HashiCorp does not test older versions of Bitbucket Server with Terraform Cloud, and they might not work as expected. Also note that, although we do not deliberately remove support for versions that have reached end of life (per the [Atlassian Support End of Life Policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html)), our ability to resolve customer issues with end of life versions might be limited.
 
@@ -16,7 +16,7 @@ Note that Bitbucket Server/Data Center requires both OAuth authentication and an
 
 ~> **Important:** Terraform Cloud needs to contact your Bitbucket Server instance during setup and during normal operation. For the SaaS version of Terraform Cloud, this means Bitbucket Server must be internet-accessible; for Terraform Enterprise, you must have network connectivity between your Terraform Enterprise and Bitbucket Server instances over both SSH and HTTP or HTTPS. Bitbucket Server repository clone operations are performed over SSH on the port the Bitbucket Server instance uses.
 
-## Before You Begin: Determine Your Bitbucket Server/Data Center Version
+## Before You Begin: Determine Your Bitbucket Server Version
 
 Terraform Cloud requires support for the delivery of webhooks to perform many operations, including tracking newly available configuration versions. When using Bitbucket Server version 5.3 or lower, Atlassian's webhooks plugin is required to be configured on Bitbucket Server. If using version 5.4 or higher, no plugin is required, as webhooks are supported natively.
 
