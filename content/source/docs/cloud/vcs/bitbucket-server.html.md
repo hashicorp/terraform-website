@@ -6,7 +6,11 @@ page_title: "Bitbucket Server and Data Center - VCS Providers - Terraform Cloud"
 
 # Configuring Bitbucket Server/Data Center Access
 
-These instructions are for using Bitbucket Server for Terraform Cloud's VCS features. Bitbucket Server is the on-premises version of Bitbucket; [Bitbucket Cloud has separate instructions,](./bitbucket-cloud.html) as do the [other supported VCS providers.](./index.html)
+These instructions are for using **Bitbucket Server** for Terraform Cloud's VCS features. 
+
+These instructions also apply to **Bitbucket Data Center,** which is a variant of Bitbucket Server that supports clustering. Terraform Cloud treats these two products identically, and Bitbucket Data Center users will select **Bitbucket Server** as their VCS Provider type. Unless stated otherwise, any reference to Bitbucket Server in this document also applies to Bitbucket Data Center.
+
+[Bitbucket Cloud has separate instructions,](./bitbucket-cloud.html) as do the [other supported VCS providers.](./index.html)
 
 Note that Bitbucket Server requires both OAuth authentication and an SSH key. The instructions below include SSH key configuration.
 
