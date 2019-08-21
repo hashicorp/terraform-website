@@ -3,13 +3,13 @@ layout: intro
 page_title: "Terraform Glossary"
 sidebar_current: "terraform-glossary"
 description: |-
-  Brief definitions of technical terms and jargon used in Terraform and
-  Terraform Enterprise's documentation and throughout the Terraform community.
+  Brief definitions of technical terms and jargon used in Terraform's
+  documentation and throughout the Terraform community.
 ---
 
 # Terraform Glossary
 
-This page collects brief definitions of some of the technical terms used in the documentation for Terraform and Terraform Enterprise, as well as some terms that come up frequently in conversations throughout the Terraform community.
+This page collects brief definitions of some of the technical terms used in the documentation for Terraform, as well as some terms that come up frequently in conversations throughout the Terraform community.
 
 <div style="column-width: 14em;">
 
@@ -77,9 +77,11 @@ This page collects brief definitions of some of the technical terms used in the 
 - [State Version](#state-version)
 - [Team](#team)
 - [Terraform](#terraform)
+- [Terraform Cloud](#terraform-cloud)
+- [Terraform Enterprise](#terraform-enterprise)
 - [Terraform Version](#terraform-version)
 - [TFE](#tfe)
-- [TFE Provider](#tfe-provider)
+- [TFE Provider / Terraform Cloud Provider](#tfe-provider-terraform-cloud-provider)
 - [(API) Token](#api-token)
 - [Trigger](#trigger)
 - [Variables](#variables)
@@ -100,9 +102,9 @@ This page collects brief definitions of some of the technical terms used in the 
 
 Terraform relies on cloud service provider APIs to manage resources; each service's Terraform provider is responsible for mapping Terraform's resource model to the series of actual API calls necessary to create, check, modify, or delete a real infrastructure resource in that cloud service.
 
-Terraform Enterprise also offers its own API, for managing resources like team membership, policies, and workspaces. That API, in turn, is used by the `tfe` Terraform provider, so you can use Terraform to manage the system that runs Terraform for you.
+Terraform Cloud also offers its own API, for managing resources like team membership, policies, and workspaces. That API, in turn, is used by the `tfe` Terraform provider, so you can use Terraform to manage the system that runs Terraform for you.
 
-- [TFE docs: API](/docs/enterprise/api/index.html)
+- [Terraform Cloud docs: API](/docs/cloud/api/index.html)
 - [Terraform providers: `tfe`](/docs/providers/tfe/index.html)
 
 ## Apply (noun)
@@ -112,10 +114,10 @@ Terraform Enterprise also offers its own API, for managing resources like team m
 
 One of the stages of a [run][], in which changes are made to real infrastructure resources in order to make them match their desired state. The counterpart of a [plan][].
 
-In Terraform's CLI, applies are performed with the `terraform apply` command. TFE runs `terraform apply` using a [plan file][] as its input.
+In Terraform's CLI, applies are performed with the `terraform apply` command. Terraform Cloud runs `terraform apply` using a [plan file][] as its input.
 
 - [Terraform docs: The `terraform apply` command](/docs/commands/apply.html)
-- [TFE docs: About Runs](/docs/enterprise/run/index.html)
+- [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Apply (verb)
 
@@ -123,10 +125,10 @@ In Terraform's CLI, applies are performed with the `terraform apply` command. TF
 
 To make changes to real infrastructure in order to make it match the desired state (as specified by a Terraform [config][] and set of [variables][]).
 
-In conversation, it's common to refer to "applying a [plan][]" (usually in the context of TFE's workflow) or "applying a [configuration][]" (usually in the context of the Terraform CLI workflow).
+In conversation, it's common to refer to "applying a [plan][]" (usually in the context of Terraform Cloud's workflow) or "applying a [configuration][]" (usually in the context of the Terraform CLI workflow).
 
 - [Terraform docs: The `terraform apply` command](/docs/commands/apply.html)
-- [TFE docs: About Runs](/docs/enterprise/run/index.html)
+- [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Argument
 
@@ -165,11 +167,11 @@ In a general computer science sense, a backend is any lower-level implementation
 
 [blob storage]: glossary.html#blob-storage
 
--> Terraform Enterprise
+-> Terraform Cloud
 
 An API service for storing and retrieving arbitrary chunks of data using opaque addresses, which are indexed by a directory of some kind. The most notable example is AWS's [S3][].
 
-You do not need to be familiar with the properties and advantages of blob storage services in order to work with Terraform or TFE. However, you might need to administer or configure a blob storage service if you are responsible for administering a [Private Terraform Enterprise][] instance.
+You do not need to be familiar with the properties and advantages of blob storage services in order to work with Terraform or Terraform Cloud. However, you might need to administer or configure a blob storage service if you are responsible for administering a [Terraform Enterprise][] instance.
 
 ## Block
 
@@ -206,7 +208,7 @@ A repository usually has a default branch (whose name, in [Git][], defaults to `
 
 Command-line interface. The `terraform` command expects to be run in a CLI (a Unix shell or the Windows command prompt), which it uses to accept instructions and return text output.
 
-We often use "Terraform CLI" to refer to the core open source Terraform binary when we need to distinguish it from other parts of the Terraform ecosystem (like Terraform Enterprise or the Terraform GitHub Actions).
+We often use "Terraform CLI" to refer to the core open source Terraform binary when we need to distinguish it from other parts of the Terraform ecosystem (like Terraform Cloud or the Terraform GitHub Actions).
 
 - [Wikipedia: Command-line Interface](https://en.wikipedia.org/wiki/Command-line_interface)
 - [Terraform docs: Commands (CLI)](/docs/commands/index.html)
@@ -241,11 +243,11 @@ Code written in [Terraform's configuration language][hcl] that declaratively des
 [config version]: glossary.html#configuration-version
 [config versions]: glossary.html#configuration-version
 
--> Terraform Enterprise
+-> Terraform Cloud
 
 Also "config version".
 
-The contents of a Terraform [config][] at a specific moment in time. This concept only applies to Terraform Enterprise, since the Terraform CLI doesn't have visibility into repeated runs for a specific configuration over a period of time.
+The contents of a Terraform [config][] at a specific moment in time. This concept only applies to Terraform Cloud, since the Terraform CLI doesn't have visibility into repeated runs for a specific configuration over a period of time.
 
 Every stage of a given run uses one specific configuration version.
 
@@ -297,7 +299,7 @@ A [VCS][] [repository][] that was created by copying content and history from an
 
 Different VCS providers handle forks differently, but a fork is usually owned by a different person or organization than the original repo, and a fork usually does not inherit all of the original repo's access permissions.
 
-Terraform Enterprise makes extensive use of VCS repos, and assumes that forks of a trusted repo are not necessarily trusted. As such, TFE avoids evaluating any code from external forks, which prevents TFE from running [speculative plans][] for [pull requests][] from forks.
+Terraform Cloud makes extensive use of VCS repos, and assumes that forks of a trusted repo are not necessarily trusted. As such, Terraform Cloud avoids evaluating any code from external forks, which prevents Terraform Cloud from running [speculative plans][] for [pull requests][] from forks.
 
 ## Git
 
@@ -327,20 +329,20 @@ An identifier; an opaque string permanently associated with a specific object, w
 
 In Terraform, many [resource][] types have an ID [attribute][] that helps link Terraform's [state][] to the real infrastructure resource being managed.
 
-In Terraform Enterprise, most internal application objects (like [workspaces][], users, [policies][], etc.) can be identified by both a name and by an opaque, permanent ID. Most API endpoints use IDs instead of names, since names sometimes change. IDs for TFE's application objects are sometimes called "external IDs."
+In Terraform Cloud, most internal application objects (like [workspaces][], users, [policies][], etc.) can be identified by both a name and by an opaque, permanent ID. Most API endpoints use IDs instead of names, since names sometimes change. IDs for Terraform Cloud's application objects are sometimes called "external IDs."
 
-You can usually copy an external ID from the URL bar when viewing an object in TFE's UI. Workspaces don't display an ID in the URL bar, but their general settings page includes a UI control for viewing and copying the ID.
+You can usually copy an external ID from the URL bar when viewing an object in Terraform Cloud's UI. Workspaces don't display an ID in the URL bar, but their general settings page includes a UI control for viewing and copying the ID.
 
 ## Ingress
 
 [ingress]: glossary.html#ingress
 [ingressing]: glossary.html#ingress
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-The process of bringing content into Terraform Enterprise. Usually that content is a [configuration version][], but it can also be a [private module][] version or some other kind of content.
+The process of bringing content into Terraform Cloud. Usually that content is a [configuration version][], but it can also be a [private module][] version or some other kind of content.
 
-This term comes from TFE's internal subsystems. Most documentation and UI avoids using "ingress," but it can sometimes appear in API contexts or support conversations.
+This term comes from Terraform Cloud's internal subsystems. Most documentation and UI avoids using "ingress," but it can sometimes appear in API contexts or support conversations.
 
 ## Input Variables
 
@@ -368,7 +370,7 @@ Interpolation is a very common feature in programming languages; for example, Ru
 
 "JavaScript Object Notation". A popular text-based data interchange format, which can represent strings, numbers, booleans, null, arrays, and objects/maps.
 
-Terraform and Terraform Enterprise often interact with JSON data in order to consume or provide APIs. Terraform also supports JSON as an alternate format for [configurations][].
+Terraform and Terraform Cloud often interact with JSON data in order to consume or provide APIs. Terraform also supports JSON as an alternate format for [configurations][].
 
 - [Wikipedia: JSON](https://en.wikipedia.org/wiki/Json)
 - [Terraform docs: JSON Configuration Syntax](/docs/configuration/syntax-json.html)
@@ -378,11 +380,11 @@ Terraform and Terraform Enterprise often interact with JSON data in order to con
 [locking]: glossary.html#locking
 [lock]: glossary.html#locking
 
--> Terraform Enterprise
+-> Terraform Cloud
 
 The ability to prevent new [runs][] from starting in a given [workspace][]. Workspaces are automatically locked while a run is in progress, and can also be manually locked.
 
-The [`remote` backend][remote backend] respects the lock status in Terraform Enterprise workspaces. Some other Terraform [backends][] can also lock state during runs.
+The [`remote` backend][remote backend] respects the lock status in Terraform Cloud workspaces. Some other Terraform [backends][] can also lock state during runs.
 
 ## Log
 
@@ -412,52 +414,52 @@ Modules define [input variables][] (which the calling module can set values for)
 
 An open standard for token-based authorization between applications on the internet.
 
-Terraform Enterprise uses OAuth to connect your organization to your [VCS provider][]. Generally takes an `id` and `secret` from your VCS provider to give access to TFE and allow it to pull in configuration from the provider.
+Terraform Cloud uses OAuth to connect your organization to your [VCS provider][]. Generally takes an `id` and `secret` from your VCS provider to give access to Terraform Cloud and allow it to pull in configuration from the provider.
 
-- [TFE docs: VCS Integration](/docs/enterprise/vcs/index.html)
+- [Terraform Cloud docs: VCS Integration](/docs/cloud/vcs/index.html)
 
 ## OAuth Client
 
 [oauth client]: glossary.html#oauth-client
 [oauth clients]: glossary.html#oauth-client
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-An entity collecting the configuration information that a TFE organization needs in order to connect to a specific [VCS provider][].
+An entity collecting the configuration information that a Terraform Cloud organization needs in order to connect to a specific [VCS provider][].
 
-An OAuth client needs an [OAuth token][] in order to actually access data belonging to a user or organization in that VCS provider. The client can be created with an existing token for that VCS provider (API-only, and not supported for some VCS providers), or it can be created with the details TFE needs in order to request a token. Requesting a token requires a user to click through and approve access with their VCS provider account.
+An OAuth client needs an [OAuth token][] in order to actually access data belonging to a user or organization in that VCS provider. The client can be created with an existing token for that VCS provider (API-only, and not supported for some VCS providers), or it can be created with the details Terraform Cloud needs in order to request a token. Requesting a token requires a user to click through and approve access with their VCS provider account.
 
-- [TFE docs: VCS Integration](/docs/enterprise/vcs/index.html)
-- [TFE API docs: OAuth Clients](/docs/enterprise/api/oauth-clients.html)
+- [Terraform Cloud docs: VCS Integration](/docs/cloud/vcs/index.html)
+- [Terraform Cloud API docs: OAuth Clients](/docs/cloud/api/oauth-clients.html)
 
 ## OAuth Token
 
 [oauth token]: glossary.html#oauth-token
 [oauth tokens]: glossary.html#oauth-token
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-**In general:** A secret string that allows an application to authenticate itself to another application. The token is generated ahead of time by the application being accessed (either during the OAuth authorization exchange or in response to a direct request by a user), and allows access with whatever permissions that application assigns to the token. The [VCS providers][] supported by Terraform Enterprise allow access via OAuth tokens; that access is generally restricted to data belonging to a given user or organization within that provider.
+**In general:** A secret string that allows an application to authenticate itself to another application. The token is generated ahead of time by the application being accessed (either during the OAuth authorization exchange or in response to a direct request by a user), and allows access with whatever permissions that application assigns to the token. The [VCS providers][] supported by Terraform Cloud allow access via OAuth tokens; that access is generally restricted to data belonging to a given user or organization within that provider.
 
-**Within Terraform Enterprise:** An entity in the TFE application that associates an OAuth token (in the "secret string" sense) with a permanent ID and with metadata about which VCS provider it applies to and which VCS user approved the token. When documentation refers specifically to this kind of entity, the name is often styled as `oauth-token` to indicate that it's an entity you can interact with via the [API][].
+**Within Terraform Cloud:** An entity in the Terraform Cloud application that associates an OAuth token (in the "secret string" sense) with a permanent ID and with metadata about which VCS provider it applies to and which VCS user approved the token. When documentation refers specifically to this kind of entity, the name is often styled as `oauth-token` to indicate that it's an entity you can interact with via the [API][].
 
 An `oauth-token` has a one-to-one relationship with an [OAuth client][], but the client can outlive a specific token, to allow revoking and re-requesting VCS access.
 
 [Workspaces][] that are linked to a VCS [repo][] have a relationship with one `oauth-token`.
 
-- [TFE docs: VCS Integration](/docs/enterprise/vcs/index.html)
-- [TFE API docs: OAuth Tokens](/docs/enterprise/api/oauth-tokens.html)
+- [Terraform Cloud docs: VCS Integration](/docs/cloud/vcs/index.html)
+- [Terraform Cloud API docs: OAuth Tokens](/docs/cloud/api/oauth-tokens.html)
 
 ## Organization
 
 [organization]: glossary.html#organization
 [organizations]: glossary.html#organization
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-TFE's fundamental unit for controlling access and grouping things together; meant to represent a company or a business unit within a company. An organization contains a group of [workspaces][], a group of [teams][], a group of [Sentinel policies][], and a variety of settings. Adding users to an organization is done via teams.
+Terraform Cloud's fundamental unit for controlling access and grouping things together; meant to represent a company or a business unit within a company. An organization contains a group of [workspaces][], a group of [teams][], a group of [Sentinel policies][], and a variety of settings. Adding users to an organization is done via teams.
 
-- [TFE docs: Organizations](/docs/enterprise/users-teams-organizations/organizations.html)
+- [Terraform Cloud docs: Organizations](/docs/cloud/users-teams-organizations/organizations.html)
 
 ## Output Values
 
@@ -474,7 +476,7 @@ Data exported by a Terraform [module][], which can be displayed to a user and/or
 
 [oss]: glossary.html#oss
 
-"Open-Source Software". Terraform and the publicly available Terraform providers are open-source. Terraform Enterprise is closed-source commercial software, but makes use of Terraform and the available Terraform providers.
+"Open-Source Software". Terraform and the publicly available Terraform providers are open-source. Terraform Cloud and Terraform Enterprise are closed-source commercial software, but they make use of Terraform and the available Terraform providers.
 
 - [Wikipedia: Open-Source Software](https://en.wikipedia.org/wiki/Open-source_software)
 
@@ -483,11 +485,11 @@ Data exported by a Terraform [module][], which can be displayed to a user and/or
 [permission]: glossary.html#permissions
 [permissions]: glossary.html#permissions
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-Specific levels of access allowed within TFE. Can be managed at the [workspace][] and/or [organization][] level. For example, a user with "read" permissions for a workspace can see a list of runs but cannot approve a run like a user with "write" permissions can.
+Specific levels of access allowed within Terraform Cloud. Can be managed at the [workspace][] and/or [organization][] level. For example, a user with "read" permissions for a workspace can see a list of runs but cannot approve a run like a user with "write" permissions can.
 
-- [TFE docs: Permissions](/docs/enterprise/users-teams-organizations/permissions.html)
+- [Terraform Cloud docs: Permissions](/docs/cloud/users-teams-organizations/permissions.html)
 
 ## Plan (verb)
 
@@ -497,7 +499,7 @@ Also "queue plan".
 
 To start a new [run][], which begins by running a Terraform [plan (noun)][plan].
 
-- [TFE docs: About Runs](/docs/enterprise/run/index.html)
+- [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Plan (noun, 1)
 
@@ -512,12 +514,12 @@ In Terraform's CLI, plans are performed by all of the following commands:
 - `terraform apply`, which performs a plan and then, if a user approves, immediately applies it.
 - `terraform destroy`, which is similar to `terraform apply` but uses a desired state in which none of the managed resources exist; if the plan is approved, those resources are destroyed.
 
-In Terraform Enterprise, plans are performed by committing changes to a workspace's configuration, running `terraform plan` or `terraform apply` with the remote backend enabled, manually queueing a plan, or uploading a configuration via the API.
+In Terraform Cloud, plans are performed by committing changes to a workspace's configuration, running `terraform plan` or `terraform apply` with the remote backend enabled, manually queueing a plan, or uploading a configuration via the API.
 
-TFE's workflow always creates a [plan file][], which can be auto-applied or can wait for a user's approval. TFE also supports [speculative plans][], which are for informational purposes only and cannot be applied.
+Terraform Cloud's workflow always creates a [plan file][], which can be auto-applied or can wait for a user's approval. Terraform Cloud also supports [speculative plans][], which are for informational purposes only and cannot be applied.
 
 - [Terraform docs: The `terraform plan` command](/docs/commands/plan.html)
-- [TFE docs: About Runs](/docs/enterprise/run/index.html)
+- [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Plan File
 
@@ -528,7 +530,7 @@ Also "`.tfplan`", "saved plan", or simply "plan" in contexts where it's clearly 
 
 A binary artifact optionally produced by the `terraform plan` command, which `terraform apply` can use to carry out the exact changes that were decided at the time of the [plan][].
 
-TFE always uses a saved plan as the input to an [apply][], so that applies never make changes that weren't shown to the user after the plan (in cases where the config or the variables changed in the meantime).
+Terraform Cloud always uses a saved plan as the input to an [apply][], so that applies never make changes that weren't shown to the user after the plan (in cases where the config or the variables changed in the meantime).
 
 ## Policy
 
@@ -537,33 +539,33 @@ TFE always uses a saved plan as the input to an [apply][], so that applies never
 [sentinel policy]: glossary.html#policy
 [sentinel policies]: glossary.html#policy
 
--> Terraform Enterprise
+-> Terraform Cloud
 
 [Sentinel][] code that can be enforced on runs. Combined into [policy sets][].
 
-- [TFE docs: Managing Sentinel Policies](/docs/enterprise/sentinel/manage-policies.html)
+- [Terraform Cloud docs: Managing Sentinel Policies](/docs/cloud/sentinel/manage-policies.html)
 
 ## Policy Check
 
 [policy check]: glossary.html#policy-check
 [policy checks]: glossary.html#policy-check
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-Part of a [run][]. After gathering the [configuration][], [state][], and [plan file][] for a run, TFE runs [Sentinel][] to check that data against the active [policies][]. Policy checks end in success or failure. If a failure occurs in a required policy, this can prevent the run from proceeding to the [apply][] stage.
+Part of a [run][]. After gathering the [configuration][], [state][], and [plan file][] for a run, Terraform Cloud runs [Sentinel][] to check that data against the active [policies][]. Policy checks end in success or failure. If a failure occurs in a required policy, this can prevent the run from proceeding to the [apply][] stage.
 
-- [TFE docs: Run States and Stages](/docs/enterprise/run/states.html)
+- [Terraform Cloud docs: Run States and Stages](/docs/cloud/run/states.html)
 
 ## Policy Set
 
 [policy set]: glossary.html#policy-set
 [policy sets]: glossary.html#policy-set
 
--> Terraform Enterprise
+-> Terraform Cloud
 
 A list of [Sentinel][] [policies][] to enforce globally or on specific workspaces.
 
-- [TFE docs: Managing Sentinel Policies](/docs/enterprise/sentinel/manage-policies.html)
+- [Terraform Cloud docs: Managing Sentinel Policies](/docs/cloud/sentinel/manage-policies.html)
 
 ## Private Module Registry
 
@@ -573,26 +575,24 @@ A list of [Sentinel][] [policies][] to enforce globally or on specific workspace
 [private module]: glossary.html#private-terraform-registry
 [private modules]: glossary.html#private-terraform-registry
 
--> Terraform Enterprise
+-> Terraform Cloud
 
 Also "private Terraform registry".
 
-A version of the [Terraform Registry][] that is built-in to TFE, to enable code sharing within an organization. It includes a configuration designer, which lets you combine and configure modules to generate a Terraform [configuration][] that uses them.
+A version of the [Terraform Registry][] that is built-in to Terraform Cloud, to enable code sharing within an organization. It includes a configuration designer, which lets you combine and configure modules to generate a Terraform [configuration][] that uses them.
 
-- [TFE docs: Private Registry](/docs/enterprise/registry/index.html)
+- [Terraform Cloud docs: Private Registry](/docs/cloud/registry/index.html)
 
 ## Private Terraform Enterprise (PTFE)
 
 [private terraform enterprise]: glossary.html#private-terraform-enterprise-ptfe-
 [private installs]: glossary.html#private-terraform-enterprise-ptfe-
 
--> Terraform Enterprise
+[Terraform Enterprise][].
 
-Also "PTFE".
+Prior to mid-2019, "Terraform Enterprise" (TFE) was the name of the Terraform Cloud application, and "Private Terraform Enterprise" (PTFE) was the name of the on-premises distribution.
 
-Private Terraform Enterprise is software provided to customers that allows full use of Terraform Enterprise in a private, isolated environment.
-
-- [TFE docs: Private Terraform Enterprise](/docs/enterprise/private/index.html)
+- [Terraform Enterprise docs](/docs/enterprise/index.html)
 
 ## (Terraform) Provider
 
@@ -601,7 +601,7 @@ Private Terraform Enterprise is software provided to customers that allows full 
 
 A plugin for Terraform that makes a collection of related resources available. A provider plugin is responsible for understanding [API][] interactions with some kind of service and exposing [resources][] based on that API.
 
-Terraform providers are generally tied to a specific _infrastructure provider,_ which might be an infrastructure as a service (IaaS) provider (like AWS, GCP, Microsoft Azure, OpenStack), a platform as a service (PaaS) provider (like Heroku), or a software as a service (SaaS) provider (like Terraform Enterprise, DNSimple, CloudFlare).
+Terraform providers are generally tied to a specific _infrastructure provider,_ which might be an infrastructure as a service (IaaS) provider (like AWS, GCP, Microsoft Azure, OpenStack), a platform as a service (PaaS) provider (like Heroku), or a software as a service (SaaS) provider (like Terraform Cloud, DNSimple, CloudFlare).
 
 There are many existing providers available, but providers can also be custom-built to work with any API.
 
@@ -623,9 +623,9 @@ Conversationally, people often say "pull request" to refer to this review-before
 [queue]: glossary.html#queue
 [queues]: glossary.html#queue
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-The list of [runs][] waiting to be processed. TFE uses several queues of runs, including a per-workspace queue (since only one run at a time is allowed in a given [workspace][], to avoid conflicts and state corruption) and a global per-instance queue (since compute resources are finite and TFE only has access to so many VMs).
+The list of [runs][] waiting to be processed. Terraform Cloud uses several queues of runs, including a per-workspace queue (since only one run at a time is allowed in a given [workspace][], to avoid conflicts and state corruption) and a global per-instance queue (since compute resources are finite and Terraform Cloud only has access to so many VMs).
 
 ## (Terraform) Registry
 
@@ -641,11 +641,11 @@ A repository of [modules][] written by the Terraform community, which can be use
 [remote operation]: glossary.html#remote-operations
 [remote operations]: glossary.html#remote-operations
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-The ability to start a [run][] (or perform a few other tasks) from your local [CLI][] and view output inline, while still allowing TFE to perform the actual operation.
+The ability to start a [run][] (or perform a few other tasks) from your local [CLI][] and view output inline, while still allowing Terraform Cloud to perform the actual operation.
 
-TFE performs Terraform runs in its own disposable VMs, where it can capture information, control access to secrets, etc., but many users are accustomed to running Terraform on their local machines. Remote operations exist to help split the difference.
+Terraform Cloud performs Terraform runs in its own disposable VMs, where it can capture information, control access to secrets, etc., but many users are accustomed to running Terraform on their local machines. Remote operations exist to help split the difference.
 
 - [Terraform docs: Remote Operations](/docs/backends/operations.html)
 
@@ -653,7 +653,7 @@ TFE performs Terraform runs in its own disposable VMs, where it can capture info
 
 [remote backend]: glossary.html#remote-backend
 
-A Terraform CLI feature that lets Terraform connect to TFE, by specifying in the Terraform [configuration][] which organization and workspace(s) to use. Used for [remote operations][] in TFE workspaces, and used for [state][] storage in TFE's free tier.
+A Terraform CLI feature that lets Terraform connect to Terraform Cloud, by specifying in the Terraform [configuration][] which organization and workspace(s) to use. Used for [remote operations][] in Terraform Cloud workspaces, and used for [state][] storage in Terraform Cloud's free tier.
 
 See also [backend][]. Older documentation sometimes refers to backends like `s3` or `consul` as "remote backends," since they store Terraform's state in a remote service instead of the local filesystem, but today this term usually means the specific backend whose name is `remote`.
 
@@ -668,7 +668,7 @@ See also [backend][]. Older documentation sometimes refers to backends like `s3`
 
 Also "repo".
 
-A collection of files and a history of the changes to them, managed by a [version control system][vcs]. In Terraform Enterprise, a "repo" is generally a Git repository that contains a Terraform configuration, although [private modules][] are also based on Git repos.
+A collection of files and a history of the changes to them, managed by a [version control system][vcs]. In Terraform Cloud, a "repo" is generally a Git repository that contains a Terraform configuration, although [private modules][] are also based on Git repos.
 
 - [Wikipedia: Repository (version control)](https://en.wikipedia.org/wiki/Repository_(version_control))
 
@@ -696,7 +696,7 @@ Terraform uses cloud provider [APIs][] to create, edit, and destroy resources. T
 
 The place where Terraform begins evaluating a [configuration][]. The root module consists of all of the configuration files in Terraform's [working directory][].
 
-The root module's [variables][] and [outputs][] are handled directly by Terraform (unlike child [modules][], whose variables and outputs are handled by the calling module). Root variable values can be provided with Terraform Enterprise, `.tfvars` files, CLI options, or environment variables. Root outputs are printed after a run and stored in the state.
+The root module's [variables][] and [outputs][] are handled directly by Terraform (unlike child [modules][], whose variables and outputs are handled by the calling module). Root variable values can be provided with Terraform Cloud, `.tfvars` files, CLI options, or environment variables. Root outputs are printed after a run and stored in the state.
 
 ## Root Outputs
 
@@ -716,10 +716,10 @@ Also "Terraform Run".
 
 The process of using Terraform to make real infrastructure match the desired state (as specified by the contents of the config and variables at a specific moment in time).
 
-In Terraform Enterprise, runs are performed in a series of stages ([plan][], [policy check][], and [apply][]), though not every stage occurs in every run. TFE saves information about historical runs.
+In Terraform Cloud, runs are performed in a series of stages ([plan][], [policy check][], and [apply][]), though not every stage occurs in every run. Terraform Cloud saves information about historical runs.
 
 - [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install.html)
-- [TFE docs: About Runs](/docs/enterprise/run/index.html)
+- [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## S3
 
@@ -731,7 +731,7 @@ Many other cloud or self-hosted services provide [APIs][] that are compatible wi
 
 Terraform's `aws` [provider][] can manage S3 resources.
 
-Private Terraform Enterprise can use an S3-compatible [blob storage][] service when configured to use external services for storage.
+Terraform Enterprise can use an S3-compatible [blob storage][] service when configured to use external services for storage.
 
 - [AWS: S3](https://aws.amazon.com/s3/)
 
@@ -741,30 +741,30 @@ Private Terraform Enterprise can use an S3-compatible [blob storage][] service w
 
 -> Terraform Enterprise
 
-SAML is an XML-based standard for authentication and authorization. Terraform Enterprise can act as a service provider (SP) (or Relying Party, RP) with your internal SAML identity provider (IdP). The SAML Single Sign On feature is only available with the Premium tier on [private installs][].
+SAML is an XML-based standard for authentication and authorization. Terraform Enterprise can act as a service provider (SP) (or Relying Party, RP) with your internal SAML identity provider (IdP). The SAML Single Sign On feature is only available on [Terraform Enterprise][]; the Terraform Cloud SaaS does not support it.
 
-- [PTFE docs: SAML Single Sign-On](/docs/enterprise/saml/index.html)
+- [Terraform Enterprise docs: SAML Single Sign-On](/docs/enterprise/saml/index.html)
 
 ## Service Account
 
 [service account]: glossary.html#service-account
 [service accounts]: glossary.html#service-account
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-An account (with API [token][]) that doesn't belong to a human user but to an internal entity in TFE. Terraform Enterprise provides two types of service accounts: [team][] and [organization][]. These accounts can access Terraform Enterprise [APIs][], but cannot be used interactively. The service accounts are designed to support server-to-server API calls using the service identity as opposed to individual user identities.
+An account (with API [token][]) that doesn't belong to a human user but to an internal entity in Terraform Cloud. Terraform Cloud provides two types of service accounts: [team][] and [organization][]. These accounts can access Terraform Cloud [APIs][], but cannot be used interactively. The service accounts are designed to support server-to-server API calls using the service identity as opposed to individual user identities.
 
-- [TFE docs: Service Accounts](/docs/enterprise/users-teams-organizations/service-accounts.html)
+- [Terraform Cloud docs: Service Accounts](/docs/cloud/users-teams-organizations/service-accounts.html)
 
 ## Sentinel
 
 [sentinel]: glossary.html#sentinel
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-A language and runtime for managing policy as code. Allows you to define rules around operations in TFE.
+A language and runtime for managing policy as code. Allows you to define rules around operations in Terraform Cloud.
 
-- [TFE docs: Sentinel](/docs/enterprise/sentinel/index.html)
+- [Terraform Cloud docs: Sentinel](/docs/cloud/sentinel/index.html)
 
 ## Site Admin
 
@@ -773,16 +773,16 @@ A language and runtime for managing policy as code. Allows you to define rules a
 
 -> Terraform Enterprise
 
-An administrator of a [Private Terraform Enterprise][] instance, who has access to application settings that affect all [organizations][] using the instance.
+An administrator of a [Terraform Enterprise][] instance, who has access to application settings that affect all [organizations][] using the instance.
 
-- [PTFE docs: Administration](/docs/enterprise/private/admin/index.html)
+- [Terraform Enterprise docs: Administration](/docs/enterprise/admin/index.html)
 
 ## Speculative Plan
 
 [speculative plan]: glossary.html#speculative-plan
 [speculative plans]: glossary.html#speculative-plan
 
--> Terraform Enterprise
+-> Terraform Cloud
 
 A [run][] that is only intended to show possible changes to infrastructure, when using a given [config version][] and set of [variables][]. Speculative plans can never be [applied][apply-v], and are usually started as a result of [pull requests][] to a [workspace][]'s repo, or by running `terraform plan` on the command line with [remote operations][] configured.
 
@@ -793,13 +793,13 @@ A [run][] that is only intended to show possible changes to infrastructure, when
 
 A type of access credential based on public key cryptography, used to log into servers.
 
-TFE uses SSH private keys for two kinds of operations:
+Terraform Cloud uses SSH private keys for two kinds of operations:
 
 - Downloading private Terraform [modules][] with [Git][]-based sources during a Terraform run. Keys for downloading modules are assigned per-workspace.
-- Bringing content from a connected [VCS provider][] into TFE, usually when pulling in a Terraform [configuration][] for a [workspace][] or importing a module into the [private module registry][]. Only some VCS providers require an SSH key, but others can optionally use SSH if an SSH key is provided.
+- Bringing content from a connected [VCS provider][] into Terraform Cloud, usually when pulling in a Terraform [configuration][] for a [workspace][] or importing a module into the [private module registry][]. Only some VCS providers require an SSH key, but others can optionally use SSH if an SSH key is provided.
 
 - [Wikipedia: SSH](https://en.wikipedia.org/wiki/Secure_Shell)
-- [TFE docs: SSH Keys for Cloning Modules](/docs/enterprise/workspaces/ssh-keys.html)
+- [Terraform Cloud docs: SSH Keys for Cloning Modules](/docs/cloud/workspaces/ssh-keys.html)
 
 ## State
 
@@ -807,7 +807,7 @@ TFE uses SSH private keys for two kinds of operations:
 
 Terraform's cached information about your managed infrastructure and [configuration][]. This state is used to persistently map the same real world [resources][] to your configuration from run-to-run, keep track of metadata, and improve performance for large infrastructures.
 
-Without state, Terraform has no way to identify the real resources it created during previous runs. Thus, when multiple people are collaborating on shared infrastructure, it's important to store state in a shared location, like a free Terraform Enterprise organization.
+Without state, Terraform has no way to identify the real resources it created during previous runs. Thus, when multiple people are collaborating on shared infrastructure, it's important to store state in a shared location, like a free Terraform Cloud organization.
 
 - [Terraform docs: State](/docs/state/index.html)
 
@@ -816,22 +816,22 @@ Without state, Terraform has no way to identify the real resources it created du
 [state version]: glossary.html#state-version
 [state versions]: glossary.html#state-version
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-A snapshot of your infrastructure's [state][] at a point in time. Can be manually uploaded to TFE or created as the result of an [apply][].
+A snapshot of your infrastructure's [state][] at a point in time. Can be manually uploaded to Terraform Cloud or created as the result of an [apply][].
 
-Terraform CLI doesn't have any concept of historical state data; it only interacts with the most recent state, and writes a snapshot of the new state to the configured [backend][] after making changes. Whatever system that backend writes to can choose to retain previous state; Terraform Enterprise does this, and some other backends (like S3) can also be configured to keep historical snapshots. The `local` backend does not.
+Terraform CLI doesn't have any concept of historical state data; it only interacts with the most recent state, and writes a snapshot of the new state to the configured [backend][] after making changes. Whatever system that backend writes to can choose to retain previous state; Terraform Cloud does this, and some other backends (like S3) can also be configured to keep historical snapshots. The `local` backend does not.
 
 ## Team
 
 [team]: glossary.html#team
 [teams]: glossary.html#team
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-A group of TFE users, which can be given permission to access and/or edit various objects ([workspaces][], [policies][], etc.) within an [organization][]. A team belongs to a single organization. Users can belong to any number of teams in any number of organizations.
+A group of Terraform Cloud users, which can be given permission to access and/or edit various objects ([workspaces][], [policies][], etc.) within an [organization][]. A team belongs to a single organization. Users can belong to any number of teams in any number of organizations.
 
-- [TFE docs: Teams](/docs/enterprise/users-teams-organizations/teams.html)
+- [Terraform Cloud docs: Teams](/docs/cloud/users-teams-organizations/teams.html)
 
 ## Terraform
 
@@ -841,33 +841,54 @@ A tool for building, changing, and versioning infrastructure safely and efficien
 
 - [Intro to Terraform](/intro/index.html)
 
+## Terraform Cloud
+
+[terraform cloud]: glossary.html#terraform-cloud
+
+An application that helps teams use Terraform together. Terraform Cloud provides a consistent environment for Terraform runs, as well as hosting Terraform [state][] and other shared information.
+
+Terraform Cloud is available as a hosted service at [https://app.terraform.io](https://app.terraform.io). It is also available in an on-premises distribution called [Terraform Enterprise][].
+
+Prior to mid-2019, "Terraform Enterprise" (TFE) was the name of the Terraform Cloud application, and "Private Terraform Enterprise" (PTFE) was the name of the on-premises distribution.
+
+- [Terraform Cloud docs](/docs/cloud/index.html)
+
+## Terraform Enterprise
+
+[terraform enterprise]: glossary.html#terraform-enterprise
+
+An on-premises distribution of Terraform Cloud, which enables large enterprises to host their own private instance of the application.
+
+Prior to mid-2019, "Terraform Enterprise" (TFE) was the name of the Terraform Cloud application, and "Private Terraform Enterprise" (PTFE) was the name of the on-premises distribution.
+
+- [Terraform Enterprise docs](/docs/enterprise/index.html)
+
 ## Terraform Version
 
 [terraform version]: glossary.html#tool-version
 [terraform versions]: glossary.html#tool-version
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-A particular version of the `terraform` binary available for use in TFE workspaces. Specifies a URL, a SHA256 checksum and enabled/beta flags.
+A particular version of the `terraform` binary available for use in Terraform Cloud workspaces. Specifies a URL, a SHA256 checksum and enabled/beta flags.
 
-Available Terraform versions are configured at a per-instance level in [Private Terraform Enterprise][], and can be managed by [site admins][].
+[Site admins][] can configure the available Terraform versions for a [Terraform Enterprise][] instance.
 
-- [PTFE docs: Managing Terraform Versions](/docs/enterprise/private/admin/resources.html#managing-terraform-versions)
+- [Terraform Enterprise docs: Managing Terraform Versions](/docs/enterprise/admin/resources.html#managing-terraform-versions)
 
 ## TFE
 
 [tfe]: glossary.html#tfe
-[terraform enterprise]: glossary.html#tfe
 
-Terraform Enterprise.
+[Terraform Enterprise][].
 
-- [TFE docs](/docs/enterprise/index.html)
+- [Terraform Enterprise docs](/docs/enterprise/index.html)
 
-## TFE Provider
+## TFE Provider / Terraform Cloud Provider
 
-[tfe provider]: glossary.html#tfe-provider
+[tfe provider]: glossary.html#tfe-provider-terraform-cloud-provider
 
-A Terraform provider that manages Terraform Enterprise. Allows you to manage TFE using a Terraform [configuration][].
+A Terraform provider that manages Terraform Cloud. Allows you to manage Terraform Cloud using a Terraform [configuration][].
 
 - [Provider docs: tfe](/docs/providers/tfe/index.html)
 
@@ -876,28 +897,28 @@ A Terraform provider that manages Terraform Enterprise. Allows you to manage TFE
 [token]: glossary.html#api-token
 [tokens]: glossary.html#api-token
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-A revocable secret string that authenticates a user, to allow use of TFE's [API][] or the [remote backend][].
+A revocable secret string that authenticates a user, to allow use of Terraform Cloud's [API][] or the [remote backend][].
 
 Different kinds of tokens grant different permissions. Tokens can be granted by user, [team][], or [organization][].
 
-Many applications other than TFE use token-based authentication, but within TFE's documentation and UI, "token" without any other qualification generally means a TFE API token.
+Many applications other than Terraform Cloud use token-based authentication, but within Terraform Cloud's documentation and UI, "token" without any other qualification generally means a Terraform Cloud API token.
 
-- [TFE docs: User Tokens](/docs/enterprise/users-teams-organizations/users.html#api-tokens)
-- [TFE docs: Team Tokens](/docs/enterprise/users-teams-organizations/teams.html#api-tokens)
-- [TFE docs: Organization Tokens](/docs/enterprise/users-teams-organizations/organizations.html#api-tokens)
+- [Terraform Cloud docs: User Tokens](/docs/cloud/users-teams-organizations/users.html#api-tokens)
+- [Terraform Cloud docs: Team Tokens](/docs/cloud/users-teams-organizations/teams.html#api-tokens)
+- [Terraform Cloud docs: Organization Tokens](/docs/cloud/users-teams-organizations/organizations.html#api-tokens)
 
 ## Trigger
 
 [trigger]: glossary.html#trigger
 [triggers]: glossary.html#trigger
 
--> Terraform Enterprise
+-> Terraform Cloud
 
 Something that causes a new [run][] to queue. Runs can be UI/VCS-driven (in which case the trigger is a new VCS commit or a UI action), API-driven (in which case the trigger is an API call) or CLI-driven (in which case the trigger is a CLI command).
 
-- [TFE docs: UI/VCS-based Run Workflow](/docs/enterprise/run/ui.html)
+- [Terraform Cloud docs: UI/VCS-based Run Workflow](/docs/cloud/run/ui.html)
 
 ## Variables
 
@@ -910,10 +931,10 @@ In general-purpose programming, a variable is a symbolic name associated with a 
 
 In Terraform, "variables" almost always refers to _input variables,_ which are key/value pairs used in a [run][]. Terraform [modules][] can declare variables to allow customization. For child modules, the parent module provides a value when calling the module; for the [root module][], values are provided at run time.
 
-TFE lets you set values for root input variables in a [workspace][], so all collaborators can use the same values. Variable values marked as "sensitive" become unreadable in the UI and API, and all variable values are protected by Vault.
+Terraform Cloud lets you set values for root input variables in a [workspace][], so all collaborators can use the same values. Variable values marked as "sensitive" become unreadable in the UI and API, and all variable values are protected by Vault.
 
 - [Terraform docs: Input Variables](/docs/configuration/variables.html)
-- [TFE docs: Variables](/docs/enterprise/workspaces/variables.html)
+- [Terraform Cloud docs: Variables](/docs/cloud/workspaces/variables.html)
 
 ## VCS
 
@@ -930,11 +951,11 @@ Different VCSes use different models for history; Git models changes as a direct
 [vcs provider]: glossary.html#vcs-provider
 [vcs providers]: glossary.html#vcs-provider
 
--> Terraform Enterprise
+-> Terraform Cloud
 
-A specific service that provides [VCS][] features, with the goal of enabling teams to collaborate on code. TFE can integrate with VCS providers to access your Terraform [configurations][] and [modules][], and currently supports GitHub, GitHub Enterprise, GitLab.com, GitLab EE and CE, Bitbucket Cloud, and Bitbucket Server.
+A specific service that provides [VCS][] features, with the goal of enabling teams to collaborate on code. Terraform Cloud can integrate with VCS providers to access your Terraform [configurations][] and [modules][], and currently supports GitHub, GitHub Enterprise, GitLab.com, GitLab EE and CE, Bitbucket Cloud, and Bitbucket Server.
 
-- [TFE docs: Connecting VCS Providers](/docs/enterprise/vcs/index.html)
+- [Terraform Cloud docs: Connecting VCS Providers](/docs/cloud/vcs/index.html)
 
 ## Webhook
 
@@ -945,10 +966,10 @@ A server-to-server HTTP request, in which one system responds to a change in its
 
 The recipient of a webhook might return information to the requesting system, call other webhooks in response, perform its action silently, or ignore the request entirely.
 
-Terraform Enterprise uses webhooks in multiple ways. Most notably:
+Terraform Cloud uses webhooks in multiple ways. Most notably:
 
-- TFE creates webhook configurations on [VCS providers][], so that they send webhook requests to TFE whenever linked [repositories][] receive [pull requests][] or new [commits][]. ([TFE docs: UI/VCS-driven Runs](/docs/enterprise/run/ui.html))
-- Users can create webhook configurations on TFE [workspaces][], so that TFE will send run notification webhooks to Slack or other external services. ([TFE docs: Run Notifications](/docs/enterprise/workspaces/notifications.html))
+- Terraform Cloud creates webhook configurations on [VCS providers][], so that they send webhook requests to Terraform Cloud whenever linked [repositories][] receive [pull requests][] or new [commits][]. ([Terraform Cloud docs: UI/VCS-driven Runs](/docs/cloud/run/ui.html))
+- Users can create webhook configurations on Terraform Cloud [workspaces][], so that Terraform Cloud will send run notification webhooks to Slack or other external services. ([Terraform Cloud docs: Run Notifications](/docs/cloud/workspaces/notifications.html))
 
 ## Working Directory
 
@@ -966,14 +987,14 @@ The [root module][] consists of all of the configuration files in the top level 
 
 In Terraform CLI, a workspace is an isolated instance of [state][] data. Using multiple workspaces lets you manage multiple non-overlapping sets of infrastructure from a single [configuration][] in a single [working directory][].
 
-In Terraform Enterprise, a workspace is a complex object that represents everything needed to manage a specific collection of infrastructure resources over time. In particular, this includes:
+In Terraform Cloud, a workspace is a complex object that represents everything needed to manage a specific collection of infrastructure resources over time. In particular, this includes:
 
 - A Terraform [configuration][] (which has multiple versions over time, and which can come from a repo or from manual uploads)
 - A set of [variables][]
 - [State][] data that represents the current and historical condition of the infrastructure
 - Historical information about [runs][].
 
-All TFE runs occur in the context of a workspace — they use that workspace's config data, use that workspace's state to identify the real infrastructure being managed, and edit that workspace's state to match any infrastructure changes during the run. A workspace belongs to an [organization][].
+All Terraform Cloud runs occur in the context of a workspace — they use that workspace's config data, use that workspace's state to identify the real infrastructure being managed, and edit that workspace's state to match any infrastructure changes during the run. A workspace belongs to an [organization][].
 
-- [TFE docs: Workspaces](/docs/enterprise/workspaces/index.html)
+- [Terraform Cloud docs: Workspaces](/docs/cloud/workspaces/index.html)
 - [Terraform docs: Workspaces](/docs/state/workspaces.html)
