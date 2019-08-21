@@ -1,8 +1,8 @@
 #
 # REDIRECTS FILE
 #
-# This is a sample redirect file. Redirects allow individual projects to add
-# their own redirect rules in a declarative manner using Fastly edge
+# This is the live redirect file for terraform.io. It lets you add
+# redirect rules in a declarative manner using Fastly edge
 # dictionaries.
 #
 # FORMAT
@@ -12,6 +12,18 @@
 # line.
 #
 #     /original-path    /new-path
+#
+# INDEX.HTML AND PARENT PATHS
+#
+# The live terraform.io website handles index.html files in the normal fashion:
+# - /docs/cloud/free/ will actually serve the content at /docs/cloud/free/index.html.
+# - /docs/cloud/free (without the trailing slash) will go to /docs/cloud/free/
+#   if there's a directory at "free" instead of a normal file.
+#
+# However, these redirect rules aren't that clever. This means that if you
+# redirect an index.html file, you must also redirect its parent path, both with
+# and without the trailing slash; otherwise, they'll continue to 404 instead of
+# finding the new location.
 #
 # GLOB MATCHING
 #
@@ -182,9 +194,11 @@
 /docs/enterprise/upgrade/differences.html /docs/enterprise/index.html
 
 # The great Terraform Cloud / Terraform Enterprise docs split:
+/docs/enterprise/free                                               /docs/cloud/free
 /docs/enterprise/free/                                              /docs/cloud/free/
 /docs/enterprise/free/index.html                                    /docs/cloud/free/index.html
 /docs/enterprise/free/overview.html                                 /docs/cloud/free/overview.html
+/docs/enterprise/workspaces                                         /docs/cloud/workspaces
 /docs/enterprise/workspaces/                                        /docs/cloud/workspaces/
 /docs/enterprise/workspaces/index.html                              /docs/cloud/workspaces/index.html
 /docs/enterprise/workspaces/settings.html                           /docs/cloud/workspaces/settings.html
@@ -195,6 +209,7 @@
 /docs/enterprise/workspaces/creating.html                           /docs/cloud/workspaces/creating.html
 /docs/enterprise/workspaces/variables.html                          /docs/cloud/workspaces/variables.html
 /docs/enterprise/workspaces/repo-structure.html                     /docs/cloud/workspaces/repo-structure.html
+/docs/enterprise/users-teams-organizations                          /docs/cloud/users-teams-organizations
 /docs/enterprise/users-teams-organizations/                         /docs/cloud/users-teams-organizations/
 /docs/enterprise/users-teams-organizations/index.html               /docs/cloud/users-teams-organizations/index.html
 /docs/enterprise/users-teams-organizations/users.html               /docs/cloud/users-teams-organizations/users.html
@@ -203,6 +218,7 @@
 /docs/enterprise/users-teams-organizations/teams.html               /docs/cloud/users-teams-organizations/teams.html
 /docs/enterprise/users-teams-organizations/permissions.html         /docs/cloud/users-teams-organizations/permissions.html
 /docs/enterprise/users-teams-organizations/2fa.html                 /docs/cloud/users-teams-organizations/2fa.html
+/docs/enterprise/sentinel                                           /docs/cloud/sentinel
 /docs/enterprise/sentinel/                                          /docs/cloud/sentinel/
 /docs/enterprise/sentinel/index.html                                /docs/cloud/sentinel/index.html
 /docs/enterprise/sentinel/integrate-vcs.html                        /docs/cloud/sentinel/integrate-vcs.html
@@ -211,16 +227,20 @@
 /docs/enterprise/sentinel/manage-policies.html                      /docs/cloud/sentinel/manage-policies.html
 /docs/enterprise/sentinel/sentinel-tf-012.html                      /docs/cloud/sentinel/sentinel-tf-012.html
 /docs/enterprise/sentinel/mock.html                                 /docs/cloud/sentinel/mock.html
+/docs/enterprise/sentinel/import                                    /docs/cloud/sentinel/import
 /docs/enterprise/sentinel/import/                                   /docs/cloud/sentinel/import/
 /docs/enterprise/sentinel/import/index.html                         /docs/cloud/sentinel/import/index.html
 /docs/enterprise/sentinel/import/tfstate.html                       /docs/cloud/sentinel/import/tfstate.html
 /docs/enterprise/sentinel/import/tfconfig.html                      /docs/cloud/sentinel/import/tfconfig.html
 /docs/enterprise/sentinel/import/tfplan.html                        /docs/cloud/sentinel/import/tfplan.html
+/docs/enterprise/integrations/service-now                           /docs/cloud/integrations/service-now
 /docs/enterprise/integrations/service-now/                          /docs/cloud/integrations/service-now/
 /docs/enterprise/integrations/service-now/index.html                /docs/cloud/integrations/service-now/index.html
+/docs/enterprise/migrate                                            /docs/cloud/migrate
 /docs/enterprise/migrate/                                           /docs/cloud/migrate/
 /docs/enterprise/migrate/index.html                                 /docs/cloud/migrate/index.html
 /docs/enterprise/migrate/workspaces.html                            /docs/cloud/migrate/workspaces.html
+/docs/enterprise/getting-started                                    /docs/cloud/getting-started
 /docs/enterprise/getting-started/                                   /docs/cloud/getting-started/
 /docs/enterprise/getting-started/index.html                         /docs/cloud/getting-started/index.html
 /docs/enterprise/getting-started/workspaces.html                    /docs/cloud/getting-started/workspaces.html
@@ -228,6 +248,7 @@
 /docs/enterprise/getting-started/policies.html                      /docs/cloud/getting-started/policies.html
 /docs/enterprise/getting-started/access.html                        /docs/cloud/getting-started/access.html
 /docs/enterprise/getting-started/vcs.html                           /docs/cloud/getting-started/vcs.html
+/docs/enterprise/vcs                                                /docs/cloud/vcs
 /docs/enterprise/vcs/                                               /docs/cloud/vcs/
 /docs/enterprise/vcs/index.html                                     /docs/cloud/vcs/index.html
 /docs/enterprise/vcs/github.html                                    /docs/cloud/vcs/github.html
@@ -237,6 +258,7 @@
 /docs/enterprise/vcs/bitbucket-server.html                          /docs/cloud/vcs/bitbucket-server.html
 /docs/enterprise/vcs/github-enterprise.html                         /docs/cloud/vcs/github-enterprise.html
 /docs/enterprise/vcs/troubleshooting.html                           /docs/cloud/vcs/troubleshooting.html
+/docs/enterprise/guides/recommended-practices                       /docs/cloud/guides/recommended-practices
 /docs/enterprise/guides/recommended-practices/                      /docs/cloud/guides/recommended-practices/
 /docs/enterprise/guides/recommended-practices/index.html            /docs/cloud/guides/recommended-practices/index.html
 /docs/enterprise/guides/recommended-practices/part3.1.html          /docs/cloud/guides/recommended-practices/part3.1.html
@@ -246,11 +268,13 @@
 /docs/enterprise/guides/recommended-practices/part3.4.html          /docs/cloud/guides/recommended-practices/part3.4.html
 /docs/enterprise/guides/recommended-practices/part2.html            /docs/cloud/guides/recommended-practices/part2.html
 /docs/enterprise/guides/recommended-practices/part3.html            /docs/cloud/guides/recommended-practices/part3.html
+/docs/enterprise/registry                                           /docs/cloud/registry
 /docs/enterprise/registry/                                          /docs/cloud/registry/
 /docs/enterprise/registry/index.html                                /docs/cloud/registry/index.html
 /docs/enterprise/registry/design.html                               /docs/cloud/registry/design.html
 /docs/enterprise/registry/publish.html                              /docs/cloud/registry/publish.html
 /docs/enterprise/registry/using.html                                /docs/cloud/registry/using.html
+/docs/enterprise/api                                                /docs/cloud/api
 /docs/enterprise/api/                                               /docs/cloud/api/
 /docs/enterprise/api/index.html                                     /docs/cloud/api/index.html
 /docs/enterprise/api/stability-policy.html                          /docs/cloud/api/stability-policy.html
@@ -266,6 +290,7 @@
 /docs/enterprise/api/policy-sets.html                               /docs/cloud/api/policy-sets.html
 /docs/enterprise/api/account.html                                   /docs/cloud/api/account.html
 /docs/enterprise/api/policies.html                                  /docs/cloud/api/policies.html
+/docs/enterprise/api/admin                                          /docs/cloud/api/admin
 /docs/enterprise/api/admin/                                         /docs/cloud/api/admin/
 /docs/enterprise/api/admin/index.html                               /docs/cloud/api/admin/index.html
 /docs/enterprise/api/admin/settings.html                            /docs/cloud/api/admin/settings.html
@@ -288,6 +313,7 @@
 /docs/enterprise/api/run.html                                       /docs/cloud/api/run.html
 /docs/enterprise/api/notification-configurations.html               /docs/cloud/api/notification-configurations.html
 /docs/enterprise/api/plan-exports.html                              /docs/cloud/api/plan-exports.html
+/docs/enterprise/run                                                /docs/cloud/run
 /docs/enterprise/run/                                               /docs/cloud/run/
 /docs/enterprise/run/index.html                                     /docs/cloud/run/index.html
 /docs/enterprise/run/install-software.html                          /docs/cloud/run/install-software.html
@@ -296,8 +322,10 @@
 /docs/enterprise/run/ui.html                                        /docs/cloud/run/ui.html
 /docs/enterprise/run/states.html                                    /docs/cloud/run/states.html
 
+/docs/enterprise/private                                            /docs/enterprise
 /docs/enterprise/private/                                           /docs/enterprise/
 /docs/enterprise/private/index.html                                 /docs/enterprise/index.html
+/docs/enterprise/private/admin                                      /docs/enterprise/admin/admin-access.html
 /docs/enterprise/private/admin/                                     /docs/enterprise/admin/admin-access.html
 /docs/enterprise/private/admin/index.html                           /docs/enterprise/admin/admin-access.html
 /docs/enterprise/private/admin/general.html                         /docs/enterprise/admin/general.html
