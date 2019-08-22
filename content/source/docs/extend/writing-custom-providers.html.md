@@ -53,7 +53,7 @@ and should include the following boilerplate code:
 package main
 
 import (
-        "github.com/hashicorp/terraform/helper/schema"
+        "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func Provider() *schema.Provider {
@@ -64,7 +64,7 @@ func Provider() *schema.Provider {
 ```
 
 The
-[`helper/schema`](https://godoc.org/github.com/hashicorp/terraform/helper/schema)
+[`helper/schema`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema)
 library is part of [Terraform
 Core](/docs/extend/how-terraform-works.html#terraform-core). It abstracts many
 of the complexities and ensures consistency between providers. The example above
@@ -86,8 +86,8 @@ to define this entry-point with the following code:
 package main
 
 import (
-        "github.com/hashicorp/terraform/plugin"
-        "github.com/hashicorp/terraform/terraform"
+        "github.com/hashicorp/terraform-plugin-sdk/plugin"
+        "github.com/hashicorp/terraform-plugin-sdk/terraform"
 )
 
 func main() {
@@ -154,7 +154,7 @@ file, named after the resource, prefixed with `resource_`. To create an
 package main
 
 import (
-        "github.com/hashicorp/terraform/helper/schema"
+        "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceServer() *schema.Resource {
@@ -176,7 +176,7 @@ func resourceServer() *schema.Resource {
 ```
 
 This uses the
-[`schema.Resource` type](https://godoc.org/github.com/hashicorp/terraform/helper/schema#Resource).
+[`schema.Resource` type](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#Resource).
 This structure defines the data schema and CRUD operations for the resource.
 Defining these properties are the only required thing to create a resource.
 
@@ -354,7 +354,7 @@ func resourceServerCreate(d *schema.ResourceData, m interface{}) error {
 ```
 
 This uses the [`schema.ResourceData
-API`](https://godoc.org/github.com/hashicorp/terraform/helper/schema#ResourceData)
+API`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#ResourceData)
 to get the value of `"address"` provided by the user in the Terraform
 configuration. Due to the way Go works, we have to typecast it to string. This
 is a safe operation, however, since our schema guarantees it will be a string

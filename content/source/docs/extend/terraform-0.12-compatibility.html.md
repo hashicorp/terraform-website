@@ -54,7 +54,23 @@ packages accordingly. Once your provider codebase is a Go Module, you can
 use the following commands to upgrade for Terraform 0.12 compatibility:
 
 ```
-go get github.com/hashicorp/terraform@v0.12.0
+go get github.com/hashicorp/terraform@v0.12.7
+go mod tidy
+go mod vendor
+```
+
+### Switching to the official SDK
+While the `helper` package has served us well, in order for provider development to evolve the SDK needed to break out into its own repository. Terraform v0.12.7 will be the final release with importable packages intended for provider development. Going forward developers will import [github.com/hashicorp/terraform-plugin-sdk](https://github.com/hashicorp/terraform-plugin-sdk). The first release of this SDK aims to keep nearly 100% backwards compatibility, aside from a handful of APIs, so only the imports within your provider need to be replaced. The migration process can be automated with the [migrator tool](https://github.com/hashicorp/tf-sdk-migrator)
+
+
+```
+<Fill is usage here>
+```
+
+This tool will check the eligibility of your provider and mention if the provider is lacking any requirements or using any of the deprecated APIs. After the migration, providers will update the SDK with the new address.
+
+```
+go get github.com/hashicorp/terraform-plugin-sdk@v1.0.0
 go mod tidy
 go mod vendor
 ```
@@ -221,7 +237,7 @@ can explicitly set it to unknown to reflect that.
 
 For example, if your resource type has a `version` attribute that changes
 each time certain other attributes are updated, you can use
-[the `customdiff.ComputedIf` helper](https://godoc.org/github.com/hashicorp/terraform/helper/customdiff#ComputedIf)
+[the `customdiff.ComputedIf` helper](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/customdiff#ComputedIf)
 to reflect that in the plan:
 
 ```go

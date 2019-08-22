@@ -11,7 +11,7 @@ description: |-
 
 Terraform Plugins are expressed using schemas to define attributes and their
 behaviors, using a high level package exposed by Terraform Core named
-[`schema`](https://github.com/hashicorp/terraform/tree/master/helper/schema).
+[`schema`](https://github.com/hashicorp/terraform-plugin-sdk/tree/master/helper/schema).
 Providers, Resources, and Provisioners all contains schemas, and Terraform Core
 uses them to produce plan and apply executions based on the behaviors described. 
 
@@ -21,8 +21,8 @@ Below is an example `provider.go` file, detailing a hypothetical `ExampleProvide
 package exampleprovider
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/hashicorp/terraform/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 )
 
 // Provider returns a terraform.ResourceProvider.
@@ -49,7 +49,7 @@ In this example we’re creating a `Provider` and setting it’s `schema`. This
 schema is a collection of key value pairs of schema elements the attributes a
 user can specify in their configuration. The keys are strings, and the values
 are
-[`schema.Schema`](https://github.com/hashicorp/terraform/blob/5727d3335247e5940af2bef35c88657753f6d260/helper/schema/schema.go#L37)
+[`schema.Schema`](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L37)
 structs that define the behavior. 
 
 Schemas can be thought of as a type paired one or more properties that describe

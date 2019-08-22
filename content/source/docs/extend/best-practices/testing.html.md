@@ -100,7 +100,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
 	// generate a random name for each widget test run, to avoid
 	// collisions from multiple concurrent tests.
 	// the acctest package includes many helpers such as RandStringFromCharSet
-	// See https://godoc.org/github.com/hashicorp/terraform/helper/acctest
+	// See https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/acctest
 	rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
 
 	resource.Test(t, resource.TestCase{
@@ -376,8 +376,8 @@ for safely managing infrastructure.
 [3]: /docs/extend/testing/acceptance-tests/testcase.html#precheck
 [4]: /docs/extend/testing/acceptance-tests/testcase.html#checkdestroy
 [5]: /docs/extend/testing/acceptance-tests/teststep.html
-[6]: https://github.com/hashicorp/terraform/blob/9441e78fb9c35037da71fd0284b97e546dd6a53b/helper/resource/testing.go#L299-L301
-[7]:  https://github.com/hashicorp/terraform/blob/9441e78fb9c35037da71fd0284b97e546dd6a53b/helper/resource/testing.go#L303-L306
+[6]: https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L299-L301
+[7]:  https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L303-L306
 [8]: /docs/extend/testing/acceptance-tests/teststep.html#check-functions
 [9]: /docs/extend/testing/acceptance-tests/teststep.html#builtin-check-functions
 
