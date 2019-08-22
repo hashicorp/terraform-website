@@ -1,25 +1,25 @@
 ---
 layout: "github-actions"
-page_title: "Terraform Enterprise Remote Backend - Terraform GitHub Actions"
+page_title: "Terraform Cloud Remote Backend - Terraform GitHub Actions"
 sidebar_current: "docs-github-actions-remote-backend"
 ---
 
-# Terraform Enterprise Remote Backend
+# Terraform Cloud Remote Backend
 
-Terraform GitHub Actions supports Terraform Enterprise's [remote backend](/docs/backends/types/remote.html).
+Terraform GitHub Actions supports Terraform Cloud's [remote backend](/docs/backends/types/remote.html).
 
 To enable:
 
-1. Create a new secret `TF_ACTION_TFE_TOKEN` set to a Terraform Enterprise
- [user API token](/docs/enterprise/users-teams-organizations/users.html#api-tokens).
+1. Create a new secret `TF_ACTION_TFE_TOKEN` set to a Terraform Cloud
+ [user API token](/docs/cloud/users-teams-organizations/users.html#api-tokens).
 1. Add the secret to the `terraform-init` and `terraform-plan` actions.
-1. If you're using Private Terraform Enterprise, set the `TF_ACTION_TFE_HOSTNAME`
-   environment variable to your Private Terraform Enterprise's hostname.
+1. If you're using Terraform Enterprise, set the `TF_ACTION_TFE_HOSTNAME`
+   environment variable to your Terraform Enterprise instance's hostname.
 
 Example:
 
 ```hcl
-workflow "Terraform Enterprise" {
+workflow "Terraform Cloud" {
   resolves = "terraform-plan"
   on = "pull_request"
 }
