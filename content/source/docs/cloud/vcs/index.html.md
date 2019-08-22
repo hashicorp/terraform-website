@@ -85,3 +85,7 @@ For complete details, click the link for your VCS provider:
 - [Bitbucket Server](./bitbucket-server.html)
 
 -> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using Terraform Cloud's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
+
+## Reconfiguring VCS Access
+
+The only attributes of an OAuth Client that are editable are its display name and its key/secret pair. You may need to reconfigure the key/secret pair if these credentials become compromised, requiring you to regenerate them. For other changes, such as your VCS provider having changed URLs for either HTTP or API access, you must delete the OAuth Client and create a new one. You can update an OAuth Client via the [Terraform Cloud API](../api/oauth-clients.html#update-an-oauth-client) or the UI.
