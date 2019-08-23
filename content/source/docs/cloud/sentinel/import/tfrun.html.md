@@ -88,7 +88,7 @@ contains the workspace's [auto-apply](../../workspaces/settings.html#auto-apply-
 The `working_directory` value within the [workspace namespace](#namespace-workspace)
 contains the configured [Terraform working directory](../../workspaces/settings.html#terraform-working-directory) of the workspace.
 
-This value is an empty string (`""`) when no working directory is set.
+This value can be `null`.
 
 ### Value: `vcs_repo`
 
@@ -98,6 +98,8 @@ The `vcs_repo` value within the [workspace namespace](#namespace-workspace)
 contains data associated with a VCS repository connected to the workspace.
 
 Details regarding each attribute can be found in the documentation for the Terraform Cloud [Workspaces API](../../api/workspaces.html).
+
+This value can be `null`.
 
 ```
 vcs_repo (map of keys)
