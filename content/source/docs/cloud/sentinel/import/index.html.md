@@ -9,8 +9,8 @@ Sentinel Policies for Terraform are defined using the [Sentinel policy
 language](https://docs.hashicorp.com/sentinel/language/). A policy can include
 [imports](https://docs.hashicorp.com/sentinel/concepts/imports) which enable a
 policy to access reusable libraries, external data and functions. Terraform
-Cloud provides four imports to define policy rules for the configuration,
-state, and plan associated with runs.
+Cloud provides four imports to define policy rules for the plan, configuration,
+state, and run associated with a policy check.
 
 - [tfplan](./tfplan.html) - This provides access to a Terraform plan, the file
   created as a result of `terraform plan`.	 The plan represents the changes
