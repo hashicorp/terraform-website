@@ -69,12 +69,13 @@ and available for download.
 
 ## Using Mock Data
 
-Mock data is supplied as a bundled tarball, containing 3 files:
+Mock data is supplied as a bundled tarball, containing 4 files:
 
 ```
 mock-tfconfig.sentinel # tfconfig mock data
 mock-tfplan.sentinel   # tfplan mock data
 mock-tfstate.sentinel  # tfstate mock data
+mock-tfrun.sentinel    # tfrun mock data
 ```
 
 The recommended placement of the files is in a subdirectory of the repository
@@ -93,7 +94,8 @@ evaluated like one.
 └── testdata
     ├── mock-tfconfig.sentinel
     ├── mock-tfplan.sentinel
-    └── mock-tfstate.sentinel
+    ├── mock-tfstate.sentinel
+    └── mock-tfrun.sentinel
 ```
 
 Each configuration that needs access to the mock should reference the mock data
@@ -108,7 +110,8 @@ configuration file would look like:
   "mock": {
     "tfconfig": "testdata/mock-tfconfig.sentinel",
     "tfplan": "testdata/mock-tfplan.sentinel",
-    "tfstate": "testdata/mock-tfstate.sentinel"
+    "tfstate": "testdata/mock-tfstate.sentinel",
+    "tfrun": "testdata/mock-tfrun.sentinel"
   }
 }
 ```
@@ -122,7 +125,8 @@ file. For example, the contents of `pass.json`, asserting that the result of the
   "mock": {
     "tfconfig": "../../testdata/mock-tfconfig.sentinel",
     "tfplan": "../../testdata/mock-tfplan.sentinel",
-    "tfstate": "../../testdata/mock-tfstate.sentinel"
+    "tfstate": "../../testdata/mock-tfstate.sentinel",
+    "tfrun": "../../testdata/mock-tfrun.sentinel"
   },
   "test": {
     "main": true
