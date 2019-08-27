@@ -7,7 +7,7 @@ page_title: "Naming - Workspaces - Terraform Cloud"
 
 Terraform Cloud organizes workspaces by name, so it's important to use a consistent and informative naming strategy. And although future releases of Terraform Cloud will add more organizational tools, the name will always be the most important piece of information about a workspace.
 
-Note that workspace names can only include letters, numbers, -, and _.
+Note that workspace names need to be 90 characters or less and can only include letters, numbers, -, and _.
 
 The best way to make names that are both unique and useful is to combine the workspace's most distinguishing _attributes_ in a consistent order. Attributes can be any defining
 characteristic of a workspace — such as the component being managed, the
