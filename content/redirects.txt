@@ -146,8 +146,9 @@
 /docs/providers/azurerm/authenticating_via_azure_cli.html         /docs/providers/azurerm/auth/azure_cli.html
 /docs/providers/azurerm/authenticating_via_msi.html               /docs/providers/azurerm/auth/managed_service_identity.html
 
-# Fixing terraform-provider-google#2197
+# Google Provider
 /docs/provider/google/provider_versions.html          /docs/providers/google/provider_versions.html
+/docs/providers/google/r/bigquery_dataset.html        /docs/providers/google/r/big_query_dataset.html
 
 # Move content to learn.hashicorp.com:
 # These redirects are inert in this file, because they need a "real" Varnish
