@@ -148,7 +148,11 @@
 
 # Google Provider
 /docs/provider/google/provider_versions.html          /docs/providers/google/provider_versions.html
-/docs/providers/google/r/bigquery_dataset.html        /docs/providers/google/r/big_query_dataset.html
+/docs/providers/google/r/big_query_dataset.html        /docs/providers/google/r/bigquery_dataset.html
+/docs/providers/google/r/cloud_build_trigger.html        /docs/providers/google/r/cloudbuild_trigger.html
+/docs/providers/google/r/security_center_source.html        /docs/providers/google/r/scc_source.html
+/docs/providers/google/r/source_repo_repository.html        /docs/providers/google/r/sourcerepo_repository.html
+/docs/providers/google/r/source_repo_repository_iam.html        /docs/providers/google/r/sourcerepo_repository_iam.html
 
 # Move content to learn.hashicorp.com:
 # These redirects are inert in this file, because they need a "real" Varnish
