@@ -175,27 +175,43 @@ You can view current and historical state data for a workspace from its "States"
 
 In your Terraform configurations, you can use a [`terraform_remote_state` data source](/docs/providers/terraform/d/remote_state.html) to access [outputs](/docs/configuration/outputs.html) from your other workspaces.
 
-~> **Important:** A given workspace can only access state data from within the same organization. If you plan to use multiple organizations, make sure to keep groups of workspaces that use each other's data together in the same organization.
+~> **Important:** A given workspace can only access state data from within the same organization. If you plan to use multiple Terraform Cloud organizations, make sure to keep related groups of workspaces together in the same organization.
 
-To configure a data source for a Terraform Cloud workspace, set `backend` to `remote` and `config.name` to `<ORGANIZATION>/<WORKSPACE>`.
+To configure a data source for a Terraform Cloud workspace, set the `backend` argument to `remote` and specify the organization and workspace in the `config` argument.
 
 ``` hcl
 data "terraform_remote_state" "vpc" {
   backend = "remote"
-  config {
-    name = "example_corp/vpc-prod"
+  config = {
+    organization = "example_corp"
+    workspaces = {
+      name = "vpc-prod"
+    }
   }
 }
 
 resource "aws_instance" "redis_server" {
-  # ...
+  # Terraform 0.12 syntax: use the "outputs.<OUTPUT NAME>" attribute
+  subnet_id = data.terraform_remote_state.vpc.outputs.subnet_id
+
+  # Terraform 0.11 syntax: use the "<OUTPUT NAME>" attribute
   subnet_id = "${data.terraform_remote_state.vpc.subnet_id}"
 }
 ```
 
 ### Backend Details
 
-Terraform Cloud uses [the `remote` backend](/docs/backends/types/remote.html) to exchange state data with the Terraform process during runs. The `remote` backend requires an access token, provided via the `$ATLAS_TOKEN` environment variable. When you run Terraform from the command line, you can use a [user API token](../users-teams-organizations/users.html#api-tokens) with write permissions on the desired workspace.
+[CLI config file]: /docs/commands/cli-config.html
+[remote]: /docs/backends/types/remote.html
 
-When Terraform Cloud performs a run, it doesn't use existing user credentials; instead it generates a unique per-run API token, and exports it to the Terraform worker's shell environment as `$ATLAS_TOKEN`. This per-run token can read and write state data for the workspace associated with the run, and can read state data from any other workspace in the same organization. It cannot make any other calls to the Terraform Cloud API. Per-run tokens are not considered to be user, team, or organization tokens, and become invalid after the run is completed.
+Terraform Cloud stores state for its workspaces. During a run, Terraform CLI uses a [backend](/docs/backends/index.html) to read from and write to Terraform Cloud's stored state.
 
+When Terraform Cloud performs a Terraform run, it uses [the `remote` backend][remote], overriding any existing backend in the configuration.
+
+Instead of using existing user credentials, Terraform Cloud generates a unique per-run API token and provides it to the Terraform worker in the [CLI config file][]. This per-run token can read and write state data for the workspace associated with the run, can read state data from any other workspace in the same organization, and can download modules from the [private module registry](../registry/index.html). It cannot make any other calls to the Terraform Cloud API. Per-run tokens are not considered to be user, team, or organization tokens, and become invalid after the run is completed.
+
+-> **Note:** When performing a run with Terraform 0.11.12 or earlier, Terraform Cloud instead uses [the `atlas` backend](/docs/backends/types/terraform-enterprise.html) and provides the per-run token in the `$ATLAS_TOKEN` environment variable.
+
+When running Terraform on the commmand line against a workspace configured for remote operations, the CLI user must have [the `remote` backend][remote] configured in the Terraform configuration, and must have a user or team API token with the appropriate permissions specified in their [CLI config file][]. However, the run itself still occurs within one of Terraform Cloud's worker VMs, and still uses the per-run token for state access.
+
+When running Terraform on the command line against a workspace that is _not_ configured for remote operations, the CLI user's token is used for state access.
