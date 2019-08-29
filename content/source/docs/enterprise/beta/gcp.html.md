@@ -89,7 +89,7 @@ If you choose to install in Production mode you will also need:
 
 #### Automated Preparation
 
-[bootstrap]: https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/bootstrap-gcp
+[bootstrap]: https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/bootstrap-google
 
 If you have an empty test project, you can create the required infrastructure resources with an [example bootstrap Terraform module][bootstrap]. This module only requires the following:
 
