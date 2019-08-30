@@ -190,7 +190,7 @@ resource "example_instance" "ex" {
 ## Function Behaviors
 ### DiffSuppressFunc
 **Data structure:**
-[SchemaDiffSuppressFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L202)    
+[SchemaDiffSuppressFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L263-L268)    
 
 When provided `DiffSuppressFunc` will be used by Terraform to calculate the diff
 of this field. Common use cases are capitalization differences in string names,
@@ -228,7 +228,7 @@ resource "example_instance" "ex" {
 
 ### DefaultFunc
 **Data structure:**
-[SchemaDefaultFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L209)  
+[SchemaDefaultFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L270-L272)  
 **Restrictions:**  
 
 - Cannot be used if `Default` is specified
@@ -292,7 +292,7 @@ provider "example" {
 ```
 
 ### StateFunc
-**Data structure:** [SchemaStateFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L245)    
+**Data structure:** [SchemaStateFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L306-L308)    
 
 `SchemaStateFunc` is a function used to convert the value of this element to a string to be stored in the state. 
 
@@ -327,7 +327,7 @@ Value in statefile:
 ```
 
 ### ValidateFunc
-**Data structure:** [SchemaValidateFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L249)   
+**Data structure:** [SchemaValidateFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L310-L312)   
 **Restrictions:** 
 
 - Only works with primitive types  

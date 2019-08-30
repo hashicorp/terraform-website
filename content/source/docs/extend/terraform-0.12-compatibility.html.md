@@ -60,7 +60,7 @@ go mod vendor
 ```
 
 ### Switching to the official SDK
-While the `helper` package has served us well, in order for provider development to evolve the SDK needed to break out into its own repository. Terraform v0.12.7 will be the final release with importable packages intended for provider development. Going forward developers will import [github.com/hashicorp/terraform-plugin-sdk](https://github.com/hashicorp/terraform-plugin-sdk). The first release of this SDK aims to keep nearly 100% backwards compatibility, aside from a handful of APIs, so only the imports within your provider need to be replaced. The migration process can be automated with the [migrator tool](https://github.com/hashicorp/tf-sdk-migrator)
+While the `helper` package has served us well, in order for provider development to evolve the SDK needed to break out into its own repository. Terraform v0.12.7 will be the final release with importable packages intended for provider development. Going forward developers will import [github.com/hashicorp/terraform-plugin-sdk](https://github.com/hashicorp/terraform-plugin-sdk). The first release of this SDK aims to keep nearly 100% backwards compatibility, aside from a handful of APIs, so only the imports within your provider need to be replaced. The migration process can be automated with the [migrator tool](https://github.com/hashicorp/tf-sdk-migrator).
 
 
 ```

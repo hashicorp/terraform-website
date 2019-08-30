@@ -143,7 +143,7 @@ func testAccPreCheck(t *testing.T) {
 ### Providers 
 
 **Type:**
-`map[string]`[terraform.ResourceProvider](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/terraform/resource_provider.go#L10-L171)  
+`map[string]`[terraform.ResourceProvider](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/terraform/resource_provider.go#L12-L172)  
 **Required:** Yes  
 
 **Providers** is a map of `terraform.ResourceProvider` values with `string`
@@ -186,7 +186,7 @@ func init() {
 
 ### CheckDestroy 
 
-**Type:** [TestCheckFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L182-L186)  
+**Type:** [TestCheckFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L192-L196)  
 **Default:** `nil`  
 **Required:** no  
 
@@ -252,7 +252,7 @@ func testAccCheckExampleResourceDestroy(s *terraform.State) error {
 
 ### Steps 
 
-**Type:** [[]TestStep](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L249-L367)  
+**Type:** [`[]TestStep`](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L259-L391)  
 **Required:** yes  
 
 **TestStep** is a single apply sequence of a test, done within the context of a
@@ -301,6 +301,6 @@ creation to creating, adding, and removing specific properties. In the next
 Section [`TestSteps`][2], we’ll detail `Steps` portion of `TestCase` and see how
 to create these scenarios by iterating on Terraform configurations. 
 
-[1]: https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L195-L247
+[1]: https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L205-L257
 [2]: /docs/extend/testing/acceptance-tests/teststep.html
 [3]: https://golang.org/pkg/testing/#T

@@ -376,8 +376,8 @@ for safely managing infrastructure.
 [3]: /docs/extend/testing/acceptance-tests/testcase.html#precheck
 [4]: /docs/extend/testing/acceptance-tests/testcase.html#checkdestroy
 [5]: /docs/extend/testing/acceptance-tests/teststep.html
-[6]: https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L299-L301
-[7]:  https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L303-L306
+[6]: https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L318-L320
+[7]: https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/resource/testing.go#L322-L325
 [8]: /docs/extend/testing/acceptance-tests/teststep.html#check-functions
 [9]: /docs/extend/testing/acceptance-tests/teststep.html#builtin-check-functions
 

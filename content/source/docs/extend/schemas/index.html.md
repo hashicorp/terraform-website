@@ -49,7 +49,7 @@ In this example we’re creating a `Provider` and setting it’s `schema`. This
 schema is a collection of key value pairs of schema elements the attributes a
 user can specify in their configuration. The keys are strings, and the values
 are
-[`schema.Schema`](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L37)
+[`schema.Schema`](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/helper/schema/schema.go#L61)
 structs that define the behavior. 
 
 Schemas can be thought of as a type paired one or more properties that describe
