@@ -137,6 +137,7 @@ curl \
       "canceled-by": { ... },
       "configuration-version": {...},
       "confirmed-by": {...},
+      "cost-estimate": {...},
       "created-by": {...},
       "input-state-version": {...},
       "plan": {...},
@@ -281,6 +282,7 @@ curl \
         "canceled-by": {...},
         "configuration-version": {...},
         "confirmed-by": {...},
+        "cost-estimate": {...},
         "created-by": {...},
         "input-state-version": {...},
         "plan": {...},
@@ -362,6 +364,7 @@ curl \
       "canceled-by": {...},
       "configuration-version": {...},
       "confirmed-by": {...},
+      "cost-estimate": {...},
       "created-by": {...},
       "input-state-version": {...},
       "plan": {...},
@@ -582,5 +585,6 @@ The GET endpoints above can optionally return related resources, if requested wi
 - `plan` - Additional information about plans.
 - `apply` - Additional information about applies.
 - `created_by` - Full user records of the users responsible for creating the runs.
+- `cost_estimate` - Additional information about cost estimates.
 - `configuration_version` - The configuration record used in the run.
 - `configuration_version.ingress_attributes` - The commit information used in the run.

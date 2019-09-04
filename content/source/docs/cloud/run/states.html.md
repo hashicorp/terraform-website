@@ -6,7 +6,7 @@ page_title: "Run States and Stages - Runs - Terraform Cloud"
 # Run States and Stages
 
 
-Each run passes through several stages of action (pending, plan, policy check, apply, and completion), and Terraform Cloud shows the progress through those stages as run states.
+Each run passes through several stages of action (pending, plan, cost estimation, policy check, apply, and completion), and Terraform Cloud shows the progress through those stages as run states.
 
 In the list of workspaces on Terraform Cloud's main page, each workspace shows the state of the run it's currently processing. (Or, if no run is in progress, the state of the most recent completed run.)
 
@@ -34,11 +34,26 @@ _Leaving this stage:_
 - If a user canceled the plan by pressing the "Cancel Run" button, the run skips to completion (**Canceled** state).
 - If the plan succeeded and doesn't require any changes (since it already matches the current infrastructure state), the run skips to completion (**No Changes** state).
 - If the plan succeeded and requires changes:
-    - If [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
+    - If cost estimation is enabled, the run proceeds automatically to the cost estimation stage.
+    - If cost estimation is disabled and [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
     - If there are no Sentinel policies and the plan can be auto-applied, the run proceeds automatically to the apply stage. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace, the plan is not a destroy plan, and the plan was not queued by a user without write permissions.)
     - If there are no Sentinel policies and the plan can't be auto-applied, the run pauses in the **Needs Confirmation** state until a user with write access to the workspace takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
 
-## 3. The Policy Check Stage
+## 3. The Cost Estimation Stage
+
+This stage only occurs if cost estimation is enabled. After a successful `terraform plan`, Terraform Cloud uses plan data to estimate costs for each resource found in the plan.
+
+_States in this stage:_
+
+- **Cost Estimating:** Terraform Cloud is currently estimating the resources in the plan.
+- **Cost Estimated:** The cost estimate completed.
+
+_Leaving this stage:_
+
+- If cost estimation succeeded or errors, the run moves to the next stage.
+- If there are no policy checks or applies, the run skips to completion (**Planned (Finished)** state).
+
+## 4. The Policy Check Stage
 
 This stage only occurs if [Sentinel policies][] are enabled. After a successful `terraform plan`, Terraform Cloud checks whether the plan obeys policy to determine whether it can be applied.
 
@@ -61,7 +76,7 @@ _Leaving this stage:_
     - If the plan can't be auto-applied, the run pauses in the **Policy Checked** state until a user with write access takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
 
 
-## 4. The Apply Stage
+## 5. The Apply Stage
 
 _States in this stage:_
 
@@ -75,7 +90,7 @@ After applying, the run proceeds automatically to completion.
 - If the apply failed, the run ends in the **Apply Errored** state.
 - If a user canceled the apply by pressing the "Cancel Run" button, the run ends in the **Canceled** state.
 
-## 5. Completion
+## 6. Completion
 
 A run is considered completed if it finishes applying, if any part of the run fails, if there's nothing to do, or if a user chooses not to continue. Once a run is completed, the next run in the queue can enter the plan stage.
 

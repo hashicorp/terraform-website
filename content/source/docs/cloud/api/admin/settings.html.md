@@ -128,6 +128,108 @@ curl \
 }
 ```
 
+## List Cost Estimation Settings
+
+`GET /api/v2/admin/cost-estimation-settings`
+
+Status  | Response                                                   | Reason
+--------|------------------------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "cost-estimation-settings"`) | Successfully listed Cost Estimation settings
+[404][] | [JSON API error object][]                                  | User unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/admin/cost-estimation-settings
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "cost-estimation",
+    "type": "cost-estimation-settings",
+    "attributes": {
+      "enabled": true,
+      "aws-access-key-id": "AKIAIOSFODNN7EXAMPLE",
+      "aws-secret-key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+      "gcp-credentials": "{\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n....=\\n-----END PRIVATE KEY-----\",\"private_key_id\":\"some_id\",...}"
+    }
+  }
+}
+```
+
+## Update Cost Estimation Settings
+
+`PATCH /api/v2/admin/cost-estimation-settings`
+
+Status  | Response                                                   | Reason
+--------|------------------------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "cost-estimation-settings"`) | Successfully updated Cost Estimation settings
+[404][] | [JSON API error object][]                                  | User unauthorized to perform action
+[422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.)
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+If `data.attributes.enabled` is set to `true`, there must be at least one set of credentials populated with valid values. For example, either both `aws-access-key-id` and `aws-secret-key` must be set, _or_ `gcp-credentials` must be set.
+
+See [SAML Configuration](../../saml/configuration.html) for more details on attribute values.
+
+Key path                            | Type   | Default | Description
+------------------------------------|--------|---------|------------
+`data.attributes.enabled`           | bool   | `false` | Allows organizations to opt-in to the Cost Estimation feature.
+`data.attributes.aws-access-key-id` | string |         | An AWS Access Key ID that the Cost Estimation feature will use to authorize to AWS's Pricing API.
+`data.attributes.aws-secret-key`    | string |         | An AWS Secret Key that the Cost Estimation feature will use to authorize to AWS's Pricing API.
+`data.attributes.gcp-credentials`   | string |         | A JSON string containing GCP credentials that the Cost Estimation feature will use to authorize to the Google Cloud Platform's Pricing API. This must be the contents of a valid JSON key that is downloaded when [creating a Service Account in GCP](https://cloud.google.com/video-intelligence/docs/common/auth#set_up_a_service_account).
+
+```json
+{
+  "data": {
+    "attributes": {
+      "enabled": true,
+      "aws-access-key-id": "AKIAIOSFODNN7EXAMPLE",
+      "aws-secret-key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+      "gcp-credentials": "{\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n....=\\n-----END PRIVATE KEY-----\",\"private_key_id\":\"some_id\",...}"
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/admin/cost-estimation-settings
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id":"cost-estimation",
+    "type":"cost-estimation-settings",
+    "attributes": {
+      "enabled": true,
+      "aws-access-key-id": "AKIAIOSFODNN7EXAMPLE",
+      "aws-secret-key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+      "gcp-credentials": "{\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n....=\\n-----END PRIVATE KEY-----\",\"private_key_id\":\"some_id\",...}"
+    }
+  }
+}
+```
+
 ## List SAML Settings
 `GET /api/v2/admin/saml-settings`
 
