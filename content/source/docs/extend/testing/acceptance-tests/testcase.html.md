@@ -125,7 +125,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
   resource.Test(t, resource.TestCase{
     PreCheck:     func() { testAccPreCheck(t) },
   	// ...
-  }
+  })
 }
 
 
@@ -166,7 +166,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
     PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
   	// ...
-  }
+  })
 }
 
 // File: example/provider_test.go
@@ -209,7 +209,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
     Providers:    testAccProviders,
     CheckDestroy: testAccCheckExampleResourceDestroy,
     // ...
-  }
+  })
 }
 
 // testAccCheckExampleResourceDestroy verifies the Widget 
