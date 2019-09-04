@@ -164,7 +164,7 @@ package example
 func TestAccExampleWidget_basic(t *testing.T) {
   resource.Test(t, resource.TestCase{
     PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
+    Providers:    testAccProviders,
   	// ...
   })
 }
