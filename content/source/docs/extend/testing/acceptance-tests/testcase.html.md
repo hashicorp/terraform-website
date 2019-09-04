@@ -74,9 +74,9 @@ a new testcase object:
 package example
 
 func TestAccExampleWidget_basic(t *testing.T) {
-  resource.Test(t, resource.TestCase){
+  resource.Test(t, resource.TestCase{
   	// ...
-  }
+  })
 }
 ```
 
