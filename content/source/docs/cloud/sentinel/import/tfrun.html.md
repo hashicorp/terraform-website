@@ -143,6 +143,6 @@ This value contains a positive decimal and can be `"0.0"`.
 * **Value Type:** String.
 
 The `delta_monthly_cost` value within the [cost_estimate namespace](#namespace-cost_estimate) contains the
-delta between the prior and proposed monthly cost estimates.
+difference between the prior and proposed monthly cost estimates.
 
 This value contains a positive or negative decimal and can be `"0.0"`.
