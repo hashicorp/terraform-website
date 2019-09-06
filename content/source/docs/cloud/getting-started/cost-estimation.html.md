@@ -7,7 +7,7 @@ page_title: "Cost Estimation - Getting Started - Terraform Cloud"
 
 **Prerequisites:** Before starting this guide, make sure you've [created and configured at least one workspace](./workspaces.html) and successfully [run terraform](./runs.html) in that workspace.
 
-Once you've created a workspace, you can estimate resource costs by planning a Terraform config in that workspace.
+Once you've created a workspace, you can estimate resource costs by planning a Terraform config in that workspace. Terraform Cloud already supports all of the most used resources and will support even more in the future.
 
 
 ## About Cost Estimation in Terraform Cloud
@@ -26,7 +26,7 @@ To enable Cost Estimation for your organization, check the box in your organizat
 
 ## Using an estimable Terraform configuration
 
-We'll need a valid config with cost estimable resources. Here's a very simple one.
+We'll need a valid config with cost estimable resources. Here's a very simple one. Create a new workspace with the following config in a `main.tf`. This is all you need to see cost estimation working but you'll need more to apply real resources.
 
 ```python
 provider "aws" {
@@ -39,21 +39,22 @@ resource "aws_instance" "basic" {
 }
 ```
 
-AWS resources require credentials to operate against the AWS API.
+AWS resources require credentials to operate against the AWS API. Add your credentials to the workspace's variables.
 
 ![cost estimation variables](./images/cost-estimation-variables.png)
 
 ## Verifying costs using policies
 
-Now you can add a new policy to validate your configuration's cost estimates. This policy simply checks that each plan adds or removes cost.
+Now you can add a new policy to validate your configuration's cost estimates. This policy simply checks that the new cost delta is no more than $100. A new `t3.nano` instance should be well below that. We'll use the `decimal` import for more accurate math when working with currency numbers.
 
 ```python
 import "tfrun"
+import "decimal"
 
-has_cost_delta = rule { tfrun.cost_estimate.delta_monthly_cost is not "0.00" }
+delta_monthly_cost = decimal.new(tfrun.cost_estimate.delta_monthly_cost)
 
 main = rule {
-	has_cost_delta
+	delta_monthly_cost.less_than(100)
 }
 ```
 
