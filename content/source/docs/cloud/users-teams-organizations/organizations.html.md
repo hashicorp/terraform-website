@@ -88,13 +88,12 @@ The policies page is for managing Sentinel policies, and the policy sets page is
 
 Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information about Sentinel, or [Managing Sentinel Policies](../sentinel/manage-policies.html) for details about these two settings pages.
 
-## Inactive Organizations
+## Trial Expired Organizations
 
-Terraform Cloud is a paid product offered to organizations on a subscription basis; for more information about billing, please speak to a HashiCorp sales representative. Terraform Cloud is also available as a free trial to organizations evaluating its features.
+Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a Hashicorp Sales Representative, please ask them about how to get a free trial. 
 
-When a free trial has expired, or when paid billing has been canceled, an organization becomes inactive. Inactive organizations display a banner reading "TRIAL EXPIRED — Upgrade Required" in the top navigation bar:
+When a free trial has expired, the organizations display a banner reading "TRIAL EXPIRED — Upgrade Required" in the top navigation bar:
 
 ![screenshot: the trial expiration banner](./images/org-inactive.png)
 
-Members of an inactive organization can still log into Terraform Cloud, view data about past runs, manage team memberships, and manage access permissions on workspaces. However, inactive organizations cannot initiate new [Terraform runs](../run/index.html).
 
