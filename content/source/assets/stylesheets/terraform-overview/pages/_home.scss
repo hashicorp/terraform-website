@@ -248,6 +248,7 @@
       padding-top: calc((100% * 0.63569) + 18px);
       position: relative;
       width: 100%;
+      overflow: hidden;
 
       @media (min-width: 768px) {
         margin-bottom: -152px;
