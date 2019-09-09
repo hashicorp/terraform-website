@@ -27,7 +27,7 @@ description: |-
                                 <span>
                         </a>
                         <h1>Terraform</h1>
-                        <p>Use Infrastructure as Code to provision and manage any cloud, infrastructure, and service</p>
+                        <p>Use Infrastructure as Code to provision and manage any cloud, infrastructure, or service</p>
                         <a href="https://app.terraform.io/signup/account" class="g-btn download">
                             Sign up for Cloud
                         </a>
@@ -96,7 +96,7 @@ description: |-
                                 <li>Automate provisioning</li>
                             </ul>
                         </div>
-                        <p>Define infrastructure as code to manage the full lifecycle - create new resources, manage existing ones, and destroy ones no longer needed.</p>
+                        <p>Define infrastructure as code to manage the full lifecycle — create new resources, manage existing ones, and destroy those no longer needed.</p>
                     </div>
                 </div>
                 <div>
@@ -123,7 +123,7 @@ description: |-
 
                         <div class="check">
                             <ul>
-                                <li>Map resource dependencies</li>
+                                <li>Clearly mapped resource dependencies</li>
                                 <li>Separation of plan and apply</li>
                                 <li>Consistent, repeatable workflow</li>
                             </ul>
@@ -158,15 +158,13 @@ description: |-
                         <div class="check">
                             <ul>
                                 <li>Reproducible production, staging, and development environments</li>
-                                <li>Shareable modules</li>
+                                <li>Shared modules for common infrastructure patterns</li>
                                 <li>Combine multiple providers consistently</li>
 
                             </ul>
                         </div>
-                        <p>Terraform lets operators easily use the same configurations in multiple places to reduce
-                            mistakes and
-                            save
-                            time.</p>
+                        <p>Terraform makes it easy to re-use configurations for similar infrastructure, helping you
+                            avoid mistakes and save time.</p>
                         <a href="https://www.terraform.io/docs/providers/" class="g-btn purple-outline">View All
                             Providers</a>
                     </div>
@@ -207,10 +205,10 @@ description: |-
                             and iterate on Infrastructure as Code.</p>
                         <div class="check">
                             <ul>
-                                <li>State Management <span class="shrink">(storage, viewing, and locking)</span></li>
-                                <li>Web Application with Full UI</li>
+                                <li>State management <span class="shrink">(storage, viewing, history, and locking)</span></li>
+                                <li>Web UI for viewing and approving Terraform runs</li>
                                 <li>Collaborative Runs</li>
-                                <li>Private Module Registry</li>
+                                <li>Private module registry</li>
                             </ul>
                         </div>
                     </div>
@@ -239,10 +237,10 @@ description: |-
                         <p>Create a pipeline for provisioning Infrastructure as Code</p>
                         <div class="check">
                             <ul>
-                                <li>VCS Integration (GitHub, BitBucket, and GitLab)</li>
+                                <li>VCS integration <span class="shrink">(GitHub, BitBucket, and GitLab)</span></li>
                                 <li>Enable GitOps workflow</li>
-                                <li>Remote Operations (Plans and Applies)</li>
-                                <li>Notifications / Webhooks</li>
+                                <li>Remote operations — perform Terraform runs in a consistent, immutable environment</li>
+                                <li>Notifications for run events (via Slack or webhooks)</li>
                                 <li>Full HTTP API for integrating with other tools and services</li>
                             </ul>
                         </div>
@@ -279,7 +277,7 @@ description: |-
         <div class="g-container">
             <div class="intro">
                 <h2>Terraform for Every Team</h2>
-                <p>Organizations looking for enhanced control over their teams or enforceable governance can purchase the
+                <p>Organizations looking for enhanced division of responsibilities or automatic policy enforcement can purchase the
                     Team and Governance upgrades for Terraform Cloud. Start for free and upgrade to suit the needs of
                     your team as you grow.
                 </p>
@@ -288,15 +286,15 @@ description: |-
                 <div>
                     <div>
                         <h3>Free</h3>
-                        <p>Automation and collaboration features to empower individuals and small teams including VCS connection,
-                            remote operations and state management. Teams on the free plan can have up to 5 users.</p>
+                        <p>Automation and collaboration features to empower individuals and small teams, including VCS integration,
+                            remote operations, and state management. Teams on the free plan can have up to 5 users.</p>
                         <p class="price"><span>$0</span>&nbsp; Up to 5 users</p>
                     </div>
                 </div>
                 <div>
                     <div>
                         <h3>Team</h3>
-                        <p>This upgrade includes Team Management and Role Based Access Control (RBAC) to create multiple teams and
+                        <p>This upgrade includes team management and role based access control (RBAC). Create multiple teams and
                             ensure that team members have the right level of access to the appropriate configurations.
                         </p>
                         <p class="price"><span>$20</span> <strong>User / Month</strong></p>
@@ -306,9 +304,9 @@ description: |-
                     <div>
                         <h3>Governance</h3>
                         <p>This upgrade provides access to the <a href="https://www.hashicorp.com/sentinel" title="HashiCorp - Sentinel Policy as Code">Sentinel Policy as Code</a> framework for enforcing
-                            fine-grain policy
+                            fine-grained policy
                             against everything that Terraform Cloud provisions.
-                            It also includes Cost Estimation for organizations looking to understand how much
+                            It also includes cost estimation, so you can preview how much
                             configurations will cost
                             before they are deployed.
                         </p>
@@ -349,7 +347,7 @@ description: |-
                     <div class="tab-content">
                         <h4>Terraform Cloud</h3>
                             <h5>Write Infrastructure as Code</h5>
-                            <p>Terraform users define infrastructure in a simple, human readable configuration language
+                            <p>Terraform users define infrastructure in a simple, human-readable configuration language
                                 called HCL
                                 (HashiCorp
                                 Configuration Language). Users can write unique HCL configuration files or borrow
@@ -358,11 +356,11 @@ description: |-
                                 the public
                                 module registry.</p>
                             <h5>Manage Configuration Files in VCS</h5>
-                            <p>Most users will store their configuration files in a VCS (Version Control System) and
-                                connect that VCS
-                                to
+                            <p>Most users will store their configuration files in a version control system (VCS) repository and
+                                connect that repository
+                                to a
                                 Terraform
-                                Cloud. With that connection in place, users can borrow best practices from software
+                                Cloud workspace. With that connection in place, users can borrow best practices from software
                                 engineering to
                                 version
                                 and
@@ -371,7 +369,8 @@ description: |-
                                 infrastructure.
                             </p>
                             <h5>Automate Provisioning</h5>
-                            <p>Terraform will automatically trigger a plan based on any changes in the version control system.
+                            <p>When you push changes to a connected VCS repository, Terraform Cloud will automatically trigger a plan
+                                in any workspace connected to that repository.
                                 This plan can be
                                 reviewed for
                                 safety and accuracy in the Terraform UI, then it can be applied to provision the
