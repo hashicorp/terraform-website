@@ -1,11 +1,11 @@
 ---
-layout: "docs-frontpage"
-page_title: "Documentation"
-sidebar_current: "docs-frontpage"
+layout: 'docs-frontpage'
+page_title: 'Documentation'
+sidebar_current: 'docs-frontpage'
 description: |-
   A brief map of the documentation for Terraform CLI, Terraform Enterprise, the
   Terraform GitHub Actions, and the rest of the Terraform ecosystem.
-show_notification: true
+show_notification: false
 ---
 
 # Terraform Documentation
@@ -57,11 +57,6 @@ Detailed descriptions of various Terraform workflows, both general and specific.
 This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the guides at [Learn Terraform](https://learn.hashicorp.com/terraform/)), but to explain best practices and show how the different pieces of a workflow fit together.
 
 </div>
-
-
-
-
-
 
 <div class="col-md-6 col-sm-12">
 
