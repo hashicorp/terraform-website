@@ -54,6 +54,7 @@ curl \
       "type": "organizations",
       "attributes": {
         "name": "hashicorp",
+        "cost-estimation-enabled": false,
         "created-at": "2017-09-07T14:34:40.492Z",
         "email": "user@example.com",
         "session-timeout": null,
@@ -113,6 +114,7 @@ curl \
     "type": "organizations",
     "attributes": {
       "name": "hashicorp",
+      "cost-estimation-enabled": false,
       "created-at": "2017-09-07T14:34:40.492Z",
       "email": "user@example.com",
       "session-timeout": null,
@@ -163,6 +165,7 @@ Key path                                   | Type    | Default   | Description
 `data.attributes.session-timeout`          | integer |    20160  | Session timeout after inactivity (minutes)
 `data.attributes.session-remember`         | integer |    20160  | Session expiration (minutes)
 `data.attributes.collaborator-auth-policy` | string  | password  | Authentication policy (`password` or `two_factor_mandatory`)
+`data.attributes.cost-estimation-enabled`  | boolean | false     | Whether or not the cost estimation feature is enabled for all workspaces in the organization
 `data.attributes.owners-team-saml-role-id` | string  | (nothing) | **Optional.** **SAML only** The name of the ["owners" team](/docs/enterprise/saml/team-membership.html#managing-membership-of-the-owners-team)
 
 ### Sample Payload
@@ -199,6 +202,7 @@ curl \
     "type": "organizations",
     "attributes": {
       "name": "hashicorp",
+      "cost-estimation-enabled": false,
       "created-at": "2017-09-07T14:34:40.492Z",
       "email": "user@example.com",
       "session-timeout": null,
@@ -251,6 +255,7 @@ Key path                                   | Type    | Default   | Description
 `data.attributes.session-timeout`          | integer |    20160  | Session timeout after inactivity (minutes)
 `data.attributes.session-remember`         | integer |    20160  | Session expiration (minutes)
 `data.attributes.collaborator-auth-policy` | string  | password  | Authentication policy (`password` or `two_factor_mandatory`)
+`data.attributes.cost-estimation-enabled`  | boolean | false     | Whether or not the cost estimation feature is enabled for all workspaces in the organization
 `data.attributes.owners-team-saml-role-id` | string  | (nothing) | **Optional.** **SAML only** The name of the ["owners" team](/docs/enterprise/saml/team-membership.html#managing-membership-of-the-owners-team)
 
 ### Sample Payload
@@ -286,6 +291,7 @@ curl \
     "type": "organizations",
     "attributes": {
       "name": "hashicorp",
+      "cost-estimation-enabled": false,
       "created-at": "2017-09-07T14:34:40.492Z",
       "email": "admin@example.com",
       "session-timeout": null,

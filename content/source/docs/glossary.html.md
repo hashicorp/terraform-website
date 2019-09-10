@@ -26,6 +26,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Commit](#commit)
 - [(Terraform) Configuration](#terraform-configuration)
 - [Configuration Version](#configuration-version)
+- [Cost Estimation](#cost-estimation)
 - [Data Source](#data-source)
 - [Deposed](#deposed)
 - [Expression](#expression)
@@ -252,6 +253,17 @@ The contents of a Terraform [config][] at a specific moment in time. This concep
 Every stage of a given run uses one specific configuration version.
 
 Config versions can be automatically imported when new commits are merged to a workspace's repo, uploaded via the API, or uploaded by running `terraform plan` or `terraform apply` as a [remote operation][]. Adding a new config version is sometimes called "[ingressing][ingress]."
+
+## Cost Estimation
+
+[cost estimation]: glossary.html#cost-estimation
+[cost estimations]: glossary.html#cost-estimation
+
+-> Terraform Cloud
+
+Part of a [run][]. After gathering the [plan file][] for a run, Terraform Cloud uses plan data to estimate costs for each resource found in the [plan][]. Previous and proposed resources are given estimated costs, providing an estimated delta cost between the two. The results can be used in [Sentinel policies][].
+
+- [Terraform Cloud docs: Run States and Stages](/docs/cloud/run/states.html)
 
 ## Data Source
 

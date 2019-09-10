@@ -78,6 +78,10 @@ The authentication page allows owners to determine when users must reauthenticat
 
 The SSH keys page manages any keys necessary for cloning Git-based module sources during Terraform runs. It does not manage keys used for accessing a connected VCS provider. See [SSH Keys for Cloning Modules](../workspaces/ssh-keys.html) for more information.
 
+### Cost Estimation
+
+The Cost Estimation page allows for enabling and disabling the [cost estimation](../getting-started/cost-estimation.html) feature for all workspaces.
+
 ### Policies and Policy Sets
 
 The policies page is for managing Sentinel policies, and the policy sets page is for assigning groups of policies to workspaces.

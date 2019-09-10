@@ -130,6 +130,6 @@ Now that the policy set is configured and ready, navigate to a workspace and que
 
 ![run](./images/policy-sets-run.png)
 
-## Finished
+## Next Steps
 
-You've now configured Terraform Cloud and experienced its core workflows — you know how to create new workspaces, automatically and manually trigger runs on a workspace, review and monitor runs, approve plans, and add policy checks to your runs.
+Now that you've completed and applied a policy check, you're ready to [start cost estimation](./cost-estimation.html).

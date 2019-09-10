@@ -9,17 +9,23 @@ description: |-
 
 The `tfrun` import provides access to data associated with a [Terraform run][run-glossary].
 
-This import currently includes a single namespace - `workspace` - which provides Sentinel policies with
-static data regarding the Terraform Cloud [workspace][workspace-glossary] associated with the run.
+This import currently includes two namespaces — `workspace`, which provides Sentinel policies with
+static data regarding the Terraform Cloud [workspace][workspace-glossary] associated with the run,
+and `cost_estimate`, which provides Sentinel policies with static data regarding the Terraform Cloud
+cost estimate associated with the run.
 
 ```
 tfrun
-└── workspace
-    ├── name (string)
-    ├── description (string)
-    ├── auto_apply (bool)
-    ├── working_directory (string)
-    └── vcs_repo (map of keys)
+├── workspace
+│   ├── name (string)
+│   ├── description (string)
+│   ├── auto_apply (bool)
+│   ├── working_directory (string)
+│   └── vcs_repo (map of keys)
+└── cost_estimate
+    ├── prior_monthly_cost (string)
+    ├── proposed_monthly_cost (string)
+    └── delta_monthly_cost (string)
 ```
 
 -> **Note:** When writing policies using this import, keep in mind that workspace
@@ -36,7 +42,7 @@ to only enforce the policy on non-development workspaces is more appropriate.
 [run-glossary]: /docs/glossary.html#run
 [workspace-glossary]: /docs/glossary.html#workspace
 
-## Namespace: Workspace
+## Namespace: workspace
 
 The **workspace namespace** contains data associated with the current run's workspace.
 
@@ -108,3 +114,35 @@ vcs_repo (map of keys)
 ├── branch (string)
 └── ingress_submodules (bool)
 ```
+
+## Namespace: cost_estimate
+
+The **cost_estimation namespace** contains data associated with the current run's cost estimate. This
+namespace is only present if cost a estimate is available.
+
+### Value: `prior_monthly_cost`
+
+* **Value Type:** String.
+
+The `prior_monthly_cost` value within the [cost_estimate namespace](#namespace-cost_estimate) contains the
+monthly cost estimate at the beginning of a plan.
+
+This value contains a positive decimal and can be `"0.0"`.
+
+### Value: `proposed_monthly_cost`
+
+* **Value Type:** String.
+
+The `proposed_monthly_cost` value within the [cost_estimate namespace](#namespace-cost_estimate) contains the
+monthly cost estimate if the plan were to be applied.
+
+This value contains a positive decimal and can be `"0.0"`.
+
+### Value: `delta_monthly_cost`
+
+* **Value Type:** String.
+
+The `delta_monthly_cost` value within the [cost_estimate namespace](#namespace-cost_estimate) contains the
+difference between the prior and proposed monthly cost estimates.
+
+This value contains a positive or negative decimal and can be `"0.0"`.
