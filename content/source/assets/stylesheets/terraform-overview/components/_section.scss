@@ -1,0 +1,61 @@
+.g-section,
+#page-home section.g-section {
+  overflow: hidden;
+  padding: 56px 0;
+
+  @media (min-width: 768px) {
+    padding: 96px 0;
+  }
+
+  @media (min-width: 992px) {
+    padding: 120px 0;
+  }
+  &.collapse-top {
+    padding-top: 28px;
+    @media (min-width: 768px) {
+      padding-top: 48px;
+    }
+
+    @media (min-width: 992px) {
+      padding-top: 70px;
+    }
+  }
+  &.collapse-bottom {
+    padding-bottom: 28px;
+    @media (min-width: 768px) {
+      padding-bottom: 48px;
+    }
+
+    @media (min-width: 992px) {
+      padding-bottom: 70px;
+    }
+  }
+  &.bg-light {
+    background: #f7f8fa !important; //TODO - !important is to override the `#page-home section` #fff background;
+  }
+
+  &.bg-dark {
+    background: #252937 !important; //TODO - !important is to override the `#page-home section` #fff background;
+    color: #fff;
+  }
+
+  &.border-top {
+    border-top: 1px solid #e5e6eb;
+  }
+
+  & .intro {
+    margin: 0 auto 24px;
+    max-width: 844px;
+    padding: 0 16px;
+    text-align: center;
+
+    @media (min-width: 767px) {
+      margin-bottom: 64px;
+    }
+
+    & h2,
+    & h3 {
+      margin: 0 0 24px;
+    }
+  }
+}
