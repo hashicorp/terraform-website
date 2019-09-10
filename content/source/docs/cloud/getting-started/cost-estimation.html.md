@@ -7,7 +7,7 @@ page_title: "Cost Estimation - Getting Started - Terraform Cloud"
 
 **Prerequisites:** Before starting this guide, make sure you've [created and configured at least one workspace](./workspaces.html) and successfully [run terraform](./runs.html) in that workspace.
 
-Once you've created a workspace, you can estimate resource costs by planning a Terraform config in that workspace. Terraform Cloud already supports all of the most used resources and will support even more in the future.
+Once you've created a workspace, you can estimate resource costs by planning a Terraform config in that workspace. Terraform Cloud already supports many of the most used resources and will support even more in the future.
 
 
 ## About Cost Estimation in Terraform Cloud
@@ -60,7 +60,7 @@ main = rule {
 
 ## Viewing a Cost Estimate
 
-After queueing a new run, you should see your resources being estimated. The costs are found in a new phase in the run UI. You can see the list of resources with costs, their price details, and the list of unestimated resources. Costs are totalled to get a sense of the proposed overall monthly cost once the run is applied.
+After queueing a new run, you should see your resources being estimated. The costs are found in a new phase in the run UI. You can see the list of resources with costs, their price details, and the list of unestimated resources. Costs are totalled to get a sense of the proposed overall monthly cost once the run is applied. Note that this is just an estimate; some resources don't have cost information available or have unpredictable usage-based pricing.
 
 ![cost estimation run](./images/cost-estimation-run.png)
 

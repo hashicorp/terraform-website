@@ -9,9 +9,9 @@ description: |-
 
 The `tfrun` import provides access to data associated with a [Terraform run][run-glossary].
 
-This import currently includes two namespaces - `workspace` - which provides Sentinel policies with
+This import currently includes two namespaces — `workspace`, which provides Sentinel policies with
 static data regarding the Terraform Cloud [workspace][workspace-glossary] associated with the run,
-and `cost_estimate` - which provides Sentinel policies with static data regarding the Terraform Cloud
+and `cost_estimate`, which provides Sentinel policies with static data regarding the Terraform Cloud
 cost estimate associated with the run.
 
 ```

@@ -261,7 +261,7 @@ Config versions can be automatically imported when new commits are merged to a w
 
 -> Terraform Cloud
 
-Part of a [run][]. After gathering the [plan file][] for a run, Terraform Cloud uses plan data to estimate costs for each resource found in the [plan][]. Previous and proposed resources are given estimated costs, providing an estimated delta cost between the two. The results can be used in [sentinel policies][].
+Part of a [run][]. After gathering the [plan file][] for a run, Terraform Cloud uses plan data to estimate costs for each resource found in the [plan][]. Previous and proposed resources are given estimated costs, providing an estimated delta cost between the two. The results can be used in [Sentinel policies][].
 
 - [Terraform Cloud docs: Run States and Stages](/docs/cloud/run/states.html)
 
