@@ -321,7 +321,6 @@
 /docs/enterprise/run                                                /docs/cloud/run
 /docs/enterprise/run/                                               /docs/cloud/run/
 /docs/enterprise/run/index.html                                     /docs/cloud/run/index.html
-/docs/enterprise/run/install-software.html                          /docs/cloud/run/install-software.html
 /docs/enterprise/run/api.html                                       /docs/cloud/run/api.html
 /docs/enterprise/run/cli.html                                       /docs/cloud/run/cli.html
 /docs/enterprise/run/ui.html                                        /docs/cloud/run/ui.html
