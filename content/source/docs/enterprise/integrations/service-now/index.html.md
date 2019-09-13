@@ -1,5 +1,5 @@
 ---
-layout: "cloud"
+layout: "enterprise"
 page_title: "Setup Instructions - ServiceNow Service Catalog Integration - Terraform Cloud"
 description: |-
   ServiceNow integration to enable your users to order Terraform-built infrastructure from ServiceNow
@@ -32,7 +32,7 @@ To start using Terraform with ServiceNow Catalog Integration, you must already h
 
 - A [Terraform Enterprise](https://www.hashicorp.com/products/terraform/) account, either on app.terraform.io or on a Terraform Enterprise installation.
 - A ServiceNow instance or developer instance. You can request a ServiceNow developer instance at [developer.servicenow.com](https://developer.servicenow.com/).
-- A [supported version control system](../../vcs/index.html#supported-vcs-providers) (VCS) with read access to repositories with Terraform configuration.
+- A [supported version control system](../../../cloud/vcs/index.html#supported-vcs-providers) (VCS) with read access to repositories with Terraform configuration.
 - A git repository to host the ServiceNow integration.
 
 It does not require additional ServiceNow modules and has been tested on the following ServiceNow server versions:
@@ -44,10 +44,10 @@ It does not require additional ServiceNow modules and has been tested on the fol
 
 Before installing the ServiceNow integration, you need to perform some setup and gather some information in Terraform Enterprise.
 
-1. [Create an organization](../../users-teams-organizations/organizations.html) (or choose an existing organization) where ServiceNow will create new workspaces.
-1. [Create a team](../../users-teams-organizations/teams.html) for that organization called "ServiceNow", and ensure that it has the organization-level ["Manage Workspaces" permission](../../users-teams-organizations/permissions.html#manage-workspaces). You do not need to add any users to this team.
-1. On the "ServiceNow" team's settings page, generate a [team API token](../../users-teams-organizations/service-accounts.html#team-service-accounts). **Save this API token for later.**
-1. If you haven't yet done so, [connect a VCS provider](../../vcs/index.html) for this Terraform organization.
+1. [Create an organization](../../../cloud/users-teams-organizations/organizations.html) (or choose an existing organization) where ServiceNow will create new workspaces.
+1. [Create a team](../../../cloud/users-teams-organizations/teams.html) for that organization called "ServiceNow", and ensure that it has the organization-level ["Manage Workspaces" permission](../../../cloud/users-teams-organizations/permissions.html#manage-workspaces). You do not need to add any users to this team.
+1. On the "ServiceNow" team's settings page, generate a [team API token](../../../cloud/users-teams-organizations/service-accounts.html#team-service-accounts). **Save this API token for later.**
+1. If you haven't yet done so, [connect a VCS provider](../../../cloud/vcs/index.html) for this Terraform organization.
 1. On the organization's VCS provider settings page, find the "OAuth Token ID" for your VCS provider. This is an opaque ID that Terraform Enterprise uses to identify this VCS provider. **Save the OAuth Token ID for later.**
 
 ## Installing the ServiceNow Integration
@@ -93,7 +93,7 @@ The worker synchronizes ServiceNow with the current run state of Terraform works
 1. Using the left-hand navigation, open the configuration table for the integration to manage the Terraform Enterprise connection.
     - Terraform > Configs
 1. Click on "New" to create a new Terraform Enterprise connection:
-    - Set API Team Token to the Terraform Enterprise [Team Token](../../users-teams-organizations/service-accounts.html#team-service-accounts) you created earlier.
+    - Set API Team Token to the Terraform Enterprise [Team Token](../../../cloud/users-teams-organizations/service-accounts.html#team-service-accounts) you created earlier.
     - Set Hostname to the hostname of your Terraform Enterprise instance. (If you're using the SaaS version of Terraform Cloud, this is app.terraform.io.)
     - Set Org Name to the name of the Terraform Enterprise organization you wish to use for new workspaces created by ServiceNow.
 
@@ -118,11 +118,11 @@ To make infrastructure available to your users, you must add one or more workspa
     - Identifier: The VCS repository that contains the Terraform configuration for this workspace template. Repository identifiers are determined by your VCS provider; they typically use a format like `<ORGANIZATION>/<REPO NAME>` or `<PROJECT KEY>/<REPO NAME>`.
     - The remaining fields are optional.
 
--> **Note:** Currently, the integration defaults to creating workspaces with [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) enabled. Since VCS-backed workspaces [start Terraform runs when changes are merged](../../run/ui.html), changes to a workspace template repository may cause new runs in any Terraform workspaces created from it.
+-> **Note:** Currently, the integration defaults to creating workspaces with [auto-apply](../../../cloud/workspaces/settings.html#auto-apply-and-manual-apply) enabled. Since VCS-backed workspaces [start Terraform runs when changes are merged](../../../cloud/run/ui.html), changes to a workspace template repository may cause new runs in any Terraform workspaces created from it.
 
 ## Terraform Variables and ServiceNow Variable Sets
 
-ServiceNow has the concept of a Variable Set which is a collection of ServiceNow Variables that can be referenced in a workflow from a Service Catalog item. The Terraform Integration codebase can create [Terraform Variables and Terraform Environment Variables](../../workspaces/variables.html) via the API using the `tf_variable.createVariablesFromSet()` function.
+ServiceNow has the concept of a Variable Set which is a collection of ServiceNow Variables that can be referenced in a workflow from a Service Catalog item. The Terraform Integration codebase can create [Terraform Variables and Terraform Environment Variables](../../../cloud/workspaces/variables.html) via the API using the `tf_variable.createVariablesFromSet()` function.
 
 This function looks for variables following these conventions:
 
