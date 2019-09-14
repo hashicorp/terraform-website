@@ -180,7 +180,7 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 
 If `data.attributes.enabled` is set to `true`, there must be at least one set of credentials populated with valid values. For example, either both `aws-access-key-id` and `aws-secret-key` must be set, _or_ `gcp-credentials` must be set.
 
-See [SAML Configuration](../../saml/configuration.html) for more details on attribute values.
+See [SAML Configuration](/docs/enterprise/saml/configuration.html) for more details on attribute values.
 
 Key path                            | Type   | Default | Description
 ------------------------------------|--------|---------|------------
