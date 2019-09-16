@@ -123,7 +123,7 @@ After changing any of these settings, you must click the "Update VCS settings" b
 
 ### VCS Connection and Repository
 
-You can use the "Select a VCS connection" buttons and "Repository" field to change which VCS repository the workspace gets configurations from. If you need to remove an already configured "Repository" you need to click on "Change VCS connection" and then select "skip this step". See also:
+You can use the "Select a VCS connection" buttons and "Repository" field to change which VCS repository the workspace gets configurations from. To remove an already configured VCS connection, use the "skip this step" link instead of one of the VCS buttons. See also:
 
 - [Creating Workspaces](./creating.html) for more details about selecting a VCS repository.
 - [Connecting VCS Providers to Terraform Cloud](../vcs/index.html) for more details about configuring VCS integrations.
