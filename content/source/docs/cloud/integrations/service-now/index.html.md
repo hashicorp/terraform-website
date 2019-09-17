@@ -9,6 +9,8 @@ description: |-
 
 -> **Integration version:**  v1.0.0
 
+-> **Note:** The ServiceNow Catalog integration is designed for use by Terraform Enterprise customers. We do not currently recommend using it with the SaaS version of Terraform Cloud.
+
 The Terraform ServiceNow Service Catalog integration enables your end-users to provision self-serve infrastructure via ServiceNow. By connecting ServiceNow with Terraform Enterprise, this integration lets ServiceNow users create workspaces and perform Terraform runs, using prepared Terraform configurations hosted in VCS repositories.
 
 Integrating ServiceNow with Terraform Enterprise involves several configuration steps. You will perform some of these steps in ServiceNow, and some of them in Terraform Enterprise.
@@ -30,15 +32,21 @@ Once these steps are completed, self-serve infrastructure will be available thro
 
 To start using Terraform with ServiceNow Catalog Integration, you must already have:
 
-- A [Terraform Enterprise](https://www.hashicorp.com/products/terraform/) account, either on app.terraform.io or on a Terraform Enterprise installation.
+- An account on a [Terraform Enterprise](https://www.hashicorp.com/products/terraform/) instance.
 - A ServiceNow instance or developer instance. You can request a ServiceNow developer instance at [developer.servicenow.com](https://developer.servicenow.com/).
 - A [supported version control system](../../vcs/index.html#supported-vcs-providers) (VCS) with read access to repositories with Terraform configuration.
-- A git repository to host the ServiceNow integration.
+- A private Git repository to host the ServiceNow integration.
 
 It does not require additional ServiceNow modules and has been tested on the following ServiceNow server versions:
 
 - Madrid
 - London
+
+## Obtaining the ServiceNow Integration
+
+Before beginning setup, you must obtain a copy of the Terraform ServiceNow Catalog integration software. Contact your HashiCorp sales representative to get access to the software.
+
+Once you have obtained the files from your sales representative, check them into a private Git repository before beginning these setup instructions.
 
 ## Terraform Enterprise Setup
 
