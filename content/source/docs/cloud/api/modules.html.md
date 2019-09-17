@@ -78,11 +78,12 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-Key path                                  | Type   | Default | Description
-------------------------------------------|--------|---------|------------
-`data.type`                               | string |         | Must be `"registry-modules"`.
-`data.attributes.vcs-repo.identifier`     | string |         | The repository from which to ingress the configuration.
-`data.attributes.vcs-repo.oauth-token-id` | string |         | The VCS Connection (OAuth Connection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+Key path                                      | Type   | Default | Description
+----------------------------------------------|--------|---------|------------
+`data.type`                                   | string |         | Must be `"registry-modules"`.
+`data.attributes.vcs-repo.identifier`         | string |         | The repository from which to ingress the configuration.
+`data.attributes.vcs-repo.oauth-token-id`     | string |         | The VCS Connection (OAuth Connection + Token) to use as identified. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
+`data.attributes.vcs-repo.display_identifier  | string |         | The display identifier for the repository. For most VCS providers outside of BitBucket Cloud, this will match the `data.attributes.vcs-repo.identifier` string.
 
 A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo`, where `:org` and `:repo` refer to the organization (or project key, for Bitbucket Server) and repository in your VCS provider.
 
@@ -96,7 +97,8 @@ The OAuth Token ID identifies the VCS connection, and therefore the organization
     "attributes": {
       "vcs-repo": {
         "identifier":"SKI/terraform-aws-instance",
-        "oauth-token-id":"ot-hmAyP66qk2AMVdbJ"
+        "oauth-token-id":"ot-hmAyP66qk2AMVdbJ",
+        "display_identifier":"SKI/terraform-aws-instance"
       }
     },
     "type":"registry-modules"
