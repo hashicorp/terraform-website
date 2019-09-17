@@ -88,8 +88,13 @@ Sentinel is an embedded policy-as-code framework that can enforce rules about Te
 
 Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a Hashicorp Sales Representative, please ask them about how to get a free trial. 
 
-When a free trial has expired, the organizations display a banner reading "TRIAL EXPIRED — Upgrade Required" in the top navigation bar:
+When a free trial has expired, the organization displays a banner reading "TRIAL EXPIRED — Upgrade Required" in the top navigation bar:
 
 ![screenshot: the trial expiration banner](./images/org-inactive.png)
 
+Organizations with expired trials return to the feature set of a free organization, but they retain any data created as part of paid features. Specifically:
+
+- Teams other than `owners` are disabled, and users who don't belong to the `owners` team are locked out of the organization. Team membership and permissions are preserved, and are re-enabled on upgrade. 
+- Sentinel policy checks are disabled. Existing policies and policy sets are preserved, and are re-enabled on upgrade. 
+- Cost estimation is disabled.
 
