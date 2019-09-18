@@ -28,7 +28,7 @@ these attributes as strings. In particular, you might have to modify existence
 checks and comparisons done against numeric attributes.
 
 There are no explicit changes in the `tfrun` import for Terrraform 0.12, but
-the [`cost_estimate` namespace](./import/tfrun.html#namespace-cost_estimate)
+the [`cost_estimate namespace`](./import/tfrun.html#namespace-cost_estimate)
 does not appear in the `tfrun` import for Terraform 0.11 since cost estimates
 are not available in workspaces that use Terraform 0.11.
 
