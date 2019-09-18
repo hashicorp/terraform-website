@@ -17,9 +17,20 @@ modification.
 
 However, due to fundamental changes introduced in Terraform 0.12, some API
 changes were required. While `tfconfig` was most impacted, there have been
-notable changes to both `tfplan` and `tfstate` as well.
+notable changes to both `tfplan` and `tfstate` as well. These are described
+below. Your policies will need to be adjusted if they are affected by
+these changes.
 
-Your policies will need to be adjusted if they are affected by these changes.
+One change that affects the `tfconfig`, `tfplan`, and `tfstate` imports is
+that numeric attributes of resources are now treated as floats in Terraform
+0.12. This could require some modifications if your current policies treat
+these attributes as strings. In particular, you might have to modify existence
+checks and comparisons done against numeric attributes.
+
+There are no explicit changes in the `tfrun` import for Terrraform 0.12, but
+the [`cost_estimate` namespace](./import/tfrun.html#namespace-cost_estimate)
+does not appear in the `tfrun` import for Terraform 0.11 since cost estimates
+are not available in workspaces that use Terraform 0.11.
 
 ## Changes to `tfconfig`
 
@@ -146,10 +157,13 @@ at the expected block index for the relevant data.
 ## Changes to `tfplan`
 
 When used as directed, the
-[`tfplan`](./import/tfplan.html) import behaves
-exactly the same way with Terraform 0.12 as it does with Terraform 0.11. The
-only change that has been made is to the behavior of unknown values within
-[`applied`](./import/tfplan.html#value-applied).
+[`tfplan`](./import/tfplan.html) import generally behaves
+the same way with Terraform 0.12 as it does with Terraform 0.11 with the
+following exceptions:
+
+1. The behavior of unknown values within the 
+[`applied`](./import/tfplan.html#value-applied) value when creating or changing resources.
+1. The behavior when destroying resources without re-creating them.
 
 ### Changes to Unknown Values in `applied`
 
@@ -169,6 +183,36 @@ within the [diff
 namespace](./import/tfplan.html#namespace-resource-diff)
 to validate whether or not a value is unknown before looking for it in
 `applied`.
+
+### Changes Affecting Resources Being Destroyed but not Re-created
+
+In Terraform 0.11, when a resource is being destroyed but not re-created, it's
+[`diff`](./import/tfplan.html#value-diff) value in the `tfplan` import is empty
+while its [`applied`](./import/tfplan.html#value-applied) value has data. In
+Terraform 0.12, the situation is reversed; the `diff` value has data while the
+`applied` value is empty.
+
+It is therefore recommended to check whether Terraform 0.12 resources are being
+destroyed and not re-created in all Sentinel policies that use the `tfplan`
+import and the `applied` value in order to avoid `undefined` values in your
+functions and rules.
+
+Before Terraform 0.12 was released, some Sentinel policies tested whether
+a resource was being destroyed and not re-created by testing the condition
+`length(r.diff) == 0`. However, that cannot be used with Terraform 0.12 since
+the `diff` will not be empty for such a resource.
+
+Fortunately, after Terraform 0.12 was released, new
+[`destroy`](./import/tfplan.html#value-destroy) and
+[`requires_new`](./import/tfplan.html#value-requires_new) values were added to
+the `tfplan` import.  Since these values are available with both Terraform
+0.11 and 0.12, you can now simply test `r.destroy and not r.requires_new` to
+see if a resource is being destroyed and not re-created with both versions of
+Terraform.
+
+Please note that if you are using a private instance of Terraform Enterprise,
+you must use version v201909-1 or higher in order to use the `destroy` and
+`requires_new` values.
 
 ## Changes to `tfstate`
 
