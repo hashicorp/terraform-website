@@ -5,7 +5,8 @@ page_title: "Cost Estimation - Getting Started - Terraform Cloud"
 
 # Cost Estimation in Terraform Cloud
 
-**Prerequisites:** Before starting this guide, make sure you've [created and configured at least one workspace](./workspaces.html) and successfully [run terraform](./runs.html) in that workspace.
+**Prerequisites:** Before starting this guide, make sure you've [created and configured at least one workspace](./workspaces.html) and successfully [run terraform](./runs.html) in that workspace. Also, note that cost
+estimates are not available for workspaces using versions of Terraform less than 0.12.0.
 
 Once you've created a workspace, you can estimate resource costs by planning a Terraform config in that workspace. Terraform Cloud already supports many of the most used resources and will support even more in the future.
 
