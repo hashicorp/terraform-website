@@ -853,7 +853,7 @@ func flattenContainerSpec(in *server.ContainerSpec) []interface{} {
 func flattenServiceMounts(in []mount.Mount) []map[string]interface{} {
   var out = make([]map[string]interface{}, len(in), len(in))
   for i, v := range in {
-    m := make(map[string interface{}])
+    m := make(map[string]interface{})
     m["target"] = v.Target
     m["source"] = v.Source
     m["type"] = v.Type
