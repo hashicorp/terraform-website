@@ -205,7 +205,7 @@ the `diff` will not be empty for such a resource.
 Fortunately, after Terraform 0.12 was released, new
 [`destroy`](./import/tfplan.html#value-destroy) and
 [`requires_new`](./import/tfplan.html#value-requires_new) values were added to
-the `tfplan` import.  Since these values are available with both Terraform
+the `tfplan` import. Since these values are available with both Terraform
 0.11 and 0.12, you can now simply test `r.destroy and not r.requires_new` to
 see if a resource is being destroyed and not re-created with both versions of
 Terraform.
