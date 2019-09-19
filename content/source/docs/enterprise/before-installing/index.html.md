@@ -91,7 +91,7 @@ operating systems:
 ### Hardware Requirements
 
 These requirements provide the instance with enough resources to run the
-Terraform Cloud application as well as the Terraform plans and applies.
+Terraform Enterprise application as well as the Terraform plans and applies.
 
 * At least 40GB of disk space on the root volume
 * At least 8GB of system memory
