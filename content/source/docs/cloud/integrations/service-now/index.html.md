@@ -98,6 +98,7 @@ The worker synchronizes ServiceNow with the current run state of Terraform works
 
 -> **Roles Required:** `admin` or `x_terraform.config_user`
 
+1. Exit Service Now Studio and return to the ServiceNow Service Management Screen.
 1. Using the left-hand navigation, open the configuration table for the integration to manage the Terraform Enterprise connection.
     - Terraform > Configs
 1. Click on "New" to create a new Terraform Enterprise connection:
