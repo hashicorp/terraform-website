@@ -442,3 +442,7 @@
 	path = ext/providers/aviatrix
 	url = https://github.com/terraform-providers/terraform-provider-aviatrix
 	branch = stable-website
+[submodule "ext/providers/pureport"]
+	path = ext/providers/pureport
+	url = https://github.com/terraform-providers/terraform-provider-pureport
+	branch = stable-website
