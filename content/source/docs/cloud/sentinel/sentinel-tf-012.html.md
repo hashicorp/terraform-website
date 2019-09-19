@@ -187,25 +187,24 @@ to validate whether or not a value is unknown before looking for it in
 ### Changes Affecting Resources Being Destroyed but not Re-created
 
 In Terraform 0.11, when a resource is being destroyed but not re-created, it's
-[`diff`](./import/tfplan.html#value-diff) value in the `tfplan` import is empty
-while its [`applied`](./import/tfplan.html#value-applied) value has data. In
-Terraform 0.12, the situation is reversed; the `diff` value has data while the
-`applied` value is empty.
+[`diff`](./import/tfplan.html#value-diff) value in the `tfplan` import is empty.
+In Terraform 0.12, however, the `diff` value does has data. For both versions of
+Terraform, the [`applied`](./import/tfplan.html#value-applied) value will be
+absent.
 
-It is therefore recommended to check whether Terraform 0.12 resources are being
-destroyed and not re-created in all Sentinel policies that use the `tfplan`
-import and the `applied` value in order to avoid `undefined` values in your
-functions and rules.
+It is therefore recommended to check whether resources are being destroyed and
+not re-created in all Sentinel policies that use the `tfplan` import and the
+`applied` value in order to avoid `undefined` values in your functions and
+rules.
 
 Before Terraform 0.12 was released, some Sentinel policies tested whether
 a resource was being destroyed and not re-created by testing the condition
-`length(r.diff) == 0`. However, that cannot be used with Terraform 0.12 since
-the `diff` will not be empty for such a resource.
+`length(r.diff) == 0`. However, that cannot be used with Terraform 0.12.
 
 Fortunately, after Terraform 0.12 was released, new
 [`destroy`](./import/tfplan.html#value-destroy) and
 [`requires_new`](./import/tfplan.html#value-requires_new) values were added to
-the `tfplan` import. Since these values are available with both Terraform
+the `tfplan` import. Since these values are available both for Terraform
 0.11 and 0.12, you can now simply test `r.destroy and not r.requires_new` to
 see if a resource is being destroyed and not re-created with both versions of
 Terraform.
