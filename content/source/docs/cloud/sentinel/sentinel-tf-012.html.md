@@ -210,7 +210,7 @@ the `tfplan` import.  Since these values are available with both Terraform
 see if a resource is being destroyed and not re-created with both versions of
 Terraform.
 
-Please note that if you are using a private instance of Terraform Enterprise,
+Please note that if you are using Terraform Enterprise,
 you must use version v201909-1 or higher in order to use the `destroy` and
 `requires_new` values.
 
