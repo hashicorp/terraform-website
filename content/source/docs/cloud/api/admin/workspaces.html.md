@@ -47,7 +47,7 @@ Status  | Response                                     | Reason
 Parameter                     | Description
 ------------------------------|------------
 `q`                           | **Optional.** A search query string. Workspaces are searchable by name and organization name.
-`filter[current_run][status]` | **Optional.** A comma-separated list of Run statuses to restrict results to, including of any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
+`filter[current_run][status]` | **Optional.** A comma-separated list of Run statuses to restrict results to, which can include any of the following: `"pending"`, `"plan_queued"`, `"planning"`, `"planned"`, `"confirmed"`, `"apply_queued"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"cost_estimating"`, `"cost_estimated"`, `"policy_checking"`, `"policy_override"`, `"policy_soft_failed"`, `"policy_checked"`, and `"planned_and_finished"`.
 `sort`                        | **Optional.** Allows sorting the returned workspaces. Valid values are `"name"` (the default) and `"current-run.created-at"` (which sorts by the time of the current run). Prepending a hyphen to the sort parameter will reverse the order (e.g. `"-name"` to reverse the default order)
 `page[number]`                | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`                  | **Optional.** If omitted, the endpoint will return 20 workspaces per page.
