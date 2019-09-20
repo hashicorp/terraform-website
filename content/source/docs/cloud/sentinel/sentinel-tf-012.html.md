@@ -188,7 +188,7 @@ to validate whether or not a value is unknown before looking for it in
 
 In Terraform 0.11, when a resource is being destroyed but not re-created, it's
 [`diff`](./import/tfplan.html#value-diff) value in the `tfplan` import is empty.
-In Terraform 0.12, however, the `diff` value does has data. For both versions of
+In Terraform 0.12, however, the `diff` value does have data. For both versions of
 Terraform, the [`applied`](./import/tfplan.html#value-applied) value will be
 absent.
 
