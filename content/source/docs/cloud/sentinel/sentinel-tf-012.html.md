@@ -27,14 +27,15 @@ that numeric attributes of resources are now treated as floats in Terraform
 these attributes as strings. In particular, you might have to modify existence
 checks and comparisons done against numeric attributes.
 
-There are no explicit changes in the `tfrun` import for Terrraform 0.12, but
-the [`cost_estimate namespace`](./import/tfrun.html#namespace-cost_estimate)
-does not appear in the `tfrun` import for Terraform 0.11 since cost estimates
-are not available in workspaces that use Terraform 0.11.
+There are no explicit changes in the [`tfrun`](./import/tfrun.html) import for
+Terrraform 0.12, but the
+[`cost_estimate namespace`](./import/tfrun.html#namespace-cost_estimate)
+does not appear in it for Terraform 0.11 since cost estimates are not available
+in workspaces that use Terraform 0.11.
 
 ## Changes to `tfconfig`
 
-Terraform 0.12 no longer exports raw configuration to Sentinel and as such the
+Terraform 0.12 no longer exports raw configuration to Sentinel, so the
 [`tfconfig`](./import/tfconfig.html) import has seen the
 most profound changes, with the introduction of the `references` key in several
 of the namespaces within the import. Certain block values (such as maps) are
@@ -45,7 +46,7 @@ correctness in their definition in Terraform 0.12.
 
 In Terraform 0.12, configuration values that do not contain static, constant
 values can no longer be referenced directly within their respective `config` or
-`value` keys. Attempting to do so will yield an undefined value.
+`value` keys. Attempting to do so will yield an `undefined` value.
 
 Instead, any identifiers referenced directly in an expression or via
 interpolation are now added to a `references` value, mirroring the structure of
@@ -167,13 +168,11 @@ following exceptions:
 
 ### Changes to Unknown Values in `applied`
 
-Unknown values within
-[`applied`](./import/tfplan.html#value-applied) in the
-[resource
-namespace](./import/tfplan.html#namespace-resources-data-sources)
+Unknown values within `applied` in the
+[resource namespace](./import/tfplan.html#namespace-resources-data-sources)
 no longer return the magic UUID value (defined as
 `74D93920-ED26-11E3-AC10-0800200C9A66` in Terraform 0.11 or earlier). Instead,
-unknown values are now returned as undefined.
+unknown values are now returned as `undefined`.
 
 As mentioned within the documentation for `tfplan`, relying on specific behavior
 of unknown data within `applied` is not supported. Instead, it is recommended to
@@ -194,11 +193,10 @@ is being destroyed but not re-created need to be updated for use with Terraform
 0.12.
 
 Additionally, a change made in the `tfplan` import means that the
-[`applied`](./import/tfplan.html#value-applied) value is absent when a
-resource is being destroyed but not re-created for both versions of Terraform.
-It is therefore very important to check whether this is the case in all Sentinel
-policies that use the `tfplan` import and the `applied` value to avoid
-`undefined` values in functions and rules.
+`applied` value is absent when a resource is being destroyed but not re-created
+for both versions of Terraform. It is therefore very important to check whether
+this is the case in all Sentinel policies that use the `tfplan` import and the
+`applied` value to avoid `undefined` values in functions and rules.
 
 New [`destroy`](./import/tfplan.html#value-destroy) and
 [`requires_new`](./import/tfplan.html#value-requires_new) values have been added
