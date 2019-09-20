@@ -188,26 +188,24 @@ to validate whether or not a value is unknown before looking for it in
 
 In Terraform 0.11, when a resource is being destroyed but not re-created, it's
 [`diff`](./import/tfplan.html#value-diff) value in the `tfplan` import is empty.
-In Terraform 0.12, however, the `diff` value does have data. For both versions of
-Terraform, the [`applied`](./import/tfplan.html#value-applied) value will be
-absent.
+In Terraform 0.12, however, the `diff` value does have data. Existing policies
+that test the condition `length(r.diff) == 0` to determine whether a resource
+is being destroyed but not re-created need to be updated for use with Terraform
+0.12.
 
-It is therefore recommended to check whether resources are being destroyed and
-not re-created in all Sentinel policies that use the `tfplan` import and the
-`applied` value in order to avoid `undefined` values in your functions and
-rules.
+Additionally, a change made in the `tfplan` import means that the
+[`applied`](./import/tfplan.html#value-applied) value is absent when a
+resource is being destroyed but not re-created for both versions of Terraform.
+It is therefore very important to check whether this is the case in all Sentinel
+policies that use the `tfplan` import and the `applied` value to avoid
+`undefined` values in functions and rules.
 
-Before Terraform 0.12 was released, some Sentinel policies tested whether
-a resource was being destroyed and not re-created by testing the condition
-`length(r.diff) == 0`. However, that cannot be used with Terraform 0.12.
-
-Fortunately, after Terraform 0.12 was released, new
-[`destroy`](./import/tfplan.html#value-destroy) and
-[`requires_new`](./import/tfplan.html#value-requires_new) values were added to
-the `tfplan` import. Since these values are available both for Terraform
-0.11 and 0.12, you can now simply test `r.destroy and not r.requires_new` to
-see if a resource is being destroyed and not re-created with both versions of
-Terraform.
+New [`destroy`](./import/tfplan.html#value-destroy) and
+[`requires_new`](./import/tfplan.html#value-requires_new) values have been added
+to the `tfplan` import to enable this check. Since these values are available
+both for Terraform 0.11 and 0.12, you can now test
+`r.destroy and not r.requires_new` to determine if a resource is being destroyed
+but not re-created with both versions of Terraform.
 
 Please note that if you are using Terraform Enterprise,
 you must use version v201909-1 or higher in order to use the `destroy` and
