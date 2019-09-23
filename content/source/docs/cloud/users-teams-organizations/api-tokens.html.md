@@ -1,16 +1,16 @@
 ---
-layout: enterprise2
-page_title: "API Tokens - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-users-teams-organizations-api-tokens"
+layout: "cloud"
+page_title: "API Tokens - Terraform Cloud"
+sidebar_current: "docs-cloud-users-teams-organizations-api-tokens"
 ---
 
 # API Tokens
 
-Terraform Enterprise (TFE) supports three distinct types of API tokens with varying levels of access: user, team, and organization. There are differences in access levels and generation workflows for each of these token types, which are outlined below.
+Terraform Cloud supports three distinct types of API tokens with varying levels of access: user, team, and organization. There are differences in access levels and generation workflows for each of these token types, which are outlined below.
 
 Like with [user tokens](./users.html#api-tokens), team and organization API tokens are displayed only once when they are created, and are obfuscated thereafter. If the token is lost, it must be regenerated. When a token is regenerated, the previous token immediately becomes invalid.
 
-~> **Important:** Unlike user tokens, team and organization tokens cannot authenticate with Terraform's `atlas` backend. This means they can't be used to run Terraform locally against state stored in TFE, access `terraform_remote_state` data sources during a run, or [migrate local state into TFE](../migrate/index.html). If you need to use the `atlas` backend for any reason, use a [user token][./users.html#api-tokens].
+~> **Important:** Unlike user tokens, team and organization tokens cannot authenticate with Terraform's `atlas` backend. This means they can't be used to run Terraform locally against state stored in Terraform Cloud, access `terraform_remote_state` data sources during a run, or [migrate local state into Terraform Cloud](../migrate/index.html). If you need to use the `atlas` backend for any reason, use a [user token][./users.html#api-tokens].
 
 ## User API Tokens
 
@@ -42,11 +42,11 @@ To manage the API token for an organization, go to **Organization settings > API
 
 Each organization can have **one** valid API token at a time. Only [organization owners](./teams.html#the-owners-team) can generate or revoke an organization's token.
 
-Organization API tokens are designed for creating and configuring workspaces and teams. We don't recommend using them as an all-purpose interface to TFE; their purpose is to do some initial setup before delegating a workspace to a team. For more routine interactions with workspaces, use [team API tokens](#team-api-tokens).
+Organization API tokens are designed for creating and configuring workspaces and teams. We don't recommend using them as an all-purpose interface to Terraform Cloud; their purpose is to do some initial setup before delegating a workspace to a team. For more routine interactions with workspaces, use [team API tokens](#team-api-tokens).
 
 Organization API tokens have permissions across the entire organization. They can perform all CRUD operations on most resources, but have some limitations; most importantly, they cannot start runs or create configuration versions. Any API endpoints that can't be used with an organization API token include a note like the following:
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](#organization-api-tokens). You must access it with a [user token](./users.html#api-tokens) or [team token](#team-api-tokens).
 
 ## Access Levels
 
@@ -69,7 +69,8 @@ The following chart illustrates the various access levels for the supported API 
 | Remote operations              | 🔶          |             |                     |
 | **Teams**                      |             |             |                     |
 | Create teams                   | 🔶          |             | 🔷                  |
-| Modify teams                   | 🔶          | 🔶          | 🔷                  |
+| Modify team                    | 🔶          | 🔷          | 🔷                  |
+| Read team                      | 🔶          | 🔷          | 🔷                  |
 | Manage team tokens             | 🔶          | 🔷          | 🔷                  |
 | Manage team workspace access   | 🔶          | 🔶          | 🔷                  |
 | Manage team membership         | 🔶          | 🔷          | 🔷                  |
