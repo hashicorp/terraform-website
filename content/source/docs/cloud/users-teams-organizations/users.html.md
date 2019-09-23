@@ -85,7 +85,7 @@ API tokens are necessary for:
 - Authenticating with the [Terraform `remote` backend](/docs/backends/types/remote.html), which requires a token in the CLI config file or in the backend configuration.
 - Using [private modules](../registry/using.html) in command-line Terraform runs on local machines requires [a token in the CLI config file](../registry/using.html#configuration).
 
-Terraform Cloud has three kinds of API tokens: user, team, and organization. For more information about team and organization tokens, see [Service Accounts](./service-accounts.html).
+Terraform Cloud has three kinds of API tokens: user, team, and organization. For more information about team and organization tokens, see [API Tokens](./api-tokens.html).
 
 Protect your tokens carefully, because they can do anything your user account can. For example, if you belong to a team with write access to a workspace, your API token can edit variables in that workspace. (See [Permissions](./permissions.html) for details about workspace permissions.)
 

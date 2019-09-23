@@ -71,7 +71,7 @@ Typically, your team structure will mirror your company's group structure. The [
 
 -> **API:** See the [Team Tokens API](../api/team-tokens.html).
 
-Each team can have a special service account API token that is not associated with a specific user. You can manage this API token from the team's settings page. See [Service Accounts](./service-accounts.html) for more information.
+Each team can have a special API token that is not associated with a specific user. You can manage this API token from the team's settings page. See [API Tokens](./api-tokens.html) for more information.
 
 ## Managing Workspace Access
 

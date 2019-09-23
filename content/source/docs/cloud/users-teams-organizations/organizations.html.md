@@ -68,7 +68,7 @@ The VCS provider page is used for setting up VCS access for Terraform Cloud. See
 
 ### API Tokens
 
-Organizations can have a special service account API token that is not associated with a specific user or team. See [Service Accounts](./service-accounts.html) for more information.
+Organizations can have a special API token that is not associated with a specific user or team. See [API Tokens](./api-tokens.html) for more information.
 
 ### Authentication
 
