@@ -364,3 +364,6 @@
 /docs/enterprise/private/upgrades.html                              /docs/enterprise/admin/upgrades.html
 /docs/enterprise/private/vault.html                                 /docs/enterprise/before-installing/vault.html
 /docs/enterprise/private/vmware-setup-guide.html                    /docs/enterprise/before-installing/reference-architecture/vmware.html
+
+# API Token Documentation update
+/docs/cloud/users-teams-organizations/service-accounts.html         /docs/cloud/users-teams-organizations/api-tokens.html
