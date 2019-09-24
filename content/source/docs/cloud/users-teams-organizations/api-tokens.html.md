@@ -8,7 +8,7 @@ sidebar_current: "docs-cloud-users-teams-organizations-api-tokens"
 
 Terraform Cloud supports three distinct types of API tokens with varying levels of access: user, team, and organization. There are differences in access levels and generation workflows for each of these token types, which are outlined below.
 
-API tokens are displayed only once when they are created, and are obfuscated thereafter. If the token is lost, it must be regenerated. When a token is regenerated, the previous token immediately becomes invalid.
+API tokens are displayed only once when they are created, and are obfuscated thereafter. If the token is lost, it must be regenerated.
 
 ## User API Tokens
 
