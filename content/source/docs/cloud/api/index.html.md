@@ -37,8 +37,8 @@ All requests must be authenticated with a bearer token. Use the HTTP header `Aut
 There are three kinds of token available:
 
 - [User tokens](../users-teams-organizations/users.html#api-tokens) — each Terraform Cloud user can have any number of API tokens, which can make requests on their behalf.
-- [Team tokens](../users-teams-organizations/service-accounts.html#team-service-accounts) — each team has an associated service account, which can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.
-- [Organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts) — each organization also has a service account, which can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.
+- [Team tokens](../users-teams-organizations/api-tokens.html#team-api-tokens) — each team can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.
+- [Organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens) — each organization can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.
 
 ## Feature Entitlements
 

@@ -11,6 +11,6 @@ They can follow the link to complete the SAML login process with the identity pr
 
 ## API Token Expiration
 
-When SAML is initially enabled, or when a user's SAML-authenticated web session expires, existing user API tokens are also temporarily disabled until they reauthenticate at `https://<TFE HOSTNAME>/session`. This is because Terraform Enterprise relies on your identity provider for [team membership mapping](./team-membership.html), and a user might have been added to or removed from some teams since their session expired. This restriction only affects user tokens, not [team or organization tokens](/docs/cloud/users-teams-organizations/service-accounts.html).
+When SAML is initially enabled, or when a user's SAML-authenticated web session expires, existing user API tokens are also temporarily disabled until they reauthenticate at `https://<TFE HOSTNAME>/session`. This is because Terraform Enterprise relies on your identity provider for [team membership mapping](./team-membership.html), and a user might have been added to or removed from some teams since their session expired. This restriction only affects user tokens, not [team or organization tokens](/docs/cloud/users-teams-organizations/api-tokens.html).
 
 The API token session timeout is a site-wide setting that is configurable in the admin settings at `https://<TFE HOSTNAME>/app/admin/saml`.

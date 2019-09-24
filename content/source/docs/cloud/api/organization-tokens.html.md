@@ -30,9 +30,9 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to generate a token for.
 
-Generates a new organization token, replacing any existing token. This token can be used to act as [the organization service account](../users-teams-organizations/service-accounts.html).
+Generates a new [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens), replacing any existing token.
 
-Only members of the owners team, the owners [team service account](../users-teams-organizations/service-accounts.html#team-service-accounts), and the [organization service account](../users-teams-organizations/service-accounts.html#organization-service-accounts) can use this endpoint.
+Only members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can access this endpoint.
 
 Status  | Response                                                | Reason
 --------|---------------------------------------------------------|-------
@@ -83,7 +83,7 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | Which organization's token should be deleted.
 
-Only members of the owners team, the owners team service account, and the organization service account can use this endpoint.
+Only members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can access this endpoint.
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
