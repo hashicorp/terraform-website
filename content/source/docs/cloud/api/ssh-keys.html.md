@@ -199,7 +199,7 @@ Parameter            | Description
 
 This endpoint replaces the name and/or key text of an existing SSH key. Existing workspaces that use the key will be updated with the new values.
 
-Only members of the owners team (or the owners team service account) can edit SSH keys.
+Only members of the owners team (or the owners team API token) can edit SSH keys.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
@@ -268,7 +268,7 @@ Parameter            | Description
 ---------------------|------------
 `:ssh_key_id`        | The SSH key ID to delete.
 
-Only members of the owners team (or the owners team service account) can delete SSH keys.
+Only members of the owners team (or the owners team API token) can delete SSH keys.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 

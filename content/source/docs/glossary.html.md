@@ -69,7 +69,6 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Run](#run)
 - [S3](#s3)
 - [SAML](#saml)
-- [Service Account](#service-account)
 - [Sentinel](#sentinel)
 - [Site Admin](#site-admin)
 - [Speculative Plan](#speculative-plan)
@@ -756,17 +755,6 @@ Terraform Enterprise can use an S3-compatible [blob storage][] service when conf
 SAML is an XML-based standard for authentication and authorization. Terraform Enterprise can act as a service provider (SP) (or Relying Party, RP) with your internal SAML identity provider (IdP). The SAML Single Sign On feature is only available on [Terraform Enterprise][]; the Terraform Cloud SaaS does not support it.
 
 - [Terraform Enterprise docs: SAML Single Sign-On](/docs/enterprise/saml/index.html)
-
-## Service Account
-
-[service account]: glossary.html#service-account
-[service accounts]: glossary.html#service-account
-
--> Terraform Cloud
-
-An account (with API [token][]) that doesn't belong to a human user but to an internal entity in Terraform Cloud. Terraform Cloud provides two types of service accounts: [team][] and [organization][]. These accounts can access Terraform Cloud [APIs][], but cannot be used interactively. The service accounts are designed to support server-to-server API calls using the service identity as opposed to individual user identities.
-
-- [Terraform Cloud docs: Service Accounts](/docs/cloud/users-teams-organizations/service-accounts.html)
 
 ## Sentinel
 
