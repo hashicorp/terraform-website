@@ -446,3 +446,7 @@
 	path = ext/providers/pureport
 	url = https://github.com/terraform-providers/terraform-provider-pureport
 	branch = stable-website
+[submodule "ext/providers/genymotion"]
+	path = ext/providers/genymotion
+	url = https://github.com/terraform-providers/terraform-provider-genymotion
+	branch = stable-website
