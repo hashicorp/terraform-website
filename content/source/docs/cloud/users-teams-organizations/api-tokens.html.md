@@ -8,9 +8,7 @@ sidebar_current: "docs-cloud-users-teams-organizations-api-tokens"
 
 Terraform Cloud supports three distinct types of API tokens with varying levels of access: user, team, and organization. There are differences in access levels and generation workflows for each of these token types, which are outlined below.
 
-Like with [user tokens](./users.html#api-tokens), team and organization API tokens are displayed only once when they are created, and are obfuscated thereafter. If the token is lost, it must be regenerated. When a token is regenerated, the previous token immediately becomes invalid.
-
-~> **Important:** Unlike user tokens, team and organization tokens cannot authenticate with Terraform's `atlas` backend. This means they can't be used to run Terraform locally against state stored in Terraform Cloud, access `terraform_remote_state` data sources during a run, or [migrate local state into Terraform Cloud](../migrate/index.html). If you need to use the `atlas` backend for any reason, use a [user token][./users.html#api-tokens].
+API tokens are displayed only once when they are created, and are obfuscated thereafter. If the token is lost, it must be regenerated. When a token is regenerated, the previous token immediately becomes invalid.
 
 ## User API Tokens
 
@@ -80,6 +78,7 @@ The following chart illustrates the various access levels for the supported API 
 | **Sentinel**                   |             |             |                     |
 | Manage Sentinel policies       | 🔶          | 🔶          | 🔷                  |
 | Manage policy sets             | 🔶          | 🔶          | 🔷                  |
+| Override policy checks         | 🔶          | 🔶          | 🔷                  |
 | **Integrations**               |             |             |                     |
 | Manage VCS connections         | 🔶          | 🔶          | 🔷                  |
 | Manage SSH keys                | 🔶          | 🔶          | 🔷                  |
