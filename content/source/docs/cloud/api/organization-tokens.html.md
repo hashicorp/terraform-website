@@ -32,7 +32,7 @@ Parameter            | Description
 
 Generates a new organization token, replacing any existing token. This token can be used to act as [the organization service account](../users-teams-organizations/service-accounts.html).
 
-Only members of the owners team, the owners [team service account](../users-teams-organizations/service-accounts.html#team-service-accounts), and the [organization service account](../users-teams-organizations/service-accounts.html#organization-service-accounts) can use this endpoint.
+Only members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can access this endpoint.
 
 Status  | Response                                                | Reason
 --------|---------------------------------------------------------|-------

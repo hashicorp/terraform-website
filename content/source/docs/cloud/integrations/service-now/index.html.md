@@ -54,7 +54,7 @@ Before installing the ServiceNow integration, you need to perform some setup and
 
 1. [Create an organization](../../users-teams-organizations/organizations.html) (or choose an existing organization) where ServiceNow will create new workspaces.
 1. [Create a team](../../users-teams-organizations/teams.html) for that organization called "ServiceNow", and ensure that it has the organization-level ["Manage Workspaces" permission](../../users-teams-organizations/permissions.html#manage-workspaces). You do not need to add any users to this team.
-1. On the "ServiceNow" team's settings page, generate a [team API token](../../users-teams-organizations/service-accounts.html#team-service-accounts). **Save this API token for later.**
+1. On the "ServiceNow" team's settings page, generate a [team API token](../../users-teams-organizations/api-tokens.html#team-api-tokens). **Save this API token for later.**
 1. If you haven't yet done so, [connect a VCS provider](../../vcs/index.html) for this Terraform organization.
 1. On the organization's VCS provider settings page, find the "OAuth Token ID" for your VCS provider. This is an opaque ID that Terraform Enterprise uses to identify this VCS provider. **Save the OAuth Token ID for later.**
 
@@ -102,7 +102,7 @@ The worker synchronizes ServiceNow with the current run state of Terraform works
 1. Using the left-hand navigation, open the configuration table for the integration to manage the Terraform Enterprise connection.
     - Terraform > Configs
 1. Click on "New" to create a new Terraform Enterprise connection:
-    - Set API Team Token to the Terraform Enterprise [Team Token](../../users-teams-organizations/service-accounts.html#team-service-accounts) you created earlier.
+    - Set API Team Token to the Terraform Enterprise [Team Token](../../users-teams-organizations/api-tokens.html#team-api-tokens) you created earlier.
     - Set Hostname to the hostname of your Terraform Enterprise instance. (If you're using the SaaS version of Terraform Cloud, this is app.terraform.io.)
     - Set Org Name to the name of the Terraform Enterprise organization you wish to use for new workspaces created by ServiceNow.
 
