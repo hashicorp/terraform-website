@@ -29,7 +29,7 @@ checks and comparisons done against numeric attributes.
 
 There are no explicit changes in the [`tfrun`](./import/tfrun.html) import for
 Terrraform 0.12, but the
-[`cost_estimate namespace`](./import/tfrun.html#namespace-cost_estimate)
+[`cost_estimate` namespace](./import/tfrun.html#namespace-cost_estimate)
 does not appear in it for Terraform 0.11 since cost estimates are not available
 in workspaces that use Terraform 0.11.
 
