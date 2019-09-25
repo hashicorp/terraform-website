@@ -190,7 +190,7 @@ resource "example_instance" "ex" {
 ## Function Behaviors
 ### DiffSuppressFunc
 **Data structure:**
-[SchemaDiffSuppressFunc](https://github.com/hashicorp/terraform/blob/ead558261d5e322f1f1e90c8e74834ba9215f24e/helper/schema/schema.go#L202)    
+[SchemaDiffSuppressFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/schema.go#L263-L268)    
 
 When provided `DiffSuppressFunc` will be used by Terraform to calculate the diff
 of this field. Common use cases are capitalization differences in string names,
@@ -228,7 +228,7 @@ resource "example_instance" "ex" {
 
 ### DefaultFunc
 **Data structure:**
-[SchemaDefaultFunc](https://github.com/hashicorp/terraform/blob/ead558261d5e322f1f1e90c8e74834ba9215f24e/helper/schema/schema.go#L209)  
+[SchemaDefaultFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/schema.go#L270-L272)  
 **Restrictions:**  
 
 - Cannot be used if `Default` is specified
@@ -292,7 +292,7 @@ provider "example" {
 ```
 
 ### StateFunc
-**Data structure:** [SchemaStateFunc](https://github.com/hashicorp/terraform/blob/a20dbb43782ade816baaeffa8033da0027ee6b26/helper/schema/schema.go#L245)    
+**Data structure:** [SchemaStateFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/schema.go#L306-L308)    
 
 `SchemaStateFunc` is a function used to convert the value of this element to a string to be stored in the state. 
 
@@ -327,14 +327,14 @@ Value in statefile:
 ```
 
 ### ValidateFunc
-**Data structure:** [SchemaValidateFunc](https://github.com/hashicorp/terraform/blob/a20dbb43782ade816baaeffa8033da0027ee6b26/helper/schema/schema.go#L249)   
+**Data structure:** [SchemaValidateFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/schema.go#L310-L312)   
 **Restrictions:** 
 
 - Only works with primitive types  
 
 `SchemaValidateFunc` is a function used to validate the value of a primitive type. Common use cases include ensuring an integer falls within a range or a string value is present in a list of valid options. The function returns two slices; the first for warnings, the second for errors which can be used to catch multiple invalid cases. Terraform will only halt execution if an error is returned. Returning warnings will warn the user but the data provided is considered valid.
 
-Terraform includes a number of validators for use in plugins in the validation package. A full list can be found here: https://godoc.org/github.com/hashicorp/terraform/helper/validation 
+Terraform includes a number of validators for use in plugins in the validation package. A full list can be found here: https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/validation 
 
 **Schema example:**
 

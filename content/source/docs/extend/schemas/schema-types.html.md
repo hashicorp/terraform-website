@@ -182,7 +182,7 @@ resource "example_spot_request" "ex" {
 
 ### Date & Time Data
 
-`TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://godoc.org/github.com/hashicorp/terraform/helper/validation#ValidateRFC3339TimeString)).
+`TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/validation#ValidateRFC3339TimeString)).
 
 **Example:** `2006-01-02T15:04:05+07:00`
 
@@ -295,7 +295,7 @@ resource "example_compute_instance" "ex" {
 ```
 
 ### TypeSet
-**Data structure:** [`*schema.Set`](https://github.com/hashicorp/terraform/blob/504d5ef233230984ccd378a6847fa8b9e32f6bee/helper/schema/set.go#L44)  
+**Data structure:** [`*schema.Set`](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/set.go#L50)  
 **Example:** `[]string{"one", "two", "three"}`
 
 `TypeSet` implements set behavior and is used to represent an **unordered**
