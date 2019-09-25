@@ -118,7 +118,8 @@ vcs_repo (map of keys)
 ## Namespace: cost_estimate
 
 The **cost_estimation namespace** contains data associated with the current run's cost estimate. This
-namespace is only present if cost a estimate is available.
+namespace is only present if a cost estimate is available. Note that cost estimates are not
+available for Terraform 0.11.
 
 ### Value: `prior_monthly_cost`
 
