@@ -84,18 +84,17 @@ Congratulations! Your Terraform provider is migrated to the standalone SDK. You 
 
 ## What if my provider is not eligible for migration?
 
-Version 1.0.0 of the standalone plugin SDK is intended to differ as little as possible from the legacy plugin SDK. However, we have had to deprecate some packages and identifiers.
+Version 1.0.0 of the standalone plugin SDK is intended to differ as little as possible from the legacy plugin SDK. However, we have had to deprecate some packages and identifiers. Some of the rationale behind which packages made up SDK v1.0.0 can be seen from the [analysis](https://github.com/radeksimko/terraform-provider-sdk-exposure) we performed.
 
 ## Deprecations
 The following packages, functions, and identifiers have been deprecated as of v0.12.7 of the legacy SDK in Core, and have removed altogether in the standalone SDK.
 
-* `config.NewRawConfig()/terraform.NewResourceConfig()` were sometimes used in tandem for testing provider block configuration. The config package has been removed entirely from the SDK as well as `terraform.NewResourceConfig`, you should now use `terraform.NewResourceConfigRaw()`. See [example](https://github.com/terraform-providers/terraform-provider-consul/pull/149/files)
+* **`config.NewRawConfig()/terraform.NewResourceConfig()`** were sometimes used in tandem for testing provider block configuration. The config package has been removed entirely from the SDK as well as `terraform.NewResourceConfig`, you should now use `terraform.NewResourceConfigRaw()`. See [example](https://github.com/terraform-providers/terraform-provider-consul/pull/149/files**
 
 * Passing along a user agent header to backend APIs has been done a few ways. The new standalone SDK tries to standardize the creation of a user agent header, as well as provide an accurate version of Terraform calling the provider.
-  - `terraform.VersionString()` has been removed, it provided the version of terraform the dependency, which was not accurate. The version of terraform can now be accessed at runtime in a provider's `ConfigureFunc`. See [example](https://github.com/terraform-providers/terraform-provider-kubernetes/pull/620/files)
-  - `httpclient.UserAgentString()/terraform.UserAgentString()` have been removed. Please use [`httpclient.TerraformUserAgent()`](https://github.com/hashicorp/terraform-plugin-sdk/blob/e664f5b78081fde148c4ea55a0e068dc62fb2274/httpclient/useragent.go#L14) instead.
-  - `httpclient.New()` has been removed. Please use `github.com/hashicorp/go-cleanhttp.DefaultPooledClient()` directly with a custom transport. This is how [`httpclient.New()`](https://github.com/hashicorp/terraform/blob/39f61a07955b57c0a4afeb183259ca1697677148/httpclient/client.go#L12) was implemented in Core.
+  - **`terraform.VersionString()`** has been removed, it provided the version of terraform the dependency, which was not accurate. The version of terraform can now be accessed at runtime in a provider's `ConfigureFunc`. See [example](https://github.com/terraform-providers/terraform-provider-kubernetes/pull/620/files)
+  - **`httpclient.UserAgentString()/terraform.UserAgentString()`** have been removed. Please use [`httpclient.TerraformUserAgent()`](https://github.com/hashicorp/terraform-plugin-sdk/blob/e664f5b78081fde148c4ea55a0e068dc62fb2274/httpclient/useragent.go#L14) instead.
+  - **`httpclient.New()`** has been removed. Please use `github.com/hashicorp/go-cleanhttp.DefaultPooledClient()` directly with a custom transport. This is how [`httpclient.New()`](https://github.com/hashicorp/terraform/blob/39f61a07955b57c0a4afeb183259ca1697677148/httpclient/client.go#L12) was implemented in Core.
 
   * A small number of providers have used the [flatmap package](https://github.com/hashicorp/terraform/tree/e1d0acda0b19be25ea96748896d3cd7117df955a/flatmap). Unfortunately it will not be a part of the standalone SDK. It is recommended to just move away from using that altogether, but as a quick solution, copy paste whatever is needed over and strip away the parts that are Terraform Core specific. This package was never intended to be used outside of Terraform Core.
 
-Some of the rationale behind which packages made up SDK v1.0.0 can be seen from the [analysis](https://github.com/radeksimko/terraform-provider-sdk-exposure) we performed.
