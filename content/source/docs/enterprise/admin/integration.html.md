@@ -9,11 +9,24 @@ Terraform Enterprise can integrate with several external services to send commun
 
 At this time, the available site-wide integrations are:
 
+- Cost Estimation
 - SAML Single Sign-On
 - SMTP
 - Twilio
 
 -> **API:** See the [Admin Settings API](/docs/cloud/api/admin/settings.html).
+
+## Cost Estimation Integration
+
+Cost Estimation integration allows Terraform Enterprise to estimate costs for resources during a run. Usage instructions are in the [Getting Started Guide](/docs/cloud/getting-started/cost-estimation.html).
+
+To access the SMTP settings, click **Cost Estimation** in the left menu. To enable Cost Estimation, check the **Enable Cost Estimation** box on the settings page, configure the settings, and click "Save settings." At least one provider needs to be configured in order to save.
+
+![screenshot: the Cost Estimation admin page](./images/admin-cost-estimation.png)
+
+* **AWS Access Key ID**: The AWS Access Key ID for a given IAM user. The role associated to these credentials must have full access to the "Price List" service and all of that service's resources.
+* **AWS Secret Key**: The AWS Secret Key pair for the same Access Key ID.
+* **GCP Credentials**: The contents of the JSON that is downloaded when you create a GCP Service Account.
 
 ## SAML Integration
 
