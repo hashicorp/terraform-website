@@ -727,6 +727,147 @@ Considering the following structure as the response from the API:
 
 The nested structures are `Spec` -> `TaskTemplate` -> `ContainerSpec` -> `Mounts`. There can be multiple `Mounts` but they have to be unique, so `TypeSet` is the appropriate type. 
 
+
+```hcl
+/// ...
+"task_spec": &schema.Schema{
+  Type:        schema.TypeList,
+  MaxItems:    1,
+  Required:    true,
+  Elem: &schema.Resource{
+    Schema: map[string]*schema.Schema{
+      "container_spec": &schema.Schema{
+        Type:        schema.TypeList,
+        Required:    true,
+        MaxItems:    1,
+        Elem: &schema.Resource{
+          Schema: map[string]*schema.Schema{
+            "mounts": &schema.Schema{
+              Type:        schema.TypeSet,
+              Optional:    true,
+              Elem: &schema.Resource{
+                Schema: map[string]*schema.Schema{
+                  "target": &schema.Schema{
+                    Type:        schema.TypeString,
+                    Required:    true,
+                  },
+                  "source": &schema.Schema{
+                    Type:        schema.TypeString,
+                    Required:    true,
+                  },
+                  "type": &schema.Schema{
+                    Type:         schema.TypeString,
+                    Required:     true,
+                  },
+                  "volume_options": &schema.Schema{
+                    Type:        schema.TypeList,
+                    Optional:    true,
+                    MaxItems:    1,
+                    Elem: &schema.Resource{
+                      Schema: map[string]*schema.Schema{
+                        "no_copy": &schema.Schema{
+                          Type:        schema.TypeBool,
+                          Optional:    true,
+                        },
+                        "labels": &schema.Schema{
+                          Type:        schema.TypeMap,
+                          Optional:    true,
+                          Elem:        &schema.Schema{Type: schema.TypeString},
+                        },
+                        "driver_name": &schema.Schema{
+                          Type:        schema.TypeString,
+                          Optional:    true,
+                        },
+                        "driver_options": &schema.Schema{
+                          Type:        schema.TypeMap,
+                          Optional:    true,
+                          Elem:        &schema.Schema{Type: schema.TypeString},
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+}
+```
+
+The `resourceServerRead` function now also sets/flattens the nested data structure from the API:
+
+```go
+func resourceServerRead(d *schema.ResourceData, m interface{}) error {
+  client := m.(*MyClient)
+  server, ok := client.Get(d.Id())
+  if !ok {
+    log.Printf("[WARN] No Server found: %s", d.Id())
+    d.SetId("")
+    return nil
+  }
+  d.Set("address", server.Address)
+  if server.Spec != nil && server.Spec.TaskTemplate != nil {
+    if err = d.Set("task_spec", flattenTaskSpec(server.Spec.TaskTemplate)); err != nil {
+      return err
+    }
+  }
+  return nil
+}
+```
+
+The so-called `flatteners` are in a separate file `structures_server.go`. The outermost data structure is a `map[string]interface{}` and each item a `[]interface{}`:
+
+```go
+func flattenTaskSpec(in *server.TaskSpec) []interface{} {
+    // NOTE: the top level structure to set is a map
+    m := make(map[string]interface{})
+    if in.ContainerSpec != nil {
+      m["container_spec"] = flattenContainerSpec(in.ContainerSpec)
+    }
+    /// ...
+    return []interface{}{m}
+}
+func flattenContainerSpec(in *server.ContainerSpec) []interface{} {
+    // NOTE: all nested structures are lists of interface{}
+    var out = make([]interface{}, 0, 0)
+    m := make(map[string]interface{})
+    /// ...
+    if len(in.Mounts) > 0 {
+      m["mounts"] = flattenServiceMounts(in.Mounts)
+    }
+    /// ...
+    out = append(out, m)
+    return out
+}
+func flattenServiceMounts(in []mount.Mount) []map[string]interface{} {
+  var out = make([]map[string]interface{}, len(in), len(in))
+  for i, v := range in {
+    m := make(map[string]interface{})
+    m["target"] = v.Target
+    m["source"] = v.Source
+    m["type"] = v.Type
+    if v.VolumeOptions != nil {
+      volumeOptions := make(map[string]interface{})
+      volumeOptions["no_copy"] = v.VolumeOptions.NoCopy
+      // NOTE: this is an internally written map from map[string]string => map[string]interface{}
+      // because terraform can only store map with interface{} as the type of the value
+      volumeOptions["labels"] = mapStringStringToMapStringInterface(v.VolumeOptions.Labels)
+      if v.VolumeOptions.DriverConfig != nil {
+        volumeOptions["driver_name"] = v.VolumeOptions.DriverConfig.Name
+        volumeOptionsItem["driver_options"] = mapStringStringToMapStringInterface(v.VolumeOptions.DriverConfig.Options)
+      }
+      m["volume_options"] = []interface{}{volumeOptions}
+    }
+    
+    out[i] = m
+  }
+  return out
+}
+```
+
 ## Next Steps
 
 This guide covers the schema and structure for implementing a Terraform provider
