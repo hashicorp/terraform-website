@@ -116,6 +116,8 @@ At this point, your users can request Terraform infrastructure via ServiceNow, b
 
 ## Configuring VCS Repositories
 
+-> **Note:** Release v201907-1 is required for the OAUTH options to be displayed in VCS settings.
+
 -> **Roles Required:** `admin` or `x_terraform.vcs_repositories_user`
 
 To make infrastructure available to your users, you must add one or more workspace templates to the Terraform service catalog. A workspace template is a VCS repository that contains a Terraform configuration; any repository that could be connected to a manually-created Terraform Enterprise workspace can also be used as a workspace template in the ServiceNow integration.
