@@ -5,7 +5,7 @@ page_title: "RHEL Requirements - Installation - Terraform Enterprise"
 
 # RHEL Requirements for Terraform Enterprise
 
-When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure your OS and Docker configuration meat the following requirements:
+When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure your OS and Docker configuration meet the following requirements:
 
 ## Install Requirements
 
