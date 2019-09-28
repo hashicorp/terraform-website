@@ -20,7 +20,7 @@ At this time, the available site-wide integrations are:
 
 Cost Estimation integration allows Terraform Enterprise to estimate costs for resources during a run. Usage instructions are in the [Getting Started Guide](/docs/cloud/getting-started/cost-estimation.html).
 
-To access the SMTP settings, click **Cost Estimation** in the left menu. To enable Cost Estimation, check the **Enable Cost Estimation** box on the settings page, configure the settings, and click "Save settings." At least one provider needs to be configured in order to save.
+To access the Cost Estimation settings, click **Cost Estimation** in the left menu. To enable Cost Estimation, check the **Enable Cost Estimation** box on the settings page, configure the settings, and click "Save settings." At least one provider needs to be configured in order to save.
 
 ![screenshot: the Cost Estimation admin page](./images/admin-cost-estimation.png)
 
