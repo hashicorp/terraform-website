@@ -31,54 +31,39 @@ Terraform's GitHub Actions on new and updated pull requests.
 
 1. Replace the default workflow with the following:
 
-    ```hcl
-    workflow "Terraform" {
-      resolves = "terraform-plan"
-      on = "pull_request"
-    }
-
-    action "filter-to-pr-open-synced" {
-      uses = "actions/bin/filter@master"
-      args = "action 'opened|synchronize'"
-    }
-
-    action "terraform-fmt" {
-      uses = "hashicorp/terraform-github-actions/fmt@v<latest version>"
-      needs = "filter-to-pr-open-synced"
-      secrets = ["GITHUB_TOKEN"]
-      env = {
-        TF_ACTION_WORKING_DIR = "."
-      }
-    }
-
-    action "terraform-init" {
-      uses = "hashicorp/terraform-github-actions/init@v<latest version>"
-      needs = "terraform-fmt"
-      secrets = ["GITHUB_TOKEN"]
-      env = {
-        TF_ACTION_WORKING_DIR = "."
-      }
-    }
-
-    action "terraform-validate" {
-      uses = "hashicorp/terraform-github-actions/validate@v<latest version>"
-      needs = "terraform-init"
-      secrets = ["GITHUB_TOKEN"]
-      env = {
-        TF_ACTION_WORKING_DIR = "."
-      }
-    }
-
-    action "terraform-plan" {
-      uses = "hashicorp/terraform-github-actions/plan@v<latest version>"
-      needs = "terraform-validate"
-      secrets = ["GITHUB_TOKEN"]
-      env = {
-        TF_ACTION_WORKING_DIR = "."
-        # If you're using Terraform workspaces, set this to the workspace name.
-        TF_ACTION_WORKSPACE = "default"
-      }
-    }
+    ```yaml
+    on: pull_request
+    name: Terraform
+    jobs:
+      filter-to-pr-open-synced:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@master
+        - name: filter-to-pr-open-synced
+          uses: actions/bin/filter@master
+          with:
+            args: action 'opened|synchronize'
+        - name: terraform-fmt
+          uses: hashicorp/terraform-github-actions/fmt@v<latest version>
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            TF_ACTION_WORKING_DIR: .
+        - name: terraform-init
+          uses: hashicorp/terraform-github-actions/init@v<latest version>
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            TF_ACTION_WORKING_DIR: .
+        - name: terraform-validate
+          uses: hashicorp/terraform-github-actions/validate@v<latest version>
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            TF_ACTION_WORKING_DIR: .
+        - name: terraform-plan
+          uses: hashicorp/terraform-github-actions/plan@v<latest version>
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            TF_ACTION_WORKING_DIR: .
+            TF_ACTION_WORKSPACE: default
     ```
 1. Find the latest version from [https://github.com/hashicorp/terraform-github-actions/releases](https://github.com/hashicorp/terraform-github-actions/releases)
    and replace all instances of `@v<latest version>`. For example: `uses = "hashicorp/terraform-github-actions/plan@v3.0"`.
