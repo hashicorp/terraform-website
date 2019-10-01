@@ -35,6 +35,12 @@ is supplied:
 * registry.terraform.io (when using Terraform 0.12 and later)
 * releases.hashicorp.com
 
+When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-integration) is enabled, it uses the respective cloud provider's APIs to get up-to-date pricing info.
+
+* api.pricing.us-east-1.amazonaws.com
+* cloud.google.com
+* azure.microsoft.com
+
 ## Other Configuration
 
 1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
