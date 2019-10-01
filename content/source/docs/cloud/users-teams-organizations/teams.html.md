@@ -36,9 +36,11 @@ Teams are managed in the [organization settings][]. Click the "Settings" link in
 
 The teams page includes a list of the organization's teams. Clicking a team in the list loads its team settings page, which manages its membership and other settings:
 
-![Screenshot: a team's settings page](./images/teams-team-settings.png)
+![Screenshot: a team's settings page showing organization access, visibility, and team token.](./images/teams-team-settings.png)
 
-The team settings page lists the team's current members, with badges to indicate which users have [two-factor authentication](./2fa.html) enabled.
+The team settings page lists the team's current members, with badges to indicate which users have [two-factor authentication](./2fa.html) enabled:
+
+![Screenshot: a team's settings page showing the team's members.](./images/teams-team-settings-membership.png)
 
 Only organization owners can manage teams or view the full list of teams. Other users can view any teams marked as visible within the organization or they
 are members of (including secret teams). See [Team Visibility](./teams.html#team-visibility) for more information.
