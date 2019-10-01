@@ -16,9 +16,17 @@
       <% end %>
     </div>
 
+    <%
+      external_docs_links = {
+        # '/docs/providers/aws/index.html' => 'https://registry.terraform.io/path/to/provider',
+      }
+    %>
     <div id="inner" class="col-sm-8 col-md-9 col-xs-12" role="main">
       <div id="inner-header-grid">
         <div id="external-docs-link">
+          <% if external_docs_links[current_page.url] %>
+            <a href="<%= external_docs_links[current_page.url] %>">View on Terraform Registry <span class="glyphicon glyphicon-new-window" aria-hidden="true" /></a>
+          <% end %>
         </div>
       </div>
       <%= yield %>
