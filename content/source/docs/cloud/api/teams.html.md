@@ -53,9 +53,13 @@ $ curl \
       "attributes": {
         "name": "team-creation-test",
         "users-count": 0,
+        "visibility": "organization",
         "permissions": {
           "can-update-membership": true,
-          "can-destroy": true
+          "can-destroy": true,
+          "can-update-organization-access": true,
+          "can-update-api-token": true,
+          "can-update-visibility": true
         },
         "organization-access": {
           "manage-policies": true,
@@ -107,6 +111,7 @@ Key path                              | Type   | Default   | Description
 `data.type`                           | string |           | Must be `"teams"`.
 `data.attributes.name`                | string |           | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 `data.attributes.organization-access` | object | (nothing) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
+`data.attributes.visibility`          | string | `"secret"`| The team's visibility. Must be "secret" or "organization" (visible).
 
 ### Sample Payload
 
@@ -149,10 +154,14 @@ $ curl \
         "manage-workspaces": true
       },
       "permissions": {
+        "can-update-membership": true,
         "can-destroy": true,
-        "can-update-membership": true
+        "can-update-organization-access": true,
+        "can-update-api-token": true,
+        "can-update-visibility": true
       },
-      "users-count": 0
+      "users-count": 0,
+      "visibility": "secret",
     },
     "id": "team-6p5jTwJQXwqZBncC",
     "links": {
@@ -198,9 +207,13 @@ $ curl \
     "attributes": {
       "name": "team-creation-test",
       "users-count": 0,
+      "visibility": "organization",
       "permissions": {
         "can-update-membership": true,
-        "can-destroy": true
+        "can-destroy": true,
+        "can-update-organization-access": true,
+        "can-update-api-token": true,
+        "can-update-visibility": true
       },
       "organization-access": {
         "manage-policies": true,
