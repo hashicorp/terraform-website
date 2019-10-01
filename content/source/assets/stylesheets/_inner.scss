@@ -1,11 +1,36 @@
 #inner {
+
+  #inner-header-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: minmax(90px, auto) 32px; // match #sidebar-header-grid
+    margin-bottom: 16px;
+
+    h1 {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      align-self: self-end;
+      line-height: 44px; // align baseline w/ H4 in sidebar
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  #external-docs-link {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    align-self: self-end;
+    line-height: 36px;
+    margin-left: 12px;
+  }
+
   #inner-quicknav {
-    margin-top: -15px;
-    margin-bottom: 25px;
     margin-left: 10px;
+    grid-column: 1/3;
+    grid-row: 2/3;
+    align-self: self-start;
 
     span {
-      line-height: 20px;
       cursor: pointer;
       font-variant-caps: all-small-caps;
       color: #666;
@@ -153,18 +178,7 @@
     overflow-wrap: break-word;
   }
 
-  // Special treatment to align baseline with sidebar header
-  h1 {
-    min-height: 60px;
-    margin-top: 5px;
-    // This is just for vertical alignment. We don't need "real" flex behavior,
-    // we just need to align the text on the bottom of the box instead of the
-    // top.
-    display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap; // in case of inner inline elements
-  }
-
+  h1,
   h2,
   h3,
   h4 {
