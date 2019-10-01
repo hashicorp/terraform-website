@@ -38,9 +38,7 @@ The teams page includes a list of the organization's teams. Clicking a team in t
 
 ![Screenshot: a team's settings page showing organization access, visibility, and team token.](./images/teams-team-settings.png)
 
-The team settings page lists the team's current members, with badges to indicate which users have [two-factor authentication](./2fa.html) enabled:
-
-![Screenshot: a team's settings page showing the team's members.](./images/teams-team-settings-membership.png)
+The team settings page lists the team's current members, with badges to indicate which users have [two-factor authentication](./2fa.html) enabled.
 
 Only organization owners can manage teams or view the full list of teams. Other users can view any teams marked as visible within the organization or they
 are members of (including secret teams). See [Team Visibility](./teams.html#team-visibility) for more information.
@@ -63,6 +61,8 @@ To delete a team, go to the target team's settings page and click the "Delete TE
 **Terraform:** See the `tfe` provider's [`tfe_team_member` resource](/docs/providers/tfe/r/team_member.html) or [`tfe_team_members` resource](/docs/providers/tfe/r/team_members.html).
 
 Organization owners can use a team's settings page to add and remove users from the team.
+
+![Screenshot: a team's settings page showing the team's members.](./images/teams-team-settings-membership.png)
 
 To add a user, enter their username in the "Username" text field (located under the "Add a New Team Member" header) and click the "Add member" button. (You must know the user's exact username; users cannot be added using email addresses or other personal information.)
 
