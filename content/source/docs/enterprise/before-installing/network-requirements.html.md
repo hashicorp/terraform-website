@@ -35,7 +35,7 @@ is supplied:
 * registry.terraform.io (when using Terraform 0.12 and later)
 * releases.hashicorp.com
 
-When [Cost Estimation](/docs/enterprise/admin/integration.html) is enabled, it uses the respective cloud provider's APIs to get up-to-date pricing info.
+When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-integration) is enabled, it uses the respective cloud provider's APIs to get up-to-date pricing info.
 
 * api.pricing.us-east-1.amazonaws.com
 * cloud.google.com
