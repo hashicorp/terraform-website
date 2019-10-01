@@ -29,16 +29,29 @@
     color: $body-link-color;
   }
 
+  #sidebar-header-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(90px, auto) 32px; // match #inner-header-grid
+    margin-bottom: 16px;
+
+    h3, h4 {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      align-self: self-end;
+      line-height: 36px; // align baseline w/ H1 in inner
+    }
+
+    #sidebar-controls {
+      grid-column: 1/2;
+      grid-row: 2/3;
+      align-self: self-start;
+    }
+  }
+
   h3,
   h4 {
-    min-height: 35px;
-    margin-top: 32px;
-    // This is just for vertical alignment. We don't need "real" flex behavior,
-    // we just need to align the text to the middle of the box instead of the
-    // top.
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap; // in case of inner inline elements
+    margin-top: 0;
     margin-bottom: 0;
     a {
       color: $body-link-color;
@@ -57,15 +70,9 @@
     }
   }
 
-  h4 + div#sidebar-controls {
-    margin-top: 0;
-  }
-
   div#sidebar-controls {
-    margin-top: 65px; // if no header
     box-sizing: border-box;
     position: relative;
-    height: 37px;
     .glyphicon-search {
       position: absolute;
       top: 7px;
@@ -117,7 +124,7 @@
   ul.nav.docs-sidenav {
     display: block;
     padding-bottom: 15px;
-    padding-top: 10px;
+    margin-top: 10px;
 
     li {
       padding: 0 0 11px 0;

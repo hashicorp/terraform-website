@@ -5,6 +5,7 @@
       <a href="#inner" id="screenreader-skip" class="sr-only sr-only-focusable">Skip to content</a>
       <a href="#inner" id="mobile-skip" class="visible-xs">(Skip to content ⤵︎)</a>
       <div id="controls-placeholder" style="display: none;"></div>
+      <div id="sidebar-header-grid"></div>
       <% if content_for?(:sidebar) %>
       <%
         sidebar_text = yield_content(:sidebar)
@@ -16,6 +17,10 @@
     </div>
 
     <div id="inner" class="col-sm-8 col-md-9 col-xs-12" role="main">
+      <div id="inner-header-grid">
+        <div id="external-docs-link">
+        </div>
+      </div>
       <%= yield %>
     </div>
   </div>

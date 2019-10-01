@@ -22,6 +22,11 @@ document.addEventListener("turbolinks:load", function() {
     // - Subnavs are collapsed (<ul> hidden) or expanded (<ul> visible).
     // - Collapse/expand is managed by the "active" class on the <li>.
 
+    // Move the header (if any) into the grid container so we can make things line up nicely.
+    var sidebarHeaderGrid = $("#sidebar-header-grid");
+    var sidebarHeader = $("#docs-sidebar").children("h1,h2,h3,h4,h5,h6").not("#otherdocs").first();
+    sidebarHeaderGrid.append(sidebarHeader);
+
     // Collapse most subnavs, but reveal any that contain the
     // current page. The a.current-page class is added during build by
     // layouts/inner.erb.
@@ -74,12 +79,7 @@ document.addEventListener("turbolinks:load", function() {
                         '<button id="filter-button" title="Shortcut: type the / key">Filter</button>' +
                     '</div>' +
                 '</div>';
-            var sidebarHeader = $("#docs-sidebar").children("h1,h2,h3,h4,h5,h6").not("#otherdocs").first();
-            if (sidebarHeader.length === 1) { // under first header
-                sidebarHeader.after(sidebarControlsHTML);
-            } else { // under skip link
-                $("#docs-sidebar #controls-placeholder").replaceWith(sidebarControlsHTML);
-            }
+            sidebarHeaderGrid.append(sidebarControlsHTML);
         }
 
         var filterDiv = $("div#sidebar-filter");
@@ -163,12 +163,16 @@ document.addEventListener("turbolinks:load", function() {
     }
 
 
+    // Move the main title into the grid container, so we can make things line up nicely.
+    var innerHeaderGrid = $('#inner-header-grid');
+    innerHeaderGrid.append( $("#inner h1").first() );
+
     // On docs/content pages, add a hierarchical quick nav menu if there are
     // more than two H2/H3/H4 headers.
     var headers = $('#inner').find('h2, h3, h4');
     if (headers.length > 2 && $("div#inner-quicknav").length === 0) {
         // Build the quick-nav HTML:
-        $("#inner h1").first().after(
+        innerHeaderGrid.append(
             '<div id="inner-quicknav">' +
                 '<span id="inner-quicknav-trigger">' +
                     'Jump to Section' +
