@@ -141,6 +141,7 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 
     ![Terraform Cloud screenshot: Pasting an SSH private key](./images/bitbucket-server-tfe-add-private-key.png)
 
+    ~> **Note:** By default setting as per document [here](https://confluence.atlassian.com/bitbucketserverkb/which-ports-does-bitbucket-server-listen-on-and-what-are-they-used-for-806029586.html), Bitbucket Server also requires SSH communication in which listen on port 7999, PTFE communicates with Bitbucket Server over SSH port in order to ingress project repositories which takes place when creating workspace or module. Please ensure the port is accessible from PTFE, either directly or via loadbalancer depending on architecture of your Bitbucket Server  environment. 
 
 ## Finished
 
