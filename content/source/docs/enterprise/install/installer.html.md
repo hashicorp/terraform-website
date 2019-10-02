@@ -52,6 +52,8 @@ This change updates the proxy settings for the Terraform Enterprise application 
 `NOTE: Please take precautions on application outage when applying configuration change, i.e. wait for all runs to finish, prevent new runs to trigger`
 4. Restart the Replicated services following [the instructions for your distribution](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#restarting-replicated).
 
+    ~> **Note:** Wildcard syntax is not supported, for example, `*.yourdomain.com` will not be recognized by Terraform Enterprise application services.
+
 ## Trusting SSL/TLS Certificates
 
 There are two primary areas for SSL configuration.
