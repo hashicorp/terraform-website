@@ -74,9 +74,9 @@ a new testcase object:
 package example
 
 func TestAccExampleWidget_basic(t *testing.T) {
-  resource.Test(t, resource.TestCase){
+  resource.Test(t, resource.TestCase{
   	// ...
-  }
+  })
 }
 ```
 
@@ -91,7 +91,7 @@ currently running.
 
 `TestCase` offers several fields for developers to add to customize and validate
 each test, defined below. The source for `TestCase` can be viewed [here on
-godoc.org](https://godoc.org/github.com/hashicorp/terraform/helper/resource#TestCase)
+godoc.org](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCase)
 
 ### IsUnitTest 
 **Type:** [bool](https://golang.org/pkg/builtin/#bool)  
@@ -125,7 +125,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
   resource.Test(t, resource.TestCase{
     PreCheck:     func() { testAccPreCheck(t) },
   	// ...
-  }
+  })
 }
 
 
@@ -143,7 +143,7 @@ func testAccPreCheck(t *testing.T) {
 ### Providers 
 
 **Type:**
-`map[string]`[terraform.ResourceProvider](https://github.com/hashicorp/terraform/blob/0cc9e050ecd4a46ba6448758c2edc0b29bef5695/terraform/resource_provider.go#L10-L171)  
+`map[string]`[terraform.ResourceProvider](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/terraform/resource_provider.go#L12-L172)  
 **Required:** Yes  
 
 **Providers** is a map of `terraform.ResourceProvider` values with `string`
@@ -164,9 +164,9 @@ package example
 func TestAccExampleWidget_basic(t *testing.T) {
   resource.Test(t, resource.TestCase{
     PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
+    Providers:    testAccProviders,
   	// ...
-  }
+  })
 }
 
 // File: example/provider_test.go
@@ -186,7 +186,7 @@ func init() {
 
 ### CheckDestroy 
 
-**Type:** [TestCheckFunc](https://github.com/hashicorp/terraform/blob/0cc9e050ecd4a46ba6448758c2edc0b29bef5695/helper/resource/testing.go#L182-L186)  
+**Type:** [TestCheckFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L192-L196)  
 **Default:** `nil`  
 **Required:** no  
 
@@ -209,7 +209,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
     Providers:    testAccProviders,
     CheckDestroy: testAccCheckExampleResourceDestroy,
     // ...
-  }
+  })
 }
 
 // testAccCheckExampleResourceDestroy verifies the Widget 
@@ -252,7 +252,7 @@ func testAccCheckExampleResourceDestroy(s *terraform.State) error {
 
 ### Steps 
 
-**Type:** [[]TestStep](https://github.com/hashicorp/terraform/blob/0cc9e050ecd4a46ba6448758c2edc0b29bef5695/helper/resource/testing.go#L249-L367)  
+**Type:** [`[]TestStep`](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L259-L391)  
 **Required:** yes  
 
 **TestStep** is a single apply sequence of a test, done within the context of a
@@ -301,6 +301,6 @@ creation to creating, adding, and removing specific properties. In the next
 Section [`TestSteps`][2], we’ll detail `Steps` portion of `TestCase` and see how
 to create these scenarios by iterating on Terraform configurations. 
 
-[1]: https://github.com/hashicorp/terraform/blob/0cc9e050ecd4a46ba6448758c2edc0b29bef5695/helper/resource/testing.go#L195-L247
+[1]: https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L205-L257
 [2]: /docs/extend/testing/acceptance-tests/teststep.html
 [3]: https://golang.org/pkg/testing/#T

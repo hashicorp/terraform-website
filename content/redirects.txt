@@ -1,8 +1,8 @@
 #
 # REDIRECTS FILE
 #
-# This is a sample redirect file. Redirects allow individual projects to add
-# their own redirect rules in a declarative manner using Fastly edge
+# This is the live redirect file for terraform.io. It lets you add
+# redirect rules in a declarative manner using Fastly edge
 # dictionaries.
 #
 # FORMAT
@@ -12,6 +12,18 @@
 # line.
 #
 #     /original-path    /new-path
+#
+# INDEX.HTML AND PARENT PATHS
+#
+# The live terraform.io website handles index.html files in the normal fashion:
+# - /docs/cloud/free/ will actually serve the content at /docs/cloud/free/index.html.
+# - /docs/cloud/free (without the trailing slash) will go to /docs/cloud/free/
+#   if there's a directory at "free" instead of a normal file.
+#
+# However, these redirect rules aren't that clever. This means that if you
+# redirect an index.html file, you must also redirect its parent path, both with
+# and without the trailing slash; otherwise, they'll continue to 404 instead of
+# finding the new location.
 #
 # GLOB MATCHING
 #
@@ -134,8 +146,13 @@
 /docs/providers/azurerm/authenticating_via_azure_cli.html         /docs/providers/azurerm/auth/azure_cli.html
 /docs/providers/azurerm/authenticating_via_msi.html               /docs/providers/azurerm/auth/managed_service_identity.html
 
-# Fixing terraform-provider-google#2197
-/docs/provider/google/provider_versions.html          /docs/providers/google/provider_versions.html
+# Google Provider
+/docs/provider/google/provider_versions.html                    /docs/providers/google/provider_versions.html
+/docs/providers/google/r/big_query_dataset.html                 /docs/providers/google/r/bigquery_dataset.html
+/docs/providers/google/r/cloud_build_trigger.html               /docs/providers/google/r/cloudbuild_trigger.html
+/docs/providers/google/r/security_center_source.html            /docs/providers/google/r/scc_source.html
+/docs/providers/google/r/source_repo_repository.html            /docs/providers/google/r/sourcerepo_repository.html
+/docs/providers/google/r/source_repo_repository_iam.html        /docs/providers/google/r/sourcerepo_repository_iam.html
 
 # Move content to learn.hashicorp.com:
 # These redirects are inert in this file, because they need a "real" Varnish
@@ -180,3 +197,173 @@
 # Upgrade docs are gone, but there is an unfixable dangling link, so we ahve to
 # redirect somewhere I guess
 /docs/enterprise/upgrade/differences.html /docs/enterprise/index.html
+
+# The great Terraform Cloud / Terraform Enterprise docs split:
+/docs/enterprise/free                                               /docs/cloud/free
+/docs/enterprise/free/                                              /docs/cloud/free/
+/docs/enterprise/free/index.html                                    /docs/cloud/free/index.html
+/docs/enterprise/free/overview.html                                 /docs/cloud/free/overview.html
+/docs/enterprise/workspaces                                         /docs/cloud/workspaces
+/docs/enterprise/workspaces/                                        /docs/cloud/workspaces/
+/docs/enterprise/workspaces/index.html                              /docs/cloud/workspaces/index.html
+/docs/enterprise/workspaces/settings.html                           /docs/cloud/workspaces/settings.html
+/docs/enterprise/workspaces/ssh-keys.html                           /docs/cloud/workspaces/ssh-keys.html
+/docs/enterprise/workspaces/naming.html                             /docs/cloud/workspaces/naming.html
+/docs/enterprise/workspaces/notifications.html                      /docs/cloud/workspaces/notifications.html
+/docs/enterprise/workspaces/access.html                             /docs/cloud/workspaces/access.html
+/docs/enterprise/workspaces/creating.html                           /docs/cloud/workspaces/creating.html
+/docs/enterprise/workspaces/variables.html                          /docs/cloud/workspaces/variables.html
+/docs/enterprise/workspaces/repo-structure.html                     /docs/cloud/workspaces/repo-structure.html
+/docs/enterprise/users-teams-organizations                          /docs/cloud/users-teams-organizations
+/docs/enterprise/users-teams-organizations/                         /docs/cloud/users-teams-organizations/
+/docs/enterprise/users-teams-organizations/index.html               /docs/cloud/users-teams-organizations/index.html
+/docs/enterprise/users-teams-organizations/users.html               /docs/cloud/users-teams-organizations/users.html
+/docs/enterprise/users-teams-organizations/organizations.html       /docs/cloud/users-teams-organizations/organizations.html
+/docs/enterprise/users-teams-organizations/service-accounts.html    /docs/cloud/users-teams-organizations/service-accounts.html
+/docs/enterprise/users-teams-organizations/teams.html               /docs/cloud/users-teams-organizations/teams.html
+/docs/enterprise/users-teams-organizations/permissions.html         /docs/cloud/users-teams-organizations/permissions.html
+/docs/enterprise/users-teams-organizations/2fa.html                 /docs/cloud/users-teams-organizations/2fa.html
+/docs/enterprise/sentinel                                           /docs/cloud/sentinel
+/docs/enterprise/sentinel/                                          /docs/cloud/sentinel/
+/docs/enterprise/sentinel/index.html                                /docs/cloud/sentinel/index.html
+/docs/enterprise/sentinel/integrate-vcs.html                        /docs/cloud/sentinel/integrate-vcs.html
+/docs/enterprise/sentinel/enforce.html                              /docs/cloud/sentinel/enforce.html
+/docs/enterprise/sentinel/examples.html                             /docs/cloud/sentinel/examples.html
+/docs/enterprise/sentinel/manage-policies.html                      /docs/cloud/sentinel/manage-policies.html
+/docs/enterprise/sentinel/sentinel-tf-012.html                      /docs/cloud/sentinel/sentinel-tf-012.html
+/docs/enterprise/sentinel/mock.html                                 /docs/cloud/sentinel/mock.html
+/docs/enterprise/sentinel/import                                    /docs/cloud/sentinel/import
+/docs/enterprise/sentinel/import/                                   /docs/cloud/sentinel/import/
+/docs/enterprise/sentinel/import/index.html                         /docs/cloud/sentinel/import/index.html
+/docs/enterprise/sentinel/import/tfstate.html                       /docs/cloud/sentinel/import/tfstate.html
+/docs/enterprise/sentinel/import/tfconfig.html                      /docs/cloud/sentinel/import/tfconfig.html
+/docs/enterprise/sentinel/import/tfplan.html                        /docs/cloud/sentinel/import/tfplan.html
+/docs/enterprise/integrations/service-now                           /docs/cloud/integrations/service-now
+/docs/enterprise/integrations/service-now/                          /docs/cloud/integrations/service-now/
+/docs/enterprise/integrations/service-now/index.html                /docs/cloud/integrations/service-now/index.html
+/docs/enterprise/migrate                                            /docs/cloud/migrate
+/docs/enterprise/migrate/                                           /docs/cloud/migrate/
+/docs/enterprise/migrate/index.html                                 /docs/cloud/migrate/index.html
+/docs/enterprise/migrate/workspaces.html                            /docs/cloud/migrate/workspaces.html
+/docs/enterprise/getting-started                                    /docs/cloud/getting-started
+/docs/enterprise/getting-started/                                   /docs/cloud/getting-started/
+/docs/enterprise/getting-started/index.html                         /docs/cloud/getting-started/index.html
+/docs/enterprise/getting-started/workspaces.html                    /docs/cloud/getting-started/workspaces.html
+/docs/enterprise/getting-started/runs.html                          /docs/cloud/getting-started/runs.html
+/docs/enterprise/getting-started/policies.html                      /docs/cloud/getting-started/policies.html
+/docs/enterprise/getting-started/access.html                        /docs/cloud/getting-started/access.html
+/docs/enterprise/getting-started/vcs.html                           /docs/cloud/getting-started/vcs.html
+/docs/enterprise/vcs                                                /docs/cloud/vcs
+/docs/enterprise/vcs/                                               /docs/cloud/vcs/
+/docs/enterprise/vcs/index.html                                     /docs/cloud/vcs/index.html
+/docs/enterprise/vcs/github.html                                    /docs/cloud/vcs/github.html
+/docs/enterprise/vcs/gitlab-com.html                                /docs/cloud/vcs/gitlab-com.html
+/docs/enterprise/vcs/gitlab-eece.html                               /docs/cloud/vcs/gitlab-eece.html
+/docs/enterprise/vcs/bitbucket-cloud.html                           /docs/cloud/vcs/bitbucket-cloud.html
+/docs/enterprise/vcs/bitbucket-server.html                          /docs/cloud/vcs/bitbucket-server.html
+/docs/enterprise/vcs/github-enterprise.html                         /docs/cloud/vcs/github-enterprise.html
+/docs/enterprise/vcs/troubleshooting.html                           /docs/cloud/vcs/troubleshooting.html
+/docs/enterprise/guides/recommended-practices                       /docs/cloud/guides/recommended-practices
+/docs/enterprise/guides/recommended-practices/                      /docs/cloud/guides/recommended-practices/
+/docs/enterprise/guides/recommended-practices/index.html            /docs/cloud/guides/recommended-practices/index.html
+/docs/enterprise/guides/recommended-practices/part3.1.html          /docs/cloud/guides/recommended-practices/part3.1.html
+/docs/enterprise/guides/recommended-practices/part3.3.html          /docs/cloud/guides/recommended-practices/part3.3.html
+/docs/enterprise/guides/recommended-practices/part3.2.html          /docs/cloud/guides/recommended-practices/part3.2.html
+/docs/enterprise/guides/recommended-practices/part1.html            /docs/cloud/guides/recommended-practices/part1.html
+/docs/enterprise/guides/recommended-practices/part3.4.html          /docs/cloud/guides/recommended-practices/part3.4.html
+/docs/enterprise/guides/recommended-practices/part2.html            /docs/cloud/guides/recommended-practices/part2.html
+/docs/enterprise/guides/recommended-practices/part3.html            /docs/cloud/guides/recommended-practices/part3.html
+/docs/enterprise/registry                                           /docs/cloud/registry
+/docs/enterprise/registry/                                          /docs/cloud/registry/
+/docs/enterprise/registry/index.html                                /docs/cloud/registry/index.html
+/docs/enterprise/registry/design.html                               /docs/cloud/registry/design.html
+/docs/enterprise/registry/publish.html                              /docs/cloud/registry/publish.html
+/docs/enterprise/registry/using.html                                /docs/cloud/registry/using.html
+/docs/enterprise/api                                                /docs/cloud/api
+/docs/enterprise/api/                                               /docs/cloud/api/
+/docs/enterprise/api/index.html                                     /docs/cloud/api/index.html
+/docs/enterprise/api/stability-policy.html                          /docs/cloud/api/stability-policy.html
+/docs/enterprise/api/workspaces.html                                /docs/cloud/api/workspaces.html
+/docs/enterprise/api/ssh-keys.html                                  /docs/cloud/api/ssh-keys.html
+/docs/enterprise/api/team-access.html                               /docs/cloud/api/team-access.html
+/docs/enterprise/api/configuration-versions.html                    /docs/cloud/api/configuration-versions.html
+/docs/enterprise/api/organizations.html                             /docs/cloud/api/organizations.html
+/docs/enterprise/api/state-versions.html                            /docs/cloud/api/state-versions.html
+/docs/enterprise/api/oauth-tokens.html                              /docs/cloud/api/oauth-tokens.html
+/docs/enterprise/api/user-tokens.html                               /docs/cloud/api/user-tokens.html
+/docs/enterprise/api/oauth-clients.html                             /docs/cloud/api/oauth-clients.html
+/docs/enterprise/api/policy-sets.html                               /docs/cloud/api/policy-sets.html
+/docs/enterprise/api/account.html                                   /docs/cloud/api/account.html
+/docs/enterprise/api/policies.html                                  /docs/cloud/api/policies.html
+/docs/enterprise/api/admin                                          /docs/cloud/api/admin
+/docs/enterprise/api/admin/                                         /docs/cloud/api/admin/
+/docs/enterprise/api/admin/index.html                               /docs/cloud/api/admin/index.html
+/docs/enterprise/api/admin/settings.html                            /docs/cloud/api/admin/settings.html
+/docs/enterprise/api/admin/workspaces.html                          /docs/cloud/api/admin/workspaces.html
+/docs/enterprise/api/admin/runs.html                                /docs/cloud/api/admin/runs.html
+/docs/enterprise/api/admin/terraform-versions.html                  /docs/cloud/api/admin/terraform-versions.html
+/docs/enterprise/api/admin/organizations.html                       /docs/cloud/api/admin/organizations.html
+/docs/enterprise/api/admin/users.html                               /docs/cloud/api/admin/users.html
+/docs/enterprise/api/team-members.html                              /docs/cloud/api/team-members.html
+/docs/enterprise/api/teams.html                                     /docs/cloud/api/teams.html
+/docs/enterprise/api/state-version-outputs.html                     /docs/cloud/api/state-version-outputs.html
+/docs/enterprise/api/users.html                                     /docs/cloud/api/users.html
+/docs/enterprise/api/policy-checks.html                             /docs/cloud/api/policy-checks.html
+/docs/enterprise/api/variables.html                                 /docs/cloud/api/variables.html
+/docs/enterprise/api/plans.html                                     /docs/cloud/api/plans.html
+/docs/enterprise/api/organization-tokens.html                       /docs/cloud/api/organization-tokens.html
+/docs/enterprise/api/modules.html                                   /docs/cloud/api/modules.html
+/docs/enterprise/api/applies.html                                   /docs/cloud/api/applies.html
+/docs/enterprise/api/team-tokens.html                               /docs/cloud/api/team-tokens.html
+/docs/enterprise/api/run.html                                       /docs/cloud/api/run.html
+/docs/enterprise/api/notification-configurations.html               /docs/cloud/api/notification-configurations.html
+/docs/enterprise/api/plan-exports.html                              /docs/cloud/api/plan-exports.html
+/docs/enterprise/run                                                /docs/cloud/run
+/docs/enterprise/run/                                               /docs/cloud/run/
+/docs/enterprise/run/index.html                                     /docs/cloud/run/index.html
+/docs/enterprise/run/install-software.html                          /docs/cloud/run/install-software.html
+/docs/enterprise/run/api.html                                       /docs/cloud/run/api.html
+/docs/enterprise/run/cli.html                                       /docs/cloud/run/cli.html
+/docs/enterprise/run/ui.html                                        /docs/cloud/run/ui.html
+/docs/enterprise/run/states.html                                    /docs/cloud/run/states.html
+
+/docs/enterprise/private                                            /docs/enterprise
+/docs/enterprise/private/                                           /docs/enterprise/
+/docs/enterprise/private/index.html                                 /docs/enterprise/index.html
+/docs/enterprise/private/admin                                      /docs/enterprise/admin/admin-access.html
+/docs/enterprise/private/admin/                                     /docs/enterprise/admin/admin-access.html
+/docs/enterprise/private/admin/index.html                           /docs/enterprise/admin/admin-access.html
+/docs/enterprise/private/admin/general.html                         /docs/enterprise/admin/general.html
+/docs/enterprise/private/admin/integration.html                     /docs/enterprise/admin/integration.html
+/docs/enterprise/private/admin/resources.html                       /docs/enterprise/admin/resources.html
+/docs/enterprise/private/automated-recovery.html                    /docs/enterprise/admin/automated-recovery.html
+/docs/enterprise/private/automating-initial-user.html               /docs/enterprise/install/automating-initial-user.html
+/docs/enterprise/private/automating-the-installer.html              /docs/enterprise/install/automating-the-installer.html
+/docs/enterprise/private/aws-setup-guide.html                       /docs/enterprise/before-installing/reference-architecture/aws.html
+/docs/enterprise/private/azure-setup-guide.html                     /docs/enterprise/before-installing/reference-architecture/azure.html
+/docs/enterprise/private/capacity.html                              /docs/enterprise/system-overview/capacity.html
+/docs/enterprise/private/centos-install-guide.html                  /docs/enterprise/before-installing/centos-requirements.html
+/docs/enterprise/private/config.html                                /docs/enterprise/install/config.html
+/docs/enterprise/private/data-security.html                         /docs/enterprise/system-overview/data-security.html
+/docs/enterprise/private/diagnostics.html                           /docs/enterprise/support/index.html
+/docs/enterprise/private/encryption-password                        /docs/enterprise/install/encryption-password.html
+/docs/enterprise/private/faq.html                                   /docs/enterprise/index.html
+/docs/enterprise/private/gcp-setup-guide.html                       /docs/enterprise/before-installing/reference-architecture/gcp.html
+/docs/enterprise/private/install-ami.html                           /docs/enterprise/install/index.html
+/docs/enterprise/private/install-installer.html                     /docs/enterprise/install/installer.html
+/docs/enterprise/private/installer.html                             /docs/enterprise/install/index.html
+/docs/enterprise/private/logging.html                               /docs/enterprise/admin/logging.html
+/docs/enterprise/private/migrate.html                               /docs/enterprise/install/index.html
+/docs/enterprise/private/minio-setup-guide.html                     /docs/enterprise/before-installing/minio-setup-guide.html
+/docs/enterprise/private/monitoring.html                            /docs/enterprise/admin/monitoring.html
+/docs/enterprise/private/preflight-installer.html                   /docs/enterprise/before-installing/index.html
+/docs/enterprise/private/reference-architecture-installer.html      /docs/enterprise/before-installing/reference-architecture/index.html
+/docs/enterprise/private/reliability-availability.html              /docs/enterprise/system-overview/reliability-availability.html
+/docs/enterprise/private/rhel-install-guide.html                    /docs/enterprise/before-installing/rhel-requirements.html
+/docs/enterprise/private/simplified-migration.html                  /docs/enterprise/install/index.html
+/docs/enterprise/private/upgrades.html                              /docs/enterprise/admin/upgrades.html
+/docs/enterprise/private/vault.html                                 /docs/enterprise/before-installing/vault.html
+/docs/enterprise/private/vmware-setup-guide.html                    /docs/enterprise/before-installing/reference-architecture/vmware.html
+
+# API Token Documentation update
+/docs/cloud/users-teams-organizations/service-accounts.html         /docs/cloud/users-teams-organizations/api-tokens.html

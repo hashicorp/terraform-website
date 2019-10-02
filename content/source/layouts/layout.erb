@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= description_for(current_page) %>">
 
+    <link rel="canonical" href="<%= File.join(base_url, current_page.url) %>" />
     <link rel="apple-touch-icon" sizes="180x180" href="<%= image_path("favicons/apple-touch-icon.png") %>">
     <link rel="icon" type="image/png" href="<%= image_path("favicons/favicon-32x32.png") %>" sizes="32x32">
     <link rel="icon" type="image/png" href="<%= image_path("favicons/favicon-16x16.png") %>" sizes="16x16">
@@ -73,6 +74,7 @@
               docs_items = <<-EOT
                 <li><a href="/docs/index.html">Docs Home</a></li>
                 <li><a href="/docs/cli-index.html">Terraform CLI</a></li>
+                <li><a href="/docs/cloud/index.html">Terraform Cloud</a></li>
                 <li><a href="/docs/enterprise/index.html">Terraform Enterprise</a></li>
                 <li><a href="/docs/providers/index.html">Providers</a></li>
                 <li><a href="/docs/glossary.html">Glossary</a></li>
@@ -112,6 +114,13 @@
                     <a href="https://github.com/hashicorp/terraform">
                       <%= inline_svg "github.svg" %> GitHub
                     </a>
+                  </li>
+                   <li id="terraform-overview-sign-in-link">
+                   <div>
+                    <a href="https://app.terraform.io/">
+                      Sign In
+                    </a>
+                    </div>
                   </li>
                 </ul>
               </nav>

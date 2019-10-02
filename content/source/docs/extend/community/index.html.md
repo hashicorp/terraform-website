@@ -22,9 +22,14 @@ Overflow](https://stackoverflow.com/). Use the tag "terraform" to help your
 question be found by Terraform experts, and please be respectful of the "How to
 Ask" guidelines in each community.
 
-**HashiCorp forum:** The [Terraform
-section](https://discuss.hashicorp.com/c/terraform-core) of the community portal
-contains questions, use cases, and useful patterns.
+**HashiCorp forum:**
+
+- The [Terraform section](https://discuss.hashicorp.com/c/terraform-core)
+of the community portal contains questions, use cases, and useful patterns.
+
+- For SDK related questions please visit the
+[Terraform Providers section](https://discuss.hashicorp.com/c/terraform-providers)
+of the community portal.
 
 **Bug Trackers:** 
 

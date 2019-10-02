@@ -430,3 +430,23 @@
 	path = ext/providers/aci
 	url = https://github.com/terraform-providers/terraform-provider-aci
 	branch = stable-website
+[submodule "ext/providers/exoscale"]
+	path = ext/providers/exoscale
+	url = https://github.com/terraform-providers/terraform-provider-exoscale
+	branch = stable-website
+[submodule "ext/providers/mongodbatlas"]
+	path = ext/providers/mongodbatlas
+	url = https://github.com/terraform-providers/terraform-provider-mongodbatlas
+	branch = stable-website
+[submodule "ext/providers/aviatrix"]
+	path = ext/providers/aviatrix
+	url = https://github.com/terraform-providers/terraform-provider-aviatrix
+	branch = stable-website
+[submodule "ext/providers/pureport"]
+	path = ext/providers/pureport
+	url = https://github.com/terraform-providers/terraform-provider-pureport
+	branch = stable-website
+[submodule "ext/providers/genymotion"]
+	path = ext/providers/genymotion
+	url = https://github.com/terraform-providers/terraform-provider-genymotion
+	branch = stable-website

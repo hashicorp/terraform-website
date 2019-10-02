@@ -51,7 +51,7 @@ action "terraform init" {
 | `TF_ACTION_WORKING_DIR`  | `"."`                | Which directory `plan` runs in. Relative to the root of the repo.   |
 | `TF_ACTION_COMMENT`      | `"true"`             | Set to `"false"` to disable commenting back on pull request.        |
 | `TF_ACTION_WORKSPACE`    | `"default"`          | Which [Terraform workspace](/docs/state/workspaces.html) to run in. |
-| `TF_ACTION_TFE_HOSTNAME` | `"app.terraform.io"` | If using Private Terraform Enterprise set this to its hostname.     |
+| `TF_ACTION_TFE_HOSTNAME` | `"app.terraform.io"` | If using Terraform Enterprise, set this to its hostname.            |
 
 ## Workspaces
 
@@ -64,7 +64,7 @@ If you need to run `plan` in multiple workspaces, see [Workspaces](../workspaces
 | Name                  | Description                                                                                                                                                                                                                                   |
 |-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `GITHUB_TOKEN`        | Required for posting comments to the pull request unless `TF_ACTION_COMMENT = "false"`.                                                                                                                                                       |
-| `TF_ACTION_TFE_TOKEN` | If using the Terraform Enterprise [remote backend](/docs/backends/types/remote.html) set this secret to a [user API token](/docs/enterprise/users-teams-organizations/users.html#api-tokens). |
+| `TF_ACTION_TFE_TOKEN` | If using the Terraform Cloud [remote backend](/docs/backends/types/remote.html) set this secret to a [user API token](/docs/cloud/users-teams-organizations/users.html#api-tokens). |
 
 You'll also likely need to add secrets for your providers, like `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` or `GOOGLE_CREDENTIALS`.
 

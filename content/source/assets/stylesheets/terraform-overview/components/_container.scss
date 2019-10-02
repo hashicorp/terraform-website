@@ -1,0 +1,20 @@
+.g-container {
+  margin: 0 auto;
+  max-width: $site-max-width;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media (max-width: 768px) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  & > .btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 96px;
+    & > * {
+      margin: auto 8px 16px;
+    }
+  }
+}

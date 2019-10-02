@@ -1,0 +1,324 @@
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+    <h4><a href="/docs/cloud/index.html">Terraform Cloud</a></h4>
+
+    <a href="#" class="subnav-toggle">(Expand/collapse all)</a>
+
+    <ul class="nav docs-sidenav">
+      <li>
+        <a href="/docs/cloud/index.html">Overview</a>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/getting-started/index.html">Getting Started</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/cloud/getting-started/access.html">Accessing Terraform Cloud</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/getting-started/vcs.html">Configuring VCS Access</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/getting-started/workspaces.html">Creating Workspaces</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/getting-started/runs.html">Running Terraform</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/getting-started/policies.html">Configuring Sentinel</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/getting-started/cost-estimation.html">Cost Estimation</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/migrate/index.html">Migrating from Local Terraform</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/cloud/migrate/workspaces.html">Migrating Multiple Workspaces</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/vcs/index.html">VCS Integration</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/cloud/vcs/github.html">Github</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/vcs/github-enterprise.html">Github Enterprise</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/vcs/gitlab-com.html">GitLab.com</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/vcs/gitlab-eece.html">GitLab EE and CE</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/vcs/bitbucket-cloud.html">Bitbucket Cloud</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/vcs/bitbucket-server.html">Bitbucket Server and Data Center</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/vcs/troubleshooting.html">Troubleshooting</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/workspaces/index.html">Workspaces</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/cloud/workspaces/naming.html">Naming</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/workspaces/creating.html">Creating Workspaces</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/workspaces/access.html">Managing Access</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/workspaces/repo-structure.html">Repo Structure</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/workspaces/settings.html">Settings</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/workspaces/notifications.html">Notifications</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/workspaces/variables.html">Variables</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/workspaces/ssh-keys.html">SSH Keys for Modules</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/run/index.html">Terraform Runs</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/cloud/run/states.html">Run States and Stages</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/run/ui.html">UI/VCS-driven Runs</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/run/api.html">API-driven Runs</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/run/cli.html">CLI-driven Runs</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/run/install-software.html">Installing Software</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/registry/index.html">Private Module Registry</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/cloud/registry/using.html">Using Private Modules</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/registry/publish.html">Publishing Private Modules</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/registry/design.html">Configuration Designer</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/users-teams-organizations/index.html">Users, Teams, Organizations</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/cloud/users-teams-organizations/users.html">Users</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/users-teams-organizations/teams.html">Teams</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/users-teams-organizations/organizations.html">Organizations</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/users-teams-organizations/permissions.html">Permissions</a>
+          </li>
+          <li>
+          <a href="/docs/cloud/users-teams-organizations/2fa.html">Two-factor Authentication</a>
+        </li>
+          <li>
+            <a href="/docs/cloud/users-teams-organizations/api-tokens.html">API Tokens</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/sentinel/index.html">Sentinel</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/cloud/sentinel/sentinel-tf-012.html">Using Sentinel with Terraform 0.12</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/sentinel/manage-policies.html">Manage Policies</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/sentinel/enforce.html">Enforce and Override Policies</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/sentinel/mock.html">Mocking Terraform Sentinel Data</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/sentinel/import/index.html">Defining Policies</a>
+            <ul class="nav nav-auto-expand">
+              <li>
+                <a href="/docs/cloud/sentinel/import/tfconfig.html">import: tfconfig</a>
+              </li>
+              <li>
+                <a href="/docs/cloud/sentinel/import/tfplan.html">import: tfplan</a>
+              </li>
+              <li>
+                <a href="/docs/cloud/sentinel/import/tfstate.html">import: tfstate</a>
+              </li>
+              <li>
+                <a href="/docs/cloud/sentinel/import/tfrun.html">import: tfrun</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/docs/cloud/sentinel/examples.html">Example Policies</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/integrations/service-now/index.html">ServiceNow Integration</a>
+      </li>
+
+      <li>
+        <a href="/docs/cloud/api/index.html">API</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/cloud/api/account.html">Account</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/applies.html">Applies</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/configuration-versions.html">Configuration Versions</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/cost-estimates.html">Cost Estimates</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/notification-configurations.html">Notification Configurations</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/oauth-clients.html">OAuth Clients</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/oauth-tokens.html">OAuth Tokens</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/organizations.html">Organizations</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/organization-tokens.html">Organization Tokens</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/plan-exports.html">Plan Exports</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/plans.html">Plans</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/policies.html">Policies</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/policy-checks.html">Policy Checks</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/policy-sets.html">Policy Sets</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/modules.html">Registry Modules</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/run.html">Runs</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/ssh-keys.html">SSH Keys</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/state-versions.html">State Versions</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/state-version-outputs.html">State Version Outputs</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/team-access.html">Team Access</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/team-members.html">Team Membership</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/team-tokens.html">Team Tokens</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/teams.html">Teams</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/user-tokens.html">User Tokens</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/users.html">Users</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/variables.html">Variables</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/workspaces.html">Workspaces</a>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/admin/index.html">Admin</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/cloud/api/admin/organizations.html">Organizations</a>
+              </li>
+              <li>
+                <a href="/docs/cloud/api/admin/runs.html">Runs</a>
+              </li>
+              <li>
+                <a href="/docs/cloud/api/admin/settings.html">Settings</a>
+              </li>
+              <li>
+                <a href="/docs/cloud/api/admin/terraform-versions.html">Terraform Versions</a>
+              </li>
+              <li>
+                <a href="/docs/cloud/api/admin/users.html">Users</a>
+              </li>
+              <li>
+                <a href="/docs/cloud/api/admin/workspaces.html">Workspaces</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/docs/cloud/api/stability-policy.html">API Stability Policy</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+
+    <%= partial("layouts/otherdocs", :locals => { :skip => "Terraform Cloud" }) %>
+
+  <% end %>
+
+  <%= yield %>
+<% end %>

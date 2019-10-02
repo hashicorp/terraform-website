@@ -1,7 +1,6 @@
 ---
-layout: enterprise2
+layout: "enterprise"
 page_title: "SAML Identity Provider Configuration - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-saml-identity-provider-configuration"
 ---
 
 # Identity Provider Configuration

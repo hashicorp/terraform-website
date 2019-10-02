@@ -1,12 +1,11 @@
 ---
-layout: enterprise2
+layout: "enterprise"
 page_title: "SAML Azure Active Directory Identity Provider Configuration - Terraform Enterprise"
-sidebar_current: "docs-enterprise2-private-saml-identity-provider-configuration-aad"
 ---
 
 # AAD Configuration
 
-Follow these steps to configure Azure Active Directory (AAD) as the identity provider (IdP) for Private Terraform Enterprise (PTFE).
+Follow these steps to configure Azure Active Directory (AAD) as the identity provider (IdP) for Terraform Enterprise.
 
 -> **Note:** This guide assumes you have an appropriate licensing agreement for Azure Active Directory that supports non-gallery application single sign-on.
 
@@ -41,7 +40,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
     - **Single Sign-On URL:** Enter the login url from step 8.
     - **Single Log-out URL:** Enter the logout url from step 8.
     - **IDP Certificate:** Enter the contents of the PEM (Base64) encoded X.509 certificate captured in step 7.
-  ![Screenshot: PTFE SAML Settings](./images/sso-aad-saml-ptfe-saml-settings.png)
+  ![Screenshot: Terraform Enterprise SAML Settings](./images/sso-aad-saml-ptfe-saml-settings.png)
 
 ## Configure Custom Roles for Team Membership Mapping
 

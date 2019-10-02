@@ -154,9 +154,9 @@ func resourceExampleThing() *schema.Resource {
 
 ### ImportStateVerifyIgnore
 
-Some resource attributes only exist within the context of the Terraform resource or are only used to modify an API request during resource `Create`, `Update`, and `Delete` functions. In these cases, if implementation of the resource cannot obtain the value for the attribute in the `Read` function or its not determined/defaulted to the correct value during the `Importer` `State` function, the acceptance testing may return an error like the following:
-
 ~> **NOTE:** `ImportStateVerifyIgnore` should be used sparingly as it means Terraform will require a followup apply to the resource after import or operators must configure `lifecycle` configuration block `ignore_changes` argument (especially for attributes that are `ForceNew`).
+
+Some resource attributes only exist within the context of the Terraform resource or are only used to modify an API request during resource `Create`, `Update`, and `Delete` functions. In these cases, if implementation of the resource cannot obtain the value for the attribute in the `Read` function or its not determined/defaulted to the correct value during the `Importer` `State` function, the acceptance testing may return an error like the following:
 
 ```text
 --- FAIL: TestAccExampleThing_namePrefix (18.56s)

@@ -1,0 +1,264 @@
+.g-text-asset {
+  text-align: center;
+
+  @media (min-width: 768px) {
+    align-content: space-between;
+    display: flex;
+    justify-content: center;
+    margin: 0 (-$site-gutter-padding);
+    text-align: left;
+  }
+  // Adds vertical margin on sibling .g-text-asset after first instance inside .g-container
+  &:not(:first-of-type) + .g-text-asset {
+    margin-top: 100px;
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
+
+    & > div:first-child > div {
+      margin-left: auto;
+
+      @media (min-width: 768px) {
+        padding: 0 24px 0 0;
+      }
+
+      @media (min-width: 992px) {
+        padding-right: 32px;
+      }
+    }
+  }
+
+  &.large {
+    margin-bottom: -56px;
+
+    @media (min-width: 768px) {
+      margin-bottom: -96px;
+    }
+
+    @media (min-width: 992px) {
+      margin-bottom: -120px;
+    }
+
+    & > div:last-child {
+      justify-content: unset;
+    }
+
+    picture > img,
+    img {
+      width: 145%;
+    }
+  }
+  & .code-sample {
+    flex-direction: column;
+
+    & .chrome {
+      background: $black;
+      border-bottom: 1px solid #333;
+      line-height: 0;
+      padding: 0 18px;
+      width: 100%;
+
+      & > span {
+        background: #6a6d7a;
+        border-radius: 50%;
+        display: inline-block;
+        height: 12px;
+        margin: 12px 0;
+        width: 12px;
+
+        & + span {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+  & > div {
+    text-align: left;
+
+    & .has-borders {
+      padding: 3rem;
+      border: 1px solid #e5e5e5;
+    }
+    @media (min-width: 768px) {
+      align-items: center;
+      margin: 0 auto;
+      display: flex;
+      padding: 0 $site-gutter-padding;
+      width: 50%;
+      text-align: left;
+    }
+
+    &:first-child {
+      margin-bottom: 32px;
+
+      @media (min-width: 768px) {
+        margin-bottom: 0;
+      }
+
+      & > div {
+        @media (min-width: 768px) {
+          margin-left: 0;
+          max-width: 454px;
+          padding: 0 0 0 24px;
+        }
+
+        @media (min-width: 992px) {
+          padding-left: 32px;
+        }
+        & a.g-btn {
+          margin-top: 1rem;
+        }
+        & > a:not(.g-btn) {
+          color: #2c72fe;
+          &:focus,
+          &:hover {
+            color: #2c72fe;
+
+            & path {
+              fill: #2c72fe;
+            }
+          }
+
+          & svg {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+
+    &:last-child {
+      justify-content: center;
+    }
+
+    & > img,
+    picture > img {
+      width: 100%;
+
+      &.shadow {
+        box-shadow: 0 40px 48px -20px rgba(63, 68, 85, 0.4);
+      }
+    }
+
+    & > svg {
+      max-width: 100%;
+    }
+
+    &.code-sample > div {
+      box-shadow: 0 40px 48px -20px rgba(63, 68, 85, 0.4);
+      color: $white;
+      margin: 0;
+      text-align: left;
+      width: 100%;
+
+      span {
+        background: #252937;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        display: block;
+        height: 32px;
+
+        @media (min-width: 768px) {
+          height: 40px;
+        }
+      }
+
+      .code {
+        background: #1e212a;
+        font-size: 1.4rem;
+        overflow: auto;
+        padding: 16px 24px 32px;
+        width: 100%;
+
+        code {
+          background: #1e212a;
+          border-radius: 0;
+          color: $white;
+          font-size: 1.2rem;
+          white-space: pre;
+
+          @media (min-width: 992px) {
+            font-size: 1.4rem;
+          }
+
+          &.keyword {
+            color: $terraform-purple;
+          }
+        }
+      }
+    }
+
+    &.logos {
+      justify-content: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+
+      & > div {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+
+        & img,
+        picture {
+          @media (max-width: 767px) {
+            margin: 15px 0;
+            // max-width: 51%;
+          }
+        }
+      }
+    }
+  }
+
+  h3 {
+    margin: 0 0 16px 0;
+
+    @media (min-width: 768px) {
+      margin-top: 16px;
+    }
+  }
+
+  & .check > ul {
+    text-align: left;
+    list-style: none;
+    padding-left: 32px;
+
+    & > li {
+      position: relative;
+      margin: 8px 0;
+
+      &:before {
+        position: absolute;
+        background: url("/assets/images/terraform-overview/icons/check-circle-purple.svg")
+          no-repeat;
+        content: "";
+        left: 10px;
+        float: left;
+        height: 19px;
+        left: 0;
+        margin: 6px 0 0 -32px;
+        width: 18px;
+      }
+      & > a {
+        color: $body-font-color;
+        text-decoration: underline;
+        text-decoration-color: $terraform-purple;
+        &:hover {
+          color: $terraform-purple;
+        }
+      }
+      & > span.shrink {
+        font-size: 14px;
+      }
+    }
+  }
+  & .video-embed p {
+    text-align: center;
+  }
+}

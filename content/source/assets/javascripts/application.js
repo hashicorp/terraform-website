@@ -7,6 +7,11 @@
 
 //= require analytics
 
+
+//= require terraform-overview/vendor-scripts/object-fit-images.min.js
+//= require terraform-overview/home-hero
+//= require terraform-overview/hashi-tabbed-content
+
 // Set up terraform.io UI helpers
 document.addEventListener("turbolinks:load", function() {
     "use strict";

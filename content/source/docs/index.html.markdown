@@ -1,11 +1,11 @@
 ---
-layout: "docs-frontpage"
-page_title: "Documentation"
-sidebar_current: "docs-frontpage"
+layout: 'docs-frontpage'
+page_title: 'Documentation'
+sidebar_current: 'docs-frontpage'
 description: |-
   A brief map of the documentation for Terraform CLI, Terraform Enterprise, the
   Terraform GitHub Actions, and the rest of the Terraform ecosystem.
-show_notification: true
+show_notification: false
 ---
 
 # Terraform Documentation
@@ -51,17 +51,12 @@ Interactive guides to teach you how to use Terraform's features. Begin with the 
 Detailed descriptions of various Terraform workflows, both general and specific. This includes things like:
 
 - [The end-to-end loop of making infrastructure changes with Terraform](/guides/core-workflow.html)
-- [The long-term process of evolving provisioning practices in a large organization](/docs/enterprise/guides/recommended-practices/index.html)
+- [The long-term process of evolving provisioning practices in a large organization](/docs/cloud/guides/recommended-practices/index.html)
 - [Tasks for upgrading to major new Terraform versions](/upgrade-guides/index.html)
 
 This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the guides at [Learn Terraform](https://learn.hashicorp.com/terraform/)), but to explain best practices and show how the different pieces of a workflow fit together.
 
 </div>
-
-
-
-
-
 
 <div class="col-md-6 col-sm-12">
 
@@ -69,11 +64,17 @@ This section is devoted to overviews and explanations of complex systems; the go
 
 Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
 
+### [Terraform Cloud ➜](/docs/cloud/index.html)
+
+Documentation for Terraform Cloud.
+
+Terraform Cloud is an application that helps teams use Terraform together. It manages Terraform runs in a consistent and reliable environment, and includes easy access to shared state and secret data, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more. Terraform Cloud offers free accounts for small teams, and paid plans with additional feature sets for medium-sized businesses.
+
 ### [Terraform Enterprise ➜](/docs/enterprise/index.html)
 
 Documentation for Terraform Enterprise.
 
-Terraform Enterprise is a supplementary paid product that makes it easier for teams to manage infrastructure together. It provides a way to share access to sensitive data, a consistent and reliable environment for Terraform runs, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more.
+Terraform Enterprise is an on-premise distribution of Terraform Cloud. It offers enterprises a private instance of the Terraform Cloud application, with no resource limits and with additional enterprise-grade architectural features like audit logging and SAML single sign-on.
 
 ### [Terraform Registry ➜](/docs/registry/index.html)
 
