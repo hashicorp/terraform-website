@@ -27,7 +27,7 @@
   h3,
   h4 {
     min-height: 35px;
-    margin-top: 30px;
+    margin-top: 32px;
     // This is just for vertical alignment. We don't need "real" flex behavior,
     // we just need to align the text to the middle of the box instead of the
     // top.
@@ -79,7 +79,7 @@
       padding: 4px;
     }
     input {
-      font-size: 1rem;
+      font-size: 0.625rem;
       height: 100%;
       margin-bottom: 1px;
       padding-left: 28px;
@@ -113,8 +113,9 @@
     display: block;
     padding-bottom: 15px;
     padding-top: 10px;
-
+    
     li {
+      line-height: 1.156rem;
       padding: 0 0 11px 0;
 
       a {
@@ -129,7 +130,7 @@
       &:before {
         color: $sidebar-link-color-active;
         content: '\2022';
-        font-size: 1em;
+        font-size: 0.938rem;
         opacity: 0.4;
         position: relative;
         // Hanging indent for long sidebar links:
