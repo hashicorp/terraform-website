@@ -26,7 +26,9 @@ You can also migrate your provider manually by replacing references to `github.c
 
 ## How do I migrate my provider to the standalone SDK?
 
-### Step 0: Install the migrator tool 
+### Using tf-sdk-migrator
+
+#### Step 0: Install the migrator tool
 
 ```
 $ go install github.com/hashicorp/tf-sdk-migrator
@@ -34,7 +36,7 @@ $ go install github.com/hashicorp/tf-sdk-migrator
 
 The migrator binary is now available at `$GOBIN/tf-sdk-migrator`. Examples below assume you have added `$GOBIN` to your `PATH`.
 
-### Step 1: Check eligibility for migration
+#### Step 1: Check eligibility for migration
 
 ```
 $ cd /provider/source/directory/
@@ -47,7 +49,7 @@ Otherwise, the tool will output the steps you need to take to ensure the provide
 
 Projects that are on an old version of the legacy Terraform plugin SDK, particularly < v0.12, should first [upgrade to v0.12](/docs/extend/terraform-0.12-compatibility.html).
 
-### Step 2: Migrate
+#### Step 2: Migrate
 
 ```
 $ tf-sdk-migrator migrate
@@ -82,11 +84,74 @@ $ go mod vendor
 
 Congratulations! Your Terraform provider is migrated to the standalone SDK. You can now run your tests and commit the changed files.
 
+### Manually
+
+#### Step 0: Check requirements
+
+Below is a list of requirements. It is possible to migrate without meeting these requirements,
+but it may be much more difficult. It is therefore highly recommended to try to meet all of these,
+or meet as many as possible.
+
+ - Go `1.12`
+   - `go version` should yield the current version in use
+ - Dependencies managed via Go modules
+   - `go.mod` and `go.sum` should be present in the root
+ - `github.com/hashicorp/terraform` `>=0.12.7`
+   - `go.mod` should contain a line which starts with `github.com/hashicorp/terraform` and version
+     that is greater than or equal to `0.12.7`
+
+#### Step 1: Check for deprecations
+
+See the [list of deprecations](#deprecations) below and take actions to remove all occurences
+of deprecated packages, functions or identifiers.
+
+You may find full list of SDK packages in [`tf-sdk-migrator` source code](https://github.com/hashicorp/tf-sdk-migrator/blob/c7297e03e62319a4eb48f4bc2fd1d8ee91ecade0/cmd/check/sdk_imports.go#L8-L21). Any package which is not on the list is considered as deprecated
+in the context of SDK and/or doesn't classify as SDK.
+
+You can use standard Go tooling, [JQ](https://stedolan.github.io/jq/) and [grep](https://en.wikipedia.org/wiki/Grep)
+to list all packages which are in use by your provider:
+
+```sh
+go list -json ./... | \
+	jq -r .Imports[] | \
+	grep '^github.com/hashicorp/terraform/'
+```
+
+You can use [`go-refs`](https://github.com/radeksimko/go-refs) to list all identifiers of a given package which are in use.
+
+#### Step 2: Replace import paths
+
+The simplest way to replace all import paths is to find all Go files using the standard Go tooling and JQ,
+and [sed](https://en.wikipedia.org/wiki/Sed) for replacing the paths:
+
+```sh
+go list -json ./... | \
+	jq -r '.Dir + "/" + .GoFiles[]' | \
+	xargs -n1 sed -i 's;"github.com/hashicorp/terraform/;"github.com/hashicorp/terraform-plugin-sdk/;'
+```
+
+#### Step 3: Go Modules
+
+Tidy up dependencies after removing Terraform and adding standalone SDK:
+
+```
+go mod tidy
+```
+
+re-vendor dependencies, if you're vendoring
+
+```
+go mod vendor
+```
+
+and finally run your tests, review changes and commit.
+
 ## What if my provider is not eligible for migration?
 
 Version 1.0.0 of the standalone plugin SDK is intended to differ as little as possible from the legacy plugin SDK. However, we have had to deprecate some packages and identifiers. Some of the rationale behind which packages made up SDK v1.0.0 can be seen from the [analysis](https://github.com/radeksimko/terraform-provider-sdk-exposure) we performed.
 
 ## Deprecations
+
 The following packages, functions, and identifiers have been deprecated as of v0.12.7 of the legacy SDK in Core, and have removed altogether in the standalone SDK.
 
 * **`config.NewRawConfig()/terraform.NewResourceConfig()`** were sometimes used in tandem for testing provider block configuration. The config package has been removed entirely from the SDK as well as `terraform.NewResourceConfig`, you should now use `terraform.NewResourceConfigRaw()`. See [example](https://github.com/terraform-providers/terraform-provider-consul/pull/149/files)
