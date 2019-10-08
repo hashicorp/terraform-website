@@ -102,13 +102,13 @@ or meet as many as possible.
 
 #### Step 1: Check for deprecations
 
-See the [list of deprecations](#deprecations) below and take actions to remove all occurences
+See the [list of deprecations](#deprecations) below and take actions to remove all occurrences
 of deprecated packages, functions or identifiers.
 
-You may find full list of SDK packages in [`tf-sdk-migrator` source code](https://github.com/hashicorp/tf-sdk-migrator/blob/c7297e03e62319a4eb48f4bc2fd1d8ee91ecade0/cmd/check/sdk_imports.go#L8-L21). Any package which is not on the list is considered as deprecated
+You may find a full list of SDK packages in [`tf-sdk-migrator` source code](https://github.com/hashicorp/tf-sdk-migrator/blob/c7297e03e62319a4eb48f4bc2fd1d8ee91ecade0/cmd/check/sdk_imports.go#L8-L21). Any package which is not on the list is considered as deprecated
 in the context of SDK and/or doesn't classify as SDK.
 
-You can use standard Go tooling, [JQ](https://stedolan.github.io/jq/) and [grep](https://en.wikipedia.org/wiki/Grep)
+You can use standard Go tooling, [jq](https://stedolan.github.io/jq/) and [grep](https://en.wikipedia.org/wiki/Grep)
 to list all packages which are in use by your provider:
 
 ```sh
@@ -121,7 +121,7 @@ You can use [`go-refs`](https://github.com/radeksimko/go-refs) to list all ident
 
 #### Step 2: Replace import paths
 
-The simplest way to replace all import paths is to find all Go files using the standard Go tooling and JQ,
+The simplest way to replace all import paths is to find all Go files using the standard Go tooling and jq,
 and [sed](https://en.wikipedia.org/wiki/Sed) for replacing the paths:
 
 ```sh
