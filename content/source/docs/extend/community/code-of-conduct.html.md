@@ -1,10 +1,10 @@
 ---
 layout: "extend"
-page_title: "Community"
+page_title: "Terraform Developers Code of Conduct"
 sidebar_current: "docs-extend-community-code-of-conduct"
 description: |-
-  Terraform is a mature project with a growing community. There are
-  active, dedicated people willing to help you through various mediums.
+  Code of Conduct applicable to Terraform developers
+  when interacting with the community
 ---
 
 # Terraform Developers Code of Conduct
