@@ -83,3 +83,7 @@ action "terraform plan" {
 }
 ```
 
+## Output Variables
+| Name              | Default   | Description                                                             |
+|-------------------|-----------|-------------------------------------------------------------------------|
+| `changes-present` | `"false"` | Whether the resulting plan succeeded with empty diff or non-empty diff. |
