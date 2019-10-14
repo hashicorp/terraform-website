@@ -27,6 +27,10 @@ To access the Cost Estimation settings, click **Cost Estimation** in the left me
 * **AWS Access Key ID**: The AWS Access Key ID for a given IAM user. The role associated to these credentials must have full access to the "Price List" service and all of that service's resources.
 * **AWS Secret Key**: The AWS Secret Key pair for the same Access Key ID.
 * **GCP Credentials**: The contents of the JSON that is downloaded when you create a GCP Service Account.
+* **Azure Client ID**: The Azure Client ID for a given Service Account. The role associated to these credentials must have full access to the `RateCard` service and all of that service's resources.
+* **Azure Client Secret**: The Azure Client Secret pair for the same Client ID.
+* **Azure Subscription ID**: The Azure Subscription ID for your account.
+* **Azure Tenant ID**: The Azure Subscription ID for your account.
 
 ## SAML Integration
 
