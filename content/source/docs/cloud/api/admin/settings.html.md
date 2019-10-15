@@ -158,7 +158,11 @@ curl \
       "enabled": true,
       "aws-access-key-id": "AKIAIOSFODNN7EXAMPLE",
       "aws-secret-key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
-      "gcp-credentials": "{\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n....=\\n-----END PRIVATE KEY-----\",\"private_key_id\":\"some_id\",...}"
+      "gcp-credentials": "{\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n....=\\n-----END PRIVATE KEY-----\",\"private_key_id\":\"some_id\",...}",
+      "azure-client-id": "9b516fe8-415s-9119-bab0-EXAMPLEID1",
+      "azure-client-secret": "9b516fe8-415s-9119-bab0-EXAMPLESEC1",
+      "azure-subscription-id": "9b516fe8-415s-9119-bab0-EXAMPLEID2",
+      "azure-tenant-id": "9b516fe8-415s-9119-bab0-EXAMPLEID3",
     }
   }
 }
@@ -182,12 +186,16 @@ If `data.attributes.enabled` is set to `true`, there must be at least one set of
 
 See [SAML Configuration](/docs/enterprise/saml/configuration.html) for more details on attribute values.
 
-Key path                            | Type   | Default | Description
-------------------------------------|--------|---------|------------
-`data.attributes.enabled`           | bool   | `false` | Allows organizations to opt-in to the Cost Estimation feature.
-`data.attributes.aws-access-key-id` | string |         | An AWS Access Key ID that the Cost Estimation feature will use to authorize to AWS's Pricing API.
-`data.attributes.aws-secret-key`    | string |         | An AWS Secret Key that the Cost Estimation feature will use to authorize to AWS's Pricing API.
-`data.attributes.gcp-credentials`   | string |         | A JSON string containing GCP credentials that the Cost Estimation feature will use to authorize to the Google Cloud Platform's Pricing API. This must be the contents of a valid JSON key that is downloaded when [creating a Service Account in GCP](https://cloud.google.com/video-intelligence/docs/common/auth#set_up_a_service_account).
+Key path                                | Type   | Default | Description
+----------------------------------------|--------|---------|------------
+`data.attributes.enabled`               | bool   | `false` | Allows organizations to opt-in to the Cost Estimation feature.
+`data.attributes.aws-access-key-id`     | string |         | An AWS Access Key ID that the Cost Estimation feature will use to authorize to AWS's Pricing API.
+`data.attributes.aws-secret-key`        | string |         | An AWS Secret Key that the Cost Estimation feature will use to authorize to AWS's Pricing API.
+`data.attributes.gcp-credentials`       | string |         | A JSON string containing GCP credentials that the Cost Estimation feature will use to authorize to the Google Cloud Platform's Pricing API. This must be the contents of a valid JSON key that is downloaded when [creating a Service Account in GCP](https://cloud.google.com/video-intelligence/docs/common/auth#set_up_a_service_account).
+`data.attributes.azure-client-id`       | string |         | An Azure Client ID that the Cost Estimation feature will use to authorize to Azure's RateCard API.
+`data.attributes.azure-client-secret`   | string |         | An Azure Client Secret that the Cost Estimation feature will use to authorize to Azure's RateCard API.
+`data.attributes.azure-subscription-id` | string |         | An Azure Subscription ID that the Cost Estimation feature will use to authorize to Azure's RateCard API.
+`data.attributes.azure-tenant-id`       | string |         | An Azure Tenant ID that the Cost Estimation feature will use to authorize to Azure's RateCard API.
 
 ```json
 {
@@ -196,7 +204,11 @@ Key path                            | Type   | Default | Description
       "enabled": true,
       "aws-access-key-id": "AKIAIOSFODNN7EXAMPLE",
       "aws-secret-key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
-      "gcp-credentials": "{\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n....=\\n-----END PRIVATE KEY-----\",\"private_key_id\":\"some_id\",...}"
+      "gcp-credentials": "{\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n....=\\n-----END PRIVATE KEY-----\",\"private_key_id\":\"some_id\",...}",
+      "azure-client-id": "9b516fe8-415s-9119-bab0-EXAMPLEID1",
+      "azure-client-secret": "9b516fe8-415s-9119-bab0-EXAMPLESEC1",
+      "azure-subscription-id": "9b516fe8-415s-9119-bab0-EXAMPLEID2",
+      "azure-tenant-id": "9b516fe8-415s-9119-bab0-EXAMPLEID3",
     }
   }
 }
@@ -224,7 +236,11 @@ curl \
       "enabled": true,
       "aws-access-key-id": "AKIAIOSFODNN7EXAMPLE",
       "aws-secret-key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
-      "gcp-credentials": "{\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n....=\\n-----END PRIVATE KEY-----\",\"private_key_id\":\"some_id\",...}"
+      "gcp-credentials": "{\"private_key\":\"-----BEGIN PRIVATE KEY-----\\n....=\\n-----END PRIVATE KEY-----\",\"private_key_id\":\"some_id\",...}",
+      "azure-client-id": "9b516fe8-415s-9119-bab0-EXAMPLEID1",
+      "azure-client-secret": "9b516fe8-415s-9119-bab0-EXAMPLESEC1",
+      "azure-subscription-id": "9b516fe8-415s-9119-bab0-EXAMPLEID2",
+      "azure-tenant-id": "9b516fe8-415s-9119-bab0-EXAMPLEID3",
     }
   }
 }
