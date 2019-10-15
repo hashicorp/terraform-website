@@ -86,6 +86,12 @@ If you manage your Terraform configurations in self-contained repositories, the 
 
 If you use a combined repository and [specify a working directory on workspaces](../workspaces/settings.html#terraform-working-directory), you can run Terraform from either the real working directory or from the root of the combined configuration directory. In both cases, Terraform will upload the entire combined configuration directory.
 
+## Excluding files from upload
+
+When using in the CLI-driven run workflow, an archive of your configuration directory is
+uploaded to Terraform Cloud. There may be files you would like to exclude from upload,
+and you can do so by defining a [`.terraformignore` file in your configuration directory][remote].
+
 ## Remote Speculative Plans
 
 To run a [speculative plan][] on your configuration, use the `terraform plan` command. The plan will run in Terraform Cloud, and the logs will stream back to the command line along with a URL to view the plan in the Terraform Cloud UI.
