@@ -454,3 +454,7 @@
 	path = ext/providers/venafi
 	url = https://github.com/terraform-providers/terraform-provider-venafi
 	branch = stable-website
+[submodule "ext/providers/okta"]
+	path = ext/providers/okta
+	url = https://github.com/terraform-providers/terraform-provider-okta
+	branch = stable-website
