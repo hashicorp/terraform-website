@@ -88,6 +88,8 @@ If you use a combined repository and [specify a working directory on workspaces]
 
 ## Excluding Files from Upload
 
+-> **Version note:** `.terraformignore` support was added in Terraform 0.12.11.
+
 CLI-driven runs upload an archive of your configuration directory
 to Terraform Cloud. If the directory contains files you want to exclude from upload,
 you can do so by defining a [`.terraformignore` file in your configuration directory][remote].
