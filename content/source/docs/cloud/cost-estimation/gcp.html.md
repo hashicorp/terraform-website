@@ -5,9 +5,9 @@ page_title: "GCP - Cost Estimation - Terraform Cloud"
 
 # Supported GCP resources in Terraform Cloud Cost Estimation
 
-Cost Estimation support for GCP allows you to expose and control many terraform resources within GCP. Setup for GCP credenitals in Cost Estimation in Terraform Enterprise is found in the [Application Administration docs](/docs/enterprise/admin/integration.html).
+Cost estimation support for GCP allows you to expose and control many terraform resources within GCP. Adding GCP credenitals for cost estimation in Terraform Enterprise is found in the [Application Administration docs](/docs/enterprise/admin/integration.html).
 
-Resources that incurr costs are marked as `IC`. Resources marked `DNI` do not have costs associated with them.
+Below is a list of resources that cost estimation supports so far. Resources that incur costs are marked as `IC`. Resources marked `DNI` do not have costs associated with them.
 
 | Resource | Status |
 | -- | -- | -- |
