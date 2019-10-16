@@ -17,13 +17,17 @@ To enable cost estimation for your organization, check the box in your organizat
 
 ## Viewing a Cost Estimate
 
-Estimated resource's costs are found in a phase in the run UI. You can see the list of resources with costs, their price details, and the list of unestimated resources. Costs are totalled to get a sense of the proposed overall monthly cost once the run is applied. Note that this is just an estimate; some resources don't have cost information available or have unpredictable usage-based pricing. Supported resources are listed in this document's sub-pages.
+When enabled, Terraform Cloud performs a cost estimate for every run. Estimated costs appear in the run UI as an extra run phase, between the plan and apply.
+
+The estimate displays a total monthly cost by default; you can expand the estimate to see an itemized list of resource costs, as well as the list of unestimated resources.
+
+Note that this is just an estimate; some resources don't have cost information available or have unpredictable usage-based pricing. Supported resources are listed in this document's sub-pages.
 
 ![cost estimation run](./images/cost-estimation-run.png)
 
-## Verifying costs using policies
+## Verifying Costs in Policies
 
-You can use a Sentinel policy to validate your configuration's cost estimates using the [`tfrun`](/docs/cloud/sentinel/import/tfrun.html) import. This policy simply checks that the new cost delta is no more than $100. A new `t3.nano` instance should be well below that. A `decimal` import is available for more accurate math when working with currency numbers.
+You can use a Sentinel policy to validate your configuration's cost estimates using the [`tfrun`](/docs/cloud/sentinel/import/tfrun.html) import. The example policy below checks that the new cost delta is no more than $100. A new `t3.nano` instance should be well below that. A `decimal` import is available for more accurate math when working with currency numbers.
 
 ```python
 import "tfrun"
@@ -36,9 +40,9 @@ main = rule {
 }
 ```
 
-## Supported resources
+## Supported Resources
 
-Cost estimation in Terraform Cloud supports terraform resources within three major cloud providers.
+Cost estimation in Terraform Cloud supports Terraform resources within three major cloud providers.
 
 - [AWS](./aws.html)
 - [GCP](./gcp.html)

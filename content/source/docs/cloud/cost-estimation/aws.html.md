@@ -5,7 +5,9 @@ page_title: "AWS - Cost Estimation - Terraform Cloud"
 
 # Supported AWS resources in Terraform Cloud Cost Estimation
 
-Cost estimation support for AWS allows you to expose and control many terraform resources within AWS. Adding AWS credenitals for cost estimation in Terraform Enterprise is found in the [Application Administration docs](/docs/enterprise/admin/integration.html).
+Terraform Cloud can estimate monthly costs for many AWS Terraform resources.
+
+-> **Note:** Terraform Enterprise requires AWS credentials to support cost estimation. These credentials are configured at the instance level, not the organization level. See the [Application Administration docs](/docs/enterprise/admin/integration.html) for more details.
 
 Below is a list of resources that cost estimation supports so far. Resources that incur costs are marked as `IC`. Resources marked `DNI` do not have costs associated with them.
 
