@@ -89,7 +89,7 @@ If you use a combined repository and [specify a working directory on workspaces]
 ## Excluding Files from Upload
 
 CLI-driven runs upload an archive of your configuration directory
-uploaded to Terraform Cloud. There may be files you would like to exclude from upload,
+to Terraform Cloud. If the directory contains files you want to exclude from upload,
 and you can do so by defining a [`.terraformignore` file in your configuration directory][remote].
 
 ## Remote Speculative Plans
