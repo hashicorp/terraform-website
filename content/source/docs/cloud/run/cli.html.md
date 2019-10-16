@@ -86,7 +86,7 @@ If you manage your Terraform configurations in self-contained repositories, the 
 
 If you use a combined repository and [specify a working directory on workspaces](../workspaces/settings.html#terraform-working-directory), you can run Terraform from either the real working directory or from the root of the combined configuration directory. In both cases, Terraform will upload the entire combined configuration directory.
 
-## Excluding files from upload
+## Excluding Files from Upload
 
 When using in the CLI-driven run workflow, an archive of your configuration directory is
 uploaded to Terraform Cloud. There may be files you would like to exclude from upload,
