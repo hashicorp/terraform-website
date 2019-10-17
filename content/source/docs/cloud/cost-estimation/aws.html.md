@@ -9,134 +9,134 @@ Terraform Cloud can estimate monthly costs for many AWS Terraform resources.
 
 -> **Note:** Terraform Enterprise requires AWS credentials to support cost estimation. These credentials are configured at the instance level, not the organization level. See the [Application Administration docs](/docs/enterprise/admin/integration.html) for more details.
 
-Below is a list of resources that cost estimation supports so far. Resources that incur costs are marked as `IC`. Resources marked `DNI` do not have costs associated with them.
+Below is a list of resources that cost estimation supports so far. Resources that incur costs are marked as such; other resources do not have costs associated with them.
 
 | Resource | Status |
 | -- | -- | -- |
-| aws_alb | IC |
-| aws_autoscaling_group | IC |
-| aws_cloudwatch_dashboard | IC |
-| aws_cloudwatch_metric_alarm | IC |
-| aws_db_instance | IC |
-| aws_ebs_volume | IC |
-| aws_elasticache_cluster | IC |
-| aws_elb | IC |
-| aws_instance | IC |
-| aws_lb | IC |
-| aws_rds_cluster | IC |
-| aws_acm_certificate_validation | DNI |
-| aws_alb_listener | DNI |
-| aws_alb_listener_rule | DNI |
-| aws_alb_target_group | DNI |
-| aws_alb_target_group_attachment | DNI |
-| aws_api_gateway_api_key | DNI |
-| aws_api_gateway_deployment | DNI |
-| aws_api_gateway_integration | DNI |
-| aws_api_gateway_integration_response | DNI |
-| aws_api_gateway_method | DNI |
-| aws_api_gateway_method_response | DNI |
-| aws_api_gateway_resource | DNI |
-| aws_api_gateway_usage_plan_key | DNI |
-| aws_appautoscaling_policy | DNI |
-| aws_appautoscaling_target | DNI |
-| aws_autoscaling_lifecycle_hook | DNI |
-| aws_autoscaling_policy | DNI |
-| aws_cloudformation_stack | DNI |
-| aws_cloudfront_origin_access_identity | DNI |
-| aws_cloudwatch_event_rule | DNI |
-| aws_cloudwatch_event_target | DNI |
-| aws_cloudwatch_log_group | DNI |
-| aws_cloudwatch_log_metric_filter | DNI |
-| aws_cloudwatch_log_stream | DNI |
-| aws_cloudwatch_log_subscription_filter | DNI |
-| aws_codebuild_webhook | DNI |
-| aws_codedeploy_deployment_group | DNI |
-| aws_config_config_rule | DNI |
-| aws_customer_gateway | DNI |
-| aws_db_parameter_group | DNI |
-| aws_db_subnet_group | DNI |
-| aws_dynamodb_table | DNI |
-| aws_dynamodb_table_item | DNI |
-| aws_ecr_lifecycle_policy | DNI |
-| aws_ecr_repository_policy | DNI |
-| aws_ecs_cluster | DNI |
-| aws_ecs_task_definition | DNI |
-| aws_efs_mount_target | DNI |
-| aws_eip_association | DNI |
-| aws_elastic_beanstalk_application | DNI |
-| aws_elastic_beanstalk_application_version | DNI |
-| aws_elastic_beanstalk_environment | DNI |
-| aws_elasticache_parameter_group | DNI |
-| aws_elasticache_subnet_group | DNI |
-| aws_flow_log | DNI |
-| aws_iam_access_key | DNI |
-| aws_iam_account_alias | DNI |
-| aws_iam_account_password_policy | DNI |
-| aws_iam_group | DNI |
-| aws_iam_group_membership | DNI |
-| aws_iam_group_policy | DNI |
-| aws_iam_group_policy_attachment | DNI |
-| aws_iam_instance_profile | DNI |
-| aws_iam_policy | DNI |
-| aws_iam_policy_attachment | DNI |
-| aws_iam_role | DNI |
-| aws_iam_role_policy | DNI |
-| aws_iam_role_policy_attachment | DNI |
-| aws_iam_saml_provider | DNI |
-| aws_iam_service_linked_role | DNI |
-| aws_iam_user | DNI |
-| aws_iam_user_group_membership | DNI |
-| aws_iam_user_login_profile | DNI |
-| aws_iam_user_policy | DNI |
-| aws_iam_user_policy_attachment | DNI |
-| aws_iam_user_ssh_key | DNI |
-| aws_internet_gateway | DNI |
-| aws_key_pair | DNI |
-| aws_lambda_alias | DNI |
-| aws_lambda_event_source_mapping | DNI |
-| aws_lambda_layer_version | DNI |
-| aws_lambda_permission | DNI |
-| aws_launch_configuration | DNI |
-| aws_lb_listener | DNI |
-| aws_lb_listener_rule | DNI |
-| aws_lb_target_group | DNI |
-| aws_lb_target_group_attachment | DNI |
-| aws_nat_gateway | DNI |
-| aws_network_acl | DNI |
-| aws_network_acl_rule | DNI |
-| aws_network_interface | DNI |
-| aws_placement_group | DNI |
-| aws_rds_cluster_parameter_group | DNI |
-| aws_route | DNI |
-| aws_route_table | DNI |
-| aws_route_table_association | DNI |
-| aws_route53_record | DNI |
-| aws_route53_zone_association | DNI |
-| aws_s3_bucket | DNI |
-| aws_s3_bucket_notification | DNI |
-| aws_s3_bucket_policy | DNI |
-| aws_s3_bucket_public_access_block | DNI |
-| aws_security_group | DNI |
-| aws_security_group_rule | DNI |
-| aws_service_discovery_service | DNI |
-| aws_sns_topic_subscription | DNI |
-| aws_sqs_queue_policy | DNI |
-| aws_ssm_maintenance_window | DNI |
-| aws_ssm_maintenance_window_target | DNI |
-| aws_ssm_maintenance_window_task | DNI |
-| aws_ssm_parameter | DNI |
-| aws_subnet | DNI |
-| aws_volume_attachment | DNI |
-| aws_vpc | DNI |
-| aws_vpc_dhcp_options | DNI |
-| aws_vpc_dhcp_options_association | DNI |
-| aws_vpc_endpoint | DNI |
-| aws_vpc_endpoint_route_table_association | DNI |
-| aws_vpc_endpoint_service | DNI |
-| aws_vpc_ipv4_cidr_block_association | DNI |
-| aws_vpc_peering_connection_accepter | DNI |
-| aws_vpc_peering_connection_options | DNI |
-| aws_vpn_connection_route | DNI |
-| aws_waf_ipset | DNI |
-| aws_waf_rule | DNI |
-| aws_waf_web_acl | DNI |
+| aws_alb | incurs cost |
+| aws_autoscaling_group | incurs cost |
+| aws_cloudwatch_dashboard | incurs cost |
+| aws_cloudwatch_metric_alarm | incurs cost |
+| aws_db_instance | incurs cost |
+| aws_ebs_volume | incurs cost |
+| aws_elasticache_cluster | incurs cost |
+| aws_elb | incurs cost |
+| aws_instance | incurs cost |
+| aws_lb | incurs cost |
+| aws_rds_cluster | incurs cost |
+| aws_acm_certificate_validation | |
+| aws_alb_listener | |
+| aws_alb_listener_rule | |
+| aws_alb_target_group | |
+| aws_alb_target_group_attachment | |
+| aws_api_gateway_api_key | |
+| aws_api_gateway_deployment | |
+| aws_api_gateway_integration | |
+| aws_api_gateway_integration_response | |
+| aws_api_gateway_method | |
+| aws_api_gateway_method_response | |
+| aws_api_gateway_resource | |
+| aws_api_gateway_usage_plan_key | |
+| aws_appautoscaling_policy | |
+| aws_appautoscaling_target | |
+| aws_autoscaling_lifecycle_hook | |
+| aws_autoscaling_policy | |
+| aws_cloudformation_stack | |
+| aws_cloudfront_origin_access_identity | |
+| aws_cloudwatch_event_rule | |
+| aws_cloudwatch_event_target | |
+| aws_cloudwatch_log_group | |
+| aws_cloudwatch_log_metric_filter | |
+| aws_cloudwatch_log_stream | |
+| aws_cloudwatch_log_subscription_filter | |
+| aws_codebuild_webhook | |
+| aws_codedeploy_deployment_group | |
+| aws_config_config_rule | |
+| aws_customer_gateway | |
+| aws_db_parameter_group | |
+| aws_db_subnet_group | |
+| aws_dynamodb_table | |
+| aws_dynamodb_table_item | |
+| aws_ecr_lifecycle_policy | |
+| aws_ecr_repository_policy | |
+| aws_ecs_cluster | |
+| aws_ecs_task_definition | |
+| aws_efs_mount_target | |
+| aws_eip_association | |
+| aws_elastic_beanstalk_application | |
+| aws_elastic_beanstalk_application_version | |
+| aws_elastic_beanstalk_environment | |
+| aws_elasticache_parameter_group | |
+| aws_elasticache_subnet_group | |
+| aws_flow_log | |
+| aws_iam_access_key | |
+| aws_iam_account_alias | |
+| aws_iam_account_password_policy | |
+| aws_iam_group | |
+| aws_iam_group_membership | |
+| aws_iam_group_policy | |
+| aws_iam_group_policy_attachment | |
+| aws_iam_instance_profile | |
+| aws_iam_policy | |
+| aws_iam_policy_attachment | |
+| aws_iam_role | |
+| aws_iam_role_policy | |
+| aws_iam_role_policy_attachment | |
+| aws_iam_saml_provider | |
+| aws_iam_service_linked_role | |
+| aws_iam_user | |
+| aws_iam_user_group_membership | |
+| aws_iam_user_login_profile | |
+| aws_iam_user_policy | |
+| aws_iam_user_policy_attachment | |
+| aws_iam_user_ssh_key | |
+| aws_internet_gateway | |
+| aws_key_pair | |
+| aws_lambda_alias | |
+| aws_lambda_event_source_mapping | |
+| aws_lambda_layer_version | |
+| aws_lambda_permission | |
+| aws_launch_configuration | |
+| aws_lb_listener | |
+| aws_lb_listener_rule | |
+| aws_lb_target_group | |
+| aws_lb_target_group_attachment | |
+| aws_nat_gateway | |
+| aws_network_acl | |
+| aws_network_acl_rule | |
+| aws_network_interface | |
+| aws_placement_group | |
+| aws_rds_cluster_parameter_group | |
+| aws_route | |
+| aws_route_table | |
+| aws_route_table_association | |
+| aws_route53_record | |
+| aws_route53_zone_association | |
+| aws_s3_bucket | |
+| aws_s3_bucket_notification | |
+| aws_s3_bucket_policy | |
+| aws_s3_bucket_public_access_block | |
+| aws_security_group | |
+| aws_security_group_rule | |
+| aws_service_discovery_service | |
+| aws_sns_topic_subscription | |
+| aws_sqs_queue_policy | |
+| aws_ssm_maintenance_window | |
+| aws_ssm_maintenance_window_target | |
+| aws_ssm_maintenance_window_task | |
+| aws_ssm_parameter | |
+| aws_subnet | |
+| aws_volume_attachment | |
+| aws_vpc | |
+| aws_vpc_dhcp_options | |
+| aws_vpc_dhcp_options_association | |
+| aws_vpc_endpoint | |
+| aws_vpc_endpoint_route_table_association | |
+| aws_vpc_endpoint_service | |
+| aws_vpc_ipv4_cidr_block_association | |
+| aws_vpc_peering_connection_accepter | |
+| aws_vpc_peering_connection_options | |
+| aws_vpn_connection_route | |
+| aws_waf_ipset | |
+| aws_waf_rule | |
+| aws_waf_web_acl | |
