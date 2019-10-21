@@ -7,9 +7,9 @@ layout: "guides"
 
 We define semi-automated provisioning as a mix of at least two of the following practices:
 
-* Infrastructure as code with Terraform.
-* Manual CLI or GUI processes.
-* Scripts.
+- Infrastructure as code with Terraform.
+- Manual CLI or GUI processes.
+- Scripts.
 
 If that describes your current provisioning practices, your next goal is to expand your use of Terraform, reduce your use of manual processes and imperative scripts, and make sure you’ve adopted the foundational practices that make infrastructure as code more consistent and useful.
 
@@ -46,8 +46,8 @@ The diagram below can help you decide when to write a module:
 
 Spread Terraform skills to additional teams, and improve the skills of existing infrastructure teams. In addition to internal training and self-directed learning, you might want to consider:
 
-* Sign your teams up for [official HashiCorp Training](https://www.hashicorp.com/training/) .
-* Make available resources such as [Terraform Up and Running: Writing Infrastructure as Code](https://www.amazon.com/Terraform-Running-Writing-Infrastructure-Code/dp/1492046906/ref=sr_1_1?keywords=terraform+up+and+running&qid=1571263416&sr=8-1) or [Getting Started with Terraform](https://www.amazon.com/Getting-Started-Terraform-Kirill-Shirinkin/dp/1786465108/ref=sr_1_1?ie=UTF8&qid=1496138892&sr=8-1&keywords=Getting+Started+with+Terraform). These are especially valuable when nobody in your organization has used Terraform before.
+- Sign your teams up for [official HashiCorp Training](https://www.hashicorp.com/training/) .
+- Make available resources such as [Terraform Up and Running: Writing Infrastructure as Code](https://www.amazon.com/Terraform-Running-Writing-Infrastructure-Code/dp/1492046906/ref=sr_1_1?keywords=terraform+up+and+running&qid=1571263416&sr=8-1) or [Getting Started with Terraform](https://www.amazon.com/Getting-Started-Terraform-Kirill-Shirinkin/dp/1786465108/ref=sr_1_1?ie=UTF8&qid=1496138892&sr=8-1&keywords=Getting+Started+with+Terraform). These are especially valuable when nobody in your organization has used Terraform before.
 
 ## 5. Set Guidelines
 
@@ -55,10 +55,10 @@ Create standard build architectures to use as guidelines for writing Terraform c
 
 Here are a few examples of good build patterns from several cloud providers:
 
-* AWS: [Well Architected Frameworks](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf) and the [Architecture Center](https://aws.amazon.com/architecture/).
-* Azure: [deploying Azure Reference Architectures](https://github.com/mspnp/reference-architectures) and [Azure Architecture Center](https://docs.microsoft.com/en-us/azure/architecture/).
-* GCP: [Building scalable and resilient web applications.](https://cloud.google.com/solutions/scalable-and-resilient-apps)
-* Oracle Public Cloud: [Best Practices for Using Oracle Cloud.](https://docs.oracle.com/cloud/latest/stcomputecs/STCSG/GUID-C37FDFF1-7C48-4DA8-B31F-D7D7B35674A8.htm#STCSG-GUID-C37FDFF1-7C48-4DA8-B31F-D7D7B35674A8)
+- AWS: [Well Architected Frameworks](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf) and the [Architecture Center](https://aws.amazon.com/architecture/).
+- Azure: [deploying Azure Reference Architectures](https://github.com/mspnp/reference-architectures) and [Azure Architecture Center](https://docs.microsoft.com/en-us/azure/architecture/).
+- GCP: [Building scalable and resilient web applications.](https://cloud.google.com/solutions/scalable-and-resilient-apps)
+- Oracle Public Cloud: [Best Practices for Using Oracle Cloud.](https://docs.oracle.com/cloud/latest/stcomputecs/STCSG/GUID-C37FDFF1-7C48-4DA8-B31F-D7D7B35674A8.htm#STCSG-GUID-C37FDFF1-7C48-4DA8-B31F-D7D7B35674A8)
 
 ## 6. Integrate Terraform With Configuration Management
 
