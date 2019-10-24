@@ -23,7 +23,7 @@ Terraform Cloud supports the following VCS providers:
 - [GitLab EE and CE](./gitlab-eece.html)
 - [Bitbucket Cloud](./bitbucket-cloud.html)
 - [Bitbucket Server](./bitbucket-server.html)
-- [Azure DevOps](./azure-devops-services.html)
+- [Azure DevOps Services](./azure-devops-services.html)
 
 Use the links above to see details on configuring VCS access for each supported provider. If you use another VCS that is not supported, you can build an integration via [the API-driven run workflow](../run/api.html).
 
