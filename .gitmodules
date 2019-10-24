@@ -462,3 +462,7 @@
 	path = ext/providers/launchdarkly
 	url = https://github.com/terraform-providers/terraform-provider-launchdarkly
 	branch = stable-website
+[submodule "ext/providers/vultr"]
+	path = ext/providers/vultr
+	url = https://github.com/terraform-providers/terraform-provider-vultr
+	branch = stable-website
