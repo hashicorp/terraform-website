@@ -84,6 +84,6 @@ For complete details, click the link for your VCS provider:
 - [GitLab EE and CE](./gitlab-eece.html)
 - [Bitbucket Cloud](./bitbucket-cloud.html)
 - [Bitbucket Server](./bitbucket-server.html)
-- [Azure DevOps](./azure-devops-services.html)
+- [Azure DevOps Services](./azure-devops-services.html)
 
 -> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using Terraform Cloud's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
