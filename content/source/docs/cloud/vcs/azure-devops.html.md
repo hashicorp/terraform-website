@@ -83,7 +83,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Screenshot: Connecting organization in Terraform Cloud](./images/azure-dev-ops-07-connect-organization.png)
 
-2. Click the “Authorize” button at the bottom of the authorization page. This returns you to Terraform Cloud’s VCS Provider page, where the Azure DevOps client’s information has been updated.
+2. Click the “Accept” button at the bottom of the authorization page. This returns you to Terraform Cloud’s VCS Provider page, where the Azure DevOps client’s information has been updated.
 
     ![Azure DevOps Screenshot: Accepting the terms of use for connecting Terraform Cloud and Azure DevOps](./images/azure-dev-ops-08-grant-access.png)
 
