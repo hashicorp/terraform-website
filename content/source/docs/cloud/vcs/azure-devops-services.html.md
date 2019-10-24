@@ -27,7 +27,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Creating a new application in your Azure DevOps Services Profile](./images/azure-dev-ops-01-register-application.png)
 
-3. You’ll need to create a new application with the proper authorized scopes so Terraform Cloud can operate successfully. Make sure only “Code (read)” and “Code (status)” are checked before clicking “Create Application.”
+3. In the "Authorized scopes" section, select only “Code (read)” and “Code (status)” and then click “Create Application.”
 
     ![Azure DevOps Services Screenshot: Required permissions when creating a new application in your Azure DevOps Services Profile](./images/azure-dev-ops-02-create-app-permissions.png)
 
@@ -83,7 +83,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Connecting organization in Terraform Cloud](./images/azure-dev-ops-07-connect-organization.png)
 
-2. Click the “Authorize” button at the bottom of the authorization page. This returns you to Terraform Cloud’s VCS Provider page, where the Azure DevOps Services client’s information has been updated.
+2. Click the "Accept" button at the bottom of the authorization page. This returns you to Terraform Cloud’s VCS Provider page, where the Azure DevOps Services client’s information has been updated.
 
     ![Azure DevOps Services Screenshot: Accepting the terms of use for connecting Terraform Cloud and Azure DevOps Services](./images/azure-dev-ops-08-grant-access.png)
 
