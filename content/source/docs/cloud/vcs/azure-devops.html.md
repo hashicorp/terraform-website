@@ -27,7 +27,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Screenshot: Creating a new application in your Azure DevOps Profile](./images/azure-dev-ops-01-register-application.png)
 
-3. You’ll need to create a new application with the proper authorized scopes so Terraform Cloud can operate successfully. Make sure only “Code (read)” and “Code (status)” are checked before clicking “Create Application.”
+3. In the "Authorized scopes" section, select only “Code (read)” and “Code (status)” and then click “Create Application.”
 
     ![Azure DevOps Screenshot: Required permissions when creating a new application in your Azure DevOps Profile](./images/azure-dev-ops-02-create-app-permissions.png)
 
