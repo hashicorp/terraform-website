@@ -37,7 +37,7 @@ The rest of the page explains these steps in more detail.
 
 ## Step 2: On Terraform Cloud, Add a New VCS Provider
 
-1. Open Terraform Cloud in your browser and navigate to the “Settings > VCS Providers” pane for your organization. Click the “Add VCS Provider” button.
+1. Open Terraform Cloud in your browser and navigate to the “Settings > VCS Providers” page for your organization. Click the “Add VCS Provider” button.
 
     If you just created your organization, you might already be on this page. Otherwise:
     - Click the upper-left organization menu, making sure it currently shows your organization
