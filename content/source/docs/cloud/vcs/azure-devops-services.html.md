@@ -53,7 +53,7 @@ The rest of the page explains these steps in more detail.
 
 4. Open your browser tab with your Azure DevOps Services Profile from Step 1, and find your application’s **App ID** and **Client Secret**.
 
-    If you accidentally navigated away from your Azure DevOps Services Profile's application details, follow these steps.
+    If you accidentally navigated away from your Azure DevOps Services Profile, follow these steps.
     - Open [your Azure DevOps Services Profile](https://aex.dev.azure.com) in a new tab in your browser and log in to your Azure DevOps Services Profile. 
     ![Azure DevOps Screenshot: Finding your application settings in the lower left column](./images/azure-dev-ops-04-apps-and-services.png)
     - Navigate to your application’s settings page. At the bottom of the left column, under the header “Applications and services,” click the name of the application you want to link to Terraform Cloud. You’ll want to keep this browser tab open, as you’ll need to update the Azure DevOps Services Profile's application settings in the next step.
