@@ -167,7 +167,7 @@ This endpoint allows you to create a VCS connection between an organization and 
 * [GitHub and GitHub Enterprise](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
 * [GitLab, GitLab Community Edition, and GitLab Enterprise Edition](https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html#creating-a-personal-access-token)
 
-~> **Note:** This endpoint does not currently support creation of a Bitbucket Cloud, Bitbucket Server, or Azure DevOps OAuth Client.
+~> **Note:** This endpoint does not currently support creation of a Bitbucket Cloud, Bitbucket Server, or Azure DevOps Services OAuth Client.
 
 Status  | Response                                        | Reason
 --------|-------------------------------------------------|----------
