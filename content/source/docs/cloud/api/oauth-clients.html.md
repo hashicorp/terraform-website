@@ -184,7 +184,7 @@ Properties without a default value are required.
 Key path                             | Type   | Default | Description
 -------------------------------------|--------|---------|------------
 `data.type`                          | string |         | Must be `"oauth-clients"`.
-`data.attributes.service-provider`   | string |         | The VCS provider being connected with. Valid options are `"github"`, `"bitbucket_hosted"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, or `"gitlab_enterprise_edition"`.
+`data.attributes.service-provider`   | string |         | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, or `"gitlab_enterprise_edition"`.
 `data.attributes.name`               | string | `null`  | An optional display name for the OAuth Client. If left `null`, the UI will default to the display name of the VCS provider.
 `data.attributes.http-url`           | string |         | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
 `data.attributes.api-url`            | string |         | The base URL of your VCS provider's API (e.g. `"https://api.github.com"` or `"https://ghe.example.com/api/v3"`)
