@@ -4,6 +4,7 @@ page_title: "Azure DevOps Services - VCS Providers - Terraform Cloud"
 ---
 
 # Configuring Azure DevOps Services Access
+
 These instructions are for using dev.azure.com for Terraform Cloud’s VCS features. [Other supported VCS providers](./index.html) have separate instructions.
 
 Connecting Terraform Cloud to your Azure DevOps Services VCS involves four steps:
