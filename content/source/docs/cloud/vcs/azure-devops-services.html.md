@@ -34,7 +34,9 @@ The rest of the page explains these steps in more detail.
 
     ~> **Important:** These authorized scopes cannot be updated after the application is created. If you add additional scopes, your application may not work.
 
-    The next page that loads shows your new application information that you’ll need to reference in the next step, so keep this browser tab open.
+4. After creating the application, the next page displays its details. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **App ID** and **Client Secret** from this page, and in a later step you will update the application's callback URL.
+
+    If you accidentally close this details page and need to find it later, you can reach it from the "Applications and Services" links at the bottom left of your profile.
 
 ## Step 2: On Terraform Cloud, Add a New VCS Provider
 
