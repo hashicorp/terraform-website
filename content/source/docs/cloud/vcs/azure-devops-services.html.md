@@ -32,7 +32,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Required permissions when creating a new application in your Azure DevOps Services Profile](./images/azure-devops-services-application-permissions.png)
 
-    ~> **Important:** These authorized scopes cannot be updated after the application is created. If you add additional scopes, your application may not work.
+    ~> **Important:** Do not add any additional scopes beyond "Code (read)" and "Code (status)," as this can prevent Terraform Cloud from connecting. Note that these authorized scopes cannot be updated after the application is created; to fix incorrect scopes you must delete and re-create the application.
 
 4. After creating the application, the next page displays its details. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **App ID** and **Client Secret** from this page, and in a later step you will update the application's callback URL.
 
