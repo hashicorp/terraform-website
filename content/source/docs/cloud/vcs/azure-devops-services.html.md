@@ -53,6 +53,7 @@ The rest of the page explains these steps in more detail.
 2. The next page has a drop-down and four text fields. Select “Azure DevOps Services” from the drop-down.
 
 2. The next page has a drop-down and several text fields. Select "Azure DevOps Services" from the drop-down.
+
 3. (Optional) Enter a display name for your Azure DevOps Services VCS Provider.
 
 4. Open your browser tab with your Azure DevOps Services Profile from Step 1, and find your application’s **App ID** and **Client Secret**.
