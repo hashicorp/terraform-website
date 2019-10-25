@@ -20,7 +20,7 @@ The rest of the page explains these steps in more detail.
 
 ## Step 1: From your Azure DevOps Services Profile, Create a New Application
 
-1. Open your [Azure DevOps Services Profile](https://aex.dev.azure.com) in a browser tab and log in to your Azure DevOps Services account.
+1. Open your [Azure DevOps Services Profile](https://aex.dev.azure.com) in a browser tab; log in to your Azure DevOps Services account if necessary.
 
 2. Click the “Create new application” link at the bottom of the left column under the “Applications and services” header. The next page is a form asking for your company and application information. At the minimum, you’ll need to provide your company name, application name (Terraform Cloud), application website (`https://app.terraform.io` or the URL of your Terraform Enterprise instance), and authorization callback URL.
     
