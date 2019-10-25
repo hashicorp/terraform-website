@@ -60,7 +60,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Adding a VCS Provider in Terraform Cloud](./images/azure-dev-ops-06-add-vcs-provider.png)
 
-6. Locate the new client’s “Callback URL” and copy it to your clipboard; you’ll paste it in the next step. Leave this page open in a browser tab.
+6. Locate the new client’s **Callback URL** and copy it to your clipboard; you’ll paste it in the next step. Leave this page open in a browser tab.
 
 ## Step 3: Within your Azure DevOps Services Application, Update your Callback URL
 
