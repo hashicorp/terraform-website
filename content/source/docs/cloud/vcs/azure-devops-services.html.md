@@ -60,7 +60,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Adding a VCS Provider in Terraform Cloud](./images/azure-dev-ops-06-add-vcs-provider.png)
 
-6. Locate the new client’s “Callback URL” and copy it to your clipboard; you’ll paste it in the next step. Leave this page open in a browser tab.
+6. Locate the new client’s **Callback URL** and copy it to your clipboard; you’ll paste it in the next step. Leave this page open in a browser tab.
 
 ## Step 3: Within your Azure DevOps Services Application, Update your Callback URL
 
@@ -70,7 +70,7 @@ The rest of the page explains these steps in more detail.
 
 3. Paste the callback URL you received from Step 2 in the Authorization callback URL entry. 
 
-4. Save the updated application settings. You will not need this browser tab open anymore, so feel free to close it.
+4. Save the updated application settings. You can now close this browser tab.
 
 ## Step 4: On Terraform Cloud, Connect Organization
 
@@ -84,7 +84,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Accepting the terms of use for connecting Terraform Cloud and Azure DevOps Services](./images/azure-dev-ops-08-grant-access.png)
 
-    ~> **Note:** If you receive a 404 error from Azure DevOps Services, it likely means your callback URL has not been configured correctly.
+    -> **Note:** If you receive a 404 error from Azure DevOps Services, it likely means your callback URL has not been configured correctly.
 
 ## Finished
 
