@@ -26,11 +26,11 @@ The rest of the page explains these steps in more detail.
     
     The authorization callback URL can be a placeholder, as you’ll update it with the actual callback value in Step 2.
 
-    ![Azure DevOps Services Screenshot: Creating a new application in your Azure DevOps Services Profile](./images/azure-dev-ops-01-register-application.png)
+    ![Azure DevOps Services Screenshot: Creating a new application in your Azure DevOps Services Profile](./images/azure-devops-services-create-application.png)
 
 3. In the "Authorized scopes" section, select only “Code (read)” and “Code (status)” and then click “Create Application.”
 
-    ![Azure DevOps Services Screenshot: Required permissions when creating a new application in your Azure DevOps Services Profile](./images/azure-dev-ops-02-create-app-permissions.png)
+    ![Azure DevOps Services Screenshot: Required permissions when creating a new application in your Azure DevOps Services Profile](./images/azure-devops-services-application-permissions.png)
 
     ~> **Important:** These authorized scopes cannot be updated after the application is created. If you add additional scopes, your application may not work.
 
@@ -48,7 +48,7 @@ The rest of the page explains these steps in more detail.
     - On the next page, click “VCS Providers” in the left sidebar
     - Click the “Add a VCS Provider” button
 
-    ![Azure DevOps Services Screenshot: Adding a new VCS Provider on Terraform Cloud](./images/azure-dev-ops-03-vcs-settings.png)
+    ![Azure DevOps Services Screenshot: Adding a new VCS Provider in Terraform Cloud](./images/azure-devops-services-add-vcs-provider.png)
 
 2. The next page has a drop-down and several text fields. Select "Azure DevOps Services" from the drop-down.
 
@@ -58,7 +58,7 @@ The rest of the page explains these steps in more detail.
 
 5. Verify the information entered on this page, and then click “Create VCS provider.” This will take you back to the VCS Providers page which now includes your new Azure DevOps Services client.
 
-    ![Azure DevOps Services Screenshot: Adding a VCS Provider in Terraform Cloud](./images/azure-dev-ops-06-add-vcs-provider.png)
+    ![Azure DevOps Services Screenshot: Adding a VCS Provider in Terraform Cloud](./images/azure-devops-services-create-provider.png)
 
 6. Locate the new client’s **Callback URL** and copy it to your clipboard; you’ll paste it in the next step. Leave this page open in a browser tab.
 
@@ -78,11 +78,11 @@ The rest of the page explains these steps in more detail.
 
     This takes you to a page on Azure DevOps Services asking whether you want to authorize the app. 
 
-    ![Azure DevOps Services Screenshot: Connecting organization in Terraform Cloud](./images/azure-dev-ops-07-connect-organization.png)
+    ![Azure DevOps Services Screenshot: Connecting organization in Terraform Cloud to Azure DevOps Services](./images/azure-devops-services-connect-provider.png)
 
 2. Click the "Accept" button at the bottom of the authorization page. This returns you to Terraform Cloud’s VCS Providers page, where the Azure DevOps Services client’s information has been updated.
 
-    ![Azure DevOps Services Screenshot: Accepting the terms of use for connecting Terraform Cloud and Azure DevOps Services](./images/azure-dev-ops-08-grant-access.png)
+    ![Azure DevOps Services Screenshot: Accepting the terms of use for connecting Terraform Cloud and Azure DevOps Services](./images/azure-devops-services-accept-terms.png)
 
     -> **Note:** If you receive a 404 error from Azure DevOps Services, it likely means your callback URL has not been configured correctly.
 
