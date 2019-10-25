@@ -54,7 +54,7 @@ The rest of the page explains these steps in more detail.
 
 3. (Optional) Enter a display name for your Azure DevOps Services VCS Provider.
 
-4. Open your browser tab with your Azure DevOps Services Profile from Step 1, and find your application’s **App ID** and **Client Secret**.
+4. Enter your Azure DevOps Services application's **App ID** and **Client Secret.** These can be found in the application's details, which should still be open in the browser tab from Step 1.
 
     If you accidentally navigated away from your Azure DevOps Services Profile, follow these steps.
     - Open [your Azure DevOps Services Profile](https://aex.dev.azure.com) in a new tab in your browser and log in to your Azure DevOps Services Profile. 
