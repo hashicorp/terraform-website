@@ -84,7 +84,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Accepting the terms of use for connecting Terraform Cloud and Azure DevOps Services](./images/azure-dev-ops-08-grant-access.png)
 
-    ~> **Note:** If you receive a 404 error from Azure DevOps Services, it likely means your callback URL has not been configured correctly.
+    -> **Note:** If you receive a 404 error from Azure DevOps Services, it likely means your callback URL has not been configured correctly.
 
 ## Finished
 
