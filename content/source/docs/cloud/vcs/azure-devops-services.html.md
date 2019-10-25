@@ -70,7 +70,7 @@ The rest of the page explains these steps in more detail.
 
 3. Paste the callback URL you received from Step 2 in the Authorization callback URL entry. 
 
-4. Save the updated application settings. You will not need this browser tab open anymore, so feel free to close it.
+4. Save the updated application settings. You can now close this browser tab.
 
 ## Step 4: On Terraform Cloud, Connect Organization
 
