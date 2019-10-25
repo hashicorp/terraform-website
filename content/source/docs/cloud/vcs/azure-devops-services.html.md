@@ -32,7 +32,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Required permissions when creating a new application in your Azure DevOps Services Profile](./images/azure-dev-ops-02-create-app-permissions.png)
 
-    ~> **Note:** It’s important to set these authorized scopes now, because you won’t be able to update them once the application has been created. If you add additional scopes, your application may not work.
+    ~> **Important:** These authorized scopes cannot be updated after the application is created. If you add additional scopes, your application may not work.
 
     The next page that loads shows your new application information that you’ll need to reference in the next step, so keep this browser tab open.
 
