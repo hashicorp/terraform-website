@@ -56,7 +56,7 @@ The rest of the page explains these steps in more detail.
 
 4. Enter your Azure DevOps Services application's **App ID** and **Client Secret.** These can be found in the application's details, which should still be open in the browser tab from Step 1.
 
-5. Verify the information entered on this page, and then click “Create VCS provider.” This will take you back to the VCS Provider page which now includes your new Azure DevOps Services client.
+5. Verify the information entered on this page, and then click “Create VCS provider.” This will take you back to the VCS Providers page which now includes your new Azure DevOps Services client.
 
     ![Azure DevOps Services Screenshot: Adding a VCS Provider in Terraform Cloud](./images/azure-dev-ops-06-add-vcs-provider.png)
 
