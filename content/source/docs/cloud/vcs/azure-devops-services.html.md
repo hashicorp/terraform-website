@@ -50,7 +50,6 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Adding a new VCS Provider on Terraform Cloud](./images/azure-dev-ops-03-vcs-settings.png)
 
-
 2. The next page has a drop-down and several text fields. Select "Azure DevOps Services" from the drop-down.
 
 3. (Optional) Enter a display name for your Azure DevOps Services VCS Provider.
