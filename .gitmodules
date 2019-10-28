@@ -466,3 +466,7 @@
 	path = ext/providers/vultr
 	url = https://github.com/terraform-providers/terraform-provider-vultr
 	branch = stable-website
+[submodule "ext/providers/dome9"]
+	path = ext/providers/dome9
+	url = https://github.com/terraform-providers/terraform-provider-dome9
+	branch = stable-website
