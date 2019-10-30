@@ -21,15 +21,13 @@ Deployment options will be expanded in future releases.
 
 ## Architecture
 
-The clustering beta can deploy a variety of architectures, from a single server to a large cluster. Cluster size is controlled by the Terraform module's input variables.
+The clustering beta can deploy a variety of architectures, from a three node cluster to a hundred plus. Cluster size is controlled by the Terraform module's input variables.
 
 ![architecture diagram](https://github.com/hashicorp/terraform-google-terraform-enterprise/blob/v0.0.1-beta/assets/gcp_diagram.jpg?raw=true)
 
 A Terraform Enterprise cluster consists of two types of servers: primaries and secondaries (also called workers). The primary instances run additional, stateful services that the secondaries do not.
 
-Primaries should be deployed in odd numbers to ensure cluster quorum. Additional primary instances can be safely added while the cluster is running, but destroying a primary instance can cause application instability or outages. We do not recommend resizing the cluster by removing primaries after deployment.
-
-To scale the cluster for higher or lower workloads, add or remove secondary instances.
+There should always be three primary nodes to ensure cluster stability. Cluster scaling should be done by adding or removing secondary nodes via the terraform module.
 
 ## Before Installing
 
@@ -108,7 +106,7 @@ The module will create the VPC, the subnet, and the required firewalls. It will 
 
 1. In your web browser, go to the [hashicorp/terraform-enterprise/google module][module] on the Terraform Registry. This is the module you'll use to deploy the clustering beta.
 2. Review the module's [input variables][inputs].
-3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/azurerm` module:
+3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/google` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
     - Fill in values for all of the required input variables.
     - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the **demo** operational mode.
@@ -166,7 +164,7 @@ After the application is fully deployed, you can adjust the cluster's size by ch
 
 Please see the [hashicorp/terraform-enterprise/google registry page][inputs] for a complete list of input variables. The following variables have some additional notes:
 
-* `certificate` - The GCP link to the certificate. If you'd like to use a certificate from another source, you can specify the filename in this variable, and then comment out lines 13 and 14 in the file `gcp/modules/lb/forwarding_rule.tf` and uncomment line 15.
+* `certificate` - The GCP link to the certificate. If you'd like to use a certificate from another source, you can specify the filename in this variable, and then comment out lines 13 and 14 in the file `gcp/modules/lb/forwarding_rule.tf` and uncomment line 16.
 * `ssl_policy` - The GCP SSL policy to use. If you are providing a certificate file, comment out this section in the `variables.tf` file and the `gcp/modules/lb/forwarding_rule.tf` file.
-* `pg_password` - This is the password for connecting to Postgres, in base64. To base64 encode your password, run `base64 <<< databasepassword` on the command line. Specify that output as the variable's value.
+* `postgresql_password` - This is the password for connecting to Postgres, in base64. To base64 encode your password, run `base64 <<< databasepassword` on the command line. Specify that output as the variable's value.
 * `airgap_package_url` - Please download the airgap package you'll use and store it in an artifact repository or some other web-accessible location. Do not use the direct download URL from the vendor site - that URL is time-limited!
