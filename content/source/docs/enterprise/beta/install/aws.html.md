@@ -1,35 +1,31 @@
 ---
 layout: "enterprise"
-page_title: "Deploying on AWS - Clustering Beta - Terraform Enterprise"
+page_title: "Deploying on AWS - Terraform Enterprise- Clustering"
 ---
 
-# Clustering Beta: Deploying on AWS
+# Terraform Enterprise with Clustering: Deploying on AWS
 
 [mode]: ../before-installing/index.html#operational-mode-decision
 [tf11]: https://releases.hashicorp.com/terraform/0.11.14/
 
-~> **Please Note**: This software is a beta release. Some features may not yet be implemented, or may not work correctly. We are very interested in your feedback! Please contact your Technical Account Manager if you run into issues.
-
 ## Deployment Options
 
-On AWS, the clustering beta currently supports the following deployment options:
+On AWS, Terraform Enterprise with Clustering currently supports the following deployment options:
 
-- **Installation mode:** Online. (Airgapped installation has not yet been tested.)
+- **Installation mode:** Online or Airgapped
 - [**Operational mode:**][mode] Demo (temporary storage) or external services (use an existing Postgres database and S3 bucket).
 
 Deployment options will be expanded in future releases.
 
 ## Architecture
 
-The clustering beta can deploy a variety of architectures, from a single server to a large cluster. Cluster size is controlled by the Terraform module's input variables.
+Terraform Enterprise with Clustering can be deployed to a variety of architectures, from a three node cluster to a hundred plus. Cluster size is controlled by the Terraform module's input variables.
 
-![architecture diagram](https://github.com/hashicorp/terraform-aws-terraform-enterprise/blob/v0.0.1-beta/assets/aws_diagram.jpg?raw=true)
+![architecture diagram](https://github.com/hashicorp/terraform-aws-terraform-enterprise/blob/master/assets/aws_diagram.jpg?raw=true)
 
 A Terraform Enterprise cluster consists of two types of servers: primaries and secondaries (also called workers). The primary instances run additional, stateful services that the secondaries do not.
 
-Primaries should be deployed in odd numbers to ensure cluster quorum. Additional primary instances can be safely added while the cluster is running, but destroying a primary instance can cause application instability or outages. We do not recommend resizing the cluster by removing primaries after deployment.
-
-To scale the cluster for higher or lower workloads, add or remove secondary instances.
+There should always be three primary nodes to ensure cluster stability. Cluster scaling should be done by adding or removing secondary nodes via the terraform module.
 
 ## Before Installing
 
@@ -39,12 +35,12 @@ Before deploying Terraform Enterprise, you must prepare your credentials, a syst
 
 Gather the following credentials:
 
-* A license file for the beta. Please talk to your Technical Account Manager or Sales Rep.
+* A license file. Please talk to your Technical Account Manager or Sales Rep.
 * A Certificate available in ACM for the application's hostname (or a wildcard certificate for the domain).
 
 ### Terraform
 
-The clustering beta relies on Terraform code that was written to support Terraform 0.11.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
+Terraform Enterprise with Clustering relies on Terraform code that was written to support Terraform 0.11.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
 
 Decide where you'll be running Terraform, and ensure:
 
@@ -73,7 +69,7 @@ You can create the required infrastructure resources with an [example bootstrap 
 [inputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws?tab=inputs
 [outputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws?tab=outputs
 
-1. In your web browser, go to the [hashicorp/terraform-enterprise/aws module][module] on the Terraform Registry. This is the module you'll use to deploy the clustering beta.
+1. In your web browser, go to the [hashicorp/terraform-enterprise/aws module][module] on the Terraform Registry. This is the module you'll use to deploy the cluster.
 2. Review the module's [input variables][inputs].
 3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/aws` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
@@ -82,7 +78,7 @@ You can create the required infrastructure resources with an [example bootstrap 
     - Map all of the module's [output values][outputs] to root-level outputs, so that Terraform will display them after applying the configuration. For example:
 
         ```hcl
-        output "tfe_beta" {
+        output "tfe_cluster" {
           value = {
             application_endpoint = "${module.terraform-enterprise.application_endpoint}"
             application_health_check = "${module.terraform-enterprise.application_health_check}"
@@ -112,7 +108,7 @@ You can create the required infrastructure resources with an [example bootstrap 
 
     Outputs:
 
-    tfe-beta = {
+    tfe-cluster = {
       application_endpoint = https://tfe-hvg9o7lo.example.com
       application_health_check = https://tfe-hvg9o7lo.example.com/_health_check
       iam_role = tfe-hvg9o7lo
@@ -120,8 +116,8 @@ You can create the required infrastructure resources with an [example bootstrap 
       installer_dashboard_url = https://tfe-hvg9o7lo.example.com:8800
       installer_dashboard_password = manually-grand-gator
       primary_public_ip = 12.34.56.78
-      ssh_config_file = /Users/jsmith/Documents/tfe-beta/.terraform/modules/c8066b63fe35e7cb30635ab501caa438/hashicorp-terraform-aws-terraform-enterprise-4dc067c/work/ssh-config
-      ssh_private_key = /Users/jsmith/Documents/tfe-beta/.terraform/modules/a1d4d4cc38b069facc8774038e3ad299/work/tfe-hvg9o7lo.priv
+      ssh_config_file = /Users/jsmith/Documents/tfe-cluster/.terraform/modules/c8066b63fe35e7cb30635ab501caa438/hashicorp-terraform-aws-terraform-enterprise-4dc067c/work/ssh-config
+      ssh_private_key = /Users/jsmith/Documents/tfe-cluster/.terraform/modules/a1d4d4cc38b069facc8774038e3ad299/work/tfe-hvg9o7lo.priv
     }
     ```
 
