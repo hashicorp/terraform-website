@@ -10,7 +10,7 @@ page_title: "PostgreSQL Requirements - Before Installing - Terraform Enterprise 
 When Terraform Enterprise uses an external PostgreSQL database, the
 following must be present on it:
 
-* PostgreSQL version `>= 9.4`
+* PostgreSQL version `>= 9.4` or Aurora
 * User with the ability to create/modify/read tables and indices on all schemas created
   * If it's not feasible to have a user with "CREATE EXTENSION", then create the [extensions](#extensions) below before installation
 * The following PostgreSQL schemas must be installed into the database: `rails`, `vault`, `registry`
