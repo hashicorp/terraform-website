@@ -38,7 +38,8 @@ being imported into Go code explicit.
 If you find yourself needing to do this, perhaps one of the methods below will
 work for you, and is explicitly supported and covered under versioning policies.
 If not, please reach out and [open an issue](https://github.com/hashicorp/terraform/issues/new)
-and we'll try to come to an appropriate solution.
+outlining your use case, and we'll work with you to find an appropriate way
+to interface with Terraform to meet your use case.
 
 ### Exporting the Schema
 
