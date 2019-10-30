@@ -24,3 +24,15 @@ When new user accounts are created, if they cannot create their own organization
 ## API Rate Limiting
 
 By default, requests to the Terraform Cloud API from a single user or IP address are [limited to 30 requests per second](/docs/cloud/api/index.html#rate-limiting) to prevent abuse or hogging of resources. Since usage patterns may vary for a given instance, this can be updated to match local needs.
+
+## Terraform Run Timeout Settings
+
+The default time-out setting for Terraform runs are 2h for plans, and 24h for applies.
+
+These are configurable on a global level:
+
+![screenshot: global run timeout page](./images/admin-global-timeout-settings.png)
+
+or in the Admin settings at an organization level:
+
+![screenshot: organization run timeout page](./images/admin-org-timeout-settings.png)
