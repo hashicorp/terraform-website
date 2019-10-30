@@ -21,6 +21,6 @@ Terraform Enterprise with Clustering is deployed with a cloud-specific Terraform
 
 For full deployment instructions, choose your preferred cloud provider:
 
-- [Amazon Web Services (aws)](./aws.html)
-- [Google Cloud Platform (gcp)](./gcp.html)
-- [Microsoft Azure (azure)](./azure.html)
+- [Amazon Web Services (aws)](./install/aws.html)
+- [Google Cloud Platform (gcp)](./install/gcp.html)
+- [Microsoft Azure (azure)](./install/azure.html)
