@@ -43,7 +43,7 @@ to interface with Terraform to meet your use case.
 
 ### Exporting the Schema
 
-Some projects just care about the schema and resouces a provider presents. As
+Some projects just care about the schema and resources a provider presents. As
 of Terraform 0.12, the `terraform providers schema -json` command can be used
 to export a JSON representation of the schemas for the providers used in a
 workspace.
