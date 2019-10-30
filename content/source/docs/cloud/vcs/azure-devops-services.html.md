@@ -22,6 +22,8 @@ The rest of the page explains these steps in more detail.
 
 1. Open your [Azure DevOps Services Profile](https://aex.dev.azure.com) in a browser tab; log in to your Azure DevOps Services account if necessary.
 
+    ~> **Important:** The Azure DevOps Services account you use for connecting Terraform Cloud must have admin access since creating webhooks requires admin permissions.
+
 2. Click the “Create new application” link at the bottom of the left column under the “Applications and services” header. The next page is a form asking for your company and application information. At the minimum, you’ll need to provide your company name, application name (Terraform Cloud), application website (`https://app.terraform.io` or the URL of your Terraform Enterprise instance), and authorization callback URL.
     
     The authorization callback URL can be a placeholder, as you’ll update it with the actual callback value in Step 2.
