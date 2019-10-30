@@ -470,3 +470,7 @@
 	path = ext/providers/dome9
 	url = https://github.com/terraform-providers/terraform-provider-dome9
 	branch = stable-website
+[submodule "ext/providers/cherryservers"]
+	path = ext/providers/cherryservers
+	url = https://github.com/terraform-providers/terraform-provider-cherryservers
+	branch = stable-website
