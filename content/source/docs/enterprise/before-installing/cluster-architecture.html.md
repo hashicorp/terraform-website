@@ -39,7 +39,7 @@ The following diagrams represent the architectures used on the three supported c
 
 ### Azure
 
-![Azure architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances, which are part of a scaleset. Also includes an adjacent key vault for TLS.](/docs/enterprise/beta/assets/azure_diagram.png)
+![Azure architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances, which are part of a scaleset. Also includes an adjacent key vault for TLS.](../install/assets/azure_diagram.png)
 
 ## Data Storage
 

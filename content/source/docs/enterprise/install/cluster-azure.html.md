@@ -24,7 +24,7 @@ Deployment options will be expanded in future releases.
 
 The clustering beta can deploy a variety of architectures, from a single server to a large cluster. Cluster size is controlled by the Terraform module's input variables.
 
-![Diagram of 3 tier clustered application with a loadbalancer, 3 primary vms, and a scaleset of secondary vms, with adjacent key vault for tls](/docs/enterprise/beta/assets/azure_diagram.png)
+![Diagram of 3 tier clustered application with a loadbalancer, 3 primary vms, and a scaleset of secondary vms, with adjacent key vault for tls](./assets/azure_diagram.png)
 
 A Terraform Enterprise cluster consists of two types of servers: primaries and secondaries (also called workers). The primary instances run additional, stateful services that the secondaries do not.
 
@@ -150,7 +150,7 @@ The module will create the virtual network, the subnet, required firewalls, and 
 
     At this point, the infrastructure is finished deploying, but the application is not. It can take up to 30 minutes before the website becomes available.
 
-    The installer dashboard should become available first, and is accessible at the URL specified in the `installer_dashboard_endpoint` output. 
+    The installer dashboard should become available first, and is accessible at the URL specified in the `installer_dashboard_endpoint` output.
 7. Open the installer dashboard in your web browser, and log in with the password specified in the `installer_dashboard_password` output. Follow the instructions at [Terraform Enterprise Configuration](../install/config.html) to finish setting up the application.
 
 After the application is fully deployed, you can adjust the cluster's size by changing the module's inputs and re-applying the Terraform configuration.
