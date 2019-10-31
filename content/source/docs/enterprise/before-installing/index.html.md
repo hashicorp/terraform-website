@@ -15,7 +15,9 @@ Prepare all of the following before installing:
 2. **Choose an operational mode:** Decide how Terraform Enterprise should store its data. This is affected by your choice of deployment method.
 3. **Credentials:** Ensure you have a Terraform Enterprise license and a TLS certificate for Terraform Enterprise to use.
 4. **Data storage:** Depending on your operational mode, prepare data storage services or a block storage device.
-5. **Linux instance:** Prepare a Linux machine image (if clustering) or a running Linux instance (if deploying individually) for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements.
+5. **Linux instance:** Choose a Linux machine image (if clustering) or prepare a running Linux instance (if deploying individually) for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements.
+
+    For clustered deployments, choosing an image is optional; if an image isn't specified, the module will use a default image provided by the cloud vendor.
 
 ## Deployment Method Decision
 
@@ -117,14 +119,22 @@ Terraform Enterprise runs on Linux instances. The source of these instances depe
     - The default instance type depends on the cloud you deploy to; see the module documentation for details. You can override this, and can optionally specify separate image types for primary and secondary instances.
 - **Individual deployment:** You must prepare a running Linux instance for Terraform Enterprise before running the installer. You will start and manage this instance like any other server.
 
-In either case, note that Terraform Enterprise currently supports running under the following operating systems:
+### Operating System Requirements
 
-* Debian 7.7+
-* Ubuntu 14.04 / 16.04 / 18.04
-* Red Hat Enterprise Linux 7.2+
-* CentOS 7+
-* Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
-* Oracle Linux 7.2+
+Terraform Enterprise currently supports running under the following operating systems:
+
+- **Clustered deployment:**
+    - Ubuntu 14.04 / 16.04 / 18.04
+    - Red Hat Enterprise Linux 7.2 through 7.6
+
+    Clusters currently don't support other Linux variants. In particular, note that RHEL 7.7 is not currently supported.
+- **Individual deployment:**
+    - Debian 7.7+
+    - Ubuntu 14.04 / 16.04 / 18.04
+    - Red Hat Enterprise Linux 7.2+
+    - CentOS 7+
+    - Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
+    - Oracle Linux 7.2+
 
 ### Hardware Requirements
 

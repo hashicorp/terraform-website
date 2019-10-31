@@ -31,19 +31,19 @@ The following diagrams represent the architectures used on the three supported c
 
 ### AWS
 
-![AWS architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances in multiple zones, whach are part of an auto-scaling group.](https://github.com/hashicorp/terraform-aws-terraform-enterprise/blob/v0.0.1-beta/assets/aws_diagram.jpg?raw=true)
+![AWS architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances in multiple zones, whach are part of an auto-scaling group.](https://github.com/hashicorp/terraform-aws-terraform-enterprise/blob/master/assets/aws_diagram.jpg?raw=true)
 
 ### GCP
 
-![Google Cloud Platform architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances in multiple zones, which are part of a managed instance group.](https://github.com/hashicorp/terraform-google-terraform-enterprise/blob/v0.0.1-beta/assets/gcp_diagram.jpg?raw=true)
+![Google Cloud Platform architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances in multiple zones, which are part of a managed instance group.](https://github.com/hashicorp/terraform-google-terraform-enterprise/blob/master/assets/gcp_diagram.jpg?raw=true)
 
 ### Azure
 
-![Azure architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances, which are part of a scaleset. Also includes an adjacent key vault for TLS.](../install/assets/azure_diagram.png)
+![Azure architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances, which are part of a scaleset. Also includes an adjacent key vault for TLS.](https://github.com/hashicorp/terraform-azurerm-terraform-enterprise/blob/master/assets/azure_diagram.png?raw=true)
 
 ## Data Storage
 
-Clustered deployment is designed for use with external data services. These include a PostgreSQL database, a blob storage service, and optionally an external Vault cluster.
+Clustered deployment is designed for use with external data services. These include a PostgreSQL database and a blob storage service.
 
 These services are outside the scope of the module that deploys Terraform Enterprise; the operator is expected to provision and configure the services prior to installation, and provide access information and credentials as inputs to the module.
 
