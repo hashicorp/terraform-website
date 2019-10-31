@@ -1,9 +1,9 @@
 ---
 layout: "enterprise"
-page_title: "Installation - Install and Config - Terraform Enterprise"
+page_title: "Interactive Installation - Install and Config - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Installation
+# Interactive Terraform Enterprise Installation — Individual Instance
 
 ## Delivery
 

@@ -67,16 +67,32 @@ The decision you make will be entered during setup.
 
 ## Credentials
 
-* TLS private key and certificate
-    * The installer allows for using a certificate signed by a public or private CA. If you do not use a trusted certificate, your VCS provider will likely reject that certificate when sending webhooks. The key and X.509 certificate should both be PEM (base64) encoded.
-* License file (provided by HashiCorp)
+Ensure you have all of the following credentials.
+
+### License File
+
+To deploy Terraform Enterprise, you must obtain a license file from HashiCorp.
+
+### TLS Certificate and Private Key
+
+Terraform Enterprise requires a TLS certificate and private key in order to operate. This certificate must match Terraform Enterprise's hostname (or the hostname of the load balancer for clusters), and ideally it should be a wildcard certificate.
+
+The certificate can be signed by a public or private CA, but it _must_ be trusted by all of the services that Terraform Enterprise is expected to interface with; this includes your VCS provider, any CI systems or other tools that call Terraform Enterprise's API, and any services that Terraform Enterprise workspaces might send notifications to (for example: Slack). Due to these wide-ranging interactions, we recommend using a certificate signed by a public CA.
+
+If you are using clustered deployment, you might need to ensure the certificate is available in your cloud provider's certificate management service:
+
+- For AWS clusters, the certificate must be available in ACM.
+- For Azure clusters, the certificate can be provided as a file but must be in PFX format.
+- For GCP clusters, the certificate can be provided as a file or as a GCP certificate link.
+
+If you are using individual deployment, the key and X.509 certificate should both be PEM (base64) encoded, and should be provided to the installer as text.
 
 ~> **Important:** If you use a certificate issued by a private Certificate
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
    running within Terraform Enterprise to access each other properly.
    See [Installation: Trusting SSL/TLS Certificates](../install/installer.html#trusting-ssl-tls-certificates)
-   for more on this.
+   for more on this. For clustered deployment, the modules include an input variable for a CA bundle URL.
 
 ## Data Storage
 

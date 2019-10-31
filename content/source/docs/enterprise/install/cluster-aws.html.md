@@ -1,50 +1,46 @@
 ---
 layout: "enterprise"
-page_title: "Deploying on AWS - Clustering Beta - Terraform Enterprise"
+page_title: "AWS - Clustered Deployment - Install and Config - Terraform Enterprise"
 ---
 
-# Clustering Beta: Deploying on AWS
+# Deploying a Terraform Enterprise Cluster on AWS
 
 [mode]: ../before-installing/index.html#operational-mode-decision
 [tf11]: https://releases.hashicorp.com/terraform/0.11.14/
+[module]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws
+[inputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws?tab=inputs
+[outputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws?tab=outputs
+[bootstrap]: https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/bootstrap-aws
 
-~> **Please Note**: This software is a beta release. Some features may not yet be implemented, or may not work correctly. We are very interested in your feedback! Please contact your Technical Account Manager if you run into issues.
+This page outlines the procedure for deploying a Terraform Enterprise cluster on Amazon Web Services (AWS).
 
-## Deployment Options
+## Summary
 
-On AWS, the clustering beta currently supports the following deployment options:
+Deploying Terraform Enterprise involves the following steps:
 
-- **Installation mode:** Online. (Airgapped installation has not yet been tested.)
-- [**Operational mode:**][mode] Demo (temporary storage) or external services (use an existing Postgres database and S3 bucket).
+1. Follow the pre-install checklist.
+2. Prepare the machine that will run Terraform.
+3. Prepare some required AWS infrastructure.
+4. Write a Terraform configuration that calls the deployment module.
+5. Apply the configuration to deploy the cluster.
 
-Deployment options will be expanded in future releases.
+## Terraform Module
 
-## Architecture
+The clustered deployment process relies on a Terraform module, which is available here:
 
-The clustering beta can deploy a variety of architectures, from a single server to a large cluster. Cluster size is controlled by the Terraform module's input variables.
+- [**Terraform Registry: Terraform Enterprise for AWS**][module]
 
-![architecture diagram](https://github.com/hashicorp/terraform-aws-terraform-enterprise/blob/v0.0.1-beta/assets/aws_diagram.jpg?raw=true)
+This page should be used in conjunction with the module's documentation on the Terraform Registry, which includes full documentation for the module's input variables and outputs.
 
-A Terraform Enterprise cluster consists of two types of servers: primaries and secondaries (also called workers). The primary instances run additional, stateful services that the secondaries do not.
+## Pre-Install Checklist
 
-Primaries should be deployed in odd numbers to ensure cluster quorum. Additional primary instances can be safely added while the cluster is running, but destroying a primary instance can cause application instability or outages. We do not recommend resizing the cluster by removing primaries after deployment.
+Before you begin, follow the [Pre-Install Checklist](../before-installing/index.html) and ensure you have all of the prerequisites. This checklist includes several important decisions, some supporting infrastructure, and necessary credentials.
 
-To scale the cluster for higher or lower workloads, add or remove secondary instances.
+In particular, note that Terraform Enterprise's certificate must be available in ACM.
 
-## Before Installing
+## Prepare a Machine for Terraform
 
-Before deploying Terraform Enterprise, you must prepare your credentials, a system to run Terraform from, and some required infrastructure.
-
-### Credentials
-
-Gather the following credentials:
-
-* A license file for the beta. Please talk to your Technical Account Manager or Sales Rep.
-* A Certificate available in ACM for the application's hostname (or a wildcard certificate for the domain).
-
-### Terraform
-
-The clustering beta relies on Terraform code that was written to support Terraform 0.11.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
+The Terraform module that deploys Terraform Enterprise is written to support Terraform 0.11.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
 
 Decide where you'll be running Terraform, and ensure:
 
@@ -53,27 +49,21 @@ Decide where you'll be running Terraform, and ensure:
 - The system running Terraform can authenticate to AWS. For more details, see [AWS Provider: Authentication](/docs/providers/aws/index.html#authentication).
 - You're familiar enough with Terraform to write simple configurations that call [modules ](/docs/configuration-0-11/modules.html) and specify [output values](/docs/configuration-0-11/outputs.html).
 
-### Infrastructure
+## Prepare Infrastructure
 
-Make sure the following AWS infrastructure is available:
+Make sure the following foundational AWS infrastructure is available:
 
 - A VPC
 - Subnets (both public and private) spread across multiple AZs
 - A DNS Zone
 
-#### Automated Preparation
-
-[bootstrap]: https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/bootstrap-aws
+### Automated Preparation
 
 You can create the required infrastructure resources with an [example bootstrap Terraform module][bootstrap]. This module has no requirements beyond provider authentication.
 
-## Installation
+## Write the Terraform Configuration
 
-[module]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws
-[inputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws?tab=inputs
-[outputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws?tab=outputs
-
-1. In your web browser, go to the [hashicorp/terraform-enterprise/aws module][module] on the Terraform Registry. This is the module you'll use to deploy the clustering beta.
+1. In your web browser, go to the [hashicorp/terraform-enterprise/aws module][module] on the Terraform Registry. This is the module you'll use to deploy Terraform Enterprise.
 2. Review the module's [input variables][inputs].
 3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/aws` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
@@ -82,7 +72,7 @@ You can create the required infrastructure resources with an [example bootstrap 
     - Map all of the module's [output values][outputs] to root-level outputs, so that Terraform will display them after applying the configuration. For example:
 
         ```hcl
-        output "tfe_beta" {
+        output "tfe_cluster" {
           value = {
             application_endpoint = "${module.terraform-enterprise.application_endpoint}"
             application_health_check = "${module.terraform-enterprise.application_health_check}"
@@ -92,6 +82,9 @@ You can create the required infrastructure resources with an [example bootstrap 
         ```
 
         ~> **Important:** The module's outputs include credentials necessary for completing the installation.
+
+## Init, Plan, Apply
+
 4. Initialize Terraform and run a plan. If you are running Terraform from the CLI, you can do this by navigating to the configuration's directory and running:
 
     ```
@@ -112,7 +105,7 @@ You can create the required infrastructure resources with an [example bootstrap 
 
     Outputs:
 
-    tfe-beta = {
+    tfe_cluster = {
       application_endpoint = https://tfe-hvg9o7lo.example.com
       application_health_check = https://tfe-hvg9o7lo.example.com/_health_check
       iam_role = tfe-hvg9o7lo
@@ -127,7 +120,7 @@ You can create the required infrastructure resources with an [example bootstrap 
 
     At this point, the infrastructure is finished deploying, but the application is not. It can take up to 30 minutes before the website becomes available.
 
-    The installer dashboard should become available first, and is accessible at the URL specified in the `installer_dashboard_url` output. 
+    The installer dashboard should become available first, and is accessible at the URL specified in the `installer_dashboard_url` output.
 7. Open the installer dashboard in your web browser, and log in with the password specified in the `installer_dashboard_password` output. Follow the instructions at [Terraform Enterprise Configuration](../install/config.html) to finish setting up the application.
 
 After the application is fully deployed, you can adjust the cluster's size by changing the module's inputs and re-applying the Terraform configuration.
