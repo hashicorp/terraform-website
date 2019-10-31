@@ -368,7 +368,7 @@
 /docs/cloud/users-teams-organizations/service-accounts.html         /docs/cloud/users-teams-organizations/api-tokens.html
 
 # Post-beta for TFE v5
-/docs/enterprise/beta/index.html        /docs/enterprise/beta/before-installing/index.html
+/docs/enterprise/beta/index.html        /docs/enterprise/before-installing/index.html
 /docs/enterprise/beta/aws.html          /docs/enterprise/install/cluster-aws.html
 /docs/enterprise/beta/azure.html        /docs/enterprise/install/cluster-azure.html
 /docs/enterprise/beta/gcp.html          /docs/enterprise/install/cluster-gcp.html
