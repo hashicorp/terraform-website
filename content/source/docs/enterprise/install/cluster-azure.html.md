@@ -1,51 +1,46 @@
 ---
 layout: "enterprise"
-page_title: "Deploying on Azure - Clustering Beta - Terraform Enterprise"
+page_title: "Azure - Clustered Deployment - Install and Config - Terraform Enterprise"
 ---
 
-# Clustering Beta: Deploying on Azure
+# Deploying a Terraform Enterprise Cluster on Azure
 
 [mode]: ../before-installing/index.html#operational-mode-decision
 [tf11]: https://releases.hashicorp.com/terraform/0.11.14/
+[module]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/azurerm
+[inputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/azurerm?tab=inputs
+[outputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/azurerm?tab=outputs
+[bootstrap]: https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/bootstrap-azure
 
-~> **Please Note**: This software is a beta release. Some features may not yet be implemented, or may not work correctly. We are very interested in your feedback! Please contact your Technical Account Manager if you run into issues.
+This page outlines the procedure for deploying a Terraform Enterprise cluster on Azure.
 
-## Deployment Options
+## Summary
 
-On Microsoft Azure, the clustering beta currently supports the following deployment options:
+Deploying Terraform Enterprise involves the following steps:
 
-- **Installation mode:** Online. (Airgapped installation has not yet been tested.)
-- [**Operational mode:**][mode] Demo (temporary storage) or external services (use an existing Postgres database and Azure blob storage).
-- **Architecture:** Single zone. (Cross-zone configurations are not currently supported.)
+1. Follow the pre-install checklist.
+2. Prepare the machine that will run Terraform.
+3. Prepare some required Azure infrastructure.
+4. Write a Terraform configuration that calls the deployment module.
+5. Apply the configuration to deploy the cluster.
 
-Deployment options will be expanded in future releases.
+## Terraform Module
 
-## Architecture
+The clustered deployment process relies on a Terraform module, which is available here:
 
-The clustering beta can deploy a variety of architectures, from a single server to a large cluster. Cluster size is controlled by the Terraform module's input variables.
+- [**Terraform Registry: Terraform Enterprise for Azure**][module]
 
-![Diagram of 3 tier clustered application with a loadbalancer, 3 primary vms, and a scaleset of secondary vms, with adjacent key vault for tls](/docs/enterprise/beta/assets/azure_diagram.png)
+This page should be used in conjunction with the module's documentation on the Terraform Registry, which includes full documentation for the module's input variables and outputs.
 
-A Terraform Enterprise cluster consists of two types of servers: primaries and secondaries (also called workers). The primary instances run additional, stateful services that the secondaries do not.
+## Pre-Install Checklist
 
-Primaries should be deployed in odd numbers to ensure cluster quorum. Additional primary instances can be safely added while the cluster is running, but destroying a primary instance can cause application instability or outages. We do not recommend resizing the cluster by removing primaries after deployment.
+Before you begin, follow the [Pre-Install Checklist](../before-installing/index.html) and ensure you have all of the prerequisites. This checklist includes several important decisions, some supporting infrastructure, and necessary credentials.
 
-To scale the cluster for higher or lower workloads, add or remove secondary instances.
+In particular, note that Terraform Enterprise's certificate must be in PFX format.
 
-## Before Installing
+## Prepare a Machine for Terraform
 
-Before deploying Terraform Enterprise, you must prepare your credentials, a system to run Terraform from, and some required infrastructure.
-
-### Credentials
-
-Gather the following credentials:
-
-* A license file for the beta. Please talk to your Technical Account Manager or Sales Rep.
-* A certificate for the application, preferably a wildcard for the domain used by the load balancer.
-
-### Terraform
-
-The clustering beta relies on Terraform code that was written to support Terraform 0.11.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
+The Terraform module that deploys Terraform Enterprise is written to support Terraform 0.11.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
 
 Decide where you'll be running Terraform, and ensure:
 
@@ -54,13 +49,13 @@ Decide where you'll be running Terraform, and ensure:
 - The system running Terraform can authenticate to Azure. For more details, see [Azure Provider: Authenticating to Azure](/docs/providers/azurerm/index.html#authenticating-to-azure).
 - You're familiar enough with Terraform to write simple configurations that call [modules ](/docs/configuration-0-11/modules.html) and specify [output values](/docs/configuration-0-11/outputs.html).
 
-### Infrastructure
+## Prepare Infrastructure
 
-Make sure the following Azure infrastructure is available:
+Make sure the following foundational Azure infrastructure is available:
 
 * Access to an existing Azure account and subscription.
 * An existing Resource Group.
-* An existing Virtual Network, with a subnet dedicated to the Terraform Enterprise clustering beta and an associated Network Security Group. The Network Security Group must permit TCP access over the following ports:
+* An existing Virtual Network, with a subnet dedicated to the Terraform Enterprise cluster and an associated Network Security Group. The Network Security Group must permit TCP access over the following ports:
 
     | Port | Description |
     |------|-------------|
@@ -70,7 +65,7 @@ Make sure the following Azure infrastructure is available:
     | 8800 | Installer Dashboard Access |
     | 23010 | Application Health Check |
 
-    -> **Note:** This access list will be reduced for the GA release; it includes some additional ports for troubleshooting access during the beta.
+    -> **Note:** This access list includes some additional ports for troubleshooting access.
 * An Azure Key Vault (for storing/distributing an SSL certificate).
 * A DNS zone.
 
@@ -79,11 +74,9 @@ Make sure the following Azure infrastructure is available:
 If you choose to install in external services mode, you will also need:
 
 * An Azure Database for PostgreSQL - please see [PostgreSQL Requirements](../before-installing/postgres-requirements.html).
-* An Azure Blob Storage container created specifically for Terraform Enterprise HA Beta. The container does not need to be in the same project as the Terraform Enterprise server(s), but you will need credentials for a service principal to access the container.
+* An Azure Blob Storage container created specifically for Terraform Enterprise. The container does not need to be in the same project as the Terraform Enterprise server(s), but you will need credentials for a service principal to access the container.
 
-#### Automated Preparation
-
-[bootstrap]: https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/bootstrap-azure
+### Automated Preparation
 
 If you have an empty test subscription, you can create the required infrastructure resources with an [example bootstrap Terraform module][bootstrap]. This module only requires the following:
 
@@ -92,15 +85,9 @@ If you have an empty test subscription, you can create the required infrastructu
 
 The module will create the virtual network, the subnet, required firewalls, and an Azure key vault.
 
-- [Clustering Beta for Azure: Bootstrap Example][bootstrap]
+## Write the Terraform Configuration
 
-## Installation
-
-[module]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/azurerm
-[inputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/azurerm?tab=inputs
-[outputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/azurerm?tab=outputs
-
-1. In your web browser, go to the [hashicorp/terraform-enterprise/azurerm module][module] on the Terraform Registry. This is the module you'll use to deploy the clustering beta.
+1. In your web browser, go to the [hashicorp/terraform-enterprise/azurerm module][module] on the Terraform Registry. This is the module you'll use to deploy Terraform Enterprise.
 2. Review the module's [input variables][inputs].
 3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/azurerm` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
@@ -109,7 +96,7 @@ The module will create the virtual network, the subnet, required firewalls, and 
     - Map all of the module's [output values][outputs] to root-level outputs, so that Terraform will display them after applying the configuration. For example:
 
         ```hcl
-        output "tfe_beta" {
+        output "tfe_cluster" {
           value = {
             application_endpoint = "${module.terraform-enterprise.application_endpoint}"
             application_health_check = "${module.terraform-enterprise.application_health_check}"
@@ -119,6 +106,9 @@ The module will create the virtual network, the subnet, required firewalls, and 
         ```
 
         ~> **Important:** The module's outputs include credentials necessary for completing the installation.
+
+## Init, Plan, Apply
+
 4. Initialize Terraform and run a plan. If you are running Terraform from the CLI, you can do this by navigating to the configuration's directory and running:
 
     ```
@@ -139,7 +129,7 @@ The module will create the virtual network, the subnet, required firewalls, and 
 
     Outputs:
 
-    tfe_beta = {
+    tfe_cluster = {
       application_endpoint = https://tfe-k6ad3oku.tfe.example.com
       application_health_check = http://tfe-k6ad3oku.tfe.example.com/_health_check
       installer_dashboard_endpoint = https://tfe-k6ad3oku.tfe.example.com:8800
@@ -150,7 +140,7 @@ The module will create the virtual network, the subnet, required firewalls, and 
 
     At this point, the infrastructure is finished deploying, but the application is not. It can take up to 30 minutes before the website becomes available.
 
-    The installer dashboard should become available first, and is accessible at the URL specified in the `installer_dashboard_endpoint` output. 
+    The installer dashboard should become available first, and is accessible at the URL specified in the `installer_dashboard_endpoint` output.
 7. Open the installer dashboard in your web browser, and log in with the password specified in the `installer_dashboard_password` output. Follow the instructions at [Terraform Enterprise Configuration](../install/config.html) to finish setting up the application.
 
 After the application is fully deployed, you can adjust the cluster's size by changing the module's inputs and re-applying the Terraform configuration.

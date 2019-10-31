@@ -5,31 +5,35 @@ page_title: "Pre-Install Checklist - Before Installing - Terraform Enterprise"
 
 # Terraform Enterprise Pre-Install Checklist
 
-Before installing Terraform Enterprise, you'll need to prepare an appropriate instance, supporting services, and relevant data files. Please make careful note of these requirements, as the installation may not be successful if these requirements are not met.
+Before installing Terraform Enterprise, you'll need to make several key architecture decisions and prepare some infrastructure and data files. Please make careful note of these requirements, as the installation may not be successful if these requirements are not met.
 
 ## Summary
 
 Prepare all of the following before installing:
 
-1. **Credentials:** Ensure you have a Terraform Enterprise license and a TLS certificate for Terraform Enterprise to use.
-2. **Operational mode decision:** Decide how Terraform Enterprise should store its data: in discrete external services, or on a plain mounted disk.
-3. **Data storage:** Depending on your operational mode, prepare data storage services or a block storage device.
-4. **Linux instance:** Prepare a Linux instance for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements.
+1. **Choose a deployment method:** Decide whether to perform a clustered deployment of Terraform Enterprise (using a HashiCorp-provided Terraform module) or use the installer to deploy individual instances.
+2. **Choose an operational mode:** Decide how Terraform Enterprise should store its data. This is affected by your choice of deployment method.
+3. **Credentials:** Ensure you have a Terraform Enterprise license and a TLS certificate for Terraform Enterprise to use.
+4. **Data storage:** Depending on your operational mode, prepare data storage services or a block storage device.
+5. **Linux instance:** Choose a Linux machine image (if clustering) or prepare a running Linux instance (if deploying individually) for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements.
 
--> **Note:** We publish [Terraform Enterprise reference architectures](./reference-architecture/index.html) for several of the most popular infrastructure platforms, including AWS, Azure, GCP, and VMware. These reference architectures go beyond the bare requirements to offer detailed and opinionated advice about how to configure your services, instances, and networking infrastructure. If you are following a reference architecture, refer to it while preparing the data storage services and the Linux instance.
+    For clustered deployments, choosing an image is optional; if an image isn't specified, the module will use a default image provided by the cloud vendor.
 
-## Credentials
+## Deployment Method Decision
 
-* TLS private key and certificate
-    * The installer allows for using a certificate signed by a public or private CA. If you do not use a trusted certificate, your VCS provider will likely reject that certificate when sending webhooks. The key and X.509 certificate should both be PEM (base64) encoded.
-* License file (provided by HashiCorp)
+There are two ways to install Terraform Enterprise:
 
-~> **Important:** If you use a certificate issued by a private Certificate
-   Authority, you must provide the certificate for that CA in the
-   `Certificate Authority (CA) Bundle` section of the installation. This allows services
-   running within Terraform Enterprise to access each other properly.
-   See [Installation: Trusting SSL/TLS Certificates](../install/installer.html#trusting-ssl-tls-certificates)
-   for more on this.
+- **Clustered deployment:** Deploy Terraform Enterprise as a cluster of three or more instances using a Terraform module. Installation is automated, and you configure your deployment via the module's input variables. The cluster's secondary instances can scale horizontally to fit your enterprise's workloads.
+
+    We think this method is best for most enterprises, but it doesn't support every possible use case. It only supports deployment on AWS, GCP, and Azure, and we don't recommend it if you only want a single Terraform Enterprise instance.
+
+    For more information, see [Cluster Architecture](./cluster-architecture.html).
+
+- **Individual deployment:** Deploy Terraform Enterprise directly onto prepared Linux instances using an executable installer. The installer can be automated (with configuration via a JSON file) or run interactively (with configuration via a web interface).
+
+    This method requires more effort to ensure availability and redundancy, and requires you to provision more infrastructure prior to deploying Terraform Enterprise. For more information about what's necessary to use this deployment mode effectively, see [Reference Architectures (Individual Deployment)](./reference-architecture/index.html).
+
+Decide which deployment method you want to use; if you choose individual deployment, also decide whether to use automated installation. Once you are ready to install, refer to the installation guide that matches your choice.
 
 ## Operational Mode Decision
 
@@ -55,11 +59,42 @@ The operational mode is selected at install time and cannot be changed once Terr
    configured to store its data on an external disk, such as EBS, iSCSI,
    etc. This option is best for users with experience mounting performant
    block storage.
+
+    ~> **Important:** Mounted disk mode is not available with clustered deployment. Clusters must use either external services or demo mode.
 1. **Demo** - This mode stores all data on the instance. The data can be
    backed up with the snapshot mechanism for restore later. This option is best for initial
    installation and testing, and is not recommended or supported for true production use.
 
 The decision you make will be entered during setup.
+
+## Credentials
+
+Ensure you have all of the following credentials.
+
+### License File
+
+To deploy Terraform Enterprise, you must obtain a license file from HashiCorp.
+
+### TLS Certificate and Private Key
+
+Terraform Enterprise requires a TLS certificate and private key in order to operate. This certificate must match Terraform Enterprise's hostname (or the hostname of the load balancer for clusters), and ideally it should be a wildcard certificate.
+
+The certificate can be signed by a public or private CA, but it _must_ be trusted by all of the services that Terraform Enterprise is expected to interface with; this includes your VCS provider, any CI systems or other tools that call Terraform Enterprise's API, and any services that Terraform Enterprise workspaces might send notifications to (for example: Slack). Due to these wide-ranging interactions, we recommend using a certificate signed by a public CA.
+
+If you are using clustered deployment, you might need to ensure the certificate is available in your cloud provider's certificate management service:
+
+- For AWS clusters, the certificate must be available in ACM.
+- For Azure clusters, the certificate can be provided as a file but must be in PFX format.
+- For GCP clusters, the certificate can be provided as a file or as a GCP certificate link.
+
+If you are using individual deployment, the key and X.509 certificate should both be PEM (base64) encoded, and should be provided to the installer as text.
+
+~> **Important:** If you use a certificate issued by a private Certificate
+   Authority, you must provide the certificate for that CA in the
+   `Certificate Authority (CA) Bundle` section of the installation. This allows services
+   running within Terraform Enterprise to access each other properly.
+   See [Installation: Trusting SSL/TLS Certificates](../install/installer.html#trusting-ssl-tls-certificates)
+   for more on this. For clustered deployment, the modules include an input variable for a CA bundle URL.
 
 ## Data Storage
 
@@ -73,20 +108,33 @@ Make sure your data storage services or device meet Terraform Enterprise's requi
 - **Mounted disk:**
     - [Mounted Disk Requirements](./disk-requirements.html)
 
+-> **Note:** If you are following one of the [reference architectures](./reference-architecture/index.html), refer to it while preparing your data storage services.
+
 ## Linux Instance
 
-Install Terraform Enterprise on a Linux instance of your choosing.
-You will start and manage this instance like any other server.
+Terraform Enterprise runs on Linux instances. The source of these instances depends on your deployment method:
 
-The Terraform Enterprise installer currently supports the following
-operating systems:
+- **Clustered deployment:** Terraform automatically provisions all instances for Terraform Enterprise. The machine image and the instance type are configurable:
+    - By default, the module uses an official Ubuntu image; you can override this with any image that meets the [software requirements below](#software-requirements).
+    - The default instance type depends on the cloud you deploy to; see the module documentation for details. You can override this, and can optionally specify separate image types for primary and secondary instances.
+- **Individual deployment:** You must prepare a running Linux instance for Terraform Enterprise before running the installer. You will start and manage this instance like any other server.
 
-* Debian 7.7+
-* Ubuntu 14.04 / 16.04 / 18.04
-* Red Hat Enterprise Linux 7.2+
-* CentOS 7+
-* Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
-* Oracle Linux 7.2+
+### Operating System Requirements
+
+Terraform Enterprise currently supports running under the following operating systems:
+
+- **Clustered deployment:**
+    - Ubuntu 14.04 / 16.04 / 18.04
+    - Red Hat Enterprise Linux 7.2 through 7.6
+
+    Clusters currently don't support other Linux variants. In particular, note that RHEL 7.7 is not currently supported.
+- **Individual deployment:**
+    - Debian 7.7+
+    - Ubuntu 14.04 / 16.04 / 18.04
+    - Red Hat Enterprise Linux 7.2+
+    - CentOS 7+
+    - Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
+    - Oracle Linux 7.2+
 
 ### Hardware Requirements
 

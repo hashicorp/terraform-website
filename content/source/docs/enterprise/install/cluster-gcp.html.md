@@ -1,48 +1,46 @@
 ---
 layout: "enterprise"
-page_title: "Deploying on GCP - Clustering Beta - Terraform Enterprise"
+page_title: "GCP - Clustered Deployment - Install and Config - Terraform Enterprise"
 ---
 
-# Clustering Beta: Deploying on Google Cloud Platform (GCP)
+# Deploying a Terraform Enterprise Cluster on GCP
 
 [mode]: ../before-installing/index.html#operational-mode-decision
 [tf11]: https://releases.hashicorp.com/terraform/0.11.14/
+[module]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/google
+[inputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/google?tab=inputs
+[outputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/google?tab=outputs
+[bootstrap]: https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/bootstrap-google
 
-~> **Please Note**: This software is a beta release. Some features may not yet be implemented, or may not work correctly. We are very interested in your feedback! Please contact your Technical Account Manager if you run into issues.
+This page outlines the procedure for deploying a Terraform Enterprise cluster on Google Cloud Platform (GCP).
 
-## Deployment Options
+## Summary
 
-On GCP, the clustering beta currently supports the following deployment options:
+Deploying Terraform Enterprise involves the following steps:
 
-- **Installation mode:** Online. (Airgapped installation has not yet been tested.)
-- [**Operational mode:**][mode] Demo (temporary storage) or external services (use an existing Postgres database and Azure blob storage).
+1. Follow the pre-install checklist.
+2. Prepare the machine that will run Terraform.
+3. Prepare some required GCP infrastructure.
+4. Write a Terraform configuration that calls the deployment module.
+5. Apply the configuration to deploy the cluster.
 
-Deployment options will be expanded in future releases.
+## Terraform Module
 
-## Architecture
+The clustered deployment process relies on a Terraform module, which is available here:
 
-The clustering beta can deploy a variety of architectures, from a three node cluster to a hundred plus. Cluster size is controlled by the Terraform module's input variables.
+- [**Terraform Registry: Terraform Enterprise for GCP**][module]
 
-![architecture diagram](https://github.com/hashicorp/terraform-google-terraform-enterprise/blob/v0.0.1-beta/assets/gcp_diagram.jpg?raw=true)
+This page should be used in conjunction with the module's documentation on the Terraform Registry, which includes full documentation for the module's input variables and outputs.
 
-A Terraform Enterprise cluster consists of two types of servers: primaries and secondaries (also called workers). The primary instances run additional, stateful services that the secondaries do not.
+## Pre-Install Checklist
 
-There should always be three primary nodes to ensure cluster stability. Cluster scaling should be done by adding or removing secondary nodes via the terraform module.
+Before you begin, follow the [Pre-Install Checklist](../before-installing/index.html) and ensure you have all of the prerequisites. This checklist includes several important decisions, some supporting infrastructure, and necessary credentials.
 
-## Before Installing
+In particular, note that Terraform Enterprise's certificate can be provided as a file or as a Google API link to a managed SSL certificate.
 
-Before deploying Terraform Enterprise, you must prepare your credentials, a system to run Terraform from, and some required infrastructure.
+## Prepare a Machine for Terraform
 
-### Credentials
-
-Gather the following credentials:
-
-* A license file for the beta. Please talk to your Technical Account Manager or Sales Rep.
-* A certificate for the load balancer (or a Google API link to a managed SSL cert).
-
-### Terraform
-
-The clustering beta relies on Terraform code that was written to support Terraform 0.11.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
+The Terraform module that deploys Terraform Enterprise is written to support Terraform 0.11.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
 
 Decide where you'll be running Terraform, and ensure:
 
@@ -51,13 +49,13 @@ Decide where you'll be running Terraform, and ensure:
 - The system running Terraform can authenticate to GCP. For more details, see [Google Provider Configuration Reference: Credentials](/docs/providers/google/provider_reference.html#credentials-1).
 - You're familiar enough with Terraform to write simple configurations that call [modules ](/docs/configuration-0-11/modules.html) and specify [output values](/docs/configuration-0-11/outputs.html).
 
-### Infrastructure
+## Prepare Infrastructure
 
 Make sure the following GCP infrastructure is available:
 
 * Access to an existing GCP project via a JSON authentication file.
 * An IP address for the frontend load balancer, along with a valid DNS entry for that IP.
-* A VPC to install into, with a subnet specifically dedicated to the Terraform Enterprise clustering beta.
+* A VPC to install into, with a subnet specifically dedicated to the Terraform Enterprise cluster.
 * A firewall to allow for application traffic. This must permit TCP access over the following ports:
 
     | Port | Description |
@@ -68,7 +66,7 @@ Make sure the following GCP infrastructure is available:
     | 8800 | Installer Dashboard Access |
     | 23010 | Application Health Check |
 
-    -> **Note:** This access list will be reduced for the GA release; it includes some additional ports for troubleshooting access during the beta.
+    -> **Note:** This access list includes some additional ports for troubleshooting access.
 * A firewall for the load balancer health checks. Currently, this must permit the following source IP ranges:
 
     ```
@@ -80,14 +78,12 @@ Make sure the following GCP infrastructure is available:
 
     -> **Note:** The current module assumes the presence of a DNS zone on GCP, and will create DNS entries for the primary cluster nodes. If you do not use GCP's DNS services and wish to skip this, you will need to clone the module from GitHub, comment out the relevant resources and variable references, and call the modified copy of the module instead of referencing it from the Terraform Registry. Objects to comment out include the `google_dns_record_set` resource and `google_dns_managed_zone` data source in the `primary.tf` file, and references to the DNS zone in the variables.tf and outputs.tf files.
 
-If you choose to install in Production mode you will also need:
+If you choose to install in external services mode, you will also need:
 
 * A Google Cloud SQL PostgreSQL instance - please see [PostgreSQL Requirements](../before-installing/postgres-requirements.html).
-* A Google Cloud Storage bucket created specifically for the Terraform Enterprise clustering beta. The GCS bucket does not need to be in the same project as the Terraform Enterprise server(s), but you will need a JSON authentication file to access the bucket.
+* A Google Cloud Storage bucket created specifically for the Terraform Enterprise cluster. The GCS bucket does not need to be in the same project as the Terraform Enterprise server(s), but you will need a JSON authentication file to access the bucket.
 
-#### Automated Preparation
-
-[bootstrap]: https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/bootstrap-google
+### Automated Preparation
 
 If you have an empty test project, you can create the required infrastructure resources with an [example bootstrap Terraform module][bootstrap]. This module only requires the following:
 
@@ -96,15 +92,9 @@ If you have an empty test project, you can create the required infrastructure re
 
 The module will create the VPC, the subnet, and the required firewalls. It will also get a public IP, create a DNS entry for it, and create a managed SSL certificate for the domain and an SSL policy for the certificate.
 
-- [Clustering Beta for GCP: Bootstrap Example][bootstrap]
+## Write the Terraform Configuration
 
-## Installation
-
-[module]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/google
-[inputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/google?tab=inputs
-[outputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/google?tab=outputs
-
-1. In your web browser, go to the [hashicorp/terraform-enterprise/google module][module] on the Terraform Registry. This is the module you'll use to deploy the clustering beta.
+1. In your web browser, go to the [hashicorp/terraform-enterprise/google module][module] on the Terraform Registry. This is the module you'll use to deploy Terraform Enterprise.
 2. Review the module's [input variables][inputs].
 3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/google` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
@@ -113,7 +103,7 @@ The module will create the VPC, the subnet, and the required firewalls. It will 
     - Map all of the module's [output values][outputs] to root-level outputs, so that Terraform will display them after applying the configuration. For example:
 
         ```hcl
-        output "tfe_beta" {
+        output "tfe_cluster" {
           value = {
             application_endpoint = "${module.terraform-enterprise.application_endpoint}"
             application_health_check = "${module.terraform-enterprise.application_health_check}"
@@ -123,6 +113,9 @@ The module will create the VPC, the subnet, and the required firewalls. It will 
         ```
 
         ~> **Important:** The module's outputs include credentials necessary for completing the installation.
+
+## Init, Plan, Apply
+
 4. Initialize Terraform and run a plan. If you are running Terraform from the CLI, you can do this by navigating to the configuration's directory and running:
 
     ```
@@ -143,7 +136,7 @@ The module will create the VPC, the subnet, and the required firewalls. It will 
 
     Outputs:
 
-    tfe_beta = {
+    tfe_cluster = {
       application_endpoint = https://tfe.example.com
       application_health_check = https://tfe.example.com/_health_check
       installer_dashboard_password = hideously-stable-baboon
