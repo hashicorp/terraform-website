@@ -70,7 +70,7 @@ Marking a variable as sensitive prevents anybody (including you) from viewing it
 
 Users with edit permissions can set new values for sensitive variables. No other attribute of a sensitive variable can be modified. To update other attributes, delete the variable and create a new variable to replace it.
 
-~> **Important:** Terraform runs will receive the full text of sensitive variables, and might print the value in logs if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations to avoid unnecessary credential disclosure.
+~> **Important:** Terraform runs will receive the full text of sensitive variables, and might print the value in logs and state files if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations to avoid unnecessary credential disclosure. Whenever possible, use environment variables since these cannot end up in state files. (Environment variables can end up in log files if TF_LOG is set to TRACE.)
 
 ### Looking Up Variable Names
 
