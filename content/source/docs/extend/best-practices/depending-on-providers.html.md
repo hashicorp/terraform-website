@@ -41,7 +41,7 @@ If not, please reach out and [open an issue](https://github.com/hashicorp/terraf
 outlining your use case, and we'll work with you to find an appropriate way
 to interface with Terraform to meet your use case.
 
-### Exporting the Schema
+## Exporting the Schema
 
 Some projects just care about the schema and resources a provider presents. As
 of Terraform 0.12, the `terraform providers schema -json` command can be used
