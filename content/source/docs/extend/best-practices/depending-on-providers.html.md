@@ -48,7 +48,7 @@ of Terraform 0.12, the `terraform providers schema -json` command can be used
 to export a JSON representation of the schemas for the providers used in a
 workspace.
 
-### Using the RPC Protocol
+## Using the RPC Protocol
 
 For projects that actually want to drive the provider, the supported option is to use the [gRPC protocol](https://github.com/hashicorp/terraform/tree/master/docs/plugin-protocol)
 and the RPC calls the protocol supplies. This
