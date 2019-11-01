@@ -17,7 +17,7 @@ This guide lays out the supported ways to interface with and depend on
 Terraform's providers. Unless the provider explicitly states otherwise, no
 other compatibility guarantees are provided.
 
-### Importing Providers as Go Modules
+## Do Not Import Providers as Go Modules
 
 Terraform's providers are written as Go packages, and they mostly use Go
 modules as their dependency management solution. This makes it tempting to
