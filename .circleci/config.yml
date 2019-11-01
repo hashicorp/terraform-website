@@ -1,0 +1,53 @@
+---
+version: 2
+
+references:
+  images:
+    middleman: &MIDDLEMAN_IMAGE hashicorp/middleman-hashicorp:0.3.41
+
+  cache:
+    rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
+
+jobs:
+  deploy-website:
+    docker:
+      - image: *MIDDLEMAN_IMAGE
+    steps:
+      - checkout
+
+      # pull and update git submodules
+      - run: make sync
+
+      # restores gem cache
+      - restore_cache:
+          key: *RUBYGEM_CACHE_KEY
+
+      - run:
+          name: install gems
+          working_directory: content
+          command: bundle check || bundle install --path vendor/bundle --retry=3
+
+      # saves gem cache if we have changed the Gemfile
+      - save_cache:
+          key: *RUBYGEM_CACHE_KEY
+          paths:
+            - content/vendor/bundle
+
+      - run:
+          name: middleman build
+          working_directory: content
+          command: bundle exec middleman build
+
+      - run:
+          working_directory: content
+          command: ./scripts/deploy.sh
+
+workflows:
+  version: 2
+  website:
+    jobs:
+      - deploy-website:
+          context: static-sites
+          filters:
+            branches:
+              only: master
