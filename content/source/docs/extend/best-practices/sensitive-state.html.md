@@ -8,26 +8,57 @@ description: |-
 
 # Handling Sensitive Values in State
 
-Many organizations use Terraform to manage their entire infrastructure, and it's inevitable that sensitive information will find its way into Terraform in these circumstances. There are a couple of recommended approaches for managing sensitive state in Terraform.
+Many organizations use Terraform to manage their entire infrastructure, and
+it's inevitable that [sensitive information will find its way into
+Terraform](/docs/state/sensitive-data.html) in these circumstances. There are a
+couple of recommended approaches for managing sensitive state in Terraform.
 
 ## Using the `Sensitive` Flag
 
-When working with a field that is likely to contain sensitive information, it is best to set the [`Sensitive`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#Schema.Sensitive) property on its schema to `true`. This will prevent the field's values from showing up in CLI output and in Terraform Cloud. It will not encrypt or obscure the value in the state, however.
+When working with a field that is likely to contain sensitive information, it
+is best to set the
+[`Sensitive`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#Schema.Sensitive)
+property on its schema to `true`. This will prevent the field's values from
+showing up in CLI output and in Terraform Cloud. It will not encrypt or obscure
+the value in the state, however.
 
 ## Storing Only a Hash
 
-Providers can also protect sensitive information by simply not storing it. Storing a hash of the information instead of the value itself is popular when:
+Providers can also protect sensitive information by simply not storing it.
+Storing a hash of the information instead of the value itself is popular when:
 
 * The value is set by the provider/the API, and cannot be set in the config
 * The value does not need to be interpolated in cleartext
-* It is useful for other resources or to the provider to know when the value has changed.
+* It is useful for other resources or to the provider to know when the value
+  has changed.
 
 ## Don't Encrypt State
 
-One experiment that has been attempted is allowing the user to provide a PGP key and a cipher text, and decrypting the value in the provider code before using it, storing only the cipher text in state. Another variation on this approach was providing a PGP key that data from an API would be encrypted with before being set in state, with nothing being set in the config.
+One experiment that has been attempted is allowing the user to provide a PGP
+key and a cipher text, and decrypting the value in the provider code before
+using it, storing only the cipher text in state. Another variation on this
+approach was providing a PGP key that data from an API would be encrypted with
+before being set in state, with nothing being set in the config.
 
-Both of these approaches are discouraged and will be removed from the HashiCorp-supported providers over time. This strategy was tailored to a time when Terraform's state had to be stored in cleartext on any machine running `terraform apply`, and was meant to provide a bit of security in that scenario. With the introduction and use of [enhanced remote backends](/docs/backends/types/index.html) and especially the availability of [Terraform Cloud](https://app.terraform.io/), there are now a variety of backends that will encrypt state at rest and will not store the state in cleartext on machines running `terraform apply`. This means the original problem the PGP key pattern was intended to solve has a better-supported solution, and we're deprecating it in favor of that solution.
+Both of these approaches are discouraged and will be removed from the
+HashiCorp-supported providers over time. This strategy was tailored to a time
+when Terraform's state had to be stored in cleartext on any machine running
+`terraform apply`, and was meant to provide a bit of security in that scenario.
+With the introduction and use of [enhanced remote
+backends](/docs/backends/types/index.html) and especially the availability of
+[Terraform Cloud](https://app.terraform.io/), there are now a variety of
+backends that will encrypt state at rest and will not store the state in
+cleartext on machines running `terraform apply`. This means the original
+problem the PGP key pattern was intended to solve has a better-supported
+solution, and we're deprecating it in favor of that solution.
 
-The strategies also have drawbacks. They can't be reliably interpolated, Terraform isn't built to provide a good user experience around a missing PGP key right now, and the approach needs serious modification to not violate protocol requirements for Terraform 0.12 and into the future.
+The strategies also have drawbacks. They can't be reliably interpolated,
+Terraform isn't built to provide a good user experience around a missing PGP
+key right now, and the approach needs serious modification to not violate
+protocol requirements for Terraform 0.12 and into the future.
 
-In light of these shortcomings, the encouraged solution at this time is to use a state backend that supports operations and encryption, and for users whose security needs cannot be met by that strategy to weigh in on [the issue about this](https://github.com/hashicorp/terraform/issues/516) to help outline the gaps in this strategy, so appropriate solutions can be designed for them.
+In light of these shortcomings, the encouraged solution at this time is to use
+a state backend that supports operations and encryption, and for users whose
+security needs cannot be met by that strategy to weigh in on [the issue about
+this](https://github.com/hashicorp/terraform/issues/516) to help outline the
+gaps in this strategy, so appropriate solutions can be designed for them.
