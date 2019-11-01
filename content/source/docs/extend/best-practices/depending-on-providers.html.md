@@ -6,7 +6,7 @@ description: |-
   How to safely depend on providers and understand their interfaces.
 ---
 
-## Depending on Providers
+# Depending on Providers
 
 Terraform's providers are a substantial amount of code, and occasionally it
 makes sense to depend on their functionality. The most straightforward and
