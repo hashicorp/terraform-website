@@ -51,6 +51,6 @@ workspace.
 ### Using the RPC Protocol
 
 For projects that actually want to drive the provider, the supported option is to use the [gRPC protocol](https://github.com/hashicorp/terraform/tree/master/docs/plugin-protocol)
-and using the RPC calls the protocol supplies is a supported option. This
+and the RPC calls the protocol supplies. This
 protocol is the same protocol that drives Terraform's CLI interface, and
 it is versioned using a protocol version. It changes relatively infrequently.
