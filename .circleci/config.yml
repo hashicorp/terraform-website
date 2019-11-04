@@ -1,7 +1,13 @@
 version: 2
 jobs:
-  build:
-    docker: 
+  build-website: # sample config to prevent failed checks until the actual config is done
+    docker:
       - image: alpine:latest
     steps:
       - run: echo "hello world"
+
+workflows:
+  version: 2
+  website:
+    jobs:
+      - build-website
