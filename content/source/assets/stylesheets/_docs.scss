@@ -42,7 +42,6 @@
 
   %sidebar-link {
     color: $sidebar-link-color;
-    font-size: $sidebar-font-size;
     overflow-wrap: break-word;
 
     &:focus,
@@ -79,7 +78,7 @@
       padding: 4px;
     }
     input {
-      font-size: 0.625rem;
+      font-size: 0.8rem;
       height: 100%;
       margin-bottom: 1px;
       padding-left: 28px;
@@ -115,7 +114,6 @@
     padding-top: 10px;
     
     li {
-      line-height: 1.156rem;
       padding: 0 0 11px 0;
 
       a {

@@ -98,21 +98,12 @@
   p,
   li,
   .alert {
-    font-size: 1.063rem;
-    line-height: 1.647em;
+    @extend .g-type-long-body;
     margin: 0 0 $font-size-default;
-    -webkit-font-smoothing: antialiased;
   }
 
   .alert p:last-child {
     margin-bottom: 0;
-  }
-
-  pre,
-  code,
-  pre code,
-  tt {
-    line-height: 1.926em;
   }
 
   code {
@@ -182,6 +173,15 @@
   h2 {
     padding-bottom: 3px;
     border-bottom: 1px solid $gray-light;
+  }
+
+  h1 > code,
+  h2 > code,
+  h3 > code,
+  h4 > code,
+  h5 > code h6 > code {
+    color: inherit;
+    font-size: 90%;
   }
 
   table {
