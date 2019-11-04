@@ -15,19 +15,22 @@ couple of recommended approaches for managing sensitive state in Terraform.
 
 ## Using the `Sensitive` Flag
 
-When working with a field that is likely to contain sensitive information, it
-is best to set the
+When working with a field that contains information likely to be considered
+sensitive, it is best to set the
 [`Sensitive`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#Schema.Sensitive)
 property on its schema to `true`. This will prevent the field's values from
-showing up in CLI output and in Terraform Cloud. It will not encrypt or obscure
+showing up in CLI output and in Terraform Cloud. It will **not encrypt** or obscure
 the value in the state, however.
 
 ## Storing Only a Hash
 
-Providers can also protect sensitive information by simply not storing it.
-Storing a hash of the information instead of the value itself is popular when:
+Providers can also add a layer of protection for sensitive information by
+hashing the information.  Storing a hash of the information instead of the
+value itself is popular when:
 
-* The value is set by the provider/the API, and cannot be set in the config
+* The value is set by the provider/the API, and cannot be set in the config.
+  (This usually looks like `Computed` being set to `true` and `Optional` and
+  `Required` both being set to `false`.)
 * The value does not need to be interpolated in cleartext
 * It is useful for other resources or to the provider to know when the value
   has changed.
@@ -52,10 +55,11 @@ cleartext on machines running `terraform apply`. This means the original
 problem the PGP key pattern was intended to solve has a better-supported
 solution, and we're deprecating it in favor of that solution.
 
-The strategies also have drawbacks. They can't be reliably interpolated,
-Terraform isn't built to provide a good user experience around a missing PGP
-key right now, and the approach needs serious modification to not violate
-protocol requirements for Terraform 0.12 and into the future.
+Even without comparing it to full state encryption, PGP key encryption has
+major drawbacks. Values encrypted with a PGP key can't be reliably
+interpolated, Terraform isn't built to provide a good user experience around a
+missing PGP key right now, and the approach needs serious modification to not
+violate protocol requirements for Terraform 0.12 and into the future.
 
 In light of these shortcomings, the encouraged solution at this time is to use
 a state backend that supports operations and encryption, and for users whose
