@@ -132,6 +132,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo unzip daemontools git-core ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd
 ```
 
+If an Instance Profile is used in AWS the worker image will use those permissions for Terraform operations unless other credentials are passed via environment variables.
+
 ### Image initialization
 To run initialization commands in your image during runtime, create a script at `/usr/local/bin/init_custom_worker.sh` and make it executable. This script, and all commands it invokes, will be executed before TFE runs `terraform init`.
 
