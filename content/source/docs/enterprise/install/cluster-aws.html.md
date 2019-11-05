@@ -36,7 +36,7 @@ This page should be used in conjunction with the module's documentation on the T
 
 Before you begin, follow the [Pre-Install Checklist](../before-installing/index.html) and ensure you have all of the prerequisites. This checklist includes several important decisions, some supporting infrastructure, and necessary credentials.
 
-In particular, note that Terraform Enterprise's certificate must be available in ACM.
+In particular, note that Terraform Enterprise's certificate must be available in ACM matching the domain provided or via ARN.
 
 ## Prepare a Machine for Terraform
 
