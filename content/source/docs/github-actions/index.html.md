@@ -3,30 +3,27 @@ layout: "github-actions"
 page_title: "Home - Terraform GitHub Actions"
 sidebar_current: "docs-github-actions-home"
 description: |-
-  Terraform GitHub Actions help validate and review Terraform Pull Requests.
+  Terraform GitHub Actions allow executing Terraform commands via GitHub Actions.
 ---
 
 # Terraform GitHub Actions
 
-This is the documentation for Terraform's GitHub Actions.
+This is the documentation for Terraform GitHub Actions.
 
-[GitHub Actions](https://developer.github.com/actions) allow you to run commands in reaction to GitHub events.
-Terraform's GitHub Actions are designed to run on new and updated Pull Requests to help you review
-and validate Terraform changes.
+[GitHub Actions](https://developer.github.com/actions) allow you to run commands in response to GitHub events such as pushing a new commit. Terraform GitHub Actions are designed to execute Terraform commands to help you review and validate Terraform changes. When Terraform GitHub Actions are executed on a pull request, a comment may be posted on the pull request conversation detailing the outcome of the GitHub Actions step.
 
-If you are new to Terraform's GitHub Actions, begin with the
-[Getting Started Guide](./getting-started/index.html).
+If you are new to Terraform GitHub Actions, begin with the [Getting Started](./getting-started.html) guide.
 
-Here are some example outputs from Terraform's GitHub Actions:
+Here are screenshots showing some of the information Terraform GitHub Actions will post to a pull request.
 
-### Terraform Fmt
+## Terraform Format
 
-![Terraform Fmt Action](./actions/images/fmt.png)
+![Terraform Format Screenshot](./images/fmt.png)
 
-### Terraform Validate
+## Terraform Validate
 
-![Terraform Validate Action](./actions/images/validate.png)
+![Terraform Validate Screenshot](./images/validate.png)
 
-### Terraform Plan
+## Terraform Plan
 
-![Terraform Plan Action](./actions/images/plan.png)
+![Terraform Plan Screenshot](./images/plan.png)
