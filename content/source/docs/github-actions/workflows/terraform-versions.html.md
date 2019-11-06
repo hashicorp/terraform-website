@@ -1,12 +1,12 @@
 ---
 layout: "github-actions"
 page_title: "Terraform Versions - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-workflows-tf-versions"
+sidebar_current: "docs-github-actions-workflows-terraform-versions"
 ---
 
 # Terraform Versions
 
-Specify the version of Terraform to be executed using the `tf_actions_version` input.
+Specify the version of Terraform to be executed using the `tf_actions_version` input. Here, Terraform 0.12.13 is being used.
 
 ```yaml
 name: 'Terraform GitHub Actions'

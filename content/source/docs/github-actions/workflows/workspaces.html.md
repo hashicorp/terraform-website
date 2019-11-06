@@ -27,8 +27,8 @@ jobs:
           tf_actions_working_dir: '.'
           tf_actions_comment: true
         env:
-          TF_WORKSPACE: development
+          TF_WORKSPACE: dev
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-If using the `remote` backend with the `name` argument, the configured workspace will be created for you. If using the `remote` backend with the `prefix` arugmnet, the configured workspace must already exist and will not be created for you.
+If using the `remote` backend with the `name` argument, the configured workspace will be created for you. If using the `remote` backend with the `prefix` argument, the configured workspace must already exist and will not be created for you.

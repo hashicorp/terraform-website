@@ -10,8 +10,8 @@ Terraform GitHub Actions are designed to be configurable for most workflows.
 
 See the links below for examples of common workflows.
 
-- [fmt](./fmt.html)
-- [init](./init.html)
-- [validate](./validate.html)
-- [plan](./plan.html)
-- [apply](./apply.html)
+- [Backends](./backends.html)
+- [Terraform Versions](./terraform-versions.html)
+- [Variables](./variables.html)
+- [Working Directory](./working-directory.html)
+- [Workspaces](./workspaces.html)
