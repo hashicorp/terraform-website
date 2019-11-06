@@ -48,27 +48,21 @@
           }
 
           h1 {
-            font-size: 2.4rem;
             margin: 24px 0 16px;
 
             @media (min-width: 768px) {
-              font-size: 3.2rem;
               margin-top: 32px;
             }
 
             @media (min-width: 992px) {
-              font-size: 4.8rem;
               margin-top: 40px;
             }
           }
 
           p {
-            font-size: 1.6rem;
-            font-weight: 300;
             margin: 16px 0 32px;
 
             @media (min-width: 768px) {
-              font-size: 2.4rem;
               margin-bottom: 40px;
             }
           }
@@ -77,18 +71,17 @@
             background: transparent;
             border-radius: 3px;
             color: $black;
-            display: inline-block;
-            font-size: 1.4rem;
-            padding: 16px;
-            &.no-bg {
-              padding-left: 2px;
-            }
-            line-height: 1.7;
+            display: inline-flex;
             margin-bottom: -2rem;
+            padding: 16px;
+
             @media (min-width: 992px) {
-              line-height: 1.4;
               padding-left: 12px;
               padding-right: 12px;
+            }
+
+            &.no-bg {
+              padding-left: 2px;
             }
 
             span {
@@ -97,8 +90,6 @@
                 border-radius: 2px;
                 border: 1px solid #5f43e9;
                 color: $black;
-                font-size: 1.2rem;
-                font-weight: 700;
                 margin-right: 4px;
                 padding: 2px 9px;
                 text-transform: uppercase;
@@ -119,16 +110,12 @@
             }
           }
 
-          .g-btn {
+          .button {
             min-width: 129px;
             margin: 0 5px 10px;
 
             @media (min-width: 400px) {
               margin: 0 10px;
-            }
-
-            @media (max-width: 767px) {
-              padding: 6px 5px;
             }
 
             @media (min-width: 768px) {
@@ -139,7 +126,7 @@
               min-width: 144px;
             }
 
-            & + .g-btn {
+            & + .button {
               @media (min-width: 768px) {
                 margin-left: 10px;
               }
@@ -151,17 +138,14 @@
           }
 
           .secondary-link {
-            border-bottom: 1px dashed $terraform-purple-dark;
+            border-bottom: 1px dashed $terraform-d1;
             color: $black;
             display: inline-block;
-            font-size: 1.4rem;
-            font-weight: 600;
             margin: 24px 0 48px;
             padding-bottom: 4px;
             transition: all 0.25s ease;
 
             @media (min-width: 992px) {
-              font-size: 1.6rem;
               margin-top: 32px;
               margin-bottom: 0;
             }
@@ -204,8 +188,6 @@
         cursor: pointer;
         display: flex;
         flex-direction: column;
-        font-size: 1.2rem;
-        font-weight: 600;
         justify-content: center;
         margin: 0 25px;
         text-transform: uppercase;
@@ -232,7 +214,7 @@
           width: 64px;
 
           span {
-            background: $terraform-purple;
+            background: $terraform;
             height: 2px;
             left: 0;
             position: absolute;
@@ -365,20 +347,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 2rem;
+  padding-left: 20px;
+
   & > div {
     height: 90%;
     display: flex;
     justify-content: center;
+
     & > a {
       display: flex;
       align-items: center;
       height: 60%;
       border-radius: 2px;
-      padding: 1.6rem;
-      border: 1px solid $terraform-purple-dark;
+      padding: 1rem;
+      border: 1px solid $terraform-d1;
       &:hover {
-        background: $terraform-purple-dark !important;
+        background: $terraform-d1 !important;
         color: $white !important;
       }
     }
