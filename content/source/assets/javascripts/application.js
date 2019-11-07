@@ -9,7 +9,7 @@
 
 
 //= require terraform-overview/vendor-scripts/object-fit-images.min.js
-//= require terraform-overview/home-hero
+// DON'T require terraform-overview/home-hero, because the compressor is old.
 //= require terraform-overview/hashi-tabbed-content
 
 // Set up terraform.io UI helpers
