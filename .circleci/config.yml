@@ -9,7 +9,7 @@ references:
     rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
 
 jobs:
-  deploy-website:
+  build-website:
     docker:
       - image: *MIDDLEMAN_IMAGE
     steps:
@@ -39,15 +39,86 @@ jobs:
           command: bundle exec middleman build
 
       - run:
-          working_directory: content
-          command: ./scripts/deploy.sh
+          name: add missing tar binary
+          command: apk update && apk add tar
+
+      # saves website build directory
+      - persist_to_workspace:
+          root: content
+          paths:
+            - build
+
+      # saves git submodules
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .git/modules
+            - ext/providers
+
+  # Link check on a temporary netlify deployed site
+  docs-link-checker:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      # attach website build directory
+      - attach_workspace:
+          at: ~/project/content
+      - run: ./content/scripts/link-check.sh
+
+  deploy-website:
+    docker:
+      - image: *MIDDLEMAN_IMAGE
+    steps:
+      - checkout
+
+      - run:
+          name: add missing tar binary
+          command: apk update && apk add tar
+
+      # attach website build directory
+      - attach_workspace:
+          at: .
+
+      - run: git submodule init
+
+      # restores gem cache
+      - restore_cache:
+          key: *RUBYGEM_CACHE_KEY
+
+      # rerun build with 'ENV=production' to add analytics
+      - run:
+          name: install gems
+          command: bundle check || bundle install --path vendor/bundle --retry=3
+
+      # rerun build with 'ENV=production' to add analytics
+      - run:
+          name: middleman build
+          command: bundle exec middleman build
+
+      - run:
+          name: website deploy
+          command: |
+            wget --delete-after --level inf --no-directories --no-host-directories \
+            --no-verbose --page-requisites --recursive --spider \
+            https://www.terraform.io
 
 workflows:
   version: 2
   website:
     jobs:
-      - deploy-website:
-          context: static-sites
+      - build-website
+      - docs-link-checker:
+          requires:
+            - build-website
           filters:
             branches:
-              only: master
+              ignore:
+                - /^pull\/.*$/ # only run link checker on non forks
+      - deploy-website:
+          requires:
+            - docs-link-checker
+          context: static-sites
+          # filters:
+          #   branches:
+          #     only: master
