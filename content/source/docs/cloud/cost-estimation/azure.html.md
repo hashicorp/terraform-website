@@ -13,12 +13,12 @@ Below is a list of resources that cost estimation supports so far. Resources tha
 
 | Resource | Status |
 | -- | -- |
-| azurerm_managed_disk | IC |
-| azurerm_virtual_machine | IC |
-| azurerm_virtual_machine_scale_set | IC |
-| azurerm_network_security_group | DNI |
-| azurerm_resource_group | DNI |
-| azurerm_sql_virtual_network_rule | DNI |
-| azurerm_subnet | DNI |
-| azurerm_subnet_route_table_association | DNI |
-| azurerm_virtual_network | DNI |
+| azurerm_managed_disk | incurs cost |
+| azurerm_virtual_machine | incurs cost |
+| azurerm_virtual_machine_scale_set | incurs cost |
+| azurerm_network_security_group |  |
+| azurerm_resource_group |  |
+| azurerm_sql_virtual_network_rule |  |
+| azurerm_subnet |  |
+| azurerm_subnet_route_table_association |  |
+| azurerm_virtual_network |  |
