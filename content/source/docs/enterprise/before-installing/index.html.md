@@ -168,6 +168,14 @@ For other Linux distributions, check Docker compatibility:
 
 ~> **Important:** We do not recommend running Docker under a 2.x kernel.
 
+### AWS-Specific Configuration
+
+Terraform Enterprise's instance profile serves as default credentials for Terraform's AWS provider. Workspaces without environment variables for credentials will attempt to use the instance profile to provision AWS resources.
+
+By default, clustered deployments use an instance profile with very minimal permissions; for individual deployments, the instance profile is the operator's responsibility.
+
+If you plan to specify any non-default permissions for Terraform Enterprise's instance profile, be aware that Terraform runs might use those permissions and plan accordingly.
+
 ### SELinux
 
 SELinux is supported when Terraform Enterprise runs in `External Services` mode and only the default SELinux policies provided by RedHat are used. Terraform Enterprise v201812-1 or later is required for this support.
