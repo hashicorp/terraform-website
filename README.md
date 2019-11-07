@@ -26,12 +26,14 @@ The `stable-website` branch in Terraform and the provider repos has some special
 
 ## Deploying Changes to [terraform.io][]
 
-- **If your changes can be deployed any time in the next day or two:** merge the PR and don't sweat it.
-- **If you need your changes deployed immediately:** merge the PR and ask someone in the #proj-terraform-docs channel to do a manual deploy.
+- **For changes in this repo:** Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
+- **For changes in hashicorp/terraform or terraform-providers/anything:** Merge the PR to master. Then, either:
+    - Wait for the next release of the project in question. The changes will be deployed automatically.
+    - If you don't want to wait for a release, cherry-pick the commit(s) to that repo's `stable-website` branch and push. Then, either:
+        - Wait for the next unrelated site deploy (probably happening in a couple hours), which will pick up your changes automatically.
+        - Do a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so.
 
-The [terraform.io][] site gets deployed by a CI job, currently managed by HashiCorp's internal TeamCity instance. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a new version of Terraform or a provider is released. In practice, the site gets deployed a few times a day.
-
-If you have TeamCity access, the job is under "Terraform OSS -> OSS Release -> 2. Deploy Website".
+The [terraform.io][] site gets deployed by a CI job, currently managed by CircleCI. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master. (Note that Terraform releases and provider releases create sync commits to terraform-website, which will trigger a deploy.) In practice, the site gets deployed a few times a day.
 
 ## Running the Site Locally
 
