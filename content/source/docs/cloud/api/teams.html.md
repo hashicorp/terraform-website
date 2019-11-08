@@ -111,7 +111,7 @@ Key path                              | Type   | Default   | Description
 `data.type`                           | string |           | Must be `"teams"`.
 `data.attributes.name`                | string |           | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 `data.attributes.organization-access` | object | (nothing) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
-`data.attributes.visibility` **(beta)** | string | `"secret"`| The team's visibility. Must be "secret" or "organization" (visible).
+`data.attributes.visibility` **(beta)** | string | `"secret"`| The team's visibility. Must be `"secret"` or `"organization"` (visible).
 
 ### Sample Payload
 
@@ -264,7 +264,7 @@ Key path                              | Type   | Default   | Description
 `data.type`                           | string |           | Must be `"teams"`.
 `data.attributes.name`                | string | (previous value) | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 `data.attributes.organization-access` | object | (previous value) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
-`data.attributes.visibility` **(beta)** | string | (previous value) | The team's visibility. Must be "secret" or "organization" (visible).
+`data.attributes.visibility` **(beta)** | string | (previous value) | The team's visibility. Must be `"secret"` or `"organization"` (visible).
 
 ### Sample Payload
 

@@ -40,8 +40,8 @@ The teams page includes a list of the organization's teams. Clicking a team in t
 
 The team settings page lists the team's current members, with badges to indicate which users have [two-factor authentication](./2fa.html) enabled.
 
-Only organization owners can manage teams or view the full list of teams. Other users can view any teams marked as visible within the organization or they
-are members of (including secret teams). See [Team Visibility](./teams.html#team-visibility) for more information.
+Only organization owners can manage teams or view the full list of teams. Other users can view any teams marked as visible within the organization, plus any secret teams they
+are members of. See [Team Visibility](./teams.html#team-visibility) for more information.
 
 ### Creating and Deleting Teams
 
@@ -74,13 +74,13 @@ Typically, your team structure will mirror your company's group structure. The [
 
 -> **API:** See the [Teams API](../api/teams.html). <br/>
 
-Team Visibility controls who can see a team within the organization.
+Team visibility controls who can see a team within the organization.
 
-* When a team is set to `Visible`, every user in the organization can see the
+* When a team is set to "Visible", every user in the organization can see the
 team and its membership on the Teams page. Non-members have read-only access;
-they cannot generate a Team API token, for instance.
-* When a team is set to `Secret`, only team members and organization owners can
-read a team and its membership. _This is the default setting._
+they cannot generate a team API token, for instance.
+* When a team is set to "Secret", only team members and organization owners can
+read a team and its membership. This is the default setting.
 
 Setting a team's visibility is useful for various reasons. Some examples include:
 
