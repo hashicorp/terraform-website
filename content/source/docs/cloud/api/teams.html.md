@@ -161,7 +161,7 @@ $ curl \
         "can-update-visibility": true
       },
       "users-count": 0,
-      "visibility": "secret",
+      "visibility": "secret"
     },
     "id": "team-6p5jTwJQXwqZBncC",
     "links": {
