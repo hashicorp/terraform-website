@@ -474,3 +474,7 @@
 	path = ext/providers/cherryservers
 	url = https://github.com/terraform-providers/terraform-provider-cherryservers
 	branch = stable-website
+[submodule "ext/providers/vthunder"]
+	path = ext/providers/vthunder
+	url = https://github.com/terraform-providers/terraform-provider-vthunder
+	branch = stable-website
