@@ -82,12 +82,8 @@ they cannot generate a team API token, for instance.
 * When a team is set to "Secret", only team members and organization owners can
 read a team and its membership. This is the default setting.
 
-Setting a team's visibility is useful for various reasons. Some examples include:
-
-* Non-owner users with [Admin access](./permissions.html#admin) to a workspace can add teams to the
-workspace at any access level. The teams they can add include teams they are members of and the organization's `Visible` teams.
-* A team could be given extremely privileged access where it might be desirable to hide the team's existence
-and membership from the rest of the organization's non-owner users. This team could be set to `Secret`.
+To simplify workspace administration, we recommend making most (or all) teams visible. Secret teams should only have 
+[organization-level permissions](./permissions.html#organization-level-permissions), since workspace admins can't manage permissions for teams they can't view.
 
 ### API Tokens
 
