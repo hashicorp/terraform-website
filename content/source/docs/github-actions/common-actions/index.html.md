@@ -1,7 +1,7 @@
 ---
 layout: "github-actions"
 page_title: "Workflows - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-workflows"
+sidebar_current: "docs-github-actions-common-actions"
 ---
 
 # Configuration

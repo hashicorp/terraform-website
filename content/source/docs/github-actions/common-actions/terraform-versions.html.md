@@ -1,14 +1,12 @@
 ---
 layout: "github-actions"
-page_title: "Backends - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-workflows-backends"
+page_title: "Terraform Versions - Terraform GitHub Actions"
+sidebar_current: "docs-github-actions-common-actions-terraform-versions"
 ---
 
-# Terraform Backends
+# Terraform Versions
 
-Terraform GitHub Actions supports initializing a `backend` block using the `-backend-config` option.
-
-The example below shows how to pass the `token` and `organization` arguments to the `remote` backend block. The `token` argument is passed using GitHub Actions secrets while the organization is hardcoded.
+Specify the version of Terraform to be executed using the `tf_actions_version` input. Here, Terraform 0.12.13 is being used.
 
 ```yaml
 name: 'Terraform GitHub Actions'
@@ -28,7 +26,6 @@ jobs:
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: '.'
           tf_actions_comment: true
-        args: '-backend-config="token=${{ secrets.TF_API_TOKEN }}" -backend-config="organization=CHANGE_ME"'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```

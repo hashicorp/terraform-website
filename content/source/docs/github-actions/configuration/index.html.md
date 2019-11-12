@@ -79,7 +79,7 @@ jobs:
 
 ## Inputs
 
-Inputs configure Terraform GitHub Actions to perform different actions.
+Inputs configure Terraform GitHub Actions to perform different actions. Input values can be specified using the `with` attribute.
 
 * `tf_actions_version` - (Required) The Terraform version to install and execute.
 * `tf_actions_subcommand` - (Required) The Terraform subcommand to execute. Valid values are `fmt`, `init`, `validate`, `plan`, and `apply`.
@@ -88,19 +88,23 @@ Inputs configure Terraform GitHub Actions to perform different actions.
 
 ## Outputs
 
-Outputs are used to pass information to subsequent GitHub Actions steps.
+Outputs are used to pass information to subsequent GitHub Actions steps. This allows a subsequent step within a job to perform different actions based on the output of previous steps. More information regarding outputs can be found in the [GitHub Actions documentation](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/metadata-syntax-for-github-actions#outputs).
 
 * `tf_actions_plan_has_changes` - Whether or not the Terraform plan contained changes.
 
 ## Secrets
 
-Secrets are similar to inputs except that they are encrypted and only used by GitHub Actions. It's a convenient way to keep sensitive data out of the GitHub Actions workflow YAML file.
+
+
+Secrets allow the GitHub Actions workflow YAML to reference encrypted values that are stored outside the YAML. GitHub Actions provides some secrets by default, but arbitrary secrets can also be configured. To configure secrets for a GitHub repository, navigate to Settings > Secrets within a repository. For more information regarding creating and using secrets, refer to the [GitHub Actions documentation](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets).
+
+Terraform GitHub Actions expect the following secret values to be provided as environment variables using the `env` attribute.
 
 * `GITHUB_TOKEN` - The GitHub API token used to post comments to pull requests. Not required if the `tf_actions_comment` input is set to `false`.
 
 Other secrets may be needed to authenticate with Terraform backends and providers.
 
-**WARNING:** These secrets could be exposed if the action is executed on a malicious Terraform file. To avoid this, it is recommended not to use these Terraform GitHub Actions on repositories where untrusted users can submit pull requests.
+!> **Warning:** These secrets could be exposed if the action is executed on a malicious Terraform file. To avoid this, we recommend not using Terraform GitHub Actions on repositories where untrusted users can submit pull requests.
 
 ## Environment Variables
 
@@ -114,4 +118,4 @@ The usual [Terraform environment variables](https://www.terraform.io/docs/comman
 * [`TF_CLI_ARGS_name`](https://www.terraform.io/docs/commands/environment-variables.html#tf_cli_args-and-tf_cli_args_name)
 * `TF_WORKSPACE`
 
-Other environment variables may be configured to pass data into Terraform backends and providers. If the data is sensitive, consider using [secrets](#secrets) instead.
+Other environment variables may be configured to pass data into Terraform backends and providers. If the data is sensitive, consider referencing [secrets](#secrets) instead of directly including the values.

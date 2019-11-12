@@ -376,3 +376,16 @@
 /docs/enterprise/beta/aws.html          /docs/enterprise/install/cluster-aws.html
 /docs/enterprise/beta/azure.html        /docs/enterprise/install/cluster-azure.html
 /docs/enterprise/beta/gcp.html          /docs/enterprise/install/cluster-gcp.html
+
+# GitHub Actions
+/docs/github-actions/getting-started/index.html                     /docs/github-actions/getting-started.html
+/docs/github-actions/actions/index.html                             /docs/github-actions/configuration/index.html
+/docs/github-actions/actions/fmt.html                               /docs/github-actions/configuration/fmt.html
+/docs/github-actions/actions/init.html                              /docs/github-actions/configuration/init.html
+/docs/github-actions/actions/validate.html                          /docs/github-actions/configuration/validate.html
+/docs/github-actions/actions/plan.html                              /docs/github-actions/configuration/plan.html
+/docs/github-actions/actions/apply.html                             /docs/github-actions/configuration/apply.html
+/docs/github-actions/directories.html                               /docs/github-actions/common-actions/working-directory.html
+/docs/github-actions/remote-backend.html                            /docs/github-actions/common-actions/backends.html
+/docs/github-actions/terraform-versions.html                        /docs/github-actions/common-actions/terraform-versions.html
+/docs/github-actions/workspaces.html                                /docs/github-actions/common-actions/workspaces.html
