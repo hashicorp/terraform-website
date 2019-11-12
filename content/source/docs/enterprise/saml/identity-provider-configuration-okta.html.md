@@ -22,7 +22,7 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
     - **Name ID format** (drop-down): EmailAddress (the full name for this format in the SAML specification is `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`).
     - **Application username** (drop-down): Email
 
-    ~> **Important:** TFE usernames must be at least 3 characters. If Email is not used as the application username, ensure that your Okta username or other method selected contains only usernames having at least 3 characters. For example, if Email Prefix is selected and the email is Jo@domain.com, the user will not be able to login and receive the message "ERROR: Validation failed: Username must have at least 3 characters"
+    ~> **Important:** TFE usernames must be at least 3 characters. If Email is not used as the application username, ensure that your Okta username or other method selected contains only usernames having at least 3 characters. For example, if Email Prefix is selected and the email is Jo@domain.com, the user will not be able to log in and will receive the message "ERROR: Validation failed: Username must have at least 3 characters".
 
     ![Screenshot: The "Configure SAML" page of Okta's new app workflow, with the specified settings entered.](./images/sso-okta-new-application-saml.png)
 5. Still in the "Configure SAML" page, configure a group attribute statement to report which teams a user belongs to. Under the "Group Attribute Statements (Optional)" header, configure the statement as follows:
