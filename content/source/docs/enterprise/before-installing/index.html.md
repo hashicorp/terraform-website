@@ -77,13 +77,13 @@ To deploy Terraform Enterprise, you must obtain a license file from HashiCorp.
 
 ### TLS Certificate and Private Key
 
-Terraform Enterprise requires a TLS certificate and private key in order to operate. This certificate must match Terraform Enterprise's hostname (or the hostname of the load balancer for clusters), and ideally it should be a wildcard certificate.
+Terraform Enterprise requires a TLS certificate and private key in order to operate. This certificate must match Terraform Enterprise's hostname (or the hostname of the load balancer for clusters), either by being issued for the FQDN or ideally being a wildcard certificate.
 
 The certificate can be signed by a public or private CA, but it _must_ be trusted by all of the services that Terraform Enterprise is expected to interface with; this includes your VCS provider, any CI systems or other tools that call Terraform Enterprise's API, and any services that Terraform Enterprise workspaces might send notifications to (for example: Slack). Due to these wide-ranging interactions, we recommend using a certificate signed by a public CA.
 
 If you are using clustered deployment, you might need to ensure the certificate is available in your cloud provider's certificate management service:
 
-- For AWS clusters, the certificate must be available in ACM.
+- For AWS clusters, the certificate must be available in ACM matching the domain provided or via ARN.
 - For Azure clusters, the certificate can be provided as a file but must be in PFX format.
 - For GCP clusters, the certificate can be provided as a file or as a GCP certificate link.
 
