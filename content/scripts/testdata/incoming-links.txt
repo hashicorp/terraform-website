@@ -479,9 +479,9 @@
 /docs/providers/azure/r/instance.html
 /docs/providers/azure/r/local_network_connection.html
 /docs/providers/azurerm/
-/docs/providers/azurerm/auth/azure_cli.html
-/docs/providers/azurerm/auth/managed_service_identity.html
-/docs/providers/azurerm/auth/service_principal_client_secret.html
+/docs/providers/azurerm/guides/azure_cli.html
+/docs/providers/azurerm/guides/managed_service_identity.html
+/docs/providers/azurerm/guides/service_principal_client_secret.html
 /docs/providers/azurerm/d/application_security_group.html
 /docs/providers/azurerm/d/app_service.html
 /docs/providers/azurerm/d/image.html
