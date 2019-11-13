@@ -46,7 +46,7 @@ Decide where you'll be running Terraform, and ensure:
 
 - [The latest Terraform 0.11 release][tf11] is installed and available in the PATH.
 - The system running Terraform has access to the target subnet.
-- The system running Terraform can authenticate to GCP. For more details, see [Google Provider Configuration Reference: Credentials](/docs/providers/google/provider_reference.html#credentials-1).
+- The system running Terraform can authenticate to GCP. For more details, see [Google Provider Configuration Reference: Credentials](/docs/providers/google/guides/provider_reference.html#credentials-1).
 - You're familiar enough with Terraform to write simple configurations that call [modules ](/docs/configuration-0-11/modules.html) and specify [output values](/docs/configuration-0-11/outputs.html).
 
 ## Prepare Infrastructure

@@ -683,7 +683,7 @@
 /docs/providers/google/d/google_organization.html
 /docs/providers/google/getting_started.html
 /docs/providers/google/index.html
-/docs/providers/google/provider_reference.html
+/docs/providers/google/guides/provider_reference.html
 /docs/providers/google/provider_versions.html
 /docs/providers/google/r/bigquery_dataset.html
 /docs/providers/google/r/bigtable_instance.html
