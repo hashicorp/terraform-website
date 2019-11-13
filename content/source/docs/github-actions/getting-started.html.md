@@ -5,7 +5,7 @@ page_title: "Getting Started - Terraform GitHub Actions"
 
 # Getting Started
 
-Terraform GitHub Actions allow you to execute Terraform commands in response to a GitHub event such as updating a pull request or pushing a new commit on a specific branch. Technically speaking, the Terraform GitHub Actions repository contains a single GitHub Action that can be configured to execute different Terraform subcommands. See the [Configuration](./configuration/index.html) section for more details regarding the Terraform subcommands that are supported. 
+Terraform GitHub Actions allow you to execute Terraform commands in response to a GitHub event such as updating a pull request or pushing a new commit on a specific branch. Technically speaking, the Terraform GitHub Actions repository contains a single GitHub Action that can be configured to execute different Terraform subcommands. See the [Configuration](./configuration/index.html) section for more details regarding the Terraform subcommands that are supported.
 
 The most straightforward way to get started with Terraform GitHub Actions is to follow the recommended workflow below.
 
@@ -58,7 +58,7 @@ This workflow will run `terraform fmt`, `terraform init`, `terraform validate`, 
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     ```
 
-    ~> **Note:** If your Terraform files require provider credentials for commands such as `terraform init`, then you will need to add those credentials as variables within your GitHub Actions workflow YAML file. See [Variables](./workflows/variables.html) for details.
+    ~> **Note:** If your Terraform files require provider credentials for commands such as `terraform init`, then you will need to add those credentials as variables within your GitHub Actions workflow YAML file. See [Variables](./common-tasks/variables.html) for details.
 
 1. Create a new pull request for your new branch.
 
