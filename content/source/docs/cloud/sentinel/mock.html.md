@@ -15,8 +15,8 @@ generate mock data from existing configurations. This can be used to create
 sample data for a new policy, or data to reproduce issues in an existing one.
 
 Testing policies is done using the [Sentinel
-Simulator](https://docs.hashicorp.com/sentinel/commands/). More general
-information on testing Sentinel policies can be found in the [Testing
+CLI](https://docs.hashicorp.com/sentinel/commands/). More general information on
+testing Sentinel policies can be found in the [Testing
 section](https://docs.hashicorp.com/sentinel/writing/testing) of the [Sentinel
 runtime documentation](https://docs.hashicorp.com/sentinel).
 
