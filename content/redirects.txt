@@ -389,3 +389,10 @@
 /docs/github-actions/remote-backend.html                            /docs/github-actions/common-tasks/backends.html
 /docs/github-actions/terraform-versions.html                        /docs/github-actions/common-tasks/terraform-versions.html
 /docs/github-actions/workspaces.html                                /docs/github-actions/common-tasks/workspaces.html
+
+# Prepping for docs relocation for Google provider
+/docs/providers/google/provider_reference.html                      /docs/providers/google/guides/provider_reference.html
+/docs/providers/google/provider_versions.html                       /docs/providers/google/guides/provider_versions.html
+/docs/providers/google/getting_started.html                         /docs/providers/google/guides/getting_started.html
+/docs/providers/google/version_2_upgrade.html                       /docs/providers/google/guides/version_2_upgrade.html
+/docs/providers/google/version_3_upgrade.html                       /docs/providers/google/guides/version_3_upgrade.html
