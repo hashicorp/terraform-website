@@ -5,11 +5,11 @@ page_title: "Arguments - Terraform GitHub Actions"
 
 # Arguments
 
-Arguments can be passed to each subcommand in two ways.
+Use either the `args` attribute or environment variables to pass arguments to a Terraform subcommand in the GitHub Actions workflow YAML.
 
 ## Using Arguments
 
-GitHub Actions supports an `args` attribute that will pass arguments to the Terraform subcommand. Using this `args` attribute will place the arguments at the end of the entire `terraform` command, even after all of the arguments defined in the source code. In this example, the argument `-var="env=dev"` will be appended to the `terraform init` command.
+Each step in a job can include an `args` attribute with arguments for the Terraform subcommand. Using this `args` attribute will place the arguments at the end of the entire `terraform` command, even after all of the arguments defined in the source code. In this example, the argument `-var="env=dev"` will be appended to the `terraform init` command.
 
 ```yaml
 name: 'Terraform GitHub Actions'

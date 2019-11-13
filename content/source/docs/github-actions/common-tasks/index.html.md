@@ -9,6 +9,7 @@ Terraform GitHub Actions are designed to be configurable for most workflows.
 
 However, some Terraform features require slightly different configuration when used in GitHub Actions. See the links below for examples of how to use various Terraform features within GitHub Actions.
 
+- [Arguments](./arguments.html)
 - [Backends](./backends.html)
 - [Terraform Versions](./terraform-versions.html)
 - [Variables](./variables.html)

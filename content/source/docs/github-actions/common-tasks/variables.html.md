@@ -5,7 +5,7 @@ page_title: "Terraform Variables - Terraform GitHub Actions"
 
 # Terraform Variables
 
-Variables can be configured directly in the GitHub Actions workflow YAML a few ways.
+Use either the `args` attribute or environment variables to set values for Terraform variables in the GitHub Actions workflow YAML.
 
 ## Using Arguments
 
