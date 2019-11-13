@@ -1,12 +1,11 @@
 ---
 layout: "github-actions"
-page_title: "Terraform Versions - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-common-actions-terraform-versions"
+page_title: "Workspaces - Terraform GitHub Actions"
 ---
 
-# Terraform Versions
+# Terraform Workspaces
 
-Specify the version of Terraform to be executed using the `tf_actions_version` input. Here, Terraform 0.12.13 is being used.
+The workspace can be specified using the `TF_WORKSPACE` environment variable.
 
 ```yaml
 name: 'Terraform GitHub Actions'
@@ -27,5 +26,8 @@ jobs:
           tf_actions_working_dir: '.'
           tf_actions_comment: true
         env:
+          TF_WORKSPACE: dev
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+If using the `remote` backend with the `name` argument, the configured workspace will be created for you. If using the `remote` backend with the `prefix` argument, the configured workspace must already exist and will not be created for you.

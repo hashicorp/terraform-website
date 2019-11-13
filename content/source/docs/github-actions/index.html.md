@@ -1,7 +1,6 @@
 ---
 layout: "github-actions"
 page_title: "Home - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-home"
 description: |-
   Terraform GitHub Actions allow executing Terraform commands via GitHub Actions.
 ---

@@ -1,7 +1,6 @@
 ---
 layout: "github-actions"
 page_title: "Format - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-configuration-fmt"
 ---
 
 # Terraform Format Subcommand

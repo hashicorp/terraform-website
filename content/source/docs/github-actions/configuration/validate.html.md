@@ -1,7 +1,6 @@
 ---
 layout: "github-actions"
 page_title: "Validate - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-configuration-validate"
 ---
 
 # Terraform Validate Subcommand

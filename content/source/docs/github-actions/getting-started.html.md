@@ -1,7 +1,6 @@
 ---
 layout: "github-actions"
 page_title: "Getting Started - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-getting-started"
 ---
 
 # Getting Started

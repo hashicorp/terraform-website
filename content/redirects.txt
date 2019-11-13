@@ -385,7 +385,7 @@
 /docs/github-actions/actions/validate.html                          /docs/github-actions/configuration/validate.html
 /docs/github-actions/actions/plan.html                              /docs/github-actions/configuration/plan.html
 /docs/github-actions/actions/apply.html                             /docs/github-actions/configuration/apply.html
-/docs/github-actions/directories.html                               /docs/github-actions/common-actions/working-directory.html
-/docs/github-actions/remote-backend.html                            /docs/github-actions/common-actions/backends.html
-/docs/github-actions/terraform-versions.html                        /docs/github-actions/common-actions/terraform-versions.html
-/docs/github-actions/workspaces.html                                /docs/github-actions/common-actions/workspaces.html
+/docs/github-actions/directories.html                               /docs/github-actions/common-tasks/working-directory.html
+/docs/github-actions/remote-backend.html                            /docs/github-actions/common-tasks/backends.html
+/docs/github-actions/terraform-versions.html                        /docs/github-actions/common-tasks/terraform-versions.html
+/docs/github-actions/workspaces.html                                /docs/github-actions/common-tasks/workspaces.html

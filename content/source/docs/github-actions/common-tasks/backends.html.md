@@ -1,7 +1,6 @@
 ---
 layout: "github-actions"
 page_title: "Backends - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-common-actions-backends"
 ---
 
 # Terraform Backends

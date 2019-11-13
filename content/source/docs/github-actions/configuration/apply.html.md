@@ -1,7 +1,6 @@
 ---
 layout: "github-actions"
 page_title: "Apply - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-configuration-apply"
 ---
 
 # Terraform Apply Subcommand

@@ -1,7 +1,6 @@
 ---
 layout: "github-actions"
 page_title: "Plan - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-configuration-plan"
 ---
 
 # Terraform Plan Subcommand

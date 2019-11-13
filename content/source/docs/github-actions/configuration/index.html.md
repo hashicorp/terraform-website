@@ -1,7 +1,6 @@
 ---
 layout: "github-actions"
 page_title: "Configuration - Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-configuration"
 ---
 
 # Configuration

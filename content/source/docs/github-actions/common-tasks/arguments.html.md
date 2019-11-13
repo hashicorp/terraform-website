@@ -1,7 +1,6 @@
 ---
 layout: "github-actions"
-page_title: "Arguments- Terraform GitHub Actions"
-sidebar_current: "docs-github-actions-common-actions-arguments"
+page_title: "Arguments - Terraform GitHub Actions"
 ---
 
 # Arguments
