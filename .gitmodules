@@ -478,3 +478,7 @@
 	path = ext/providers/vthunder
 	url = https://github.com/terraform-providers/terraform-provider-vthunder
 	branch = stable-website
+[submodule "ext/providers/huaweicloudstack"]
+	path = ext/providers/huaweicloudstack
+	url = https://github.com/terraform-providers/terraform-provider-huaweicloudstack
+	branch = stable-website
