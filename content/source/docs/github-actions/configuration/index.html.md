@@ -66,6 +66,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'Terraform Plan'
+        id: 'terraform_plan'
         uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: 0.12.13
@@ -87,13 +88,13 @@ Inputs configure Terraform GitHub Actions to perform different actions. Input va
 
 ## Outputs
 
-Outputs are used to pass information to subsequent GitHub Actions steps. This allows a subsequent step within a job to perform different actions based on the output of previous steps. More information regarding outputs can be found in the [GitHub Actions documentation](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/metadata-syntax-for-github-actions#outputs).
+Outputs are used to pass information to subsequent GitHub Actions steps. This allows a subsequent step within a job to perform different actions based on the output of previous steps.
 
-* `tf_actions_plan_has_changes` - Whether or not the Terraform plan contained changes.
+To use a step's outputs, you must first specify an `id` attribute for that step. Subsequent steps can then reference its outputs as `{{ steps.<STEP ID>.outputs.<OUTPUT NAME> }}`. (For example, `{{ steps.terraform_plan.outputs.tf_actions_plan_has_changes }}`.) For more details, see the [GitHub Actions documentation for contexts and expressions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#steps-context).
+
+* `tf_actions_plan_has_changes` - Whether or not the Terraform plan contained changes. Only valid for `plan` and `apply` steps.
 
 ## Secrets
-
-
 
 Secrets allow the GitHub Actions workflow YAML to reference encrypted values that are stored outside the YAML. GitHub Actions provides some secrets by default, but arbitrary secrets can also be configured. To configure secrets for a GitHub repository, navigate to Settings > Secrets within a repository. For more information regarding creating and using secrets, refer to the [GitHub Actions documentation](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets).
 
