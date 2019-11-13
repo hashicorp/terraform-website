@@ -22,19 +22,6 @@ property on its schema to `true`. This will prevent the field's values from
 showing up in CLI output and in Terraform Cloud. It will **not encrypt** or obscure
 the value in the state, however.
 
-## Storing Only a Hash
-
-Providers can also add a layer of protection for sensitive information by
-hashing the information.  Storing a hash of the information instead of the
-value itself is popular when:
-
-* The value is set by the provider/the API, and cannot be set in the config.
-  (This usually looks like `Computed` being set to `true` and `Optional` and
-  `Required` both being set to `false`.)
-* The value does not need to be interpolated in cleartext
-* It is useful for other resources or to the provider to know when the value
-  has changed.
-
 ## Don't Encrypt State
 
 One experiment that has been attempted is allowing the user to provide a PGP
