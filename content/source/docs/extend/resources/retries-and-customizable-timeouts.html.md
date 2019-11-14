@@ -86,13 +86,13 @@ func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) err
 
     createStateConf := &resource.StateChangeConf{
         Pending: []string{
-            client.ExampleInstaceStateRequesting,
-            client.ExampleInstaceStatePending,
-            client.ExampleInstaceStateCreating,
-            client.ExampleInstaceStateVerifying,
+            client.ExampleInstanceStateRequesting,
+            client.ExampleInstanceStatePending,
+            client.ExampleInstanceStateCreating,
+            client.ExampleInstanceStateVerifying,
         },
         Target: []string{
-            client.ExampleInstaceStateCreateComplete,
+            client.ExampleInstanceStateCreateComplete,
         },
         Refresh: func() (interface{}, string, error) {
             resp, err := client.DescribeInstance(name)
