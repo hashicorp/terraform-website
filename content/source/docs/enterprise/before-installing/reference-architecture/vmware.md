@@ -92,15 +92,13 @@ of this guide. You will be prompted for the public and private certificates duri
 
 ### Application Layer
 
-The Application Layer is composed of an Auto Scaling Group and a Launch Configuration
-providing an auto-recovery mechanism in the event of an instance or Availability Zone failure.
+The Application Layer is a VMware virtual machine running on an ESX cluster
+providing an auto-recovery mechanism in the event of virtual machine or physical server failure.
 
 ### Storage Layer
 
-The Storage Layer is composed of multiple service endpoints (datastores,
-asd
-asd
-asd
+The Storage Layer is provided in the form of attached disk space configured with or benefiting from inherent resiliency
+provided by the NAS or SAN.
 
 ## Infrastructure Provisioning
 
@@ -140,36 +138,21 @@ See [the Upgrades section](../../admin/upgrades.html) of the documentation.
 ### Failure Scenarios
 
 VMWare hypervisor provides a high level of resilience in various cases
-of failure (at the server hardware layer through vMotion, at the storage
-layer through RDS, and at the network layer through virtual distributed
+of failure (at the server hardware layer through vMotion and at the network layer through virtual distributed
 networking.) In addition, having ESX failover to a DR datacenter
-provides recovery in the case of a total data center outage (see the Disaster Recovery section).
+provides recovery in the case of a total data center outage See the Disaster Recovery section.
 
 #### Terraform Enterprise Servers (VMware Virtual Machine)
 
-Through deployment of two virtual machines in different ESX clusters,
-the Terraform Enterprise Reference Architecture is designed to provide improved
-availability and reliability. Should the *TFE-main* server fail, it can
+Should the *TFE-main* server fail, it can
 be recovered, or traffic can be routed to the *TFE-standby* server to
-resume service when the failure is limited to the Terraform Enterprise server layer. The
-load balancer should be manually updated to point to the stand-by Terraform Enterprise
-VM after services have been started on it in the event of a failure.
+resume service when the failure is limited to the Terraform Enterprise server layer. See the Disaster Recovery section.
 
 #### Single ESX Server Failure
 
 In the event of a single ESX server failure, ESX will vMotion the Terraform Enterprise virtual
 machine to a functioning ESX host. This typically does not result in any
 visible outage to the end-user.
-
-#### ESX Cluster Failure
-
-```
-Check with Amy about this requirement
-
-Check with Amy about this requirement
-
-Check with Amy about this requirement
-```
 
 #### PostgreSQL Database
 
@@ -194,7 +177,7 @@ storage vendor.
 
 ### Failure Scenarios
 
-#### Terraform Enterprise Servers
+#### Terraform Enterprise Servers (VMware Virtual Machine)
 
 Through deployment of two virtual machines in different ESX clusters,
 the Terraform Enterprise Reference Architecture is designed to provide improved
@@ -216,12 +199,6 @@ Object storage will be written to the mounted storage. The expectation
 is that the storage server is replicated or backed up offsite and will
 be made available to the server in the event of a DR.
 
-#### ESX Cluster Failure
+#### ESX Cluster
 
-```
-Check with Amy about this requirement
-
-Check with Amy about this requirement
-
-Check with Amy about this requirement
-```
+In the event of a complete ESX cluster failure or datacenter failure, load-balancing should be updated to route traffic to a different datacenter and ESX cluster that is running a second stack of the Terraform Enterprise components. This second environment would be receiving storage layer replication from the primary.
