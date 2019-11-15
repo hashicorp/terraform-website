@@ -143,6 +143,7 @@
         }
         &.active:before {
           transform: rotate(90deg);
+          transform-origin: 50% .83em;
         }
       }
 
