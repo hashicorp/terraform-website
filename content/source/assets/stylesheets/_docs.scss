@@ -1,6 +1,11 @@
 #docs-sidebar {
   margin-bottom: 30px;
-  overflow: hidden;
+
+  // fallback styles for gridless browsers
+  overflow-x: hidden;
+  @supports (display: grid) {
+    overflow-x: visible;
+  }
 
   // Re-using the .nav class name on lists means we inherit some
   // unfortunate behavior from Bootstrap, so reset all that.
@@ -42,6 +47,7 @@
 
   %sidebar-link {
     color: $sidebar-link-color;
+    word-wrap: break-word;
     overflow-wrap: break-word;
 
     &:focus,
@@ -112,27 +118,46 @@
     display: block;
     padding-bottom: 15px;
     padding-top: 10px;
-    
+
     li {
       padding: 0 0 11px 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas: "marker name"
+                           "subnav subnav";
+      align-items: start;
+      grid-column-gap: .4em;
 
       a {
         @extend %sidebar-link;
-        padding-left: 6px;
-        // Hanging indent for long sidebar links:
-        // * like   (<-yes)   * like
-        //   this   (no ->)   this
+        grid-area: name;
+        max-width: 100%;
+        min-width: 0; // grid parent can shrink it
+
+        // fallback styles for gridless browsers
+        padding-left: .4em;
         display: table-cell;
+        @supports (display: grid) {
+          padding-left: 0;
+          display: inline;
+        }
       }
 
       &:before {
+        grid-area: marker;
+        text-align: center;
+
         color: $sidebar-link-color-active;
         content: '\2022';
         font-size: 0.938rem;
         opacity: 0.4;
-        position: relative;
-        // Hanging indent for long sidebar links:
+
+        // fallback styles for gridless browsers
         display: table-cell;
+        @supports (display: grid) {
+          display: inline;
+        }
       }
 
       &.has-subnav {
@@ -167,6 +192,7 @@
       display: none;
     }
     ul.nav {
+      grid-area: subnav;
       padding-top: 10px;
       padding-left: 10px;
 
