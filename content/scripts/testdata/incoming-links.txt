@@ -254,7 +254,6 @@
 /docs/providers/aws/d/vpc.html
 /docs/providers/aws/d/vpc_peering_connection.html
 /docs/providers/aws/d/vpn_gateway.html
-/docs/providers/aws/guides/iam-policy-documents.html
 /docs/providers/aws/guides/version-2-upgrade.html
 /docs/providers/aws/r/acm_certificate.html
 /docs/providers/aws/r/acm_certificate_validation.html
