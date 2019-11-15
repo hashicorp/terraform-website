@@ -29,7 +29,7 @@ jobs:
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: '.'
           tf_actions_comment: true
-        args: '-var="env=dev"'
+          args: '-var="env=dev"'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -54,7 +54,7 @@ jobs:
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: '.'
           tf_actions_comment: true
-        args: '-var-file="dev.tfvars"'
+          args: '-var-file="dev.tfvars"'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
