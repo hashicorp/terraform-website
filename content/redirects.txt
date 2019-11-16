@@ -396,3 +396,6 @@
 /docs/providers/google/getting_started.html                         /docs/providers/google/guides/getting_started.html
 /docs/providers/google/version_2_upgrade.html                       /docs/providers/google/guides/version_2_upgrade.html
 /docs/providers/google/version_3_upgrade.html                       /docs/providers/google/guides/version_3_upgrade.html
+
+# Deleted resource type
+/docs/providers/google/r/google_project_services.html               /docs/providers/google/guides/version_3_upgrade.html
