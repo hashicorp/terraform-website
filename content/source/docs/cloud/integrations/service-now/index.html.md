@@ -7,7 +7,7 @@ description: |-
 
 # Terraform ServiceNow Service Catalog Integration Setup Instructions
 
--> **Integration version:**  v1.0.0
+-> **Integration version:**  v1.1.0
 
 -> **Note:** The ServiceNow Catalog integration is designed for use by Terraform Enterprise customers. We do not currently recommend using it with the SaaS version of Terraform Cloud.
 
@@ -139,6 +139,7 @@ ServiceNow Variable Name | Terraform Enterprise Variable
 --|--
 `tf_var_VARIABLE_NAME` | Terraform Variable: `VARIABLE_NAME`
 `tf_env_ENV_NAME` | Environment Variable: `ENV_NAME`
+`sensitive_tf_var_VARIABLE_NAME` | Sensitive Terraform Variable (Write Only): `VARIABLE_NAME`
 
 This function takes the ServiceNow Variable Set and Terraform Workspace ID. It will loop through the given variable set collection and create any Terraform variables or Terraform environment variables.
 
@@ -175,8 +176,11 @@ Create Run | Creates/Queues a new run on the Terraform Enterprise workspace.
 Apply Run | Applies a run on the Terraform Enterprise workspace.
 Provision Resources | Creates a Terraform Enterprise workspace (with auto-apply), creates/queues a run, applies the run when ready.
 Provision Resources with Variables | Creates a Terraform Enterprise workspace (with auto-apply), creates any variables, creates/queues a run, applies the run when ready.
+Example Pinned Variables | Creates a Terraform Enterprise workspace (with auto-apply), creates any variables, creates/queues a run, applies the run when ready using a pinned VCS repository and variables.
+Delete Workspace | Adds a `CONFIRM_DESTROY=1` to the Terraform workspace and creates a destroy run plan.
 Poll Run State | Polls the Terraform Enterprise API for the current run state of a workspace.
 Poll Apply Run | Polls the Terraform Enterprise API and applies any pending Terraform runs.
+Poll Destroy Workspace | Queries ServiceNow Terraform Records for resources marked `is_destroyable` and deletes the corresponding Terraform workspace.
 
 ## ServiceNow ACLs
 
@@ -189,4 +193,84 @@ Access Control Roles | Description
 `x_terraform.vcs_repositories_user` | Can manage the VCS repositories available for catalog items to be ordered by end-users.
 
 For users who only need to order from the Terraform Catalog, we recommend creating another role with read-only permissions for `x_terraform_vcs_repositories` to view the available repositories for ordering infrastructure.
+
+## Example Customizations
+
+### Creating a Catalog Item with Pinned Variables
+
+This example use case is used to demo a potential solution to creating a Terraform Catalog Item for resources that limits user input to certain variables.
+
+##### Create Service Catalog Item
+
+1. Enter the ServiceNow Studio
+1. Click "Create Application File"
+  - Select "Catalog Item" under "Service Catalog" > Click "Create"
+1. Name the new Catalog Item. (Our example will be `Example With Pinned Variables`)
+1. Select Catalogs: "Terraform Catalog" > Select Categories: "Terraform Resources"
+1. Add any other descriptions you may want.
+1. Click "Submit"
+
+##### Create Variable Set
+
+1. Click "Create Application File"
+1. Select "Variable Set" > "Service Catalog" > Click "Create"
+1. Name your variable set (Our example will be `Example Pinned Variables`)
+  - This will default "Internal Name" to `example_pinned_variables`
+1. Click "Submit"
+1. Under the "Variables" tab click "New"
+  - Create your variable:
+    - In this example we will create a field called `tf_var_pet_name_length` that will be for a Terraform variable that determines the number of words to use for the pet server name.
+      - Question: `Pet Name Length`
+      - Name: `tf_var_pet_name_length`
+      - `tf_var_` tells the Terraform ServiceNow SDK that this is a Terraform Variable.
+  - Repeat variable creation as necessary for your use case.
+  - Click "Submit"
+
+##### Add Variable Set to Catalog Item
+
+1. Go back to your Catalog Item
+1. Select "Variable Sets Tab" > Click "New"
+1. Search for the Variable Set that was created (`Example Pinned Variables`)
+1. Click "Submit"
+
+##### Create Custom Workflow
+
+We will use the "Example With Pinned Variables" example workflow for our custom workflow.
+
+In the ServiceNow Studio:
+
+1. Open the "Example With Pinned Variables", Workflow > Workflow > "Example With Pinned Variables"
+1. Double click on the "Run Script" item
+1. Copy the script code from the editor
+1. Close the "Run Script" and "Workflow" window
+1. Create a new custom workflow: Create Application File > Workflow
+  - Name: `Example Pinned Variables` (replace with your custom workflow name)
+  - Table: `Requested Item [sc_req_item]` and Click "Submit"
+1. Add a "Run Script" item. Core Tab > Utilities > Run Script
+1. Name: `Example Workflow Pinned Variables`
+  - Script:
+  - Paste in the code copied from "Provision Resources with Variables"
+  - Change the following lines:
+
+    ```
+    // ** Custom Variables **
+    var VAR_SET_NAME = "example_pinned_variables";
+    var VCS_REPO     = "ORG_NAME/REPO_NAME";
+    ```
+  - Click Submit
+  - Ensure that the ServiceNow Run Script is part of the workflow. (Begin > Run Script > End)
+  - Click the menu at the top left and select "Publish"
+
+##### Set The Workflow for Catalog Item
+
+In the ServiceNow Studio:
+
+1. Select the "Example with Pinned Variables" (Service Catalog > Catalog Item > Example With Pinned Variables)
+1. Select "Process Engine" tab
+1. Set the workflow field by searching for "Example Pinned Variables" workflow and Click "Update"
+
+##### Test the Catalog Item
+
+The new item should be available in the Terraform Service Catalog. Once the new catalog item is confirmed to work, you can customize as needed.
+
 
