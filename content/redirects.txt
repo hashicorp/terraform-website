@@ -140,7 +140,7 @@
 /docs/providers/aws/r/code_commit_repository.html      /docs/providers/aws/r/codecommit_repository.html
 /docs/providers/aws/r/code_commit_trigger.html         /docs/providers/aws/r/codecommit_trigger.html
 
-# Azure Provider
+# Azure Resource Manager Provider
 /docs/providers/azurerm/auth/azure_cli.html                             /docs/providers/azurerm/guides/azure_cli.html
 /docs/providers/azurerm/auth/managed_service_identity.html              /docs/providers/azurerm/guides/managed_service_identity.html
 /docs/providers/azurerm/auth/service_principal_client_certificate.html  /docs/providers/azurerm/guides/service_principal_client_certificate.html
@@ -148,6 +148,11 @@
 /docs/providers/azurerm/authenticating_via_azure_cli.html               /docs/providers/azurerm/guides/azure_cli.html
 /docs/providers/azurerm/authenticating_via_msi.html                     /docs/providers/azurerm/guides/managed_service_identity.html
 /docs/providers/azurerm/authenticating_via_service_principal.html       /docs/providers/azurerm/guides/service_principal_client_secret.html
+
+# Azure Stack Provider
+/docs/providers/azurestack/auth/azure_cli.html                             /docs/providers/azurestack/guides/azure_cli.html
+/docs/providers/azurestack/auth/service_principal_client_certificate.html  /docs/providers/azurestack/guides/service_principal_client_certificate.html
+/docs/providers/azurestack/auth/service_principal_client_secret.html       /docs/providers/azurestack/guides/service_principal_client_secret.html
 
 # Google Provider
 /docs/provider/google/provider_versions.html                    /docs/providers/google/provider_versions.html
