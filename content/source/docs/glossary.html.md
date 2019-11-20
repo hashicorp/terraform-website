@@ -953,7 +953,7 @@ Different VCSes use different models for history; Git models changes as a direct
 
 -> Terraform Cloud
 
-A specific service that provides [VCS][] features, with the goal of enabling teams to collaborate on code. Terraform Cloud can integrate with VCS providers to access your Terraform [configurations][] and [modules][], and currently supports GitHub, GitHub Enterprise, GitLab.com, GitLab EE and CE, Bitbucket Cloud, Bitbucket Server, and Azure DevOps Services.
+A specific service that provides [VCS][] features, with the goal of enabling teams to collaborate on code. Terraform Cloud can integrate with VCS providers to access your Terraform [configurations][] and [modules][], and currently supports GitHub, GitHub Enterprise, GitLab.com, GitLab EE and CE, Bitbucket Cloud, Bitbucket Server, Azure DevOps Server, and Azure DevOps Services.
 
 - [Terraform Cloud docs: Connecting VCS Providers](/docs/cloud/vcs/index.html)
 

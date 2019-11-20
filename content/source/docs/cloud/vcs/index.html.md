@@ -23,6 +23,7 @@ Terraform Cloud supports the following VCS providers:
 - [GitLab EE and CE](./gitlab-eece.html)
 - [Bitbucket Cloud](./bitbucket-cloud.html)
 - [Bitbucket Server](./bitbucket-server.html)
+- [Azure DevOps Server](./azure-devops-server.html)
 - [Azure DevOps Services](./azure-devops-services.html)
 
 Use the links above to see details on configuring VCS access for each supported provider. If you use another VCS that is not supported, you can build an integration via [the API-driven run workflow](../run/api.html).
@@ -84,6 +85,7 @@ For complete details, click the link for your VCS provider:
 - [GitLab EE and CE](./gitlab-eece.html)
 - [Bitbucket Cloud](./bitbucket-cloud.html)
 - [Bitbucket Server](./bitbucket-server.html)
+- [Azure DevOps Server](./azure-devops-server.html)
 - [Azure DevOps Services](./azure-devops-services.html)
 
 -> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using Terraform Cloud's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
