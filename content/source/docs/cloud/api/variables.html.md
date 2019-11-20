@@ -41,11 +41,23 @@ Key path                                 | Type   | Default | Description
 `data.type`                              | string |         | Must be `"vars"`.
 `data.attributes.key`                    | string |         | The name of the variable.
 `data.attributes.value`                  | string | `""`    | The value of the variable.
-`data.attributes.category`               | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
-`data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
+`data.attributes.category`               | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"`, `"env"` or `"policy-set"`.
+`data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment or policy set variables.
 `data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
+
+For variables with a category of `"terraform"` or `"env"`, the following is required.
+
+Key path                                 | Type   | Default | Description
+-----------------------------------------|--------|---------|------------
 `data.relationships.workspace.data.type` | string |         | Must be `"workspaces"`.
 `data.relationships.workspace.data.id`   | string |         | The ID of the workspace that owns the variable. Obtain workspace IDs from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.
+
+For variables with a category of `"policy-set"`, the following is required.
+
+Key path                                  | Type   | Default | Description
+------------------------------------------|--------|---------|------------
+`data.relationships.policy-set.data.type` | string |         | Must be `"policy-sets"`.
+`data.relationships.policy-set.data.id`   | string |         | The ID of the policy set that owns the variable. Obtain policy set IDs from the [policy set settings](../sentinel/managing-policies.html#managing-policy-sets) or the [Show Policy Set](./policy-sets.html#show-a-policy-set) endpoint.
 
 **Deprecation warning**: The custom `filter` properties are replaced by JSON API `relationships` and will be removed from future versions of the API!
 
@@ -134,9 +146,10 @@ curl \
 Parameter                    | Description
 -----------------------------|------------
 `filter[workspace][name]`    | **Optional** The name of one workspace to list variables for. If included, you must also include the organization name filter.
-`filter[organization][name]` | **Optional** The name of the organization that owns the desired workspace. If included, you must also included the workspace name filter.
+`filter[organization][name]` | **Optional** The name of the organization that owns the desired workspace. If included, you must also include one of either workspace name or policy set id filter.
+`filter[policy-set][id]`     | **Optional** The id of the policy set to list variables for. If included, you must also include the organization name filter.
 
-These two parameters are optional but linked; if you include one, you must include both. Without a filter, this method lists variables for all workspaces you can access.
+These parameters are optional but linked. If you include one of policy set id or workspace name filter, you must include the organization filter. Without a filter, this method lists variables for all workspaces and policy sets you can access.
 
 ### Sample Request
 
