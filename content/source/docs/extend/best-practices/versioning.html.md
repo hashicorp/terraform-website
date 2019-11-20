@@ -27,7 +27,7 @@ Increasing the `MAJOR` number is intended to signify potentially breaking change
 Within Terraform provider development, some examples include:
 
 - Removing a resource or data source
-- Removing an attribute
+- Removing an attribute (e.g. switching to `Removed` on an attribute or removing the attribute definition altogether)
 - Renaming a resource or data source
 - Renaming an attribute
 - Changing fundamental provider behaviors (e.g. authentication or configuration precedence)
