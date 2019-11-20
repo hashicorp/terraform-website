@@ -7,7 +7,7 @@ page_title: "Azure DevOps Server - VCS Providers - Terraform Cloud"
 
 These instructions are for using an on-premise installation of Azure DevOps Server 2019 for Terraform Cloud's VCS features. [Azure DevOps Services has separate instructions,](./azure-devops-services.html) as do the [other supported VCS providers.](./index.html)
 
-~> **Important:** Using Personal access tokens on Azure DevOps Server requires that [IIS Basic Authentication be disabled.](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/iis-basic-auth?view=azure-devops)
+~> **Important:** Using personal access tokens on Azure DevOps Server requires that [IIS Basic Authentication be disabled.](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/iis-basic-auth?view=azure-devops)
 
 ## Step 1: Create a New Personal Access Token On Azure DevOps Server Instance
 
@@ -16,7 +16,7 @@ These instructions are for using an on-premise installation of Azure DevOps Serv
     ~> **Important:** The account you use for connecting Terraform Cloud **must have Project Collection Administrator access** to any projects containing repositories of Terraform configurations, since creating webhooks requires these permissions.
 
 2. Navigate to User settings -> Security -> Personal access tokens on your Azure DevOps Server instance.
-3. Click the `+ New Token` button to generate a new Personal access token with `Code (Read)` and `Code (Status)` scopes (We recommend also granting access to `All accessible organizations`.)
+3. Click the "New Token" button to generate a new personal access token with "Code (Read)" and "Code (Status)" scopes. (We recommend also granting access to "All accessible organizations.")
 
     ~> **Important:** This expiration date of this token is set on the Azure DevOps Server. Either you will need to update the expiration date before the token expires or reconnect Terraform Cloud if the token expires.
 
@@ -43,7 +43,7 @@ These instructions are for using an on-premise installation of Azure DevOps Serv
 
 3. (Optional) Enter a display name for your Azure DevOps Server VCS Provider.
 
-4. Enter your Azure DevOps Server **Personal access token**. This can be found in your user profile, which should still be open in the browser tab from Step 1.
+4. Enter your Azure DevOps Server **personal access token**. This can be found in your user profile, which should still be open in the browser tab from Step 1.
 
 5. Enter the instance URL for your Azure DevOps Server in HTTP URL and API URL textboxes.
 
