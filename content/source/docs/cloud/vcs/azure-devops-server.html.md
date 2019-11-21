@@ -37,7 +37,7 @@ These instructions are for using an on-premise installation of Azure DevOps Serv
     1. On the next page, click “VCS Providers” in the left sidebar
     1. Click the “Add a VCS Provider” button
 
-    ![Azure DevOps Services Screenshot: Adding a new VCS Provider in Terraform Cloud](./images/azure-devops-services-add-vcs-provider.png)
+    ![Azure DevOps Server Screenshot: Adding a new VCS Provider in Terraform Cloud](./images/azure-devops-services-add-vcs-provider.png)
 
 2. The next page has a drop-down and several text fields. Select "Azure DevOps Server" from the drop-down.
 
@@ -49,7 +49,7 @@ These instructions are for using an on-premise installation of Azure DevOps Serv
 
 5. Verify the information entered on this page and then click "Create VCS provider." This will take you back to the VCS Providers page which now includes your new Azure DevOps Services provider.
 
-    ![Azure DevOps Services Screenshot: Configuring a new connection to Azure DevOps Server in Terraform Cloud](./images/azure-devops-server-create-provider.png)
+    ![Azure DevOps Server Screenshot: Configuring a new connection to Azure DevOps Server in Terraform Cloud](./images/azure-devops-server-create-provider.png)
 
 ## Step 3: On Workstation: Create an SSH Key for Terraform Cloud
 
