@@ -44,7 +44,7 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 
     ![Azure DevOps Server Screenshot: Adding a new VCS Provider in Terraform Cloud](./images/azure-devops-server-add-vcs-provider.png)
 
-2. The next page has a drop-down and several text fields. Select "**Azure DevOps Server**" from the drop-down.
+2. The next page has a drop-down and several text fields. Select "Azure DevOps Server" from the drop-down.
 
 3. (Optional) Enter a display name for your Azure DevOps Server VCS Provider.
 
