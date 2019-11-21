@@ -9,7 +9,7 @@ These instructions are for using an on-premises installation of Azure DevOps Ser
 
 ~> **Important:** Using personal access tokens on Azure DevOps Server requires that [IIS Basic Authentication be disabled.](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/iis-basic-auth?view=azure-devops)
 
-## Step 1: Create a New Personal Access Token On Azure DevOps Server Instance
+## Step 1: On Azure DevOps Server, Create a New Personal Access Token
 
 1. Log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
