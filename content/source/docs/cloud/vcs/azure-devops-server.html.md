@@ -56,7 +56,7 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 
     ![Azure DevOps Server Screenshot: Configuring a new connection to Azure DevOps Server in Terraform Cloud](./images/azure-devops-server-create-provider.png)
 
-## Step 3: On Workstation: Create an SSH Key for Terraform Cloud
+## Step 3: On Workstation, Create an SSH Key for Terraform Cloud
 
 On a secure workstation, create an SSH keypair that Terraform Cloud can use to connect to Azure DevOps Server. The exact command depends on your OS, but is usually something like `ssh-keygen -t rsa -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
 
