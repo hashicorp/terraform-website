@@ -7,7 +7,14 @@ page_title: "Azure DevOps Server - VCS Providers - Terraform Cloud"
 
 These instructions are for using an on-premises installation of Azure DevOps Server 2019 for Terraform Cloud's VCS features. [Azure DevOps Services has separate instructions,](./azure-devops-services.html) as do the [other supported VCS providers.](./index.html)
 
-~> **Important:** Using personal access tokens on Azure DevOps Server requires that [IIS Basic Authentication be disabled.](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/iis-basic-auth?view=azure-devops)
+## Important Notes About Authentication
+
+Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. This access method requires some additional configuration and ongoing maintenance:
+
+- [IIS Basic Authentication must be disabled](https://docs.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/iis-basic-auth?view=azure-devops) on your Azure DevOps Server instance in order to use personal access tokens.
+- Personal access tokens eventually expire, with a maximum allowed lifetime of one year. If Terraform Cloud's token expires, it will be unable to connect to Azure DevOps Server until the token is replaced. To avoid a gap in service, do one of the following before the token expires:
+    - Update the expiration date of the existing token within Azure DevOps Server.
+    - Create a new token, and edit Terraform Cloud's VCS connection to use it.
 
 ## Step 1: On Azure DevOps Server, Create a New Personal Access Token
 
