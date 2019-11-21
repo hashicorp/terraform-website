@@ -44,7 +44,7 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 
     ![Azure DevOps Server Screenshot: Adding a new VCS Provider in Terraform Cloud](./images/azure-devops-server-add-vcs-provider.png)
 
-2. The next page has a drop-down and several text fields. Select "Azure DevOps Server" from the drop-down.
+2. The next page has a drop-down and several text fields. Select "**Azure DevOps Server**" from the drop-down.
 
 3. (Optional) Enter a display name for your Azure DevOps Server VCS Provider.
 
@@ -52,7 +52,7 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 
 5. Enter the instance URL for your Azure DevOps Server in HTTP URL and API URL textboxes.
 
-5. Verify the information entered on this page and then click "Create VCS provider." This will take you back to the VCS Providers page which now includes your new Azure DevOps Services provider.
+5. Verify the information entered on this page and then click "Create VCS provider." This will take you back to the VCS Providers page which now includes your new Azure DevOps Server provider.
 
     ![Azure DevOps Server Screenshot: Configuring a new connection to Azure DevOps Server in Terraform Cloud](./images/azure-devops-server-create-provider.png)
 
@@ -83,5 +83,7 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 1. Go back to your Terraform Cloud browser tab and paste the text of the **SSH private key** you created in step 3 into the text field and click the "Add SSH key" button.
 
     ![Terraform Cloud screenshot: Add SSH Key](./images/azure-devops-server-add-private-key.png)
+
+## Finished
 
 At this point, Azure DevOps Server access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization’s repositories.
