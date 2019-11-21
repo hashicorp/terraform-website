@@ -482,3 +482,7 @@
 	path = ext/providers/huaweicloudstack
 	url = https://github.com/terraform-providers/terraform-provider-huaweicloudstack
 	branch = stable-website
+[submodule "ext/providers/opennebula"]
+	path = ext/providers/opennebula
+	url = https://github.com/terraform-providers/terraform-provider-opennebula
+	branch = stable-website
