@@ -25,7 +25,6 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 2. Navigate to User settings -> Security -> Personal access tokens on your Azure DevOps Server instance.
 3. Click the "New Token" button to generate a new personal access token with "Code (Read)" and "Code (Status)" scopes. (We recommend also granting access to "All accessible organizations.")
 
-    ~> **Important:** This expiration date of this token is set on the Azure DevOps Server. Either you will need to update the expiration date before the token expires or reconnect Terraform Cloud if the token expires.
 
     ![Azure DevOps Server Screenshot: Creating a new personal access token in your Azure DevOps Server Profile](./images/azure-devops-server-create-token.png)
 
