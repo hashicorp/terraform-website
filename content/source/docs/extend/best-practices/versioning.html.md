@@ -33,8 +33,10 @@ Within Terraform provider development, some examples include:
 - Changing fundamental provider behaviors (e.g. authentication or configuration precedence)
 - Changing resource import ID format
 - Changing resource ID format
-- Changing attribute type where the new type is functionally incompatible (e.g. `TypeSet` to `TypeList`)
+- Changing attribute type where the new type is functionally incompatible (including but not limited to changing `TypeSet` to `TypeList` and `TypeList` to `TypeSet`)
 - Changing attribute format (e.g. changing a timestamp from epoch time to a string)
+- Changing attribute default value that is incompatible with previous Terraform states (e.g. `Default: "one"` to `Default: "two"`)
+- Adding an attribute default value that does not match the API default
 
 ### Example Minor Number Increments
 
@@ -48,7 +50,7 @@ Within Terraform provider development, some examples include:
 - Aliasing an existing resource or data source
 - Implementing new attributes within the provider configuration or an existing resource or data source
 - Implementing new validation within an existing resource or data source
-- Changing attribute type where the new type is functionally compatible (e.g. `TypeList` to `TypeSet`)
+- Changing attribute type where the new type is functionally compatible (e.g. `TypeInt` to `TypeFloat`)
 
 ### Example Patch Number Increments
 
