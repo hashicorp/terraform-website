@@ -2,10 +2,10 @@ module Helpers
   # Returns a segment tracking ID such that local development is not
   # tracked to production systems.
   def segmentId()
-    if (ENV['DEPLOY_ENV'] == 'production')
-      'EnEETDWhfxp1rp09jVvJr66LdvwI6KVP'
-    else
+    if (ENV['DEPLOY_ENV'] == 'development')
       '0EXTgkNx0Ydje2PGXVbRhpKKoe5wtzcE'
+    else
+      'EnEETDWhfxp1rp09jVvJr66LdvwI6KVP'
     end
   end
 
