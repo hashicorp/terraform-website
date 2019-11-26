@@ -27,7 +27,7 @@ A Terraform Enterprise cluster relies on a load balancer to direct traffic to ap
 
 ## Capacity Management
 
-Important aspect to the cluster is how resources are used to execute Terraform runs because this has a direct impact upon how much work a cluster can to concurrently.
+There is a direct relationship between a cluster's total resources and the amount of work it can do concurrently.
 
 By default, each Terraform run is allocated 512MB of RAM which has the majority of the impact upon the ability to schedule new Terraform runs.
 
@@ -58,4 +58,3 @@ Clustered deployment is designed for use with external data services. These incl
 These services are outside the scope of the module that deploys Terraform Enterprise; the operator is expected to provision and configure the services prior to installation, and provide access information and credentials as inputs to the module.
 
 The clustered deployment modules can also deploy a temporary demo of Terraform Enterprise that does not require external data services.
-
