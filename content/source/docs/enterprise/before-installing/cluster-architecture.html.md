@@ -33,7 +33,7 @@ Run concurrency is usually limited by memory. By default, each Terraform run is 
 
 To calculate how big a cluster should be, first decide how many concurrent Terraform runs you require. For instance, if you need to be able to execute 100 runs simultaneously, then the cluster needs at least 50GB of RAM available for runs. Because the services that run the Terraform Enterprise application run also share that memory, we suggest adding 16GB to the number. So in this case, the cluster would require 66GB of RAM. The most common way to achieve at least 66GB of cluster RAM is a pool of 5 secondary instances and 3 primary instances, all with 16GB of RAM.
 
-The amount of memory used per Terraform run is configurable in the Management UI and changing that amount will alter the maximum concurrent capacity of the cluster.
+The amount of memory used per Terraform run is configurable in the installer dashboard (`https://<TFE HOSTNAME>:8800`), and changing that amount will alter the maximum concurrent capacity of the cluster.
 
 ## Architecture Diagrams
 
