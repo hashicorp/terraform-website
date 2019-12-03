@@ -14,6 +14,8 @@ HashiCorp specializes in helping IT organizations adopt cloud technologies. Base
 
 The collaborative infrastructure as code workflow is built on many other IT best practices (like using version control and preventing manual changes), and you must adopt these foundations before you can fully adopt our recommended workflow. Achieving state-of-the-art provisioning practices is a journey, with several distinct stops along the way.
 
+<iframe src="https://www.youtube.com/embed/FWpCQar9dYg" frameborder="0" allowfullscreen="true"  width="560" height="315" ></iframe>
+
 This guide describes our recommended Terraform practices and how to adopt them. It covers the steps to start using our tools, with special attention to the foundational practices they rely on.
 
 - [Part 1: An Overview of Our Recommended Workflow](./part1.html) is a holistic overview of Terraform Cloud's collaborative infrastructure as code workflow. It describes how infrastructure is organized and governed, and how people interact with it.
