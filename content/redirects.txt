@@ -140,6 +140,13 @@
 /docs/providers/aws/r/code_commit_repository.html      /docs/providers/aws/r/codecommit_repository.html
 /docs/providers/aws/r/code_commit_trigger.html         /docs/providers/aws/r/codecommit_trigger.html
 
+# Azure Active Directory Provider
+/docs/providers/azuread/auth/azure_cli.html                             /docs/providers/azuread/guides/azure_cli.html
+/docs/providers/azuread/auth/managed_service_identity.html              /docs/providers/azuread/guides/managed_service_identity.html
+/docs/providers/azuread/auth/service_principal_client_certificate.html  /docs/providers/azuread/guides/service_principal_client_certificate.html
+/docs/providers/azuread/auth/service_principal_client_secret.html       /docs/providers/azuread/guides/service_principal_client_secret.html
+/docs/providers/azuread/auth/service_principal_configuration.html       /docs/providers/azuread/guides/service_principal_configuration.html
+
 # Azure Resource Manager Provider
 /docs/providers/azurerm/auth/azure_cli.html                             /docs/providers/azurerm/guides/azure_cli.html
 /docs/providers/azurerm/auth/managed_service_identity.html              /docs/providers/azurerm/guides/managed_service_identity.html
