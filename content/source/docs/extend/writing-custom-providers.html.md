@@ -727,7 +727,7 @@ Considering the following structure as the response from the API:
 
 The nested structures are `Spec` -> `TaskTemplate` -> `ContainerSpec` -> `Mounts`. There can be multiple `Mounts` but they have to be unique, so `TypeSet` is the appropriate type. 
 
-Due to the limitation of [tf-11115] (https://github.com/hashicorp/terraform/issues/11115) it is not possible to nest maps. So the workaround is to let only the innermost data structure be of the type `TypeMap`: in this case `driver_options`. The outer data structures are of `TypeList` which can only have one item.
+Due to the limitation of [tf-11115] (https://github.com/hashicorp/terraform/issues/11115) it is not possible to nest maps. So the workaround is to let only the innermost data structure be of the type `TypeMap`: in this case `DriverConfig`. The outer data structures are of `TypeList` which can only have one item.
 
 ```hcl
 /// ...
