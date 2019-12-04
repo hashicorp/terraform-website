@@ -25,6 +25,16 @@ Clustered deployment relies on a Terraform module to provision infrastructure. C
 
 A Terraform Enterprise cluster relies on a load balancer to direct traffic to application instances.
 
+## Capacity Management
+
+There is a direct relationship between a cluster's total resources and the amount of work it can do concurrently.
+
+Run concurrency is usually limited by memory. By default, each Terraform run is allocated 512MB of RAM, and a cluster can schedule new runs as long as one of its instances has enough memory available. 
+
+To calculate how big a cluster should be, first decide how many concurrent Terraform runs you require. For instance, if you need to be able to execute 100 runs simultaneously, then the cluster needs at least 50GB of RAM available for runs. Because the services that run the Terraform Enterprise application run also share that memory, we suggest adding 16GB to the number. So in this case, the cluster would require 66GB of RAM. The most common way to achieve at least 66GB of cluster RAM is a pool of 5 secondary instances and 3 primary instances, all with 16GB of RAM.
+
+The amount of memory used per Terraform run is configurable in the installer dashboard (`https://<TFE HOSTNAME>:8800`), and changing that amount will alter the maximum concurrent capacity of the cluster.
+
 ## Architecture Diagrams
 
 The following diagrams represent the architectures used on the three supported cloud platforms:
@@ -48,4 +58,3 @@ Clustered deployment is designed for use with external data services. These incl
 These services are outside the scope of the module that deploys Terraform Enterprise; the operator is expected to provision and configure the services prior to installation, and provide access information and credentials as inputs to the module.
 
 The clustered deployment modules can also deploy a temporary demo of Terraform Enterprise that does not require external data services.
-
