@@ -181,9 +181,9 @@ If the instance cannot reach the Internet, follow these steps to begin an Airgap
 
 #### Execute the Installer
 
-From a shell on your instance, in the directory where you placed the `replicated.tar.gz` installer bootstrapper:
+From a shell on your instance, in the directory where you placed the `latest.tar.gz` installer bootstrapper:
 
-1. Run `tar xzf replicated.tar.gz`
+1. Run `tar xzf latest.tar.gz`
 1. Run `sudo ./install.sh airgap`
 1. When asked, select the interface of the primary private network interface used to access the instance.
 1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be `https://<TFE HOSTNAME>:8800`.
