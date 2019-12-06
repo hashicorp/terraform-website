@@ -33,9 +33,9 @@ The variables page has separate lists of Terraform variables and environment var
 
 ![Screenshot: The initial appearance of a workspace's variables page](./images/vars.png)
 
-To edit a variable, click one of its text fields or its pencil (edit) icon to reveal the editing controls. Make any desired changes to the variable's name, value, and settings, then click the "Save Variable" button.
+To edit a variable, click one of its text fields or its pencil (edit) icon to reveal the editing controls. Make any desired changes to the variable's name, value, description, and settings, then click the "Save Variable" button.
 
-To add a variable, click the "+ Add Variable" button, enter a name and value, and save.
+To add a variable, click the "+ Add Variable" button, enter a name, value, optional description, and save.
 
 To delete a variable, click its "🗑" (trash can) icon, then confirm your decision in the dialog box that appears.
 
@@ -78,6 +78,12 @@ Terraform Cloud can't automatically discover variable names from a workspace's T
 
 If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
 
+### Descriptions
+
+Variable descriptions help distinguish between similarly named variables. These optional fields are only shown on this "Variables" page and are completely independent from any variable descriptions declared in Terraform CLI.
+
+The maximum length of a variable description is 512 characters.
+
 ## How Terraform Cloud Uses Variables
 
 ### Terraform Variables
@@ -100,3 +106,5 @@ Terraform Cloud uses some special environment variables to control dangerous or 
 ### Secure Storage of Variables
 
 Terraform Cloud encrypts all variable values securely using [Vault's transit backend](https://www.vaultproject.io/docs/secrets/transit/index.html) prior to saving them. This ensures that no out-of-band party can read these values without proper authorization.
+
+Descriptions are not encrypted. Please be careful with the information you save in a variable description.
