@@ -41,6 +41,10 @@ If not, please reach out and [open an issue](https://github.com/hashicorp/terraf
 outlining your use case, and we'll work with you to find an appropriate way
 to interface with Terraform to meet your use case.
 
+~> **Note**: a notable exception to this is providers importing other providers
+in their test files. A better solution for that use case is in the works, but
+at the moment importing the providers is the best available solution.
+
 ## Exporting the Schema
 
 Some projects just care about the schema and resources a provider presents. As
