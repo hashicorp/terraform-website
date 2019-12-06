@@ -486,3 +486,7 @@
 	path = ext/providers/opennebula
 	url = https://github.com/terraform-providers/terraform-provider-opennebula
 	branch = stable-website
+[submodule "ext/providers/stackpath"]
+	path = ext/providers/stackpath
+	url = https://github.com/terraform-providers/terraform-provider-stackpath
+	branch = stable-website
