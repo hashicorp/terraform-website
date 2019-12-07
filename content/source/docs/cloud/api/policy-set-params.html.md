@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Workspace Variables - API Docs - Terraform Cloud"
+page_title: "Policy Set Parameters - API Docs - Terraform Cloud"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -20,18 +20,18 @@ page_title: "Workspace Variables - API Docs - Terraform Cloud"
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
-# Workspace Variables API
+# Policy Set Parameters API
 
-This set of APIs covers create, update, list and delete operations on workspace variables.
+This set of APIs covers create, update, list and delete operations on parameters.
 
 
-## Create a Variable
+## Create a Parameter
 
-`POST /workspaces/:workspace_id/vars`
+`POST /policy-sets/:policy_set_id/parameters`
 
 Parameter       | Description
 ----------------|------------
-`:workspace_id` | The ID of the workspace to create the variable in.
+`:policy_set_id` | The ID of the policy set to create the parameter in.
 
 ### Request Body
 
@@ -43,19 +43,10 @@ Properties without a default value are required.
 Key path                                 | Type   | Default | Description
 -----------------------------------------|--------|---------|------------
 `data.type`                              | string |         | Must be `"vars"`.
-`data.attributes.key`                    | string |         | The name of the variable.
-`data.attributes.value`                  | string | `""`    | The value of the variable.
-`data.attributes.description`            | string |         | The description of the variable.
-`data.attributes.category`               | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
-`data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
-`data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
-
-**Deprecation warning**: The custom `filter` properties are replaced by JSON API `relationships` and will be removed from future versions of the API!
-
-Key path                                 | Type   | Default | Description
------------------------------------------|--------|---------|------------
-`filter.workspace.name`                  | string |         | The name of the workspace that owns the variable.
-`filter.organization.name`               | string |         | The name of the organization that owns the workspace.
+`data.attributes.key`                    | string |         | The name of the parameter.
+`data.attributes.value`                  | string | `""`    | The value of the parameter.
+`data.attributes.category`               | string |         | The category of the parameters. Must be `"policy-set"`.
+`data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true then the parameter is written once and not visible thereafter.
 
 
 ### Sample Payload
@@ -67,9 +58,7 @@ Key path                                 | Type   | Default | Description
     "attributes": {
       "key":"some_key",
       "value":"some_value",
-      "description":"some description",
-      "category":"terraform",
-      "hcl":false,
+      "category":"policy-set",
       "sensitive":false
     }
   }
@@ -84,7 +73,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/workspaces/ws-4j8p6jX1w33MiDC7/vars
+  https://app.terraform.io/api/v2/policy-set/pol-u3S5p2Uwk21keu1s/parameters
 ```
 
 ### Sample Response
@@ -97,36 +86,34 @@ curl \
     "attributes": {
       "key":"some_key",
       "value":"some_value",
-      "description":"some description",
       "sensitive":false,
-      "category":"terraform",
-      "hcl":false
+      "category":"policy-set"
     },
     "relationships": {
       "configurable": {
         "data": {
-          "id":"ws-4j8p6jX1w33MiDC7",
-          "type":"workspaces"
+          "id":"pol-u3S5p2Uwk21keu1s",
+          "type":"policy-sets"
         },
         "links": {
-          "related":"/api/v2/organizations/my-organization/workspaces/my-workspace"
+          "related":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s"
         }
       }
     },
     "links": {
-      "self":"/api/v2/workspaces/ws-4j8p6jX1w33MiDC7/vars/var-EavQ1LztoRTQHSNT"
+      "self":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-EavQ1LztoRTQHSNT"
     }
   }
 }
 ```
 
-## List Variables
+## List Parameters
 
-`GET /workspaces/:workspace_id/vars`
+`GET /policy-sets/:policy_set_id/parameters`
 
 Parameter       | Description
 ----------------|------------
-`:workspace_id` | The ID of the workspace to list variables for.
+`:policy_set_id` | The ID of the policy set to list parameters for.
 
 ### Sample Request
 
@@ -134,7 +121,7 @@ Parameter       | Description
 $ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-"https://app.terraform.io/api/v2/workspaces/ws-cZE9LERN3rGPRAmH/vars"
+"https://app.terraform.io/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters"
 ```
 
 ### Sample Response
@@ -144,41 +131,40 @@ $ curl \
   "data": [
     {
       "id":"var-AD4pibb9nxo1468E",
-      "type":"vars","attributes": {
+      "type":"vars",
+      "attributes": {
         "key":"name",
         "value":"hello",
-        "description":"some description",
         "sensitive":false,
-        "category":"terraform",
-        "hcl":false
+        "category":"policy-set",
       },
       "relationships": {
         "configurable": {
           "data": {
-            "id":"ws-cZE9LERN3rGPRAmH",
-            "type":"workspaces"
+            "id":"pol-u3S5p2Uwk21keu1s",
+            "type":"policy-sets"
           },
           "links": {
-            "related":"/api/v2/organizations/my-organization/workspaces/my-workspace"
+            "related":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s"
           }
         }
       },
       "links": {
-        "self":"/api/v2/workspaces/ws-cZE9LERN3rGPRAmH/vars/var-AD4pibb9nxo1468E"
+        "self":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-AD4pibb9nxo1468E"
       }
     }
   ]
 }
 ```
 
-## Update Variables
+## Update Parameters
 
-`PATCH /workspaces/:workspace_id/vars/:variable_id`
+`PATCH /policy-sets/:policy_set_id/parameters/:parameter_id`
 
 Parameter       | Description
 ----------------|------------
-`:workspace_id` | The ID of the workspace that owns the variable.
-`:variable_id`  | The ID of the variable to be updated.
+`:policy_set_id` | The ID of the policy set that owns the parameter.
+`:parameter_id`  | The ID of the parameter to be updated.
 
 ### Request Body
 
@@ -189,8 +175,8 @@ Properties without a default value are required.
 Key path          | Type   | Default | Description
 ------------------|--------|---------|------------
 `data.type`       | string |         | Must be `"vars"`.
-`data.id`         | string |         | The ID of the variable to update.
-`data.attributes` | object |         | New attributes for the variable. This object can include `key`, `value`, `description`, `category`, `hcl`, and `sensitive` properties, which are described above under [create a variable](#create-a-variable). All of these properties are optional; if omitted, a property will be left unchanged.
+`data.id`         | string |         | The ID of the parameter to update.
+`data.attributes` | object |         | New attributes for the parameter. This object can include `key`, `value`, `category` and `sensitive` properties, which are described above under [create a parameter](#create-a-parameter). All of these properties are optional; if omitted, a property will be left unchanged.
 
 ### Sample Payload
 
@@ -201,9 +187,7 @@ Key path          | Type   | Default | Description
     "attributes": {
       "key":"name",
       "value":"mars",
-      "description": "new description",
-      "category":"terraform",
-      "hcl": false,
+      "category":"policy-set",
       "sensitive": false
     },
     "type":"vars"
@@ -219,7 +203,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/workspaces/ws-4j8p6jX1w33MiDC7/vars/var-yRmifb4PJj7cLkMG
+  https://app.terraform.io/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-yRmifb4PJj7cLkMG
 ```
 
 ### Sample Response
@@ -232,37 +216,35 @@ $ curl \
     "attributes": {
       "key":"name",
       "value":"mars",
-      "description":"new description",
       "sensitive":false,
-      "category":"terraform",
-      "hcl":false
+      "category":"policy-set",
     },
     "relationships": {
       "configurable": {
         "data": {
-          "id":"ws-4j8p6jX1w33MiDC7",
-          "type":"workspaces"
+          "id":"pol-u3S5p2Uwk21keu1s",
+          "type":"policy-sets"
         },
         "links": {
-          "related":"/api/v2/organizations/workspace-v2-06/workspaces/workspace-v2-06"
+          "related":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s"
         }
       }
     },
     "links": {
-      "self":"/api/v2/workspaces/ws-4j8p6jX1w33MiDC7/vars/var-yRmifb4PJj7cLkMG"
+      "self":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-yRmifb4PJj7cLkMG"
     }
   }
 }
 ```
 
-## Delete Variables
+## Delete Parameters
 
-`DELETE /workspaces/:workspace_id/vars/:variable_id`
+`DELETE /policy-sets/:policy_set_id/parameters/:parameter_id`
 
 Parameter       | Description
 ----------------|------------
-`:workspace_id` | The ID of the workspace that owns the variable.
-`:variable_id`  | The ID of the variable to be deleted.
+`:policy_set_id` | The ID of the policy set that owns the parameter.
+`:parameter_id`  | The ID of the parameter to be deleted.
 
 ### Sample Request
 
@@ -271,5 +253,5 @@ $ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/workspaces/ws-4j8p6jX1w33MiDC7/vars/var-yRmifb4PJj7cLkMG
+  https://app.terraform.io/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-yRmifb4PJj7cLkMG
 ```
