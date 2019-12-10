@@ -258,7 +258,7 @@ In the ServiceNow Studio:
   var VCS_REPO     = "ORG_NAME/REPO_NAME";
 ```
 
-1. Click Submit
+1. Click "Submit"
 1. Ensure that the ServiceNow Run Script is part of the workflow. (Begin > Run Script > End)
 1. Click the menu at the top left and select "Publish"
 
@@ -273,5 +273,4 @@ In the ServiceNow Studio:
 ##### Test the Catalog Item
 
 The new item should be available in the Terraform Service Catalog. Once the new catalog item is confirmed to work, you can customize as needed.
-
 
