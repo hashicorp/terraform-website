@@ -778,6 +778,7 @@ Status  | Response                  | Reason
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1
 ```
@@ -803,6 +804,7 @@ Status  | Response                                              | Reason
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
   --request POST \
   https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1/versions
 ```

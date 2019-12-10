@@ -238,6 +238,7 @@ Key path                    | Type   | Default   | Description
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
   https://app.terraform.io/api/v2/ssh-keys/sshkey-GxrePWre1Ezug7aM
@@ -285,6 +286,7 @@ Status  | Response                                             | Reason
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/ssh-keys/sshkey-GxrePWre1Ezug7aM
 ```
