@@ -198,7 +198,7 @@ For users who only need to order from the Terraform Catalog, we recommend creati
 
 ### Creating a Catalog Item with Pinned Variables
 
-This example use case is used to demo a potential solution to creating a Terraform Catalog Item for resources that limits user input to certain variables.
+This example use case creates a Terraform catalog item for resources that limits user input to certain variables.
 
 ##### Create Service Catalog Item
 
@@ -273,4 +273,3 @@ In the ServiceNow Studio:
 ##### Test the Catalog Item
 
 The new item should be available in the Terraform Service Catalog. Once the new catalog item is confirmed to work, you can customize as needed.
-
