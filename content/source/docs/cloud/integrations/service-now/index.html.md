@@ -205,7 +205,7 @@ This example use case creates a Terraform catalog item for resources that limits
 1. Enter the ServiceNow Studio
 1. Click "Create Application File"
     - Select "Catalog Item" under "Service Catalog" > Click "Create"
-1. Name the new Catalog Item. (Our example will be `Example With Pinned Variables`)
+1. Name the new catalog item. (The rest of this example assumes an item named `Example With Pinned Variables`.)
 1. Select Catalogs: "Terraform Catalog" > Select Categories: "Terraform Resources"
 1. Add any other descriptions you may want.
 1. Click "Submit"
