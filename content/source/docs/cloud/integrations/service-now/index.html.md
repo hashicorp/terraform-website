@@ -230,7 +230,7 @@ This example use case creates a Terraform catalog item for resources that limits
 
 1. Go back to your Catalog Item
 1. Select "Variable Sets Tab" > Click "New"
-1. Search for the Variable Set that was created (`Example Pinned Variables`)
+1. Search for the variable set that was created (`Example Pinned Variables`).
 1. Click "Submit"
 
 ##### Create Custom Workflow
