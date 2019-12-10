@@ -119,7 +119,6 @@
 
 # Extending Terraform section
 /guides/writing-custom-terraform-providers.html          /docs/extend/writing-custom-providers.html
-/community.html                                          /docs/extend/community/index.html
 /docs/extend/resources.html                              /docs/extend/resources/index.html
 
 # Move the docs about TFE runs
@@ -141,10 +140,26 @@
 /docs/providers/aws/r/code_commit_repository.html      /docs/providers/aws/r/codecommit_repository.html
 /docs/providers/aws/r/code_commit_trigger.html         /docs/providers/aws/r/codecommit_trigger.html
 
-# Azure Provider
-/docs/providers/azurerm/authenticating_via_service_principal.html /docs/providers/azurerm/auth/service_principal_client_secret.html
-/docs/providers/azurerm/authenticating_via_azure_cli.html         /docs/providers/azurerm/auth/azure_cli.html
-/docs/providers/azurerm/authenticating_via_msi.html               /docs/providers/azurerm/auth/managed_service_identity.html
+# Azure Active Directory Provider
+/docs/providers/azuread/auth/azure_cli.html                             /docs/providers/azuread/guides/azure_cli.html
+/docs/providers/azuread/auth/managed_service_identity.html              /docs/providers/azuread/guides/managed_service_identity.html
+/docs/providers/azuread/auth/service_principal_client_certificate.html  /docs/providers/azuread/guides/service_principal_client_certificate.html
+/docs/providers/azuread/auth/service_principal_client_secret.html       /docs/providers/azuread/guides/service_principal_client_secret.html
+/docs/providers/azuread/auth/service_principal_configuration.html       /docs/providers/azuread/guides/service_principal_configuration.html
+
+# Azure Resource Manager Provider
+/docs/providers/azurerm/auth/azure_cli.html                             /docs/providers/azurerm/guides/azure_cli.html
+/docs/providers/azurerm/auth/managed_service_identity.html              /docs/providers/azurerm/guides/managed_service_identity.html
+/docs/providers/azurerm/auth/service_principal_client_certificate.html  /docs/providers/azurerm/guides/service_principal_client_certificate.html
+/docs/providers/azurerm/auth/service_principal_client_secret.html       /docs/providers/azurerm/guides/service_principal_client_secret.html
+/docs/providers/azurerm/authenticating_via_azure_cli.html               /docs/providers/azurerm/guides/azure_cli.html
+/docs/providers/azurerm/authenticating_via_msi.html                     /docs/providers/azurerm/guides/managed_service_identity.html
+/docs/providers/azurerm/authenticating_via_service_principal.html       /docs/providers/azurerm/guides/service_principal_client_secret.html
+
+# Azure Stack Provider
+/docs/providers/azurestack/auth/azure_cli.html                             /docs/providers/azurestack/guides/azure_cli.html
+/docs/providers/azurestack/auth/service_principal_client_certificate.html  /docs/providers/azurestack/guides/service_principal_client_certificate.html
+/docs/providers/azurestack/auth/service_principal_client_secret.html       /docs/providers/azurestack/guides/service_principal_client_secret.html
 
 # Google Provider
 /docs/provider/google/provider_versions.html                    /docs/providers/google/provider_versions.html
@@ -367,3 +382,32 @@
 
 # API Token Documentation update
 /docs/cloud/users-teams-organizations/service-accounts.html         /docs/cloud/users-teams-organizations/api-tokens.html
+
+# Post-beta for TFE v5
+/docs/enterprise/beta/index.html        /docs/enterprise/before-installing/index.html
+/docs/enterprise/beta/aws.html          /docs/enterprise/install/cluster-aws.html
+/docs/enterprise/beta/azure.html        /docs/enterprise/install/cluster-azure.html
+/docs/enterprise/beta/gcp.html          /docs/enterprise/install/cluster-gcp.html
+
+# GitHub Actions
+/docs/github-actions/getting-started/index.html                     /docs/github-actions/getting-started.html
+/docs/github-actions/actions/index.html                             /docs/github-actions/configuration/index.html
+/docs/github-actions/actions/fmt.html                               /docs/github-actions/configuration/fmt.html
+/docs/github-actions/actions/init.html                              /docs/github-actions/configuration/init.html
+/docs/github-actions/actions/validate.html                          /docs/github-actions/configuration/validate.html
+/docs/github-actions/actions/plan.html                              /docs/github-actions/configuration/plan.html
+/docs/github-actions/actions/apply.html                             /docs/github-actions/configuration/apply.html
+/docs/github-actions/directories.html                               /docs/github-actions/common-tasks/working-directory.html
+/docs/github-actions/remote-backend.html                            /docs/github-actions/common-tasks/backends.html
+/docs/github-actions/terraform-versions.html                        /docs/github-actions/common-tasks/terraform-versions.html
+/docs/github-actions/workspaces.html                                /docs/github-actions/common-tasks/workspaces.html
+
+# Prepping for docs relocation for Google provider
+/docs/providers/google/provider_reference.html                      /docs/providers/google/guides/provider_reference.html
+/docs/providers/google/provider_versions.html                       /docs/providers/google/guides/provider_versions.html
+/docs/providers/google/getting_started.html                         /docs/providers/google/guides/getting_started.html
+/docs/providers/google/version_2_upgrade.html                       /docs/providers/google/guides/version_2_upgrade.html
+/docs/providers/google/version_3_upgrade.html                       /docs/providers/google/guides/version_3_upgrade.html
+
+# Deleted resource type
+/docs/providers/google/r/google_project_services.html               /docs/providers/google/guides/version_3_upgrade.html

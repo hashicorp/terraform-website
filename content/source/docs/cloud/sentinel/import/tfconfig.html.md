@@ -403,6 +403,10 @@ represents the [provisioners][ref-tf-provisioners] within a specific resource.
 Provisioners are listed in the order they were provided in the configuration
 file.
 
+While the `provisioners` value will be present within data sources, it will
+always be an empty map (in Terraform 0.11) or `null` (in Terraform 0.12) since
+data sources cannot actually have provisioners.
+
 The data within a provisioner can be inspected via the returned [provisioner
 namespace](#namespace-provisioners).
 
@@ -411,7 +415,7 @@ namespace](#namespace-provisioners).
 ## Namespace: Provisioners
 
 The **provisioner namespace** represents the configuration for a particular
-[provisioner][ref-tf-provisioners] within a specific resource or data source.
+[provisioner][ref-tf-provisioners] within a specific resource.
 
 <a id="provisioners-value-config" />
 

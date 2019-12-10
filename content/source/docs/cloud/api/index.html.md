@@ -287,4 +287,5 @@ If you have built a client library and would like to add it to this community li
 - [tfh](https://github.com/hashicorp-community/tf-helper): UNIX shell console app
 - [tf_api_gateway](https://github.com/PlethoraOfHate/tf_api_gateway): Python API library and console app
 - [terrasnek](https://github.com/dahlke/terrasnek): Python API library
+- [tfc-client](https://github.com/adeo/iwc-tfc-client): Object oriented Python API library.
 - [terraform-enterprise-client](https://github.com/skierkowski/terraform-enterprise-client): Ruby API library and console app

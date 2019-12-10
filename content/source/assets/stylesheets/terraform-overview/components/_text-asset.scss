@@ -106,10 +106,10 @@
         @media (min-width: 992px) {
           padding-left: 32px;
         }
-        & a.g-btn {
+        & a.button {
           margin-top: 1rem;
         }
-        & > a:not(.g-btn) {
+        & > a:not(.button) {
           color: #2c72fe;
           &:focus,
           &:hover {
@@ -181,7 +181,7 @@
           }
 
           &.keyword {
-            color: $terraform-purple;
+            color: $terraform;
           }
         }
       }
@@ -218,10 +218,6 @@
 
   h3 {
     margin: 0 0 16px 0;
-
-    @media (min-width: 768px) {
-      margin-top: 16px;
-    }
   }
 
   & .check > ul {
@@ -248,9 +244,9 @@
       & > a {
         color: $body-font-color;
         text-decoration: underline;
-        text-decoration-color: $terraform-purple;
+        text-decoration-color: $terraform;
         &:hover {
-          color: $terraform-purple;
+          color: $terraform;
         }
       }
       & > span.shrink {

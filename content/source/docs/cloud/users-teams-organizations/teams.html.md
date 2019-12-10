@@ -25,7 +25,7 @@ Members of the owners team have full access to every workspace in the organizati
 
 - Creating and deleting teams
 - Managing team membership and organization-level permissions granted to the team
-- Viewing the full list of teams
+- Viewing the full list of teams, both visible and secret
 - Managing [organization settings][]
 
 ## Managing Teams
@@ -36,11 +36,12 @@ Teams are managed in the [organization settings][]. Click the "Settings" link in
 
 The teams page includes a list of the organization's teams. Clicking a team in the list loads its team settings page, which manages its membership and other settings:
 
-![Screenshot: a team's settings page](./images/teams-team-settings.png)
+![Screenshot: a team's settings page showing organization access, visibility, and team token.](./images/teams-team-settings.png)
 
 The team settings page lists the team's current members, with badges to indicate which users have [two-factor authentication](./2fa.html) enabled.
 
-Only organization owners can manage teams or view the full list of teams. Other users can view the teams page in read-only mode and view any teams they are members of.
+Only organization owners can manage teams or view the full list of teams. Other users can view any teams marked as visible within the organization, plus any secret teams they
+are members of. See [Team Visibility](./teams.html#team-visibility) for more information.
 
 ### Creating and Deleting Teams
 
@@ -61,11 +62,28 @@ To delete a team, go to the target team's settings page and click the "Delete TE
 
 Organization owners can use a team's settings page to add and remove users from the team.
 
+![Screenshot: a team's settings page showing the team's members.](./images/teams-team-settings-membership.png)
+
 To add a user, enter their username in the "Username" text field (located under the "Add a New Team Member" header) and click the "Add member" button. (You must know the user's exact username; users cannot be added using email addresses or other personal information.)
 
 To remove a user, click the "🗑" (trash can) button by their entry in the member list.
 
 Typically, your team structure will mirror your company's group structure. The [Terraform Recommended Practices guide](/docs/cloud/guides/recommended-practices/index.html) offers more in-depth discussion of how team structure interacts with the structure of your Terraform configurations and the IT infrastructure they manage.
+
+### Team Visibility
+
+-> **API:** See the [Teams API](../api/teams.html). <br/>
+
+Team visibility controls who can see a team within the organization.
+
+* When a team is set to "Visible", every user in the organization can see the
+team and its membership on the Teams page. Non-members have read-only access;
+they cannot generate a team API token, for instance.
+* When a team is set to "Secret", only team members and organization owners can
+read a team and its membership. This is the default setting.
+
+To simplify workspace administration, we recommend making most (or all) teams visible. Secret teams should only have 
+[organization-level permissions](./permissions.html#organization-level-permissions), since workspace admins can't manage permissions for teams they can't view.
 
 ### API Tokens
 

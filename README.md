@@ -24,9 +24,16 @@ If you'd rather just remember where to look:
 
 The `stable-website` branch in Terraform and the provider repos has some special behavior. **Community members should target pull requests at `master` and not worry about it;** maintainers (and the curious) can see [More About `stable-website`][inpage-stable] below for more details.
 
-## How [terraform.io][] Gets Updated
+## Deploying Changes to [terraform.io][]
 
-The site gets deployed by a CI job, currently managed by HashiCorp's internal TeamCity instance. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a new version of Terraform or a provider is released. In practice, the site gets deployed a few times a day.
+- **For changes in this repo:** Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
+- **For changes in hashicorp/terraform or terraform-providers/anything:** Merge the PR to master. Then, either:
+    - Wait for the next release of the project in question. The changes will be deployed automatically.
+    - If you don't want to wait for a release, cherry-pick the commit(s) to that repo's `stable-website` branch and push. Then, either:
+        - Wait for the next unrelated site deploy (probably happening in a couple hours), which will pick up your changes automatically.
+        - Do a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so.
+
+The [terraform.io][] site gets deployed by a CI job, currently managed by CircleCI. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master. (Note that Terraform releases and provider releases create sync commits to terraform-website, which will trigger a deploy.) In practice, the site gets deployed a few times a day.
 
 ## Running the Site Locally
 
@@ -131,6 +138,16 @@ Like GitHub and a lot of other places, terraform.io automatically generates `id`
 The basic transform to make IDs from header text is something like "lowercase it, delete anything other than `[a-z0-9_-]`, and replace runs of spaces with a hyphen," but since the exact behavior can be squirrelly, we recommend checking the actual ID in a preview before linking to it. The in-page quick-nav menu at the top of each page is helpful for finding the header you want.
 
 We also auto-generate IDs for code spans that are the first child of a list item, since it's common for long lists of arguments or attributes to be formatted that way.
+
+## Screenshots
+
+Some areas of documentation (mostly Terraform Cloud) make extensive use of screenshots. If you're adding or updating screenshots, please try to make them:
+
+- 1024px wide
+- As tall as necessary to show the content and any necessary context, but not taller
+- 1x resolution
+
+Both Firefox and Chrome have "responsive design" views for simulating various devices; this should let you lock the width and set the DPR to 1. (Firefox also has an integrated screenshot feature, located under the "dot dot dot" menu in the address bar.)
 
 ## Navigation Sidebars
 

@@ -1,9 +1,9 @@
 ---
 layout: "enterprise"
-page_title: "Installation - Install and Config - Terraform Enterprise"
+page_title: "Interactive Installation - Install and Config - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Installation
+# Interactive Terraform Enterprise Installation — Individual Instance
 
 ## Delivery
 
@@ -172,17 +172,18 @@ If the instance cannot reach the Internet, follow these steps to begin an Airgap
 
 #### Prepare the Instance
 
+1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Pre-Install Checklist: Software Requirements](../before-installing/index.html#software-requirements) for details).
 1. Download the `.airgap` file using the information given to you in your setup email and place that file somewhere on the the instance.
     * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
     * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
 1. [Download the installer bootstrapper](https://install.terraform.io/airgap/latest.tar.gz) and put it into its own directory on the instance (e.g. `/opt/tfe-installer/`)
-1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Pre-Install Checklist: Software Requirements](../before-installing/index.html#software-requirements) for details).
+
 
 #### Execute the Installer
 
-From a shell on your instance, in the directory where you placed the `replicated.tar.gz` installer bootstrapper:
+From a shell on your instance, in the directory where you placed the `latest.tar.gz` installer bootstrapper:
 
-1. Run `tar xzf replicated.tar.gz`
+1. Run `tar xzf latest.tar.gz`
 1. Run `sudo ./install.sh airgap`
 1. When asked, select the interface of the primary private network interface used to access the instance.
 1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be `https://<TFE HOSTNAME>:8800`.

@@ -135,7 +135,7 @@
 /docs/extend/testing/acceptance-tests/testcase.html
 /docs/extend/testing/index.html
 /docs/extend/writing-custom-providers.html
-/docs/github-actions/getting-started/index.html
+/docs/github-actions/getting-started.html
 /docs/github-actions/index.html
 /docs/import/importability.html
 /docs/import/index.html
@@ -254,7 +254,6 @@
 /docs/providers/aws/d/vpc.html
 /docs/providers/aws/d/vpc_peering_connection.html
 /docs/providers/aws/d/vpn_gateway.html
-/docs/providers/aws/guides/iam-policy-documents.html
 /docs/providers/aws/guides/version-2-upgrade.html
 /docs/providers/aws/r/acm_certificate.html
 /docs/providers/aws/r/acm_certificate_validation.html
@@ -479,9 +478,9 @@
 /docs/providers/azure/r/instance.html
 /docs/providers/azure/r/local_network_connection.html
 /docs/providers/azurerm/
-/docs/providers/azurerm/auth/azure_cli.html
-/docs/providers/azurerm/auth/managed_service_identity.html
-/docs/providers/azurerm/auth/service_principal_client_secret.html
+/docs/providers/azurerm/guides/azure_cli.html
+/docs/providers/azurerm/guides/managed_service_identity.html
+/docs/providers/azurerm/guides/service_principal_client_secret.html
 /docs/providers/azurerm/d/application_security_group.html
 /docs/providers/azurerm/d/app_service.html
 /docs/providers/azurerm/d/image.html
@@ -683,7 +682,7 @@
 /docs/providers/google/d/google_organization.html
 /docs/providers/google/getting_started.html
 /docs/providers/google/index.html
-/docs/providers/google/provider_reference.html
+/docs/providers/google/guides/provider_reference.html
 /docs/providers/google/provider_versions.html
 /docs/providers/google/r/bigquery_dataset.html
 /docs/providers/google/r/bigtable_instance.html
@@ -735,7 +734,6 @@
 /docs/providers/google/r/google_project.html
 /docs/providers/google/r/google_project_iam.html
 /docs/providers/google/r/google_project_service.html
-/docs/providers/google/r/google_project_services.html
 /docs/providers/google/r/google_service_account.html
 /docs/providers/google/r/google_service_account_iam.html
 /docs/providers/google/r/google_service_account_key.html

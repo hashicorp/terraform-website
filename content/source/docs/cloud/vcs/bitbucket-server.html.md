@@ -6,7 +6,7 @@ page_title: "Bitbucket Server and Data Center - VCS Providers - Terraform Cloud"
 
 # Configuring Bitbucket Server/Data Center Access
 
-These instructions are for using **Bitbucket Server** for Terraform Cloud's VCS features. 
+These instructions are for using **Bitbucket Server** for Terraform Cloud's VCS features.
 
 These instructions also apply to **Bitbucket Data Center,** which is a variant of Bitbucket Server that supports clustering. Terraform Cloud treats these two products identically, and Bitbucket Data Center users will select **Bitbucket Server** as their VCS Provider type. Unless stated otherwise, any reference to Bitbucket Server in this document also applies to Bitbucket Data Center.
 
@@ -16,7 +16,7 @@ Note that Bitbucket Server requires both OAuth authentication and an SSH key. Th
 
 -> **Version note:** Terraform Cloud supports Bitbucket Server versions 4.9.1 and newer, and Bitbucket Data Center versions 5.4.0 and newer. HashiCorp does not test older versions of Bitbucket Server with Terraform Cloud, and they might not work as expected. Also note that, although we do not deliberately remove support for versions that have reached end of life (per the [Atlassian Support End of Life Policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html)), our ability to resolve customer issues with end of life versions might be limited.
 
-~> **Important:** Terraform Cloud needs to contact your Bitbucket Server instance during setup and during normal operation. For the SaaS version of Terraform Cloud, this means Bitbucket Server must be internet-accessible; for Terraform Enterprise, you must have network connectivity between your Terraform Enterprise and Bitbucket Server instances over both SSH and HTTP or HTTPS. Bitbucket Server repository clone operations are performed over SSH on the port the Bitbucket Server instance uses.
+~> **Important:** Terraform Cloud needs to contact Bitbucket Server over both SSH and HTTP (or HTTPS) during setup and during normal operation. For the SaaS version of Terraform Cloud, this means Bitbucket Server must be internet-accessible on its SSH and HTTP(S) ports; for Terraform Enterprise, you must have network connectivity between your Terraform Enterprise and Bitbucket Server instances. <br /><br /> Note that [Bitbucket Server's default ports](https://confluence.atlassian.com/bitbucketserverkb/which-ports-does-bitbucket-server-listen-on-and-what-are-they-used-for-806029586.html) are 7999 for SSH and 7990 for HTTP; check your configuration to confirm your instance's real ports.
 
 ## Before You Begin: Determine Your Bitbucket Server Version
 

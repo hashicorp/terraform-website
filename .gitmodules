@@ -450,3 +450,43 @@
 	path = ext/providers/genymotion
 	url = https://github.com/terraform-providers/terraform-provider-genymotion
 	branch = stable-website
+[submodule "ext/providers/venafi"]
+	path = ext/providers/venafi
+	url = https://github.com/terraform-providers/terraform-provider-venafi
+	branch = stable-website
+[submodule "ext/providers/okta"]
+	path = ext/providers/okta
+	url = https://github.com/terraform-providers/terraform-provider-okta
+	branch = stable-website
+[submodule "ext/providers/launchdarkly"]
+	path = ext/providers/launchdarkly
+	url = https://github.com/terraform-providers/terraform-provider-launchdarkly
+	branch = stable-website
+[submodule "ext/providers/vultr"]
+	path = ext/providers/vultr
+	url = https://github.com/terraform-providers/terraform-provider-vultr
+	branch = stable-website
+[submodule "ext/providers/dome9"]
+	path = ext/providers/dome9
+	url = https://github.com/terraform-providers/terraform-provider-dome9
+	branch = stable-website
+[submodule "ext/providers/cherryservers"]
+	path = ext/providers/cherryservers
+	url = https://github.com/terraform-providers/terraform-provider-cherryservers
+	branch = stable-website
+[submodule "ext/providers/vthunder"]
+	path = ext/providers/vthunder
+	url = https://github.com/terraform-providers/terraform-provider-vthunder
+	branch = stable-website
+[submodule "ext/providers/huaweicloudstack"]
+	path = ext/providers/huaweicloudstack
+	url = https://github.com/terraform-providers/terraform-provider-huaweicloudstack
+	branch = stable-website
+[submodule "ext/providers/opennebula"]
+	path = ext/providers/opennebula
+	url = https://github.com/terraform-providers/terraform-provider-opennebula
+	branch = stable-website
+[submodule "ext/providers/stackpath"]
+	path = ext/providers/stackpath
+	url = https://github.com/terraform-providers/terraform-provider-stackpath
+	branch = stable-website

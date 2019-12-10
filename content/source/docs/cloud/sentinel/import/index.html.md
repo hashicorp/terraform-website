@@ -24,10 +24,10 @@ state, and run associated with a policy check.
 - [tfrun](./tfrun.html) - This provides access to data associated with a run
   in Terraform Cloud, such as the run's workspace.
 
-Terraform Cloud allows you to create mocks of these imports from plans for
-use with the mocking or testing features of the [Sentinel
-Simulator](https://docs.hashicorp.com/sentinel/commands/). For more information,
-see [Mocking Terraform Sentinel Data](../mock.html).
+Terraform Cloud allows you to create mocks of these imports from plans for use
+with the mocking or testing features of the [Sentinel
+CLI](https://docs.hashicorp.com/sentinel/commands/). For more information, see
+[Mocking Terraform Sentinel Data](../mock.html).
 
 -> **Note:** Terraform Cloud does not currently support custom imports.
 
