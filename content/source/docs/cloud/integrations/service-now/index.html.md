@@ -214,7 +214,7 @@ This example use case creates a Terraform catalog item for resources that limits
 
 1. Click "Create Application File"
 1. Select "Variable Set" > "Service Catalog" > Click "Create"
-1. Name your variable set (Our example will be `Example Pinned Variables`)
+1. Name your variable set. (The rest of this example assumes a set named `Example Pinned Variables`, with an "Internal Name" of `example_pinned_variables`.)
     - This will default "Internal Name" to `example_pinned_variables`
 1. Click "Submit"
 1. Under the "Variables" tab click "New"
