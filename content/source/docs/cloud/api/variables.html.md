@@ -22,7 +22,7 @@ page_title: "Variables - API Docs - Terraform Cloud"
 
 # Variables API
 
--> **Note**: The Variables API is **deprecated** and will be removed in a future release. All existing integrations with this API should transition to the [Workspace Variables API](./workspace-variables.html).
+~> **Important**: The Variables API is **deprecated** and will be removed in a future release. All existing integrations with this API should transition to the [Workspace Variables API](./workspace-variables.html).
 
 This set of APIs covers create, update, list and delete operations on variables.
 
