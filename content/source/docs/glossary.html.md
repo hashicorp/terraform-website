@@ -729,7 +729,7 @@ The process of using Terraform to make real infrastructure match the desired sta
 
 In Terraform Cloud, runs are performed in a series of stages ([plan][], [policy check][], and [apply][]), though not every stage occurs in every run. Terraform Cloud saves information about historical runs.
 
-- [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## S3
