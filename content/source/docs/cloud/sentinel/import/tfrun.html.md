@@ -9,13 +9,18 @@ description: |-
 
 The `tfrun` import provides access to data associated with a [Terraform run][run-glossary].
 
-This import currently includes two namespaces — `workspace`, which provides Sentinel policies with
-static data regarding the Terraform Cloud [workspace][workspace-glossary] associated with the run,
-and `cost_estimate`, which provides Sentinel policies with static data regarding the Terraform Cloud
-cost estimate associated with the run.
+This import currently consist of a `root` namespace, as well as namespaces for the `organization`, `workspace` and `cost-estimate`. Each namespace provides static data regarding the Terraform Cloud application that can then be consumed by Sentinel during a policy evaluation.
+
 
 ```
 tfrun
+├── created_at (string)
+├── message (string)
+├── speculative (boolean)
+├── is_destroy (boolean)
+├── variables (map of keys)
+├── organization
+│   └── name (string)
 ├── workspace
 │   ├── name (string)
 │   ├── description (string)
@@ -41,6 +46,58 @@ to only enforce the policy on non-development workspaces is more appropriate.
 
 [run-glossary]: /docs/glossary.html#run
 [workspace-glossary]: /docs/glossary.html#workspace
+
+## Namespace: root
+
+The **root namespace** contains data associated with the current run.
+
+### Value: `created_at`
+
+* **Value Type:** String.
+
+The `created_at` value within the [root namespace](#root-namespace) specifies the time that the run was created.
+
+### Value: `message`
+
+* **Value Type:** String.
+
+The `message` value within the [root namespace](#root-namespace) specifies the message that is associated with the run.
+
+The default value is *"Queued manually via the Terraform Enterprise API"*.
+
+### Value: `speculative`
+
+* **Value Type:** Boolean.
+
+The `speculative` value within the [root namespace](#root-namespace) specifies whether the plan associated with the run is a [speculative plan](../../run/index.html#speculative-plans) only.
+
+### Value: `is_destroy`
+
+* **Value Type:** Boolean.
+
+The `is_destroy` value within the [root namespace](#root-namespace) specifies whether the run will perform a destroy operation.
+
+### Value: `variables`
+
+* **Value Type:** A string-keyed map of values.
+
+The `variables` value within the [root namespace](#root-namespace) provides the names of the variables that are configured within the run and the [sensitivity](../../workspaces/variables.html#sensitive-values) state of the value.
+
+```
+variables (map of keys)
+└── name (string)
+    └── sensitive (boolean)
+```
+
+## Namespace: organization
+
+The **organization namespace** contains data associated with the current run's Terraform Cloud [organization](../../users-teams-organizations/organizations.html).
+
+### Value: `name`
+
+* **Value Type:** String.
+
+The `name` value within the [organization namespace](#organization-namespace) specifies the name assigned to the Terraform Cloud organization.
 
 ## Namespace: workspace
 
