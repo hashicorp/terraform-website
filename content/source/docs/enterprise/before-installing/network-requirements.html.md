@@ -22,9 +22,15 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 
 * api.replicated.com
 * get.replicated.com
-* quay.io
 * registry-data.replicated.com
 * registry.replicated.com
+* quay.io
+* quay-registry.s3.amazonaws.com
+* index.docker.io
+* auth.docker.io
+* registry-1.docker.io
+* download.docker.com
+* production.cloudflare.docker.com
 
 Airgapped installs do not check for updates over the network.
 
