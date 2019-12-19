@@ -11,6 +11,17 @@ This document outlines best practices for monitoring a Terraform Enterprise inst
 
 Terraform Enterprise provides a `/_health_check` endpoint on the instance. If Terraform Enterprise is up, the health check will return a `200 OK`.
 
+The `/_health_check` endpoint operates in 2 modes
+
+- Full check
+- Minimal check
+
+With full check, the service will attempt to verify status of internal component  and PostgreSQL, in contrast to minimal check in which only returns `200 OK`.
+
+In normal circumstance, full check will be performed during start up of the instance, once Terraform Enterprise started up in active running state, any subsequent checks will be performed in minimal check mode.
+
+-> **Note:** If you wish to perform full check forcefully, additional query parameter is required with `/_health_check?full=1` and extra caution as every single call will make contact to internal component and PostgreSQL.
+
 ## Metrics & Telemetry
 
 In addition to health-check monitoring, we recommend monitoring standard server metrics on the Terraform Enterprise instance:
