@@ -46,4 +46,6 @@ CREATE EXTENSION IF NOT EXISTS "citext" WITH SCHEMA "registry";
 
 When providing optional extra keyword parameters for the database connection,
 note an additional restriction on the `sslmode` parameter is that only the
-`require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
+`require`, `verify-full`, `verify-ca`, and `disable` values are allowed. The default value of `sslmode` is set to `require` with `external services` installation or `disable` with `demo` installation.
+
+-> **Note:** See PostgreSQL library for available extra parameters in relation to [sslmode](https://www.postgresql.org/docs/9.6/libpq-ssl.html). Terraform Enterprise provides certificates file at this location `/tmp/cust-ca-certificates.crt` in which required by `verify-full`, and `verify-ca` mode. Additional certificates can be added via [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting.
