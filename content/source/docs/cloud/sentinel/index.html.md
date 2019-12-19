@@ -41,3 +41,8 @@ Using Sentinel with Terraform Cloud involves:
   ability to generate mock data for any run within a workspace. This data can be
   used with the [Sentinel CLI](https://docs.hashicorp.com/sentinel/commands/) to
   test policies before deployment.
+
+### Standard Imports
+
+The Terraform integration for HashiCorp Sentinel implements all of the
+available [standard imports](https://docs.hashicorp.com/sentinel/imports/).

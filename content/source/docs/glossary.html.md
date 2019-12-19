@@ -612,7 +612,7 @@ Prior to mid-2019, "Terraform Enterprise" (TFE) was the name of the Terraform Cl
 
 A plugin for Terraform that makes a collection of related resources available. A provider plugin is responsible for understanding [API][] interactions with some kind of service and exposing [resources][] based on that API.
 
-Terraform providers are generally tied to a specific _infrastructure provider,_ which might be an infrastructure as a service (IaaS) provider (like AWS, GCP, Microsoft Azure, OpenStack), a platform as a service (PaaS) provider (like Heroku), or a software as a service (SaaS) provider (like Terraform Cloud, DNSimple, CloudFlare).
+Terraform providers are generally tied to a specific _infrastructure provider,_ which might be an infrastructure as a service (IaaS) provider (like AWS, GCP, Microsoft Azure, OpenStack), a platform as a service (PaaS) provider (like Heroku), or a software as a service (SaaS) provider (like Terraform Cloud, DNSimple, Cloudflare).
 
 There are many existing providers available, but providers can also be custom-built to work with any API.
 
@@ -729,7 +729,7 @@ The process of using Terraform to make real infrastructure match the desired sta
 
 In Terraform Cloud, runs are performed in a series of stages ([plan][], [policy check][], and [apply][]), though not every stage occurs in every run. Terraform Cloud saves information about historical runs.
 
-- [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## S3
