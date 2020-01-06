@@ -48,7 +48,7 @@ The SAML settings are separated into sections:
 
 - **Username Attribute Name**: (default: `Username`) The name of the SAML attribute that determines the TFE username for a user logging in via SSO.
 - **Site Admin Attribute Name**: (default: `SiteAdmin`) The name of the SAML attribute that determines whether a user has site-admin permissions. The value of this attribute in the SAML assertion must be a boolean. Site admins can manage settings and resources for the entire Terraform Enterprise instance; see [Administering Terraform Enterprise][admin] for details.
-- **Team Attribute Name**: (default: `MemberOf`) The name of the SAML attribute that determines [team membership](./team-membership.html). The value of this attribute in the SAML assertion must be a string containing a comma-separated list of team names, or, separate [AttributeValue items](./attributes.html#memberof). Team membership mapping is case-sensitive. 
+- **Team Attribute Name**: (default: `MemberOf`) The name of the SAML attribute that determines [team membership](./team-membership.html). The value of this attribute in the SAML assertion must be either a string containing a comma-separated list of team names or separate [AttributeValue items](./attributes.html#memberof). Team membership mapping is case-sensitive. 
 
 ### Team Membership Mapping
 
