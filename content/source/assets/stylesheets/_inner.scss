@@ -6,6 +6,11 @@
     grid-template-rows: minmax(90px, auto) 32px; // match #sidebar-header-grid
     margin-bottom: 16px;
 
+    margin-top: 20px; // fallback for non-grid browsers
+    @supports (display: grid) {
+      margin-top: 0;
+    }
+
     h1 {
       grid-column: 1/2;
       grid-row: 1/2;
