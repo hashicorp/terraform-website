@@ -88,6 +88,7 @@ Provides the names of the variables that are configured within the run and the [
 ```
 variables (map of keys)
 └── name (string)
+    └── category (string)
     └── sensitive (boolean)
 ```
 
