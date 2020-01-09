@@ -29,7 +29,7 @@ when running `terraform import`.
 
 An acceptance test’s mode is implicitly determined by the fields provided in the
 `TestStep` definition. The applicable fields are defined in the [TestStep
-Reference API][https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestStep]. 
+Reference API](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestStep).
 
 ## Steps
 
