@@ -1,23 +1,45 @@
 ---
 layout: "cloud"
-page_title: "Runs - Terraform Cloud"
+page_title: "Terraform Runs and Remote Operations - Terraform Cloud"
 ---
 
-# About Terraform Runs in Terraform Cloud
+# Terraform Runs and Remote Operations
 
 Terraform Cloud provides a central interface for running Terraform within a large collaborative organization. If you're accustomed to running Terraform from your workstation, the way Terraform Cloud manages runs can be unfamiliar.
 
 This page describes the basics of how runs work in Terraform Cloud.
 
+## Remote Operations
+
+Terraform Cloud is designed as an execution platform for Terraform, and can perform Terraform runs on its own disposable virtual machines. This provides a consistent and reliable run environment, and enables advanced features like Sentinel policy enforcement, cost estimation, notifications, version control integration, and more.
+
+Terraform runs managed by Terraform Cloud are called _remote operations._ Remote runs can be initiated by webhooks from your VCS provider, by UI controls within Terraform Cloud, by API calls, or by Terraform CLI. When using Terraform CLI to perform remote operations, the progress of the run is streamed to the user's terminal, to provide an experience equivalent to local operations.
+
+### Disabling Remote Operations
+
+[execution_mode]: ../workspaces/settings.html#execution-mode
+
+Remote operations can be disabled for any workspace by changing its ["Execution Mode" setting][execution_mode] to "Local". This causes the workspace to act only as a remote backend for Terraform state, with all execution occurring on your own workstations or continuous integration workers.
+
+Many of Terraform Cloud's features rely on remote execution, and are not available when using local operations. This includes features like Sentinel policy enforcement, cost estimation, and notifications.
+
 ## Runs and Workspaces
 
-Terraform Cloud always performs Terraform runs in the context of a [workspace](./index.html). The workspace provides the state and variables for the run, and usually specifies where the configuration should come from.
+Terraform Cloud always performs Terraform runs in the context of a [workspace](./index.html). The workspace serves the same role that a persistent working directory serves when running Terraform locally: it provides the configuration, state, and variables for the run.
+
+### Configuration Versions
+
+Each workspace is associated with a particular Terraform configuration, but that configuration is expected to change over time. Thus, Terraform Cloud manages configurations as a series of _configuration versions._
+
+Most commonly, a workspace is linked to a VCS repository, and its configuration versions are tied to revisions in the specified VCS branch. In workspaces that aren't linked to a repository, new configuration versions can be uploaded via Terraform CLI or via the API.
+
+### Ordering and Timing
 
 Each workspace in Terraform Cloud maintains its own queue of runs, and processes those runs in order.
 
 Whenever a new run is initiated, it's added to the end of the queue. If there's already a run in progress, the new run won't start until the current one has completely finished — Terraform Cloud won't even plan the run yet, because the current run might change what a future run would do. Runs that are waiting for other runs to finish are in a _pending_ state, and a workspace might have any number of pending runs.
 
-When you initiate a run, Terraform Cloud locks the run to the current Terraform code (usually associated with a specific VCS commit) and variable values. If you change variables or commit new code before the run finishes, it will only affect future runs, not ones that are already pending, planning, or awaiting apply.
+When you initiate a run, Terraform Cloud locks the run to a particular configuration version and set of variable values. If you change variables or commit new code before the run finishes, it will only affect future runs, not runs that are already pending, planning, or awaiting apply.
 
 ## Starting Runs
 
