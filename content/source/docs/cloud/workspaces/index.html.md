@@ -7,18 +7,43 @@ page_title: "Workspaces - Terraform Cloud"
 
 Workspaces are how Terraform Cloud organizes infrastructure.
 
-A workspace consists of:
+## Workspaces are Collections of Infrastructure
 
-- A Terraform configuration (usually retrieved from a VCS repo, but sometimes uploaded directly).
-- Values for variables used by the configuration.
-- Persistent stored state for the resources the configuration manages.
-- Historical state and run logs.
+Working with Terraform involves _managing collections of infrastructure resources,_ and most organizations manage many different collections.
+
+When run locally, Terraform manages each collection of infrastructure with a _persistent working directory,_ which contains a configuration, state data, and variables. Terraform CLI uses content from the directory it runs in; by using separate directories, it's easy to organize infrastructure resources into meaningful groups.
+
+Terraform Cloud manages infrastructure collections with _workspaces_ instead of directories. A workspace contains everything Terraform needs to manage a given collection of infrastructure.
+
+-> **Note:** Terraform Cloud and Terraform CLI both have features called "workspaces," but they're slightly different. CLI workspaces are alternate state files in the same working directory; they're a convenience feature for using one configuration to manage multiple similar groups of resources. Terraform Cloud workspaces function like completely separate working directories.
+
+### Workspace Contents
+
+Terraform Cloud workspaces and local working directories serve the same purpose, but they store their data slightly differently:
+
+Component | Local Terraform | Terraform Cloud
+--|--|--
+Terraform configuration | On disk | In linked version control repository, or periodically uploaded via API/CLI (see also: [Terraform Configurations](./configurations.html))
+Variable values | As `.tfvars` files, as CLI arguments, or in shell environment | In workspace (see also: [Variables](./variables.html))
+State | On disk or in remote backend | In workspace (see also: [State](./state.html))
+Credentials and secrets | In shell environment or entered at prompts | In workspace, stored as sensitive variables (see also: [Variables](./variables.html))
+
+In addition to the basic Terraform content, Terraform Cloud keeps some additional data for each workspace:
+
+- **State versions:** Each workspace retains backups of its previous state files. Although only the current state is necessary for managing resources, the state history can be useful for tracking changes over time or recovering from problems. (See also: [State](./state.html).)
+- **Run history:** When Terraform Cloud manages a workspace's Terraform runs, it retains a record of all run activity, including summaries, logs, a reference to the changes that caused the run, and user comments. (See also: [Viewing and Managing Runs](../run/manage.html).)
+
+### Terraform Runs
+
+For workspaces with [remote operations](../run/index.html) enabled (the default), Terraform Cloud performs Terraform runs on its own disposable virtual machines, using that workspace's configuration, variables, and state.
+
+For more information, see [Terraform Runs and Remote Operations](../run/index.html).
 
 ## Listing and Filtering Workspaces
 
 -> **API:** See the [Workspaces API](../api/workspaces.html).
 
-Terraform Cloud's top navigation bar includes a "Workspaces" link, which takes you to the list of workspaces in the current  organization.
+Terraform Cloud's top navigation bar includes a "Workspaces" link, which takes you to the list of workspaces in the current organization.
 
 ![Screenshot: the list of workspaces](./images/index-list.png)
 
