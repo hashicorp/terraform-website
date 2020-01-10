@@ -9,13 +9,18 @@ description: |-
 
 The `tfrun` import provides access to data associated with a [Terraform run][run-glossary].
 
-This import currently includes two namespaces — `workspace`, which provides Sentinel policies with
-static data regarding the Terraform Cloud [workspace][workspace-glossary] associated with the run,
-and `cost_estimate`, which provides Sentinel policies with static data regarding the Terraform Cloud
-cost estimate associated with the run.
+This import currently consists of run attributes, as well as namespaces for the `organization`, `workspace` and `cost-estimate`. Each namespace provides static data regarding the Terraform Cloud application that can then be consumed by Sentinel during a policy evaluation.
+
 
 ```
 tfrun
+├── created_at (string)
+├── message (string)
+├── speculative (boolean)
+├── is_destroy (boolean)
+├── variables (map of keys)
+├── organization
+│   └── name (string)
 ├── workspace
 │   ├── name (string)
 │   ├── description (string)
@@ -42,6 +47,60 @@ to only enforce the policy on non-development workspaces is more appropriate.
 [run-glossary]: /docs/glossary.html#run
 [workspace-glossary]: /docs/glossary.html#workspace
 
+## Namespace: root
+
+The **root namespace** contains data associated with the current run.
+
+### Value: `created_at`
+
+* **Value Type:** String.
+
+The `created_at` value within the [root namespace](#root-namespace) specifies the time that the run was created. The timestamp returned follows the format outlined in [RFC3339](https://tools.ietf.org/html/rfc3339).
+
+Users can use the `time` import to [load](https://docs.hashicorp.com/sentinel/imports/time/#timeloadtimeish) a run timestamp and create a new timespace from the specicied value. See the `time` import [documentation](https://docs.hashicorp.com/sentinel/imports/time/#import-time) for available actions that can be performed on timespaces.
+
+### Value: `message`
+
+* **Value Type:** String.
+
+Specifies the message that is associated with the run.
+
+The default value is *"Queued manually via the Terraform Enterprise API"*.
+
+### Value: `speculative`
+
+* **Value Type:** Boolean.
+
+Specifies whether the plan associated with the run is a [speculative plan](../../run/index.html#speculative-plans) only.
+
+### Value: `is_destroy`
+
+* **Value Type:** Boolean.
+
+Specifies if the plan is a destroy plan, which will destroy all provisioned resources.
+
+### Value: `variables`
+
+* **Value Type:** A string-keyed map of values.
+
+Provides the names of the variables that are configured within the run and the [sensitivity](../../workspaces/variables.html#sensitive-values) state of the value.
+
+```
+variables (map of keys)
+└── name (string)
+    └── sensitive (boolean)
+```
+
+## Namespace: organization
+
+The **organization namespace** contains data associated with the current run's Terraform Cloud [organization](../../users-teams-organizations/organizations.html).
+
+### Value: `name`
+
+* **Value Type:** String.
+
+Specifies the name assigned to the Terraform Cloud organization.
+
 ## Namespace: workspace
 
 The **workspace namespace** contains data associated with the current run's workspace.
@@ -50,7 +109,7 @@ The **workspace namespace** contains data associated with the current run's work
 
 * **Value Type:** String.
 
-The `name` value within the [workspace namespace](#namespace-workspace) contains the workspace name.
+The name of the workspace, which can only include letters, numbers, `-`, and `_`.
 
 As an example, in a workspace named `app-dev-us-east` the following policy would evaluate to `true`:
 
@@ -76,7 +135,7 @@ main = rule {
 
 * **Value Type:** String.
 
-The `description` value within the [workspace namespace](#namespace-workspace) contains the workspace description.
+Contains the description for the workspace.
 
 This value can be `null`.
 
@@ -84,15 +143,13 @@ This value can be `null`.
 
 * **Value Type:** Boolean.
 
-The `auto_apply` value within the [workspace namespace](#namespace-workspace)
-contains the workspace's [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) setting.
+Contains the workspace's [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) setting.
 
 ### Value: `working_directory`
 
 * **Value Type:** String.
 
-The `working_directory` value within the [workspace namespace](#namespace-workspace)
-contains the configured [Terraform working directory](../../workspaces/settings.html#terraform-working-directory) of the workspace.
+Contains the configured [Terraform working directory](../../workspaces/settings.html#terraform-working-directory) of the workspace.
 
 This value can be `null`.
 
@@ -100,8 +157,7 @@ This value can be `null`.
 
 * **Value Type:** A string-keyed map of values.
 
-The `vcs_repo` value within the [workspace namespace](#namespace-workspace)
-contains data associated with a VCS repository connected to the workspace.
+Contains data associated with a VCS repository connected to the workspace.
 
 Details regarding each attribute can be found in the documentation for the Terraform Cloud [Workspaces API](../../api/workspaces.html).
 
@@ -117,16 +173,17 @@ vcs_repo (map of keys)
 
 ## Namespace: cost_estimate
 
-The **cost_estimation namespace** contains data associated with the current run's cost estimate. This
-namespace is only present if a cost estimate is available. Note that cost estimates are not
-available for Terraform 0.11.
+The **cost_estimation namespace** contains data associated with the current run's cost estimate.
+
+This namespace is only present if a cost estimate is available.
+
+-> **Note:** Cost estimates are not available for Terraform 0.11.
 
 ### Value: `prior_monthly_cost`
 
 * **Value Type:** String.
 
-The `prior_monthly_cost` value within the [cost_estimate namespace](#namespace-cost_estimate) contains the
-monthly cost estimate at the beginning of a plan.
+Contains the monthly cost estimate at the beginning of a plan.
 
 This value contains a positive decimal and can be `"0.0"`.
 
@@ -134,8 +191,7 @@ This value contains a positive decimal and can be `"0.0"`.
 
 * **Value Type:** String.
 
-The `proposed_monthly_cost` value within the [cost_estimate namespace](#namespace-cost_estimate) contains the
-monthly cost estimate if the plan were to be applied.
+Contains the monthly cost estimate if the plan were to be applied.
 
 This value contains a positive decimal and can be `"0.0"`.
 
@@ -143,7 +199,6 @@ This value contains a positive decimal and can be `"0.0"`.
 
 * **Value Type:** String.
 
-The `delta_monthly_cost` value within the [cost_estimate namespace](#namespace-cost_estimate) contains the
-difference between the prior and proposed monthly cost estimates.
+Contains the difference between the prior and proposed monthly cost estimates.
 
-This value contains a positive or negative decimal and can be `"0.0"`.
+This value may contain a positive or negative decimal and can be `"0.0"`.
