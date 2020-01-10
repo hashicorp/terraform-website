@@ -100,7 +100,7 @@ Answer "yes," and Terraform will migrate your state.
 
 In Terraform Cloud's UI, make any settings changes necessary for your new workspace.
 
-- [Set the VCS repository](../workspaces/settings.html#vcs-connection-and-repository). This is optional, but enables automatic Terraform runs on code changes and automatic plans on pull requests. For more information, see [The UI- and VCS-driven Run Workflow](../run/ui.html).
+- [Set the VCS repository](../workspaces/vcs.html#vcs-connection-and-repository). This is optional, but enables automatic Terraform runs on code changes and automatic plans on pull requests. For more information, see [The UI- and VCS-driven Run Workflow](../run/ui.html).
 - [Set values for variables](../workspaces/variables.html).
 - [Set team access permissions](../workspaces/access.html).
 

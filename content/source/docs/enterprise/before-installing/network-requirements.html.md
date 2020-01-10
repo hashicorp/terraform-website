@@ -35,7 +35,7 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 Airgapped installs do not check for updates over the network.
 
 Additionally, the following hostnames are accessed unless a
-[custom Terraform bundle](/docs/cloud/run/index.html#custom-and-community-providers)
+[custom Terraform bundle](/docs/cloud/run/install-software.html#custom-and-community-providers)
 is supplied:
 
 * registry.terraform.io (when using Terraform 0.12 and later)

@@ -41,6 +41,16 @@ The display name of the workspace.
 
 ~> **Important:** Since some API calls refer to a workspace by its name, changing the name can sometimes break existing integrations.
 
+### Execution Mode
+
+[remote backend]: /docs/backends/types/remote.html
+
+Whether to use Terraform Cloud as the Terraform execution platform for this workspace.
+
+The default value is "Remote", which instructs Terraform Cloud to perform Terraform runs on its own disposable virtual machines. This provides a consistent and reliable run environment, and enables advanced features like Sentinel policy enforcement, cost estimation, notifications, version control integration, and more.
+
+To disable remote execution for a workspace, change its execution mode to "Local". The workspace will store state, which Terraform can access using the [remote backend][].
+
 ### Auto Apply and Manual Apply
 
 Whether or not Terraform Cloud should automatically apply a successful Terraform plan. If you choose manual apply, an operator must confirm a successful plan and choose to apply it.
@@ -68,7 +78,7 @@ Setting a working directory creates a default filter for automatic run triggerin
 
 #### Default Run Trigger Filtering
 
-In VCS-backed workspaces that specify a working directory, Terraform Cloud assumes that only changes within that working directory should trigger a run. You can override this behavior with the [Automatic Run Triggering](#automatic-run-triggering) settings.
+In VCS-backed workspaces that specify a working directory, Terraform Cloud assumes that only changes within that working directory should trigger a run. You can override this behavior with the [Automatic Run Triggering](./vcs.html#automatic-run-triggering) settings.
 
 #### Parent Directory Uploads
 
@@ -117,47 +127,9 @@ See [Managing Access to Workspaces](./access.html) for detailed information.
 
 ## Version Control
 
-The "Version Control" page configures the VCS repository (if any) that contains the workspace's Terraform configuration.
+The "Version Control" page configures an optional VCS repository that contains the workspace's Terraform configuration. Version control integration is only relevant for workspaces with [remote execution](#execution-mode) enabled.
 
-After changing any of these settings, you must click the "Update VCS settings" button at the bottom of the page.
-
-### VCS Connection and Repository
-
-You can use the "Select a VCS connection" buttons and "Repository" field to change which VCS repository the workspace gets configurations from. To remove an already configured VCS connection, use the "skip this step" link instead of one of the VCS buttons. See also:
-
-- [Creating Workspaces](./creating.html) for more details about selecting a VCS repository.
-- [Connecting VCS Providers to Terraform Cloud](../vcs/index.html) for more details about configuring VCS integrations.
-
--> **API:** If you need to change VCS connections for many workspaces at once, consider automating the changes with the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace). This is most common when moving a VCS server, or when a vendor deprecates an older API version.
-
-### Automatic Run Triggering
-
-For workspaces that **don't** specify a Terraform working directory, Terraform Cloud assumes that the entire repository is relevant to the workspace. Any change will trigger a run.
-
-For workspaces that **do** specify a Terraform working directory, Terraform Cloud assumes that only _some_ content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. By default, only the working directory is considered relevant.
-
-You can adjust this behavior in two ways:
-
-- **Add more trigger directories.** Terraform Cloud will queue runs for changes in any of the specified trigger directories (including the working directory).
-
-    For example, if you use a top-level `modules` directory to share Terraform code across multiple configurations, changes to the shared modules are relevant to every workspace that uses that repo. You can add `modules` as a trigger directory for each workspace to make sure they notice any changes to shared code.
-- **Mark the entire repository as relevant.** If you set the "Automatic Run Triggering" setting to "Always Trigger Runs," Terraform Cloud will assume that anything in the repository might affect the workspace's configuration, and will queue runs for any change.
-
-    This can be useful for repos that don't have multiple configurations but require a working directory for some other reason. It's usually not what you want for true monorepos, since it queues unnecessary runs and slows down your ability to provision infrastructure.
-
--> **Note:** Trigger directories also apply to [speculative plans](./index.html#speculative-plans) on pull requests — Terraform Cloud won't queue plans for changes that aren't marked as relevant.
-
--> **Error Handling:** Terraform Cloud retrieves the changed files for each push or pull request using your VCS provider's API. If for some reason the list of changed files cannot be retrieved, or if it is too large to process, the default behaviour is to trigger runs on all attached workspaces. Should this happen, you may see several runs with state "Planned", due to the push resulting in no changes to infrastructure.
-
-### VCS Branch
-
-Which branch of the repository to use. If left blank, Terraform Cloud will use the repository's default branch.
-
-### Include submodules on clone
-
-Whether to recursively clone all of the repository's Git submodules when fetching a configuration.
-
--> **Note:** The [SSH key for cloning Git submodules](../vcs/index.html#ssh-keys) is set in the VCS provider settings for the organization, and is not related to the workspace's SSH key for Terraform modules.
+See [VCS Connections](./vcs.html) for detailed information about this page.
 
 ## Destruction and Deletion
 

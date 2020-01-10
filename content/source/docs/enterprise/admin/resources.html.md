@@ -97,6 +97,6 @@ To add a new version of Terraform, click **Terraform Versions** in the left menu
 
 ![screenshot: the Add Terraform Version page](./images/admin-version-add.png)
 
-The versions you add may be recent standard Terraform releases from HashiCorp, or custom Terraform versions. One common use for custom versions is to add a Terraform bundle that includes [pre-installed providers](/docs/cloud/run/index.html#custom-and-community-providers) commonly needed by the instance.
+The versions you add may be recent standard Terraform releases from HashiCorp, or custom Terraform versions. One common use for custom versions is to add a Terraform bundle that includes [pre-installed providers](/docs/cloud/run/install-software.html#custom-and-community-providers) commonly needed by the instance.
 
 Versions of Terraform can also be modified by clicking them in the list. They can be set to disabled (unavailable for use) if no workspaces are currently using them. The list indicates how many workspaces are currently using a given version.

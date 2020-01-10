@@ -3,11 +3,39 @@ layout: "cloud"
 page_title: "Installing Software in the Run Environment - Runs - Terraform Cloud"
 ---
 
-#  Installing Software in the Run Environment
+# Installing Software in the Run Environment
 
-In rare cases, it might be necessary to install extra software on the Terraform worker, such as a configuration management tool or cloud CLI. This page describes your options for using additional tools within the Terraform worker.
+Terraform relies on provider plugins to manage resources. In most cases, Terraform can automatically download the required plugins, but there are cases where plugins must be managed explicitly.
 
-## Avoid Installing Extra Software
+In rare cases, it might also be necessary to install extra software on the Terraform worker, such as a configuration management tool or cloud CLI.
+
+## Installing Terraform Providers
+
+### Providers Distributed by HashiCorp
+
+Terraform Cloud runs `terraform init` before every plan or apply, which automatically downloads any [providers](/docs/configuration/providers.html) Terraform needs.
+
+Terraform Enterprise instances can automatically install providers as long as they can access releases.hashicorp.com. If that isn't feasible due to security requirements, you can manually install providers. Use [the `terraform-bundle` tool][bundle] to build a custom version of Terraform that includes the necessary providers, and configure your workspaces to use that bundled version.
+
+[bundle]: https://github.com/hashicorp/terraform/tree/master/tools/terraform-bundle#installing-a-bundle-in-on-premises-terraform-enterprise
+
+### Custom and Community Providers
+
+-> **Note:** We are investigating how to improve custom provider installation, so this information might change in the near future.
+
+Terraform only automatically installs plugins from [the main list of providers](/docs/providers/index.html); to use community providers or your own custom providers, you must install them yourself.
+
+Currently, there are two ways to use custom provider plugins with Terraform Cloud.
+
+- Add the provider binary to the VCS repo (or manually-uploaded configuration version) for any workspace that uses it. Place the compiled `linux_amd64` version of the plugin at `terraform.d/plugins/linux_amd64/<PLUGIN NAME>` (as a relative path from the root of the working directory). The plugin name should follow the [naming scheme](/docs/configuration/providers.html#plugin-names-and-versions) and the plugin file must have read and execute permissions. (Third-party plugins are often distributed with an appropriate filename already set in the distribution archive.)
+
+    You can add plugins directly to a configuration repo, or you can add them as Git submodules and symlink the files into `terraform.d/plugins/linux_amd64/`. Submodules are a good choice when many workspaces use the same custom provider, since they keep your repos smaller. If using submodules, enable the ["Include submodules on clone" setting](../workspaces/vcs.html#include-submodules-on-clone) on any affected workspace.
+
+- **Terraform Enterprise only:** Use [the `terraform-bundle` tool][bundle] to add custom providers to a custom Terraform version. This keeps custom providers out of your configuration repos entirely, and is easier to update when many workspaces use the same provider.
+
+## Installing Additional Tools
+
+### Avoid Installing Extra Software
 
 Whenever possible, don't install software on the worker. There are a number of reasons for this:
 
@@ -15,7 +43,7 @@ Whenever possible, don't install software on the worker. There are a number of r
 - We don't guarantee the stability of the operating system on the Terraform build workers. It's currently the latest version of Ubuntu LTS, but we reserve the right to change that at any time.
 - The build workers are disposable and are destroyed after each use, which makes managing extra software even more complex than when running Terraform CLI in a persistent environment. Custom software must be installed on every run, which also increases run times.
 
-## Only Install Standalone Binaries
+### Only Install Standalone Binaries
 
 Terraform Cloud does not allow you to elevate a command's permissions with `sudo` during Terraform runs. This means you cannot install packages using the worker OS's normal package management tools. However, you can install and execute standalone binaries in Terraform's working directory.
 
