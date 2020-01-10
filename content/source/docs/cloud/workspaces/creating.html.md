@@ -5,60 +5,76 @@ page_title: "Creating Workspaces - Workspaces - Terraform Cloud"
 
 # Creating Workspaces
 
-~> **Important:** Only [organization owners](../users-teams-organizations/teams.html#the-owners-team) can create new workspaces.
-
 -> **API:** See the [Create a Workspace endpoint](../api/workspaces.html#create-a-workspace) (`POST /organizations/:organization/workspaces`). <br/>
 **Terraform:** See the `tfe` provider's [`tfe_workspace` resource](/docs/providers/tfe/r/workspace.html).
 
-Create new Terraform Cloud workspaces with the "+ New Workspace" button, which appears on the list of workspaces. If you're not already viewing the workspace list, you can get there with the "Workspaces" button in the top navigation bar.
+Workspaces organize infrastructure into meaningful groups. Create new workspaces whenever you need to manage a new collection of infrastructure resources.
+
+Each new workspace needs a unique name, and needs to know where its Terraform configuration will come from.
+
+Most commonly, the configuration comes from a connected version control repository. If you choose not to connect a repository, you'll need to upload configuration versions for the workspace using Terraform CLI or the API.
+
+For more information about how configuration versions and connected repositories work, see [Terraform Configurations in Terraform Cloud Workspaces](./configurations.html).
+
+## Required Permissions
+
+New workspaces can be created by:
+
+- [The owners team](../users-teams-organizations/teams.html#the-owners-team).
+- Teams with the [manage workspaces](../users-teams-organizations/permissions.html#manage-workspaces) permission.
 
 ## Configuring a New Workspace
 
-![screenshot: form fields on the new workspace page](./images/creating-fields.png)
+[workdir]: ./settings.html#terraform-working-directory
+[trigger]: ./vcs.html#automatic-run-triggering
+[branch]: ./vcs.html#vcs-branch
+[submodules]: ./vcs.html#include-submodules-on-clone
 
-You must fill out several fields to configure your new workspace:
+-> **Note:** The "Create a New Workspace" page is split into multiple screens. The controls on these screens can vary based on your choices and your organization's settings.
 
-- **Workspace name** (required) — A name for the workspace, which must be unique in the organization. Names can include letters, numbers, `_`, and `-`. [See more advice about workspace names here](./naming.html).
-- **Source** (required; list of buttons) — Which [connected VCS provider](../vcs/index.html) the workspace should pull configurations from. If you've configured multiple VCS providers, there is a button for each of them.
+<video muted="muted" autoplay loop playsinline>
+    <source src="./images/creating.mp4" type="video/mp4">
+</video>
 
-  If you select "None," the workspace cannot pull configurations automatically, but you can upload configurations with [the remote backend](../run/cli.html) or [the run API](../run/api.html).
+To create a new workspace:
 
-- **Repository** — The VCS repository that contains the Terraform configuration for this workspace. This field is hidden when creating a workspace without a VCS source.
+1. [Navigate to the workspace list](./index.html#listing-and-filtering-workspaces) and click the "+ New Workspace" button (near the top of the page).
 
-  Repository identifiers are determined by your VCS provider, and use a format like `<ORGANIZATION>/<REPO NAME>` or `<PROJECT KEY>/<REPO NAME>`.
+1. On the first screen, choose your VCS provider (or choose "No VCS connection").
 
-  This field supports autocompletion of your most recently used repositories. If you need to specify a repository that isn't included in the autocomplete list, you can enter the full name manually.
+    -> **Note:** If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](../vcs/index.html) for more information. Only organization owners can configure VCS providers.
 
-  If necessary, you can change a workspace's VCS repository after creating it.
+1. On the second screen, choose a repository from the filterable list. This screen is skipped if you chose "No VCS connection".
 
-![Screenshot: VCS repo autocompletion](./images/creating-vcs.png)
+    Some VCS providers limit the list's size. If a repository isn't listed, you can still choose it by name; scroll to the bottom of the list and enter its ID in the text field.
 
-VCS-backed workspaces support several optional fields, which you can reveal by clicking the "More options" link. These fields are hidden when creating a workspace without a VCS source.
+    -> **Note:** For some VCS providers, this list includes a drop-down menu for changing which account's repositories are shown. Other providers combine all available accounts into a single list.
 
-![Screenshot: Optional fields for new VCS-backed workspaces](./images/creating-options.png)
+1. On the third screen, enter a name for the workspace. This defaults to the repository name, if applicable. The name must be unique within the organization, and can include letters, numbers, dashes (`-`), and underscores (`_`). See also our [advice for useful workspace names](./naming.html).
 
-- **Terraform working directory** — The directory where Terraform will execute, specified as a relative path from the root of the repo. This is useful when working with VCS repos that contain multiple Terraform configurations. Defaults to the root of the repo.
+1. Optionally, click the "Advanced options" link on the third screen to configure some additional version control settings. (These settings not shown if you chose "No VCS connection".) For information about these settings, see their descriptions on the [VCS Connections](./vcs.html) and [Settings](./settings.html) pages:
+    - [Terraform Working Directory][workdir]
+    - [Automatic Run Triggering][trigger]
+    - [VCS branch][branch]
+    - [Include submodules on clone][submodules]
 
-- **Automatic run triggering** — If you specify a working directory, Terraform Cloud will by default only queue a plan for changes to the repository inside that working directory. You can override this behaviour with these settings. See [Automatic Run Triggering](../workspaces/settings.html#automatic-run-triggering) settings for more details.
+1. Confirm creation with the "Create workspace" button.
 
-![Screenshot: Controlling run triggering for workspaces with working directory](./images/creating-options-filtering.png)
-
-- **VCS branch** — Which branch of the repository to use. If left blank, Terraform Cloud will use the repository's default branch.
-- **Include submodules on clone** (checkbox) — Whether to recursively clone all of the repository's Git submodules when fetching a configuration.
-
-  -> **Note:** The [SSH key for cloning Git submodules](../vcs/index.html#ssh-keys) is set in the VCS provider settings for the organization, and is not necessarily related to the SSH key set in the workspace's settings.
 
 ## After Creating a Workspace
 
 When you create a new workspace, a few things happen:
 
-- Terraform Cloud _doesn't_ immediately queue a plan for the workspace. Instead, it presents a dialog with shortcut links to either queue a plan or edit variables. If you don't need to edit variables, manually queuing a plan confirms that the workspace is ready to run.
-- If you selected a VCS provider and repository, Terraform Cloud automatically registers a webhook. The next time new commits appear in the selected branch of that repo or a PR is opened to that branch, Terraform Cloud will automatically queue a Terraform plan for the workspace. More at [VCS Connection webhooks](../vcs/index.html#webhooks).
+- Terraform Cloud _doesn't_ immediately queue a plan for the workspace. Instead, it presents a dialog with shortcut links to either queue a plan or edit variables.
+
+    If you don't need to edit variables, confirm that the workspace is ready to run by manually queuing a plan.
+
+- If you connected a VCS repository to the workspace, Terraform Cloud automatically registers a webhook with your VCS provider. The next time new commits appear in the selected branch of that repo or a PR is opened to that branch, Terraform Cloud will automatically queue a Terraform plan for the workspace. For more information, see [VCS Connections: Webhooks](../vcs/index.html#webhooks).
 
 A workspace with no runs will not accept new runs via VCS webhook; at least one run must be manually queued to confirm that the workspace is ready for further runs.
 
 Most of the time, you'll want to do one or more of the following after creating a workspace:
 
 - [Edit variables](./variables.html)
-- [Edit workspace settings](./settings.html)
+- [Edit additional workspace settings](./settings.html)
 - [Work with runs](../run/index.html)
