@@ -1,11 +1,13 @@
 ---
 layout: "cloud"
-page_title: "GitHub - VCS Providers - Terraform Cloud"
+page_title: "GitHub.com (OAuth) - VCS Providers - Terraform Cloud"
 ---
 
-# Configuring GitHub Access
+# Configuring GitHub.com Access (OAuth)
 
-These instructions are for using GitHub.com for Terraform Cloud's VCS features. [GitHub Enterprise has separate instructions,](./github-enterprise.html) as do the [other supported VCS providers.](./index.html)
+These instructions are for using GitHub.com for Terraform Cloud's VCS features, using a per-organization OAuth connection with the permissions of one particular GitHub user. For beginning users, we recommend using our [configuration-free GitHub App](./github-app.html) to access repositories instead.
+
+[GitHub Enterprise has separate instructions,](./github-enterprise.html) as do the [other supported VCS providers.](./index.html)
 
 Connecting Terraform Cloud to your VCS involves five steps:
 
