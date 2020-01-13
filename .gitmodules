@@ -490,3 +490,7 @@
 	path = ext/providers/stackpath
 	url = https://github.com/terraform-providers/terraform-provider-stackpath
 	branch = stable-website
+[submodule "ext/providers/checkpoint"]
+	path = ext/providers/checkpoint
+	url = https://github.com/terraform-providers/terraform-provider-checkpoint
+	branch = stable-website
