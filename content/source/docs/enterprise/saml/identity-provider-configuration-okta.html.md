@@ -16,8 +16,8 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
 3. In the "General Settings" page, enter an app name, then click "Next".
   ![Screenshot: the first page of Okta's new app configuration workflow, called "General Settings"](./images/sso-okta-new-application-general-settings.png)
 4. In the "Configure SAML" page, configure the following settings with the specified values:
-    - **Single sign on URL:** `https://<TFE HOSTNAME>/users/saml/auth` (listed as "ACS consumer (recipient) URL" in TFE's SAML settings).
-    - **Use this for Recipient URL and Destination URL** (checkbox): enabled.
+    - **SSO (Single Sign-On) URL:** `https://<TFE HOSTNAME>/users/saml/auth` (listed as "ACS consumer (recipient) URL" in TFE's SAML settings). _Note: This is used for authentication and is different from the [Login URL][login_url].  The [Login URL][login_url] will start the SSO Session utilizing this SSO URL behind-the-scenes.  To sign into TFE using Okta after everything is configured use the [Login URL][login_url]_.
+    - **Use the SSO URL for Recipient URL and Destination URL** (checkbox): enabled.
     - **Audience URI (SP Entity ID):** `https://<TFE HOSTNAME>/users/saml/metadata` (listed as "Metadata (audience) URL" in TFE's SAML settings).
     - **Name ID format** (drop-down): EmailAddress (the full name for this format in the SAML specification is `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`).
     - **Application username** (drop-down): Email
@@ -39,6 +39,7 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
 8. Finish configuring the SAML app in Okta, then copy the provided endpoint URLs and certificate to your Terraform Enterprise SAML settings at `https://<TFE_HOSTNAME>/app/admin/saml`. TFE requires a single sign-on URL, a single log-out URL, and a PEM (base64) encoded X.509 certificate.
 
 [attribute]: ./attributes.html
+[login_url]: ./login.html
 
 ## Example SAMLResponse
 
