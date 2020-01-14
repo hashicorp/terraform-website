@@ -35,10 +35,7 @@
     grid-template-rows: minmax(90px, auto) 32px; // match #inner-header-grid
     margin-bottom: 16px;
 
-    margin-top: 20px; // fallback for non-grid browsers
-    @supports (display: grid) {
-      // margin-top: 0; // commented out to account for two row headers
-    }
+    margin-top: 20px;
 
     h3, h4 {
       grid-column: 1/2;
