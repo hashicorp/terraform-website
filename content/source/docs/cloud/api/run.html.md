@@ -289,7 +289,9 @@ curl \
         "run-events": {...},
         "policy-checks": {...},
         "comments": {...},
-        "workspace-run-alerts": {...}
+        "workspace-run-alerts": {...},
+        "triggering-source": {...},
+        "triggering-run": {...}
       },
       "links": {
         "self": "/api/v2/runs/run-bWSq4YeYpfrW4mx7"
@@ -371,7 +373,9 @@ curl \
       "run-events": {...},
       "policy-checks": {...},
       "comments": {...},
-      "workspace-run-alerts": {...}
+      "workspace-run-alerts": {...},
+      "triggering-source": {...},
+      "triggering-run": {...}
     },
     "links": {
       "self": "/api/v2/runs/run-bWSq4YeYpfrW4mx7"
