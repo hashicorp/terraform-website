@@ -9,24 +9,24 @@ Workspaces are how Terraform Cloud organizes infrastructure.
 
 ## Workspaces are Collections of Infrastructure
 
-Working with Terraform involves _managing collections of infrastructure resources,_ and most organizations manage many different collections.
+Working with Terraform involves managing collections of infrastructure resources, and most organizations manage many different collections.
 
-When run locally, Terraform manages each collection of infrastructure with a _persistent working directory,_ which contains a configuration, state data, and variables. Terraform CLI uses content from the directory it runs in; by using separate directories, it's easy to organize infrastructure resources into meaningful groups.
+When run locally, Terraform manages each collection of infrastructure with a persistent working directory, which contains a configuration, state data, and variables. Since Terraform CLI uses content from the directory it runs in, you can organize infrastructure resources into meaningful groups by keeping their configurations in separate directories.
 
-Terraform Cloud manages infrastructure collections with _workspaces_ instead of directories. A workspace contains everything Terraform needs to manage a given collection of infrastructure.
+Terraform Cloud manages infrastructure collections with _workspaces_ instead of directories. A workspace contains everything Terraform needs to manage a given collection of infrastructure, and separate workspaces function like completely separate working directories.
 
--> **Note:** Terraform Cloud and Terraform CLI both have features called "workspaces," but they're slightly different. CLI workspaces are alternate state files in the same working directory; they're a convenience feature for using one configuration to manage multiple similar groups of resources. Terraform Cloud workspaces function like completely separate working directories.
+-> **Note:** Terraform Cloud and Terraform CLI both have features called "workspaces," but they're slightly different. CLI workspaces are alternate state files in the same working directory; they're a convenience feature for using one configuration to manage multiple similar groups of resources.
 
 ### Workspace Contents
 
-Terraform Cloud workspaces and local working directories serve the same purpose, but they store their data slightly differently:
+Terraform Cloud workspaces and local working directories serve the same purpose, but they store their data differently:
 
 Component | Local Terraform | Terraform Cloud
 --|--|--
-Terraform configuration | On disk | In linked version control repository, or periodically uploaded via API/CLI (see also: [Terraform Configurations](./configurations.html))
-Variable values | As `.tfvars` files, as CLI arguments, or in shell environment | In workspace (see also: [Variables](./variables.html))
-State | On disk or in remote backend | In workspace (see also: [State](./state.html))
-Credentials and secrets | In shell environment or entered at prompts | In workspace, stored as sensitive variables (see also: [Variables](./variables.html))
+Terraform configuration | On disk | In linked version control repository, or periodically uploaded via API/CLI
+Variable values | As `.tfvars` files, as CLI arguments, or in shell environment | In workspace
+State | On disk or in remote backend | In workspace
+Credentials and secrets | In shell environment or entered at prompts | In workspace, stored as sensitive variables
 
 In addition to the basic Terraform content, Terraform Cloud keeps some additional data for each workspace:
 
@@ -69,4 +69,3 @@ We recommend that organizations break down large monolithic Terraform configurat
 For example, the code that manages your production environment's infrastructure could be split into a networking configuration, the main application's configuration, and a monitoring configuration. After splitting the code, you would create "networking-prod", "app1-prod", "monitoring-prod" workspaces, and assign separate teams to manage them.
 
 Much like splitting monolithic applications into smaller microservices, this enables teams to make changes in parallel. In addition, it makes it easier to re-use configurations to manage other environments of infrastructure ("app1-dev," etc.).
-
