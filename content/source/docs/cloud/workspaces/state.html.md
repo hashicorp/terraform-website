@@ -13,7 +13,7 @@ In [remote runs](../run/index.html), Terraform Cloud automatically configures Te
 
 ## State Versions
 
-In addition to the current state, Terraform Cloud retains historical _state versions,_ which can be used to analyze infrastructure changes over time.
+In addition to the current state, Terraform Cloud retains historical state versions, which can be used to analyze infrastructure changes over time.
 
 You can view a workspace's state versions from its "States" tab. Each state in the list indicates which run and which VCS commit (if applicable) it was associated with. Click a state in the list for more details, including a diff against the previous state and a link to the raw state file.
 
@@ -23,7 +23,7 @@ In your Terraform configurations, you can use a [`terraform_remote_state` data s
 
 ~> **Important:** A given workspace can only access state data from within the same organization. If you plan to use multiple Terraform Cloud organizations, make sure to keep related groups of workspaces together in the same organization.
 
-To configure a data source for a Terraform Cloud workspace, set the `backend` argument to `remote` and specify the organization and workspace in the `config` argument.
+To configure a data source that references a Terraform Cloud workspace, set the data source's `backend` argument to `remote` and specify the organization and workspace in the `config` argument.
 
 ``` hcl
 data "terraform_remote_state" "vpc" {

@@ -22,21 +22,19 @@ For most of the settings on this page, you must save any changes with the "Updat
 
 ## VCS Connection and Repository
 
-The first item in the version control settings lets you select a new VCS repository or disconnect from the current repository.
+The first item in the version control settings lets you select a new VCS repository or disconnect from the current repository. Depending on the current status, this control can appear as a "Connect to version control" button or a "Change VCS connection" link.
 
--> **Note:** Depending on the current status, this control can appear as a "Connect to version control" button or a "Change VCS connection" link.
-
-Connecting or disconnecting a VCS repository occurs on a separate page, split into three screens:
+Clicking this control will navigate to a separate page, which will walk you through the process of connecting or disconnecting a repository. This page is split into three screens.
 
 1. On the first screen, choose your VCS provider (or choose "No VCS connection" to disconnect the workspace from version control).
 
-    -> **Note:** If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](../vcs/index.html) for more information. Only organization owners can configure VCS providers.
+    If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](../vcs/index.html) for more information. Only organization owners can configure VCS providers.
 
 1. On the second screen, choose a repository from the filterable list. This screen is skipped if you chose "No VCS connection".
 
     Some VCS providers limit the list's size. If a repository isn't listed, you can still choose it by name; scroll to the bottom of the list and enter its ID in the text field.
 
-    -> **Note:** For some VCS providers, this list includes a drop-down menu for changing which account's repositories are shown. Other providers combine all available accounts into a single list.
+    For some VCS providers, this list includes a drop-down menu for changing which account's repositories are shown. Other providers combine all available accounts into a single list.
 
 1. On the third screen, confirm or cancel your choice. Confirmed changes will be saved immediately, and you will be returned to the "Version Control" settings page.
 
@@ -49,11 +47,11 @@ See also:
 
 ## Automatic Run Triggering
 
--> **Note:** This setting only affects workspaces that specify a Terraform working directory. [The working directory setting](./settings.html#terraform-working-directory) can be found on the "General" settings page.
+-> **Note:** This setting only affects workspaces that specify a Terraform working directory. Without a working directory, the entire repository is considered relevant and any change will trigger a run. [The working directory setting](./settings.html#terraform-working-directory) can be found on the "General" settings page.
 
-For workspaces that **don't** specify a Terraform working directory, Terraform Cloud assumes that the entire repository is relevant to the workspace. Any change will trigger a run.
+For workspaces that specify a Terraform working directory, Terraform Cloud assumes that only some content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. This behavior also applies to [speculative plans](./index.html#speculative-plans) on pull requests — Terraform Cloud won't queue plans for changes that aren't considered relevant.
 
-For workspaces that **do** specify a Terraform working directory, Terraform Cloud assumes that only _some_ content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. By default, only the working directory is considered relevant.
+By default, only the designated working directory is considered relevant.
 
 You can adjust this behavior in two ways:
 
@@ -64,9 +62,9 @@ You can adjust this behavior in two ways:
 
     This can be useful for repos that don't have multiple configurations but require a working directory for some other reason. It's usually not what you want for true monorepos, since it queues unnecessary runs and slows down your ability to provision infrastructure.
 
--> **Note:** Trigger directories also apply to [speculative plans](./index.html#speculative-plans) on pull requests — Terraform Cloud won't queue plans for changes that aren't marked as relevant.
+### Error Handling for Run Triggers
 
--> **Error Handling:** Terraform Cloud retrieves the changed files for each push or pull request using your VCS provider's API. If for some reason the list of changed files cannot be retrieved, or if it is too large to process, the default behaviour is to trigger runs on all attached workspaces. Should this happen, you may see several runs with state "Planned", due to the push resulting in no changes to infrastructure.
+Terraform Cloud retrieves the changed files for each push or pull request using your VCS provider's API. If for some reason the list of changed files cannot be retrieved, or if it is too large to process, the default behaviour is to trigger runs on all attached workspaces. Should this happen, you may see several runs with state "Planned", due to the push resulting in no changes to infrastructure.
 
 ## VCS Branch
 

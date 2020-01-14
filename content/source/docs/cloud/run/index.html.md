@@ -69,11 +69,10 @@ There are three ways to run speculative plans:
 
 ## Run States
 
-Each run passes through several stages of action (pending, plan, policy check, apply, and completion), and Terraform Cloud shows the progress through those stages as run states. In some states, the run might require confirmation before continuing or ending; see [Managing Runs: Interacting with Runs](./manage.html#interacting-with-runs) for more information.
+Terraform Cloud shows the progress of each run as it passes through each run state (pending, plan, policy check, apply, and completion). In some states, the run might require confirmation before continuing or ending; see [Managing Runs: Interacting with Runs](./manage.html#interacting-with-runs) for more information.
 
 In the list of workspaces on Terraform Cloud's main page, each workspace shows the state of the run it's currently processing. (Or, if no run is in progress, the state of the most recent completed run.)
 
 For full details about the stages of a run, see [Run States and Stages][].
 
 [Run States and Stages]: ./states.html
-

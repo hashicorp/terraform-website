@@ -10,9 +10,7 @@ page_title: "Creating Workspaces - Workspaces - Terraform Cloud"
 
 Workspaces organize infrastructure into meaningful groups. Create new workspaces whenever you need to manage a new collection of infrastructure resources.
 
-Each new workspace needs a unique name, and needs to know where its Terraform configuration will come from.
-
-Most commonly, the configuration comes from a connected version control repository. If you choose not to connect a repository, you'll need to upload configuration versions for the workspace using Terraform CLI or the API.
+Each new workspace needs a unique name, and needs to know where its Terraform configuration will come from. Most commonly, the configuration comes from a connected version control repository. If you choose not to connect a repository, you'll need to upload configuration versions for the workspace using Terraform CLI or the API.
 
 For more information about how configuration versions and connected repositories work, see [Terraform Configurations in Terraform Cloud Workspaces](./configurations.html).
 
@@ -52,7 +50,7 @@ To create a new workspace:
 
 1. On the third screen, enter a name for the workspace. This defaults to the repository name, if applicable. The name must be unique within the organization, and can include letters, numbers, dashes (`-`), and underscores (`_`). See also our [advice for useful workspace names](./naming.html).
 
-1. Optionally, click the "Advanced options" link on the third screen to configure some additional version control settings. (These settings not shown if you chose "No VCS connection".) For information about these settings, see their descriptions on the [VCS Connections](./vcs.html) and [Settings](./settings.html) pages:
+1. Optionally, click the "Advanced options" link on the third screen to configure some additional version control settings. (These settings not shown if you chose "No VCS connection".) For information about these settings, see:
     - [Terraform Working Directory][workdir]
     - [Automatic Run Triggering][trigger]
     - [VCS branch][branch]
@@ -65,7 +63,7 @@ To create a new workspace:
 
 When you create a new workspace, a few things happen:
 
-- Terraform Cloud _doesn't_ immediately queue a plan for the workspace. Instead, it presents a dialog with shortcut links to either queue a plan or edit variables.
+- Terraform Cloud doesn't immediately queue a plan for the workspace. Instead, it presents a dialog with shortcut links to either queue a plan or edit variables.
 
     If you don't need to edit variables, confirm that the workspace is ready to run by manually queuing a plan.
 

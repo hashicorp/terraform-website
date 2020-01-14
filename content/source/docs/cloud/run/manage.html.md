@@ -51,7 +51,7 @@ Discard Run         | A plan needs confirmation or a soft-mandatory policy faile
 Cancel Run          | A plan or apply is currently running.
 Force Cancel Run    | A plan or apply was canceled, but something went wrong and Terraform Cloud couldn't end the run gracefully (only available with workspace admin permissions).
 
-If a plan needs confirmation (with [manual apply](../workspaces/settings.html#auto-apply-and-manual-apply) enabled) or a soft-mandatory policy failed, the run will remain paused until a user with appropriate permissions uses these buttons to continue or discard the run. For more details, see [Run States and Stages][].
+If a plan needs confirmation (with [manual apply](../workspaces/settings.html#auto-apply-and-manual-apply) enabled) or a soft-mandatory policy failed, the run will remain paused until a user with appropriate permissions uses these buttons to continue or discard the run. For more details, see [Run States and Stages](./states.html).
 
 ### Canceling Runs
 

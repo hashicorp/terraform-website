@@ -15,7 +15,7 @@ In rare cases, it might also be necessary to install extra software on the Terra
 
 Terraform Cloud runs `terraform init` before every plan or apply, which automatically downloads any [providers](/docs/configuration/providers.html) Terraform needs.
 
-Terraform Enterprise instances can automatically install providers as long as they can access releases.hashicorp.com. If that isn't feasible due to security requirements, you can manually install providers. Use [the `terraform-bundle` tool][bundle] to build a custom version of Terraform that includes the necessary providers, and configure your workspaces to use that bundled version.
+Terraform Enterprise instances can automatically install providers as long as they can access `releases.hashicorp.com`. If that isn't feasible due to security requirements, you can manually install providers. Use [the `terraform-bundle` tool][bundle] to build a custom version of Terraform that includes the necessary providers, and configure your workspaces to use that bundled version.
 
 [bundle]: https://github.com/hashicorp/terraform/tree/master/tools/terraform-bundle#installing-a-bundle-in-on-premises-terraform-enterprise
 

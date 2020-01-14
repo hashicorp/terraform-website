@@ -13,7 +13,7 @@ page_title: "Terraform Configurations - Workspaces - Terraform Cloud"
 
 Each Terraform Cloud workspace is associated with a particular [Terraform configuration][], which is expected to change and evolve over time.
 
-Since every organization has its own preferred source code control practices, Terraform Cloud _does not_ provide integrated version management. Instead, it expects Terraform configurations to be managed in your existing version control system (VCS).
+Since every organization has its own preferred source code control practices, Terraform Cloud does not provide integrated version management. Instead, it expects Terraform configurations to be managed in your existing version control system (VCS).
 
 In order to perform [remote Terraform runs][remote operations] for a given workspace, Terraform Cloud needs to periodically receive new versions of its configuration. Usually, this can be handled automatically by connecting a workspace to a VCS repository.
 
@@ -34,4 +34,3 @@ There are two ways to provide configuration versions for a workspace:
     - **API:** Terraform Cloud's API can accept configurations as `.tar.gz` files, which can be uploaded by a CI system or other workflow tools. See [The API-driven Run Workflow](../run/api.html) for more information.
 
     When configuration versions are provided via the CLI or API, Terraform Cloud can't automatically react to code changes in the underlying VCS repository.
-
