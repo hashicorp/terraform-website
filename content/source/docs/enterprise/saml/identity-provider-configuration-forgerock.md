@@ -3,6 +3,12 @@ layout: "enterprise"
 page_title: "SAML ForgeRock Identity Provider Configuration - Terraform Enterprise"
 ---
 
+# ForgeRock Configuration
+
+Follow these steps to configure ForgeRock as the identity provider (IdP) for Terraform Enterprise.
+
+## Configure a new Remote Service Provider in ForgeRock
+
 On the TFE console, paste the ForgeRock Access Manager hosted IDP metadata certificate in the proper pem encoded format.  Enter the IDP SSO and SLO URLs as well.
 
 
@@ -15,34 +21,35 @@ After a Remote SP is created in ForgeRock Access Manager with the provided TFE m
 The Assertion content tab of the Remote SP which was created should show as below.
 
 ![Screenshot: ForgeRock dialog for Assertion content tab for Remote SP](./images/sso-forgerock-nameid2.png)
- 
+
 
 And in the assertion processing tab of the remote SP
 
 ![Screenshot: ForgeRock dialog for Assertion content tab for Remote SP](./images/sso-forgerock-attributemapper.png)
- 
 
-Example SAML Request
 
- ```xml
+## Example SAML Request
 
-              <samlp:AuthnRequest xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
-                    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-                    AssertionConsumerServiceURL="https://**TFE_DEPLOYMENT**/users/saml/auth"
-                    Destination="https://**ForgeRock_IDPSSO_Link_For_TFE"
-                    ID="_**Request_ID**"
-                    IssueInstant="2020-01-08T23:44:06Z"
-                    Version="2.0"
-                    >
+```xml
+
+<samlp:AuthnRequest xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+      xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
+      AssertionConsumerServiceURL="https://**TFE_DEPLOYMENT**/users/saml/auth"
+      Destination="https://**ForgeRock_IDPSSO_Link_For_TFE"
+      ID="_**Request_ID**"
+      IssueInstant="2020-01-08T23:44:06Z"
+      Version="2.0"
+      >
 
     <saml:Issuer>https:// **TFE_DEPLOYMENT**/users/saml/metadata</saml:Issuer>
     <samlp:NameIDPolicy AllowCreate="true"
                         Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
                         />
-</samlp:AuthnRequest> 
+</samlp:AuthnRequest>
 ```
 
-Example SAML response after successful authentication
+## Example SAMLResponse
+
 ```xml
 <samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
                 ID="**Response_ID** "
@@ -79,13 +86,13 @@ Example SAML response after successful authentication
                 </ds:Reference>
             </ds:SignedInfo>
             <ds:SignatureValue>
-           000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000==
-</ds:SignatureValue>
+                000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000==
+            </ds:SignatureValue>
             <ds:KeyInfo>
                 <ds:X509Data>
                     <ds:X509Certificate>
-000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000==
-</ds:X509Certificate>
+                        000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000==
+                    </ds:X509Certificate>
                 </ds:X509Data>
             </ds:KeyInfo>
         </ds:Signature>
