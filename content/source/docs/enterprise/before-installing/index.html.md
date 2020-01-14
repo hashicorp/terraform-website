@@ -127,7 +127,7 @@ Terraform Enterprise currently supports running under the following operating sy
     - Ubuntu 14.04 / 16.04 / 18.04
     - Red Hat Enterprise Linux 7.2 through 7.6
 
-    Clusters currently don't support other Linux variants. In particular, note that RHEL 7.7 is not currently supported.
+    Clusters currently don't support other Linux variants.
 - **Individual deployment:**
     - Debian 7.7+
     - Ubuntu 14.04 / 16.04 / 18.04
@@ -139,7 +139,7 @@ Terraform Enterprise currently supports running under the following operating sy
 ### Hardware Requirements
 
 These requirements provide the instance with enough resources to run the
-Terraform Cloud application as well as the Terraform plans and applies.
+Terraform Enterprise application as well as the Terraform plans and applies.
 
 * At least 40GB of disk space on the root volume
 * At least 8GB of system memory
@@ -151,7 +151,7 @@ Terraform Enterprise is a networked application. Its Linux instance needs to all
 
 See [Network Requirements](./network-requirements.html) for details.
 
-### Software Requirements
+### Software Requirements (Individual Deployment)
 
 Some operating systems have specific configuration requirements:
 
