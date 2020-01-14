@@ -10,27 +10,30 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
 ## Configure a New Okta SAML Application
 
 1. In Okta's web interface, go to the "Applications" tab and click "Create New App".
-  ![Screenshot: Okta's "Add Application" page](./images/sso-okta-add-application.png)
+    ![Screenshot: Okta's "Add Application" page](./images/sso-okta-add-application.png)
 2. Select "Web" as the platform and "SAML 2.0" as the sign on method, then click "Create".
-  ![Screenshot: Okta's modal dialog for beginning a new application](./images/sso-okta-new-application-form.png)
+    ![Screenshot: Okta's modal dialog for beginning a new application](./images/sso-okta-new-application-form.png)
 3. In the "General Settings" page, enter an app name, then click "Next".
-  ![Screenshot: the first page of Okta's new app configuration workflow, called "General Settings"](./images/sso-okta-new-application-general-settings.png)
+    ![Screenshot: the first page of Okta's new app configuration workflow, called "General Settings"](./images/sso-okta-new-application-general-settings.png)
 4. In the "Configure SAML" page, configure the following settings with the specified values:
-    - **Single sign on URL:** `https://<TFE HOSTNAME>/users/saml/auth` (listed as "ACS consumer (recipient) URL" in TFE's SAML settings).
-    - **Use this for Recipient URL and Destination URL** (checkbox): enabled.
+    - **SSO (Single Sign-On) URL:** `https://<TFE HOSTNAME>/users/saml/auth` (listed as "ACS consumer (recipient) URL" in TFE's SAML settings).
+
+        -> **Note:** The SSO URL is used by the identity provider software during authentication; it is different from the [Login URL][login_url], which users visit in order to sign in to Terraform Enterprise.
+    - **Use the SSO URL for Recipient URL and Destination URL** (checkbox): enabled.
     - **Audience URI (SP Entity ID):** `https://<TFE HOSTNAME>/users/saml/metadata` (listed as "Metadata (audience) URL" in TFE's SAML settings).
     - **Name ID format** (drop-down): EmailAddress (the full name for this format in the SAML specification is `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`).
     - **Application username** (drop-down): Email
 
     ~> **Important:** TFE usernames must be at least 3 characters. If Email is not used as the application username, ensure that your Okta username or other method selected contains only usernames having at least 3 characters. For example, if Email Prefix is selected and the email is Jo@domain.com, the user will not be able to log in and will receive the message "ERROR: Validation failed: Username must have at least 3 characters".
 
-    ![Screenshot: The "Configure SAML" page of Okta's new app workflow, with the specified settings entered.](./images/sso-okta-new-application-saml.png)
+      ![Screenshot: The "Configure SAML" page of Okta's new app workflow, with the specified settings entered.](./images/sso-okta-new-application-saml.png)
+
 5. Still in the "Configure SAML" page, configure a group attribute statement to report which teams a user belongs to. Under the "Group Attribute Statements (Optional)" header, configure the statement as follows:
     - **Name:** `MemberOf` (This is the default name for TFE's group [attribute][]; the name of this attribute can be changed in [TFE's SAML settings](./configuration.html) if necessary.)
     - **Name format** (drop-down): Basic
     - **Filter:** A filter type and filter value that will match all of the relevant groups that each user belongs to. The exact filter expression depends on how your Okta groups are configured, and which subset of groups you want to expose to TFE. Note that TFE ignores group names that do not correspond to existing TFE teams; see [Team Membership Mapping](./team-membership.html) for more details.
 
-    ![Screenshot: Further down on Okta's "Configure SAML" page, with a group attribute statement partially configured.](./images/sso-okta-new-application-attributes.png)
+      ![Screenshot: Further down on Okta's "Configure SAML" page, with a group attribute statement partially configured.](./images/sso-okta-new-application-attributes.png)
 6. Still in the "Configure SAML" page, optionally configure a site admin permissions attribute statement. This statement determines which users can administer the entire Terraform Enterprise instance (see [Administering Terraform Enterprise](../admin/index.html) for more information about site admin permissions). Under the "Attribute Statements (Optional)" header, configure a statement as follows:
     - **Name:** `SiteAdmin` (This is the default name for TFE's site admin [attribute][]; the name of this attribute can be changed in [TFE's SAML settings](./configuration.html) if necessary.)
     - **Name Format** (drop-down): Basic
@@ -39,6 +42,7 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
 8. Finish configuring the SAML app in Okta, then copy the provided endpoint URLs and certificate to your Terraform Enterprise SAML settings at `https://<TFE_HOSTNAME>/app/admin/saml`. TFE requires a single sign-on URL, a single log-out URL, and a PEM (base64) encoded X.509 certificate.
 
 [attribute]: ./attributes.html
+[login_url]: ./login.html
 
 ## Example SAMLResponse
 
