@@ -3,12 +3,12 @@
   #inner-header-grid {
     display: grid;
     grid-template-columns: 1fr auto;
-    grid-template-rows: minmax(90px, auto) 32px; // match #sidebar-header-grid
+    grid-template-rows: minmax(44px, auto) 32px; // match #sidebar-header-grid
     margin-bottom: 16px;
 
     margin-top: 20px; // fallback for non-grid browsers
     @supports (display: grid) {
-      margin-top: 0;
+      margin-top: 46px;
     }
 
     h1 {
