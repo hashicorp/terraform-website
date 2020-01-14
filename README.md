@@ -4,7 +4,7 @@ This repository contains the build infrastructure and some of the content for [t
 
 ## Table of Contents
 - [Where the Docs Live](#where-the-docs-live)
-- [Deploying Changes to [terraform.io]](#deploying-changes-to-terraformio)
+- [Deploying Changes to terraform.io](#deploying-changes-to-terraformio)
 - [Running the Site Locally](#running-the-site-locally)
 - [Previewing Changes from Providers or Terraform Core](#previewing-changes-from-providers-or-terraform-core)
 - [Writing Normal Docs Content](#writing-normal-docs-content)
