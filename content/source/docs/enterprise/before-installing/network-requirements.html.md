@@ -26,6 +26,7 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 * registry.replicated.com
 * quay.io
 * quay-registry.s3.amazonaws.com
+* cloudfront.net
 * index.docker.io
 * auth.docker.io
 * registry-1.docker.io
