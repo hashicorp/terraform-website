@@ -147,7 +147,7 @@ WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
 # 2. Create the File for Upload
 
 UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
-tar -zcvf "$UPLOAD_FILE_NAME" -C "$CONTENT_DIRECTORY"
+tar -zcvf "$UPLOAD_FILE_NAME" -C "$CONTENT_DIRECTORY" .
 
 # 3. Look Up the Workspace ID
 
