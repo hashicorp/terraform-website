@@ -7,7 +7,7 @@ description: |-
 
 # Terraform ServiceNow Service Catalog Integration Setup Instructions
 
--> **Integration version:**  v1.0.0
+-> **Integration version:**  v1.1.0
 
 -> **Note:** The ServiceNow Catalog integration is designed for use by Terraform Enterprise customers. We do not currently recommend using it with the SaaS version of Terraform Cloud.
 
@@ -139,6 +139,7 @@ ServiceNow Variable Name | Terraform Enterprise Variable
 --|--
 `tf_var_VARIABLE_NAME` | Terraform Variable: `VARIABLE_NAME`
 `tf_env_ENV_NAME` | Environment Variable: `ENV_NAME`
+`sensitive_tf_var_VARIABLE_NAME` | Sensitive Terraform Variable (Write Only): `VARIABLE_NAME`
 
 This function takes the ServiceNow Variable Set and Terraform Workspace ID. It will loop through the given variable set collection and create any Terraform variables or Terraform environment variables.
 
@@ -175,8 +176,11 @@ Create Run | Creates/Queues a new run on the Terraform Enterprise workspace.
 Apply Run | Applies a run on the Terraform Enterprise workspace.
 Provision Resources | Creates a Terraform Enterprise workspace (with auto-apply), creates/queues a run, applies the run when ready.
 Provision Resources with Variables | Creates a Terraform Enterprise workspace (with auto-apply), creates any variables, creates/queues a run, applies the run when ready.
+Example Pinned Variables | Creates a Terraform Enterprise workspace (with auto-apply), creates any variables, creates/queues a run, applies the run when ready using a pinned VCS repository and variables.
+Delete Workspace | Adds a `CONFIRM_DESTROY=1` to the Terraform workspace and creates a destroy run plan.
 Poll Run State | Polls the Terraform Enterprise API for the current run state of a workspace.
 Poll Apply Run | Polls the Terraform Enterprise API and applies any pending Terraform runs.
+Poll Destroy Workspace | Queries ServiceNow Terraform Records for resources marked `is_destroyable`, applies the destroy run to destroy resources, and deletes the corresponding Terraform workspace.
 
 ## ServiceNow ACLs
 
@@ -189,4 +193,3 @@ Access Control Roles | Description
 `x_terraform.vcs_repositories_user` | Can manage the VCS repositories available for catalog items to be ordered by end-users.
 
 For users who only need to order from the Terraform Catalog, we recommend creating another role with read-only permissions for `x_terraform_vcs_repositories` to view the available repositories for ordering infrastructure.
-
