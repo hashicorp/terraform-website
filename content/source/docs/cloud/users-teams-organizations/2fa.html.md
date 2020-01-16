@@ -7,6 +7,8 @@ page_title: "Two-factor Authentication - Terraform Cloud"
 
 User accounts can be additionally protected with two-factor authentication (2FA), and an organization owner can make this a requirement for all users.
 
+-> **API:** See the [Update an Organization endpoint](../api/organizations.html#update-an-organization) — the request body's `data.attributes.collaborator-auth-policy` property manages this setting.
+
 ## Setting up Two-factor Authentication
 
 To reach your user security settings page, click the user icon in the upper right corner and choose "User Settings" from the menu.
@@ -28,8 +30,6 @@ If necessary you can also use a backup code by clicking "Use a recovery code". P
 ![The two-factor authentication login page](./images/2fa-user-login.png)
 
 ## Requiring Two-factor Authentication for All Users
-
--> **API:** See the [Update an Organization endpoint](../api/organizations.html#update-an-organization) — the request body's `data.attributes.collaborator-auth-policy` property manages this setting.
 
 If you are an organization owner you can require all users within your organization to use two-factor authentication.
 

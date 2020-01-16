@@ -9,9 +9,9 @@ Each workspace in Terraform Cloud includes a list of its current, pending, and h
 
 Additionally, you can lock workspaces to temporarily prevent new runs.
 
-## Navigating Runs
+-> **API:** See the [Runs API](../api/run.html) and [lock a Workspace endpoint](../api/workspaces.html#lock-a-workspace).
 
--> **API:** See [the Runs API](../api/run.html).
+## Navigating Runs
 
 Each workspace has two ways to view and navigate runs:
 
@@ -38,8 +38,6 @@ Most importantly, it shows:
 
 ## Interacting with Runs
 
--> **API:** See [the Runs API](../api/run.html).
-
 In workspaces where you have write permissions, run pages include controls for interacting with the run at the bottom of the page. Depending on the state of the run, the following buttons might be available:
 
 Button              | Available when:
@@ -64,8 +62,6 @@ In rare cases, a cancelled run can fail to end gracefully, and will continue to 
 Since force-canceling can have dangerous side-effects (including loss of state and orphaned resources), it requires admin permissions on the workspace. Additionally, the "Force Cancel Run" button only appears after the normal cancel button has been used and a cool-off period has elapsed, to ensure Terraform Cloud has a chance to terminate the run safely.
 
 ## Locking Workspaces (Preventing Runs)
-
--> **API:** See the [Lock a Workspace endpoint](../api/workspaces.html#lock-a-workspace).
 
 If you need to temporarily stop runs from being queued, you can lock the workspace.
 

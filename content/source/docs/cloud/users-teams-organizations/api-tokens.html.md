@@ -10,13 +10,13 @@ Terraform Cloud supports three distinct types of API tokens with varying levels 
 
 API tokens are displayed only once when they are created, and are obfuscated thereafter. If the token is lost, it must be regenerated.
 
+-> **API:** See the [Team Token API](../api/team-tokens.html) and [Organization Token API](../api/organization-tokens.html).
+
 ## User API Tokens
 
 API tokens may belong directly to a user. User tokens are the most flexible token type because they inherit permissions from the user they are associated with. For more information on user tokens and how to generate them, see the [Users](./users.html#api-tokens) documenatation.
 
 ## Team API Tokens
-
--> **API:** See the [Team Token API](../api/team-tokens.html).
 
 API tokens may belong to a specific team. Team API tokens allow access to the workspaces that the team has access to, without being tied to any specific user.
 
@@ -31,8 +31,6 @@ Note that the individual members of a team can usually perform actions the team 
 If an API token is generated for the "owners" team, then that API token will implicitly inherit all of the same permissions that an organization owner would.
 
 ## Organization API Tokens
-
--> **API:** See the [Organization Token API](../api/organization-tokens.html).
 
 API tokens may generated for a specific organization. Organization API tokens allow access to the organization-level settings and resources, without being tied to any specific team or user.
 

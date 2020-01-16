@@ -17,6 +17,8 @@ Terraform Cloud manages infrastructure collections with _workspaces_ instead of 
 
 -> **Note:** Terraform Cloud and Terraform CLI both have features called "workspaces," but they're slightly different. CLI workspaces are alternate state files in the same working directory; they're a convenience feature for using one configuration to manage multiple similar groups of resources.
 
+-> **API:** See the [Workspaces API](../api/workspaces.html).
+
 ### Workspace Contents
 
 Terraform Cloud workspaces and local working directories serve the same purpose, but they store their data differently:
@@ -40,8 +42,6 @@ For workspaces with [remote operations](../run/index.html) enabled (the default)
 For more information, see [Terraform Runs and Remote Operations](../run/index.html).
 
 ## Listing and Filtering Workspaces
-
--> **API:** See the [Workspaces API](../api/workspaces.html).
 
 Terraform Cloud's top navigation bar includes a "Workspaces" link, which takes you to the list of workspaces in the current organization.
 

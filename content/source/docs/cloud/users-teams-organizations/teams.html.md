@@ -15,6 +15,9 @@ Teams can only have permissions on workspaces within their organization, althoug
 
 If a user belongs to at least one team in an organization, they are considered a member of that organization.
 
+-> **API:** See the [Teams API](../api/teams.html), [Team Members API](../api/team-members.html), [Team Tokens API](../api/team-tokens.html), and [Team Access API](../api/team-access.html).<br/>
+**Terraform:** See the `tfe` provider's [`tfe_team`](/docs/providers/tfe/r/team.html), [`tfe_team_members`](/docs/providers/tfe/r/team_members.html), and [`tfe_team_access`](/docs/providers/tfe/r/team_access.html) resources.
+
 ## The Owners Team
 
 Every organization has a team named `owners`, whose members have special permissions. In Terraform Cloud's documentation and UI, members of the owners team are sometimes called organization owners.
@@ -45,10 +48,6 @@ are members of. See [Team Visibility](./teams.html#team-visibility) for more inf
 
 ### Creating and Deleting Teams
 
--> **API:** See the [Teams API](../api/teams.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_team` resource](/docs/providers/tfe/r/team.html).
-
-
 Organization owners can create new teams from the teams page, using the controls under the "Create a New Team" header.
 
 To create a new team, provide a name (unique within the organization) and click the "Create team" button. Team names can include numbers, letters, underscores (`_`), and hyphens (`-`).
@@ -56,9 +55,6 @@ To create a new team, provide a name (unique within the organization) and click 
 To delete a team, go to the target team's settings page and click the "Delete TEAM NAME" button.
 
 ### Managing Team Membership
-
--> **API:** See the [Team Members API](../api/team-members.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_team_member` resource](/docs/providers/tfe/r/team_member.html) or [`tfe_team_members` resource](/docs/providers/tfe/r/team_members.html).
 
 Organization owners can use a team's settings page to add and remove users from the team.
 
@@ -71,8 +67,6 @@ To remove a user, click the "🗑" (trash can) button by their entry in the memb
 Typically, your team structure will mirror your company's group structure. The [Terraform Recommended Practices guide](/docs/cloud/guides/recommended-practices/index.html) offers more in-depth discussion of how team structure interacts with the structure of your Terraform configurations and the IT infrastructure they manage.
 
 ### Team Visibility
-
--> **API:** See the [Teams API](../api/teams.html). <br/>
 
 Team visibility controls who can see a team within the organization.
 
@@ -87,14 +81,9 @@ To simplify workspace administration, we recommend making most (or all) teams vi
 
 ### API Tokens
 
--> **API:** See the [Team Tokens API](../api/team-tokens.html).
-
 Each team can have a special API token that is not associated with a specific user. You can manage this API token from the team's settings page. See [API Tokens](./api-tokens.html) for more information.
 
 ## Managing Workspace Access
-
--> **API:** See the [Team Access API](../api/team-access.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_team_access` resource](/docs/providers/tfe/r/team_access.html).
 
 A team can be given read, write, or admin permissions on one or more workspaces.
 
@@ -106,8 +95,6 @@ When determining whether a user can take an action on a resource, Terraform Clou
 Organization-level permissions (see [Managing Organization Access](./teams.html#managing-organization-access), below) can also supersede lower workspace permissions. For example, if a user belongs to a team with read permissions on a workspace but also has workspace management enabled, that user has admin permissions on the workspace. Conversely, if the team is allowed to manage the organization's Sentinel policies (which gives read access to all workspaces for enforcing policy sets) and has admin access on the workspace, the higher admin permission level is granted to the workspace.
 
 ## Managing Organization Access
-
--> **API:** See the [Teams API](../api/teams.html).
 
 A team can be granted permissions to manage Sentinel policies, workspaces, and/or VCS settings across an organization.
 

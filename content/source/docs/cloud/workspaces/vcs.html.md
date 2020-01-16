@@ -9,8 +9,6 @@ Any Terraform Cloud workspace can be connected to a version control system (VCS)
 
 For more information about how configuration versions and connected repositories work, see [Terraform Configurations in Terraform Cloud Workspaces](./configurations.html).
 
--> **API:** See the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace) (`PATCH /organizations/:organization_name/workspaces/:name`).
-
 To change the VCS settings for an existing workspace, choose "Version Control" from the workspace's "Settings" menu. The version control page includes the following settings:
 
 - Which VCS repository to use.
@@ -19,6 +17,8 @@ To change the VCS settings for an existing workspace, choose "Version Control" f
 - Whether to download the repository's submodules.
 
 For most of the settings on this page, you must save any changes with the "Update VCS settings" button at the bottom of the page.
+
+-> **API:** See the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace) (`PATCH /organizations/:organization_name/workspaces/:name`).
 
 ## VCS Connection and Repository
 
