@@ -14,11 +14,19 @@ Below is a list of resources that cost estimation supports so far. Resources tha
 | Resource | Status |
 | -- | -- |
 | azurerm_managed_disk | incurs cost |
+| azurerm_mariadb_server | incurs cost |
+| azurerm_mssql_elastincurs costpool | incurs cost |
+| azurerm_mysql_server | incurs cost |
+| azurerm_postgresql_server | incurs cost |
+| azurerm_sql_database | incurs cost |
 | azurerm_virtual_machine | incurs cost |
 | azurerm_virtual_machine_scale_set | incurs cost |
-| azurerm_network_security_group |  |
-| azurerm_resource_group |  |
-| azurerm_sql_virtual_network_rule |  |
-| azurerm_subnet |  |
-| azurerm_subnet_route_table_association |  |
-| azurerm_virtual_network |  |
+| azurerm_mysql_database | |
+| azurerm_network_security_group | |
+| azurerm_postgresql_database | |
+| azurerm_resource_group | |
+| azurerm_sql_server | |
+| azurerm_sql_virtual_network_rule | |
+| azurerm_subnet | |
+| azurerm_subnet_route_table_association | |
+| azurerm_virtual_network | |
