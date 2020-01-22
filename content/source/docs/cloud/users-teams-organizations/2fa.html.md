@@ -7,7 +7,6 @@ page_title: "Two-factor Authentication - Terraform Cloud"
 
 User accounts can be additionally protected with two-factor authentication (2FA), and an organization owner can make this a requirement for all users.
 
-
 ## Setting up Two-factor Authentication
 
 To reach your user security settings page, click the user icon in the upper right corner and choose "User Settings" from the menu.
