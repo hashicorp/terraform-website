@@ -494,3 +494,7 @@
 	path = ext/providers/checkpoint
 	url = https://github.com/terraform-providers/terraform-provider-checkpoint
 	branch = stable-website
+[submodule "ext/providers/metalcloud"]
+	path = ext/providers/metalcloud
+	url = https://github.com/terraform-providers/terraform-provider-metalcloud
+	branch = stable-website
