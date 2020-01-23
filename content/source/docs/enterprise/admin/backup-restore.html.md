@@ -5,45 +5,136 @@ page_title: "Backups and Restores - Infrastructure Administration - Terraform En
 
 # Terraform Enterprise Backups and Restores
 
-This guide explains how to create a backup of your Terraform Enterprise installation (either stand alone or clustered) and how to use that backup to restore your data into a new installation of Terraform Enterprise - allowing you to migrate between various installation types - stand alone to clustered, external vault to internal vault, etc.
+Terraform Enterprise is able to backup and restore all of its data. Its backup and restore features work the same way in both clustered and standalone installations.
 
-This guide will walk through both running a backup and initiating a restore.
+Backups and restores are initiated by API calls, which can be performed from a remote system. This API is separate from Terraform Enterprise's application-level APIs, and uses a different authorization token.
+
+Backing up and restoring into a new installation of Terraform Enterprise is the only supported way to migrate between deployment types (standalone vs. clustered) and operational modes (external services vs. mounted disk, etc.).
+
+## About Backups
+
+Terraform Enterprise's backup utility backs up all of the data stored in a Terraform Enterprise installation, including both the blob storage and the PostgreSQL database. It does not back up the the installation configuration.
+
+### API Authentication Token
+
+Calls to the backup API must be authenticated with a special bearer token, which can be found on the install dashboard (`https://<TFE HOSTNAME>:8800`) near the bottom of the page:
+
+![Screenshot: the TFE install dashboard, with the API token visible](./images/token.png)
+
+~> **Important:** Since this token can access all of the data in a Terraform Enterprise installation, protect it very carefully.
+
+The backup API is not part of Terraform Enterprise's normal admin or application APIs, and cannot be accessed with normal user/team/organization tokens.
+
+Use the standard `Authorization: Bearer <TOKEN>` header to authenticate backup and restore calls.
+
+### Security and Encryption
+
+Much of Terraform Enterprise's data is encrypted with Vault before being stored at rest. Backups do not preserve the internal Vault keys; instead, the data is decrypted and then re-encrypted using a single password provided as part of the backup request. When restoring, this password must be provided; the data is then re-encrypted using the new installation's Vault keys.
+
+~> **Important:** Since the backup password can be used to access all of the data that was backed up from a Terraform Enterprise installation, protect it very carefully.
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+
 
 ## Creating a Backup
 
-This utility will allow you to backup all of the data stored inside your Terraform Enterprise application. It will not, however, backup the installation configuration. This will allow you to move away from your current configuration and into a new one. If you are wanting learn how to restore the installation configuration of a stand alone installation, please refer to [Terraform Enterprise Automated Recovery](./automated-recovery.html). If you are on the clustered installation, you can simply re-run the terraform module at any time to recover your configuration.
+`POST /_backup/api/v1/backup`
 
-The backup is initiated via an API call against a running system. This will allow you to trigger a backup from a remote system. 
+To initiate a backup, make a POST request to the backup endpoint on a running Terraform Enterprise installation.
 
-An example curl command to trigger a backup:
-```
-curl -XPOST -H "Authorization: Bearer <TOKEN>" https://<tfe-hostname>/_backup/api/v1/backup -d @request.json
-```
+The response to this request will be a binary blob containing all of your Terraform Enterprise data. When using this endpoint, please:
 
-* `<TOKEN>` - The bearer token can be found on the install dashboard (https://<tfe-hostname>:8800) on the settings page, towards the bottom:
-	![token screenshot](./images/token.png)
-* `<tfe-hostname>` - This is your Terraform Enterprise URL followed by `/_backup/api/v1/backup`
-* `request.json` - This is a file that you will create that contains the password which is used to secure the backup file. 
+- Remember to specify an output file for the backup blob.
+- Be prepared to download and store many gigabytes of data to the filesystem of whichever machine the request is sent from. For best performance and to avoid disconnections, we recommend sending this request from a server colocated with the Terraform Enterprise installation rather than from a workstation.
+- Treat this backup blob as sensitive data and ensure it is stored securely.
 
-An example request.json file:
-```
-{ "password": "foo" }
-```
+Status  | Response           | Reason
+--------|--------------------|------------------------------
+[200][] | Binary backup blob | Successfully created a backup
+[400][] | (none)             | Invalid request
+[500][] | (none)             | Internal server error
 
-Once you run this command it will trigger a full backup of all of the application data stored in the database and all of the blob storage (S3/S3-compatible storage). The utility will make use of vault to decrypt the data in the database, and will re-secure it using the password provided. When you restore the data into a new system, the data will be re-encrypted using vault. If you will be storing the backup, we recommend treating it as sensitive data and ensuring it's stored securely.
+### Request Body
 
-## Restore a backup in a new Terraform Enterprise installation
+This POST endpoint requires a JSON object with a `password` property as a request payload.
 
-As stated above, you will need to first either build a new stand alone Terraform Enterprise server, or run the terraform module to build a new cluster. Once the application is up an running on the new system(s), you can then trigger a restore. The restore is also initiated via an API call. 
+When restoring the resulting backup, you will need to provide the same password.
 
-An example curl command to trigger a restore:
-```
-curl -XPOST -F config=@request.json -F snapshot=@backup.blob -H "Authorization: Bearer <TOKEN>" https://<tfe-hostname>/_backup/api/v1/restore
+### Sample Payload
+
+```json
+{ "password": "befit-brakeman-footstep-unclasp" }
 ```
 
-* `request.json` - You'll need to provide the same file that was used to create the backup, containing the password. 
-* `backup.blob` - Provide the name of the snapshot file you wish to restore
-* `<TOKEN>` - The bearer token will need to be retrieved from the new, target system by going to the settings page on the install dashboard (https://<tfe-hostname>:8800).
-* `<tfe-hostname>` - The url of the system to restore the data into.
+### Sample Request
 
-Once the restore is complete, you'll need to **restart the application**. The application will not restart automatically. You will need to log into the install dashboard and stop, then start the application, or, from the CLI, `replicatedctl app stop` then `replicatedctl app start`. 
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --request POST \
+  --data @payload.json \
+  --output backup.blob \
+  https://<TFE HOSTNAME>/_backup/api/v1/backup
+```
+
+## Restoring a Backup in a New Terraform Enterprise Installation
+
+`POST /_backup/api/v1/restore`
+
+Before restoring, you must first create a new Terraform Enterprise installation. This can be a standalone server, or a cluster created with the Terraform modules.
+
+Once the application is up and running, you can initiate a restore by making a POST request to the restore endpoint.
+
+Be prepared to upload many gigabytes of data from the filesystem of whichever machine the request is sent from. For best performance and to avoid disconnections, we recommend sending this request from a server colocated with the Terraform Enterprise installation rather than from a workstation.
+
+Once the restore is complete, you must **restart the application.** The application will not restart automatically. There are two ways to do this:
+
+- Log into the install dashboard and stop, then start the application.
+- From the CLI, run `replicatedctl app stop`, then run `replicatedctl app start`.
+
+Status  | Response           | Reason
+--------|--------------------|------------------------------
+[200][] | (none)             | Successfully restored a backup
+[400][] | (none)             | Invalid request
+[500][] | (none)             | Internal server error
+
+### Request Body
+
+This POST endpoint requires a backup blob and its associated password, which must be provided as `multipart/form-data`.
+
+Form field | Description
+-----------|------------
+`snapshot` | An encrypted backup blob downloaded from the Terraform Enterprise backup endpoint.
+`config`   | A JSON file, containing a single object with a `password` property. The password must match the password used to create the backup.
+
+### Sample Payload
+
+The JSON file used in the `config` form field should resemble the following:
+
+```json
+{ "password": "befit-brakeman-footstep-unclasp" }
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --request POST \
+  --form config=@request.json \
+  --form snapshot=@backup.blob \
+  https://<TFE HOSTNAME>/_backup/api/v1/restore
+```
