@@ -9,6 +9,8 @@ Terraform Cloud can use webhooks to notify external systems about the progress o
 
 Each workspace has its own notification settings, and can notify up to 20 destinations.
 
+-> **API:** See the [Notification Configuration APIs](../api/notification-configurations.html).
+
 ## Viewing and Managing Notification Settings
 
 To add, edit, or delete notifications for a workspace, navigate to the desired workspace and choose "Notifications" from the "Settings" menu:
@@ -20,8 +22,6 @@ This takes you to the notifications settings, which shows any existing notificat
 ![Screenshot: a workspace's notification settings](./images/notifications-index.png)
 
 ## Creating a Notification Configuration
-
--> **API:** See the [Notification Configuration APIs](../api/notification-configurations.html).
 
 A notification configuration specifies a destination URL, a payload type, and the specific run events you want notifications for.
 

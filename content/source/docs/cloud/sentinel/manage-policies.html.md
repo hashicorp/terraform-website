@@ -5,10 +5,10 @@ page_title: "Managing Sentinel Policies - Sentinel - Terraform Cloud"
 
 # Managing Sentinel Policies
 
--> **API:** See the [Policy Sets API](../api/policy-sets.html).<br/>
-**Terraform:** See the `tfe` provider's [`tfe_policy_set` resource](/docs/providers/tfe/r/policy_set.html).
-
 Sentinel Policies are rules which are enforced on Terraform runs to validate that the plan and corresponding resources are in compliance with company policies.
+
+-> **API:** See the [Policy Sets API](../api/policy-sets.html).<br/>
+**Terraform:** See the `tfe` provider's [`tfe_policy_set`](/docs/providers/tfe/r/policy_set.html) resource.
 
 ## Policies and Policy Sets
 

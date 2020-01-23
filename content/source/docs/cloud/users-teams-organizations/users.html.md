@@ -10,6 +10,8 @@ page_title: "Users - Terraform Cloud"
 
 Users are the individual members of an [organization][organizations].
 
+-> **API:** See the [Account API](../api/account.html).
+
 ## Creating an Account
 
 Users must create an account in Terraform Cloud before
@@ -44,8 +46,6 @@ Admin permissions are distinct from normal organization-level permissions, and t
 For more information, see [Administering Terraform Enterprise](/docs/enterprise/admin/index.html).
 
 ## User Settings
-
--> **API:** See the [Account API](../api/account.html).
 
 Terraform Cloud users can manage many of their own account details, including email address, password, API tokens, and two-factor authentication.
 

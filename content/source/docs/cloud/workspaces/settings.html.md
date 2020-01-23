@@ -5,8 +5,6 @@ page_title: "Settings - Workspaces - Terraform Cloud"
 
 # Workspace Settings
 
--> **API:** See the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace) (`PATCH /organizations/:organization_name/workspaces/:name`).
-
 Terraform Cloud workspaces can be reconfigured after creation.
 
 Workspace settings are separated into several pages, which are listed in the drop-down "Settings" menu in each workspace's header. The following groups of settings are available:
@@ -22,6 +20,8 @@ Workspace settings are separated into several pages, which are listed in the dro
 Changing settings requires [admin privileges](../users-teams-organizations/permissions.html) on the affected workspace.
 
 ![Screenshot: a workspace page's "Settings" menu](./images/settings-tabs.png)
+
+-> **API:** See the [Update a Workspace endpoint](../api/workspaces.html#update-a-workspace) (`PATCH /organizations/:organization_name/workspaces/:name`).
 
 ## General
 
@@ -62,7 +62,7 @@ Auto-apply has a few exceptions:
 
 ### Terraform Version
 
-Which version of Terraform to use for all operations in the workspace. The default value is whichever release was current when the workspace was created.
+The Terraform version to use for all operations in the workspace. The default value is whichever release was current when the workspace was created.
 
 You can choose "latest" to automatically update a workspace to new versions, or you can choose a specific version.
 

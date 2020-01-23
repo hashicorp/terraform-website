@@ -11,8 +11,7 @@ page_title: "Organizations - Terraform Cloud"
 Organizations are a shared space for [teams][] to collaborate on workspaces in Terraform Cloud.
 
 -> **API:** See the [Organizations API](../api/organizations.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_organization` resource](/docs/providers/tfe/r/organization.html).
-
+**Terraform:** See the `tfe` provider's [`tfe_organization`](/docs/providers/tfe/r/organization.html) resource.
 
 ## Selecting Organizations
 

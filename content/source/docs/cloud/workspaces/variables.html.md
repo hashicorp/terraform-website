@@ -15,7 +15,7 @@ Terraform Cloud workspaces can set values for two kinds of variables:
 You can edit a workspace's variables via the UI or the API. All runs in a workspace use its variables.
 
 -> **API:** See the [Variables API](../api/variables.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_variable` resource](/docs/providers/tfe/r/variable.html).
+**Terraform:** See the `tfe` provider's [`tfe_variable`](/docs/providers/tfe/r/variable.html) resource.
 
 ## Loading Variables from Files
 

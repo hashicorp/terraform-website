@@ -7,13 +7,13 @@ page_title: "Accounts and Resources - Application Administration - Terraform Ent
 
 Site administrators have access to all organizations, users, runs, and workspaces. This visibility is intended to provide access to management actions such as adding administrators, updating Terraform versions or adding custom Terraform bundles, suspending or deleting users, and creating or deleting organizations. It also allows for "impersonation" to aid in assisting regular users with issues in the Terraform Cloud application.
 
+-> **API:** See the [Admin Users API](/docs/cloud/api/admin/users.html), [Admin Organizations API](/docs/cloud/api/admin/organizations.html), [Admin Workspaces API](/docs/cloud/api/admin/workspaces.html), [Admin Runs API](/docs/cloud/api/admin/runs.html) and [Admin Terraform Versions API](/docs/cloud/api/admin/terraform-versions.html).
+
 ## Viewing, Searching, and Filtering Lists
 
 Each type of account or resource is initially presented as a searchable list, accessed by clicking the name of the resource on the left. In addition to searching or filtering (typically by email, name, or other relevant attribute), there are pre-existing filters to show useful sets, such as site administrators (users) or "Needs Attention" (workspaces, runs).
 
 ## Managing Users
-
--> **API:** See the [Admin Users API](/docs/cloud/api/admin/users.html).
 
 To access the list of all users in the Terraform Enterprise instance, click **Users** in the left menu.
 
@@ -61,8 +61,6 @@ Be sure that the user's identity and the validity of their request have been ver
 
 ## Managing Organizations
 
--> **API:** See the [Admin Organizations API](/docs/cloud/api/admin/organizations.html).
-
 If your institution uses multiple organizations in Terraform Enterprise, you can view the details of each organization by clicking it in the admin list of organizations. From the details page, you can impersonate an owner or delete an organization (using the red **Delete this organization** button at the bottom of the details page).
 
 Typically, all organizations on a Terraform Enterprise instance are granted "Premium" plan status to ensure access to all available features. However, it's also possible to set other statuses. An organization whose trial period is expired will be unable to make use of features in the Terraform Cloud application.
@@ -70,8 +68,6 @@ Typically, all organizations on a Terraform Enterprise instance are granted "Pre
 ![screenshot: an organization details admin page](./images/admin-organization-details.png)
 
 ## Managing Workspaces and Runs
-
--> **API:** See the [Admin Workspaces API](/docs/cloud/api/admin/workspaces.html) and [Admin Runs API](/docs/cloud/api/admin/runs.html).
 
 The administrative view of workspaces and runs provides limited detail (name, status, and IDs) to avoid exposing sensitive data when it isn't needed. Site administrators can view and investigate workspaces and runs more deeply by impersonating a user with full access to the desired resource. (See [Impersonating a User](#impersonating-a-user) above.)
 
@@ -86,8 +82,6 @@ A run can be administratively force-canceled if it becomes stuck or is presentin
 We recommend impersonating a user (if necessary) to view run details prior to force-canceling a run, to ensure that graceful cancellation was attempted, and that the run is no longer progressing.
 
 ## Managing Terraform Versions
-
--> **API:** See the [Admin Terraform Versions API](/docs/cloud/api/admin/terraform-versions.html).
 
 Terraform Enterprise ships with a default list of Terraform versions. However, the addition of new versions after installation is the responsibility of site administrators.
 

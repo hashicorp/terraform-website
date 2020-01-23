@@ -29,8 +29,6 @@ If necessary you can also use a backup code by clicking "Use a recovery code". P
 
 ## Requiring Two-factor Authentication for All Users
 
--> **API:** See the [Update an Organization endpoint](../api/organizations.html#update-an-organization) — the request body's `data.attributes.collaborator-auth-policy` property manages this setting.
-
 If you are an organization owner you can require all users within your organization to use two-factor authentication.
 
 To reach your organization settings page, click the name of your organization in the upper left corner and choose "Organization Settings" from the menu. On this page click "Authentication" on the left navigation menu.

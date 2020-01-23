@@ -5,11 +5,11 @@ page_title: "Terraform State - Workspaces - Terraform Cloud"
 
 # Terraform State in Terraform Cloud
 
--> **API:** See the [State Versions API](../api/state-versions.html).
-
 Each Terraform Cloud workspace has its own separate state data, used for runs within that workspace.
 
 In [remote runs](../run/index.html), Terraform Cloud automatically configures Terraform to use the workspace's state; the Terraform configuration does not need an explicit backend configuration. (If a backend configuration is present, it will be overridden.) In local runs, you can use a workspace's state by configuring [the `remote` backend](/docs/backends/types/remote.html).
+
+-> **API:** See the [State Versions API](../api/state-versions.html).
 
 ## State Versions
 
