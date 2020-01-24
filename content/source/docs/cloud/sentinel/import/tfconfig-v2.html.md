@@ -6,9 +6,14 @@ description: |-
 ---
 
 -> **NOTE:** This is documentation for the next version of the `tfconfig`
-Sentinel import, designed specifically for Terraform 0.12's modern data model.
-This import requires Terraform 0.12 or higher, and must currently be loaded by
-path, using an alias, example: `import "tfconfig/v2" as tfconfig`.
+Sentinel import, designed specifically for Terraform 0.12. This import requires
+Terraform 0.12 or higher, and must currently be loaded by path, using an alias,
+example: `import "tfconfig/v2" as tfconfig`.
+
+~> **NOTE:** The Sentinel v2 imports are currently publicly available as a
+**technology preview**. They are supported by HashiCorp, but the API is not yet
+stable and breaking changes could be made. Watch this documentation for any
+changes!
 
 # Import: tfconfig/v2
 
