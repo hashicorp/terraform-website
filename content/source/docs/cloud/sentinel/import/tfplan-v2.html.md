@@ -5,10 +5,15 @@ description: |-
   The tfplan/v2 import provides access to a Terraform plan.
 ---
 
--> **NOTE:** This is documentation for the next version of the `tfplan`
-Sentinel import, designed specifically for Terraform 0.12's modern data model.
-This import requires Terraform 0.12 or higher, and must currently be loaded by
-path, using an alias, example: `import "tfplan/v2" as tfplan`.
+-> **NOTE:** This is documentation for the next version of the `tfplan` Sentinel
+import, designed specifically for Terraform 0.12. This import requires
+Terraform 0.12 or higher, and must currently be loaded by path, using an alias,
+example: `import "tfplan/v2" as tfplan`.
+
+~> **NOTE:** The Sentinel v2 imports are currently publicly available as a
+**technology preview**. They are supported by HashiCorp, but the API is not yet
+stable and breaking changes could be made. Watch this documentation for any
+changes!
 
 # Import: tfplan/v2
 
