@@ -498,3 +498,7 @@
 	path = ext/providers/metalcloud
 	url = https://github.com/terraform-providers/terraform-provider-metalcloud
 	branch = stable-website
+[submodule "ext/providers/incapsula"]
+	path = ext/providers/incapsula
+	url = https://github.com/terraform-providers/terraform-provider-incapsula
+	branch = stable-website
