@@ -6,7 +6,7 @@ page_title: "AWS - Clustered Deployment - Install and Config - Terraform Enterpr
 # Deploying a Terraform Enterprise Cluster on AWS
 
 [mode]: ../before-installing/index.html#operational-mode-decision
-[tf11]: https://releases.hashicorp.com/terraform/0.11.14/
+[tf12]: https://releases.hashicorp.com/terraform/0.12.20/
 [module]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws
 [inputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws?tab=inputs
 [outputs]: https://registry.terraform.io/modules/hashicorp/terraform-enterprise/aws?tab=outputs
@@ -40,11 +40,11 @@ In particular, note that Terraform Enterprise's certificate must be available in
 
 ## Prepare a Machine for Terraform
 
-The Terraform module that deploys Terraform Enterprise is written to support Terraform 0.11.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
+The Terraform module that deploys Terraform Enterprise is written to support Terraform 0.12.x. You can run this configuration from a workspace in an existing Terraform Enterprise instance, or from an arbitrary workstation or server.
 
 Decide where you'll be running Terraform, and ensure:
 
-- [The latest Terraform 0.11 release][tf11] is installed and available in the PATH.
+- [The latest Terraform 0.12 release][tf12] is installed and available in the PATH.
 - The system running Terraform has access to the target subnet.
 - The system running Terraform can authenticate to AWS. For more details, see [AWS Provider: Authentication](/docs/providers/aws/index.html#authentication).
 - You're familiar enough with Terraform to write simple configurations that call [modules ](/docs/configuration-0-11/modules.html) and specify [output values](/docs/configuration-0-11/outputs.html).
