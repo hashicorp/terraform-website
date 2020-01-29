@@ -10,7 +10,7 @@ description: |-
 
 Over time, the Terraform development community has gained large amounts of experience across a wide breadth of Application Programming Interfaces (APIs) supported by Terraform and its Software Development Kit (SDK). Recommended practices have emerged with designing the expected operator and maintainer experience. The principles below highlight the most prolific patterns when designing Terraform providers and associated resources, which guide HashiCorp design decisions.
 
-## Providers should focus on single API or SDK
+## Providers should focus on a single API or SDK
 
 A Terraform provider should manage a single collection of components based on the underlying API or SDK, even if that API creates components that require further management by other APIs or SDKs.
 
