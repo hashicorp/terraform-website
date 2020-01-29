@@ -161,6 +161,9 @@
 /docs/providers/azurestack/auth/service_principal_client_certificate.html  /docs/providers/azurestack/guides/service_principal_client_certificate.html
 /docs/providers/azurestack/auth/service_principal_client_secret.html       /docs/providers/azurestack/guides/service_principal_client_secret.html
 
+# DigitalOcean Provider
+/docs/providers/digitalocean/index.html  /docs/providers/do/index.html
+
 # Google Provider
 /docs/provider/google/provider_versions.html                    /docs/providers/google/provider_versions.html
 /docs/providers/google/r/big_query_dataset.html                 /docs/providers/google/r/bigquery_dataset.html
