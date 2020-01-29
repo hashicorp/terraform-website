@@ -27,7 +27,7 @@ A Terraform resource should be a declarative representation of single component,
 The benefits of this practice include:
 
 - Giving operators the most flexibility for composing their environments as varying team structures may impose permission limitations or automation desires.
-- Assuring operators that there are no unexpected interations between multiple API components.
+- Assuring operators that there are no unexpected interactions between multiple API components.
 - Preventing maintainer burden of managing multiple underlying components, which is not a native design pattern in the Terraform Plugin SDK.
 
 ## Resources and attributes should closely match underlying API naming
