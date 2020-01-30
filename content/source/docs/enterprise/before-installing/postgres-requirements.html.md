@@ -10,7 +10,8 @@ page_title: "PostgreSQL Requirements - Before Installing - Terraform Enterprise"
 To use an external PostgreSQL database with Terraform Enterprise, the following
 requirements must be met:
 
-* The PostgreSQL Server version must be `>= 9.4` and `< 11.0`.
+* The PostgreSQL Server version must be one of the following:
+  * `9.4`, `9.5`, `9.6`, `10.x`, `11.x`.
 * A PostgreSQL user must be created with the following permissions on the database:
   * The ability to create, modify, and read all tables and indices on all schemas within the database. Usually this is granted if the user is an owner of the database.
   * The ability to create extensions. If it is not feasible to have a user with the "CREATE EXTENSION" privilege, then refer to the [Creating Extensions](#creating-extensions) section below for information on creating the necessary extensions.
