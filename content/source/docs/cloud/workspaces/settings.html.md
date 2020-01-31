@@ -12,6 +12,7 @@ Workspace settings are separated into several pages, which are listed in the dro
 - "General", for basic configuration.
 - "Locking", for temporarily preventing new plans and applies.
 - "Notifications", for configuring run notifications.
+- "Run Triggers", for configuring run triggers.
 - "SSH Key", for configurations that use Git-based module sources.
 - "Team Access," for managing workspace permissions.
 - "Version Control", for managing the workspace's VCS integration.
@@ -112,6 +113,14 @@ Locks are managed with a single "Lock/Unlock/Force unlock `<WORKSPACE NAME>`" bu
 The "Notifications" page allows Terraform Cloud to send webhooks to external services whenever specific run events occur in a workspace.
 
 See [Run Notifications](./notifications.html) for detailed information about configuring notifications.
+
+## Run Triggers
+
+~> **Important:** This feature is currently in beta and not suggested for production use. 
+
+The "Run Triggers" page configures connections between a workspace and one or more source workspaces. These connections, called "run triggers", allow runs to queue automatically in a workspace on successful apply of runs in any of the source workspaces.
+
+See [Run Triggers](./run-triggers.html) for detailed information about configuring run triggers.
 
 ## SSH Key
 
