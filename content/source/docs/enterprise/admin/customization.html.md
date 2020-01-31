@@ -11,7 +11,7 @@ To access the customization settings, visit the site admin area and click **Cust
 
 ![screenshot: the Settings admin page](./images/admin-customization.png)
 
--> **API:** See the [Customization API](/docs/cloud/api/admin/settings.html).
+-> **API:** See the [Customization API](/docs/cloud/api/admin/settings.html#list-customization-settings).
 
 ## Support Email
 
