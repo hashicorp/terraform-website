@@ -69,13 +69,18 @@ and available for download.
 
 ## Using Mock Data
 
+-> **Note:** The v2 mock files are only available on Terraform 0.12 and higher. 
+
 Mock data is supplied as a bundled tarball, containing 4 files:
 
 ```
-mock-tfconfig.sentinel # tfconfig mock data
-mock-tfplan.sentinel   # tfplan mock data
-mock-tfstate.sentinel  # tfstate mock data
-mock-tfrun.sentinel    # tfrun mock data
+mock-tfconfig.sentinel    # tfconfig mock data
+mock-tfconfig-v2.sentinel # tfconfig/v2 mock data
+mock-tfplan.sentinel      # tfplan mock data
+mock-tfplan-v2.sentinel   # tfplan/v2 mock data
+mock-tfstate.sentinel     # tfstate mock data
+mock-tfstate-v2.sentinel  # tfstate/v2 mock data
+mock-tfrun.sentinel       # tfrun mock data
 ```
 
 The recommended placement of the files is in a subdirectory of the repository
@@ -93,8 +98,11 @@ evaluated like one.
 │       └── pass.json
 └── testdata
     ├── mock-tfconfig.sentinel
+    ├── mock-tfconfig-v2.sentinel
     ├── mock-tfplan.sentinel
+    ├── mock-tfplan-v2.sentinel
     ├── mock-tfstate.sentinel
+    ├── mock-tfstate-v2.sentinel
     └── mock-tfrun.sentinel
 ```
 
@@ -109,8 +117,11 @@ configuration file would look like:
 {
   "mock": {
     "tfconfig": "testdata/mock-tfconfig.sentinel",
+    "tfconfig/v2": "testdata/mock-tfconfig-v2.sentinel",
     "tfplan": "testdata/mock-tfplan.sentinel",
+    "tfplan/v2": "testdata/mock-tfplan-v2.sentinel",
     "tfstate": "testdata/mock-tfstate.sentinel",
+    "tfstate/v2": "testdata/mock-tfstate-v2.sentinel",
     "tfrun": "testdata/mock-tfrun.sentinel"
   }
 }
@@ -124,8 +135,11 @@ file. For example, the contents of `pass.json`, asserting that the result of the
 {
   "mock": {
     "tfconfig": "../../testdata/mock-tfconfig.sentinel",
+    "tfconfig/v2": "../../testdata/mock-tfconfig-v2.sentinel",
     "tfplan": "../../testdata/mock-tfplan.sentinel",
+    "tfplan/v2": "../../testdata/mock-tfplan-v2.sentinel",
     "tfstate": "../../testdata/mock-tfstate.sentinel",
+    "tfstate/v2": "../../testdata/mock-tfstate-v2.sentinel",
     "tfrun": "../../testdata/mock-tfrun.sentinel"
   },
   "test": {
