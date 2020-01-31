@@ -15,4 +15,4 @@ To access the customization settings, visit the site admin area and click **Cust
 
 ## Support Email
 
-The support email address is used in system emails and other contact details. It defaults to support@hashicorp.com. If you'd like  users of your instance to reach out to a specific person or team when they have issues, it can be changed to a local email address.  This email will be shown on all error pages and other situations where we would instruct the user to contact support for assistance.
+The support email address is used in system emails, error pages, and all other situations the user would be prompted to contact support. It defaults to support@hashicorp.com. If you'd like  users of your instance to reach out to a specific person or team when they have issues, it can be changed to a local email address.
