@@ -3,7 +3,7 @@ layout: "cloud"
 page_title: "UI- and VCS-driven Runs - Runs - Terraform Cloud"
 ---
 
-# The UI/VCS-driven Run Workflow
+# The UI- and VCS-driven Run Workflow
 
 Terraform Cloud has three workflows for managing Terraform runs.
 
