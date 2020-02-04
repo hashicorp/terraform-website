@@ -44,7 +44,6 @@
 /docs/cloud/api/teams.html
 /docs/cloud/api/variables.html
 /docs/cloud/api/workspaces.html
-/docs/cloud/free/index.html
 /docs/cloud/getting-started/access.html
 /docs/cloud/getting-started/cost-estimation.html
 /docs/cloud/getting-started/index.html
