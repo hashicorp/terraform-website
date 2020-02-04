@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "UI/VCS-driven Runs - Runs - Terraform Cloud"
+page_title: "UI- and VCS-driven Runs - Runs - Terraform Cloud"
 ---
 
 # The UI/VCS-driven Run Workflow
