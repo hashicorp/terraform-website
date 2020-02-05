@@ -100,7 +100,7 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 ## Step 3: On Workstation: Create an SSH Key for Terraform Cloud
 
-On a secure workstation, create an SSH keypair that Terraform Cloud can use to connect to Bitbucket Server. The exact command depends on your OS, but is usually something like `ssh-keygen -t rsa -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
+On a secure workstation, create an SSH keypair that Terraform Cloud can use to connect to Bitbucket Server. The exact command depends on your OS, but is usually something like `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
 
 This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH keys that require a passphrase.
 

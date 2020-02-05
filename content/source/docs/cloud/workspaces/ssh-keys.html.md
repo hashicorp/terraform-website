@@ -30,7 +30,7 @@ To add a key:
 
 1. Obtain an SSH keypair that Terraform Cloud can use to download modules during a Terraform run. You might already have an appropriate key; if not, create one on a secure workstation and distribute the public key to your VCS provider(s). Do not use or generate a key that has a passphrase; Git is running non-interactively and won't be able to prompt for it.
 
-    The exact command to create a keypair depends on your OS, but is usually something like `ssh-keygen -t rsa -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
+    The exact command to create a keypair depends on your OS, but is usually something like `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
 2. Enter a name for the key in the "Name" field. Choose something identifiable, since the name is the only way to tell two SSH keys apart once the key text is hidden.
 3. Paste the text of the **private key** in the "Private SSH Key" field.
 4. Click the "Add Private SSH Key" button.
