@@ -271,13 +271,13 @@ provider "example" {
 ```
 
 
-**Configuration example (default func with `PROVIDER_REGION` set to `us-west` in
+**Configuration example (default func with `PROVIDER_REGION` set to `us-east` in
 the environment):**
 
 ```hcl
 provider "example" {
   api_key = "somesecretkey"
-  # region is "us-west"
+  # region is "us-east"
 }
 ```
 
@@ -287,7 +287,7 @@ environment):**
 ```hcl
 provider "example" {
   api_key = "somesecretkey"
-  # region is "us-east" 
+  # region is "us-west" 
 }
 ```
 
