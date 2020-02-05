@@ -17,7 +17,8 @@ We recommend configuring VCS access when first setting up an organization, and y
 
 Terraform Cloud supports the following VCS providers:
 
-- [GitHub](./github.html)
+- [GitHub.com](./github-app.html)
+- [GitHub.com (OAuth)](./github.html)
 - [GitHub Enterprise](./github-enterprise.html)
 - [GitLab.com](./gitlab-com.html)
 - [GitLab EE and CE](./gitlab-eece.html)
