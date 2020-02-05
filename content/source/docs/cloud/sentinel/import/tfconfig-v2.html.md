@@ -146,7 +146,7 @@ main = rule {
 		rc.mode is "managed" and
 			rc.type is "aws_instance"
 	} as _, rc {
-		tfconfig.resources[tfconfig.approximate_address(rc.address)].expressions.ami.constant_value is "ami-abcdefgh012345"
+		tfconfig.resources[tfconfig.approximate_address(rc.address)].config.ami.constant_value is "ami-abcdefgh012345"
 	}
 }
 ```
@@ -177,7 +177,7 @@ resource value, one could do:
 import "tfconfig/v2" as tfconfig
 
 main = rule {
-	tfconfig.outputs["instance_id"].expressions.references is ["aws_instance.foo"]
+	tfconfig.outputs["instance_id"].value.references is ["aws_instance.foo"]
 }
 ```
 
@@ -204,7 +204,7 @@ following:
 import "tfconfig/v2" as tfconfig
 
 main = rule {
-	tfconfig.resources["aws_instance.foo"].expressions.ami.constant_value is "ami-abcdefgh012345"
+	tfconfig.resources["aws_instance.foo"].config.ami.constant_value is "ami-abcdefgh012345"
 }
 ```
 
@@ -217,7 +217,7 @@ of objects). An example would be the `aws_instance` resource's
 import "tfconfig/v2" as tfconfig
 
 main = rule {
-	tfconfig.resources["aws_instance.foo"].expressions.ebs_block_device[0].volume_size < 10
+	tfconfig.resources["aws_instance.foo"].config.ebs_block_device[0].volume_size < 10
 }
 ```
 
@@ -240,7 +240,7 @@ The fields in this collection are as follows:
 * `name` - The name of the provider, ie: `aws`.
 * `alias` - The alias of the provider, ie: `east`. Empty for a default provider.
 * `module_address` - The address of the module this provider appears in.
-* `expressions` - A [block expression
+* `config` - A [block expression
   representation](#block-expression-representation) with provider configuration
   values.
 * `version_constraint` - The defined version constraint for this provider.
@@ -270,13 +270,13 @@ The fields in this collection are as follows:
   syntax of the provisioners matches those found in the
   [`provisioners`](#the-provisioners-collection) collection, but is a list
   indexed by the order the provisioners show up in the resource.
-* `expressions` - The [block expression
+* `config` - The [block expression
   representation](#block-expression-representation) of the configuration values
   found in the resource.
-* `count_expression` - The [expression data](#expression-representations) for
-  the `count` value in the resource.
-* `for_each_expression` - The [expression data](#expression-representations) for
-  the `for_each` value in the resource.
+* `count` - The [expression data](#expression-representations) for the `count`
+  value in the resource.
+* `for_each` - The [expression data](#expression-representations) for the
+  `for_each` value in the resource.
 * `depends_on` - The contents of the `depends_on` config directive, which
   declares explicit dependencies for this resource.
 
@@ -298,7 +298,7 @@ particular element below:
 * `type`: The provisioner type, ie: `local_exec`.
 * `index`: The provisioner index as it shows up in the resource provisioner
   order.
-* `expressions`: The [block expression
+* `config`: The [block expression
   representation](#block-expression-representation) of the configuration values
   in the provisioner.
 
@@ -338,7 +338,7 @@ delimiter are omitted for the root module.
 * `module_address` - The address of the module the output was found in.
 * `sensitive` - Indicates whether or not the output was marked as
   [`sensitive`](/docs/configuration/outputs.html#sensitive-suppressing-values-in-cli-output).
-* `expression` - An [expression representation](#expression-representations) for the output.
+* `value` - An [expression representation](#expression-representations) for the output.
 * `description` - The description of the output.
 * `depends_on`: A list of resource names that the output depends on. These are
   the hard-defined output dependencies as defined in the
@@ -365,17 +365,15 @@ delimiter are omitted for the root module.
 * `module_address` - The address of the module the declaration was found in.
 * `name` - The name of the module.
 * `source` - The contents of the `source` field.
-* `expressions` - A [block expression
+* `config` - A [block expression
   representation](#block-expression-representation) for all parameter values
   sent to the module.
-* `count_expression` - An [expression
-  representation](#expression-representations) for the `count` field (not
-  currently in use).
-* `for_each_expression` - An [expression
-  representation](#expression-representations) for the `for_each` field (not
-  currently in use).
+* `count` - An [expression representation](#expression-representations) for the
+  `count` field (not currently in use).
+* `for_each` - An [expression representation](#expression-representations) for
+  the `for_each` field (not currently in use).
 * `version_constraint` - The string value found in the `version` field of the
   module declaration.
 
 -> **NOTE:** As `count` and `for_each` are currently not implemented in modules,
-the `count_expression` and `for_each_expression` fields will always be blank.
+the `count` and `for_each` fields will always be blank.
