@@ -45,7 +45,7 @@ Note that once the plan stage is completed, until you apply or discard a plan, T
 
 ### Auto apply
 
-If you would rather automatically apply plans that don't have errors, you can [enable auto apply](../workspaces/settings.html#auto-apply-and-manual-apply) on the workspace's "General Settings" page. (Some plans can't be auto-applied, like destroy plans or plans queued by users without write permissions.)
+If you would rather automatically apply plans that don't have errors, you can [enable auto apply](../workspaces/settings.html#auto-apply-and-manual-apply) on the workspace's "General Settings" page. (Some plans can't be auto-applied, like plans queued by users without write permissions.)
 
 [plan permissions](../users-teams-organizations/permissions.html#plan)
 

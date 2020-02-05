@@ -56,9 +56,8 @@ To disable remote execution for a workspace, change its execution mode to "Local
 
 Whether or not Terraform Cloud should automatically apply a successful Terraform plan. If you choose manual apply, an operator must confirm a successful plan and choose to apply it.
 
-Auto-apply has a few exceptions:
+Auto-apply has the following exception:
 
-- [Destroy plans](#destruction-and-deletion) must always be manually applied.
 - Plans queued by users with [plan permissions](../users-teams-organizations/permissions.html#plan) must be approved by a user with write or admin permissions.
 
 ### Terraform Version

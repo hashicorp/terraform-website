@@ -163,7 +163,7 @@ Parameter | Description
 ----------|------------
 `run_id`  | The run ID to apply
 
-Applies a run that is paused waiting for confirmation after a plan. This includes runs in the "needs confirmation" and "policy checked" states. This action is only required for runs that can't be auto-applied. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace, the plan is not a destroy plan, and the plan was not queued by a user without write permissions.)
+Applies a run that is paused waiting for confirmation after a plan. This includes runs in the "needs confirmation" and "policy checked" states. This action is only required for runs that can't be auto-applied. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was not queued by a user without write permissions.)
 
 This endpoint queues the request to perform an apply; the apply might not happen immediately.
 
