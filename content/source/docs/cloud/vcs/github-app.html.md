@@ -40,7 +40,7 @@ Unlike OAuth connections, the Terraform Cloud GitHub App does not configure a Te
 
 To enable this, Terraform Cloud requests two kinds of permissions:
 
-- **Per user:** Each Terraform Cloud user must _authorize_ Terraform Cloud for their own GitHub account. This lets Terraform Cloud determine which organizations and repositories you have access to.
+- **Per user:** Each Terraform Cloud user must _authorize_ Terraform Cloud for their own GitHub account. This lets Terraform Cloud determine which organizations and repositories they have access to.
 - **Per GitHub organization:** Each GitHub organization (or personal account) must _install_ the Terraform Cloud app, either globally or for specific repositories. This allows Terraform Cloud to access repository contents and events.
 
 Individual Terraform Cloud users can access GitHub repositories where both of the following are true:
