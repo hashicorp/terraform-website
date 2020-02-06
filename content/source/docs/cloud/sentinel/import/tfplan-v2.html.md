@@ -46,6 +46,34 @@ higher-level collections do not serve the purpose.
 The `tfplan/v2` import is structured as a series of _collections_, keyed as a
 specific format depending on the collection.
 
+```
+tfplan/v2
+├── terraform_version (string)
+├── variables
+│   └── (indexed by name)
+│       ├── name (string)
+│       └── value (value)
+├── planned_values
+│   ├── outputs (tfstate/v2 outputs representation)
+│   └── resources (tfstate/v2 resources representation)
+├── resource_changes
+│   └── (indexed by address[:deposed])
+│       ├── address (string)
+│       ├── module_address (string)
+│       ├── mode (string)
+│       ├── type (string)
+│       ├── name (string)
+│       ├── index (float (number) or string)
+│       ├── provider_name (string)
+│       ├── deposed (string)
+│       └── change (change representation)
+├── output_changes
+│   └── (indexed by name)
+│       ├── name (string)
+│       └── change (change representation)
+└── raw (map)
+```
+
 The collections are:
 
 * [`variables`](#the-variables-collection) - The values of variables that have
@@ -97,6 +125,14 @@ with details about changes to a particular entity, such as a resource (within
 the [`resource_changes`](#the-resource_changes-collection) collection), or
 output (within the [`output_changes`](#the-output_changes-collection)
 collection).
+
+```
+(change representation)
+├── actions (list)
+├── before (value, or map)
+├── after (value, or map)
+└── after_unknown (boolean, or map of booleans)
+```
 
 This change representation contains the following fields:
 
