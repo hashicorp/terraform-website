@@ -140,6 +140,7 @@ ServiceNow Variable Name | Terraform Enterprise Variable
 `tf_var_VARIABLE_NAME` | Terraform Variable: `VARIABLE_NAME`
 `tf_env_ENV_NAME` | Environment Variable: `ENV_NAME`
 `sensitive_tf_var_VARIABLE_NAME` | Sensitive Terraform Variable (Write Only): `VARIABLE_NAME`
+`sensitive_tf_env_ENV_NAME` | Sensitive Terraform Environment Variable (Write Only): `ENV_NAME`
 
 This function takes the ServiceNow Variable Set and Terraform Workspace ID. It will loop through the given variable set collection and create any Terraform variables or Terraform environment variables.
 
