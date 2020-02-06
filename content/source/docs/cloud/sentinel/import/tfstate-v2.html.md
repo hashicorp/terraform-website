@@ -45,6 +45,29 @@ page.
 The `tfstate/v2` import is structured as currently two _collections_, keyed in
 resource address and output name, respectively.
 
+```
+(tfstate/v2)
+├── terraform_version (string)
+├── resources
+│   └── (indexed by address)
+│       ├── address (string)
+│       ├── module_address (string)
+│       ├── mode (string)
+│       ├── type (string)
+│       ├── name (string)
+│       ├── index (float (number) or string)
+│       ├── provider_name (string)
+│       ├── values (map)
+│       ├── depends_on (list of strings)
+│       ├── tainted (boolean)
+│       └── deposed_key (string)
+└── outputs
+    └── (indexed by name)
+        ├── name (string)
+        ├── sensitive (boolean)
+        └── value (value)
+```
+
 The collections are:
 
 * [`resources`](#the-resources-collection) - The state of all resources across
