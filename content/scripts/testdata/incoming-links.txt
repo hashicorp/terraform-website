@@ -801,8 +801,8 @@
 /docs/providers/gridscale/index.html
 /docs/providers/hcloud/index.html
 /docs/providers/helm/index.html
-/docs/providers/helm/release.html
-/docs/providers/helm/repository.html
+/docs/providers/helm/r/release.html
+/docs/providers/helm/d/repository.html
 /docs/providers/heroku/index.html
 /docs/providers/heroku/r/app.html
 /docs/providers/heroku/r/build.html
