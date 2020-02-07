@@ -51,6 +51,62 @@ The `tfconfig/v2` import is structured as a series of _collections_, keyed as a
 specific format, such as resource address, module address, or a
 specifically-formatted provider key.
 
+```
+tfconfig/v2
+├── approximate_address() (function)
+├── providers
+│   └── (indexed by [module_address:]provider[.alias])
+│       ├── provider_config_key (string)
+│       ├── name (string)
+│       ├── alias (string)
+│       ├── module_address (string)
+│       ├── config (block expression representation)
+│       └── version_constraint (string)
+├── resources
+│   └── (indexed by address)
+│       ├── address (string)
+│       ├── module_address (string)
+│       ├── mode (string)
+│       ├── type (string)
+│       ├── name (string)
+│       ├── provider_config_key (string)
+│       ├── provisioners (list)
+│       │   └── (ordered provisioners for this resource only)
+│       ├── config (block expression representation)
+│       ├── count (expression representation)
+│       ├── for_each (expression representation)
+│       └── depends_on (list of strings)
+├── provisioners
+│   └── (indexed by resource_address:index)
+│       ├── resource_address (string)
+│       ├── type (string)
+│       ├── index (string)
+│       └── config (block expression representation)
+├── variables
+│   └── (indexed by module_address:name)
+│       ├── module_address (string)
+│       ├── name (string)
+│       ├── default (value)
+│       └── description (string)
+├── outputs
+│   └── (indexed by module_address:name)
+│       ├── module_address (string)
+│       ├── name (string)
+│       ├── sensitive (boolean)
+│       ├── value (expression representation)
+│       ├── description (string)
+│       └── depends_on (list of strings)
+└── module_calls
+    └── (indexed by module_address:name)
+        ├── module_address (string)
+        ├── name (string)
+        ├── source (string)
+        ├── config (block expression representation)
+        ├── count (expression representation) (not implemented)
+        ├── for_each (expression representation) (not implemented)
+        └── version_constraint (string)
+```
+
 The collections are:
 
 * [`providers`](#the-providers-collection) - The configuration for all provider
@@ -158,6 +214,12 @@ representations_. This is a verbose format for expressing a (parsed)
 configuration value independent of the configuration source code, which is not
 100% available to a policy check in Terraform Cloud.
 
+```
+(expression representation)
+├── constant_value (value)
+└── references (list of strings)
+```
+
 There are two major parts to an expression representation:
 
 * Any _strictly constant value_ is expressed as an expression with a
@@ -195,6 +257,15 @@ kind found in a [`resources`](#the-resources-collection) collection element) is
 similar, but the root value is a keyed map of expression representations. This
 is repeated until a "scalar" expression value is encountered, ie: a field that
 is not a block in the resource's schema.
+
+```
+(block expression representation)
+└── (attribute key)
+    ├── (child block expression representation)
+    │   └── (...)
+    ├── constant_value (value)
+    └── references (list of strings)
+```
 
 As an example, one can validate expressions in an
 [`aws_instance`](/docs/providers/aws/r/instance.html) resource using the
@@ -336,6 +407,7 @@ field matching their respective name below. `module_address` and the colon
 delimiter are omitted for the root module.
 
 * `module_address` - The address of the module the output was found in.
+* `name` - The name of the output.
 * `sensitive` - Indicates whether or not the output was marked as
   [`sensitive`](/docs/configuration/outputs.html#sensitive-suppressing-values-in-cli-output).
 * `value` - An [expression representation](#expression-representations) for the output.
