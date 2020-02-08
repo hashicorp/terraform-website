@@ -54,39 +54,39 @@ This change updates the proxy settings for the Terraform Enterprise application 
 
 ## TLS Configuration
 
-There are two sections for TLS configuration; the TLS Key & Cert section and the SSL/TLS Configuration section.
+There are two sections for TLS configuration; the "TLS Key & Cert" section and the "SSL/TLS Configuration" section.
 
 ### TLS Key & Cert
 
-The TLS Key & Cert section is where the TLS certificate and private key can be configured to allow HTTPS connections to Terraform Enterprise. The TLS certificate and private key files can be self-signed, located in a path on the server, or uploaded. Both the TLS certificate and private key files must be PEM-encoded. The TLS certificate file can contain a full chain of TLS certificates if necessary.
+The "TLS Key & Cert" section is where the TLS certificate and private key can be configured to allow HTTPS connections to Terraform Enterprise. The TLS certificate and private key files can be self-signed, located in a path on the server, or uploaded. Both the TLS certificate and private key files must be PEM-encoded. The TLS certificate file can contain a full chain of TLS certificates if necessary.
 
-A brand new Terraform Enterprise installation may prompt for these TLS Cert & Key settings like so:
+For convenience, a brand new Terraform Enterprise installation may prompt for these settings after the initial setup. You can provide a key and certificate immediately, or use a self-signed certificate to begin with and change the settings later.
 
 ![Installer TLS Key and Cert](./assets/tls-installer.png)
 
-For an existing installation the TLS Key & Cert settings can be found in the Replicated console on port 8800. Click on the gear icon in the top right corner, click Console Settings, and scroll to the TLS Key & Cert section.
+For an existing installation, these settings can be found in the Replicated console on port 8800. Click on the gear icon in the top right corner, click "Console Settings", and scroll to the "TLS Key & Cert" section.
 
-The TLS Key & Cert settings can be one of three values, each of which are detailed below.
+The key and certificate settings can be one of three values, each of which are detailed below.
 
 #### Self-signed (generated)
 
-When the Self-signed (generated) radio button is selected, a self-signed TLS certificate and private key will be automatically generated. An example screenshot is below:
+When the "Self-signed (generated)" radio button is selected, a self-signed TLS certificate and private key will be automatically generated. An example screenshot is below:
 
 ![Self-signed TLS Key and Cert](./assets/tls-self-signed.png)
 
 #### Server path
 
-When the Server path radio button is selected, the TLS certificate and private key will be read from the specified file paths on the server. An example screenshot is below:
+When the "Server path" radio button is selected, the TLS certificate and private key will be read from the specified file paths on the server. An example screenshot is below:
 
 ![Server Path TLS Key and Cert](./assets/tls-server-path.png)
 
 #### Upload files
 
-When the Upload file radio button is selected, the TLS certificate and private key must be uploaded. An example screenshot is below:
+When the "Upload file" radio button is selected, the TLS certificate and private key must be uploaded. An example screenshot is below:
 
 ![Upload File TLS Key and Cert](./assets/tls-upload.png)
 
-~> **Note:** Changes to the TLS Key & Cert settings require a restart of the Terraform Enterprise application.
+~> **Note:** Changes to the key and certificate settings require a restart of the Terraform Enterprise application.
 
 ### Certificate Authority (CA) Bundle
 
