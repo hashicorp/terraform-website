@@ -79,6 +79,6 @@ The following chart illustrates the various access levels for the supported API 
 | Override policy checks         | 🔶          | 🔶          | 🔷                  |
 | **Integrations**               |             |             |                     |
 | Manage VCS connections         | 🔶          | 🔶          | 🔷                  |
-| Manage SSH keys                | 🔶          | 🔶          | 🔷                  |
+| Manage SSH keys                | 🔶          | 🔶          |                     |
 | **Modules**                    |             |             |                     |
 | Manage Terraform modules       | 🔶          | 🔶          |                     |
