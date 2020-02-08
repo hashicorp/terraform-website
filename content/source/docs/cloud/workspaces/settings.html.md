@@ -59,6 +59,7 @@ Whether or not Terraform Cloud should automatically apply a successful Terraform
 Auto-apply has the following exception:
 
 - Plans queued by users with [plan permissions](../users-teams-organizations/permissions.html#plan) must be approved by a user with write or admin permissions.
+- Plans queued due to [run triggers](../workspaces/run-triggers.html) from another workspace must always be manually applied.
 
 ### Terraform Version
 
