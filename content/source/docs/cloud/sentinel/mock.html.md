@@ -117,10 +117,13 @@ configuration file would look like:
 {
   "mock": {
     "tfconfig": "testdata/mock-tfconfig.sentinel",
+    "tfconfig/v1": "testdata/mock-tfconfig.sentinel",
     "tfconfig/v2": "testdata/mock-tfconfig-v2.sentinel",
     "tfplan": "testdata/mock-tfplan.sentinel",
+    "tfplan/v1": "testdata/mock-tfplan.sentinel",
     "tfplan/v2": "testdata/mock-tfplan-v2.sentinel",
     "tfstate": "testdata/mock-tfstate.sentinel",
+    "tfstate/v1": "testdata/mock-tfstate.sentinel",
     "tfstate/v2": "testdata/mock-tfstate-v2.sentinel",
     "tfrun": "testdata/mock-tfrun.sentinel"
   }
@@ -135,10 +138,13 @@ file. For example, the contents of `pass.json`, asserting that the result of the
 {
   "mock": {
     "tfconfig": "../../testdata/mock-tfconfig.sentinel",
+    "tfconfig/v1": "../../testdata/mock-tfconfig.sentinel",
     "tfconfig/v2": "../../testdata/mock-tfconfig-v2.sentinel",
     "tfplan": "../../testdata/mock-tfplan.sentinel",
+    "tfplan/v1": "../../testdata/mock-tfplan.sentinel",
     "tfplan/v2": "../../testdata/mock-tfplan-v2.sentinel",
     "tfstate": "../../testdata/mock-tfstate.sentinel",
+    "tfstate/v1": "../../testdata/mock-tfstate.sentinel",
     "tfstate/v2": "../../testdata/mock-tfstate-v2.sentinel",
     "tfrun": "../../testdata/mock-tfrun.sentinel"
   },
