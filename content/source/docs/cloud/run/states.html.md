@@ -36,7 +36,7 @@ _Leaving this stage:_
 - If the plan succeeded and requires changes:
     - If cost estimation is enabled, the run proceeds automatically to the cost estimation stage.
     - If cost estimation is disabled and [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
-    - If there are no Sentinel policies and the plan can be auto-applied, the run proceeds automatically to the apply stage. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace, the plan is not a destroy plan, and the plan was not queued by a user without write permissions.)
+    - If there are no Sentinel policies and the plan can be auto-applied, the run proceeds automatically to the apply stage. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with write permissions.)
     - If there are no Sentinel policies and the plan can't be auto-applied, the run pauses in the **Needs Confirmation** state until a user with write access to the workspace takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
 
 ## 3. The Cost Estimation Stage
@@ -72,7 +72,7 @@ _Leaving this stage:_
     - If a member of the owners team overrides the failed policy, the run proceeds to the **Policy Checked** state.
     - If an owner or a user with write access discards the run, the run skips to completion (**Discarded** state).
 - If the run reaches the **Policy Checked** state (no mandatory policies failed, or soft-mandatory policies were overridden):
-    - If the plan can be auto-applied, the run proceeds automatically to the apply stage. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace, the plan is not a destroy plan, and the plan was not queued by a user without write permissions.)
+    - If the plan can be auto-applied, the run proceeds automatically to the apply stage. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with write permissions.)
     - If the plan can't be auto-applied, the run pauses in the **Policy Checked** state until a user with write access takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
 
 
@@ -102,4 +102,3 @@ _States in this stage:_
 - **Plan Errored:** The `terraform plan` command failed (usually requiring fixes to variables or code), or a hard-mandatory Sentinel policy failed. The run cannot be applied.
 - **Discarded:** A user chose not to continue this run.
 - **Canceled:** A user interrupted the `terraform plan` or `terraform apply` command with the "Cancel Run" button.
-
