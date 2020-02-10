@@ -758,8 +758,8 @@ curl \
 ```json
 {
   "data": {
-    "id":"customization",
-    "type":"customization-settings",
+    "id": "customization",
+    "type": "customization-settings",
     "attributes": {
       "support-email-address": "support@hashicorp.com",
     }
