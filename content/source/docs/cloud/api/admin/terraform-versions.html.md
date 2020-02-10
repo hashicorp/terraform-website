@@ -131,7 +131,7 @@ Properties without a default value are required.
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.type`                 | string |         | Must be `"terraform-versions"`
-`data.attributes.version`   | string |         | A semantic version string (e.g. `"0.11.0"`)
+`data.attributes.version`   | string |         | A semantic version string in N.N.N or N.N.N-bundleName format (e.g. `"0.11.0"`, `"0.12.20-beta1"`.)
 `data.attributes.url`       | string |         | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded
 `data.attributes.sha`       | string |         | The SHA-256 checksum of the compressed Terraform binary
 `data.attributes.official`  | bool   | `false` | Whether or not this is an official release of Terraform
@@ -256,7 +256,7 @@ Properties without a default value are required.
 Key path                   | Type   | Default          | Description
 ---------------------------|--------|------------------|------------
 `data.type`                | string |                  | Must be `"terraform-versions"`
-`data.attributes.version`  | string | (previous value) | A semantic version string (e.g. `"0.11.0"`)
+`data.attributes.version`  | string | (previous value) | A semantic version string in N.N.N or N.N.N-bundleName format (e.g. `"0.11.0"`, `"0.12.20-beta1"`.)
 `data.attributes.url`      | string | (previous value) | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded
 `data.attributes.sha`      | string | (previous value) | The SHA-256 checksum of the compressed Terraform binary
 `data.attributes.official` | bool   | (previous value) | Whether or not this is an official release of Terraform
