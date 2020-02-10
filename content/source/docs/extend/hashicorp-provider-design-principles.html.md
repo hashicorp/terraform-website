@@ -32,7 +32,7 @@ The benefits of this practice include:
 
 ## Resource and attribute schema should closely match the underlying API
 
-A Terraform resource and associated schema should follow the naming and structure of the API, unless the it degrades the user experience or works in a way counter to a user's expectations of Terraform. In general, simplifications of an API in Terraform should be accomplished via [Terraform Modules](/docs/modules/), potentially hosted in the [Terraform Registry](https://registry.terraform.io/). Additional guidance can be found in the [resource and attribute naming guide](/docs/extend/best-practices/naming.html).
+A Terraform resource and associated schema should follow the naming and structure of the API, unless the it degrades the user experience or works in a way counter to a user's expectations of Terraform. Simplification of an API in Terraform should be accomplished via [Terraform Modules](/docs/modules/), potentially hosted in the [Terraform Registry](https://registry.terraform.io/). Additional guidance can be found in the [resource and attribute naming guide](/docs/extend/best-practices/naming.html).
 
 The benefits of this practice include:
 
@@ -40,3 +40,21 @@ The benefits of this practice include:
 - Preventing unexpected naming collisions created by Terraform-specific abstractions and future API changes.
 - Preventing maintainer burden of Terraform-specific abstractions.
 - Easing partial or full code generation.
+
+Notes:
+
+- Dates and times should always be modeled in RFC 3339 whenever possible
+- Terraform does not support recursive types (but this can in some cases by modeled using a dynamic type)
+- Boolean attributes should be oriented so that true means to do something and false means not to do it, sometimes this means inverting the API
+
+## Resources should be importable
+
+A Terraform resource should offer support for `terraform import`. Benefits include:
+
+- Users are able to combine manual and automated provisioning and those operating in brownfield environments are able to still leverage the provider
+
+## Consider state and versioning
+
+As soon as a provider is released, users may have started managing their infrastructure with it. Care should be given to ensure state continuity is maintained and backwards compatible. When breaking changes need to occur, appropriate warning should be given to users using the plugin SDK's built-in mechanisms for deprecation and removal. In many cases this means maintaining both old and new names of resources and attributes.
+
+Providers should follow [Semantic Versioning 2.0.0](https://semver.org/) in the context of user state and configurations. Code contracts and compatibility are not a concern in versioning. Breaking changes should increment the major version of the provider, backwards compatibile resource and attribute additions should increment a minor version, and backwards compatible bug fixes should increment a patch version.
