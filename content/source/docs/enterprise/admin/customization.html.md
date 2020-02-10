@@ -1,11 +1,11 @@
 ---
 layout: "enterprise"
-page_title: "Customization Settings - Application Administration - Terraform Enterprise"
+page_title: "Customization - Application Administration - Terraform Enterprise"
 ---
 
-# Administration: Customization Settings
+# Administration: Customization
 
-Customization settings allow you to modify different parts of the user interface to accommodate the specific needs of your organization.
+Customization allow you to modify different parts of the user interface to accommodate the specific needs of your organization.
 
 To access the customization settings, visit the site admin area and click **Customization** in the left menu. To save the settings, click **Save Customization Settings** at the bottom of the page.
 
