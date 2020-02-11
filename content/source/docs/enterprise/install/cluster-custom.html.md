@@ -80,7 +80,7 @@ The instructions will make use of the following configuration values:
 ## Airgap or Online
 The TFE Clustering installer needs to download some additional code and data to install the full cluster. In an airgap situation,  this additional code needs to be placed on the instance for the installer to use.
 
-In online installs, the code is downloaded from HashiCorp and Replicated servers automatically.
+In online installs, the code is downloaded from HashiCorp servers automatically.
 
 ## First Primary
 The first primary of the cluster has an important task, it has to bootstrap the cluster for all other instances to join it.
