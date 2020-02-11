@@ -16,7 +16,7 @@ The installation requires at least 3 primary nodes and any number of secondary n
 The secondary instances can be configured in a form of autoscaling group for easier management. This group need not perform elastic scaling unless necessary, but rather can simply be an easy way to manage the fleet of instances. It’s common to configure such a group for a static number of instances as well, for better cost control.
 
 #### Internal Load Balancer
-The cluster utilize an API service that run on each of the primary nodes to run properly. For the cluster to operate properly, a load balancer should configured to send TCP sessions to the primaries on port *6443*. It is important that the load balancer not attempt to terminate the traffic as HTTPS because the clients and servers use an internally configured CA certificate chain that is used for authentication.
+The cluster utilizes an API service that run on each of the primary nodes to run properly. For the cluster to operate properly, a load balancer should be configured to send TCP sessions to the primaries on port *6443*. It is important that the load balancer not attempt to terminate the traffic as HTTPS because the clients and servers use an internally configured CA certificate chain that is used for authentication.
 
 Additionally, the internal load balancer must send traffic on port *23010* to the primaries. This port is used to facilitate the cluster setup process.
 
