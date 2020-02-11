@@ -3,7 +3,7 @@ version: 2
 
 references:
   images:
-    middleman: &MIDDLEMAN_IMAGE hashicorp/middleman-hashicorp:0.3.41
+    middleman: &MIDDLEMAN_IMAGE hashicorp/middleman-hashicorp:0.3.43
 
   cache:
     rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
