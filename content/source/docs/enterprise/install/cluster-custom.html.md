@@ -34,7 +34,7 @@ The database must be able to accept at least (cores in cluster / 3) * 16 concurr
 For proper production installations, an Object Storage server such as AWS S3 is required. The system support S3, Azure Blob Storage, and Google Cloud Storage. S3 work-alike servers such as minio are supported as well. The system should allow for at a minimum of 250GB of storage to allow the system to safely grow as the number of terraform states and logs increase.
 
 ### Network Configuration
-The instances communicate with each other over TCP and UDP. The follow lists each port and where communication must be allowed to and from for the cluster to operate.
+The instances communicate with each other over TCP and UDP. The following list describes each port and where communication must be allowed to and from for the cluster to operate.
 
 #### Ports
 * from outside to 443/tcp - *Application HTTPS*
