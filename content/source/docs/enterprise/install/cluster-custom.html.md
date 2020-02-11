@@ -66,6 +66,7 @@ The TFE installer puts all the cluster data into /var and it must have at least 
 
 
 ### TFE Configuration
+
 #### Release Sequence
 If you are using the release sequence variable to pin an install to a particular version of TFE, be aware that the release sequence numbers between the Clustering and Non-Clustering versions are different. Consult with HashiCorp or an existing installation to find out the Clustering release sequence numbers to use.
 
