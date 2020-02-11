@@ -52,17 +52,11 @@ terraform {
 }
 ```
 
-A Terraform Cloud [user API token](../users-teams-organizations/users.html#api-tokens) is also needed. It should be set as `credentials` in the [CLI config file](/docs/commands/cli-config.html#credentials). User tokens can be created in the [user settings](../users-teams-organizations/users.html#user-settings).
-
-```hcl
-credentials "app.terraform.io" {
-  token = "xxxxxx.atlasv1.zzzzzzzzzzzzz"
-}
-```
+Next, run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/commands/cli-config.html#credentials).
 
 The backend can be initialized with `terraform init`.
 
-```shell
+```
 $ terraform init
 
 Initializing the backend...
@@ -122,7 +116,7 @@ Users can run speculative plans in any workspace where they have [plan access][p
 
 Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
-```shell
+```
 $ terraform plan
 
 Running plan in the remote backend. Output will stream here. Pressing Ctrl-C
@@ -155,7 +149,7 @@ Remote applies use the configuration code from the local working directory, but 
 
 ~> **Important:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
 
-```shell
+```
 $ terraform apply
 
 Running apply in the remote backend. Output will stream here. Pressing Ctrl-C
@@ -185,7 +179,7 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 If the specified workspace uses Sentinel policies, those policies will run against all speculative plans and remote applies in that workspace. The policy output will be available in the terminal. Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
 
-```shell
+```
 $ terraform apply
 
 [...]

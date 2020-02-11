@@ -37,8 +37,8 @@ Make sure you have all of the following:
 - A Terraform Cloud user account.
 
     This account must be a member of your organization's [owners team][], so you can create workspaces.
-- A [user API token][user-token] for your Terraform Cloud user account.
-- A [CLI configuration file][cli-credentials], with your user API token configured in a `credentials` block.
+
+You also need to authenticate Terraform with Terraform Cloud.  If you're using Terraform 0.12.21 or later, you can use the `terraform login` command. Alternatively, you can create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
 
 ## Step 3: Stop Terraform Runs
 

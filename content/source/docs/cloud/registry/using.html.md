@@ -99,16 +99,9 @@ Within a given Terraform configuration, you should only use modules from one org
 
 #### Configuration
 
-To configure private module access, add a `credentials` block to your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html).
+To configure private module access, you need to authenticate against Terraform Cloud (or your Terraform Enterprise instance).  If you're using Terraform 0.12.21 or later, you can use the `terraform login` command. Alternatively, you can create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
 
-``` hcl
-credentials "app.terraform.io" {
-  token = "xxxxxx.atlasv1.zzzzzzzzzzzzz"
-}
-```
+Make sure the hostname matches the hostname you use in module sources — if the same Terraform Cloud server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, use the `terraform login` command multiple times, specifying the hostname each time.
 
-The block label for the `credentials` block must be Terraform Cloud's hostname (`app.terraform.io` or the hostname of your Terraform Enterprise instance), and the block body must contain a `token` attribute whose value is a Terraform Cloud authentication token. You can generate a personal API token from your user settings page in Terraform Cloud.
-
-Make sure the hostname matches the hostname you use in module sources — if the same Terraform Cloud server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, you can add two `credentials` blocks with the same `token`.
-
-~> **Important:** Make sure to protect your API token. When adding an authentication token to your CLI config file, check the file permissions and make sure other users on the same computer cannot view its contents.
+[user-token]: ../users-teams-organizations/users.html#api-tokens
+[cli-credentials]: /docs/commands/cli-config.html#credentials
