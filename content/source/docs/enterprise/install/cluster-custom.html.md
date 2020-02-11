@@ -122,7 +122,7 @@ ptfe install join \
 
 
 ## Secondaries
-All secondaries are joined similar to primaries, just without the extra `—as-primary` flag set.:
+All secondaries are joined similar to primaries, just without the extra `—as-primary` flag set:
 
 ```
 ptfe install join \
