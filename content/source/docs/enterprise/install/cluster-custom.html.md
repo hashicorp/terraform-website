@@ -28,7 +28,7 @@ For proper production installations, a PostgreSQL database external to the clust
 
 We recommend at minimum 16GB of RAM and 100GB of storage for a basic server, scaling up with RAM as the number of cluster instances changes.
 
-The database must be able to accept at least (cores in cluster / 3) * 16 connections. For example, if the cluster is using 6 instances with 4 cores each, it needs to allow (24 / 3) * 41, or 328 connections at a minimum.
+The database must be able to accept at least (cores in cluster / 3) * 16 concurrent connections. For example, if the cluster is using 6 instances with 4 cores each, it needs to allow (24 / 3) * 41, or 328 concurrent connections at a minimum.
 
 #### Object Storage
 For proper production installation, an Object Storage server such as AWS S3 is required. The system support S3, Azure Blob Storage, and Google Cloud Storage. S3 work-alike servers such as minio are properly supported as well. The system should allow for at a minimum of 250GB of storage to allow the system to safely grow as the number of terraform states and logs increase.
