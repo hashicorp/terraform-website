@@ -22,6 +22,8 @@ page_title: "Teams - API Docs - Terraform Cloud"
 
 # Teams API
 
+-> **Note:** Team management and access controls are a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 The Teams API is used to create, edit, and destroy teams as well as manage a team's organization-level permissions. The [Team Membership API](./team-members.html) is used to add or remove users from a team. Use the [Team Access API](./team-access.html) to associate a team with privileges on an individual workspace.
 
 ## Organization Membership

@@ -7,6 +7,8 @@ description: |-
 
 # Using Sentinel with Terraform 0.12
 
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 The Terraform Sentinel imports
 ([`tfconfig`](./import/tfconfig.html),
 [`tfplan`](./import/tfplan.html), and
@@ -162,7 +164,7 @@ When used as directed, the
 the same way with Terraform 0.12 as it does with Terraform 0.11 with the
 following exceptions:
 
-1. The behavior of unknown values within the 
+1. The behavior of unknown values within the
 [`applied`](./import/tfplan.html#value-applied) value when creating or changing resources.
 1. The behavior when destroying resources without re-creating them.
 

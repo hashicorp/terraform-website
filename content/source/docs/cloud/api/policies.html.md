@@ -22,6 +22,8 @@ page_title: "Policies - API Docs - Terraform Cloud"
 
 # Policies API
 
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 [Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Cloud.
 
 Policies are configured on a per-organization level and are organized and grouped into [policy sets](../sentinel/manage-policies.html#organizing-policies-with-policy-sets), which define the workspaces on which policies are enforced during runs. In these workspaces, the plan's changes are validated against the relevant policies after the plan step. (For details, see [Run States and Stages](../run/states.html).)

@@ -5,7 +5,9 @@ page_title: "Managing Policies with VCS - Sentinel - Terraform Cloud"
 
 # Managing Sentinel Policies with Version Control
 
-~> **Note**: This guide uses deprecated features in Terraform Cloud. It is recommended to use the first-class VCS integration with [policy sets](./manage-policies.html#managing-policy-sets) instead.
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
+~> **Note**: This guide uses deprecated features in Terraform Cloud. We recommend using the first-class VCS integration with [policy sets](./manage-policies.html#managing-policy-sets) instead.
 
 [test]: https://docs.hashicorp.com/sentinel/writing/testing
 [tfe_sentinel_policy]: /docs/providers/tfe/r/sentinel_policy.html

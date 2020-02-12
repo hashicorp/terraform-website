@@ -71,25 +71,35 @@ Organizations can have a special API token that is not associated with a specifi
 
 ### Authentication
 
+-> **Note:** This page is not available in free organizations.
+
 The authentication page allows owners to determine when users must reauthenticate. It also allows owners to require [two-factor authentication](./2fa.html) for all members of the organization.
 
-### Manage SSH Keys
+### SSH Keys
 
 The SSH keys page manages any keys necessary for cloning Git-based module sources during Terraform runs. It does not manage keys used for accessing a connected VCS provider. See [SSH Keys for Cloning Modules](../workspaces/ssh-keys.html) for more information.
 
 ### Cost Estimation
 
+-> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 The Cost Estimation page allows for enabling and disabling the [cost estimation](../getting-started/cost-estimation.html) feature for all workspaces.
 
-### Policies and Policy Sets
+### Policies
 
-The policies page is for managing Sentinel policies, and the policy sets page is for assigning groups of policies to workspaces.
+The policies page is a deprecated interface for managing Sentinel policies. Use the policy sets page instead.
+
+### Policy Sets
+
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
+The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces.
 
 Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information about Sentinel, or [Managing Sentinel Policies](../sentinel/manage-policies.html) for details about these two settings pages.
 
 ## Trial Expired Organizations
 
-Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a Hashicorp Sales Representative, please ask them about how to get a free trial. 
+Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a Hashicorp Sales Representative, please ask them about how to get a free trial.
 
 When a free trial has expired, the organization displays a banner reading "TRIAL EXPIRED — Upgrade Required" in the top navigation bar:
 
@@ -97,7 +107,7 @@ When a free trial has expired, the organization displays a banner reading "TRIAL
 
 Organizations with expired trials return to the feature set of a free organization, but they retain any data created as part of paid features. Specifically:
 
-- Teams other than `owners` are disabled, and users who don't belong to the `owners` team are locked out of the organization. Team membership and permissions are preserved, and are re-enabled on upgrade. 
-- Sentinel policy checks are disabled. Existing policies and policy sets are preserved, and are re-enabled on upgrade. 
+- Teams other than `owners` are disabled, and users who don't belong to the `owners` team are locked out of the organization. Team membership and permissions are preserved, and are re-enabled on upgrade.
+- Sentinel policy checks are disabled. Existing policies and policy sets are preserved, and are re-enabled on upgrade.
 - Cost estimation is disabled.
 

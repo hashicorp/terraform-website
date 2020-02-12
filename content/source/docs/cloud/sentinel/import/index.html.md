@@ -5,6 +5,8 @@ page_title: "Defining Policies - Sentinel - Terraform Cloud"
 
 # Defining Policies
 
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 Sentinel Policies for Terraform are defined using the [Sentinel policy
 language](https://docs.hashicorp.com/sentinel/language/). A policy can include
 [imports](https://docs.hashicorp.com/sentinel/concepts/imports) which enable a

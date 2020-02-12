@@ -7,6 +7,8 @@ description: |-
 
 # Import: tfstate
 
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 The `tfstate` import provides access to the Terraform state.
 
 The _state_ is the data that Terraform has recorded about a workspace at a
@@ -15,7 +17,7 @@ general information about how Terraform uses state [here][ref-tf-state].
 
 [ref-tf-state]: /docs/state/index.html
 
--> **NOTE:** Since Terraform Cloud currently only supports policy checks at plan
+-> **Note:** Since Terraform Cloud currently only supports policy checks at plan
 time, the usefulness of this import is somewhat limited, as it will usually give
 you the state _prior_ to the plan the policy check is currently being run for.
 Depending on your needs, you may find the
