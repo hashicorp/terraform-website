@@ -56,10 +56,14 @@ If the instance has an internal firewall, be sure that the above ports are added
 
 In additional to the above ports, if a firewall is used on the instance, the following rules must be installed:
 
-* allow out on weave (Cluster Internal Overlay Networking) to 10.32.0.0/12
+* allow out on weave to 10.32.0.0/12
 * allow in on weave from 10.32.0.0/12
 
+_(weave is the service that is used for Cluster Internal Overlay Networking)_
+
 The _weave_ interface is created by the TFE installer itself and thusly it is necessary to disable any instance firewall while the installer runs, after which you can setup the weave interface rules, and then re-enable the firewall.
+
+~> *NOTE:* The above _10.32.0.0/12_ should be replaced if you use the below `--internal-cidr` option with the same value. So if you pass `--internal-cidr=10.200.0.0/20` then the firewall rule should allow in and out on weave from 10.200.0.0/20.
 
 #### Disk Layout
 The TFE installer puts all the cluster data into /var and it must have at least 100GB of storage available. It’s recommended that / be at least 20GB.
