@@ -5,6 +5,8 @@ page_title: "Mocking Terraform Sentinel Data - Sentinel - Terraform Cloud"
 
 # Mocking Terraform Sentinel Data
 
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 We recommend that you test your Sentinel policies extensively before deploying
 them within Terraform Cloud. An important part of this process is mocking
 the data that you wish your policies to operate on.
@@ -69,7 +71,7 @@ and available for download.
 
 ## Using Mock Data
 
--> **Note:** The v2 mock files are only available on Terraform 0.12 and higher. 
+-> **Note:** The v2 mock files are only available on Terraform 0.12 and higher.
 
 Mock data is supplied as a bundled tarball, containing 4 files:
 

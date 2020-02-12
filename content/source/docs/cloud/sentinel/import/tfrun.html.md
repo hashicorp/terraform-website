@@ -7,6 +7,8 @@ description: |-
 
 # Import: tfrun
 
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 The `tfrun` import provides access to data associated with a [Terraform run][run-glossary].
 
 This import currently consists of run attributes, as well as namespaces for the `organization`, `workspace` and `cost-estimate`. Each namespace provides static data regarding the Terraform Cloud application that can then be consumed by Sentinel during a policy evaluation.

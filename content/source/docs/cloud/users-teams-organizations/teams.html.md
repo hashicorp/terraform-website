@@ -9,6 +9,8 @@ page_title: "Teams - Terraform Cloud"
 
 # Teams
 
+-> **Note:** Team management and access controls are a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 Teams are groups of Terraform Cloud [users][] within an [organization][organizations]. To delegate provisioning work, the organization's owners can grant workspace permissions to specific teams.
 
 Teams can only have permissions on workspaces within their organization, although any user in a team can belong to teams in other organizations.
@@ -20,7 +22,7 @@ If a user belongs to at least one team in an organization, they are considered a
 
 ## The Owners Team
 
-Every organization has a team named `owners`, whose members have special permissions. In Terraform Cloud's documentation and UI, members of the owners team are sometimes called organization owners.
+Every organization has a team named "owners", whose members have special permissions. In Terraform Cloud's documentation and UI, members of the owners team are sometimes called organization owners.
 
 An organization's creator is the first member of its owners team; other members can be added or removed in the same way as other teams. Unlike other teams, the owners team can't be deleted and can't be empty; if there is only one member, you must add another before removing the current member.
 
@@ -30,6 +32,8 @@ Members of the owners team have full access to every workspace in the organizati
 - Managing team membership and organization-level permissions granted to the team
 - Viewing the full list of teams, both visible and secret
 - Managing [organization settings][]
+
+In free organizations, the owners team is limited to five members. In paid organizations, the size of the owners team is not limited.
 
 ## Managing Teams
 
@@ -76,7 +80,7 @@ they cannot generate a team API token, for instance.
 * When a team is set to "Secret", only team members and organization owners can
 read a team and its membership. This is the default setting.
 
-To simplify workspace administration, we recommend making most (or all) teams visible. Secret teams should only have 
+To simplify workspace administration, we recommend making most (or all) teams visible. Secret teams should only have
 [organization-level permissions](./permissions.html#organization-level-permissions), since workspace admins can't manage permissions for teams they can't view.
 
 ### API Tokens

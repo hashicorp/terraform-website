@@ -22,6 +22,8 @@ page_title: "Policy Set Parameters - API Docs - Terraform Cloud"
 
 # Policy Set Parameters API
 
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 This set of APIs covers create, update, list and delete operations on parameters.
 
 

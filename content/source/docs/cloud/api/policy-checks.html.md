@@ -22,6 +22,8 @@ page_title: "Policy Checks - API Docs - Terraform Cloud"
 
 # Policy Checks API
 
+-> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 ## List policy checks
 
 This endpoint lists the policy checks in a run.
