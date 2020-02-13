@@ -14,6 +14,8 @@ page_title: "Azure - Clustered Deployment - Install and Config - Terraform Enter
 
 This page outlines the procedure for deploying a Terraform Enterprise cluster on Azure.
 
+~> **Important:** Terraform Enterprise clustering is in Controlled Availability; the application is fully ready for production use, but due to the variability in deployment environments the installation process requires consultation with an Account Manger. Please contact your TAM to request access.
+
 ## Summary
 
 Deploying Terraform Enterprise involves the following steps:

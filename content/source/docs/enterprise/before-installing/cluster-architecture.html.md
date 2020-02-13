@@ -7,6 +7,8 @@ page_title: "Clustered Deployment Architecture - Before Installing - Terraform E
 
 Terraform Enterprise's clustered deployment method deployes Terraform Enterprise in a flexible and scalable architecture, which can range from a three-node cluster to over a hundred nodes.
 
+~> **Important:** Terraform Enterprise clustering is in Controlled Availability; the application is fully ready for production use, but due to the variability in deployment environments the installation process requires consultation with an Account Manger. Please contact your TAM to request access.
+
 ## Terraform-based Deployment
 
 The clustered deployment method relies on HashiCorp-provided per-cloud Terraform modules, which provision the necessary resources and automate installation and configuration.
