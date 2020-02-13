@@ -25,7 +25,7 @@ There are two ways to install Terraform Enterprise:
 
 - **Clustered deployment:** Deploy Terraform Enterprise as a cluster of three or more instances using a Terraform module. Installation is automated, and you configure your deployment via the module's input variables. The cluster's secondary instances can scale horizontally to fit your enterprise's workloads.
 
-    We think this method is best for most enterprises, but it doesn't support every possible use case. It only supports deployment on AWS, GCP, and Azure, and we don't recommend it if you only want a single Terraform Enterprise instance.
+    ~> **Important:** Terraform Enterprise clustering is in Controlled Availability; the application is fully ready for production use, but due to the variability in deployment environments the installation process requires consultation with an Account Manger. Please contact your TAM to request access.
 
     For more information, see [Cluster Architecture](./cluster-architecture.html).
 
