@@ -17,7 +17,7 @@ A good strategy to start with is `<COMPONENT>-<ENVIRONMENT>-<REGION>`. For examp
 
 - networking-prod-us-east
 - networking-staging-us-east
-- networking-prod-us-eu-central
+- networking-prod-eu-central
 - networking-staging-eu-central
 - monitoring-prod-us-east
 - monitoring-staging-us-east
