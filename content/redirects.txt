@@ -163,7 +163,7 @@
 /docs/providers/azurerm/authenticating_via_msi.html                     /docs/providers/azurerm/guides/managed_service_identity.html
 /docs/providers/azurerm/authenticating_via_service_principal.html       /docs/providers/azurerm/guides/service_principal_client_secret.html
 /docs/providers/azurerm/r/loadbalancer.html                             /docs/providers/azurerm/r/lb.html
-/docs/docs/providers/azurerm/r/loadbalancer_rule.html                   /docs/providers/azurerm/r/lb_rule.html
+/docs/providers/azurerm/r/loadbalancer_rule.html                   /docs/providers/azurerm/r/lb_rule.html
 
 # Azure Stack Provider
 /docs/providers/azurestack/auth/azure_cli.html                             /docs/providers/azurestack/guides/azure_cli.html
