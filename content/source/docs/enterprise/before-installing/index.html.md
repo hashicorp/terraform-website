@@ -124,17 +124,18 @@ Terraform Enterprise runs on Linux instances. The source of these instances depe
 Terraform Enterprise currently supports running under the following operating systems:
 
 - **Clustered deployment:**
-    - Ubuntu 14.04 / 16.04 / 18.04
-    - Red Hat Enterprise Linux 7.2 through 7.6
+    - Ubuntu 16.04.3 - 16.04.5 / 18.04
+    - Red Hat Enterprise Linux 7.4 - 7.7
+    - CentOS 7.4 - 7.7
 
     Clusters currently don't support other Linux variants.
 - **Individual deployment:**
     - Debian 7.7+
-    - Ubuntu 14.04 / 16.04 / 18.04
-    - Red Hat Enterprise Linux 7.2 - 7.7
-    - CentOS 7.4 - 7.7
-    - Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
-    - Oracle Linux 7.2+
+    - Ubuntu 14.04.5 / 16.04 / 18.04
+    - Red Hat Enterprise Linux 7.4 - 7.7
+    - CentOS 6.x / 7.4 - 7.7
+    - Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
+    - Oracle Linux 7.4 - 7.7
 
 ### Hardware Requirements
 
