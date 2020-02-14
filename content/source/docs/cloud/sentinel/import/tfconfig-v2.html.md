@@ -53,7 +53,7 @@ specifically-formatted provider key.
 
 ```
 tfconfig/v2
-├── approximate_address() (function)
+├── strip_index() (function)
 ├── providers
 │   └── (indexed by [module_address:]provider[.alias])
 │       ├── provider_config_key (string)
@@ -148,47 +148,40 @@ all_aws_instances = filter tfconfig.resources as _, r {
 }
 ```
 
-### "Approximate" Addresses Explained
+### Address Differences Between `tfconfig`, `tfplan`, and `tfstate`
 
-Throughout this documentation, the term _approximate address_ will be used. This
-term refers an address that is constructed by `tfconfig/v2` to, as closely as
-possible, match the absolute addresses found in the
-[`tfplan/v2`](./tfplan-v2.html) and [`tfstate/v2`](./tfstate-v2.html) imports.
+This import deals with configuration before it is expanded into a
+resource graph by Terraform. As such, it is not possible to compute an index as
+the import is building its collections and computing addresses for resources and
+modules.
 
-These addresses may be equal to the addresses found in those imports, or, in the
-event where resources are scaled with
+As such, addresses found here may not always match the expanded addresses found
+in the [`tfplan/v2`](./tfplan-v2.html) and [`tfstate/v2`](./tfstate-v2.html)
+imports, specifically when
 [`count`](/docs/configuration/resources.html#count-multiple-resource-instances-by-count)
 and
 [`for_each`](/docs/configuration/resources.html#for_each-multiple-resource-instances-defined-by-a-map-or-set-of-strings),
-they will be the same as if those resources lacked indexes.
+are used.
 
 As an example, consider a resource named `null_resource.foo` with a count of `2`
 located in a module named `bar`. While there will possibly be entries in the
 other imports for `module.bar.null_resource.foo[0]` and
 `module.bar.null_resource.foo[1]`, in `tfconfig/v2`, there will only be a
-`module.bar.null_resource.foo`. This is because configuration actually _defines_
-this scaling, whereas _expansion_ actually happens when the resource graph is
-built, which happens as a natural part of the refresh and planning process.
+`module.bar.null_resource.foo`. As mentioned in the start of this section, this
+is because configuration actually _defines_ this scaling, whereas _expansion_
+actually happens when the resource graph is built, which happens as a natural
+part of the refresh and planning process.
 
-To summarize, generally, the approximate address is an absolute resource
-address without indexes.
-
-For now, approximate addresses generally will only see a removal of the resource
-index, but in the future, this could include modules. This will be the case once
-`count` and `for_each` are implemented for modules, see [Other
-Meta-arguments](/docs/configuration/modules.html#other-meta-arguments) in the
-Terraform module documentation for more details.
-
-The `approximate_address` helper function, found in this import, can assist in
+The `strip_index` helper function, found in this import, can assist in
 removing the indexes from addresses found in the `tfplan/v2` and `tfstate/v2`
 imports so that data from those imports can be used to reference data in this
 one.
 
-## The `approximate_address` Function
+## The `strip_index` Function
 
-The `approximate_address` helper function can be used to produce approximate
-addresses from complete addresses found in [`tfplan/v2`](./tfplan-v2.html) and
-[`tfstate/v2`](./tfstate-v2.html), by removing the indexes from each resource.
+The `strip_index` helper function can be used to remove indexes from addresses
+found in [`tfplan/v2`](./tfplan-v2.html) and [`tfstate/v2`](./tfstate-v2.html),
+by removing the indexes from each resource.
 
 This can be used to help facilitate cross-import lookups for data between plan,
 state, and config.
@@ -202,7 +195,7 @@ main = rule {
 		rc.mode is "managed" and
 			rc.type is "aws_instance"
 	} as _, rc {
-		tfconfig.resources[tfconfig.approximate_address(rc.address)].config.ami.constant_value is "ami-abcdefgh012345"
+		tfconfig.resources[tfconfig.strip_index(rc.address)].config.ami.constant_value is "ami-abcdefgh012345"
 	}
 }
 ```
@@ -321,15 +314,11 @@ The fields in this collection are as follows:
 The `resources` collection is a collection representing all of the resources
 found in all modules in the configuration.
 
-This collection is indexed by the approximate resource address. For more
-information, see ["Approximate" Addresses
-Explained](#quot-approximate-quot-addresses-explained).
-              
+This collection is indexed by the resource address.
 
 The fields in this collection are as follows:
 
-* `address` - The approximate resource address. This is the index of the
-  collection.
+* `address` - The resource address. This is the index of the collection.
 * `module_address` - The module address that this resource was found in.
 * `mode` - The resource mode, either `managed` (resources) or `data` (data
   sources).
@@ -363,9 +352,9 @@ This collection is indexed with a key following the format
 `resource_address:index`, with each field matching their respective field in the
 particular element below:
 
-* `resource_address`: The [approximate resource
-  address](#approximate-addresses-explained) the
-  [`resources`](#the-resources-collection) collection.
+* `resource_address`: The address of the resource that the provisioner was found
+  in. This can be found in the [`resources`](#the-resources-collection)
+  collection.
 * `type`: The provisioner type, ie: `local_exec`.
 * `index`: The provisioner index as it shows up in the resource provisioner
   order.
