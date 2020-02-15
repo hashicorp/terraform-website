@@ -5,7 +5,7 @@ page_title: "Custom - Clustered Deployment - Install and Config - Terraform Ente
 
 # Deploying a Terraform Enterprise Cluster into a Custom Environment
 
-To perform an installation of TFE for Clustering, you’ll require a number of different bits of infrastructure, all configured to work together.
+A Terraform Enterprise cluster requires several kinds of infrastructure resources, all configured to work together.
 
 ### Infrastructure
 
