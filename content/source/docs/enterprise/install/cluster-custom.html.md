@@ -97,7 +97,7 @@ The first primary of the cluster has an important task, it has to bootstrap the 
 ### Cluster Configuration
 The software expects a couple of configuration files to be on the machine which will govern part of the setup process. These configuration files are only needed on the initial primary.
 
-This steps follows the same ones for the non Cluster installer. Please see the documentation under [Automated Installation - Install and Config - Terraform Enterprise - Terraform by HashiCorp](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html) for the full syntax and options.
+The process of creating these configuration files is the same for both clustered and non-clustered installation. Please see [Individual Deployment: Automated Installation](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html) for the full syntax and options.
 
 The installation requires at a minimum the `/etc/replicated.conf` file to exist.
 
