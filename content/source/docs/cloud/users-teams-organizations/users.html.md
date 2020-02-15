@@ -5,37 +5,42 @@ page_title: "Users - Terraform Cloud"
 
 [organizations]: ./organizations.html
 [teams]: ./teams.html
+[invite]: ./organizations.html#users
+[owners]: ./teams.html#the-owners-team
 
 # Users
 
-Users are the individual members of an [organization][organizations].
+User accounts belong to individual people. A user can be a member of multiple [organizations][].
 
 -> **API:** See the [Account API](../api/account.html).
 
 ## Creating an Account
 
-Users must create an account in Terraform Cloud before
-they can be added to an organization. Creating an account requires a username, an email address, and a password.
+Users must create an account in Terraform Cloud before they can use any of Terraform Cloud's features. Creating an account requires a username, an email address, and a password.
 
-The sign-up page is linked from Terraform Cloud's login page. Alternately, you can send colleagues a direct link:
+If someone invited you to join an existing organization, the invitation email should include a sign-up link.
+
+Alternately, you can create an account from Terraform Cloud's sign-up page. Navigate to the sign-up page via the link on the login page, or go directly to its URL:
 
 - For the SaaS version of Terraform Cloud, create a new account at [https://app.terraform.io/account/new](https://app.terraform.io/account/new).
 - For Terraform Enterprise, go to `https://<TFE HOSTNAME>/account/new`.
 
-New users do not belong to any organizations.
+### After Creating an Account
 
-After you create a new user account, Terraform Cloud immediately takes you to a page where you can create a new organization.
+If you used an invitation link to create your account, you will automatically join that organization and can start using Terraform Cloud's features right away.
+
+If you created your account without an invitation, you will not initially belong to any organizations, and Terraform Cloud will display a page where you can create a new organization.
 
 ![screenshot: the new organization page](./images/org-new.png)
 
 - If you are the first Terraform Cloud user in your organization, use this page to create your Terraform Cloud organization. See [Organizations][] for more information.
-- If you intend to join an existing organization, do not create a new one; instead, send your username to one of your Terraform Cloud organization's owners and ask them to add you to a team. Once they have brought you into the organization, you can reload the page to begin using Terraform Cloud.
+- If you intend to join an existing organization, do not create a new one; instead, send your email address to one of your organization's owners and ask them to invite you. Once you receive and accept the emailed invitation, you can reload the page to begin using Terraform Cloud.
 
 ## Team and Organization Membership
 
-To add a user to an organization, a member of that organization's owners team must add them to one or more teams. See [Teams][] for more information.
+To join an organization, you must be invited by an owner of that organization. In order to have any permissions with that organization, an owner will need to add you to one or more teams. For more information, see [Organization Settings: Users][invite] and [Managing Team Membership](./teams.html#managing-team-membership).
 
-Adding a user to a team requires only their username.
+User invitations are sent by email. If the invited email address matches an existing Terraform Cloud account, the invitee can join the organization with that account; if not, they must create a new account for working with that organization.
 
 ## Site Admin Permissions
 
@@ -63,9 +68,17 @@ Terraform Cloud user profiles are very small, consisting only of a username and 
 
 Additionally, Terraform Cloud uses [Gravatar](http://en.gravatar.com) to display a user icon if you have associated one with your email address. For details about changing your user icon, see [Gravatar's documentation](http://en.gravatar.com/support/).
 
-### Password Management
+### Organizations
 
-Users manage their own passwords. To change your password, click the "Password" page of the user settings. You'll need to confirm your current password, and enter your new password twice.
+The "Organizations" settings page lists all of the organizations you belong to. Organizations where you are on [the owners team][owners] are indicated with an "OWNER" badge.
+
+Organization membership is voluntary, and you can leave an organization without permission from its owners. Use the "..." (ellipsis) button next to an organization to reveal the "Leave organization" link.
+
+-> **Note:** You can't leave an organization if you are the last member of its owners team. You can either add a new owner and then leave, or you can [delete the organization](./organizations.html#general).
+
+### Password
+
+The "Password" settings page allows you to change your password. You'll need to confirm your current password, and enter your new password twice.
 
 Password management isn't available if your Terraform Enterprise instance uses [SAML single sign on](/docs/enterprise/saml/index.html).
 

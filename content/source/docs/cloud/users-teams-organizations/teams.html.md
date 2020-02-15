@@ -29,7 +29,8 @@ An organization's creator is the first member of its owners team; other members 
 Members of the owners team have full access to every workspace in the organization. Additionally, the following tasks can only be performed by organization owners:
 
 - Creating and deleting teams
-- Managing team membership and organization-level permissions granted to the team
+- Inviting users to the organization
+- Managing team membership and organization-level permissions granted to teams
 - Viewing the full list of teams, both visible and secret
 - Managing [organization settings][]
 
@@ -64,9 +65,11 @@ Organization owners can use a team's settings page to add and remove users from 
 
 ![Screenshot: a team's settings page showing the team's members.](./images/teams-team-settings-membership.png)
 
-To add a user, enter their username in the "Username" text field (located under the "Add a New Team Member" header) and click the "Add member" button. (You must know the user's exact username; users cannot be added using email addresses or other personal information.)
+To add a user to a team, choose an existing organization member from the "Select user" drop-down menu, under the "Add a New Team Member" header. If the list of organization members is large, you can use the drop-down's text field to filter the list by username or email.
 
-To remove a user, click the "🗑" (trash can) button by their entry in the member list.
+If you wish to add a teammate who doesn't yet belong to the organization, you must [invite them to join the  organization](./organizations.html#users). To save time, user invitations can include a list of teams; once the user accepts their invitation, they will be automatically added to those teams.
+
+To remove a user from a team, click the "🗑" (trash can) button by their entry in the member list.
 
 Typically, your team structure will mirror your company's group structure. The [Terraform Recommended Practices guide](/docs/cloud/guides/recommended-practices/index.html) offers more in-depth discussion of how team structure interacts with the structure of your Terraform configurations and the IT infrastructure they manage.
 
@@ -103,4 +106,4 @@ Organization-level permissions (see [Managing Organization Access](./teams.html#
 A team can be granted permissions to manage Sentinel policies, workspaces, and/or VCS settings across an organization.
 
 - Organization owners can manage a team's organization-level permissions on the team's settings page under "Organization Access".
-- For detailed information about the available permissions, see [Permissions](./permissions.html#organization-level-permissions)
+- For detailed information about the available permissions, see [Permissions](./permissions.html#organization-level-permissions).

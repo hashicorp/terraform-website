@@ -19,11 +19,11 @@ On most pages within Terraform Cloud, the top navigation bar displays the name o
 
 ![screenshot: the organization switcher menu](./images/org-nav.png)
 
-## Adding Users to Organizations
+## Joining and Leaving Organizations
 
-Organization membership is automatic, and is determined by team membership. To add a user to an organization, add them to one or more of that organization's teams. See [Teams][] for more information.
+To join an organization, you must be invited by an organization owner and must accept the emailed invitation. See [Organization Settings: Users](#users) below for details.
 
-You can only add existing user accounts to teams. If a colleague has not created their account yet, send them the sign-up link (`https://app.terraform.io/account/new` for SaaS, `https://<TFE HOSTNAME>/account/new` for private installs) and ask them to send you their username.
+You can leave an organization from your user account settings. See [User Settings: Organizations](./users.html#organizations) for details.
 
 ## Creating Organizations
 
@@ -33,7 +33,7 @@ Users can create new organizations by clicking the "Create new organization" but
 
 To create a new organization, provide a unique name and a primary contact email address. Organization names can include numbers, letters, underscores (`_`), and hyphens (`-`).
 
-Once you have created an organization, you can add other [users][] by adding them to one or more [teams][].
+Once you have created an organization, you can invite other [users][] from your organization settings.
 
 -> **Note:** On the SaaS version of Terraform Cloud, any user can create a new organization. On Terraform Enterprise, the administrators can restrict this ability, so that only site admins can create organizations. See [Administration: General Settings](/docs/enterprise/admin/general.html#organization-creation) for more details.
 
@@ -56,6 +56,22 @@ Organization owners can use this page to update the organization's contact email
 ### Plan & Billing
 
 The plan and billing page allows organization owners to upgrade to one of Terraform Cloud's paid plans, downgrade to a free plan, or begin a free trial of paid features. It also displays any invoices for previous plan payments.
+
+### Users
+
+The users page allows organization owners to invite new Terraform Cloud users into the organization, cancel invitations, and remove existing members.
+
+The list of users is split into two tabs: one for currently active users, and one for invited users who haven't accepted their invitations yet. If the lists are large, you can filter them by username or email using the search field at the top. For active users, the list includes usernames, email addresses, avatar icons, two-factor authentication status, and current team memberships.
+
+![Screenshot: the users list, showing information for the currently active users.](./images/org-users.png)
+
+To invite a user to an organization, click the "Invite a user" button on the "Users" page. You will be asked to provide an email address and an optional list of teams. If the user accepts the emailed invitation, they will be automatically added to the specified teams.
+
+![Screenshot: the "Invite a user" dialog, which includes fields for email address and teams.](./images/org-users-invite.png)
+
+User invitations are always sent by email; you cannot invite someone using their Terraform Cloud username.
+
+-> **Note:** All permissions in Terraform Cloud are managed via teams. Although users can join an organization without belonging to any teams, they won't be able to do anything until they are also added to a team.
 
 ### Teams
 
