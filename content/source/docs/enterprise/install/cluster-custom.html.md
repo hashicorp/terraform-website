@@ -13,7 +13,7 @@ A Terraform Enterprise cluster requires several kinds of infrastructure resource
 The installation requires at least 3 primary nodes and any number of secondary nodes. The primary nodes run the cluster services themselves and are considered stateful instances. The secondary instances only run stateless workloads and can be added and removed from the cluster at will. At present, we recommend that the cluster not cycle through secondaries too quickly, as too much cluster reconfiguration can disrupt the cluster availability.
 
 ##### Secondary Instances
-The secondary instances can be configured in a form of autoscaling group for easier management. This group need not perform elastic scaling unless necessary, but rather can simply be an easy way to manage the fleet of instances. It’s common to configure such a group for a static number of instances as well, for better cost control.
+The secondary instances can be configured as an autoscaling group for easier management. This group can be configured for a static number of instances (for simplicity and cost control) or for elastic scaling (for fluctuating workloads).
 
 If elastic scaling is enabled, it is common to configure a cooldown period between scaling events so as to not disrupt the cluster availability with too much cluster reconfiguration.
 
