@@ -18,7 +18,10 @@ The secondary instances can be configured as an autoscaling group for easier man
 If elastic scaling is enabled, it is common to configure a cooldown period between scaling events so as to not disrupt the cluster availability with too much cluster reconfiguration.
 
 #### Internal Load Balancer
-The cluster utilizes an API service that run on each of the primary nodes to run properly. For the cluster to operate properly, a load balancer should be configured to send TCP sessions to the primaries on port *6443*. It is important that the load balancer not attempt to terminate the traffic as HTTPS because the clients and servers use an internally configured CA certificate chain that is used for authentication.
+The cluster relies on some internal API services that run on each of the primary nodes. For the cluster to operate properly, a load balancer should be configured to send TCP sessions to the primaries on the following ports. It is important that the load balancer not attempt to terminate the traffic as HTTPS because the clients and servers use an internally configured CA certificate chain for authentication.
+
+- **Port 6443** — used for normal cluster operations.
+- **Port 23010** — used to facilitate the cluster setup process.
 
 Additionally, the internal load balancer must send traffic on port *23010* to the primaries. This port is used to facilitate the cluster setup process.
 
