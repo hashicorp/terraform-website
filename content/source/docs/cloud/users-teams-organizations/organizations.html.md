@@ -47,23 +47,31 @@ Only [organization owners](./teams.html#the-owners-team) can manage an organizat
 
 Most of the organization settings are documented near the specific workflows they enable. What follows is a brief summary with links to more relevant sections of the documentation.
 
-### Profile / Delete
+### General
 
-The profile page shows the organization's name and contact email, but does not allow you to change them.
+The general settings page is shown to all users in an organization, and displays the organization's name and contact email.
 
-The profile page is also where you can **delete your organization.**
+Organization owners can use this page to update the organization's contact email or delete the organization.
+
+### Plan & Billing
+
+The plan and billing page allows organization owners to upgrade to one of Terraform Cloud's paid plans, downgrade to a free plan, or begin a free trial of paid features. It also displays any invoices for previous plan payments.
 
 ### Teams
 
-The teams page allows organization owners to manage the organization's teams, including creating and deleting teams, managing membership, and generating team API tokens.
+-> **Note:** Team management and access controls are a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-Users who aren't organization owners can view the list of teams they belong to and the membership of those teams. They can't edit teams or view any teams they don't belong to.
+The teams page is shown to all users in an organization.
+
+Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
+
+Non-owners can view the list of teams they belong to, view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships or view any teams they don't belong to.
 
 See [Teams][] for more information.
 
-### VCS Provider
+### VCS Providers
 
-The VCS provider page is used for setting up VCS access for Terraform Cloud. See [Connecting VCS Providers](../vcs/index.html) for more information.
+The VCS providers page is used for setting up VCS access for Terraform Cloud. See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 ### API Tokens
 
