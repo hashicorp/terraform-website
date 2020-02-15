@@ -29,7 +29,7 @@ Additionally, the internal load balancer must send traffic on port *23010* to th
 To provide access to the TFE application, an external load balancer should forward traffic to all instances on port *443*. The load balancer should terminate the traffic as HTTPS and provide its own certificate before forwarding the traffic to the instances on *443*. The load balancer should be configured to ignore certificate errors as the cluster is configured with a self-signed certificate.
 
 #### PostgreSQL Database
-For proper production installations, a PostgreSQL database external to the cluster is required. It’s highly recommended that this database be configured to take automated backups in the case of disaster recovery. Additionally, the resources available to the database should be inline with the size of the cluster itself.
+For proper production installations, a PostgreSQL database external to the cluster is required. We highly recommend that this database be configured to take automated backups for disaster recovery. Additionally, the resources available to the database should be in line with the size of the cluster itself.
 
 We recommend at minimum 16GB of RAM and 100GB of storage for a basic server, scaling up with RAM as the number of cluster instances changes.
 
