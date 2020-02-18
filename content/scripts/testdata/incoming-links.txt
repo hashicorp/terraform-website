@@ -586,10 +586,10 @@
 /docs/providers/azurerm/r/key_vault_secret.html
 /docs/providers/azurerm/r/key_vault.html
 /docs/providers/azurerm/r/kubernetes_cluster.html
-/docs/providers/azurerm/r/loadbalancer_nat_pool.html
-/docs/providers/azurerm/r/loadbalancer_nat_rule.html
-/docs/providers/azurerm/r/loadbalancer_rule.html
-/docs/providers/azurerm/r/loadbalancer.html
+/docs/providers/azurerm/r/lb_nat_pool.html
+/docs/providers/azurerm/r/lb_nat_rule.html
+/docs/providers/azurerm/r/lb_rule.html
+/docs/providers/azurerm/r/lb.html
 /docs/providers/azurerm/r/log_analytics_solution.html
 /docs/providers/azurerm/r/log_analytics_workspace.html
 /docs/providers/azurerm/r/logic_app_workflow.html
