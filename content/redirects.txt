@@ -162,8 +162,16 @@
 /docs/providers/azurerm/authenticating_via_azure_cli.html               /docs/providers/azurerm/guides/azure_cli.html
 /docs/providers/azurerm/authenticating_via_msi.html                     /docs/providers/azurerm/guides/managed_service_identity.html
 /docs/providers/azurerm/authenticating_via_service_principal.html       /docs/providers/azurerm/guides/service_principal_client_secret.html
+# Renamed in azurerm commit 9366e423886b10fae50c1bb499a75214757eb9b5
 /docs/providers/azurerm/r/loadbalancer.html                             /docs/providers/azurerm/r/lb.html
-/docs/providers/azurerm/r/loadbalancer_rule.html                   /docs/providers/azurerm/r/lb_rule.html
+/docs/providers/azurerm/r/loadbalancer_backend_address_pool.html        /docs/providers/azurerm/r/lb_backend_address_pool.html
+/docs/providers/azurerm/r/loadbalancer_rule.html                        /docs/providers/azurerm/r/lb_rule.html
+/docs/providers/azurerm/r/loadbalancer_outbound_rule.html               /docs/providers/azurerm/r/lb_outbound_rule.html
+/docs/providers/azurerm/r/loadbalancer_nat_rule.html                    /docs/providers/azurerm/r/lb_nat_rule.html
+/docs/providers/azurerm/r/loadbalancer_nat_pool.html                    /docs/providers/azurerm/r/lb_nat_pool.html
+/docs/providers/azurerm/r/loadbalancer_probe.html                       /docs/providers/azurerm/r/lb_probe.html
+/docs/providers/azurerm/d/loadbalancer.html                             /docs/providers/azurerm/d/lb.html
+/docs/providers/azurerm/d/loadbalancer_backend_address_pool.html        /docs/providers/azurerm/d/lb_backend_address_pool.html
 
 # Azure Stack Provider
 /docs/providers/azurestack/auth/azure_cli.html                             /docs/providers/azurestack/guides/azure_cli.html
