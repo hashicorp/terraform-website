@@ -506,3 +506,7 @@
 	path = ext/providers/auth0
 	url = https://github.com/terraform-providers/terraform-provider-auth0
 	branch = stable-website
+[submodule "ext/providers/baiducloud"]
+	path = ext/providers/baiducloud
+	url = https://github.com/terraform-providers/terraform-provider-baiducloud
+	branch = stable-website
