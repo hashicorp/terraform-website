@@ -178,9 +178,9 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 Key path                                   | Type    | Default  | Description
 -------------------------------------------|---------|----------|------------
 `data.type`                                | string  |          | Must be `"users"`
-`data.attributes.current-password`         | string  |          | Current password
+`data.attributes.current_password`         | string  |          | Current password
 `data.attributes.password`                 | string  |          | New password
-`data.attributes.password-confirmation`    | string  |          | New password (confirmation)
+`data.attributes.password_confirmation`    | string  |          | New password (confirmation)
 
 ### Sample Payload
 
@@ -189,9 +189,9 @@ Key path                                   | Type    | Default  | Description
   "data": {
     "type": "users",
     "attributes": {
-      "current-password": "current password 2:C)e'G4{D\n06:[d1~y",
-      "password": "new password 34rk492+jgLL0@xhfyisj",
-      "password-confirmation": "new password 34rk492+jLL0@xhfyisj",
+      "current_password": "current password e.g. 2:C)e'G4{D\n06:[d1~y",
+      "password": "new password e.g. 34rk492+jgLL0@xhfyisj",
+      "password_confirmation": "new password e.g. 34rk492+jLL0@xhfyisj"
     }
   }
 }
