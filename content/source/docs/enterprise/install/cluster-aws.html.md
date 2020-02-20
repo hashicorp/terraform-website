@@ -14,7 +14,7 @@ page_title: "AWS - Clustered Deployment - Install and Config - Terraform Enterpr
 
 This page outlines the procedure for deploying a Terraform Enterprise cluster on Amazon Web Services (AWS).
 
-~> **Important:** Terraform Enterprise clustering is in Controlled Availability; the application is fully ready for production use, but due to the variability in deployment environments the installation process requires consultation with an Account Manger. Please contact your TAM to request access.
+~> **Important:** Terraform Enterprise clustering is in Controlled Availability; the application is fully ready for production use, but due to the variability in deployment environments the installation process requires consultation with a Technical Account Manager. Please contact your TAM to request access.
 
 ## Summary
 
