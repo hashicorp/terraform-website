@@ -11,7 +11,7 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 * **22**: To access the instance via SSH from your computer. SSH access to the instance is required for administration and debugging.
 * **80**: To access the Terraform Cloud application via HTTP. This port redirects to port 443 for HTTPS.
-* **443**: To access the Terraform Cloud appplication via HTTPS.
+* **443**: To access the Terraform Cloud application via HTTPS.
 * **8800**: To access the installer dashboard.
 * **9870-9880 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
 * **23000-23100 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
