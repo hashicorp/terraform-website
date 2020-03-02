@@ -26,8 +26,6 @@ The cluster relies on some internal API services that run on each of the primary
 - **Port 6443** — used for normal cluster operations.
 - **Port 23010** — used to facilitate the cluster setup process.
 
-Additionally, the internal load balancer must send traffic on port *23010* to the primaries. This port is used to facilitate the cluster setup process.
-
 #### External Load Balancer
 
 To provide access to the TFE application, an external load balancer should forward traffic to all instances on port *443*. The load balancer should terminate the traffic as HTTPS and provide its own certificate before forwarding the traffic to the instances on *443*. The load balancer should be configured to ignore certificate errors as the cluster is configured with a self-signed certificate.
@@ -38,7 +36,7 @@ For proper production installations, a PostgreSQL database external to the clust
 
 We recommend at minimum 16GB of RAM and 100GB of storage for a basic server, scaling up with RAM as the number of cluster instances changes.
 
-The database must be able to accept at least (cores in cluster / 3) * 16 concurrent connections. For example, if the cluster is using 6 instances with 4 cores each, it needs to allow (24 / 3) * 41, or 328 concurrent connections at a minimum.
+The database must be able to accept at least (cores in cluster / 3) * 41 concurrent connections. For example, if the cluster is using 6 instances with 4 cores each, it needs to allow (24 / 3) * 41, or 328 concurrent connections at a minimum.
 
 #### Object Storage
 
@@ -50,16 +48,16 @@ The instances communicate with each other over TCP and UDP. The following list d
 
 #### Ports
 
-* from outside to 443/tcp - *Application HTTPS*
-* from outside to 8800/tcp - *Cluster Dashboard*
-* between all instances on 6443/tcp - *Cluster Kubernetes API*
-* between all instances on 6783/udp+tcp - *Cluster Internal Overlay Networking*
-* between all instances on 6784/udp+tcp - *Cluster Internal Overlay Networking*
-* between all instances on 23010/tcp  - *Cluster Internal Setup*
-* between all primaries on allow 2379/tcp - *Cluster Internal ETCD*
-* between all primaries on allow 2380/tcp - *Cluster Internal ETCD*
-* between all primaries on 4001/tcp - *Cluster Internal ETCD*
-* between all primaries on 7001/tcp - *Cluster Internal ETCD*
+* From outside to 443/tcp — *Application HTTPS*
+* From outside to 8800/tcp — *Cluster Dashboard*
+* Between all instances on 6443/tcp — *Cluster Kubernetes API*
+* Between all instances on 6783/udp+tcp — *Cluster Internal Overlay Networking*
+* Between all instances on 6784/udp+tcp — *Cluster Internal Overlay Networking*
+* Between all instances on 23010/tcp  — *Cluster Internal Setup*
+* Between all primaries on allow 2379/tcp — *Cluster Internal ETCD*
+* Between all primaries on allow 2380/tcp — *Cluster Internal ETCD*
+* Between all primaries on 4001/tcp — *Cluster Internal ETCD*
+* Between all primaries on 7001/tcp — *Cluster Internal ETCD*
 
 
 ### Instance Configuration
@@ -68,10 +66,10 @@ The instances communicate with each other over TCP and UDP. The following list d
 
 If the instance has an internal firewall, be sure that the above ports are added to it for access. TFE also manipulates the firewall after installation, so the recommended practice is to setup the above rules, then disable the firewall while the installer runs, finally reenabling the firewall after the installer finishes.
 
-In additional to the above ports, if a firewall is used on the instance, the following rules must be installed:
+In addition to the above ports, if a firewall is used on the instance, the following rules must be installed:
 
-* allow out on weave to 10.32.0.0/12
-* allow in on weave from 10.32.0.0/12
+* Allow out on weave to 10.32.0.0/12
+* Allow in on weave from 10.32.0.0/12
 
 _(weave is the service that is used for Cluster Internal Overlay Networking)_
 
@@ -116,8 +114,6 @@ The software expects a couple of configuration files to be on the machine which 
 The process of creating these configuration files is the same for both clustered and non-clustered installation. Please see [Individual Deployment: Automated Installation](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html) for the full syntax and options.
 
 The installation requires at a minimum the `/etc/replicated.conf` file to exist.
-
-*NOTE:* The release sequence numbers been the Cluster and Non-Cluster installs are different, be sure to consult HashiCorp for determining the correct value.
 
 ### Running Setup
 
