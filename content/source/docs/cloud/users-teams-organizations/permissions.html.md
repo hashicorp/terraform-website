@@ -5,7 +5,7 @@ page_title: "Permissions - Terraform Cloud"
 
 # Permissions
 
--> **Note:** Team management and access controls are a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
 ## Workspace-level permissions
 

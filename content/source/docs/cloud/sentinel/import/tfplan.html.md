@@ -7,7 +7,7 @@ description: |-
 
 # Import: tfplan
 
--> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
 The `tfplan` import provides access to a Terraform plan. A Terraform plan is the
 file created as a result of `terraform plan` and is the input to `terraform

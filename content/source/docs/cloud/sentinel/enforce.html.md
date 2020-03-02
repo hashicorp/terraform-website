@@ -5,7 +5,7 @@ page_title: "Enforce and Override Policies - Sentinel - Terraform Cloud"
 
 # Enforce and Override Policies
 
--> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
 Once a policy is added to an organization it is enforced on all runs.
 
