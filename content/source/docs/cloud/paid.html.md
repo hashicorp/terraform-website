@@ -7,7 +7,7 @@ page_title: "Free and Paid Plans - Terraform Cloud"
 
 # Free and Paid Plans
 
-Terraform Cloud is a commercial SaaS product developed by HashiCorp. We make many of its features available for free, and also sell paid upgrade packages.
+Terraform Cloud is a commercial SaaS product developed by HashiCorp. We make many of its features available for free, and also offer paid plans that include additional collaboration and governance features.
 
 ## Plans and Billing are Per-Organization
 
@@ -27,7 +27,7 @@ Free organizations are limited to five active members.
 
 Some of Terraform Cloud's features are limited to particular paid upgrade plans. In the documentation, pages that document a paid feature are marked with callout boxes, like the one below:
 
--> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
 When a paid upgrade plan is a strict superset of another plan, its name will also include that plan's name. For example, the "Team & Governance" plan includes all of the features of the "Team" plan.
 

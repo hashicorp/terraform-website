@@ -5,7 +5,7 @@ page_title: "Sentinel - Terraform Cloud"
 
 # Sentinel Overview
 
--> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
 [Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code
 framework integrated with the HashiCorp Enterprise products. It enables

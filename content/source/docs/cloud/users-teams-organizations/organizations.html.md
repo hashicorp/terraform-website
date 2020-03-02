@@ -5,6 +5,7 @@ page_title: "Organizations - Terraform Cloud"
 
 [teams]: ./teams.html
 [users]: ./users.html
+[owners]: ./teams.html#the-owners-team
 
 # Organizations
 
@@ -21,7 +22,7 @@ On most pages within Terraform Cloud, the top navigation bar displays the name o
 
 ## Joining and Leaving Organizations
 
-To join an organization, you must be invited by an organization owner and must accept the emailed invitation. See [Organization Settings: Users](#users) below for details.
+To join an organization, you must be invited by one of its [owners][] and must accept the emailed invitation. See [Organization Settings: Users](#users) below for details.
 
 You can leave an organization from your user account settings. See [User Settings: Organizations](./users.html#organizations) for details.
 
@@ -43,7 +44,7 @@ You can view and manage an organization's settings by clicking the "Settings" li
 
 ![screenshot: the organization settings page](./images/org-settings.png)
 
-Only [organization owners](./teams.html#the-owners-team) can manage an organization's settings. However, other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
+Only [organization owners][owners] can manage an organization's settings. However, other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
 
 Most of the organization settings are documented near the specific workflows they enable. What follows is a brief summary with links to more relevant sections of the documentation.
 
@@ -75,7 +76,7 @@ User invitations are always sent by email; you cannot invite someone using their
 
 ### Teams
 
--> **Note:** Team management and access controls are a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
 The teams page is shown to all users in an organization.
 
@@ -115,7 +116,7 @@ The policies page is a deprecated interface for managing Sentinel policies. Use 
 
 ### Policy Sets
 
--> **Note:** Sentinel is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
 The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces.
 
