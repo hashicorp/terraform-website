@@ -5,34 +5,62 @@ page_title: "Custom - Clustered Deployment - Install and Config - Terraform Ente
 
 # Deploying a Terraform Enterprise Cluster into a Custom Environment
 
-A Terraform Enterprise cluster requires several kinds of infrastructure resources, all configured to work together.
+This page outlines the procedure for deploying a Terraform Enterprise cluster into a custom environment, using any type of cloud or on-premises infrastructure.
 
 ~> **Important:** Terraform Enterprise clustering is in Controlled Availability; the application is fully ready for production use, but due to the variability in deployment environments the installation process requires consultation with a Technical Account Manager. Please contact your TAM to request access.
 
-### Infrastructure
+## Summary
 
-#### Instances
+Deploying Terraform Enterprise involves the following steps:
+
+1. Follow the pre-install checklist.
+1. Prepare the required infrastructure.
+1. Configure and run the installer on the first primary instance.
+1. Run the installer on the remaining primary instances.
+1. Run the installer on the secondary instances.
+
+## Pre-Install Checklist
+
+Before you begin, follow the [Pre-Install Checklist](../before-installing/index.html) and ensure you have all of the prerequisites. This checklist includes several important decisions, some supporting infrastructure, and necessary credentials.
+
+## Prepare Infrastructure
+
+A Terraform Enterprise cluster requires several kinds of infrastructure resources, all configured to work together. This includes:
+
+- Primary and secondary application instances
+- Load balancers, both internal and external
+- A PostgreSQL database
+- Object storage
+- Network connectivity over specific required ports
+
+When deploying into a custom environment, you are responsible for provisioning and configuring every part of this infrastructure.
+
+### Instances
 
 The installation requires at least 3 primary nodes and any number of secondary nodes. The primary nodes run the cluster services themselves and are considered stateful instances. The secondary instances only run stateless workloads and can be added and removed from the cluster at will. At present, we recommend that the cluster not cycle through secondaries too quickly, as too much cluster reconfiguration can disrupt the cluster availability.
 
-##### Secondary Instances
+#### Disk Layout
+
+The TFE installer puts all the cluster data into `/var`, which must have at least 100GB of storage available. We also recommend that `/` be at least 20GB.
+
+#### Managing Secondary Instances
 
 The secondary instances can be configured as an autoscaling group for easier management. This group can be configured for a static number of instances (for simplicity and cost control) or for elastic scaling (for fluctuating workloads).
 
 If elastic scaling is enabled, it is common to configure a cooldown period between scaling events so as to not disrupt the cluster availability with too much cluster reconfiguration.
 
-#### Internal Load Balancer
+### Internal Load Balancer
 
 The cluster relies on some internal API services that run on each of the primary nodes. For the cluster to operate properly, a load balancer should be configured to send TCP sessions to the primaries on the following ports. It is important that the load balancer not attempt to terminate the traffic as HTTPS because the clients and servers use an internally configured CA certificate chain for authentication.
 
 - **Port 6443** — used for normal cluster operations.
 - **Port 23010** — used to facilitate the cluster setup process.
 
-#### External Load Balancer
+### External Load Balancer
 
-To provide access to the TFE application, an external load balancer should forward traffic to all instances on port *443*. The load balancer should terminate the traffic as HTTPS and provide its own certificate before forwarding the traffic to the instances on *443*. The load balancer should be configured to ignore certificate errors as the cluster is configured with a self-signed certificate.
+To provide access to the TFE application, an external load balancer should forward traffic to all instances on port 443. The load balancer should terminate the traffic as HTTPS and provide its own certificate before forwarding the traffic to the instances on 443. The load balancer should be configured to ignore certificate errors as the cluster is configured with a self-signed certificate.
 
-#### PostgreSQL Database
+### PostgreSQL Database
 
 For proper production installations, a PostgreSQL database external to the cluster is required. We highly recommend that this database be configured to take automated backups for disaster recovery. Additionally, the resources available to the database should be in line with the size of the cluster itself.
 
@@ -40,9 +68,9 @@ We recommend at minimum 16GB of RAM and 100GB of storage for a basic server, sca
 
 The database must be able to accept at least (cores in cluster / 3) * 41 concurrent connections. For example, if the cluster is using 6 instances with 4 cores each, it needs to allow (24 / 3) * 41, or 328 concurrent connections at a minimum.
 
-#### Object Storage
+### Object Storage
 
-For proper production installations, an Object Storage service such as AWS S3 is required. The system supports S3, Azure Blob Storage, and Google Cloud Storage. S3-compatible servers such as minio are supported as well. The system should allow for a minimum of 250GB of storage to allow the system to safely grow as the number of Terraform states and logs increases.
+For proper production installations, an object storage service such as AWS S3 is required. The system supports S3, Azure Blob Storage, and Google Cloud Storage. S3-compatible servers such as MinIO are supported as well. The system should allow for a minimum of 250GB of storage to allow the system to safely grow as the number of Terraform states and logs increases.
 
 ### Network Configuration
 
@@ -61,34 +89,24 @@ The instances communicate with each other over TCP and UDP. The following list d
 * Between all primaries on 4001/tcp — *Cluster Internal ETCD*
 * Between all primaries on 7001/tcp — *Cluster Internal ETCD*
 
-
-### Instance Configuration
-
 #### Instance Internal Firewall Rules
 
-If the instance has an internal firewall, be sure that the above ports are added to it for access. TFE also manipulates the firewall after installation, so the recommended practice is to setup the above rules, then disable the firewall while the installer runs, finally reenabling the firewall after the installer finishes.
+If your application instances have internal firewalls, they need rules to allow access on the ports above plus the following additional rules:
 
-In addition to the above ports, if a firewall is used on the instance, the following rules must be installed:
+* Allow out on `weave` to 10.32.0.0/12
+* Allow in on `weave` from 10.32.0.0/12
 
-* Allow out on weave to 10.32.0.0/12
-* Allow in on weave from 10.32.0.0/12
+-> **Note:** If you choose to use the installer's `--internal-cidr` option, make sure these firewall rules match your chosen address block. For example, if you pass `--internal-cidr=10.200.0.0/20` then the firewall rule should allow in and out on weave from `10.200.0.0/20`.
 
-_(weave is the service that is used for Cluster Internal Overlay Networking)_
+We recommend setting up firewall rules in the following order:
 
-The _weave_ interface is created by the TFE installer itself and thusly it is necessary to disable any instance firewall while the installer runs, after which you can setup the weave interface rules, and then re-enable the firewall.
+1. Configure the first set of rules before installing.
+1. Disable the firewall and run the Terraform Enterprise installer.
+1. Configure the rules for the `weave` interface.
+1. Re-enable the firewall.
 
-~> *NOTE:* The above _10.32.0.0/12_ should be replaced if you use the below `--internal-cidr` option with the same value. So if you pass `--internal-cidr=10.200.0.0/20` then the firewall rule should allow in and out on weave from 10.200.0.0/20.
+This is because Terraform Enterprise creates the `weave` interface (used for Cluster Internal Overlay Networking) during installation, and also manipulates the firewall after installation.
 
-#### Disk Layout
-
-The TFE installer puts all the cluster data into /var and it must have at least 100GB of storage available. It’s recommended that / be at least 20GB.
-
-
-### TFE Configuration
-
-#### Release Sequence
-
-If you are using the release sequence variable to pin an install to a particular version of TFE, be aware that the release sequence numbers between the Clustering and Non-Clustering versions are different. Consult with HashiCorp or an existing installation to find out the Clustering release sequence numbers to use.
 
 ## Installer
 
@@ -97,17 +115,19 @@ The TFE installer takes the form of a single binary that must be run on the indi
 The instructions will make use of the following configuration values:
 
 * The address of the Internal Load Balancer (`$internal_lb`). This can be either an IP or hostname.
-* A setup token (`$setup_token`). which is a 32 character random sequence used to authenticate the primaries as they join the cluster.
+* A setup token (`$setup_token`). This is a 32 character random sequence used to authenticate the primaries as they join the cluster.
 
-## Airgap or Online
+~> **Important:** If you are using the release sequence variable to pin an install to a particular version of TFE, be aware that the release sequence numbers between the Clustering and Non-Clustering versions are different. Consult with HashiCorp or refer to an existing installation to determine which Clustering release sequence numbers to use.
 
-The TFE Clustering installer needs to download some additional code and data to install the full cluster. In an airgap situation,  this additional code needs to be placed on the instance for the installer to use.
+### Differences Between Airgap and Online Installs
+
+The TFE Clustering installer needs to download some additional code and data to install the full cluster. In an airgap situation, this additional code needs to be placed on the instance for the installer to use.
 
 In online installs, the code is downloaded from HashiCorp servers automatically.
 
 ## First Primary
 
-The first primary of the cluster has an important task, it has to bootstrap the cluster for all other instances to join it.
+The first primary of the cluster is responsible for bootstrapping the cluster, so that the other instances can join it.
 
 ### Cluster Configuration
 
@@ -115,51 +135,45 @@ The software expects a couple of configuration files to be on the machine which 
 
 The process of creating these configuration files is the same for both clustered and non-clustered installation. Please see [Individual Deployment: Automated Installation](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html) for the full syntax and options.
 
-The installation requires at a minimum the `/etc/replicated.conf` file to exist.
+At minimum, the installation requires that the `/etc/replicated.conf` file exist.
 
 ### Running Setup
 
-Once the configuration files are in place, it’s time to run the install. For an online install:
+Once the configuration files are in place, run the installer. For an online install:
 
 ```
 ptfe install setup \
-  —-internal-load-balancer=$internal_lb \
+  --internal-load-balancer=$internal_lb \
   --setup-token=$setup_token
 ```
 
-### Additional Flags For Setup
+### Additional Options For Installation
+
+You can configure the installation by providing any of the following options to the `ptfe install setup` and `ptfe install join` commands. If you specify any of these options for the first primary, be sure to also specify them for all of the other instances.
 
 * `--airgap-installer`: The path on disk to the airgap installer package.
-* `—-http-proxy`: An http proxy to use for talking outside the cluster
-* `—-additional-no-proxy`: Any hostnames that should not be accessed via the given http proxy.
-* `—-internal-cidr`: An IPv4 CIDR range to use for internal communication between services. This range can be set in the case that the default values overlap with hosts that the cluster needs to access on a customers network. This value must be at least a /20, for example: `10.200.0.0/20`.
+* `--http-proxy`: An http proxy to use for talking outside the cluster
+* `--additional-no-proxy`: Any hostnames that should not be accessed via the given http proxy.
+* `--internal-cidr`: An IPv4 CIDR range to use for internal communication between services. This range can be set in the case that the default values overlap with hosts that the cluster needs to access on a customers network. This value must be at least a /20, for example: `10.200.0.0/20`.
 
 ## Additional Primaries
 
-On the other primaries, the ptfe tool is used in a similar way to the primary, but with `join` instead of `setup`:
+On the other primaries, run `ptfe install join` instead of `ptfe install setup`. Include the same options as on the first primary, plus the additional `--as-primary` and `--role-id=1` options:
 
 ```
 ptfe install join \
-  —-internal-load-balancer=$internal_lb \
+  --internal-load-balancer=$internal_lb \
   --setup-token=$setup_token \
-  —-as-primary \
-  —-role-id=1
+  --as-primary \
+  --role-id=1
 ```
-
 
 ## Secondaries
 
-All secondaries are joined similar to primaries, just without the extra `—as-primary` flag set:
+On the secondaries, run `ptfe install join`. Use the same options you used for the first primary; **do not** include the `--as-primary` and `--role-id=1` options that you used with the other primaries:
 
 ```
 ptfe install join \
-  —-internal-load-balancer=$internal_lb \
+  --internal-load-balancer=$internal_lb \
   --setup-token=$setup_token
 ```
-
-### Additional Flags For Join
-
-* `--airgap-installer`: The path on disk to the airgap installer package.
-* `—-http-proxy`: An http proxy to use for talking outside the cluster
-* `—-additional-no-proxy`: Any hostnames that should not be accessed via the given http proxy.
-* `—-internal-cidr`: An IPv4 CIDR range to use for internal communication between services. This range can be set in the case that the default values overlap with hosts that the cluster needs to access on a customers network. This value must be at least a /20, for example: `10.200.0.0/20`.
