@@ -78,8 +78,8 @@ The instances communicate with each other over TCP and UDP. The following list d
 
 #### Ports
 
-* From outside to 443/tcp — *Application HTTPS*
-* From outside to 8800/tcp — *Cluster Dashboard*
+* From outside to all instances on 443/tcp — *Application HTTPS*
+* From outside to all instances on 8800/tcp — *Cluster Dashboard*
 * From all instances to all primaries on 6443/tcp — *Cluster Kubernetes API*
 * Between all instances on 6783/udp+tcp — *Cluster Internal Overlay Networking*
 * Between all instances on 6784/udp — *Cluster Internal Overlay Networking*
