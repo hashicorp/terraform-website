@@ -445,7 +445,7 @@
 [submodule "ext/providers/ksyun"]
 	path = ext/providers/ksyun
 	url = https://github.com/terraform-providers/terraform-provider-ksyun
-  branch = stable-website
+        branch = stable-website
 [submodule "ext/providers/pureport"]
 	path = ext/providers/pureport
 	url = https://github.com/terraform-providers/terraform-provider-pureport
