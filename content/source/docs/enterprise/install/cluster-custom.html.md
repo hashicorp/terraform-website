@@ -7,6 +7,8 @@ page_title: "Custom - Clustered Deployment - Install and Config - Terraform Ente
 
 A Terraform Enterprise cluster requires several kinds of infrastructure resources, all configured to work together.
 
+~> **Important:** Terraform Enterprise clustering is in Controlled Availability; the application is fully ready for production use, but due to the variability in deployment environments the installation process requires consultation with a Technical Account Manager. Please contact your TAM to request access.
+
 ### Infrastructure
 
 #### Instances
