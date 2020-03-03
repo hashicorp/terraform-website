@@ -81,9 +81,9 @@ The instances communicate with each other over TCP and UDP. The following list d
 * From outside to all instances on 443/tcp — *Application HTTPS*
 * From outside to all instances on 8800/tcp — *Cluster Dashboard*
 * From all instances to all primaries on 6443/tcp — *Cluster Kubernetes API*
+* From all instances to all primaries on 23010/tcp  — *Cluster Internal Setup*
 * Between all instances on 6783/udp+tcp — *Cluster Internal Overlay Networking*
 * Between all instances on 6784/udp — *Cluster Internal Overlay Networking*
-* From all instances to all primaries on 23010/tcp  — *Cluster Internal Setup*
 * Between all primaries on allow 2379/tcp — *Cluster Internal ETCD*
 * Between all primaries on allow 2380/tcp — *Cluster Internal ETCD*
 * Between all primaries on 4001/tcp — *Cluster Internal ETCD*
