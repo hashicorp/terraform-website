@@ -1,10 +1,9 @@
 ---
 layout: "extend"
-page_title: "Community"
+page_title: "Contributing"
 sidebar_current: "docs-extend-community-contributing"
 description: |-
-  Terraform is a mature project with a growing community. There are
-  active, dedicated people willing to help you through various mediums.
+  How to contribute to Terraform providers and differences between HashiCorp and community providers.
 
 ---
 

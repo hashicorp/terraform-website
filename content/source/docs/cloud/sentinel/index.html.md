@@ -37,8 +37,12 @@ Using Sentinel with Terraform Cloud involves:
 - [Enforcing policy checks on runs](./enforce.html) - Policies are checked when
   a run is performed, after the `terraform plan` but before it can be confirmed
   or the `terraform apply` is executed.
-- [Mocking Sentinel Terraform data](./mock.html) - Terraform Cloud provides
-  the ability to generate mock data for any run within a workspace. This data
-  can be used with the [Sentinel
-  Simulator](https://docs.hashicorp.com/sentinel/commands/) to test policies
-  before deployment.
+- [Mocking Sentinel Terraform data](./mock.html) - Terraform Cloud provides the
+  ability to generate mock data for any run within a workspace. This data can be
+  used with the [Sentinel CLI](https://docs.hashicorp.com/sentinel/commands/) to
+  test policies before deployment.
+
+### Standard Imports
+
+The Terraform integration for HashiCorp Sentinel implements all of the
+available [standard imports](https://docs.hashicorp.com/sentinel/imports/).

@@ -23,8 +23,7 @@ architecture.
 
 ## Infrastructure Requirements
 
--> **Note:** This reference architecture focuses on the _Production - External
-Services_ operational mode.
+-> **Note:** This reference architecture focuses on the _Production - External Services_ operational mode.
 
 Depending on the chosen [operational
 mode](../index.html#operational-mode-decision),
@@ -200,6 +199,14 @@ Multi-AZ endpoint to the *RDS-main* database instance.
 The Terraform Enterprise application is connected to object storage via the S3 endpoint
 for the defined bucket and all object storage requests are routed to the
 highly available infrastructure supporting S3.
+
+### Monitoring
+
+There is not currently a full monitoring guide for Terraform Enterprise. The following pages include information relevant to monitoring:
+
+- [Logging](../../admin/logging.html),
+- [Diagnostics](../../support/index.html)
+- [Reliability and Availability](../../system-overview/reliability-availability.html)
 
 ### Upgrades
 

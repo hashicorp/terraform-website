@@ -25,7 +25,7 @@ The Terraform code for a normal run always comes from version control, and is al
 
 In a workspace linked to a VCS repo, runs start automatically when you merge or commit changes to version control.
 
-A workspace is linked to one branch of its repository, and ignores changes to other branches. Workspaces can also ignore some changes within their branch: if a Terraform working directory is configured, Terraform Cloud assumes that only some of the content in the repository is relevant to Terraform, and ignores changes outside of that content. (This behavior can be configured; for details, see [Settings: Automatic Run Triggering](../workspaces/settings.html#automatic-run-triggering).)
+A workspace is linked to one branch of its repository, and ignores changes to other branches. Workspaces can also ignore some changes within their branch: if a Terraform working directory is configured, Terraform Cloud assumes that only some of the content in the repository is relevant to Terraform, and ignores changes outside of that content. (This behavior can be configured; for details, see [Settings: Automatic Run Triggering](../workspaces/vcs.html#automatic-run-triggering).)
 
 ## Manually Starting Runs
 
@@ -45,7 +45,7 @@ Note that once the plan stage is completed, until you apply or discard a plan, T
 
 ### Auto apply
 
-If you would rather automatically apply plans that don't have errors, you can [enable auto apply](../workspaces/settings.html#auto-apply-and-manual-apply) on the workspace's "General Settings" page. (Some plans can't be auto-applied, like destroy plans or plans queued by users without write permissions.)
+If you would rather automatically apply plans that don't have errors, you can [enable auto apply](../workspaces/settings.html#auto-apply-and-manual-apply) on the workspace's "General Settings" page. (Some plans can't be auto-applied, like plans queued by [run triggers](../workspaces/run-triggers.html) or by users without write permissions.)
 
 [plan permissions](../users-teams-organizations/permissions.html#plan)
 

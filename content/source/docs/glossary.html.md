@@ -69,7 +69,6 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Run](#run)
 - [S3](#s3)
 - [SAML](#saml)
-- [Service Account](#service-account)
 - [Sentinel](#sentinel)
 - [Site Admin](#site-admin)
 - [Speculative Plan](#speculative-plan)
@@ -613,7 +612,7 @@ Prior to mid-2019, "Terraform Enterprise" (TFE) was the name of the Terraform Cl
 
 A plugin for Terraform that makes a collection of related resources available. A provider plugin is responsible for understanding [API][] interactions with some kind of service and exposing [resources][] based on that API.
 
-Terraform providers are generally tied to a specific _infrastructure provider,_ which might be an infrastructure as a service (IaaS) provider (like AWS, GCP, Microsoft Azure, OpenStack), a platform as a service (PaaS) provider (like Heroku), or a software as a service (SaaS) provider (like Terraform Cloud, DNSimple, CloudFlare).
+Terraform providers are generally tied to a specific _infrastructure provider,_ which might be an infrastructure as a service (IaaS) provider (like AWS, GCP, Microsoft Azure, OpenStack), a platform as a service (PaaS) provider (like Heroku), or a software as a service (SaaS) provider (like Terraform Cloud, DNSimple, Cloudflare).
 
 There are many existing providers available, but providers can also be custom-built to work with any API.
 
@@ -730,7 +729,7 @@ The process of using Terraform to make real infrastructure match the desired sta
 
 In Terraform Cloud, runs are performed in a series of stages ([plan][], [policy check][], and [apply][]), though not every stage occurs in every run. Terraform Cloud saves information about historical runs.
 
-- [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## S3
@@ -756,17 +755,6 @@ Terraform Enterprise can use an S3-compatible [blob storage][] service when conf
 SAML is an XML-based standard for authentication and authorization. Terraform Enterprise can act as a service provider (SP) (or Relying Party, RP) with your internal SAML identity provider (IdP). The SAML Single Sign On feature is only available on [Terraform Enterprise][]; the Terraform Cloud SaaS does not support it.
 
 - [Terraform Enterprise docs: SAML Single Sign-On](/docs/enterprise/saml/index.html)
-
-## Service Account
-
-[service account]: glossary.html#service-account
-[service accounts]: glossary.html#service-account
-
--> Terraform Cloud
-
-An account (with API [token][]) that doesn't belong to a human user but to an internal entity in Terraform Cloud. Terraform Cloud provides two types of service accounts: [team][] and [organization][]. These accounts can access Terraform Cloud [APIs][], but cannot be used interactively. The service accounts are designed to support server-to-server API calls using the service identity as opposed to individual user identities.
-
-- [Terraform Cloud docs: Service Accounts](/docs/cloud/users-teams-organizations/service-accounts.html)
 
 ## Sentinel
 
@@ -965,7 +953,7 @@ Different VCSes use different models for history; Git models changes as a direct
 
 -> Terraform Cloud
 
-A specific service that provides [VCS][] features, with the goal of enabling teams to collaborate on code. Terraform Cloud can integrate with VCS providers to access your Terraform [configurations][] and [modules][], and currently supports GitHub, GitHub Enterprise, GitLab.com, GitLab EE and CE, Bitbucket Cloud, and Bitbucket Server.
+A specific service that provides [VCS][] features, with the goal of enabling teams to collaborate on code. Terraform Cloud can integrate with VCS providers to access your Terraform [configurations][] and [modules][], and currently supports GitHub, GitHub Enterprise, GitLab.com, GitLab EE and CE, Bitbucket Cloud, Bitbucket Server, Azure DevOps Server, and Azure DevOps Services.
 
 - [Terraform Cloud docs: Connecting VCS Providers](/docs/cloud/vcs/index.html)
 

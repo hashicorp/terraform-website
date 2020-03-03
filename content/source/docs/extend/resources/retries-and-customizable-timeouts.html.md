@@ -16,8 +16,8 @@ package example
 import (
     "fmt"
 
-    "github.com/hashicorp/terraform/helper/resource"
-    "github.com/hashicorp/terraform/helper/schema"
+    "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
+    "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceExampleInstance() *schema.Resource {
@@ -86,13 +86,13 @@ func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) err
 
     createStateConf := &resource.StateChangeConf{
         Pending: []string{
-            client.ExampleInstaceStateRequesting,
-            client.ExampleInstaceStatePending,
-            client.ExampleInstaceStateCreating,
-            client.ExampleInstaceStateVerifying,
+            client.ExampleInstanceStateRequesting,
+            client.ExampleInstanceStatePending,
+            client.ExampleInstanceStateCreating,
+            client.ExampleInstanceStateVerifying,
         },
         Target: []string{
-            client.ExampleInstaceStateCreateComplete,
+            client.ExampleInstanceStateCreateComplete,
         },
         Refresh: func() (interface{}, string, error) {
             resp, err := client.DescribeInstance(name)

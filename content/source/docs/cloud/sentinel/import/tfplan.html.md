@@ -87,13 +87,13 @@ the Terraform _plan_ (as opposed to actual configuration and state).
 empty when viewed as maps, the specific import namespace keys will still be
 accessible.
 
--> Note that while current versions of Terraform Cloud source _all_
-data (including configuration and state) from the plan for the Terraform run in
-question, future versions may source data accessed through the `tfconfig`
-and `tfstate` imports (as opposed to `tfplan.config` and `tfplan.state`) from
-actual config bundles, or state as stored by Terraform Cloud. When this happens, the
-distinction here will be useful - the data in the aliased namespaces will be the
-config and state data as the _plan_ sees it, versus the actual "physical" data.
+-> Note that while current versions of Terraform Cloud source configuration and
+state data from the plan for the Terraform run in question, future versions may
+source data accessed through the `tfconfig` and `tfstate` imports (as opposed to
+`tfplan.config` and `tfplan.state`) from actual config bundles, or state as
+stored by Terraform Cloud. When this happens, the distinction here will be useful -
+the data in the aliased namespaces will be the config and state data as the
+_plan_ sees it, versus the actual "physical" data.
 
 ### Function: `module()`
 

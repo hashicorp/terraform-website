@@ -16,8 +16,8 @@ page_title: "Managing Policies with VCS - Sentinel - Terraform Cloud"
 [example_policies]: ./examples.html
 [import]: /docs/import/index.html
 [remote]: /docs/backends/types/remote.html
-[organization token]: ../users-teams-organizations/service-accounts.html#organization-service-accounts
-[team token]: ../users-teams-organizations/service-accounts.html#team-service-accounts
+[organization token]: ../users-teams-organizations/api-tokens.html#organization-api-tokens
+[team token]: ../users-teams-organizations/api-tokens.html#team-api-tokens
 [user token]: ../users-teams-organizations/users.html#api-tokens
 [owners team]: ../users-teams-organizations/teams.html#the-owners-team
 

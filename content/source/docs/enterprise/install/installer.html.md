@@ -1,9 +1,9 @@
 ---
 layout: "enterprise"
-page_title: "Installation - Install and Config - Terraform Enterprise"
+page_title: "Interactive Installation - Install and Config - Terraform Enterprise"
 ---
 
-# Terraform Enterprise Installation
+# Interactive Terraform Enterprise Installation — Individual Instance
 
 ## Delivery
 
@@ -52,13 +52,41 @@ This change updates the proxy settings for the Terraform Enterprise application 
 `NOTE: Please take precautions on application outage when applying configuration change, i.e. wait for all runs to finish, prevent new runs to trigger`
 4. Restart the Replicated services following [the instructions for your distribution](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#restarting-replicated).
 
-## Trusting SSL/TLS Certificates
+## TLS Configuration
 
-There are two primary areas for SSL configuration.
+There are two sections for TLS configuration; the "TLS Key & Cert" section and the "SSL/TLS Configuration" section.
 
 ### TLS Key & Cert
 
-The TLS Key & Cert field (found in the console settings after initial installation) should contain Terraform Enterprise's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates an intermediate certificate is required as well.
+The "TLS Key & Cert" section is where the TLS certificate and private key can be configured to allow HTTPS connections to Terraform Enterprise. The TLS certificate and private key files can be self-signed, located in a path on the server, or uploaded. Both the TLS certificate and private key files must be PEM-encoded. The TLS certificate file can contain a full chain of TLS certificates if necessary.
+
+For convenience, a brand new Terraform Enterprise installation may prompt for these settings after the initial setup. You can provide a key and certificate immediately, or use a self-signed certificate to begin with and change the settings later.
+
+![Installer TLS Key and Cert](./assets/tls-installer.png)
+
+For an existing installation, these settings can be found in the Replicated console on port 8800. Click on the gear icon in the top right corner, click "Console Settings", and scroll to the "TLS Key & Cert" section.
+
+The key and certificate settings can be one of three values, each of which are detailed below.
+
+#### Self-signed (generated)
+
+When the "Self-signed (generated)" radio button is selected, a self-signed TLS certificate and private key will be automatically generated. An example screenshot is below:
+
+![Self-signed TLS Key and Cert](./assets/tls-self-signed.png)
+
+#### Server path
+
+When the "Server path" radio button is selected, the TLS certificate and private key will be read from the specified file paths on the server. An example screenshot is below:
+
+![Server Path TLS Key and Cert](./assets/tls-server-path.png)
+
+#### Upload files
+
+When the "Upload file" radio button is selected, the TLS certificate and private key must be uploaded. An example screenshot is below:
+
+![Upload File TLS Key and Cert](./assets/tls-upload.png)
+
+~> **Note:** Changes to the key and certificate settings require a restart of the Terraform Enterprise application.
 
 ### Certificate Authority (CA) Bundle
 
@@ -96,15 +124,15 @@ c2NvMR4wHAYDVQQDExVoYXNoaWNvcnAuZW5naW5lZXJpbmcwHhcNMTgwMjI4MDYx
 -----END CERTIFICATE-----
 ```
 
-The UI to upload these certificates looks like:
+The user interface to upload these certificates looks like this:
 
-![Terraform Enterprise ca ui](./assets/ptfe-ca-bundle.png)
+![Terraform Enterprise Certificate Authority User Interface](./assets/tls-ca.png)
 
 #### TLS Versions
 
 As of version 201902-01, TLS versions 1.0 and 1.1 are no longer supported in Terraform Enterprise. Your options now include TLS v1.2 and TLS v1.3:
 
-![Terraform Enterprise tls ui](./assets/ptfe-tls-ui.png)
+![Terraform Enterprise TLS Versions User Interface](./assets/tls-versions.png)
 
 ## Alternative Terraform worker image
 
@@ -172,17 +200,18 @@ If the instance cannot reach the Internet, follow these steps to begin an Airgap
 
 #### Prepare the Instance
 
+1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Pre-Install Checklist: Software Requirements](../before-installing/index.html#software-requirements) for details).
 1. Download the `.airgap` file using the information given to you in your setup email and place that file somewhere on the the instance.
     * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
     * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
 1. [Download the installer bootstrapper](https://install.terraform.io/airgap/latest.tar.gz) and put it into its own directory on the instance (e.g. `/opt/tfe-installer/`)
-1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Pre-Install Checklist: Software Requirements](../before-installing/index.html#software-requirements) for details).
+
 
 #### Execute the Installer
 
-From a shell on your instance, in the directory where you placed the `replicated.tar.gz` installer bootstrapper:
+From a shell on your instance, in the directory where you placed the `latest.tar.gz` installer bootstrapper:
 
-1. Run `tar xzf replicated.tar.gz`
+1. Run `tar xzf latest.tar.gz`
 1. Run `sudo ./install.sh airgap`
 1. When asked, select the interface of the primary private network interface used to access the instance.
 1. The software will take a few minutes and you'll be presented with a message about how and where to access the rest of the setup via the web. This will be `https://<TFE HOSTNAME>:8800`.

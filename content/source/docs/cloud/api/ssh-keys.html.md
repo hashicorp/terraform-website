@@ -39,7 +39,7 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to list SSH keys for.
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
@@ -85,7 +85,7 @@ Parameter     | Description
 
 This endpoint is for looking up the name associated with an SSH key ID. It does not retrieve the key text.
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
 Status  | Response                                   | Reason
 --------|--------------------------------------------|-------
@@ -125,7 +125,7 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create an SSH key in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
 Status  | Response                                   | Reason
 --------|--------------------------------------------|-------
@@ -166,6 +166,7 @@ Key path                    | Type   | Default | Description
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
   https://app.terraform.io/api/v2/organizations/my-organization/ssh-keys
@@ -199,9 +200,9 @@ Parameter            | Description
 
 This endpoint replaces the name and/or key text of an existing SSH key. Existing workspaces that use the key will be updated with the new values.
 
-Only members of the owners team (or the owners team service account) can edit SSH keys.
+Only members of the owners team (or the owners team API token) can edit SSH keys.
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
 Status  | Response                                   | Reason
 --------|--------------------------------------------|-------
@@ -237,6 +238,7 @@ Key path                    | Type   | Default   | Description
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
   https://app.terraform.io/api/v2/ssh-keys/sshkey-GxrePWre1Ezug7aM
@@ -268,9 +270,9 @@ Parameter            | Description
 ---------------------|------------
 `:ssh_key_id`        | The SSH key ID to delete.
 
-Only members of the owners team (or the owners team service account) can delete SSH keys.
+Only members of the owners team (or the owners team API token) can delete SSH keys.
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
@@ -284,6 +286,7 @@ Status  | Response                                             | Reason
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/ssh-keys/sshkey-GxrePWre1Ezug7aM
 ```

@@ -11,7 +11,7 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 * **22**: To access the instance via SSH from your computer. SSH access to the instance is required for administration and debugging.
 * **80**: To access the Terraform Cloud application via HTTP. This port redirects to port 443 for HTTPS.
-* **443**: To access the Terraform Cloud appplication via HTTPS.
+* **443**: To access the Terraform Cloud application via HTTPS.
 * **8800**: To access the installer dashboard.
 * **9870-9880 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
 * **23000-23100 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
@@ -22,18 +22,31 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 
 * api.replicated.com
 * get.replicated.com
-* quay.io
 * registry-data.replicated.com
 * registry.replicated.com
+* quay.io
+* quay-registry.s3.amazonaws.com
+* cloudfront.net
+* index.docker.io
+* auth.docker.io
+* registry-1.docker.io
+* download.docker.com
+* production.cloudflare.docker.com
 
 Airgapped installs do not check for updates over the network.
 
 Additionally, the following hostnames are accessed unless a
-[custom Terraform bundle](/docs/cloud/run/index.html#custom-and-community-providers)
+[custom Terraform bundle](/docs/cloud/run/install-software.html#custom-and-community-providers)
 is supplied:
 
 * registry.terraform.io (when using Terraform 0.12 and later)
 * releases.hashicorp.com
+
+When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-integration) is enabled, it uses the respective cloud provider's APIs to get up-to-date pricing info.
+
+* api.pricing.us-east-1.amazonaws.com
+* cloud.google.com
+* azure.microsoft.com
 
 ## Other Configuration
 

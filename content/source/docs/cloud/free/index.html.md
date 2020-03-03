@@ -8,9 +8,7 @@ description: |-
 
 # Getting Started with the Terraform Cloud Free Tier
 
-Welcome to the Terraform Cloud Free Tier! This service enhances your team's CLI-based Terraform workflow with easy access to shared Terraform state.
-
-Your free account allows you to share unlimited workspaces with an unlimited number of teammates.
+Welcome to the Terraform Cloud Free Tier! This service enhances your team's CLI-based Terraform workflow with easy access to shared Terraform state and collaborate on Terraform runs. 
 
 ## Summary
 

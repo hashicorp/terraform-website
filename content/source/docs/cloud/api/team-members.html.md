@@ -24,6 +24,10 @@ page_title: "Team Membership - API Docs - Terraform Cloud"
 
 The Team Membership API is used to add or remove users from teams. The [Team API](./teams.html) is used to create or destroy teams.
 
+## Organization Membership
+
+-> **Note:** To add users to a team, they must first be invited to join the organization by email, and accept the invitation. This ensures that you don't accidentally add the wrong person by mistyping a username. See [the Organization Memberships API documentation](./organization-memberships.html) for more information.
+
 ## Add a User to Team
 
 This method adds multiple users to a team. Both users and teams must already exist.

@@ -42,7 +42,7 @@ Documentation for Terraform's core functionality, including:
 
 -> New users can start here.
 
-Interactive guides to teach you how to use Terraform's features. Begin with the [Getting Started guide](https://learn.hashicorp.com/terraform/getting-started/install.html), then continue with task-specific advanced guides or go directly to the [Terraform CLI docs](/docs/cli-index.html).
+Interactive guides to teach you how to use Terraform's features. Begin with the [Getting Started guide](https://learn.hashicorp.com/terraform/getting-started/install), then continue with task-specific advanced guides or go directly to the [Terraform CLI docs](/docs/cli-index.html).
 
 ### [Guides and Whitepapers ➜](/guides/index.html)
 

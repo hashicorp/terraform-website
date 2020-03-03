@@ -140,7 +140,7 @@ func resourceExampleThing() *schema.Resource {
         attribute1, attribute2, err := resourceServiceThingExampleThingParseId(d.Id())
 
         if err != nil {
-          return err
+          return nil, err
         }
 
         d.Set("attribute1", attribute1)

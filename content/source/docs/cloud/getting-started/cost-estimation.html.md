@@ -17,6 +17,7 @@ Terraform Cloud provides cost estimates for many resources found in your Terrafo
 
 For more details, see the following pages:
 
+- [Cost Estimation](../cost-estimation/index.html)
 - [Run States and Stages](../run/states.html)
 
 ## Enabling Cost Estimation
@@ -46,7 +47,7 @@ AWS resources require credentials to operate against the AWS API. Add your crede
 
 ## Verifying costs using policies
 
-Now you can add a new policy to validate your configuration's cost estimates. This policy simply checks that the new cost delta is no more than $100. A new `t3.nano` instance should be well below that. We'll use the `decimal` import for more accurate math when working with currency numbers.
+Now you can add a new policy to validate your configuration's cost estimates using the [`tfrun`](/docs/cloud/sentinel/import/tfrun.html) import. This policy simply checks that the new cost delta is no more than $100. A new `t3.nano` instance should be well below that. We'll use the `decimal` import for more accurate math when working with currency numbers.
 
 ```python
 import "tfrun"
@@ -61,7 +62,7 @@ main = rule {
 
 ## Viewing a Cost Estimate
 
-After queueing a new run, you should see your resources being estimated. The costs are found in a new phase in the run UI. You can see the list of resources with costs, their price details, and the list of unestimated resources. Costs are totalled to get a sense of the proposed overall monthly cost once the run is applied. Note that this is just an estimate; some resources don't have cost information available or have unpredictable usage-based pricing.
+After queueing a new run, you should see your resources being estimated. The costs are found in a phase in the run UI. You can see the list of resources with costs, their price details, and the list of unestimated resources. Costs are totalled to get a sense of the proposed overall monthly cost once the run is applied. Note that this is just an estimate; some resources don't have cost information available or have unpredictable usage-based pricing.
 
 ![cost estimation run](./images/cost-estimation-run.png)
 

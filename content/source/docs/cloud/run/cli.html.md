@@ -60,7 +60,7 @@ credentials "app.terraform.io" {
 }
 ```
 
-The backend can be initialized with `terraform init`. If the workspaces do not yet exist in Terraform Cloud, they will be created at this time.
+The backend can be initialized with `terraform init`.
 
 ```shell
 $ terraform init
@@ -80,11 +80,39 @@ rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
+### Implicit Workspace Creation
+
+If you configure the remote backend to use a workspace that doesn't yet exist in your organization, Terraform Cloud will create a new workspace with that name when you run `terraform init`. The output of `terraform init` will inform you when this happens.
+
+Automatically created workspaces might not be immediately ready to use, so use Terraform Cloud's UI to check a workspace's settings and data before performing any runs. In particular, note that:
+
+- No Terraform variables or environment variables are created by default. Terraform Cloud will use `*.auto.tfvars` files if they are present, but you will usually still need to set some workspace-specific variables.
+- The execution mode defaults to "Remote," so that runs occur within Terraform Cloud's infrastructure instead of on your workstation.
+- New workspaces are not automatically connected to a VCS repository, and do not have a working directory specified.
+- A new workspace's Terraform version defaults to the most recent release of Terraform at the time the workspace was created.
+
+## Variables in CLI-Driven Runs
+
+Remote runs in Terraform Cloud use variables from two sources:
+
+- Terraform variables and environment variables set in the workspace. These can be edited via the UI, the API, or the `tfe` Terraform provider.
+- Terraform variables from any `*.auto.tfvars` files included in the configuration. Workspace variables, if present, override these.
+
+-> **Note:** Remote runs do not use environment variables from your shell environment, and do not support specifying variables (or `.tfvars` files) as command line arguments.
+
 ## Remote Working Directories
 
 If you manage your Terraform configurations in self-contained repositories, the remote working directory always has the same content as the local working directory.
 
 If you use a combined repository and [specify a working directory on workspaces](../workspaces/settings.html#terraform-working-directory), you can run Terraform from either the real working directory or from the root of the combined configuration directory. In both cases, Terraform will upload the entire combined configuration directory.
+
+## Excluding Files from Upload
+
+-> **Version note:** `.terraformignore` support was added in Terraform 0.12.11.
+
+CLI-driven runs upload an archive of your configuration directory
+to Terraform Cloud. If the directory contains files you want to exclude from upload,
+you can do so by defining a [`.terraformignore` file in your configuration directory][remote].
 
 ## Remote Speculative Plans
 

@@ -54,7 +54,7 @@ Using the branch strategy reduces the number of files needed in the repo. In the
 │   │   ├── outputs.tf
 ```
 
-Each workspace listens to a specific branch for changes, as configured by the [VCS branch setting](./settings.html#vcs-branch). This means that plans will not occur in a given workspace until a PR is opened or a push event occurs on the designated branch. The `networking-prod` workspace would be configured to listen to the `prod` branch, `networking-stage` to `stage`, and `networking-dev` to `dev`. To promote a change to `stage`, open a PR against the `stage` branch. To promote to prod, open a PR from `stage` against `prod`.
+Each workspace listens to a specific branch for changes, as configured by the [VCS branch setting](./vcs.html#vcs-branch). This means that plans will not occur in a given workspace until a PR is opened or a push event occurs on the designated branch. The `networking-prod` workspace would be configured to listen to the `prod` branch, `networking-stage` to `stage`, and `networking-dev` to `dev`. To promote a change to `stage`, open a PR against the `stage` branch. To promote to prod, open a PR from `stage` against `prod`.
 
 The upside of this approach is that it requires fewer files and runs fewer plans, but the potential downside is that the branches can drift out of sync. Thus, in this model, it's very important to enforce consistent branch merges for promoting changes.
 
@@ -62,7 +62,7 @@ The upside of this approach is that it requires fewer files and runs fewer plans
 
 For organizations that have significant differences between environments, or prefer short-lived branches that are frequently merged into the master branch, we recommend creating a separate directory for each environment.
 
--> **Note:** By default, Terraform Cloud will only trigger runs when the contents of the workspace's working directory changes. You can configure your workspace to also trigger runs when modules or other dependencies change. See [Automatic Run Triggering](../workspaces/settings.html#automatic-run-triggering) settings for more details.
+-> **Note:** By default, Terraform Cloud will only trigger runs when the contents of the workspace's working directory changes. You can configure your workspace to also trigger runs when modules or other dependencies change. See [Automatic Run Triggering](./vcs.html#automatic-run-triggering) settings for more details.
 
 In the example repo structure below, the prod, stage, and dev environments have separate `main.tf` configurations and `variables.tf` files. These environments can still refer to the same modules (like `compute` and `networking`).
 

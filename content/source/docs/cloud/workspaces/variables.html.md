@@ -15,7 +15,7 @@ Terraform Cloud workspaces can set values for two kinds of variables:
 You can edit a workspace's variables via the UI or the API. All runs in a workspace use its variables.
 
 -> **API:** See the [Variables API](../api/variables.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_variable` resource](/docs/providers/tfe/r/variable.html).
+**Terraform:** See the `tfe` provider's [`tfe_variable`](/docs/providers/tfe/r/variable.html) resource.
 
 ## Loading Variables from Files
 
@@ -33,9 +33,9 @@ The variables page has separate lists of Terraform variables and environment var
 
 ![Screenshot: The initial appearance of a workspace's variables page](./images/vars.png)
 
-To edit a variable, click one of its text fields or its pencil (edit) icon to reveal the editing controls. Make any desired changes to the variable's name, value, and settings, then click the "Save Variable" button.
+To edit a variable, click one of its text fields or its pencil (edit) icon to reveal the editing controls. Make any desired changes to the variable's name, value, description, and settings, then click the "Save Variable" button.
 
-To add a variable, click the "+ Add Variable" button, enter a name and value, and save.
+To add a variable, click the "+ Add Variable" button, enter a name, value, optional description, and save.
 
 To delete a variable, click its "🗑" (trash can) icon, then confirm your decision in the dialog box that appears.
 
@@ -70,13 +70,19 @@ Marking a variable as sensitive prevents anybody (including you) from viewing it
 
 Users with edit permissions can set new values for sensitive variables. No other attribute of a sensitive variable can be modified. To update other attributes, delete the variable and create a new variable to replace it.
 
-~> **Important:** Terraform runs will receive the full text of sensitive variables, and might print the value in logs if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations to avoid unnecessary credential disclosure.
+~> **Important:** Terraform runs will receive the full text of sensitive variables, and might print the value in logs and state files if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations to avoid unnecessary credential disclosure. Whenever possible, use environment variables since these cannot end up in state files. (Environment variables can end up in log files if TF_LOG is set to TRACE.)
 
 ### Looking Up Variable Names
 
 Terraform Cloud can't automatically discover variable names from a workspace's Terraform code. You must discover the necessary variable names by reading code or documentation, then enter them manually.
 
 If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
+
+### Descriptions
+
+Variable descriptions help distinguish between similarly named variables. These optional fields are only shown on this "Variables" page and are completely independent from any variable descriptions declared in Terraform CLI.
+
+The maximum length of a variable description is 512 characters.
 
 ## How Terraform Cloud Uses Variables
 
@@ -100,3 +106,5 @@ Terraform Cloud uses some special environment variables to control dangerous or 
 ### Secure Storage of Variables
 
 Terraform Cloud encrypts all variable values securely using [Vault's transit backend](https://www.vaultproject.io/docs/secrets/transit/index.html) prior to saving them. This ensures that no out-of-band party can read these values without proper authorization.
+
+Descriptions are not encrypted. Please be careful with the information you save in a variable description.

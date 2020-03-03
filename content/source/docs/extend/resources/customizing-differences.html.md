@@ -16,7 +16,7 @@ Sometimes determining the differences between state and configuration requires s
 
 ~> **NOTE:** `CustomizeDiff` does not currently support computed/"known after apply" values from other resource attributes.
 
-Any function can be provided for difference customization. For the majority of simple cases, we recommend that you first try to compose the behavior using the [customdiff](https://godoc.org/github.com/hashicorp/terraform/helper/customdiff) helper package, which allows for a more declarative configuration. However, for highly custom requirements, a custom-made function is usually easier and more maintainable than working around the helper's limitations.
+Any function can be provided for difference customization. For the majority of simple cases, we recommend that you first try to compose the behavior using the [customdiff](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/customdiff) helper package, which allows for a more declarative configuration. However, for highly custom requirements, a custom-made function is usually easier and more maintainable than working around the helper's limitations.
 
 ```go
 package example
@@ -24,8 +24,8 @@ package example
 import (
     "fmt"
 
-    "github.com/hashicorp/terraform/helper/customdiff"
-    "github.com/hashicorp/terraform/helper/schema"
+    "github.com/hashicorp/terraform-plugin-sdk/helper/customdiff"
+    "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceExampleInstance() *schema.Resource {

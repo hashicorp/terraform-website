@@ -24,6 +24,10 @@ page_title: "Teams - API Docs - Terraform Cloud"
 
 The Teams API is used to create, edit, and destroy teams as well as manage a team's organization-level permissions. The [Team Membership API](./team-members.html) is used to add or remove users from a team. Use the [Team Access API](./team-access.html) to associate a team with privileges on an individual workspace.
 
+## Organization Membership
+
+-> **Note:** Users must be invited to join organizations before they can be added to teams. See [the Organization Memberships API documentation](./organization-memberships.html) for more information. Invited users who have not yet accepted will not appear in Teams API responses.
+
 ## List teams
 
 `GET organizations/:organization_name/teams`
@@ -53,9 +57,13 @@ $ curl \
       "attributes": {
         "name": "team-creation-test",
         "users-count": 0,
+        "visibility": "organization",
         "permissions": {
           "can-update-membership": true,
-          "can-destroy": true
+          "can-destroy": true,
+          "can-update-organization-access": true,
+          "can-update-api-token": true,
+          "can-update-visibility": true
         },
         "organization-access": {
           "manage-policies": true,
@@ -107,6 +115,7 @@ Key path                              | Type   | Default   | Description
 `data.type`                           | string |           | Must be `"teams"`.
 `data.attributes.name`                | string |           | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
 `data.attributes.organization-access` | object | (nothing) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
+`data.attributes.visibility` **(beta)** | string | `"secret"`| The team's visibility. Must be `"secret"` or `"organization"` (visible).
 
 ### Sample Payload
 
@@ -149,10 +158,14 @@ $ curl \
         "manage-workspaces": true
       },
       "permissions": {
+        "can-update-membership": true,
         "can-destroy": true,
-        "can-update-membership": true
+        "can-update-organization-access": true,
+        "can-update-api-token": true,
+        "can-update-visibility": true
       },
-      "users-count": 0
+      "users-count": 0,
+      "visibility": "secret"
     },
     "id": "team-6p5jTwJQXwqZBncC",
     "links": {
@@ -198,9 +211,13 @@ $ curl \
     "attributes": {
       "name": "team-creation-test",
       "users-count": 0,
+      "visibility": "organization",
       "permissions": {
         "can-update-membership": true,
-        "can-destroy": true
+        "can-destroy": true,
+        "can-update-organization-access": true,
+        "can-update-api-token": true,
+        "can-update-visibility": true
       },
       "organization-access": {
         "manage-policies": true,
@@ -219,6 +236,103 @@ $ curl \
     "links": {
       "self": "/api/v2/teams/team-6p5jTwJQXwqZBncC"
     }
+  }
+}
+```
+
+## Update a Team
+
+`PATCH /teams/:team_id`
+
+Parameter   | Description
+------------|------------
+`:team_id`  | The team ID to be updated.
+
+Status  | Response                                | Reason
+--------|-----------------------------------------|----------
+[200][] | [JSON API document][] (`type: "teams"`) | Successfully created a team
+[400][] | [JSON API error object][]               | Invalid `include` parameter
+[404][] | [JSON API error object][]               | Team not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]               | Malformed request body (missing attributes, wrong types, etc.)
+[500][] | [JSON API error object][]               | Failure during team creation
+
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                              | Type   | Default   | Description
+-----------------------               |--------|-----------|------------
+`data.type`                           | string |           | Must be `"teams"`.
+`data.attributes.name`                | string | (previous value) | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+`data.attributes.organization-access` | object | (previous value) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
+`data.attributes.visibility` **(beta)** | string | (previous value) | The team's visibility. Must be `"secret"` or `"organization"` (visible).
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "type": "teams",
+    "attributes": {
+      "visibilty": "organization",
+      "organization-access": {
+        "manage-vcs-settings": true
+      }
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/teams/team-6p5jTwJQXwqZBncC
+```
+
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "name": "team-creation-test",
+      "organization-access": {
+        "manage-policies": false,
+        "manage-vcs-settings": true,
+        "manage-workspaces": true
+      },
+      "visibility": "organization",
+      "permissions": {
+        "can-update-membership": true,
+        "can-destroy": true,
+        "can-update-organization-access": true,
+        "can-update-api-token": true,
+        "can-update-visibility": true
+      },
+      "users-count": 0
+    },
+    "id": "team-6p5jTwJQXwqZBncC",
+    "links": {
+      "self": "/api/v2/teams/team-6p5jTwJQXwqZBncC"
+    },
+    "relationships": {
+      "authentication-token": {
+        "meta": {}
+      },
+      "users": {
+        "data": []
+      }
+    },
+    "type": "teams"
   }
 }
 ```

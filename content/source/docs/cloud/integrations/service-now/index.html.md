@@ -7,7 +7,7 @@ description: |-
 
 # Terraform ServiceNow Service Catalog Integration Setup Instructions
 
--> **Integration version:**  v1.0.0
+-> **Integration version:**  v1.1.0
 
 -> **Note:** The ServiceNow Catalog integration is designed for use by Terraform Enterprise customers. We do not currently recommend using it with the SaaS version of Terraform Cloud.
 
@@ -54,7 +54,7 @@ Before installing the ServiceNow integration, you need to perform some setup and
 
 1. [Create an organization](../../users-teams-organizations/organizations.html) (or choose an existing organization) where ServiceNow will create new workspaces.
 1. [Create a team](../../users-teams-organizations/teams.html) for that organization called "ServiceNow", and ensure that it has the organization-level ["Manage Workspaces" permission](../../users-teams-organizations/permissions.html#manage-workspaces). You do not need to add any users to this team.
-1. On the "ServiceNow" team's settings page, generate a [team API token](../../users-teams-organizations/service-accounts.html#team-service-accounts). **Save this API token for later.**
+1. On the "ServiceNow" team's settings page, generate a [team API token](../../users-teams-organizations/api-tokens.html#team-api-tokens). **Save this API token for later.**
 1. If you haven't yet done so, [connect a VCS provider](../../vcs/index.html) for this Terraform organization.
 1. On the organization's VCS provider settings page, find the "OAuth Token ID" for your VCS provider. This is an opaque ID that Terraform Enterprise uses to identify this VCS provider. **Save the OAuth Token ID for later.**
 
@@ -98,10 +98,11 @@ The worker synchronizes ServiceNow with the current run state of Terraform works
 
 -> **Roles Required:** `admin` or `x_terraform.config_user`
 
+1. Exit Service Now Studio and return to the ServiceNow Service Management Screen.
 1. Using the left-hand navigation, open the configuration table for the integration to manage the Terraform Enterprise connection.
     - Terraform > Configs
 1. Click on "New" to create a new Terraform Enterprise connection:
-    - Set API Team Token to the Terraform Enterprise [Team Token](../../users-teams-organizations/service-accounts.html#team-service-accounts) you created earlier.
+    - Set API Team Token to the Terraform Enterprise [Team Token](../../users-teams-organizations/api-tokens.html#team-api-tokens) you created earlier.
     - Set Hostname to the hostname of your Terraform Enterprise instance. (If you're using the SaaS version of Terraform Cloud, this is app.terraform.io.)
     - Set Org Name to the name of the Terraform Enterprise organization you wish to use for new workspaces created by ServiceNow.
 
@@ -138,6 +139,8 @@ ServiceNow Variable Name | Terraform Enterprise Variable
 --|--
 `tf_var_VARIABLE_NAME` | Terraform Variable: `VARIABLE_NAME`
 `tf_env_ENV_NAME` | Environment Variable: `ENV_NAME`
+`sensitive_tf_var_VARIABLE_NAME` | Sensitive Terraform Variable (Write Only): `VARIABLE_NAME`
+`sensitive_tf_env_ENV_NAME` | Sensitive Terraform Environment Variable (Write Only): `ENV_NAME`
 
 This function takes the ServiceNow Variable Set and Terraform Workspace ID. It will loop through the given variable set collection and create any Terraform variables or Terraform environment variables.
 
@@ -174,8 +177,11 @@ Create Run | Creates/Queues a new run on the Terraform Enterprise workspace.
 Apply Run | Applies a run on the Terraform Enterprise workspace.
 Provision Resources | Creates a Terraform Enterprise workspace (with auto-apply), creates/queues a run, applies the run when ready.
 Provision Resources with Variables | Creates a Terraform Enterprise workspace (with auto-apply), creates any variables, creates/queues a run, applies the run when ready.
+Example Pinned Variables | Creates a Terraform Enterprise workspace (with auto-apply), creates any variables, creates/queues a run, applies the run when ready using a pinned VCS repository and variables.
+Delete Workspace | Adds a `CONFIRM_DESTROY=1` to the Terraform workspace and creates a destroy run plan.
 Poll Run State | Polls the Terraform Enterprise API for the current run state of a workspace.
 Poll Apply Run | Polls the Terraform Enterprise API and applies any pending Terraform runs.
+Poll Destroy Workspace | Queries ServiceNow Terraform Records for resources marked `is_destroyable`, applies the destroy run to destroy resources, and deletes the corresponding Terraform workspace.
 
 ## ServiceNow ACLs
 
@@ -188,4 +194,3 @@ Access Control Roles | Description
 `x_terraform.vcs_repositories_user` | Can manage the VCS repositories available for catalog items to be ordered by end-users.
 
 For users who only need to order from the Terraform Catalog, we recommend creating another role with read-only permissions for `x_terraform_vcs_repositories` to view the available repositories for ordering infrastructure.
-

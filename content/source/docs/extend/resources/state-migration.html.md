@@ -37,7 +37,7 @@ For example, with a resource without previous state migrations:
 ```go
 package example
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 
 func resourceExampleInstance() *schema.Resource {
     return &schema.Resource{
@@ -65,7 +65,7 @@ import (
     "fmt"
     "strings"
 
-    "github.com/hashicorp/terraform/helper/schema"
+    "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceExampleInstance() *schema.Resource {
@@ -154,7 +154,7 @@ For this task provider developers should use a resource's `SchemaVersion` and `M
 ```go
 package example
 
-import "github.com/hashicorp/terraform/helper/schema"
+import "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 
 func resourceExampleInstance() *schema.Resource {
     return &schema.Resource{
@@ -182,7 +182,7 @@ import (
     "fmt"
     "strings"
 
-    "github.com/hashicorp/terraform/helper/schema"
+    "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceExampleInstance() *schema.Resource {

@@ -36,7 +36,7 @@ Parameter            | Description
 
 If further explanation of this method is needed beyond its title, write it here, after the parameter list. -->
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/service-accounts.html#organization-service-accounts). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/service-accounts.html#team-service-accounts).
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
 <!-- ^ Include a note like the above if the endpoint CANNOT be used with a given token type. Most endpoints don't need this. -->
 

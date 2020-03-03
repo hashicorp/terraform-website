@@ -47,7 +47,7 @@ Status  | Response                               | Reason
 Parameter           | Description
 --------------------|------------
 `q`                 | **Optional.** A search query string. Runs are searchable by ID, workspace name, organization name or email, and VCS repository identifier.
-`filter[status]`    | **Optional.** A comma-separated list of Run statuses to restrict results to, including any of the following: `"pending"`, `"planning"`, `"planned"`, `"confirmed"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"policy_checking"`, `"policy_override"`, and/or `"policy_checked"`.
+`filter[status]`    | **Optional.** A comma-separated list of Run statuses to restrict results to, which can include any of the following: `"pending"`, `"plan_queued"`, `"planning"`, `"planned"`, `"confirmed"`, `"apply_queued"`, `"applying"`, `"applied"`, `"discarded"`, `"errored"`, `"canceled"`, `"cost_estimating"`, `"cost_estimated"`, `"policy_checking"`, `"policy_override"`, `"policy_soft_failed"`, `"policy_checked"`, and `"planned_and_finished"`.
 `page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`        | **Optional.** If omitted, the endpoint will return 20 runs per page.
 

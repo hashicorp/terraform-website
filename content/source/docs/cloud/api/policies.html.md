@@ -414,6 +414,7 @@ Status  | Response                  | Reason
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/policies/pl-u3S5p2Uwk21keu1s
 ```

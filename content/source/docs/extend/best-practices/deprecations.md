@@ -73,7 +73,7 @@ The recommended process is as follows:
 1. Add `**Deprecated**` to the documentation of the existing (now the "old") attribute, noting to use the new attribute.
 1. Add a note to the documentation that either the existing (now the "old") attribute or new attribute must be configured.
 1. Add `ConflictsWith` to the schema definitions of both the old and new attributes so they will present an error to the operator if both are configured at the same time.
-1. Add conditional logic in the `Create`, `Read`, and `Update` functions of the data source or resource to handle both attributes. Generally, this involves using [`ResourceData.GetOk()`](https://godoc.org/github.com/hashicorp/terraform/helper/schema#ResourceData.GetOk) (commonly `d.GetOk()` in HashiCorp maintained providers).
+1. Add conditional logic in the `Create`, `Read`, and `Update` functions of the data source or resource to handle both attributes. Generally, this involves using [`ResourceData.GetOk()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#ResourceData.GetOk) (commonly `d.GetOk()` in HashiCorp maintained providers).
 1. Add conditional logic in the `Create` and `Update` function that returns an error if both the old and new attributes are not defined.
 1. Follow the rest of the procedures in the [Provider Attribute Removal section](#provider-attribute-removal). When the old attribute is removed, update the schema definition and documentation of the new attribute back to `Required`.
 
@@ -282,7 +282,7 @@ The recommended process is as follows:
 1. Add `Deprecated` to the schema definition of the existing (now the "old") attribute, noting to use the new attribute in the message.
 1. Add `**Deprecated**` to the documentation of the existing (now the "old") attribute, noting to use the new attribute.
 1. Add `ConflictsWith` to the schema definitions of both the old and new attributes so they will present an error to the operator if both are configured at the same time.
-1. Add conditional logic in the `Create`, `Read`, and `Update` functions of the data source or resource to handle both attributes. Generally, this involves using [`ResourceData.GetOk()`](https://godoc.org/github.com/hashicorp/terraform/helper/schema#ResourceData.GetOk) (commonly `d.GetOk()` in HashiCorp maintained providers).
+1. Add conditional logic in the `Create`, `Read`, and `Update` functions of the data source or resource to handle both attributes. Generally, this involves using [`ResourceData.GetOk()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#ResourceData.GetOk) (commonly `d.GetOk()` in HashiCorp maintained providers).
 1. Follow the rest of the procedures in the [Provider Attribute Removal section](#provider-attribute-removal).
 
 #### Example Renaming of an Optional Attribute

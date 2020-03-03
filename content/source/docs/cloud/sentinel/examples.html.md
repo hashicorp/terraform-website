@@ -12,7 +12,7 @@ This page lists some example Sentinel policies. These examples are not exhaustiv
 ### Amazon Web Services
 
 * [Enforce owner allow list on `aws_ami` data source](https://github.com/hashicorp/terraform-guides/blob/master/governance/first-generation/aws/enforce-ami-owners.sentinel)
-* [Enforce mandatory tags on instances](https://github.com/hashicorp/terraform-guides/blob/master/governance/first-generation/aws/enforce-mandatory-tags.sentinel)
+* [Enforce mandatory tags on instances](https://github.com/hashicorp/terraform-guides/blob/master/governance/second-generation/aws/enforce-mandatory-tags.sentinel)
 * [Restrict availability zones](https://github.com/hashicorp/terraform-guides/blob/master/governance/first-generation/aws/restrict-aws-availability-zones.sentinel)
 * [Disallow 0.0.0.0/0 CIDR blocks](https://github.com/hashicorp/terraform-guides/blob/master/governance/second-generation/aws/restrict-ingress-sg-rule-cidr-blocks.sentinel)
 * [Restrict instance types of EC2 instances](https://github.com/hashicorp/terraform-guides/blob/master/governance/second-generation/aws/restrict-ec2-instance-type.sentinel)

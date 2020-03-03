@@ -11,8 +11,7 @@ page_title: "Organizations - Terraform Cloud"
 Organizations are a shared space for [teams][] to collaborate on workspaces in Terraform Cloud.
 
 -> **API:** See the [Organizations API](../api/organizations.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_organization` resource](/docs/providers/tfe/r/organization.html).
-
+**Terraform:** See the `tfe` provider's [`tfe_organization`](/docs/providers/tfe/r/organization.html) resource.
 
 ## Selecting Organizations
 
@@ -68,7 +67,7 @@ The VCS provider page is used for setting up VCS access for Terraform Cloud. See
 
 ### API Tokens
 
-Organizations can have a special service account API token that is not associated with a specific user or team. See [Service Accounts](./service-accounts.html) for more information.
+Organizations can have a special API token that is not associated with a specific user or team. See [API Tokens](./api-tokens.html) for more information.
 
 ### Authentication
 

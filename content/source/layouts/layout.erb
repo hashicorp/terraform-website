@@ -39,6 +39,7 @@
     <!-- Site scripts -->
     <!--[if lt IE 9]><%= javascript_include_tag "ie-compat", defer: true %><![endif]-->
     <%= javascript_include_tag "application", defer: true %>
+    <%= javascript_include_tag "terraform-overview/home-hero", defer: true %>
 
     <!-- Analytics scrpts -->
     <script defer>
@@ -117,8 +118,15 @@
                   </li>
                    <li id="terraform-overview-sign-in-link">
                    <div>
-                    <a href="https://app.terraform.io/">
+                    <a href="https://app.terraform.io/session?utm_source=docs_banner">
                       Sign In
+                    </a>
+                    </div>
+                  </li>
+                   <li id="terraform-overview-sign-up-link" class="hidden-md hidden-sm">
+                   <div>
+                    <a href="https://app.terraform.io/signup/account?utm_source=docs_banner">
+                      Create Account
                     </a>
                     </div>
                   </li>

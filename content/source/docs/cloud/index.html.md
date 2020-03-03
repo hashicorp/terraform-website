@@ -15,7 +15,7 @@ This is the documentation for Terraform Cloud.
 
 Terraform Cloud is available as a hosted service at [https://app.terraform.io](https://app.terraform.io). We offer free accounts for small teams, and paid plans with additional feature sets for medium-sized businesses.
 
-Large enterprises can purchase [Terraform Enterprise](/docs/enterprise/index.html), our on-premise distribution of Terraform Cloud. It offers enterprises a private instance of the Terraform Cloud application, with no resource limits and with additional enterprise-grade architectural features like audit logging and SAML single sign-on.
+Large enterprises can purchase [Terraform Enterprise](/docs/enterprise/index.html), our self-hosted distribution of Terraform Cloud. It offers enterprises a private instance of the Terraform Cloud application, with no resource limits and with additional enterprise-grade architectural features like audit logging and SAML single sign-on.
 
 ### Note About Product Names
 

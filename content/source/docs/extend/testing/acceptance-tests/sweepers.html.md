@@ -31,7 +31,7 @@ package example
 import (
     "testing"
 
-    "github.com/hashicorp/terraform/helper/resource"
+    "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
 func TestMain(m *testing.M) {
@@ -57,7 +57,7 @@ import (
     "strings"
     "testing"
 
-    "github.com/hashicorp/terraform/helper/resource"
+    "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
 func init() {
@@ -100,7 +100,7 @@ package example
 import (
    "testing"
   
-    "github.com/hashicorp/terraform/helper/resource"
+    "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
 func init() {

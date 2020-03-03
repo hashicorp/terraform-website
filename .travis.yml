@@ -3,6 +3,10 @@ sudo: required
 services:
   - docker
 language: ruby
+before_install:
+  - gem install bundler -v '1.17.3' --no-document
+install:
+  - bundle _1.17.3_ install --jobs=3 --retry=3
 git:
   submodules: false
 

@@ -3,49 +3,54 @@
     <h4><a href="/docs/github-actions/index.html">Terraform GitHub Actions</a></h4>
 
     <ul class="nav docs-sidenav">
+
       <li<%= sidebar_current("docs-github-actions-started") %>>
-        <a href="/docs/github-actions/getting-started/index.html">Getting Started</a>
+        <a href="/docs/github-actions/getting-started.html">Getting Started</a>
       </li>
 
-      <li<%= sidebar_current("docs-github-actions-actions") %>>
-        <a href="/docs/github-actions/actions/index.html">Actions Reference</a>
+      <li<%= sidebar_current("docs-github-actions-configuration") %>>
+        <a href="/docs/github-actions/configuration/index.html">Configuration</a>
         <ul class="nav">
-          <li<%= sidebar_current("docs-github-actions-actions-fmt") %>>
-            <a href="/docs/github-actions/actions/fmt.html">fmt</a>
+          <li<%= sidebar_current("docs-github-actions-configuration-fmt") %>>
+            <a href="/docs/github-actions/configuration/fmt.html">fmt</a>
           </li>
-          <li<%= sidebar_current("docs-github-actions-actions-init") %>>
-            <a href="/docs/github-actions/actions/init.html">init</a>
+          <li<%= sidebar_current("docs-github-actions-configuration-init") %>>
+            <a href="/docs/github-actions/configuration/init.html">init</a>
           </li>
-          <li<%= sidebar_current("docs-github-actions-actions-validate") %>>
-            <a href="/docs/github-actions/actions/validate.html">validate</a>
+          <li<%= sidebar_current("docs-github-actions-configuration-validate") %>>
+            <a href="/docs/github-actions/configuration/validate.html">validate</a>
           </li>
-          <li<%= sidebar_current("docs-github-actions-actions-plan") %>>
-            <a href="/docs/github-actions/actions/plan.html">plan</a>
+          <li<%= sidebar_current("docs-github-actions-configuration-plan") %>>
+            <a href="/docs/github-actions/configuration/plan.html">plan</a>
           </li>
-          <li<%= sidebar_current("docs-github-actions-actions-apply") %>>
-            <a href="/docs/github-actions/actions/apply.html">apply</a>
+          <li<%= sidebar_current("docs-github-actions-configuration-apply") %>>
+            <a href="/docs/github-actions/configuration/apply.html">apply</a>
           </li>
         </ul>
       </li>
 
-      <li<%= sidebar_current("docs-github-actions-directories") %>>
-        <a href="/docs/github-actions/directories.html">Directories</a>
-      </li>
-
-      <li<%= sidebar_current("docs-github-actions-workspaces") %>>
-        <a href="/docs/github-actions/workspaces.html">Workspaces</a>
-      </li>
-
-      <li<%= sidebar_current("docs-github-actions-remote-backend") %>>
-        <a href="/docs/github-actions/remote-backend.html">Remote Backend</a>
-      </li>
-
-      <li<%= sidebar_current("docs-github-actions-tf-versions") %>>
-        <a href="/docs/github-actions/terraform-versions.html">Terraform Versions</a>
-      </li>
-
-      <li<%= sidebar_current("docs-github-actions-running-apply") %>>
-        <a href="/docs/github-actions/running-apply.html">Running Apply</a>
+      <li<%= sidebar_current("docs-github-actions-common-tasks") %>>
+        <a href="/docs/github-actions/common-tasks/index.html">Common Tasks</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-github-actions-common-tasks-arguments") %>>
+            <a href="/docs/github-actions/common-tasks/arguments.html">Arguments</a>
+          </li>
+          <li<%= sidebar_current("docs-github-actions-common-tasks-backends") %>>
+            <a href="/docs/github-actions/common-tasks/backends.html">Backends</a>
+          </li>
+          <li<%= sidebar_current("docs-github-actions-common-tasks-terraform-versions") %>>
+            <a href="/docs/github-actions/common-tasks/terraform-versions.html">Terraform Versions</a>
+          </li>
+          <li<%= sidebar_current("docs-github-actions-common-tasks-variables") %>>
+            <a href="/docs/github-actions/common-tasks/variables.html">Variables</a>
+          </li>
+          <li<%= sidebar_current("docs-github-actions-common-tasks-working-directory") %>>
+            <a href="/docs/github-actions/common-tasks/working-directory.html">Working Directory</a>
+          </li>
+          <li<%= sidebar_current("docs-github-actions-common-tasks-Workspaces") %>>
+            <a href="/docs/github-actions/common-tasks/workspaces.html">Workspaces</a>
+          </li>
+        </ul>
       </li>
 
     </ul>
@@ -55,4 +60,3 @@
 
   <%= yield %>
 <% end %>
-

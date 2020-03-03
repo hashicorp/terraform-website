@@ -26,7 +26,7 @@ Use the following as a guide to configure an external Vault instance:
 1. Install the `ptfe` policy (See below for policy):
    `vault policy write ptfe ptfe.hcl`
 1. Create an AppRole instance:
-   `vault write auth/approle/role/ptfe policies="ptfe" token_max_ttl=32h`.
+   `vault write auth/approle/role/ptfe policies="ptfe" token_period=24h`.
 1. Retrieve the AppRole `role_id`: `vault read auth/approle/role/ptfe/role-id`
 1. Retrieve the AppRole `secret_id`:
    `vault write -f auth/approle/role/ptfe/secret-id`

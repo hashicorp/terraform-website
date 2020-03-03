@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "permissions - Terraform Cloud"
+page_title: "Permissions - Terraform Cloud"
 ---
 
 # Permissions
@@ -53,7 +53,7 @@ Allows members to create, edit, and delete the organization's Sentinel policies 
 
 ### Manage Workspaces
 
-Allows members to create and administrate all workspaces within the organization. This is synonymous to giving the team [admin permission level](./permissions.html) to all workspaces, plus the ability to create new workspaces (otherwise only available to the owners team). 
+Allows members to create and administrate all workspaces within the organization. This is synonymous to giving the team [admin permission level](./permissions.html) to all workspaces, plus the ability to create new workspaces (otherwise only available to the owners team).
 
 ### Manage VCS Settings
 

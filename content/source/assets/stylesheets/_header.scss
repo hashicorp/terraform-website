@@ -48,7 +48,7 @@
       span {
         color: $header-link-color;
         font-size: $header-font-size;
-        font-family: $font-family-open-sans;
+        font-family: $font-body;
         font-weight: $font-weight-bold;
         text-decoration: none;
 
@@ -101,10 +101,10 @@
         visibility: hidden;
         opacity: 0;
         transition: all 0.5s ease;
-        min-width: 22rem;
+        min-width: 220px;
         box-shadow: 0px 4px 12px -2px rgba(63, 68, 85, 0.5);
         border-radius: 3px;
-        padding: 2rem;
+        padding: 20px;
         position: absolute;
         z-index: 1;
         background-color: $header-background-color;
@@ -119,9 +119,9 @@
           clear: both;
           width: 100%;
           display: block;
-          padding: 1rem;
+          padding: 7px;
           position: relative;
-          height: 44px;
+          height: unset;
 
           a {
             text-decoration: none;

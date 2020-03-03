@@ -22,8 +22,9 @@ page_title: "Variables - API Docs - Terraform Cloud"
 
 # Variables API
 
-This set of APIs covers create, update, list and delete operations on variables.
+~> **Important**: The Variables API is **deprecated** and will be removed in a future release. All existing integrations with this API should transition to the [Workspace Variables API](./workspace-variables.html).
 
+This set of APIs covers create, update, list and delete operations on variables.
 
 ## Create a Variable
 
@@ -41,6 +42,7 @@ Key path                                 | Type   | Default | Description
 `data.type`                              | string |         | Must be `"vars"`.
 `data.attributes.key`                    | string |         | The name of the variable.
 `data.attributes.value`                  | string | `""`    | The value of the variable.
+`data.attributes.description`            | string |         | The description of the variable.
 `data.attributes.category`               | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
 `data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
 `data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
@@ -64,6 +66,7 @@ Key path                                 | Type   | Default | Description
     "attributes": {
       "key":"some_key",
       "value":"some_value",
+      "description":"some description",
       "category":"terraform",
       "hcl":false,
       "sensitive":false
@@ -101,6 +104,7 @@ curl \
     "attributes": {
       "key":"some_key",
       "value":"some_value",
+      "description":"some description",
       "sensitive":false,
       "category":"terraform",
       "hcl":false
@@ -158,6 +162,7 @@ $ curl \
       "type":"vars","attributes": {
         "key":"name",
         "value":"hello",
+        "description":"some description",
         "sensitive":false,
         "category":"terraform",
         "hcl":false
@@ -199,7 +204,7 @@ Key path          | Type   | Default | Description
 ------------------|--------|---------|------------
 `data.type`       | string |         | Must be `"vars"`.
 `data.id`         | string |         | The ID of the variable to update.
-`data.attributes` | object |         | New attributes for the variable. This object can include `key`, `value`, `category`, `hcl`, and `sensitive` properties, which are described above under [create a variable](#create-a-variable). All of these properties are optional; if omitted, a property will be left unchanged.
+`data.attributes` | object |         | New attributes for the variable. This object can include `key`, `value`, `description`, `category`, `hcl`, and `sensitive` properties, which are described above under [create a variable](#create-a-variable). All of these properties are optional; if omitted, a property will be left unchanged.
 
 ### Sample Payload
 
@@ -210,6 +215,7 @@ Key path          | Type   | Default | Description
     "attributes": {
       "key":"name",
       "value":"mars",
+      "description": "new description",
       "category":"terraform",
       "hcl": false,
       "sensitive": false
@@ -240,6 +246,7 @@ $ curl \
     "attributes": {
       "key":"name",
       "value":"mars",
+      "description":"new description",
       "sensitive":false,
       "category":"terraform",
       "hcl":false
