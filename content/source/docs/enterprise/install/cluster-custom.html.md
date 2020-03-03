@@ -84,6 +84,7 @@ The instances communicate with each other over TCP and UDP. The following list d
 * From all instances to all primaries on 23010/tcp  — *Cluster Internal Setup*
 * Between all instances on 6783/udp+tcp — *Cluster Internal Overlay Networking*
 * Between all instances on 6784/udp — *Cluster Internal Overlay Networking*
+* Between all instances on 10250/tcp — *Cluster Kubelet API*
 * Between all primaries on allow 2379/tcp — *Cluster Internal ETCD*
 * Between all primaries on allow 2380/tcp — *Cluster Internal ETCD*
 * Between all primaries on 4001/tcp — *Cluster Internal ETCD*
