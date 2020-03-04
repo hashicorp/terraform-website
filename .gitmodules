@@ -514,3 +514,7 @@
 	path = ext/providers/quorum
 	url = https://github.com/terraform-providers/terraform-provider-quorum
 	branch = stable-website
+[submodule "ext/providers/oktaasa"]
+	path = ext/providers/oktaasa
+	url = https://github.com/terraform-providers/terraform-provider-oktaasa
+	branch = stable-website
