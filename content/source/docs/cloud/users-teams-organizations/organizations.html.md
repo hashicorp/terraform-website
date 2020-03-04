@@ -34,7 +34,7 @@ Users can create new organizations by clicking the "Create new organization" but
 
 To create a new organization, provide a unique name and a primary contact email address. Organization names can include numbers, letters, underscores (`_`), and hyphens (`-`).
 
-Once you have created an organization, you can invite other [users][] from your organization settings.
+Once you have created an organization, you can invite other users from your organization settings. [See below for more details.](#users)
 
 -> **Note:** On the SaaS version of Terraform Cloud, any user can create a new organization. On Terraform Enterprise, the administrators can restrict this ability, so that only site admins can create organizations. See [Administration: General Settings](/docs/enterprise/admin/general.html#organization-creation) for more details.
 
@@ -76,7 +76,7 @@ User invitations are always sent by email; you cannot invite someone using their
 
 ### Teams
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
 The teams page is shown to all users in an organization.
 
@@ -95,8 +95,6 @@ The VCS providers page is used for setting up VCS access for Terraform Cloud. Se
 Organizations can have a special API token that is not associated with a specific user or team. See [API Tokens](./api-tokens.html) for more information.
 
 ### Authentication
-
--> **Note:** This page is not available in free organizations.
 
 The authentication page allows owners to determine when users must reauthenticate. It also allows owners to require [two-factor authentication](./2fa.html) for all members of the organization.
 
@@ -135,4 +133,3 @@ Organizations with expired trials return to the feature set of a free organizati
 - Teams other than `owners` are disabled, and users who don't belong to the `owners` team are locked out of the organization. Team membership and permissions are preserved, and are re-enabled on upgrade.
 - Sentinel policy checks are disabled. Existing policies and policy sets are preserved, and are re-enabled on upgrade.
 - Cost estimation is disabled.
-

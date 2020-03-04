@@ -7,7 +7,7 @@ page_title: "Free and Paid Plans - Terraform Cloud"
 
 # Free and Paid Plans
 
-Terraform Cloud is a commercial SaaS product developed by HashiCorp. We make many of its features available for free, and also offer paid plans that include additional collaboration and governance features.
+Terraform Cloud is a commercial SaaS product developed by HashiCorp. Many of its features are free for small teams, including remote state storage, remote runs, and VCS connections. We also offer paid plans for larger teams that include additional collaboration and governance features.
 
 ## Plans and Billing are Per-Organization
 
@@ -40,4 +40,3 @@ The plan and billing settings include an integrated storefront, and you can subs
 ## Available Plans
 
 For up-to-date information about the currently available billing plans, as well as details about each plan's features, see [the Terraform pricing page on HashiCorp.com](https://www.hashicorp.com/products/terraform/pricing/) or the purchase interface in your plan and billing settings.
-

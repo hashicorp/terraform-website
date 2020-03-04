@@ -67,7 +67,7 @@ Organization owners can use a team's settings page to add and remove users from 
 
 To add a user to a team, choose an existing organization member from the "Select user" drop-down menu, under the "Add a New Team Member" header. If the list of organization members is large, you can use the drop-down's text field to filter the list by username or email.
 
-If you wish to add a teammate who doesn't yet belong to the organization, you must [invite them to join the  organization](./organizations.html#users). To save time, user invitations can include a list of teams; once the user accepts their invitation, they will be automatically added to those teams.
+To add a teammate who doesn't yet belong to the organization, [invite them to join the organization](./organizations.html#users) and include a list of teams they should belong to in the invitation. Once the user accepts their invitation, they will be automatically added to those teams.
 
 To remove a user from a team, click the "🗑" (trash can) button by their entry in the member list.
 
