@@ -23,7 +23,7 @@ The support email address is used in system emails, error pages, and all other s
 
 -> Supports HTML
 
-This is an opportunity for administrators to customize the instructions provided to users who encounter unexpected errors.  You can use this space to provide links to your support triage process or other ticketing systems.
+Instructions to display when users encounter unexpected errors.  You can use this space to provide links to your support triage process or other ticketing systems.
 
 ![screenshot: where the error instructions appear](./images/admin-error-message-customization.png)
 
