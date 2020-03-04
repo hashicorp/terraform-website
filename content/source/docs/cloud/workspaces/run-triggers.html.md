@@ -5,8 +5,6 @@ page_title: "Run Triggers - Workspaces - Terraform Cloud"
 
 # Run Triggers
 
-~> **Important:** This feature is currently in beta and not suggested for production use. 
-
 Terraform Cloud provides a way to connect your workspace to one or more workspaces within your organization, known as "source workspaces". These connections, called run triggers, allow runs to queue automatically in your workspace on successful apply of runs in any of the source workspaces. You can connect your workspace to up to 20 source workspaces.
 
 When used in conjunction with [`terraform_remote_state` data sources](/docs/providers/terraform/d/remote_state.html), run triggers provide the ability to manage updates to your configurations more seamlessly.
@@ -40,9 +38,9 @@ Runs which are queued in your workspace through a run trigger will include extra
 
 ![Screenshot: a run's run details section](./images/run-triggers-run-details.png)
 
-Additionally, operators of your source workspaces are informed of the connection to your workspace during the [plan](/docs/glossary.html#plan-noun-1-) phase of their run.
+Operators of your source workspaces will be informed of the connection to your workspace during the [plan](/docs/glossary.html#plan-noun-1-) and [apply](/docs/glossary.html#apply-noun-) phases of their run.
 
-![Screenshot: a source workspace run's plan phase, showing connected workspaces](./images/run-triggers-run-plan-phase.png)
+![Screenshot: a source workspace run's plan phase, showing connected workspaces](./images/run-triggers-run-plan-apply-phases.png)
 
 ## Using a Remote State Data Source
 

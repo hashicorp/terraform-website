@@ -116,8 +116,6 @@ See [Run Notifications](./notifications.html) for detailed information about con
 
 ## Run Triggers
 
-~> **Important:** This feature is currently in beta and not suggested for production use. 
-
 The "Run Triggers" page configures connections between a workspace and one or more source workspaces. These connections, called "run triggers", allow runs to queue automatically in a workspace on successful apply of runs in any of the source workspaces.
 
 See [Run Triggers](./run-triggers.html) for detailed information about configuring run triggers.
