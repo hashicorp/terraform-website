@@ -49,6 +49,6 @@ Instructions shown to new users who aren't yet members of an organization. If yo
 
 -> Supports HTML
 
-This content will be placed omnipresently in the footer of the application, this is most useful for site wide disclaimers and other site wide communication.
+Content to display in the footer of every application page. Useful for disclaimers and other site-wide communication.
 
 ![screenshot: where the footer content appears](./images/admin-footer-customization.png)
