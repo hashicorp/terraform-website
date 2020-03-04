@@ -41,7 +41,7 @@ The content provided in this field replaces the "Need an Account? Sign up here."
 
 -> Supports HTML
 
-Once a user is logged into the system they need to be added to an organization, by default they are prompted to reach out to the system administrator to be added to an organization.  Many organizations have custom provisioning processes for granting organization access, this is a space for you to put content instructing the user to follow your own organization's process.
+Instructions shown to new users who aren't yet members of an organization. If you have a custom provisioning process for granting organization access, you can explain it here. (By default, new users are prompted to contact the system administrator for organization membership.)
 
 ![screenshot: where the new user instructions appear](./images/admin-new-user-customization.png)
 
