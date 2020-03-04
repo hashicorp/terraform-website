@@ -22,8 +22,6 @@ page_title: "Run Triggers - API Docs - Terraform Cloud"
 
 # Run Triggers API
 
-~> **Important:** This feature is currently in beta and not suggested for production use.
-
 ## Create a Run Trigger
 
 `POST /workspaces/:workspace_id/run-triggers`
