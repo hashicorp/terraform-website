@@ -437,3 +437,8 @@
 # Helm provider got its directory structure normalized, yay
 /docs/providers/helm/release.html                                   /docs/providers/helm/r/release.html
 /docs/providers/helm/repository.html                                /docs/providers/helm/d/repository.html
+
+# terraform-provider-google-beta docs don't exist, redirect to terraform-provider-google docs instead
+/docs/providers/google-beta                                         /docs/providers/google/index.html
+/docs/providers/google-beta/                                        /docs/providers/google/index.html
+/docs/providers/google-beta/index.html                              /docs/providers/google/index.html
