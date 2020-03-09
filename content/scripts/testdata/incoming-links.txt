@@ -568,12 +568,9 @@
 /docs/providers/azurerm/r/app_service.html
 /docs/providers/azurerm/r/application_gateway.html
 /docs/providers/azurerm/r/automation_account.html
-/docs/providers/azurerm/r/azuread_application.html
-/docs/providers/azurerm/r/azuread_service_principal_password.html
 /docs/providers/azurerm/r/cdn_profile.html
 /docs/providers/azurerm/r/container_group.html
 /docs/providers/azurerm/r/container_registry.html
-/docs/providers/azurerm/r/container_service.html
 /docs/providers/azurerm/r/cosmosdb_account.html
 /docs/providers/azurerm/r/dns_caa_record.html
 /docs/providers/azurerm/r/dns_zone.html
@@ -593,7 +590,6 @@
 /docs/providers/azurerm/r/log_analytics_workspace.html
 /docs/providers/azurerm/r/logic_app_workflow.html
 /docs/providers/azurerm/r/managed_disk.html
-/docs/providers/azurerm/r/metric_alertrule.html
 /docs/providers/azurerm/r/monitor_autoscale_setting.html
 /docs/providers/azurerm/r/monitor_diagnostic_setting.html
 /docs/providers/azurerm/r/monitor_metric_alert.html

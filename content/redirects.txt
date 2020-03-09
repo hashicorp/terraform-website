@@ -172,6 +172,16 @@
 /docs/providers/azurerm/r/loadbalancer_probe.html                       /docs/providers/azurerm/r/lb_probe.html
 /docs/providers/azurerm/d/loadbalancer.html                             /docs/providers/azurerm/d/lb.html
 /docs/providers/azurerm/d/loadbalancer_backend_address_pool.html        /docs/providers/azurerm/d/lb_backend_address_pool.html
+# Moved to azuread provider
+/docs/providers/azurerm/d/azurerm_azuread_application.html                  /docs/providers/azuread/d/azurerm_azuread_application.html
+/docs/providers/azurerm/d/azurerm_azuread_service_principal.html            /docs/providers/azuread/d/azurerm_azuread_service_principal.html
+/docs/providers/azurerm/r/azurerm_azuread_application.html                  /docs/providers/azuread/r/azurerm_azuread_application.html
+/docs/providers/azurerm/r/azurerm_azuread_service_principal.html            /docs/providers/azuread/r/azurerm_azuread_service_principal.html
+/docs/providers/azurerm/r/azurerm_azuread_service_principal_password.html   /docs/providers/azuread/r/azurerm_azuread_service_principal_password.html
+# Removed for 2.0
+/docs/providers/azurerm/r/container_service.html                        /docs/providers/azurerm/guides/2.0-upgrade-guide.html
+/docs/providers/azurerm/r/metric_alertrule.html                         /docs/providers/azurerm/guides/2.0-upgrade-guide.html
+
 
 # Azure Stack Provider
 /docs/providers/azurestack/auth/azure_cli.html                             /docs/providers/azurestack/guides/azure_cli.html
