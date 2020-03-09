@@ -54,7 +54,7 @@
 
   .notification {
     display: inline-flex;
-    margin: 0 0 64px;
+    margin-top: 40px;
 
     @media (max-width: $screen-xs-max) {
       margin-bottom: 48px;
@@ -350,7 +350,7 @@
 
     span.circle {
       &:before {
-        content: "\25CF";
+        content: '\25CF';
         color: $white;
         font-size: 20px;
         line-height: 100%;
