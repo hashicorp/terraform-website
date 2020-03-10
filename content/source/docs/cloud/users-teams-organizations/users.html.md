@@ -22,8 +22,8 @@ If someone invited you to join an existing organization, the invitation email sh
 
 Alternately, you can create an account from Terraform Cloud's sign-up page. Navigate to the sign-up page via the link on the login page, or go directly to its URL:
 
-- For the SaaS version of Terraform Cloud, create a new account at [https://app.terraform.io/account/new](https://app.terraform.io/account/new).
-- For Terraform Enterprise, go to `https://<TFE HOSTNAME>/account/new`.
+- For the SaaS version of Terraform Cloud, create a new account at [https://app.terraform.io/signup/account](https://app.terraform.io/signup/account).
+- For Terraform Enterprise, go to `https://<TFE HOSTNAME>/signup/account`.
 
 ### After Creating an Account
 
