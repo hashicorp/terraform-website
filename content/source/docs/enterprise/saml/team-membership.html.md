@@ -23,7 +23,7 @@ To disable team membership mapping, uncheck the "Use SAML to manage team members
 
 ## Team Names
 
-Terraform Enterprise expects the team names in the team membership SAML attribute to exactly match its own team names. You cannot specify aliases for teams.
+Terraform Enterprise expects the team names in the team membership SAML attribute to exactly match its own team names. This match is case sensitive. You cannot specify aliases for teams.
 
 Note that team names are unique across an organization but not necessarily unique across a whole Terraform Enterprise instance. If a user is a member of multiple organizations, their SAML assertion might add them to similarly-named teams in each organization. Keep this in mind when naming your teams.
 
