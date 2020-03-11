@@ -13,7 +13,7 @@ Backing up and restoring into a new installation of Terraform Enterprise is the 
 
 ## About Backups
 
-Terraform Enterprise's backup utility backs up all of the data stored in a Terraform Enterprise installation, including both the blob storage and the PostgreSQL database. It does not back up the the installation configuration.
+Terraform Enterprise's backup utility backs up all of the data stored in a Terraform Enterprise installation, including both the blob storage (Terraform workspace state) and the PostgreSQL database. It does not back up the the installation configuration.
 
 ### API Authentication Token
 
