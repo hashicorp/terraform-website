@@ -15,6 +15,8 @@ Backing up and restoring into a new installation of Terraform Enterprise is the 
 
 Terraform Enterprise's backup utility backs up all of the data stored in a Terraform Enterprise installation, including both the blob storage and the PostgreSQL database. It does not back up the the installation configuration.
 
+See [Data Security](../system-overview/data-security.html) for details about the contents of Terraform Enterprise's blob storage and database.
+
 ### API Authentication Token
 
 Calls to the backup API must be authenticated with a special bearer token, which can be found on the install dashboard (`https://<TFE HOSTNAME>:8800`) near the bottom of the page:
