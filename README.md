@@ -19,6 +19,7 @@ This repository contains the build infrastructure and some of the content for [t
 [terraform-providers]: https://github.com/terraform-providers/
 
 ## Where the Docs Live
+
 ↥ [back to top](#table-of-contents)
 
 [terraform.io][] is a static site built from Markdown source files using [Middleman][]. Unlike most such sites, it draws content from a lot of different Git repositories, which can make it challenging to contribute to.
@@ -37,6 +38,7 @@ If you'd rather just remember where to look:
 The `stable-website` branch in Terraform and the provider repos has some special behavior. **Community members should target pull requests at `master` and not worry about it;** maintainers (and the curious) can see [More About `stable-website`][inpage-stable] below for more details.
 
 ## Deploying Changes to [terraform.io][]
+
 ↥ [back to top](#table-of-contents)
 
 - **For changes in this repo:** Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
@@ -49,6 +51,7 @@ The `stable-website` branch in Terraform and the provider repos has some special
 The [terraform.io][] site gets deployed by a CI job, currently managed by CircleCI. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master. (Note that Terraform releases and provider releases create sync commits to terraform-website, which will trigger a deploy.) In practice, the site gets deployed a few times a day.
 
 ## Running the Site Locally
+
 ↥ [back to top](#table-of-contents)
 
 You can preview the website from a local checkout of this repo as follows:
@@ -63,6 +66,7 @@ The local preview will include content from this repo and from any [_currently a
 While the preview is running, you can edit pages and Middleman will automatically rebuild them.
 
 ## Previewing Changes from Providers or Terraform Core
+
 ↥ [back to top](#table-of-contents)
 
 To preview changes from your fork of Terraform or one of the providers, first make sure the necessary submodule is active. Run `git submodule init ext/terraform` or `git submodule init ext/providers/<SHORT NAME>` (where `<SHORT NAME>` is the name used in the provider's docs URLs), then run `git submodule update`. (For more information, see [Living With Submodules][inpage-submodules] below.)
@@ -93,6 +97,7 @@ Once you finish testing your changes, you can reset the submodule to its normal 
 > Stopping and restarting the preview server also works fine, but this can be faster.
 
 ## Writing Normal Docs Content
+
 ↥ [back to top](#table-of-contents)
 
 Our docs content uses a fairly standard Middleman-ish/Jekyll-ish format.
@@ -156,6 +161,7 @@ The basic transform to make IDs from header text is something like "lowercase it
 We also auto-generate IDs for code spans that are the first child of a list item, since it's common for long lists of arguments or attributes to be formatted that way.
 
 ## Screenshots
+
 ↥ [back to top](#table-of-contents)
 
 Some areas of documentation (mostly Terraform Cloud) make extensive use of screenshots. If you're adding or updating screenshots, please try to make them:
@@ -167,6 +173,7 @@ Some areas of documentation (mostly Terraform Cloud) make extensive use of scree
 Both Firefox and Chrome have "responsive design" views for simulating various devices; this should let you lock the width and set the DPR to 1. (Firefox also has an integrated screenshot feature, located under the "dot dot dot" menu in the address bar.)
 
 ## Navigation Sidebars
+
 ↥ [back to top](#table-of-contents)
 
 Every page should be reachable from a navigation sidebar, with only rare exceptions. _If you create a new page, add it to the relevant sidebar._
@@ -210,6 +217,7 @@ A lot of existing sidebars have a ton of ERB tags that call a `sidebar_current` 
 You don't need to add anything special to a sidebar to get the dynamic JavaScript open/close behavior, but note that the "expand all" and filter controls are only added for sidebars with more than a certain number of links.
 
 ## Living With Submodules
+
 ↥ [back to top](#table-of-contents)
 
 [inpage-submodules]: #living-with-submodules
@@ -283,6 +291,7 @@ make website
 - Finally, open `http://localhost:4567/docs/providers/[your-provider]` in your web browser to visualize your provider's docs.
 
 ## More About `stable-website`
+
 ↥ [back to top](#table-of-contents)
 
 [inpage-stable]: #more-about-stable-website
