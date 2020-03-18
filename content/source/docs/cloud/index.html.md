@@ -37,4 +37,4 @@ The [Terraform Enterprise documentation](/docs/enterprise/index.html) is for adm
 ## Where Should I Go First?
 
 - If you want to learn by doing, begin with [the Terraform Cloud Getting Started Guide](https://learn.hashicorp.com/terraform/cloud-gettingstarted/tfc_overview) on learn.hashicorp.com.
-- If you want a high-level overview of what Terraform Cloud actually does, begin with [the overview of features](./overview.html).
+- If you want a high-level overview of nearly everything Terraform Cloud does, begin with [the overview of features](./overview.html).
