@@ -14,10 +14,9 @@ page_title: "Overview of Features - Terraform Cloud"
 [terraform enterprise]: /docs/enterprise/index.html
 
 
-Terraform Cloud is an execution platform that runs Terraform. Unlike a general-purpose execution platform, it has deep integrations with Terraform's workflows and data formats, which it uses to make Terraform more convenient and more powerful.
+Terraform Cloud is a platform that performs Terraform runs to provision infrastructure, either on demand or in response to various events. Unlike a general-purpose continuous integration (CI) system, it is deeply integrated with Terraform's workflows and data, which allows it to make Terraform significantly more convenient and powerful.
 
 This page is a brief overview of Terraform Cloud's features and how they fit together.
-
 
 ## Terraform Workflow
 
@@ -25,13 +24,13 @@ Terraform Cloud runs [Terraform CLI][cli] to provision infrastructure.
 
 In its default state, Terraform CLI uses a local workflow, performing operations on the workstation where it is invoked and storing state in a local directory.
 
-But working with a team requires a remote workflow, since teams must share responsibilities, share awareness, and avoid single points of failure. At minimum, state must be shared; ideally, Terraform should execute in a consistent remote environment.
+Since teams must share responsibilities and awareness to avoid single points of failure, working with Terraform in a team requires a remote workflow. At minimum, state must be shared; ideally, Terraform should execute in a consistent remote environment.
 
-Terraform Cloud offers a team-oriented remote Terraform workflow, designed to be comfortable for existing Terraform users and easily learned by new users. The foundations of this workflow are remote Terraform execution, a workspace-based organizational model, version control integration, command-line integration, cross-workspace data sharing, and a private Terraform module registry.
+Terraform Cloud offers a team-oriented remote Terraform workflow, designed to be comfortable for existing Terraform users and easily learned by new users. The foundations of this workflow are remote Terraform execution, a workspace-based organizational model, version control integration, command-line integration, remote state management with cross-workspace data sharing, and a private Terraform module registry.
 
 ### Remote Terraform Execution
 
-Terraform Cloud runs Terraform on disposable virtual machines in its own cloud infrastructure. (Remote Terraform execution is sometimes referred to as "remote operations.")
+Terraform Cloud runs Terraform on disposable virtual machines in its own cloud infrastructure. Remote Terraform execution is sometimes referred to as "remote operations."
 
 Remote execution helps provide consistency and visibility for critical provisioning operations. It also enables powerful features like Sentinel policy enforcement, cost estimation, notifications, version control integration, and more.
 
@@ -51,14 +50,24 @@ Terraform Cloud organizes infrastructure with _workspaces_ instead of directorie
 
 - More info: [Workspaces](./workspaces/index.html)
 
+### Remote State Management, Data Sharing, and Run Triggers
+
+Terraform Cloud acts as a remote backend for your Terraform state. State storage is tied to workspaces, which helps keep state associated with the configuration that created it.
+
+Terraform Cloud also enables you to share information between workspaces with root-level [outputs][]. Separate groups of infrastructure resources often need to share a small amount of information, and workspace outputs are an ideal interface for these dependencies.
+
+Any workspace that uses remote operations can use [`terraform_remote_state` data sources][remote_state] to access other workspaces' outputs, without any additional configuration or authentication. And since new information from one workspace might change the desired infrastructure state in another, you can create workspace-to-workspace run triggers to ensure downstream workspaces react when their dependencies change.
+
+- More info: [Terraform State in Terraform Cloud](./workspaces/state.html), [Run Triggers](./workspaces/run-triggers.html)
+
 ### Version Control Integration
 
-Infrastructure as code belongs in version control, so Terraform Cloud is designed to work directly with your version control system (VCS) provider.
+Like other kinds of code, infrastructure-as-code belongs in version control, so Terraform Cloud is designed to work directly with your version control system (VCS) provider.
 
 Each workspace can be linked to a VCS repository that contains its Terraform configuration, optionally specifying a branch and subdirectory. Terraform Cloud automatically retrieves configuration content from the repository, and will also watch the repository for changes:
 
-- When new commits are merged, affected workspaces automatically run Terraform plans with the new code.
-- When pull requests are opened, affected workspaces run speculative plans with the proposed code changes and post the results as a pull request check; reviewers can see at a glance whether the plan was successful, and can click through to view the proposed changes in detail.
+- When new commits are merged, linked workspaces automatically run Terraform plans with the new code.
+- When pull requests are opened, linked workspaces run speculative plans with the proposed code changes and post the results as a pull request check; reviewers can see at a glance whether the plan was successful, and can click through to view the proposed changes in detail.
 
 VCS integration is powerful, but optional; if you use an unsupported VCS or want to preserve an existing validation and deployment pipeline, you can use the API or Terraform CLI to upload new configuration versions. You'll still get the benefits of remote execution and Terraform Cloud's other features.
 
@@ -78,14 +87,6 @@ The remote backend also supports state manipulation commands like `terraform imp
 -> **Note:** When used with Terraform Cloud, the `terraform plan` command runs [speculative plans][], which preview changes without modifying real infrastructure. You can also use `terraform apply` to perform full remote runs, but only with workspaces that are _not_ connected to a VCS repository. This helps ensure that your VCS remains the source of record for all real infrastructure changes.
 
 - More info: [CLI-driven Runs](./run/cli.html)
-
-### Cross-Workspace Data Sharing
-
-Infrastructure is never completely isolated, and separate groups of infrastructure resources often need to share a small amount of information.
-
-Terraform Cloud makes it trivial to share information between workspaces with root-level [outputs][]. Any workspace that uses remote operations can use [`terraform_remote_state` data sources][remote_state] to access other workspaces' outputs, without any additional configuration or authentication.
-
-- More info: [Terraform State in Terraform Cloud](./workspaces/state.html)
 
 ### Private Module Registry
 
@@ -113,12 +114,6 @@ Terraform Cloud can send notifications about Terraform runs to other systems, in
 
 - More info: [Notifications](./workspaces/notifications.html)
 
-### ServiceNow Integration
-
-Organizations that use [Terraform Enterprise][] (our self-hosted distribution of Terraform Cloud) can use our ServiceNow Service Catalog integration to allow internal users to request self-serve infrastructure provisioning.
-
-- More info: [ServiceNow Integration](./integrations/service-now/index.html)
-
 ## Access Control and Governance
 
 Larger organizations are more complex, and tend to use access controls and explicit policies to help manage that complexity. Terraform Cloud's paid upgrade plans provide extra features to help meet the control and governance needs of large organizations.
@@ -137,11 +132,10 @@ Terraform Cloud embeds the Sentinel policy-as-code framework, which lets you def
 
 Policies can act as firm requirements, advisory warnings, or soft requirements that can be bypassed with explicit approval from your compliance team.
 
-- More info: [Sentinel Policies](./sentinel.index.html)
+- More info: [Sentinel Policies](./sentinel/index.html)
 
 ### Cost Estimation
 
 Before making changes to infrastructure in the major cloud providers, Terraform Cloud can display an estimate of its total cost, as well as any change in cost caused by the proposed updates. Cost estimates can also be used in Sentinel policies to provide warnings for major price shifts.
 
 - More info: [Cost Estimation](./cost-estimation/index.html)
-
