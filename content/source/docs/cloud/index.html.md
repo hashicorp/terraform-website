@@ -34,4 +34,7 @@ The Terraform Cloud documentation is for everyone who uses the Terraform Cloud a
 
 The [Terraform Enterprise documentation](/docs/enterprise/index.html) is for admins and operators who install and maintain their organization's Terraform Enterprise instance.
 
-If you are new to Terraform Cloud, begin with the [Getting Started Guide](./getting-started/access.html).
+## Where Should I Go First?
+
+- If you want to learn by doing, begin with [the Terraform Cloud Getting Started Guide](https://learn.hashicorp.com/terraform/cloud-gettingstarted/tfc_overview) on learn.hashicorp.com.
+- If you want a high-level overview of what Terraform Cloud actually does, begin with [the overview of features](./overview.html).
