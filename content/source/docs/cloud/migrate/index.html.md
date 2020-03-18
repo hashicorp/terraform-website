@@ -17,6 +17,8 @@ page_title: "Migrating State from Local Terraform - Terraform Cloud"
 
 If you already use Terraform to manage infrastructure, you're probably managing some resources that you want to transfer to Terraform Cloud. By migrating your Terraform [state][] to Terraform Cloud, you can continue managing that infrastructure without de-provisioning anything.
 
+These reference docs describe the process for migrating state. To practice using a hands-on, step-by-step example follow the [HashiCorp Learn guide](https://learn.hashicorp.com/terraform/tfc/tfc_migration?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
+
 ~> **Important:** These instructions are for migrating state in a basic working directory that only uses the `default` workspace. If you use multiple [workspaces][cli-workspaces] in one working directory, the instructions are different; see [Migrating State from Multiple Terraform Workspaces](./workspaces.html) instead.
 
 -> **API:** See the [State Versions API](../api/state-versions.html). Be sure to stop Terraform runs before migrating state to Terraform Cloud, and only import state into Terraform Cloud workspaces that have never performed a run.
