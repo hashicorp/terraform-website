@@ -452,3 +452,6 @@
 /docs/providers/google-beta                                         /docs/providers/google/index.html
 /docs/providers/google-beta/                                        /docs/providers/google/index.html
 /docs/providers/google-beta/index.html                              /docs/providers/google/index.html
+
+# Obsoleted by modern VCS integration for policy sets
+/docs/cloud/sentinel/integrate-vcs.html                             /docs/cloud/sentinel/manage-policies.html
