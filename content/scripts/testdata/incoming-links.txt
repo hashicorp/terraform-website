@@ -67,7 +67,6 @@
 /docs/cloud/sentinel/import/tfplan.html
 /docs/cloud/sentinel/import/tfstate.html
 /docs/cloud/sentinel/index.html
-/docs/cloud/sentinel/integrate-vcs.html
 /docs/cloud/sentinel/manage-policies.html
 /docs/cloud/sentinel/mock.html
 /docs/cloud/sentinel/sentinel-tf-012.html
