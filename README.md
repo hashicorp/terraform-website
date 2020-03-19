@@ -293,6 +293,8 @@ make website
 
 ## Finding Broken Links
 
+↥ [back to top](#table-of-contents)
+
 Broken links are the scourge of the web, so the tooling around terraform.io includes some warning systems to help us spot and fix them. The process of working with those systems could be nicer, but here's how it works today.
 
 ### Step 1: See a Failing Build
