@@ -11,6 +11,7 @@ This repository contains the build infrastructure and some of the content for [t
 - [Screenshots](#screenshots)
 - [Navigation Sidebars](#navigation-sidebars)
 - [Living With Submodules](#living-with-submodules)
+- [Finding Broken Links](#finding-broken-links)
 - [More about `stable-website`](#more-about-stable-website)
 
 [terraform.io]: https://terraform.io
@@ -19,6 +20,7 @@ This repository contains the build infrastructure and some of the content for [t
 [terraform-providers]: https://github.com/terraform-providers/
 
 ## Where the Docs Live
+
 ↥ [back to top](#table-of-contents)
 
 [terraform.io][] is a static site built from Markdown source files using [Middleman][]. Unlike most such sites, it draws content from a lot of different Git repositories, which can make it challenging to contribute to.
@@ -37,6 +39,7 @@ If you'd rather just remember where to look:
 The `stable-website` branch in Terraform and the provider repos has some special behavior. **Community members should target pull requests at `master` and not worry about it;** maintainers (and the curious) can see [More About `stable-website`][inpage-stable] below for more details.
 
 ## Deploying Changes to [terraform.io][]
+
 ↥ [back to top](#table-of-contents)
 
 - **For changes in this repo:** Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
@@ -49,6 +52,7 @@ The `stable-website` branch in Terraform and the provider repos has some special
 The [terraform.io][] site gets deployed by a CI job, currently managed by CircleCI. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master. (Note that Terraform releases and provider releases create sync commits to terraform-website, which will trigger a deploy.) In practice, the site gets deployed a few times a day.
 
 ## Running the Site Locally
+
 ↥ [back to top](#table-of-contents)
 
 You can preview the website from a local checkout of this repo as follows:
@@ -63,6 +67,7 @@ The local preview will include content from this repo and from any [_currently a
 While the preview is running, you can edit pages and Middleman will automatically rebuild them.
 
 ## Previewing Changes from Providers or Terraform Core
+
 ↥ [back to top](#table-of-contents)
 
 To preview changes from your fork of Terraform or one of the providers, first make sure the necessary submodule is active. Run `git submodule init ext/terraform` or `git submodule init ext/providers/<SHORT NAME>` (where `<SHORT NAME>` is the name used in the provider's docs URLs), then run `git submodule update`. (For more information, see [Living With Submodules][inpage-submodules] below.)
@@ -93,6 +98,7 @@ Once you finish testing your changes, you can reset the submodule to its normal 
 > Stopping and restarting the preview server also works fine, but this can be faster.
 
 ## Writing Normal Docs Content
+
 ↥ [back to top](#table-of-contents)
 
 Our docs content uses a fairly standard Middleman-ish/Jekyll-ish format.
@@ -156,6 +162,7 @@ The basic transform to make IDs from header text is something like "lowercase it
 We also auto-generate IDs for code spans that are the first child of a list item, since it's common for long lists of arguments or attributes to be formatted that way.
 
 ## Screenshots
+
 ↥ [back to top](#table-of-contents)
 
 Some areas of documentation (mostly Terraform Cloud) make extensive use of screenshots. If you're adding or updating screenshots, please try to make them:
@@ -167,6 +174,7 @@ Some areas of documentation (mostly Terraform Cloud) make extensive use of scree
 Both Firefox and Chrome have "responsive design" views for simulating various devices; this should let you lock the width and set the DPR to 1. (Firefox also has an integrated screenshot feature, located under the "dot dot dot" menu in the address bar.)
 
 ## Navigation Sidebars
+
 ↥ [back to top](#table-of-contents)
 
 Every page should be reachable from a navigation sidebar, with only rare exceptions. _If you create a new page, add it to the relevant sidebar._
@@ -210,6 +218,7 @@ A lot of existing sidebars have a ton of ERB tags that call a `sidebar_current` 
 You don't need to add anything special to a sidebar to get the dynamic JavaScript open/close behavior, but note that the "expand all" and filter controls are only added for sidebars with more than a certain number of links.
 
 ## Living With Submodules
+
 ↥ [back to top](#table-of-contents)
 
 [inpage-submodules]: #living-with-submodules
@@ -282,14 +291,95 @@ make website
 
 - Finally, open `http://localhost:4567/docs/providers/[your-provider]` in your web browser to visualize your provider's docs.
 
+## Finding Broken Links
+
+↥ [back to top](#table-of-contents)
+
+Broken links are the scourge of the web, so the tooling around terraform.io includes some warning systems to help us spot and fix them. The process of working with those systems could be nicer, but here's how it works today.
+
+### Step 1: See a Failing Build
+
+There are two places that typically warn you about broken links:
+
+- Failing Travis CI jobs. Travis builds happen for pull requests to `terraform-website` or `terraform`, and the result is shown in the PR.
+- Failing CircleCI builds. Circle is what deploys the website to prod, and it sends success/fail messages to the `#proj-terraform-docs` channel in HashiCorp's Slack workspace. (This one isn't intended as a link check, but it spiders the whole site to warm up the Fastly cache, which has almost the same effect. The only real difference is that it obeys redirects, since it's hitting prod.)
+
+In both of these cases, the failing job usually _doesn't_ mean the actual build or deploy failed, and instead means that the link-checking or cache-warming scripts found a broken link and exited with a non-zero status code.
+
+### Step 2: Find the Broken URL(s) in the Build Log
+
+If you see a red build (on a PR or in the chatroom), click through to the build log. Once it's loaded, Cmd-F and search for the text "broken link". There might be more than one message, so make sure to search repeatedly (Cmd-G) to catch them all.
+
+There are two kinds of messages you might see:
+
+#### The Spidering Link Check
+
+This task checks links in our actual website text.
+
+```
+Found 2 broken links.
+
+http://127.0.0.1:4567/intro/getting-started/outputs.html
+http://127.0.0.1:4567/intro/getting-started/variables.html
+```
+
+#### The Known Incoming Links Check
+
+This task checks a list of our most popular search engine results to make sure we don't move important pages without redirecting them. (BY THE WAY, you should also redirect _unimportant_ pages whenever you move them. **URLs are forever.**)
+
+```
+2020-03-04 16:13:33 URL: http://127.0.0.1:4567/docs/providers/hcloud/index.html 200 OK
+2020-03-04 16:13:33 URL: http://127.0.0.1:4567/docs/providers/helm/index.html 200 OK
+http://127.0.0.1:4567/docs/providers/helm/release.html:
+Remote file does not exist -- broken link!!!
+http://127.0.0.1:4567/docs/providers/helm/repository.html:
+Remote file does not exist -- broken link!!!
+```
+
+### Step 3: Identify the Problem
+
+Compare your findings to the error types above:
+
+- If the error happened in the spidering link check, that means we have a wrong link somewhere in the actual page text or the sidebar navs.
+- If the error happened in the known incoming links check, a page got moved and the links to it were maybe updated, but it probably wasn't redirected.
+
+### Step 4: Locate the Problem
+
+There are a few sub-steps here.
+
+1. Figure out what's actually going on with the broken page(s).
+    - What repo are they supposed to be in? (See [Where the Docs Live](#where-the-docs-live) above.)
+    - Are they actually gone?
+    - Did they _ever_ exist?
+    - If the files ARE still there, check for broken YAML frontmatter or bad file extensions or bad charset encoding; sometimes those can break things.
+    - If they moved, can you figure out what their new names/paths are?
+    - `git log --follow -- <PATH>` is very helpful for this kind of detective work, and can often identify the person who can answer all the rest of your questions. (The `--` without a flag is used to tell Git that `<PATH>` is a file path, not a reference to a Git treeish. Usually that's not necessary, but Git needs the hint in cases where the file itself is gone.)
+    - If it's a page from `hashicorp/terraform` or from one of the providers, make sure to check its status both on `master` and on the `stable-website` branch; sometimes there's already a fix in master and it just needs to be cherry-picked.
+    - If it's a link to literally nowhere (like `./TODO` or some kind of Markdown syntax error), skip to the next sub-step.
+2. Figure out what's up with the _links_ to the broken pages.
+    - The list for the known incoming links check is at [`content/scripts/testdata/incoming-links.txt`](https://github.com/hashicorp/terraform-website/blob/master/content/scripts/testdata/incoming-links.txt). If that's the type of error you got, that's where the reference is.
+    - For links in text/navs it's a bit tougher, because the link checker doesn't tell you where the link CAME from, just where it tried to GO. So you'll have to actually search the source text of the site.
+        - The best way to do this is with a local checkout of the affected repository(s) and a CLI text search utility like [ag](https://github.com/ggreer/the_silver_searcher) or [rg](https://github.com/BurntSushi/ripgrep). (If you don't have either and are in a rush, `git grep` might work, but seriously, if you've read this far already you are _obviously_ the type of person who needs ag or rg.)
+        - If the target page is in one of the providers, solid 99% chance the link is in that same provider.
+        - If the target page is in this repo or `hashicorp/terraform`, ~80% chance the link is in one of those two places. (Could be either, since they cross-link pretty extensively.)
+        - But sometimes, the target page is in this repo or Terraform core and the link comes from one of the providers. In the best case scenario, you might get lucky using GitHub's search feature in [the terraform-providers org](https://github.com/terraform-providers/). In the worst case scenario, you might need to `export PS1='$'`, init ALL of the submodules, tell your search tool to follow symlinks, and scan E V E R Y T H I N G.
+
+### Step 5: Fix It
+
+- If a page was moved: update any links to it, update its entry in `incoming-links.txt` if necessary, and add a redirect in [`content/redirects.txt`](https://github.com/hashicorp/terraform-website/blob/master/content/redirects.txt).
+- If a page was moved and already got redirected, you can go ahead and update or remove its entry in `incoming-links.txt`. It's common for people to forget that.
+- If a page was deleted or split or something, figure out what the best place to redirect to is. Possibly a list of which features were removed in a given release, possibly something else.
+- If a page was moved _to another domain_ (like learn.hashicorp.com), you need to go talk to `#team-eng-serv` and ask them to put in a redirect, because that's something that can't be done using redirects.txt.
+
 ## More About `stable-website`
+
 ↥ [back to top](#table-of-contents)
 
 [inpage-stable]: #more-about-stable-website
 
 Each submodule repo (Terraform and the providers) is expected to have a special `stable-website` branch with docs for the most recent production release of that repo's software. When the website is deployed, it pulls in the current content of `stable-website` for every submodule.
 
-The same CI system handles releases of Terraform, the providers, and [terraform.io][], and it has some special behavior around `stable-website`:
+The same CI system handles releases of Terraform and the various providers, and it has some special behavior around `stable-website`:
 
 - When releasing a production build of Terraform or a provider, CI does a hard reset and a force-push to sync `stable-website` to the current release's commit.
 
