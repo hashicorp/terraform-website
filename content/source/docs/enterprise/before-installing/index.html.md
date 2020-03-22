@@ -115,7 +115,7 @@ Make sure your data storage services or device meet Terraform Enterprise's requi
 Terraform Enterprise runs on Linux instances. The source of these instances depends on your deployment method:
 
 - **Clustered deployment:** Terraform automatically provisions all instances for Terraform Enterprise. The machine image and the instance type are configurable:
-    - By default, the module uses an official Ubuntu image; you can override this with any image that meets the [software requirements below](#software-requirements).
+    - By default, the module uses an official Ubuntu image; you can override this with any image that meets the [operating system requirements](#operating-system-requirements) below.
     - The default instance type depends on the cloud you deploy to; see the module documentation for details. You can override this, and can optionally specify separate image types for primary and secondary instances.
 - **Individual deployment:** You must prepare a running Linux instance for Terraform Enterprise before running the installer. You will start and manage this instance like any other server.
 
@@ -131,8 +131,8 @@ Terraform Enterprise currently supports running under the following operating sy
 - **Individual deployment:**
     - Debian 7.7+
     - Ubuntu 14.04 / 16.04 / 18.04
-    - Red Hat Enterprise Linux 7.2+
-    - CentOS 7+
+    - Red Hat Enterprise Linux 7.2 - 7.7
+    - CentOS 7.4 - 7.7
     - Amazon Linux 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
     - Oracle Linux 7.2+
 
