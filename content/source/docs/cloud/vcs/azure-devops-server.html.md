@@ -20,7 +20,7 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 
 1. Log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
-    ~> **Important:** The account you use for connecting Terraform Cloud **must have Project Collection Administrator access** to any projects containing repositories of Terraform configurations, since creating webhooks requires these permissions.
+    ~> **Important:** The account you use for connecting Terraform Cloud **must have Project Collection Administrator access** to any projects containing repositories of Terraform configurations, since creating webhooks requires these permissions. It is not possible to create custom access roles with lower levels of privilege, as Microsoft does not currently allow delegation of this capability.
 
 2. Navigate to User settings -> Security -> Personal access tokens on your Azure DevOps Server instance.
 3. Click the "New Token" button to generate a new personal access token with "Code (Read)" and "Code (Status)" scopes. (We recommend also granting access to "All accessible organizations.")
