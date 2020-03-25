@@ -823,7 +823,7 @@ func resourceServerRead(d *schema.ResourceData, m interface{}) error {
 }
 ```
 
-The so-called `flatteners` are in a separate file `structures_server.go`. The outermost data structure is a `map[string]interface{}` and each item a `[]interface{}`:
+The so-called `flatteners` are in a separate file `structures_server.go`. The outermost data structure is a `[]interface{}` and each item a `map[string]interface{}`:
 
 ```go
 func flattenTaskSpec(in *server.TaskSpec) []interface{} {
