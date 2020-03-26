@@ -4,6 +4,7 @@ version: 2
 references:
   images:
     middleman: &MIDDLEMAN_IMAGE hashicorp/middleman-hashicorp:0.3.44
+    ubuntu: &UBUNTU_IMAGE ubuntu-1604:201903-01
 
   cache:
     rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
@@ -11,7 +12,7 @@ references:
 jobs:
   website-test:
     machine:
-      image: ubuntu-1604:201903-01 
+      image: &UBUNTU_IMAGE
     steps:
       - checkout
 
@@ -21,13 +22,9 @@ jobs:
             gem install bundler -v '1.17.3' --no-document
             bundle _1.17.3_ install --jobs=3 --retry=3
 
-      - run:
-          name: make sync
-          command: make sync
+      - run: make sync
 
-      - run:
-          name: make website-test
-          command: make website-test
+      - run: make website-test
 
   deploy-website:
     docker:
