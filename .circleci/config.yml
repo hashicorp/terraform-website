@@ -12,7 +12,7 @@ references:
 jobs:
   website-test:
     machine:
-      image: &UBUNTU_IMAGE
+      image: *UBUNTU_IMAGE
     steps:
       - checkout
 
