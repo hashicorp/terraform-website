@@ -9,6 +9,28 @@ references:
     rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
 
 jobs:
+  website-test:
+    docker:
+      - image: circleci/ruby:2.3.3
+    steps:
+      - checkout
+
+      - setup_remote_docker
+
+      - run:
+          name: gem and bundle install 
+          command: |
+            gem install bundler -v '1.17.3' --no-document
+            bundle _1.17.3_ install --jobs=3 --retry=3
+
+      - run:
+          name: make sync
+          command: make sync
+
+      - run:
+          name: make website-test
+          command: make website-test
+
   deploy-website:
     docker:
       - image: *MIDDLEMAN_IMAGE
@@ -46,6 +68,8 @@ workflows:
   version: 2
   website:
     jobs:
+      # run on all branches and PR's
+      - website-test 
       - deploy-website:
           context: static-sites
           filters:
