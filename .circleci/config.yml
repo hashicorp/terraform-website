@@ -10,12 +10,12 @@ references:
 
 jobs:
   website-test:
-    docker:
-      - image: circleci/ruby:2.3.3
+    # docker:
+    #   - image: circleci/ruby:2.3.3
+    machine:
+      image: ubuntu-1604:201903-01 
     steps:
       - checkout
-
-      - setup_remote_docker
 
       - run:
           name: gem and bundle install 
