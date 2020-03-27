@@ -5,9 +5,9 @@ page_title: "Externally Managed Vault - Terraform Enterprise"
 
 # Externally Managed Vault Requirements for Terraform Enterprise
 
-For enhanced security, Terraform Enterprise can be configured to use an external
-Vault cluster rather than the internal Vault instance. Within Terraform Enterprise, Vault is
-used to encrypt sensitive information such as variables and states.
+Terraform Enterprise uses Vault to encrypt sensitive information such as variables and state versions.
+
+By default, Terraform Enterprise automatically configures and manages its own instance of Vault, and we recommend that most organizations use this default behavior. However, organizations with special needs around data encryption and record keeping can configure Terraform Enterprise to use an external Vault cluster rather than the internal Vault instance.
 
 !> **Warning:** This is only recommended if you currently run your own Vault cluster in production.
 Choosing this option means you assume full responsibility for how the Vault cluster is managed;
