@@ -12,11 +12,6 @@ Sentinel import, designed specifically for Terraform 0.12. This import requires
 Terraform 0.12 or higher, and must currently be loaded by path, using an alias,
 example: `import "tfconfig/v2" as tfconfig`.
 
-~> **Important:** The Sentinel v2 imports are currently publicly available as a
-**technology preview**. They are supported by HashiCorp, but the API is not yet
-stable and breaking changes could be made. Watch this documentation for any
-changes!
-
 # Import: tfconfig/v2
 
 The `tfconfig/v2` import provides access to a Terraform configuration.
