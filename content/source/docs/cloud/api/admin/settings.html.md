@@ -680,7 +680,7 @@ curl \
 ## List Customization Settings
 `GET /api/v2/admin/customization-settings`
 
--> This API endpoint is available in Terraform Enterprise as of version XXXXXX-X.
+-> This API endpoint is available in Terraform Enterprise as of version 202003-1.
 
 Status  | Response                                                 | Reason
 --------|----------------------------------------------------------|-------
