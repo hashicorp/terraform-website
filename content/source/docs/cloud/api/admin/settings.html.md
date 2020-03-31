@@ -680,7 +680,7 @@ curl \
 ## List Customization Settings
 `GET /api/v2/admin/customization-settings`
 
--> This API endpoint is available in Terraform Enterprise as of version XXXXXX-X.
+-> This API endpoint is available in Terraform Enterprise as of version 202003-1.
 
 Status  | Response                                                 | Reason
 --------|----------------------------------------------------------|-------
@@ -707,6 +707,10 @@ curl \
     "type": "customization-settings",
     "attributes": {
       "support-email-address": "support@hashicorp.com",
+      "login-help": "",
+      "footer": "",
+      "error": "",
+      "new-user": "",
     }
   }
 }
@@ -727,8 +731,12 @@ Status  | Response                                                 | Reason
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
 Key path                                          | Type     | Default                   | Description
---------------------------------------------------|----------|---------------------------|------------
-`data.attributes.support-email-address`           | string   | `"support@hashicorp.com"` | The support address for outgoing emails.
+----------------------------------------|----------|---------------------------|------------
+`data.attributes.support-email-address` | string   | `"support@hashicorp.com"` | The support address for outgoing emails.
+`data.attributes.login-help`            | string   | `""`                      | The login help text presented to users on the login page.
+`data.attributes.footer`                | string   | `""`                      | Custom footer content that is added to the application.
+`data.attributes.error`                 | string   | `""`                      | Error instruction content that is presented to users upon unexpected errors.
+`data.attributes.new-user`              | string   | `""`                      | New user instructions that is presented when the user is not yet attached to an organization.
 
 ### Sample Payload
 
@@ -737,6 +745,10 @@ Key path                                          | Type     | Default          
   "data": {
     "attributes": {
       "support-email-address": "support@hashicorp.com",
+      "login-help": "<div>Login Help</div>",
+      "footer": "<p>Custom Footer Content</p>",
+      "error": "<em>Custom Error Instructions</em>",
+      "new-user": "New user? <a href=\"#\">Click Here</a>",
     }
   }
 }
@@ -762,6 +774,10 @@ curl \
     "type": "customization-settings",
     "attributes": {
       "support-email-address": "support@hashicorp.com",
+      "login-help": "\u003cdiv\u003eLogin Help\u003c/div\u003e",
+      "footer": "\u003cp\u003eCustom Footer Content\u003c/p\u003e",
+      "error": "\u003cem\u003eCustom Error Instructions\u003c/em\u003e",
+      "new-user": "New user? \u003ca href=\"#\"\u003eClick Here\u003c/a\u003e",
     }
   }
 }
