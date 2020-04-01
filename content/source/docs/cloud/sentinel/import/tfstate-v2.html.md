@@ -144,8 +144,8 @@ An element in the collection has the following values:
   name, such as the `googlebeta` provider offering `google_compute_instance`.
 * `values` - An object (map) representation of the attribute values of the
   resource, whose structure depends on the resource type schema. When accessing
-  proposed state through [`proposed_values`](./tfplan-v2.html#the-proposed_values-collection),
-  unknown values will be omitted.
+  proposed state through the [`planned_values`](./tfplan-v2.html#the-planned_values-collection)
+  collection of the tfplan/v2 import, unknown values will be omitted.
 * `depends_on` - The addresses of the resources that this resource depends on.
 * `tainted` - `true` if the resource has been explicitly marked as
   [tainted](/docs/commands/taint.html) in the state.
