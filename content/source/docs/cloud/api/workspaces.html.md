@@ -48,7 +48,7 @@ Key path                                      | Type    | Default   | Descriptio
 ----------------------------------------------|---------|-----------|------------
 `data.type`                                   | string  |           | Must be `"workspaces"`.
 `data.attributes.name`                        | string  |           | The name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-`data.attributes.allow-destroy-plan`          | boolean | `true`    | Whether destroy plans can be applied to the workspace.
+`data.attributes.allow-destroy-plan`          | boolean | `true`    | Whether destroy plans can be queued on the workspace.
 `data.attributes.auto-apply`                  | boolean | `false`   | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
 `data.attributes.description`                 | string  | (nothing) | A description for the workspace.
 `data.attributes.operations`                  | boolean | `true`    | Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only.
