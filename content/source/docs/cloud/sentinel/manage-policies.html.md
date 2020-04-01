@@ -65,7 +65,7 @@ To configure a module, add a `module` entry to your `sentinel.hcl` file:
 
 ```hcl
 module "foo" {
-    path = "./modules/foo.sentinel"
+    source = "./modules/foo.sentinel"
 }
 ```
 
