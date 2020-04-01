@@ -1,9 +1,9 @@
 ---
 layout: "cloud"
-page_title: "Configuring Policies - Getting Started - Terraform Cloud"
+page_title: "Enforcing Policies - Getting Started - Terraform Cloud"
 ---
 
-# Configuring Policies
+# Enforcing Policies
 
 **Prerequisites:** Before starting this guide, make sure you've [configured VCS access](./vcs.html) and [successfully completed a run](./runs.html).
 
