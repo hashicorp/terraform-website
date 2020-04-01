@@ -47,13 +47,31 @@ Every policy set requires a configuration file named `sentinel.hcl`. This config
 
 The `sentinel.hcl` configuration file may contain any number of entries which look like this:
 
-```python
+```hcl
 policy "sunny-day" {
     enforcement_level = "hard-mandatory"
 }
 ```
 
 In the above, a policy named `sunny-day` is defined with a `hard-mandatory` [enforcement level](#enforcement-levels).
+
+#### Modules
+
+Terraform Cloud has support for Sentinel's modules feature. This allows you to write re-usable policy code that can be imported from within several policies as once, reducing the amount of boilerplate from within a policy itself.
+
+-> **NOTE:** We recommend you read the [Sentinel runtime's modules documentation](https://docs.hashicorp.com/sentinel/extending/modules/) in order to understand how to fully use modules within Sentinel. Note that the configuration examples in the runtime documentation pertain to the Sentinel CLI and not Terraform Cloud. HCL-based configuration will be coming to the Sentinel CLI in future releases, at which point in time both Sentinel and TFC configurations will be much more similar.
+
+To configure a module, add a `module` entry to your `sentinel.hcl` file:
+
+```hcl
+module "foo" {
+    path = "./modules/foo.sentinel"
+}
+```
+
+The following entry would tell a policy check to load the code at `./modules/foo.sentinel` relative to the policy set working directory and make it available to be imported with a statement such as `import "foo"` at the top of your Sentinel policy code. This module will be available to all of the policies within the policy set.
+
+-> **NOTE:** At this point in time, you cannot load modules from outside of policy set working directory hierarchy. This means in the above example, a `source` of `../modules/foo.sentinel` will not work.
 
 ### Sentinel policy code files
 
