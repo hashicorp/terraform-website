@@ -59,7 +59,7 @@ In the above, a policy named `sunny-day` is defined with a `hard-mandatory` [enf
 
 Terraform Cloud has support for Sentinel's modules feature. This allows you to write re-usable policy code that can be imported from within several policies as once, reducing the amount of boilerplate from within a policy itself.
 
--> **NOTE:** We recommend you read the [Sentinel runtime's modules documentation](https://docs.hashicorp.com/sentinel/extending/modules/) in order to understand how to fully use modules within Sentinel. Note that the configuration examples in the runtime documentation pertain to the Sentinel CLI and not Terraform Cloud. HCL-based configuration will be coming to the Sentinel CLI in future releases, at which point in time both Sentinel and TFC configurations will be much similar.
+-> **NOTE:** We recommend you read the [Sentinel runtime's modules documentation](https://docs.hashicorp.com/sentinel/extending/modules/) in order to understand how to fully use modules within Sentinel. Note that the configuration examples in the runtime documentation pertain to the Sentinel CLI and not Terraform Cloud. HCL-based configuration will be coming to the Sentinel CLI in future releases, at which point in time both Sentinel and TFC configurations will be much more similar.
 
 To configure a module, add a `module` entry to your `sentinel.hcl` file:
 
