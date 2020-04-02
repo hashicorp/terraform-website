@@ -143,7 +143,7 @@ See [VCS Connections](./vcs.html) for detailed information about this page.
 This page includes two sections:
 
 - "Destroy Infrastructure"
-- "Delete from Terraform Cloud"
+- "Delete Workspace"
 
 In almost all cases, you should perform both actions in that order when destroying a workspace.
 
