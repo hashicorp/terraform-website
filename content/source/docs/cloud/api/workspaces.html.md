@@ -48,6 +48,7 @@ Key path                                      | Type    | Default   | Descriptio
 ----------------------------------------------|---------|-----------|------------
 `data.type`                                   | string  |           | Must be `"workspaces"`.
 `data.attributes.name`                        | string  |           | The name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+`data.attributes.allow-destroy-plan`          | boolean | `true`    | Whether destroy plans can be queued on the workspace.
 `data.attributes.auto-apply`                  | boolean | `false`   | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
 `data.attributes.description`                 | string  | (nothing) | A description for the workspace.
 `data.attributes.operations`                  | boolean | `true`    | Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only.
@@ -147,6 +148,7 @@ _Without a VCS repository_
     "type": "workspaces",
     "attributes": {
       "auto-apply": false,
+      "allow-destroy-plan": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-18T00:43:59.384Z",
       "environment": "default",
@@ -198,6 +200,7 @@ _With a VCS repository_
     "type": "workspaces",
     "attributes": {
       "auto-apply": false,
+      "allow-destroy-plan": false,
       "can-queue-destroy-plan": true,
       "created-at": "2017-11-02T23:55:16.142Z",
       "description": null,
@@ -280,6 +283,7 @@ Key path                                      | Type           | Default        
 `data.attributes.name`                        | string         | (previous value) | A new name for the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization. **Warning:** Changing a workspace's name changes its URL in the API and UI.
 `data.attributes.description`                 | string         | (previous value) | A description for the workspace.
 `data.attributes.auto-apply`                  | boolean        | (previous value) | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
+`data.attributes.allow-destroy-plan`          | boolean        | (previous value)    | Whether destroy plans can be queued on the workspace.
 `data.attributes.operations`                  | boolean        | (previous value) | Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only.
 `data.attributes.file-triggers-enabled`       | boolean        | (previous value) | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
 `data.attributes.queue-all-runs`              | boolean        | (previous value) | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
@@ -334,6 +338,7 @@ $ curl \
     "type": "workspaces",
     "attributes": {
       "auto-apply": false,
+      "allow-destroy-plan": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
       "description": null,
@@ -414,6 +419,7 @@ $ curl \
       "type": "workspaces",
       "attributes": {
         "auto-apply": false,
+        "allow-destroy-plan": false,
         "can-queue-destroy-plan": false,
         "created-at": "2017-11-02T23:24:05.997Z",
         "description": null,
@@ -457,6 +463,7 @@ $ curl \
       "type": "workspaces",
       "attributes": {
         "auto-apply": false,
+        "allow-destroy-plan":false,
         "can-queue-destroy-plan": false,
         "created-at": "2017-11-02T23:23:53.765Z",
         "description": null,
@@ -537,6 +544,7 @@ $ curl \
         "is-destroyable": true
       },
       "auto-apply": false,
+      "allow-destroy-plan": true,
       "created-at": "2018-03-08T22:30:00.404Z",
       "description": null,
       "environment": "default",
@@ -661,6 +669,7 @@ $ curl \
   "data": {
     "attributes": {
       "auto-apply": false,
+      "allow-destroy-plan": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:23:53.765Z",
       "description": null,
@@ -742,6 +751,7 @@ $ curl \
   "data": {
     "attributes": {
       "auto-apply": false,
+      "allow-destroy-plan": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:23:53.765Z",
       "description": null,
@@ -812,6 +822,7 @@ $ curl \
   "data": {
     "attributes": {
       "auto-apply": false,
+      "allow-destroy-plan": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:23:53.765Z",
       "description": null,
@@ -901,6 +912,7 @@ $ curl \
   "data": {
     "attributes": {
       "auto-apply": false,
+      "allow-destroy-plan": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
       "description": null,
@@ -1002,6 +1014,7 @@ $ curl \
   "data": {
     "attributes": {
       "auto-apply": false,
+      "allow-destroy-plan": false,
       "can-queue-destroy-plan": false,
       "created-at": "2017-11-02T23:24:05.997Z",
       "description": null,

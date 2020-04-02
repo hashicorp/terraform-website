@@ -140,13 +140,13 @@ See [VCS Connections](./vcs.html) for detailed information about this page.
 
 ## Destruction and Deletion
 
-This page includes two buttons:
+This page includes two sections:
 
-- "Queue destroy Plan"
-- "Delete from Terraform Cloud"
+- "Destroy Infrastructure"
+- "Delete Workspace"
 
 In almost all cases, you should perform both actions in that order when destroying a workspace.
 
 Queueing a destroy plan destroys the infrastructure managed by a workspace. If you don't do this, the infrastructure resources will continue to exist but will become unmanaged; you'll need to go into your infrastructure providers to delete the resources manually.
 
-Before queueing a destroy plan, you must go to the workspace's [variables page](./variables.html) and set an environment variable with a name of `CONFIRM_DESTROY` and a value of `1`.
+Before queueing a destroy plan, you must enable the 'Allow destroy plans' setting and click the "Save settings" button.
