@@ -149,4 +149,4 @@ In almost all cases, you should perform both actions in that order when destroyi
 
 Queueing a destroy plan destroys the infrastructure managed by a workspace. If you don't do this, the infrastructure resources will continue to exist but will become unmanaged; you'll need to go into your infrastructure providers to delete the resources manually.
 
-Before queueing a destroy plan, you must enable the 'Allow destroy plans' setting.
+Before queueing a destroy plan, you must enable the 'Allow destroy plans' setting and click the "Save settings" button.
