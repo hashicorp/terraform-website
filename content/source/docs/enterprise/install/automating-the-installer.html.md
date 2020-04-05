@@ -209,7 +209,7 @@ For S3 (or S3-compatible storage providers):
 - `s3_endpoint` — (Optional) Endpoint URL (hostname only or fully qualified URI). Usually only needed if using a VPC endpoint or an S3-compatible storage provider.
 - `s3_bucket` — (Required) The S3 bucket where resources will be stored.
 - `s3_region` — (Required) The region where the S3 bucket exists.
-- `s3_sse` — (Optional)Eenables server-side encryption of objects in S3; if provided, must be set to `aws:kms`.
+- `s3_sse` — (Optional) Enables server-side encryption of objects in S3; if provided, must be set to `aws:kms`.
 - `s3_sse_kms_key_id` — (Optional) An optional KMS key for use when S3 server-side encryption is enabled.
 
 For Azure:
