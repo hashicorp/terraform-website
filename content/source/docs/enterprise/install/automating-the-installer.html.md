@@ -294,6 +294,8 @@ cd /tmp
     public-address=5.6.7.8
 ```
 
+-> **Note**: The `./install.sh` script must be executed from the directory in which it is placed.
+
 ## Waiting for Terraform Enterprise to become ready
 
 Once the installer finishes, you may poll the `/_health_check` endpoint until a `200` is returned by the application, indicating that it is fully started:
