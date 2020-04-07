@@ -9,7 +9,7 @@ page_title: "Example Policies - Policies - Terraform Cloud"
 
 This page lists some example policies. These examples are not exhaustive, but they demonstrate some of the most common use cases of policies with Terraform Cloud. For more examples, see the [Governance section of the Terraform Guides repository](https://github.com/hashicorp/terraform-guides/tree/master/governance).
 
-~> **Important:** These examples are a demonstration of the Sentinel policy language features. They should not be used verbatim in your Terraform Cloud organization. Make sure you fully understand the intent and behavior of a policy before relying on it in production. 
+~> **Important:** These examples are a demonstration of the Sentinel policy language and its features. They should not be used verbatim in your Terraform Cloud organization. Make sure you fully understand the intent and behavior of a policy before relying on it in production. 
 
 ### Amazon Web Services
 
