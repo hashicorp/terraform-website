@@ -17,6 +17,7 @@ Prepare all of the following before installing:
 4. **Data storage:** Depending on your operational mode, prepare data storage services or a block storage device.
 5. **Linux instance:** Choose a Linux machine image (if clustering) or prepare a running Linux instance (if deploying individually) for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements.
 
+ML: reword to protect customer from pulling marketplace images with 30gb /
     For clustered deployments, choosing an image is optional; if an image isn't specified, the module will use a default image provided by the cloud vendor.
 
 ## Deployment Method Decision
@@ -31,6 +32,7 @@ There are two ways to install Terraform Enterprise:
 
 - **Individual deployment:** Deploy Terraform Enterprise directly onto prepared Linux instances using an executable installer. The installer can be automated (with configuration via a JSON file) or run interactively (with configuration via a web interface).
 
+ML: clarify this text which suggests pushing customers to clustering unnecessarily
     This method requires more effort to ensure availability and redundancy, and requires you to provision more infrastructure prior to deploying Terraform Enterprise. For more information about what's necessary to use this deployment mode effectively, see [Reference Architectures (Individual Deployment)](./reference-architecture/index.html).
 
 Decide which deployment method you want to use; if you choose individual deployment, also decide whether to use automated installation. Once you are ready to install, refer to the installation guide that matches your choice.
@@ -48,12 +50,18 @@ The operational mode is selected at install time and cannot be changed once Terr
 
 1. **Production - External Services** - This mode stores the majority of the
    stateful data used by the instance in an external PostgreSQL database and
+
+   ML: S3-compatible endpoint or Azure blob storage. should change to include GCP
+
    an external S3-compatible endpoint or Azure blob storage. There is still critical data
    stored on the instance that must be managed with snapshots. Be sure to
    check the [PostgreSQL Requirements](./postgres-requirements.html) for information that
    needs to be present for Terraform Enterprise to work. This option is best
    for users with expertise managing PostgreSQL or users that have access
    to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/).
+
+   ML: Get the updated view on wording here re which use cases MD is good for and which cases we rec not
+
 1. **Production - Mounted Disk** - This mode stores data in a separate
    directory on the host, with the intention that the directory is
    configured to store its data on an external disk, such as EBS, iSCSI,
@@ -77,6 +85,8 @@ To deploy Terraform Enterprise, you must obtain a license file from HashiCorp.
 
 ### TLS Certificate and Private Key
 
+ML: 'ideally' should be just 'or'?
+
 Terraform Enterprise requires a TLS certificate and private key in order to operate. This certificate must match Terraform Enterprise's hostname (or the hostname of the load balancer for clusters), either by being issued for the FQDN or ideally being a wildcard certificate.
 
 The certificate can be signed by a public or private CA, but it _must_ be trusted by all of the services that Terraform Enterprise is expected to interface with; this includes your VCS provider, any CI systems or other tools that call Terraform Enterprise's API, and any services that Terraform Enterprise workspaces might send notifications to (for example: Slack). Due to these wide-ranging interactions, we recommend using a certificate signed by a public CA.
@@ -95,6 +105,8 @@ If you are using individual deployment, the key and X.509 certificate should bot
    running within Terraform Enterprise to access each other properly.
    See [Installation: Trusting SSL/TLS Certificates](../install/installer.html#trusting-ssl-tls-certificates)
    for more on this. For clustered deployment, the modules include an input variable for a CA bundle URL.
+
+GTH
 
 ## Data Storage
 
