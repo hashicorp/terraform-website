@@ -518,3 +518,7 @@
 	path = ext/providers/vmc
 	url = https://github.com/terraform-providers/terraform-provider-vmc
 	branch = stable-website
+[submodule "ext/providers/sumologic"]
+	path = ext/providers/sumologic
+	url = https://github.com/terraform-providers/terraform-provider-sumologic
+	branch = stable-website
