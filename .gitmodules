@@ -522,3 +522,7 @@
 	path = ext/providers/sumologic
 	url = https://github.com/terraform-providers/terraform-provider-sumologic
 	branch = stable-website
+[submodule "ext/providers/infoblox"]
+	path = ext/providers/infoblox
+	url = https://github.com/terraform-providers/terraform-provider-infoblox
+	branch = stable-website
