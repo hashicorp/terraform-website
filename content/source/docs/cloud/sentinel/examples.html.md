@@ -1,15 +1,15 @@
 ---
 layout: "cloud"
-page_title: "Example Policies - Sentinel - Terraform Cloud"
+page_title: "Example Policies - Policies - Terraform Cloud"
 ---
 
 # Example Policies
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Terraform policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-This page lists some example Sentinel policies. These examples are not exhaustive, but they demonstrate some of the most common use cases of Sentinel with Terraform Cloud. For more examples, see the [Governance section of the Terraform Guides repository](https://github.com/hashicorp/terraform-guides/tree/master/governance).
+This page lists some example policies. These examples are not exhaustive, but they demonstrate some of the most common use cases of policies with Terraform Cloud. For more examples, see the [Governance section of the Terraform Guides repository](https://github.com/hashicorp/terraform-guides/tree/master/governance).
 
-~> **Important:** These examples are a demonstration of Sentinel's features. They should not be used verbatim in your Terraform Cloud organization. Make sure you fully understand the intent and behavior of a policy before relying on it in production.
+~> **Important:** These examples are a demonstration of the Sentinel policy language and its features. They should not be used verbatim in your Terraform Cloud organization. Make sure you fully understand the intent and behavior of a policy before relying on it in production. 
 
 ### Amazon Web Services
 
@@ -19,7 +19,6 @@ This page lists some example Sentinel policies. These examples are not exhaustiv
 * [Disallow 0.0.0.0/0 CIDR blocks](https://github.com/hashicorp/terraform-guides/blob/master/governance/second-generation/aws/restrict-ingress-sg-rule-cidr-blocks.sentinel)
 * [Restrict instance types of EC2 instances](https://github.com/hashicorp/terraform-guides/blob/master/governance/second-generation/aws/restrict-ec2-instance-type.sentinel)
 * [Require VPCs to be tagged and have DNS hostnames enabled](https://github.com/hashicorp/terraform-guides/blob/master/governance/first-generation/aws/aws-vpcs-must-have-tags-and-enable-dns-hostnames.sentinel)
-
 
 ### Microsoft Azure
 
@@ -39,3 +38,5 @@ This page lists some example Sentinel policies. These examples are not exhaustiv
 * [Restrict virtual disk size](https://github.com/hashicorp/terraform-guides/blob/master/governance/second-generation/vmware/restrict-vm-disk-size.sentinel)
 * [Restrict VM CPU count and memory](https://github.com/hashicorp/terraform-guides/blob/master/governance/second-generation/vmware/restrict-vm-cpu-and-memory.sentinel)
 * [Enforce NFS 4.1 and Kerberos](https://github.com/hashicorp/terraform-guides/blob/master/governance/first-generation/vmware/require_nfs41_and_kerberos.sentinel)
+
+-> **Note:** We've developed a number of first-class foundational policies to work out-of-the-box with Amazon Web Services, Microsoft Azure and Google Cloud Platform. Check out the library of [Terraform Foundational Policies](https://github.com/hashicorp/terraform-foundational-policies-library) written by HashiCorp to get up and running with your next [Policy Set](./manage-policies.html#policies-and-policy-sets).
