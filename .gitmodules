@@ -534,3 +534,7 @@
 	path = ext/providers/time
 	url = https://github.com/hashicorp/terraform-provider-time
 	branch = stable-website
+[submodule "ext/providers/cloudinit"]
+	path = ext/providers/cloudinit
+	url = https://github.com/hashicorp/terraform-provider-cloudinit
+	branch = stable-website
