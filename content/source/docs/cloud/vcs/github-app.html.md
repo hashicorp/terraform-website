@@ -17,6 +17,8 @@ Using GitHub this way does not require any action from a Terraform Cloud [organi
 
 This method uses a preconfigured GitHub App, and only works with GitHub.com. There are separate instructions for connecting to [GitHub.com via OAuth](./github.html), connecting to [GitHub Enterprise](./github-enterprise.html), and connecting to [other supported VCS providers.](./index.html)
 
+-> **Note:** This VCS Provider is only available on Terraform Cloud. If you are using Terraform Enterprise, you will need to follow the instructions for connecting to [GitHub.com via OAuth](./github.html)
+
 ## Using GitHub Repositories
 
 Choose "GitHub.com" on the "Connect to a version control provider" screen, which is shown when [creating a new workspace][create] or [changing a workspace's VCS connection][vcs settings]. Authorize access to GitHub if necessary. On the next screen, select a GitHub account or organization from the drop-down menu (or add a new organization) and choose a repository from the list.
