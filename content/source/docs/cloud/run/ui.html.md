@@ -15,7 +15,7 @@ Terraform Cloud has three workflows for managing Terraform runs.
 
 In the UI and VCS workflow, every workspace is associated with a specific branch of a VCS repo of Terraform configurations. Terraform Cloud registers webhooks with your VCS provider when you create a workspace, then automatically queues a Terraform run whenever new commits are merged to that branch of workspace's linked repository.
 
-Terraform Cloud also performs a [speculative plan][] when a pull request is opened against that branch from another branch in the linked repository. Terraform Cloud posts a link to the plan in the pull request, and re-runs the plan if the pull request is updated.
+Terraform Cloud also performs a [speculative plan][] when a pull request is opened against that branch. Terraform Cloud posts a link to the plan in the pull request, and re-runs the plan if the pull request is updated.
 
 [speculative plan]: ./index.html#speculative-plans
 
@@ -57,7 +57,9 @@ Speculative plans are re-run if the code in a pull request is updated.
 
 Speculative plans for PRs are based on the contents of the head branch (the branch that the PR proposes to merge into the destination branch), and they compare against the workspace's current state at the time the plan was run. This means that if the destination branch changes significantly after the head branch is created, the speculative plan might not accurately show the results of accepting the PR. To get a more accurate view, you can rebase the head branch onto a more recent commit, or merge the destination branch into the head branch.
 
--> **Note:** To avoid executing malicious code or exposing sensitive information, Terraform Cloud doesn't run speculative plans for pull requests that originate from other forks of a repository.
+-> **Note:** To avoid executing malicious code or exposing sensitive information, Terraform Cloud doesn't run speculative plans for pull requests that originate from other forks of a repository. 
+
+On Terraform Enterprise versions v202005-1 or later, the ability to perform speculative plans on pull requests that originate from forks can be enabled by an administrator. To learn more about this setting, refer to the [general settings documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
 
 ## Speculative Plans During Development
 

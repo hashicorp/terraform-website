@@ -48,7 +48,7 @@ To use configurations from VCS, Terraform Cloud needs to do several things:
 Terraform Cloud uses webhooks to monitor new commits and pull requests.
 
 - When someone adds new commits to a branch, any Terraform Cloud workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can prevent automatic runs by locking a workspace.
-- When someone submits a pull request/merge request to a branch from another branch in the same repository, Terraform Cloud performs a [speculative plan](../run/index.html#speculative-plans) with the contents of the request and links to the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
+- When someone submits a pull request/merge request to a branch, any Terraform Cloud workspaces based on that branch will perform a [speculative plan](../run/index.html#speculative-plans) with the contents of the request and links to the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
 
 ### SSH Keys
 

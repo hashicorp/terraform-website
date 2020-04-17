@@ -312,6 +312,8 @@ Different VCS providers handle forks differently, but a fork is usually owned by
 
 Terraform Cloud makes extensive use of VCS repos, and assumes that forks of a trusted repo are not necessarily trusted. As such, Terraform Cloud avoids evaluating any code from external forks, which prevents Terraform Cloud from running [speculative plans][] for [pull requests][] from forks.
 
+On [Terraform Enterprise][], [speculative plans][] on [pull requests][] from forks can be enabled by an administrator. 
+
 ## Git
 
 [git]: glossary.html#git
