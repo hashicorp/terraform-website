@@ -20,6 +20,8 @@ page_title: "Terraform Enterprise Settings - API Docs - Terraform Cloud"
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
+[speculative plans]: /docs/cloud/run/index.html#speculative-plans
+
 # Terraform Enterprise Settings API
 
 -> **Terraform Enterprise feature:** The admin API is exclusive to Terraform Enterprise, and can only be used by the admins and operators who install and maintain their organization's Terraform Enterprise instance.
@@ -55,7 +57,9 @@ curl \
     "attributes": {
       "limit-user-organization-creation": true,
       "api-rate-limiting-enabled": true,
-      "api-rate-limit": 30
+      "api-rate-limit": 30,
+      "send-passing-statuses-for-untriggered-speculative-plans": true,
+      "allow-speculative-plans-on-pull-requests-from-forks": false
     }
   }
 }
@@ -75,11 +79,13 @@ Status  | Response                                     | Reason
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
-Key path                                          | Type     | Default                   | Description
---------------------------------------------------|----------|---------------------------|------------
-`data.attributes.limit-user-organization-creation`| bool     | `true`                    | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
-`data.attributes.api-rate-limiting-enabled`       | bool     | `true`                    | Whether or not rate limiting is enabled for API requests. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
-`data.attributes.api-rate-limit`                  | integer  | 30                        | The number of allowable API requests per second for any client. This value cannot be less than 30. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
+Key path                                                                 | Type     | Default                   | Description
+-------------------------------------------------------------------------|----------|---------------------------|------------
+`data.attributes.limit-user-organization-creation`                       | bool     | `true`                    | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
+`data.attributes.api-rate-limiting-enabled`                              | bool     | `true`                    | Whether or not rate limiting is enabled for API requests. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
+`data.attributes.api-rate-limit`                                         | integer  | 30                        | The number of allowable API requests per second for any client. This value cannot be less than 30. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
+`data.attributes.send-passing-statuses-for-untriggered-speculative-plans`| bool     | `true`                    | When set to `true`, workspaces automatically send passing commit statuses for any pull requests that don't affect its tracked files.
+`data.attributes.allow-speculative-plans-on-pull-requests-from-forks`    | bool     | `false`                   | When set to `false`, [speculative plans][] are not run on pull requests from forks of a repository. This setting is available in Terraform Enterprise versions v202005-1 or later. It is currently supported for the following VCS providers: GitHub.com, GitHub.com (OAuth), GitHub Enterprise, Bitbucket Cloud, Azure DevOps Server, Azure DevOps Services. To learn more about this setting, refer to the [documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
 
 [rate limiting documentation]: ../index.html#rate-limiting
 
@@ -113,12 +119,14 @@ curl \
 ```json
 {
   "data": {
-    "id":"general",
-    "type":"general-settings",
+    "id": "general",
+    "type": "general-settings",
     "attributes": {
       "limit-user-organization-creation": true,
       "api-rate-limiting-enabled": true,
-      "api-rate-limit": 50
+      "api-rate-limit": 50,
+      "send-passing-statuses-for-untriggered-speculative-plans": true,
+      "allow-speculative-plans-on-pull-requests-from-forks": false
     }
   }
 }
