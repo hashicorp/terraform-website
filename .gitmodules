@@ -522,3 +522,7 @@
 	path = ext/providers/sumologic
 	url = https://github.com/terraform-providers/terraform-provider-sumologic
 	branch = stable-website
+[submodule "ext/providers/ksyun"]
+	path = ext/providers/ksyun
+	url = https://github.com/KscSDK/terraform-provider-ksyun
+	branch = master
