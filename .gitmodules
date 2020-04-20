@@ -526,3 +526,7 @@
 	path = ext/providers/infoblox
 	url = https://github.com/terraform-providers/terraform-provider-infoblox
 	branch = stable-website
+[submodule "ext/providers/ksyun"]
+	path = ext/providers/ksyun
+	url = https://github.com/KscSDK/terraform-provider-ksyun
+	branch = stable-website
