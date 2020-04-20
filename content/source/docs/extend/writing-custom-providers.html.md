@@ -199,19 +199,19 @@ readability. Fill in those stubs now, paying close attention to method
 signatures.
 
 ```golang
-func resourceServerCreate(d *schema.ResourceData, m interface{}) error {
+func resourceServerCreate(d *schema.ResourceData, m interface{}) (err error) {
         return resourceServerRead(d, m)
 }
 
-func resourceServerRead(d *schema.ResourceData, m interface{}) error {
+func resourceServerRead(d *schema.ResourceData, m interface{}) (err error) {
         return nil
 }
 
-func resourceServerUpdate(d *schema.ResourceData, m interface{}) error {
+func resourceServerUpdate(d *schema.ResourceData, m interface{}) (err error) {
         return resourceServerRead(d, m)
 }
 
-func resourceServerDelete(d *schema.ResourceData, m interface{}) error {
+func resourceServerDelete(d *schema.ResourceData, m interface{}) (err error) {
         return nil
 }
 ```
@@ -346,7 +346,7 @@ the resource options currently take no action.
 Back in `resource_server.go`, implement the create functionality:
 
 ```go
-func resourceServerCreate(d *schema.ResourceData, m interface{}) error {
+func resourceServerCreate(d *schema.ResourceData, m interface{}) (err error) {
         address := d.Get("address").(string)
         d.SetId(address)
         return resourceServerRead(d, m)
@@ -518,7 +518,7 @@ Previously our `Update` operation succeeded and persisted the new state with an
 empty function definition. Recall the current update function:
 
 ```golang
-func resourceServerUpdate(d *schema.ResourceData, m interface{}) error {
+func resourceServerUpdate(d *schema.ResourceData, m interface{}) (err error) {
         return resourceServerRead(d, m)
 }
 ```
@@ -575,7 +575,7 @@ provider must explicitly tell Terraform what is safe to persist and what is not.
 Here is an example of a partial mode with an update function:
 
 ```go
-func resourceServerUpdate(d *schema.ResourceData, m interface{}) error {
+func resourceServerUpdate(d *schema.ResourceData, m interface{}) (err error) {
         // Enable partial state mode
         d.Partial(true)
 
@@ -613,7 +613,7 @@ is not necessary to call `d.SetId("")`, since any non-error return value assumes
 the resource was deleted successfully.
 
 ```go
-func resourceServerDelete(d *schema.ResourceData, m interface{}) error {
+func resourceServerDelete(d *schema.ResourceData, m interface{}) (err error) {
         // d.SetId("") is automatically called assuming delete returns no errors, but
         // it is added here for explicitness.
         d.SetId("")
@@ -673,7 +673,7 @@ exists (maybe it was destroyed out of band). Just like the destroy callback, the
 `Read` function should gracefully handle this case.
 
 ```go
-func resourceServerRead(d *schema.ResourceData, m interface{}) error {
+func resourceServerRead(d *schema.ResourceData, m interface{}) (err error) {
   client := m.(*MyClient)
 
   // Attempt to read from an upstream API
@@ -801,7 +801,7 @@ Due to the limitation of [tf-11115] (https://github.com/hashicorp/terraform/issu
 The `resourceServerRead` function now also sets/flattens the nested data structure from the API:
 
 ```go
-func resourceServerRead(d *schema.ResourceData, m interface{}) error {
+func resourceServerRead(d *schema.ResourceData, m interface{}) (err error) {
   client := m.(*MyClient)
   server, ok := client.Get(d.Id())
 
