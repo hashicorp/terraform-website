@@ -59,23 +59,23 @@ When running Terraform on the command line against a workspace that is _not_ con
 The following Terraform environment variables are automatically injected by
 Terraform Cloud for each run:
 
-- `ATLAS_RUN_ID` - This is a unique identifier for this run (e.g. `"run-CKuwsxMGgMd4W7Ui"`).
+- `TFC_RUN_ID` - This is a unique identifier for this run (e.g. `"run-CKuwsxMGgMd4W7Ui"`).
 
-- `ATLAS_WORKSPACE_NAME` - This is the name of the workspace used in
+- `TFC_WORKSPACE_NAME` - This is the name of the workspace used in
   this run, e.g. `"prod-load-balancers"`.
 
-- `ATLAS_WORKSPACE_SLUG` - This is the full slug of the configuration used
+- `TFC_WORKSPACE_SLUG` - This is the full slug of the configuration used
   in this run. This consists of the organization name and workspace name,
   joined with a slash, e.g. `"acme-corp/prod-load-balancers"`.
 
-- `ATLAS_CONFIGURATION_VERSION_GITHUB_BRANCH` - This is the name of the branch
+- `TFC_CONFIGURATION_VERSION_GIT_BRANCH` - This is the name of the branch
   that the associated Terraform configuration version was ingressed from
   (e.g. `master`).
 
-- `ATLAS_CONFIGURATION_VERSION_GITHUB_COMMIT_SHA` - This is the full commit hash
+- `TFC_CONFIGURATION_VERSION_GIT_COMMIT_SHA` - This is the full commit hash
   of the commit that the associated Terraform configuration version was
   ingressed from (e.g. `"abcd1234..."`).
 
-- `ATLAS_CONFIGURATION_VERSION_GITHUB_TAG` - This is the name of the tag
+- `TFC_CONFIGURATION_VERSION_GIT_TAG` - This is the name of the tag
   that the associated Terraform configuration version was ingressed from
   (e.g. `"v0.1.0"`).
