@@ -9,7 +9,7 @@ Terraform Cloud is designed as an execution platform for Terraform, and most of 
 
 ## The Terraform Worker VMs
 
-Terraform Cloud performs Terraform runs in single-use Linux virtual machines, running on an x86_64 architecture.
+Terraform Cloud performs Terraform runs in single-use Linux virtual machines, running on an x86\_64 architecture.
 
 The operating system and other software installed on the worker VMs is an internal implementation detail of Terraform Cloud. It is not part of a stable public interface, and is subject to change at any time.
 
@@ -53,3 +53,29 @@ Instead of using existing user credentials, Terraform Cloud generates a unique p
 When running Terraform on the commmand line against a workspace configured for remote operations, the CLI user must have [the `remote` backend][remote] configured in the Terraform configuration, and must have a user or team API token with the appropriate permissions specified in their [CLI config file][]. However, the run itself still occurs within one of Terraform Cloud's worker VMs, and still uses the per-run token for state access.
 
 When running Terraform on the command line against a workspace that is _not_ configured for remote operations, the CLI user's token is used for state access.
+
+### Environment Variables
+
+The following Terraform environment variables are automatically injected by
+Terraform Cloud for each run:
+
+- `TFC_RUN_ID` - This is a unique identifier for this run (e.g. `"run-CKuwsxMGgMd4W7Ui"`).
+
+- `TFC_WORKSPACE_NAME` - This is the name of the workspace used in
+  this run, e.g. `"prod-load-balancers"`.
+
+- `TFC_WORKSPACE_SLUG` - This is the full slug of the configuration used
+  in this run. This consists of the organization name and workspace name,
+  joined with a slash, e.g. `"acme-corp/prod-load-balancers"`.
+
+- `TFC_CONFIGURATION_VERSION_GIT_BRANCH` - This is the name of the branch
+  that the associated Terraform configuration version was ingressed from
+  (e.g. `master`).
+
+- `TFC_CONFIGURATION_VERSION_GIT_COMMIT_SHA` - This is the full commit hash
+  of the commit that the associated Terraform configuration version was
+  ingressed from (e.g. `"abcd1234..."`).
+
+- `TFC_CONFIGURATION_VERSION_GIT_TAG` - This is the name of the tag
+  that the associated Terraform configuration version was ingressed from
+  (e.g. `"v0.1.0"`).
