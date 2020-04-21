@@ -809,6 +809,7 @@
 /docs/providers/index.html
 /docs/providers/influxdb/index.html
 /docs/providers/jdcloud/index.html
+/docs/providers/ksyun/index.html
 /docs/providers/kubernetes/d/secret.html
 /docs/providers/kubernetes/d/service.html
 /docs/providers/kubernetes/d/storage_class.html
