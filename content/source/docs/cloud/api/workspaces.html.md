@@ -849,6 +849,8 @@ $ curl \
 
 ## Assign an SSH key to a workspace
 
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
+
 This endpoint assigns an SSH key to a workspace.
 
 `PATCH /workspaces/:workspace_id/relationships/ssh-key`
@@ -949,6 +951,8 @@ $ curl \
 ```
 
 ## Unassign an SSH key from a workspace
+
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
 This endpoint unassigns the currently assigned SSH key from a workspace.
 
