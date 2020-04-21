@@ -390,4 +390,4 @@ The same CI system handles releases of Terraform and the various providers, and 
     This happens routinely, so anyone who can merge to `master` should also be able to merge to (or directly push) `stable-website`. Whoever clicks the merge button should make sure they know whether this commit needs a cherry-pick.
 - During the next release, `stable-website` gets forcibly reset to that release's commit (which is probably from `master`), blowing away anything done on `stable-website` in the meantime.
 
-To ensure your provider doesn't lose any docs content, make sure the only changes you merge to `stable-website` are cherry-picks from `master`. The only case for unique commits is if you specifically _want_ a change to be reverted upon the next release (for example, a warning about a bug that was just fixed on `master`).
+ To ensure your provider doesn't lose any docs content, make sure the only changes you merge to `stable-website` are cherry-picks from `master`. The only case for unique commits is if you specifically _want_ a change to be reverted upon the next release (for example, a warning about a bug that was just fixed on `master`).
