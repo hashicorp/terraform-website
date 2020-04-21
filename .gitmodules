@@ -526,3 +526,11 @@
 	path = ext/providers/infoblox
 	url = https://github.com/terraform-providers/terraform-provider-infoblox
 	branch = stable-website
+[submodule "ext/providers/turbot"]
+	path = ext/providers/turbot
+	url = https://github.com/terraform-providers/terraform-provider-turbot
+	branch = stable-website
+[submodule "ext/providers/time"]
+	path = ext/providers/time
+	url = https://github.com/hashicorp/terraform-provider-time
+	branch = stable-website
