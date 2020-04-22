@@ -73,6 +73,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Site Admin](#site-admin)
 - [Speculative Plan](#speculative-plan)
 - [SSH Key](#ssh-key)
+- [Stale](#stale)
 - [State](#state)
 - [State Version](#state-version)
 - [Team](#team)
@@ -800,6 +801,17 @@ Terraform Cloud uses SSH private keys for two kinds of operations:
 
 - [Wikipedia: SSH](https://en.wikipedia.org/wiki/Secure_Shell)
 - [Terraform Cloud docs: SSH Keys for Cloning Modules](/docs/cloud/workspaces/ssh-keys.html)
+
+## Stale Plan
+
+[stale]: glossary.html#stale
+[stale_plan]: glossary.html#stale_plan
+
+When running `terraform plan -out="$FILENAME"`, a file is created (with the name of whatever the `FILENAME` Environment Variable is set to) with a serialized version of the created plan. This plan can then be applied with `terraform apply "$FILENAME"`.
+
+Once applied, the `$FILENAME` plan is left in place and can potentially be accidentally applied again, or can be applied after andother plan file is applied.  For many changes this can result in an error, but in some cases it results in duplicated resources where only the new resources are actually tracked in the state.
+
+For this reason Terraform recognizes old plans as stale, and will not apply them.  To remediate this the end user will have to create another plan to apply the desired change.
 
 ## State
 
