@@ -73,7 +73,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Site Admin](#site-admin)
 - [Speculative Plan](#speculative-plan)
 - [SSH Key](#ssh-key)
-- [Stale](#stale)
+- [Stale Plan](#stale-plan)
 - [State](#state)
 - [State Version](#state-version)
 - [Team](#team)
@@ -805,7 +805,7 @@ Terraform Cloud uses SSH private keys for two kinds of operations:
 ## Stale Plan
 
 [stale]: glossary.html#stale
-[stale_plan]: glossary.html#stale_plan
+[stale_plan]: glossary.html#stale-plan
 
 When running `terraform plan -out="$FILENAME"`, a file is created (with the name of whatever the `FILENAME` Environment Variable is set to) with a serialized version of the created plan. This plan can then be applied with `terraform apply "$FILENAME"`.
 
