@@ -734,6 +734,16 @@ In Terraform Cloud, runs are performed in a series of stages ([plan][], [policy 
 - [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
+## Run Triggers
+
+[run triggers]: glossary.html#run-triggers
+
+-> Terraform Cloud
+
+Terraform Cloud provides a way to connect a given workspace to one or more workspaces within an organization, known as "source workspaces". These connections, called run triggers, allow runs to queue automatically in your workspace on successful apply of runs in any of the source workspaces.
+
+- [Terraform Cloud docs: Runs Triggers](/docs/cloud/workspaces/run-triggers.html)
+
 ## S3
 
 [s3]: glossary.html#s3
