@@ -11,11 +11,11 @@ Before installing Terraform Enterprise, you'll need to make several key architec
 
 Prepare all of the following before installing:
 
-1. **Choose a deployment method:** Decide whether to perform a clustered deployment of Terraform Enterprise (using a HashiCorp-provided Terraform module) or use the installer to deploy individual instances.
+1. **Choose a deployment method:** Decide whether to perform a clustered deployment of Terraform Enterprise (using a HashiCorp-provided Terraform module) or use the installer to deploy standalone instances.
 2. **Choose an operational mode:** Decide how Terraform Enterprise should store its data. This is affected by your choice of deployment method.
 3. **Credentials:** Ensure you have a Terraform Enterprise license and a TLS certificate for Terraform Enterprise to use.
 4. **Data storage:** Depending on your operational mode, prepare data storage services or a block storage device.
-5. **Linux instance:** Choose a Linux machine image (if clustering) or prepare a running Linux instance (if deploying individually) for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements. Also check the Terraform Enterprise [pre-install checklist](https://www.terraform.io/docs/enterprise/before-installing/index.html) for further details.
+5. **Linux instance:** Choose a Linux machine image (if clustering) or prepare a running Linux instance (if deploying standalone instances) for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements. Also check the Terraform Enterprise [pre-install checklist](https://www.terraform.io/docs/enterprise/before-installing/index.html) for further details.
 
     For clustered deployments, choosing an image is optional; if an image isn't specified, the module will use a default image provided by the cloud vendor.
 
@@ -23,7 +23,7 @@ Prepare all of the following before installing:
 
 There are two ways to install Terraform Enterprise:
 
-- **Individual deployment:** Deploy Terraform Enterprise directly onto prepared Linux instances using an executable installer. The installer can be automated (with configuration via a JSON file) or run interactively (with configuration via a web interface).
+- **Standalone deployment:** Deploy Terraform Enterprise directly onto prepared Linux instances using an executable installer. The installer can be automated (with configuration via a JSON file) or run interactively (with configuration via a web interface).
 
 - **Clustered deployment:** Deploy Terraform Enterprise as a cluster of three or more instances using a Terraform module. Installation is automated, and you configure your deployment via the module's input variables. The cluster's secondary instances can scale horizontally to fit your enterprise's workloads.
 
@@ -31,10 +31,10 @@ There are two ways to install Terraform Enterprise:
 
     For more information, see [Cluster Architecture](./cluster-architecture.html).
     
-    This method requires more effort to ensure availability and redundancy, and requires you to provision more infrastructure prior to deploying Terraform Enterprise. For more information about what's necessary to use this deployment mode effectively, see [Reference Architectures (Individual Deployment)](./reference-architecture/index.html).
+    This method requires more effort to ensure availability and redundancy, and requires you to provision more infrastructure prior to deploying Terraform Enterprise. For more information about what's necessary to use this deployment mode effectively, see [Reference Architectures (Standalone Deployment)](./reference-architecture/index.html).
 
 
-Decide which deployment method you want to use; if you choose individual deployment, also decide whether to use automated installation. Once you are ready to install, refer to the installation guide that matches your choice.
+Decide which deployment method you want to use; if you choose standalone deployment, also decide whether to use automated installation. Once you are ready to install, refer to the installation guide that matches your choice.
 
 ## Operational Mode Decision
 
@@ -88,7 +88,7 @@ If you are using clustered deployment, you might need to ensure the certificate 
 - For Azure clusters, the certificate can be provided as a file but must be in PFX format.
 - For GCP clusters, the certificate can be provided as a file or as a GCP certificate link.
 
-If you are using individual deployment, the key and X.509 certificate should both be PEM (base64) encoded, and should be provided to the installer as text.
+If you are using standalone deployment, the key and X.509 certificate should both be PEM (base64) encoded, and should be provided to the installer as text.
 
 ~> **Important:** If you use a certificate issued by a private Certificate
    Authority, you must provide the certificate for that CA in the
@@ -119,7 +119,7 @@ Terraform Enterprise runs on Linux instances. The source of these instances depe
 - **Clustered deployment:** Terraform automatically provisions all instances for Terraform Enterprise. The machine image and the instance type are configurable:
     - By default, the module uses an official Ubuntu image; you can override this with any image that meets the [operating system requirements](#operating-system-requirements) below.
     - The default instance type depends on the cloud you deploy to; see the module documentation for details. You can override this, and can optionally specify separate image types for primary and secondary instances.
-- **Individual deployment:** You must prepare a running Linux instance for Terraform Enterprise before running the installer. You will start and manage this instance like any other server.
+- **Standalone deployment:** You must prepare a running Linux instance for Terraform Enterprise before running the installer. You will start and manage this instance like any other server.
 
 ### Operating System Requirements
 
@@ -132,7 +132,8 @@ Terraform Enterprise currently supports running under the following operating sy
 
     Clusters currently don't support other Linux variants.
 
-- **Individual deployment:**
+- **Standalone deployment:**
+    
     - Debian 7.7+
     - Ubuntu 14.04.5 / 16.04 / 18.04
     - Red Hat Enterprise Linux 7.4 - 7.7
@@ -155,7 +156,7 @@ Terraform Enterprise is a networked application. Its Linux instance(s) needs to 
 
 See [Network Requirements](./network-requirements.html) for details.
 
-### Software Requirements (Individual Deployment)
+### Software Requirements (Standalone Deployment)
 
 Some operating systems have specific configuration requirements:
 
@@ -176,7 +177,7 @@ For other Linux distributions, check Docker compatibility:
 
 Terraform Enterprise's instance profile serves as default credentials for Terraform's AWS provider. Workspaces without environment variables for credentials will attempt to use the instance profile to provision AWS resources.
 
-By default, clustered deployments use an instance profile with very minimal permissions; for individual deployments, the instance profile is the operator's responsibility.
+By default, clustered deployments use an instance profile with very minimal permissions; for standalone deployments, the instance profile is the operator's responsibility.
 
 If you plan to specify any non-default permissions for Terraform Enterprise's instance profile, be aware that Terraform runs might use those permissions and plan accordingly.
 
