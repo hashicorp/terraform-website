@@ -15,25 +15,24 @@ Prepare all of the following before installing:
 2. **Choose an operational mode:** Decide how Terraform Enterprise should store its data. This is affected by your choice of deployment method.
 3. **Credentials:** Ensure you have a Terraform Enterprise license and a TLS certificate for Terraform Enterprise to use.
 4. **Data storage:** Depending on your operational mode, prepare data storage services or a block storage device.
-5. **Linux instance:** Choose a Linux machine image (if clustering) or prepare a running Linux instance (if deploying individually) for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements.
+5. **Linux instance:** Choose a Linux machine image (if clustering) or prepare a running Linux instance (if deploying individually) for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements. Also check the Terraform Enterprise [pre-install checklist](https://www.terraform.io/docs/enterprise/before-installing/index.html) for further details.
 
-ML: reword to protect customer from pulling marketplace images with 30gb /
     For clustered deployments, choosing an image is optional; if an image isn't specified, the module will use a default image provided by the cloud vendor.
 
 ## Deployment Method Decision
 
 There are two ways to install Terraform Enterprise:
 
+- **Individual deployment:** Deploy Terraform Enterprise directly onto prepared Linux instances using an executable installer. The installer can be automated (with configuration via a JSON file) or run interactively (with configuration via a web interface).
+
 - **Clustered deployment:** Deploy Terraform Enterprise as a cluster of three or more instances using a Terraform module. Installation is automated, and you configure your deployment via the module's input variables. The cluster's secondary instances can scale horizontally to fit your enterprise's workloads.
 
     ~> **Important:** Terraform Enterprise clustering is in Controlled Availability; the application is fully ready for production use, but due to the variability in deployment environments the installation process requires consultation with a Technical Account Manager. Please contact your TAM to request access.
 
     For more information, see [Cluster Architecture](./cluster-architecture.html).
-
-- **Individual deployment:** Deploy Terraform Enterprise directly onto prepared Linux instances using an executable installer. The installer can be automated (with configuration via a JSON file) or run interactively (with configuration via a web interface).
-
-ML: clarify this text which suggests pushing customers to clustering unnecessarily
+    
     This method requires more effort to ensure availability and redundancy, and requires you to provision more infrastructure prior to deploying Terraform Enterprise. For more information about what's necessary to use this deployment mode effectively, see [Reference Architectures (Individual Deployment)](./reference-architecture/index.html).
+
 
 Decide which deployment method you want to use; if you choose individual deployment, also decide whether to use automated installation. Once you are ready to install, refer to the installation guide that matches your choice.
 
@@ -50,18 +49,12 @@ The operational mode is selected at install time and cannot be changed once Terr
 
 1. **Production - External Services** - This mode stores the majority of the
    stateful data used by the instance in an external PostgreSQL database and
-
-   ML: S3-compatible endpoint or Azure blob storage. should change to include GCP
-
-   an external S3-compatible endpoint or Azure blob storage. There is still critical data
-   stored on the instance that must be managed with snapshots. Be sure to
+   an external S3-compatible endpoint, GCP Cloud Storage bucket or Azure blob storage. There is still critical data stored on the instance that must be managed with snapshots. Be sure to
    check the [PostgreSQL Requirements](./postgres-requirements.html) for information that
    needs to be present for Terraform Enterprise to work. This option is best
    for users with expertise managing PostgreSQL or users that have access
    to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/).
-
-   ML: Get the updated view on wording here re which use cases MD is good for and which cases we rec not
-
+   
 1. **Production - Mounted Disk** - This mode stores data in a separate
    directory on the host, with the intention that the directory is
    configured to store its data on an external disk, such as EBS, iSCSI,
@@ -85,9 +78,7 @@ To deploy Terraform Enterprise, you must obtain a license file from HashiCorp.
 
 ### TLS Certificate and Private Key
 
-ML: 'ideally' should be just 'or'?
-
-Terraform Enterprise requires a TLS certificate and private key in order to operate. This certificate must match Terraform Enterprise's hostname (or the hostname of the load balancer for clusters), either by being issued for the FQDN or ideally being a wildcard certificate.
+Terraform Enterprise requires a TLS certificate and private key in order to operate. This certificate must match Terraform Enterprise's hostname (or the hostname of the load balancer for clusters), either by being issued for the FQDN or being a wildcard certificate.
 
 The certificate can be signed by a public or private CA, but it _must_ be trusted by all of the services that Terraform Enterprise is expected to interface with; this includes your VCS provider, any CI systems or other tools that call Terraform Enterprise's API, and any services that Terraform Enterprise workspaces might send notifications to (for example: Slack). Due to these wide-ranging interactions, we recommend using a certificate signed by a public CA.
 
@@ -106,17 +97,16 @@ If you are using individual deployment, the key and X.509 certificate should bot
    See [Installation: Trusting SSL/TLS Certificates](../install/installer.html#trusting-ssl-tls-certificates)
    for more on this. For clustered deployment, the modules include an input variable for a CA bundle URL.
 
-GTH
-
 ## Data Storage
 
 Make sure your data storage services or device meet Terraform Enterprise's requirements. These requirements differ based on operational mode:
 
 - **External services:**
     - [PostgreSQL Requirements](./postgres-requirements.html)
-    - Any S3-compatible object storage service (or Azure blob storage) meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
+    - Any S3-compatible object storage service (GCP Cloud Storage or Azure blob storage) meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
         - In environments without their own storage service, it may be possible to use [Minio](https://minio.io) for object storage. See the [Minio Setup Guide](./minio-setup-guide.html) for details.
     - Optionally: if you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](./vault.html).
+
 - **Mounted disk:**
     - [Mounted Disk Requirements](./disk-requirements.html)
 
@@ -141,6 +131,7 @@ Terraform Enterprise currently supports running under the following operating sy
     - CentOS 7.4 - 7.7
 
     Clusters currently don't support other Linux variants.
+
 - **Individual deployment:**
     - Debian 7.7+
     - Ubuntu 14.04.5 / 16.04 / 18.04
@@ -160,7 +151,7 @@ Terraform Enterprise application as well as the Terraform plans and applies.
 
 ### Network Requirements
 
-Terraform Enterprise is a networked application. Its Linux instance needs to allow several kinds of incoming and outgoing network traffic.
+Terraform Enterprise is a networked application. Its Linux instance(s) needs to allow several kinds of incoming and outgoing network traffic.
 
 See [Network Requirements](./network-requirements.html) for details.
 

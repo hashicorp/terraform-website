@@ -17,7 +17,7 @@ When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure y
       * on AWS: `yum-config-manager --enable rhui-REGION-rhel-server-extras`
 * A properly configured docker storage backend, either:
    * Devicemapper configured for production usage, according to the Docker documentation: https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production. This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
-   * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag ftype=1. The full documentation on this configuration is at: https://docs.docker.com/storage/storagedriver/overlayfs-driver/
+   * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag `ftype=1`. The full documentation on this configuration is at: https://docs.docker.com/storage/storagedriver/overlayfs-driver/
    * If using Docker from RHEL Extras, storage can be configured using the `docker-storage-setup` command
 
 **Note:** Using `docker-1.13.1-84.git07f3374.el7.x86_64` will result in an RPC error as well as 502 errors and inability to use the application.
