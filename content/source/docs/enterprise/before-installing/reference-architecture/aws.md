@@ -152,7 +152,7 @@ the private key of a public ACM certificate on your Terraform Enterprise instanc
 
 ## Infrastructure Diagram
 
-![aws-infrastructure-diagram-asg](./assets/aws-setup-guide-ptfe-asg.png)
+![aws-infrastructure-diagram-asg](./assets/aws-setup-guide-tfe-asg.png)
 
 ### Application Layer
 

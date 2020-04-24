@@ -146,7 +146,7 @@ responsible for backing up the Vault data and restoring it if necessary.
 ### Availability During Upgrades
 
 Upgrades use the installer dashboard.
-Once an upgrade has been been detected (either online or airgap), the new code
+Once an upgrade has been been detected (either online or air gap), the new code
 is imported. Once ready, all services on the instance are restarted running
 the new code. The expected downtime is between 30 seconds and 5 minutes,
 depending on whether database updates have to be applied.

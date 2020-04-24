@@ -19,7 +19,7 @@ See [Data Security](../system-overview/data-security.html) for details about the
 
 ### API Authentication Token
 
-Calls to the backup API must be authenticated with a special bearer token, which can be found on the install dashboard (`https://<TFE HOSTNAME>:8800`) near the bottom of the page:
+Calls to the backup API must be authenticated with a special bearer token, which can be found on the settings dashboard (`https://<TFE HOSTNAME>:8800/settings`) near the bottom of the page:
 
 ![Screenshot: the TFE install dashboard, with the API token visible](./images/token.png)
 

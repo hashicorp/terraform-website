@@ -38,16 +38,16 @@ Passing this option to the installation script is particularly useful if the hos
 
 To change the proxy settings after installation, use the Console settings page, accessed from the dashboard on port 8800 under `/console/settings`.
 
-![Terraform Enterprise Console Settings](./assets/ptfe-console-settings.png)
+![Terraform Enterprise Console Settings](./assets/tfe-console-settings.png)
 
 On the Console Settings page, there is a section for HTTP Proxy:
 
-![Terraform Enterprise HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
+![Terraform Enterprise HTTP Proxy Settings](./assets/tfe-http-proxy.png)
 
 This change updates the proxy settings for the Terraform Enterprise application services. To update the proxy settings for the installer (for example, to handle configuration tests correctly), additional steps are necessary:
 
 1. Locate the Replicated configuration files on the instance under either `/etc/sysconfig/` or `/etc/default`: `replicated` and `replicated-operator`.
-2. Open the files for editing. On the line that includes `REPLICATED_OPTS` for `replicated` or `REPLICATED_OPERATOR_OPTS` for `replicated-operator`, add `-e HTTP_PROXY=<your proxy url> -e NO_PROXY=<list of no_proxy hosts>` to the existing command options. The list of `no_proxy` hosts is a comma-separated list with no spaces, and should include following addresses `127.0.0.1,<DOCKER0 INTERFACE IP>,<IP ADDRESS OF PTFE INSTANCE>,<HOSTNAME OF PTFE INSTANCE>` but not limited to.
+2. Open the files for editing. On the line that includes `REPLICATED_OPTS` for `replicated` or `REPLICATED_OPERATOR_OPTS` for `replicated-operator`, add `-e HTTP_PROXY=<your proxy url> -e NO_PROXY=<list of no_proxy hosts>` to the existing command options. The list of `no_proxy` hosts is a comma-separated list with no spaces, and should include following addresses `127.0.0.1,<DOCKER0 INTERFACE IP>,<IP ADDRESS OF TFE INSTANCE>,<HOSTNAME OF TFE INSTANCE>` but not limited to.
 3. Docker also needs to be able to communicate to endpoints with the same rules of proxy settings as `replicated` and `replicated-operator`, the steps 1-6 of this [document](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) are required.
 `NOTE: Please take precautions on application outage when applying configuration change, i.e. wait for all runs to finish, prevent new runs to trigger`
 4. Restart the Replicated services following [the instructions for your distribution](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#restarting-replicated).
@@ -138,7 +138,7 @@ As of version 201902-01, TLS versions 1.0 and 1.1 are no longer supported in Ter
 
 TFE runs `terraform plan` and `terraform apply` operations in a disposable Docker containers. There are cases where runs may make frequent use of additional tools that are not available in the default Docker image. To allow use of these tools for any plan or apply, users can build their own image and configure TFE to use that instead. In order for this to happen the name of the alternative docker image must be set in the config by using the `Custom image tag` field as shown below:
 
-![Terraform Enterprise docker image](./assets/ptfe-docker-image.png)
+![Terraform Enterprise docker image](./assets/tfe-docker-image.png)
 
 ### Requirements
  - The base image must be `ubuntu:xenial`.
@@ -158,7 +158,7 @@ ADD ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 # Install software used by TFE
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo unzip daemontools git-core ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd
-```
+ ```
 
 ### Image initialization
 To run initialization commands in your image during runtime, create a script at `/usr/local/bin/init_custom_worker.sh` and make it executable. This script, and all commands it invokes, will be executed before TFE runs `terraform init`.
@@ -177,7 +177,7 @@ for more details.
 
 ## Installation
 
-The installer can run in two modes, Online or Airgapped. Each of these modes has a different way of executing the installer, but the result is the same.
+The installer can run in two modes, Online or Air Gapped. Each of these modes has a different way of executing the installer, but the result is the same.
 
 ~> **Note:** After running the installation script, the remainder of the installation is done through a browser using the installer dashboard on port 8800 of the TFE instance. To complete the installation, you must be able to connect to that port via HTTPS. The installer uses an internal CA to issue bootstrap certificates, so you will see a security warning when first connecting, and you'll need to proceed with the connection anyway.
 
@@ -194,13 +194,13 @@ If your instance can access the Internet, use the Online install mode.
     * You will see a security warning when first connecting. This is expected and you'll need
       to proceed with the connection anyway.
 
-### Run the Installer - Airgapped
+### Run the Installer - Air Gapped
 
-If the instance cannot reach the Internet, follow these steps to begin an Airgapped installation.
+If the instance cannot reach the Internet, follow these steps to begin an Air Gapped installation.
 
 #### Prepare the Instance
 
-1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Pre-Install Checklist: Software Requirements](../before-installing/index.html#software-requirements) for details).
+1. Air Gap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Pre-Install Checklist: Software Requirements](../before-installing/index.html#software-requirements) for details).
 1. Download the `.airgap` file using the information given to you in your setup email and place that file somewhere on the the instance.
     * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
     * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
@@ -222,9 +222,9 @@ From a shell on your instance, in the directory where you placed the `latest.tar
 
 1. Configure the hostname and the SSL certificate.
 1. Upload the license file provided to you in your setup email.
-1. Indicate whether you're doing an Online or Airgapped installation. Choose Online if
+1. Indicate whether you're doing an Online or Air Gapped installation. Choose Online if
    you're not sure.
-    * If you are doing an Airgapped install, provide the path on the the instance
+    * If you are doing an Air Gapped install, provide the path on the the instance
       to the `.airgap` file that you downloaded using the initial instructions in
       your setup email.
 1. Secure access to the installer dashboard. We recommend at least setting up the

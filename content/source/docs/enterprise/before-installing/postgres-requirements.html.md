@@ -5,7 +5,7 @@ page_title: "PostgreSQL Requirements - Before Installing - Terraform Enterprise"
 
 # PostgreSQL Requirements for Terraform Enterprise
 
--> **Note:** These requirements apply to the `External Services` operational mode, not the managed disk operational mode. See the [Pre-Install Checklist](./index.html) for more information.
+-> **Note:** These requirements apply to the `External Services` operational mode, not the mounted disk operational mode. See the [Pre-Install Checklist](./index.html) for more information.
 
 To use an external PostgreSQL database with Terraform Enterprise, the following
 requirements must be met:

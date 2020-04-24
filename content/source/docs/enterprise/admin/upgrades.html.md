@@ -15,7 +15,7 @@ version. [Learn more about availability during upgrades here](../system-overview
 1. Click "View Update".
 1. Review the release notes and then click "Install Update".
 
-## Airgapped
+## Air Gapped
 
 1. Determine the update path where the installer will look for new `.airgap`
     packages. You can do this from the console settings of your instance

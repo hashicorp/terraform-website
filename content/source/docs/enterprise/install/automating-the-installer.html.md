@@ -5,14 +5,14 @@ page_title: "Automated Installation - Install and Config - Terraform Enterprise"
 
 # Automated Terraform Enterprise Installation — Individual Instance
 
-The installation of Terraform Enterprise can be automated for both online and airgapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
+The installation of Terraform Enterprise can be automated for both online and air gapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
 
 Before starting the install process, you must:
 
 - prepare an [application settings](#application-settings) file, which defines the settings for the Terraform Enterprise application.
 - prepare `/etc/replicated.conf`, which defines the settings for the Replicated installer.
 - copy your license file to the instance.
-- download the `.airgap` bundle to the instance (Airgapped mode only).
+- download the `.airgap` bundle to the instance (air gapped mode only).
 
 You may also need to provide additional flags (such as the instance's public and private IP addresses) in order to avoid being prompted for those values when running the installer (which may result in either a failure of the installer or a unbounded delay while waiting for input).
 
@@ -75,14 +75,14 @@ One the easiest ways to get the settings is to [perform a manual install](./inst
 To extract the settings as JSON, access the instance via SSH, then run:
 
 ```
-ptfe$ replicatedctl app-config export > settings.json
+tfe$ replicatedctl app-config export > settings.json
 ```
 
 Here is an example `app-config export` output for an instance configured in demo mode:
 
 ```
-ptfe$ replicatedctl app-config export > settings.json
-ptfe$ cat settings.json
+tfe$ replicatedctl app-config export > settings.json
+tfe$ cat settings.json
 {
     "aws_access_key_id": {},
     "aws_instance_profile": {},
@@ -176,20 +176,20 @@ The following settings apply to every installation:
 - `vault_path` — (Optional) Path on the host system to store the vault files. If `extern_vault_enable` is set, this has no effect.
 - `vault_store_snapshot` — (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not. Defaults to `1`.
 
-#### `production_type` is required if you've chosen `production` for the `installation_type`:
+If you have chosen `production` for the `installation_type`, `production_type` is required:
 
 - `production_type` — One of `external` or `disk`.
 
-#### `disk_path` is required if you've chosen `disk` for `production_type`:
+If you have chosen `disk` for `production_type`, `disk_path` is required:
 
 - `disk_path` — Path on instance to persistent storage.
 
-#### The following settings apply if you want to use an [alternative Terraform build worker image](./installer.html#alternative-terraform-worker-image):
+If you want to use an [alternative Terraform build worker image](./installer.html#alternative-terraform-worker-image), the following settings apply:
 
 - `tbw_image` - Set this to `custom_image` if you want to use an alternative Terraform build worker image. (The default is `default_image`.)
 - `custom_image_tag` - The name and tag for your alternative Terraform build worker image in the format `<name>:<tag>`. (The default is `hashicorp/build-worker:now`.)
 
-#### The following settings apply if you've chosen `external` for `production_type`:
+If you have chosen `external` for `production_type`, the following settings apply:
 
 - `pg_user` — (Required) PostgreSQL user to connect as.
 - `pg_password` — (Required) The password for the PostgreSQL user.
@@ -197,7 +197,7 @@ The following settings apply to every installation:
 - `pg_dbname` — (Required) The database name.
 - `pg_extra_params` — (Optional) Parameter keywords of the form `param1=value1&param2=value2` to support additional options that may be necessary for your specific PostgreSQL server.  Allowed values are [documented on the PostgreSQL site](https://www.postgresql.org/docs/9.4/static/libpq-connect.html#LIBPQ-PARAMKEYWORDS).  An additional restriction on the `sslmode` parameter is that only the `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
-Select which placememt will be used for blob storage: S3, Azure, or GCS. Based on this value, you only need to provide one set of the following variables.
+Select which placement will be used for blob storage: S3, Azure, or GCS. Based on this value, you only need to provide one set of the following variables.
 
 - `placement` — (Required) Set to `placement_s3` for S3, `placement_azure` for Azure, or `placement_gcs` for GCS
 
@@ -260,9 +260,9 @@ bash ./install.sh \
 
 Note the `private-address` and `public-address` flags provided to the installer.  These may be left out, but the installer will prompt for them if it is unable to determine appropriate values automatically. If the instance will not have a separate public address, you may provide the private address for both values.
 
-### Airgapped
+### Air Gapped
 
-The following is an example `/etc/replicated.conf` suitable for an automated airgapped install, which builds on the online example above.  Note the addition of `LicenseBootstrapAirgapPackagePath`, which is a path to the `.airgap` bundle on the instance.
+The following is an example `/etc/replicated.conf` suitable for an automated air gapped install, which builds on the online example above.  Note the addition of `LicenseBootstrapAirgapPackagePath`, which is a path to the `.airgap` bundle on the instance.
 
 ```json
 {
@@ -279,9 +279,9 @@ The following is an example `/etc/replicated.conf` suitable for an automated air
 }
 ```
 
-#### Invoking the airgap installation script
+#### Invoking the air gap installation script
 
-Following on from the [manual airgapped install](./installer.html#run-the-installer-airgapped) steps, you must also have the installer bootstrapper already on the instance.  For illustrative purposes, it is assumed the installer bootstrapper has been unarchived in `/tmp`.
+Following on from the [manual air gapped install](./installer.html#run-the-installer-airgapped) steps, you must also have the installer bootstrapper already on the instance.  For illustrative purposes, it is assumed the installer bootstrapper has been unarchived in `/tmp`.
 
 Once `/etc/replicated.conf` has been created, you can now execute the install script as `root`:
 
