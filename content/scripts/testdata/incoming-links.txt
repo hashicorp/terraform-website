@@ -84,7 +84,6 @@
 /docs/cloud/vcs/index.html
 /docs/cloud/workspaces/creating.html
 /docs/cloud/workspaces/index.html
-/docs/cloud/workspaces/repo-structure.html
 /docs/cloud/workspaces/ssh-keys.html
 /docs/cloud/workspaces/variables.html
 /docs/commands/0.12upgrade.html

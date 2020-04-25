@@ -455,3 +455,6 @@
 
 # Obsoleted by modern VCS integration for policy sets
 /docs/cloud/sentinel/integrate-vcs.html                             /docs/cloud/sentinel/manage-policies.html
+
+# This page was originally a workaround for lack of directory filtering for monorepos.
+/docs/cloud/workspaces/repo-structure.html                          /docs/cloud/workspaces/configurations.html
