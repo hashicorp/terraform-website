@@ -9,6 +9,8 @@ Terraform Cloud can use webhooks to notify external systems about the progress o
 
 Each workspace has its own notification settings, and can notify up to 20 destinations.
 
+Configuring notifications requires admin permissions on the affected workspace (or the organization-level "Manage Workspaces" permission).
+
 -> **API:** See the [Notification Configuration APIs](../api/notification-configurations.html).
 
 ## Viewing and Managing Notification Settings
