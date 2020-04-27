@@ -39,6 +39,15 @@ In [Deprecations, Removals, and Renames][deprecations], we cover procedures for
 backwards compatible code and documentation updates to ensure that operators
 are well informed of changes ahead of functionality being removed or renamed.
 
+## Enabling beta features
+
+As a provider, you might want to enable new resources that are still in beta.
+Those resources might change later on.
+As a general practice, you can enable your provider to support those beta features
+by using a environment variable such as `PROVIDERX_ENABLE_BETA`.
+Once your resources are out of beta and reach a stable status, you can use those
+resources by default without requiring an environment variable.
+
 ## Detecting Drift
 
 Terraform is a declarative tool designed to be the source of truth for
