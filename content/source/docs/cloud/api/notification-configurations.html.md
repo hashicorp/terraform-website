@@ -161,7 +161,7 @@ Key path                            | Type           | Default | Description
 [notification-authenticity]: #notification-authenticity
 [notification-triggers]: #notification-triggers
 
-### Sample Payload for generic
+### Sample Payload for Generic Notification Configurations
 
 ```json
 {
