@@ -16,6 +16,7 @@ Terraform Enterprise provides a `/_health_check` endpoint on the instance. If Te
 In addition to health-check monitoring, we recommend monitoring standard server metrics on the Terraform Enterprise instance:
 
 - I/O
+- RAM
 - CPU
 - Disk
 
