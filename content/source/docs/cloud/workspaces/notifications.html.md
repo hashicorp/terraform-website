@@ -39,7 +39,8 @@ Fill in the following fields to configure your notifications:
 - **Destination:** Terraform Cloud can deliver either a generic payload, a payload formatted specifically for Slack, or an Email. Choose which type you want from the drop-down. Payload contents are [documented below][inpage-payload].
 
 - **Name:** An arbitrary display name to use for this notification configuration.
-- **Webhook URL** _(only available for generic and slack webhooks):_ The destination URL to send the webhook payload to. This URL must accept HTTP or HTTPS `POST` requests, and should be able to do something useful with the chosen payload type.   - If you are sending notifications to Slack, see Slack's documentation on [how to create an incoming webhook](https://api.slack.com/incoming-webhooks#create_a_webhook).
+- **Webhook URL** _(only available for generic and slack webhooks):_ The destination URL to send the webhook payload to. This URL must accept HTTP or HTTPS `POST` requests, and should be able to do something useful with the chosen payload type.
+  - If you are sending notifications to Slack, see Slack's documentation on [how to create an incoming webhook](https://api.slack.com/incoming-webhooks#create_a_webhook).
 
 - **Token** _(optional; only available for generic webhooks):_ An arbitrary secret string, which Terraform Cloud will use to sign its notification webhooks. ([See "Notification Authenticity" below][inpage-hmac].) This setting is encrypted for storage, and cannot be viewed after it is saved.
 - **Email Recipients** _(only available for emails):_ Select the users from the workspace's organization to notify.
@@ -54,11 +55,11 @@ Fill in the following fields to configure your notifications:
 
 When finished, click the "Create configuration" button.
 
-Next, you must enable the configuration; see the next section for details.
+For enabling and verifying configurations; see the next section for details.
 
 ## Enabling and Verifying a Configuration
 
-To enable a new configuration, click the enable/disable switch on its detail page (located near the configuration's title). Terraform Cloud will attempt to verify the configuration by sending a test message, and will enable the notification configuration if the test succeeds.
+To enable or disable a configuration, toggle the enable/disable switch on its detail page (located near the configuration's title). Terraform Cloud will attempt to verify the configuration for generic and slack webhooks by sending a test message, and will enable the notification configuration if the test succeeds.
 
 For a verification to be successful, the destination must respond with a `2xx` HTTP code.
 
@@ -86,6 +87,17 @@ Notifications to Slack will contain the following information:
 * The reason the run was queued (usually a commit message or a custom message)
 * The time the run was created
 * The event that triggered the notification, and the time it occurred
+
+### Email
+
+Email notifications will contain the following information:
+
+![Screenshot: a workspace's access settings page](./images/notifications-email-sample.png)
+
+* The run's workspace (as a link)
+* The run ID (as a link)
+* The event that triggered the notification, and if the run needs to be acted upon or not
+
 
 ### Generic
 
