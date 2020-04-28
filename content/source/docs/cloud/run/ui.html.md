@@ -59,7 +59,7 @@ Speculative plans for PRs are based on the contents of the head branch (the bran
 
 -> **Note:** To avoid executing malicious code or exposing sensitive information, Terraform Cloud doesn't run speculative plans for pull requests that originate from other forks of a repository. 
 
-On Terraform Enterprise versions v202005-1 or later, the ability to perform speculative plans on pull requests that originate from forks can be enabled by an administrator. To learn more about this setting, refer to the [general settings documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
+On Terraform Enterprise versions v202005-1 or later, administrators can allow speculative plans on pull requests that originate from forks. To learn more about this setting, refer to the [general settings documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
 
 ## Speculative Plans During Development
 
