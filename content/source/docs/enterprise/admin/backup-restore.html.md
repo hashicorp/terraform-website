@@ -140,3 +140,5 @@ curl \
   --form snapshot=@backup.blob \
   https://<TFE HOSTNAME>/_backup/api/v1/restore
 ```
+
+~> **Note:** The Bearer token used to restore the backup is specific to the instance, so if restoring to a separate instance, the token will be different for restore as it was for backup.
