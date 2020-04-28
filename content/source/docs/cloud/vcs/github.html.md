@@ -9,14 +9,13 @@ These instructions are for using GitHub.com for Terraform Cloud's VCS features, 
 
 [GitHub Enterprise has separate instructions,](./github-enterprise.html) as do the [other supported VCS providers.](./index.html)
 
-Connecting Terraform Cloud to your VCS involves five steps:
+Connecting Terraform Cloud to your VCS involves four steps:
 
 On your VCS | On Terraform Cloud
 --|--
-Register your Terraform Cloud organization as a new app. Get ID and key. | &nbsp;
-&nbsp; | Tell Terraform Cloud how to reach VCS, and provide ID and key. Get callback URL.
-Provide callback URL. | &nbsp;
-&nbsp; | Request VCS access.
+&nbsp; | Create a new connection in Terraform Cloud. Get callback URL.
+Register your Terraform Cloud organization as a new app. Provide callback URL. | &nbsp;
+&nbsp; | Provide Terraform Cloud with ID and key. Request VCS access.
 Approve access request. | &nbsp;
 
 The rest of this page explains the GitHub versions of these steps.
