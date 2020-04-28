@@ -185,7 +185,7 @@ Key path                            | Type           | Default | Description
 }
 ```
 
-### Sample Payload for email
+### Sample Payload for Email Notification Configurations
 
 ```json
 {
