@@ -16,22 +16,7 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
     - Update the expiration date of the existing token within Azure DevOps Server.
     - Create a new token, and edit Terraform Cloud's VCS connection to use it.
 
-## Step 1: On Azure DevOps Server, Create a New Personal Access Token
-
-1. Log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
-
-    ~> **Important:** The account you use for connecting Terraform Cloud **must have Project Collection Administrator access** to any projects containing repositories of Terraform configurations, since creating webhooks requires these permissions. It is not possible to create custom access roles with lower levels of privilege, as Microsoft does not currently allow delegation of this capability.
-
-2. Navigate to User settings -> Security -> Personal access tokens on your Azure DevOps Server instance.
-3. Click the "New Token" button to generate a new personal access token with "Code (Read)" and "Code (Status)" scopes. (We recommend also granting access to "All accessible organizations.")
-
-    ![Azure DevOps Server Screenshot: Creating a new personal access token in your Azure DevOps Server Profile](./images/azure-devops-server-create-token.png)
-
-4. Copy the generated token to your clipboard; you’ll paste it in the next step. Leave this page open in a browser tab.
-
-    ![Azure DevOps Server Screenshot: Copy generated token](./images/azure-devops-server-copy-token.png)
-
-## Step 2: On Terraform Cloud, Add a New VCS Provider
+## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
 1. Open Terraform Cloud in your browser and navigate to the Settings > VCS Providers page for your organization. Click the “Add VCS Provider” button.
 
@@ -42,21 +27,35 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
     1. On the next page, click “VCS Providers” in the left sidebar
     1. Click the “Add a VCS Provider” button
 
-    ![Azure DevOps Server Screenshot: Adding a new VCS Provider in Terraform Cloud](./images/azure-devops-server-add-vcs-provider.png)
+1. The next page has several steps to guide you through adding a new VCS provider. Select "Azure DevOps" then select "Azure DevOps Server" from the dropdown.
 
-2. The next page has a drop-down and several text fields. Select "Azure DevOps Server" from the drop-down.
+1. On the "Set up provider" step there are three textboxes. Enter an optional display name. Enter the instance URL for your Azure DevOps Server in HTTP URL and API URL textboxes. Click the "Continue" button to continue to the next step.
 
-3. (Optional) Enter a display name for your Azure DevOps Server VCS Provider.
+    ![Azure DevOps Server Screenshot: Adding a new VCS Provider in Terraform Cloud](./images/azure-devops-server-setup-provider.png)
 
-4. Enter your Azure DevOps Server **personal access token**. This can be found in your user profile, which should still be open in the browser tab from Step 1.
+## Step 2: On Azure DevOps Server, Create a New Personal Access Token
 
-5. Enter the instance URL for your Azure DevOps Server in HTTP URL and API URL textboxes.
+1. Log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
-5. Verify the information entered on this page and then click "Create VCS provider." This will take you back to the VCS Providers page which now includes your new Azure DevOps Server provider.
+    ~> **Important:** The account you use for connecting Terraform Cloud **must have Project Collection Administrator access** to any projects containing repositories of Terraform configurations, since creating webhooks requires these permissions. It is not possible to create custom access roles with lower levels of privilege, as Microsoft does not currently allow delegation of this capability.
 
-    ![Azure DevOps Server Screenshot: Configuring a new connection to Azure DevOps Server in Terraform Cloud](./images/azure-devops-server-create-provider.png)
+2. Navigate to User settings -> Security -> Personal access tokens on your Azure DevOps Server instance.
 
-## Step 3: On Workstation, Create an SSH Key for Terraform Cloud
+3. Click the "New Token" button to generate a new personal access token with "Code (Read)" and "Code (Status)" scopes. (We recommend also granting access to "All accessible organizations.")
+
+    ![Azure DevOps Server Screenshot: Creating a new personal access token in your Azure DevOps Server Profile](./images/azure-devops-server-create-token.png)
+
+4. Copy the generated token to your clipboard; you’ll paste it in the next step. Leave this page open in a browser tab.
+
+    ![Azure DevOps Server Screenshot: Copy generated token](./images/azure-devops-server-copy-token.png)
+
+## Step 3: On Terraform Cloud, Add the Personal Access Token
+
+1. On the "Configure settings" step there is one textbox. Enter your Azure DevOps Server **personal access token** from Step 2. Click the "Continue" button to continue to the next step.
+
+    ![Azure DevOps Server Screenshot: Enter Personal Access Token](./images/azure-devops-server-configure-settings.png)
+
+## Step 4: On Workstation, Create an SSH Key for Terraform Cloud
 
 On a secure workstation, create an SSH keypair that Terraform Cloud can use to connect to Azure DevOps Server. The exact command depends on your OS, but is usually something like `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
 
@@ -80,7 +79,7 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 
 ## Step 5: On Terraform Cloud, Add SSH Private Key
 
-1. Go back to your Terraform Cloud browser tab and paste the text of the **SSH private key** you created in step 3 into the text field and click the "Add SSH key" button.
+1. Go back to your Terraform Cloud browser tab and paste the text of the **SSH private key** you created in step 3 into the text field of the "Set up SSH keypair" step. Click the "Add SSH key" button.
 
     ![Terraform Cloud screenshot: Add SSH Key](./images/azure-devops-server-add-private-key.png)
 
