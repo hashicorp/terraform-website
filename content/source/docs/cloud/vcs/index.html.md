@@ -41,6 +41,8 @@ To use configurations from VCS, Terraform Cloud needs to do several things:
 - Register webhooks with your VCS provider, to get notified of new commits to a chosen branch.
 - Download the contents of a repository at a specific commit in order to run Terraform with that code.
 
+~> **Important:** Terraform Cloud's authorization controls are not inherited from your VCS provider. This means that the user you use when integrating Terraform Cloud with a VCS may have a different level of access to repositories than it does within Terraform Cloud itself. Keep this in mind when selecting a user, as it may affect your security posture in one or both systems.
+
 ### Webhooks
 
 Terraform Cloud uses webhooks to monitor new commits and pull requests.
