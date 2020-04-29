@@ -3,20 +3,20 @@ layout: "cloud"
 page_title: "Plan JSON Output - API Docs - Terraform Cloud"
 ---
 
--> **Note:** This endpoint is only supported when using terraform version 0.12.X or greater.
 
-## Download the JSON execution plan for a run or plan
+## Retrieve the JSON execution plan
 
 `GET /api/v2/plans/:id/json-output`
+
 `GET /api/v2/runs/:id/plan/json-output`
 
 These endpoints generate a temporary authenticated URL to the location of the [JSON formatted execution plan](https://www.terraform.io/docs/internals/json-format.html#format-summary).  When successful, this endpoint responds with a temporarily redirect that should be followed.  If using a client that can follow redirects, you can use this endpoint to save the `.json` file locally without needing to save the temporary URL.
 
 This temporary URL provided by the redirect has a life of **1 minute**, and should not be relied upon beyond the initial request.  If you need repeat access, you should use this endpoint to generate a new URL each time.
 
-### Permission requirements
+-> **Note:** This endpoint is only supported when using terraform version 0.12.X or greater.
 
-This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens) that has [**admin** level permission](../users-teams-organizations/permissions.html#admin) to access the workspace.
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens) that has [**admin** level permission](../users-teams-organizations/permissions.html#admin) to access the workspace.
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
