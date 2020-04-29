@@ -12,7 +12,7 @@ Before starting the install process, you must:
 - prepare an [application settings](#application-settings) file, which defines the settings for the Terraform Enterprise application.
 - prepare `/etc/replicated.conf`, which defines the settings for the Replicated installer.
 - copy your license file to the instance.
-- download the `.airgap` bundle to the instance (airgapped mode only).
+- download the `.airgap` bundle to the instance (Airgapped mode only).
 
 You may also need to provide additional flags (such as the instance's public and private IP addresses) in order to avoid being prompted for those values when running the installer (which may result in either a failure of the installer or a unbounded delay while waiting for input).
 
