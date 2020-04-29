@@ -95,7 +95,7 @@ These endpoints generate a temporary authenticated URL to the location of the [J
 
 This temporary URL provided by the redirect has a life of **1 minute**, and should not be relied upon beyond the initial request.  If you need repeat access, you should use this endpoint to generate a new URL each time.
 
--> **Note:** This endpoint is only supported when using terraform version 0.12.X or greater.
+-> **Note:** This endpoint is available for plans using Terraform 0.12 and later.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens) that has [**admin** level permission](../users-teams-organizations/permissions.html#admin) to access the workspace.
 
