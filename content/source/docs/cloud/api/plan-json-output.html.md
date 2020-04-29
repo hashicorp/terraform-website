@@ -21,7 +21,7 @@ This temporary URL provided by the redirect has a life of **1 minute**, and shou
 Status  | Response                  | Reason
 --------|---------------------------|----------
 [204][] | No Content                | Plan JSON supported, but plan has not yet completed.
-[307][] | HTTP Redirect             | Plan JSON found and temporary download URL generated
+[307][] | Temporary Redirect        | Plan JSON found and temporary download URL generated
 [422][] | [JSON API error object][] | Plan does not use a supported version of terraform (< 0.12.X)
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
