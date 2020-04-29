@@ -77,7 +77,8 @@ curl \
       }
     },
     "links": {
-      "self": "/api/v2/plans/plan-8F5JFydVYAmtTjET"
+      "self": "/api/v2/plans/plan-8F5JFydVYAmtTjET",
+      "json-output": "/api/v2/plans/plan-8F5JFydVYAmtTjET/json-output"
     }
   }
 }
