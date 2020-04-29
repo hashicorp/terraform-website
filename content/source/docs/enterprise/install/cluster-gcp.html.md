@@ -101,7 +101,7 @@ The module will create the VPC, the subnet, and the required firewalls. It will 
 3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/google` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
     - Fill in values for all of the required input variables.
-    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the **demo** operational mode.
+    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the *Demo* operational mode.
     - Map all of the module's [output values][outputs] to root-level outputs, so that Terraform will display them after applying the configuration. For example:
 
         ```hcl
@@ -162,4 +162,4 @@ Please see the [hashicorp/terraform-enterprise/google registry page][inputs] for
 * `certificate` - The GCP link to the certificate. If you'd like to use a certificate from another source, you can specify the filename in this variable, and then comment out lines 13 and 14 in the file `gcp/modules/lb/forwarding_rule.tf` and uncomment line 16.
 * `ssl_policy` - The GCP SSL policy to use. If you are providing a certificate file, comment out this section in the `variables.tf` file and the `gcp/modules/lb/forwarding_rule.tf` file.
 * `postgresql_password` - This is the password for connecting to Postgres, in base64. To base64 encode your password, run `base64 <<< databasepassword` on the command line. Specify that output as the variable's value.
-* `airgap_package_url` - Please download the air gap package you'll use and store it in an artifact repository or some other web-accessible location. Do not use the direct download URL from the vendor site - that URL is time-limited!
+* `airgap_package_url` - Please download the airgap package you'll use and store it in an artifact repository or some other web-accessible location. Do not use the direct download URL from the vendor site - that URL is time-limited!

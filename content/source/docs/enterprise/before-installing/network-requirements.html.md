@@ -33,7 +33,7 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 * `download.docker.com`
 * `production.cloudflare.docker.com`
 
-Air gapped installs do not check for updates over the network.
+Airgapped installs do not check for updates over the network.
 
 Additionally, the following hostnames are accessed unless a
 [custom Terraform bundle](/docs/cloud/run/install-software.html#custom-and-community-providers)

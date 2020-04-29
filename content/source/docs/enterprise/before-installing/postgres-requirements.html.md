@@ -5,7 +5,7 @@ page_title: "PostgreSQL Requirements - Before Installing - Terraform Enterprise"
 
 # PostgreSQL Requirements for Terraform Enterprise
 
--> **Note:** These requirements apply to the `External Services` operational mode, not the mounted disk operational mode. See the [Pre-Install Checklist](./index.html) for more information.
+-> **Note:** These requirements apply to the *External Services* operational mode, not the *Mounted Disk* operational mode. See the [Pre-Install Checklist](./index.html) for more information.
 
 To use an external PostgreSQL database with Terraform Enterprise, the following
 requirements must be met:
@@ -47,6 +47,6 @@ CREATE EXTENSION IF NOT EXISTS "citext" WITH SCHEMA "registry";
 
 When providing optional extra keyword parameters for the database connection,
 note an additional restriction on the `sslmode` parameter is that only the
-`require`, `verify-full`, `verify-ca`, and `disable` values are allowed. The default value of `sslmode` is set to `require` with `external services` installation or `disable` with `demo` installation.
+`require`, `verify-full`, `verify-ca`, and `disable` values are allowed. The default value of `sslmode` is set to `require` with _External Services_ installation or `disable` with *Demo* installation.
 
 -> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/9.6/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt`, which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting.

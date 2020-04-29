@@ -5,7 +5,7 @@ page_title: "Mounted Disk Requirements - Before Installing - Terraform Enterpris
 
 # Disk Requirements for Mounted Disk Operational Mode
 
-If you choose to use the "Production - Mounted Disk" operational mode, Terraform Enterprise will manage its own PostgreSQL database and object storage using a separate directory on the host, with the intention that the directory is configured to store its data on an external disk, such as EBS, iSCSI, etc.
+If you choose to use the *Mounted Disk* operational mode, Terraform Enterprise will manage its own PostgreSQL database and object storage using a separate directory on the host, with the intention that the directory is configured to store its data on an external disk, such as EBS, iSCSI, etc.
 
 We strongly suggest following the guidelines below for mounted disk storage.
 
