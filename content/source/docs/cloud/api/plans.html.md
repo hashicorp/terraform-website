@@ -91,7 +91,7 @@ curl \
 
 `GET /runs/:id/plan/json-output`
 
-These endpoints generate a temporary authenticated URL to the location of the [JSON formatted execution plan](https://www.terraform.io/docs/internals/json-format.html#format-summary).  When successful, this endpoint responds with a temporarily redirect that should be followed.  If using a client that can follow redirects, you can use this endpoint to save the `.json` file locally without needing to save the temporary URL.
+These endpoints generate a temporary authenticated URL to the location of the [JSON formatted execution plan](https://www.terraform.io/docs/internals/json-format.html#format-summary).  When successful, this endpoint responds with a temporary redirect that should be followed.  If using a client that can follow redirects, you can use this endpoint to save the `.json` file locally without needing to save the temporary URL.
 
 This temporary URL provided by the redirect has a life of **1 minute**, and should not be relied upon beyond the initial request.  If you need repeat access, you should use this endpoint to generate a new URL each time.
 
