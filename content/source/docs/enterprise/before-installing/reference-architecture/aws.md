@@ -167,9 +167,9 @@ provided by AWS.
 
 #### Additional Information
 
-- [RDS Multi-AZ deployments](https://aws.amazon.com/rds/details/multi-az/).
+- [RDS Multi-AZ deployments](https://aws.amazon.com/rds/details/multi-az/)
 
-- [S3 Standard storage class](https://aws.amazon.com/s3/storage-classes/).
+- [S3 Standard storage class](https://aws.amazon.com/s3/storage-classes/)
 
 ## Infrastructure Provisioning
 

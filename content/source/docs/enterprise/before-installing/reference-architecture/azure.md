@@ -128,8 +128,11 @@ detail.
 #### Load Balancer
 
 There are a few options available:
+
 - Azure Public Load Balancer: This is a layer-4 Load Balancer and offers the simplest solution Azure has to offer. In this mode you must do TLS pass-through and can not use a Web Application Firewall (WAF), although this is often mitigated with other firewall appliances that sit in front of the Load Balancer
+
 - Azure Public Application Gateway: this is a layer-7 Load Balancer, offers more features and is more reliable than the public Load Balancer, but is more complex. In this mode, you can do TLS termination, however, you must also serve the same certificate on the backend instances essentially creating a pass-through scenario. You can use a Web Application Firewall (WAF) in this configuration. Application Gateway can utilize version 2 of the PaaS in Azure, but private IP addressing is not possible with this option
+
 - Azure Private Application Gateway: this is a layer-7 Load Balancer, offers more features and is more reliable than the public Load Balancer, but is more complex. In this mode you can do TLS termination, however, you must also serve the same certificate on the backend instances, essentially creating a pass-through scenario, and you must also upload a private CA bundle to the Application Gateway. In the Private configuration, Application Gateway can utilize **ONLY** version 1 of the PaaS in Azure, but can use private IP addresses.
 
 #### DNS
