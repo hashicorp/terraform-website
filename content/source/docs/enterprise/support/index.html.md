@@ -29,7 +29,7 @@ Diagnostic information is available via in the installer dashboard on port 8800 
 
 On the dashboard, click on the Support tab:
 
-![Terraform Enterprise Dashboard Top](./assets/ptfe-dashboard.png)
+![Terraform Enterprise Dashboard Top](./assets/tfe-dashboard.png)
 
 On the next page, click the _Download Support Bundle_ button which will download the support bundle directly to your web browser.
 
