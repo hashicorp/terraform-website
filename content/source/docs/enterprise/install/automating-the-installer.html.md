@@ -144,7 +144,7 @@ The following settings apply to every installation:
 
 - `hostname` — (Required) The hostname you will use to access your installation.
 - `installation_type` — (Required) One of `poc` or `production`.
-- `enc_password` — Set the [encryption password](./encryption-password.html) for the install
+- `enc_password` — Set the [encryption password](./encryption-password.html) for the install.
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`.
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`.
 - `enable_metrics_collection` — Whether Terraform Enterprise's [internal metrics collection](../admin/monitoring.html#internal-monitoring) should be enabled; defaults to `true`.
@@ -186,8 +186,8 @@ If you have chosen `disk` for `production_type`, `disk_path` is required:
 
 If you want to use an [alternative Terraform build worker image](./installer.html#alternative-terraform-worker-image), the following settings apply:
 
-- `tbw_image` - Set this to `custom_image` if you want to use an alternative Terraform build worker image. (The default is `default_image`.)
-- `custom_image_tag` - The name and tag for your alternative Terraform build worker image in the format `<name>:<tag>`. (The default is `hashicorp/build-worker:now`.)
+- `tbw_image` - Set this to `custom_image` if you want to use an alternative Terraform build worker image (the default is `default_image`).
+- `custom_image_tag` - The name and tag for your alternative Terraform build worker image in the format `<name>:<tag>` (the default is `hashicorp/build-worker:now`).
 
 If you have chosen `external` for `production_type`, the following settings apply:
 
@@ -199,7 +199,7 @@ If you have chosen `external` for `production_type`, the following settings appl
 
 Select which placement will be used for blob storage: S3, Azure, or GCS. Based on this value, you only need to provide one set of the following variables.
 
-- `placement` — (Required) Set to `placement_s3` for S3, `placement_azure` for Azure, or `placement_gcs` for GCS
+- `placement` — (Required) Set to `placement_s3` for S3, `placement_azure` for Azure, or `placement_gcs` for GCS.
 
 For S3 (or S3-compatible storage providers):
 

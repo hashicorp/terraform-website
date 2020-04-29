@@ -284,7 +284,7 @@ services such as DNS.
     geo-restore
     feature](https://docs.microsoft.com/en-us/azure/postgresql/concepts-business-continuity)
     provides the ability to recover the database backup to the
-    secondary Azure Region
+    secondary Azure Region.
 
   - [Geo-redundant storage (GRS) for Azure
     Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy-grs)

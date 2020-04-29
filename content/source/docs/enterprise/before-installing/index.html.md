@@ -130,7 +130,7 @@ Terraform Enterprise currently supports running under the following operating sy
     - Red Hat Enterprise Linux 7.4 - 7.7
     - CentOS 7.4 - 7.7
 
-    Clusters currently don't support other Linux variants.
+    Clusters currently do not support other Linux variants.
 
 - **Standalone deployment:**
   
@@ -166,9 +166,9 @@ Some operating systems have specific configuration requirements:
 For other Linux distributions, check Docker compatibility:
 
 * The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 18.09.2). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
-    * Replicated 2.32.0 and above required when running Docker 18+
-    * In Online mode, the installer will install Docker automatically
-    * In Airgapped mode, Docker should be installed before you begin
+    * Replicated 2.32.0 and above required when running Docker 18+.
+    * In Online mode, the installer will install Docker automatically.
+    * In Airgapped mode, Docker should be installed before you begin.
 * For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
 
 ~> **Important:** We do not recommend running Docker under a 2.x kernel.

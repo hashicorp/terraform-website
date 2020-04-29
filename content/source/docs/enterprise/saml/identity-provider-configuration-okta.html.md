@@ -24,7 +24,7 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
     - **Name ID format** (drop-down): EmailAddress (the full name for this format in the SAML specification is `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`).
     - **Application username** (drop-down): Email
 
-        -> **Note:** If you are using Terraform Enterprise version v201912-1 or later, you can also choose Email Prefix for the application username. (This was unreliable in older versions due to a bug that required usernames to be at least 3 characters.)
+        -> **Note:** If you are using Terraform Enterprise version v201912-1 or later, you can also choose Email Prefix for the application username (this was unreliable in older versions due to a bug that required usernames to be at least 3 characters).
 
     ![Screenshot: The "Configure SAML" page of Okta's new app workflow, with the specified settings entered.](./images/sso-okta-new-application-saml.png)
 
@@ -35,7 +35,7 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
 
       ![Screenshot: Further down on Okta's "Configure SAML" page, with a group attribute statement partially configured.](./images/sso-okta-new-application-attributes.png)
 6. Still in the "Configure SAML" page, optionally configure a site admin permissions attribute statement. This statement determines which users can administer the entire Terraform Enterprise instance (see [Administering Terraform Enterprise](../admin/index.html) for more information about site admin permissions). Under the "Attribute Statements (Optional)" header, configure a statement as follows:
-    - **Name:** `SiteAdmin` (This is the default name for TFE's site admin [attribute][]; the name of this attribute can be changed in [TFE's SAML settings](./configuration.html) if necessary.)
+    - **Name:** `SiteAdmin` (this is the default name for TFE's site admin [attribute][]; the name of this attribute can be changed in [TFE's SAML settings](./configuration.html) if necessary.)
     - **Name Format** (drop-down): Basic
     - **Value:** An [Okta expression](https://developer.okta.com/reference/okta_expression_language/) that will evaluate to a boolean: `true` for every user who should have site admin permissions, but `false` for any users who should **not** have site admin permissions. The exact expression depends on the user properties you use to manage admin permissions.
 7. Preview the SAML response and make sure it matches your expectations.

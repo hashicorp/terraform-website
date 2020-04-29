@@ -33,7 +33,7 @@ On the dashboard, click on the Support tab:
 
 On the next page, click the _Download Support Bundle_ button which will download the support bundle directly to your web browser.
 
-![Terraform Enterprise Support](./assets/ptfe-support.png)
+![Terraform Enterprise Support](./assets/tfe-support.png)
 
 ### Uploading the Support Bundle
 

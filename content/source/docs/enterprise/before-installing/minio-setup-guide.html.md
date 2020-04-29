@@ -79,18 +79,18 @@ aws --region us-east-1 --endpoint-url http://<ip address from above>:9000 s3 mb 
 
 You may now [continue the installation in the browser](../install/installer.html#continue-installation-in-browser). When you arrive at the Operational Mode choice in the installer, follow these steps:
 
-1. Choose the "Production" installation type
-2. Choose the *External Services* operational mode
-3. Provide the required Database URL for the PostgreSQL configuration
-4. Choose "S3" for object storage
-5. Enter the access key and secret access key using the information retrieved from Minio
-6. Provide the endpoint URL, like: `http://<ip address from above>:9000`
-7. Enter the name of the bucket you created above (`tfe` in the example)
-8. Enter `us-east-1` for the region; this is arbitrary, but must be a valid AWS region
-   **Note:** The "Test Authentication" button does not currently work for non-AWS endpoints
-9. Click "Save"
+1. Choose the "Production" installation type.
+2. Choose the *External Services* operational mode.
+3. Provide the required Database URL for the PostgreSQL configuration.
+4. Choose "S3" for object storage.
+5. Enter the access key and secret access key using the information retrieved from Minio.
+6. Provide the endpoint URL, like: `http://<ip address from above>:9000`.
+7. Enter the name of the bucket you created above (`tfe` in the example).
+8. Enter `us-east-1` for the region; this is arbitrary, but must be a valid AWS region.
+   **Note:** The "Test Authentication" button does not currently work for non-AWS endpoints.
+9. Click "Save".
 
 ## Next Steps
 
-- Familiarize yourself with the various storage backends provided by Minio
-- Make sure you know how to back up and restore the data written to Minio
+- Familiarize yourself with the various storage backends provided by Minio.
+- Make sure you know how to back up and restore the data written to Minio.
