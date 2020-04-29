@@ -177,7 +177,7 @@ for more details.
 
 ## Installation
 
-The installer can run in two modes, Online or Air Gapped. Each of these modes has a different way of executing the installer, but the result is the same.
+The installer can run in two modes, Online or Airgapped. Each of these modes has a different way of executing the installer, but the result is the same.
 
 ~> **Note:** After running the installation script, the remainder of the installation is done through a browser using the installer dashboard on port 8800 of the TFE instance. To complete the installation, you must be able to connect to that port via HTTPS. The installer uses an internal CA to issue bootstrap certificates, so you will see a security warning when first connecting, and you'll need to proceed with the connection anyway.
 
@@ -194,13 +194,13 @@ If your instance can access the Internet, use the Online install mode.
     * You will see a security warning when first connecting. This is expected and you'll need
       to proceed with the connection anyway.
 
-### Run the Installer - Air Gapped
+### Run the Installer - Airgapped
 
-If the instance cannot reach the Internet, follow these steps to begin an Air Gapped installation.
+If the instance cannot reach the Internet, follow these steps to begin an Airgapped installation.
 
 #### Prepare the Instance
 
-1. Air Gap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Pre-Install Checklist: Software Requirements](../before-installing/index.html#software-requirements) for details).
+1. Airgap installations require Docker to be pre-installed. Double-check that your instance has a supported version of Docker (see [Pre-Install Checklist: Software Requirements](../before-installing/index.html#software-requirements) for details).
 1. Download the `.airgap` file using the information given to you in your setup email and place that file somewhere on the the instance.
     * If you use are using `wget` to download the file, be sure to use `wget --content-disposition "<url>"` so the downloaded file gets the correct extension.
     * The url generated for the .airgap file is only valid for a short time, so you may wish to download the file and upload it to your own artifacts repository.
@@ -222,9 +222,9 @@ From a shell on your instance, in the directory where you placed the `latest.tar
 
 1. Configure the hostname and the SSL certificate.
 1. Upload the license file provided to you in your setup email.
-1. Indicate whether you're doing an Online or Air Gapped installation. Choose Online if
+1. Indicate whether you're doing an Online or Airgapped installation. Choose Online if
    you're not sure.
-    * If you are doing an Air Gapped install, provide the path on the the instance
+    * If you are doing an Airgapped install, provide the path on the the instance
       to the `.airgap` file that you downloaded using the initial instructions in
       your setup email.
 1. Secure access to the installer dashboard. We recommend at least setting up the

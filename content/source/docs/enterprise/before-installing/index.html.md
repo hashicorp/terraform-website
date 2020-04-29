@@ -47,7 +47,7 @@ and should be selected based on your organization's preferences.
 ~> **Important:** Make this decision before you begin installation, because some modes have additional preflight requirements.
 The operational mode is selected at install time and cannot be changed once Terraform Enterprise is running.
 
-1. **Production - External Services** - This mode stores the majority of the
+1. _External Services_ - This mode stores the majority of the
    stateful data used by the instance in an external PostgreSQL database and
    an external S3-compatible endpoint, GCP Cloud Storage bucket or Azure blob storage. There is still critical data stored on the instance that must be managed with snapshots. Be sure to
    check the [PostgreSQL Requirements](./postgres-requirements.html) for information that
@@ -55,14 +55,14 @@ The operational mode is selected at install time and cannot be changed once Terr
    for users with expertise managing PostgreSQL or users that have access
    to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/).
    
-1. **Production - Mounted Disk** - This mode stores data in a separate
+1. *Mounted Disk* - This mode stores data in a separate
    directory on the host, with the intention that the directory is
    configured to store its data on an external disk, such as EBS, iSCSI,
    etc. This option is best for users with experience mounting performant
    block storage.
 
-    ~> **Important:** Mounted disk mode is not available with clustered deployment. Clusters must use either external services or demo mode.
-1. **Demo** - This mode stores all data on the instance. The data can be
+    ~> **Important:** *Mounted Disk* mode is not available with clustered deployment. Clusters must use either _External Services_ or *Demo* mode.
+1. *Demo* - This mode stores all data on the instance. The data can be
    backed up with the snapshot mechanism for restore later. This option is best for initial
    installation and testing, and is not recommended or supported for true production use.
 
@@ -101,13 +101,13 @@ If you are using standalone deployment, the key and X.509 certificate should bot
 
 Make sure your data storage services or device meet Terraform Enterprise's requirements. These requirements differ based on operational mode:
 
-- **External services:**
+- _External Services_
     - [PostgreSQL Requirements](./postgres-requirements.html)
-    - Any S3-compatible object storage service (GCP Cloud Storage or Azure blob storage) meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
+    - Any S3-compatible object storage service, GCP Cloud Storage or Azure blob storage meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
         - In environments without their own storage service, it may be possible to use [Minio](https://minio.io) for object storage. See the [Minio Setup Guide](./minio-setup-guide.html) for details.
     - Optionally: if you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](./vault.html).
 
-- **Mounted disk:**
+- *Mounted Disk*
     - [Mounted Disk Requirements](./disk-requirements.html)
 
 -> **Note:** If you are following one of the [reference architectures](./reference-architecture/index.html), refer to it while preparing your data storage services.
@@ -133,7 +133,7 @@ Terraform Enterprise currently supports running under the following operating sy
     Clusters currently don't support other Linux variants.
 
 - **Standalone deployment:**
-    
+  
     - Debian 7.7+
     - Ubuntu 14.04.5 / 16.04 / 18.04
     - Red Hat Enterprise Linux 7.4 - 7.7
@@ -168,7 +168,7 @@ For other Linux distributions, check Docker compatibility:
 * The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 18.09.2). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
     * Replicated 2.32.0 and above required when running Docker 18+
     * In Online mode, the installer will install Docker automatically
-    * In Air Gapped mode, Docker should be installed before you begin
+    * In Airgapped mode, Docker should be installed before you begin
 * For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
 
 ~> **Important:** We do not recommend running Docker under a 2.x kernel.
@@ -183,9 +183,9 @@ If you plan to specify any non-default permissions for Terraform Enterprise's in
 
 ### SELinux
 
-SELinux is supported when Terraform Enterprise runs in `External Services` mode and only the default SELinux policies provided by RedHat are used. Terraform Enterprise v201812-1 or later is required for this support.
+SELinux is supported when Terraform Enterprise runs in _External Services_ mode and only the default SELinux policies provided by RedHat are used. Terraform Enterprise v201812-1 or later is required for this support.
 
-SELinux is not supported when Terraform Enterprise runs in in `Demo` and `Mounted Disk` modes. When running in these modes the host running the installer must have SELinux configured in permissive mode.
+SELinux is not supported when Terraform Enterprise runs in in *Demo* and *Mounted Disk* modes. When running in these modes the host running the installer must have SELinux configured in permissive mode.
 
 To configure SELinux in permissive mode for the runtime only, run `setenforce 0` as root.
 

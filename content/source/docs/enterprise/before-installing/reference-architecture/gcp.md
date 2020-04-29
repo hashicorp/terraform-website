@@ -23,7 +23,7 @@ architecture.
 
 ## Infrastructure Requirements
 
--> **Note:** This reference architecture focuses on the _Production - External
+-> **Note:** This reference architecture focuses on the _External
 Services_ operational mode.
 
 Depending on the chosen [operational
@@ -209,7 +209,7 @@ See below for more detail on how each component handles Zone failure.
 By utilizing a Regional Managed Instance Group, the Terraform Enterprise instance automatically recovers
 in the event of any outage except for the loss of an entire region.
 
-With external services (PostgreSQL Database, Object Storage) in use,
+With _External Services_ (PostgreSQL Database, Object Storage) in use,
 there is still some application configuration data present on the Terraform Enterprise server
 such as installation type, database connection settings, hostname. This data
 rarely changes. If the configuration on *Terraform Enterprise* changes you should update the
@@ -279,7 +279,7 @@ functionality to support a low MTTR in the event of data corruption.
 
 ##### Terraform Enterprise Servers
 
-With external services (PostgreSQL Database, Object Storage) in
+With _External Services_ (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
 Terraform Enterprise server such as installation type, database connection settings,
 hostname. This data rarely changes. We recommend [configuring automated

@@ -9,7 +9,7 @@ Terraform Enterprise is able to backup and restore all of its data. Its backup a
 
 Backups and restores are initiated by API calls, which can be performed from a remote system. This API is separate from Terraform Enterprise's application-level APIs, and uses a different authorization token.
 
-Backing up and restoring into a new installation of Terraform Enterprise is the only supported way to migrate between deployment types (standalone vs. clustered) and operational modes (external services vs. mounted disk, etc.).
+Backing up and restoring into a new installation of Terraform Enterprise is the only supported way to migrate between deployment types (Standalone vs. Clustered) and operational modes (*External Services* vs. *Mounted Disk*, etc.).
 
 ## About Backups
 

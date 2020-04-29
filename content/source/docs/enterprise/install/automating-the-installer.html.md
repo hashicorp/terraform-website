@@ -5,14 +5,14 @@ page_title: "Automated Installation - Install and Config - Terraform Enterprise"
 
 # Automated Terraform Enterprise Installation — Standalone Instance
 
-The installation of Terraform Enterprise can be automated for both online and air gapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
+The installation of Terraform Enterprise can be automated for both online and airgapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
 
 Before starting the install process, you must:
 
 - prepare an [application settings](#application-settings) file, which defines the settings for the Terraform Enterprise application.
 - prepare `/etc/replicated.conf`, which defines the settings for the Replicated installer.
 - copy your license file to the instance.
-- download the `.airgap` bundle to the instance (air gapped mode only).
+- download the `.airgap` bundle to the instance (airgapped mode only).
 
 You may also need to provide additional flags (such as the instance's public and private IP addresses) in order to avoid being prompted for those values when running the installer (which may result in either a failure of the installer or a unbounded delay while waiting for input).
 
@@ -20,11 +20,11 @@ This document expects that the user is already familiar with how to do a [manual
 
 ## Application settings
 
-This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the demo installation type or as complex as specifying the PostgreSQL connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
+This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the *Demo* installation type or as complex as specifying the PostgreSQL connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
 
 ### Format
 
-The settings file is JSON formatted. All values must be strings.  The example below is suitable for a demo installation:
+The settings file is JSON formatted. All values must be strings.  The example below is suitable for a *Demo* installation:
 
 ```json
 {
@@ -78,7 +78,7 @@ To extract the settings as JSON, access the instance via SSH, then run:
 tfe$ replicatedctl app-config export > settings.json
 ```
 
-Here is an example `app-config export` output for an instance configured in demo mode:
+Here is an example `app-config export` output for an instance configured in *Demo* mode:
 
 ```
 tfe$ replicatedctl app-config export > settings.json
@@ -260,9 +260,9 @@ bash ./install.sh \
 
 Note the `private-address` and `public-address` flags provided to the installer.  These may be left out, but the installer will prompt for them if it is unable to determine appropriate values automatically. If the instance will not have a separate public address, you may provide the private address for both values.
 
-### Air Gapped
+### Airgapped
 
-The following is an example `/etc/replicated.conf` suitable for an automated air gapped install, which builds on the online example above.  Note the addition of `LicenseBootstrapAirgapPackagePath`, which is a path to the `.airgap` bundle on the instance.
+The following is an example `/etc/replicated.conf` suitable for an automated airgapped install, which builds on the online example above.  Note the addition of `LicenseBootstrapAirgapPackagePath`, which is a path to the `.airgap` bundle on the instance.
 
 ```json
 {
@@ -279,9 +279,9 @@ The following is an example `/etc/replicated.conf` suitable for an automated air
 }
 ```
 
-#### Invoking the air gap installation script
+#### Invoking the airgap installation script
 
-Following on from the [manual air gapped install](./installer.html#run-the-installer-airgapped) steps, you must also have the installer bootstrapper already on the instance.  For illustrative purposes, it is assumed the installer bootstrapper has been unarchived in `/tmp`.
+Following on from the [manual airgapped install](./installer.html#run-the-installer-airgapped) steps, you must also have the installer bootstrapper already on the instance.  For illustrative purposes, it is assumed the installer bootstrapper has been unarchived in `/tmp`.
 
 Once `/etc/replicated.conf` has been created, you can now execute the install script as `root`:
 

@@ -120,9 +120,9 @@ The instructions will make use of the following configuration values:
 
 ~> **Important:** If you are using the release sequence variable to pin an install to a particular version of TFE, be aware that the release sequence numbers between the Clustering and Non-Clustering versions are different. Consult with HashiCorp or refer to an existing installation to determine which Clustering release sequence numbers to use.
 
-### Differences Between Air Gap and Online Installs
+### Differences Between Airgap and Online Installs
 
-The TFE Clustering installer needs to download some additional code and data to install the full cluster. In an air gap situation, this additional code needs to be placed on the instance for the installer to use.
+The TFE Clustering installer needs to download some additional code and data to install the full cluster. In an airgap situation, this additional code needs to be placed on the instance for the installer to use.
 
 In online installs, the code is downloaded from HashiCorp servers automatically.
 
@@ -152,7 +152,7 @@ ptfe install setup \
 
 You can configure the installation by providing any of the following options to the `ptfe install setup` and `ptfe install join` commands. If you specify any of these options for the first primary, be sure to also specify them for all of the other instances.
 
-* `--airgap-installer`: The path on disk to the air gap installer package.
+* `--airgap-installer`: The path on disk to the airgap installer package.
 * `--http-proxy`: An http proxy to use for talking outside the cluster
 * `--additional-no-proxy`: Any hostnames that should not be accessed via the given http proxy.
 * `--internal-cidr`: An IPv4 CIDR range to use for internal communication between services. This range can be set in the case that the default values overlap with hosts that the cluster needs to access on a customers network. This value must be at least a /20, for example: `10.200.0.0/20`.

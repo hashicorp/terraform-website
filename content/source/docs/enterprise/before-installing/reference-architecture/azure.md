@@ -27,7 +27,7 @@ architecture.
 
 ## Infrastructure Requirements
 
--> **Note:** This reference architecture focuses on the _Production - External Services_ operational mode.
+-> **Note:** This reference architecture focuses on the *External Services* operational mode.
 
 Depending on the chosen [operational
 mode](../index.html#operational-mode-decision),
@@ -229,7 +229,7 @@ to the standby instance.
 
 ~> **Important:** Active-active configuration is not supported due to a serialisation requirement in the core components of Terraform Enterprise; therefore, all traffic from the Load Balancer *MUST* be routed to a single instance.
 
-When using the _Production - External Services_ deployment model (PostgreSQL Database and Object Storage), there is still some application configuration data present on the
+When using the *External Services* operational mode (PostgreSQL Database and Object Storage), there is still some application configuration data present on the
 Terraform Enterprise server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. If the application configuration has
 not changed since installation, both TFE1 and TFE2 will
@@ -304,7 +304,7 @@ corruption.
 
 ##### Terraform Enterprise Servers
 
-When using the _Production - External Services_ deployment model (PostgreSQL Database and Object Storage), there is still some application configuration data present on the
+When using the _External Services_ operational mode (PostgreSQL Database and Object Storage), there is still some application configuration data present on the
 Terraform Enterprise server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. We recommend
 [configuring automated
