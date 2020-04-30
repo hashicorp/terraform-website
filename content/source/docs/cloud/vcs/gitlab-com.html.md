@@ -7,7 +7,7 @@ page_title: "GitLab.com - VCS Providers - Terraform Cloud"
 
 These instructions are for using GitLab.com for Terraform Cloud's VCS features. [GitLab CE and GitLab EE have separate instructions,](./gitlab-eece.html) as do the [other supported VCS providers.](./index.html)
 
-Connecting Terraform Cloud to your VCS involves five steps:
+Connecting Terraform Cloud to your VCS involves four steps:
 
 On your VCS                                                                    | On Terraform Cloud
 --                                                                             |--

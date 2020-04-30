@@ -7,7 +7,7 @@ page_title: "GitHub Enterprise - VCS Providers - Terraform Cloud"
 
 These instructions are for using an on-premise installation of GitHub Enterprise for Terraform Cloud's VCS features. [GitHub.com has separate instructions,](./github-enterprise.html) as do the [other supported VCS providers.](./index.html)
 
-Connecting Terraform Cloud to your VCS involves five steps:
+Connecting Terraform Cloud to your VCS involves four steps:
 
 On your VCS | On Terraform Cloud
 --|--
@@ -35,7 +35,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 
 1. The next page has several steps to guide you through adding a new VCS provider. Select "GitHub" then select "Github Enterprise" from the dropdown.
 
-1. The next page is the "Set up provider" step. Fill in all the HTTP URL and API URL of your GitHub Enterprise instance.
+1. The next page is the "Set up provider" step. Fill in the HTTP URL and API URL of your GitHub Enterprise instance.
 
     Field         | Value
     --------------|--------------------------------------------
@@ -80,7 +80,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 
 ## Step 3: On Terraform Cloud, Set up Your Provider
 
-1. Enter the **Client ID** and **Client Secret** from the previous step, as well as an optional **Name** for this VCS connection.
+1. Enter the **Client ID** and **Client Secret** from the previous step.
 
     ![Terraform Cloud screenshot: add client fields](./images/gh-tfe-add-client-fields.png)
 
