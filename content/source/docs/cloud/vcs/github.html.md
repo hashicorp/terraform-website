@@ -87,26 +87,28 @@ The rest of this page explains the GitHub versions of these steps.
 
 -> **Note:** Most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. You can add or update the SSH private key at a later time.
 
-1. If you don't need an SSH keypair click the "Skip and Finish" button.
-
-2. If you do need an SSH keypair, create an SSH keypair on a secure workstation that Terraform Cloud can use to connect to GitHub.com. The exact command depends on your OS, but is usually something like:
-
-`ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`
-
-This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key. This SSH key **must have an empty passphrase**. Terraform Cloud cannot use SSH keys that require a passphrase.
-
-3. Logged into the GitHub.com account you want Terraform Cloud to act as, navigate to the SSH Keys settings page, add a new SSH key and paste the value of the SSH public key you just created.
-
-4. Paste the text of the **SSH private key** you created in step 2, and click the "Add SSH Key" button.
-
-    ![Terraform Cloud screenshot: the authorization screen](./images/gh-ssh-key.png)
-
 ### Important Notes
 
-- Do not use your personal SSH key to connect Terraform Cloud and Bitbucket Server; generate a new one or use an existing key reserved for service access.
-- In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to Bitbucket Server.
+- Do not use your personal SSH key to connect Terraform Cloud and GitHub; generate a new one or use an existing key reserved for service access.
+- In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to GitHub.
 - **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
 
+### If you don't need an SSH keypair:
+
+1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Provider page, which now includes your new GitHub client.
+
+### If you do need an SSH keypair:
+
+1. Create an SSH keypair on a secure workstation that Terraform Cloud can use to connect to GitHub.com. The exact command depends on your OS, but is usually something like:
+   `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`
+   This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key. This SSH key **must have an empty passphrase**. Terraform Cloud cannot use SSH keys that require a passphrase.
+
+2. Logged into the GitHub.com account you want Terraform Cloud to act as, navigate to the SSH Keys settings page, add a new SSH key and paste the value of the SSH public key you just created.
+
+3. Paste the text of the **SSH private key** you created in step 2, and click the "Add SSH Key" button.
+
+    ![Terraform Cloud screenshot: the ssh key screen](./images/gh-ssh-key.png)
+    
 ## Step 5: Contact Your GitHub Organization Admins
 
 If your organization uses OAuth app access restrictions, you had to click a "Request" button when authorizing Terraform Cloud, which sent an automated email to the administrators of your GitHub organization. An administrator must approve the request before Terraform Cloud can access your organization's shared repositories.
