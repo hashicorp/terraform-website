@@ -123,7 +123,7 @@ main = rule {
 }
 ```
 
--> **NOTE:** The above examples uses parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/).
+-> **NOTE:** The above examples uses parameters to facilitate module reuse within Terraform Cloud. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/).
 
 ## Managing Policy Sets
 
