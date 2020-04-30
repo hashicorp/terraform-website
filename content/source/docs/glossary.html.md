@@ -742,7 +742,7 @@ Many other cloud or self-hosted services provide [APIs][] that are compatible wi
 
 Terraform's `aws` [provider][] can manage S3 resources.
 
-Terraform Enterprise can use an S3-compatible [blob storage][] service when configured to use external services for storage.
+Terraform Enterprise can use an S3-compatible [blob storage][] service when configured to use *External Services* for storage.
 
 - [AWS: S3](https://aws.amazon.com/s3/)
 

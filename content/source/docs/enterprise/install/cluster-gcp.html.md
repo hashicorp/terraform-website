@@ -101,7 +101,7 @@ The module will create the VPC, the subnet, and the required firewalls. It will 
 3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/google` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
     - Fill in values for all of the required input variables.
-    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the **demo** operational mode.
+    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the *Demo* operational mode.
     - Map all of the module's [output values][outputs] to root-level outputs, so that Terraform will display them after applying the configuration. For example:
 
         ```hcl

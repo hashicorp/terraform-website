@@ -52,8 +52,8 @@ role when considering the reliability of the overall system:
 ## Operation Modes
 
 This section describes how to set up your Terraform Enterprise deployment to recover from
-failures in the various operational modes (demo, mounted disk, external
-services). The operational mode is selected at install time and can not be
+failures in the various operational modes (*Demo*, *Mounted Disk*, *External*
+*Services*). The operational mode is selected at install time and can not be
 changed once the install is running.
 
 The below tables explain where each data type in the
@@ -68,18 +68,18 @@ of the user.
 
 |  | Configuration | Vault | PostgreSQL | Blob Storage |
 |-------------------|--------------------------------------|----------------------------------------------------------------------------------------------|--------------------------------------|--------------------------------------|
-| Demo | Stored in Docker volumes on instance | Key material is stored in Docker volumes on instance, storage backend is internal PostgreSQL | Stored in Docker volumes on instance | Stored in Docker volumes on instance |
-| Mounted Disk | Stored in Docker volumes on instance | Key material on host in `/var/lib/tfe-vault`, storage backend is mounted disk PostgreSQL | Stored in mounted disks | Stored in mounted disks |
-| External Services | Stored in Docker volumes on instance | Key material on host in `/var/lib/tfe-vault`, storage backend is external PostgreSQL | Stored in external service | Stored in external service |
+| *Demo* | Stored in Docker volumes on instance | Key material is stored in Docker volumes on instance, storage backend is internal PostgreSQL | Stored in Docker volumes on instance | Stored in Docker volumes on instance |
+| *Mounted Disk* | Stored in Docker volumes on instance | Key material on host in `/var/lib/tfe-vault`, storage backend is mounted disk PostgreSQL | Stored in mounted disks | Stored in mounted disks |
+| *External Services* | Stored in Docker volumes on instance | Key material on host in `/var/lib/tfe-vault`, storage backend is external PostgreSQL | Stored in external service | Stored in external service |
 | External Vault | - | Key material in external Vault with user-defined storage backend | - | - |
 
 *Backup and Restore Responsibility*
 
 |                   | Configuration | Vault | PostgreSQL | Blob Storage |
 |-------------------|---------------|-------|------------|--------------|
-| Demo              | Terraform Enterprise | Terraform Enterprise | Terraform Enterprise | Terraform Enterprise |
-| Mounted Disk      | Terraform Enterprise | Terraform Enterprise | User                 | User                 |
-| External Services | Terraform Enterprise | Terraform Enterprise | User                 | User                 |
+| *Demo*            | Terraform Enterprise | Terraform Enterprise | Terraform Enterprise | Terraform Enterprise |
+| *Mounted Disk*    | Terraform Enterprise | Terraform Enterprise | User                 | User                 |
+| *External Services* | Terraform Enterprise | Terraform Enterprise | User                 | User                 |
 | External Vault    | -                    | User                 | -                    | -                    |
 
 ### Demo
@@ -92,7 +92,7 @@ all data and store it off the instance. The frequency of automated snapshots can
 be configured hourly such that the worst-case data loss can be as low as 1 hour.
 
 **Restore:** If the instance running Terraform Enterprise is lost, the only recovery
-mechanism in demo mode is to create a new instance and use the builtin Restore
+mechanism in *Demo* mode is to create a new instance and use the builtin Restore
 mechanism to recreate it from a previous snapshot.
 
 [Configure Snapshot and Restore following these instructions](../admin/automated-recovery.html).
@@ -119,7 +119,7 @@ means no state data is lost.
 
 ### External Services
 
-In the External Services operation mode, the
+In the *External Services* operation mode, the
 **Application Layer** and **Coordination Layer** execute on a Linux instance,
 but the **Storage Layer** is configured to use external services in the form of
 a PostgreSQL server and an S3-compatible Blob Storage.

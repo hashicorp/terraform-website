@@ -9,7 +9,7 @@ Terraform Enterprise is able to backup and restore all of its data. Its backup a
 
 Backups and restores are initiated by API calls, which can be performed from a remote system. This API is separate from Terraform Enterprise's application-level APIs, and uses a different authorization token.
 
-Backing up and restoring into a new installation of Terraform Enterprise is the only supported way to migrate between deployment types (standalone vs. clustered) and operational modes (external services vs. mounted disk, etc.).
+Backing up and restoring into a new installation of Terraform Enterprise is the only supported way to migrate between deployment types (Standalone vs. Clustered) and operational modes (*External Services* vs. *Mounted Disk*, etc.).
 
 ## About Backups
 
@@ -19,7 +19,7 @@ See [Data Security](../system-overview/data-security.html) for details about the
 
 ### API Authentication Token
 
-Calls to the backup API must be authenticated with a special bearer token, which can be found on the install dashboard (`https://<TFE HOSTNAME>:8800`) near the bottom of the page:
+Calls to the backup API must be authenticated with a special bearer token, which can be found on the settings dashboard (`https://<TFE HOSTNAME>:8800/settings`) near the bottom of the page:
 
 ![Screenshot: the TFE install dashboard, with the API token visible](./images/token.png)
 
@@ -140,3 +140,5 @@ curl \
   --form snapshot=@backup.blob \
   https://<TFE HOSTNAME>/_backup/api/v1/restore
 ```
+
+~> **Note:** The Bearer token used to restore the backup is specific to the instance, so if restoring to a separate instance, the token will be different for restore as it was for backup.
