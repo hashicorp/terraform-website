@@ -105,6 +105,8 @@ fail "Invalid HMAC" if hmac != @request.headers["X-TFE-Notification-Signature"]
 When saving a configuration with `enabled` set to `true`, or when using the [verify API][], Terraform Cloud sends a verification request to the configured URL. The response to this request is stored and available in the `delivery-responses` array of the `notification-configuration` resource.
 
 Configurations cannot be enabled if the verification request fails. Success is defined as an HTTP response with status code of `2xx`.
+Configurations with `destination_type` `email` can only be verified manually, they do not require an HTTP response.
+
 
 The most recent response is stored in the `delivery-responses` array.
 
@@ -148,17 +150,18 @@ If `enabled` is set to `true`, a verification request will be sent before saving
 Key path                            | Type           | Default | Description
 ------------------------------------|----------------|---------|------------
 `data.type`                         | string         |         | Must be `"notification-configuration"`.
-`data.attributes.destination-type`  | string         |         | Type of notification payload to send. Valid values are `"generic"` or `"slack"`.
+`data.attributes.destination-type`  | string         |         | Type of notification payload to send. Valid values are `"generic"`, `"email"` or `"slack"`.
 `data.attributes.enabled`           | bool           | `false` | Disabled configurations will not send any notifications.
 `data.attributes.name`              | string         |         | Human-readable name for the configuration.
 `data.attributes.token`             | string or null | `null`  | Optional write-only secure token, which can be used at the receiving server to verify request authenticity. See [Notification Authenticity][notification-authenticity] for more details.
 `data.attributes.triggers`          | array          | `[]`    | Array of triggers for which this configuration will send notifications. See [Notification Triggers][notification-triggers] for more details and a list of allowed values.
-`data.attributes.url`               | string         |         | HTTP or HTTPS URL to which notification requests will be made.
+`data.attributes.url`               | string         |         | HTTP or HTTPS URL to which notification requests will be made, only for configurations with `"destination_type:"` `"slack"` or `"generic"`
+`data.relationships.users`          | array          |         | Array of users part of the organization, only for configurations with `"destination_type:"` `"email"`
 
 [notification-authenticity]: #notification-authenticity
 [notification-triggers]: #notification-triggers
 
-### Sample Payload
+### Sample Payload for Generic Notification Configurations
 
 ```json
 {
@@ -181,6 +184,35 @@ Key path                            | Type           | Default | Description
   }
 }
 ```
+
+### Sample Payload for Email Notification Configurations
+
+```json
+{
+  "data": {
+    "type": "notification-configurations",
+    "attributes": {
+      "destination-type": "email",
+      "enabled": true,
+      "name": "Notify organization users about run",
+      "triggers": [
+        "run:applying",
+        "run:completed",
+        "run:created",
+        "run:errored",
+        "run:needs_attention",
+        "run:planning"
+      ]
+    },
+    "relationships": {
+       "users": {
+          "data": [ { "id": "organization-user-id", "type": "users" } ]
+       }
+    }
+  }
+}
+```
+
 
 ### Sample Request
 
@@ -552,7 +584,8 @@ Key path                            | Type   | Default | Description
 `data.attributes.name`              | string | (previous value) | User-readable name for the configuration.
 `data.attributes.token`             | string | (previous value) | Optional write-only secure token, which can be used at the receiving server to verify request authenticity. See [Notification Authenticity][notification-authenticity] for more details.
 `data.attributes.triggers`          | array  | (previous value) | Array of triggers for sending notifications. See [Notification Triggers][notification-triggers] for more details.
-`data.attributes.url`               | string | (previous value) | HTTP or HTTPS URL to which notification requests will be made.
+`data.attributes.url`               | string | (previous value) | HTTP or HTTPS URL to which notification requests will be made, only for configurations with  `"destination_type:"` `"slack"` or `"generic"`
+`data.relationships.users`          | array  |                  | Array of users part of the organization, only for configurations with `"destination_type:"` `"email"`
 
 [notification-authenticity]: #notification-authenticity
 [notification-triggers]: #notification-triggers
