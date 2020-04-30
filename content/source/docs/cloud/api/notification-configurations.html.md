@@ -204,7 +204,7 @@ Key path                            | Type           | Default | Description
         "run:planning"
       ]
     },
-    "relationships:" {
+    "relationships": {
        "users": {
           "data": [ { "id": "organization-user-id", "type": "users" } ]
        }
