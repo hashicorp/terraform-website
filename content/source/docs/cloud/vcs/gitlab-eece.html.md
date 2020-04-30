@@ -32,7 +32,7 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
     1. Make sure the upper-left organization menu currently shows your organization.
     1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
-    1. On the next page, click "VCS Provider" in the left sidebar.
+    1. On the next page, click "VCS Providers" in the left sidebar.
     1. Click the "Add VCS Provider" button.
 
 1. The next page has several steps to guide you through adding a new VCS provider. Select "GitLab" then "GitLab Enterprise Edition" or "GitLab Community Edition" from the dropdown.
