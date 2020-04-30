@@ -5,7 +5,7 @@ page_title: "Azure DevOps Services - VCS Providers - Terraform Cloud"
 
 # Configuring Azure DevOps Services Access
 
-These instructions are for using dev.azure.com for Terraform Cloud’s VCS features. [Other supported VCS providers](./index.html) have separate instructions.
+These instructions are for using dev.azure.com for Terraform Cloud's VCS features. [Other supported VCS providers](./index.html) have separate instructions.
 
 Connecting Terraform Cloud to your Azure DevOps Services VCS involves four steps:
 
@@ -25,9 +25,9 @@ The rest of the page explains these steps in more detail.
     If you just created your organization, you might already be on this page. Otherwise:
 
     1. Make sure the upper-left organization menu currently shows your organization.
-    1. Click the “Settings” link at the top of the page (or within the &#9776; menu)
-    1. On the next page, click “VCS Providers” in the left sidebar
-    1. Click the “Add a VCS Provider” button
+    1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
+    1. On the next page, click "VCS Providers" in the left sidebar
+    1. Click the "Add a VCS Provider" button
 
 1. The next page has several steps to guide you through adding a new VCS provider. Select "Azure DevOps" then select "Azure DevOps Services" from the dropdown.
 
@@ -37,7 +37,7 @@ The rest of the page explains these steps in more detail.
 
     ~> **Important:** The Azure DevOps Services account you use for connecting Terraform Cloud must have Project Collection Administrator access to any projects containing repositories of Terraform configurations, since creating webhooks requires admin permissions. It is not possible to create custom access roles with lower levels of privilege, as Microsoft does not currently allow delegation of this capability. If you're unable to load the link above, you can create a new application for the next step at one of the following links: `https://aex.dev.azure.com/app/register?mkt=en-US` or `https://app.vsaex.visualstudio.com/app/register?mkt=en-US`.
 
-1. Click the “Create new application” link at the bottom of the left column under the “Applications and services” header. The next page is a form asking for your company and application information. Fill the form in as follows:
+1. Click the "Create new application" link at the bottom of the left column under the "Applications and services" header. The next page is a form asking for your company and application information. Fill the form in as follows:
 
     Field name                 | Value
     ---------------------------|--------------------------------------------------
@@ -48,7 +48,7 @@ The rest of the page explains these steps in more detail.
 
     ![Azure DevOps Services Screenshot: Creating a new application in your Azure DevOps Services Profile](./images/azure-devops-services-create-application.png)
 
-1. In the "Authorized scopes" section, select only “Code (read)” and “Code (status)” and then click “Create Application.”
+1. In the "Authorized scopes" section, select only "Code (read)" and "Code (status)" and then click "Create Application."
 
     ![Azure DevOps Services Screenshot: Required permissions when creating a new application in your Azure DevOps Services Profile](./images/azure-devops-services-application-permissions.png)
 
@@ -98,4 +98,4 @@ The rest of the page explains these steps in more detail.
 
 ## Finished
 
-At this point, Azure DevOps Services access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization’s repositories.
+At this point, Azure DevOps Services access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization's repositories.

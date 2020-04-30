@@ -18,14 +18,14 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 
 ## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
-1. Open Terraform Cloud in your browser and navigate to the Settings > VCS Providers page for your organization. Click the “Add VCS Provider” button.
+1. Open Terraform Cloud in your browser and navigate to the Settings > VCS Providers page for your organization. Click the "Add VCS Provider" button.
 
     If you just created your organization, you might already be on this page. Otherwise:
 
     1. Make sure the upper-left organization menu currently shows your organization.
-    1. Click the “Settings” link at the top of the page (or within the &#9776; menu)
-    1. On the next page, click “VCS Providers” in the left sidebar
-    1. Click the “Add a VCS Provider” button
+    1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
+    1. On the next page, click "VCS Providers" in the left sidebar
+    1. Click the "Add a VCS Provider" button
 
 1. The next page has several steps to guide you through adding a new VCS provider. Select "Azure DevOps" then select "Azure DevOps Server" from the dropdown.
 
@@ -45,7 +45,7 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 
     ![Azure DevOps Server Screenshot: Creating a new personal access token in your Azure DevOps Server Profile](./images/azure-devops-server-create-token.png)
 
-4. Copy the generated token to your clipboard; you’ll paste it in the next step. Leave this page open in a browser tab.
+4. Copy the generated token to your clipboard; you'll paste it in the next step. Leave this page open in a browser tab.
 
     ![Azure DevOps Server Screenshot: Copy generated token](./images/azure-devops-server-copy-token.png)
 
@@ -85,4 +85,4 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 
 ## Finished
 
-At this point, Azure DevOps Server access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization’s repositories.
+At this point, Azure DevOps Server access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization's repositories.
