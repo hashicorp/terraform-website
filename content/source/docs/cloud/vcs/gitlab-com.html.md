@@ -78,8 +78,34 @@ The rest of this page explains the GitLab.com versions of these steps.
                                  
     ![GitLab screenshot: the authorization screen](./images/gitlab-authorize.png)
     
-3. Click the green "Authorize" button at the bottom of the authorization page. This returns you to Terraform Cloud's VCS Provider page, which now includes your new GitLab client.
+3. Click the green "Authorize" button at the bottom of the authorization page. 
 
+## Step 4: On Terraform Cloud, Set Up SSH keypair (optional)
+
+-> **Note:** Most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. You can add or update the SSH private key at a later time.
+
+### Important Notes
+
+- Do not use your personal SSH key to connect Terraform Cloud and GitLab; generate a new one or use an existing key reserved for service access.
+- In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to GitLab.
+- **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
+
+### If you don't need an SSH keypair:
+
+1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Provider page, which now includes your new GitLab client.
+
+### If you do need an SSH keypair:
+
+1. Create an SSH keypair on a secure workstation that Terraform Cloud can use to connect to GitLab.com. The exact command depends on your OS, but is usually something like:
+   `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`
+   This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key. This SSH key **must have an empty passphrase**. Terraform Cloud cannot use SSH keys that require a passphrase.
+
+2. Logged into the GitLab.com account you want Terraform Cloud to act as, navigate to the SSH Keys settings page, add a new SSH key and paste the value of the SSH public key you just created.
+
+3. Paste the text of the **SSH private key** you created in step 2, and click the "Add SSH Key" button. This returns you to Terraform Cloud's VCS Provider page, which now includes your new GitLab client.
+
+    ![Terraform Cloud screenshot: the ssh key screen](./images/gitlab-com-ssh-key.png)
+    
 ## Finished
 
 At this point, GitLab.com access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization's shared repositories.
