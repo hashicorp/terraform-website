@@ -7,32 +7,45 @@ page_title: "Bitbucket Cloud - VCS Providers - Terraform Cloud"
 
 These instructions are for using Bitbucket Cloud for Terraform Cloud's VCS features. Bitbucket Cloud is the cloud-hosted version of Bitbucket; [self-hosted Bitbucket Server instances have separate instructions,](./bitbucket-server.html) as do the [other supported VCS providers.](./index.html)
 
-Connecting Terraform Cloud to your VCS involves five steps:
+Connecting Terraform Cloud to your VCS involves four steps:
 
 On your VCS | On Terraform Cloud
 --|--
-Register your Terraform Cloud organization as a new app. Get ID and key. | &nbsp;
-&nbsp; | Tell Terraform Cloud how to reach VCS, and provide ID and key. Get callback URL.
-Provide callback URL. | &nbsp;
-&nbsp; | Request VCS access.
+&nbsp; | Create a new connection in Terraform Cloud. Get callback URL.
+Register your Terraform Cloud organization as a new app. Provide callback URL. Get ID and key. | &nbsp;
+&nbsp; | Provide Terraform Cloud with ID and key. Request VCS access.
 Approve access request. | &nbsp;
 
 The rest of this page explains the Bitbucket Cloud-specific versions of these steps.
 
-## Step 1: On Bitbucket Cloud, Create a New OAuth Consumer
+## Step 1: On Terraform Cloud, Begin adding a VCS Provider
+
+1. Open Terraform Cloud in your browser and navigate to the "VCS Provider" settings for your organization. Click the "Add VCS Provider" button.
+
+    If you just created your organization, you might already be on this page. Otherwise:
+
+    1. Click the upper-left organization menu, making sure it currently shows your organization.
+    1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
+    1. On the next page, click "VCS Provider" in the left sidebar.
+    1. Click the "Add VCS Provider" button.
+
+1. The next page has several steps to guide you through adding a new VCS provider. Select "Bitbucket" then select "Bitbucket Cloud" from the dropdown.
+
+## Step 2: On Bitbucket Cloud, Create a New OAuth Consumer
 
 1. Open [Bitbucket Cloud](https://bitbucket.org) in your browser and log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
     ~> **Important:** The account you use for connecting Terraform Cloud **must have admin access** to any shared repositories of Terraform configurations, since creating webhooks requires admin permissions.
 
-2. Navigate to Bitbucket's "Add OAuth Consumer" page.
+1. Navigate to Bitbucket's "Add OAuth Consumer" page.
 
-    This page is located at `https://bitbucket.org/account/user/<YOUR USERNAME>/oauth-consumers/new`. You can also reach it through Bitbucket's's menus:
-    - In the lower left corner, click your profile picture and choose "Bitbucket settings."
-    - In the settings navigation, click "OAuth," which is in the "Access Management" section.
+    This page is located at `https://bitbucket.org/<YOUR WORKSPACE NAME>/workspace/settings/oauth-consumers/new`. You can also reach it through Bitbucket's's menus:
+    - In the lower left corner, click your profile picture and choose the workspace you want to access.
+    - In the workspace navigation, click "Settings".
+    - In the settings navigation, click "OAuth consumers," which is in the "Apps and Features" section.
     - On the OAuth settings page, click the "Add consumer" button.
 
-3. This page has a form with four text fields and many checkboxes.
+1. This page has a form with four text fields and many checkboxes.
 
     ![Bitbucket Cloud screenshot: New OAuth consumer text fields and permissions checkboxes](./images/bitbucket-cloud-add-consumer.png)
 
@@ -42,7 +55,7 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
     -----------------|--------------------------------------------------
     Name             | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)
     Description      | Any description of your choice.
-    Callback URL     | `https://example.com/replace-this-later` (or any placeholder; the correct URI doesn't exist until the next step.)
+    Callback URL     | `https://app.terraform.io/<YOUR CALLBACK URL>`
     URL              | `https://app.terraform.io` (or the URL of your Terraform Enterprise instance)
 
     Ensure that the "This is a private consumer" option is checked. Then, activate the following permissions checkboxes:
@@ -54,58 +67,49 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
     Pull requests   | Write
     Webhooks        | Read and write
 
-4. Click the "Save" button, which returns you to the OAuth settings page.
+1. Click the "Save" button, which returns you to the OAuth settings page.
 
-5. Find your new OAuth consumer under the "OAuth Consumers" heading, and click its name to reveal its details.
+1. Find your new OAuth consumer under the "OAuth Consumers" heading, and click its name to reveal its details.
 
     Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Key** and **Secret.**
 
     ![Bitbucket Cloud screenshot: OAuth consumer with key and secret revealed](./images/bitbucket-cloud-application-created.png)
 
-## Step 2: On Terraform Cloud, Add a VCS Provider
+## Step 3: On Terraform Cloud, Set up Your Provider
 
-1. Open Terraform Cloud in your browser and navigate to the "VCS Provider" settings for your organization. Click the "Add VCS Provider" button.
-
-    If you just created your organization, you might already be on this page. Otherwise:
-
-    1. Click the upper-left organization menu, making sure it currently shows your organization.
-    1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
-    1. On the next page, click "VCS Provider" in the left sidebar.
-    1. Click the "Add VCS Provider" button.
-
-2. The next page has a drop-down and four text fields. Select "Bitbucket Cloud" from the drop-down, and enter the **Key** and **Secret** from the previous step. (Ignore the two disabled URL fields, which are used for on-premise VCSs.)
+1. Enter the **Key** and **Secret** from the previous step, as well as an optional **Name** for this VCS connection.
 
     ![Terraform Cloud screenshot: add client fields](./images/bitbucket-cloud-tfe-add-client-fields.png)
 
-3. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket client.
+1. Click "Connect and continue." This takes you to a page on Bitbucket Cloud asking whether you want to authorize the app.
 
-4. Locate the new client's "Callback URL," and copy it to your clipboard; you'll paste it in the next step. Leave this page open in a browser tab.
+1. Click the blue "Grant access" button to proceed.
 
-    ![Terraform Cloud screenshot: callback url](./images/bitbucket-cloud-tfe-callback-url.png)
+## Step 4: On Terraform Cloud, Set Up SSH keypair (optional)
 
-## Step 3: On Bitbucket Cloud, Update the Callback URL
+-> **Note:** Most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. You can add or update the SSH private key at a later time.
 
-1. Go back to your Bitbucket Cloud browser tab. (If you accidentally closed it, you can reach your OAuth settings page through the menus: use the lower left menu > Bitbucket settings > OAuth.)
+### Important Notes
 
-2. Locate your Terraform Cloud OAuth consumer. Click the elipsis ("...") button on the far right, and choose "Edit" from the menu.
+- Do not use your personal SSH key to connect Terraform Cloud and Bitbucket Cloud; generate a new one or use an existing key reserved for service access.
+- In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to Bitbucket Cloud.
+- **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
 
-    ![Bitbucket Cloud screenshot: Revealing the edit link with the elipsis button](./images/bitbucket-cloud-edit-consumer.png)
+### If you don't need an SSH keypair:
 
-3. In the "Callback URL" field, paste the callback URL from Terraform Cloud's OAuth Configuration page, replacing the "example.com" placeholder you entered earlier.
+1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Provider page, which now includes your new Bitbucket Cloud client.
 
-4. Click the "Save" button. A banner saying the update succeeded should appear.
+### If you do need an SSH keypair:
 
-## Step 4: On Terraform Cloud, Request Access
+1. Create an SSH keypair on a secure workstation that Terraform Cloud can use to connect to Bitbucket Cloud. The exact command depends on your OS, but is usually something like:
+   `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`
+   This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key. This SSH key **must have an empty passphrase**. Terraform Cloud cannot use SSH keys that require a passphrase.
 
-1. Go back to your Terraform Cloud browser tab and click the "Connect organization `<NAME>`" button on the VCS Provider page.
+2. Logged into the Bitbucket Cloud account you want Terraform Cloud to act as, navigate to the SSH Keys settings page, add a new SSH key and paste the value of the SSH public key you just created.
 
-    ![Terraform Cloud screenshot: the connect organization button](./images/tfe-connect-orgname.png)
+3. Paste the text of the **SSH private key** you created in step 2, and click the "Add SSH Key" button.
 
-    This takes you to a page on Bitbucket Cloud, asking whether you want to authorize the app.
-
-    ![Bitbucket Cloud screenshot: the authorization screen](./images/bitbucket-cloud-authorize.png)
-
-2. Click the green "Authorize" button at the bottom of the authorization page. This returns you to Terraform Cloud's VCS Provider page, where the Bitbucket Cloud client's information has been updated.
+    ![Terraform Cloud screenshot: the ssh key screen](./images/gh-ssh-key.png)
 
 ## Finished
 
