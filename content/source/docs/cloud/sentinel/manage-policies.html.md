@@ -81,8 +81,8 @@ request = http.get(uri)
 response = json.unmarshal(request.body)
 
 offset = func(abbr) {
-	timezone = filter response as _, tz {
-		tz.abbr is strings.to_upper(abbr)
+	timezone = filter response as _, r {
+		r.abbr is strings.to_upper(abbr)
 	}
 	for timezone as tz {
 		print("Getting timezone data for", tz.value)
