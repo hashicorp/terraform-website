@@ -48,12 +48,12 @@ Every policy set requires a configuration file named `sentinel.hcl`. This config
 The `sentinel.hcl` configuration file may contain any number of entries which look like this:
 
 ```hcl
-policy "sunny-day" {
+policy "enforce-terraform-maintenance-windows" {
     enforcement_level = "hard-mandatory"
 }
 ```
 
-In the above, a policy named `sunny-day` is defined with a `hard-mandatory` [enforcement level](#enforcement-levels).
+In the above, a policy named `enforce-terraform-maintenance-windows` is defined with a `hard-mandatory` [enforcement level](#enforcement-levels).
 
 #### Modules
 
@@ -64,18 +64,66 @@ Terraform Cloud has support for Sentinel's modules feature. This allows you to w
 To configure a module, add a `module` entry to your `sentinel.hcl` file:
 
 ```hcl
-module "foo" {
-    source = "./modules/foo.sentinel"
+module "timezone" {
+    source = "./modules/timezone.sentinel"
 }
 ```
 
-The following entry would tell a policy check to load the code at `./modules/foo.sentinel` relative to the policy set working directory and make it available to be imported with a statement such as `import "foo"` at the top of your Sentinel policy code. This module will be available to all of the policies within the policy set.
+Create a `modules` directory within the policy set working directory, and create a `timezone.sentinel` that looks as follows:
 
--> **NOTE:** At this point in time, you cannot load modules from outside of policy set working directory hierarchy. This means in the above example, a `source` of `../modules/foo.sentinel` will not work.
+```sentinel
+import "http"
+import "json"
+import "strings"
+
+uri = "https://raw.githubusercontent.com/dmfilipenko/timezones.json/master/timezones.json"
+request = http.get(uri)
+response = json.unmarshal(request.body)
+
+offset = func(abbr) {
+	timezone = filter response as _, tz {
+		tz.abbr is strings.to_upper(abbr)
+	}
+	for timezone as tz {
+		print("Getting timezone data for", tz.value)
+		print("Details:", tz.text)
+		print("Abbreviation:", tz.abbr)
+		print("Offset:", tz.offset)
+		return tz.offset
+	}
+}
+```
+
+The above configuration would tell a policy check to load the code at `./modules/timezone.sentinel` relative to the policy set working directory and make it available to be imported with the statement `import "timezone"` at the top of your Sentinel policy code. This module will be available to all of the policies within the policy set.
+
+-> **NOTE:** At this point in time, you cannot load modules from outside of policy set working directory hierarchy. This means in the above example, a `source` of `../modules/timezone.sentinel` will not work.
 
 ### Sentinel policy code files
 
-Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `sunny-day.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set.
+Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `enforce-terraform-maintenance-windows.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set. 
+
+An example configuration for the `enforce-terraform-maintenance-windows.sentinel` policy would be similar to the following:
+
+```sentinel
+import "time"
+import "tfrun"
+import "timezone"
+
+param maintenance_days default ["Friday", "Saturday", "Sunday"]
+param timezone_abbreviation default "PST"
+
+tfrun_created_at = time.load(tfrun.created_at)
+
+supported_maintenance_day = rule {
+	tfrun_created_at.add(time.hour * timezone.offset(timezone_abbreviation)).weekday_name in maintenance_days
+}
+
+main = rule {
+	supported_maintenance_day
+}
+```
+
+-> **NOTE:** The above examples uses parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/).
 
 ## Managing Policy Sets
 
