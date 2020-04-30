@@ -44,7 +44,7 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
     If you just created your organization, you might already be on this page. Otherwise:
 
-    1. Click the upper-left organization menu, making sure it currently shows your organization.
+    1. Make sure the upper-left organization menu currently shows your organization.
     1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
     1. On the next page, click "VCS Provider" in the left sidebar.
     1. Click the "Add VCS Provider" button.
@@ -53,8 +53,8 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 1. (Optional) Enter a display name for your Bitbucket Server VCS Provider.
 
-1. Enter the URL of your Bitbucket Server instance in the HTTP URL and API URL fields. 
-   
+1. Enter the URL of your Bitbucket Server instance in the HTTP URL and API URL fields.
+
     If your Bitbucket Server instance does not have a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set, the API URL should be the same as the HTTP URL.
 
     If your Bitbucket Server instance has a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set:
@@ -68,7 +68,7 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 1. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket Server client.
 
-1. Leave this page open in a browser tab. In the next step, you will copy and paste the unique 
+1. Leave this page open in a browser tab. In the next step, you will copy and paste the unique
 
 **Consumer Key** and **Public Key.**
 
@@ -106,7 +106,7 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 1. This takes you to another dialog, also titled "Link applications," with three text fields. In the "Consumer Key" and "Public Key" fields, copy and paste the values from step 1. In the "Consumer Name" field, enter "Terraform Cloud (`<ORG NAME>`)." Click "Continue." This takes you to a page on your Bitbucket Server instance, asking if you want to authorize Terraform Cloud. Double-check that you're logged in as the user account Terraform Cloud will be using, and not as a Bitbucket administrator.
 
     ![Bitbucket Server screenshot: the authorization page](./images/bitbucket-server-authorize.png)
-    
+
     If this results in a 500 error, it usually means Terraform Cloud was unable to reach your Bitbucket Server instance.
 
 1. Click the "Allow" button. This returns you to Terraform Cloud to enter a SSH key.

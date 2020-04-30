@@ -28,7 +28,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 
     If you just created your organization, you might already be on this page. Otherwise:
 
-    1. Click the upper-left organization menu, making sure it currently shows your organization.
+    1. Make sure the upper-left organization menu currently shows your organization.
     1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
     1. On the next page, click "VCS Provider" in the left sidebar.
     1. Click the "Add VCS Provider" button.
@@ -89,7 +89,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 1. The authorization page lists any GitHub organizations this account belongs to. If there is a "Request" button next to the organization that owns your Terraform code repositories, click it now. Note that you need to do this even if you are only connecting workspaces to private forks of repositories in those organizations since those forks are subject to the organization's access restrictions.  See [About OAuth App access restrictions](https://help.github.com/articles/about-oauth-app-access-restrictions).
 
     ![GitHub screenshot: the authorization screen](./images/gh-authorize.png)
-    
+
     If it results in a 500 error, it usually means Terraform Cloud was unable to reach your GitHub Enterprise instance.
 
 1. Click the green "Authorize `<GITHUB USER>`" button at the bottom of the authorization page. GitHub might request your password to confirm the operation.
@@ -119,7 +119,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
 3. Paste the text of the **SSH private key** you created in step 2, and click the "Add SSH Key" button.
 
     ![Terraform Cloud screenshot: the ssh key screen](./images/gh-ssh-key.png)
-    
+
 ## Step 5: Contact Your GitHub Organization Admins
 
 If your organization uses OAuth app access restrictions, you had to click a "Request" button when authorizing Terraform Cloud, which sent an automated email to the administrators of your GitHub organization. An administrator must approve the request before Terraform Cloud can access your organization's shared repositories.

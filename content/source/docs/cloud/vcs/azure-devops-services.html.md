@@ -24,7 +24,7 @@ The rest of the page explains these steps in more detail.
 
     If you just created your organization, you might already be on this page. Otherwise:
 
-    1. Click the upper-left organization menu, making sure it currently shows your organization
+    1. Make sure the upper-left organization menu currently shows your organization.
     1. Click the “Settings” link at the top of the page (or within the &#9776; menu)
     1. On the next page, click “VCS Providers” in the left sidebar
     1. Click the “Add a VCS Provider” button
@@ -95,7 +95,7 @@ The rest of the page explains these steps in more detail.
 3. Paste the text of the **SSH private key** you created in step 2, and click the "Add SSH Key" button.
 
     ![Terraform Cloud screenshot: the ssh key screen](./images/gh-ssh-key.png)
-    
+
 ## Finished
 
 At this point, Azure DevOps Services access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization’s repositories.

@@ -26,7 +26,7 @@ The rest of this page explains the GitLab.com versions of these steps.
 
     If you just created your organization, you might already be on this page. Otherwise:
 
-    1. Click the upper-left organization menu, making sure it currently shows your organization.
+    1. Make sure the upper-left organization menu currently shows your organization.
     1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
     1. On the next page, click "VCS Provider" in the left sidebar.
     1. Click the "Add VCS Provider" button.
@@ -36,7 +36,7 @@ The rest of this page explains the GitLab.com versions of these steps.
 4. Locate the "Redirect URI," and copy it to your clipboard; you'll paste it in the next step. Leave this page open in a browser tab.
 
     ![Terraform Cloud screenshot: redirect uri](./images/gitlab-com-tfe-callback-url.png)
-    
+
 ## Step 2: On GitLab, Create a New Application
 
 1. Open [gitlab.com](https://gitlab.com) in your browser and log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
@@ -75,10 +75,10 @@ The rest of this page explains the GitLab.com versions of these steps.
     ![Terraform Cloud screenshot: add client fields](./images/gitlab-com-tfe-add-client-fields.png)
 
 2. Click "Connect and continue." This takes you to a page on GitLab.com, asking whether you want to authorize the app.
-                                 
+
     ![GitLab screenshot: the authorization screen](./images/gitlab-authorize.png)
-    
-3. Click the green "Authorize" button at the bottom of the authorization page. 
+
+3. Click the green "Authorize" button at the bottom of the authorization page.
 
 ## Step 4: On Terraform Cloud, Set Up SSH keypair (optional)
 
@@ -105,7 +105,7 @@ The rest of this page explains the GitLab.com versions of these steps.
 3. Paste the text of the **SSH private key** you created in step 2, and click the "Add SSH Key" button. This returns you to Terraform Cloud's VCS Provider page, which now includes your new GitLab client.
 
     ![Terraform Cloud screenshot: the ssh key screen](./images/gitlab-com-ssh-key.png)
-    
+
 ## Finished
 
 At this point, GitLab.com access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization's shared repositories.

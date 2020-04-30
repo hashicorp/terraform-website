@@ -22,7 +22,7 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 
     If you just created your organization, you might already be on this page. Otherwise:
 
-    1. Click the upper-left organization menu, making sure it currently shows your organization
+    1. Make sure the upper-left organization menu currently shows your organization.
     1. Click the “Settings” link at the top of the page (or within the &#9776; menu)
     1. On the next page, click “VCS Providers” in the left sidebar
     1. Click the “Add a VCS Provider” button

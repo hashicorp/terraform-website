@@ -30,7 +30,7 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
     If you just created your organization, you might already be on this page. Otherwise:
 
-    1. Click the upper-left organization menu, making sure it currently shows your organization.
+    1. Make sure the upper-left organization menu currently shows your organization.
     1. Click the "Settings" link at the top of the page (or within the &#9776; menu)
     1. On the next page, click "VCS Provider" in the left sidebar.
     1. Click the "Add VCS Provider" button.
@@ -86,12 +86,12 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 1. On the "Configure settings" step on Terraform Cloud, enter the **Application ID** and **Secret** from the previous step.
 
 1. Click "Connect and continue." This takes you to a page on GitLab asking whether you want to authorize the app.
-                                 
+
     ![GitLab screenshot: the authorization screen](./images/gitlab-authorize.png)
 
     If this results in a 500 error, it usually means Terraform Cloud was unable to reach your GitLab instance.
-    
-1. Click the green "Authorize" button at the bottom of the authorization page. 
+
+1. Click the green "Authorize" button at the bottom of the authorization page.
 
 ## Step 4: On Terraform Cloud, Set Up SSH keypair (optional)
 
