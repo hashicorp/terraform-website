@@ -27,9 +27,9 @@ must be manually created. To create database schemas manually, the
 PostgreSQL database to create the required database schemas manually:
 
 ```sql
-CREATE SCHEMA rails;
-CREATE SCHEMA vault;
-CREATE SCHEMA registry;
+CREATE SCHEMA IF NOT EXISTS rails;
+CREATE SCHEMA IF NOT EXISTS vault;
+CREATE SCHEMA IF NOT EXISTS registry;
 ```
 
 ## Creating Extensions
