@@ -27,19 +27,23 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
     1. On the next page, click "VCS Providers" in the left sidebar
     1. Click the "Add a VCS Provider" button
 
-1. The next page has several steps to guide you through adding a new VCS provider. Select "Azure DevOps" then select "Azure DevOps Server" from the dropdown.
+1. The next page has several steps to guide you through adding a new VCS provider.
+
+    For the first step, select "Azure DevOps" then select "Azure DevOps Server" from the dropdown. The page will move to the next step.
 
 1. On the "Set up provider" step there are three textboxes. Enter an optional display name. Enter the instance URL for your Azure DevOps Server in HTTP URL and API URL textboxes. Click the "Continue" button to continue to the next step.
 
     ![Azure DevOps Server Screenshot: Adding a new VCS Provider in Terraform Cloud](./images/azure-devops-server-setup-provider.png)
 
+Leave the page open in a browser tab. In the next step you will copy values from this page, and in later steps you will continue configuring Terraform Cloud.
+
 ## Step 2: On Azure DevOps Server, Create a New Personal Access Token
 
-1. Log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
+1. In a new browser tab, open your Azure DevOps Server instance and log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
     ~> **Important:** The account you use for connecting Terraform Cloud **must have Project Collection Administrator access** to any projects containing repositories of Terraform configurations, since creating webhooks requires these permissions. It is not possible to create custom access roles with lower levels of privilege, as Microsoft does not currently allow delegation of this capability.
 
-2. Navigate to User settings -> Security -> Personal access tokens on your Azure DevOps Server instance.
+2. Navigate to User settings -> Security -> Personal access tokens.
 
 3. Click the "New Token" button to generate a new personal access token with "Code (Read)" and "Code (Status)" scopes. (We recommend also granting access to "All accessible organizations.")
 
