@@ -29,23 +29,29 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
     1. On the next page, click "VCS Providers" in the left sidebar.
     1. Click the "Add VCS Provider" button.
 
-1. The next page has several steps to guide you through adding a new VCS provider. Select "Bitbucket" then select "Bitbucket Cloud" from the dropdown.
+1. The "Add VCS Provider" page is divided into multiple steps to guide you through adding a new VCS provider.
+
+    For the first step, select "Bitbucket" then select "Bitbucket Cloud" from the dropdown. The page will move to the next step.
+
+Leave the page open in a browser tab. In the next step you will copy values from this page, and in later steps you will continue configuring Terraform Cloud.
 
 ## Step 2: On Bitbucket Cloud, Create a New OAuth Consumer
 
-1. Open [Bitbucket Cloud](https://bitbucket.org) in your browser and log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
+1. In a new browser tab, open [Bitbucket Cloud](https://bitbucket.org) and log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
     ~> **Important:** The account you use for connecting Terraform Cloud **must have admin access** to any shared repositories of Terraform configurations, since creating webhooks requires admin permissions.
 
 1. Navigate to Bitbucket's "Add OAuth Consumer" page.
 
-    This page is located at `https://bitbucket.org/<YOUR WORKSPACE NAME>/workspace/settings/oauth-consumers/new`. You can also reach it through Bitbucket's's menus:
+    This page is located at `https://bitbucket.org/<YOUR WORKSPACE NAME>/workspace/settings/oauth-consumers/new`. You can also reach it through Bitbucket's menus:
     - In the lower left corner, click your profile picture and choose the workspace you want to access.
     - In the workspace navigation, click "Settings".
     - In the settings navigation, click "OAuth consumers," which is in the "Apps and Features" section.
     - On the OAuth settings page, click the "Add consumer" button.
 
-1. This page has a form with four text fields and many checkboxes.
+1. This page has a form with several text fields and checkboxes.
+
+    Fill out the fields and checkboxes with the corresponding values currently displayed in your Terraform Cloud browser tab. Terraform Cloud lists the values in the order they appear, and includes controls for copying values to your clipboard.
 
     ![Bitbucket Cloud screenshot: New OAuth consumer text fields and permissions checkboxes](./images/bitbucket-cloud-add-consumer.png)
 
@@ -85,9 +91,9 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
 
 1. Click the blue "Grant access" button to proceed.
 
-## Step 4: On Terraform Cloud, Set Up SSH keypair (optional)
+## Step 4: On Terraform Cloud, Set Up SSH Keypair (Optional)
 
--> **Note:** Most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. You can add or update the SSH private key at a later time.
+Most organizations will not need to add an SSH private key. However, if the organization's repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. You can add or update the SSH private key at a later time.
 
 ### Important Notes
 
@@ -95,19 +101,19 @@ The rest of this page explains the Bitbucket Cloud-specific versions of these st
 - In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to Bitbucket Cloud.
 - **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
 
-### If you don't need an SSH keypair:
+### If You Don't Need an SSH Keypair:
 
-1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Provider page, which now includes your new Bitbucket Cloud client.
+1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Providers page, which now includes your new Bitbucket Cloud client.
 
-### If you do need an SSH keypair:
+### If You Do Need an SSH Keypair:
 
-1. Create an SSH keypair on a secure workstation that Terraform Cloud can use to connect to Bitbucket Cloud. The exact command depends on your OS, but is usually something like:
-   `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`
+1. On a secure workstation, create an SSH keypair that Terraform Cloud can use to connect to Bitbucket Cloud. The exact command depends on your OS, but is usually something like:
+   `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`.
    This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key. This SSH key **must have an empty passphrase**. Terraform Cloud cannot use SSH keys that require a passphrase.
 
-2. Logged into the Bitbucket Cloud account you want Terraform Cloud to act as, navigate to the SSH Keys settings page, add a new SSH key and paste the value of the SSH public key you just created.
+2. While logged into the Bitbucket Cloud account you want Terraform Cloud to act as, navigate to the SSH Keys settings page, add a new SSH key, and paste the value of the SSH public key you just created.
 
-3. Paste the text of the **SSH private key** you created in step 2, and click the "Add SSH Key" button.
+3. In Terraform Cloud's "Add VCS Provider" page, paste the text of the **SSH private key** you just created, and click the "Add SSH Key" button.
 
     ![Terraform Cloud screenshot: the ssh key screen](./images/gh-ssh-key.png)
 
