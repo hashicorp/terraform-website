@@ -44,7 +44,7 @@ The rest of this page explains the GitHub Enterprise versions of these steps.
     HTTP URL      | `https://<GITHUB INSTANCE HOSTNAME>`
     API URL       | `https://<GITHUB INSTANCE HOSTNAME>/api/v3`
 
-    ![Terraform Cloud screenshot: add client fields](./images/ghe-tfe-add-client-fields.png)
+    ![Terraform Cloud screenshot: add HTTP URL and API URL fields](./images/ghe-tfe-add-url-fields.png)
 
 Leave the page open in a browser tab. In the next step you will copy values from this page, and in later steps you will continue configuring Terraform Cloud.
 
@@ -88,7 +88,7 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
 1. Enter the **Client ID** and **Client Secret** from the previous step.
 
-    ![Terraform Cloud screenshot: add client fields](./images/gh-tfe-add-client-fields.png)
+    ![Terraform Cloud screenshot: add client fields](./images/ghe-tfe-add-client-fields.png)
 
 1. Click "Connect and continue." This takes you to a page on your GitHub Enterprise instance, asking whether you want to authorize the app.
 
@@ -124,7 +124,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 3. In Terraform Cloud's "Add VCS Provider" page, paste the text of the **SSH private key** you just created, and click the "Add SSH Key" button.
 
-    ![Terraform Cloud screenshot: the ssh key screen](./images/gh-ssh-key.png)
+    ![Terraform Cloud screenshot: the ssh key screen](./images/ghe-ssh-key.png)
 
 ## Step 5: Contact Your GitHub Organization Admins
 

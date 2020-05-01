@@ -72,6 +72,8 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
 1. Enter your Azure DevOps Services application's **App ID** and **Client Secret.** These can be found in the application's details, which should still be open in the browser tab from Step 2.
 
+    ![Terraform Cloud screenshot: the ssh key screen](./images/azure-devops-services-tfe-secret.png)
+
 3. Click "Connect and continue." This takes you to a page on Azure DevOps Services, asking whether you want to authorize the app. Click the "Accept" button and you'll be redirected back to Terraform Cloud.
 
     ![Azure DevOps Services Screenshot: Accepting the terms of use for connecting Terraform Cloud and Azure DevOps Services](./images/azure-devops-services-accept-terms.png)
@@ -102,7 +104,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 3. In Terraform Cloud's "Add VCS Provider" page, paste the text of the **SSH private key** you just created, and click the "Add SSH Key" button.
 
-    ![Terraform Cloud screenshot: the ssh key screen](./images/gh-ssh-key.png)
+    ![Terraform Cloud screenshot: the ssh key screen](./images/azure-devops-services-ssh-key.png)
 
 ## Finished
 

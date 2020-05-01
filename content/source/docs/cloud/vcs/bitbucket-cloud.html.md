@@ -115,7 +115,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 3. In Terraform Cloud's "Add VCS Provider" page, paste the text of the **SSH private key** you just created, and click the "Add SSH Key" button.
 
-    ![Terraform Cloud screenshot: the ssh key screen](./images/gh-ssh-key.png)
+    ![Terraform Cloud screenshot: the ssh key screen](./images/bitbucket-cloud-ssh-key.png)
 
 ## Finished
 

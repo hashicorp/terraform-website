@@ -64,13 +64,11 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
     ~> **Note:** If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL. If you omit the port in the URL, Terraform Cloud uses the standard port for the protocol (80 for HTTP, 443 for HTTPS).
 
-    ![Terraform Cloud screenshot: text fields for adding a Bitbucket Server VCS provider](./images/bitbucket-server-tfe-add-client-fields.png)
+    ![Terraform Cloud screenshot: text fields for adding a Bitbucket Server VCS provider](./images/bitbucket-server-tfe-add-url-fields.png)
 
 1. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket Server client.
 
-1. Leave this page open in a browser tab. In the next step, you will copy and paste the unique
-
-**Consumer Key** and **Public Key.**
+1. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Consumer Key** and **Public Key.**
 
     ![Terraform Cloud screenshot: Consumer key and public key](./images/bitbucket-server-tfe-consumer-and-public-key.png)
 

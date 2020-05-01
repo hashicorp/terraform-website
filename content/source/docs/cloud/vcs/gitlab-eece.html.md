@@ -46,7 +46,7 @@ The rest of this page explains the on-premise GitLab versions of these steps.
     HTTP URL       | `https://<GITLAB INSTANCE HOSTNAME>`
     API URL        | `https://<GITLAB INSTANCE HOSTNAME>/api/v4`
 
-    ![Terraform Cloud screenshot: add client fields](./images/gitlab-eece-tfe-add-client-fields.png)
+    ![Terraform Cloud screenshot: add HTTP URL and API URL fields](./images/gitlab-eece-tfe-add-url-fields.png)
 
     Note that Terraform Cloud uses GitLab's v4 API.
 
@@ -91,6 +91,8 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
 1. On the "Configure settings" step on Terraform Cloud, enter the **Application ID** and **Secret** from the previous step.
 
+    ![Terraform Cloud screenshot: add Application ID and Secret fields](./images/gitlab-eece-tfe-add-client-fields.png)
+
 1. Click "Connect and continue." This takes you to a page on GitLab asking whether you want to authorize the app.
 
     ![GitLab screenshot: the authorization screen](./images/gitlab-authorize.png)
@@ -123,7 +125,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 3. In Terraform Cloud's "Add VCS Provider" page, paste the text of the **SSH private key** you just created, and click the "Add SSH Key" button. This returns you to Terraform Cloud's VCS Provider page, which now includes your new GitLab client.
 
-    ![Terraform Cloud screenshot: the ssh key screen](./images/gitlab-com-ssh-key.png)
+    ![Terraform Cloud screenshot: the ssh key screen](./images/gitlab-eece-ssh-key.png)
 
 ## Finished
 

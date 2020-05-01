@@ -39,7 +39,7 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
 4. Locate the "Redirect URI," and copy it to your clipboard; you'll paste it in the next step. Leave this page open in a browser tab.
 
-    ![Terraform Cloud screenshot: redirect uri](./images/gitlab-com-tfe-callback-url.png)
+    ![Terraform Cloud screenshot: redirect uri](./images/gitlab-com-tfe-add-client-fields.png)
 
 ## Step 2: On GitLab, Create a New Application
 
