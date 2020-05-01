@@ -33,11 +33,15 @@ The rest of this page explains the GitHub versions of these steps.
     1. On the next page, click "VCS Providers" in the left sidebar.
     1. Click the "Add VCS Provider" button.
 
-2. The next page has several steps to guide you through adding a new VCS provider. Select "GitHub" then select "GitHub (Custom)" from the dropdown.
+1. The "Add VCS Provider" page is divided into multiple steps to guide you through adding a new VCS provider.
+
+    For the first step, select "GitHub" then select "GitHub (Custom)" from the dropdown. The page will move to the next step.
+
+Leave the page open in a browser tab. In the next step you will copy values from this page, and in later steps you will continue configuring Terraform Cloud.
 
 ## Step 2: On GitHub, Create a New OAuth Application
 
-1. Open [github.com](https://github.com) in your browser and log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
+1. In a new browser tab, open [github.com](https://github.com) and log in as whichever account you want Terraform Cloud to act as. For most organizations this should be a dedicated service user, but a personal account will also work.
 
     ~> **Important:** The account you use for connecting Terraform Cloud **must have admin access** to any shared repositories of Terraform configurations, since creating webhooks requires admin permissions.
 
@@ -50,9 +54,11 @@ The rest of this page explains the GitHub versions of these steps.
 
 3. This page has a form with four text fields.
 
+    Fill out the fields with the corresponding values currently displayed in your Terraform Cloud browser tab. Terraform Cloud lists the values in the order they appear, and includes controls for copying values to your clipboard.
+
     ![GitHub screenshot: New OAuth application fields](./images/gh-fields-empty.png)
 
-    Fill them in as follows:
+    Fill out the text fields as follows:
 
     Field name                 | Value
     ---------------------------|--------------------------------------------------
@@ -83,9 +89,9 @@ The rest of this page explains the GitHub versions of these steps.
 
 5. Click the green "Authorize `<GITHUB USER>`" button at the bottom of the authorization page. GitHub might request your password to confirm the operation.
 
-## Step 4: On Terraform Cloud, Set Up SSH keypair (optional)
+## Step 4: On Terraform Cloud, Set Up SSH Keypair (Optional)
 
--> **Note:** Most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. You can add or update the SSH private key at a later time.
+Most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. You can add or update the SSH private key at a later time.
 
 ### Important Notes
 
@@ -93,19 +99,19 @@ The rest of this page explains the GitHub versions of these steps.
 - In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to GitHub.
 - **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
 
-### If you don't need an SSH keypair:
+### If You Don't Need an SSH Keypair:
 
 1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Provider page, which now includes your new GitHub client.
 
-### If you do need an SSH keypair:
+### If You Do Need an SSH Keypair:
 
-1. Create an SSH keypair on a secure workstation that Terraform Cloud can use to connect to GitHub.com. The exact command depends on your OS, but is usually something like:
+1. On a secure workstation, create an SSH keypair that Terraform Cloud can use to connect to GitHub.com. The exact command depends on your OS, but is usually something like:
    `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`
    This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key. This SSH key **must have an empty passphrase**. Terraform Cloud cannot use SSH keys that require a passphrase.
 
-2. Logged into the GitHub.com account you want Terraform Cloud to act as, navigate to the SSH Keys settings page, add a new SSH key and paste the value of the SSH public key you just created.
+2. While logged into the GitHub.com account you want Terraform Cloud to act as, navigate to the SSH Keys settings page, add a new SSH key and paste the value of the SSH public key you just created.
 
-3. Paste the text of the **SSH private key** you created in step 2, and click the "Add SSH Key" button.
+3. In Terraform Cloud's "Add VCS Provider" page, paste the text of the **SSH private key** you just created, and click the "Add SSH Key" button.
 
     ![Terraform Cloud screenshot: the ssh key screen](./images/gh-ssh-key.png)
 
