@@ -20,7 +20,7 @@ The rest of this page explains the GitLab.com versions of these steps.
 
 -> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using Terraform Cloud's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
 
-## Step 1: On Terraform Cloud, Begin Adding a VCS Provider
+## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
 1. Open Terraform Cloud in your browser and navigate to the Settings > VCS Providers page for your organization. Click the "Add VCS Provider" button.
 
@@ -35,11 +35,11 @@ The rest of this page explains the GitLab.com versions of these steps.
 
     For the first step, select "GitLab" then select "GitLab.com" from the dropdown. The page will move to the next step.
 
+1. Locate the "Redirect URI" and copy it to your clipboard; you'll paste it in the next step.
+
 Leave the page open in a browser tab. In the next step you will copy values from this page, and in later steps you will continue configuring Terraform Cloud.
 
-4. Locate the "Redirect URI," and copy it to your clipboard; you'll paste it in the next step. Leave this page open in a browser tab.
-
-    ![Terraform Cloud screenshot: redirect uri](./images/gitlab-com-tfe-add-client-fields.png)
+   ![Terraform Cloud screenshot: redirect uri](./images/gitlab-com-tfe-add-client-fields.png)
 
 ## Step 2: On GitLab, Create a New Application
 

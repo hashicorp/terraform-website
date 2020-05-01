@@ -18,7 +18,7 @@ Approve access request. | &nbsp;
 
 The rest of this page explains the Bitbucket Cloud-specific versions of these steps.
 
-## Step 1: On Terraform Cloud, Begin adding a VCS Provider
+## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
 1. Open Terraform Cloud in your browser and navigate to the "VCS Providers" settings for your organization. Click the "Add VCS Provider" button.
 

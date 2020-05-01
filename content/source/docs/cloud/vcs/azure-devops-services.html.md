@@ -18,7 +18,7 @@ Approve access request. | &nbsp;
 
 The rest of the page explains these steps in more detail.
 
-## Step 1: On Terraform Cloud, Begin adding VCS Provider
+## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
 1. Open Terraform Cloud in your browser and navigate to the "VCS Providers" settings for your organization. Click the "Add VCS Provider" button.
 
@@ -47,12 +47,12 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
     Fill in the text fields as follows:
 
-    Field name                 | Value
-    ---------------------------|--------------------------------------------------
-    Company name               | HashiCorp
-    Application Name           | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)
-    Application website        | `https://app.terraform.io` (or the URL of your Terraform Enterprise instance)
-    Callback URL               | `https://app.terraform.io/<YOUR CALLBACK URL>`
+    Field name                               | Value
+    -----------------------------------------|--------------------------------------------------
+    Company name                             | HashiCorp
+    Application Name                         | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)
+    Application website                      | `https://app.terraform.io` (or the URL of your Terraform Enterprise instance)
+    Authorization callback URL               | `https://app.terraform.io/<YOUR CALLBACK URL>`
 
     ![Azure DevOps Services Screenshot: Creating a new application in your Azure DevOps Services Profile](./images/azure-devops-services-create-application.png)
 
@@ -68,9 +68,9 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
 ## Step 3: On Terraform Cloud, Set up Your Provider
 
-1. (Optional) Enter a display name for your Azure DevOps Services VCS Provider.
+1. (Optional) Enter a **Name** for this VCS connection.
 
-1. Enter your Azure DevOps Services application's **App ID** and **Client Secret.** These can be found in the application's details, which should still be open in the browser tab from Step 2.
+1. Enter your Azure DevOps Services application's **App ID** and **Client Secret**. These can be found in the application's details, which should still be open in the browser tab from Step 2.
 
     ![Terraform Cloud screenshot: the ssh key screen](./images/azure-devops-services-tfe-secret.png)
 

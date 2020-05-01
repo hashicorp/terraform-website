@@ -24,7 +24,7 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
 -> **Version Note:** Terraform Cloud supports GitLab versions 9.0 and newer. HashiCorp does not test older versions of GitLab with Terraform Cloud, and they might not work as expected. Also note that, although we do not deliberately remove support for versions that have reached end of life (per the [GitLab Support End of Life Policy](https://docs.gitlab.com/ee/policy/maintenance.html#patch-releases)), our ability to resolve customer issues with end of life versions might be limited.
 
-## Step 1: On Terraform Cloud, Begin Adding a new VCS Provider
+## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
 1. Open Terraform Cloud in your browser and navigate to the "VCS Providers" settings for your organization. Click the "Add VCS Provider" button.
 
@@ -39,7 +39,7 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
     For the first step, select "GitLab" then select "GitLab Enterprise Edition" or "GitLab Community Edition" from the dropdown. The page will move to the next step.
 
-1. In the "Set up provider" step, fill in the HTTP URL and API URL of your GitLab Enterprise Edition or GitLab Community Edition instance. Click "Continue."
+1. In the "Set up provider" step, fill in the **HTTP URL** and **API URL** of your GitLab Enterprise Edition or GitLab Community Edition instance, as well as an optional **Name** for this VCS connection. Click "Continue."
 
     Field          | Value
     ---------------|--------------------------------------------
@@ -74,12 +74,12 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
     Fill out the form as follows:
 
-    Field            | Value
-    -----------------|--------------------------------------------------
-    (all checkboxes) | (empty)
-    Name             | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)
-    Redirect URI     | `https://app.terraform.io/<YOUR CALLBACK URL>`
-    Confidential (checkbox) | checked
+    Field                   | Value
+    ------------------------|--------------------------------------------------
+    Name                    | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)
+    Redirect URI            |`https://app.terraform.io/<YOUR CALLBACK URL>`
+    Confidential (checkbox) | ✔️ (enabled)
+    Scopes (all checkboxes) | (empty)
 
 1. Click the "Save application" button, which creates the application and takes you to its page.
 

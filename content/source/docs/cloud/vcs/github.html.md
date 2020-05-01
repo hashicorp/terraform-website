@@ -22,7 +22,7 @@ The rest of this page explains the GitHub versions of these steps.
 
 -> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using Terraform Cloud's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
 
-## Step 1: On Terraform Cloud, Begin adding VCS Provider
+## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
 1. Open Terraform Cloud in your browser and navigate to the "VCS Providers" settings for your organization. Click the "Add VCS Provider" button.
 
@@ -35,7 +35,7 @@ The rest of this page explains the GitHub versions of these steps.
 
 1. The "Add VCS Provider" page is divided into multiple steps to guide you through adding a new VCS provider.
 
-    For the first step, select "GitHub" then select "GitHub (Custom)" from the dropdown. The page will move to the next step.
+    For the first step, select "GitHub" then select "GitHub.com (Custom)" from the dropdown. The page will move to the next step.
 
 Leave the page open in a browser tab. In the next step you will copy values from this page, and in later steps you will continue configuring Terraform Cloud.
 

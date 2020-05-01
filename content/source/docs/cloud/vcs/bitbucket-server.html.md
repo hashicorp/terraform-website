@@ -38,7 +38,7 @@ There is an option to configure a `webhook URL` on the plugin. Leave this option
 
 Leave the page open in a browser tab, and remain logged in as an admin user.
 
-## Step 1: On Terraform Cloud, Begin Adding a VCS Provider
+## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
 1. Open Terraform Cloud in your browser and navigate to the "VCS Provider" settings for your organization. Click the "Add VCS Provider" button.
 
@@ -51,16 +51,16 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 1. The next page has several steps to guide you through adding a new VCS provider. Select "Bitbucket" then select "Bitbucket Server" from the dropdown.
 
-1. (Optional) Enter a display name for your Bitbucket Server VCS Provider.
+1. (Optional) Enter a **Name** for this VCS connection.
 
-1. Enter the URL of your Bitbucket Server instance in the HTTP URL and API URL fields.
+1. Enter the URL of your Bitbucket Server instance in the **HTTP URL** and **API URL** fields.
 
-    If your Bitbucket Server instance does not have a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set, the API URL should be the same as the HTTP URL.
+    If your Bitbucket Server instance does not have a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set, the **API URL** should be the same as the **HTTP URL**.
 
     If your Bitbucket Server instance has a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set:
 
-    1. Set the HTTP URL to the URL of your Bitbucket Server instance with the context path included, `https://<BITBUCKET INSTANCE HOSTNAME>/<CONTEXT PATH>`.
-    1. Set the API URL to the URL of your Bitbucket Server instance **without** the context path, `https://<BITBUCKET INSTANCE HOSTNAME>/`.
+    1. Set the **HTTP URL** to the URL of your Bitbucket Server instance with the context path included, `https://<BITBUCKET INSTANCE HOSTNAME>/<CONTEXT PATH>`.
+    1. Set the **API URL** to the URL of your Bitbucket Server instance **without** the context path, `https://<BITBUCKET INSTANCE HOSTNAME>/`.
 
     ~> **Note:** If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL. If you omit the port in the URL, Terraform Cloud uses the standard port for the protocol (80 for HTTP, 443 for HTTPS).
 

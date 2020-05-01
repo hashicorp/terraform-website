@@ -31,7 +31,7 @@ Terraform Cloud uses personal access tokens to connect to Azure DevOps Server. T
 
     For the first step, select "Azure DevOps" then select "Azure DevOps Server" from the dropdown. The page will move to the next step.
 
-1. On the "Set up provider" step there are three textboxes. Enter an optional display name. Enter the instance URL for your Azure DevOps Server in HTTP URL and API URL textboxes. Click the "Continue" button to continue to the next step.
+1. On the "Set up provider" step there are three textboxes. Enter an optional **Name** for this VCS connection. Enter the instance URL for your Azure DevOps Server in **HTTP URL** and **API URL** textboxes. Click the "Continue" button to continue to the next step.
 
     ![Azure DevOps Server Screenshot: Adding a new VCS Provider in Terraform Cloud](./images/azure-devops-server-setup-provider.png)
 
@@ -55,7 +55,7 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
 ## Step 3: On Terraform Cloud, Add the Personal Access Token
 
-1. On the "Configure settings" step there is one textbox. Enter your Azure DevOps Server **personal access token** from Step 2. Click the "Continue" button to continue to the next step.
+1. On the "Configure settings" step there is one textbox. Enter your Azure DevOps Server **Personal Access Token** from Step 2. Click the "Continue" button to continue to the next step.
 
     ![Azure DevOps Server Screenshot: Enter Personal Access Token](./images/azure-devops-server-configure-settings.png)
 
@@ -71,7 +71,7 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 - In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to Azure DevOps Server.
 - **Protect this private key carefully.** It can read code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
 
-## Step 4: On Azure Devops Server, Add SSH Public Key
+## Step 5: On Azure Devops Server, Add SSH Public Key
 
 1. Navigate to User settings -> Security -> SSH public keys on your Azure DevOps Server instance.
 
@@ -81,9 +81,9 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 
     ![Azure DevOps Server sceenshot: Add SSH key page](./images/azure-devops-server-public-keys-add.png)
 
-## Step 5: On Terraform Cloud, Add SSH Private Key
+## Step 6: On Terraform Cloud, Add SSH Private Key
 
-1. Go back to your Terraform Cloud browser tab and paste the text of the **SSH private key** you created in step 3 into the text field of the "Set up SSH keypair" step. Click the "Add SSH key" button.
+1. Go back to your Terraform Cloud browser tab and paste the text of the **SSH private key** you created in step 3 into the **Private SSH Key** text field of the "Set up SSH keypair" step. Click the "Add SSH key" button.
 
     ![Terraform Cloud screenshot: Add SSH Key](./images/azure-devops-server-add-private-key.png)
 
