@@ -11,6 +11,9 @@ When used in conjunction with [`terraform_remote_state` data sources](/docs/prov
 
 -> **API:** See the [Run Triggers APIs](../api/run-triggers.html).
 
+-> **Guide:**: For a hands-on guide that will walk you through the process of creating and using a run trigger, see our [run triggers guide on
+learn.hashicorp.com](https://learn.hashicorp.com/terraform/tfc/tfc_run_triggers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
+
 ## Viewing and Managing Run Triggers
 
 To add or delete a run trigger, navigate to the desired workspace and choose "Run Triggers" from the "Settings" menu:
@@ -30,7 +33,7 @@ Under the "Source Workspaces" section, select the workspace you would like to co
 
 ![Screenshot: a workspace's run triggers settings page, with the source workspace dropdown open](./images/run-triggers-index-source-workspace-dropdown.png)
 
--> **Note:** Runs initiated in your workspace as the result of a run trigger connection to a source workspace will not auto-apply, regardless of your [auto-apply](/docs/cloud/workspaces/settings.html#auto-apply-and-manual-apply) setting selection. You will need to manually apply these runs. 
+-> **Note:** Runs initiated in your workspace as the result of a run trigger connection to a source workspace will not auto-apply, regardless of your [auto-apply](/docs/cloud/workspaces/settings.html#auto-apply-and-manual-apply) setting selection. You will need to manually apply these runs.
 
 ## Interacting with Run Triggers
 
@@ -44,8 +47,8 @@ Operators of your source workspaces will be informed of the connection to your w
 
 ## Using a Remote State Data Source
 
-Run triggers are designed for workspaces that rely on information produced by other workspaces. 
+Run triggers are designed for workspaces that rely on information produced by other workspaces.
 
-The primary way to share information between workspaces is the [`terraform_remote_state` data source](/docs/providers/terraform/d/remote_state.html), which allows a Terraform configuration to access a source workspace's root-level [outputs](/docs/configuration/outputs.html). 
+The primary way to share information between workspaces is the [`terraform_remote_state` data source](/docs/providers/terraform/d/remote_state.html), which allows a Terraform configuration to access a source workspace's root-level [outputs](/docs/configuration/outputs.html).
 
-For more information about cross-workspace state access in Terraform Cloud, see [Terraform State in Terraform Cloud](./state.html). 
+For more information about cross-workspace state access in Terraform Cloud, see [Terraform State in Terraform Cloud](./state.html).
