@@ -11,4 +11,4 @@ page_title: "Teraform GitHub Actions"
 
 HashiCorp currently maintains the following GitHub actions to help automate Terraform workflows.
 
-* [hashicorp/setup-terraform](/docs/github-actions/setup-terraform.html)
+- [hashicorp/setup-terraform](/docs/github-actions/setup-terraform.html)
