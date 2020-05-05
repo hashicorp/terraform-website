@@ -538,3 +538,7 @@
 	path = ext/providers/cloudinit
 	url = https://github.com/hashicorp/terraform-provider-cloudinit
 	branch = stable-website
+[submodule "ext/providers/lacework"]
+	path = ext/providers/lacework
+	url = https://github.com/lacework/terraform-provider-lacework
+	branch = master
