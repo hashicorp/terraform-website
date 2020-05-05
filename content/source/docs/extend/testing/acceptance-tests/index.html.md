@@ -56,7 +56,7 @@ signature:
 
 Terraform requires an environment variable `TF_ACC` be set in order to run
 acceptance tests. This is by design, and intended to prevent developers from
-incurring unintended charges when running tests. The easiest way to run
+incurring unintended changes when running tests. The easiest way to run
 acceptance tests is to use the built in `make` step `testacc`, which explicitly
 sets the `TF_ACC` value for you. Example:
 
