@@ -102,7 +102,13 @@ The above configuration would tell a policy check to load the code at `./modules
 
 Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `enforce-terraform-maintenance-windows.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set. 
 
-An example configuration for the `enforce-terraform-maintenance-windows.sentinel` policy would be similar to the following:
+Using the `enforce-terraform-maintenance-windows.sentinel` policy as an example, we can use the `time` and `tfrun` imports along with our custom `timezone` module to enforce checks that:
+
+1. Load the time when the Terraform Run occurred
+1. Convert the loaded time to PST
+1. Verify that the provisioning operation is only going to occur on an agreed upon day
+
+An example policy would be as follows:
 
 ```sentinel
 import "time"
@@ -123,7 +129,7 @@ main = rule {
 }
 ```
 
--> **NOTE:** The above examples uses parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/).
+-> **NOTE:** The above examples uses parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/). We could expand the enforcement logic to also restrict provisioning to occur out of hours using the [time.hour](https://docs.hashicorp.com/sentinel/imports/time/#time-hour) function.
 
 ## Managing Policy Sets
 
