@@ -13,23 +13,53 @@ The `hashicorp/setup-terraform` action is a JavaScript action that sets up Terra
 
 The source code and reference documentation for the `hashicorp/setup-terraform` action can be found [here](https://github.com/hashicorp/setup-terraform).
 
-Let's see how to use this action in a workflow!
+What follows is an end-to-end example workflow, using GitHub Actions to run Terraform within a Terraform Cloud workspace. Terraform Cloud's built-in support for GitHub webhooks can already accomplish this, but performing the run from an Actions workflow makes it possible for other steps in the workflow to consume the results of the run.
 
-## Pre-Requisites
+## Example GitHub Actions Workflow
 
-This workflow assumes you already have a Terraform Cloud account that is a member of a Terraform Cloud organization. If you need to create a Terraform Cloud account, please [sign up here](https://app.terraform.io/signup/account).
+This example workflow uses the following elements:
 
-Additionally, this workflow requires a Terraform Cloud user API token. If you do not have a Terraform Cloud user API token, please [generate one](/docs/cloud/users-teams-organizations/api-tokens.html#user-api-tokens) as it will be needed later.
+- A GitHub Actions secret containing a Terraform Cloud user API token.
+- A GitHub Actions workflow YAML file.
+- A Terraform configuration, which includes a backend configuration that specifies a Terraform Cloud workspace.
 
-In order to use GitHub Actions, you'll need access to a GitHub repository where you can store both your Terraform configuration files and your GitHub Actions workflow files. Please create and clone a GitHub repository if you don't already have one to use.
+### Terraform Configuration
 
-It may also be beneficial to review the [GitHub Actions documentation](https://help.github.com/en/actions) to familiarize yourself with its concepts and syntax.
+Assume a GitHub repository containing the following Terraform configuration in a `main.tf` file. Note that this uses a Terraform Cloud organization named `example_organization` and a workspace named `terraform-github-actions`.
 
-## Creating a GitHub Actions Workflow
+```hcl
+terraform {
+ backend "remote" {
+   organization = "example_organization"
 
-A common GitHub Actions workflow for the `hashicorp/setup-terraform` action is to execute Terraform within a Terraform Cloud workspace. Let's create a workflow file to do just that.
+   workspaces {
+     name = "terraform-github-actions"
+   }
+ }
+}
 
-Create a file named `.github/workflows/terraform.yml` in your GitHub reposistory with the following content.
+resource "null_resource" "terraform-github-actions" {
+ triggers = {
+   value = "This resource was created using GitHub Actions!"
+ }
+}
+```
+
+### GitHub Actions Secret
+
+The workflow file below expects a secret named `TF_API_TOKEN`, whose value is a Terraform Cloud user API token. The value for this secret can be configured in the "Secrets" section of your GitHub repository's "Settings" tab.
+
+![GitHub Actions Secrets](/docs/github-actions/images/setup-terraform/secrets.png)
+
+- See also: [Configuring GitHub Actions secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-)
+
+### GitHub Actions Workflow YAML
+
+The following workflow will take effect when added to the `.github/workflows` directory in a repository, usually named something like `.github/workflows/terraform.yml`. Note that:
+
+- It uses an expression like `${{ secrets.TF_API_TOKEN }}` to refer to an API token, which is used to configure the `setup-terraform` action.
+- On a GitHub `pull_request` event, the workflow will checkout the GitHub repository, download Terraform CLI, configure the Terraform CLI configuration file with a Terraform Cloud user API token, and execute `terraform init`, `terraform fmt -check` and `terraform plan`.
+- On a GitHub `push` event to the `master` branch, the workflow will perform the same actions as on a `pull_request` and will additionally execute `terraform apply -auto-approve`.
 
 ```yaml
 name: 'Terraform'
@@ -67,62 +97,15 @@ jobs:
       run: terraform apply -auto-approve
 ```
 
-Let's explain what this workflow does.
+- See also: the [GitHub Actions documentation](https://help.github.com/en/actions)
 
-On a GitHub `pull_request` event, this workflow will checkout your GitHub repository, download Terraform CLI, configure the Terraform CLI configuration file with a Terraform Cloud user API token, and execute `terraform init`, `terraform fmt -check` and `terraform plan`.
-
-On a GitHub `push` event to the `master` branch, in addition to all of the step mentioned above, this workflow will execute `terraform apply -auto-approve`.
-
-Go ahead and commit and push this workflow file to your remote GitHub repository. It won't do anything meaningful yet, but we'll soon use it to execute Terraform.
-
-You might notice that in this workflow we've defined a [GitHub Actions secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-) named `TF_API_TOKEN` but we haven't yet created that secret or given it a value. Let's do that now.
-
-## Configuring GitHub Actions Secrets
-
-Navigate to your GitHub repository's **Settings** tab and then click on the **Secrets** section. Create a new secret named `TF_API_TOKEN` whose value will be the Terraform Cloud user API token generated earlier. This will enable GitHub Actions to pass your Terraform Cloud user API token into your workflow anywhere it sees the syntax `${{ secrets.TF_API_TOKEN }}`.
-
-![GitHub Actions Secrets](/docs/github-actions/images/setup-terraform/secrets.png)
-
-## Adding Terraform Configuration
-
-Now that we have the GitHub Actions workflow configured we'll need a Terraform configuration to execute. Create a new branch on your GitHub repository. On this new branch, create a file named `main.tf` with the following content. Be sure to replace `ORGANIZATION` with your Terraform Cloud organization name.
-
-```
-terraform {
- backend "remote" {
-   organization = "ORGANIZATION"
-
-   workspaces {
-     name = "terraform-github-actions"
-   }
- }
-}
-
-resource "null_resource" "terraform-github-actions" {
- triggers = {
-   value = "This resource was created using GitHub Actions!"
- }
-}
-```
-
-This Terraform configuration uses the `remote` backend to communicate with Terraform Cloud. The `remote` backend configuration instructs Terraform to use the Terraform Cloud workspace named `terraform-github-actions` within the specified Terraform Cloud organzation. The Terraform Cloud workspace will be created if it does not already exist. Authentication for the `remote` backend will be configured in the Terraform CLI configuration file that our GitHub Actions workflow will create for us. This Terraform configuration also instructs Terraform to create a `null_resource` resource.
-
-## Executing the Workflow
-
-The GitHub Actions workflow will execute slightly different steps depending on whether the GitHub event is a pull request or a push to the `master` branch.
-
-### Pull Request Events
-
-Go ahead and commit and push your `main.tf` file to your GitHub branch and open a pull request. Since this is a `pull_request` event, GitHub Actions will see your workflow file named `.github/workflows/terraform.yml` and execute the workflow defined within. In a few moments, your pull request should show a check being executed.
+On a pull request, the output of the action will appear in the checks section of GitHub's pull request interface; on a push, the output will appear in the repository's "Actions" tab.
 
 ![GitHub Actions Pull Request Checks](/docs/github-actions/images/setup-terraform/pull-request-checks.png)
 
-Click on the "Details" link to see the output of your GitHub Actions workflow. Notice that the "Terraform Apply" step was not executed since this is a `pull_request` event, not a `push` event to `master`.
+In either case, the output is displayed in an abbreviated form but can be expanded to view the full command output.
 
 ![GitHub Actions Pull Request Event Workflow Output](/docs/github-actions/images/setup-terraform/pull-request-output.png)
 
-### Push Events
-
-Go ahead and merge your pull request. Afterwards click on the **Actions** tab within your GitHub repository and you'll see another GitHub Actions workflow has been executed, this time for a `push` event to the `master` branch. Click on the workflow to see the output of your GitHub Actions workflow. Notice that in addition to all of the other steps, the "Terraform Apply" step was also executed this time since this is a `push` event to `master`.
-
 ![GitHub Actions Push Event Workflow Output](/docs/github-actions/images/setup-terraform/push-output.png)
+
