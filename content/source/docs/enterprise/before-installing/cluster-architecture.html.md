@@ -5,7 +5,9 @@ page_title: "Clustered Deployment Architecture - Before Installing - Terraform E
 
 # Architecture Overview for Clustered Deployment
 
-Terraform Enterprise's clustered deployment method deploys Terraform Enterprise in a flexible and scalable architecture, which can range from a three-node cluster to over a hundred nodes.
+Terraform Enterprise's clustered deployment method deploys Terraform
+Enterprise in a flexible and scalable architecture, with a count of
+virtual machines (VMs) which can range from three to over one hundred.
 
 ~> **Important:** The clustered version of Terraform Enterprise is in Controlled Availability as we refine the installation experience. Access is currently restricted to a select group of existing customers, and you should not attempt to install it until it reaches General Availability.
 
@@ -15,17 +17,25 @@ The clustered deployment method relies on HashiCorp-provided per-cloud Terraform
 
 We expect operators to keep the resulting Terraform state available _outside of Terraform Enterprise,_ so that Terraform runs that affect Terraform Enterprise's availability are not, themselves, dependent on Terraform Enterprise's availability.
 
-## Application Instances
+## Primaries and Secondaries
 
-A Terraform Enterprise cluster consists of two types of servers: primaries and secondaries (also called workers). The primary instances run additional, stateful services that the secondaries do not.
+A Terraform Enterprise cluster consists of two types of VMs: primaries
+and secondaries (also called workers). The primaries run additional,
+stateful services that the secondaries do not.
 
-There should always be three primary nodes to ensure cluster stability, but the cluster can scale by adding or removing secondary nodes.
+There must always be three primaries to ensure cluster stability, but
+the cluster can scale by adding or removing secondaries.
 
-Clustered deployment relies on a Terraform module to provision infrastructure. Cluster size is controlled by the module's input variables, and the number of secondary instances can be changed at any time by editing the variables and re-applying the configuration.
+The number of secondaries is controlled by inputs to the respective
+Terraform modules; this number can be changed at any time by editing
+the variables and re-applying the configuration.
 
-## Load Balancing
+## External Load Balancing
 
-A Terraform Enterprise cluster relies on a load balancer to direct traffic to application instances.
+A Terraform Enterprise cluster relies on external load balancing to
+direct application traffic and install dashboard traffic to the
+primaries and secondaries as they are deployed without public IP
+addresses.
 
 ## Capacity Management
 
