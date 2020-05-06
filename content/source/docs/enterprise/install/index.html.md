@@ -8,7 +8,7 @@ page_title: "Install and Config - Terraform Enterprise"
 Terraform Enterprise can be deployed in multiple ways:
 
 - As a cluster, with a cloud-specific Terraform module.
-- As individual instances, with an installer that can be run interactively or in automation.
+- As standalone instances, with an installer that can be run interactively or in automation.
 
 For installation instructions, choose your preferred deployment method from the sidebar navigation to the left.
 

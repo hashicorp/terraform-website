@@ -30,15 +30,15 @@ for demo or proof of concept installations, to multiple virtual machines
 hosting the Terraform Cloud application, PostgreSQL, and external Vault servers for
 a stateless production installation.
 
-This reference architecture focuses on the “Production - External Services”
+This reference architecture focuses on the *External Services*
 operational mode. If you require all of the Terraform Enterprise infrastructure to be on-prem,
 you can either deploy S3-compatible storage [such as ceph](http://ceph.com/) or select the
-“Production - Mounted Disk” option. This option will require you to specify the
+*Mounted Disk* option. This option will require you to specify the
 local path for the storage where PostgreSQL data will be stored and where the
 data typically written to S3 (blob) will be stored.  The assumption is this
 local path is a mounted disk from either a SAN or NAS device (or some other
 replicated storage), allowing for rapid recovery or failover. More information
-about the Mounted Disk option can be found at the end of this document.
+about the *Mounted Disk* option can be found at the end of this document.
 
 The following table provides high-level server recommendations as a guideline.
 Please note, thick provision, lazy zeroed storage is preferred. Thin
@@ -275,7 +275,7 @@ provides the underlying [snapshot
 functionality](https://www.consul.io/docs/commands/snapshot.html) to support
 Vault backup and recovery.
 
-## Production - Mounted Disk
+## Mounted Disk Mode
 
 ### Normal Operation
 
