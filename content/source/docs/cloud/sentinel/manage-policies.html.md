@@ -104,7 +104,7 @@ Sentinel policies themselves are defined in individual files (one per policy) in
 
 Using the `enforce-terraform-maintenance-windows.sentinel` policy as an example, we can use the `time` and `tfrun` imports along with our custom `timezone` module to enforce checks that:
 
-1. Load the time when the Terraform Run occurred
+1. Load the time when the Terraform run occurred
 1. Convert the loaded time to PST
 1. Verify that the provisioning operation is only going to occur on an agreed upon day
 
