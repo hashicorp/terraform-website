@@ -69,6 +69,8 @@ module "timezone" {
 }
 ```
 
+-> **NOTE:** At this point in time, you cannot load modules from outside of the policy set working directory hierarchy. This means in the above example, a `source` of `../modules/timezone.sentinel` will not work.
+
 Create a `modules` directory within the policy set working directory, and create a `timezone.sentinel` that looks as follows:
 
 ```sentinel
@@ -95,8 +97,6 @@ offset = func(abbr) {
 ```
 
 The above configuration would tell a policy check to load the code at `./modules/timezone.sentinel` relative to the policy set working directory and make it available to be imported with the statement `import "timezone"` at the top of your Sentinel policy code. This module will be available to all of the policies within the policy set.
-
--> **NOTE:** At this point in time, you cannot load modules from outside of policy set working directory hierarchy. This means in the above example, a `source` of `../modules/timezone.sentinel` will not work.
 
 ### Sentinel policy code files
 
