@@ -129,7 +129,9 @@ main = rule {
 }
 ```
 
--> **NOTE:** The above examples uses parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/). We could expand the enforcement logic to also restrict provisioning to occur out of hours using the [time.hour](https://docs.hashicorp.com/sentinel/imports/time/#time-hour) function.
+For a more robust or flexible policy, we could expand the enforcement logic to also restrict provisioning to occur out of hours using the [time.hour](https://docs.hashicorp.com/sentinel/imports/time/#time-hour) function.
+
+The above examples use parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/). 
 
 ## Managing Policy Sets
 
