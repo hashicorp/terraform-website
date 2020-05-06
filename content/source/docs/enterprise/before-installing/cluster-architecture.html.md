@@ -13,7 +13,10 @@ virtual machines (VMs) which can range from three to over one hundred.
 
 ## Terraform-based Deployment
 
-The clustered deployment method relies on HashiCorp-provided per-cloud Terraform modules, which provision the necessary resources and automate installation and configuration.
+The clustered deployment method relies on the use of HashiCorp-provided
+Terraform modules available on a per-cloud basis which must be invoked from within a Terraform configuration. These modules
+provision the resources required by the cluster and deploy Terraform
+Enterprise.
 
 We expect operators to keep the resulting Terraform state available _outside of Terraform Enterprise,_ so that Terraform runs that affect Terraform Enterprise's availability are not, themselves, dependent on Terraform Enterprise's availability.
 
