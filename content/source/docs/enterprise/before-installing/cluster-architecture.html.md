@@ -58,6 +58,12 @@ To calculate how big a cluster should be, first decide how many concurrent Terra
 
 The amount of memory used per Terraform run is configurable in the installer dashboard (`https://<TFE HOSTNAME>:8800`), and changing that amount will alter the maximum concurrent capacity of the cluster.
 
+## Data Storage
+
+The clustered deployment is designed for use with external data
+services. These include a PostgreSQL database and a blob storage
+service.
+
 ## Architecture Diagrams
 
 The following diagrams represent the architectures used on the three supported cloud platforms:
@@ -73,11 +79,3 @@ The following diagrams represent the architectures used on the three supported c
 ### Azure
 
 ![Azure architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances, which are part of a scaleset. Also includes an adjacent key vault for TLS.](https://github.com/hashicorp/terraform-azurerm-terraform-enterprise/blob/master/assets/azure_diagram.png?raw=true)
-
-## Data Storage
-
-Clustered deployment is designed for use with external data services. These include a PostgreSQL database and a blob storage service.
-
-These services are outside the scope of the module that deploys Terraform Enterprise; the operator is expected to provision and configure the services prior to installation, and provide access information and credentials as inputs to the module.
-
-The clustered deployment modules can also deploy a temporary demo of Terraform Enterprise that does not require external data services.
