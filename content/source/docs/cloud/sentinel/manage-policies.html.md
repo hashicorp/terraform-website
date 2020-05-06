@@ -96,7 +96,7 @@ offset = func(abbr) {
 }
 ```
 
-The above configuration would tell a policy check to load the code at `./modules/timezone.sentinel` relative to the policy set working directory and make it available to be imported with the statement `import "timezone"` at the top of your Sentinel policy code. This module will be available to all of the policies within the policy set.
+The above configuration would tell a policy check to load the code at `./modules/timezone.sentinel` relative to the policy set working directory and make it available to be imported with the statement `import "timezone"`, located at the top of the Sentinel policy code. This module will be available to all of the policies within the policy set.
 
 ### Sentinel policy code files
 
