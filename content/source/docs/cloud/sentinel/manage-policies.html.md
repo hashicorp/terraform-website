@@ -120,7 +120,7 @@ param timezone_abbreviation default "PST"
 
 tfrun_created_at = time.load(tfrun.created_at)
 
-supported_maintenance_day = rule {
+supported_maintenance_day = rule when tfrun.workspace.auto_apply is true {
 	tfrun_created_at.add(time.hour * timezone.offset(timezone_abbreviation)).weekday_name in maintenance_days
 }
 
@@ -128,6 +128,8 @@ main = rule {
 	supported_maintenance_day
 }
 ```
+
+In the example above we have used a [rule expression](https://docs.hashicorp.com/sentinel/language/spec/#rule-expressions) with the `when` predicate. If the value of `tfrun.workspace.auto_apply` is false, the rule will not be evaluated and return true
 
 For a more robust or flexible policy, we could expand the enforcement logic to also restrict provisioning to occur out of hours using the [time.hour](https://docs.hashicorp.com/sentinel/imports/time/#time-hour) function.
 
