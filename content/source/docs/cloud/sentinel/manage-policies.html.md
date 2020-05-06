@@ -48,12 +48,12 @@ Every policy set requires a configuration file named `sentinel.hcl`. This config
 The `sentinel.hcl` configuration file may contain any number of entries which look like this:
 
 ```hcl
-policy "enforce-terraform-maintenance-windows" {
+policy "terraform-maintenance-windows" {
     enforcement_level = "hard-mandatory"
 }
 ```
 
-In the above, a policy named `enforce-terraform-maintenance-windows` is defined with a `hard-mandatory` [enforcement level](#enforcement-levels).
+In the above, a policy named `terraform-maintenance-windows` is defined with a `hard-mandatory` [enforcement level](#enforcement-levels).
 
 #### Modules
 
@@ -100,9 +100,9 @@ The above configuration would tell a policy check to load the code at `./modules
 
 ### Sentinel policy code files
 
-Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `enforce-terraform-maintenance-windows.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set. 
+Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `terraform-maintenance-windows.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set. 
 
-Using the `enforce-terraform-maintenance-windows.sentinel` policy as an example, we can use the `time` and `tfrun` imports along with our custom `timezone` module to enforce checks that:
+Using the `terraform-maintenance-windows.sentinel` policy as an example, we can use the `time` and `tfrun` imports along with our custom `timezone` module to enforce checks that:
 
 1. Load the time when the Terraform run occurred
 1. Convert the loaded time to PST
