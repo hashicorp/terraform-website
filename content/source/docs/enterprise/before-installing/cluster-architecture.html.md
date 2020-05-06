@@ -40,6 +40,14 @@ direct application traffic and install dashboard traffic to the
 primaries and secondaries as they are deployed without public IP
 addresses.
 
+## Internal Load Balancing
+
+Internal load balancing is necessary to direct Kuberentes API traffic
+and Cluster Assistant traffic from primaries and secondaries to healthy
+primaries. The remainder of traffic which flows between the primaries
+and the secondaries is managed by Kubernetes and requires no load
+balancing resources.
+
 ## Capacity Management
 
 There is a direct relationship between a cluster's total resources and the amount of work it can do concurrently.
