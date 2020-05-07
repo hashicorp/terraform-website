@@ -25,6 +25,7 @@ Below is a list of resources that cost estimation supports so far. Resources tha
 | aws_elb | incurs cost |
 | aws_instance | incurs cost |
 | aws_lb | incurs cost |
+| aws_nat_gateway | incurs cost |
 | aws_rds_cluster | incurs cost |
 | aws_acm_certificate_validation | |
 | aws_alb_listener | |
@@ -103,7 +104,6 @@ Below is a list of resources that cost estimation supports so far. Resources tha
 | aws_lb_listener_rule | |
 | aws_lb_target_group | |
 | aws_lb_target_group_attachment | |
-| aws_nat_gateway | |
 | aws_network_acl | |
 | aws_network_acl_rule | |
 | aws_network_interface | |
