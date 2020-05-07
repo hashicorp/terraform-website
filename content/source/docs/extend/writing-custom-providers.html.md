@@ -823,7 +823,15 @@ func resourceServerRead(d *schema.ResourceData, m interface{}) error {
 }
 ```
 
-The so-called `flatteners` are in a separate file `structures_server.go`. The outermost data structure is a `[]interface{}` and each item a `map[string]interface{}`:
+The "flattener" helper functions are located in a separate file (`structures_server.go`), and each flattener function handles one data structure and its children. (For complex structures, a flattener should handle children by calling another flattener.)
+
+The return type of a flattener should match the portion of the schema it's responsible for; any internal structures created by the flatteners also must match the corresponding schema types. (See [the schema types page](/docs/extend/schemas/schema-types.html) for details on the underlying Go type for each schema type.)
+
+In this example: 
+
+- `task_spec` is defined as `schema.TypeList`, so `flattenTaskSpec` must return a slice (`[]interface{}`).
+- Same for `container_spec` and `flattenContainerSpec`.
+- `mounts` is defined as `schema.TypeSet`, so `flattenServiceMounts` must return a slice. Since the elements of the set are `&schema.Resource` objects (`map[string]interface{}`), the return type of `flattenServiceMounts is declared as `[]map[string]interface{}`.
 
 ```go
 func flattenTaskSpec(in *server.TaskSpec) []interface{} {
