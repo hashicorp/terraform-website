@@ -5,35 +5,56 @@ page_title: "Backups and Restores - Infrastructure Administration - Terraform En
 
 # Terraform Enterprise Backups and Restores
 
-Terraform Enterprise is able to backup and restore all of its data. Its backup and restore features work the same way in both clustered and standalone installations.
+Terraform Enterprise provides an API to backup and restore all of its application data. This backup and restore API works the same for both Standalone and Clustered installations.
 
-Backups and restores are initiated by API calls, which can be performed from a remote system. This API is separate from Terraform Enterprise's application-level APIs, and uses a different authorization token.
+The backup and restore API is separate from the Terraform Enterprise application-level APIs. As such, a separate authorization token is required to use the backup and restore API. See [Authentication](#Authentication) for more details.
 
-Backing up and restoring into a new installation of Terraform Enterprise is the only supported way to migrate between deployment types (Standalone vs. Clustered) and operational modes (*External Services* vs. *Mounted Disk*, etc.).
+Using the backup and restore API is the only supported way to:
 
-## About Backups
+- Migrate between deployment types (Standalone, Clustered).
+- Migrate between operational modes (Mounted Disk, External Services).
 
-Terraform Enterprise's backup utility backs up all of the data stored in a Terraform Enterprise installation, including both the blob storage and the PostgreSQL database. It does not back up the the installation configuration.
+## About Backups and Restores
 
-See [Data Security](../system-overview/data-security.html) for details about the contents of Terraform Enterprise's blob storage and database.
+The backup and restore API backs up all of the data stored in a Terraform Enterprise installation, including both the blob storage and the PostgreSQL database. It does not back up the installation configuration. This backup can then be restored to a new installation of Terraform Enterprise.
 
-### API Authentication Token
+Please note the following when using the backup and restore API:
 
-Calls to the backup API must be authenticated with a special bearer token, which can be found on the settings dashboard (`https://<TFE HOSTNAME>:8800/settings`) near the bottom of the page:
+- The version of Terraform Enterprise cannot be changed between a backup and restore. That is, a backup taken from one version of Terraform Enterprise cannot be restored to an installation running a different version of Terraform Enterprise.
+- The Terraform Enterprise installation that will be restored to must be a new, running installation with no existing application data.
+- Once a restore is completed, the Terraform Enterprise application will need to be restarted before it can use the restored data.
+
+See also:
+
+- [Data Security](../system-overview/data-security.html) for details about the contents of Terraform Enterprise's blob storage and PostgreSQL database.
+
+### Authentication 
+
+The backup and restore API uses a separate authorization token which can be found on the settings dashboard (`https://<TFE HOSTNAME>:8800/settings`) near the bottom of the page:
 
 ![Screenshot: the TFE install dashboard, with the API token visible](./images/token.png)
 
-~> **Important:** Since this token can access all of the data in a Terraform Enterprise installation, protect it very carefully.
+-> **Note:** This authorization token is specific to the Terraform Enterprise installation. As such, the authorization token used to create a backup will be different than the authorization token used to perform a restore.
 
-The backup API is not part of Terraform Enterprise's normal admin or application APIs, and cannot be accessed with normal user/team/organization tokens.
+The backup and restore API is separate from the Terraform Enterprise application-level APIs and cannot be accessed with Terraform Enterprise user, team, or organization API tokens.
 
-Use the standard `Authorization: Bearer <TOKEN>` header to authenticate backup and restore calls.
+To use this authorization token with the backup and restore API, pass the `Authorization: Bearer <TOKEN>` header in your API requests.
+
+~> **Important:** Since this authorization token can access all of the data in a Terraform Enterprise installation, protect it very carefully.
 
 ### Security and Encryption
 
-Much of Terraform Enterprise's data is encrypted with Vault before being stored at rest. Backups do not preserve the internal Vault keys; instead, the data is decrypted and then re-encrypted using a single password provided as part of the backup request. When restoring, this password must be provided; the data is then re-encrypted using the new installation's Vault keys.
+Terraform Enterprise uses HashiCorp Vault to encrypt and decrypt its data. The Vault encryption keys that are used to encrypt and decrypt this data are not preserved during a backup or restore. Instead, during a backup, the data is decrypted by Vault and then re-encrypted using a password provided by you, resulting in an encrypted backup blob. During a restore, the same password that you provided during the backup must be used to decrypt the data before it is re-encrypted with the new Terraform Enterprise installation's Vault encryption keys.
 
-~> **Important:** Since the backup password can be used to access all of the data that was backed up from a Terraform Enterprise installation, protect it very carefully.
+The backup and restore API expect this password to be provided as a JSON object with a `password` property within the request payload. The value for the `password` property can be any valid string. Here's what an example JSON object looks like.
+
+```json
+{
+   "password": "befit-brakeman-footstep-unclasp"
+}
+```
+
+~> **Important:** The same password that was provided during backup must be provided during restore. This password can be used to access all of the data that was backed up. Please protect it very carefully.
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
@@ -50,18 +71,18 @@ Much of Terraform Enterprise's data is encrypted with Vault before being stored 
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 
-
 ## Creating a Backup
 
 `POST /_backup/api/v1/backup`
 
 To initiate a backup, make a POST request to the backup endpoint on a running Terraform Enterprise installation.
 
-The response to this request will be a binary blob containing all of your Terraform Enterprise data. When using this endpoint, please:
+The response to this request will be an encrypted binary blob containing all of your Terraform Enterprise data. When using this endpoint, please:
 
-- Remember to specify an output file for the backup blob.
+- Remember to specify an output file for the encrypted backup blob.
 - Be prepared to download and store many gigabytes of data to the filesystem of whichever machine the request is sent from. For best performance and to avoid disconnections, we recommend sending this request from a server colocated with the Terraform Enterprise installation rather than from a workstation.
-- Treat this backup blob as sensitive data and ensure it is stored securely.
+- Treat this encrypted backup blob as sensitive data and ensure it is stored securely.
+- Remember the password that was used to encrypt this backup blob.
 
 Status  | Response           | Reason
 --------|--------------------|------------------------------
@@ -71,14 +92,20 @@ Status  | Response           | Reason
 
 ### Request Body
 
-This POST endpoint requires a JSON object with a `password` property as a request payload.
+This POST endpoint requires a JSON object with the following properties as a request payload.
 
-When restoring the resulting backup, you will need to provide the same password.
+Properties without a default value are required.
+
+| Key path   | Type   | Default | Description                                   |
+|------------|--------|---------|-----------------------------------------------|
+| `password` | string |         | The password used to encrypt the backup blob. |
 
 ### Sample Payload
 
 ```json
-{ "password": "befit-brakeman-footstep-unclasp" }
+{
+   "password": "befit-brakeman-footstep-unclasp"
+}
 ```
 
 ### Sample Request
@@ -92,13 +119,13 @@ curl \
   https://<TFE HOSTNAME>/_backup/api/v1/backup
 ```
 
-## Restoring a Backup in a New Terraform Enterprise Installation
+## Restoring a Backup
 
 `POST /_backup/api/v1/restore`
 
-Before restoring, you must first create a new Terraform Enterprise installation. This can be a standalone server, or a cluster created with the Terraform modules.
+Before restoring, you must first create a new Terraform Enterprise installation. This can be a Standalone or Clustered installation.
 
-Once the application is up and running, you can initiate a restore by making a POST request to the restore endpoint.
+Once the Terraform Enterprise application is up and running, you can initiate a restore by making a POST request to the restore endpoint.
 
 Be prepared to upload many gigabytes of data from the filesystem of whichever machine the request is sent from. For best performance and to avoid disconnections, we recommend sending this request from a server colocated with the Terraform Enterprise installation rather than from a workstation.
 
@@ -115,19 +142,27 @@ Status  | Response           | Reason
 
 ### Request Body
 
-This POST endpoint requires a backup blob and its associated password, which must be provided as `multipart/form-data`.
+This POST endpoint requires the following form fields which must be provided as `multipart/form-data`.
 
-Form field | Description
------------|------------
-`snapshot` | An encrypted backup blob downloaded from the Terraform Enterprise backup endpoint.
-`config`   | A JSON file, containing a single object with a `password` property. The password must match the password used to create the backup.
+| Form field | Description                                                                        |
+|------------|------------------------------------------------------------------------------------|
+| `snapshot` | An encrypted backup blob downloaded from the Terraform Enterprise backup endpoint. |
+| `config`   | A JSON file containing a JSON object. See the table below.                         |
+
+The JSON file used in the `config` form field above must contain a JSON object with the following properties.
+
+Properties without a default value are required.
+
+| Key path   | Type   | Default | Description                                   |
+|------------|--------|---------|-----------------------------------------------|
+| `password` | string |         | The password used to decrypt the backup blob. |
 
 ### Sample Payload
 
-The JSON file used in the `config` form field should resemble the following:
-
 ```json
-{ "password": "befit-brakeman-footstep-unclasp" }
+{
+   "password": "befit-brakeman-footstep-unclasp"
+}
 ```
 
 ### Sample Request
@@ -136,9 +171,7 @@ The JSON file used in the `config` form field should resemble the following:
 curl \
   --header "Authorization: Bearer $TOKEN" \
   --request POST \
-  --form config=@request.json \
+  --form config=@payload.json \
   --form snapshot=@backup.blob \
   https://<TFE HOSTNAME>/_backup/api/v1/restore
 ```
-
-~> **Note:** The Bearer token used to restore the backup is specific to the instance, so if restoring to a separate instance, the token will be different for restore as it was for backup.
