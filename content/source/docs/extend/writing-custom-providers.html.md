@@ -103,11 +103,10 @@ This establishes the main function to produce a valid, executable Go binary. The
 contents of the main function consume Terraform's `plugin` library. This library
 deals with all the communication between Terraform core and the plugin.
 
-The plugin will need to be created as a go module, so you should run the 
-command to initialize the go module.
+We recommend using Go modules for dependency management, to define this directory as the root of a module, use the `go mod init` command:
 
 ```shell
- go mod init terraform-provider-example
+ go mod init example.com/terraform-provider-example
 ```
 
 Next, build the plugin using the Go toolchain:
