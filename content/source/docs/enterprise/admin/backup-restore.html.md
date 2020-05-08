@@ -34,7 +34,7 @@ The backup and restore API uses a separate authorization token which can be foun
 
 ![Screenshot: the TFE install dashboard, with the API token visible](./images/token.png)
 
--> **Note:** This authorization token is specific to the Terraform Enterprise installation. As such, the authorization token used to create a backup will be different than the authorization token used to perform a restore.
+-> **Note:** This authorization token is specific to the Terraform Enterprise installation. Unless otherwise specified during installation of the new Terraform Enteprise instance, the authorization token used to create a backup will be different than the authorization token used to perform a restore.
 
 The backup and restore API is separate from the Terraform Enterprise application-level APIs and cannot be accessed with Terraform Enterprise user, team, or organization API tokens.
 
