@@ -46,6 +46,11 @@ Learn about the different types of Terraform plugins — Providers and Provision
 A step by step guide for writing, compiling, and executing an example Terraform
 Provider. 
 
+## [HashiCorp Provider Design Principles](/docs/extend/hashicorp-provider-design-principles.html)
+
+Emergent practices learned by official Terraform Provider developers that can
+guide design and decision making for all providers.
+
 ## [Schemas](/docs/extend/schemas/index.html)
 
 The Schema package is a high-level framework for easily writing Plugins for

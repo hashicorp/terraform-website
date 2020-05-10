@@ -5,9 +5,14 @@ page_title: "Managing Access - Workspaces - Terraform Cloud"
 
 # Managing Access to Workspaces
 
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 Terraform Cloud workspaces can only be accessed by users with the correct permissions. You can manage permissions for a workspace on a per-team basis.
 
 Workspace access should be managed by [organization owners](../users-teams-organizations/teams.html#the-owners-team). (Users with [admin privileges](../users-teams-organizations/permissions.html) on a workspace can make minor adjustments to its permissions, but only owners can manage permissions for any team in the organization.)
+
+-> **API:** See the [Team Access APIs](../api/team-access.html). <br/>
+**Terraform:** See the `tfe` provider's [`tfe_team_access`](/docs/providers/tfe/r/team_access.html) resource.
 
 ## Background
 
@@ -19,9 +24,6 @@ For more information see:
 - [Permissions](../users-teams-organizations/permissions.html)
 
 ## Managing Workspace Access Permissions
-
--> **API:** See the [Team Access APIs](../api/team-access.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_team_access` resource](/docs/providers/tfe/r/team_access.html).
 
 When a workspace is created, only [the owners team](../users-teams-organizations/teams.html#the-owners-team) and teams with the "manage workspaces" permission can access it, with full admin permissions. These teams' access can't be removed from a workspace.
 

@@ -14,6 +14,8 @@ page_title: "GCP - Clustered Deployment - Install and Config - Terraform Enterpr
 
 This page outlines the procedure for deploying a Terraform Enterprise cluster on Google Cloud Platform (GCP).
 
+~> **Important:** The clustered version of Terraform Enterprise is in Controlled Availability as we refine the installation experience. Access is currently restricted to a select group of existing customers, and you should not attempt to install it until it reaches General Availability.
+
 ## Summary
 
 Deploying Terraform Enterprise involves the following steps:
@@ -99,7 +101,7 @@ The module will create the VPC, the subnet, and the required firewalls. It will 
 3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/google` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
     - Fill in values for all of the required input variables.
-    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the **demo** operational mode.
+    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the *Demo* operational mode.
     - Map all of the module's [output values][outputs] to root-level outputs, so that Terraform will display them after applying the configuration. For example:
 
         ```hcl

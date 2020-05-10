@@ -3,7 +3,7 @@ layout: "enterprise"
 page_title: "Automated Installation - Install and Config - Terraform Enterprise"
 ---
 
-# Automated Terraform Enterprise Installation — Individual Instance
+# Automated Terraform Enterprise Installation — Standalone Instance
 
 The installation of Terraform Enterprise can be automated for both online and airgapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
 
@@ -20,11 +20,11 @@ This document expects that the user is already familiar with how to do a [manual
 
 ## Application settings
 
-This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the demo installation type or as complex as specifying the PostgreSQL connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
+This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the *Demo* installation type or as complex as specifying the PostgreSQL connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
 
 ### Format
 
-The settings file is JSON formatted. All values must be strings.  The example below is suitable for a demo installation:
+The settings file is JSON formatted. All values must be strings.  The example below is suitable for a *Demo* installation:
 
 ```json
 {
@@ -75,14 +75,14 @@ One the easiest ways to get the settings is to [perform a manual install](./inst
 To extract the settings as JSON, access the instance via SSH, then run:
 
 ```
-ptfe$ replicatedctl app-config export > settings.json
+tfe$ replicatedctl app-config export > settings.json
 ```
 
-Here is an example `app-config export` output for an instance configured in demo mode:
+Here is an example `app-config export` output for an instance configured in *Demo* mode:
 
 ```
-ptfe$ replicatedctl app-config export > settings.json
-ptfe$ cat settings.json
+tfe$ replicatedctl app-config export > settings.json
+tfe$ cat settings.json
 {
     "aws_access_key_id": {},
     "aws_instance_profile": {},
@@ -144,9 +144,9 @@ The following settings apply to every installation:
 
 - `hostname` — (Required) The hostname you will use to access your installation.
 - `installation_type` — (Required) One of `poc` or `production`.
-- `enc_password` — Set the [encryption password](./encryption-password.html) for the install
+- `enc_password` — Set the [encryption password](./encryption-password.html) for the install.
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`.
-- `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `256`.
+- `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `512`.
 - `enable_metrics_collection` — Whether Terraform Enterprise's [internal metrics collection](../admin/monitoring.html#internal-monitoring) should be enabled; defaults to `true`.
 - `iact_subnet_list` - A comma-separated list of CIDR masks that configure the ability to retrieve the [IACT](./automating-initial-user.html) from outside the host. For example: 10.0.0.0/24. If not set, no subnets can retrieve the IACT.
 - `iact_subnet_time_limit` - The time limit that requests from the subnets listed can request the [IACT](./automating-initial-user.html), as measured from the instance creation in minutes; defaults to 60.
@@ -176,20 +176,20 @@ The following settings apply to every installation:
 - `vault_path` — (Optional) Path on the host system to store the vault files. If `extern_vault_enable` is set, this has no effect.
 - `vault_store_snapshot` — (Optional) Indicate if the vault files should be stored in snapshots. Set to `0` if not. Defaults to `1`.
 
-#### `production_type` is required if you've chosen `production` for the `installation_type`:
+If you have chosen `production` for the `installation_type`, `production_type` is required:
 
 - `production_type` — One of `external` or `disk`.
 
-#### `disk_path` is required if you've chosen `disk` for `production_type`:
+If you have chosen `disk` for `production_type`, `disk_path` is required:
 
 - `disk_path` — Path on instance to persistent storage.
 
-#### The following settings apply if you want to use an [alternative Terraform build worker image](./installer.html#alternative-terraform-worker-image):
+If you want to use an [alternative Terraform build worker image](./installer.html#alternative-terraform-worker-image), the following settings apply:
 
-- `tbw_image` - Set this to `custom_image` if you want to use an alternative Terraform build worker image. (The default is `default_image`.)
-- `custom_image_tag` - The name and tag for your alternative Terraform build worker image in the format `<name>:<tag>`. (The default is `hashicorp/build-worker:now`.)
+- `tbw_image` - Set this to `custom_image` if you want to use an alternative Terraform build worker image (the default is `default_image`).
+- `custom_image_tag` - The name and tag for your alternative Terraform build worker image in the format `<name>:<tag>` (the default is `hashicorp/build-worker:now`).
 
-#### The following settings apply if you've chosen `external` for `production_type`:
+If you have chosen `external` for `production_type`, the following settings apply:
 
 - `pg_user` — (Required) PostgreSQL user to connect as.
 - `pg_password` — (Required) The password for the PostgreSQL user.
@@ -197,9 +197,9 @@ The following settings apply to every installation:
 - `pg_dbname` — (Required) The database name.
 - `pg_extra_params` — (Optional) Parameter keywords of the form `param1=value1&param2=value2` to support additional options that may be necessary for your specific PostgreSQL server.  Allowed values are [documented on the PostgreSQL site](https://www.postgresql.org/docs/9.4/static/libpq-connect.html#LIBPQ-PARAMKEYWORDS).  An additional restriction on the `sslmode` parameter is that only the `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
-Select which placememt will be used for blob storage: S3, Azure, or GCS. Based on this value, you only need to provide one set of the following variables.
+Select which placement will be used for blob storage: S3, Azure, or GCS. Based on this value, you only need to provide one set of the following variables.
 
-- `placement` — (Required) Set to `placement_s3` for S3, `placement_azure` for Azure, or `placement_gcs` for GCS
+- `placement` — (Required) Set to `placement_s3` for S3, `placement_azure` for Azure, or `placement_gcs` for GCS.
 
 For S3 (or S3-compatible storage providers):
 
@@ -209,7 +209,7 @@ For S3 (or S3-compatible storage providers):
 - `s3_endpoint` — (Optional) Endpoint URL (hostname only or fully qualified URI). Usually only needed if using a VPC endpoint or an S3-compatible storage provider.
 - `s3_bucket` — (Required) The S3 bucket where resources will be stored.
 - `s3_region` — (Required) The region where the S3 bucket exists.
-- `s3_sse` — (Optional)Eenables server-side encryption of objects in S3; if provided, must be set to `aws:kms`.
+- `s3_sse` — (Optional) Enables server-side encryption of objects in S3; if provided, must be set to `aws:kms`.
 - `s3_sse_kms_key_id` — (Optional) An optional KMS key for use when S3 server-side encryption is enabled.
 
 For Azure:
@@ -293,6 +293,8 @@ cd /tmp
     private-address=1.2.3.4 \
     public-address=5.6.7.8
 ```
+
+-> **Note**: The `./install.sh` script must be executed from the directory in which it is placed.
 
 ## Waiting for Terraform Enterprise to become ready
 

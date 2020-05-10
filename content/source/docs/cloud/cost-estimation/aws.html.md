@@ -5,6 +5,8 @@ page_title: "AWS - Cost Estimation - Terraform Cloud"
 
 # Supported AWS resources in Terraform Cloud Cost Estimation
 
+-> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 Terraform Cloud can estimate monthly costs for many AWS Terraform resources.
 
 -> **Note:** Terraform Enterprise requires AWS credentials to support cost estimation. These credentials are configured at the instance level, not the organization level. See the [Application Administration docs](/docs/enterprise/admin/integration.html) for more details.

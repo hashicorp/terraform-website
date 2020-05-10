@@ -343,7 +343,8 @@
   }
 }
 
-#terraform-overview-sign-in-link {
+#terraform-overview-sign-in-link,
+#terraform-overview-sign-up-link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -365,6 +366,17 @@
         background: $terraform-d1 !important;
         color: $white !important;
       }
+    }
+  }
+}
+
+#terraform-overview-sign-up-link {
+  & a {
+    background-color: $terraform;
+    color: $white !important;
+
+    &:hover {
+      background-color: $terraform-d1;
     }
   }
 }

@@ -386,6 +386,64 @@ $ curl \
 }
 ```
 
+## Show a Membership
+
+`GET /organization-memberships/:organization_membership_id`
+
+Parameter                     | Description
+------------------------------|-------------
+`:organization_membership_id` | The organization membership
+
+Status  | Response                  | Reason
+--------|---------------------------|-------
+[200][] | [JSON API document][] (`type: "organization-memberships"`) | The request was successful
+[404][] | [JSON API error object][] | Organization membership not found, or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/organization-memberships/ou-kit6GaMo3zPGCzWb
+```
+
+### Sample Response
+
+```json
+{
+    "data": {
+        "id": "ou-kit6GaMo3zPGCzWb",
+        "type": "organization-memberships",
+        "attributes": {
+            "status": "active"
+        },
+        "relationships": {
+            "teams": {
+                "data": [
+                    {
+                        "id": "team-97LkM7QciNkwb2nh",
+                        "type": "teams"
+                    }
+                ]
+            },
+            "user": {
+                "data": {
+                    "id": "user-hn6v2WK1naDpGadd",
+                    "type": "users"
+                }
+            },
+            "organization": {
+                "data": {
+                    "id": "hashicorp",
+                    "type": "organizations"
+                }
+            }
+        }
+    }
+}
+```
+
 ## Remove User from Organization
 
 `DELETE /organization-memberships/:organization_membership_id`

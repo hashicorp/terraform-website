@@ -16,6 +16,7 @@
 
   & .notification-tag {
     margin: -1px 18px 0 0;
+    flex-shrink: 0;
 
     & span {
       border: 1px solid $terraform;
@@ -39,7 +40,7 @@
     display: none;
     margin-left: 32px;
     text-decoration: underline;
-    
+
     @media (min-width: $screen-md-min) {
       display: inline-flex;
     }

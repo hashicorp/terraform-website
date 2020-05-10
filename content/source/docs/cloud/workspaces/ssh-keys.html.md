@@ -17,10 +17,10 @@ Terraform Cloud manages SSH keys used to clone Terraform modules at the organiza
 
 To assign a key to a workspace, go to its settings and choose a previously added key from the drop-down menu on Integrations under "SSH Key". Each workspace can only use one SSH key.
 
-## Adding and Deleting Keys
+-> **API:** See the [SSH Keys API](../api/ssh-keys.html) and [Assign an SSH Key to a Workspace endpoint](../api/workspaces.html#assign-an-ssh-key-to-a-workspace). <br/>
+**Terraform:** See the `tfe` provider's [`tfe_ssh_key`](/docs/providers/tfe/r/ssh_key.html) resource.
 
--> **API:** See the [SSH Keys API](../api/ssh-keys.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_ssh_key` resource](/docs/providers/tfe/r/ssh_key.html).
+## Adding and Deleting Keys
 
 To add or delete an SSH private key, use the main menu to go to your organization's settings and choose "Manage SSH Keys" from the navigation sidebar. This page has a form for adding new keys and a list of existing keys.
 
@@ -30,7 +30,7 @@ To add a key:
 
 1. Obtain an SSH keypair that Terraform Cloud can use to download modules during a Terraform run. You might already have an appropriate key; if not, create one on a secure workstation and distribute the public key to your VCS provider(s). Do not use or generate a key that has a passphrase; Git is running non-interactively and won't be able to prompt for it.
 
-    The exact command to create a keypair depends on your OS, but is usually something like `ssh-keygen -t rsa -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
+    The exact command to create a keypair depends on your OS, but is usually something like `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`. This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key.
 2. Enter a name for the key in the "Name" field. Choose something identifiable, since the name is the only way to tell two SSH keys apart once the key text is hidden.
 3. Paste the text of the **private key** in the "Private SSH Key" field.
 4. Click the "Add Private SSH Key" button.
@@ -42,8 +42,6 @@ To delete a key, find it in the list of keys and click its "Delete" button. Befo
 ~> **Important:** If any workspaces are still using a key when you delete it, they will be unable to clone modules from private repos until you assign them a new key. This might cause Terraform runs to fail.
 
 ## Assigning Keys to Workspaces
-
--> **API:** See the [Assign an SSH Key to a Workspace endpoint](../api/workspaces.html#assign-an-ssh-key-to-a-workspace).
 
 To assign a key to a workspace, navigate to that workspace's page and choose "SSH Key" from the "Settings" menu.
 

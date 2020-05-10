@@ -79,7 +79,7 @@ WORKSPACE_ID=($(curl \
 Before uploading the configuration files, you must create a `configuration-version` to associate uploaded content with the workspace. This API call performs two tasks: it creates the new configuration version and it extracts the upload URL to be used in the next step.
 
 ```bash
-echo '{"data":{"type":"configuration-version"}}' > ./create_config_version.json
+echo '{"data":{"type":"configuration-versions"}}' > ./create_config_version.json
 
 UPLOAD_URL=($(curl \
   --header "Authorization: Bearer $TOKEN" \
@@ -147,7 +147,7 @@ WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
 # 2. Create the File for Upload
 
 UPLOAD_FILE_NAME="./content-$(date +%s).tar.gz"
-tar -zcvf "$UPLOAD_FILE_NAME" -C "$CONTENT_DIRECTORY"
+tar -zcvf "$UPLOAD_FILE_NAME" -C "$CONTENT_DIRECTORY" .
 
 # 3. Look Up the Workspace ID
 
@@ -159,7 +159,7 @@ WORKSPACE_ID=($(curl \
 
 # 4. Create a New Configuration Version
 
-echo '{"data":{"type":"configuration-version"}}' > ./create_config_version.json
+echo '{"data":{"type":"configuration-versions"}}' > ./create_config_version.json
 
 UPLOAD_URL=($(curl \
   --header "Authorization: Bearer $TOKEN" \

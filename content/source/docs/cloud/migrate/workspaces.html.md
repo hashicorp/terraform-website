@@ -37,8 +37,8 @@ Make sure you have all of the following:
 - A Terraform Cloud user account.
 
     This account must be a member of your organization's [owners team][], so you can create workspaces.
-- A [user API token][user-token] for your Terraform Cloud user account.
-- A [CLI configuration file][cli-credentials], with your user API token configured in a `credentials` block.
+
+You also need to authenticate Terraform with Terraform Cloud.  If you're using Terraform 0.12.21 or later, you can use the `terraform login` command. Alternatively, you can create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
 
 ## Step 3: Stop Terraform Runs
 
@@ -121,7 +121,7 @@ After both questions are answered, Terraform will migrate your state.
 
 In Terraform Cloud's UI, make any settings changes necessary for your new workspaces.
 
-- [Set the VCS repository](../workspaces/settings.html#vcs-connection-and-repository). This is optional, but enables automatic Terraform runs on code changes and automatic plans on pull requests. For more information, see [The UI- and VCS-driven Run Workflow](../run/ui.html).
+- [Set the VCS repository](../workspaces/vcs.html#vcs-connection-and-repository). This is optional, but enables automatic Terraform runs on code changes and automatic plans on pull requests. For more information, see [The UI- and VCS-driven Run Workflow](../run/ui.html).
 - [Set values for variables](../workspaces/variables.html).
 - [Set team access permissions](../workspaces/access.html).
 

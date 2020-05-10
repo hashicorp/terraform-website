@@ -15,7 +15,7 @@ Terraform Cloud workspaces can set values for two kinds of variables:
 You can edit a workspace's variables via the UI or the API. All runs in a workspace use its variables.
 
 -> **API:** See the [Variables API](../api/variables.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_variable` resource](/docs/providers/tfe/r/variable.html).
+**Terraform:** See the `tfe` provider's [`tfe_variable`](/docs/providers/tfe/r/variable.html) resource.
 
 ## Loading Variables from Files
 
@@ -100,7 +100,6 @@ Terraform Cloud performs Terraform runs on disposable Linux worker VMs using a P
 
 Terraform Cloud uses some special environment variables to control dangerous or rarely used run behaviors.
 
-- `CONFIRM_DESTROY` — If this environment variable is set to `1` in a workspace, an admin user can destroy all of the infrastructure managed by the workspace using the "Queue destroy plan" button in the settings page. The UI text for the destroy plan button includes a reminder about this safety measure.
 - `TFE_PARALLELISM` — If present, Terraform Cloud uses this to set `terraform apply`'s `-parallelism=<N>` flag ([more info](/docs/internals/graph.html#walking-the-graph)). Valid values are between 1 and 256, inclusive; the default is `10`. This is rarely necessary, but can fix problems with infrastructure providers that error on concurrent operations or use non-standard rate limiting. We recommend talking to HashiCorp support before using this.
 
 ### Secure Storage of Variables

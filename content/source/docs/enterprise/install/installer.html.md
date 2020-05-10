@@ -3,7 +3,7 @@ layout: "enterprise"
 page_title: "Interactive Installation - Install and Config - Terraform Enterprise"
 ---
 
-# Interactive Terraform Enterprise Installation — Individual Instance
+# Interactive Terraform Enterprise Installation — Standalone Instance
 
 ## Delivery
 
@@ -38,27 +38,55 @@ Passing this option to the installation script is particularly useful if the hos
 
 To change the proxy settings after installation, use the Console settings page, accessed from the dashboard on port 8800 under `/console/settings`.
 
-![Terraform Enterprise Console Settings](./assets/ptfe-console-settings.png)
+![Terraform Enterprise Console Settings](./assets/tfe-console-settings.png)
 
 On the Console Settings page, there is a section for HTTP Proxy:
 
-![Terraform Enterprise HTTP Proxy Settings](./assets/ptfe-http-proxy.png)
+![Terraform Enterprise HTTP Proxy Settings](./assets/tfe-http-proxy.png)
 
 This change updates the proxy settings for the Terraform Enterprise application services. To update the proxy settings for the installer (for example, to handle configuration tests correctly), additional steps are necessary:
 
 1. Locate the Replicated configuration files on the instance under either `/etc/sysconfig/` or `/etc/default`: `replicated` and `replicated-operator`.
-2. Open the files for editing. On the line that includes `REPLICATED_OPTS` for `replicated` or `REPLICATED_OPERATOR_OPTS` for `replicated-operator`, add `-e HTTP_PROXY=<your proxy url> -e NO_PROXY=<list of no_proxy hosts>` to the existing command options. The list of `no_proxy` hosts is a comma-separated list with no spaces, and should include following addresses `127.0.0.1,<DOCKER0 INTERFACE IP>,<IP ADDRESS OF PTFE INSTANCE>,<HOSTNAME OF PTFE INSTANCE>` but not limited to.
+2. Open the files for editing. On the line that includes `REPLICATED_OPTS` for `replicated` or `REPLICATED_OPERATOR_OPTS` for `replicated-operator`, add `-e HTTP_PROXY=<your proxy url> -e NO_PROXY=<list of no_proxy hosts>` to the existing command options. The list of `no_proxy` hosts is a comma-separated list with no spaces, and should include following addresses `127.0.0.1,<DOCKER0 INTERFACE IP>,<IP ADDRESS OF TFE INSTANCE>,<HOSTNAME OF TFE INSTANCE>` but not limited to.
 3. Docker also needs to be able to communicate to endpoints with the same rules of proxy settings as `replicated` and `replicated-operator`, the steps 1-6 of this [document](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) are required.
 `NOTE: Please take precautions on application outage when applying configuration change, i.e. wait for all runs to finish, prevent new runs to trigger`
 4. Restart the Replicated services following [the instructions for your distribution](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#restarting-replicated).
 
-## Trusting SSL/TLS Certificates
+## TLS Configuration
 
-There are two primary areas for SSL configuration.
+There are two sections for TLS configuration; the "TLS Key & Cert" section and the "SSL/TLS Configuration" section.
 
 ### TLS Key & Cert
 
-The TLS Key & Cert field (found in the console settings after initial installation) should contain Terraform Enterprise's own key and certificate, or key and certificate chain. A chain would be used in this field if the CA indicates an intermediate certificate is required as well.
+The "TLS Key & Cert" section is where the TLS certificate and private key can be configured to allow HTTPS connections to Terraform Enterprise. The TLS certificate and private key files can be self-signed, located in a path on the server, or uploaded. Both the TLS certificate and private key files must be PEM-encoded. The TLS certificate file can contain a full chain of TLS certificates if necessary.
+
+For convenience, a brand new Terraform Enterprise installation may prompt for these settings after the initial setup. You can provide a key and certificate immediately, or use a self-signed certificate to begin with and change the settings later.
+
+![Installer TLS Key and Cert](./assets/tls-installer.png)
+
+For an existing installation, these settings can be found in the Replicated console on port 8800. Click on the gear icon in the top right corner, click "Console Settings", and scroll to the "TLS Key & Cert" section.
+
+The key and certificate settings can be one of three values, each of which are detailed below.
+
+#### Self-signed (generated)
+
+When the "Self-signed (generated)" radio button is selected, a self-signed TLS certificate and private key will be automatically generated. An example screenshot is below:
+
+![Self-signed TLS Key and Cert](./assets/tls-self-signed.png)
+
+#### Server path
+
+When the "Server path" radio button is selected, the TLS certificate and private key will be read from the specified file paths on the server. An example screenshot is below:
+
+![Server Path TLS Key and Cert](./assets/tls-server-path.png)
+
+#### Upload files
+
+When the "Upload file" radio button is selected, the TLS certificate and private key must be uploaded. An example screenshot is below:
+
+![Upload File TLS Key and Cert](./assets/tls-upload.png)
+
+~> **Note:** Changes to the key and certificate settings require a restart of the Terraform Enterprise application.
 
 ### Certificate Authority (CA) Bundle
 
@@ -96,21 +124,21 @@ c2NvMR4wHAYDVQQDExVoYXNoaWNvcnAuZW5naW5lZXJpbmcwHhcNMTgwMjI4MDYx
 -----END CERTIFICATE-----
 ```
 
-The UI to upload these certificates looks like:
+The user interface to upload these certificates looks like this:
 
-![Terraform Enterprise ca ui](./assets/ptfe-ca-bundle.png)
+![Terraform Enterprise Certificate Authority User Interface](./assets/tls-ca.png)
 
 #### TLS Versions
 
 As of version 201902-01, TLS versions 1.0 and 1.1 are no longer supported in Terraform Enterprise. Your options now include TLS v1.2 and TLS v1.3:
 
-![Terraform Enterprise tls ui](./assets/ptfe-tls-ui.png)
+![Terraform Enterprise TLS Versions User Interface](./assets/tls-versions.png)
 
 ## Alternative Terraform worker image
 
 TFE runs `terraform plan` and `terraform apply` operations in a disposable Docker containers. There are cases where runs may make frequent use of additional tools that are not available in the default Docker image. To allow use of these tools for any plan or apply, users can build their own image and configure TFE to use that instead. In order for this to happen the name of the alternative docker image must be set in the config by using the `Custom image tag` field as shown below:
 
-![Terraform Enterprise docker image](./assets/ptfe-docker-image.png)
+![Terraform Enterprise docker image](./assets/tfe-docker-image.png)
 
 ### Requirements
  - The base image must be `ubuntu:xenial`.
@@ -130,7 +158,7 @@ ADD ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 # Install software used by TFE
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo unzip daemontools git-core ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd
-```
+ ```
 
 ### Image initialization
 To run initialization commands in your image during runtime, create a script at `/usr/local/bin/init_custom_worker.sh` and make it executable. This script, and all commands it invokes, will be executed before TFE runs `terraform init`.

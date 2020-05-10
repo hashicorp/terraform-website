@@ -490,3 +490,51 @@
 	path = ext/providers/stackpath
 	url = https://github.com/terraform-providers/terraform-provider-stackpath
 	branch = stable-website
+[submodule "ext/providers/checkpoint"]
+	path = ext/providers/checkpoint
+	url = https://github.com/terraform-providers/terraform-provider-checkpoint
+	branch = stable-website
+[submodule "ext/providers/metalcloud"]
+	path = ext/providers/metalcloud
+	url = https://github.com/terraform-providers/terraform-provider-metalcloud
+	branch = stable-website
+[submodule "ext/providers/incapsula"]
+	path = ext/providers/incapsula
+	url = https://github.com/terraform-providers/terraform-provider-incapsula
+	branch = stable-website
+[submodule "ext/providers/auth0"]
+	path = ext/providers/auth0
+	url = https://github.com/terraform-providers/terraform-provider-auth0
+	branch = stable-website
+[submodule "ext/providers/baiducloud"]
+	path = ext/providers/baiducloud
+	url = https://github.com/terraform-providers/terraform-provider-baiducloud
+	branch = stable-website
+[submodule "ext/providers/oktaasa"]
+	path = ext/providers/oktaasa
+	url = https://github.com/terraform-providers/terraform-provider-oktaasa
+	branch = stable-website
+[submodule "ext/providers/vmc"]
+	path = ext/providers/vmc
+	url = https://github.com/terraform-providers/terraform-provider-vmc
+	branch = stable-website
+[submodule "ext/providers/sumologic"]
+	path = ext/providers/sumologic
+	url = https://github.com/terraform-providers/terraform-provider-sumologic
+	branch = stable-website
+[submodule "ext/providers/infoblox"]
+	path = ext/providers/infoblox
+	url = https://github.com/terraform-providers/terraform-provider-infoblox
+	branch = stable-website
+[submodule "ext/providers/turbot"]
+	path = ext/providers/turbot
+	url = https://github.com/terraform-providers/terraform-provider-turbot
+	branch = stable-website
+[submodule "ext/providers/time"]
+	path = ext/providers/time
+	url = https://github.com/hashicorp/terraform-provider-time
+	branch = stable-website
+[submodule "ext/providers/cloudinit"]
+	path = ext/providers/cloudinit
+	url = https://github.com/hashicorp/terraform-provider-cloudinit
+	branch = stable-website

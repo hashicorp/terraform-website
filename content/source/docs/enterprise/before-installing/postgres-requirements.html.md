@@ -5,12 +5,13 @@ page_title: "PostgreSQL Requirements - Before Installing - Terraform Enterprise"
 
 # PostgreSQL Requirements for Terraform Enterprise
 
--> **Note:** These requirements apply to the external services operational mode, not the managed disk operational mode. See the [Pre-Install Checklist](./index.html) for more information.
+-> **Note:** These requirements apply to the *External Services* operational mode, not the *Mounted Disk* operational mode. See the [Pre-Install Checklist](./index.html) for more information.
 
 To use an external PostgreSQL database with Terraform Enterprise, the following
 requirements must be met:
 
-* The PostgreSQL Server version must be `>= 9.4` and `< 11.0`.
+* The PostgreSQL Server version must be one of the following:
+  * 9.4, 9.5, 9.6, 10.x, 11.x.
 * A PostgreSQL user must be created with the following permissions on the database:
   * The ability to create, modify, and read all tables and indices on all schemas within the database. Usually this is granted if the user is an owner of the database.
   * The ability to create extensions. If it is not feasible to have a user with the "CREATE EXTENSION" privilege, then refer to the [Creating Extensions](#creating-extensions) section below for information on creating the necessary extensions.
@@ -26,9 +27,9 @@ must be manually created. To create database schemas manually, the
 PostgreSQL database to create the required database schemas manually:
 
 ```sql
-CREATE SCHEMA rails;
-CREATE SCHEMA vault;
-CREATE SCHEMA registry;
+CREATE SCHEMA IF NOT EXISTS rails;
+CREATE SCHEMA IF NOT EXISTS vault;
+CREATE SCHEMA IF NOT EXISTS registry;
 ```
 
 ## Creating Extensions
@@ -46,4 +47,6 @@ CREATE EXTENSION IF NOT EXISTS "citext" WITH SCHEMA "registry";
 
 When providing optional extra keyword parameters for the database connection,
 note an additional restriction on the `sslmode` parameter is that only the
-`require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
+`require`, `verify-full`, `verify-ca`, and `disable` values are allowed. The default value of `sslmode` is set to `require` with _External Services_ installation or `disable` with *Demo* installation.
+
+-> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/9.6/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt` (location is `/tmp/certs/cust-ca-certificates.crt` in a clustered install), which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting.
