@@ -127,8 +127,8 @@ Terraform Enterprise currently supports running under the following operating sy
 
 - **Clustered deployment:**
     - Ubuntu 16.04.3 - 16.04.5 / 18.04
-    - Red Hat Enterprise Linux 7.4 - 7.8
-    - CentOS 7.4 - 7.8
+    - Red Hat Enterprise Linux 7.4 - 7.7
+    - CentOS 7.4 - 7.7
 
     Clusters currently do not support other Linux variants.
 
