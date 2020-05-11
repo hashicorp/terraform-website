@@ -9,7 +9,7 @@ When installing Terraform Enterprise on CentOS Linux, ensure your OS and Docker 
 
 ## Install Requirements
 
-* CentOS Linux version 7.4 - 7.8
+* A [supported version](/docs/enterprise/before-installing/index.html#operating-system-requirements) of CentOS.
 * A suitable version of Docker:
    * Docker 1.13.1 (available in the `extras` repository).
    * [Docker CE](https://docs.docker.com/install/linux/docker-ce/centos/) version 17.06 through 18.x (Docker v19.x is currently unsupported.)
