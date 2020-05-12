@@ -24,7 +24,7 @@ Sentinel Policies are rules which are enforced on Terraform runs to validate tha
 
 After the plan stage of a Terraform run, Terraform Cloud checks every Sentinel policy that should be enforced on the run's workspace. This includes policies from global policy sets, and from any policy sets that are explicitly assigned to the workspace.
 
-Policy sets are managed at an organization level, and only [organization owners](../users-teams-organizations/teams.html#the-owners-team) can create, edit or delete them.
+Policy sets are managed at an organization level. They can be viewed and modified by [organization owners](../users-teams-organizations/teams.html#the-owners-team) and by teams with the "Manage Policies" permission.
 
 ## Enforcement Levels
 
