@@ -84,7 +84,6 @@
 /docs/cloud/vcs/index.html
 /docs/cloud/workspaces/creating.html
 /docs/cloud/workspaces/index.html
-/docs/cloud/workspaces/repo-structure.html
 /docs/cloud/workspaces/ssh-keys.html
 /docs/cloud/workspaces/variables.html
 /docs/commands/0.12upgrade.html
@@ -217,12 +216,8 @@
 /docs/extend/testing/index.html
 /docs/extend/testing/unit-testing.html
 /docs/extend/writing-custom-providers.html
-/docs/github-actions/common-tasks/terraform-versions.html
-/docs/github-actions/configuration/apply.html
-/docs/github-actions/configuration/plan.html
-/docs/github-actions/configuration/validate.html
-/docs/github-actions/getting-started.html
 /docs/github-actions/index.html
+/docs/github-actions/setup-terraform.html
 /docs/glossary.html
 /docs/import/importability.html
 /docs/import/index.html

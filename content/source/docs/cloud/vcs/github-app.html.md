@@ -99,7 +99,6 @@ If you disallow access to a repository that is currently connected to any Terraf
 The Terraform Cloud GitHub App is designed for creating workspaces from the Terraform Cloud UI. It currently does not support:
 
 - The [private module registry][]
-- [Policy sets][]
 - Creation of workspaces via the API or the `tfe` Terraform provider
 
 Once you decide to start using these other features, an organization owner can configure [GitHub OAuth access](./github.html) for your organization.

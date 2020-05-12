@@ -32,7 +32,7 @@ Make sure you've picked a VCS system that Terraform Cloud will be able to access
 
 Start moving infrastructure code into version control. New Terraform code should all be going into version control; if you have existing Terraform code that’s outside version control, start moving it in so that everyone in your organization knows where to look for things and can track the history and purpose of changes.
 
--> **Note:** There are several ways to structure Terraform repositories. If you want to learn more about how your repo structure can affect your Terraform Cloud workflows, see [VCS Repository Structure](/docs/cloud/workspaces/repo-structure.html) in the Terraform Cloud documentation.
+Some organizations prefer to keep each Terraform configuration in its own VCS repository, while others prefer to keep all configurations in a shared "monorepo." Both approaches are valid; if your organization doesn't already have a strong preference, we recommend separate repositories.
 
 ## 3. Create Your First Module
 

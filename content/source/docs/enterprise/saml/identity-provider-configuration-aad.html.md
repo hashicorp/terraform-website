@@ -12,11 +12,11 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
 ## Configure a New AAD Non-Gallery Application
 
 1. In the Azure portal, navigate to "Azure Active Directory" > "Enterprise Applications" and select "Add an Application".
-  ![Screenshot: AAD's "Add Application" page](./images/sso-aad-saml-add-application.png)
+    ![Screenshot: AAD's "Add Application" page](./images/sso-aad-saml-add-application.png)
 2. Select "Non-gallery application". Provide a name for the application and click "Add".
-  ![Screenshot: AAD's dialog for beginning a new application](./images/sso-aad-saml-new-application-form.png)
+    ![Screenshot: AAD's dialog for beginning a new application](./images/sso-aad-saml-new-application-form.png)
 3. AAD will automatically redirect to your new application settings. Navigate to "Single sign-on" and select "SAML".
-  ![Screenshot: the first page of AAD's new app configuration workflow, called "General Settings"](./images/sso-aad-saml-sso-method.png)
+    ![Screenshot: the first page of AAD's new app configuration workflow, called "General Settings"](./images/sso-aad-saml-sso-method.png)
 4. Select the pencil within "Basic SAML Configuration" and configure these settings:
     - **Identifier (Entity ID):** `https://<TFE HOSTNAME>/users/saml/metadata` (listed as "Metadata (audience) URL" in TFE's SAML settings).
     - **Reply URL (Assertion Consumer Service URL):** `https://<TFE HOSTNAME>/users/saml/auth` (listed as "ACS consumer (recipient) URL" in TFE's SAML settings).
@@ -40,7 +40,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
     - **Single Sign-On URL:** Enter the login url from step 8.
     - **Single Log-out URL:** Enter the logout url from step 8.
     - **IDP Certificate:** Enter the contents of the PEM (Base64) encoded X.509 certificate captured in step 7.
-  ![Screenshot: Terraform Enterprise SAML Settings](./images/sso-aad-saml-ptfe-saml-settings.png)
+    ![Screenshot: Terraform Enterprise SAML Settings](./images/sso-aad-saml-tfe-saml-settings.png)
 
 ## Configure Custom Roles for Team Membership Mapping
 

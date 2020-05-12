@@ -73,7 +73,7 @@ Make sure the following foundational Azure infrastructure is available:
 
     -> **Note:** The current module assumes the presence of a DNS zone on Azure, and will create DNS entries for the load balancer. If you do not use Azure's DNS services and wish to skip this, you will need to clone the module from GitHub, comment out the DNS resources and variable references, and call the modified copy of the module instead of referencing it from the Terraform Registry.
 
-If you choose to install in external services mode, you will also need:
+If you choose to install in _External Services_ mode, you will also need:
 
 * An Azure Database for PostgreSQL - please see [PostgreSQL Requirements](../before-installing/postgres-requirements.html).
 * An Azure Blob Storage container created specifically for Terraform Enterprise. The container does not need to be in the same project as the Terraform Enterprise server(s), but you will need credentials for a service principal to access the container.
@@ -94,7 +94,7 @@ The module will create the virtual network, the subnet, required firewalls, and 
 3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/azurerm` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
     - Fill in values for all of the required input variables.
-    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the **demo** operational mode.
+    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the *Demo* operational mode.
     - Map all of the module's [output values][outputs] to root-level outputs, so that Terraform will display them after applying the configuration. For example:
 
         ```hcl

@@ -23,7 +23,7 @@ architecture.
 
 ## Infrastructure Requirements
 
--> **Note:** This reference architecture focuses on the _Production - External Services_ operational mode.
+-> **Note:** This reference architecture focuses on the _External Services_ operational mode.
 
 Depending on the chosen [operational
 mode](../index.html#operational-mode-decision),
@@ -152,7 +152,7 @@ the private key of a public ACM certificate on your Terraform Enterprise instanc
 
 ## Infrastructure Diagram
 
-![aws-infrastructure-diagram-asg](./assets/aws-setup-guide-ptfe-asg.png)
+![aws-infrastructure-diagram-asg](./assets/aws-setup-guide-tfe-asg.png)
 
 ### Application Layer
 
@@ -167,9 +167,9 @@ provided by AWS.
 
 #### Additional Information
 
-- [RDS Multi-AZ deployments](https://aws.amazon.com/rds/details/multi-az/).
+- [RDS Multi-AZ deployments](https://aws.amazon.com/rds/details/multi-az/)
 
-- [S3 Standard storage class](https://aws.amazon.com/s3/storage-classes/).
+- [S3 Standard storage class](https://aws.amazon.com/s3/storage-classes/)
 
 ## Infrastructure Provisioning
 
@@ -204,7 +204,7 @@ highly available infrastructure supporting S3.
 
 There is not currently a full monitoring guide for Terraform Enterprise. The following pages include information relevant to monitoring:
 
-- [Logging](../../admin/logging.html),
+- [Logging](../../admin/logging.html)
 - [Diagnostics](../../support/index.html)
 - [Reliability and Availability](../../system-overview/reliability-availability.html)
 
@@ -251,7 +251,7 @@ See below for more detail on how each component handles Availability Zone failur
 By utilizing an Auto Scaling Group, the Terraform Enterprise instance automatically recovers
 in the event of any outage except for the loss of an entire region.
 
-With external services (PostgreSQL Database, Object Storage) in use,
+With *External Services* (PostgreSQL Database, Object Storage) in use,
 there is still some application configuration data present on the Terraform Enterprise server
 such as installation type, database connection settings, hostname. This data
 rarely changes. If the configuration on *Terraform Enterprise* changes you should update the
@@ -323,7 +323,7 @@ functionality to support a low MTTR in the event of data corruption.
 
 ##### Terraform Enterprise Servers
 
-With external services (PostgreSQL Database, Object Storage) in
+With _External Services_ (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
 Terraform Enterprise server such as installation type, database connection settings,
 hostname. This data rarely changes. We recommend [configuring automated

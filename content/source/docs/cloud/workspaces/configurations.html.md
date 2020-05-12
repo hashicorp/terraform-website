@@ -34,3 +34,26 @@ There are two ways to provide configuration versions for a workspace:
     - **API:** Terraform Cloud's API can accept configurations as `.tar.gz` files, which can be uploaded by a CI system or other workflow tools. See [The API-driven Run Workflow](../run/api.html) for more information.
 
     When configuration versions are provided via the CLI or API, Terraform Cloud can't automatically react to code changes in the underlying VCS repository.
+
+## Code Organization and Repository Structure
+
+### Organizing Separate Configurations
+
+Most organizations either keep each Terraform configuration in a separate repository, or keep many Terraform configurations as separate directories in a single repository (often called a "monorepo").
+
+Terraform Cloud works well with either approach, but monorepos require some extra configuration:
+
+- Each workspace must [specify a Terraform working directory](./settings.html#terraform-working-directory), so Terraform Cloud knows which configuration to use.
+- If the repository includes any shared Terraform modules, you must add those directories to the [automatic run triggering setting](./vcs.html#automatic-run-triggering) for any workspace that uses those modules.
+
+-> **Note:** If your organization does not have a strong preference, we recommend using separate repositories for each configuration and using the private module registry to share modules. This allows for faster module development, since you don't have to update every configuration that consumes a module at the same time as the module itself.
+
+### Organizing Multiple Environments for a Configuration
+
+There are also a variety of ways to handle multiple environments. The most common approaches are:
+
+- All environments use the same main branch, and environment differences are handled with Terraform variables. To protect production environments, wait to apply runs until their changes are verified in staging.
+- Different environments use different long-lived VCS branches. To protect production environments, merge changes to the production branch after they have been verified in staging.
+- Different environments use completely separate configurations, and shared behaviors are handled with shared Terraform modules. To protect production environments, verify new module versions in staging before updating the version used in production.
+
+Terraform Cloud works well with all of these approaches. If you used long-lived branches, be sure to specify which branch to use in each workspace's VCS connection settings.
