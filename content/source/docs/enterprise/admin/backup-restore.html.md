@@ -34,7 +34,7 @@ The backup and restore API uses a separate authorization token which can be foun
 
 ![Screenshot: the TFE install dashboard, with the API token visible](./images/token.png)
 
--> **Note:** This authorization token is specific to the Terraform Enterprise installation. Unless otherwise specified during installation of the new Terraform Enteprise instance, the authorization token used to create a backup will be different than the authorization token used to perform a restore.
+-> **Note:** This authorization token is specific to the Terraform Enterprise installation. As a result, the authorization token used to create a backup may be different than the authorization token used to perform a restore. Please ensure you are using the correct authorization token when performing a backup or restore operation.
 
 The backup and restore API is separate from the Terraform Enterprise application-level APIs and cannot be accessed with Terraform Enterprise user, team, or organization API tokens.
 
@@ -139,6 +139,8 @@ Status  | Response           | Reason
 [200][] | (none)             | Successfully restored a backup
 [400][] | (none)             | Invalid request
 [500][] | (none)             | Internal server error
+
+~> **Important:** A successful backup **must** return `200`. If `200` is not returned and the call silently closes, the backup blob may be incomplete, resulting in data loss.
 
 ### Request Body
 
