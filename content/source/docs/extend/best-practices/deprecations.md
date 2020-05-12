@@ -31,11 +31,9 @@ The recommended process for removing an attribute from a data source or resource
 1. Add `Deprecated` in the attribute schema definition. After an operator upgrades to this version, they will be shown a warning with the message provided when using the attribute, but the Terraform run will still complete.
 1. Ensure the changelog has an entry noting the deprecation.
 1. Release a `MINOR` version with the deprecation.
-1. In the next `MAJOR` version, remove all code associated with the attribute except for its schema definition.
-1. Replace `Deprecated` with `Removed` in the attribute schema definition. Add `Computed: true` if not present. Ensure all `ConflictsWith`, `DiffSuppressFunc`, `ForceNew`, and `Set` are removed. After an operator upgrades to this version, they will be shown an error with the message provided when using the attribute and their plans should show no updates related to removing this attribute.
+1. In the next `MAJOR` version, remove all code associated with the attribute including the schema definition.
 1. Ensure the changelog has an entry noting the removal.
 1. Release the `MAJOR` version.
-1. In the next `MAJOR` version afterwards, completely remove the attribute schema definition. No changelog is necessary.
 
 ## Provider Attribute Rename
 

@@ -76,7 +76,7 @@ Terrform Enterprise was unable to determine the issuer of the SAML response.<br 
 
 If you're not able to resolve the error using the steps above, [reach out to support](../support/index.html). When contacting support, please provide:
 
-  * A screenshot of "SAML Response" and "Processed attributes" shown on the login page after failed login
-  * A screenshot of the error on the login page
-  * The [SAMLResponse XML document](./identity-provider-configuration.html#example-samlresponse)
-  * A [support bundle](../support/index.html)
+  * A screenshot of "SAML Response" and "Processed attributes" shown on the login page after failed login.
+  * A screenshot of the error on the login page.
+  * The [SAMLResponse XML document](./identity-provider-configuration.html#example-samlresponse).
+  * A [support bundle](../support/index.html).

@@ -306,6 +306,14 @@ There are two places that typically warn you about broken links:
 
 In both of these cases, the failing job usually _doesn't_ mean the actual build or deploy failed, and instead means that the link-checking or cache-warming scripts found a broken link and exited with a non-zero status code.
 
+### Step 1a: Identify the First Bad Build
+
+If you noticed the failing builds early enough, you might be able to see the exact point where they flipped from green to red. If so, look at the commit associated with the first bad build!
+
+Knowing the commit can save you a lot of time in step 4, when you're trying to figure out which files include the broken links.
+
+If the build stayed red long enough for additional broken links to creep in, this will only help find the first batch. Thus, it's easier to deal with broken links if you catch them fast.
+
 ### Step 2: Find the Broken URL(s) in the Build Log
 
 If you see a red build (on a PR or in the chatroom), click through to the build log. Once it's loaded, Cmd-F and search for the text "broken link". There might be more than one message, so make sure to search repeatedly (Cmd-G) to catch them all.
@@ -359,6 +367,7 @@ There are a few sub-steps here.
 2. Figure out what's up with the _links_ to the broken pages.
     - The list for the known incoming links check is at [`content/scripts/testdata/incoming-links.txt`](https://github.com/hashicorp/terraform-website/blob/master/content/scripts/testdata/incoming-links.txt). If that's the type of error you got, that's where the reference is.
     - For links in text/navs it's a bit tougher, because the link checker doesn't tell you where the link CAME from, just where it tried to GO. So you'll have to actually search the source text of the site.
+        - If you know the commit where the links went bad, that can narrow down the possibilities. Often it's just a "sync and edit website" commit that updated one or two submodules, but just knowing which submodules to check first can save a ton of time.
         - The best way to do this is with a local checkout of the affected repository(s) and a CLI text search utility like [ag](https://github.com/ggreer/the_silver_searcher) or [rg](https://github.com/BurntSushi/ripgrep). (If you don't have either and are in a rush, `git grep` might work, but seriously, if you've read this far already you are _obviously_ the type of person who needs ag or rg.)
         - If the target page is in one of the providers, solid 99% chance the link is in that same provider.
         - If the target page is in this repo or `hashicorp/terraform`, ~80% chance the link is in one of those two places. (Could be either, since they cross-link pretty extensively.)

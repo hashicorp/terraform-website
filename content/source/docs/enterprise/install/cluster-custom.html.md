@@ -134,7 +134,7 @@ The first primary of the cluster is responsible for bootstrapping the cluster, s
 
 The software expects a couple of configuration files to be on the machine which will govern part of the setup process. These configuration files are only needed on the initial primary.
 
-The process of creating these configuration files is the same for both clustered and non-clustered installation. Please see [Individual Deployment: Automated Installation](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html) for the full syntax and options.
+The process of creating these configuration files is the same for both clustered and non-clustered installation. Please see [Standalone Deployment: Automated Installation](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html) for the full syntax and options.
 
 At minimum, the installation requires that the `/etc/replicated.conf` file exist.
 

@@ -33,7 +33,7 @@ configuration, as opposed to trying to update the existing resource.
 - Must be set if `Required` is omitted **and** element is not `Computed`
 
 Indicates that this element is optional to include in the configuration. Note
-that `Optional` does not itself establish a default value. See [Default]()
+that `Optional` does not itself establish a default value. See [Default](#default)
 below.
 
 **Schema example:**

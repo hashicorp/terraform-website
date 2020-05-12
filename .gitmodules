@@ -529,4 +529,15 @@
 [submodule "ext/providers/ksyun"]
 	path = ext/providers/ksyun
 	url = https://github.com/KscSDK/terraform-provider-ksyun
+[submodule "ext/providers/turbot"]
+	path = ext/providers/turbot
+	url = https://github.com/terraform-providers/terraform-provider-turbot
+	branch = stable-website
+[submodule "ext/providers/time"]
+	path = ext/providers/time
+	url = https://github.com/hashicorp/terraform-provider-time
+	branch = stable-website
+[submodule "ext/providers/cloudinit"]
+	path = ext/providers/cloudinit
+	url = https://github.com/hashicorp/terraform-provider-cloudinit
 	branch = stable-website
