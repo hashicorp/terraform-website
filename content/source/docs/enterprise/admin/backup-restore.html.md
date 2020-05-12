@@ -90,6 +90,8 @@ Status  | Response           | Reason
 [400][] | (none)             | Invalid request
 [500][] | (none)             | Internal server error
 
+~> **Important:** A successful backup **must** return `200`. If `200` is not returned and the call silently closes, the backup blob may be incomplete, resulting in data loss.
+
 ### Request Body
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
@@ -139,8 +141,6 @@ Status  | Response           | Reason
 [200][] | (none)             | Successfully restored a backup
 [400][] | (none)             | Invalid request
 [500][] | (none)             | Internal server error
-
-~> **Important:** A successful backup **must** return `200`. If `200` is not returned and the call silently closes, the backup blob may be incomplete, resulting in data loss.
 
 ### Request Body
 
