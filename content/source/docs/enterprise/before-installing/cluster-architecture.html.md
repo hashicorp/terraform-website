@@ -1,5 +1,6 @@
 ---
-layout: "enterprise"
+layout: "enterprise_cluster"
+hidden: true
 page_title: "Clustered Deployment Architecture - Before Installing - Terraform Enterprise"
 ---
 
