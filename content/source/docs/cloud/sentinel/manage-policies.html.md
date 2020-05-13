@@ -73,26 +73,21 @@ module "timezone" {
 
 Create a `modules` directory within the policy set working directory, and create a `timezone.sentinel` that looks as follows:
 
-```sentinel
+```python
 import "http"
 import "json"
-import "strings"
+import "decimal"
 
-uri = "https://raw.githubusercontent.com/dmfilipenko/timezones.json/master/timezones.json"
-request = http.get(uri)
-response = json.unmarshal(request.body)
+httpGet = func(id, token){
+	uri = "https://timezoneapi.io/api/timezone/?" + id + "&token=" + token
+	request = http.get(uri)
+	return json.unmarshal(request.body)
+} 
 
-offset = func(abbr) {
-	timezone = filter response as _, r {
-		r.abbr is strings.to_upper(abbr)
-	}
-	for timezone as tz {
-		print("Getting timezone data for", tz.value)
-		print("Details:", tz.text)
-		print("Abbreviation:", tz.abbr)
-		print("Offset:", tz.offset)
-		return tz.offset
-	}
+offset = func(id, token) {
+	tz = httpGet(id, token)
+	offset = decimal.new(tz.data.datetime.offset_hours).int
+	return offset
 }
 ```
 
@@ -105,23 +100,24 @@ Sentinel policies themselves are defined in individual files (one per policy) in
 Using the `terraform-maintenance-windows.sentinel` policy as an example, we can use the `time` and `tfrun` imports along with our custom `timezone` module to enforce checks that:
 
 1. Load the time when the Terraform run occurred
-1. Convert the loaded time to PST
+1. Convert the loaded time with the correct offset using the [Timezone API](https://timezoneapi.io/)
 1. Verify that the provisioning operation is only going to occur on an agreed upon day
 
 An example policy would be as follows:
 
-```sentinel
+```python
 import "time"
 import "tfrun"
 import "timezone"
 
+param token default "WbNKULOBheqV"
 param maintenance_days default ["Friday", "Saturday", "Sunday"]
-param timezone_abbreviation default "PST"
+param timezone_id default "America/Los_Angeles"
 
 tfrun_created_at = time.load(tfrun.created_at)
 
 supported_maintenance_day = rule when tfrun.workspace.auto_apply is true {
-	tfrun_created_at.add(time.hour * timezone.offset(timezone_abbreviation)).weekday_name in maintenance_days
+	tfrun_created_at.add(time.hour * timezone.offset(timezone_id, token)).weekday_name in maintenance_days
 }
 
 main = rule {
