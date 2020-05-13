@@ -3,7 +3,7 @@ layout: "enterprise"
 page_title: "Automated Installation - Install and Config - Terraform Enterprise"
 ---
 
-# Automated Terraform Enterprise Installation — Standalone Instance
+# Automated Terraform Enterprise Installation
 
 The installation of Terraform Enterprise can be automated for both online and airgapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
 

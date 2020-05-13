@@ -3,7 +3,7 @@ layout: "enterprise"
 page_title: "Interactive Installation - Install and Config - Terraform Enterprise"
 ---
 
-# Interactive Terraform Enterprise Installation — Standalone Instance
+# Interactive Terraform Enterprise Installation
 
 ## Delivery
 

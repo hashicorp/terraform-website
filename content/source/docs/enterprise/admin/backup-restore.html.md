@@ -5,14 +5,11 @@ page_title: "Backups and Restores - Infrastructure Administration - Terraform En
 
 # Terraform Enterprise Backups and Restores
 
-Terraform Enterprise provides an API to backup and restore all of its application data. This backup and restore API works the same for both standalone and clustered installations.
+Terraform Enterprise provides an API to backup and restore all of its application data.
 
 The backup and restore API is separate from the Terraform Enterprise application-level APIs. As such, a separate authorization token is required to use the backup and restore API. See [Authentication](#authentication) below for more details.
 
-Using the backup and restore API is the only supported way to:
-
-- Migrate between deployment types (standalone, clustered).
-- Migrate between operational modes (mounted disk, external services).
+Using the backup and restore API is the only supported way to migrate between operational modes (mounted disk, external services).
 
 ## About Backups and Restores
 
@@ -28,7 +25,7 @@ See also:
 
 - [Data Security](../system-overview/data-security.html) for details about the contents of Terraform Enterprise's blob storage and PostgreSQL database.
 
-### Authentication 
+### Authentication
 
 The backup and restore API uses a separate authorization token which can be found on the settings dashboard (`https://<TFE HOSTNAME>:8800/settings`) near the bottom of the page:
 
@@ -125,7 +122,7 @@ curl \
 
 `POST /_backup/api/v1/restore`
 
-Before restoring, you must first create a new Terraform Enterprise installation. This can be a standalone or clustered installation.
+Before restoring, you must first create a new Terraform Enterprise installation.
 
 -> **Note:** The authorization token used to restore the backup is specific to the Terraform Enterprise installation. If restoring to a separate Terraform Enterprise installation, the authorization token will be different for the restore than it was for the backup. See [Authentication](#authentication) above for more details.
 
