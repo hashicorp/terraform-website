@@ -1,5 +1,6 @@
 ---
-layout: "enterprise"
+layout: "enterprise_cluster"
+hidden: true
 page_title: "AWS - Clustered Deployment - Install and Config - Terraform Enterprise"
 ---
 
