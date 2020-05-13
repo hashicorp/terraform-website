@@ -5,6 +5,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= description_for(current_page) %>">
+    <% if current_page.data.hidden %>
+      <meta name="robots" content="noindex">
+    <% end %>
 
     <link rel="canonical" href="<%= File.join(base_url, current_page.url) %>" />
     <link rel="apple-touch-icon" sizes="180x180" href="<%= image_path("favicons/apple-touch-icon.png") %>">
