@@ -14,7 +14,7 @@ Prepare all of the following before installing:
 2. **Choose an operational mode:** Decide how Terraform Enterprise should store its data. This is affected by your choice of deployment method.
 3. **Credentials:** Ensure you have a Terraform Enterprise license and a TLS certificate for Terraform Enterprise to use.
 4. **Data storage:** Depending on your operational mode, prepare data storage services or a block storage device.
-5. **Linux instance:** Prepare a running Linux instance (if deploying standalone instances) for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements. Also check the Terraform Enterprise [pre-install checklist](https://www.terraform.io/docs/enterprise/before-installing/index.html) for further details.
+5. **Linux instance:** Prepare a running Linux instance for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements. Also check the Terraform Enterprise [pre-install checklist](https://www.terraform.io/docs/enterprise/before-installing/index.html) for further details.
 
 ## Operational Mode Decision
 
