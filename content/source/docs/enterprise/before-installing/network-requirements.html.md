@@ -42,7 +42,7 @@ is supplied:
 * `registry.terraform.io` (when using Terraform 0.12 and later)
 * `releases.hashicorp.com`
 
-Online and Airgap installs also need egress access to any VCS servers/services that will be utilized, login/authentication servers if SAML will be configured (ADFS, Okta, etc), the various cloud API endpoints that will be managed with Terraform and any other third party services that will either be integrated with the Terraform Enteprise server or managed with it.
+Online and airgap installs also need egress access to any VCS servers/services that will be utilized, login/authentication servers if SAML will be configured (ADFS, Okta, etc), the various cloud API endpoints that will be managed with Terraform and any other third party services that will either be integrated with the Terraform Enteprise server or managed with it.
 
 When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-integration) is enabled, it uses the respective cloud provider's APIs to get up-to-date pricing info.
 
@@ -63,4 +63,3 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
       "mtu": 1460
     }
     ```
-
