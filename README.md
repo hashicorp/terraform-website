@@ -70,9 +70,16 @@ While the preview is running, you can edit pages and Middleman will automaticall
 
 ↥ [back to top](#table-of-contents)
 
-To preview changes from your fork of Terraform or one of the providers, first make sure the necessary submodule is active. Run `git submodule init ext/terraform` or `git submodule init ext/providers/<SHORT NAME>` (where `<SHORT NAME>` is the name used in the provider's docs URLs), then run `git submodule update`. (For more information, see [Living With Submodules][inpage-submodules] below.)
+To preview changes from your fork of Terraform or one of the providers, first make sure the necessary submodule is active:
 
-Once the submodule is active, you can go into its directory and fetch and check out new commits. If you plan to routinely edit those docs, you can add an additional remote to make it easier to fetch from and push to your fork.
+1. **Init.** Run `git submodule init ext/terraform` or `git submodule init ext/providers/<SHORT NAME>` (where `<SHORT NAME>` is the name used in the provider's docs URLs).
+
+    You can skip this if you know you've already initialized this submodule. But also it's idempotent, and running it again is probably faster than grepping the output of `git submodule status`.
+2. **Update.** Run `git submodule update`.
+
+    The init command doesn't actually init things all the way, so if you forget to run update, you might have a bad afternoon. (For more information, see [Living With Submodules][inpage-submodules] below.)
+
+Once the submodule is active, you can go into its directory to fetch and check out new commits. If you plan to routinely edit those docs, you can add an additional remote to make it easier to fetch from and push to your fork.
 
 You can even make direct edits to the submodule's content, as long as you remember to commit them and push your branch before resetting the submodule.
 
