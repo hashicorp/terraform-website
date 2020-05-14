@@ -538,3 +538,7 @@
 	path = ext/providers/cloudinit
 	url = https://github.com/hashicorp/terraform-provider-cloudinit
 	branch = stable-website
+[submodule "ext/providers/ksyun"]
+	path = ext/providers/ksyun
+	url = https://github.com/terraform-providers/terraform-provider-ksyun
+	branch = stable-website
