@@ -34,7 +34,7 @@ Parameter            | Description
 -------------------- | ------------
 `:organization_name` | The name of the organization to create the workspace in. The organization must already exist in the system, and the user must have permissions to create new workspaces.
 
--> **Note:** Workspace creation is restricted to members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens).
+-> **Note:** Workspace creation is restricted to the owners team, teams with the "Manage Workspaces" permission, and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens).
 
 ### Request Body
 
