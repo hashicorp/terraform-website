@@ -17,7 +17,7 @@ Below is a list of resources that cost estimation supports so far. Resources tha
 | -- | -- |
 | azurerm_managed_disk | incurs cost |
 | azurerm_mariadb_server | incurs cost |
-| azurerm_mssql_elastincurs costpool | incurs cost |
+| azurerm_mssql_elasticpool | incurs cost |
 | azurerm_mysql_server | incurs cost |
 | azurerm_postgresql_server | incurs cost |
 | azurerm_sql_database | incurs cost |

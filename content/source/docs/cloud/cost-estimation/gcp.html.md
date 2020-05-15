@@ -14,7 +14,7 @@ Terraform Cloud can estimate monthly costs for many GCP Terraform resources.
 Below is a list of resources that cost estimation supports so far. Resources that incur costs are marked as such; other resources do not have costs associated with them.
 
 | Resource | Status |
-| -- | -- | -- |
+| -- | -- |
 | google_compute_disk | incurs cost |
 | google_compute_instance | incurs cost |
 | google_sql_database_instance | incurs cost |
