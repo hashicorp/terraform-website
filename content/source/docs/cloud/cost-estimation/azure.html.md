@@ -14,6 +14,7 @@ Terraform Cloud can estimate monthly costs for many Azure Terraform resources.
 Below is a list of resources that cost estimation supports so far. Resources that incur costs are marked as such; other resources do not have costs associated with them.
 
 | Resource | Status |
+| -- | -- |
 | azurerm_managed_disk | incurs cost |
 | azurerm_mariadb_server | incurs cost |
 | azurerm_mssql_elasticpool | incurs cost |

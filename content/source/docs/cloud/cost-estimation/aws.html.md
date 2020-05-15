@@ -14,6 +14,7 @@ Terraform Cloud can estimate monthly costs for many AWS Terraform resources.
 Below is a list of resources that cost estimation supports so far. Resources that incur costs are marked as such; other resources do not have costs associated with them.
 
 | Resource | Status |
+| -- | -- |
 | aws_alb | incurs cost |
 | aws_autoscaling_group | incurs cost |
 | aws_cloudwatch_dashboard | incurs cost |
