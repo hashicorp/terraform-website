@@ -128,24 +128,25 @@
 /docs/enterprise/workspaces/run-cli.html                 /docs/enterprise/run/cli.html
 
 # AWS Provider
-/docs/providers/aws/d/alb_listener.html                /docs/providers/aws/d/lb_listener.html
-/docs/providers/aws/d/alb_target_group.html            /docs/providers/aws/d/lb_target_group.html
-/docs/providers/aws/d/alb.html                         /docs/providers/aws/d/lb.html
-/docs/providers/aws/events/gardening-summer-2018.html  /docs/extend/community/events/2018/summer-gardening.html
-/docs/providers/aws/r/alb_listener_rule.html           /docs/providers/aws/r/lb_listener_rule.html
-/docs/providers/aws/r/alb_listener.html                /docs/providers/aws/r/lb_listener.html
-/docs/providers/aws/r/alb_target_group_attachment.html /docs/providers/aws/r/lb_target_group_attachment.html
-/docs/providers/aws/r/alb_target_group.html            /docs/providers/aws/r/lb_target_group.html
-/docs/providers/aws/r/alb.html                         /docs/providers/aws/r/lb.html
-/docs/providers/aws/r/autoscaling_lifecycle_hooks.html /docs/providers/aws/r/autoscaling_lifecycle_hook.html
-/docs/providers/aws/r/code_commit_repository.html      /docs/providers/aws/r/codecommit_repository.html
-/docs/providers/aws/r/code_commit_trigger.html         /docs/providers/aws/r/codecommit_trigger.html
-/docs/providers/aws/r/elastic_transcoder_pipeline.html /docs/providers/aws/r/elastictranscoder_pipeline.html
-/docs/providers/aws/r/elastic_transcoder_preset.html   /docs/providers/aws/r/elastictranscoder_preset.html
-/docs/providers/aws/r/main_route_table_assoc.html      /docs/providers/aws/r/main_route_table_association.html
-/docs/providers/aws/r/vpc_peering_accepter.html        /docs/providers/aws/r/vpc_peering_connection_accepter.html
-/docs/providers/aws/r/vpc_peering_options.html         /docs/providers/aws/r/vpc_peering_connection_options.html
-/docs/providers/aws/r/vpc_peering.html                 /docs/providers/aws/r/vpc_peering_connection.html
+/docs/providers/aws/d/alb_listener.html                     /docs/providers/aws/d/lb_listener.html
+/docs/providers/aws/d/alb_target_group.html                 /docs/providers/aws/d/lb_target_group.html
+/docs/providers/aws/d/alb.html                              /docs/providers/aws/d/lb.html
+/docs/providers/aws/events/gardening-summer-2018.html       /docs/extend/community/events/2018/summer-gardening.html
+/docs/providers/aws/r/alb_listener_rule.html                /docs/providers/aws/r/lb_listener_rule.html
+/docs/providers/aws/r/alb_listener.html                     /docs/providers/aws/r/lb_listener.html
+/docs/providers/aws/r/alb_target_group_attachment.html      /docs/providers/aws/r/lb_target_group_attachment.html
+/docs/providers/aws/r/alb_target_group.html                 /docs/providers/aws/r/lb_target_group.html
+/docs/providers/aws/r/alb.html                              /docs/providers/aws/r/lb.html
+/docs/providers/aws/r/autoscaling_lifecycle_hooks.html      /docs/providers/aws/r/autoscaling_lifecycle_hook.html
+/docs/providers/aws/r/code_commit_repository.html           /docs/providers/aws/r/codecommit_repository.html
+/docs/providers/aws/r/code_commit_trigger.html              /docs/providers/aws/r/codecommit_trigger.html
+/docs/providers/aws/r/elastic_transcoder_pipeline.html      /docs/providers/aws/r/elastictranscoder_pipeline.html
+/docs/providers/aws/r/elastic_transcoder_preset.html        /docs/providers/aws/r/elastictranscoder_preset.html
+/docs/providers/aws/r/main_route_table_assoc.html           /docs/providers/aws/r/main_route_table_association.html
+/docs/providers/aws/r/s3_bucket_analysis_configuration.html /docs/providers/aws/r/s3_bucket_analytics_configuration.html
+/docs/providers/aws/r/vpc_peering_accepter.html             /docs/providers/aws/r/vpc_peering_connection_accepter.html
+/docs/providers/aws/r/vpc_peering_options.html              /docs/providers/aws/r/vpc_peering_connection_options.html
+/docs/providers/aws/r/vpc_peering.html                      /docs/providers/aws/r/vpc_peering_connection.html
 
 # Azure Active Directory Provider
 /docs/providers/azuread/auth/azure_cli.html                             /docs/providers/azuread/guides/azure_cli.html
