@@ -51,7 +51,8 @@ Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.attributes.is-destroy` | bool | false | Specifies if this plan is a destroy plan, which will destroy all provisioned resources.
 `data.attributes.message` | string | "Queued manually via the Terraform Enterprise API" | Specifies the message to be associated with this run.
-`data.relationships.workspace.data.id` | string | | Specifies the workspace ID where the run will be executed.
+`data.attributes.target-addrs` | array[string] | (nothing) | Specifies an optional list of resource addresses to be passed to the `-target` flag.
+`data.relationships.workspace.data.id` | string | (nothing) | Specifies the workspace ID where the run will be executed.
 `data.relationships.configuration-version.data.id` | string | (nothing) | Specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
 
 Status  | Response                               | Reason
@@ -68,8 +69,9 @@ Status  | Response                               | Reason
 {
   "data": {
     "attributes": {
-      "is-destroy":false,
-      "message": "Custom message"
+      "is-destroy": false,
+      "message": "Custom message",
+      "target-addrs": ["example.resource_address"]
     },
     "type":"runs",
     "relationships": {
@@ -120,6 +122,7 @@ curl \
       "terraform-version": "0.10.8",
       "created-at": "2017-11-29T19:56:15.205Z",
       "has-changes": false,
+      "target-addrs": ["example.resource_address"],
       "actions": {
         "is-cancelable": true,
         "is-confirmable": false,

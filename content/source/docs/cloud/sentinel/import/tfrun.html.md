@@ -21,6 +21,7 @@ tfrun
 ├── speculative (boolean)
 ├── is_destroy (boolean)
 ├── variables (map of keys)
+├── target_addrs (array of strings)
 ├── organization
 │   └── name (string)
 ├── workspace
@@ -93,6 +94,21 @@ variables (map of keys)
     └── category (string)
     └── sensitive (boolean)
 ```
+
+### Value: `target_addrs`
+
+* **Value Type:** An array of strings representing [resource addresses](/docs/internals/resource-addressing.html).
+
+Provides the targets specified using the [`-target`](/docs/commands/plan.html#resource-targeting) flag in the CLI or the `target-addrs` attribute in the API. Will be undefined if no resource targets are specified.
+
+To prohibit targeted runs altogether, make sure the `target_addrs` value is undefined or empty:
+
+```
+import "tfrun"
+
+main = (length(tfrun.target_addrs) else 0) == 0
+```
+
 
 ## Namespace: organization
 
@@ -179,6 +195,8 @@ vcs_repo (map of keys)
 The **cost_estimation namespace** contains data associated with the current run's cost estimate.
 
 This namespace is only present if a cost estimate is available.
+
+-> Cost estimation is disabled for runs using (resource targeting)[/docs/commands/plan.html#resource-targeting], which may cause unexpected failures.
 
 -> **Note:** Cost estimates are not available for Terraform 0.11.
 
