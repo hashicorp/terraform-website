@@ -204,3 +204,19 @@ FALSE - my-policy.sentinel:1:1 - Rule "main"
 
 Error: Organization policy check hard failed.
 ```
+
+## Targeted Plan and Apply
+
+-> **Version note:** Targeting support was added client-side in Terraform v0.12.26 and also requires server-side support that may not be available for all Terraform Enterprise deployments yet.
+
+The `terraform plan` and `terraform apply` commands described in earlier
+sections support [Resource Targeting](https://www.terraform.io/docs/commands/plan.html#resource-targeting) as in the local operations workflow, using the `-target` option on the command line.
+
+As with local usage, targeting is intended for exceptional circumstances only
+and should not be used routinely. The usual caveats for targeting in local operations imply some additional limitations on Terraform Cloud features for remote plans created with targeting:
+
+* [Sentinel](../sentinel/) policy checks for targeted plans will see only the selected subset of resource instances planned for changes in [the `tfplan` import](../sentinel/import/tfplan.html) and [the `tfplan/v2` import](../sentinel/import/tfplan-v2.html), which may cause an unintended failure for any policy that requires a planned change to a particular resource instance selected by its address.
+
+* [Cost Estimation](../cost-estimation/) is disabled for any run created with `-target` set, to prevent producing a misleading underestimate of cost due to resource instances being excluded from the plan.
+
+You can disable or constrain use of targeting in a particular workspace using a Sentinel policy based on [the `tfrun.target_addrs` value](../sentinel/import/tfrun.html#value-target_addrs).
