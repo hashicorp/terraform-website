@@ -196,7 +196,7 @@ The **cost_estimation namespace** contains data associated with the current run'
 
 This namespace is only present if a cost estimate is available.
 
--> Cost estimation is disabled for runs using (resource targeting)[/docs/commands/plan.html#resource-targeting], which may cause unexpected failures.
+-> Cost estimation is disabled for runs using [resource targeting](/docs/commands/plan.html#resource-targeting), which may cause unexpected failures.
 
 -> **Note:** Cost estimates are not available for Terraform 0.11.
 
