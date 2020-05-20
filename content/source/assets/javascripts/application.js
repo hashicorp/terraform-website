@@ -24,7 +24,7 @@ document.addEventListener("turbolinks:load", function() {
 
     // Move the header (if any) into the grid container so we can make things line up nicely.
     var sidebarHeaderGrid = $("#sidebar-header-grid");
-    var sidebarHeader = $("#docs-sidebar").children("h1,h2,h3,h4,h5,h6").not("#otherdocs").first();
+    var sidebarHeader = $("#docs-sidebar").find("h1,h2,h3,h4,h5,h6").not("#otherdocs").first();
     sidebarHeaderGrid.append(sidebarHeader);
 
     // Collapse most subnavs, but reveal any that contain the
