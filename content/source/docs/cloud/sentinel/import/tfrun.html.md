@@ -99,13 +99,14 @@ variables (map of keys)
 
 * **Value Type:** An array of strings representing [resource addresses](/docs/internals/resource-addressing.html).
 
-Provides the targets specified using the [`-target`](/docs/commands/plan.html#resource-targeting) flag in the CLI or the `target-addrs` attribute in the API.
+Provides the targets specified using the [`-target`](/docs/commands/plan.html#resource-targeting) flag in the CLI or the `target-addrs` attribute in the API. Will be undefined if no resource targets are specified.
 
-To prohibit targeted runs altogether, check that the length of this collection is zero:
+To prohibit targeted runs altogether, make sure the `target_addrs` value is undefined or empty:
 
 ```
 import "tfrun"
-main = length(tfrun.target_addrs) == 0
+
+main = (length(tfrun.target_addrs) else 0) == 0
 ```
 
 
