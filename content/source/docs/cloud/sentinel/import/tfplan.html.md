@@ -354,6 +354,8 @@ Some examples of multi-level access are below:
   `tfplan.resources.aws_instance`, with names being the next level down, and so
   on.
 
+~> When [resource targeting](/docs/commands/plan.html#resource-targeting) is in effect, `tfplan.resources` will only include the resources specified as targets for the run. This may lead to unexpected outcomes if a policy expects a resource to always exist. To prohibit targeted runs altogether, use [`tfrun.target_addrs`](/docs/cloud/sentinel/import/tfrun.html#value-target_addrs).
+
 Further explanation of the namespace will be in the context of resources. As
 mentioned, when operating on data sources, use the same syntax, except with
 `data` in place of `resources`.
