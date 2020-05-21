@@ -106,7 +106,7 @@ The recommended way to deploy Terraform Enterprise for production is through use
 that defines the required resources, their references to other resources and
 dependencies.
 
-### Normal Operation
+## Normal Operation
 
 ### Component Interaction
 
