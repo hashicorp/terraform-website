@@ -63,3 +63,5 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
       "mtu": 1460
     }
     ```
+
+1. Ensure the Docker bridge network address is not in use elsewhere on the network. If it is, please refer to the [Docker documentation](https://success.docker.com/article/how-do-i-configure-the-default-bridge-docker0-network-for-docker-engine-to-a-different-subnet) for information on how to change it.
