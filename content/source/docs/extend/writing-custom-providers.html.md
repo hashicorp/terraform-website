@@ -50,7 +50,7 @@ To start, create a file named `provider.go`. This is the root of the provider
 and should include the following boilerplate code:
 
 ```go
-package main
+package provider_name
 
 import (
         "github.com/hashicorp/terraform-plugin-sdk/helper/schema"
