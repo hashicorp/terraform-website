@@ -3,6 +3,8 @@ layout: "enterprise"
 page_title: "General Settings - Application Administration - Terraform Enterprise"
 ---
 
+[speculative plans]: /docs/cloud/run/index.html#speculative-plans
+
 # Administration: General Settings
 
 General settings control global behavior in Terraform Enterprise. To access general settings, visit the site admin area and click **Settings** in the left menu. To save the settings, click **Save Settings** at the bottom of the page.
@@ -36,3 +38,17 @@ These are configurable on a global level:
 or in the Admin settings at an organization level:
 
 ![screenshot: organization run timeout page](./images/admin-org-timeout-settings.png)
+
+## Commit Statuses for Untriggered Speculative Plans
+
+This setting affects Terraform Enterprise's behavior with shared VCS repositories that contain multiple Terraform configurations.
+
+Workspaces that use part of a shared repository typically don't run plans for changes that don't affect their files; this includes [speculative plans][] on pull requests. Since "pending" status checks can block pull requests, a workspace will automatically send passing commit statuses for any PRs that don't affect its files.
+
+However, if this results in sending too many status checks to your VCS provider due to a large number of workspaces sharing one VCS repository, you can disable this behavior and ignore the pending status checks for unaffected workspaces.
+
+## Allow Speculative Plans on Pull Requests from Forks
+
+~> **Note:** This setting is available in Terraform Enterprise versions v202005-1 or later. It is currently supported for the following VCS providers: GitHub.com, GitHub.com (OAuth), GitHub Enterprise, Bitbucket Cloud, Azure DevOps Server, Azure DevOps Services.
+
+By default, this setting is disabled because Terraform Enterprise assumes that forks of a trusted repository are not necessarily themselves trusted. Enabling this setting may allow Terraform Enterprise to execute malicious code or expose sensitive information through [speculative plans][] on pull requests that originated from a repository fork.

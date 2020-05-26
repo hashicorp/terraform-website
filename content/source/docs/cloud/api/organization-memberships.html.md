@@ -20,8 +20,6 @@ page_title: "Organization Memberships - API Docs - Terraform Cloud"
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
-[speculative plans]: ../run/index.html#speculative-plans
-
 # Organization Memberships API
 
 Users are added to organizations by inviting them to join. Once accepted, they become members of the organization. The Organization Membership resource represents this membership.
