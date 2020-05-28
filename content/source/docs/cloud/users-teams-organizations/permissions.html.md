@@ -51,6 +51,12 @@ Most of Terraform Cloud's permissions system is focused on workspaces. In genera
 
 There are two ways to choose which permissions a given team has on a workspace: fixed permission sets, and custom permissions. Additionally, there is a special "admin" permission set that grants the highest level of permissions on a workspace.
 
+### Implied Permissions
+
+Some permissions imply other permissions; for example, the queue plans permission also includes all of the abilities of the read runs permission.
+
+If documentation or UI text states that an action requires a specific permission, that action is also available for any permission that implies that permission. For example,
+
 ### All Workspace Permissions
 
 [All Workspace Permissions]: #all-workspace-permissions
@@ -58,8 +64,6 @@ There are two ways to choose which permissions a given team has on a workspace: 
 The following workspace permissions can be granted to teams, on a per-workspace basis. Throughout the Terraform Cloud documentation, these permissions are referenced by name.
 
 Most of these permissions can be granted via either fixed permission sets or custom workspace permissions, but some of them are only available to workspace admins.
-
-Some permissions imply other permissions; for example, the queue plans permission also includes all of the abilities of the read runs permission.
 
 - **Runs:**
     - **Read runs:** — Allows users to view information about remote Terraform runs, including the run history, the status of runs, the log output of each stage of a run (plan, apply, cost estimation, policy check), and configuration versions associated with a run.
