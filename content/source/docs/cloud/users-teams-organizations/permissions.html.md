@@ -32,11 +32,13 @@ There are also some actions within an organization that are only ever available 
 
 Owners have the following permissions across the organization:
 
-- Manage workspaces (equivalent to admin permissions on every workspace; see [Organization Permissions][] below)
+- Manage workspaces (see [Organization Permissions][] below; equivalent to admin permissions on every workspace)
 - Manage policies (see [Organization Permissions][] below)
 - Manage VCS settings (see [Organization Permissions][] below)
 - Publish private modules (owners only)
-- Invite users to organization and manage team membership (owners only)
+- Invite users to organization (owners only)
+- Manage team membership (owners only)
+- View all secret teams (owners only)
 - Manage organization permissions (owners only)
 - Manage all organization settings (owners only)
 - Delete organization (owners only)
