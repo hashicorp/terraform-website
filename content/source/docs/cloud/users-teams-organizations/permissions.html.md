@@ -85,7 +85,7 @@ Much like the owners team has full control over an organization, each workspace 
 
 Admin permissions include the highest level of normal permissions for the workspace. There are also some permissions that are only available to workspace admins, which generally involve changing the workspace's settings or setting access levels for other teams.
 
-Workspace admins have the following permissions on their workspace. (See [All Workspace Permissions][] above for details about specific permissions.)
+Workspace admins have the following permissions on their workspace:
 
 - Apply runs
 - Lock and unlock workspace
@@ -95,6 +95,8 @@ Workspace admins have the following permissions on their workspace. (See [All Wo
 - Read and write workspace settings (workspace admins only)
 - Set or remove workspace permissions for any team (workspace admins only)
 - Delete workspace (workspace admins only)
+
+See [All Workspace Permissions][] above for details about specific permissions.
 
 ### Fixed Permission Sets
 
@@ -156,7 +158,10 @@ Allows members to create, edit, and delete the organization's Sentinel policies 
 
 ### Manage Workspaces
 
-Allows members to create and administrate all workspaces within the organization. This is synonymous to giving the team admin access to all workspaces, plus the ability to create new workspaces (otherwise only available to organization owners).
+Allows members to create and administrate all workspaces within the organization. This grants the following abilities:
+
+- Admin access to all workspaces. Any action that requires admin access is also available to teams with the manage workspaces permission.
+- The ability to create new workspaces (otherwise only available to organization owners).
 
 ### Manage VCS Settings
 
