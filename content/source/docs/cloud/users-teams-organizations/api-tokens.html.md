@@ -24,11 +24,11 @@ To manage the API token for a team, go to **Organization settings > Teams > (des
 
 Each team can have **one** valid API token at a time, and any member of a team can generate or revoke that team's token. When a token is regenerated, the previous token immediately becomes invalid.
 
-Team API tokens are designed for performing API operations on workspaces. They have the same access level to the workspaces the team has access to. For example, if a team has write access to a workspace, the team's token can create runs and configuration versions for that workspace via the API.
+Team API tokens are designed for performing API operations on workspaces. They have the same access level to the workspaces the team has access to. For example, if a team has the apply runs permission on a workspace, the team's token can create runs and configuration versions for that workspace via the API.
 
 Note that the individual members of a team can usually perform actions the team itself cannot, since users can belong to multiple teams, can belong to multiple organizations, and can authenticate with Terraform's `atlas` backend for running Terraform locally.
 
-If an API token is generated for the "owners" team, then that API token will implicitly inherit all of the same permissions that an organization owner would.
+If an API token is generated for the "owners" team, then that API token will have all of the same permissions that an organization owner would.
 
 ## Organization API Tokens
 
@@ -48,6 +48,8 @@ Organization API tokens have permissions across the entire organization. They ca
 
 The following chart illustrates the various access levels for the supported API token types. Some permissions are implicit based on the token type, others are dependent on the permissions of the associated user, team, or organization.
 
+TODO: Update this table for new world
+
 🔷 = Implicit for token type 🔶 = Requires explicit permission
 
 |                                | User tokens | Team tokens | Organization tokens |
@@ -62,9 +64,9 @@ The following chart illustrates the various access levels for the supported API 
 | Force cancel runs              | 🔶          | 🔶          |                     |
 | Create configuration versions  | 🔶          | 🔶          |                     |
 | Create or modify workspaces    | 🔶          | 🔶          | 🔷                  |
-| Remote operations              | 🔶          |             |                     |
+| Remote operations              | 🔶          | 🔶          |                     |
 | **Teams**                      |             |             |                     |
-| Create teams                   | 🔶          |             | 🔷                  |
+| Create teams                   | 🔶          | 🔶          | 🔷                  |
 | Modify team                    | 🔶          | 🔷          | 🔷                  |
 | Read team                      | 🔶          | 🔷          | 🔷                  |
 | Manage team tokens             | 🔶          | 🔷          | 🔷                  |

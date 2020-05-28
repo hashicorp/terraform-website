@@ -13,7 +13,7 @@ page_title: "GitHub.com (GitHub App) - VCS Providers - Terraform Cloud"
 
 These instructions are for using repositories from GitHub.com with Terraform Cloud workspaces, without configuring an OAuth connection.
 
-Using GitHub this way does not require any action from a Terraform Cloud [organization owner][owners]; anyone who can create workspaces or administer existing workspaces can connect GitHub repositories.
+Using GitHub this way does not require the [manage VCS settings](../users-teams-organizations/permissions.html) permission; anyone with the manage workspaces permission or admin access on an existing workspace can connect GitHub repositories.
 
 This method uses a preconfigured GitHub App, and only works with GitHub.com. There are separate instructions for connecting to [GitHub.com via OAuth](./github.html), connecting to [GitHub Enterprise](./github-enterprise.html), and connecting to [other supported VCS providers.](./index.html)
 
@@ -26,9 +26,9 @@ Choose "GitHub.com" on the "Connect to a version control provider" screen, which
 The controls on the "Connect to a version control provider" screen can vary, depending on your permissions and your organization's settings:
 
 - In organizations with no VCS connections configured:
-    - [Owners][] will see several drop-down menus, sorted by product family. Choose "GitHub.com" (_not_ "GitHub.com (Custom)") from the GitHub menu.
-    - Non-owners will see a "GitHub" button.
-- In organizations with an existing VCS connection, only the connected providers are shown. Click the "Connect to a different VCS" link to reveal the provider menus (owners) or the GitHub button (non-owners).
+    - Users with [the manage VCS settings permission](../users-teams-organizations/permissions.html) will see several drop-down menus, sorted by product family. Choose "GitHub.com" (_not_ "GitHub.com (Custom)") from the GitHub menu.
+    - Other users will see a "GitHub" button.
+- In organizations with an existing VCS connection, only the connected providers are shown. Click the "Connect to a different VCS" link to reveal the provider menus (with manage VCS settings permission) or the GitHub button (others).
 
 ![Screenshot: the "Connect to a version control provider" screen of the "Create a new workspace" page.](./images/gh-app-choose-provider.png)
 
@@ -101,4 +101,4 @@ The Terraform Cloud GitHub App is designed for creating workspaces from the Terr
 - The [private module registry][]
 - Creation of workspaces via the API or the `tfe` Terraform provider
 
-Once you decide to start using these other features, an organization owner can configure [GitHub OAuth access](./github.html) for your organization.
+Once you decide to start using these other features, a user with [the manage VCS settings permission](../users-teams-organizations/permissions.html) can configure [GitHub OAuth access](./github.html) for your organization.

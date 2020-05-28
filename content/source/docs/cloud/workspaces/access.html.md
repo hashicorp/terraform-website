@@ -9,7 +9,9 @@ page_title: "Managing Access - Workspaces - Terraform Cloud"
 
 Terraform Cloud workspaces can only be accessed by users with the correct permissions. You can manage permissions for a workspace on a per-team basis.
 
-Workspace access should be managed by [organization owners](../users-teams-organizations/teams.html#the-owners-team). (Users with [admin privileges](../users-teams-organizations/permissions.html) on a workspace can make minor adjustments to its permissions, but only owners can manage permissions for any team in the organization.)
+Teams with [admin access](../users-teams-organizations/permissions.html) on a workspace can manage permissions for other teams on that workspace.
+
+Teams with the [manage workspaces](../users-teams-organizations/permissions.html#manage-workspaces) permission can manage access for all workspaces in the organization. Since newly created workspaces don't have any team permissions configured, the initial setup of a workspace's permissions requires the manage workspaces permission.
 
 -> **API:** See the [Team Access APIs](../api/team-access.html). <br/>
 **Terraform:** See the `tfe` provider's [`tfe_team_access`](/docs/providers/tfe/r/team_access.html) resource.
@@ -17,6 +19,8 @@ Workspace access should be managed by [organization owners](../users-teams-organ
 ## Background
 
 Terraform Cloud manages workspace permissions with teams, and uses four levels of permissions (read, plan, write, and admin). Additionally, the organization-level "manage workspaces" permission can grant a team admin permissions on every workspace.
+
+TODO: Rewrite this once we settle on language for it; also replace screenshots and update access workflow.
 
 For more information see:
 

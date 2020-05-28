@@ -44,7 +44,11 @@ You can view and manage an organization's settings by clicking the "Settings" li
 
 ![screenshot: the organization settings page](./images/org-settings.png)
 
-Only [organization owners][owners] can manage an organization's settings. However, other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
+The contents of the organization settings depends on the current user's permissions within the organization:
+
+- Users with the manage VCS settings permission or the manage policies permission ([more about permissions](./permissions.html)) can manage the settings they have access to.
+- [Organization owners][owners] can view and manage the entire list of organization settings. Most settings cannot be delegated, and are only available to owners.
+- Other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
 
 Most of the organization settings are documented near the specific workflows they enable. What follows is a brief summary with links to more relevant sections of the documentation.
 
@@ -82,13 +86,13 @@ The teams page is shown to all users in an organization.
 
 Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
 
-Non-owners can view the list of teams they belong to, view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships or view any teams they don't belong to.
+Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships.
 
 See [Teams][] for more information.
 
 ### VCS Providers
 
-The VCS providers page is used for setting up VCS access for Terraform Cloud. See [Connecting VCS Providers](../vcs/index.html) for more information.
+The VCS providers page is used for setting up VCS access for Terraform Cloud. It is available to users with the [manage VCS settings](./permissions.html) permission. See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 ### API Tokens
 
@@ -116,7 +120,7 @@ The policies page is a deprecated interface for managing Sentinel policies. Use 
 
 -> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces.
+The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces. It is available to users with the [manage policies](./permissions.html) permission.
 
 Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information about Sentinel, or [Managing Sentinel Policies](../sentinel/manage-policies.html) for details about these two settings pages.
 

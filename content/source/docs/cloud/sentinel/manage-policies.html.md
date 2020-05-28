@@ -24,7 +24,7 @@ Sentinel Policies are rules which are enforced on Terraform runs to validate tha
 
 After the plan stage of a Terraform run, Terraform Cloud checks every Sentinel policy that should be enforced on the run's workspace. This includes policies from global policy sets, and from any policy sets that are explicitly assigned to the workspace.
 
-Policy sets are managed at an organization level. They can be viewed and modified by [organization owners](../users-teams-organizations/teams.html#the-owners-team) and by teams with the "Manage Policies" permission.
+Policy sets are managed at an organization level. They can be viewed and modified by teams with [the manage policies permission](../users-teams-organizations/permissions.html), including the owners team.
 
 ## Enforcement Levels
 
@@ -82,7 +82,7 @@ httpGet = func(id, token){
 	uri = "https://timezoneapi.io/api/timezone/?" + id + "&token=" + token
 	request = http.get(uri)
 	return json.unmarshal(request.body)
-} 
+}
 
 offset = func(id, token) {
 	tz = httpGet(id, token)
@@ -95,7 +95,7 @@ The above configuration would tell a policy check to load the code at `./modules
 
 ### Sentinel policy code files
 
-Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `terraform-maintenance-windows.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set. 
+Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `terraform-maintenance-windows.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set.
 
 Using the `terraform-maintenance-windows.sentinel` policy as an example, we can use the `time` and `tfrun` imports along with our custom `timezone` module to enforce checks that:
 
@@ -129,7 +129,7 @@ In the example above we have used a [rule expression](https://docs.hashicorp.com
 
 For a more robust or flexible policy, we could expand the enforcement logic to also restrict provisioning to occur out of hours using the [time.hour](https://docs.hashicorp.com/sentinel/imports/time/#time-hour) function.
 
-The above examples use parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/). 
+The above examples use parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/).
 
 ## Managing Policy Sets
 
