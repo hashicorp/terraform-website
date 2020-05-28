@@ -26,6 +26,8 @@ page_title: "Workspaces - API Docs - Terraform Cloud"
 
 Workspaces represent running infrastructure managed by Terraform.
 
+Viewing workspaces requires the read runs permission, and listing workspaces will omit workspaces where the access token lacks the read runs permission. Changing settings and force-unlocking requires admin access to the workspace. Locking and unlocking a workspace requires the lock and unlock workspace permission. ([More about permissions](../users-teams-organizations/permissions.html).)
+
 ## Create a Workspace
 
 `POST /organizations/:organization_name/workspaces`

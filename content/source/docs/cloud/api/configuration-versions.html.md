@@ -26,6 +26,8 @@ page_title: "Configuration Versions - API Docs - Terraform Cloud"
 
 A configuration version (`configuration-version`) is a resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
 
+Listing and viewing configuration versions for a workspace requires the read runs permission; creating new configuration versions requires the queue plans permission. ([More about permissions](../users-teams-organizations/permissions.html).)
+
 ## List Configuration Versions
 
 `GET /workspaces/:workspace_id/configuration-versions`
