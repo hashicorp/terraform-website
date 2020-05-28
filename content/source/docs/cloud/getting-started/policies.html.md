@@ -55,7 +55,8 @@ The configuration file takes a very basic structure, like this:
 
 ```hcl
 policy "allowed-terraform-version" {
-    enforcement_level = "soft-mandatory"
+  source            = "./allowed-terraform-version.sentinel"
+  enforcement_level = "soft-mandatory"
 }
 ```
 
