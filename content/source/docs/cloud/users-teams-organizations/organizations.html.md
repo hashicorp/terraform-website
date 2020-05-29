@@ -92,7 +92,7 @@ See [Teams][] for more information.
 
 ### VCS Providers
 
-The VCS providers page is used for setting up VCS access for Terraform Cloud. It is available to users with the [manage VCS settings](./permissions.html) permission. See [Connecting VCS Providers](../vcs/index.html) for more information.
+The VCS providers page is used for configuring VCS providers for use within the organization. It is available to users with the [manage VCS settings](./permissions.html) permission. See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 ### API Tokens
 
