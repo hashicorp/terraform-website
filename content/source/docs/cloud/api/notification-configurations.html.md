@@ -24,7 +24,7 @@ page_title: "Notification Configurations - API Docs - Terraform Cloud"
 
 Terraform Cloud can be configured to send notifications for run state transitions. The configuration allows you to specify a destination URL, request type, and what events will trigger the notification. Each workspace can have up to 20 notification configurations, and they apply to all runs for that workspace.
 
-Interacting with notification configurations for a workspace requires admin access to that workspace. ([More about permissions](../users-teams-organizations/permissions.html).)
+Interacting with notification configurations requires admin access to the relevant workspace. ([More about permissions](../users-teams-organizations/permissions.html).) <!-- permissions -->
 
 ## Notification Triggers
 

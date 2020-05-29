@@ -16,7 +16,7 @@ For more information about how configuration versions and connected repositories
 
 ## Required Permissions
 
-New workspaces can be created by teams with the [manage workspaces](../users-teams-organizations/permissions.html#manage-workspaces) permission.
+New workspaces can be created by teams with permission to manage workspaces. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 ## Configuring a New Workspace
 
