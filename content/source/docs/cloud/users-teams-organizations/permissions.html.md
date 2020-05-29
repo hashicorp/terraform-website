@@ -11,17 +11,6 @@ Terraform Cloud's access model is team-based. In order to perform an action with
 
 The permissions model is split into organization-level and workspace-level permissions. Additionally, every organization has a special team named "owners", whose members have maximal permissions within the organization.
 
-## Permissions Outside Terraform Cloud's Scope
-
-This documentation only refers to permissions that are managed by Terraform Cloud itself.
-
-Since Terraform Cloud integrates with other systems, the permissions models of those systems can also be relevant to the overall security model of your Terraform Cloud organization. For example:
-
-- When a workspace is connected to a VCS repository, anyone who can merge changes to that repository's main branch can indirectly queue plans in that workspace, regardless of whether they have the queue plans permission or are even a member of your Terraform Cloud organization. (And when auto-apply is enabled, merging changes will indirectly apply runs.)
-- If you use Terraform Cloud's API to create a Slack bot for provisioning infrastructure, anyone able to issue commands to that Slack bot can implicitly act with that bot's permissions, regardless of their own membership and permissions in the Terraform Cloud organization.
-
-When integrating Terraform Cloud with other systems, you are responsible for understanding the effects on your organization's security. An integrated system is able to delegate any level of access that it has been granted, so carefully consider the conditions and events that will cause it to delegate that access.
-
 ## Organization Owners
 
 Every organization has a special "owners" team. Members of this team are often referred to as "organization owners".
@@ -30,7 +19,7 @@ Organization owners have every available permission within the organization. Thi
 
 There are also some actions within an organization that are only ever available to owners. These are generally actions that affect the permissions and membership of other teams, or are otherwise fundamental to the organization's security and integrity.
 
-Owners have the following permissions across the organization:
+Permissions for the owners team include:
 
 - Manage workspaces (see [Organization Permissions][] below; equivalent to admin permissions on every workspace)
 - Manage policies (see [Organization Permissions][] below)
@@ -41,7 +30,10 @@ Owners have the following permissions across the organization:
 - View all secret teams (owners only)
 - Manage organization permissions (owners only)
 - Manage all organization settings (owners only)
+- Manage organization billing (owners only, not applicable to Terraform Enterprise)
 - Delete organization (owners only)
+
+This list is not necessarily exhaustive.
 
 [Organization Permissions]: #organization-permissions
 
@@ -59,13 +51,13 @@ Some permissions imply other permissions; for example, the queue plans permissio
 
 If documentation or UI text states that an action requires a specific permission, that action is also available for any permission that implies that permission.
 
-### All Workspace Permissions
+### General Workspace Permissions
 
 [All Workspace Permissions]: #all-workspace-permissions
 
 The following workspace permissions can be granted to teams on a per-workspace basis. Throughout the Terraform Cloud documentation, these permissions are referenced by name.
 
-Most of these permissions can be granted via either fixed permission sets or custom workspace permissions, but some of them are only available to workspace admins.
+These permissions can be granted via either fixed permission sets or custom workspace permissions.
 
 - **Runs:**
     - **Read runs:** — Allows users to view information about remote Terraform runs, including the run history, the status of runs, the log output of each stage of a run (plan, apply, cost estimation, policy check), and configuration versions associated with a run.
@@ -80,9 +72,6 @@ Most of these permissions can be granted via either fixed permission sets or cus
     - **Read state outputs:** — Allows users to access values in the workspace's most recent Terraform state that have been explicitly marked as public outputs. Output values are often used as an interface between separate workspaces that manage loosely coupled collections of infrastructure, so their contents can be relevant to people who have no direct responsibility for the managed infrastructure but still indirectly use some of its functions. This permission is required for performing local Terraform runs that access a Terraform Cloud workspace's outputs via a remote state data source.
     - **Read state versions:** — _Implies the read state outputs permission._ Allows users to read complete state files from the workspace. State files are useful for identifying infrastructure changes over time, but often contain sensitive information.
     - **Read and write state versions:** — _Implies the read state versions permission._ Allows users to directly create new state versions in the workspace. Applying a remote Terraform run will create new state versions without this permission, but if the workspace's execution mode is set to "local", this permission is required for performing local runs. This permission is also required for using any of Terraform CLI's state manipulation and maintenance commands against this workspace, including `terraform import`, `terraform taint`, and the various `terraform state` subcommands.
-- **Read and write workspace settings:** — Only available to workspace admins.
-- **Set or remove workspace permissions:** — Only available to workspace admins.
-- **Delete workspace:** — Only available to workspace admins.
 
 
 ### Workspace Admins
@@ -98,7 +87,7 @@ Workspace admins have the following permissions on their workspace:
 - Download Sentinel mocks
 - Read and write variables
 - Read and write state versions
-- Read and write workspace settings (workspace admins only)
+- Read and write workspace settings (workspace admins only) — this includes general settings, notification configurations, run triggers, and more.
 - Set or remove workspace permissions for any team (workspace admins only)
 - Delete workspace (workspace admins only)
 
@@ -106,7 +95,7 @@ See [All Workspace Permissions][] above for details about specific permissions.
 
 ### Fixed Permission Sets
 
-Fixed permission sets are bundles of specific permissions on a workspace, designed for the most common patterns of delegated access.
+Fixed permission sets are bundles of specific permissions on a workspace, designed for basic patterns of delegated access.
 
 Each of these groups of permissions is designed around a target level of authority and responsibility for a given workspace's infrastructure. They aren't strictly task-based, and can sometimes grant permissions that their recipients do not need, but they try to strike a balance of simplicity and utility.
 
@@ -122,7 +111,7 @@ See [All Workspace Permissions][] above for details about specific permissions.
 
 #### Plan
 
-The "plan" permission set is for people who contribute to maintaining managed infrastructure, but are not ultimately responsible for it. Plan access grants the following workspace permissions:
+The "plan" permission set is for people who might propose changes to managed infrastructure, but whose proposed changes should be approved before they are applied. Plan access grants the following workspace permissions:
 
 - Queue plans
 - Read variables
@@ -144,7 +133,7 @@ See [All Workspace Permissions][] above for details about specific permissions.
 
 ### Custom Workspace Permissions
 
--> **Beta:** Custom permissions are currently in beta. The interface for assigning permissions and the specific permissions available for assignment might change at any time as we refine the feature.
+-> **Beta:** Custom permissions are currently in beta.
 
 Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide. This enables more task-focused permission sets and tighter control of sensitive information, at the cost of increased complexity.
 
@@ -171,4 +160,16 @@ Allows members to create and administrate all workspaces within the organization
 
 ### Manage VCS Settings
 
-Allows members to manage VCS providers and SSH keys in the organization's settings.
+Allows members to manage the set of VCS providers and SSH keys available within the organization.
+
+## Permissions Outside Terraform Cloud's Scope
+
+This documentation only refers to permissions that are managed by Terraform Cloud itself.
+
+Since Terraform Cloud integrates with other systems, the permissions models of those systems can also be relevant to the overall security model of your Terraform Cloud organization. For example:
+
+- When a workspace is connected to a VCS repository, anyone who can merge changes to that repository's main branch can indirectly queue plans in that workspace, regardless of whether they have the queue plans permission or are even a member of your Terraform Cloud organization. (And when auto-apply is enabled, merging changes will indirectly apply runs.)
+- If you use Terraform Cloud's API to create a Slack bot for provisioning infrastructure, anyone able to issue commands to that Slack bot can implicitly act with that bot's permissions, regardless of their own membership and permissions in the Terraform Cloud organization.
+
+When integrating Terraform Cloud with other systems, you are responsible for understanding the effects on your organization's security. An integrated system is able to delegate any level of access that it has been granted, so carefully consider the conditions and events that will cause it to delegate that access.
+

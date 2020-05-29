@@ -48,8 +48,6 @@ Organization API tokens have permissions across the entire organization. They ca
 
 The following chart illustrates the various access levels for the supported API token types. Some permissions are implicit based on the token type, others are dependent on the permissions of the associated user, team, or organization.
 
-TODO: Update this table for new world
-
 🔷 = Implicit for token type 🔶 = Requires explicit permission
 
 |                                | User tokens | Team tokens | Organization tokens |
@@ -65,22 +63,25 @@ TODO: Update this table for new world
 | Create configuration versions  | 🔶          | 🔶          |                     |
 | Create or modify workspaces    | 🔶          | 🔶          | 🔷                  |
 | Remote operations              | 🔶          | 🔶          |                     |
+| Manage run triggers            | 🔶          | 🔶          | 🔷                  |
+| Manage notification configurations | 🔶      | 🔶          |                     |
 | **Teams**                      |             |             |                     |
-| Create teams                   | 🔶          | 🔶          | 🔷                  |
-| Modify team                    | 🔶          | 🔷          | 🔷                  |
+| Create teams                   | 🔶          | 🔷 (owners) | 🔷                  |
+| Modify team                    | 🔶          | 🔷 (owners) | 🔷                  |
 | Read team                      | 🔶          | 🔷          | 🔷                  |
 | Manage team tokens             | 🔶          | 🔷          | 🔷                  |
 | Manage team workspace access   | 🔶          | 🔶          | 🔷                  |
-| Manage team membership         | 🔶          | 🔷          | 🔷                  |
+| Manage team membership         | 🔶          | 🔷 (owners) | 🔷                  |
 | **Organizations**              |             |             |                     |
-| Create or modify organizations | 🔶          |             |                     |
+| Create organizations           | 🔷           |           |                       |
+| Modify organizations           | 🔶          |             |                     |
 | Manage organization tokens     | 🔶          |             |                     |
 | **Sentinel**                   |             |             |                     |
 | Manage Sentinel policies       | 🔶          | 🔶          | 🔷                  |
 | Manage policy sets             | 🔶          | 🔶          | 🔷                  |
-| Override policy checks         | 🔶          | 🔶          | 🔷                  |
+| Override policy checks         | 🔶          | 🔶          |                     |
 | **Integrations**               |             |             |                     |
 | Manage VCS connections         | 🔶          | 🔶          | 🔷                  |
 | Manage SSH keys                | 🔶          | 🔶          |                     |
 | **Modules**                    |             |             |                     |
-| Manage Terraform modules       | 🔶          | 🔶          |                     |
+| Manage Terraform modules       | 🔶          | 🔷 (owners) |                     |

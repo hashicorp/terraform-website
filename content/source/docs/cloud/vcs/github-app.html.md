@@ -11,9 +11,7 @@ page_title: "GitHub.com (GitHub App) - VCS Providers - Terraform Cloud"
 
 # Configuration-Free GitHub Usage
 
-These instructions are for using repositories from GitHub.com with Terraform Cloud workspaces, without configuring an OAuth connection.
-
-Using GitHub this way does not require the [manage VCS settings](../users-teams-organizations/permissions.html) permission; anyone with the manage workspaces permission or admin access on an existing workspace can connect GitHub repositories.
+These instructions are for using repositories from GitHub.com with Terraform Cloud workspaces, without requiring an organization owner to configure an OAuth connection.
 
 This method uses a preconfigured GitHub App, and only works with GitHub.com. There are separate instructions for connecting to [GitHub.com via OAuth](./github.html), connecting to [GitHub Enterprise](./github-enterprise.html), and connecting to [other supported VCS providers.](./index.html)
 
