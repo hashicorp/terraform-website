@@ -57,13 +57,13 @@ There are two ways to choose which permissions a given team has on a workspace: 
 
 Some permissions imply other permissions; for example, the queue plans permission also includes all of the abilities of the read runs permission.
 
-If documentation or UI text states that an action requires a specific permission, that action is also available for any permission that implies that permission. For example,
+If documentation or UI text states that an action requires a specific permission, that action is also available for any permission that implies that permission.
 
 ### All Workspace Permissions
 
 [All Workspace Permissions]: #all-workspace-permissions
 
-The following workspace permissions can be granted to teams, on a per-workspace basis. Throughout the Terraform Cloud documentation, these permissions are referenced by name.
+The following workspace permissions can be granted to teams on a per-workspace basis. Throughout the Terraform Cloud documentation, these permissions are referenced by name.
 
 Most of these permissions can be granted via either fixed permission sets or custom workspace permissions, but some of them are only available to workspace admins.
 
@@ -146,13 +146,13 @@ See [All Workspace Permissions][] above for details about specific permissions.
 
 -> **Beta:** Custom permissions are currently in beta. The interface for assigning permissions and the specific permissions available for assignment might change at any time as we refine the feature.
 
-Custom permissions let you assign specific, granular permissions to a team, without also assigning unrelated permissions. This enables more task-focused permission sets and tighter control of sensitive information, at the cost of increased complexity.
+Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide. This enables more task-focused permission sets and tighter control of sensitive information, at the cost of increased complexity.
 
 You can use custom permissions to assign any of the permissions listed above under [All Workspace Permissions](#all-workspace-permissions), with the exception of admin-only permissions.
 
 The minimum custom permissions set for a workspace is the read runs permission; the only way to grant a team lower access is to not add them to the workspace at all.
 
-For categories of permissions that function as ascending access levels (like runs permissions), you can assign one permission per category, since higher permissions include all of the capabilities of the lower ones.
+Some permissions - such as the runs permission - are tiered: you can assign one permission per category, since higher permissions include all of the capabilities of the lower ones.
 
 ## Organization Permissions
 
