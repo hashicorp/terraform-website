@@ -7,6 +7,8 @@ page_title: "GitLab EE and CE - VCS Providers - Terraform Cloud"
 
 These instructions are for using an on-premise installation of GitLab Enterprise Edition (EE) or GitLab Community Edition (CE) for Terraform Cloud's VCS features. [GitLab.com has separate instructions,](./gitlab-com.html) as do the [other supported VCS providers.](./index.html)
 
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+
 Connecting Terraform Cloud to your VCS involves four steps:
 
 On your VCS | On Terraform Cloud

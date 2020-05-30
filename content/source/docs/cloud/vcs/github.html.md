@@ -9,6 +9,8 @@ These instructions are for using GitHub.com for Terraform Cloud's VCS features, 
 
 [GitHub Enterprise has separate instructions,](./github-enterprise.html) as do the [other supported VCS providers.](./index.html)
 
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+
 Connecting Terraform Cloud to your VCS involves four steps:
 
 On your VCS | On Terraform Cloud
