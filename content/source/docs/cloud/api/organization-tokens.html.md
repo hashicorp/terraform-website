@@ -32,7 +32,7 @@ Parameter            | Description
 
 Generates a new [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens), replacing any existing token.
 
-Only members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can access this endpoint.
+Only members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can access this endpoint.  <!-- permissions -->
 
 Status  | Response                                                | Reason
 --------|---------------------------------------------------------|-------
@@ -83,7 +83,7 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | Which organization's token should be deleted.
 
-Only members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can access this endpoint.
+Only members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can access this endpoint.  <!-- permissions -->
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------

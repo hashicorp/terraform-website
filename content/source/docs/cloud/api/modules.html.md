@@ -158,7 +158,7 @@ curl \
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. <!-- permissions -->
 
 Creates a new registry module without a backing VCS repository. After creating a module, a version must be created and uploaded in order to be usable. Modules created this way do not automatically update with new versions; instead, you must explicitly create and upload each new version with the [Create a Module Version](#create-a-module-version) endpoint.
 
@@ -250,7 +250,7 @@ curl \
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. <!-- permissions -->
 `:name`              | The name of the module for which the version is being created.
 `:provider`          | The name of the provider for which the version is being created.
 
@@ -385,7 +385,7 @@ After the registry module version is successfully parsed, its status will become
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to delete a module from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:organization_name` | The name of the organization to delete a module from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.  <!-- permissions -->
 `:name`              | The module name that the deletion will affect.
 `:provider`          | If specified, the provider for the module that the deletion will affect.
 `:version`           | If specified, the version for the module and provider that will be deleted.

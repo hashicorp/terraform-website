@@ -39,7 +39,7 @@ Status  | Response                                       | Reason
 
 ### Permissions
 
-In order to create a run trigger, the user must have [admin privileges](../users-teams-organizations/permissions.html) on the specified workspace and at least [read privileges](../users-teams-organizations/permissions.html) on the sourceable workspace.
+In order to create a run trigger, the user must have admin access to the specified workspace and permission to read runs for the sourceable workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 ### Request Body
 
@@ -137,7 +137,7 @@ Parameter                   | Description
 
 ### Permissions
 
-In order to list run triggers, the user must have at least [read privileges](../users-teams-organizations/permissions.html) on the specified workspace.
+In order to list run triggers, the user must have permission to read runs for the specified workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 ### Sample Request
 
@@ -241,7 +241,7 @@ Status  | Response                                       | Reason
 
 ### Permissions
 
-In order to show a run trigger, the user must have at least [read privileges](../users-teams-organizations/permissions.html) on the workspace or sourceable workspace of the specified run trigger.
+In order to show a run trigger, the user must have permission to read runs for either the workspace or sourceable workspace of the specified run trigger. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 ### Sample Request
 
@@ -301,7 +301,7 @@ Status  | Response                  | Reason
 
 ### Permissions
 
-In order to delete a run trigger, the user must have [admin privileges](../users-teams-organizations/permissions.html) on the specified workspace.
+In order to delete a run trigger, the user must have admin access to the specified workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 ### Sample Request
 

@@ -123,7 +123,7 @@ curl \
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to create an SSH key in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:organization_name` | The name of the organization to create an SSH key in. The organization must already exist, and the token authenticating the API request must have permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
@@ -200,7 +200,7 @@ Parameter            | Description
 
 This endpoint replaces the name and/or key text of an existing SSH key. Existing workspaces that use the key will be updated with the new values.
 
-Only members of the owners team (or the owners team API token) can edit SSH keys.
+Editing SSH keys requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
@@ -270,7 +270,7 @@ Parameter            | Description
 ---------------------|------------
 `:ssh_key_id`        | The SSH key ID to delete.
 
-Only members of the owners team (or the owners team API token) can delete SSH keys.
+Deleting SSH keys requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
