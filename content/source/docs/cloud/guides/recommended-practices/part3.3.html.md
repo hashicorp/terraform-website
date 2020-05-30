@@ -73,16 +73,18 @@ When managing team membership, you have two options:
 
 ## 6. Assign Permissions
 
-Assign workspace ownership and permissions to teams. Each workspace has three levels of permissions you can grant to any user or team: admin, read/write, and read-only. Admins effectively own the workspace, and can change the permissions of other users on it.
+Assign workspace ownership and permissions to teams.
+
+Terraform Cloud supports granular team permissions for each workspace. For complete information about the available permissions, see [the Terraform Cloud permissions documentation.](/docs/cloud/users-teams-organizations/permissions.html) <!-- permissions -->
 
 Most workspaces will give access to multiple teams with different permissions.
 
 Workspace       | Team Permissions
 ----------------|-----------------
-app1-dev        | Team-eng-app1: Read/write  <br> Team-owners-app1: Admin  <br> Team-central-IT: Admin
-app1-prod       | Team-eng-app1: Read-only  <br> Team-owners-app1: Read/write  <br> Team-central-IT: Admin
-networking-dev  | Team-eng-networking: Read/write  <br> Team-owners-networking: Admin  <br> Team-central-IT: Admin
-networking-prod | Team-eng-networking: Read-only  <br> Team-owners-networking: Read/write  <br> Team-central-IT: Admin
+app1-dev        | Team-eng-app1: Apply runs, read and write variables  <br> Team-owners-app1: Admin  <br> Team-central-IT: Admin
+app1-prod       | Team-eng-app1: Queue plans, read variables  <br> Team-owners-app1: Apply runs, read and write variables  <br> Team-central-IT: Admin
+networking-dev  | Team-eng-networking: Apply runs, read and write variables  <br> Team-owners-networking: Admin  <br> Team-central-IT: Admin
+networking-prod | Team-eng-networking: Queue plans, read variables  <br> Team-owners-networking: Apply runs, read and write variables  <br> Team-central-IT: Admin
 
 ## 7. Restrict Non-Terraform Access
 
