@@ -28,7 +28,7 @@ Clicking this control will navigate to a separate page, which will walk you thro
 
 1. On the first screen, choose your VCS provider (or choose "No VCS connection" to disconnect the workspace from version control).
 
-    If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](../vcs/index.html) for more information. Only organization owners can configure VCS providers.
+    If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](../vcs/index.html) for more information. Configuring a VCS provider requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 1. On the second screen, choose a repository from the filterable list. This screen is skipped if you chose "No VCS connection".
 

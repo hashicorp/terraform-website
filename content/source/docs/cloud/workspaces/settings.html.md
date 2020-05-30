@@ -18,7 +18,7 @@ Workspace settings are separated into several pages, which are listed in the dro
 - "Version Control", for managing the workspace's VCS integration.
 - "Destruction and Deletion", for removing a workspace and the infrastructure it manages.
 
-Changing settings requires [admin privileges](../users-teams-organizations/permissions.html) on the affected workspace.
+Changing settings requires admin access to the relevant workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 ![Screenshot: a workspace page's "Settings" menu](./images/settings-tabs.png)
 
@@ -58,7 +58,7 @@ Whether or not Terraform Cloud should automatically apply a successful Terraform
 
 Auto-apply has the following exception:
 
-- Plans queued by users with [plan permissions](../users-teams-organizations/permissions.html#plan) must be approved by a user with write or admin permissions.
+- Plans queued by users without permission to apply runs for the workspace must be approved by a user who does have permission. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 - Plans queued due to [run triggers](../workspaces/run-triggers.html) from another workspace must always be manually applied.
 
 ### Terraform Version
@@ -94,17 +94,17 @@ If you use the working directory setting, always run Terraform from a complete c
 
 ## Locking
 
-~> **Important:** Unlike other settings, locks can also be managed by users with write privileges.
+~> **Important:** Unlike other settings, locks can also be managed by users with permission to lock and unlock the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
-If you need to prevent Terraform runs for any reason, you can lock a workspace. This prevents users with write access from manually queueing runs, prevents automatic runs due to changes to the backing VCS repo, and prevents the creation of runs via the API. To enable runs again, a user must unlock the workspace.
+If you need to prevent Terraform runs for any reason, you can lock a workspace. This prevents users with permission to queue plans from manually queueing runs, prevents automatic runs due to changes to the backing VCS repo, and prevents the creation of runs via the API. To enable runs again, a user must unlock the workspace.
 
 Locking a workspace also restricts state uploads. In order to upload state, the workspace must be locked by the user who is uploading state.
 
-~> **Important:** [The `atlas` backend][atlas-backend] ignores this restriction, and allows users with write access to modify state when the workspace is locked. To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows and use the `remote` backend instead; see [Terraform Cloud's CLI-driven workflow](../run/cli.html) for details.
+~> **Important:** [The `atlas` backend][atlas-backend] ignores this restriction, and allows users with permission to read and write state versions to modify state while the workspace is locked. To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows and use the `remote` backend instead; see [Terraform Cloud's CLI-driven workflow](../run/cli.html) for details. <!-- permissions -->
 
 [atlas-backend]: /docs/backends/types/terraform-enterprise.html
 
-Users with write access can lock and unlock a workspace, but can't unlock a workspace which was locked by another user. Users with admin privileges can force unlock a workspace even if another user has locked it.
+Users with permission to lock and unlock a workspace can't unlock a workspace which was locked by another user. Users with admin access to a workspace can force unlock a workspace even if another user has locked it.  <!-- permissions -->
 
 Locks are managed with a single "Lock/Unlock/Force unlock `<WORKSPACE NAME>`" button. Terraform Cloud asks for confirmation when unlocking.
 

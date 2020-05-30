@@ -20,14 +20,13 @@ To add or delete a run trigger, navigate to the desired workspace and choose "Ru
 
 ![Screenshot: a workspace's settings drop-down menu](./images/run-triggers-workspace-settings.png)
 
-This takes you to the run triggers settings page, which shows any existing run triggers. This, and all workspace setting pages, require the current user to have [admin privileges](../users-teams-organizations/permissions.html) on that workspace. Admins are able to delete any of their workspace’s run triggers from this page.
+This takes you to the run triggers settings page, which shows any existing run triggers. Configuring run triggers requires admin access to the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions --> Admins are able to delete any of their workspace’s run triggers from this page.
 
 ![Screenshot: a workspace's run triggers settings page](./images/run-triggers-index.png)
 
 ## Creating a Run Trigger
 
-
-To create a run trigger you must first have [admin privileges](../users-teams-organizations/permissions.html) on the workspace, allowing you access to the workspace's settings pages. You must also have at least [read privileges](../users-teams-organizations/permissions.html) on the source workspace you wish to connect to.
+Creating run triggers requires admin access to the workspace. You must also have permission to read runs for the source workspace you wish to connect to. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 Under the "Source Workspaces" section, select the workspace you would like to connect as your source and click "Add workspace". You now have a run trigger established with your source workspace. Any run from that source workspace which applies successfully will now cause a new run to be queued in your workspace.
 
