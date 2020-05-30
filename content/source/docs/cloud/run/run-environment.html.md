@@ -52,7 +52,9 @@ Instead of using existing user credentials, Terraform Cloud generates a unique p
 
 When running Terraform on the commmand line against a workspace configured for remote operations, the CLI user must have [the `remote` backend][remote] configured in the Terraform configuration, and must have a user or team API token with the appropriate permissions specified in their [CLI config file][]. However, the run itself still occurs within one of Terraform Cloud's worker VMs, and still uses the per-run token for state access.
 
-When running Terraform on the command line against a workspace that is _not_ configured for remote operations, the CLI user's token is used for state access.
+When running Terraform on the command line against a workspace that is _not_ configured for remote operations, the CLI user's token is used for state access. This user must have permission to read and write state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+
+The CLI user's token is also used when running Terraform's state manipulation commands against a Terraform Cloud workspace. This user must have permission to read and write state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 ### Environment Variables
 
