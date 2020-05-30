@@ -38,7 +38,7 @@ If you created your account without an invitation, you will not initially belong
 
 ## Team and Organization Membership
 
-To join an organization, you must be invited by an owner of that organization. In order to have any permissions with that organization, an owner will need to add you to one or more teams. For more information, see [Organization Settings: Users][invite] and [Managing Team Membership](./teams.html#managing-team-membership).
+To join an organization, you must be invited by an owner of that organization. In order to have any permissions with that organization, an owner will need to add you to one or more teams. For more information, see [Organization Settings: Users][invite] and [Managing Team Membership](./teams.html#managing-team-membership).  <!-- permissions -->
 
 User invitations are sent by email. If the invited email address matches an existing Terraform Cloud account, the invitee can join the organization with that account; if not, they must create a new account for working with that organization.
 
@@ -100,7 +100,7 @@ API tokens are necessary for:
 
 Terraform Cloud has three kinds of API tokens: user, team, and organization. For more information about team and organization tokens, see [API Tokens](./api-tokens.html).
 
-Protect your tokens carefully, because they can do anything your user account can. For example, if you belong to a team with write access to a workspace, your API token can edit variables in that workspace. (See [Permissions](./permissions.html) for details about workspace permissions.)
+Protect your tokens carefully, because they can do anything your user account can. For example, if you belong to a team with permission to read and write variables for a workspace, your API token can edit variables in that workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
 
 Since users can be members of multiple organizations, user tokens work with any organization their user belongs to.
 

@@ -11,7 +11,7 @@ page_title: "Teams - Terraform Cloud"
 
 -> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-Teams are groups of Terraform Cloud [users][] within an [organization][organizations]. To delegate provisioning work, the organization's owners can grant workspace permissions to specific teams.
+Teams are groups of Terraform Cloud [users][] within an [organization][organizations]. To delegate provisioning work, the organization can grant workspace permissions to specific teams.
 
 Teams can only have permissions on workspaces within their organization, although any user in a team can belong to teams in other organizations.
 
@@ -34,6 +34,8 @@ Members of the owners team have full access to every workspace in the organizati
 - Viewing the full list of teams, both visible and secret
 - Managing [organization settings][]
 
+([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+
 In free organizations, the owners team is limited to five members. In paid organizations, the size of the owners team is not limited.
 
 ## Managing Teams
@@ -49,11 +51,11 @@ The teams page includes a list of the organization's teams. Clicking a team in t
 The team settings page lists the team's current members, with badges to indicate which users have [two-factor authentication](./2fa.html) enabled.
 
 Only organization owners can manage teams or view the full list of teams. Other users can view any teams marked as visible within the organization, plus any secret teams they
-are members of. See [Team Visibility](./teams.html#team-visibility) for more information.
+are members of. See [Team Visibility](./teams.html#team-visibility) for more information.  <!-- permissions -->
 
 ### Creating and Deleting Teams
 
-Organization owners can create new teams from the teams page, using the controls under the "Create a New Team" header.
+Organization owners can create new teams from the teams page, using the controls under the "Create a New Team" header. <!-- permissions -->
 
 To create a new team, provide a name (unique within the organization) and click the "Create team" button. Team names can include numbers, letters, underscores (`_`), and hyphens (`-`).
 
@@ -61,7 +63,7 @@ To delete a team, go to the target team's settings page and click the "Delete TE
 
 ### Managing Team Membership
 
-Organization owners can use a team's settings page to add and remove users from the team.
+Organization owners can use a team's settings page to add and remove users from the team.  <!-- permissions -->
 
 ![Screenshot: a team's settings page showing the team's members.](./images/teams-team-settings-membership.png)
 
@@ -81,7 +83,7 @@ Team visibility controls who can see a team within the organization.
 team and its membership on the Teams page. Non-members have read-only access;
 they cannot generate a team API token, for instance.
 * When a team is set to "Secret", only team members and organization owners can
-read a team and its membership. This is the default setting.
+read a team and its membership. This is the default setting. <!-- permissions -->
 
 To simplify workspace administration, we recommend making most (or all) teams visible. Secret teams should only have
 [organization-level permissions](./permissions.html#organization-level-permissions), since workspace admins can't manage permissions for teams they can't view.
@@ -92,18 +94,18 @@ Each team can have a special API token that is not associated with a specific us
 
 ## Managing Workspace Access
 
-A team can be given read, write, or admin permissions on one or more workspaces.
+A team can be given various permissions on one or more workspaces.
 
 - Use any workspace's "Access" tab to manage team permissions on that workspace. For full instructions, see [Managing Access to Workspaces](../workspaces/access.html).
 - For detailed information about the available permissions levels, see [Permissions](./permissions.html#workspace-level-permissions).
 
-When determining whether a user can take an action on a resource, Terraform Cloud uses the highest permission level from that user's teams. For example, if a user belongs to a team with read permissions on a workspace and another team with admin permissions on that workspace, that user has admin permissions.
+When determining whether a user can take an action on a resource, Terraform Cloud uses the highest permission level from that user's teams. For example, if a user belongs to a team that only has permission to read runs for a workspace and another team with admin access to that workspace, that user has admin access.  <!-- permissions -->
 
-Organization-level permissions (see [Managing Organization Access](./teams.html#managing-organization-access), below) can also supersede lower workspace permissions. For example, if a user belongs to a team with read permissions on a workspace but also has workspace management enabled, that user has admin permissions on the workspace. Conversely, if the team is allowed to manage the organization's Sentinel policies (which gives read access to all workspaces for enforcing policy sets) and has admin access on the workspace, the higher admin permission level is granted to the workspace.
+Organization-level permissions (see [Managing Organization Access](./teams.html#managing-organization-access), below) can also supersede lower workspace permissions. For example, if a team only has permission to read runs for a given workspace but also has permission to manage workspaces for the organization, members of that team have admin access to the workspace. Conversely, if the team has permission to manage policies for the organization (which gives permission to read runs for all workspaces in order to enforce policy sets) and also has admin access to the workspace, the higher admin permission level is granted to the workspace. <!-- permissions -->
 
 ## Managing Organization Access
 
-A team can be granted permissions to manage Sentinel policies, workspaces, and/or VCS settings across an organization.
+A team can be granted permissions to manage policies, workspaces, and/or VCS settings across an organization. <!-- permissions -->
 
 - Organization owners can manage a team's organization-level permissions on the team's settings page under "Organization Access".
 - For detailed information about the available permissions, see [Permissions](./permissions.html#organization-level-permissions).
