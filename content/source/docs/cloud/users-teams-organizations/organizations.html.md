@@ -22,7 +22,9 @@ On most pages within Terraform Cloud, the top navigation bar displays the name o
 
 ## Joining and Leaving Organizations
 
-To join an organization, you must be invited by one of its [owners][] and must accept the emailed invitation. See [Organization Settings: Users](#users) below for details.  <!-- permissions -->
+To join an organization, you must be invited by one of its [owners][] and must accept the emailed invitation. See [Organization Settings: Users](#users) below for details.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 You can leave an organization from your user account settings. See [User Settings: Organizations](./users.html#organizations) for details.
 
@@ -46,9 +48,11 @@ You can view and manage an organization's settings by clicking the "Settings" li
 
 The contents of the organization settings depends on the current user's permissions within the organization:
 
-- Users with permission to manage VCS settings or manage policies can manage the settings they have access to. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+- Users with permission to manage VCS settings or manage policies can manage the settings they have access to. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 - [Organization owners][owners] can view and manage the entire list of organization settings. Most settings cannot be delegated, and are only available to owners.
 - Other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Most of the organization settings are documented near the specific workflows they enable. What follows is a brief summary with links to more relevant sections of the documentation.
 
@@ -76,7 +80,9 @@ To invite a user to an organization, click the "Invite a user" button on the "Us
 
 User invitations are always sent by email; you cannot invite someone using their Terraform Cloud username.
 
--> **Note:** All permissions in Terraform Cloud are managed via teams. Although users can join an organization without belonging to any teams, they won't be able to do anything until they are also added to a team. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+-> **Note:** All permissions in Terraform Cloud are managed via teams. Although users can join an organization without belonging to any teams, they won't be able to do anything until they are also added to a team. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ### Teams
 
@@ -84,15 +90,19 @@ User invitations are always sent by email; you cannot invite someone using their
 
 The teams page is shown to all users in an organization.
 
-Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.  <!-- permissions -->
+Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
 
-Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships. <!-- permissions -->
+Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 See [Teams][] for more information.
 
 ### VCS Providers
 
-The VCS providers page is used for configuring VCS providers for use within the organization. It is available to users with permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+The VCS providers page is used for configuring VCS providers for use within the organization. It is available to users with permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 See [Connecting VCS Providers](../vcs/index.html) for more information.
 
@@ -122,7 +132,9 @@ The policies page is a deprecated interface for managing Sentinel policies. Use 
 
 -> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces. It is available to users with permission to manage policies. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces. It is available to users with permission to manage policies. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information about Sentinel, or [Managing Sentinel Policies](../sentinel/manage-policies.html) for details about these two settings pages.
 

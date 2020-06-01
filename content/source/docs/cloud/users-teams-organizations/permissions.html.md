@@ -7,7 +7,7 @@ page_title: "Permissions - Terraform Cloud"
 
 -> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-<!-- permissions -->
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Terraform Cloud's access model is team-based. In order to perform an action within a Terraform Cloud organization, users must belong to a team that has been granted the appropriate permissions.
 

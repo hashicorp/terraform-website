@@ -15,6 +15,8 @@ Enforcement level details can be found in the [Managing Policies](./manage-polic
 
 All `hard mandatory` and `soft mandatory` policies must pass in order for the run to continue to the the "Confirm & Apply" state.
 
-If a `soft mandatory` policy fails, users with permission to manage policies will be presented with an "Override & Continue" button in the run. They have the ability to override the failed check and continue the execution of the run. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+If a `soft mandatory` policy fails, users with permission to manage policies will be presented with an "Override & Continue" button in the run. They have the ability to override the failed check and continue the execution of the run. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 If an `advisory` fails, it will show the warning state in the run; however, the execution of the run will continue to the "Confirm & Apply" state. No user action is required to override or continue the run execution.

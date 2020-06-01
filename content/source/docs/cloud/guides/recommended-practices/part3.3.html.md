@@ -75,7 +75,9 @@ When managing team membership, you have two options:
 
 Assign workspace ownership and permissions to teams.
 
-Terraform Cloud supports granular team permissions for each workspace. For complete information about the available permissions, see [the Terraform Cloud permissions documentation.](/docs/cloud/users-teams-organizations/permissions.html) <!-- permissions -->
+Terraform Cloud supports granular team permissions for each workspace. For complete information about the available permissions, see [the Terraform Cloud permissions documentation.](/docs/cloud/users-teams-organizations/permissions.html)
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Most workspaces will give access to multiple teams with different permissions.
 

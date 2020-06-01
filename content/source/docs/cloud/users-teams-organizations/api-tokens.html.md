@@ -24,7 +24,9 @@ To manage the API token for a team, go to **Organization settings > Teams > (des
 
 Each team can have **one** valid API token at a time, and any member of a team can generate or revoke that team's token. When a token is regenerated, the previous token immediately becomes invalid.
 
-Team API tokens are designed for performing API operations on workspaces. They have the same access level to the workspaces the team has access to. For example, if a team has permission to apply runs on a workspace, the team's token can create runs and configuration versions for that workspace via the API. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+Team API tokens are designed for performing API operations on workspaces. They have the same access level to the workspaces the team has access to. For example, if a team has permission to apply runs on a workspace, the team's token can create runs and configuration versions for that workspace via the API. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Note that the individual members of a team can usually perform actions the team itself cannot, since users can belong to multiple teams, can belong to multiple organizations, and can authenticate with Terraform's `atlas` backend for running Terraform locally.
 
@@ -36,7 +38,9 @@ API tokens may generated for a specific organization. Organization API tokens al
 
 To manage the API token for an organization, go to **Organization settings > API Token** and use the controls under the "Organization Tokens" header.
 
-Each organization can have **one** valid API token at a time. Only [organization owners](./teams.html#the-owners-team) can generate or revoke an organization's token.  <!-- permissions -->
+Each organization can have **one** valid API token at a time. Only [organization owners](./teams.html#the-owners-team) can generate or revoke an organization's token.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Organization API tokens are designed for creating and configuring workspaces and teams. We don't recommend using them as an all-purpose interface to Terraform Cloud; their purpose is to do some initial setup before delegating a workspace to a team. For more routine interactions with workspaces, use [team API tokens](#team-api-tokens).
 

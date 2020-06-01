@@ -160,7 +160,9 @@ curl \
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization that will be connected to the VCS provider. The organization must already exist in the system, and the user must have permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+`:organization_name` | The name of the organization that will be connected to the VCS provider. The organization must already exist in the system, and the user must have permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 This endpoint allows you to create a VCS connection between an organization and a VCS provider (GitHub or GitLab) for use when creating or setting up workspaces. By using this API endpoint, you can provide a pre-generated OAuth token string instead of going through the process of creating a GitHub or GitLab OAuth Application.
 

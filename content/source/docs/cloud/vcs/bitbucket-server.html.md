@@ -10,7 +10,9 @@ These instructions are for using **Bitbucket Server** for Terraform Cloud's VCS 
 
 These instructions also apply to **Bitbucket Data Center,** which is a variant of Bitbucket Server that supports clustering. Terraform Cloud treats these two products identically, and Bitbucket Data Center users will select **Bitbucket Server** as their VCS Provider type. Unless stated otherwise, any reference to Bitbucket Server in this document also applies to Bitbucket Data Center.
 
-Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 [Bitbucket Cloud has separate instructions,](./bitbucket-cloud.html) as do the [other supported VCS providers.](./index.html)
 

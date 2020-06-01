@@ -47,7 +47,9 @@ Terraform Cloud's top navigation bar includes a "Workspaces" link, which takes y
 
 ![Screenshot: the list of workspaces](./images/index-list.png)
 
-This list only includes workspaces where the current user account has permission to read runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+This list only includes workspaces where the current user account has permission to read runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 If the list is large, you can use the filter tools at the top of the list to find the workspaces you're interested in.
 

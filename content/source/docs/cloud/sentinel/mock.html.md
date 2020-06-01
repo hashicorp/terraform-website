@@ -27,7 +27,9 @@ any and all data within the configuration, plan, and state, including any
 sensitive data. Treat this data with care, and avoid generating mocks with live
 sensitive data if at all possible. Access to this information requires permission
 to download Sentinel mocks for the workspace where the data was generated.
-([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Generating Mock Data Using the UI
 
@@ -160,7 +162,7 @@ file. For example, the contents of `pass.json`, asserting that the result of the
 The following factors can prevent you from generating mock data:
 
 * You do not have permission to download Sentinel mocks for the workspace.
-  ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+  ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
   Permission is required to protect the possibly sensitive data which can be
   produced via mock generation.
 * The run has not progressed past the planning stage, or did not create a plan
@@ -168,6 +170,8 @@ The following factors can prevent you from generating mock data:
 * The run has been in a terminal state, such as applied or discarded, longer
   than seven days. At this point, the data necessary to generate the mocks is no
   longer available.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 If a plan cannot have its mock data exported due to any of these reasons, the
 **Download Sentinel mocks** button within the plan status section of the UI will

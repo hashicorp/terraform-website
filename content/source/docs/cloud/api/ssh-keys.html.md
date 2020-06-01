@@ -123,7 +123,9 @@ curl \
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to create an SSH key in. The organization must already exist, and the token authenticating the API request must have permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+`:organization_name` | The name of the organization to create an SSH key in. The organization must already exist, and the token authenticating the API request must have permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
@@ -200,7 +202,9 @@ Parameter            | Description
 
 This endpoint replaces the name and/or key text of an existing SSH key. Existing workspaces that use the key will be updated with the new values.
 
-Editing SSH keys requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+Editing SSH keys requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
@@ -270,7 +274,9 @@ Parameter            | Description
 ---------------------|------------
 `:ssh_key_id`        | The SSH key ID to delete.
 
-Deleting SSH keys requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+Deleting SSH keys requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 

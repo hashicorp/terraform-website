@@ -30,7 +30,9 @@ Policy sets are groups of policies that are applied together to related workspac
 
 This page documents the API endpoints to create, read, update, and delete policy sets in an organization. To view and manage policies, use the [Policies API](./policies.html).
 
-Interacting with policy sets requires permission to manage policies. ([More about permissions](../users-teams-organizations/permissions.html).) <!-- permissions -->
+Interacting with policy sets requires permission to manage policies. ([More about permissions](../users-teams-organizations/permissions.html).)
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Create a Policy Set
 
@@ -38,7 +40,9 @@ Interacting with policy sets requires permission to manage policies. ([More abou
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The organization to create the policy set in. The organization must already exist in the system, and the token authenticating the API request must have permission to manage policies. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+`:organization_name` | The organization to create the policy set in. The organization must already exist in the system, and the token authenticating the API request must have permission to manage policies. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Status  | Response                                      | Reason
 --------|-----------------------------------------------|----------

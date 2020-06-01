@@ -26,7 +26,9 @@ page_title: "Teams - API Docs - Terraform Cloud"
 
 The Teams API is used to create, edit, and destroy teams as well as manage a team's organization-level permissions. The [Team Membership API](./team-members.html) is used to add or remove users from a team. Use the [Team Access API](./team-access.html) to associate a team with privileges on an individual workspace.
 
-Any member of an organization can view visible teams and any secret teams they are a member of. Only organization owners can modify teams or view the full set of secret teams. The organization token and the owners team token can act as an owner on these endpoints. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+Any member of an organization can view visible teams and any secret teams they are a member of. Only organization owners can modify teams or view the full set of secret teams. The organization token and the owners team token can act as an owner on these endpoints. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Organization Membership
 

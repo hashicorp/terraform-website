@@ -38,7 +38,9 @@ Parameter            | Description
 -------------------- | ------------
 `:organization_name` | The name of the organization the user will be invited to join. The inviting user must have permission to manage organization memberships.
 
--> **Note:** Organization membership management is restricted to members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens).  <!-- permissions -->
+-> **Note:** Organization membership management is restricted to members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens).
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Status  | Response                  | Reason
 --------|---------------------------|-------

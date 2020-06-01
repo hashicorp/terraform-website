@@ -24,7 +24,9 @@ page_title: "Workspace Variables - API Docs - Terraform Cloud"
 
 This set of APIs covers create, update, list and delete operations on workspace variables.
 
-Viewing variables requires permission to read variables for their workspace. Creating, updating, and deleting variables requires permission to read and write variables for their workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+Viewing variables requires permission to read variables for their workspace. Creating, updating, and deleting variables requires permission to read and write variables for their workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Create a Variable
 

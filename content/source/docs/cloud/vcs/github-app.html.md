@@ -24,9 +24,11 @@ Choose "GitHub.com" on the "Connect to a version control provider" screen, which
 The controls on the "Connect to a version control provider" screen can vary, depending on your permissions and your organization's settings:
 
 - In organizations with no VCS connections configured:
-    - Users with permission to manage VCS settings ([more about permissions](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions --> will see several drop-down menus, sorted by product family. Choose "GitHub.com" (_not_ "GitHub.com (Custom)") from the GitHub menu.
+    - Users with permission to manage VCS settings ([more about permissions](/docs/cloud/users-teams-organizations/permissions.html)) will see several drop-down menus, sorted by product family. Choose "GitHub.com" (_not_ "GitHub.com (Custom)") from the GitHub menu.
     - Other users will see a "GitHub" button.
 - In organizations with an existing VCS connection, only the connected providers are shown. Click the "Connect to a different VCS" link to reveal the provider menus (if you can manage VCS settings) or the GitHub button (others).
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ![Screenshot: the "Connect to a version control provider" screen of the "Create a new workspace" page.](./images/gh-app-choose-provider.png)
 
@@ -99,4 +101,6 @@ The Terraform Cloud GitHub App is designed for creating workspaces from the Terr
 - The [private module registry][]
 - Creation of workspaces via the API or the `tfe` Terraform provider
 
-Once you decide to start using these other features, a user with permission to manage VCS settings can configure [GitHub OAuth access](./github.html) for your organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+Once you decide to start using these other features, a user with permission to manage VCS settings can configure [GitHub OAuth access](./github.html) for your organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers

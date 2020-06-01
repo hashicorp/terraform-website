@@ -13,7 +13,9 @@ Terraform Cloud is more powerful when you integrate it with your version control
 
 We recommend configuring VCS access when first setting up an organization, and you might need to add additional VCS providers later depending on how your organization grows.
 
-Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) <!-- permissions -->
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Supported VCS Providers
 
