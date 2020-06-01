@@ -15,7 +15,7 @@ Before starting, disable SAML SSO by going to `https://<TFE HOSTNAME>/app/admin/
 
 Before proceeding with troubleshooting, create a non-SSO admin account that can be used to log in if admin access gets revoked for other admins. The email address assigned to this user should not be one that will be used for SAML.
 
-Open `https://<TFE HOSTNAME>/account/new` to create the account. Make sure to grant admin access to this user and verify they can log in at `https://<TFE HOSTNAME>/`.
+Open `https://<TFE HOSTNAME>/signup/account` to create the account. Make sure to grant admin access to this user and verify they can log in at `https://<TFE HOSTNAME>/`.
 
 ## Enable SAML SSO and SAML debugging
 
@@ -76,7 +76,7 @@ Terrform Enterprise was unable to determine the issuer of the SAML response.<br 
 
 If you're not able to resolve the error using the steps above, [reach out to support](../support/index.html). When contacting support, please provide:
 
-  * A screenshot of "SAML Response" and "Processed attributes" shown on the login page after failed login
-  * A screenshot of the error on the login page
-  * The [SAMLResponse XML document](./identity-provider-configuration.html#example-samlresponse)
-  * A [support bundle](../support/index.html)
+  * A screenshot of "SAML Response" and "Processed attributes" shown on the login page after failed login.
+  * A screenshot of the error on the login page.
+  * The [SAMLResponse XML document](./identity-provider-configuration.html#example-samlresponse).
+  * A [support bundle](../support/index.html).

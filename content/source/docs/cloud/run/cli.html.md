@@ -52,17 +52,11 @@ terraform {
 }
 ```
 
-A Terraform Cloud [user API token](../users-teams-organizations/users.html#api-tokens) is also needed. It should be set as `credentials` in the [CLI config file](/docs/commands/cli-config.html#credentials). User tokens can be created in the [user settings](../users-teams-organizations/users.html#user-settings).
+Next, run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/commands/cli-config.html#credentials).
 
-```hcl
-credentials "app.terraform.io" {
-  token = "xxxxxx.atlasv1.zzzzzzzzzzzzz"
-}
+The backend can be initialized with `terraform init`.
+
 ```
-
-The backend can be initialized with `terraform init`. If the workspaces do not yet exist in Terraform Cloud, they will be created at this time.
-
-```shell
 $ terraform init
 
 Initializing the backend...
@@ -79,6 +73,26 @@ If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
+
+### Implicit Workspace Creation
+
+If you configure the remote backend to use a workspace that doesn't yet exist in your organization, Terraform Cloud will create a new workspace with that name when you run `terraform init`. The output of `terraform init` will inform you when this happens.
+
+Automatically created workspaces might not be immediately ready to use, so use Terraform Cloud's UI to check a workspace's settings and data before performing any runs. In particular, note that:
+
+- No Terraform variables or environment variables are created by default. Terraform Cloud will use `*.auto.tfvars` files if they are present, but you will usually still need to set some workspace-specific variables.
+- The execution mode defaults to "Remote," so that runs occur within Terraform Cloud's infrastructure instead of on your workstation.
+- New workspaces are not automatically connected to a VCS repository, and do not have a working directory specified.
+- A new workspace's Terraform version defaults to the most recent release of Terraform at the time the workspace was created.
+
+## Variables in CLI-Driven Runs
+
+Remote runs in Terraform Cloud use variables from two sources:
+
+- Terraform variables and environment variables set in the workspace. These can be edited via the UI, the API, or the `tfe` Terraform provider.
+- Terraform variables from any `*.auto.tfvars` files included in the configuration. Workspace variables, if present, override these.
+
+-> **Note:** Remote runs do not use environment variables from your shell environment, and do not support specifying variables (or `.tfvars` files) as command line arguments.
 
 ## Remote Working Directories
 
@@ -102,7 +116,7 @@ Users can run speculative plans in any workspace where they have [plan access][p
 
 Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
-```shell
+```
 $ terraform plan
 
 Running plan in the remote backend. Output will stream here. Pressing Ctrl-C
@@ -135,7 +149,7 @@ Remote applies use the configuration code from the local working directory, but 
 
 ~> **Important:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
 
-```shell
+```
 $ terraform apply
 
 Running apply in the remote backend. Output will stream here. Pressing Ctrl-C
@@ -165,7 +179,7 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 If the specified workspace uses Sentinel policies, those policies will run against all speculative plans and remote applies in that workspace. The policy output will be available in the terminal. Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
 
-```shell
+```
 $ terraform apply
 
 [...]
@@ -190,3 +204,19 @@ FALSE - my-policy.sentinel:1:1 - Rule "main"
 
 Error: Organization policy check hard failed.
 ```
+
+## Targeted Plan and Apply
+
+-> **Version note:** Targeting support was added client-side in Terraform v0.12.26 and also requires server-side support that may not be available for all Terraform Enterprise deployments yet.
+
+The `terraform plan` and `terraform apply` commands described in earlier
+sections support [Resource Targeting](https://www.terraform.io/docs/commands/plan.html#resource-targeting) as in the local operations workflow, using the `-target` option on the command line.
+
+As with local usage, targeting is intended for exceptional circumstances only
+and should not be used routinely. The usual caveats for targeting in local operations imply some additional limitations on Terraform Cloud features for remote plans created with targeting:
+
+* [Sentinel](../sentinel/) policy checks for targeted plans will see only the selected subset of resource instances planned for changes in [the `tfplan` import](../sentinel/import/tfplan.html) and [the `tfplan/v2` import](../sentinel/import/tfplan-v2.html), which may cause an unintended failure for any policy that requires a planned change to a particular resource instance selected by its address.
+
+* [Cost Estimation](../cost-estimation/) is disabled for any run created with `-target` set, to prevent producing a misleading underestimate of cost due to resource instances being excluded from the plan.
+
+You can disable or constrain use of targeting in a particular workspace using a Sentinel policy based on [the `tfrun.target_addrs` value](../sentinel/import/tfrun.html#value-target_addrs).

@@ -5,14 +5,14 @@ page_title: "Organizations - Terraform Cloud"
 
 [teams]: ./teams.html
 [users]: ./users.html
+[owners]: ./teams.html#the-owners-team
 
 # Organizations
 
 Organizations are a shared space for [teams][] to collaborate on workspaces in Terraform Cloud.
 
 -> **API:** See the [Organizations API](../api/organizations.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_organization` resource](/docs/providers/tfe/r/organization.html).
-
+**Terraform:** See the `tfe` provider's [`tfe_organization`](/docs/providers/tfe/r/organization.html) resource.
 
 ## Selecting Organizations
 
@@ -20,11 +20,11 @@ On most pages within Terraform Cloud, the top navigation bar displays the name o
 
 ![screenshot: the organization switcher menu](./images/org-nav.png)
 
-## Adding Users to Organizations
+## Joining and Leaving Organizations
 
-Organization membership is automatic, and is determined by team membership. To add a user to an organization, add them to one or more of that organization's teams. See [Teams][] for more information.
+To join an organization, you must be invited by one of its [owners][] and must accept the emailed invitation. See [Organization Settings: Users](#users) below for details.
 
-You can only add existing user accounts to teams. If a colleague has not created their account yet, send them the sign-up link (`https://app.terraform.io/account/new` for SaaS, `https://<TFE HOSTNAME>/account/new` for private installs) and ask them to send you their username.
+You can leave an organization from your user account settings. See [User Settings: Organizations](./users.html#organizations) for details.
 
 ## Creating Organizations
 
@@ -34,7 +34,7 @@ Users can create new organizations by clicking the "Create new organization" but
 
 To create a new organization, provide a unique name and a primary contact email address. Organization names can include numbers, letters, underscores (`_`), and hyphens (`-`).
 
-Once you have created an organization, you can add other [users][] by adding them to one or more [teams][].
+Once you have created an organization, you can invite other users from your organization settings. [See below for more details.](#users)
 
 -> **Note:** On the SaaS version of Terraform Cloud, any user can create a new organization. On Terraform Enterprise, the administrators can restrict this ability, so that only site admins can create organizations. See [Administration: General Settings](/docs/enterprise/admin/general.html#organization-creation) for more details.
 
@@ -44,27 +44,51 @@ You can view and manage an organization's settings by clicking the "Settings" li
 
 ![screenshot: the organization settings page](./images/org-settings.png)
 
-Only [organization owners](./teams.html#the-owners-team) can manage an organization's settings. However, other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
+Only [organization owners][owners] can manage an organization's settings. However, other users can use this section to view the organization's contact email, view the membership of any teams they belong to, and view the organization's authentication policy.
 
 Most of the organization settings are documented near the specific workflows they enable. What follows is a brief summary with links to more relevant sections of the documentation.
 
-### Profile / Delete
+### General
 
-The profile page shows the organization's name and contact email, but does not allow you to change them.
+The general settings page is shown to all users in an organization, and displays the organization's name and contact email.
 
-The profile page is also where you can **delete your organization.**
+Organization owners can use this page to update the organization's contact email or delete the organization.
+
+### Plan & Billing
+
+The plan and billing page allows organization owners to upgrade to one of Terraform Cloud's paid plans, downgrade to a free plan, or begin a free trial of paid features. It also displays any invoices for previous plan payments.
+
+### Users
+
+The users page allows organization owners to invite new Terraform Cloud users into the organization, cancel invitations, and remove existing members.
+
+The list of users is split into two tabs: one for currently active users, and one for invited users who haven't accepted their invitations yet. If the lists are large, you can filter them by username or email using the search field at the top. For active users, the list includes usernames, email addresses, avatar icons, two-factor authentication status, and current team memberships.
+
+![Screenshot: the users list, showing information for the currently active users.](./images/org-users.png)
+
+To invite a user to an organization, click the "Invite a user" button on the "Users" page. You will be asked to provide an email address and an optional list of teams. If the user accepts the emailed invitation, they will be automatically added to the specified teams.
+
+![Screenshot: the "Invite a user" dialog, which includes fields for email address and teams.](./images/org-users-invite.png)
+
+User invitations are always sent by email; you cannot invite someone using their Terraform Cloud username.
+
+-> **Note:** All permissions in Terraform Cloud are managed via teams. Although users can join an organization without belonging to any teams, they won't be able to do anything until they are also added to a team.
 
 ### Teams
 
-The teams page allows organization owners to manage the organization's teams, including creating and deleting teams, managing membership, and generating team API tokens.
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-Users who aren't organization owners can view the list of teams they belong to and the membership of those teams. They can't edit teams or view any teams they don't belong to.
+The teams page is shown to all users in an organization.
+
+Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
+
+Non-owners can view the list of teams they belong to, view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships or view any teams they don't belong to.
 
 See [Teams][] for more information.
 
-### VCS Provider
+### VCS Providers
 
-The VCS provider page is used for setting up VCS access for Terraform Cloud. See [Connecting VCS Providers](../vcs/index.html) for more information.
+The VCS providers page is used for setting up VCS access for Terraform Cloud. See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 ### API Tokens
 
@@ -74,23 +98,31 @@ Organizations can have a special API token that is not associated with a specifi
 
 The authentication page allows owners to determine when users must reauthenticate. It also allows owners to require [two-factor authentication](./2fa.html) for all members of the organization.
 
-### Manage SSH Keys
+### SSH Keys
 
 The SSH keys page manages any keys necessary for cloning Git-based module sources during Terraform runs. It does not manage keys used for accessing a connected VCS provider. See [SSH Keys for Cloning Modules](../workspaces/ssh-keys.html) for more information.
 
 ### Cost Estimation
 
+-> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 The Cost Estimation page allows for enabling and disabling the [cost estimation](../getting-started/cost-estimation.html) feature for all workspaces.
 
-### Policies and Policy Sets
+### Policies
 
-The policies page is for managing Sentinel policies, and the policy sets page is for assigning groups of policies to workspaces.
+The policies page is a deprecated interface for managing Sentinel policies. Use the policy sets page instead.
+
+### Policy Sets
+
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
+The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces.
 
 Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information about Sentinel, or [Managing Sentinel Policies](../sentinel/manage-policies.html) for details about these two settings pages.
 
 ## Trial Expired Organizations
 
-Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a Hashicorp Sales Representative, please ask them about how to get a free trial. 
+Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a Hashicorp Sales Representative, please ask them about how to get a free trial.
 
 When a free trial has expired, the organization displays a banner reading "TRIAL EXPIRED — Upgrade Required" in the top navigation bar:
 
@@ -98,7 +130,6 @@ When a free trial has expired, the organization displays a banner reading "TRIAL
 
 Organizations with expired trials return to the feature set of a free organization, but they retain any data created as part of paid features. Specifically:
 
-- Teams other than `owners` are disabled, and users who don't belong to the `owners` team are locked out of the organization. Team membership and permissions are preserved, and are re-enabled on upgrade. 
-- Sentinel policy checks are disabled. Existing policies and policy sets are preserved, and are re-enabled on upgrade. 
+- Teams other than `owners` are disabled, and users who don't belong to the `owners` team are locked out of the organization. Team membership and permissions are preserved, and are re-enabled on upgrade.
+- Sentinel policy checks are disabled. Existing policies and policy sets are preserved, and are re-enabled on upgrade.
 - Cost estimation is disabled.
-

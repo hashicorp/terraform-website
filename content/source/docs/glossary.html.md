@@ -312,6 +312,8 @@ Different VCS providers handle forks differently, but a fork is usually owned by
 
 Terraform Cloud makes extensive use of VCS repos, and assumes that forks of a trusted repo are not necessarily trusted. As such, Terraform Cloud avoids evaluating any code from external forks, which prevents Terraform Cloud from running [speculative plans][] for [pull requests][] from forks.
 
+On [Terraform Enterprise][], [speculative plans][] on [pull requests][] from forks can be enabled by an administrator. 
+
 ## Git
 
 [git]: glossary.html#git
@@ -732,6 +734,16 @@ In Terraform Cloud, runs are performed in a series of stages ([plan][], [policy 
 - [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
+## Run Triggers
+
+[run triggers]: glossary.html#run-triggers
+
+-> Terraform Cloud
+
+Terraform Cloud provides a way to connect a given workspace to one or more workspaces within an organization, known as "source workspaces". These connections, called run triggers, allow runs to queue automatically in your workspace on successful apply of runs in any of the source workspaces.
+
+- [Terraform Cloud docs: Runs Triggers](/docs/cloud/workspaces/run-triggers.html)
+
 ## S3
 
 [s3]: glossary.html#s3
@@ -742,7 +754,7 @@ Many other cloud or self-hosted services provide [APIs][] that are compatible wi
 
 Terraform's `aws` [provider][] can manage S3 resources.
 
-Terraform Enterprise can use an S3-compatible [blob storage][] service when configured to use external services for storage.
+Terraform Enterprise can use an S3-compatible [blob storage][] service when configured to use *External Services* for storage.
 
 - [AWS: S3](https://aws.amazon.com/s3/)
 

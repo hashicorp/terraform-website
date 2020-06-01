@@ -7,6 +7,8 @@ description: |-
 
 # Import: tfconfig
 
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 The `tfconfig` import provides access to a Terraform configuration.
 
 The Terraform configuration is the set of `*.tf` files that are used to

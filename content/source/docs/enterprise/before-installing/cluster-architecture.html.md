@@ -1,17 +1,20 @@
 ---
-layout: "enterprise"
+layout: "enterprise_cluster"
+hidden: true
 page_title: "Clustered Deployment Architecture - Before Installing - Terraform Enterprise"
 ---
 
 # Architecture Overview for Clustered Deployment
 
-Terraform Enterprise's clustered deployment method deployes Terraform Enterprise in a flexible and scalable architecture, which can range from a three-node cluster to over a hundred nodes.
+Terraform Enterprise's clustered deployment method deploys Terraform Enterprise in a flexible and scalable architecture, which can range from a three-node cluster to over a hundred nodes.
+
+~> **Important:** The clustered version of Terraform Enterprise is in Controlled Availability as we refine the installation experience. Access is currently restricted to a select group of existing customers, and you should not attempt to install it until it reaches General Availability.
 
 ## Terraform-based Deployment
 
 The clustered deployment method relies on HashiCorp-provided per-cloud Terraform modules, which provision the necessary resources and automate installation and configuration.
 
-We expect operators to keep the resulting Terraform state avaliable _outside of Terraform Enterprise,_ so that Terraform runs that affect Terraform Enterprise's availability are not, themselves, dependent on Terraform Enterprise's availability.
+We expect operators to keep the resulting Terraform state available _outside of Terraform Enterprise,_ so that Terraform runs that affect Terraform Enterprise's availability are not, themselves, dependent on Terraform Enterprise's availability.
 
 ## Application Instances
 
@@ -29,7 +32,7 @@ A Terraform Enterprise cluster relies on a load balancer to direct traffic to ap
 
 There is a direct relationship between a cluster's total resources and the amount of work it can do concurrently.
 
-Run concurrency is usually limited by memory. By default, each Terraform run is allocated 512MB of RAM, and a cluster can schedule new runs as long as one of its instances has enough memory available. 
+Run concurrency is usually limited by memory. By default, each Terraform run is allocated 512MB of RAM, and a cluster can schedule new runs as long as one of its instances has enough memory available.
 
 To calculate how big a cluster should be, first decide how many concurrent Terraform runs you require. For instance, if you need to be able to execute 100 runs simultaneously, then the cluster needs at least 50GB of RAM available for runs. Because the services that run the Terraform Enterprise application run also share that memory, we suggest adding 16GB to the number. So in this case, the cluster would require 66GB of RAM. The most common way to achieve at least 66GB of cluster RAM is a pool of 5 secondary instances and 3 primary instances, all with 16GB of RAM.
 
@@ -41,7 +44,7 @@ The following diagrams represent the architectures used on the three supported c
 
 ### AWS
 
-![AWS architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances in multiple zones, whach are part of an auto-scaling group.](https://github.com/hashicorp/terraform-aws-terraform-enterprise/blob/master/assets/aws_diagram.jpg?raw=true)
+![AWS architecture diagram. Includes a load balancer, three primary instances, and multiple secondary instances in multiple zones, which are part of an auto-scaling group.](https://github.com/hashicorp/terraform-aws-terraform-enterprise/blob/master/assets/aws_diagram.jpg?raw=true)
 
 ### GCP
 

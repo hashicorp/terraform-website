@@ -1,28 +1,14 @@
 ---
 layout: "github-actions"
-page_title: "Home - Terraform GitHub Actions"
-description: |-
-  Terraform GitHub Actions allow executing Terraform commands via GitHub Actions.
+page_title: "Teraform GitHub Actions"
 ---
 
 # Terraform GitHub Actions
 
-This is the documentation for Terraform GitHub Actions.
+[GitHub Actions](https://help.github.com/actions) allow you to execute one or more workflows in response to GitHub events such as a pushing a commit or opening a pull request. Through GitHub Actions, a user can automate common Terraform workflows such as installing Terraform CLI and executing various `terraform` commands.
 
-[GitHub Actions](https://developer.github.com/actions) allow you to run commands in response to GitHub events such as pushing a new commit. Terraform GitHub Actions are designed to execute Terraform commands to help you review and validate Terraform changes. When Terraform GitHub Actions are executed on a pull request, a comment may be posted on the pull request conversation detailing the outcome of the GitHub Actions step.
+-> **Note** The former [hashicorp/terraform-github-actions](https://github.com/hashicorp/terraform-github-actions/) GitHub action is no longer maintained. It has been superseded by the `hashicorp/setup-terraform` GitHub action listed below. Although no functionality has been lost, workflow files will need to be reformatted to in order to use the `hashicorp/setup-terraform` GitHub action.
 
-If you are new to Terraform GitHub Actions, begin with the [Getting Started](./getting-started.html) guide.
+HashiCorp currently maintains the following GitHub actions to help automate Terraform workflows.
 
-Here are screenshots showing some of the information Terraform GitHub Actions will post to a pull request.
-
-## Terraform Format
-
-![Terraform Format Screenshot](./images/fmt.png)
-
-## Terraform Validate
-
-![Terraform Validate Screenshot](./images/validate.png)
-
-## Terraform Plan
-
-![Terraform Plan Screenshot](./images/plan.png)
+- [hashicorp/setup-terraform](/docs/github-actions/setup-terraform.html)

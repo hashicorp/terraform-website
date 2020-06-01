@@ -5,6 +5,8 @@ page_title: "AWS - Cost Estimation - Terraform Cloud"
 
 # Supported AWS resources in Terraform Cloud Cost Estimation
 
+-> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 Terraform Cloud can estimate monthly costs for many AWS Terraform resources.
 
 -> **Note:** Terraform Enterprise requires AWS credentials to support cost estimation. These credentials are configured at the instance level, not the organization level. See the [Application Administration docs](/docs/enterprise/admin/integration.html) for more details.
@@ -12,14 +14,16 @@ Terraform Cloud can estimate monthly costs for many AWS Terraform resources.
 Below is a list of resources that cost estimation supports so far. Resources that incur costs are marked as such; other resources do not have costs associated with them.
 
 | Resource | Status |
-| -- | -- | -- |
+| -- | -- |
 | aws_alb | incurs cost |
 | aws_autoscaling_group | incurs cost |
 | aws_cloudwatch_dashboard | incurs cost |
 | aws_cloudwatch_metric_alarm | incurs cost |
 | aws_db_instance | incurs cost |
+| aws_dynamodb_table | incurs cost |
 | aws_ebs_volume | incurs cost |
 | aws_elasticache_cluster | incurs cost |
+| aws_elasticsearch_domain | incurs cost |
 | aws_elb | incurs cost |
 | aws_instance | incurs cost |
 | aws_lb | incurs cost |
@@ -42,6 +46,7 @@ Below is a list of resources that cost estimation supports so far. Resources tha
 | aws_autoscaling_lifecycle_hook | |
 | aws_autoscaling_policy | |
 | aws_cloudformation_stack | |
+| aws_cloudfront_distribution | |
 | aws_cloudfront_origin_access_identity | |
 | aws_cloudwatch_event_rule | |
 | aws_cloudwatch_event_target | |
@@ -51,11 +56,14 @@ Below is a list of resources that cost estimation supports so far. Resources tha
 | aws_cloudwatch_log_subscription_filter | |
 | aws_codebuild_webhook | |
 | aws_codedeploy_deployment_group | |
+| aws_cognito_identity_provider | |
+| aws_cognito_user_pool | |
+| aws_cognito_user_pool_client | |
+| aws_cognito_user_pool_domain | |
 | aws_config_config_rule | |
 | aws_customer_gateway | |
 | aws_db_parameter_group | |
 | aws_db_subnet_group | |
-| aws_dynamodb_table | |
 | aws_dynamodb_table_item | |
 | aws_ecr_lifecycle_policy | |
 | aws_ecr_repository_policy | |
@@ -92,6 +100,7 @@ Below is a list of resources that cost estimation supports so far. Resources tha
 | aws_iam_user_ssh_key | |
 | aws_internet_gateway | |
 | aws_key_pair | |
+| aws_kms_alias | |
 | aws_lambda_alias | |
 | aws_lambda_event_source_mapping | |
 | aws_lambda_layer_version | |
@@ -108,12 +117,13 @@ Below is a list of resources that cost estimation supports so far. Resources tha
 | aws_placement_group | |
 | aws_rds_cluster_parameter_group | |
 | aws_route | |
-| aws_route_table | |
-| aws_route_table_association | |
 | aws_route53_record | |
 | aws_route53_zone_association | |
+| aws_route_table | |
+| aws_route_table_association | |
 | aws_s3_bucket | |
 | aws_s3_bucket_notification | |
+| aws_s3_bucket_object | |
 | aws_s3_bucket_policy | |
 | aws_s3_bucket_public_access_block | |
 | aws_security_group | |

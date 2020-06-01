@@ -12,30 +12,30 @@ This document assumes that you have already installed and configured ADFS and th
 ## Gather ADFS information
 
 1. On the ADFS server, start the Server Manager.
-  ![saml_0](./images/saml_0.png)
+    ![saml_0](./images/saml_0.png)
 2. Click "Tools" -> "AD FS Management"
-  .![saml_1](./images/saml_1.png)
+    .![saml_1](./images/saml_1.png)
 3. Expand the `Service` object and click "Endpoints".
-  ![saml_2](./images/saml_2.png)
+    ![saml_2](./images/saml_2.png)
 4. Make a note of the `URL Path` for Type `SAML 2.0/WS-Federation`. (If you are using the default settings, this will be `/adfs/ls/`.)
 5. Switch from "Endpoints" to "Certificates" and choose the one under `Token-signing`.
-  ![saml_3](./images/saml_3.png)
+    ![saml_3](./images/saml_3.png)
 6. Right click "View Certificate".
-  ![saml_5](./images/saml_5.png)
+    ![saml_5](./images/saml_5.png)
 7. In the Certificate dialog, select the Details tab and click "Copy to File".
-  ![saml_6](./images/saml_6.png)
+    ![saml_6](./images/saml_6.png)
 8. In the Certificate Export Wizard, click "Next", select "Base-64 encoded X.509 (.CER)" and click "Next" again.
-  ![saml_8](./images/saml_8.png)
+    ![saml_8](./images/saml_8.png)
 9. Pick a location to save the file and click "Next".
-  ![saml_9](./images/saml_9.png)
+    ![saml_9](./images/saml_9.png)
 10. Review the settings and click "Finish".
-  ![saml_10](./images/saml_10.png)
+    ![saml_10](./images/saml_10.png)
 
 ## Configure Terraform Enterprise
 
 1. Visit `https://<TFE HOSTNAME>/app/admin/saml`.
 2. Set "Single Sign-on URL" to `https://<ADFS hostname>/<URL Path>`, using the path you noted above in step 4.
-3. Set "Single Log-out URL" to `https://<ADFS hostname>/<URL Path>?wa=wsignout1.0`. (Note that this is the same path with an additional URL parameter.)
+3. Set "Single Log-out URL" to `https://<ADFS hostname>/<URL Path>?wa=wsignout1.0` (note that this is the same path with an additional URL parameter).
 4. Paste the contents of the saved certificate in "IDP Certificate".
 5. Scroll to the bottom of the screen and click "Save SAML Settings".
 

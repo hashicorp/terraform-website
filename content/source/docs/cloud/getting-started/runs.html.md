@@ -62,4 +62,4 @@ After the first run has finished applying, you can go back to the runs list and 
 
 ## Next Steps
 
-Now that you've completed and viewed a run, you're ready to [start applying policy checks](./policies.html).
+Now that you've completed and viewed a run, you're ready to [start enforcing policy checks](./policies.html).

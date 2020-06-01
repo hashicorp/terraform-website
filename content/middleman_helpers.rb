@@ -1,3 +1,5 @@
+require 'pathname'
+
 module Helpers
   # Returns a segment tracking ID such that local development is not
   # tracked to production systems.
@@ -95,25 +97,33 @@ module Helpers
     return classes.join(" ")
   end
 
+  # If there's a more middleman-ish way to get the root of the middleman
+  # project, feel free to replace this with it. -NF
+  @@content_dir = Pathname.new(Dir.pwd).realpath
+
   # Returns a URL where the content of the given page can be edited
   # on Github, taking into account the symlinks into other repository
   # submodules.
   def github_edit_url(page)
-    fn = File.realpath(page.source_file)
+    # N.B.: if it's a strict child path, relative_path_from doesn't prepend "./".
+    fn = Pathname.new(page.source_file).realpath.relative_path_from(@@content_dir).to_s
 
-    # This depends on the way we mount the volumes in the Docker container:
-    # /website is the main website content (the "content" directory in the repo)
-    # /ext is all the submodules (the "ext" directory in the repo)
-    if fn.start_with?('/website/')
-      return "https://github.com/hashicorp/terraform-website/edit/master/content/#{fn['/website/'.length..-1]}"
+    # This relies on the same things the symlinks themselves rely on:
+    # - The name and layout of the "ext" directory.
+    # - The relative locations of the "ext" and "content" directories.
+    # - Notably, it DOESN'T rely on the name of the "content" directory, since
+    #   it's "/website" when run from the Makefile and "./content" when run in
+    #   the production build job.
+    if fn.start_with?('source/')
+      return "https://github.com/hashicorp/terraform-website/edit/master/content/#{fn}"
     end
 
-    if fn.start_with?('/ext/terraform/')
-      return "https://github.com/hashicorp/terraform/edit/master/#{fn['/ext/terraform/'.length..-1]}"
+    if fn.start_with?('../ext/terraform/')
+      return "https://github.com/hashicorp/terraform/edit/master/#{fn['../ext/terraform/'.length..-1]}"
     end
 
-    if fn.start_with?('/ext/providers/')
-      rel = fn['/ext/providers/'.length..-1]
+    if fn.start_with?('../ext/providers/')
+      rel = fn['../ext/providers/'.length..-1]
       provider, rel = rel.split('/', 2)
 
       # digitalocean has a different provider name than its repository name,

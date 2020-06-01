@@ -5,7 +5,7 @@ page_title: "Connecting VCS Providers - Terraform Cloud"
 
 # Connecting VCS Providers to Terraform Cloud
 
-Terraform Cloud is more powerful when you integrate it with your version control system (VCS) provider. Although you can use almost all of Terraform Cloud's features without one, a VCS connection provides major workflow benefits. In particular:
+Terraform Cloud is more powerful when you integrate it with your version control system (VCS) provider. Although you can use many of Terraform Cloud's features without one, a VCS connection provides additional features and improved workflows. In particular:
 
 - When workspaces are linked to a VCS repository, Terraform Cloud can [automatically initiate Terraform runs](../run/ui.html) when changes are committed to the specified branch.
 - Terraform Cloud makes code review easier by [automatically predicting](../run/ui.html#speculative-plans-on-pull-requests) how pull requests will affect infrastructure.
@@ -17,7 +17,8 @@ We recommend configuring VCS access when first setting up an organization, and y
 
 Terraform Cloud supports the following VCS providers:
 
-- [GitHub](./github.html)
+- [GitHub.com](./github-app.html)
+- [GitHub.com (OAuth)](./github.html)
 - [GitHub Enterprise](./github-enterprise.html)
 - [GitLab.com](./gitlab-com.html)
 - [GitLab EE and CE](./gitlab-eece.html)
@@ -40,12 +41,14 @@ To use configurations from VCS, Terraform Cloud needs to do several things:
 - Register webhooks with your VCS provider, to get notified of new commits to a chosen branch.
 - Download the contents of a repository at a specific commit in order to run Terraform with that code.
 
+~> **Important:** Terraform Cloud usually performs VCS actions using a designated VCS user account, but it has no other knowledge about your VCS's authorization controls and does not associate Terraform Cloud user accounts with VCS user accounts. This means Terraform Cloud's VCS user might have a different level of access to repositories than any given Terraform Cloud user. Keep this in mind when selecting a VCS user, as it may affect your security posture in one or both systems.
+
 ### Webhooks
 
 Terraform Cloud uses webhooks to monitor new commits and pull requests.
 
 - When someone adds new commits to a branch, any Terraform Cloud workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can prevent automatic runs by locking a workspace.
-- When someone submits a pull request/merge request to a branch from another branch in the same repository, Terraform Cloud performs a [speculative plan](../run/index.html#speculative-plans) with the contents of the request and links to the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
+- When someone submits a pull request/merge request to a branch, any Terraform Cloud workspaces based on that branch will perform a [speculative plan](../run/index.html#speculative-plans) with the contents of the request and links to the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
 
 ### SSH Keys
 

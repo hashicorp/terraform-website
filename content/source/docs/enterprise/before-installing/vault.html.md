@@ -5,9 +5,9 @@ page_title: "Externally Managed Vault - Terraform Enterprise"
 
 # Externally Managed Vault Requirements for Terraform Enterprise
 
-For enhanced security, Terraform Enterprise can be configured to use an external
-Vault cluster rather than the internal Vault instance. Within Terraform Enterprise, Vault is
-used to encrypt sensitive information such as variables and states.
+Terraform Enterprise uses Vault to encrypt sensitive information such as variables and state versions.
+
+By default, Terraform Enterprise automatically configures and manages its own instance of Vault, and we recommend that most organizations use this default behavior. However, organizations with special needs around data encryption and record keeping can configure Terraform Enterprise to use an external Vault cluster rather than the internal Vault instance.
 
 !> **Warning:** This is only recommended if you currently run your own Vault cluster in production.
 Choosing this option means you assume full responsibility for how the Vault cluster is managed;
@@ -21,17 +21,17 @@ Vault options.
 
 Use the following as a guide to configure an external Vault instance:
 
-1. Enable AppRole: `vault auth enable approle`
-1. Enable transit: `vault secrets enable transit`
-1. Install the `ptfe` policy (See below for policy):
-   `vault policy write ptfe ptfe.hcl`
+1. Enable AppRole: `vault auth enable approle`.
+1. Enable transit: `vault secrets enable transit`.
+1. Install the `tfe` policy (See below for policy):
+   `vault policy write tfe tfe.hcl`.
 1. Create an AppRole instance:
-   `vault write auth/approle/role/ptfe policies="ptfe" token_period=24h`.
-1. Retrieve the AppRole `role_id`: `vault read auth/approle/role/ptfe/role-id`
+   `vault write auth/approle/role/tfe policies="tfe" token_period=24h`.
+1. Retrieve the AppRole `role_id`: `vault read auth/approle/role/tfe/role-id`.
 1. Retrieve the AppRole `secret_id`:
-   `vault write -f auth/approle/role/ptfe/secret-id`
+   `vault write -f auth/approle/role/tfe/secret-id`.
 1. Input the address of the vault cluster, role\_id, and secret\_id during the
-   install process
+   install process.
 
 ## role\_id and secret\_id
 

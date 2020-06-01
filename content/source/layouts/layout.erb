@@ -5,6 +5,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= description_for(current_page) %>">
+    <% if current_page.data.hidden %>
+      <meta name="robots" content="noindex">
+    <% end %>
 
     <link rel="canonical" href="<%= File.join(base_url, current_page.url) %>" />
     <link rel="apple-touch-icon" sizes="180x180" href="<%= image_path("favicons/apple-touch-icon.png") %>">
@@ -118,8 +121,15 @@
                   </li>
                    <li id="terraform-overview-sign-in-link">
                    <div>
-                    <a href="https://app.terraform.io/">
+                    <a href="https://app.terraform.io/session?utm_source=docs_banner">
                       Sign In
+                    </a>
+                    </div>
+                  </li>
+                   <li id="terraform-overview-sign-up-link" class="hidden-md hidden-sm">
+                   <div>
+                    <a href="https://app.terraform.io/signup/account?utm_source=docs_banner">
+                      Create Account
                     </a>
                     </div>
                   </li>
@@ -130,16 +140,6 @@
         </div>
       </div>
     </div>
-
-    <% if current_page.data.show_notification == true %>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 text-center">
-          <%= partial("layouts/notification") %>
-        </div>
-      </div>
-    </div>
-    <% end %>
 
     <%= partial("layouts/sidebar", locals: {docs_items: docs_items}) %>
 

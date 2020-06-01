@@ -103,6 +103,12 @@ This establishes the main function to produce a valid, executable Go binary. The
 contents of the main function consume Terraform's `plugin` library. This library
 deals with all the communication between Terraform core and the plugin.
 
+We recommend using Go modules for dependency management, to define this directory as the root of a module, use the `go mod init` command:
+
+```shell
+ go mod init example.com/terraform-provider-example
+```
+
 Next, build the plugin using the Go toolchain:
 
 ```shell
@@ -823,7 +829,15 @@ func resourceServerRead(d *schema.ResourceData, m interface{}) error {
 }
 ```
 
-The so-called `flatteners` are in a separate file `structures_server.go`. The outermost data structure is a `map[string]interface{}` and each item a `[]interface{}`:
+The "flattener" helper functions are located in a separate file (`structures_server.go`), and each flattener function handles one data structure and its children. (For complex structures, a flattener should handle children by calling another flattener.)
+
+The return type of a flattener should match the portion of the schema it's responsible for; any internal structures created by the flatteners also must match the corresponding schema types. (See [the schema types page](/docs/extend/schemas/schema-types.html) for details on the underlying Go type for each schema type.)
+
+In this example: 
+
+- `task_spec` is defined as `schema.TypeList`, so `flattenTaskSpec` must return a slice (`[]interface{}`).
+- Same for `container_spec` and `flattenContainerSpec`.
+- `mounts` is defined as `schema.TypeSet`, so `flattenServiceMounts` must return a slice. Since the elements of the set are `&schema.Resource` objects (`map[string]interface{}`), the return type of `flattenServiceMounts is declared as `[]map[string]interface{}`.
 
 ```go
 func flattenTaskSpec(in *server.TaskSpec) []interface{} {

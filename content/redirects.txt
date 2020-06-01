@@ -128,17 +128,25 @@
 /docs/enterprise/workspaces/run-cli.html                 /docs/enterprise/run/cli.html
 
 # AWS Provider
-/docs/providers/aws/d/alb_listener.html                /docs/providers/aws/d/lb_listener.html
-/docs/providers/aws/d/alb_target_group.html            /docs/providers/aws/d/lb_target_group.html
-/docs/providers/aws/d/alb.html                         /docs/providers/aws/d/lb.html
-/docs/providers/aws/events/gardening-summer-2018.html  /docs/extend/community/events/2018/summer-gardening.html
-/docs/providers/aws/r/alb_listener_rule.html           /docs/providers/aws/r/lb_listener_rule.html
-/docs/providers/aws/r/alb_listener.html                /docs/providers/aws/r/lb_listener.html
-/docs/providers/aws/r/alb_target_group_attachment.html /docs/providers/aws/r/lb_target_group_attachment.html
-/docs/providers/aws/r/alb_target_group.html            /docs/providers/aws/r/lb_target_group.html
-/docs/providers/aws/r/alb.html                         /docs/providers/aws/r/lb.html
-/docs/providers/aws/r/code_commit_repository.html      /docs/providers/aws/r/codecommit_repository.html
-/docs/providers/aws/r/code_commit_trigger.html         /docs/providers/aws/r/codecommit_trigger.html
+/docs/providers/aws/d/alb_listener.html                     /docs/providers/aws/d/lb_listener.html
+/docs/providers/aws/d/alb_target_group.html                 /docs/providers/aws/d/lb_target_group.html
+/docs/providers/aws/d/alb.html                              /docs/providers/aws/d/lb.html
+/docs/providers/aws/events/gardening-summer-2018.html       /docs/extend/community/events/2018/summer-gardening.html
+/docs/providers/aws/r/alb_listener_rule.html                /docs/providers/aws/r/lb_listener_rule.html
+/docs/providers/aws/r/alb_listener.html                     /docs/providers/aws/r/lb_listener.html
+/docs/providers/aws/r/alb_target_group_attachment.html      /docs/providers/aws/r/lb_target_group_attachment.html
+/docs/providers/aws/r/alb_target_group.html                 /docs/providers/aws/r/lb_target_group.html
+/docs/providers/aws/r/alb.html                              /docs/providers/aws/r/lb.html
+/docs/providers/aws/r/autoscaling_lifecycle_hooks.html      /docs/providers/aws/r/autoscaling_lifecycle_hook.html
+/docs/providers/aws/r/code_commit_repository.html           /docs/providers/aws/r/codecommit_repository.html
+/docs/providers/aws/r/code_commit_trigger.html              /docs/providers/aws/r/codecommit_trigger.html
+/docs/providers/aws/r/elastic_transcoder_pipeline.html      /docs/providers/aws/r/elastictranscoder_pipeline.html
+/docs/providers/aws/r/elastic_transcoder_preset.html        /docs/providers/aws/r/elastictranscoder_preset.html
+/docs/providers/aws/r/main_route_table_assoc.html           /docs/providers/aws/r/main_route_table_association.html
+/docs/providers/aws/r/s3_bucket_analysis_configuration.html /docs/providers/aws/r/s3_bucket_analytics_configuration.html
+/docs/providers/aws/r/vpc_peering_accepter.html             /docs/providers/aws/r/vpc_peering_connection_accepter.html
+/docs/providers/aws/r/vpc_peering_options.html              /docs/providers/aws/r/vpc_peering_connection_options.html
+/docs/providers/aws/r/vpc_peering.html                      /docs/providers/aws/r/vpc_peering_connection.html
 
 # Azure Active Directory Provider
 /docs/providers/azuread/auth/azure_cli.html                             /docs/providers/azuread/guides/azure_cli.html
@@ -155,11 +163,34 @@
 /docs/providers/azurerm/authenticating_via_azure_cli.html               /docs/providers/azurerm/guides/azure_cli.html
 /docs/providers/azurerm/authenticating_via_msi.html                     /docs/providers/azurerm/guides/managed_service_identity.html
 /docs/providers/azurerm/authenticating_via_service_principal.html       /docs/providers/azurerm/guides/service_principal_client_secret.html
+# Renamed in azurerm commit 9366e423886b10fae50c1bb499a75214757eb9b5
+/docs/providers/azurerm/r/loadbalancer.html                             /docs/providers/azurerm/r/lb.html
+/docs/providers/azurerm/r/loadbalancer_backend_address_pool.html        /docs/providers/azurerm/r/lb_backend_address_pool.html
+/docs/providers/azurerm/r/loadbalancer_rule.html                        /docs/providers/azurerm/r/lb_rule.html
+/docs/providers/azurerm/r/loadbalancer_outbound_rule.html               /docs/providers/azurerm/r/lb_outbound_rule.html
+/docs/providers/azurerm/r/loadbalancer_nat_rule.html                    /docs/providers/azurerm/r/lb_nat_rule.html
+/docs/providers/azurerm/r/loadbalancer_nat_pool.html                    /docs/providers/azurerm/r/lb_nat_pool.html
+/docs/providers/azurerm/r/loadbalancer_probe.html                       /docs/providers/azurerm/r/lb_probe.html
+/docs/providers/azurerm/d/loadbalancer.html                             /docs/providers/azurerm/d/lb.html
+/docs/providers/azurerm/d/loadbalancer_backend_address_pool.html        /docs/providers/azurerm/d/lb_backend_address_pool.html
+# Moved to azuread provider
+/docs/providers/azurerm/d/azurerm_azuread_application.html                  /docs/providers/azuread/d/azurerm_azuread_application.html
+/docs/providers/azurerm/d/azurerm_azuread_service_principal.html            /docs/providers/azuread/d/azurerm_azuread_service_principal.html
+/docs/providers/azurerm/r/azurerm_azuread_application.html                  /docs/providers/azuread/r/azurerm_azuread_application.html
+/docs/providers/azurerm/r/azurerm_azuread_service_principal.html            /docs/providers/azuread/r/azurerm_azuread_service_principal.html
+/docs/providers/azurerm/r/azurerm_azuread_service_principal_password.html   /docs/providers/azuread/r/azurerm_azuread_service_principal_password.html
+# Removed for 2.0
+/docs/providers/azurerm/r/container_service.html                        /docs/providers/azurerm/guides/2.0-upgrade-guide.html
+/docs/providers/azurerm/r/metric_alertrule.html                         /docs/providers/azurerm/guides/2.0-upgrade-guide.html
+
 
 # Azure Stack Provider
 /docs/providers/azurestack/auth/azure_cli.html                             /docs/providers/azurestack/guides/azure_cli.html
 /docs/providers/azurestack/auth/service_principal_client_certificate.html  /docs/providers/azurestack/guides/service_principal_client_certificate.html
 /docs/providers/azurestack/auth/service_principal_client_secret.html       /docs/providers/azurestack/guides/service_principal_client_secret.html
+
+# DigitalOcean Provider
+/docs/providers/digitalocean/index.html  /docs/providers/do/index.html
 
 # Google Provider
 /docs/provider/google/provider_versions.html                    /docs/providers/google/provider_versions.html
@@ -188,6 +219,8 @@
 # /docs/providers/aws/guides/eks-getting-started.html     https://learn.hashicorp.com/terraform/aws/eks-intro
 # /docs/providers/aws/guides/iam-policy-documents.html    https://learn.hashicorp.com/terraform/aws/iam-policy
 # /docs/providers/aws/guides/serverless-with-aws-lambda-and-api-gateway.html    https://learn.hashicorp.com/terraform/aws/lambda-api-gateway
+# /docs/cloud/free/index.html                             https://learn.hashicorp.com/terraform/cloud-gettingstarted/tfc_overview
+# /docs/cloud/free/overview.html                          https://learn.hashicorp.com/terraform/cloud-gettingstarted/tfc_overview
 
 # Most Terraform v0.11 config language doc pages were updated in-place by
 # 0.12 versions, but there is no new equivalent to interpolation.html. We
@@ -401,6 +434,17 @@
 /docs/github-actions/remote-backend.html                            /docs/github-actions/common-tasks/backends.html
 /docs/github-actions/terraform-versions.html                        /docs/github-actions/common-tasks/terraform-versions.html
 /docs/github-actions/workspaces.html                                /docs/github-actions/common-tasks/workspaces.html
+/docs/github-actions/getting-started.html                           /docs/github-actions/index.html
+/docs/github-actions/configuration/index.html                       /docs/github-actions/index.html
+/docs/github-actions/configuration/fmt.html                         /docs/github-actions/index.html
+/docs/github-actions/configuration/init.html                        /docs/github-actions/index.html
+/docs/github-actions/configuration/validate.html                    /docs/github-actions/index.html
+/docs/github-actions/configuration/plan.html                        /docs/github-actions/index.html
+/docs/github-actions/configuration/apply.html                       /docs/github-actions/index.html
+/docs/github-actions/common-tasks/working-directory.html            /docs/github-actions/index.html
+/docs/github-actions/common-tasks/backends.html                     /docs/github-actions/index.html
+/docs/github-actions/common-tasks/terraform-versions.html           /docs/github-actions/index.html
+/docs/github-actions/common-tasks/workspaces.html                   /docs/github-actions/index.html
 
 # Prepping for docs relocation for Google provider
 /docs/providers/google/provider_reference.html                      /docs/providers/google/guides/provider_reference.html
@@ -411,3 +455,18 @@
 
 # Deleted resource type
 /docs/providers/google/r/google_project_services.html               /docs/providers/google/guides/version_3_upgrade.html
+
+# Helm provider got its directory structure normalized, yay
+/docs/providers/helm/release.html                                   /docs/providers/helm/r/release.html
+/docs/providers/helm/repository.html                                /docs/providers/helm/d/repository.html
+
+# terraform-provider-google-beta docs don't exist, redirect to terraform-provider-google docs instead
+/docs/providers/google-beta                                         /docs/providers/google/index.html
+/docs/providers/google-beta/                                        /docs/providers/google/index.html
+/docs/providers/google-beta/index.html                              /docs/providers/google/index.html
+
+# Obsoleted by modern VCS integration for policy sets
+/docs/cloud/sentinel/integrate-vcs.html                             /docs/cloud/sentinel/manage-policies.html
+
+# This page was originally a workaround for lack of directory filtering for monorepos.
+/docs/cloud/workspaces/repo-structure.html                          /docs/cloud/workspaces/configurations.html

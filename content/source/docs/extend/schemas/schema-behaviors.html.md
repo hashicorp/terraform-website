@@ -33,7 +33,7 @@ configuration, as opposed to trying to update the existing resource.
 - Must be set if `Required` is omitted **and** element is not `Computed`
 
 Indicates that this element is optional to include in the configuration. Note
-that `Optional` does not itself establish a default value. See [Default]()
+that `Optional` does not itself establish a default value. See [Default](#default)
 below.
 
 **Schema example:**
@@ -271,13 +271,13 @@ provider "example" {
 ```
 
 
-**Configuration example (default func with `PROVIDER_REGION` set to `us-west` in
+**Configuration example (default func with `PROVIDER_REGION` set to `us-east` in
 the environment):**
 
 ```hcl
 provider "example" {
   api_key = "somesecretkey"
-  # region is "us-west"
+  # region is "us-east"
 }
 ```
 
@@ -287,7 +287,7 @@ environment):**
 ```hcl
 provider "example" {
   api_key = "somesecretkey"
-  # region is "us-east" 
+  # region is "us-west" 
 }
 ```
 

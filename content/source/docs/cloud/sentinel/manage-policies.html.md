@@ -5,10 +5,12 @@ page_title: "Managing Sentinel Policies - Sentinel - Terraform Cloud"
 
 # Managing Sentinel Policies
 
--> **API:** See the [Policy Sets API](../api/policy-sets.html).<br/>
-**Terraform:** See the `tfe` provider's [`tfe_policy_set` resource](/docs/providers/tfe/r/policy_set.html).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
 Sentinel Policies are rules which are enforced on Terraform runs to validate that the plan and corresponding resources are in compliance with company policies.
+
+-> **API:** See the [Policy Sets API](../api/policy-sets.html).<br/>
+**Terraform:** See the `tfe` provider's [`tfe_policy_set`](/docs/providers/tfe/r/policy_set.html) resource.
 
 ## Policies and Policy Sets
 
@@ -22,7 +24,7 @@ Sentinel Policies are rules which are enforced on Terraform runs to validate tha
 
 After the plan stage of a Terraform run, Terraform Cloud checks every Sentinel policy that should be enforced on the run's workspace. This includes policies from global policy sets, and from any policy sets that are explicitly assigned to the workspace.
 
-Policy sets are managed at an organization level, and only [organization owners](../users-teams-organizations/teams.html#the-owners-team) can create, edit or delete them.
+Policy sets are managed at an organization level. They can be viewed and modified by [organization owners](../users-teams-organizations/teams.html#the-owners-team) and by teams with the "Manage Policies" permission.
 
 ## Enforcement Levels
 
@@ -45,17 +47,89 @@ Every policy set requires a configuration file named `sentinel.hcl`. This config
 
 The `sentinel.hcl` configuration file may contain any number of entries which look like this:
 
-```python
-policy "sunny-day" {
+```hcl
+policy "terraform-maintenance-windows" {
     enforcement_level = "hard-mandatory"
 }
 ```
 
-In the above, a policy named `sunny-day` is defined with a `hard-mandatory` [enforcement level](#enforcement-levels).
+In the above, a policy named `terraform-maintenance-windows` is defined with a `hard-mandatory` [enforcement level](#enforcement-levels).
+
+#### Modules
+
+Terraform Cloud has support for Sentinel's modules feature. This allows you to write re-usable policy code that can be imported from within several policies as once, reducing the amount of boilerplate from within a policy itself.
+
+-> **NOTE:** We recommend you read the [Sentinel runtime's modules documentation](https://docs.hashicorp.com/sentinel/extending/modules/) in order to understand how to fully use modules within Sentinel. Note that the configuration examples in the runtime documentation pertain to the Sentinel CLI and not Terraform Cloud. HCL-based configuration will be coming to the Sentinel CLI in future releases, at which point in time both Sentinel and TFC configurations will be much more similar.
+
+To configure a module, add a `module` entry to your `sentinel.hcl` file:
+
+```hcl
+module "timezone" {
+    source = "./modules/timezone.sentinel"
+}
+```
+
+-> **NOTE:** At this point in time, you cannot load modules from outside of the policy set working directory hierarchy. This means in the above example, a `source` of `../modules/timezone.sentinel` will not work.
+
+Create a `modules` directory within the policy set working directory, and create a `timezone.sentinel` that looks as follows:
+
+```python
+import "http"
+import "json"
+import "decimal"
+
+httpGet = func(id, token){
+	uri = "https://timezoneapi.io/api/timezone/?" + id + "&token=" + token
+	request = http.get(uri)
+	return json.unmarshal(request.body)
+} 
+
+offset = func(id, token) {
+	tz = httpGet(id, token)
+	offset = decimal.new(tz.data.datetime.offset_hours).int
+	return offset
+}
+```
+
+The above configuration would tell a policy check to load the code at `./modules/timezone.sentinel` relative to the policy set working directory and make it available to be imported with the statement `import "timezone"`, located at the top of the Sentinel policy code. This module will be available to all of the policies within the policy set.
 
 ### Sentinel policy code files
 
-Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `sunny-day.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set.
+Sentinel policies themselves are defined in individual files (one per policy) in the same directory as the `sentinel.hcl` file. These files must match the name of the policy from the configuration file and carry the `.sentinel` suffix. Using the configuration example above, a policy file named `terraform-maintenance-windows.sentinel` should also exist alongside the `sentinel.hcl` file to complete the policy set. 
+
+Using the `terraform-maintenance-windows.sentinel` policy as an example, we can use the `time` and `tfrun` imports along with our custom `timezone` module to enforce checks that:
+
+1. Load the time when the Terraform run occurred
+1. Convert the loaded time with the correct offset using the [Timezone API](https://timezoneapi.io/)
+1. Verify that the provisioning operation is only going to occur on an agreed upon day
+
+An example policy would be as follows:
+
+```python
+import "time"
+import "tfrun"
+import "timezone"
+
+param token default "WbNKULOBheqV"
+param maintenance_days default ["Friday", "Saturday", "Sunday"]
+param timezone_id default "America/Los_Angeles"
+
+tfrun_created_at = time.load(tfrun.created_at)
+
+supported_maintenance_day = rule when tfrun.workspace.auto_apply is true {
+	tfrun_created_at.add(time.hour * timezone.offset(timezone_id, token)).weekday_name in maintenance_days
+}
+
+main = rule {
+	supported_maintenance_day
+}
+```
+
+In the example above we have used a [rule expression](https://docs.hashicorp.com/sentinel/language/spec/#rule-expressions) with the `when` predicate. If the value of `tfrun.workspace.auto_apply` is false, the rule will not be evaluated and return true
+
+For a more robust or flexible policy, we could expand the enforcement logic to also restrict provisioning to occur out of hours using the [time.hour](https://docs.hashicorp.com/sentinel/imports/time/#time-hour) function.
+
+The above examples use parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/). 
 
 ## Managing Policy Sets
 

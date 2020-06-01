@@ -20,6 +20,8 @@ page_title: "Terraform Enterprise Settings - API Docs - Terraform Cloud"
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
+[speculative plans]: /docs/cloud/run/index.html#speculative-plans
+
 # Terraform Enterprise Settings API
 
 -> **Terraform Enterprise feature:** The admin API is exclusive to Terraform Enterprise, and can only be used by the admins and operators who install and maintain their organization's Terraform Enterprise instance.
@@ -54,9 +56,10 @@ curl \
     "type": "general-settings",
     "attributes": {
       "limit-user-organization-creation": true,
-      "support-email-address": "support@hashicorp.com",
       "api-rate-limiting-enabled": true,
-      "api-rate-limit": 30
+      "api-rate-limit": 30,
+      "send-passing-statuses-for-untriggered-speculative-plans": true,
+      "allow-speculative-plans-on-pull-requests-from-forks": false
     }
   }
 }
@@ -76,12 +79,13 @@ Status  | Response                                     | Reason
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
-Key path                                          | Type     | Default                   | Description
---------------------------------------------------|----------|---------------------------|------------
-`data.attributes.limit-user-organization-creation`| bool     | `true`                    | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
-`data.attributes.support-email-address`           | string   | `"support@hashicorp.com"` | The support address for outgoing emails.
-`data.attributes.api-rate-limiting-enabled`       | bool     | `true`                    | Whether or not rate limiting is enabled for API requests. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
-`data.attributes.api-rate-limit`                  | integer  | 30                        | The number of allowable API requests per second for any client. This value cannot be less than 30. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
+Key path                                                                 | Type     | Default                   | Description
+-------------------------------------------------------------------------|----------|---------------------------|------------
+`data.attributes.limit-user-organization-creation`                       | bool     | `true`                    | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
+`data.attributes.api-rate-limiting-enabled`                              | bool     | `true`                    | Whether or not rate limiting is enabled for API requests. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
+`data.attributes.api-rate-limit`                                         | integer  | 30                        | The number of allowable API requests per second for any client. This value cannot be less than 30. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
+`data.attributes.send-passing-statuses-for-untriggered-speculative-plans`| bool     | `true`                    | When set to `true`, workspaces automatically send passing commit statuses for any pull requests that don't affect their tracked files.
+`data.attributes.allow-speculative-plans-on-pull-requests-from-forks`    | bool     | `false`                   | When set to `false`, [speculative plans][] are not run on pull requests from forks of a repository. This setting is available in Terraform Enterprise versions v202005-1 or later. It is currently supported for the following VCS providers: GitHub.com, GitHub.com (OAuth), GitHub Enterprise, Bitbucket Cloud, Azure DevOps Server, Azure DevOps Services. To learn more about this setting, refer to the [documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
 
 [rate limiting documentation]: ../index.html#rate-limiting
 
@@ -92,7 +96,6 @@ Key path                                          | Type     | Default          
   "data": {
     "attributes": {
       "limit-user-organization-creation": true,
-      "support-email-address": "support@hashicorp.com",
       "api-rate-limiting-enabled": true,
       "api-rate-limit": 50
     }
@@ -116,13 +119,14 @@ curl \
 ```json
 {
   "data": {
-    "id":"general",
-    "type":"general-settings",
+    "id": "general",
+    "type": "general-settings",
     "attributes": {
       "limit-user-organization-creation": true,
-      "support-email-address": "support@hashicorp.com",
       "api-rate-limiting-enabled": true,
-      "api-rate-limit": 50
+      "api-rate-limit": 50,
+      "send-passing-statuses-for-untriggered-speculative-plans": true,
+      "allow-speculative-plans-on-pull-requests-from-forks": false
     }
   }
 }
@@ -678,4 +682,111 @@ curl \
   --request POST \
   --data @payload.json \
   https://app.terraform.io/api/v2/admin/twilio-settings/verify
+  ```
+
+
+## List Customization Settings
+`GET /api/v2/admin/customization-settings`
+
+-> This API endpoint is available in Terraform Enterprise as of version 202003-1.
+
+Status  | Response                                                 | Reason
+--------|----------------------------------------------------------|-------
+[200][] | [JSON API document][] (`type: "customization-settings"`) | Successfully listed Customization settings
+[404][] | [JSON API error object][]                                | User unauthorized to perform action
+
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/admin/customization-settings
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "customization",
+    "type": "customization-settings",
+    "attributes": {
+      "support-email-address": "support@hashicorp.com",
+      "login-help": "",
+      "footer": "",
+      "error": "",
+      "new-user": "",
+    }
+  }
+}
+```
+
+## Update Customization Settings
+`PATCH /api/v2/admin/customization-settings`
+
+Status  | Response                                                 | Reason
+--------|----------------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "customization-settings"`) | Successfully updated the Customization settings
+[404][] | [JSON API error object][]                                | User unauthorized to perform action
+[422][] | [JSON API error object][]                                | Malformed request body (missing attributes, wrong types, etc.)
+
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Key path                                          | Type     | Default                   | Description
+----------------------------------------|----------|---------------------------|------------
+`data.attributes.support-email-address` | string   | `"support@hashicorp.com"` | The support address for outgoing emails.
+`data.attributes.login-help`            | string   | `""`                      | The login help text presented to users on the login page.
+`data.attributes.footer`                | string   | `""`                      | Custom footer content that is added to the application.
+`data.attributes.error`                 | string   | `""`                      | Error instruction content that is presented to users upon unexpected errors.
+`data.attributes.new-user`              | string   | `""`                      | New user instructions that is presented when the user is not yet attached to an organization.
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "attributes": {
+      "support-email-address": "support@hashicorp.com",
+      "login-help": "<div>Login Help</div>",
+      "footer": "<p>Custom Footer Content</p>",
+      "error": "<em>Custom Error Instructions</em>",
+      "new-user": "New user? <a href=\"#\">Click Here</a>",
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/admin/customization-settings
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "customization",
+    "type": "customization-settings",
+    "attributes": {
+      "support-email-address": "support@hashicorp.com",
+      "login-help": "\u003cdiv\u003eLogin Help\u003c/div\u003e",
+      "footer": "\u003cp\u003eCustom Footer Content\u003c/p\u003e",
+      "error": "\u003cem\u003eCustom Error Instructions\u003c/em\u003e",
+      "new-user": "New user? \u003ca href=\"#\"\u003eClick Here\u003c/a\u003e",
+    }
+  }
+}
 ```

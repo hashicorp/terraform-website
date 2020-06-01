@@ -34,30 +34,13 @@ To create your first workspace, click the "+ New Workspace" button in the upper 
 
 ![new button](./images/work-new-button.png)
 
-On the "Create a new Workspace" page, you need to enter at least two items: a workspace name, and a VCS repository. (You can search for a repo by typing part of its name.) When you've finished, click the "Create Workspace" button.
-
-![fields on new workspace page](../workspaces/images/creating-fields.png)
-
--> **Note:** You can also create workspaces without a VCS repository, but doing so requires a different workflow for Terraform runs. For more information, see [About Terraform Runs in Terraform Cloud](../run/index.html).
-
-### Workspace Name
+On the "Create a new Workspace" page, follow the instructions to configure a VCS repository and a workspace name, then confirm creation with the "Create workspace" button.
 
 A workspace name should tell your colleagues what the workspace is for. Most workspaces are _a particular environment_ of _a particular Terraform configuration,_ so the name should include both the name of the configuration and the name of the environment.
 
 In this example, we're using a configuration named "minimum" and we're deploying it in a production environment, so we named it `minimum-prod`.
 
-### Repository
-
-The "repository" field is linked to data from your VCS service. You can start typing the name of a repo, then select the correct repo from the resulting list.
-
-In this example, we're using the `nfagerlund/terraform-minimum` repo.
-
-### Other Settings
-
-Optionally, you can set three other settings for a new workspace:
-
-- **Terraform Working Directory:** The directory in this repo where Terraform Cloud will execute Terraform commands. If the Terraform configuration files you want aren't in the root of the repository, use this to specify where they are.
-- **VCS Branch:** Which branch to use. Defaults to the repo's default branch, which is usually `master`.
+For more details, see [Creating Workspaces](../workspaces/creating.html).
 
 ## What Happens in a New Workspace
 

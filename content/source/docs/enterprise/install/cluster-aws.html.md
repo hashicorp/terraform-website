@@ -1,5 +1,6 @@
 ---
-layout: "enterprise"
+layout: "enterprise_cluster"
+hidden: true
 page_title: "AWS - Clustered Deployment - Install and Config - Terraform Enterprise"
 ---
 
@@ -13,6 +14,8 @@ page_title: "AWS - Clustered Deployment - Install and Config - Terraform Enterpr
 [bootstrap]: https://github.com/hashicorp/private-terraform-enterprise/tree/master/examples/bootstrap-aws
 
 This page outlines the procedure for deploying a Terraform Enterprise cluster on Amazon Web Services (AWS).
+
+~> **Important:** The clustered version of Terraform Enterprise is in Controlled Availability as we refine the installation experience. Access is currently restricted to a select group of existing customers, and you should not attempt to install it until it reaches General Availability.
 
 ## Summary
 
@@ -68,7 +71,7 @@ You can create the required infrastructure resources with an [example bootstrap 
 3. Create a new Terraform configuration that calls the `hashicorp/terraform-enterprise/aws` module:
     - Start by copying the "Provision Instructions" example from the module's Terraform Registry page.
     - Fill in values for all of the required input variables.
-    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the **demo** operational mode.
+    - Fill in any optional variables as desired. If you omit all optional variables, the module will deploy a mid-sized cluster using the *Demo* operational mode.
     - Map all of the module's [output values][outputs] to root-level outputs, so that Terraform will display them after applying the configuration. For example:
 
         ```hcl

@@ -7,6 +7,8 @@ description: |-
 
 # Import: tfstate
 
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
 The `tfstate` import provides access to the Terraform state.
 
 The _state_ is the data that Terraform has recorded about a workspace at a
@@ -15,13 +17,15 @@ general information about how Terraform uses state [here][ref-tf-state].
 
 [ref-tf-state]: /docs/state/index.html
 
--> **NOTE:** Terraform Cloud currently only supports policy checks at plan
-time, limiting the usefulness of this import. This will be resolved in future
-releases. Until that time, the [`tfconfig`][import-tfconfig] and
-[`tfplan`][import-tfplan] imports will probably prove to be more useful.
-
-[import-tfconfig]: ./tfconfig.html
-[import-tfplan]: ./tfplan.html
+-> **Note:** Since Terraform Cloud currently only supports policy checks at plan
+time, the usefulness of this import is somewhat limited, as it will usually give
+you the state _prior_ to the plan the policy check is currently being run for.
+Depending on your needs, you may find the
+[`applied`](./tfplan.html#value-applied) collection in `tfplan` more useful,
+which will give you a _predicted_ state by applying plan data to the data found
+here. The one exception to this rule is _data sources_, which will always give
+up to date data here, as long as the data source could be evaluated at plan
+time.
 
 ## Namespace Overview
 
@@ -197,7 +201,7 @@ import "tfstate"
 main = rule { tfstate.terraform_version matches "^0\\.11\\.\\d+$" }
 ```
 
--> **NOTE:** This value is also available via the [`tfplan`][import-tfplan]
+-> **NOTE:** This value is also available via the [`tfplan`](./tfplan.html)
 import, which will be more current when a policy check is run against a plan.
 It's recommended you use the value in `tfplan` until Terraform Cloud
 supports policy checks in other stages of the workspace lifecycle. See the
