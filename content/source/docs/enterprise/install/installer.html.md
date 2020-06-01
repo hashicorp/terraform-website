@@ -62,7 +62,6 @@ Once configuration has been saved, please proceed to restart the application.
 
 To automate this step, the equivalent setting [extra_no_proxy](./automating-the-installer.html#available-settings) can be used.
 
-
 ## TLS Configuration
 
 There are two primary areas for SSL configuration.
