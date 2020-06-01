@@ -52,6 +52,17 @@ This change updates the proxy settings for the Terraform Enterprise application 
 `NOTE: Please take precautions on application outage when applying configuration change, i.e. wait for all runs to finish, prevent new runs to trigger`
 4. Restart the Replicated services following [the instructions for your distribution](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#restarting-replicated).
 
+### Proxy and Service Discovery Process
+
+When operating Terraform Enterprise, workspaces can be executed in various methods according to selected workflows and for each selected workflow, it uses **remote backend** to perform [remote operation](https://www.terraform.io/docs/cloud/run/#remote-operations) unless **Execution Mode** of the workspace is set **Local**. Terraform CLI that is executed as part of the **remote operation** inside Terraform Enterprise follows the same standard process to perform [service discovery](https://www.terraform.io/docs/internals/remote-service-discovery.html) where Terraform Enterprise itself is the remote service for Terraform CLI, depends on your infrastructure setup, the fully qualified name of Terraform Enterprise may be required to include into **Proxy ByPass** configuration of the Terraform Enterprise application layer to allow Terraform CLI to communicate to Terraform Enterprise itself, to configure the proxy bypass address of Terraform Enterprise application, navigate to port **8800** under `/console/settings`:
+
+![Terraform Enterprise Proxy Bypass](./assets/ptfe-proxy-bypass.png)
+
+Once configuration has been saved, please proceed to restart the application.
+
+To automate this step, the equivalent setting [extra_no_proxy](./automating-the-installer.html#available-settings) can be used.
+
+
 ## Trusting SSL/TLS Certificates
 
 There are two primary areas for SSL configuration.
