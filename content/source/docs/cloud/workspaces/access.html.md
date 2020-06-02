@@ -48,7 +48,7 @@ permissions:
 
 ![Screenshot: adding team permissions](./images/add-team-perms-standard.png)
 
-Four [fixed permissions sets](../users-teams-organizations/permissions.html#fixed-permission-sets) are available for basic usage.
+Four [fixed permissions sets](../users-teams-organizations/permissions.html#fixed-permission-sets) (read, plan, write, and admin) are available for basic usage.
 
 To enable finer-grained selection of non-admin permissions, select "Customize permissions for this team":
 
@@ -60,4 +60,3 @@ On this screen, you may pick and choose individual permissions to grant the team
 
 For more information on permissions, see [the documentation on Workspace
 Permissions](..//users-teams-organizations/permissions.html#workspace-permissions).
-
