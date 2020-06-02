@@ -18,9 +18,11 @@ Teams with [admin access](../users-teams-organizations/permissions.html) on a wo
 
 ## Background
 
-Terraform Cloud manages workspace permissions with teams, and uses four levels of permissions (read, plan, write, and admin). Additionally, the organization-level "manage workspaces" permission can grant a team admin permissions on every workspace.
+Terraform Cloud manages users' permissions to workspaces with teams.
 
-TODO: Rewrite this once we settle on language for it; also replace screenshots and update access workflow.
+* [Workspace-level permissions](../users-teams-organizations/permissions.html#workspace-permissions) can be granted to an individual team on a particular workspace. These permissions can be managed on the workspace by anyone with admin access to the workspace.
+* In addition, some [organization-level permissions](..//users-teams-organizations/permissions.html#organization-permissions) can be granted to a team which apply to every workspace in the organization. For example, the
+[manage workspaces](../users-teams-organizations/permissions.html#manage-workspaces) grants the workspace-level admin permission to every workspace in the organization. Organization-level permissions can only be managed by organization owners.
 
 For more information see:
 
@@ -35,10 +37,27 @@ To manage other teams' access, select "Team Access" from a workspace's "Settings
 
 ![Screenshot: a workspace's access settings page](./images/access.png)
 
-This page has a pair of drop-downs for adding new teams, and a list of teams that already have access.
+This screen displays all teams granted workspace-level permissions to the workspace. To add a team, select "Add team and
+permissions".
 
-To add a team, select it from the first dropdown and use the second dropdown to choose which permissions it should have (read, write, plan, or admin), then click the "Add team" button.
 
-To remove a team's permissions on the workspace, click the "🗑" (trash can) button next to that team's entry in the teams list.
+![Screenshot: adding a team to a workspace](./images/add-team-access.png)
 
-To change a team's permissions on the workspace, you must remove the team and re-add it.
+A list of teams which can be added to the workspace is shown. Select a team to continue and select the team's
+permissions:
+
+![Screenshot: adding team permissions](./images/add-team-perms-standard.png)
+
+Four [fixed permissions sets](../users-teams-organizations/permissions.html#fixed-permission-sets) are available for basic usage.
+
+To enable finer-grained selection of non-admin permissions, select "Customize permissions for this team":
+
+![Screenshot: adding customized team permissions](./images/add-team-perms-cwa.png)
+
+On this screen, you may pick and choose individual permissions to grant the team for the workspace.
+
+-> **Note:** Custom permissions are currently in beta.
+
+For more information on permissions, see [the documentation on Workspace
+Permissions](..//users-teams-organizations/permissions.html#workspace-permissions).
+
