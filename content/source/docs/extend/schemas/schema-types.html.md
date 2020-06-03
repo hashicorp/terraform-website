@@ -11,9 +11,8 @@ description: |-
 # Schema Attributes and Types
 
 Almost every Terraform Plugin offers user configurable parameters, examples such
-as a Provisioner `secret_key`, a Provider’s `region`, or a Resources `name`.
-Each parameter is  defined in the items schema, which is a map of string names
-to schema structs. 
+as a Provider’s `region` or a Resource's `name`. Each parameter is  defined in
+the items schema, which is a map of string names to schema structs.
 
 In the below example implementation of a Resource you see parameters `uuid` and
 `name` defined: 
