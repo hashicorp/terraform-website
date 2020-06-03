@@ -37,7 +37,7 @@ components of Terraform (Core vs. Plugins) and the basics of how they interact.
 
 ## [Plugin Types](/docs/extend/plugin-types.html)
 
-Learn about Terraform plugins, currently Providers.
+Learn about Terraform plugins that you can develop using the Terraform Plugin SDK (currently only Providers).
 
 ## [Writing Custom Providers](/docs/extend/writing-custom-providers.html)
 
