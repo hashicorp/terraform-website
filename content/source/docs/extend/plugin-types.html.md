@@ -18,7 +18,7 @@ The network communication and RPC is handled automatically by higher-level Terra
 libraries, so developers need only worry about the implementation of their specific
 Plugin behavior. 
 
-There is currently one type of plugin supported by Terraform:
+The Terraform Plugin SDK currently supports one type of plugin: providers.
 
 ## Providers
 
