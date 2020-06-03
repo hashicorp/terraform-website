@@ -16,10 +16,9 @@ For more information about how configuration versions and connected repositories
 
 ## Required Permissions
 
-New workspaces can be created by:
+New workspaces can be created by teams with permission to manage workspaces. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
-- [The owners team](../users-teams-organizations/teams.html#the-owners-team).
-- Teams with the [manage workspaces](../users-teams-organizations/permissions.html#manage-workspaces) permission.
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Configuring a New Workspace
 
@@ -40,7 +39,7 @@ To create a new workspace:
 
 1. On the first screen, choose your VCS provider (or choose "No VCS connection").
 
-    -> **Note:** If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](../vcs/index.html) for more information. Only organization owners can configure VCS providers.
+    -> **Note:** If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 1. On the second screen, choose a repository from the filterable list. This screen is skipped if you chose "No VCS connection".
 

@@ -7,7 +7,6 @@ page_title: "CLI-driven Runs - Runs - Terraform Cloud"
 [private]: ../registry/index.html
 [remote]: /docs/backends/types/remote.html
 [speculative plan]: ./index.html#speculative-plans
-[permissions]: ../users-teams-organizations/permissions.html
 [tfe-provider]: /docs/providers/tfe/index.html
 
 # The CLI-driven Run Workflow
@@ -112,7 +111,9 @@ you can do so by defining a [`.terraformignore` file in your configuration direc
 
 To run a [speculative plan][] on your configuration, use the `terraform plan` command. The plan will run in Terraform Cloud, and the logs will stream back to the command line along with a URL to view the plan in the Terraform Cloud UI.
 
-Users can run speculative plans in any workspace where they have [plan access][permissions].
+Users can run speculative plans in any workspace where they have permission to queue plans. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
@@ -143,7 +144,9 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 
 When configuration changes are ready to be applied, use the `terraform apply` command. The apply will start in Terraform Cloud, and the command line will prompt for approval before applying the changes.
 
-Remote applies require [write access][permissions] to the workspace.
+Remote applies require permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Remote applies use the configuration code from the local working directory, but will use variable values from the specified workspace.
 

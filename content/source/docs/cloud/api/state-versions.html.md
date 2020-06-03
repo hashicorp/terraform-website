@@ -32,6 +32,10 @@ page_title: "State Versions - API Docs - Terraform Cloud"
 
 Creates a state version and sets it as the current state version for the given workspace. The workspace must be locked by the user creating a state version. The workspace may be locked [with the API](./workspaces.html#lock-a-workspace) or [with the UI](../workspaces/settings.html#workspace-lock). This is most useful for migrating existing state from open source Terraform into a new Terraform Cloud workspace.
 
+Creating state versions requires permission to read and write state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 !> **Warning:** Use caution when uploading state to workspaces that have already performed Terraform runs. Replacing state improperly can result in orphaned or duplicated infrastructure resources.
 
 -> **Note:** For Free Tier organizations, Terraform Cloud always retains at least the last 100 states (across all workspaces) and at least the most recent state for every workspace. Additional states beyond the last 100 are retained for six months, and are then deleted.
@@ -124,6 +128,10 @@ curl \
 ## List State Versions for a Workspace
 
 `GET /state-versions`
+
+Listing state versions requires permission to read state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ### Query Parameters
 
@@ -259,6 +267,10 @@ curl \
 Fetches the current state version for the given workspace. This state version
 will be the input state when running terraform operations.
 
+Viewing state versions requires permission to read state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
 [200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace
@@ -324,6 +336,10 @@ curl \
 ## Show a State Version
 
 `GET /state-versions/:state_version_id`
+
+Viewing state versions requires permission to read state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Parameter | Description
 ----------|---------

@@ -160,6 +160,8 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 Creates a new registry module without a backing VCS repository. After creating a module, a version must be created and uploaded in order to be usable. Modules created this way do not automatically update with new versions; instead, you must explicitly create and upload each new version with the [Create a Module Version](#create-a-module-version) endpoint.
 
 Status  | Response                                           | Reason
@@ -253,6 +255,8 @@ Parameter            | Description
 `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 `:name`              | The name of the module for which the version is being created.
 `:provider`          | The name of the provider for which the version is being created.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Creates a new registry module version. This endpoint only applies to modules without a VCS repository; VCS-linked modules automatically create new versions for new tags. After creating the version, the module should be uploaded to the returned upload link.
 
@@ -389,6 +393,8 @@ Parameter            | Description
 `:name`              | The module name that the deletion will affect.
 `:provider`          | If specified, the provider for the module that the deletion will affect.
 `:version`           | If specified, the version for the module and provider that will be deleted.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 When removing modules, there are three versions of the endpoint, depending on how many parameters are specified.
 

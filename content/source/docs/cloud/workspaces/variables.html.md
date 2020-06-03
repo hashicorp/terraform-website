@@ -14,6 +14,10 @@ Terraform Cloud workspaces can set values for two kinds of variables:
 
 You can edit a workspace's variables via the UI or the API. All runs in a workspace use its variables.
 
+Viewing variables requires permission to read variables for the workspace, and setting values requires permission to read and write variables. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 -> **API:** See the [Variables API](../api/variables.html). <br/>
 **Terraform:** See the `tfe` provider's [`tfe_variable`](/docs/providers/tfe/r/variable.html) resource.
 
@@ -68,7 +72,9 @@ To protect these secrets, you can mark any any Terraform or environment variable
 
 Marking a variable as sensitive prevents anybody (including you) from viewing its value in Terraform Cloud's UI or API.
 
-Users with edit permissions can set new values for sensitive variables. No other attribute of a sensitive variable can be modified. To update other attributes, delete the variable and create a new variable to replace it.
+Users with permission to read and write variables can set new values for sensitive variables.  No other attribute of a sensitive variable can be modified. To update other attributes, delete the variable and create a new variable to replace it.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ~> **Important:** Terraform runs will receive the full text of sensitive variables, and might print the value in logs and state files if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations to avoid unnecessary credential disclosure. Whenever possible, use environment variables since these cannot end up in state files. (Environment variables can end up in log files if TF_LOG is set to TRACE.)
 

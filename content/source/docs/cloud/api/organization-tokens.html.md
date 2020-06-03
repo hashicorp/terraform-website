@@ -34,6 +34,8 @@ Generates a new [organization API token](../users-teams-organizations/api-tokens
 
 Only members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can access this endpoint.
 
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 Status  | Response                                                | Reason
 --------|---------------------------------------------------------|-------
 [201][] | [JSON API document][] (`type: "authentication-tokens"`) | Success
@@ -84,6 +86,8 @@ Parameter            | Description
 `:organization_name` | Which organization's token should be deleted.
 
 Only members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can access this endpoint.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------

@@ -33,9 +33,10 @@ Using Sentinel with Terraform Cloud involves:
   [policy language](https://docs.hashicorp.com/sentinel/concepts/language) with
   imports for parsing the Terraform plan, state and configuration.
 - [Managing policies for organizations](./manage-policies.html) -
-  Organization owners add policies to their organization by configuring VCS
+  Users with permission to manage policies can add policies to their organization by configuring VCS
   integration or uploading policy sets through the API. They also define which
   workspaces the policy sets are checked against during runs.
+  ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 - [Enforcing policy checks on runs](./enforce.html) - Policies are checked when
   a run is performed, after the `terraform plan` but before it can be confirmed
   or the `terraform apply` is executed.
@@ -43,6 +44,8 @@ Using Sentinel with Terraform Cloud involves:
   ability to generate mock data for any run within a workspace. This data can be
   used with the [Sentinel CLI](https://docs.hashicorp.com/sentinel/commands/) to
   test policies before deployment.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ### Standard Imports
 

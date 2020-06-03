@@ -7,6 +7,10 @@ page_title: "Bitbucket Cloud - VCS Providers - Terraform Cloud"
 
 These instructions are for using Bitbucket Cloud for Terraform Cloud's VCS features. Bitbucket Cloud is the cloud-hosted version of Bitbucket; [self-hosted Bitbucket Server instances have separate instructions,](./bitbucket-server.html) as do the [other supported VCS providers.](./index.html)
 
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 Connecting Terraform Cloud to your VCS involves four steps:
 
 On your VCS | On Terraform Cloud

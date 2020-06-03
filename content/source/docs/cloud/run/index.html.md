@@ -53,7 +53,11 @@ In more abstract terms, runs can be initiated by VCS webhooks, the manual "Queue
 
 ## Plans and Applies
 
-Terraform Cloud enforces Terraform's division between _plan_ and _apply_ operations. It always plans first, saves the plan's output, and uses that output for the apply. In the default configuration, it waits for user approval before running an apply, but you can configure workspaces to [automatically apply](../workspaces/settings.html#auto-apply-and-manual-apply) successful plans. (Some plans can't be auto-applied, like plans queued by [run triggers](../workspaces/run-triggers.html) or by users without write permissions.)
+Terraform Cloud enforces Terraform's division between _plan_ and _apply_ operations. It always plans first, saves the plan's output, and uses that output for the apply.
+
+In the default configuration, Terraform Cloud waits for user approval before running an apply, but you can configure workspaces to [automatically apply](../workspaces/settings.html#auto-apply-and-manual-apply) successful plans. Some plans can't be auto-applied, like plans queued by [run triggers](../workspaces/run-triggers.html) or by users without permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers)
 
 ### Speculative Plans
 

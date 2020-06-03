@@ -58,6 +58,8 @@ Before installing the ServiceNow integration, you need to perform some setup and
 1. If you haven't yet done so, [connect a VCS provider](../../vcs/index.html) for this Terraform organization.
 1. On the organization's VCS provider settings page, find the "OAuth Token ID" for your VCS provider. This is an opaque ID that Terraform Enterprise uses to identify this VCS provider. **Save the OAuth Token ID for later.**
 
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 ## Installing the ServiceNow Integration
 
 ### ServiceNow Server Studio
