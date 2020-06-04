@@ -9,11 +9,7 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 ## Ingress
 
-### Source - User/Client/VCS
-
-* **443**: To access the Terraform Enterprise application via HTTPS 
-
-### Source - Administrators
+### Exposed ports on the instance:
 
 * **22**: To access the instance via SSH from your computer. SSH access to the instance is required for administration and debugging.
 * **8800**: To access the installer dashboard.
@@ -21,6 +17,29 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 ### Source - TFE Server(s)
 * **9870-9880 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
 * **23000-23100 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
+
+### Higher ports and their functions
+
+* **2003**: Graphite (Carbon) feeding port (monitoring, metrics)
+* **2004**:	Graphite (Carbon) feeding port (monitoring, metrics)
+* **4150-4151, 4160-4161, 4170-4171**:	Replicated NSQD (messaging platform-daemon for internal communication)
+* **5432**:	Internal Postgres
+* **5672**:	RabbitMQ TFE worker coordination
+* **6379**:	Redis (Caching and coordination between web and background workers in the application layer)
+* **7586**:	TFE ingress - pulls in version control systems (VCS) (GitHub, BitBUcket, etc) data and stores via Archivist
+* **7588**:	TFE State parser
+* **7675**:	TFE Archivist - stores data in object storage, encrypts it via Vault
+* **8089**:	InfluxDB default UDP Service (monitoring, metrics)
+* **8125**:	StatsD (monitoring, metrics)
+* **8200**:	TFE node Vault (built-in) for encrypting practically everything
+* **8800**:	ReplicatedUI (TFE setup Dashboard)
+* **9292**:	Atlas engine (old name of TFE engine)
+* **9873**:	ReplicatedUI retraced engine API (replicated audit subcomponent)
+* **9874-9879**: ReplicatedUI entry point span
+* **23005**: TFE Health Check point
+* **23020**: Nomad (built-in) scheduler (for Sentinel runs)
+* **32774-32776**: ReplicatedUI internal StatsD ports mapped then to standard (see above 2003⁄2004 and 8125 )
+* **32846**: TFE Admin Console which is is ReplicatedUI service
 
 ## Egress
 
