@@ -13,10 +13,8 @@ Terraform can be extended to allow users to manage more infrastructure providers
 [Providers](/docs/providers/index.html)
 (containing [Resources](/docs/configuration/resources.html)
 and/or [Data Sources](/docs/configuration/data-sources.html)),
-more options to store Terraform state with [Backends](/docs/backends)
-and more options to provision instance with
-[Provisioners](/docs/provisioners/index.html). **Providers**
-and **Provisioners** are collectively categorized as "Plugins".
+more options to store Terraform state with [Backends](/docs/backends). **Providers**
+are a type of Terraform "Plugin".
 
 ~> This is an advanced section! If you are looking for information on using
 Terraform with any of the existing Plugins, please refer to the
@@ -39,7 +37,7 @@ components of Terraform (Core vs. Plugins) and the basics of how they interact.
 
 ## [Plugin Types](/docs/extend/plugin-types.html)
 
-Learn about the different types of Terraform plugins — Providers and Provisioners.
+Learn about Terraform plugins that you can develop using the Terraform Plugin SDK (currently only Providers).
 
 ## [Writing Custom Providers](/docs/extend/writing-custom-providers.html)
 
@@ -54,8 +52,8 @@ guide design and decision making for all providers.
 ## [Schemas](/docs/extend/schemas/index.html)
 
 The Schema package is a high-level framework for easily writing Plugins for
-Terraform. Providers (with Resources and/or Data Sources), and Provisioners
-are all defined in terms of the Schema package, which includes builtin types
+Terraform. Providers (with Resources and/or Data Sources)
+are defined in terms of the Schema package, which includes builtin types
 and methods for developers to use when writing plugins.
 
 ## [Resources](/docs/extend/resources/index.html)
