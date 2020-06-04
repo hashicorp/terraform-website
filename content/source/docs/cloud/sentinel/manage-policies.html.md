@@ -44,18 +44,48 @@ In order to use Sentinel in Terraform Cloud, you'll first need to create a polic
 
 Every policy set requires a configuration file named `sentinel.hcl`. This configuration file defines:
 
-* Each policy that should be checked in the set
+* Each policy that should be checked in the set.
 * The [enforcement level](#enforcement-levels) of each policy in the set.
+* Any [modules](#modules) which need to be made available to policies in the set.
 
 The `sentinel.hcl` configuration file may contain any number of entries which look like this:
 
 ```hcl
 policy "terraform-maintenance-windows" {
-    enforcement_level = "hard-mandatory"
+  source            = "./terraform-maintenance-windows.sentinel"
+  enforcement_level = "hard-mandatory"
 }
 ```
 
 In the above, a policy named `terraform-maintenance-windows` is defined with a `hard-mandatory` [enforcement level](#enforcement-levels).
+
+#### Specifying a Policy Source
+
+A policy's `source` field that can point to a file within the policy repository, or a remote source, such as a policy from HashiCorp's [foundational policies library](https://github.com/hashicorp/terraform-foundational-policies-library).
+
+To specify a local source, make sure you prefix the `source` with a `./`, or `../`.
+
+```hcl
+policy "terraform-maintenance-windows" {
+  source            = "./terraform-maintenance-windows.sentinel"
+  enforcement_level = "hard-mandatory"
+}
+```
+
+To specify a remote source, supply the URL as the `source`. The following is taken as an example from the foundational policies library:
+
+```hcl
+policy "aws-cis-4.1-networking-deny-public-ssh-acl-rules" {
+  source            = "https://raw.githubusercontent.com/hashicorp/terraform-foundational-policies-library/master/cis/aws/networking/aws-cis-4.1-networking-deny-public-ssh-acl-rules/aws-cis-4.1-networking-deny-public-ssh-acl-rules.sentinel"
+  enforcement_level = "advisory"
+}
+```
+
+-> **NOTE:** At this time, only HTTP/HTTPS remote sources are supported.
+
+When no `source` line is specified, a policy file matching the name of the policy will be assumed as the source. As an example, for the `terraform-maintenance-windows` policy example above, the equivalent default is the source explicitly defined in the example, `./terraform-maintenance-windows.sentinel`.
+
+-> **NOTE:** The inferred `source` option is deprecated and will be removed in future releases of TFC and Sentinel. Eventually, `source` will be required.
 
 #### Modules
 
@@ -67,11 +97,9 @@ To configure a module, add a `module` entry to your `sentinel.hcl` file:
 
 ```hcl
 module "timezone" {
-    source = "./modules/timezone.sentinel"
+  source = "./modules/timezone.sentinel"
 }
 ```
-
--> **NOTE:** At this point in time, you cannot load modules from outside of the policy set working directory hierarchy. This means in the above example, a `source` of `../modules/timezone.sentinel` will not work.
 
 Create a `modules` directory within the policy set working directory, and create a `timezone.sentinel` that looks as follows:
 
@@ -94,6 +122,8 @@ offset = func(id, token) {
 ```
 
 The above configuration would tell a policy check to load the code at `./modules/timezone.sentinel` relative to the policy set working directory and make it available to be imported with the statement `import "timezone"`, located at the top of the Sentinel policy code. This module will be available to all of the policies within the policy set.
+
+You can also configure a module to have a remote HTTP or HTTPS source in the same way as policies. The same rules apply as seen in [Specifying a Policy Source](#specifying-a-policy-source), only that unlike policies, the `source` field is always required for a module.
 
 ### Sentinel policy code files
 
@@ -150,7 +180,7 @@ When creating or editing a policy set, the following fields are available:
 - **Scope of policies:** Whether the set should be enforced on all workspaces, or only on a chosen list of workspaces.
 - **VCS repo or "Upload via API"**: This area allows selecting a VCS repository from an existing OAuth client connection. Choosing "Upload via API" will not configure VCS integration, and instead tarballs of policy sets may be uploaded via the API. See the [policy set versions](../api/policy-sets.html#create-a-policy-set-version) for more information on uploading policy sets using the API.
 - **VCS Branch**: This field allows specifying the branch within a VCS repository from which to import new versions of policies. If left blank, the value your version control provides as the default branch of the VCS repository is used.
-- **Policies Path**: This field allows specifying a sub-directory within a VCS repository for the policy set files. This allows maintaining multiple policy sets within a single repository. The value of this field should be the path to the directory containing the `sentinel.hcl` configuration file of the policy set you wish to configure. Any files in the repository which are not within this path will not be included when the policy set is cloned. Commits to the repository which do not match the specified directory will be ignored. If left blank, the root of the repository is used. A leading `/` may be used, but is optional (relative paths are assumed to originate from the root of the repository).
+- **Policies Path**: This field allows specifying a sub-directory within a VCS repository for the policy set files. This allows maintaining multiple policy sets within a single repository. The value of this field should be the path to the directory containing the `sentinel.hcl` configuration file of the policy set you wish to configure. If left blank, the root of the repository is used. A leading `/` may be used, but is optional (relative paths are assumed to originate from the root of the repository).
 - **Workspaces:** Which workspaces the policy set should be enforced on. This is only shown when the scope of policies is set to "Policies enforced on selected workspaces." Use the drop-down menu and "Add workspace" button to add workspaces, and the trash can (🗑) button to remove them.
 - **Parameters:** A list of key/value parameters that will be sent to the Sentinel runtime when a policy check is being performed for the policy set. If the value can be parsed as JSON, it will be sent to Sentinel as the corresponding type (string, boolean, integer, map or list). If it fails JSON validation, it will be sent as a string. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/).
 
