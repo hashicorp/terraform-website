@@ -512,13 +512,17 @@ $ curl \
 
 ## Show workspace
 
-Details on a workspace can be retrieved from two endpoints, which behave identically. One refers to a workspace by its ID, and the other by its name and organization.
+Details on a workspace can be retrieved from two endpoints, which behave identically.
+
+One refers to a workspace by its ID:
 
 `GET /workspaces/:workspace_id`
 
 | Parameter            | Description      |
 | -------------------- | -----------------|
 | `:workspace_id`      | The workspace ID |
+
+The other refers to a workspace by its name and organization:
 
 `GET /organizations/:organization_name/workspaces/:name`
 
