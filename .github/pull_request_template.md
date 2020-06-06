@@ -12,26 +12,23 @@ this message.
 - If you're a HashiCorp employee with permission to merge to this repo,
   please get an approving review before merging your own PRs. (If you got
   review approval on the private fork, that's fine too; just announce it in a
-  comment before merging!)
+  comment before merging!) When in doubt, ask in the #proj-terraform-docs channel.
 
 - To learn more about how the website is built and deployed, how to preview your
   changes, which content lives where, and more, check out the README.md in the
   root of this repo.
 
-- When in doubt, ask in the #proj-terraform-docs channel.
-
 -->
 
-## What's this PR about?
+## PR Objective
 
 <!-- (Delete any that don't apply, add anything you want to.) -->
 
-- Fixing inaccurate docs
-- Making some docs easier to understand
-- Adding/updating docs for new feature
-- Changing behavior or layout of website
+- [ ] Fixing inaccurate docs
+- [ ] Making some docs easier to understand
+- [ ] Adding/updating docs for new feature
+- [ ] Changing behavior or layout of website
 
 ## Description
 
 <!-- (Add whatever you'd like to say here.) -->
-
