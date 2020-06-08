@@ -40,3 +40,13 @@ Terraform Enterprise's minimum disk size is 40GB.
 Depending on your cloud or storage application, you may need to confirm the disk has been resized to at least 40GB.
 
 For example, with RedHat-flavor (RHEL, CentOS, Oracle Linux) images in Azure Cloud, the storage disk must be resized above the 30GB default after initial boot with `fdisk`, as documented in the Azure knowledge base article [How to: Resize Linux osDisk partition on Azure](https://blogs.msdn.microsoft.com/linuxonazure/2017/04/03/how-to-resize-linux-osdisk-partition-on-azure/).
+
+## Database Maintenance
+
+There are three CLI commands available as of v202005-2 to facilitate management of the PostgreSQL database that runs on the host as part of the Mounted Disk (and demo) operational mode:
+
+* `replicated admin db-backup`: This will run a `pg_dump` and store the backup in `/backup/ptfe.db` on the host. 
+* `replicated admin db-restore`: This will run a `pg_restore` using `/backup/ptfe.db` as it's data source.
+* `replicated admin db-reindex`: This will run a `REINDEX` against the application database. Note: A reindex can take anywhere from minutes to hours to complete, depending on the size of your database. Running this command locks the database and prevents any other action against it. 
+
+These commands will only display output if there is an error. Please contact [support](https://support.hashicorp.com) if you have any questions or issues with these commands. 
