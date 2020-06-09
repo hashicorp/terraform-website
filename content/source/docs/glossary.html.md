@@ -808,7 +808,7 @@ A type of access credential based on public key cryptography, used to log into s
 Terraform Cloud uses SSH private keys for two kinds of operations:
 
 - Downloading private Terraform [modules][] with [Git][]-based sources during a Terraform run. Keys for downloading modules are assigned per-workspace.
-- Bringing content from a connected [VCS provider][] into Terraform Cloud, usually when pulling in a Terraform [configuration][] for a [workspace][] or importing a module into the [private module registry][]. Only some VCS providers require an SSH key, but others can optionally use SSH if an SSH key is provided.
+- Bringing content from a connected [VCS provider][] into Terraform Cloud, usually when pulling in a Terraform [configuration][] for a [workspace][] or importing a module into the [private module registry][]. Only some VCS providers require an SSH key, but other providers only need an SSH key if your repositories include submodules that are only accessible via SSH (instead of your VCS provider's API).
 
 - [Wikipedia: SSH](https://en.wikipedia.org/wiki/Secure_Shell)
 - [Terraform Cloud docs: SSH Keys for Cloning Modules](/docs/cloud/workspaces/ssh-keys.html)
