@@ -25,6 +25,12 @@ page_title: "Plans - API Docs - Terraform Cloud"
 
 A plan represents the execution plan of a Run in a Terraform workspace.
 
+### Attributes
+
+Attribute                    | Type   | Default | Description
+-----------------------------|--------|---------|------------
+`status` | enum | `created` | Possible values: `created`, `pending`, `managed_queued`, `queued`, `running`, `errored`, `canceled`, `finished`, `unreachable`
+
 ## Show a plan
 
 `GET /plans/:id`
