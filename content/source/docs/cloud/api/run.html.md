@@ -35,9 +35,9 @@ Alternatively, you can create a run with a pre-existing configuration version, e
 
 ### Attributes
 
-Attribute                    | Type   | Default | Description
------------------------------|--------|---------|------------
-`status` | enum | `pending` | Possible values: `pending`, `plan_queued`, `planning`, `planned`, `confirmed`, `apply_queued`, `applying`, `applied`, `discarded`, `errored`, `canceled`, `cost_estimating`, `cost_estimated`, `policy_checking`, `policy_override`, `policy_soft_failed`, `policy_checked`, `planned_and_finished`
+Attribute | Type | Default   | Description
+----------|------------------|-------------------------------
+`status`  | enum | `pending` | Possible values: `pending`, `plan_queued`, `planning`, `planned`, `confirmed`, `apply_queued`, `applying`, `applied`, `discarded`, `errored`, `canceled`, `cost_estimating`, `cost_estimated`, `policy_checking`, `policy_override`, `policy_soft_failed`, `policy_checked`, `planned_and_finished`
 
 ## Create a Run
 

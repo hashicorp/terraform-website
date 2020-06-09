@@ -26,9 +26,9 @@ An apply represents the results of applying a Terraform Run's execution plan.
 
 ### Attributes
 
-Attribute                    | Type   | Default | Description
------------------------------|--------|---------|------------
-`status` | enum | `created` | Possible values: `created`, `pending`, `managed_queued`, `queued`, `running`, `errored`, `canceled`, `finished`, `unreachable`
+Attribute | Type | Default   | Description
+----------|------|-----------|------------
+`status`  | enum | `created` | Possible values: `created`, `pending`, `managed_queued`, `queued`, `running`, `errored`, `canceled`, `finished`, `unreachable`
 
 ## Show an apply
 
