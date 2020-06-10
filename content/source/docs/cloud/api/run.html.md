@@ -33,11 +33,33 @@ Performing a run on a new configuration is a multi-step process.
 
 Alternatively, you can create a run with a pre-existing configuration version, even one from another workspace. This is useful for promoting known good code from one workspace to another.
 
-### Attributes
+## Attributes
 
-Attribute | Type | Default   | Description
-----------|------|-----------|-------------------------------
-`status`  | enum | `pending` | Possible values: `pending`, `plan_queued`, `planning`, `planned`, `confirmed`, `apply_queued`, `applying`, `applied`, `discarded`, `errored`, `canceled`, `cost_estimating`, `cost_estimated`, `policy_checking`, `policy_override`, `policy_soft_failed`, `policy_checked`, `planned_and_finished`
+### Run States
+
+The run state is found in `data.attributes.status`, and you can reference the following list of possible states.
+
+State                  | Description
+-----------------------|------------
+`pending`              | The initial status of a run once it has been created.
+`plan_queued`          | Once a workspace has the availability to start a new run, the next run will transition to `plan_queued`. This status indicates that the it should start as soon as the backend services that run terraform have available capacity.  In Terraform Cloud, you should seldom see this status, as our aim is to always have capacity. However, in Terraform Enterprise this status will be more common due to the self-hosted nature.
+`planning`             | The planning phase of a run is in progress.
+`planned`              | The planning phase of a run has completed.
+`cost_estimating`      | The cost estimation phase of a run is in progress.
+`cost_estimated`       | The cost estimation phase of a run has completed.
+`policy_checking`      | The Sentinal policy checking phase of a run is in progress.
+`policy_override`      | ???
+`policy_soft_failed`   | ???
+`policy_checked`       | The Sentinal policy checking phase of a run has completed.
+`confirmed`            | The plan produced by the run has been confirmed.
+`planned_and_finished` | The completion of a run containing a plan only, or a run the produces a plan with no changes to apply.  This is a final state.
+`apply_queued`         | Once the changes in the plan have been confirmed, the run run will transition to `apply_queued`. This status indicates that the run should start as soon as the backend services that run terraform have available capacity. In Terraform Cloud, you should seldom see this status, as our aim is to always have capacity. However, in Terraform Enterprise this status will be more common due to the self-hosted nature.
+`applying`             | The applying phase of a run is in progress.
+`applied`              | The applying phase of a run has completed.
+`discarded`            | The run has been discarded. This is a final state.
+`errored`              | The run has errored. This is a final state.
+`canceled`             | The run has been canceled.
+`force_canceled`       | The run has been canceled forcefully.
 
 ## Create a Run
 

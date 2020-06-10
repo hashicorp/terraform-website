@@ -25,11 +25,22 @@ page_title: "Plans - API Docs - Terraform Cloud"
 
 A plan represents the execution plan of a Run in a Terraform workspace.
 
-### Attributes
+## Attributes
 
-Attribute  | Type | Default   | Description
------------|------|---  ------|------------
-`status`   | enum | `created` | Possible values: `created`, `pending`, `managed_queued`, `queued`, `running`, `errored`, `canceled`, `finished`, `unreachable`
+### Plan States
+
+The plan state is found in `data.attributes.status`, and you can reference the following list of possible states.
+
+State            | Description
+-----------------|------------
+`pending`        | The initial status of a plan once it has been created.
+`managed_queued` | ???
+`queued`         | The plan has been queued, awaiting backend service capacity to run terraform.
+`running`        | The plan is running.
+`errored`        | The plan has errored. This is a final state.
+`canceled`       | The plan has been canceled. This is a final state.
+`finished`       | The plan has completed sucessfully. This is a final state.
+`unreachable`    | ???
 
 ## Show a plan
 
