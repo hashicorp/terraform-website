@@ -22,6 +22,8 @@ Approve access request. | &nbsp;
 
 The rest of the page explains these steps in more detail.
 
+~> **Important:** Terraform Cloud only supports Azure DevOps connections which use the `dev.azure.com` domain. If your Azure DevOps project uses the older `visualstudio.com` domain, you will need to migrate using the [steps provided by Microsoft](https://docs.microsoft.com/en-us/azure/devops/release-notes/2018/sep-10-azure-devops-launch#switch-existing-organizations-to-use-the-new-domain-name-url).
+
 ## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
 1. Open Terraform Cloud in your browser and navigate to the "VCS Providers" settings for your organization. Click the "Add VCS Provider" button.
