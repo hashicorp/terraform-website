@@ -56,9 +56,11 @@ Terraform Cloud uses webhooks to monitor new commits and pull requests.
 
 ### SSH Keys
 
-For most supported VCS providers, Terraform Cloud does not need an SSH key — it can do everything it needs with the provider's API and an OAuth token. The exception is Bitbucket Server, which requires an SSH key for downloading repository contents. The [setup instructions for Bitbucket Server](./bitbucket-server.html) include this step.
+For most supported VCS providers, Terraform Cloud does not need an SSH key — it can do everything it needs with the provider's API and an OAuth token. The exceptions are Azure DevOps Server and Bitbucket Server, which require an SSH key for downloading repository contents. The setup instructions for  [Azure DevOps Server](./azure-devops-server.html) and [Bitbucket Server](./bitbucket-server.html) include this step.
 
-For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials.
+For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. 
+
+For VCS providers where adding an SSH private key is optional, SSH will only be used to clone Git submodules. All other Git operations will still use HTTPS.
 
 If submodules will be cloned via SSH from a private VCS instance, SSH must be running on the standard port 22 on the VCS server.
 

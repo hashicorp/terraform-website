@@ -26,7 +26,7 @@ The `ssh-key` object represents an SSH key which includes a name and the SSH pri
 
 SSH keys can be used in two places:
 
-- They can be assigned to VCS provider integrations ([available in the API as `oauth-tokens`](./oauth-tokens.html)). Bitbucket Server requires an SSH key; other providers only need an SSH key if your repositories include submodules that are only accessible via SSH (instead of your VCS provider's API).
+- They can be assigned to VCS provider integrations ([available in the API as `oauth-tokens`](./oauth-tokens.html)). Azure DevOps Server and Bitbucket Server require an SSH key. Other providers only need an SSH key if your repositories include submodules that are only accessible via SSH (instead of your VCS provider's API).
 - They can be [assigned to workspaces](./workspaces.html#assign-an-ssh-key-to-a-workspace) and used when Terraform needs to clone modules from a Git server. This is only necessary when your configurations directly reference modules from a Git server; you do not need to do this if you use Terraform Cloud's [private module registry](../registry/index.html).
 
 Listing and viewing SSH keys requires either permission to manage VCS settings for the organization, or admin access to at least one workspace. ([More about permissions.](../users-teams-organizations/permissions.html))

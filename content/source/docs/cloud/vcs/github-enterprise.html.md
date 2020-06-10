@@ -110,6 +110,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 ### Important Notes
 
+- SSH will only be used to clone Git submodules. All other Git operations will still use HTTPS.
 - Do not use your personal SSH key to connect Terraform Cloud and GitHub Enterprise; generate a new one or use an existing key reserved for service access.
 - In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to GitHub Enterprise.
 - **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
