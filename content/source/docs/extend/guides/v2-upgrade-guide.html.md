@@ -24,6 +24,7 @@ the
 [CHANGELOG](https://github.com/hashicorp/terraform-plugin-sdk/blob/v2.0.0-rc.2/CHANGELOG.md).
 
 Upgrade topics:
+
 * [Dropped Support for Terraform 0.11 and Below](#dropped-support-for-terraform-0-11-and-below)
 * [Version 2 of the Module](#version-2-of-the-module)
 * [A New Acceptance Testing Driver](#a-new-acceptance-testing-driver)
