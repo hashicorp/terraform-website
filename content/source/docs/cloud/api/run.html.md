@@ -48,8 +48,8 @@ State                  | Description
 `cost_estimating`      | The cost estimation phase of a run is in progress.
 `cost_estimated`       | The cost estimation phase of a run has completed.
 `policy_checking`      | The sentinel policy checking phase of a run is in progress.
-`policy_override`      | ???
-`policy_soft_failed`   | ???
+`policy_override`      | A sentinel policy has soft failed, and can be overriden.
+`policy_soft_failed`   | A sentinel policy has soft failed for a plan-only run.  This is a final state.
 `policy_checked`       | The sentinel policy checking phase of a run has completed.
 `confirmed`            | The plan produced by the run has been confirmed.
 `planned_and_finished` | The completion of a run containing a plan only, or a run the produces a plan with no changes to apply.  This is a final state.
