@@ -34,8 +34,7 @@ The plan state is found in `data.attributes.status`, and you can reference the f
 State            | Description
 -----------------|------------
 `pending`        | The initial status of a plan once it has been created.
-`managed_queued` | ???
-`queued`         | The plan has been queued, awaiting backend service capacity to run terraform.
+`managed_queued`/`queued` | The plan has been queued, awaiting backend service capacity to run terraform.
 `running`        | The plan is running.
 `errored`        | The plan has errored. This is a final state.
 `canceled`       | The plan has been canceled. This is a final state.
