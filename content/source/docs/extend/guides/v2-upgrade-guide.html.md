@@ -40,8 +40,8 @@ of the SDK, to indicate this dropped support.
 ## Version 2 of the Module
 As part of the breaking changes, the Terraform Plugin SDK Go module has been
 upgraded to v2. This involves changing import paths from
-`github.com/hasihcorp/terraform-plugin-sdk` to
-`github.com/hasihcorp/terraform-plugin-sdk/v2`. This can be automated using the
+`github.com/hashicorp/terraform-plugin-sdk` to
+`github.com/hashicorp/terraform-plugin-sdk/v2`. This can be automated using the
 [`tf-sdk-migrator v2upgrade`](https://github.com/hashicorp/tf-sdk-migrator/)
 command.
 
