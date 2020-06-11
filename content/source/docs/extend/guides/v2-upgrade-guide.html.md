@@ -24,10 +24,39 @@ the
 [CHANGELOG](https://github.com/hashicorp/terraform-plugin-sdk/blob/v2.0.0-rc.2/CHANGELOG.md).
 
 Upgrade topics:
+* [Dropped Support for Terraform 0.11 and Below](#dropped-support-for-terraform-0-11-and-below)
+* [Version 2 of the Module](#version-2-of-the-module)
+* [A New Acceptance Testing Driver](#a-new-acceptance-testing-driver)
+* [More Support for `context.Context`](#more-support-for-context-context)
+* [Support for Diagnostics](#support-for-diagnostics)
+* [Support for Resource-Level and Field-Level Descriptions](#support-for-resource-level-and-field-level-descriptions)
+* [New Diagnostics-Enabled Map Validators](#new-diagnostics-enabled-map-validators)
+* [Support for Debuggable Provider Binaries](#support-for-debuggable-provider-binaries)
+* [Support for Provider Metadata](#support-for-provider-metadata)
+* [Louder `helper/schema.ResourceData.Set` Errors in Testing](#louder-helper-schema-resourcedata-set-errors-in-testing)
+* [More Consistent Usage of `github.com/mitchellh/go-testing-interface`](#more-consistent-usage-of-github-com-mitchellh-go-testing-interface)
+* [Corrected Results of `helper/acctest.RandIntRange`](#corrected-results-of-helper-acctest-randintrange)
+* [Clearer Handling of `nil` for `helper/resource.NonRetryableError` and `helper/resource.RetryableError`](#clearer-handling-of-nil-for-helper-resource-nonretryableerror-and-helper-resource-retryableerror)
+* [More Robust Handling of `helper/schema.TypeSet` Hashes](#more-robust-handling-of-helper-schema-typeset-hashes)
+* [Stronger Validation for `helper/schema.Schema.Computed` Fields](#stronger-validation-for-helper-schema-schema-computed-fields)
+* [More Robust Validation of `helper/schema.TypeMap` `Elem`s](#more-robust-validation-of-helper-schema-typemap-elems)
+* [More Robust Validation of `helper/resource.TestCheckResourceAttrPair`](#more-robust-validation-of-helper-resource-testcheckresourceattrpair)
+* [More Robust Validation of Test Sweepers](#more-robust-validation-of-test-sweepers)
+* [Deprecation of `helper/schema.ExistsFunc`](#deprecation-of-helper-schema-existsfunc)
+* [Removal of `helper/mutexkv` Package](#removal-of-helper-mutexkv-package)
+* [Removal of `helper/pathorcontents` Package](#removal-of-helper-pathorcontents-package)
+* [Removal of `httpclient` Package](#removal-of-httpclient-package)
+* [Removal of `helper/hashcode` Package](#removal-of-helper-hashcode-package)
+* [Removal of the `acctest` Package](#removal-of-the-acctest-package)
+* [Removal of the `terraform.ResourceProvider` Interface](#removal-of-the-terraform-resourceprovider-interface)
+* [Removal of Deprecated Validation Functions](#removal-of-deprecated-validation-functions)
+* [Removal of `helper/schema.Schema.PromoteSingle`](#removal-of-helper-schema-schema-promotesingle)
+* [Removal of `helper/schema.ResourceData.UnsafeSetFieldRaw`](#removal-of-helper-schema-resourcedata-unsafesetfieldraw)
+* [Removal of `helper/schema.Resource.Refresh`](#removal-of-helper-schema-resource-refresh)
+* [Removal of `helper/schema.Schema.Removed`](#removal-of-helper-schema-schema-removed)
+* [Removal of `helper/encryption` Package](#removal-of-helper-encryption-package)
+* [Removal of Discouraged Variables, Functions, Types, and Interfaces](#removal-of-discouraged-variables-functions-types-and-interfaces)
  
- <!-- TOC depthFrom:2 depthTo:2 -->
- <!-- /TOC -->
-
 ## Dropped Support for Terraform 0.11 and Below
 As part of the ongoing deprecation of Terraform 0.11, version 2.0.0 of the
 Terraform Plugin SDK can only be used to build providers with support for
@@ -506,7 +535,6 @@ pattern that no longer functions after Terraform 0.12, and so the method has
 been removed.
 
 ## Removal of `helper/schema.Resource.Refresh`
-
 The `helper/schema.Resource.Refresh` function was used in Terraform 0.11 and
 below, and is no longer needed. No providers should have been calling this
 function. Any that were, please [open an
@@ -514,7 +542,6 @@ issue](https://github.com/hashicorp/terraform-plugin-sdk/issues) on the SDK to
 help us understand your use case so we can recommend a path forward.
 
 ## Removal of `helper/schema.Schema.Removed`
-
 The `Removed` property of `helper/schema.Schema`, used to provide a friendly
 error message when a field has been removed after its [deprecation
 period](https://www.terraform.io/docs/extend/best-practices/deprecations.html),
@@ -523,7 +550,6 @@ recommendation is now to delete the field after the deprecation period, and let
 Terraform’s built-in error messaging indicate its removal.
 
 ## Removal of `helper/encryption` Package
-
 The `helper/encryption` package supports an [anti-pattern that is now
 discouraged](https://www.terraform.io/docs/extend/best-practices/sensitive-state.html#don-39-t-encrypt-state),
 so it has been removed. Providers relying on it should see the
@@ -531,7 +557,6 @@ so it has been removed. Providers relying on it should see the
 on that pattern and select an alternative approach.
 
 ## Removal of Discouraged Variables, Functions, Types, and Interfaces
-
 The following variables, functions, types, and interfaces were part of the
 public API for the SDK, but were never intended for consumption by providers.
 They have all been removed. Any providers using them should [open an
