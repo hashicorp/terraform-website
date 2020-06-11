@@ -21,7 +21,7 @@ Most of the changes outlined in this guide have been previously marked as
 deprecated in the GoDoc comments for the functions involved in previous
 releases. These changes, such as deprecation notices, can always be found in
 the
-[CHANGELOG](https://github.com/hashicorp/terraform-plugin-sdk/blob/master/CHANGELOG.md).
+[CHANGELOG](https://github.com/hashicorp/terraform-plugin-sdk/blob/v2.0.0-rc.2/CHANGELOG.md).
 
 Upgrade topics:
  
