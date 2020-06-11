@@ -1,6 +1,6 @@
 ---
 layout: "github-actions"
-page_title: "Teraform GitHub Actions"
+page_title: "Terraform GitHub Actions"
 ---
 
 # Terraform GitHub Actions
