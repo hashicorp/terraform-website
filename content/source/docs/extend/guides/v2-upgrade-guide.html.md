@@ -1,7 +1,7 @@
 ---
 layout: "extend"
 page_title: "Terraform Plugin SDK v2 Upgrade Guide"
-sidebar_current: "docs-extend-plugin-sdk-v2-upgrade-guide"
+sidebar_current: "docs-extend-guides-v2-upgrade"
 description: |-
   Upgrade guide for version 2 of the Terraform Plugin SDK.
 ---
