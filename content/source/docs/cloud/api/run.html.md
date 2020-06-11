@@ -47,10 +47,10 @@ State                  | Description
 `planned`              | The planning phase of a run has completed.
 `cost_estimating`      | The cost estimation phase of a run is in progress.
 `cost_estimated`       | The cost estimation phase of a run has completed.
-`policy_checking`      | The Sentinal policy checking phase of a run is in progress.
+`policy_checking`      | The sentinel policy checking phase of a run is in progress.
 `policy_override`      | ???
 `policy_soft_failed`   | ???
-`policy_checked`       | The Sentinal policy checking phase of a run has completed.
+`policy_checked`       | The sentinel policy checking phase of a run has completed.
 `confirmed`            | The plan produced by the run has been confirmed.
 `planned_and_finished` | The completion of a run containing a plan only, or a run the produces a plan with no changes to apply.  This is a final state.
 `apply_queued`         | Once the changes in the plan have been confirmed, the run run will transition to `apply_queued`. This status indicates that the run should start as soon as the backend services that run terraform have available capacity. In Terraform Cloud, you should seldom see this status, as our aim is to always have capacity. However, in Terraform Enterprise this status will be more common due to the self-hosted nature.
