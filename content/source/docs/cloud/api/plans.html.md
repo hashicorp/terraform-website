@@ -39,7 +39,7 @@ State                     | Description
 `errored`                 | The plan has errored. This is a final state.
 `canceled`                | The plan has been canceled. This is a final state.
 `finished`                | The plan has completed sucessfully. This is a final state.
-`unreachable`             | ???
+`unreachable`             | The plan will not run. This is a final state.
 
 ## Show a plan
 
