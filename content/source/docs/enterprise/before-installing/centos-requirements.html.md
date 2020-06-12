@@ -17,7 +17,7 @@ When installing Terraform Enterprise on CentOS Linux, ensure your OS and Docker 
    * Or you can allow the installer to install Docker for you.
 * A properly configured docker storage backend, either:
    * Devicemapper configured for production usage, in accordance with the [Docker documentation](https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production). This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
-   Note: Current, [Docker documentation] (https://docs.docker.com/storage/storagedriver/select-storage-driver/) states that the devicemapper storage driver is deprecated in Docker Engine 18.09 and will be removed in a future release. It is recommended that users of the devicemapper storage driver migrate to overlay2. 
+**Note:** Current, [Docker documentation] (https://docs.docker.com/storage/storagedriver/select-storage-driver/) states that the `devicemapper` storage driver is deprecated in Docker Engine 18.09 and will be removed in a future release. It is recommended that users of the `devicemapper` storage driver migrate to `overlay2`. 
    
    * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag `ftype=1`. The full documentation on this configuration is on the [Docker site](https://docs.docker.com/storage/storagedriver/overlayfs-driver/).
 
