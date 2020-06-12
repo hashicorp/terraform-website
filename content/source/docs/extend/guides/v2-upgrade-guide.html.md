@@ -59,7 +59,7 @@ Upgrade topics:
 * [Removal of Discouraged Variables, Functions, Types, and Interfaces](#removal-of-discouraged-variables-functions-types-and-interfaces)
  
 ## Dropped Support for Terraform 0.11 and Below
-As part of the ongoing deprecation of Terraform 0.11, version 2.0.0 of the
+As part of the [ongoing deprecation of Terraform 0.11](https://www.hashicorp.com/blog/deprecating-terraform-0-11-support-in-terraform-providers/), version 2.0.0 of the
 Terraform Plugin SDK can only be used to build providers with support for
 Terraform 0.12 and higher.
 
