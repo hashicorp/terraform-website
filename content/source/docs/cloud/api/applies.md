@@ -28,7 +28,7 @@ An apply represents the results of applying a Terraform Run's execution plan.
 
 ### Apply States
 
-The apply state is found in `data.attributes.status`, and you can reference the following list of possible states.
+You'll find the apply state in `data.attributes.status`, as one of the following values.
 
 State                     | Description
 --------------------------|------------
@@ -104,4 +104,3 @@ curl \
   }
 }
 ```
-
