@@ -242,7 +242,7 @@ See the full set of configuration parameters in the [Replicated documentation](h
     "TlsBootstrapCert":             "/etc/server.crt",
     "TlsBootstrapKey":              "/etc/server.key",
     "BypassPreflightChecks":        true,
-    "ImportSettingsFrom":           "/path/to/application-settings.json",
+    "ImportSettingsFrom":           "/path/to/settings.json",
     "LicenseFileLocation":          "/path/to/license.rli"
 }
 ```
@@ -273,7 +273,7 @@ The following is an example `/etc/replicated.conf` suitable for an automated air
     "TlsBootstrapCert":                  "/etc/server.crt",
     "TlsBootstrapKey":                   "/etc/server.key",
     "BypassPreflightChecks":             true,
-    "ImportSettingsFrom":                "/path/to/application-settings.json",
+    "ImportSettingsFrom":                "/path/to/settings.json",
     "LicenseFileLocation":               "/path/to/license.rli",
     "LicenseBootstrapAirgapPackagePath": "/path/to/bundle.airgap"
 }
