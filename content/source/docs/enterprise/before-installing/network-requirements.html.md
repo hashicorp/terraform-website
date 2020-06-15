@@ -25,6 +25,7 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 * `registry-data.replicated.com`
 * `registry.replicated.com`
 * `quay.io`
+* `cdn.quay.io`
 * `quay-registry.s3.amazonaws.com`
 * `cloudfront.net`
 * `index.docker.io`
