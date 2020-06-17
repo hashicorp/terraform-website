@@ -126,7 +126,7 @@ To make infrastructure available to your users, you must add one or more workspa
 1. Click "New" to add a VCS repository for fulfillment through the Terraform Service Catalog.
     - Name: The name for this workspace template that you want users to see.
     - OAuth Token ID: The OAuth Token ID that you copied from your Terraform Enterprise organization's VCS providers settings. This ID specifies which VCS provider hosts the desired repository.
-    - Identifier: The VCS repository that contains the Terraform configuration for this workspace template. Repository identifiers are determined by your VCS provider; they typically use a format like `<ORGANIZATION>/<REPO NAME>` or `<PROJECT KEY>/<REPO NAME>`.
+    - Identifier: The VCS repository that contains the Terraform configuration for this workspace template. Repository identifiers are determined by your VCS provider; they typically use a format like `<ORGANIZATION>/<REPO NAME>` or `<PROJECT KEY>/<REPO NAME>`. Azure DevOps repositories are unique and formatted as `<ORGANIZATION>/<PROJECT>/_git/<REPO NAME>`.
     - The remaining fields are optional.
 
 -> **Note:** Currently, the integration defaults to creating workspaces with [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) enabled. Since VCS-backed workspaces [start Terraform runs when changes are merged](../../run/ui.html), changes to a workspace template repository may cause new runs in any Terraform workspaces created from it.
