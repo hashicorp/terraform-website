@@ -562,3 +562,7 @@
 	path = ext/providers/ecl
 	url = https://github.com/terraform-providers/terraform-provider-ecl
 	branch = stable-website
+[submodule "ext/providers/mso"]
+	path = ext/providers/mso
+	url = https://github.com/terraform-providers/terraform-provider-mso
+	branch = stable-website
