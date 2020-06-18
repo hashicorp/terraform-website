@@ -566,3 +566,7 @@
 	path = ext/providers/mso
 	url = https://github.com/terraform-providers/terraform-provider-mso
 	branch = stable-website
+[submodule "ext/providers/azuredevops"]
+	path = ext/providers/azuredevops
+	url = https://github.com/terraform-providers/terraform-provider-azuredevops
+	branch = stable-website
