@@ -34,6 +34,8 @@ Name                             | Type   | Description
 
 -> **Note:** The IP ranges for each feature returned by the IP Ranges API may overlap. Additionally, these published ranges do not currently allow for execution of Terraform runs against local resources.
 
+-> **Note:** Under normal circumstances, HashiCorp will publish any expected changes to Terraform Cloud's IP ranges at least 24 hours in advance of implementing them. This should allow sufficient time for users to update any connected systems to reflect the changes. In the event of an emergency outage or failover operation, it may not be possible to pre-publish these changes. 
+
 ## Get IP Ranges
 
 -> **Note:** The IP Ranges API does not require authentication
