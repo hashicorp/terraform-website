@@ -9,10 +9,16 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 ## Ingress
 
+### Source - User/Client/VCS
+
+* **443**: To access the Terraform Enterprise application via HTTPS 
+
+### Source - Administrators
+
 * **22**: To access the instance via SSH from your computer. SSH access to the instance is required for administration and debugging.
-* **80**: To access the Terraform Enterprise application via HTTP. This port redirects to port 443 for HTTPS.
-* **443**: To access the Terraform Enterprise application via HTTPS.
 * **8800**: To access the installer dashboard.
+
+### Source - TFE Server(s)
 * **9870-9880 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
 * **23000-23100 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
 
@@ -24,10 +30,11 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 * `get.replicated.com`
 * `registry-data.replicated.com`
 * `registry.replicated.com`
-* `quay.io`
+* `*.quay.io`
 * `cdn.quay.io`
 * `quay-registry.s3.amazonaws.com`
-* `cloudfront.net`
+* `*.cloudfront.net`
+* `hub.docker.com`
 * `index.docker.io`
 * `auth.docker.io`
 * `registry-1.docker.io`
