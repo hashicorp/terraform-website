@@ -143,7 +143,7 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
 ### Requirements
  - The base image must be `ubuntu:xenial`.
  - The image must exist on the Terraform Enterprise host. It can be added by running `docker pull` from a local registry or any other similar method.
- - A file containing all necessary PEM-encoded CA certificates must be placed in `/etc/ssl/certs/ca-certificates.crt`. This includes both custom CA certificates and default CA certificates that come with the operating system. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
+ - A file containing the necessary PEM-encoded CA certificate for the Terraform Enterprise host must be placed in `/usr/local/share/ca-certificates/`. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
  - Terraform must not be installed on the image. Terraform Enterprise will take care of that at runtime.
 
  This is a sample `Dockerfile` you can use to start building your own image:
@@ -152,12 +152,15 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
 # This Dockerfile builds the image used for the worker containers.
 FROM ubuntu:xenial
 
-# Inject the CA certificates.
-ADD ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-
 # Install software used by Terraform Enterprise.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    sudo unzip daemontools git-core ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd
+    sudo unzip daemontools git-core ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd ca-certificates
+
+# Include the Terraform Enterprise CA certificate.
+ADD tfeCA.crt /usr/local/share/ca-certificates/tfeCA.crt
+
+# Insert the CA certificate as part of the trust.
+RUN update-ca-certificates
  ```
 
 ### Image initialization
