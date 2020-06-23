@@ -7,11 +7,23 @@
 #
 # FORMAT
 #
-# Redirects are in the format. There must be at least one space between the
-# original path and the new path, and there must be exactly two entries per
-# line.
+# Redirects are space-separated pairs of absolute paths. There must be at least
+# one space between the original path and the new path, and there must be
+# exactly two entries per line.
 #
 #     /original-path    /new-path
+#
+# Important note: YOU CANNOT REDIRECT TO URLS OUTSIDE OF terraform.io! Only
+# absolute paths on the same hostname are supported.
+#
+#     # Bad, explodes:
+#     /original-path    https://elsewhere.hashicorp.com/new-path
+#
+# To redirect off-site, you must ask team-eng-serv to implement the redirects in
+# Fastly. However, please DO add comments to this file showing what the
+# redirects WOULD have been; that will ensure this file has a complete record of
+# all the redirects we expect the site to honor, which is almost definitely
+# going to be important at some point.
 #
 # INDEX.HTML AND PARENT PATHS
 #
