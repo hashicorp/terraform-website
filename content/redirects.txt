@@ -470,3 +470,64 @@
 
 # This page was originally a workaround for lack of directory filtering for monorepos.
 /docs/cloud/workspaces/repo-structure.html                          /docs/cloud/workspaces/configurations.html
+
+# Migrating provider docs to registry.terraform.io
+# newrelic provider
+/docs/providers/newrelic                                     https://registry.terraform.io/providers/newrelic/newrelic/latest/docs
+/docs/providers/newrelic/d/alert_channel.html                https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/alert_channel
+/docs/providers/newrelic/d/alert_policy.html                 https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/alert_policy
+/docs/providers/newrelic/d/application.html                  https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/application
+/docs/providers/newrelic/d/entity.html                       https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/entity
+/docs/providers/newrelic/d/key_transaction.html              https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/key_transaction
+/docs/providers/newrelic/d/plugin_component.html             https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/plugin_component
+/docs/providers/newrelic/d/plugin.html                       https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/plugin
+/docs/providers/newrelic/d/synthetics_monitor.html           https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/synthetics_monitor
+/docs/providers/newrelic/d/synthetics_secure_credential.html https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/synthetics_secure_credential
+/docs/providers/newrelic/guides/getting_started.html         https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/guides/getting_started
+/docs/providers/newrelic/guides/provider_configuration.html  https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/guides/provider_configuration
+/docs/providers/newrelic/index.html                          https://registry.terraform.io/providers/newrelic/newrelic/latest/docs
+/docs/providers/newrelic/r/alert_channel.html                https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/alert_channel
+/docs/providers/newrelic/r/alert_condition.html              https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/alert_condition
+/docs/providers/newrelic/r/alert_policy_channel.html         https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/alert_policy_channel
+/docs/providers/newrelic/r/alert_policy.html                 https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/alert_policy
+/docs/providers/newrelic/r/dashboard.html                    https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/dashboard
+/docs/providers/newrelic/r/entity_tags.html                  https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/entity_tags
+/docs/providers/newrelic/r/events_to_metrics_rule.html       https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/events_to_metrics_rule
+/docs/providers/newrelic/r/infra_alert_condition.html        https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/infra_alert_condition
+/docs/providers/newrelic/r/insights_event.html               https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/insights_event
+/docs/providers/newrelic/r/nrql_alert_condition.html         https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/nrql_alert_condition
+/docs/providers/newrelic/r/plugins_alert_condition.html      https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/plugins_alert_condition
+/docs/providers/newrelic/r/synthetics_alert_condition.html   https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/synthetics_alert_condition
+/docs/providers/newrelic/r/synthetics_label.html             https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/synthetics_label
+/docs/providers/newrelic/r/synthetics_monitor_script.html    https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/synthetics_monitor_script
+/docs/providers/newrelic/r/synthetics_monitor.html           https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/synthetics_monitor
+/docs/providers/newrelic/r/synthetics_secure_credential.html https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/synthetics_secure_credential
+/docs/providers/newrelic/r/workload.html                     https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/workload
+# newrelic provider v1 docs (1.19.0 was last v1)
+/docs/providers/newrelic/d/v1/alert_channel.html                https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/data-sources/alert_channel
+/docs/providers/newrelic/d/v1/alert_policy.html                 https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/data-sources/alert_policy
+/docs/providers/newrelic/d/v1/application.html                  https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/data-sources/application
+/docs/providers/newrelic/d/v1/entity.html                       https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/data-sources/entity
+/docs/providers/newrelic/d/v1/key_transaction.html              https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/data-sources/key_transaction
+/docs/providers/newrelic/d/v1/plugin_component.html             https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/data-sources/plugin_component
+/docs/providers/newrelic/d/v1/plugin.html                       https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/data-sources/plugin
+/docs/providers/newrelic/d/v1/synthetics_monitor.html           https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/data-sources/synthetics_monitor
+/docs/providers/newrelic/d/v1/synthetics_secure_credential.html https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/data-sources/synthetics_secure_credential
+/docs/providers/newrelic/r/v1/alert_channel.html                https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/alert_channel
+/docs/providers/newrelic/r/v1/alert_condition.html              https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/alert_condition
+/docs/providers/newrelic/r/v1/alert_policy_channel.html         https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/alert_policy_channel
+/docs/providers/newrelic/r/v1/alert_policy.html                 https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/alert_policy
+/docs/providers/newrelic/r/v1/dashboard.html                    https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/dashboard
+/docs/providers/newrelic/r/v1/entity_tags.html                  https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/entity_tags
+/docs/providers/newrelic/r/v1/events_to_metrics_rule.html       https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/events_to_metrics_rule
+/docs/providers/newrelic/r/v1/infra_alert_condition.html        https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/infra_alert_condition
+/docs/providers/newrelic/r/v1/insights_event.html               https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/insights_event
+/docs/providers/newrelic/r/v1/nrql_alert_condition.html         https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/nrql_alert_condition
+/docs/providers/newrelic/r/v1/plugins_alert_condition.html      https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/plugins_alert_condition
+/docs/providers/newrelic/r/v1/synthetics_alert_condition.html   https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/synthetics_alert_condition
+/docs/providers/newrelic/r/v1/synthetics_label.html             https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/synthetics_label
+/docs/providers/newrelic/r/v1/synthetics_monitor_script.html    https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/synthetics_monitor_script
+/docs/providers/newrelic/r/v1/synthetics_monitor.html           https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/synthetics_monitor
+/docs/providers/newrelic/r/v1/synthetics_secure_credential.html https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/synthetics_secure_credential
+/docs/providers/newrelic/r/v1/workload.html                     https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/resources/workload
+/docs/providers/newrelic/v1/index.html                          https://registry.terraform.io/providers/newrelic/newrelic/1.19.0/docs/
