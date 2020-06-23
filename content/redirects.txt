@@ -5,6 +5,9 @@
 # redirect rules in a declarative manner using Fastly edge
 # dictionaries.
 #
+# For external redirects, populate the Fastly data directly via the
+# Terraform files in this repo.
+#
 # FORMAT
 #
 # Redirects are in the format. There must be at least one space between the
@@ -470,19 +473,3 @@
 
 # This page was originally a workaround for lack of directory filtering for monorepos.
 /docs/cloud/workspaces/repo-structure.html                          /docs/cloud/workspaces/configurations.html
-
-# Commenting these out for now, the redirect population script does not support fully qualified URLs currently.
-# # Migrating provider docs to registry.terraform.io
-# # null provider
-# /docs/providers/null/data_source.html  https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source
-# /docs/providers/null/index.html        https://registry.terraform.io/providers/hashicorp/null/latest/docs
-# /docs/providers/null/resource.html     https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource
-# # random provider
-# /docs/providers/random/index.html      https://registry.terraform.io/providers/hashicorp/random/latest/docs
-# /docs/providers/random/r/id.html       https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id
-# /docs/providers/random/r/integer.html  https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer
-# /docs/providers/random/r/password.html https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password
-# /docs/providers/random/r/pet.html      https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet
-# /docs/providers/random/r/shuffle.html  https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/shuffle
-# /docs/providers/random/r/string.html   https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
-# /docs/providers/random/r/uuid.html     https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid
