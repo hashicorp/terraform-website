@@ -1,0 +1,52 @@
+<%# import CloseIcon from './close-icon'
+import cookie from 'js-cookie'
+import slugify from 'slugify'
+
+
+    this.name = props.name || slugify(props.text, { lower: true }) %>
+
+
+      <div class="g-alert-banner <% if theme %><%= theme %><% else %><%= ' default' %><% end %> <% if show %><%= ' show' %><% else %><%= '' %><% end %> <% if tag.length > 3 %><%= ' has-large-tag' %><% else %><%= '' %><% end %>">
+        <a
+          href="<%= url %>"
+        />
+        <div class="g-container">
+          <div class="tag g-type-label">
+            <span><%= tag %></span>
+          </div>
+          <div class="text g-type-body-small-strong">
+            <span><%= text %></span>
+            <% if link_text %>
+              <span class="link-text"><%= link_text %></span>
+            <% end %>
+          </div>
+        </div>
+        <span
+          class="close"
+          <%# onclick={() => {
+            this.onClose()
+          }} %>
+        >
+          <CloseIcon />
+        </span>
+      </div>
+
+  <%# componentDidMount() {
+    // if cookie isn't set, show the component
+    this.setState({ show: cookie.get(`banner_${this.name}`) ? false : true })
+  } %>
+
+  <%# onClose() {
+    // animate closed by setting height so
+    // it's not 'auto' and then set to zero
+    this.banner.current.style.height = `${this.banner.scrollHeight}px`
+    window.setTimeout(() => {
+      this.banner.current.style.height = '0'
+    }, 1)
+
+    // set the cookie so this banner doesn't show up anymore
+    const name = `banner_${this.name}`
+    cookie.set(name, 1)
+
+  } %>
+
