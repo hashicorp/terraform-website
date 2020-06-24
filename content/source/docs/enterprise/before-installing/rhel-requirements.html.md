@@ -11,7 +11,7 @@ When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure y
 
 * A [supported version](https://www.terraform.io/docs/enterprise/before-installing/index.html#operating-system-requirements) of RedHat Enterprise Linux.
 * Docker 1.13.1 (available in RHEL extras), or Docker EE version 17.06 through 18.x (Docker v19.x is currently unsupported.) The later versions are not available in the standard RHEL yum repositories.
-   * For Docker EE, [these](https://docs.docker.com/install/linux/docker-ee/rhel/) are the explicit RHEL instructions to follow.
+   * For Docker EE, [these](https://docs.mirantis.com/docker-enterprise/v3.1/dockeree-products/docker-engine-enterprise/dee-linux/rhel.html) are the explicit RHEL instructions to follow.
    * For Docker from RHEL extras, the following should enable the RHEL extras repository:
       * `yum-config-manager --enable rhel-7-server-extras-rpms`
       * on AWS: `yum-config-manager --enable rhui-REGION-rhel-server-extras`
