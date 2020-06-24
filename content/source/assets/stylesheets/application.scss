@@ -1,42 +1,42 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
 
 // Fonts
 @import '_fonts';
 
 // Mega Nav
-@import "hashicorp/mega-nav";
+@import 'hashicorp/mega-nav';
 
 // Anchor links
-@import "hashicorp/anchor-links";
+@import 'hashicorp/anchor-links';
 
 // Core variables and mixins
-@import "_variables";
+@import '_variables';
 
 // Sidebar
-@import "hashicorp/sidebar";
+@import 'hashicorp/sidebar';
 
 // Typography
 @import '_typography';
 
 //Global Site
-@import "_global";
+@import '_global';
 
 // Components
-@import "_header";
-@import "_footer";
-@import "_inner";
-@import "_buttons";
-@import "_syntax";
-@import "_logos";
-@import "_notification";
-@import "_tag";
+@import '_header';
+@import '_footer';
+@import '_inner';
+@import '_buttons';
+@import '_syntax';
+@import '_logos';
+@import '_notification';
+@import '_alert_banner';
+@import '_tag';
 
 // Pages
-@import "_community";
-@import "_docs";
-@import "_downloads";
+@import '_community';
+@import '_docs';
+@import '_downloads';
 
-
-@import "_home";
-@import "terraform-overview/_index";
+@import '_home';
+@import 'terraform-overview/_index';
