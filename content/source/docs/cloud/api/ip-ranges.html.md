@@ -7,6 +7,7 @@ page_title: "IP Ranges - API Docs - Terraform Cloud"
 [201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
 [202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[304]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/304
 [400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
 [401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
 [403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
@@ -17,6 +18,7 @@ page_title: "IP Ranges - API Docs - Terraform Cloud"
 [429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+[If-Modified-Since]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 [CIDR Notation]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
@@ -38,17 +40,22 @@ Name                             | Type   | Description
 
 -> **Note:** The IP Ranges API does not require authentication
 
+-> **Note:** This endpoint supports [If-Modified-Since][] HTTP request header
+
 `GET /meta/ip-ranges`
 
 Status  | Response                                        | Reason
 --------|-------------------------------------------------|----------
 [200][] | `application/json`                              | The request was successful
+[304][] | `application/json`                              | The request was successful, IP ranges were not modified since the specified date in `If-Modified-Since` header
+
 
 ### Sample Request
 
 ```shell
 curl \
   --request GET \
+  -H "If-Modified-Since: Tue, 26 May 2020 15:10:05 GMT" \
   https://app.terraform.io/api/meta/ip-ranges
 ```
 
