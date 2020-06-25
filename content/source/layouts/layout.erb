@@ -54,10 +54,9 @@
   </head>
 
   <body id="<%= body_id_for(current_page) %>" class="<%= body_classes_for(current_page) %>">
+    <%= partial("layouts/alert_banner", locals: {show: true, theme: 'terraform', url:"https://www.hashicorp.com/blog/announcing-the-terraform-0-13-beta", tag:"New", text:"Announcing Terraform 0.13, which includes new usability improvements for modules, as well as provider source. Read more."}) %>
 
     <%= mega_nav :terraform %>
-
-    <%= partial("layouts/alert_banner", locals: {show: true, theme: 'terraform', url:"https://www.hashicorp.com/blog/announcing-the-terraform-0-13-beta", tag:"New", text:"Announcing Terraform 0.13, which includes new usability improvements for modules, as well as provider source. Read more."}) %>
 
     <div id="header" class="navigation navbar-static-top hidden-print">
       <div class="container">
