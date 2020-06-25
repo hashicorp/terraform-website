@@ -1,0 +1,3 @@
+comment,src,dst
+null - malformed,/docs/providers/null/data_source.html,https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source
+null - malformed,/docs/providers/null/resource.html,https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource
