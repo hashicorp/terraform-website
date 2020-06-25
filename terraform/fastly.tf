@@ -45,6 +45,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   service_id    = local.static_sites_service_id # we do not manage this service in Terraform at this time
   dictionary_id = local.tf_provider_namespaces_dictionary_id
   items = {
+    "newrelic" : "newrelic/newrelic"
     "null" : "hashicorp/null"
     "random" : "hashicorp/random"
   }

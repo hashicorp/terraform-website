@@ -829,8 +829,6 @@
 /docs/providers/mongodbatlas/index.html
 /docs/providers/mysql/index.html
 /docs/providers/netlify/index.html
-/docs/providers/newrelic/index.html
-/docs/providers/newrelic/r/dashboard.html
 /docs/providers/nomad/index.html
 /docs/providers/nomad/r/acl_policy.html
 /docs/providers/ns1/index.html
