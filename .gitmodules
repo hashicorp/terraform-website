@@ -154,10 +154,6 @@
 	path = ext/providers/mysql
 	url = https://github.com/terraform-providers/terraform-provider-mysql
 	branch = stable-website
-[submodule "ext/providers/newrelic"]
-	path = ext/providers/newrelic
-	url = https://github.com/terraform-providers/terraform-provider-newrelic
-	branch = stable-website
 [submodule "ext/providers/nomad"]
 	path = ext/providers/nomad
 	url = https://github.com/terraform-providers/terraform-provider-nomad

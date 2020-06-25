@@ -6,7 +6,7 @@ locals {
   static_sites_service_id              = "7GrxRJP3PVBuqQbyxYQ0MV"
   tf_registry_docs_type_dictionary_id  = "2meQ4j47Me81w1jSb5m9lh"
   tf_provider_namespaces_dictionary_id = "7Rye8KM48sHfEE7kzcZTWU"
-  tf_external_redirects_dictionary_id = "44DagwD5TIm8Qq4jPTsEMi"
+  tf_external_redirects_dictionary_id  = "44DagwD5TIm8Qq4jPTsEMi"
 }
 
 # The following dictionaries update Terraform redirects for the terraform.io/docs -> registry.terraform.io move.
@@ -45,6 +45,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   service_id    = local.static_sites_service_id # we do not manage this service in Terraform at this time
   dictionary_id = local.tf_provider_namespaces_dictionary_id
   items = {
+    "newrelic" : "newrelic/newrelic"
     "null" : "hashicorp/null"
     "random" : "hashicorp/random"
   }
@@ -55,13 +56,15 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   }
 }
 
+locals {
+  external_redirects_csv = csvdecode(file("${path.module}/external-redirects.csv"))
+  external_redirects     = { for redir in local.external_redirects_csv : redir.src => redir.dst }
+}
+
 resource "fastly_service_dictionary_items_v1" "tf_external_redirects_dictionary_id" {
   service_id    = local.static_sites_service_id # we do not manage this service in Terraform at this time
   dictionary_id = local.tf_external_redirects_dictionary_id
-  items = {
-    "/docs/providers/null/data_source.html" : "https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source"
-    "/docs/providers/null/resource.html" : "https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource"
-  }
+  items         = local.external_redirects
 
   # prevent destroying this dictionary to cause redirects to break
   lifecycle {
