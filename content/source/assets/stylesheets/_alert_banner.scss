@@ -75,11 +75,16 @@
     position: relative;
     color: #ffffff;
     text-decoration: none;
+
+    @media (max-width: 1120px) {
+      align-items: flex-start;
+    }
   }
 
   & .tag {
     flex-shrink: 0;
     background: none;
+    margin-right: 28px;
 
     & span {
       border: 1px solid #ffffff;
@@ -116,6 +121,7 @@
     right: 24px;
     top: 16px;
     z-index: 2;
+    opacity: 1;
 
     & path {
       stroke: #66a2ff;
