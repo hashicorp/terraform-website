@@ -12,8 +12,8 @@ When installing Terraform Enterprise on CentOS Linux, ensure your OS and Docker 
 * A [supported version](/docs/enterprise/before-installing/index.html#operating-system-requirements) of CentOS.
 * A suitable version of Docker:
    * Docker 1.13.1 (available in the `extras` repository).
-   * [Docker CE](https://docs.docker.com/install/linux/docker-ce/centos/) version 17.06 through 18.x (Docker v19.x is currently unsupported.)
-   * [Docker EE](https://docs.docker.com/install/linux/docker-ee/centos/) version 17.06 through 18.x (Docker v19.x is currently unsupported.)
+   * [Docker CE](https://docs.docker.com/install/linux/docker-ce/centos/) version 17.06 through 19.03.8.
+   * [Docker EE](https://docs.docker.com/install/linux/docker-ee/centos/) version 17.06 through 19.03.8.
    * Or you can allow the installer to install Docker for you.
 * A properly configured docker storage backend, either:
    * Devicemapper configured for production usage, in accordance with the [Docker documentation](https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production). This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
