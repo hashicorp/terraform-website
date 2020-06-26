@@ -27,22 +27,6 @@ function onClose(banner) {
 
   // set the cookie so this banner doesn't show up anymore
   document.cookie = 'banner_terraform_io=1'
-
-  // TODO Check how to implement this
-  // trackEvent('close')
-}
-
-function trackEvent(type) {
-  if (window.analytics) {
-    const { tag, theme, text, linkText } = { ...this.props }
-
-    window.analytics.track(type.charAt(0).toUpperCase() + type.slice(1), {
-      category: 'Alert Banner',
-      label: `${text} - ${linkText} | ${type}`,
-      tag: tag,
-      theme: theme,
-    })
-  }
 }
 
 // Modified from js-cookie

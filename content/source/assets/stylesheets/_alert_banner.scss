@@ -1,45 +1,17 @@
 .g-alert-banner {
-  background: linear-gradient(90deg, #1563ff 1.56%, #08368b 100%);
+  background: linear-gradient(90deg, #5f43e9 1.56%, #2a1c73 100%);
   color: #ffffff;
   display: none;
   overflow: hidden;
   position: relative;
   transition: height 0.3s ease-out;
 
+  & svg path {
+    stroke: #a291f2;
+  }
+
   &.show {
     display: block;
-  }
-
-  &.consul {
-    background: linear-gradient(90deg, #ca2171 1.56%, #8e134a 100%);
-
-    & svg path {
-      stroke: #f8d9e7;
-    }
-  }
-
-  &.nomad {
-    background: linear-gradient(90deg, #00bc7f 1.56%, #005738 100%);
-
-    & svg path {
-      stroke: #6bd8b4;
-    }
-  }
-
-  &.terraform {
-    background: linear-gradient(90deg, #5f43e9 1.56%, #2a1c73 100%);
-
-    & svg path {
-      stroke: #a291f2;
-    }
-  }
-
-  &.vault {
-    background: linear-gradient(90deg, #6a6d7a 1.56%, #373942 100%);
-
-    & svg path {
-      stroke: #e5e6eb;
-    }
   }
 
   &.has-large-tag {
