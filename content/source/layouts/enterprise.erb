@@ -1,7 +1,18 @@
 <% wrap_layout :inner do %>
   <% content_for :sidebar do %>
 
+    <%# NOTE: All of the "real" sidebar content is defined in
+    ./_enterprise_content.erb and ./_cloud_content.erb. %>
+
+    <h4><a href="/docs/enterprise/index.html">Terraform Enterprise</a></h4>
+
+    <h5>Deployment and Operation</h5>
+
     <%= partial("layouts/enterprise_content") %>
+
+    <h5>Application Usage</h5>
+
+    <%= partial("layouts/cloud_content") %>
 
     <%= partial("layouts/otherdocs", :locals => { :skip => "Terraform Enterprise" }) %>
 

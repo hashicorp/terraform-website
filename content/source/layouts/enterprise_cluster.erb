@@ -1,7 +1,9 @@
 <% wrap_layout :inner do %>
   <% content_for :sidebar do %>
 
-    <h4><a href="/docs/enterprise/before-installing/cluster-architecture.html">Terraform Enterprise Clusters (Beta)</a></h4>
+    <h4><a href="/docs/enterprise/index.html">Terraform Enterprise</a></h4>
+
+    <h5>Terraform Enterprise Clusters (Beta)</h5>
 
     <ul class="nav docs-sidenav">
 
@@ -29,8 +31,13 @@
 
     </ul>
 
+    <h5>Deployment and Operation</h5>
 
     <%= partial("layouts/enterprise_content") %>
+
+    <h5>Application Usage</h5>
+
+    <%= partial("layouts/cloud_content") %>
 
     <%= partial("layouts/otherdocs", :locals => { :skip => "Terraform Enterprise" }) %>
 
