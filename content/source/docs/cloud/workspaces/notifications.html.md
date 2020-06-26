@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Notifications - Workspaces - Terraform Cloud"
+page_title: "Notifications - Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Run Notifications

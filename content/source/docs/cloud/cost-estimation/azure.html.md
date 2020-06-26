@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Azure - Cost Estimation - Terraform Cloud"
+page_title: "Azure - Cost Estimation - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Supported Azure resources in Terraform Cloud Cost Estimation

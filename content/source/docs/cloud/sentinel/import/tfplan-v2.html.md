@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "tfplan/v2 - Imports - Sentinel - Terraform Cloud"
+page_title: "tfplan/v2 - Imports - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
   The tfplan/v2 import provides access to a Terraform plan.
 ---

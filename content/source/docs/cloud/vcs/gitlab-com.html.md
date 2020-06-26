@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "GitLab.com - VCS Providers - Terraform Cloud"
+page_title: "GitLab.com - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring GitLab.com Access

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Azure DevOps Services - VCS Providers - Terraform Cloud"
+page_title: "Azure DevOps Services - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring Azure DevOps Services Access

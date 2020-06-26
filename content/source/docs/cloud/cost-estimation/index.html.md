@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Overview - Cost Estimation - Terraform Cloud"
+page_title: "Overview - Cost Estimation - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Cost Estimation in Terraform Cloud

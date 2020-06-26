@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Example Policies - Policies - Terraform Cloud"
+page_title: "Example Policies - Policies - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Example Policies

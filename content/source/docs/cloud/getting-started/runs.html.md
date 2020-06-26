@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Running Terraform - Getting Started - Terraform Cloud"
+page_title: "Running Terraform - Getting Started - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Running Terraform in Terraform Cloud

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Overview of Features - Terraform Cloud"
+page_title: "Overview of Features - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Overview of Terraform Cloud Features

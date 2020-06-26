@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "tfconfig/v2 - Imports - Sentinel - Terraform Cloud"
+page_title: "tfconfig/v2 - Imports - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
   The tfconfig/v2 import provides access to a Terraform configuration.
 ---

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Terraform State - Workspaces - Terraform Cloud"
+page_title: "Terraform State - Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Terraform State in Terraform Cloud

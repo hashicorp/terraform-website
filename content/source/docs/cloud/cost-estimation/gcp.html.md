@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "GCP - Cost Estimation - Terraform Cloud"
+page_title: "GCP - Cost Estimation - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Supported GCP resources in Terraform Cloud Cost Estimation

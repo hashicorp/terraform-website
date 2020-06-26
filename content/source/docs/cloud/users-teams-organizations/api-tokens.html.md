@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "API Tokens - Terraform Cloud"
+page_title: "API Tokens - Terraform Cloud and Terraform Enterprise"
 sidebar_current: "docs-cloud-users-teams-organizations-api-tokens"
 ---
 

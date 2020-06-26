@@ -1,6 +1,6 @@
 ---
 layout: cloud
-page_title: "tfrun - Imports - Sentinel - Terraform Cloud"
+page_title: "tfrun - Imports - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
     The `tfrun` import provides access to data associated with a Terraform run.
 ---

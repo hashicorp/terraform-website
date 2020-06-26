@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "GitHub.com (OAuth) - VCS Providers - Terraform Cloud"
+page_title: "GitHub.com (OAuth) - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring GitHub.com Access (OAuth)

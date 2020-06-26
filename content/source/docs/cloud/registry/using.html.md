@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Using Private Modules - Private Module Registry - Terraform Cloud"
+page_title: "Using Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Using Modules from the Terraform Cloud Private Module Registry

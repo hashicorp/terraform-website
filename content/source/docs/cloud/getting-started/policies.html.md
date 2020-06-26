@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Enforcing Policies - Getting Started - Terraform Cloud"
+page_title: "Enforcing Policies - Getting Started - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Enforcing Policies

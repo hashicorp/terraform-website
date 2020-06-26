@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Run Triggers - Workspaces - Terraform Cloud"
+page_title: "Run Triggers - Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Run Triggers

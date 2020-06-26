@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "VCS Connections - Workspaces - Terraform Cloud"
+page_title: "VCS Connections - Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring Workspace VCS Connections

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "IP Ranges - Terraform Cloud"
+page_title: "IP Ranges - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Terraform Cloud IP Ranges

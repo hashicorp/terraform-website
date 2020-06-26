@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "AWS - Cost Estimation - Terraform Cloud"
+page_title: "AWS - Cost Estimation - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Supported AWS resources in Terraform Cloud Cost Estimation

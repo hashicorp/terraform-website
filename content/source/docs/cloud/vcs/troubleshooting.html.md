@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Troubleshooting - VCS Providers - Terraform Cloud"
+page_title: "Troubleshooting - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Troubleshooting VCS Integration in Terraform Cloud

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Migrating State from Multiple Local Workspaces - Terraform Cloud"
+page_title: "Migrating State from Multiple Local Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
 [cli-workspaces]: /docs/state/workspaces.html
