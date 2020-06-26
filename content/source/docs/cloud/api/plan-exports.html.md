@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Plan Exports - API Docs - Terraform Cloud"
+page_title: "Plan Exports - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Plan Exports API

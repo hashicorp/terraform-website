@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "GitHub Enterprise - VCS Providers - Terraform Cloud"
+page_title: "GitHub Enterprise - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring GitHub Enterprise Access

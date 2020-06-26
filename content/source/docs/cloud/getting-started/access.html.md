@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Accessing Terraform Cloud - Getting Started - Terraform Cloud"
+page_title: "Accessing Terraform Cloud - Getting Started - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Accessing Terraform Cloud

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Migrating State from Local Terraform - Terraform Cloud"
+page_title: "Migrating State from Local Terraform - Terraform Cloud and Terraform Enterprise"
 ---
 
 [state]: /docs/state/index.html

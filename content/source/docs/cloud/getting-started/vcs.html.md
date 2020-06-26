@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Configuring VCS - Getting Started - Terraform Cloud"
+page_title: "Configuring VCS - Getting Started - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring Version Control Access

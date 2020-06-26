@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "tfplan - Imports - Sentinel - Terraform Cloud"
+page_title: "tfplan - Imports - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
     The tfplan import provides access to a Terraform plan. A Terraform plan is the file created as a result of `terraform plan` and is the input to `terraform apply`. The plan represents the changes that Terraform needs to make to infrastructure to reach the desired state represented by the configuration.
 ---

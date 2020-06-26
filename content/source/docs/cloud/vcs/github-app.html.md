@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "GitHub.com (GitHub App) - VCS Providers - Terraform Cloud"
+page_title: "GitHub.com (GitHub App) - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 [private module registry]: ../registry/index.html

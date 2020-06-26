@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Free and Paid Plans - Terraform Cloud"
+page_title: "Free and Paid Plans - Terraform Cloud and Terraform Enterprise"
 ---
 
 [owners]: ./users-teams-organizations/teams.html#the-owners-team

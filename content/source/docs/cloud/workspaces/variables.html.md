@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Variables - Workspaces - Terraform Cloud"
+page_title: "Variables - Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
 [variables]: /docs/configuration/variables.html

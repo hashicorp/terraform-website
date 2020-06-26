@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Architectural Details - Terraform Cloud"
+page_title: "Architectural Details - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Architectural Details

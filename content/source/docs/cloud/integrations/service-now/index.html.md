@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Setup Instructions - ServiceNow Service Catalog Integration - Terraform Cloud"
+page_title: "Setup Instructions - ServiceNow Service Catalog Integration - Terraform Cloud and Terraform Enterprise"
 description: |-
   ServiceNow integration to enable your users to order Terraform-built infrastructure from ServiceNow
 ---
