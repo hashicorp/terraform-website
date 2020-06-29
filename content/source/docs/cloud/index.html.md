@@ -9,9 +9,9 @@ description: |-
 
 This is the documentation for Terraform Cloud and Terraform Enterprise.
 
-Terraform Cloud and Terraform Enterprise are different distributions of the same application; this documentation applies to both of them except when we specifically state otherwise.
+Terraform Cloud and Terraform Enterprise are different distributions of the same application; this documentation applies to both of them except when specifically stated otherwise.
 
-For expediency, we usually refer to the application as Terraform Cloud within this documentation.
+For expediency, this documentation refers to the application as Terraform Cloud.
 
 ## About Terraform Cloud and Terraform Enterprise
 
