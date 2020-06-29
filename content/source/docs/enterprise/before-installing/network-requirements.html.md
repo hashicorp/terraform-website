@@ -55,7 +55,7 @@ Online and airgap installs also need egress access to any VCS servers/services t
 When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-integration) is enabled, it uses the respective cloud provider's APIs to get up-to-date pricing info.
 
 * `api.pricing.us-east-1.amazonaws.com`
-* `cloud.google.com`
+* `cloudbilling.googleapis.com`
 * `management.azure.com`
 * `ratecard.azure-api.net`
 
