@@ -40,7 +40,7 @@ Name                             | Type   | Description
 
 -> **Note:** The IP Ranges API does not require authentication
 
--> **Note:** This endpoint supports [If-Modified-Since][] HTTP request header
+-> **Note:** This endpoint supports the [If-Modified-Since][] HTTP request header
 
 `GET /meta/ip-ranges`
 
