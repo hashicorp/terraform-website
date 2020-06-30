@@ -290,3 +290,4 @@ If you have built a client library and would like to add it to this community li
 - [tfc-client](https://github.com/adeo/iwc-tfc-client): Object oriented Python API library.
 - [terraform-enterprise-client](https://github.com/skierkowski/terraform-enterprise-client): Ruby API library and console app
 - [pyterprise](https://github.com/JFryy/terraform-enterprise-api-python-client): A simple Python API client library.
+- [Tfe.NetClient](https://github.com/everis-technology/Tfe.NetClient): .NET Client Library
