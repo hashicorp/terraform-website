@@ -47,7 +47,7 @@ Name                             | Type   | Description
 Status  | Response                                        | Reason
 --------|-------------------------------------------------|----------
 [200][] | `application/json`                              | The request was successful
-[304][] | empty body                                      | The request was successful, IP ranges were not modified since the specified date in `If-Modified-Since` header
+[304][] | empty body                                      | The request was successful; IP ranges were not modified since the specified date in `If-Modified-Since` header
 
 
 ### Sample Request
