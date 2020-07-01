@@ -54,7 +54,11 @@ This change updates the proxy settings for the Terraform Enterprise application 
 
 ### Proxy and Service Discovery Process
 
-Workspaces in Terraform Enterprise can be executed in various methods according to selected workflows and for each selected workflow, it uses **remote backend** to perform [remote operation](https://www.terraform.io/docs/cloud/run/#remote-operations) unless **Execution Mode** of the workspace is set **Local**. Terraform CLI that is executed as part of the **remote operation** inside Terraform Enterprise follows the same standard process to perform [service discovery](https://www.terraform.io/docs/internals/remote-service-discovery.html) where Terraform Enterprise itself is the remote service for Terraform CLI, depends on your infrastructure setup, the fully qualified name of Terraform Enterprise may be required to include into **Proxy ByPass** configuration of the Terraform Enterprise application layer to allow Terraform CLI to communicate to Terraform Enterprise itself, to configure the proxy bypass address of Terraform Enterprise application, navigate to port **8800** under `/console/settings`:
+Unless the execution mode of a workspace is set to "local", Terraform Enterprise performs [remote operations](/docs/cloud/run/index.html#remote-operations), running Terraform in its own worker VMs. 
+
+When running within Terraform Enterprise's worker VMs, Terraform uses [service discovery](/docs/internals/remote-service-discovery.html) to find the Terraform Enterprise service itself. Depending on your infrastructure setup, you may need to tell Terraform Enterprise not to access its own hostname via the proxy, so that Terraform can communicate with the Terraform Enterprise services.
+
+To do this, add Terraform Enterprise's fully qualified hostname to the **Proxy Bypass** setting in Terraform Enterprise's dashboard. The proxy bypass setting can be found on port **8800** on the path `/console/settings`.
 
 ![Terraform Enterprise Proxy Bypass](./assets/tfe-proxy-bypass.png)
 
@@ -62,7 +66,9 @@ Once configuration has been saved, please proceed to restart the application.
 
 To automate this step, the equivalent setting [extra_no_proxy](./automating-the-installer.html#available-settings) can be used.
 
-Additionally, when using CA that is not recognized by Terraform Enterprise **worker image** to configure TLS of the Terraform Enterprise, it is suggested to add the CA into [CA Custom Bundle](certificate-authority-ca-bundle) configuration so that Terraform Enterprise will make the CA available in the worker container that execute Terraform CLI to be able to perform TLS handshake with Terraform Enterprise during service discovery or adding the CA into certificate file of the [custom image](alternative-terraform-worker-image) which is located at `/etc/ssl/certs/ca-certificates.crt` when non-default work image is configured.
+The Terraform CLI performs a TLS handshake with Terraform Enterprise during service discovery, and will need access to the Certificate Authority that Terraform Enterprise uses. 
+
+Either add the CA to the [CA Custom Bundle](#certificate-authority-ca-bundle) configuration so that Terraform Enterprise will make the CA available in the worker container, or, if a [custom worker image](#alternative-terraform-worker-image) is configured, add the CA directly to its certificate file (located at `/etc/ssl/certs/ca-certificates.crt`).
 
 ## TLS Configuration
 
