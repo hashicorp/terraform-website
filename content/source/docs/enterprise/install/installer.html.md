@@ -64,7 +64,7 @@ To do this, add Terraform Enterprise's fully qualified hostname to the **Proxy B
 
 Once configuration has been saved, please proceed to restart the application.
 
-To automate this step, the equivalent setting [extra_no_proxy](./automating-the-installer.html#available-settings) can be used.
+You can use the equivalent setting, [extra_no_proxy](./automating-the-installer.html#available-settings), to automate this step.
 
 The Terraform CLI performs a TLS handshake with Terraform Enterprise during service discovery, and will need access to the Certificate Authority that Terraform Enterprise uses. 
 
