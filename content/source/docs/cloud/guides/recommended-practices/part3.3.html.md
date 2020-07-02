@@ -27,7 +27,7 @@ Get familiar with how Terraform runs work in Terraform Cloud. With Terraform OSS
 
 Terraform Cloud does things differently: a workspace is associated directly with a VCS repo, and you use Terraform Cloud’s UI or API to start and monitor runs. To get familiar with this operating model:
 
-* Read the documentation on how to [perform and configureTerraform runs](../../getting-started/runs.html) in Terraform Cloud.
+* Read the documentation on how to [perform and configure Terraform runs](/docs/cloud/run/index.html) in Terraform Cloud.
 * Create a proof-of-concept workspace, associate it with Terraform code in a VCS repo, set variables as needed, and use Terraform Cloud to perform some Terraform runs with that code.
 
 ## 3. Design Your Organization’s Workspace Structure

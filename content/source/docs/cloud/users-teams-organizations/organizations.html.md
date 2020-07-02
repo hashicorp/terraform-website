@@ -122,7 +122,7 @@ The SSH keys page manages any keys necessary for cloning Git-based module source
 
 -> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-The Cost Estimation page allows for enabling and disabling the [cost estimation](../getting-started/cost-estimation.html) feature for all workspaces.
+The Cost Estimation page allows for enabling and disabling the [cost estimation](../cost-estimation/index.html) feature for all workspaces.
 
 ### Policies
 
