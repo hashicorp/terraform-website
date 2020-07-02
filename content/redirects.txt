@@ -46,7 +46,7 @@
 # REDIRECT PROVIDERS FROM TERRAFORM.IO TO REGISTRY.TERRAFORM.IO
 #
 # Terraform doc redirects from the old terraform.io site to the equivalent provider docs in
-# registry.terraform.io is handled by the dictionaries in the terraform/ directory. The dictionaries 
+# registry.terraform.io is handled by the dictionaries in the terraform/ directory. The dictionaries
 # handle three main cases:
 # - redirect index.html pages to latest/docs
 #   - Examples:
@@ -488,3 +488,15 @@
 
 # This page was originally a workaround for lack of directory filtering for monorepos.
 /docs/cloud/workspaces/repo-structure.html                          /docs/cloud/workspaces/configurations.html
+
+# Move content to learn.hashicorp.com:
+# These redirects are commented out because they require #team-eng-serv to
+# configure Varnish directly, but are preserved in this file to ensure it's a
+# reliable record of known redirects.
+# /docs/cloud/getting-started/index.html                https://learn.hashicorp.com/terraform/cloud-getting-started/signup
+# /docs/cloud/getting-started/access.html               https://learn.hashicorp.com/terraform/cloud-getting-started/signup
+# /docs/cloud/getting-started/vcs.html                  https://learn.hashicorp.com/terraform/cloud-getting-started/create-workspace
+# /docs/cloud/getting-started/workspaces.html           https://learn.hashicorp.com/terraform/cloud-getting-started/create-workspace
+# /docs/cloud/getting-started/runs.html                 https://learn.hashicorp.com/terraform/cloud-getting-started/apply-changes
+# /docs/cloud/getting-started/policies.html             https://learn.hashicorp.com/terraform/cloud-getting-started/enforce-policies
+# /docs/cloud/getting-started/cost-estimation.html      https://learn.hashicorp.com/terraform/cloud-getting-started/cost-estimation
