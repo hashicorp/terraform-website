@@ -44,11 +44,6 @@
 /docs/cloud/api/teams.html
 /docs/cloud/api/variables.html
 /docs/cloud/api/workspaces.html
-/docs/cloud/getting-started/access.html
-/docs/cloud/getting-started/cost-estimation.html
-/docs/cloud/getting-started/index.html
-/docs/cloud/getting-started/runs.html
-/docs/cloud/getting-started/workspaces.html
 /docs/cloud/guides/recommended-practices/index.html
 /docs/cloud/guides/recommended-practices/part1.html
 /docs/cloud/guides/recommended-practices/part3.2.html
