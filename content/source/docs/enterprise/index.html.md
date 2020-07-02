@@ -23,7 +23,7 @@ Before mid-2019, all distributions of Terraform Cloud used to be called Terrafor
 
 The **Deployment and Operation** section of the Terraform Enterprise documentation is for admins and operators who install and maintain their organization's Terraform Enterprise instance. It is not intended for end users of the Terraform Enterprise application.
 
-The **Application Usage** section of the Terraform Enterprise documentation is the same content as the [Terraform Cloud documentation](/docs/cloud/index.html). It is intended for everyone who uses the Terraform Cloud application to provision and manage infrastructure; this includes Terraform Enterprise users, since Terraform Enterprise and Terraform Cloud are the same application.
+The **Application Usage** section of the Terraform Enterprise documentation is intended for application end users. It is the same content as the [Terraform Cloud documentation](/docs/cloud/index.html) because the application is shared between both products. 
 
 For expediency, we usually refer to the application as Terraform Cloud within the application usage documentation.
 
