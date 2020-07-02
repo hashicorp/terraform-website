@@ -38,9 +38,8 @@ the run page, and clicking on the **Download Sentinel mocks** button.
 
 ![sentinel mock generate ui](/assets/images/guides/sentinel/download-mocks.png)
 
-For more information on creating a run, see [Running
-Terraform](/docs/cloud/getting-started/runs.html) in the [Getting
-Started](/docs/cloud/getting-started/index.html) guide.
+For more information on creating a run, see the
+[Terraform Runs and Remote Operations](../run/index.html) section of the docs.
 
 If the button is not visible, then the plan is ineligible for mock generation or
 the user doesn't have the necessary permissions. See [Mock Data
