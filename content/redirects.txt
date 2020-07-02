@@ -51,7 +51,7 @@
 # - redirect /r, /d and /guides (for completeness) to /resource, /data-sources, /guides respectively, without the .html extension
 #   - Examples:
 #       - /docs/providers/random/r/id.html to https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/id
-#       - /docs/providers/terraform/d/remote_state.html to https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state
+#       - /docs/providers/aws/d/instance.html to https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instance
 # - redirect any catch-all external links that did not match any other rules or special cases
 #   - Examples:
 #     - /docs/providers/null/data_source.html to https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source
