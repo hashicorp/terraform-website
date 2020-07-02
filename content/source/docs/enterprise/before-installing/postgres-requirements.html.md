@@ -10,7 +10,7 @@ page_title: "PostgreSQL Requirements - Before Installing - Terraform Enterprise"
 To use an external PostgreSQL database with Terraform Enterprise, the following
 requirements must be met:
 
-* A PostgreSQL server or PostgreSQL-compatible server such as Amazon Aurora PostgreSQL must be used.
+* A PostgreSQL server such as Amazon RDS for PostgreSQL or a PostgreSQL-compatible server such as Amazon Aurora PostgreSQL must be used.
 * The PostgreSQL server version must be one of the following:
   * 9.4, 9.5, 9.6, 10.x, 11.x.
 * A PostgreSQL user must be created with the following permissions on the database:
