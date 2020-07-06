@@ -558,3 +558,11 @@
 	path = ext/providers/azuredevops
 	url = https://github.com/terraform-providers/terraform-provider-azuredevops
 	branch = stable-website
+[submodule "ext/providers/rubrik"]
+	path = ext/providers/rubrik
+	url = https://github.com/terraform-providers/terraform-provider-rubrik
+	branch = stable-website
+[submodule "ext/providers/prismacloud"]
+	path = ext/providers/prismacloud
+	url = https://github.com/terraform-providers/terraform-provider-prismacloud
+	branch = stable-website
