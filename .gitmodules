@@ -6,10 +6,6 @@
 	path = ext/providers/alicloud
 	url = https://github.com/terraform-providers/terraform-provider-alicloud
 	branch = stable-website
-[submodule "ext/providers/archive"]
-	path = ext/providers/archive
-	url = https://github.com/terraform-providers/terraform-provider-archive
-	branch = stable-website
 [submodule "ext/providers/arukas"]
 	path = ext/providers/arukas
 	url = https://github.com/terraform-providers/terraform-provider-arukas
@@ -70,10 +66,6 @@
 	path = ext/providers/dme
 	url = https://github.com/terraform-providers/terraform-provider-dme
 	branch = stable-website
-[submodule "ext/providers/dns"]
-	path = ext/providers/dns
-	url = https://github.com/terraform-providers/terraform-provider-dns
-	branch = stable-website
 [submodule "ext/providers/dnsimple"]
 	path = ext/providers/dnsimple
 	url = https://github.com/terraform-providers/terraform-provider-dnsimple
@@ -85,10 +77,6 @@
 [submodule "ext/providers/dyn"]
 	path = ext/providers/dyn
 	url = https://github.com/terraform-providers/terraform-provider-dyn
-	branch = stable-website
-[submodule "ext/providers/external"]
-	path = ext/providers/external
-	url = https://github.com/terraform-providers/terraform-provider-external
 	branch = stable-website
 [submodule "ext/providers/fastly"]
 	path = ext/providers/fastly
@@ -114,10 +102,6 @@
 	path = ext/providers/heroku
 	url = https://github.com/terraform-providers/terraform-provider-heroku
 	branch = stable-website
-[submodule "ext/providers/http"]
-	path = ext/providers/http
-	url = https://github.com/terraform-providers/terraform-provider-http
-	branch = stable-website
 [submodule "ext/providers/icinga2"]
 	path = ext/providers/icinga2
 	url = https://github.com/terraform-providers/terraform-provider-icinga2
@@ -137,10 +121,6 @@
 [submodule "ext/providers/librato"]
 	path = ext/providers/librato
 	url = https://github.com/terraform-providers/terraform-provider-librato
-	branch = stable-website
-[submodule "ext/providers/local"]
-	path = ext/providers/local
-	url = https://github.com/terraform-providers/terraform-provider-local
 	branch = stable-website
 [submodule "ext/providers/logentries"]
 	path = ext/providers/logentries
@@ -233,14 +213,6 @@
 [submodule "ext/providers/statuscake"]
 	path = ext/providers/statuscake
 	url = https://github.com/terraform-providers/terraform-provider-statuscake
-	branch = stable-website
-[submodule "ext/providers/template"]
-	path = ext/providers/template
-	url = https://github.com/terraform-providers/terraform-provider-template
-	branch = stable-website
-[submodule "ext/providers/tls"]
-	path = ext/providers/tls
-	url = https://github.com/terraform-providers/terraform-provider-tls
 	branch = stable-website
 [submodule "ext/providers/triton"]
 	path = ext/providers/triton
@@ -517,14 +489,6 @@
 [submodule "ext/providers/turbot"]
 	path = ext/providers/turbot
 	url = https://github.com/terraform-providers/terraform-provider-turbot
-	branch = stable-website
-[submodule "ext/providers/time"]
-	path = ext/providers/time
-	url = https://github.com/hashicorp/terraform-provider-time
-	branch = stable-website
-[submodule "ext/providers/cloudinit"]
-	path = ext/providers/cloudinit
-	url = https://github.com/hashicorp/terraform-provider-cloudinit
 	branch = stable-website
 [submodule "ext/providers/ksyun"]
 	path = ext/providers/ksyun
