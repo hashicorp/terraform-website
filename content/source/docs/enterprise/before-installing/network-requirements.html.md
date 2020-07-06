@@ -56,7 +56,8 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
 
 * `api.pricing.us-east-1.amazonaws.com`
 * `cloud.google.com`
-* `azure.microsoft.com`
+* `management.azure.com`
+* `ratecard.azure-api.net`
 
 ## Other Configuration
 
