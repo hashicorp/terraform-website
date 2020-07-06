@@ -11,7 +11,7 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 ### Source - User/Client/VCS
 
-* **443**: To access the Terraform Enterprise application via HTTPS
+* **443**: To access the Terraform Enterprise application via HTTPS 
 
 ### Source - Administrators
 
