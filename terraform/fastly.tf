@@ -45,9 +45,21 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   service_id    = local.static_sites_service_id # we do not manage this service in Terraform at this time
   dictionary_id = local.tf_provider_namespaces_dictionary_id
   items = {
+    # Partners
     "newrelic" : "newrelic/newrelic"
+
+    # HashiCorp providers
+    "archive" : "hashicorp/archive"
+    "cloudinit" : "hashicorp/cloudinit"
+    "dns" : "hashicorp/dns"
+    "external" : "hashicorp/external"
+    "http" : "hashicorp/http"
+    "local" : "hashicorp/local"
     "null" : "hashicorp/null"
     "random" : "hashicorp/random"
+    "template" : "hashicorp/template"
+    "time" : "hashicorp/time"
+    "tls" : "hashicorp/tls"
   }
 
   # prevent destroying this dictionary to cause redirects to break
