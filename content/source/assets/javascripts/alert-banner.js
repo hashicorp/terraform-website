@@ -3,7 +3,7 @@ document.addEventListener('turbolinks:load', function () {
   var banner = qs('.g-alert-banner')
   var closeButton = qs('.g-alert-banner .close')
   // if cookie is set, don't show the component
-  if (getCookie(`banner_terraform_io`) === '1') {
+  if (getCookie('banner_terraform_io') === '1') {
     banner.classList.remove('show')
     return
   }
@@ -20,8 +20,8 @@ document.addEventListener('turbolinks:load', function () {
 function onClose(banner) {
   // animate closed by setting height so
   // it's not 'auto' and then set to zero
-  banner.style.height = `${banner.scrollHeight}px`
-  window.setTimeout(() => {
+  banner.style.height = banner.scrollHeight + 'px'
+  window.setTimeout(function() {
     banner.style.height = '0'
   }, 1)
 
