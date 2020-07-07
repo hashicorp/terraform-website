@@ -58,11 +58,10 @@ document.addEventListener("turbolinks:load", function() {
       $$videos[index].play();
 
       // sync playback bars to video.currentTime
-      setInterval(() => {
+      setInterval(function() {
         if (!isNaN($$videos[index].duration)) {
-          $$videoBars[index].style.width = `${($$videos[index].currentTime /
-            $$videos[index].duration) *
-            100}%`;
+          $$videoBars[index].style.width = ($$videos[index].currentTime /
+            $$videos[index].duration) * 100 + '%';
         }
       }, 200);
 
