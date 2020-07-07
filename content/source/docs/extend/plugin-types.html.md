@@ -11,7 +11,7 @@ description: |-
 
 Terraform is logically split into two main parts: Terraform Core and Terraform
 Plugins. Each plugin exposes an implementation for a specific service, such as
-the AWS provider or the [cloud-init provider](/docs/providers/cloudinit/).
+the [AWS provider](/docs/providers/aws/) or the [cloud-init provider](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs).
 Terraform Plugins are written in Go and are executable binaries executed as a separate 
 process and communicate with the main Terraform binary over an RPC interface.
 The network communication and RPC is handled automatically by higher-level Terraform

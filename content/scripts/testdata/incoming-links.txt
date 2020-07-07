@@ -248,8 +248,6 @@
 /docs/providers/alicloud/r/slb.html
 /docs/providers/alicloud/r/vpc.html
 /docs/providers/alicloud/r/vswitch.html
-/docs/providers/archive/d/archive_file.html
-/docs/providers/archive/index.html
 /docs/providers/aviatrix/index.html
 /docs/providers/aws/d/acm_certificate.html
 /docs/providers/aws/d/ami_ids.html
@@ -660,8 +658,6 @@
 /docs/providers/datadog/r/monitor.html
 /docs/providers/datadog/r/timeboard.html
 /docs/providers/dme/index.html
-/docs/providers/dns/d/dns_txt_record_set.html
-/docs/providers/dns/index.html
 /docs/providers/dnsimple/index.html
 /docs/providers/do/d/kubernetes_cluster.html
 /docs/providers/do/index.html
@@ -682,8 +678,6 @@
 /docs/providers/dome9/index.html
 /docs/providers/dyn/index.html
 /docs/providers/exoscale/index.html
-/docs/providers/external/data_source.html
-/docs/providers/external/index.html
 /docs/providers/fastly/index.html
 /docs/providers/fastly/r/service_v1.html
 /docs/providers/flexibleengine/index.html
@@ -790,8 +784,6 @@
 /docs/providers/heroku/index.html
 /docs/providers/heroku/r/app.html
 /docs/providers/heroku/r/build.html
-/docs/providers/http/data_source.html
-/docs/providers/http/index.html
 /docs/providers/huaweicloud/index.html
 /docs/providers/icinga2/index.html
 /docs/providers/ignition/d/filesystem.html
@@ -816,9 +808,6 @@
 /docs/providers/kubernetes/r/storage_class.html
 /docs/providers/linode/index.html
 /docs/providers/linode/r/instance.html
-/docs/providers/local/d/file.html
-/docs/providers/local/index.html
-/docs/providers/local/r/file.html
 /docs/providers/logicmonitor/index.html
 /docs/providers/mailgun/index.html
 /docs/providers/mongodbatlas/index.html
@@ -878,18 +867,10 @@
 /docs/providers/softlayer/r/virtual_guest.html
 /docs/providers/spotinst/index.html
 /docs/providers/statuscake/index.html
-/docs/providers/template/d/cloudinit_config.html
-/docs/providers/template/d/file.html
-/docs/providers/template/index.html
-/docs/providers/template/r/dir.html
 /docs/providers/tencentcloud/index.html
 /docs/providers/terraform/d/remote_state.html
 /docs/providers/terraform/index.html
 /docs/providers/tfe/index.html
-/docs/providers/tls/index.html
-/docs/providers/tls/r/cert_request.html
-/docs/providers/tls/r/private_key.html
-/docs/providers/tls/r/self_signed_cert.html
 /docs/providers/triton/index.html
 /docs/providers/triton/r/triton_firewall_rule.html
 /docs/providers/triton/r/triton_key.html
