@@ -33,7 +33,7 @@ Policy sets are managed at an organization level; viewing and modifying them req
 Enforcement levels in Sentinel are used for defining behavior when policies fail to evaluate successfully. Sentinel provides three enforcement modes:
 
 * `hard-mandatory` requires that the policy passes. If a policy fails, the run is halted and may not be applied until the failure is resolved.
-* `soft-mandatory` is much like `hard-mandatory`, but allows an administrator to override policy failures on a case-by-case basis.
+* `soft-mandatory` is much like `hard-mandatory`, but allows any user with the [Manage Policies](../users-teams-organizations/permissions.html#manage-policies) permission to override policy failures on a case-by-case basis.
 * `advisory` will never interrupt the run, and instead will only surface policy failures as informational to the user.
 
 ## Constructing a policy set
