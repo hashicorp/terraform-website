@@ -35,6 +35,10 @@ import "decimal"
 
 delta_monthly_cost = decimal.new(tfrun.cost_estimate.delta_monthly_cost)
 
+if delta_monthly_cost.greater_than(100) {
+    print("This policy prevents a user from increasing their spending by more than $100 per month in a single run without a warning.")
+}
+
 main = rule {
 	delta_monthly_cost.less_than(100)
 }
