@@ -10,6 +10,7 @@ seriously. This table lists which parts of the Terraform Cloud and Terraform Ent
 
 
 ### Terraform Cloud and Enterprise
+
 | Object                               | Storage       | Encrypted                             |
 |:-------------------------------------|:--------------|:--------------------------------------|
 | Ingressed VCS Data                   | Blob Storage  | Vault Transit Encryption              |
