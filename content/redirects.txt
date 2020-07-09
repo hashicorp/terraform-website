@@ -392,6 +392,7 @@
 /docs/enterprise/run/cli.html                                       /docs/cloud/run/cli.html
 /docs/enterprise/run/ui.html                                        /docs/cloud/run/ui.html
 /docs/enterprise/run/states.html                                    /docs/cloud/run/states.html
+/docs/enterprise/system-overview/data-security.html                 /docs/cloud/architectural-details/data-security.html
 
 /docs/enterprise/private                                            /docs/enterprise
 /docs/enterprise/private/                                           /docs/enterprise/
@@ -410,7 +411,7 @@
 /docs/enterprise/private/capacity.html                              /docs/enterprise/system-overview/capacity.html
 /docs/enterprise/private/centos-install-guide.html                  /docs/enterprise/before-installing/centos-requirements.html
 /docs/enterprise/private/config.html                                /docs/enterprise/install/config.html
-/docs/enterprise/private/data-security.html                         /docs/enterprise/system-overview/data-security.html
+/docs/enterprise/private/data-security.html                         /docs/cloud/architectural-details/data-security.html
 /docs/enterprise/private/diagnostics.html                           /docs/enterprise/support/index.html
 /docs/enterprise/private/encryption-password                        /docs/enterprise/install/encryption-password.html
 /docs/enterprise/private/faq.html                                   /docs/enterprise/index.html

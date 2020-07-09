@@ -1,12 +1,15 @@
 ---
-layout: "enterprise"
-page_title: "Data Security - System Overview - Terraform Enterprise"
+layout: "cloud"
+page_title: "Data Security - Architectural Details - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Data Security
 
-Terraform Enterprise takes the security of the data it manages
-seriously. This table lists which parts of the Terraform Enterprise app can contain sensitive data, what storage is used, and what encryption is used.
+Terraform Cloud takes the security of the data it manages
+seriously. This table lists which parts of the Terraform Cloud and Terraform Enterprise app can contain sensitive data, what storage is used, and what encryption is used.
+
+
+### Terraform Cloud and Enterprise
 
 | Object                               | Storage       | Encrypted                             |
 |:-------------------------------------|:--------------|:--------------------------------------|
@@ -22,6 +25,11 @@ seriously. This table lists which parts of the Terraform Enterprise app can cont
 | User/Team/Organization Tokens        | PostgreSQL    | HMAC SHA512                           |
 | OAuth Client ID + Secret             | PostgreSQL    | Vault Transit Encryption              |
 | OAuth User Tokens                    | PostgreSQL    | Vault Transit Encryption              |
+
+### Terraform Enterprise Specific
+
+| Object                               | Storage       | Encrypted                             |
+|:-------------------------------------|:--------------|:--------------------------------------|
 | Twilio Account Configuration         | PostgreSQL    | Vault Transit Encryption              |
 | SMTP Configuration                   | PostgreSQL    | Vault Transit Encryption              |
 | SAML Configuration                   | PostgreSQL    | Vault Transit Encryption              |

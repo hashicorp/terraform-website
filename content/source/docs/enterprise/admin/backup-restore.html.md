@@ -23,7 +23,7 @@ Please note the following when using the backup and restore API:
 
 See also:
 
-- [Data Security](../system-overview/data-security.html) for details about the contents of Terraform Enterprise's blob storage and PostgreSQL database.
+- [Data Security](../../cloud/architectural-details/data-security.html) for details about the contents of Terraform Enterprise's blob storage and PostgreSQL database.
 
 ### Authentication
 
