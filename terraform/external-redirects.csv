@@ -28,3 +28,4 @@ newrelic - v1 docs,/docs/providers/newrelic/r/v1/workload.html,https://registry.
 newrelic - v1 docs,/docs/providers/newrelic/v1/index.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/
 null - malformed,/docs/providers/null/data_source.html,https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source
 null - malformed,/docs/providers/null/resource.html,https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource
+external - malformed,/docs/providers/external/data_source.html,https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/data_source
