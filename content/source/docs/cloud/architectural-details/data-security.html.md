@@ -27,6 +27,7 @@ seriously. This table lists which parts of the Terraform Cloud and Terraform Ent
 | Vault Unseal Key                     | PostgreSQL    | ChaCha20+Poly1305                     |
 
 ### Terraform Enterprise Specific
+
 | Object                               | Storage       | Encrypted                             |
 |:-------------------------------------|:--------------|:--------------------------------------|
 | Twilio Account Configuration         | PostgreSQL    | Vault Transit Encryption              |
