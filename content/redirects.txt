@@ -500,3 +500,70 @@
 # /docs/cloud/getting-started/runs.html                 https://learn.hashicorp.com/terraform/cloud-getting-started/apply-changes
 # /docs/cloud/getting-started/policies.html             https://learn.hashicorp.com/terraform/cloud-getting-started/enforce-policies
 # /docs/cloud/getting-started/cost-estimation.html      https://learn.hashicorp.com/terraform/cloud-getting-started/cost-estimation
+
+# The great Google data source rename
+# cf. commit 373c12f992c02fd3c96ec00a3dabc55143b74f8b in terraform-providers/terraform-provider-google-beta
+/docs/providers/google/d/google_active_folder.html                              /docs/providers/google/d/active_folder.html
+/docs/providers/google/d/google_bigquery_default_service_account.html           /docs/providers/google/d/bigquery_default_service_account.html
+/docs/providers/google/d/google_billing_account.html                            /docs/providers/google/d/billing_account.html
+/docs/providers/google/d/datasource_client_config.html                          /docs/providers/google/d/client_config.html
+/docs/providers/google/d/datasource_google_client_openid_userinfo.html          /docs/providers/google/d/client_openid_userinfo.html
+/docs/providers/google/d/datasource_cloudfunctions_function.html                /docs/providers/google/d/cloudfunctions_function.html
+/docs/providers/google/d/datasource_google_composer_image_versions.html         /docs/providers/google/d/composer_image_versions.html
+/docs/providers/google/d/datasource_compute_address.html                        /docs/providers/google/d/compute_address.html
+/docs/providers/google/d/datasource_google_compute_backend_bucket.html          /docs/providers/google/d/compute_backend_bucket.html
+/docs/providers/google/d/datasource_google_compute_backend_service.html         /docs/providers/google/d/compute_backend_service.html
+/docs/providers/google/d/google_compute_default_service_account.html            /docs/providers/google/d/compute_default_service_account.html
+/docs/providers/google/d/datasource_compute_forwarding_rule.html                /docs/providers/google/d/compute_forwarding_rule.html
+/docs/providers/google/d/datasource_compute_global_address.html                 /docs/providers/google/d/compute_global_address.html
+/docs/providers/google/d/datasource_compute_image.html                          /docs/providers/google/d/compute_image.html
+/docs/providers/google/d/datasource_compute_instance.html                       /docs/providers/google/d/compute_instance.html
+/docs/providers/google/d/google_compute_instance_group.html                     /docs/providers/google/d/compute_instance_group.html
+/docs/providers/google/d/datasource_compute_instance_serial_port.html           /docs/providers/google/d/compute_instance_serial_port.html
+/docs/providers/google/d/datasource_compute_lb_ip_ranges.html                   /docs/providers/google/d/compute_lb_ip_ranges.html
+/docs/providers/google/d/datasource_compute_network.html                        /docs/providers/google/d/compute_network.html
+/docs/providers/google/d/datasource_google_compute_network_endpoint_group.html  /docs/providers/google/d/compute_network_endpoint_group.html
+/docs/providers/google/d/google_compute_node_types.html                         /docs/providers/google/d/compute_node_types.html
+/docs/providers/google/d/datasource_compute_region_instance_group.html          /docs/providers/google/d/compute_region_instance_group.html
+/docs/providers/google/d/google_compute_regions.html                            /docs/providers/google/d/compute_regions.html
+/docs/providers/google/d/google_compute_resource_policy.html                    /docs/providers/google/d/compute_resource_policy.html
+/docs/providers/google/d/datasource_compute_router.html                         /docs/providers/google/d/compute_router.html
+/docs/providers/google/d/datasource_compute_ssl_certificate.html                /docs/providers/google/d/compute_ssl_certificate.html
+/docs/providers/google/d/datasource_compute_ssl_policy.html                     /docs/providers/google/d/compute_ssl_policy.html
+/docs/providers/google/d/datasource_compute_subnetwork.html                     /docs/providers/google/d/compute_subnetwork.html
+/docs/providers/google/d/datasource_compute_vpn_gateway.html                    /docs/providers/google/d/compute_vpn_gateway.html
+/docs/providers/google/d/google_compute_zones.html                              /docs/providers/google/d/compute_zones.html
+/docs/providers/google/d/google_container_cluster.html                          /docs/providers/google/d/container_cluster.html
+/docs/providers/google/d/google_container_engine_versions.html                  /docs/providers/google/d/container_engine_versions.html
+/docs/providers/google/d/google_container_registry_image.html                   /docs/providers/google/d/container_registry_image.html
+/docs/providers/google/d/google_container_registry_repository.html              /docs/providers/google/d/container_registry_repository.html
+/docs/providers/google/d/datasource_dns_keys.html                               /docs/providers/google/d/dns_keys.html
+/docs/providers/google/d/datasource_firebase_web_app.html                       /docs/providers/google/d/firebase_web_app.html
+/docs/providers/google/d/datasource_firebase_web_app_config.html                /docs/providers/google/d/firebase_web_app_config.html
+/docs/providers/google/d/google_folder.html                                     /docs/providers/google/d/folder.html
+/docs/providers/google/d/datasource_google_folder_organization_policy.html      /docs/providers/google/d/folder_organization_policy.html
+/docs/providers/google/d/google_iam_policy.html                                 /docs/providers/google/d/iam_policy.html
+/docs/providers/google/d/datasource_google_iam_role.html                        /docs/providers/google/d/iam_role.html
+/docs/providers/google/d/datasource_iam_testable_permissions.html               /docs/providers/google/d/iam_testable_permissions.html
+/docs/providers/google/d/google_kms_crypto_key.html                             /docs/providers/google/d/kms_crypto_key.html
+/docs/providers/google/d/google_kms_crypto_key_version.html                     /docs/providers/google/d/kms_crypto_key_version.html
+/docs/providers/google/d/google_kms_key_ring.html                               /docs/providers/google/d/kms_key_ring.html
+/docs/providers/google/d/google_kms_secret.html                                 /docs/providers/google/d/kms_secret.html
+/docs/providers/google/d/google_kms_secret_ciphertext.html                      /docs/providers/google/d/kms_secret_ciphertext.html
+/docs/providers/google/d/datasource_monitoring_app_engine_service.html          /docs/providers/google/d/monitoring_app_engine_service.html
+/docs/providers/google/d/datasource_monitoring_notification_channel.html        /docs/providers/google/d/monitoring_notification_channel.html
+/docs/providers/google/d/datasource_google_monitoring_uptime_check_ips.html     /docs/providers/google/d/monitoring_uptime_check_ips.html
+/docs/providers/google/d/datasource_google_netblock_ip_ranges.html              /docs/providers/google/d/netblock_ip_ranges.html
+/docs/providers/google/d/google_organization.html                               /docs/providers/google/d/organization.html
+/docs/providers/google/d/google_project.html                                    /docs/providers/google/d/project.html
+/docs/providers/google/d/datasource_google_project_organization_policy.html     /docs/providers/google/d/project_organization_policy.html
+/docs/providers/google/d/google_projects.html                                   /docs/providers/google/d/projects.html
+/docs/providers/google/d/datasource_google_redis_instance.html                  /docs/providers/google/d/redis_instance.html
+/docs/providers/google/d/datasource_google_secret_manager_secret_version.html   /docs/providers/google/d/secret_manager_secret_version.html
+/docs/providers/google/d/datasource_google_service_account.html                 /docs/providers/google/d/service_account.html
+/docs/providers/google/d/datasource_google_service_account_access_token.html    /docs/providers/google/d/service_account_access_token.html
+/docs/providers/google/d/datasource_google_service_account_key.html             /docs/providers/google/d/service_account_key.html
+/docs/providers/google/d/datasource_google_sql_ca_certs.html                    /docs/providers/google/d/sql_ca_certs.html
+/docs/providers/google/d/google_storage_project_service_account.html            /docs/providers/google/d/storage_project_service_account.html
+/docs/providers/google/d/google_storage_transfer_project_service_account.html   /docs/providers/google/d/storage_transfer_project_service_account.html
+/docs/providers/google/d/datasource_tpu_tensorflow_versions.html                /docs/providers/google/d/tpu_tensorflow_versions.html
