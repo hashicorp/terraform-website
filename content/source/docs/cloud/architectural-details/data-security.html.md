@@ -25,7 +25,6 @@ seriously. This table lists which parts of the Terraform Cloud and Terraform Ent
 | User/Team/Organization Tokens        | PostgreSQL    | HMAC SHA512                           |
 | OAuth Client ID + Secret             | PostgreSQL    | Vault Transit Encryption              |
 | OAuth User Tokens                    | PostgreSQL    | Vault Transit Encryption              |
-| Vault Unseal Key                     | PostgreSQL    | ChaCha20+Poly1305                     |
 
 ### Terraform Enterprise Specific
 
@@ -34,6 +33,7 @@ seriously. This table lists which parts of the Terraform Cloud and Terraform Ent
 | Twilio Account Configuration         | PostgreSQL    | Vault Transit Encryption              |
 | SMTP Configuration                   | PostgreSQL    | Vault Transit Encryption              |
 | SAML Configuration                   | PostgreSQL    | Vault Transit Encryption              |
+| Vault Unseal Key                     | PostgreSQL    | ChaCha20+Poly1305                     |
 
 ## Vault Transit Encryption
 
