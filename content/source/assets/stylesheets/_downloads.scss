@@ -12,6 +12,7 @@ body.layout-downloads {
         border-bottom: 1px solid #b2b2b2;
         display: flex;
         padding: 15px;
+        flex-wrap: wrap;
 
         .details {
           padding-left: 20px;
@@ -49,6 +50,42 @@ body.layout-downloads {
         .os-name {
           font-size: 40px;
           margin-bottom: -3px;
+        }
+
+        .learn-cta {
+          opacity: 0;
+          display: flex;
+          align-items: center;
+          padding: 8px 16px;
+          background: $terraform-l3;
+          border-radius: 2px;
+          flex-basis: 100%;
+          margin-top: 2rem;
+          transition: opacity 0.5s ease-in-out;
+
+          &.show {
+            display: flex !important;
+            opacity: 1;
+          }
+
+          @media (min-width: 1200px) {
+            margin-top: 0;
+            margin-left: auto;
+            flex-basis: 490px;
+          }
+
+          svg {
+            margin-right: 10px;
+          }
+
+          p {
+            margin: 0;
+            color: $terraform;
+          }
+
+          a {
+            text-decoration: underline;
+          }
         }
       }
 

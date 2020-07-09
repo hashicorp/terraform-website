@@ -207,4 +207,22 @@ document.addEventListener("turbolinks:load", function() {
             quickNav.removeClass('active');
         });
     }
+
+    // Downloads CTA
+    var $downloadLinks = $("section.downloads .details a");
+    var $learnCtas = $("section.downloads .learn-cta");
+    $downloadLinks.on("click", function () {
+        var $learnCta = $(this).parents(".download").find(".learn-cta");
+
+        // Terminate early if user is downloading same OS different arch
+        if ($learnCta.hasClass("show")) return;
+
+        // When downloading first first time or for an additional OS
+        $learnCtas.each(function () {
+        $(this).removeClass("show");
+        });
+
+        $learnCta.addClass("show");
+    });
+
 });
