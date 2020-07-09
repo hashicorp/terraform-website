@@ -39,7 +39,9 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
     - **Name Format** (drop-down): Basic
     - **Value:** An [Okta expression](https://developer.okta.com/reference/okta_expression_language/) that will evaluate to a boolean: `true` for every user who should have site admin permissions, but `false` for any users who should **not** have site admin permissions. The exact expression depends on the user properties you use to manage admin permissions.
 7. Preview the SAML response and make sure it matches your expectations.
-8. Finish configuring the SAML app in Okta, then copy the provided endpoint URLs and certificate to your Terraform Enterprise SAML settings at `https://<TFE_HOSTNAME>/app/admin/saml`. TFE requires a single sign-on URL, a single log-out URL, and a PEM (base64) encoded X.509 certificate.
+8. Finish configuring the SAML app in Okta, then copy the provided endpoint URLs and certificate to your Terraform Enterprise SAML settings at `https://<TFE_HOSTNAME>/app/admin/saml` (example below). TFE requires a single sign-on URL, a single log-out URL, and a PEM (base64) encoded X.509 certificate.
+      ![Screenshot: TFE "Identity Provider Configuration" page for SAML (1 of 2), with populated example data.](./images/sso-okta-screen1.png)
+      ![Screenshot: TFE "Identity Provider Configuration" page for SAML (2 of 2), with populated example data.](./images/sso-okta-screen2.png)
 
 [attribute]: ./attributes.html
 [login_url]: ./login.html
