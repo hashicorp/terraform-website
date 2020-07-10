@@ -11,6 +11,8 @@ page_title: "Teams - Terraform Cloud and Terraform Enterprise"
 
 -> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
+> For a hands-on tutorial, try the [Manage Permissions in Terraform Cloud](https://learn.hashicorp.com/terraform/tfc/tfc_permissions?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
+
 Teams are groups of Terraform Cloud [users][] within an [organization][organizations]. To delegate provisioning work, the organization can grant workspace permissions to specific teams.
 
 Teams can only have permissions on workspaces within their organization, although any user in a team can belong to teams in other organizations.
