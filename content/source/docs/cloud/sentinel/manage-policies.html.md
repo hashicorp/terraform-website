@@ -7,6 +7,8 @@ page_title: "Managing Sentinel Policies - Sentinel - Terraform Cloud and Terrafo
 
 -> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
+> For a hands-on tutorial, try the [Enforce Policy with Sentinel](https://learn.hashicorp.com/terraform/sentinel/sentinel-intro?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
+
 Sentinel Policies are rules which are enforced on Terraform runs to validate that the plan and corresponding resources are in compliance with company policies.
 
 -> **API:** See the [Policy Sets API](../api/policy-sets.html).<br/>
