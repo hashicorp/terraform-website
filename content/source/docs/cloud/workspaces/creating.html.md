@@ -5,6 +5,8 @@ page_title: "Creating Workspaces - Workspaces - Terraform Cloud and Terraform En
 
 # Creating Workspaces
 
+> For a hands-on introduction, try the [Get Started - Terraform Cloud guide](https://learn.hashicorp.com/terraform/cloud-getting-started/signup) on HashiCorp Learn.
+
 Workspaces organize infrastructure into meaningful groups. Create new workspaces whenever you need to manage a new collection of infrastructure resources.
 
 Each new workspace needs a unique name, and needs to know where its Terraform configuration will come from. Most commonly, the configuration comes from a connected version control repository. If you choose not to connect a repository, you'll need to upload configuration versions for the workspace using Terraform CLI or the API.

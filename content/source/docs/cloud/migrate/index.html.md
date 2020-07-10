@@ -15,6 +15,8 @@ page_title: "Migrating State from Local Terraform - Terraform Cloud and Terrafor
 
 # Migrating State from Local Terraform
 
+> For a hands-on tutorial, try the [Migrate State to Terraform Cloud](https://learn.hashicorp.com/terraform/state/tfc_migration?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
+
 If you already use Terraform to manage infrastructure, you're probably managing some resources that you want to transfer to Terraform Cloud. By migrating your Terraform [state][] to Terraform Cloud, you can continue managing that infrastructure without de-provisioning anything.
 
 These reference docs describe the process for migrating state. To practice using a hands-on, step-by-step example follow the [HashiCorp Learn guide](https://learn.hashicorp.com/terraform/tfc/tfc_migration?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
