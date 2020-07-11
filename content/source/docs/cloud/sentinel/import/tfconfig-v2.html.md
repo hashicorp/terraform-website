@@ -222,7 +222,7 @@ There are two major parts to an expression representation:
   representation](/docs/internals/json-format.html#expression-representation)
   section of the JSON output format documentation.
 
-So to, for example, determine if an output is working off of a particular
+For example, to determine if an output is working based on a particular
 resource value, one could do:
 
 ```

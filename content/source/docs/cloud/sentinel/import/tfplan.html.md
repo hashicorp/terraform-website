@@ -346,7 +346,7 @@ Some examples of multi-level access are below:
   these elements must be accessed using square-bracket map notation (so `[0]`,
   `[1]`, `[2]`, and so on) instead of dotted notation.
 * To fetch all `aws_instance` resources within the root module, you can specify
-  `tfplan.resources.aws_instance`. This would be indexed off of the names of
+  `tfplan.resources.aws_instance`. This would be indexed from the names of
   each resource (`foo`, `bar`, and so on), with each of those maps containing
   instances indexed by resource count index as per above.
 * To fetch all resources within the root module, irrespective of type, use
