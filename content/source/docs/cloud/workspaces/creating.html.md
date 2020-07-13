@@ -5,7 +5,7 @@ page_title: "Creating Workspaces - Workspaces - Terraform Cloud and Terraform En
 
 # Creating Workspaces
 
-> For a hands-on introduction, try the [Get Started - Terraform Cloud guide](https://learn.hashicorp.com/terraform/cloud-getting-started/signup) on HashiCorp Learn.
+> For a hands-on introduction, try the [Get Started - Terraform Cloud](https://learn.hashicorp.com/terraform/cloud-getting-started/signup) guide on HashiCorp Learn.
 
 Workspaces organize infrastructure into meaningful groups. Create new workspaces whenever you need to manage a new collection of infrastructure resources.
 
