@@ -87,6 +87,13 @@ apt-get install -y jq
 
 curl https://install.terraform.io/ptfe/stable | bash -s fast-timeouts
 
+# Wait for replicated to start before proceeding
+until replicatedctl system status | grep -q -e '"Replicated": "ready",i' -e '"Retraced": "ready"'; do :
+  sleep 1;
+  echo "Replicated is not yet ready";
+done;
+echo 'Replicated is ready.'
+
 # This retrieves a list of all the snapshots currently available.
 replicatedctl snapshot ls $access -o json > /tmp/snapshots.json
 
@@ -141,6 +148,13 @@ apt-get install -y jq
 
 curl https://install.terraform.io/ptfe/stable | bash -s fast-timeouts
 
+# Wait for replicated to start before proceeding
+until replicatedctl system status | grep -q -e '"Replicated": "ready",i' -e '"Retraced": "ready"'; do :
+  sleep 1;
+  echo "Replicated is not yet ready";
+done;
+echo 'Replicated is ready.'
+
 # This retrieves a list of all the snapshots currently available.
 replicatedctl snapshot ls $access -o json > /tmp/snapshots.json
 
@@ -193,6 +207,13 @@ apt-get install -y jq
 # Run the installer.
 
 curl https://install.terraform.io/ptfe/stable | bash -s fast-timeouts
+
+# Wait for replicated to start before proceeding
+until replicatedctl system status | grep -q -e '"Replicated": "ready",i' -e '"Retraced": "ready"'; do :
+  sleep 1;
+  echo "Replicated is not yet ready";
+done;
+echo 'Replicated is ready.'
 
 # This retrieves a list of all the snapshots currently available.
 replicatedctl snapshot ls $access -o json > /tmp/snapshots.json
