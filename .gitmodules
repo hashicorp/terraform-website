@@ -530,3 +530,7 @@
 	path = ext/providers/prismacloud
 	url = https://github.com/terraform-providers/terraform-provider-prismacloud
 	branch = stable-website
+[submodule "ext/providers/cloudamqp"]
+	path = ext/providers/cloudamqp
+	url = https://github.com/terraform-providers/terraform-provider-cloudamqp
+	branch = stable-website
