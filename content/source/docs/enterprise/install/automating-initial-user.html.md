@@ -24,8 +24,7 @@ replicated admin --tty=0 retrieve-iact
 If you want to create the initial user in an automated deployment script, run a command like the following instead so that you can capture the IACT:
 
 ```shell
-initial_token=$(replicated admin retrieve-iact)   # no --tty=0 otherwise automation gets stuck
-initial_token=${initial_token//$'\r'}             # needed to remove carrier return for the usage with curl
+initial_token=$(replicated admin retrieve-iact | tr -d '\r')
 ```
 
 The command outputs the complete IACT with the carriage return character removed, which facilitates use in automation.
