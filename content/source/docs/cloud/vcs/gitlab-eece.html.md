@@ -120,7 +120,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Providers page, which now includes your new GitLab client.
 
-### If You Do Need aa PEM formatted SSH Keypair:
+### If You Do Need a PEM formatted SSH Keypair:
 
 1. On a secure workstation, create a PEM formatted SSH keypair that Terraform Cloud can use to connect to GitLab. The exact command depends on your OS, but is usually something like:
    `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`
