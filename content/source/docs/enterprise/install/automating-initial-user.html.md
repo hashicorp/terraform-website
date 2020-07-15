@@ -28,7 +28,7 @@ initial_token=$(replicated admin retrieve-iact)   # no --tty=0 otherwise automat
 initial_token=${initial_token//$'\r'}             # needed to remove carrier return for the usage with curl
 ```
 
-The command outputs only the complete IACT, which facilitates use in automation.
+The command outputs the complete IACT with the carriage return character removed, which facilitates use in automation.
 
 ### Via API
 
