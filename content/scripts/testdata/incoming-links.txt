@@ -777,7 +777,6 @@
 /docs/providers/google/r/vpc_access_connector.html
 /docs/providers/grafana/index.html
 /docs/providers/gridscale/index.html
-/docs/providers/hcloud/index.html
 /docs/providers/helm/index.html
 /docs/providers/helm/r/release.html
 /docs/providers/helm/d/repository.html
