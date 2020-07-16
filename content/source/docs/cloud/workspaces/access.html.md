@@ -56,7 +56,5 @@ To enable finer-grained selection of non-admin permissions, select "Customize pe
 
 On this screen, you may pick and choose individual permissions to grant the team for the workspace.
 
--> **Note:** Custom permissions are currently in beta.
-
 For more information on permissions, see [the documentation on Workspace
 Permissions](../users-teams-organizations/permissions.html#workspace-permissions).

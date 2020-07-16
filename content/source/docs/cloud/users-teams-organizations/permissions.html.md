@@ -135,8 +135,6 @@ See [All Workspace Permissions][] above for details about specific permissions.
 
 ### Custom Workspace Permissions
 
--> **Beta:** Custom permissions are currently in beta.
-
 Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide. This enables more task-focused permission sets and tighter control of sensitive information.
 
 You can use custom permissions to assign any of the permissions listed above under [All Workspace Permissions](#all-workspace-permissions), with the exception of admin-only permissions.
