@@ -153,11 +153,11 @@ Content is in Markdown, with a few local syntax additions described below. Try t
 
 If you start a paragraph with a special arrow-like sigil, it will become a colored callout box. You can't make multi-paragraph callouts. For colorblind users (and for clarity in general), we try to start callouts with a strong-emphasized word to indicate their function.
 
-Sigil | Start text with   | Color
-------|-------------------|-------
-`->`  | `**Note:**`       | blue
-`~>`  | `**Important:**`  | yellow
-`!>`  | `**Warning:**`    | red
+Sigil | Start text with  | Color
+------|------------------|-------
+`->`  | `**Note:**`      | blue
+`~>`  | `**Important:**` | yellow
+`!>`  | `**Warning:**`   | red
 
 
 #### Auto Header IDs
@@ -343,7 +343,6 @@ http://127.0.0.1:4567/intro/getting-started/variables.html
 This task checks a list of our most popular search engine results to make sure we don't move important pages without redirecting them. (BY THE WAY, you should also redirect _unimportant_ pages whenever you move them. **URLs are forever.**)
 
 ```
-2020-03-04 16:13:33 URL: http://127.0.0.1:4567/docs/providers/hcloud/index.html 200 OK
 2020-03-04 16:13:33 URL: http://127.0.0.1:4567/docs/providers/helm/index.html 200 OK
 http://127.0.0.1:4567/docs/providers/helm/release.html:
 Remote file does not exist -- broken link!!!
