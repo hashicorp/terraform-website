@@ -47,6 +47,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   items = {
     # Partners
     "hcloud" : "hetznercloud/hcloud"
+    "linode" : "linode/linode"
     "ncloud" : "NaverCloudPlatform/ncloud"
     "newrelic" : "newrelic/newrelic"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
