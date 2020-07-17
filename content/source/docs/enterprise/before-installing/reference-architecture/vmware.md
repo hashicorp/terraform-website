@@ -30,7 +30,7 @@ for demo or proof of concept installations, to multiple virtual machines
 hosting the Terraform Cloud application, PostgreSQL, and external Vault servers for
 a stateless production installation.
 
-This reference architecture **recommends and focuses on** the _Production - Mounted Disk_ operational mode. This mode will require you to specify the local path for data storage. The assumption is this
+This reference architecture **recommends and focuses on** the *Mounted Disk* operational mode. This mode will require you to specify the local path for data storage. The assumption is this
 local path is a mounted disk from either a SAN or NAS device (or some other
 replicated storage), allowing for rapid recovery or failover.
 
@@ -103,7 +103,7 @@ providing an auto-recovery mechanism in the event of virtual machine or physical
 The Storage Layer is provided in the form of attached disk space configured with or benefiting from inherent resiliency
 provided by the NAS or SAN.
 
--> **Important Note** The storage device/service used must be high-speed in both i/o and connectivity and highly reliable to meet performance requirements. A SAN device will generally meet these requirements. Many standard NAS and other device types, however, will not perform at the level required. So only use a NAS or other device type if it can  accommodate these requirements. The specific selection and configuration of the storage device is not covered in this document.
+-> **Important Note** The storage device/service used must be high-speed in both I/O and connectivity and highly reliable to meet performance requirements. A SAN device will generally meet these requirements. Many standard NAS and other device types, however, will not perform at the level required. So only use a NAS or other device type if it can  accommodate these requirements. The specific selection and configuration of the storage device is not covered in this document.
 For more information about high-speed and highly available storage please see your storage vendor.
 
 This document further discusses [mounted disk requirements](../disk-requirements.html) from a broader perspective than just in VMware.
@@ -164,12 +164,12 @@ visible outage to the end-user.
 
 #### PostgreSQL Database
 
-When running in mounted storage mode the PostgreSQL server runs inside a
+When running in *Mounted Disk* operational mode the PostgreSQL server runs inside a
 Docker container. If the PostgreSQL service fails a new container should
 be automatically created. However, if the service is hung, or otherwise
 fails without triggering a new container deployment, the Terraform Enterprise server
 should be stopped and the standby server started. All PostgreSQL data will
-have been written to the mounted storage and will then be accessible on
+have been written to the mounted disk and will then be accessible on
 the standby node.
 
 #### Object Storage
@@ -195,13 +195,13 @@ VM after services have been started on it in the event of a failure.
 
 #### Mounted Disk - PostgreSQL Database
 
-The PostgreSQL data will be written to the mounted storage. The
+The PostgreSQL data will be written to the mounted disk. The
 expectation is that the storage server is replicated or backed up
 offsite and will be made available to the server in the event of a DR.
 
 #### Mounted Disk - Object Storage
 
-Object storage will be written to the mounted storage. The expectation
+Object storage will be written to the mounted disk. The expectation
 is that the storage server is replicated or backed up offsite and will
 be made available to the server in the event of a DR.
 
@@ -211,7 +211,7 @@ In the event of a complete ESX cluster failure or datacenter failure, load-balan
 
 ## External Services Storage Options
 
-This information is included if External Services Operational Mode is required.
+This information is included if *External Services* operational mode is required.
 
 ### External Services - Object Storage Options
 
@@ -224,7 +224,7 @@ application data stored in this location. This allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy.
 
-Recommended object storage solutions are AWS S3, Google Cloud storage, Azure blob storage. Other options for S3-compatible storage are [minio](https://www.minio.io/) and [ceph](https://ceph.com/), among many others. Please feel free to reach out to [support](https://www.hashicorp.com/support) with questions.
+Recommended object storage solutions are AWS S3, Google Cloud storage, Azure blob storage. Other options for S3-compatible storage are [MinIO](https://www.minio.io/), and [Ceph](https://ceph.com/), and [ECS](https://www.delltechnologies.com/en-us/storage/ecs/index.htm/), among many others. Please feel free to reach out to [support](https://www.hashicorp.com/support) with questions.
 
 ### External Services - PostgreSQL Database 
 

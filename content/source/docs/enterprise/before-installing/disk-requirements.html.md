@@ -29,7 +29,7 @@ The following are **generally not supported** mounted disk types:
 * NFS
 * SMB/CIFS
 
-The storage device/service used must be high-speed in both i/o and connectivity and highly reliable to meet performance requirements. Device types in the supported list will usually meet these requirements. Many standard NAS and other device types, however, will not perform at the level required. So only use a NAS or other device type not in the supported list if it is certain it can accommodate these requirements. 
+The storage device/service used must be high-speed in both I/O and connectivity and highly reliable to meet performance requirements. Device types in the supported list will usually meet these requirements. Many standard NAS and other device types, however, will not perform at the level required. So only use a NAS or other device type not in the supported list if it is certain it can accommodate these requirements. 
 For more information about high-speed and highly available storage please see your storage vendor.
 
 ## Mounted Disk Types Not Listed Here
