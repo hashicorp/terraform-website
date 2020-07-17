@@ -805,8 +805,6 @@
 /docs/providers/kubernetes/r/secret.html
 /docs/providers/kubernetes/r/service.html
 /docs/providers/kubernetes/r/storage_class.html
-/docs/providers/linode/index.html
-/docs/providers/linode/r/instance.html
 /docs/providers/logicmonitor/index.html
 /docs/providers/mailgun/index.html
 /docs/providers/mongodbatlas/index.html
