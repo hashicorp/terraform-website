@@ -49,6 +49,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "hcloud" : "hetznercloud/hcloud"
     "ncloud" : "NaverCloudPlatform/ncloud"
     "newrelic" : "newrelic/newrelic"
+    "tencentcloud" : "tencentcloudstack/tencentcloud"
 
     # HashiCorp providers
     "archive" : "hashicorp/archive"

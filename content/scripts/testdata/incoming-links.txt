@@ -866,7 +866,6 @@
 /docs/providers/softlayer/r/virtual_guest.html
 /docs/providers/spotinst/index.html
 /docs/providers/statuscake/index.html
-/docs/providers/tencentcloud/index.html
 /docs/providers/terraform/d/remote_state.html
 /docs/providers/terraform/index.html
 /docs/providers/tfe/index.html
