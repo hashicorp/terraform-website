@@ -126,12 +126,6 @@ module Helpers
       rel = fn['../ext/providers/'.length..-1]
       provider, rel = rel.split('/', 2)
 
-      # digitalocean has a different provider name than its repository name,
-      # for historical reasons.
-      if provider == "do"
-        provider = "digitalocean"
-      end
-
       return "https://github.com/terraform-providers/terraform-provider-#{provider}/edit/master/#{rel}"
     end
 

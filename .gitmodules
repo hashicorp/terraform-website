@@ -234,10 +234,6 @@
 	path = ext/providers/vsphere
 	url = https://github.com/terraform-providers/terraform-provider-vsphere
 	branch = stable-website
-[submodule "ext/providers/digitalocean"]
-	path = ext/providers/digitalocean
-	url = https://github.com/terraform-providers/terraform-provider-digitalocean
-	branch = stable-website
 [submodule "ext/providers/logicmonitor"]
 	path = ext/providers/logicmonitor
 	url = https://github.com/terraform-providers/terraform-provider-logicmonitor
