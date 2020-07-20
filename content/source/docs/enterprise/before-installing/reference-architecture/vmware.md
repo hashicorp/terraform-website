@@ -34,12 +34,12 @@ This reference architecture **recommends and focuses on** the *Mounted Disk* ope
 local path is a mounted disk from either a SAN or NAS device (or some other
 replicated storage), allowing for rapid recovery or failover.
 
-If you require or desire to define storage externally and independently, you can choose the *External Services*
-operational mode. This is a more complicated implementation in VMware that requires you to independently manage other services which will not be detailed in this document. You will need to deploy S3-compatible storage either by connecting to a true AWS S3 bucket or by using a compatible alternative on-prem solution, such as [Ceph](https://ceph.com/). You will also need to deploy and separately manage an external Postgres database on an additional server or servers.
+If you need or want to define storage externally and independently, you can choose the *External Services*
+operational mode. This is a more complicated implementation in VMware that requires you to independently manage other services which will not be detailed in this document. You will need to deploy S3-compatible storage either by connecting to a true AWS S3 bucket or by using a compatible alternative on-prem solution, such as [Ceph](https://ceph.com/). You will also need to deploy and separately manage an external PostgreSQL database on an additional server or servers.
 
 Some additional information about the *External Services* option can be found at the end of this document.
 
-It is possible to deploy and/or reference an external Vault server instead of using the internally supplied one, however, this is not a recommended approach and is not addressed in this document.
+Although it is possible for Terraform Enterprise to use an external Vault server instead of its internally managed one, we do not recommended it. External Vault usage is not addressed in this document.
 
 The following table provides high-level server recommendations as a guideline.
 Please note, thick provision, lazy zeroed storage is preferred. Thin
@@ -103,10 +103,12 @@ providing an auto-recovery mechanism in the event of virtual machine or physical
 The Storage Layer is provided in the form of attached disk space configured with or benefiting from inherent resiliency
 provided by the NAS or SAN.
 
--> **Important Note** The storage device/service used must be high-speed in both I/O and connectivity and highly reliable to meet performance requirements. A SAN device will generally meet these requirements. Many standard NAS and other device types, however, will not perform at the level required. So only use a NAS or other device type if it can  accommodate these requirements. The specific selection and configuration of the storage device is not covered in this document.
-For more information about high-speed and highly available storage please see your storage vendor.
+-> **Note:** Terraform Enterprise's storage device or service must be highly reliable and high-speed in both I/O and connectivity to meet performance requirements. Device types in the supported list will usually meet these requirements, but many standard NAS and other device types will not perform at the level required. Only use a NAS or other device type not in the supported list if you are certain it can accommodate these requirements.
 
-This document further discusses [mounted disk requirements](../disk-requirements.html) from a broader perspective than just in VMware.
+The specific selection and configuration of the storage device is not covered in this document.
+For more information about high-speed and highly available storage, please see your storage vendor.
+
+For more information about Terraform Enterprise's disk requirements, see [Before Installing: Disk Requirements](../disk-requirements.html).
 
 ## Infrastructure Provisioning
 
