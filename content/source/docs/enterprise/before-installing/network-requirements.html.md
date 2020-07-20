@@ -9,18 +9,39 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 ## Ingress
 
-### Source - User/Client/VCS
+### Source — User/Client/VCS
 
-* **443**: To access the Terraform Enterprise application via HTTPS 
+* **80:** Terraform Enterprise application access (HTTP; redirects to HTTPS)
+* **443:** Terraform Enterprise application access (HTTPS)
 
-### Source - Administrators
+### Source — Administrators
 
-* **22**: To access the instance via SSH from your computer. SSH access to the instance is required for administration and debugging.
-* **8800**: To access the installer dashboard.
+* **22:** SSH access (administration and debugging)
+* **8800:** Replicated (TFE setup dashboard, HTTPS)
+* **32846:** TFE admin console (a Replicated service)
 
-### Source - TFE Server(s)
-* **9870-9880 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
-* **23000-23100 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
+### Source — TFE Server(s)
+
+* **2003:** Graphite (Carbon) feeding port (monitoring, metrics)
+* **2004:** Graphite (Carbon) feeding port (monitoring, metrics)
+* **4150-4151, 4160-4161, 4170-4171:** Replicated NSQD (messaging platform daemon for internal communication)
+* **5432:** PostgreSQL
+* **5672:** RabbitMQ TFE worker coordination
+* **6379:** Redis (application-level caching and coordination)
+* **7586:** TFE ingress (pulls in version control system data for application, stores it via Archivist)
+* **7588:** TFE state parser
+* **7675:** TFE Archivist (stores data in object storage, encrypts it via Vault)
+* **8089:** InfluxDB default UDP Service (monitoring, metrics)
+* **8125:** StatsD (monitoring, metrics)
+* **8200:** Vault (encryption service)
+* **9292:** Atlas engine (old name of TFE engine)
+* **9870-9880 (inclusive):** host and subnet traffic only; not publicly accessible
+    * **9873:** Replicated Retraced engine API (Replicated audit subcomponent)
+    * **9874-9879:** Replicated entry point span
+* **23000-23100 (inclusive):** host and subnet traffic only; not publicly accessible
+    * **23005:** TFE health check point
+    * **23020:** Nomad (scheduler for Sentinel runs)
+* **32774-32776:** Replicated internal Graphite and StatsD ports (mapped to external ports 2003, 2004, and 8125)
 
 ## Egress
 
