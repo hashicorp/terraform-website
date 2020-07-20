@@ -46,6 +46,8 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   dictionary_id = local.tf_provider_namespaces_dictionary_id
   items = {
     # Partners
+    "digitalocean" : "digitalocean/digitalocean"
+    "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
     "hcloud" : "hetznercloud/hcloud"
     "linode" : "linode/linode"
     "ncloud" : "NaverCloudPlatform/ncloud"
@@ -57,7 +59,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "archive" : "hashicorp/archive"
     "cloudinit" : "hashicorp/cloudinit"
     "dns" : "hashicorp/dns"
-    "external" : "hashicorp/external"
+    "external" : "hashicorp/external"`
     "http" : "hashicorp/http"
     "local" : "hashicorp/local"
     "null" : "hashicorp/null"
