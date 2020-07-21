@@ -165,7 +165,7 @@ resume service when the failure is limited to the Terraform Enterprise server la
 
 In the event of a single ESXi server failure, ESXi will vMotion the Terraform Enterprise virtual
 machine to a functioning ESXi host. This typically does not result in any
-visible outage to the end-user if VM Fault Tolerance has been configured and may result in a small interruption if not while the VM boots on the new host.
+visible outage to the end-user if VM Fault Tolerance has been configured. As with all applications, you may see a small interruption while the VM boots on the new host if Fault Tolerance is not configured.
 
 #### PostgreSQL Database
 
