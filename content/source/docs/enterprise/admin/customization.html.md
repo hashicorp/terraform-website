@@ -9,6 +9,8 @@ Customization allow you to modify different parts of the user interface to accom
 
 To access the customization settings, visit the site admin area and click **Customization** in the left menu. To save the settings, click **Save Customization Settings** at the bottom of the page.
 
+~> **Note:** For security reasons, certain HTML elements and attributes may be removed when the customization content is rendered to the page.
+
 ![screenshot: the Settings admin page](./images/admin-customization.png)
 
 -> **API:** See the [Customization API](/docs/cloud/api/admin/settings.html#list-customization-settings).
