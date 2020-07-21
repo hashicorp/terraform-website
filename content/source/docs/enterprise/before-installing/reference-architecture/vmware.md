@@ -101,7 +101,7 @@ providing an auto-recovery mechanism in the event of virtual machine or physical
 ### Storage Layer
 
 The Storage Layer is provided in the form of attached disk space configured with or benefiting from inherent resiliency
-provided by the NAS or SAN. The primary Terraform Enterprise VM will have 2 disks. The first disk is independent to this VM and contains the OS and Terraform Enterprise components specific to this individual install, such as configuration information. The second disk will contain Terraform Enterprise's configuration information such as Workspaces and their resulting Terraform state files.  This second disk needs to be regularly shipped to your DR location, for instance via replication inherent to your SAN, at aa rate that meets your desired RPO. 
+provided by the NAS or SAN. The primary Terraform Enterprise VM will have 2 disks. The first disk is independent to this VM and contains the OS and Terraform Enterprise components specific to this individual install, such as configuration information. The second disk will contain Terraform Enterprise's configuration information such as Workspaces and their resulting Terraform state files.  This second disk needs to be regularly shipped to your DR location, for instance via replication inherent to your SAN, at a rate that meets your desired RPO. 
 
 Similarly, the standby VM will have two disks. An OS disk that is independent to that VM and a disk which is simply a point in time copy of the primary instance's second disk. 
 
