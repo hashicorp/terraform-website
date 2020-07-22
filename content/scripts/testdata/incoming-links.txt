@@ -677,7 +677,6 @@
 /docs/providers/docker/r/volume.html
 /docs/providers/dome9/index.html
 /docs/providers/dyn/index.html
-/docs/providers/exoscale/index.html
 /docs/providers/fastly/index.html
 /docs/providers/fastly/r/service_v1.html
 /docs/providers/flexibleengine/index.html
