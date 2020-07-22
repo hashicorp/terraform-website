@@ -370,10 +370,6 @@
 	path = ext/providers/aci
 	url = https://github.com/terraform-providers/terraform-provider-aci
 	branch = stable-website
-[submodule "ext/providers/exoscale"]
-	path = ext/providers/exoscale
-	url = https://github.com/terraform-providers/terraform-provider-exoscale
-	branch = stable-website
 [submodule "ext/providers/mongodbatlas"]
 	path = ext/providers/mongodbatlas
 	url = https://github.com/terraform-providers/terraform-provider-mongodbatlas
