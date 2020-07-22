@@ -156,6 +156,8 @@ certificate codified during an unattended installation.
 
 The above diagram show the infrastructure components at a high-level.
 
+-> **Note:** The diagram shows an Azure load balancer but for private IP usage in a hybrid model, use an Azure Application Gateway v1. Also note that the VM Scale Set would be declared as multi-zone in order to benefit from cross-availability zone redundancy.
+
 ### Application Layer
 
 The Application Layer is composed of two Terraform Enterprise servers (Azure VMs)
