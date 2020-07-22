@@ -164,9 +164,9 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
  - All necessary PEM-encoded CA certificates must be placed within the `/usr/local/share/ca-certificates` directory. Each file added to this directory must end with the `.crt` extension. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
  - Terraform must not be installed on the image. Terraform Enterprise will take care of that at runtime.
 
- This is a sample `Dockerfile` you can use to start building your own image:
+This is a sample `Dockerfile` you can use to start building your own image:
 
- ```
+```
 # This Dockerfile builds the image used for the worker containers.
 FROM ubuntu:xenial
 
@@ -180,12 +180,45 @@ ADD example-intermediate-ca.crt /usr/local/share/ca-certificates/
 
 # Update the CA certificates bundle to include newly added CA certificates.
 RUN update-ca-certificates
- ```
+```
 
-### Image initialization
-To run initialization commands in your image during runtime, create a script at `/usr/local/bin/init_custom_worker.sh` and make it executable. This script, and all commands it invokes, will be executed before TFE runs `terraform init`.
+### Executing Custom Scripts
 
-The name, location, and permissions of the script are not customizable.
+The alternative worker image supports executing custom scripts during different points of a Terraform Enterprise run.
+These custom scripts allow Terraform Enterprise administrators to extend the functionality of Terraform Enterprise runs.
+
+Please note the following when utilizing custom scripts.
+
+- If the script exits with a non-zero exit code, the Terraform Enterprise run will immediately fail with an error.
+- The name, location, and permissions of the script are not customizable. 
+- The execution of the script does not have a timeout. It is up to the Terraform Enterprise administrator to ensure
+  scripts execute in a timely fashion.
+- The execution of the script is not sandboxed. The script is executed in the same container `terraform` is executed in.
+
+#### Initialize Script
+
+To execute an initialize script, ensure your worker image contains an executable shell script at
+`/usr/local/bin/init_custom_worker.sh`. This script, and all commands it invokes, will be executed before a Terraform
+Enterprise run executes `terraform init`. This initialize script will be executed during both plans and applies.
+
+Example `Dockerfile` snippet for adding an initialize script:
+
+```
+ADD init_custom_worker.sh /usr/local/bin/init_custom_worker.sh
+```
+
+#### Finalize Script
+
+To execute a finalize script, ensure your worker image contains an executable shell script at
+`/usr/local/bin/finalize_custom_worker.sh`. This script, and all commands it invokes, will be executed after a Terraform
+Enterprise run finishes executing `terraform plan` or `terraform apply`. This finalize script will be executed during
+both plans and applies.
+
+Example `Dockerfile` snippet for adding a finalize script:
+
+```
+ADD finalize_custom_worker.sh /usr/local/bin/finalize_custom_worker.sh
+```
 
 ## Operational Mode Decision
 
