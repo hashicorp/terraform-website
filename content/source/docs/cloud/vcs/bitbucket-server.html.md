@@ -16,8 +16,6 @@ Configuring a new VCS provider requires permission to manage VCS settings for th
 
 [Bitbucket Cloud has separate instructions,](./bitbucket-cloud.html) as do the [other supported VCS providers.](./index.html)
 
-Note that Bitbucket Server requires both OAuth authentication and an SSH key. The instructions below include SSH key configuration.
-
 -> **Version note:** Terraform Cloud supports Bitbucket Server versions 4.9.1 and newer, and Bitbucket Data Center versions 5.4.0 and newer. HashiCorp does not test older versions of Bitbucket Server with Terraform Cloud, and they might not work as expected. Also note that, although we do not deliberately remove support for versions that have reached end of life (per the [Atlassian Support End of Life Policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html)), our ability to resolve customer issues with end of life versions might be limited.
 
 ~> **Important:** Terraform Cloud needs to contact Bitbucket Server over both SSH and HTTP (or HTTPS) during setup and during normal operation. For the SaaS version of Terraform Cloud, this means Bitbucket Server must be internet-accessible on its SSH and HTTP(S) ports; for Terraform Enterprise, you must have network connectivity between your Terraform Enterprise and Bitbucket Server instances. <br /><br /> Note that [Bitbucket Server's default ports](https://confluence.atlassian.com/bitbucketserverkb/which-ports-does-bitbucket-server-listen-on-and-what-are-they-used-for-806029586.html) are 7999 for SSH and 7990 for HTTP; check your configuration to confirm your instance's real ports.
