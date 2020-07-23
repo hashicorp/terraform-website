@@ -7,7 +7,7 @@ description: |-
 
 # Terraform ServiceNow Service Catalog Integration Setup Instructions
 
--> **Integration version:**  v1.1.0
+-> **Integration version:**  v2.0.0
 
 -> **Note:** The ServiceNow Catalog integration is designed for use by Terraform Enterprise customers. We do not currently recommend using it with the SaaS version of Terraform Cloud.
 
@@ -21,7 +21,7 @@ Integrating ServiceNow with Terraform Enterprise involves several configuration 
 | | Create a team that can manage workspaces in that organization. |
 | | Create a team API token so the integration can use that team's permissions. |
 | | Retrieve the unique ID that Terraform Enterprise uses to identify your VCS provider. |
-| Import the integration from source control. | |
+| Install the Terraform Application from the ServiceNow App Store | |
 | Connect the integration with Terraform Enterprise, using the team API token you prepared. | |
 | Add the Terraform Service Catalog to enable it for your users. | |
 | Add VCS repositories with Terraform configurations as catalog items. | |
@@ -35,18 +35,24 @@ To start using Terraform with ServiceNow Catalog Integration, you must already h
 - An account on a [Terraform Enterprise](https://www.hashicorp.com/products/terraform/) instance.
 - A ServiceNow instance or developer instance. You can request a ServiceNow developer instance at [developer.servicenow.com](https://developer.servicenow.com/).
 - A [supported version control system](../../vcs/index.html#supported-vcs-providers) (VCS) with read access to repositories with Terraform configuration.
-- A private Git repository to host the ServiceNow integration.
 
-It does not require additional ServiceNow modules and has been tested on the following ServiceNow server versions:
+It has been tested on the following ServiceNow server versions:
 
 - Madrid
-- London
+- New York
+- Orlando
+
+It requires the following ServiceNow Plugins as dependencies for the Terraform ServiceNow App:
+
+- Flow Designer support for the Service Catalog
+- ServiceNow IntegrationHub Action Step
+- ServiceNow IntegrationHub Starter Pack
 
 ## Obtaining the ServiceNow Integration
 
-Before beginning setup, you must obtain a copy of the Terraform ServiceNow Catalog integration software. Contact your HashiCorp sales representative to get access to the software.
+Before beginning setup, you must obtain a copy of the Terraform ServiceNow Catalog integration software.
 
-Once you have obtained the files from your sales representative, check them into a private Git repository before beginning these setup instructions.
+This can be added to your ServiceNow instance from the [ServiceNow Store](https://store.servicenow.com/).
 
 ## Terraform Enterprise Setup
 
@@ -62,33 +68,23 @@ Before installing the ServiceNow integration, you need to perform some setup and
 
 ## Installing the ServiceNow Integration
 
-### ServiceNow Server Studio
-
-Import the integration using the [ServiceNow Studio](https://docs.servicenow.com/bundle/madrid-application-development/page/build/applications/concept/c_ServiceNowStudio.html).
-
-1. Launch the ServiceNow Studio by typing "studio" in the search on the left-hand side.
-1. Click "Import from Source Control."
-    - If this is not your first time opening the Studio, you can also access this from File > Import from Source Control.
-1. Fill in the information required to import the integration:
-    - URL: `https://github.com/<YOUR_ORG>/terraform-servicenow-integration`
-    - Username: `<your VCS username>`
-    - Password: `<a VCS Personal Access Token or your password>`
-1. Select the Terraform application.
-    - Application > Terraform
-1. You can now close the ServiceNow Studio or continue customizing the application.
-
 #### Enable Polling Workers (Recommended)
 
-The integration includes 2 ServiceNow Workflow Schedules to poll the Terraform Enterprise API using ServiceNow Outbound HTTP REST requests. By default, all workflow schedules are set to On-Demand. These can be customized inside the ServiceNow Server Studio:
+The integration includes 3 ServiceNow Scheduled Flows to poll the Terraform Enterprise API using ServiceNow Outbound HTTP REST requests. By default, all flows schedules are set to 5 minutes. These can be customized inside the ServiceNow Server Studio:
 
-1. Select the Worker Poll Run State (Workflow > Workflow Schedule).
-1. Change the value for the Run field from "On-Demand" to "Periodically".
-1. Set Repeat Intervals to 1-5 minutes.
-1. Click "Update".
+1. Select the Worker Poll Run State Flow.
+2. Adjust Repeat Intervals
+3. Click "Done"
+4. Click "Save"
+5. Click "Activate"
 
 ##### Worker Poll Apply Run
 
 This worker approves runs for any workspaces that have finished a Terraform plan and are ready to apply their changes. It also adds a comment on the request item for those workspaces notifying that a run has been triggered.
+
+##### Worker Poll Destroy Workspace
+
+This worker looks for any records in the Terraform ServiceNow table that is marked for deletion with the value `is_destroyable` set to true. It then checks the status of the workspace to ensure it is ready to be deleted. Once the destroy run has been completed, this work will send the delete request for the workspace to Terraform.
 
 ##### Worker Poll Run State
 
@@ -100,7 +96,7 @@ The worker synchronizes ServiceNow with the current run state of Terraform works
 
 -> **Roles Required:** `admin` or `x_terraform.config_user`
 
-1. Exit Service Now Studio and return to the ServiceNow Service Management Screen.
+1. From the ServiceNow Service Management Screen.
 1. Using the left-hand navigation, open the configuration table for the integration to manage the Terraform Enterprise connection.
     - Terraform > Configs
 1. Click on "New" to create a new Terraform Enterprise connection:
@@ -167,23 +163,22 @@ Class Name | Description
 `tf_vcs_record` | Manage ServiceNow Terraform VCS Repositories Table Records
 `tf_workspace` | Resources for Terraform Workspace API Requests
 
-### Example Service Catalog Workflows
+### Example Service Catalog Flows and Actions
 
-The ServiceNow Example Workflows can be found in the ServiceNow Studio > Workflow > Workflow. By default, the workflows execute upon submitting an order request for the various catalog items. Admins can modify the workflows to wait on an approval action, include approval rules, and specify approver groups.
+The ServiceNow Example Flows can be found in the ServiceNow Studio > Flows. By default, the Flows execute upon submitting an order request for the various catalog items. Admins can modify the Flows and Actions to wait on an approval action, include approval rules, and specify approver groups.
 
-Workflow Name | Description
+Flow Name | Description
 --|--
 Create Workspace | Creates a new Terraform Enterprise workspace from VCS repository.
-Create Workspace with Variables | Creates a new Terraform Enterprise workspace from VCS repository and creates any variables provided.
+Create Workspace with Vars | Creates a new Terraform Enterprise workspace from VCS repository and creates any variables provided.
 Create Run | Creates/Queues a new run on the Terraform Enterprise workspace.
 Apply Run | Applies a run on the Terraform Enterprise workspace.
 Provision Resources | Creates a Terraform Enterprise workspace (with auto-apply), creates/queues a run, applies the run when ready.
-Provision Resources with Variables | Creates a Terraform Enterprise workspace (with auto-apply), creates any variables, creates/queues a run, applies the run when ready.
-Example Pinned Variables | Creates a Terraform Enterprise workspace (with auto-apply), creates any variables, creates/queues a run, applies the run when ready using a pinned VCS repository and variables.
-Delete Workspace | Adds a `CONFIRM_DESTROY=1` to the Terraform workspace and creates a destroy run plan.
-Poll Run State | Polls the Terraform Enterprise API for the current run state of a workspace.
-Poll Apply Run | Polls the Terraform Enterprise API and applies any pending Terraform runs.
-Poll Destroy Workspace | Queries ServiceNow Terraform Records for resources marked `is_destroyable`, applies the destroy run to destroy resources, and deletes the corresponding Terraform workspace.
+Provision Resources with Vars | Creates a Terraform Enterprise workspace (with auto-apply), creates any variables, creates/queues a run, applies the run when ready.
+Delete Workspace | Creates a destroy run plan.
+Worker Poll Run State | Polls the Terraform Enterprise API for the current run state of a workspace.
+Worker Poll Apply Run | Polls the Terraform Enterprise API and applies any pending Terraform runs.
+Worker Poll Destroy Workspace | Queries ServiceNow Terraform Records for resources marked `is_destroyable`, applies the destroy run to destroy resources, and deletes the corresponding Terraform workspace.
 
 ## ServiceNow ACLs
 
