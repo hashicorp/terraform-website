@@ -46,6 +46,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   dictionary_id = local.tf_provider_namespaces_dictionary_id
   items = {
     # Partners
+    "brightbox" : "brightbox/brightbox"
     "digitalocean" : "digitalocean/digitalocean"
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
     "exoscale" : "exoscale/exoscale"
@@ -53,7 +54,9 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "linode" : "linode/linode"
     "ncloud" : "NaverCloudPlatform/ncloud"
     "newrelic" : "newrelic/newrelic"
+    "rancher2" : "rancher/rancher2"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
+    "triton" : "joyent/triton"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more
