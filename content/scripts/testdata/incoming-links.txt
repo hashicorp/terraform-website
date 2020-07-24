@@ -614,7 +614,6 @@
 /docs/providers/azurestack/index.html
 /docs/providers/bigip/index.html
 /docs/providers/bitbucket/index.html
-/docs/providers/brightbox/index.html
 /docs/providers/chef/index.html
 /docs/providers/ciscoasa/index.html
 /docs/providers/clc/index.html
@@ -853,8 +852,6 @@
 /docs/providers/profitbricks/index.html
 /docs/providers/rabbitmq/index.html
 /docs/providers/rancher/index.html
-/docs/providers/rancher2/index.html
-/docs/providers/rancher2/r/cluster.html
 /docs/providers/rightscale/index.html
 /docs/providers/runscope/index.html
 /docs/providers/scaleway/index.html
@@ -867,10 +864,6 @@
 /docs/providers/terraform/d/remote_state.html
 /docs/providers/terraform/index.html
 /docs/providers/tfe/index.html
-/docs/providers/triton/index.html
-/docs/providers/triton/r/triton_firewall_rule.html
-/docs/providers/triton/r/triton_key.html
-/docs/providers/triton/r/triton_machine.html
 /docs/providers/type/cloud-index.html
 /docs/providers/type/community-index.html
 /docs/providers/type/major-index.html

@@ -214,10 +214,6 @@
 	path = ext/providers/statuscake
 	url = https://github.com/terraform-providers/terraform-provider-statuscake
 	branch = stable-website
-[submodule "ext/providers/triton"]
-	path = ext/providers/triton
-	url = https://github.com/terraform-providers/terraform-provider-triton
-	branch = stable-website
 [submodule "ext/providers/ultradns"]
 	path = ext/providers/ultradns
 	url = https://github.com/terraform-providers/terraform-provider-ultradns
@@ -273,10 +269,6 @@
 [submodule "ext/providers/huaweicloud"]
 	path = ext/providers/huaweicloud
 	url = https://github.com/terraform-providers/terraform-provider-huaweicloud
-	branch = stable-website
-[submodule "ext/providers/brightbox"]
-	path = ext/providers/brightbox
-	url = https://github.com/terraform-providers/terraform-provider-brightbox
 	branch = stable-website
 [submodule "ext/providers/acme"]
 	path = ext/providers/acme
@@ -349,10 +341,6 @@
 [submodule "ext/providers/vra7"]
 	path = ext/providers/vra7
 	url = https://github.com/terraform-providers/terraform-provider-vra7
-	branch = stable-website
-[submodule "ext/providers/rancher2"]
-	path = ext/providers/rancher2
-	url = https://github.com/terraform-providers/terraform-provider-rancher2
 	branch = stable-website
 [submodule "ext/providers/akamai"]
 	path = ext/providers/akamai
