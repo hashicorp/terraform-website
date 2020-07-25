@@ -61,6 +61,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more
     "archive" : "hashicorp/archive"
+    "aws" : "hashicorp/aws"
     "cloudinit" : "hashicorp/cloudinit"
     "dns" : "hashicorp/dns"
     "external" : "hashicorp/external"
