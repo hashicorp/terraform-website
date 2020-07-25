@@ -210,7 +210,6 @@
 /docs/extend/testing/acceptance-tests/teststep.html
 /docs/extend/testing/index.html
 /docs/extend/testing/unit-testing.html
-/docs/extend/writing-custom-providers.html
 /docs/github-actions/index.html
 /docs/github-actions/setup-terraform.html
 /docs/glossary.html
