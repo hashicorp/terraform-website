@@ -51,10 +51,13 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
     "exoscale" : "exoscale/exoscale"
     "hcloud" : "hetznercloud/hcloud"
+    "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "linode" : "linode/linode"
     "ncloud" : "NaverCloudPlatform/ncloud"
     "newrelic" : "newrelic/newrelic"
     "rancher2" : "rancher/rancher2"
+    "signalfx" : "splunk-terraform/signalfx"
+    "sumologic" : "SumoLogic/sumologic"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
     "triton" : "joyent/triton"
 

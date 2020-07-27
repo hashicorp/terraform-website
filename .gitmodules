@@ -346,10 +346,6 @@
 	path = ext/providers/akamai
 	url = https://github.com/terraform-providers/terraform-provider-akamai
 	branch = stable-website
-[submodule "ext/providers/signalfx"]
-	path = ext/providers/signalfx
-	url = https://github.com/terraform-providers/terraform-provider-signalfx
-	branch = stable-website
 [submodule "ext/providers/avi"]
 	path = ext/providers/avi
 	url = https://github.com/terraform-providers/terraform-provider-avi
@@ -402,10 +398,6 @@
 	path = ext/providers/vthunder
 	url = https://github.com/terraform-providers/terraform-provider-vthunder
 	branch = stable-website
-[submodule "ext/providers/huaweicloudstack"]
-	path = ext/providers/huaweicloudstack
-	url = https://github.com/terraform-providers/terraform-provider-huaweicloudstack
-	branch = stable-website
 [submodule "ext/providers/opennebula"]
 	path = ext/providers/opennebula
 	url = https://github.com/terraform-providers/terraform-provider-opennebula
@@ -441,10 +433,6 @@
 [submodule "ext/providers/vmc"]
 	path = ext/providers/vmc
 	url = https://github.com/terraform-providers/terraform-provider-vmc
-	branch = stable-website
-[submodule "ext/providers/sumologic"]
-	path = ext/providers/sumologic
-	url = https://github.com/terraform-providers/terraform-provider-sumologic
 	branch = stable-website
 [submodule "ext/providers/infoblox"]
 	path = ext/providers/infoblox
