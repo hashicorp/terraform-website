@@ -853,8 +853,6 @@
 /docs/providers/rightscale/index.html
 /docs/providers/runscope/index.html
 /docs/providers/scaleway/index.html
-/docs/providers/signalfx/index.html
-/docs/providers/signalfx/r/dashboard.html
 /docs/providers/skytap/index.html
 /docs/providers/softlayer/r/virtual_guest.html
 /docs/providers/spotinst/index.html
