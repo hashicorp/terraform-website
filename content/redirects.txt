@@ -136,8 +136,9 @@
 
 
 # Extending Terraform section
-/guides/writing-custom-terraform-providers.html          /docs/extend/writing-custom-providers.html
+# /guides/writing-custom-terraform-providers.html          https://learn.hashicorp.com/terraform/providers/setup-implement-read
 /docs/extend/resources.html                              /docs/extend/resources/index.html
+# /docs/extend/writing-custom-providers.html               https://learn.hashicorp.com/terraform/providers/setup-implement-read
 
 # Move the docs about TFE runs
 /docs/enterprise/workspaces/run-basics.html              /docs/enterprise/run/index.html
