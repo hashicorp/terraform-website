@@ -136,7 +136,7 @@
 
 
 # Extending Terraform section
-/guides/writing-custom-terraform-providers.html          https://learn.hashicorp.com/terraform/providers/setup-implement-read
+# /guides/writing-custom-terraform-providers.html          https://learn.hashicorp.com/terraform/providers/setup-implement-read
 /docs/extend/resources.html                              /docs/extend/resources/index.html
 # /docs/extend/writing-custom-providers.html               https://learn.hashicorp.com/terraform/providers/setup-implement-read
 
