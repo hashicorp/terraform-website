@@ -55,7 +55,7 @@ In the ServiceNow Studio:
    1. This will be flow that can be used as an example.
 2. Create a new flow by selecting "New" in Flow Designer
 3. Name it "Example Flow" and click "submit"
-4. Editing your example flow
+4. Edit your example flow
    1. Trigger: Service Catalog
    2. 1st Action: Get Catalog Variables
       1. Drag "Requested Item Record" to "Submitted Request" field
