@@ -47,7 +47,7 @@ This example use case creates a Terraform catalog item for resources that limits
 
 ### Create Flow
 
-This example uses the "Provision Resources With Vars" flow, which is one of the example flows with actions included with the integration.
+This example uses the "Provision Resources With Vars" flow, which is an example of flows with actions, included with the integration.
 
 In the ServiceNow Studio:
 
