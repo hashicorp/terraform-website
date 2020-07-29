@@ -84,7 +84,7 @@ This worker approves runs for any workspaces that have finished a Terraform plan
 
 ##### Worker Poll Destroy Workspace
 
-This worker looks for any records in the Terraform ServiceNow table that is marked for deletion with the value `is_destroyable` set to true. It then checks the status of the workspace to ensure it is ready to be deleted. Once the destroy run has been completed, this work will send the delete request for the workspace to Terraform.
+This worker looks for any records in the Terraform ServiceNow table that are marked for deletion with the value `is_destroyable` set to true. It then checks the status of the workspace to ensure it is ready to be deleted. Once the destroy run has been completed, this work will send the delete request for the workspace to Terraform.
 
 ##### Worker Poll Run State
 
