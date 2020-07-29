@@ -5,6 +5,8 @@ page_title: "Workspaces - Terraform Cloud and Terraform Enterprise"
 
 # Workspaces
 
+> For a hands-on tutorial, try the [Get Started — Terraform Cloud](https://learn.hashicorp.com/terraform/cloud-getting-started/signup?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) track on HashiCorp Learn.
+
 Workspaces are how Terraform Cloud organizes infrastructure.
 
 ## Workspaces are Collections of Infrastructure

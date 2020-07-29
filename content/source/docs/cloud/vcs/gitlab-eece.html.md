@@ -105,7 +105,7 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
 1. Click the green "Authorize" button at the bottom of the authorization page.
 
-## Step 4: On Terraform Cloud, Set Up SSH Keypair (Optional)
+## Step 4: On Terraform Cloud, Set Up a PEM formatted SSH Keypair (Optional)
 
 Most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. You can add or update the SSH private key at a later time.
 
@@ -116,13 +116,13 @@ Most organizations will not need to add an SSH private key. However, if the orga
 - In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to GitLab.
 - **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
 
-### If You Don't Need an SSH Keypair:
+### If You Don't Need a PEM formatted SSH Keypair:
 
 1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Providers page, which now includes your new GitLab client.
 
-### If You Do Need an SSH Keypair:
+### If You Do Need aa PEM formatted SSH Keypair:
 
-1. On a secure workstation, create an SSH keypair that Terraform Cloud can use to connect to GitLab. The exact command depends on your OS, but is usually something like:
+1. On a secure workstation, create a PEM formatted SSH keypair that Terraform Cloud can use to connect to GitLab. The exact command depends on your OS, but is usually something like:
    `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`
    This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key. This SSH key **must have an empty passphrase**. Terraform Cloud cannot use SSH keys that require a passphrase.
 

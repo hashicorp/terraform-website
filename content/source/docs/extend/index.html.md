@@ -39,7 +39,7 @@ components of Terraform (Core vs. Plugins) and the basics of how they interact.
 
 Learn about Terraform plugins that you can develop using the Terraform Plugin SDK (currently only Providers).
 
-## [Writing Custom Providers](/docs/extend/writing-custom-providers.html)
+## [Writing Custom Providers](https://learn.hashicorp.com/terraform/providers/setup-implement-read)
 
 A step by step guide for writing, compiling, and executing an example Terraform
 Provider. 

@@ -214,10 +214,6 @@
 	path = ext/providers/statuscake
 	url = https://github.com/terraform-providers/terraform-provider-statuscake
 	branch = stable-website
-[submodule "ext/providers/triton"]
-	path = ext/providers/triton
-	url = https://github.com/terraform-providers/terraform-provider-triton
-	branch = stable-website
 [submodule "ext/providers/ultradns"]
 	path = ext/providers/ultradns
 	url = https://github.com/terraform-providers/terraform-provider-ultradns
@@ -233,10 +229,6 @@
 [submodule "ext/providers/vsphere"]
 	path = ext/providers/vsphere
 	url = https://github.com/terraform-providers/terraform-provider-vsphere
-	branch = stable-website
-[submodule "ext/providers/digitalocean"]
-	path = ext/providers/digitalocean
-	url = https://github.com/terraform-providers/terraform-provider-digitalocean
 	branch = stable-website
 [submodule "ext/providers/logicmonitor"]
 	path = ext/providers/logicmonitor
@@ -262,10 +254,6 @@
 	path = ext/providers/flexibleengine
 	url = https://github.com/terraform-providers/terraform-provider-flexibleengine
 	branch = stable-website
-[submodule "ext/providers/hcloud"]
-	path = ext/providers/hcloud
-	url = https://github.com/terraform-providers/terraform-provider-hcloud
-	branch = stable-website
 [submodule "ext/providers/azurestack"]
 	path = ext/providers/azurestack
 	url = https://github.com/terraform-providers/terraform-provider-azurestack
@@ -281,10 +269,6 @@
 [submodule "ext/providers/huaweicloud"]
 	path = ext/providers/huaweicloud
 	url = https://github.com/terraform-providers/terraform-provider-huaweicloud
-	branch = stable-website
-[submodule "ext/providers/brightbox"]
-	path = ext/providers/brightbox
-	url = https://github.com/terraform-providers/terraform-provider-brightbox
 	branch = stable-website
 [submodule "ext/providers/acme"]
 	path = ext/providers/acme
@@ -310,10 +294,6 @@
 	path = ext/providers/bigip
 	url = https://github.com/terraform-providers/terraform-provider-bigip
 	branch = stable-website
-[submodule "ext/providers/tencentcloud"]
-	path = ext/providers/tencentcloud
-	url = https://github.com/terraform-providers/terraform-provider-tencentcloud
-	branch = stable-website
 [submodule "ext/providers/nutanix"]
 	path = ext/providers/nutanix
 	url = https://github.com/terraform-providers/terraform-provider-nutanix
@@ -321,10 +301,6 @@
 [submodule "ext/providers/helm"]
 	path = ext/providers/helm
 	url = https://github.com/terraform-providers/terraform-provider-helm
-	branch = stable-website
-[submodule "ext/providers/linode"]
-	path = ext/providers/linode
-	url = https://github.com/terraform-providers/terraform-provider-linode
 	branch = stable-website
 [submodule "ext/providers/skytap"]
 	path = ext/providers/skytap
@@ -350,10 +326,6 @@
 	path = ext/providers/ciscoasa
 	url = https://github.com/terraform-providers/terraform-provider-ciscoasa
 	branch = stable-website
-[submodule "ext/providers/ncloud"]
-	path = ext/providers/ncloud
-	url = https://github.com/terraform-providers/terraform-provider-ncloud
-	branch = stable-website
 [submodule "ext/providers/jdcloud"]
 	path = ext/providers/jdcloud
 	url = https://github.com/terraform-providers/terraform-provider-jdcloud
@@ -370,10 +342,6 @@
 	path = ext/providers/vra7
 	url = https://github.com/terraform-providers/terraform-provider-vra7
 	branch = stable-website
-[submodule "ext/providers/rancher2"]
-	path = ext/providers/rancher2
-	url = https://github.com/terraform-providers/terraform-provider-rancher2
-	branch = stable-website
 [submodule "ext/providers/akamai"]
 	path = ext/providers/akamai
 	url = https://github.com/terraform-providers/terraform-provider-akamai
@@ -389,10 +357,6 @@
 [submodule "ext/providers/aci"]
 	path = ext/providers/aci
 	url = https://github.com/terraform-providers/terraform-provider-aci
-	branch = stable-website
-[submodule "ext/providers/exoscale"]
-	path = ext/providers/exoscale
-	url = https://github.com/terraform-providers/terraform-provider-exoscale
 	branch = stable-website
 [submodule "ext/providers/mongodbatlas"]
 	path = ext/providers/mongodbatlas
@@ -529,4 +493,8 @@
 [submodule "ext/providers/prismacloud"]
 	path = ext/providers/prismacloud
 	url = https://github.com/terraform-providers/terraform-provider-prismacloud
+	branch = stable-website
+[submodule "ext/providers/cloudamqp"]
+	path = ext/providers/cloudamqp
+	url = https://github.com/terraform-providers/terraform-provider-cloudamqp
 	branch = stable-website

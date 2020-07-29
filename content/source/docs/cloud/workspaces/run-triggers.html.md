@@ -5,14 +5,13 @@ page_title: "Run Triggers - Workspaces - Terraform Cloud and Terraform Enterpris
 
 # Run Triggers
 
+> For a hands-on tutorial, try the [Connect Workspaces with Run Triggers](https://learn.hashicorp.com/terraform/tfc/tfc_run_triggers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
+
 Terraform Cloud provides a way to connect your workspace to one or more workspaces within your organization, known as "source workspaces". These connections, called run triggers, allow runs to queue automatically in your workspace on successful apply of runs in any of the source workspaces. You can connect your workspace to up to 20 source workspaces.
 
 When used in conjunction with [`terraform_remote_state` data sources](/docs/providers/terraform/d/remote_state.html), run triggers provide the ability to manage updates to your configurations more seamlessly.
 
 -> **API:** See the [Run Triggers APIs](../api/run-triggers.html).
-
--> **Guide:**: For a hands-on guide that will walk you through the process of creating and using a run trigger, see our [run triggers guide on
-learn.hashicorp.com](https://learn.hashicorp.com/terraform/tfc/tfc_run_triggers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
 
 ## Viewing and Managing Run Triggers
 

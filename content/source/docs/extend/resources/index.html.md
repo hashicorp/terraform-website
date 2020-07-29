@@ -8,7 +8,7 @@ description: |-
 
 # Resources
 
-A key component to Terraform Provider development is defining the creation, read, update, and deletion functionality of a resource to map those API operations into the Terraform lifecycle. While the basic aspects of developing Terraform resources have already been covered in [Writing Custom Providers](/docs/extend/writing-custom-providers.html) and [Schemas](/docs/extend/schemas/), this section covers more advanced features of resource development.
+A key component to Terraform Provider development is defining the creation, read, update, and deletion functionality of a resource to map those API operations into the Terraform lifecycle. While the basic aspects of developing Terraform resources have already been covered in [Writing Custom Providers/Call APIs with Terraform Providers Learn Track](https://learn.hashicorp.com/terraform/providers/setup-implement-read) and [Schemas](/docs/extend/schemas/), this section covers more advanced features of resource development.
 
 ## Import
 
