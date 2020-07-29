@@ -80,9 +80,9 @@ Sometimes a speculative plan might fail due to an external factor, and you just 
 - The user viewing the run has [Workspace level permissions](https://www.terraform.io/docs/cloud/users-teams-organizations/permissions.html#workspace-permissions) to be able to queue plans.
 - The Plan itself has failed, through an error or being canceled.
 
-When these conditions are met, you will see a "Retry" button as pictured below.
+When these conditions are met, you will see a "Retry Run" button as shown below.
 
-![Screenshot: the Plan header of the Run page.](./images/retry.png)
+![Screenshot: the Plan header of the Run page.](./images/retry.gif)
 
 Retrying the run will create a new run with the same configuration version. If it is a VCS-backed workspace, the pull request interface will receive the status of the new run, along with a link to it.
 
