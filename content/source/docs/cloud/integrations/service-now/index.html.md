@@ -73,10 +73,10 @@ Before installing the ServiceNow integration, you need to perform some setup and
 The integration includes 3 ServiceNow Scheduled Flows to poll the Terraform Enterprise API using ServiceNow Outbound HTTP REST requests. By default, all flows schedules are set to 5 minutes. These can be customized inside the ServiceNow Server Studio:
 
 1. Select the Worker Poll Run State Flow.
-2. Adjust Repeat Intervals
-3. Click "Done"
-4. Click "Save"
-5. Click "Activate"
+1. Adjust Repeat Intervals
+1. Click "Done"
+1. Click "Save"
+1. Click "Activate"
 
 ##### Worker Poll Apply Run
 
@@ -107,8 +107,8 @@ The worker synchronizes ServiceNow with the current run state of Terraform works
 ## Adding the Terraform Service Catalog
 
 1. In ServiceNow, open the Service Catalog > Catalogs view by searching for "catalogs" in the left-hand navigation.
-1. Click the plus sign in the top right.
-1. Select Terraform and choose a place to add it.
+   1. Click the plus sign in the top right.
+   1. Select Terraform and choose a place to add it.
 
 At this point, your users can request Terraform infrastructure via ServiceNow, but there are not yet any infrastructure items available to request.
 
@@ -129,7 +129,7 @@ To make infrastructure available to your users, you must add one or more workspa
 
 ## Terraform Variables and ServiceNow Variable Sets
 
-ServiceNow has the concept of a Variable Set which is a collection of ServiceNow Variables that can be referenced in a workflow from a Service Catalog item. The Terraform Integration codebase can create [Terraform Variables and Terraform Environment Variables](../../workspaces/variables.html) via the API using the `tf_variable.createVariablesFromSet()` function.
+ServiceNow has the concept of a Variable Set which is a collection of ServiceNow Variables that can be referenced in a Flow from a Service Catalog item. The Terraform Integration codebase can create [Terraform Variables and Terraform Environment Variables](../../workspaces/variables.html) via the API using the `tf_variable.createVariablesFromSet()` function.
 
 This function looks for variables following these conventions:
 
@@ -144,7 +144,7 @@ This function takes the ServiceNow Variable Set and Terraform Workspace ID. It w
 
 ## Customizing with ServiceNow "Script Includes" Libraries
 
-The Terraform/ServiceNow Integration codebase includes [ServiceNow Script Includes Classes](https://docs.servicenow.com/bundle/madrid-application-development/page/script/server-scripting/concept/c_ScriptIncludes.html) that are used to interface with Terraform Enterprise. The codebase also includes example catalog items and workflows that implement the interface to Terraform API.
+The Terraform/ServiceNow Integration codebase includes [ServiceNow Script Includes Classes](https://docs.servicenow.com/bundle/madrid-application-development/page/script/server-scripting/concept/c_ScriptIncludes.html) that are used to interface with Terraform Enterprise. The codebase also includes example catalog items and flows that implement the interface to Terraform API.
 
 These classes and examples can be used to help create ServiceNow Catalog Items customized to your specific ServiceNow instance and requirements.
 
@@ -165,7 +165,7 @@ Class Name | Description
 
 ### Example Service Catalog Flows and Actions
 
-The ServiceNow Example Flows can be found in the ServiceNow Studio > Flows. By default, the Flows execute upon submitting an order request for the various catalog items. Admins can modify the Flows and Actions to wait on an approval action, include approval rules, and specify approver groups.
+The ServiceNow Example Flows can be found in the ServiceNow Studio > Flows. By default, the flows execute upon submitting an order request for the various catalog items. Admins can modify the flows and Actions to wait on an approval action, include approval rules, and specify approver groups.
 
 Flow Name | Description
 --|--

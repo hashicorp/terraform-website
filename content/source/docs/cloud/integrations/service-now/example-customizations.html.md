@@ -53,28 +53,28 @@ In the ServiceNow Studio:
 
 1. Navigate to "Flow Designer" > "Flows" > "Provision Resources With Vars".
    1. This will be flow that can be used as an example.
-2. Create a new flow by selecting "New" in Flow Designer
-3. Name it "Example Flow" and click "submit"
-4. Edit your example flow
+1. Create a new flow by selecting "New" in Flow Designer
+1. Name it "Example Flow" and click "submit"
+1. Edit your example flow
    1. Trigger: Service Catalog
-   2. 1st Action: Get Catalog Variables
+   1. 1st Action: Get Catalog Variables
       1. Drag "Requested Item Record" to "Submitted Request" field
-      2. Template Catalog Item: This should be your example catalog item created above
-      3. Catalog Variables: Move all of your variables to "Selected" side
-      4. Select "Done" to finish this action
-   3. Add another action and select the "Terraform Create Workspace with Var"
+      1. Template Catalog Item: This should be your example catalog item created above
+      1. Catalog Variables: Move all of your variables to "Selected" side
+      1. Select "Done" to finish this action
+   1. Add another action and select the "Terraform Create Workspace with Var"
       1. Using the Flow "Provision Resources With Vars" as an example:
-      2. Move the variables from the "Data" options on the right of the flow designer to match the example flow
-      3. Select "Done" to save this flow
-5. Click "Save" then "Activate" to enable your flow
+      1. Move the variables from the "Data" options on the right of the flow designer to match the example flow
+      1. Select "Done" to save this flow
+1. Click "Save" then "Activate" to enable your flow
 
 ### Set The Workflow for Catalog Item
 
 In the ServiceNow Studio:
 
 1. Select the "Example with Pinned Variables" catalog item. ("Service Catalog" > "Catalog Item" > "Example With Pinned Variables")
-2. Select the "Process Engine" tab.
-3. Set the "Flow" field by searching for the "Example Pinned Variables" flow and clicking "Update".
+1. Select the "Process Engine" tab.
+1. Set the "Flow" field by searching for the "Example Pinned Variables" flow and clicking "Update".
 
 ### Test the Catalog Item
 

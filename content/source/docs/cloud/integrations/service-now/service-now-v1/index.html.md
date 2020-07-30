@@ -9,7 +9,7 @@ description: |-
 
 -> **[DEPRECATED] Integration version:** v1.1.0 (Find the latest version [here](../index.html))
 
--> **Note:** The ServiceNow Catalog integration is designed for use by Terraform Enterprise customers. We do not currently recommend using it with the SaaS version of Terraform Cloud.
+!> **Note:** The ServiceNow Catalog integration is designed for use by Terraform Enterprise customers. We do not currently recommend using it with the SaaS version of Terraform Cloud.
 
 The Terraform ServiceNow Service Catalog integration enables your end-users to provision self-serve infrastructure via ServiceNow. By connecting ServiceNow with Terraform Enterprise, this integration lets ServiceNow users create workspaces and perform Terraform runs, using prepared Terraform configurations hosted in VCS repositories.
 
