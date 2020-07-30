@@ -100,8 +100,10 @@ providing an auto-recovery mechanism in the event of virtual machine or physical
 
 ### Storage Layer
 
+For more information about Terraform Enterprise's disk requirements, see [Before Installing: Disk Requirements](../disk-requirements.html).
+
 The Storage Layer is provided in the form of attached disk space configured with or benefiting from inherent resiliency
-provided by the NAS or SAN. The primary Terraform Enterprise VM will have 2 disks which must meet the requirements detailed [here](../disk-requirements.html). The first disk is independent to this VM and contains the OS and Terraform Enterprise components specific to this individual install, such as configuration information. The second disk will contain Terraform Enterprise's configuration information such as Workspaces and their resulting Terraform state files.  This second disk needs to be regularly backed up, for instance via replication or snapshotting inherent to your SAN or other software, at a rate that meets your desired RPO.
+provided by the NAS or SAN. The primary Terraform Enterprise VM will have 2 disks. The first disk is independent to this VM and contains the OS and Terraform Enterprise components specific to this individual install, such as configuration information. The second disk will contain Terraform Enterprise's configuration information such as Workspaces and their resulting Terraform state files.  This second disk needs to be regularly backed up, for instance via replication or snapshotting inherent to your SAN or other software, at a rate that meets your desired RPO.
 Similarly, the standby VM will have two disks. An OS disk that is independent to that VM and a disk which is simply a point in time copy of the primary instance's second disk. 
 
 -> **Note:** Terraform Enterprise's storage device or service must be highly reliable and high-speed in both I/O and connectivity to meet performance requirements. Device types in the supported list will usually meet these requirements, but many standard NAS and other device types will not perform at the level required. Only use a NAS or other device type not in the supported list if you are certain it can accommodate these requirements.
@@ -109,8 +111,6 @@ Similarly, the standby VM will have two disks. An OS disk that is independent to
 The specific selection and configuration of the storage device is not covered in this document.
 For more information about high-speed and highly available storage, please see your storage vendor.
 We recommend that each of these VM be deployed as immutable architecture to enable one to easily redeploy the secondary VM when the primary has been upgraded or changed. If this is not possible a snapshot methodology inherent to TFE along with examples of restoring those snapshots is available at [Terraform Enterprise Automated Recovery](../../admin/automated-recovery.html.md)
-
-For more information about Terraform Enterprise's disk requirements, see [Before Installing: Disk Requirements](../disk-requirements.html).
 
 ## Infrastructure Provisioning
 
