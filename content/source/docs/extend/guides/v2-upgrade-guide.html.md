@@ -551,7 +551,7 @@ for more information.
 ## Removal of the `helper/schema.Provider.MetaReset` property
 
 The `helper/schema.Provider.MetaReset` property allowed providers to set a
-function tha would be called during testing to reset the `meta` associated with
+function that would be called during testing to reset the `meta` associated with
 the provider. This function was never actually called, and so the property has
 been removed.
 
