@@ -196,7 +196,7 @@ availability and reliability. Should the *TFE-main* server fail, it can
 be recovered, or traffic can be routed to the *TFE-standby* server to
 resume service when the failure is limited to the Terraform Enterprise server layer. The
 load balancer should be manually updated to point to the stand-by Terraform Enterprise
-VM after services have been started on it in the event of a failure. 
+VM after services have been started on it in the event of a failure.
 
 #### Mounted Disk - PostgreSQL Database
 
