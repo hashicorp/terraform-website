@@ -8,10 +8,6 @@ description: |-
 
 # Terraform Plugin SDK v2 Upgrade Guide
 
--> **Note:** This upgrade guide is a work in progress and will not be finalized
-   until the version 2.0.0 of the Terraform Plugin SDK is generally available.
-   We expect it to grow and evolve as part of the release candidate process.
-
 Version 2.0.0 of the Terraform Plugin SDK is a major release and includes some
 changes that you will need to consider when upgrading. This guide is meant to
 help you with that process, and only focuses on upgrades from version 1.13.1 to
