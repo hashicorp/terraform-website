@@ -528,9 +528,9 @@ compile time.
 ## Removal of the `helper/schema.Provider.StopContext` method
 
 The `helper/schema.Provider.StopContext` method has been removed as its
-implementation has been reconfigured. Use `helper/schema.StopContext`, passed a
-`context.Context` originate from one of the new context-aware functions,
-instead.
+implementation has been reconfigured. Use `helper/schema.StopContext`, passing
+a `context.Context` originating from the context-aware
+`helper/schema.ConfigureContextFunc` instead.
 
 ## Removal of `helper/schema.ResourceData.SetPartial`
 
