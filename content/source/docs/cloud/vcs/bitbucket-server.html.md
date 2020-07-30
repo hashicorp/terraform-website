@@ -59,14 +59,14 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 1. Enter the URL of your Bitbucket Server instance in the **HTTP URL** and **API URL** fields.
 
-    If your Bitbucket Server instance does not have a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set, the **API URL** should be the same as the **HTTP URL**.
+-> **Context Path**  If your Bitbucket Server instance does not have a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set, the **API URL** should be the same as the **HTTP URL**.
 
     If your Bitbucket Server instance has a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set:
 
     1. Set the **HTTP URL** to the URL of your Bitbucket Server instance with the context path included, `https://<BITBUCKET INSTANCE HOSTNAME>/<CONTEXT PATH>`.
     1. Set the **API URL** to the URL of your Bitbucket Server instance **without** the context path, `https://<BITBUCKET INSTANCE HOSTNAME>/`.
 
-    ~> **Note:** If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL. If you omit the port in the URL, Terraform Cloud uses the standard port for the protocol (80 for HTTP, 443 for HTTPS).
+~> **Note:** If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL. If you omit the port in the URL, Terraform Cloud uses the standard port for the protocol (80 for HTTP, 443 for HTTPS).
 
     ![Terraform Cloud screenshot: text fields for adding a Bitbucket Server VCS provider](./images/bitbucket-server-tfe-add-url-fields.png)
 
