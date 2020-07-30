@@ -44,12 +44,16 @@ Upgrade topics:
 * [More Robust Validation of `helper/resource.TestCheckResourceAttrPair`](#more-robust-validation-of-helper-resource-testcheckresourceattrpair)
 * [More Robust Validation of Test Sweepers](#more-robust-validation-of-test-sweepers)
 * [Deprecation of `helper/schema.ExistsFunc`](#deprecation-of-helper-schema-existsfunc)
+* [Deprecation of `helper/schema.SchemaValidateFunc`](#deprecation-of-helper-schema-schemavalidatefunc)
 * [Removal of `helper/mutexkv` Package](#removal-of-helper-mutexkv-package)
 * [Removal of `helper/pathorcontents` Package](#removal-of-helper-pathorcontents-package)
 * [Removal of `httpclient` Package](#removal-of-httpclient-package)
 * [Removal of `helper/hashcode` Package](#removal-of-helper-hashcode-package)
 * [Removal of the `acctest` Package](#removal-of-the-acctest-package)
 * [Removal of the `terraform.ResourceProvider` Interface](#removal-of-the-terraform-resourceprovider-interface)
+* [Removal of the `helper/schema.Provider.StopContext` method](#removal-of-the-helper-schema-provider-stopcontext-method)
+* [Removal of `helper/schema.ResourceData.SetPartial`](#removal-of-helper-schema-resourcedata-setpartial)
+* [Removal of the `helper/schema.Provider.MetaReset` property](#removal-of-the-helper-schema-provider-metareset-property)
 * [Removal of Deprecated Validation Functions](#removal-of-deprecated-validation-functions)
 * [Removal of `helper/schema.Schema.PromoteSingle`](#removal-of-helper-schema-schema-promotesingle)
 * [Removal of `helper/schema.ResourceData.UnsafeSetFieldRaw`](#removal-of-helper-schema-resourcedata-unsafesetfieldraw)
@@ -335,6 +339,18 @@ twice. Providers should check for Not Found responses in Read, and call
 `helper/schema.ResourceData.SetId(“”)` and return no errors if a Not Found
 response is encountered, instead.
 
+## Deprecation of `helper/schema.SchemaValidateFunc`
+The `helper/schema.SchemaValidateFunc` type and the properties that use it,
+including `helper/schema.Schema.ValidateFunc`, are now deprecated in favor of
+`helper/schema.SchemaValidateDiagFunc`, which gains awareness for diagnostics,
+allowing more accurate errors to be returned.
+
+The `helper/validation` helper functions will have
+`helper/schema.SchemaValidateDiagFunc` equivalents of the validation functions
+added in a future release to ease the transition. Until that point, a 
+wrapper can be used that wraps the warnings and errors returned from
+`helper/schema.SchemaValidateFunc` in a `diag.Diagnostics`.
+
 ## Removal of `helper/mutexkv` Package
 The `helper/mutexkv` package provided convenience helpers for managing
 concurrency, but is not specifically related to Terraform plugin development,
@@ -509,6 +525,36 @@ this will involve changing the returned type of the `Provider()` function, and
 removing some type assertions; all necessary changes should be raised at
 compile time.
 
+## Removal of the `helper/schema.Provider.StopContext` method
+
+The `helper/schema.Provider.StopContext` method has been removed as its
+implementation has been reconfigured. Use `helper/schema.StopContext`, passed a
+`context.Context` originate from one of the new context-aware functions,
+instead.
+
+## Removal of `helper/schema.ResourceData.SetPartial`
+
+The `helper/schema.ResourceData.SetPartial` method was deprecated and has been
+removed. This method used to allow setting certain fields in state when
+`helper/schema.ResourceData.Partial` was set to `true`, but developers weren't
+clear under which circumstances that needed to happen.
+
+This method should never need to be used. `helper/schema.ResourceData.Partial`
+should be set to `true` before returning an error if the error should prevent
+any state from being part of the config being automatically persisted in state.
+For most providers, this doesn't matter, as the refresh step will take care of
+setting the state to what it should be.
+
+See [issue #476](https://github.com/hashicorp/terraform-plugin-sdk/issues/476)
+for more information.
+
+## Removal of the `helper/schema.Provider.MetaReset` property
+
+The `helper/schema.Provider.MetaReset` property allowed providers to set a
+function tha would be called during testing to reset the `meta` associated with
+the provider. This function was never actually called, and so the property has
+been removed.
+
 ## Removal of Deprecated Validation Functions
 The following `helper/validation` functions have been renamed, and the
 deprecated aliases have been removed:
@@ -566,11 +612,9 @@ their use case, and we can help find a path forward.
 
 * `helper/acctest.RemoteTestPrecheck`
 * `helper/acctest.SkipRemoteTestsEnvVar`
-* `helper/resource.EnvLogPathMask`
 * `helper/resource.GRPCTestProvider`
 * `helper/resource.LogOutput`
 * `helper/resource.Map`
-* `helper/resource.TestEnvVar`
 * `helper/resource.TestProvider`
 * `helper/schema.MultiMapReader`
 * `helper/schema.Provider.Input`
@@ -614,6 +658,7 @@ their use case, and we can help find a path forward.
 * `plugin.UIOutputServer`
 * `plugin.VersionedPlugins no longer has a "provisioner" key`
 * `resource.RunNewTest`
+* `resource.TestDisableBinaryTestingFlagEnvVar`
 * `schema.Backend`
 * `schema.FromContextBackendConfig`
 * `schema.SetProto5`
