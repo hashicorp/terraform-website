@@ -50,16 +50,23 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "digitalocean" : "digitalocean/digitalocean"
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
     "exoscale" : "exoscale/exoscale"
+    "fortios" : "fortinetdev/fortios"
     "hcloud" : "hetznercloud/hcloud"
+    "heroku" : "heroku/heroku"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "linode" : "linode/linode"
     "ncloud" : "NaverCloudPlatform/ncloud"
     "newrelic" : "newrelic/newrelic"
+    "opsgenie" : "opsgenie/opsgenie"
     "rancher2" : "rancher/rancher2"
+    "scaleway" : "scaleway/scaleway"
     "signalfx" : "splunk-terraform/signalfx"
+    "stackpath" : "stackpath/stackpath"
     "sumologic" : "SumoLogic/sumologic"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
     "triton" : "joyent/triton"
+    "turbot" : "turbot/turbot"
+    "ucloud" :"ucloud/ucloud"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more

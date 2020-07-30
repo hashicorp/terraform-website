@@ -98,10 +98,6 @@
 	path = ext/providers/grafana
 	url = https://github.com/terraform-providers/terraform-provider-grafana
 	branch = stable-website
-[submodule "ext/providers/heroku"]
-	path = ext/providers/heroku
-	url = https://github.com/terraform-providers/terraform-provider-heroku
-	branch = stable-website
 [submodule "ext/providers/icinga2"]
 	path = ext/providers/icinga2
 	url = https://github.com/terraform-providers/terraform-provider-icinga2
@@ -154,10 +150,6 @@
 	path = ext/providers/openstack
 	url = https://github.com/terraform-providers/terraform-provider-openstack
 	branch = stable-website
-[submodule "ext/providers/opsgenie"]
-	path = ext/providers/opsgenie
-	url = https://github.com/terraform-providers/terraform-provider-opsgenie
-	branch = stable-website
 [submodule "ext/providers/oraclepaas"]
  	path = ext/providers/oraclepaas
  	url = https://github.com/terraform-providers/terraform-provider-oraclepaas
@@ -197,10 +189,6 @@
 [submodule "ext/providers/rundeck"]
 	path = ext/providers/rundeck
 	url = https://github.com/terraform-providers/terraform-provider-rundeck
-	branch = stable-website
-[submodule "ext/providers/scaleway"]
-	path = ext/providers/scaleway
-	url = https://github.com/terraform-providers/terraform-provider-scaleway
 	branch = stable-website
 [submodule "ext/providers/softlayer"]
 	path = ext/providers/softlayer
@@ -306,10 +294,6 @@
 	path = ext/providers/skytap
 	url = https://github.com/terraform-providers/terraform-provider-skytap
 	branch = stable-website
-[submodule "ext/providers/ucloud"]
-	path = ext/providers/ucloud
-	url = https://github.com/terraform-providers/terraform-provider-ucloud
-	branch = stable-website
 [submodule "ext/providers/hedvig"]
 	path = ext/providers/hedvig
 	url = https://github.com/terraform-providers/terraform-provider-hedvig
@@ -329,10 +313,6 @@
 [submodule "ext/providers/jdcloud"]
 	path = ext/providers/jdcloud
 	url = https://github.com/terraform-providers/terraform-provider-jdcloud
-	branch = stable-website
-[submodule "ext/providers/fortios"]
-	path = ext/providers/fortios
-	url = https://github.com/terraform-providers/terraform-provider-fortios
 	branch = stable-website
 [submodule "ext/providers/gridscale"]
 	path = ext/providers/gridscale
@@ -402,10 +382,6 @@
 	path = ext/providers/opennebula
 	url = https://github.com/terraform-providers/terraform-provider-opennebula
 	branch = stable-website
-[submodule "ext/providers/stackpath"]
-	path = ext/providers/stackpath
-	url = https://github.com/terraform-providers/terraform-provider-stackpath
-	branch = stable-website
 [submodule "ext/providers/checkpoint"]
 	path = ext/providers/checkpoint
 	url = https://github.com/terraform-providers/terraform-provider-checkpoint
@@ -437,10 +413,6 @@
 [submodule "ext/providers/infoblox"]
 	path = ext/providers/infoblox
 	url = https://github.com/terraform-providers/terraform-provider-infoblox
-	branch = stable-website
-[submodule "ext/providers/turbot"]
-	path = ext/providers/turbot
-	url = https://github.com/terraform-providers/terraform-provider-turbot
 	branch = stable-website
 [submodule "ext/providers/ksyun"]
 	path = ext/providers/ksyun

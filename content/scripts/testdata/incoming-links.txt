@@ -678,7 +678,6 @@
 /docs/providers/fastly/index.html
 /docs/providers/fastly/r/service_v1.html
 /docs/providers/flexibleengine/index.html
-/docs/providers/fortios/index.html
 /docs/providers/github/d/user.html
 /docs/providers/github/index.html
 /docs/providers/github/r/branch_protection.html
@@ -777,9 +776,6 @@
 /docs/providers/helm/index.html
 /docs/providers/helm/r/release.html
 /docs/providers/helm/d/repository.html
-/docs/providers/heroku/index.html
-/docs/providers/heroku/r/app.html
-/docs/providers/heroku/r/build.html
 /docs/providers/huaweicloud/index.html
 /docs/providers/icinga2/index.html
 /docs/providers/ignition/d/filesystem.html
@@ -852,7 +848,6 @@
 /docs/providers/rancher/index.html
 /docs/providers/rightscale/index.html
 /docs/providers/runscope/index.html
-/docs/providers/scaleway/index.html
 /docs/providers/skytap/index.html
 /docs/providers/softlayer/r/virtual_guest.html
 /docs/providers/spotinst/index.html
@@ -864,7 +859,6 @@
 /docs/providers/type/community-index.html
 /docs/providers/type/major-index.html
 /docs/providers/type/network-index.html
-/docs/providers/ucloud/index.html
 /docs/providers/ultradns/index.html
 /docs/providers/vault/d/aws_access_credentials.html
 /docs/providers/vault/d/generic_secret.html
