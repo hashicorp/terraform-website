@@ -172,7 +172,7 @@ FROM ubuntu:xenial
 
 # Install software used by Terraform Enterprise.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    sudo unzip daemontools git-core ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd ca-certificates
+    sudo unzip daemontools git-core awscli ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd ca-certificates
 
 # Include all necessary CA certificates.
 ADD example-root-ca.crt /usr/local/share/ca-certificates/
