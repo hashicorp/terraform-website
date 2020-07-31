@@ -185,7 +185,7 @@ Parameter       | Description
 
 ### Request Body
 
-This POST endpoint requires a JSON object with the following properties as a request payload.
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
 Properties without a default value are required.
 
