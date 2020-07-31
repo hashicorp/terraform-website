@@ -23,8 +23,7 @@ architecture.
 
 ## Infrastructure Requirements
 
--> **Note:** This reference architecture focuses on the _External
-Services_ operational mode.
+-> **Note:** This reference architecture focuses on the _External Services_ operational mode.
 
 Depending on the chosen [operational
 mode](../index.html#operational-mode-decision),
@@ -40,8 +39,8 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 
 | Type        | CPU      | Memory       | Disk        | GCP Machine Types              |
 |-------------|----------|--------------|-------------|--------------------------------|
-| Minimum     | 2-4 core | 8-16 GB RAM  | 50GB/200GB* | n1-standard-2, n1-standard-4   |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB/200GB* | n1-standard-4, n1-standard-8   |
+| Minimum     | 2 core   | 7.5 GB RAM   | 50GB/200GB* | n1-standard-2                 |
+| Recommended | 4-8 core | 15-30 GB RAM | 50GB/200GB* | n1-standard-4, n1-standard-8   |
 
 #### Hardware Sizing Considerations
 
@@ -265,11 +264,23 @@ primary GCP Region hosting the Terraform Enterprise application failing, the sec
 GCP Region will require some configuration before traffic is directed to
 it along with some global services such as DNS.
 
-- [Cloud SQL cross-region read replicas](https://cloud.google.com/sql/docs/postgres/replication/manage-replicas) can be used in a warm standby architecture or [Cloud SQL database backups](https://cloud.google.com/sql/docs/postgres/backup-recovery/restoring) can be used in a cold standby architecture.
+- [Cloud SQL cross-region read replicas](https://cloud.google.com/sql/docs/postgres/replication/cross-region-replicas)  can be used in a warm standby architecture. see also [Managing Cloud SQL read replicas](https://cloud.google.com/sql/docs/postgres/replication/manage-replicas) .
+
+  - Note that read replicas do not inherently provide high availability in the sense that there can be automatic failover from the primary to the read replica. As described in the above reference, the read replica will need to be promoted to a stand-alone Cloud SQL primary instance. Promoting a replica to a stand-alone Cloud SQL primary instance is an irreversible action, so when the failover needs to be reverted, the database must be restored to an original primary location (potentially by starting it as a read replica and promoting it), and the secondary read replica will need to be destroyed and re-established.
+
+  - GCP now offers a [high availability option for Cloud SQL](https://cloud.google.com/sql/docs/mysql/high-availability) databases which could be incorporated into a more automatic failover scenario.*
+
+- [Cloud SQL database backups](https://cloud.google.com/sql/docs/postgres/backup-recovery/restoring) can be used in a cold standby architecture.
+
+  - GCP now offers a [Point-in-time recovery](https://cloud.google.com/sql/docs/postgres/backup-recovery/pitr) option for Cloud SQL databases which could be incorporated into a backup and recovery scheme with reduced downtime and higher reliability.* 
 
 - [Multi-Regional Cloud Storage replication](https://cloud.google.com/storage/docs/storage-classes#multi-regional) must be configured so the object storage component of the Storage Layer is available in multiple GCP Regions.
 
 - DNS must be redirected to the Forwarding Rule acting as the entry point for the infrastructure deployed in the secondary GCP Region.
+
+- Terraform Enterprise in the Standalone architecture is an Active:Passive model. At no point should more than one Terraform Enterprise instance be actively connected to the same database instance.
+
+***Note** Additional testing and the development of more detailed documentation regarding backup/restore and failover scenarios taking advantage of the newer CloudSQL capabilities are underway and will be made available shortly.
 
 #### Data Corruption
 
