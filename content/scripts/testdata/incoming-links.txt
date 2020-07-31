@@ -657,17 +657,6 @@
 /docs/providers/datadog/r/timeboard.html
 /docs/providers/dme/index.html
 /docs/providers/dnsimple/index.html
-/docs/providers/digitalocean/d/kubernetes_cluster.html
-/docs/providers/digitalocean/index.html
-/docs/providers/digitalocean/r/digitaloceanmain.html
-/docs/providers/digitalocean/r/droplet.html
-/docs/providers/digitalocean/r/firewall.html
-/docs/providers/digitalocean/r/floating_ip.html
-/docs/providers/digitalocean/r/kubernetes_cluster.html
-/docs/providers/digitalocean/r/loadbalancer.html
-/docs/providers/digitalocean/r/record.html
-/docs/providers/digitalocean/r/ssh_key.html
-/docs/providers/digitalocean/r/volume.html
 /docs/providers/docker/index.html
 /docs/providers/docker/r/container.html
 /docs/providers/docker/r/image.html
