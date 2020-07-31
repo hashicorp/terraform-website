@@ -95,18 +95,20 @@ of this guide. You will be prompted for the public and private certificates duri
 
 ### Application Layer
 
-The Application Layer is a VMware virtual machine running on an ESX cluster
+The Application Layer is a VMware virtual machine running on an ESXi cluster
 providing an auto-recovery mechanism in the event of virtual machine or physical server failure.
 
 ### Storage Layer
 
 The Storage Layer is provided in the form of attached disk space configured with or benefiting from inherent resiliency
-provided by the NAS or SAN.
+provided by the NAS or SAN. The primary Terraform Enterprise VM will have 2 disks which must meet the requirements detailed [here](../disk-requirements.html). The first disk is independent to this VM and contains the OS and Terraform Enterprise components specific to this individual install, such as configuration information. The second disk will contain Terraform Enterprise's configuration information such as Workspaces and their resulting Terraform state files.  This second disk needs to be regularly backed up, for instance via replication or snapshotting inherent to your SAN or other software, at a rate that meets your desired RPO.
+Similarly, the standby VM will have two disks. An OS disk that is independent to that VM and a disk which is simply a point in time copy of the primary instance's second disk. 
 
 -> **Note:** Terraform Enterprise's storage device or service must be highly reliable and high-speed in both I/O and connectivity to meet performance requirements. Device types in the supported list will usually meet these requirements, but many standard NAS and other device types will not perform at the level required. Only use a NAS or other device type not in the supported list if you are certain it can accommodate these requirements.
 
 The specific selection and configuration of the storage device is not covered in this document.
 For more information about high-speed and highly available storage, please see your storage vendor.
+We recommend that each of these VM be deployed as immutable architecture to enable one to easily redeploy the secondary VM when the primary has been upgraded or changed. If this is not possible a snapshot methodology inherent to TFE along with examples of restoring those snapshots is available at [Terraform Enterprise Automated Recovery](../../admin/automated-recovery.html.md)
 
 For more information about Terraform Enterprise's disk requirements, see [Before Installing: Disk Requirements](../disk-requirements.html).
 
@@ -149,7 +151,7 @@ See [the Upgrades section](../../admin/upgrades.html) of the documentation.
 
 VMWare hypervisor provides a high level of resilience in various cases
 of failure (at the server hardware layer through vMotion and at the network layer through virtual distributed
-networking.) In addition, having ESX failover to a DR datacenter
+networking.) In addition, having ESXi failover to a DR datacenter
 provides recovery in the case of a total data center outage See the Disaster Recovery section.
 
 #### Terraform Enterprise Servers (VMware Virtual Machine)
@@ -158,11 +160,11 @@ Should the *TFE-main* server fail, it can
 be recovered, or traffic can be routed to the *TFE-standby* server to
 resume service when the failure is limited to the Terraform Enterprise server layer. See the Disaster Recovery section.
 
-#### Single ESX Server Failure
+#### Single ESXi Server Failure
 
-In the event of a single ESX server failure, ESX will vMotion the Terraform Enterprise virtual
-machine to a functioning ESX host. This typically does not result in any
-visible outage to the end-user.
+In the event of a single ESXi server failure, ESXi will vMotion the Terraform Enterprise virtual
+machine to a functioning ESXi host. This typically does not result in any
+visible outage to the end-user if VM Fault Tolerance has been configured. As with all applications, you may see a small interruption while the VM boots on the new host if Fault Tolerance is not configured.
 
 #### PostgreSQL Database
 
@@ -187,7 +189,7 @@ storage is fault tolerant and replicated or has fast recovery available.
 
 #### Terraform Enterprise Servers (VMware Virtual Machine)
 
-Through deployment of two virtual machines in different ESX clusters,
+Through deployment of two virtual machines in different ESXi clusters,
 the Terraform Enterprise Reference Architecture is designed to provide improved
 availability and reliability. Should the *TFE-main* server fail, it can
 be recovered, or traffic can be routed to the *TFE-standby* server to
@@ -207,9 +209,9 @@ Object storage will be written to the mounted disk. The expectation
 is that the storage server is replicated or backed up offsite and will
 be made available to the server in the event of a DR.
 
-#### ESX Cluster
+#### ESXi Cluster
 
-In the event of a complete ESX cluster failure or datacenter failure, load-balancing should be updated to route traffic to a different datacenter and ESX cluster that is running a second stack of the Terraform Enterprise components. This second environment would be receiving storage layer replication from the primary.
+In the event of a complete ESXi cluster failure or datacenter failure, load-balancing should be updated to route traffic to a different datacenter and ESXi cluster that is running a second stack of the Terraform Enterprise components. This second environment would be receiving storage layer replication from the primary.
 
 ## External Services Storage Options
 
