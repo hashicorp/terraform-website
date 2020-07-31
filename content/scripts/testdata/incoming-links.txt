@@ -657,17 +657,6 @@
 /docs/providers/datadog/r/timeboard.html
 /docs/providers/dme/index.html
 /docs/providers/dnsimple/index.html
-/docs/providers/do/d/kubernetes_cluster.html
-/docs/providers/do/index.html
-/docs/providers/do/r/domain.html
-/docs/providers/do/r/droplet.html
-/docs/providers/do/r/firewall.html
-/docs/providers/do/r/floating_ip.html
-/docs/providers/do/r/kubernetes_cluster.html
-/docs/providers/do/r/loadbalancer.html
-/docs/providers/do/r/record.html
-/docs/providers/do/r/ssh_key.html
-/docs/providers/do/r/volume.html
 /docs/providers/docker/index.html
 /docs/providers/docker/r/container.html
 /docs/providers/docker/r/image.html
