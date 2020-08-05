@@ -34,17 +34,9 @@
 	path = ext/providers/chef
 	url = https://github.com/terraform-providers/terraform-provider-chef
 	branch = stable-website
-[submodule "ext/providers/circonus"]
-	path = ext/providers/circonus
-	url = https://github.com/terraform-providers/terraform-provider-circonus
-	branch = stable-website
 [submodule "ext/providers/clc"]
 	path = ext/providers/clc
 	url = https://github.com/terraform-providers/terraform-provider-clc
-	branch = stable-website
-[submodule "ext/providers/cloudflare"]
-	path = ext/providers/cloudflare
-	url = https://github.com/terraform-providers/terraform-provider-cloudflare
 	branch = stable-website
 [submodule "ext/providers/cloudstack"]
 	path = ext/providers/cloudstack
@@ -77,10 +69,6 @@
 [submodule "ext/providers/dyn"]
 	path = ext/providers/dyn
 	url = https://github.com/terraform-providers/terraform-provider-dyn
-	branch = stable-website
-[submodule "ext/providers/fastly"]
-	path = ext/providers/fastly
-	url = https://github.com/terraform-providers/terraform-provider-fastly
 	branch = stable-website
 [submodule "ext/providers/github"]
 	path = ext/providers/github
@@ -334,10 +322,6 @@
 	path = ext/providers/aci
 	url = https://github.com/terraform-providers/terraform-provider-aci
 	branch = stable-website
-[submodule "ext/providers/mongodbatlas"]
-	path = ext/providers/mongodbatlas
-	url = https://github.com/terraform-providers/terraform-provider-mongodbatlas
-	branch = stable-website
 [submodule "ext/providers/aviatrix"]
 	path = ext/providers/aviatrix
 	url = https://github.com/terraform-providers/terraform-provider-aviatrix
@@ -357,10 +341,6 @@
 [submodule "ext/providers/okta"]
 	path = ext/providers/okta
 	url = https://github.com/terraform-providers/terraform-provider-okta
-	branch = stable-website
-[submodule "ext/providers/launchdarkly"]
-	path = ext/providers/launchdarkly
-	url = https://github.com/terraform-providers/terraform-provider-launchdarkly
 	branch = stable-website
 [submodule "ext/providers/vultr"]
 	path = ext/providers/vultr

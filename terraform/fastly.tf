@@ -47,14 +47,19 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   items = {
     # Partners
     "brightbox" : "brightbox/brightbox"
+    "circonus" : "circonus-labs/circonus"
+    "cloudflare" : "cloudflare/cloudflare"
     "digitalocean" : "digitalocean/digitalocean"
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
     "exoscale" : "exoscale/exoscale"
+    "fastly" : "fastly/fastly"
     "fortios" : "fortinetdev/fortios"
     "hcloud" : "hetznercloud/hcloud"
     "heroku" : "heroku/heroku"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
+    "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
+    "mongodbatlas" : "mongodb/mongodbatlas"
     "ncloud" : "NaverCloudPlatform/ncloud"
     "newrelic" : "newrelic/newrelic"
     "opsgenie" : "opsgenie/opsgenie"
@@ -66,7 +71,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "tencentcloud" : "tencentcloudstack/tencentcloud"
     "triton" : "joyent/triton"
     "turbot" : "turbot/turbot"
-    "ucloud" :"ucloud/ucloud"
+    "ucloud" : "ucloud/ucloud"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more
