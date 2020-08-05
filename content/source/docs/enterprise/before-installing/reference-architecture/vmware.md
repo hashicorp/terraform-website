@@ -108,7 +108,7 @@ Similarly, the standby VM will have two disks. An OS disk that is independent to
 
 The specific selection and configuration of the storage device is not covered in this document.
 For more information about high-speed and highly available storage, please see your storage vendor.
-We recommend that each of these VM be deployed as immutable architecture to enable one to easily redeploy the secondary VM when the primary has been upgraded or changed. If this is not possible a snapshot methodology inherent to TFE along with examples of restoring those snapshots is available at [Terraform Enterprise Automated Recovery](../../admin/automated-recovery.html.md)
+We recommend that each of these VM be deployed as immutable architecture to enable one to easily redeploy the secondary VM when the primary has been upgraded or changed. If this is not possible a snapshot methodology inherent to TFE along with examples of restoring those snapshots is available at [Terraform Enterprise Automated Recovery](../../admin/automated-recovery.html).
 
 For more information about Terraform Enterprise's disk requirements, see [Before Installing: Disk Requirements](../disk-requirements.html).
 
