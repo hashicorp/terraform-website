@@ -45,7 +45,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   service_id    = local.static_sites_service_id # we do not manage this service in Terraform at this time
   dictionary_id = local.tf_provider_namespaces_dictionary_id
   items = {
-    # Partners
+    # verified partners
     "brightbox" : "brightbox/brightbox"
     "circonus" : "circonus-labs/circonus"
     "cloudflare" : "cloudflare/cloudflare"
@@ -53,24 +53,27 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
     "exoscale" : "exoscale/exoscale"
     "fastly" : "fastly/fastly"
-    "fortios" : "fortinetdev/fortios"
     "hcloud" : "hetznercloud/hcloud"
     "heroku" : "heroku/heroku"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
     "mongodbatlas" : "mongodb/mongodbatlas"
-    "ncloud" : "NaverCloudPlatform/ncloud"
     "newrelic" : "newrelic/newrelic"
+    "okta" : "oktadeveloper/okta"
     "opsgenie" : "opsgenie/opsgenie"
     "rancher2" : "rancher/rancher2"
     "scaleway" : "scaleway/scaleway"
     "signalfx" : "splunk-terraform/signalfx"
-    "stackpath" : "stackpath/stackpath"
     "sumologic" : "SumoLogic/sumologic"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
     "triton" : "joyent/triton"
     "turbot" : "turbot/turbot"
+
+    # unofficial partners
+    "fortios" : "fortinetdev/fortios"
+    "ncloud" : "NaverCloudPlatform/ncloud"
+    "stackpath" : "stackpath/stackpath"
     "ucloud" : "ucloud/ucloud"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
