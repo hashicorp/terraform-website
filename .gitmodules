@@ -98,10 +98,6 @@
 	path = ext/providers/influxdb
 	url = https://github.com/terraform-providers/terraform-provider-influxdb
 	branch = stable-website
-[submodule "ext/providers/kubernetes"]
-	path = ext/providers/kubernetes
-	url = https://github.com/terraform-providers/terraform-provider-kubernetes
-	branch = stable-website
 [submodule "ext/providers/librato"]
 	path = ext/providers/librato
 	url = https://github.com/terraform-providers/terraform-provider-librato
@@ -202,10 +198,6 @@
 	path = ext/providers/vcd
 	url = https://github.com/terraform-providers/terraform-provider-vcd
 	branch = stable-website
-[submodule "ext/providers/vsphere"]
-	path = ext/providers/vsphere
-	url = https://github.com/terraform-providers/terraform-provider-vsphere
-	branch = stable-website
 [submodule "ext/providers/logicmonitor"]
 	path = ext/providers/logicmonitor
 	url = https://github.com/terraform-providers/terraform-provider-logicmonitor
@@ -274,10 +266,6 @@
 	path = ext/providers/nutanix
 	url = https://github.com/terraform-providers/terraform-provider-nutanix
 	branch = stable-website
-[submodule "ext/providers/helm"]
-	path = ext/providers/helm
-	url = https://github.com/terraform-providers/terraform-provider-helm
-	branch = stable-website
 [submodule "ext/providers/skytap"]
 	path = ext/providers/skytap
 	url = https://github.com/terraform-providers/terraform-provider-skytap
@@ -293,10 +281,6 @@
 [submodule "ext/providers/yandex"]
 	path = ext/providers/yandex
 	url = https://github.com/terraform-providers/terraform-provider-yandex
-	branch = stable-website
-[submodule "ext/providers/ciscoasa"]
-	path = ext/providers/ciscoasa
-	url = https://github.com/terraform-providers/terraform-provider-ciscoasa
 	branch = stable-website
 [submodule "ext/providers/jdcloud"]
 	path = ext/providers/jdcloud

@@ -80,16 +80,20 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     # manually enable Google indexing, contact the team / Paul Tyng for more
     "archive" : "hashicorp/archive"
     "aws" : "hashicorp/aws"
+    "ciscoasa" : "hashicorp/ciscoasa"
     "cloudinit" : "hashicorp/cloudinit"
     "dns" : "hashicorp/dns"
     "external" : "hashicorp/external"
+    "helm" : "hashicorp/helm"
     "http" : "hashicorp/http"
+    "kubernetes" : "hashicorp/kubernetes"
     "local" : "hashicorp/local"
     "null" : "hashicorp/null"
     "random" : "hashicorp/random"
     "template" : "hashicorp/template"
     "time" : "hashicorp/time"
     "tls" : "hashicorp/tls"
+    "vsphere" : "hashicorp/vsphere"
   }
 
   # prevent destroying this dictionary to cause redirects to break
