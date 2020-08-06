@@ -73,6 +73,18 @@ There are three ways to run speculative plans:
 - With the [remote backend](/docs/backends/types/remote.html) configured, running `terraform plan` on the command line starts a speculative plan. The plan output streams to the terminal, and a link to the plan is also included.
 - The runs API creates speculative plans whenever the specified configuration version is marked as speculative. See [the `configuration-versions` API](../api/configuration-versions.html#create-a-configuration-version) for more information.
 
+#### Retry a speculative plan in the UI
+
+If a speculative plan fails due to an external factor, you can run it again using the "Retry Run" button on its page:
+
+![Screenshot: Clicking on the "Retry Run" button to trigger a new run](./images/retry.gif)
+
+Retrying a plan requires permission to queue plans for that workspace. ([More about permissions.](../users-teams-organizations/permissions.html)) Only failed or canceled plans can be retried.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+Retrying the run will create a new run with the same configuration version. If it is a VCS-backed workspace, the pull request interface will receive the status of the new run, along with a link to the new run.
+
 ## Run States
 
 Terraform Cloud shows the progress of each run as it passes through each run state (pending, plan, policy check, apply, and completion). In some states, the run might require confirmation before continuing or ending; see [Managing Runs: Interacting with Runs](./manage.html#interacting-with-runs) for more information.
