@@ -75,14 +75,13 @@ There are three ways to run speculative plans:
 
 #### Retry a speculative plan in the UI
 
-Sometimes a speculative plan might fail due to an external factor, and you just need to try to run it again.  Retrying a speculative plan is allowed under the following conditions:
-
-- The user viewing the run has [workspace level permissions](https://www.terraform.io/docs/cloud/users-teams-organizations/permissions.html#workspace-permissions) to be able to queue plans.
-- The Plan itself has failed, through an error or being canceled.
-
-When these conditions are met, you will see a "Retry Run" button as shown below.
+If a speculative plan fails due to an external factor, you can run it again using the "Retry Run" button on its page:
 
 ![Screenshot: Clicking on the "Retry Run" button to trigger a new run](./images/retry.gif)
+
+Retrying a plan requires permission to queue plans for that workspace. ([More about permissions.](../users-teams-organizations/permissions.html)) Only failed or canceled plans can be retried.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Retrying the run will create a new run with the same configuration version. If it is a VCS-backed workspace, the pull request interface will receive the status of the new run, along with a link to the new run.
 
