@@ -61,6 +61,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "mongodbatlas" : "mongodb/mongodbatlas"
     "newrelic" : "newrelic/newrelic"
     "okta" : "oktadeveloper/okta"
+    "oktaasa" : "oktadeveloper/oktaasa"
     "opsgenie" : "opsgenie/opsgenie"
     "rancher2" : "rancher/rancher2"
     "scaleway" : "scaleway/scaleway"
