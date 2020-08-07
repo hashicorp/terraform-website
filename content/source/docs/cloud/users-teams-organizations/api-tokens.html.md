@@ -48,6 +48,10 @@ Organization API tokens have permissions across the entire organization. They ca
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](#organization-api-tokens). You must access it with a [user token](./users.html#api-tokens) or [team token](#team-api-tokens).
 
+## Agent API Tokens
+
+[Agent pools](/docs/cloud/workspaces/agent.html) have their own set of API tokens which allow agents to communicate with Terraform Cloud, scoped to an organization. These tokens are not valid for direct usage in the V2 API and are only used by agents.
+
 ## Access Levels
 
 The following chart illustrates the various access levels for the supported API token types. Some permissions are implicit based on the token type, others are dependent on the permissions of the associated user, team, or organization.
