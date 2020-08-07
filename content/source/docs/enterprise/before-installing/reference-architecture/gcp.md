@@ -78,7 +78,7 @@ specified during the Terraform Enterprise installation for application data to b
 securely and redundantly away from the Compute Engine VMs running the
 application. This Cloud Storage bucket must be in the same region as the Compute Engine and Cloud SQL
 instances.
-Vault is used to encrypt all application data stored in the Cloud Storage bucket.  This
+Vault is used to encrypt all application data stored in the Cloud Storage bucket. This
 allows for further [server-side
 encryption](https://cloud.google.com/storage/docs/encryption/).
 by Cloud Storage.
@@ -264,7 +264,7 @@ primary GCP Region hosting the Terraform Enterprise application failing, the sec
 GCP Region will require some configuration before traffic is directed to
 it along with some global services such as DNS.
 
-- [Cloud SQL cross-region read replicas](https://cloud.google.com/sql/docs/postgres/replication/cross-region-replicas)  can be used in a warm standby architecture. see also [Managing Cloud SQL read replicas](https://cloud.google.com/sql/docs/postgres/replication/manage-replicas) .
+- [Cloud SQL cross-region read replicas](https://cloud.google.com/sql/docs/postgres/replication/cross-region-replicas)  can be used in a warm standby architecture. See also [Managing Cloud SQL read replicas](https://cloud.google.com/sql/docs/postgres/replication/manage-replicas).
 
   - Note that read replicas do not inherently provide high availability in the sense that there can be automatic failover from the primary to the read replica. As described in the above reference, the read replica will need to be promoted to a stand-alone Cloud SQL primary instance. Promoting a replica to a stand-alone Cloud SQL primary instance is an irreversible action, so when the failover needs to be reverted, the database must be restored to an original primary location (potentially by starting it as a read replica and promoting it), and the secondary read replica will need to be destroyed and re-established.
 
@@ -280,7 +280,7 @@ it along with some global services such as DNS.
 
 - Terraform Enterprise in the Standalone architecture is an Active:Passive model. At no point should more than one Terraform Enterprise instance be actively connected to the same database instance.
 
-***Note** Additional testing and the development of more detailed documentation regarding backup/restore and failover scenarios taking advantage of the newer CloudSQL capabilities are underway and will be made available shortly.
+\* **Note** We are investigating incorporating these newer CloudSQL capabilities into this reference architecture, but do not have additional details at this time.
 
 #### Data Corruption
 
