@@ -39,7 +39,7 @@
       height: 100%;
       // enables price to float at the bottom regardless of content height -- see .price
       position: relative;
-      margin-bottom: 60px;
+      // margin-bottom: 60px;
       width: 100%;
       word-wrap: normal;
 
@@ -59,7 +59,7 @@
       margin-top: 30px;
     }
   }
-  
+
   & .price {
     // enables price to float at the bottom regardless of content height
     position: absolute;
