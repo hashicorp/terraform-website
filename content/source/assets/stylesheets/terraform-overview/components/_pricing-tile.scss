@@ -39,7 +39,7 @@
       height: 100%;
       // enables price to float at the bottom regardless of content height -- see .price
       position: relative;
-      // margin-bottom: 60px;
+      margin-bottom: 60px;
       width: 100%;
       word-wrap: normal;
 
@@ -64,5 +64,16 @@
     // enables price to float at the bottom regardless of content height
     position: absolute;
     bottom: 20px;
+  }
+
+  & .sales-override {
+    & .g-type-display-4 {
+      margin-bottom: -2px;
+      display: block;
+    }
+
+    a {
+      color: $terraform;
+    }
   }
 }
