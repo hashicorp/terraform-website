@@ -850,6 +850,24 @@ curl \
 
 The `upload` link URL in the above response is valid for one hour after creation. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the [Show Policy Set](#show-a-policy-set) endpoint again to verify that the status has changed from `pending` to `ready`.
 
+## Upload Policy Set Versions
+
+`PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
+
+**The URL is provided in the `upload` attribute in the `policy-set-versions` resource.**
+
+### Sample Request
+
+**@filename is the name of the policy set version file you wish to upload.**
+
+```shell
+curl \
+  --header "Content-Type: application/octet-stream" \
+  --request PUT \
+  --data-binary @filename \
+  https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox...
+```
+
 ## Show a Policy Set Version
 
 `GET /policy-set-versions/:id`
