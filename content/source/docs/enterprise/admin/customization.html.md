@@ -9,7 +9,7 @@ Customization allow you to modify different parts of the user interface to accom
 
 To access the customization settings, visit the site admin area and click **Customization** in the left menu. To save the settings, click **Save Customization Settings** at the bottom of the page.
 
-~> **Note:** For security reasons, certain HTML elements and attributes may be removed when the customization content is rendered to the page.
+~> **Note:** Terraform Enterprise sanitizes customization content before displaying it, and might remove HTML elements or attributes that pose a possible security risk.
 
 ![screenshot: the Settings admin page](./images/admin-customization.png)
 
