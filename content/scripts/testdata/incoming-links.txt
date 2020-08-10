@@ -247,7 +247,6 @@
 /docs/providers/alicloud/r/slb.html
 /docs/providers/alicloud/r/vpc.html
 /docs/providers/alicloud/r/vswitch.html
-/docs/providers/aviatrix/index.html
 /docs/providers/aws/d/acm_certificate.html
 /docs/providers/aws/d/ami_ids.html
 /docs/providers/aws/d/ami.html

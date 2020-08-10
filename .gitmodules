@@ -306,10 +306,6 @@
 	path = ext/providers/aci
 	url = https://github.com/terraform-providers/terraform-provider-aci
 	branch = stable-website
-[submodule "ext/providers/aviatrix"]
-	path = ext/providers/aviatrix
-	url = https://github.com/terraform-providers/terraform-provider-aviatrix
-	branch = stable-website
 [submodule "ext/providers/pureport"]
 	path = ext/providers/pureport
 	url = https://github.com/terraform-providers/terraform-provider-pureport

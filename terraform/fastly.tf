@@ -46,6 +46,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   dictionary_id = local.tf_provider_namespaces_dictionary_id
   items = {
     # verified partners
+    "aviatrix" : "AviatrixSystems/aviatrix"
     "brightbox" : "brightbox/brightbox"
     "circonus" : "circonus-labs/circonus"
     "cloudflare" : "cloudflare/cloudflare"
@@ -55,6 +56,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "fastly" : "fastly/fastly"
     "hcloud" : "hetznercloud/hcloud"
     "heroku" : "heroku/heroku"
+    # "huaweicloud" : "huaweicloud/huawecloud"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
