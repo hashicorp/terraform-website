@@ -7,7 +7,7 @@ page_title: "Terraform Cloud Agents - Workspaces - Terraform Cloud and Terraform
 
 -> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-Terraform Cloud Agents are a solution to allow Terraform Cloud to communicate with isolated, private or on-premises infrastructure. By deploying the lightweight agent within a specific network segment, you can establish a simple connection between your environment and Terraform Cloud which allows for provisioning operations and management. This is useful for on-premises infrastructure types such as vSphere, Nutanix, OpenStack, enterprise Networking providers, and anything you might have in a protected enclave.
+Terraform Cloud Agents are a solution to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure. By deploying the lightweight agent within a specific network segment, you can establish a simple connection between your environment and Terraform Cloud which allows for provisioning operations and management. This is useful for on-premises infrastructure types such as vSphere, Nutanix, OpenStack, enterprise networking providers, and anything you might have in a protected enclave.
 
 The agent architecture is pull-based, so no inbound connectivity is required. Any agent you provision will poll Terraform Cloud for work and carry out execution of that work locally.
 
@@ -37,7 +37,7 @@ archivist.terraform.io | tcp/443, HTTPS | Outbound | Blob Storage
 
 The agent is distributed as a standalone binary which can be run on any supported system. By default, the agent will run in the foreground as a long-running process that will continuously poll for workloads from Terraform Cloud. We strongly recommend pairing the agent with a process supervisor to ensure that it is automatically restarted in case of an error.
 
-Agents do not guarantee a clean working environment per Terraform execution. Each execution is performed in its own temporary directory with a clean environment, but references to absolute  file paths or other machine state may cause interference between Terraform executions. We strongly recommend that you write your Terraform code to be stateless and idempotent. You may also want to consider using [single-execution mode](#optional-configuration-single-execution-mode) to ensure your agent only runs a single workload.
+Agents do not guarantee a clean working environment per Terraform execution. Each execution is performed in its own temporary directory with a clean environment, but references to absolute file paths or other machine state may cause interference between Terraform executions. We strongly recommend that you write your Terraform code to be stateless and idempotent. You may also want to consider using [single-execution mode](#optional-configuration-single-execution-mode) to ensure your agent only runs a single workload.
 
 ### Updating
 
@@ -83,7 +83,7 @@ Installation commands will automatically be generated for you that contain the n
 
 #### Download and Install the Agent
 
-1. Download the latest [agent release](https://releases.hashicorp.com/tfc-agent), the associated checksum file (.SHA256sums), and the checksum signature (.sig)
+1. Download the latest [agent release](https://releases.hashicorp.com/tfc-agent), the associated checksum file (.SHA256sums), and the checksum signature (.sig).
 1. Verify the integrity of the downloaded archive, as well as the signature of the `SHA256SUMS` file using the instructions available on [HashiCorp's security page](https://www.hashicorp.com/security).
 1. Extract the release archive. The `unzip` utility is available on most Linux distributions and may be invoked as `unzip <archive file>`. Two individual binaries will be extracted (`tfc-agent` and `tfc-agent-core`). These binaries _must_ reside in the same directory for the agent to function properly.
 
@@ -132,9 +132,9 @@ and [lock](/docs/cloud/workspaces/settings.html#locking) your workspace before c
 
 To configure a workspace to execute runs using an agent:
 
-1. Open the workspace from the main Workspaces view, then navigate to Settings > General from the dropdown menu.
+1. Open the workspace from the main "Workspaces" view, then navigate to "Settings > General" from the dropdown menu.
 1. Select Agent as the [execution mode](/docs/cloud/workspaces/settings.html#execution-mode).
-1. Click Save Settings at the bottom of the page.
+1. Click "Save Settings" at the bottom of the page.
 
 ![Screenshot: The Workspace General settings page, with agent selected for execution mode](./images/agent-workspace-execution-mode.png)
 
