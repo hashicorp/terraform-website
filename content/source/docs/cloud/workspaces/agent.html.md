@@ -23,7 +23,7 @@ Agents support Terraform versions 0.12 and above. Workspaces configured to use T
 
 ### Networking Requirements
 
-In order for an agent to function properly, it must be able to make outbound requests over HTTPS (port 443) to the Terraform Cloud application APIs. This may require perimeter networking as well as container host networking changes, depending on your environment. The IP ranges are documented in the [Terraform Cloud IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html).
+In order for an agent to function properly, it must be able to make outbound requests over HTTPS (TCP port 443) to the Terraform Cloud application APIs. This may require perimeter networking as well as container host networking changes, depending on your environment. The IP ranges are documented in the [Terraform Cloud IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html).
 
 Additionally, the agent must also be able to communicate with any services required by the Terraform code it is executing. This includes the Terraform releases distribution service, [releases.hashicorp.com](https://releases.hashicorp.com) (supported by [Fastly](https://api.fastly.com/public-ip-list)), as well as any provider APIs. The services which run on these IP ranges are described in the table below.
 
@@ -41,7 +41,7 @@ Agents do not guarantee a clean working environment per Terraform execution. Eac
 
 ### Updating
 
-The agent will automatically receive updates for the agent only. Administrators are required to update the host operating system and all other software.
+The agent will automatically receive application code updates for the agent only. Administrators are required to update the host operating system and all other installed software.
 
 ### Security Considerations
 
@@ -51,7 +51,7 @@ Agents should be considered a global resource within an organization. Once confi
 
 Agents are designed to allow you to run Terraform operations from a Terraform Cloud workspace on your private infrastructure. The following use cases are not supported by agents:
 
-- Connecting to private infrastructure from Sentinel policies using the [`http` import](https://docs.hashicorp.com/sentinel/imports/http/)
+- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http/)
 - Connecting Terraform Cloud workspaces to private VCS repositories
 
 For these use cases, we recommend you leverage the information provided by the [IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html) to permit direct communication from the appropriate Terraform Cloud service to your internal infrastructure.
@@ -73,7 +73,7 @@ For these use cases, we recommend you leverage the information provided by the [
 
 ![Screenshot: A new agent token description modal](./images/agent-token-description.png)
 
-2. Give your token a name (optional). This name is for your reference only.
+2. Give your token a description (optional). The description field is for your reference only.
 
 ![Screenshot: A new agent token modal with setup instructions](./images/agent-new-token.png)
 
@@ -146,7 +146,7 @@ You may choose to run multiple agents within your network for improved resilienc
 
 You may revoke an issued token from your agents at any time.
 
-Revoking a token will cause the agents using it to become unable to process work until they are reinitialized with a new token. Under normal circumstances, it may be desirable to generate a new token first, initialize the agents using it, then revoke the old token once no agents are using it. Agent tokens display information about the last time they were used to help you decide whether they are safe to revoke.
+Revoking a token will cause the agents using it to exit. For agents to continue servicing workspace jobs, they must be reinitialized with a new token. Under normal circumstances, it may be desirable to generate a new token first, initialize the agents using it, then revoke the old token once no agents are using it. Agent tokens display information about the last time they were used to help you decide whether they are safe to revoke.
 
 ![Screenshot: The Agent tokens list with the "Revoke Token" link highlighted](./images/agent-tokens-list.png)
 
