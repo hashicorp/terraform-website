@@ -72,6 +72,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "tencentcloud" : "tencentcloudstack/tencentcloud"
     "triton" : "joyent/triton"
     "turbot" : "turbot/turbot"
+    "vultr" : "vultr/vultr"
 
     # unofficial partners
     "fortios" : "fortinetdev/fortios"

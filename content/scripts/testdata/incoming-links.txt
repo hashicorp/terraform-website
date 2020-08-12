@@ -812,7 +812,6 @@
 /docs/providers/vcd/r/firewall_rules.html
 /docs/providers/vcd/r/vapp_vm.html
 /docs/providers/vra7/index.html
-/docs/providers/vultr/index.html
 /docs/providers/yandex/index.html
 /docs/provisioners/chef.html
 /docs/provisioners/connection.html
