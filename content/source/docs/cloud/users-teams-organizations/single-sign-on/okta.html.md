@@ -7,9 +7,9 @@ page_title: "Okta - Single Sign-on - Terraform Cloud and Terraform Enterprise"
 
 The Okta SSO integration currently supports the following SAML features:
 
-* Service Provider (SP)-initiated SSO
-* Identity Provider (IdP)-initiaited SSO
-* Just-in-Time Provisioning
+- Service Provider (SP)-initiated SSO
+- Identity Provider (IdP)-initiaited SSO
+- Just-in-Time Provisioning
 
 For more information on the listed features, visit the [Okta Glossary](https://help.okta.com/en/prod/Content/Topics/Reference/glossary.htm).
 
@@ -23,7 +23,6 @@ For more information on the listed features, visit the [Okta Glossary](https://h
 6. Visit the "Sign On" tab in the application.
 7. Copy the "Identity Provider Metadata" URL.
 
-
 ## Configuration (Terraform Cloud)
 
 Be sure to copy the metadata URL (from the final step of configuring Okta) before proceeding with the following steps.
@@ -36,6 +35,6 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
 
 3. Verify your settings and click `Enable`.
 
-4. Your Okta SSO configuration is complete and ready to [use](../single-sign-on.md#using-sso).
+4. Your Okta SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
 
    ![sso-settings](../images/sso/settings.png)
