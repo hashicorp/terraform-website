@@ -69,13 +69,13 @@ For these use cases, we recommend you leverage the information provided by the [
 ![Screenshot: The Agents page with no connected agents](./images/agent-first-time-agent-token.png)
 
 1. Navigate to **Organization Settings > Agents**, click “New Agent Token”
-    1. If you have already completed the first-time token creation process, you will instead see a button called “Manage Tokens.” Click this, then “Add Token.”
+    - If you have already completed the first-time token creation process, you will instead see a button called “Manage Tokens.” Click this, then “Add Token.”
 
-![Screenshot: A new agent token description modal](./images/agent-token-description.png)
+    ![Screenshot: A new agent token description modal](./images/agent-token-description.png)
 
 2. Give your token a description (optional). The description field is for your reference only.
 
-![Screenshot: A new agent token modal with setup instructions](./images/agent-new-token.png)
+    ![Screenshot: A new agent token modal with setup instructions](./images/agent-new-token.png)
 
 3. Copy the generated agent token and store it securely. Note that this token will only be displayed once.
 
@@ -152,7 +152,7 @@ Revoking a token will cause the agents using it to exit. For agents to continue 
 
 1. Navigate to **Organization Settings > Agents**, then click on **Manage Tokens**.
 
-![Screenshot: The "Revoke agent token" confirmation modal](./images/agent-enter-token-description.png)
+    ![Screenshot: The "Revoke agent token" confirmation modal](./images/agent-enter-token-description.png)
 
 2. Enter the token description to confirm that you wish to revoke the token.
 
