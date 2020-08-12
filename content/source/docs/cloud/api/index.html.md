@@ -58,6 +58,7 @@ The following entitlements are available:
 - `sentinel` — Allows an organization to use [Sentinel][]. Affects the [policies][], [policy sets][], and [policy checks][] endpoints.
 - `private-module-registry` — Allows an organization to publish and use modules with the [private module registry][]. Affects the [registry modules][] endpoints.
 - `teams` — Allows an organization to manage access to its workspaces with [teams](../users-teams-organizations/teams.html). Without this entitlement, an organization only has an owners team. Affects the [teams][], [team members][], [team access][], and [team tokens][] endpoints.
+- `agents` — Allows isolated, private or on-premises infrastructure to communicate with an organization in Terraform Cloud. Affects the [agent pools][], [agents][], and [agent tokens][] endpoints.
 
 [state versions]: ./state-versions.html
 [runs]: ./run.html
@@ -77,6 +78,9 @@ The following entitlements are available:
 [team members]: ./team-members.html
 [team access]: ./team-access.html
 [team tokens]: ./team-tokens.html
+[agent pools]: ./agents.html
+[agents]: ./agents.html
+[agent tokens]: ./agent-tokens.html
 
 ## Response Codes
 

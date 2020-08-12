@@ -54,6 +54,19 @@ The default value is "Remote", which instructs Terraform Cloud to perform Terraf
 
 To disable remote execution for a workspace, change its execution mode to "Local". The workspace will store state, which Terraform can access using the [remote backend][].
 
+If you instead need to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure, consider using [Terraform Cloud Agents](../workspaces/agent.html). By deploying a lightweight agent, you can establish a simple connection between your environment and Terraform Cloud.
+
+Changing your workspace's execution mode after a run has already been planned will cause the run to error when it is applied.
+
+To minimize the number runs that error when changing your workspace's execution mode, you should:
+
+1. Disable [auto-apply](/docs/cloud/workspaces/settings.html#auto-apply-and-manual-apply) if you have it enabled.
+1. Complete any runs that are no longer in the [pending stage](/docs/cloud/run/states.html#1-the-pending-stage).
+1. [Lock](/docs/cloud/workspaces/settings.html#locking) your workspace to prevent any new runs.
+1. Change the execution mode.
+1. Enable [auto-apply](/docs/cloud/workspaces/settings.html#auto-apply-and-manual-apply), if you had it enabled before changing your execution mode.
+1. [Unlock](/docs/cloud/workspaces/settings.html#locking) your workspace.
+
 ### Auto Apply and Manual Apply
 
 Whether or not Terraform Cloud should automatically apply a successful Terraform plan. If you choose manual apply, an operator must confirm a successful plan and choose to apply it.

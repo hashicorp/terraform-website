@@ -36,6 +36,7 @@ Permissions for the owners team include:
 - Manage all organization settings (owners only)
 - Manage organization billing (owners only, not applicable to Terraform Enterprise)
 - Delete organization (owners only)
+- Manage agents (owners only)
 
 This list is not necessarily exhaustive.
 
