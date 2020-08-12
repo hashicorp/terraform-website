@@ -59,10 +59,21 @@
       margin-top: 30px;
     }
   }
-  
+
   & .price {
     // enables price to float at the bottom regardless of content height
     position: absolute;
     bottom: 20px;
+  }
+
+  & .sales-override {
+    & .g-type-display-4 {
+      margin-bottom: -2px;
+      display: block;
+    }
+
+    a {
+      color: $terraform;
+    }
   }
 }
