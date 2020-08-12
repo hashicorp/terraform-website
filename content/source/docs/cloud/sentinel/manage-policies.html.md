@@ -20,7 +20,11 @@ Sentinel Policies are rules which are enforced on Terraform runs to validate tha
 [users]: ../users-teams-organizations/users.html
 [workspaces]: ../workspaces/index.html
 
-**Policies** consist of a Sentinel policy file and an enforcement level.
+**Policies** are written using the Sentinel [language](https://docs.hashicorp.com/sentinel/concepts/language). Policies are the guardrails that prevent Terraform runs from performing dangerous actions. Upon evaluation, policies will adhere to a predefined [enforcement level](#enforcement-levels). Policies are either managed individually or as part of a versioned policy set. 
+
+Individual policies allow the policy to be edited directly in the Terraform UI, whereas versioned policy sets are defined as individual policy files and are stored in a supported VCS provider or uploaded via the Terraform API.
+
+-> **Note:** Individually managed policies is a deprecated feature in Terraform Cloud and recommend versioned policy sets as the primary method of enforcing policies. 
 
 **Policy sets** are groups of policies that can be enforced on [workspaces][]. A policy set can be enforced on designated workspaces, or to all workspaces in the organization.
 
