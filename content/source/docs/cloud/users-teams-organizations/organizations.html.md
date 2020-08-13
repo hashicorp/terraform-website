@@ -140,7 +140,7 @@ Sentinel is an embedded policy-as-code framework that can enforce rules about Te
 
 ## Trial Expired Organizations
 
-Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a Hashicorp Sales Representative, please ask them about how to get a free trial.
+Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a HashiCorp Sales Representative, please ask them about how to get a free trial.
 
 When a free trial has expired, the organization displays a banner reading "TRIAL EXPIRED — Upgrade Required" in the top navigation bar:
 
