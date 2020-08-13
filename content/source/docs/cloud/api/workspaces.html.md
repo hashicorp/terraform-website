@@ -52,10 +52,12 @@ Key path                                      | Type    | Default   | Descriptio
 ----------------------------------------------|---------|-----------|------------
 `data.type`                                   | string  |           | Must be `"workspaces"`.
 `data.attributes.name`                        | string  |           | The name of the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+`data.attributes.agent-pool-id`               | string  | (nothing) | Required when `execution-mode` is set to `agent`. The ID of the agent pool belonging to the workspace's organization. This value must not be specified if `execution-mode` is set to `remote` or `local` or if `operations` is set to `true`. 
 `data.attributes.allow-destroy-plan`          | boolean | `true`    | Whether destroy plans can be queued on the workspace.
 `data.attributes.auto-apply`                  | boolean | `false`   | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
 `data.attributes.description`                 | string  | (nothing) | A description for the workspace.
-`data.attributes.operations`                  | boolean | `true`    | Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only.
+`data.attributes.execution-mode`              | string  | `remote`  | Which [execution mode](/docs/cloud/workspaces/settings.html#execution-mode) to use. Valid values are `remote`, `local`, and `agent`. When set to `local`, the workspace will be used for state storage only. This value must not be specified if `operations` is specified. 
+`data.attributes.operations`                  | boolean | `true`    | **DEPRECATED** Use `execution-mode` instead. Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only. This value must not be specified if `execution-mode` is specified. 
 `data.attributes.file-triggers-enabled`       | boolean | `true`    | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
 `data.attributes.source-name` **(beta)**      | string  | (nothing) | A friendly name for the application or client creating this workspace. If set, this will be displayed on the workspace as "Created via `<SOURCE NAME>`".
 `data.attributes.source-url` **(beta)**       | string  | (nothing) | A URL for the application or client creating this workspace. This can be the URL of a related resource in another app, or a link to documentation or other info about the client.
@@ -130,6 +132,23 @@ A run will be triggered in this workspace when changes are detected in any of th
 }
 ```
 
+_Using Terraform Cloud Agents_
+
+[Terraform Cloud Agents](/docs/cloud/api/agents.html) are a solution to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure.
+
+```json
+{
+  "data": {
+    "attributes": {
+      "name":"workspace-1",
+      "execution-mode": "agent",
+      "agent-pool-id": "apool-ZjT6A7mVFm5WHT5a"
+    }
+  },
+  "type": "workspaces"
+}
+```
+
 ### Sample Request
 
 ```shell
@@ -172,7 +191,8 @@ _Without a VCS repository_
       "terraform-version": "0.11.0",
       "trigger-prefixes": [],
       "vcs-repo": null,
-      "working-directory": ""
+      "working-directory": "",
+      "execution-mode": "agent"
     },
     "relationships": {
       "organization": {
@@ -186,6 +206,12 @@ _Without a VCS repository_
       },
       "latest-run": {
         "data": null
+      },
+      "agent-pool": {
+        "data": {
+          "id": "apool-ZjT6A7mVFm5WHT5a",
+          "type": "agent-pools"
+        }
       }
     },
     "links": {
@@ -233,7 +259,8 @@ _With a VCS repository_
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
         "ingress-submodules": false
       },
-      "working-directory": null
+      "working-directory": null,
+      "execution-mode": "agent"
     },
     "relationships": {
       "organization": {
@@ -247,6 +274,12 @@ _With a VCS repository_
       },
       "latest-run": {
         "data": null
+      },
+      "agent-pool": {
+        "data": {
+          "id": "apool-ZjT6A7mVFm5WHT5a",
+          "type": "agent-pools"
+        }
       }
     },
     "links": {
@@ -286,9 +319,11 @@ Key path                                      | Type           | Default        
 `data.type`                                   | string         |                  | Must be `"workspaces"`.
 `data.attributes.name`                        | string         | (previous value) | A new name for the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization. **Warning:** Changing a workspace's name changes its URL in the API and UI.
 `data.attributes.description`                 | string         | (previous value) | A description for the workspace.
+`data.attributes.agent-pool-id`               | string         | (previous value) | Required when `execution-mode` is set to `agent`. The ID of the agent pool belonging to the workspace's organization. This value must not be specified if `execution-mode` is set to `remote` or `local` or if `operations` is set to `true`. 
 `data.attributes.auto-apply`                  | boolean        | (previous value) | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
-`data.attributes.allow-destroy-plan`          | boolean        | (previous value)    | Whether destroy plans can be queued on the workspace.
-`data.attributes.operations`                  | boolean        | (previous value) | Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only.
+`data.attributes.allow-destroy-plan`          | boolean        | (previous value) | Whether destroy plans can be queued on the workspace.
+`data.attributes.execution-mode`              | string         | (previous value) | Which [execution mode](/docs/cloud/workspaces/settings.html#execution-mode) to use. Valid values are `remote`, `local`, and `agent`. When set to `local`, the workspace will be used for state storage only. This value must not be specified if `operations` is specified. 
+`data.attributes.operations`                  | boolean        | (previous value) | **DEPRECATED** Use `execution-mode` instead. Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only. This value must not be specified if `execution-mode` is specified.
 `data.attributes.file-triggers-enabled`       | boolean        | (previous value) | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
 `data.attributes.queue-all-runs`              | boolean        | (previous value) | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
 `data.attributes.speculative-enabled`         | boolean        | (previous value) | Whether this workspace allows [speculative plans][]. Setting this to `false` prevents Terraform Cloud from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors.
