@@ -248,7 +248,7 @@ Avoid running `git rm` on a submodule unless you know what you're doing. You usu
 
 Earlier instructions for working with this repo said to use `git submodule init` (with no `<PATH>` argument) or `git submodule update --init` or `make sync` to activate everything. **Don't do that.** Git commands will take forever to run, and if your `$PS1` includes hints about the current directory's Git status, your entire terminal will slow to a **c r a w l.**
 
-Instead, only init the specific submodules you currently need to work with (`git submodule init ext/providers/aws`), and feel free to de-init them when you're done. De-initting is non-destructive as long as you've committed your changes within the submodule (and preferably pushed your branch) -- Git keeps the repository data cached out of the way, so it dosen't even need to clone the entire repo again the next time you init it.
+Instead, only init the specific submodules you currently need to work with (`git submodule init ext/providers/aws`), and feel free to de-init them when you're done. De-initting is non-destructive as long as you've committed your changes within the submodule (and preferably pushed your branch) -- Git keeps the repository data cached out of the way, so it doesn't even need to clone the entire repo again the next time you init it.
 
 If you previously activated a hundred submodules and regret it, you can run `git submodule deinit --all` or `make deinit` to start fresh.
 
