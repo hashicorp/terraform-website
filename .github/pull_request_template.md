@@ -1,34 +1,16 @@
-<!--
 
-Hello! Thank you for submitting a docs PR to terraform.io! Feel free to delete
-this message.
+<!-- Thanks for the PR! Feel free to delete this message.
+QUESTIONS? - Check the README first, then ask in #proj-terraform-docs.
+SCREENSHOTS - Please capture the full page width, using a 1024px-wide viewport.
+MERGING - Get an approving review before merging your own PRs. (Approved on the private fork? Just say so!)
+REVIEWS - For help from the education team, request review from "hashicorp/terraform-education". -->
 
-- For advice or edits from a tech writer or education engineer,
-  please request review from the "hashicorp/terraform-education" GitHub team.
+## Labels
 
-- When updating screenshots of a web UI, please try to capture
-  the full width of the page, with the viewport size set to 1024px wide.
+<!-- Check any labels that apply to this PR. Or, if you have repo permissions, assign a real label and omit this section. -->
 
-- If you're a HashiCorp employee with permission to merge to this repo,
-  please get an approving review before merging your own PRs. (If you got
-  review approval on the private fork, that's fine too; just announce it in a
-  comment before merging!) When in doubt, ask in the #proj-terraform-docs channel.
-
-- To learn more about how the website is built and deployed, how to preview your
-  changes, which content lives where, and more, check out the README.md in the
-  root of this repo.
-
--->
-
-## PR Objective
-
-<!-- (Delete any that don't apply, add anything you want to.) -->
-
-- [ ] Fixing inaccurate docs
-- [ ] Making some docs easier to understand
-- [ ] Adding/updating docs for new feature
-- [ ] Changing behavior or layout of website
-
-## Description
-
-<!-- (Add whatever you'd like to say here.) -->
+- [ ] inaccuracy
+- [ ] clarification
+- [ ] new docs
+- [ ] cosmetic bug - fixing broken text or markup
+- [ ] enhancement - changing the website's behavior/layout
