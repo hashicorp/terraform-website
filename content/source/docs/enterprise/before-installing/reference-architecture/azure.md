@@ -97,7 +97,7 @@ in the Azure Blob Storage container. This allows for further
 encryption](https://docs.microsoft.com/en-us/azure/storage/common/storage-service-encryption)
 by Azure Blob Storage if required by your security policy.
 
-Due to support within the product, and increased durability, for a single-region deployment, we recommend using zone-redundant storage (ZRS) which synchronously writes across three Azure availability zones in the region.  For a multi-region deployment, use geo-zone-redundant storage (GZRS) for added region redundancy.
+For increased durability in a single-region deployment, we recommend using zone-redundant storage (ZRS) which synchronously writes across three Azure availability zones in the region.  For a multi-region deployment, use geo-zone-redundant storage (GZRS) for added region redundancy.
 
 ### Other Considerations
 
