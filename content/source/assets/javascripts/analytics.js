@@ -24,4 +24,17 @@ document.addEventListener('turbolinks:load', function() {
     params.event = 'CTA Clicked'
     return params
   })
+
+  // track navigation link clicks
+  Array.prototype.slice
+    .call(
+      document.querySelectorAll(
+        '.navbar-static-top .navigation-links a[data-track], .sidebar-nav a[data-track]'
+      )
+    )
+    .map(function(el) {
+      window.analytics.trackLink(el, 'Navigation Click', {
+        label: el.dataset.track
+      })
+    })
 })
