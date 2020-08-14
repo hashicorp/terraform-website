@@ -858,7 +858,7 @@ The URL is provided in the `upload` attribute in the `policy-set-versions` resou
 
 ### Sample Request
 
-**@filename is the name of the policy set version file you wish to upload.**
+In the example below, `policy-set.tar.gz` is the local filename of the policy set version file to upload.
 
 ```shell
 curl \
