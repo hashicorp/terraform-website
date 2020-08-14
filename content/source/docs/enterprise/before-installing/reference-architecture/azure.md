@@ -88,7 +88,7 @@ be stored securely and redundantly away from the Azure VMs running the
 Terraform Enterprise application. This Azure Blob Storage container must be in the same
 region as the VMs and Azure Database for PostgreSQL instance.
 
-It is recommended the virtual network containing the Terraform Enterprise servers be configured with a
+We recommend that the virtual network containing the Terraform Enterprise servers be configured with a
 [Virtual Network (VNet) service
 endpoint](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview)
 for Azure Storage. Vault is used to encrypt all application data stored
