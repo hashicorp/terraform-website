@@ -32,9 +32,9 @@ document.addEventListener('turbolinks:load', function() {
         '.navbar-static-top .navigation-links a[data-track]'
       )
     )
-    .map((el) => {
+    .map(function(el) {
       window.analytics.trackLink(el, 'Navigation Click', {
-        label: el.dataset.track,
+        label: el.dataset.track
       })
     })
 })
