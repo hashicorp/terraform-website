@@ -864,7 +864,7 @@ The URL is provided in the `upload` attribute in the `policy-set-versions` resou
 curl \
   --header "Content-Type: application/octet-stream" \
   --request PUT \
-  --data-binary @filename \
+  --data-binary @policy-set.tar.gz \
   https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox...
 ```
 
