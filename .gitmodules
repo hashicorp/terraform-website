@@ -2,17 +2,9 @@
 	path = ext/terraform
 	url = https://github.com/hashicorp/terraform.git
 	branch = stable-website
-[submodule "ext/providers/alicloud"]
-	path = ext/providers/alicloud
-	url = https://github.com/terraform-providers/terraform-provider-alicloud
-	branch = stable-website
 [submodule "ext/providers/arukas"]
 	path = ext/providers/arukas
 	url = https://github.com/terraform-providers/terraform-provider-arukas
-	branch = stable-website
-[submodule "ext/providers/aws"]
-	path = ext/providers/aws
-	url = https://github.com/terraform-providers/terraform-provider-aws
 	branch = stable-website
 [submodule "ext/providers/azure"]
 	path = ext/providers/azure
@@ -293,10 +285,6 @@
 [submodule "ext/providers/vra7"]
 	path = ext/providers/vra7
 	url = https://github.com/terraform-providers/terraform-provider-vra7
-	branch = stable-website
-[submodule "ext/providers/akamai"]
-	path = ext/providers/akamai
-	url = https://github.com/terraform-providers/terraform-provider-akamai
 	branch = stable-website
 [submodule "ext/providers/avi"]
 	path = ext/providers/avi

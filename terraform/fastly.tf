@@ -46,6 +46,8 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   dictionary_id = local.tf_provider_namespaces_dictionary_id
   items = {
     # verified partners
+    "akamai" : "akamai/akamai"
+    "alicloud" : "aliyun/alicloud"
     "aviatrix" : "AviatrixSystems/aviatrix"
     "brightbox" : "brightbox/brightbox"
     "circonus" : "circonus-labs/circonus"
@@ -56,8 +58,8 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "fastly" : "fastly/fastly"
     "hcloud" : "hetznercloud/hcloud"
     "heroku" : "heroku/heroku"
-    # "huaweicloud" : "huaweicloud/huawecloud"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
+    # "huaweicloud" : "huaweicloud/huawecloud"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
     "mongodbatlas" : "mongodb/mongodbatlas"
@@ -84,6 +86,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     # manually enable Google indexing, contact the team / Paul Tyng for more
     "archive" : "hashicorp/archive"
     "aws" : "hashicorp/aws"
+    "azurestack" : "hashicorp/azurestack"
     "ciscoasa" : "hashicorp/ciscoasa"
     "cloudinit" : "hashicorp/cloudinit"
     "dns" : "hashicorp/dns"
