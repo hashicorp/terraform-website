@@ -854,7 +854,7 @@ The `upload` link URL in the above response is valid for one hour after creation
 
 `PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
 
-**The URL is provided in the `upload` attribute in the `policy-set-versions` resource.**
+The URL is provided in the `upload` attribute in the `policy-set-versions` resource.
 
 ### Sample Request
 
