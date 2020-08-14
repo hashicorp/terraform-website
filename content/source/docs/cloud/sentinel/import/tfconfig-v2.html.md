@@ -258,7 +258,7 @@ is not a block in the resource's schema.
 ```
 
 As an example, one can validate expressions in an
-[`aws_instance`](/docs/providers/aws/r/instance.html) resource using the
+[`aws_instance`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) resource using the
 following:
 
 ```
@@ -272,7 +272,7 @@ main = rule {
 Note that _nested blocks_, sometimes known as _sub-resources_, will be nested in
 configuration as as list of blocks (reflecting their ultimate nature as a list
 of objects). An example would be the `aws_instance` resource's
-[`ebs_block_device`](/docs/providers/aws/r/instance.html#block-devices) block:
+[`ebs_block_device`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#block-devices) block:
 
 ```
 import "tfconfig/v2" as tfconfig
