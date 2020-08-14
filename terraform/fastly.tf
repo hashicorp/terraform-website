@@ -95,6 +95,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "http" : "hashicorp/http"
     "kubernetes" : "hashicorp/kubernetes"
     "local" : "hashicorp/local"
+    "nomad" : "hashicorp/nomad"
     "null" : "hashicorp/null"
     "random" : "hashicorp/random"
     "template" : "hashicorp/template"
