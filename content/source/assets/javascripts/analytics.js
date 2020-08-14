@@ -29,7 +29,7 @@ document.addEventListener('turbolinks:load', function() {
   Array.prototype.slice
     .call(
       document.querySelectorAll(
-        '.navbar-static-top .navigation-links a[data-track]'
+        '.navbar-static-top .navigation-links a[data-track], .sidebar-nav a[data-track]'
       )
     )
     .map(function(el) {
