@@ -1,425 +1,217 @@
 <% wrap_layout :inner do %>
   <% content_for :sidebar do %>
-    <h4><a href="/docs/cli-index.html">Terraform CLI</a></h4>
+    <h4><a href="/docs/configuration/index.html">Terraform Configuration Language</a></h4>
 
     <ul class="nav docs-sidenav">
-      <li>
-        <a href="/docs/configuration/index.html">Configuration Language</a>
-        <ul class="nav">
-          <li>
-            <a href="/docs/configuration/index.html">0.12 and Newer</a>
-            <ul class="nav">
 
+      <li>
+        <a href="/docs/configuration/index.html">Language Overview</a>
+      </li>
+
+      <li>
+        <a href="/docs/configuration/resources.html">Configuration Blocks</a>
+        <ul class="nav nav-auto-expand">
+
+          <li>
+            <a href="/docs/configuration/resources.html">Resources</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/provider-requirements.html">Provider Requirements</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/providers.html">Provider Configuration</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/variables.html">Input Variables</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/outputs.html">Output Values</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/locals.html">Local Values</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/modules.html">Modules</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/data-sources.html">Data Sources</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/backend.html">Backend Configuration</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/terraform.html">Terraform Settings</a>
+          </li>
+
+          <li>
+            <a href="/docs/provisioners/index.html">Provisioners</a>
+            <ul class="nav">
               <li>
-                <a href="/docs/configuration/index.html">Language Overview</a>
+                <a href="/docs/provisioners/connection.html">Provisioner Connections</a>
               </li>
 
               <li>
-                <a href="/docs/configuration/resources.html">Configuration Blocks</a>
+                <a href="/docs/provisioners/null_resource.html">Provisioners Without a Resource</a>
+              </li>
+
+              <li>
+                <a href="#">Generic Provisioners</a>
                 <ul class="nav nav-auto-expand">
-
                   <li>
-                    <a href="/docs/configuration/resources.html">Resources</a>
+                    <a href="/docs/provisioners/file.html">file Provisioner</a>
                   </li>
 
                   <li>
-                    <a href="/docs/configuration/provider-requirements.html">Provider Requirements</a>
+                    <a href="/docs/provisioners/local-exec.html">local-exec Provisioner</a>
                   </li>
 
                   <li>
-                    <a href="/docs/configuration/providers.html">Provider Configuration</a>
+                    <a href="/docs/provisioners/remote-exec.html">remote-exec Provisioner</a>
                   </li>
-
-                  <li>
-                    <a href="/docs/configuration/variables.html">Input Variables</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/configuration/outputs.html">Output Values</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/configuration/locals.html">Local Values</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/configuration/modules.html">Modules</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/configuration/data-sources.html">Data Sources</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/configuration/backend.html">Backend Configuration</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/configuration/terraform.html">Terraform Settings</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/provisioners/index.html">Provisioners</a>
-                    <ul class="nav">
-                      <li>
-                        <a href="/docs/provisioners/connection.html">Provisioner Connections</a>
-                      </li>
-
-                      <li>
-                        <a href="/docs/provisioners/null_resource.html">Provisioners Without a Resource</a>
-                      </li>
-
-                      <li>
-                        <a href="#">Generic Provisioners</a>
-                        <ul class="nav nav-auto-expand">
-                          <li>
-                            <a href="/docs/provisioners/file.html">file Provisioner</a>
-                          </li>
-
-                          <li>
-                            <a href="/docs/provisioners/local-exec.html">local-exec Provisioner</a>
-                          </li>
-
-                          <li>
-                            <a href="/docs/provisioners/remote-exec.html">remote-exec Provisioner</a>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li>
-                        <a href="#">Vendor Provisioners</a>
-                        <ul class="nav nav-auto-expand">
-                          <li>
-                            <a href="/docs/provisioners/chef.html">chef Provisioner</a>
-                          </li>
-
-                          <li>
-                            <a href="/docs/provisioners/habitat.html">habitat Provisioner</a>
-                          </li>
-
-                          <li>
-                            <a href="/docs/provisioners/puppet.html">puppet Provisioner</a>
-                          </li>
-
-                          <li>
-                            <a href="/docs/provisioners/salt-masterless.html">salt-masterless Provisioner</a>
-                          </li>
-                        </ul>
-                      </li>
-
-                    </ul>
-                  </li>
-
                 </ul>
               </li>
 
               <li>
-                <a href="/docs/configuration/syntax.html">Syntax</a>
+                <a href="#">Vendor Provisioners</a>
                 <ul class="nav nav-auto-expand">
-
                   <li>
-                    <a href="/docs/configuration/syntax.html">Configuration Syntax</a>
+                    <a href="/docs/provisioners/chef.html">chef Provisioner</a>
                   </li>
 
                   <li>
-                    <a href="/docs/configuration/expressions.html">Expressions</a>
+                    <a href="/docs/provisioners/habitat.html">habitat Provisioner</a>
                   </li>
 
                   <li>
-                    <a href="/docs/configuration/functions.html">Functions</a>
+                    <a href="/docs/provisioners/puppet.html">puppet Provisioner</a>
                   </li>
 
                   <li>
-                    <a href="/docs/configuration/override.html">Override Files</a>
+                    <a href="/docs/provisioners/salt-masterless.html">salt-masterless Provisioner</a>
                   </li>
-
-                  <li>
-                    <a href="/docs/configuration/style.html">Style Conventions</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/configuration/version-constraints.html">Version Constraints</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/configuration/types.html">Type Constraints</a>
-                  </li>
-
-                  <li>
-                    <a href="/docs/configuration/syntax-json.html">JSON Configuration Syntax</a>
-                  </li>
-
                 </ul>
               </li>
 
-
             </ul>
           </li>
 
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/configuration/syntax.html">Syntax</a>
+        <ul class="nav nav-auto-expand">
+
           <li>
-            <a href="/docs/configuration-0-11/index.html">0.11 and Older</a>
-            <ul class="nav">
-              <li>
-                <a href="/docs/configuration-0-11/load.html">Load Order and Semantics</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/syntax.html">Configuration Syntax</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/interpolation.html">Interpolation Syntax</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/override.html">Overrides</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/resources.html">Resources</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/data-sources.html">Data Sources</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/providers.html">Providers</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/variables.html">Variables</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/outputs.html">Outputs</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/locals.html">Local Values</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/modules.html">Modules</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/terraform.html">Terraform</a>
-              </li>
-
-              <li>
-                <a href="/docs/provisioners/index.html?v=011">Provisioners</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/terraform-enterprise.html">Terraform Push (deprecated)</a>
-              </li>
-
-              <li>
-                <a href="/docs/configuration-0-11/environment-variables.html">Environment Variables</a>
-              </li>
-            </ul>
+            <a href="/docs/configuration/syntax.html">Configuration Syntax</a>
           </li>
+
+          <li>
+            <a href="/docs/configuration/expressions.html">Expressions</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/functions.html">Functions</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/override.html">Override Files</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/style.html">Style Conventions</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/version-constraints.html">Version Constraints</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/types.html">Type Constraints</a>
+          </li>
+
+          <li>
+            <a href="/docs/configuration/syntax-json.html">JSON Configuration Syntax</a>
+          </li>
+
         </ul>
       </li>
 
 
       <li>
-        <a href="/docs/commands/index.html">Commands (CLI)</a>
+        <a href="/docs/configuration-0-11/index.html">Historical docs: 0.11 and Older</a>
         <ul class="nav">
           <li>
-            <a href="/docs/commands/cli-config.html">CLI Config File</a>
+            <a href="/docs/configuration-0-11/load.html">Load Order and Semantics</a>
           </li>
 
           <li>
-            <a href="/docs/commands/environment-variables.html">Environment Variables</a>
+            <a href="/docs/configuration-0-11/syntax.html">Configuration Syntax</a>
           </li>
 
           <li>
-            <a href="/docs/commands/apply.html">apply</a>
+            <a href="/docs/configuration-0-11/interpolation.html">Interpolation Syntax</a>
           </li>
 
           <li>
-            <a href="/docs/commands/console.html">console</a>
+            <a href="/docs/configuration-0-11/override.html">Overrides</a>
           </li>
 
           <li>
-            <a href="/docs/commands/destroy.html">destroy</a>
+            <a href="/docs/configuration-0-11/resources.html">Resources</a>
           </li>
 
           <li>
-            <a href="/docs/commands/env.html">env</a>
+            <a href="/docs/configuration-0-11/data-sources.html">Data Sources</a>
           </li>
 
           <li>
-            <a href="/docs/commands/fmt.html">fmt</a>
+            <a href="/docs/configuration-0-11/providers.html">Providers</a>
           </li>
 
           <li>
-            <a href="/docs/commands/force-unlock.html">force-unlock</a>
+            <a href="/docs/configuration-0-11/variables.html">Variables</a>
           </li>
 
           <li>
-            <a href="/docs/commands/get.html">get</a>
+            <a href="/docs/configuration-0-11/outputs.html">Outputs</a>
           </li>
 
           <li>
-            <a href="/docs/commands/graph.html">graph</a>
+            <a href="/docs/configuration-0-11/locals.html">Local Values</a>
           </li>
 
           <li>
-            <a href="/docs/commands/import.html">import</a>
+            <a href="/docs/configuration-0-11/modules.html">Modules</a>
           </li>
 
           <li>
-            <a href="/docs/commands/init.html">init</a>
+            <a href="/docs/configuration-0-11/terraform.html">Terraform</a>
           </li>
 
           <li>
-            <a href="/docs/commands/login.html">login</a>
+            <a href="/docs/provisioners/index.html?v=011">Provisioners</a>
           </li>
 
           <li>
-            <a href="/docs/commands/logout.html">logout</a>
+            <a href="/docs/configuration-0-11/terraform-enterprise.html">Terraform Push (deprecated)</a>
           </li>
 
           <li>
-            <a href="/docs/commands/output.html">output</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/plan.html">plan</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/providers.html">providers</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/push.html">push</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/refresh.html">refresh</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/show.html">show</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/state/index.html">state</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/taint.html">taint</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/validate.html">validate</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/untaint.html">untaint</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/workspace/index.html">workspace</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/0.13upgrade.html">0.13upgrade</a>
-          </li>
-
-          <li>
-            <a href="/docs/commands/0.12upgrade.html">0.12upgrade</a>
+            <a href="/docs/configuration-0-11/environment-variables.html">Environment Variables</a>
           </li>
         </ul>
       </li>
 
-      <li>
-        <a href="/docs/import/index.html">Import</a>
-        <ul class="nav">
-          <li>
-            <a href="/docs/import/usage.html">Usage</a>
-          </li>
-
-          <li>
-            <a href="/docs/import/importability.html">Resource Importability</a>
-          </li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="/docs/state/index.html">State</a>
-        <ul class="nav">
-          <li>
-            <a href="/docs/state/purpose.html">Purpose</a>
-          </li>
-
-          <li>
-            <a href="/docs/state/import.html">Import Existing Resources</a>
-          </li>
-
-          <li>
-            <a href="/docs/state/locking.html">Locking</a>
-          </li>
-
-          <li>
-            <a href="/docs/state/workspaces.html">Workspaces</a>
-          </li>
-
-          <li>
-            <a href="/docs/state/remote.html">Remote State</a>
-          </li>
-
-          <li>
-            <a href="/docs/state/sensitive-data.html">Sensitive Data</a>
-          </li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="/docs/providers/index.html">Providers</a>
-        <ul class="nav">
-          <li>
-             <a href="/docs/providers/type/major-index.html">Major Cloud</a>
-          </li>
-
-          <li>
-             <a href="/docs/providers/type/cloud-index.html"> Cloud</a>
-          </li>
-
-          <li>
-             <a href="/docs/providers/type/infra-index.html">Infrastructure Software</a>
-          </li>
-
-          <li>
-             <a href="/docs/providers/type/network-index.html">Network</a>
-          </li>
-
-          <li>
-             <a href="/docs/providers/type/vcs-index.html">VCS</a>
-          </li>
-
-          <li>
-             <a href="/docs/providers/type/monitor-index.html">Monitor & System Management</a>
-          </li>
-
-          <li>
-             <a href="/docs/providers/type/database-index.html">Database</a>
-          </li>
-
-          <li>
-             <a href="/docs/providers/type/misc-index.html">Misc.</a>
-          </li>
-
-          <li>
-             <a href="/docs/providers/type/community-index.html">Community</a>
-          </li>
-
-        </ul>
-      </li>
 
       <li>
         <a href="/docs/modules/index.html">Modules</a>
@@ -464,77 +256,7 @@
       </li>
 
       <li>
-        <a href="/docs/plugins/index.html">Plugins</a>
-        <ul class="nav">
-          <li>
-            <a href="/docs/plugins/basics.html">Basics</a>
-          </li>
-
-          <li>
-            <a href="/docs/plugins/signing.html">Signing</a>
-          </li>
-
-          <li>
-            <a href="/docs/plugins/provider.html">Provider</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/internal-plugins.html">Internals</a>
-          </li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="/docs/internals/index.html">Internals</a>
-        <ul class="nav">
-          <li>
-            <a href="/docs/internals/credentials-helpers.html">Credentials Helpers</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/debugging.html">Debugging Terraform</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/module-registry-protocol.html">Module Registry Protocol</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/provider-registry-protocol.html">Provider Registry Protocol</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/graph.html">Resource Graph</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/lifecycle.html">Resource Lifecycle</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/login-protocol.html">Login Protocol</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/resource-addressing.html">Resource Addressing</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/json-format.html">JSON Output Format</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/remote-service-discovery.html">Remote Service Discovery</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/internal-plugins.html">Internal Plugins</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/provider-meta.html">Provider Metadata</a>
-          </li>
-        </ul>
+        <a href="/docs/internals/resource-addressing.html">Resource Addressing</a>
       </li>
 
     </ul>
