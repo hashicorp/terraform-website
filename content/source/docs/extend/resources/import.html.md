@@ -63,15 +63,13 @@ func TestAccExampleThing_basic(t *testing.T) {
 
 In the resource documentation (e.g. `website/docs/r/example_thing.html.markdown`), add an `Import` documentation section at the bottom of the page:
 
-``````markdown
-## Import
-
-Service Thing can be imported using the id, e.g.
-
-```
-$ terraform import example_thing.example abc123
-```
-``````
+    ## Import
+    
+    Service Thing can be imported using the id, e.g.
+    
+    ```
+    $ terraform import example_thing.example abc123
+    ```
 
 ## Additional Information
 
