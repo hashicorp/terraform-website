@@ -460,9 +460,6 @@
 /docs/providers/mailgun/index.html
 /docs/providers/mysql/index.html
 /docs/providers/netlify/index.html
-/docs/providers/nomad/index.html
-/docs/providers/nomad/r/acl_policy.html
-/docs/providers/ns1/index.html
 /docs/providers/nsxt/index.html
 /docs/providers/nutanix/index.html
 /docs/providers/oci/guides/troubleshooting.html
@@ -496,7 +493,6 @@
 /docs/providers/ovh/index.html
 /docs/providers/packet/index.html
 /docs/providers/packet/r/device.html
-/docs/providers/pagerduty/index.html
 /docs/providers/panos/index.html
 /docs/providers/postgresql/index.html
 /docs/providers/powerdns/index.html
@@ -527,7 +523,6 @@
 /docs/providers/vcd/index.html
 /docs/providers/vcd/r/firewall_rules.html
 /docs/providers/vcd/r/vapp_vm.html
-/docs/providers/vra7/index.html
 /docs/providers/yandex/index.html
 /docs/provisioners/chef.html
 /docs/provisioners/connection.html

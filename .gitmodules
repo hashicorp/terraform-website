@@ -106,14 +106,6 @@
 	path = ext/providers/mysql
 	url = https://github.com/terraform-providers/terraform-provider-mysql
 	branch = stable-website
-[submodule "ext/providers/nomad"]
-	path = ext/providers/nomad
-	url = https://github.com/terraform-providers/terraform-provider-nomad
-	branch = stable-website
-[submodule "ext/providers/ns1"]
-	path = ext/providers/ns1
-	url = https://github.com/terraform-providers/terraform-provider-ns1
-	branch = stable-website
 [submodule "ext/providers/oneandone"]
 	path = ext/providers/oneandone
 	url = https://github.com/terraform-providers/terraform-provider-oneandone
@@ -137,10 +129,6 @@
 [submodule "ext/providers/packet"]
 	path = ext/providers/packet
 	url = https://github.com/terraform-providers/terraform-provider-packet
-	branch = stable-website
-[submodule "ext/providers/pagerduty"]
-	path = ext/providers/pagerduty
-	url = https://github.com/terraform-providers/terraform-provider-pagerduty
 	branch = stable-website
 [submodule "ext/providers/postgresql"]
 	path = ext/providers/postgresql
@@ -281,10 +269,6 @@
 [submodule "ext/providers/gridscale"]
 	path = ext/providers/gridscale
 	url = https://github.com/terraform-providers/terraform-provider-gridscale
-	branch = stable-website
-[submodule "ext/providers/vra7"]
-	path = ext/providers/vra7
-	url = https://github.com/terraform-providers/terraform-provider-vra7
 	branch = stable-website
 [submodule "ext/providers/avi"]
 	path = ext/providers/avi
