@@ -89,6 +89,8 @@ Terraform Enterprise ships with a default list of Terraform versions. However, t
 
 To add a new version of Terraform, click **Terraform Versions** in the left menu and **Add Terraform Version** in the upper right, then provide the version number, Linux 64-bit download URL, and SHA256 checksum of the binary. Set the status to Beta to make the version available to site administrators, or Enabled to add it for everyone.
 
+~> **Important:** The versions of Terraform that are shipped with Terraform Enterprise releases are fixed and regularly checked to validate that they have not been altered. To ensure that the download URL and checksum are not overwritten when using an alternative to a default Terraform version, add a new version with a different name.  
+
 ![screenshot: the Add Terraform Version page](./images/admin-version-add.png)
 
 The versions you add may be recent standard Terraform releases from HashiCorp, or custom Terraform versions. One common use for custom versions is to add a Terraform bundle that includes [pre-installed providers](/docs/cloud/run/install-software.html#custom-and-community-providers) commonly needed by the instance.
