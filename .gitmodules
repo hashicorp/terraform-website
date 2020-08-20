@@ -38,10 +38,6 @@
 	path = ext/providers/cobbler
 	url = https://github.com/terraform-providers/terraform-provider-cobbler
 	branch = stable-website
-[submodule "ext/providers/consul"]
-	path = ext/providers/consul
-	url = https://github.com/terraform-providers/terraform-provider-consul
-	branch = stable-website
 [submodule "ext/providers/datadog"]
 	path = ext/providers/datadog
 	url = https://github.com/terraform-providers/terraform-provider-datadog

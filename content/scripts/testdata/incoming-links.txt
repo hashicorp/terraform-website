@@ -332,13 +332,6 @@
 /docs/providers/clc/index.html
 /docs/providers/clc/r/server.html
 /docs/providers/cobbler/index.html
-/docs/providers/consul/d/keys.html
-/docs/providers/consul/d/service.html
-/docs/providers/consul/index.html
-/docs/providers/consul/r/agent_service.html
-/docs/providers/consul/r/key_prefix.html
-/docs/providers/consul/r/keys.html
-/docs/providers/consul/r/service.html
 /docs/providers/datadog/index.html
 /docs/providers/datadog/r/dashboard.html
 /docs/providers/datadog/r/downtime.html
