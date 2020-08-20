@@ -9,12 +9,248 @@
       </li>
 
       <li>
-        <a href="/docs/commands/index.html">Commands (CLI)</a>
+        <a href="/docs/commands/environment-variables.html">Environment Variables</a>
+      </li>
+
+      <li>
+        <a href="#">Initializing and Managing a Working Directory</a>
         <ul class="nav">
+          <li>
+            <a href="/docs/commands/init.html">init</a>
+          </li>
 
           <li>
-            <a href="/docs/commands/environment-variables.html">Environment Variables</a>
+            <a href="/docs/commands/get.html">get</a>
           </li>
+
+          <li>
+            <a href="/docs/commands/workspace/index.html">workspace</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/commands/workspace/list.html">list</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/workspace/select.html">select</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/workspace/new.html">new</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/workspace/delete.html">delete</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/workspace/show.html">show</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="/docs/commands/login.html">login</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/logout.html">logout</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">Performing Terraform Runs</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/commands/plan.html">plan</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/apply.html">apply</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/destroy.html">destroy</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">Writing Code and Inspecting Infrastructure</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/commands/console.html">console</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/fmt.html">fmt</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/graph.html">graph</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/output.html">output</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/providers.html">providers</a>
+            <ul class="nav">
+              <li<%= sidebar_current("docs-commands-providers-mirror") %>>
+                <a href="/docs/commands/providers/mirror.html">mirror</a>
+              </li>
+              <li<%= sidebar_current("docs-commands-providers-schema") %>>
+                <a href="/docs/commands/providers/schema.html">schema</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="/docs/commands/show.html">show</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/validate.html">validate</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/0.13upgrade.html">0.13upgrade</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/0.12upgrade.html">0.12upgrade</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">Manipulating State</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/commands/taint.html">taint</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/untaint.html">untaint</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/import.html">import</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/refresh.html">refresh</a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/state/index.html">state</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/commands/state/addressing.html">Resource Addressing</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/state/list.html">list</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/state/mv.html">mv</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/state/pull.html">pull</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/state/push.html">push</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/state/replace-provider.html">replace-provider</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/state/rm.html">rm</a>
+              </li>
+
+              <li>
+                <a href="/docs/commands/state/show.html">show</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="/docs/commands/force-unlock.html">force-unlock</a>
+          </li>
+        </ul>
+      </li>
+
+
+      <li>
+        <a href="/docs/import/index.html">Import</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/import/usage.html">Usage</a>
+          </li>
+
+          <li>
+            <a href="/docs/import/importability.html">Resource Importability</a>
+          </li>
+        </ul>
+      </li>
+
+
+
+      <li>
+        <a href="/docs/backends/index.html">Backends</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/backends/config.html">Configuration</a>
+          </li>
+
+          <li>
+            <a href="/docs/backends/init.html">Init</a>
+          </li>
+
+          <li>
+            <a href="/docs/backends/state.html">State Storage & Locking</a>
+          </li>
+
+          <li>
+            <a href="/docs/backends/operations.html">Remote Operations</a>
+          </li>
+
+          <li>
+            <a href="/docs/backends/types/index.html">Backend Types</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/plugins/index.html">Plugins</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/plugins/basics.html">Basics</a>
+          </li>
+
+          <li>
+            <a href="/docs/plugins/signing.html">Signing</a>
+          </li>
+
+          <li>
+            <a href="/docs/plugins/provider.html">Provider</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/internal-plugins.html">Internals</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/docs/commands/index.html">All Terraform Commands</a>
+        <ul class="nav">
 
           <li>
             <a href="/docs/commands/apply.html">apply</a>
@@ -176,67 +412,6 @@
 
           <li>
             <a href="/docs/commands/0.12upgrade.html">0.12upgrade</a>
-          </li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="/docs/import/index.html">Import</a>
-        <ul class="nav">
-          <li>
-            <a href="/docs/import/usage.html">Usage</a>
-          </li>
-
-          <li>
-            <a href="/docs/import/importability.html">Resource Importability</a>
-          </li>
-        </ul>
-      </li>
-
-
-
-      <li>
-        <a href="/docs/backends/index.html">Backends</a>
-        <ul class="nav">
-          <li>
-            <a href="/docs/backends/config.html">Configuration</a>
-          </li>
-
-          <li>
-            <a href="/docs/backends/init.html">Init</a>
-          </li>
-
-          <li>
-            <a href="/docs/backends/state.html">State Storage & Locking</a>
-          </li>
-
-          <li>
-            <a href="/docs/backends/operations.html">Remote Operations</a>
-          </li>
-
-          <li>
-            <a href="/docs/backends/types/index.html">Backend Types</a>
-          </li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="/docs/plugins/index.html">Plugins</a>
-        <ul class="nav">
-          <li>
-            <a href="/docs/plugins/basics.html">Basics</a>
-          </li>
-
-          <li>
-            <a href="/docs/plugins/signing.html">Signing</a>
-          </li>
-
-          <li>
-            <a href="/docs/plugins/provider.html">Provider</a>
-          </li>
-
-          <li>
-            <a href="/docs/internals/internal-plugins.html">Internals</a>
           </li>
         </ul>
       </li>
