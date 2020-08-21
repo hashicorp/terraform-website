@@ -78,7 +78,7 @@
 
             <%
               docs_items = <<-EOT
-                <li><a data-track='docs-home' href="/docs/index.html">Docs Home</a></li>
+                <li><a data-track='docs' href="/docs/index.html">Docs Home</a></li>
                 <li><a data-track='docs-cli' href="/docs/cli-index.html">Terraform CLI</a></li>
                 <li><a data-track='docs-cloud' href="/docs/cloud/index.html">Terraform Cloud</a></li>
                 <li><a data-track='docs-ent' href="/docs/enterprise/index.html">Terraform Enterprise</a></li>
@@ -98,6 +98,7 @@
                     <ul class="dropdown">
                       <li><a data-track='intro' href="/intro/index.html">Intro</a></li>
                       <li><a data-track='learn' href="https://learn.hashicorp.com/terraform/">Tutorials</a></li>
+                      <li><a data-track='registry' href="https://registry.terraform.io">Registry</a></li>
                       <li><a data-track='community' href="/community.html">Community</a></li>
                       <li><a data-track='enterprise' href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
                     </ul>
@@ -109,8 +110,10 @@
                       <%= docs_items %>
                     </ul>
                   </li>
+                  <li class="hidden-sm"><a data-track='registry' href="https://registry.terraform.io">Registry</a></li>
                   <li class="hidden-sm"><a data-track='community' href="/community.html">Community</a></li>
                   <li class="hidden-sm"><a data-track='enterprise' href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
+                  
                   <li>
                     <a data-track='download' href="/downloads.html">
                       <%= inline_svg "download.svg" %> Download
@@ -121,17 +124,11 @@
                       <%= inline_svg "github.svg" %> GitHub
                     </a>
                   </li>
-                   <li id="terraform-overview-sign-in-link">
-                   <div>
-                    <a data-track='sign-in' href="https://app.terraform.io/session?utm_source=docs_banner">
-                      Sign In
-                    </a>
-                    </div>
-                  </li>
                    <li id="terraform-overview-sign-up-link" class="hidden-md hidden-sm">
                    <div>
-                    <a data-track='sign-up' href="https://app.terraform.io/signup/account?utm_source=docs_banner">
-                      Create Account
+                    <a data-track='cloud' href="https://app.terraform.io/session?utm_source=docs_banner">
+                      Terraform Cloud
+                      <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1" style="fill: none !important;margin-left: 6px;margin-top: -1px;margin-right: 0;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </a>
                     </div>
                   </li>
