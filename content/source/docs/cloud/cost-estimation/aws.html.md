@@ -13,7 +13,7 @@ Terraform Cloud can estimate monthly costs for many AWS Terraform resources.
 
 ## Handled Resources
 
-The following are priceable resources:
+Below is a list of resources that cost estimation supports:
 
 * aws_alb
 * aws_autoscaling_group
