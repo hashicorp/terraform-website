@@ -13,7 +13,7 @@ Terraform Cloud can estimate monthly costs for many Azure Terraform resources.
 
 ## Handled Resources
 
-The following are priceable resources:
+Below is a list of resources that cost estimation supports:
 
 * azurerm_firewall
 * azurerm_linux_virtual_machine

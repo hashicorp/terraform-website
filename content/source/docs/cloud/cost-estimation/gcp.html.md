@@ -11,11 +11,9 @@ Terraform Cloud can estimate monthly costs for many GCP Terraform resources.
 
 -> **Note:** Terraform Enterprise requires GCP credentials to support cost estimation. These credentials are configured at the instance level, not the organization level. See the [Application Administration docs](/docs/enterprise/admin/integration.html) for more details.
 
-Below is a list of resources that cost estimation supports so far. Resources that incur costs are marked as such; other resources do not have costs associated with them.
-
 ## Handled Resources
 
-The following are priceable resources:
+Below is a list of resources that cost estimation supports:
 
 * google_compute_disk
 * google_compute_instance
