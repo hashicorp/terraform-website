@@ -81,6 +81,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     # unofficial partners
     "fortios" : "fortinetdev/fortios"
     "ncloud" : "NaverCloudPlatform/ncloud"
+    "selectel" : "selectel/selectel"
     "stackpath" : "stackpath/stackpath"
     "ucloud" : "ucloud/ucloud"
 
