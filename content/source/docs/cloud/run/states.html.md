@@ -32,7 +32,7 @@ _Leaving this stage:_
 
 - If the `terraform plan` command failed, the run skips to completion (**Plan Errored** state).
 - If a user canceled the plan by pressing the "Cancel Run" button, the run skips to completion (**Canceled** state).
-- If the plan succeeded and doesn't require any changes (since it already matches the current infrastructure state), the run skips to completion (**No Changes** state).
+- If the plan succeeded and doesn't require any changes (since it already matches the current infrastructure state), the run skips to completion (**Planned** state).
 - If the plan succeeded and requires changes:
     - If cost estimation is enabled, the run proceeds automatically to the cost estimation stage.
     - If cost estimation is disabled and [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
@@ -102,7 +102,7 @@ A run is considered completed if it finishes applying, if any part of the run fa
 _States in this stage:_
 
 - **Applied:** The run was successfully applyed.
-- **No Changes:** `terraform plan`'s output already matches the current infrastructure state, so `terraform apply` doesn't need to do anything.
+- **Planned:** `terraform plan`'s output already matches the current infrastructure state, so `terraform apply` doesn't need to do anything.
 - **Apply Errored:** The `terraform apply` command failed, possibly due to a missing or misconfigured provider or an illegal operation on a provider.
 - **Plan Errored:** The `terraform plan` command failed (usually requiring fixes to variables or code), or a hard-mandatory Sentinel policy failed. The run cannot be applied.
 - **Discarded:** A user chose not to continue this run.
