@@ -122,10 +122,6 @@
 	path = ext/providers/ovh
 	url = https://github.com/terraform-providers/terraform-provider-ovh
 	branch = stable-website
-[submodule "ext/providers/packet"]
-	path = ext/providers/packet
-	url = https://github.com/terraform-providers/terraform-provider-packet
-	branch = stable-website
 [submodule "ext/providers/postgresql"]
 	path = ext/providers/postgresql
 	url = https://github.com/terraform-providers/terraform-provider-postgresql
@@ -190,10 +186,6 @@
 	path = ext/providers/panos
 	url = https://github.com/terraform-providers/terraform-provider-panos
 	branch = stable-website
-[submodule "ext/providers/nsxt"]
-	path = ext/providers/nsxt
-	url = https://github.com/terraform-providers/terraform-provider-nsxt
-	branch = stable-website
 [submodule "ext/providers/flexibleengine"]
 	path = ext/providers/flexibleengine
 	url = https://github.com/terraform-providers/terraform-provider-flexibleengine
@@ -250,10 +242,6 @@
 	path = ext/providers/hedvig
 	url = https://github.com/terraform-providers/terraform-provider-hedvig
 	branch = stable-website
-[submodule "ext/providers/selectel"]
-	path = ext/providers/selectel
-	url = https://github.com/terraform-providers/terraform-provider-selectel
-	branch = stable-website
 [submodule "ext/providers/yandex"]
 	path = ext/providers/yandex
 	url = https://github.com/terraform-providers/terraform-provider-yandex
@@ -261,10 +249,6 @@
 [submodule "ext/providers/jdcloud"]
 	path = ext/providers/jdcloud
 	url = https://github.com/terraform-providers/terraform-provider-jdcloud
-	branch = stable-website
-[submodule "ext/providers/gridscale"]
-	path = ext/providers/gridscale
-	url = https://github.com/terraform-providers/terraform-provider-gridscale
 	branch = stable-website
 [submodule "ext/providers/avi"]
 	path = ext/providers/avi
