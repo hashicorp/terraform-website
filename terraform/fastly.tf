@@ -57,34 +57,36 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
     "exoscale" : "exoscale/exoscale"
     "fastly" : "fastly/fastly"
+    "fortios" : "fortinetdev/fortios"
+    "gridscale": "gridscale/gridscale"
     "hcloud" : "hetznercloud/hcloud"
     "heroku" : "heroku/heroku"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
     "mongodbatlas" : "mongodb/mongodbatlas"
+    "ncloud" : "NaverCloudPlatform/ncloud" # unverified
     "newrelic" : "newrelic/newrelic"
     "ns1": "ns1-terraform/ns1"
+    "nsxt": "vmware/nsxt"
     "okta" : "oktadeveloper/okta"
     "oktaasa" : "oktadeveloper/oktaasa"
     "opsgenie" : "opsgenie/opsgenie"
+    "packet": "packethost/packet"
     "pagerduty": "PagerDuty/pagerduty"
     "rancher2" : "rancher/rancher2"
     "scaleway" : "scaleway/scaleway"
+    "selectel" : "selectel/selectel" # unverified
     "signalfx" : "splunk-terraform/signalfx"
+    "stackpath" : "stackpath/stackpath" # unverified
     "sumologic" : "SumoLogic/sumologic"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
     "triton" : "joyent/triton"
     "turbot" : "turbot/turbot"
+    "ucloud" : "ucloud/ucloud" # unverified
     "vra7" : "vmware/vra7"
     "vultr" : "vultr/vultr"
-
-    # unofficial partners
-    "fortios" : "fortinetdev/fortios"
-    "ncloud" : "NaverCloudPlatform/ncloud"
-    "stackpath" : "stackpath/stackpath"
-    "ucloud" : "ucloud/ucloud"
-
+    
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more
     "archive" : "hashicorp/archive"

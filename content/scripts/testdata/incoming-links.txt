@@ -441,7 +441,6 @@
 /docs/providers/google/r/storage_bucket.html
 /docs/providers/google/r/vpc_access_connector.html
 /docs/providers/grafana/index.html
-/docs/providers/gridscale/index.html
 /docs/providers/huaweicloud/index.html
 /docs/providers/icinga2/index.html
 /docs/providers/ignition/d/filesystem.html
@@ -453,7 +452,6 @@
 /docs/providers/mailgun/index.html
 /docs/providers/mysql/index.html
 /docs/providers/netlify/index.html
-/docs/providers/nsxt/index.html
 /docs/providers/nutanix/index.html
 /docs/providers/oci/guides/troubleshooting.html
 /docs/providers/oci/guides/version-3-upgrade.html
@@ -484,8 +482,6 @@
 /docs/providers/opentelekomcloud/index.html
 /docs/providers/oraclepaas/index.html
 /docs/providers/ovh/index.html
-/docs/providers/packet/index.html
-/docs/providers/packet/r/device.html
 /docs/providers/panos/index.html
 /docs/providers/postgresql/index.html
 /docs/providers/powerdns/index.html
