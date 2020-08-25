@@ -18,8 +18,8 @@ Current users of Terraform Cloud can link their SSO identity to their existing a
 Select your preferred provider to learn more about what is supported for that provider and how to configure SSO for it.
 
 * [Okta](./single-sign-on/okta.html)
+* [SAML](./single-sign-on/saml.html)
 * Azure AD (coming soon)
-* Custom SAML (coming soon)
 
 ## How SSO Works
 
