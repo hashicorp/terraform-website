@@ -206,8 +206,7 @@ Key path                             | Type   | Default | Description
       "service-provider": "github",
       "http-url": "https://github.com",
       "api-url": "https://api.github.com",
-      "oauth-token-string": "4306823352f0009d0ed81f1b654ac17a",
-      "private-key": "-----BEGIN RSA PRIVATE KEY-----\ncontent\n-----END RSA PRIVATE KEY-----"
+      "oauth-token-string": "4306823352f0009d0ed81f1b654ac17a"
     }
   }
 }
