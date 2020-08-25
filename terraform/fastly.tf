@@ -64,6 +64,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
+    "opentelekomcloud" : "opentelekomcloud/opentelekomcloud" # unverified
     "mongodbatlas" : "mongodb/mongodbatlas"
     "ncloud" : "NaverCloudPlatform/ncloud" # unverified
     "newrelic" : "newrelic/newrelic"

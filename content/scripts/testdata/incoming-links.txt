@@ -479,7 +479,6 @@
 /docs/providers/openstack/r/networking_router_route_v2.html
 /docs/providers/openstack/r/networking_router_v2.html
 /docs/providers/openstack/r/networking_subnet_v2.html
-/docs/providers/opentelekomcloud/index.html
 /docs/providers/oraclepaas/index.html
 /docs/providers/ovh/index.html
 /docs/providers/panos/index.html
