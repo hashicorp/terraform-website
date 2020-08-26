@@ -28,6 +28,8 @@ page_title: "Audit Trails - API Docs - Terraform Cloud"
 
 -> **Note:** Unlike other endpoints, the Audit Trails API does not use the [JSON API specification](./index.html#json-api-formatting).
 
+-> **Note:** Terraform Cloud retains 14 days of audit log information. 
+
 The audit trails API exposes a stream of audit events, which describe changes to the application entities (workspaces, runs, etc.) that belong to a Terraform Cloud organization.
 
 ## List Audit Trails
