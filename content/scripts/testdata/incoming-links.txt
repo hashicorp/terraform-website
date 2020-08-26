@@ -453,14 +453,7 @@
 /docs/providers/mysql/index.html
 /docs/providers/netlify/index.html
 /docs/providers/nutanix/index.html
-/docs/providers/oci/guides/troubleshooting.html
-/docs/providers/oci/guides/version-3-upgrade.html
-/docs/providers/oci/index.html
-/docs/providers/oci/r/core_instance.html
-/docs/providers/oci/r/core_security_list.html
-/docs/providers/oci/r/core_subnet.html
 /docs/providers/oneandone/index.html
-/docs/providers/opc/index.html
 /docs/providers/opennebula/index.html
 /docs/providers/openstack/index.html
 /docs/providers/openstack/r/blockstorage_volume_v1.html
@@ -479,7 +472,6 @@
 /docs/providers/openstack/r/networking_router_route_v2.html
 /docs/providers/openstack/r/networking_router_v2.html
 /docs/providers/openstack/r/networking_subnet_v2.html
-/docs/providers/oraclepaas/index.html
 /docs/providers/ovh/index.html
 /docs/providers/panos/index.html
 /docs/providers/postgresql/index.html
