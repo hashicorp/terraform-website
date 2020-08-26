@@ -13,7 +13,7 @@ The SAML SSO integration currently supports the following features of SAML 2.0:
 - Identity Provider (IdP)-initiaited SSO
 - Just-in-Time Provisioning
 
-The SAML SSO integration can be configured by providing a metadata URL or manually with the Single Sign-on URL (ACS URL), Entity ID or Issuer URL, and X.509 Certificate.
+The SAML SSO integration can be configured by providing a metadata URL or manually with the Single Sign-on URL, Entity ID, and X.509 Certificate.
 
 ## Configuration (Terraform Cloud)
 
@@ -41,7 +41,7 @@ The SAML SSO integration can be configured by providing a metadata URL or manual
 
       ![sso-wizard-configure-settings-toggle](../images/sso/wizard-configure-settings-toggle.png)
 
-   2. Provide your Single Sign-on URL, Entity ID or Issuer URL, and X.509 Certificate.
+   2. Provide your Single Sign-On URL, Entity ID, and X.509 Certificate.
 
       ![sso-wizard-configure-settings-manually](../images/sso/wizard-configure-settings-manually.png)
 
