@@ -27,23 +27,11 @@ The SAML SSO integration can be configured by providing a metadata URL or manual
 
    ![sso-wizard-choose-provider-saml](../images/sso/wizard-choose-provider-saml.png)
 
-4. Proceed with configuring using the metadata URL or manually providing the IdP configuration.
+4. Configure using the IdP's metadata URL or manually with the Single Sign-On URL, Entity ID, and X.509 Certificate.
 
-   **Metadata URL**
+![sso-wizard-configure-settings-metadata](../images/sso/wizard-configure-settings-metadata.png)
 
-   1. Provide your metadata URL and click the "Save settings" button.
-
-      ![sso-wizard-configure-settings-metadata](../images/sso/wizard-configure-settings-metadata.png)
-
-   **Manually**
-
-   1. Toggle the identity provider configuration.
-
-      ![sso-wizard-configure-settings-toggle](../images/sso/wizard-configure-settings-toggle.png)
-
-   2. Provide your Single Sign-On URL, Entity ID, and X.509 Certificate.
-
-      ![sso-wizard-configure-settings-manually](../images/sso/wizard-configure-settings-manually.png)
+![sso-wizard-configure-settings-manually](../images/sso/wizard-configure-settings-manually.png)
 
 5. Click "Save settings".
 
