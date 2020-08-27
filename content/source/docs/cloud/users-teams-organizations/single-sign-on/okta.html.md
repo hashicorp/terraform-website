@@ -31,12 +31,20 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
 
 1. Visit your organization settings page and click "SSO".
 
-2. Provide your metadata URL and click the "Add settings" button.
+2. Click "Setup SSO".
 
    ![sso-setup](../images/sso/setup.png)
 
-3. Verify your settings and click `Enable`.
+3. Select "Okta" and click "Next".
 
-4. Your Okta SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
+   ![sso-wizard-choose-provider-okta](../images/sso/wizard-choose-provider-okta.png)
 
-   ![sso-settings](../images/sso/settings.png)
+4. Provide your Okta metadata URL and click the "Save settings" button.
+
+   ![sso-wizard-configure-settings-okta](../images/sso/wizard-configure-settings-okta.png)
+
+5. Verify your settings and click "Enable".
+
+6. Your Okta SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
+
+   ![sso-settings](../images/sso/settings-okta.png)
