@@ -30,7 +30,7 @@ IP Ranges provides a list of Terraform Cloud and Enterprise's IP ranges. For mor
 
 Name                             | Type   | Description
 ---------------------------------|--------|-------------
-`api`                            | array  | List of IP ranges in [CIDR notation] used for Terraform Cloud APIs
+`api`                            | array  | List of IP ranges in [CIDR notation] used for connections from user site to Terraform Cloud APIs
 `notifications`                  | array  | List of IP ranges in [CIDR notation] used for notifications
 `sentinel`                       | array  | List of IP ranges in [CIDR notation] used for outbound requests from Sentinel policies
 `vcs`                            | array  | List of IP ranges in [CIDR notation] used for connecting to VCS providers
