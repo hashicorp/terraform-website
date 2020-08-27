@@ -24,14 +24,15 @@ page_title: "IP Ranges - API Docs - Terraform Cloud and Terraform Enterprise"
 [CIDR Notation]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
 
 # IP Ranges API
-IP Ranges provides a list of Terraform Cloud and Enterprise's egress IP ranges. For more information about Terraform Cloud's IP ranges, view our documentation about [Terraform Cloud IP Ranges](../architectural-details/ip-ranges.html).
+IP Ranges provides a list of Terraform Cloud and Enterprise's IP ranges. For more information about Terraform Cloud's IP ranges, view our documentation about [Terraform Cloud IP Ranges](../architectural-details/ip-ranges.html).
 
 ## IP Ranges Payload
 
 Name                             | Type   | Description
 ---------------------------------|--------|-------------
-`sentinel`                       | array  | List of IP ranges in [CIDR notation] used for outbound requests from Sentinel policies
+`api`                            | array  | List of IP ranges in [CIDR notation] used for Terraform Cloud APIs
 `notifications`                  | array  | List of IP ranges in [CIDR notation] used for notifications
+`sentinel`                       | array  | List of IP ranges in [CIDR notation] used for outbound requests from Sentinel policies
 `vcs`                            | array  | List of IP ranges in [CIDR notation] used for connecting to VCS providers
 
 -> **Note:** The IP ranges for each feature returned by the IP Ranges API may overlap. Additionally, these published ranges do not currently allow for execution of Terraform runs against local resources.
@@ -65,6 +66,10 @@ curl \
 
 ```json
 {
+  "api": [
+    "75.2.98.97/32",
+    "99.83.150.238/32"
+  ],
   "notifications": [
     "10.0.0.1/32",
     "192.168.0.1/32",

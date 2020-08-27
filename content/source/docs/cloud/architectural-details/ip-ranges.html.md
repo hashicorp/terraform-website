@@ -5,7 +5,7 @@ page_title: "IP Ranges - Terraform Cloud and Terraform Enterprise"
 
 # Terraform Cloud IP Ranges
 
-Terraform Cloud uses static IP ranges for certain features that make outbound requests such as notifications and VCS connections. These IP ranges are retrievable through the [IP Ranges API](../api/ip-ranges.html).
+Terraform Cloud uses static IP ranges for certain features such as notifications and VCS connections. These IP ranges are retrievable through the [IP Ranges API](../api/ip-ranges.html).
 
 -> **Note:** The IP ranges for each feature returned by the IP Ranges API may overlap. Additionally, these published ranges do not currently allow for execution of Terraform runs against local resources.
 
