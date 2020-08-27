@@ -15,10 +15,6 @@ The SAML SSO integration currently supports the following features of SAML 2.0:
 
 The SAML SSO integration can be configured by providing a metadata URL or manually with the Single Sign-on URL, Entity ID, and X.509 Certificate.
 
-## NameID Format
-
-Terraform Cloud requires that the NameID format in the SAML response be set to `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress` with a valid email address being provided as the value for this attribute.
-
 ## Configuration (Terraform Cloud)
 
 1. Visit your organization settings page and click "SSO".

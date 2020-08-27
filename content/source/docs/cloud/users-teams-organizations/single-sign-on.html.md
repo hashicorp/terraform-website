@@ -69,3 +69,7 @@ If the SAML assertion includes a `MemberOf` attribute, users logging in via SSO 
 Any team names that don't match existing teams are ignored; Terraform Cloud will not automatically create new teams. Terraform Cloud expects the team names in the `MemberOf` SAML attribute to exactly match its own team names. This match is case sensitive. It is not possible to assign users to the `owners` team through this attribute.
 
 If the `MemberOf` attribute is not provided, users are assigned to a default team named `sso` and are not removed from any existing teams. 
+
+## NameID Format
+
+Terraform Cloud requires that the NameID format in the SAML response be set to `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress` with a valid email address being provided as the value for this attribute.
