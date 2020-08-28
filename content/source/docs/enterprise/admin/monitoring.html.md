@@ -16,7 +16,7 @@ The `/_health_check` endpoint operates in 2 modes:
 - Full check
 - Minimal check
 
-With full check, the service will attempt to verify status of internal component  and PostgreSQL, in contrast to minimal check in which only returns `200 OK`.
+With a full check, the service will attempt to verify the status of internal components and PostgreSQL, in contrast to a minimal check which returns `200 OK` automatically after a successful full check.
 
 In normal circumstance, full check will be performed during start up of the instance, once Terraform Enterprise started up in active running state, any subsequent checks will be performed in minimal check mode.
 
