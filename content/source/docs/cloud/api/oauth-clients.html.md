@@ -194,7 +194,7 @@ Key path                             | Type   | Default | Description
 `data.attributes.http-url`           | string |         | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
 `data.attributes.api-url`            | string |         | The base URL of your VCS provider's API (e.g. `"https://api.github.com"` or `"https://ghe.example.com/api/v3"`)
 `data.attributes.oauth-token-string` | string |         | The token string you were given by your VCS provider
-`data.attributes.private-key`        | string |         | **Required for Azure DevOps Server** The text of the SSH private key associated with your Azure DevOps Server account.
+`data.attributes.private-key`        | string |         | **Required for Azure DevOps Server. Not used for any other providers.** The text of the SSH private key associated with your Azure DevOps Server account.
 
 ### Sample Payload
 
@@ -206,8 +206,7 @@ Key path                             | Type   | Default | Description
       "service-provider": "github",
       "http-url": "https://github.com",
       "api-url": "https://api.github.com",
-      "oauth-token-string": "4306823352f0009d0ed81f1b654ac17a",
-      "private-key": "-----BEGIN RSA PRIVATE KEY-----\ncontent\n-----END RSA PRIVATE KEY-----"
+      "oauth-token-string": "4306823352f0009d0ed81f1b654ac17a"
     }
   }
 }
