@@ -17,9 +17,9 @@ HashiCorp Terraform Cloud customers can integrate with Kubernetes using the offi
 
 Access and support for the Terraform Cloud Operator for Kubernetes is to all customers in the Terraform Cloud.  Some features of Terraform Cloud that are [limited to certain tiers](/docs/cloud/paid.html) and aren't available to the Terraform Cloud Operator for Kubernetes unless you've purchased the corresponding tier.
 
-### Terraform Cloud Operator for Kubernetes
+## Terraform Cloud Operator for Kubernetes
 
-#### Networking Requirements
+### Networking Requirements
 
 In order for the Terraform Cloud Operator for Kubernetes to function properly, it must be able to make outbound requests over HTTPS (TCP port 443) to the Terraform Cloud application APIs. This may require perimeter networking as well as container host networking changes, depending on your environment. The IP ranges are documented in the [Terraform Cloud IP Ranges documentation](/docs/cloud/architectural-details/ip-ranges.html). The services which run on these IP ranges are described in the table below.
 
@@ -33,7 +33,7 @@ The current release of the Terraform Cloud Operator for Kubernetes supports the 
 
 * Kubernetes 1.14 and above
 
-## Installation & Configuration
+### Installation & Configuration
 
 * Generate an [Organization token](/docs/cloud/users-teams-organizations/api-tokens.html#organization-api-tokens) within Terraform Cloud and save it to a `credentials` file
 * Create a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/) with the Terraform Cloud API credentials
@@ -53,7 +53,7 @@ helm install --devel --namespace ${RELEASE_NAMESPACE} hashicorp/terraform --gene
 ```
 * To create a Terraform workspace, you can create a separate Helm chart to deploy the custom resource or examine this [example](https://github.com/hashicorp/terraform-helm/tree/master/example).
 
-## Upgrading
+### Upgrading
 
 The Helm chart automatically installs all Custom Resource Definitions under the `crds/` directory. As a result, any updates to the schema must be manually copied into the directory and removed from the Kubernetes cluster.
 
