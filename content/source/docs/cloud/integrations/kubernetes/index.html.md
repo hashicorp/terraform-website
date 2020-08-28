@@ -7,7 +7,7 @@ description: |-
 
 # Terraform Cloud Operator for Kubernetes Setup Instructions
 
--> **Note:** The Terraform Cloud Operator for Kubernetes is still being developed and in the alpha testing stage. It is not ready for production use.
+-> **Note:** The Terraform Cloud Operator for Kubernetes is still under development and in the alpha testing stage. It is not ready for production use.
 
 ## Overview
 
@@ -15,7 +15,7 @@ HashiCorp Terraform Cloud customers can integrate with Kubernetes using the offi
 
 ## Prerequisites
 
-Access and support for the Terraform Cloud Operator for Kubernetes is to all customers in the Terraform Cloud.  Some features of Terraform Cloud that are limited to certain tiers and aren't available to the Terraform Cloud Operator for Kubernetes unless you've purchased the corresponding tier.
+Access and support for the Terraform Cloud Operator for Kubernetes is to all customers in the Terraform Cloud.  Some features of Terraform Cloud that are [limited to certain tiers](/docs/cloud/paid.html) and aren't available to the Terraform Cloud Operator for Kubernetes unless you've purchased the corresponding tier.
 
 ### Terraform Cloud Operator for Kubernetes
 
@@ -36,11 +36,11 @@ The current release of the Terraform Cloud Operator for Kubernetes supports the 
 ## Installation & Configuration
 
 * Generate an [Organization token](/docs/cloud/users-teams-organizations/api-tokens.html#organization-api-tokens) within Terraform Cloud and save it to a `credentials` file
-* Create a Kubernetes secret with the Terraform Cloud API credentials
+* Create a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/) with the Terraform Cloud API credentials
 ```
 kubectl -n $NAMESPACE create secret generic terraformrc --from-file=credentials
 ```
-* Add sensative variables, such as your cloud provider credentials, to the workspace
+* Add sensitive variables, such as your cloud provider credentials, to the workspace
 ```
 kubectl -n $NAMESPACE create secret generic workspacesecrets --from-literal=secret_key=abc123
 ```
@@ -52,8 +52,6 @@ helm repo add hashicorp https://helm.releases.hashicorp.com
 helm install --devel --namespace ${RELEASE_NAMESPACE} hashicorp/terraform --generate-name
 ```
 * To create a Terraform workspace, you can create a separate Helm chart to deploy the custom resource or examine this [example](https://github.com/hashicorp/terraform-helm/tree/master/example).
-
-Once configured, you’ll be redirected to the Splunk search interface with the pre-configured Terraform Cloud dashboards. Splunk will begin importing and indexing the last 14 days of audit log information and populating the dashboards. This process may take a few minutes to complete.
 
 ## Upgrading
 
