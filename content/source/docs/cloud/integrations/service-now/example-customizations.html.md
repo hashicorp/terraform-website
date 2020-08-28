@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Example Customizations - ServiceNow Service Catalog Integration - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Example customizations for the ServiceNow Service Catalog Integration.
 ---
 
 # Example Customizations
