@@ -18,6 +18,7 @@ The backup and restore API backs up all of the data stored in a Terraform Enterp
 Please note the following when using the backup and restore API:
 
 - The version of Terraform Enterprise cannot be changed between a backup and restore. That is, a backup taken from one version of Terraform Enterprise cannot be restored to an installation running a different version of Terraform Enterprise.
+- The version of PostgreSQL being used cannot be changed between a backup and restore. That is, a backup taken from a Terraform Enterprise installation using one version of PostgreSQL cannot be restored to an installation using a different version of PostgreSQL.
 - The Terraform Enterprise installation that will be restored to must be a new, running installation with no existing application data.
 - Once a restore is completed, the Terraform Enterprise application will need to be restarted before it can use the restored data.
 
