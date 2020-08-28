@@ -11,7 +11,7 @@ This document outlines best practices for monitoring a Terraform Enterprise inst
 
 Terraform Enterprise provides a `/_health_check` endpoint on the instance. If Terraform Enterprise is up, the health check will return a `200 OK`.
 
-The `/_health_check` endpoint operates in 2 modes
+The `/_health_check` endpoint operates in 2 modes:
 
 - Full check
 - Minimal check
