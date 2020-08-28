@@ -20,7 +20,7 @@ With a full check, the service will attempt to verify the status of internal com
 
 The endpoint's default behavior is to perform a full check during startup of the instance, and minimal checks after Terraform Enterprise is active and running.
 
--> **Note:** If you wish to perform full check forcefully, additional query parameter is required with `/_health_check?full=1` and extra caution as every single call will make contact to internal component and PostgreSQL.
+-> **Note:** If you wish to force a full check, an additional query parameter is required: `/_health_check?full=1`. Take extra caution as every call will make requests to internal components and PostgreSQL, increasing system load and latency.
 
 ## Metrics & Telemetry
 
