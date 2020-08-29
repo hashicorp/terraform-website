@@ -49,12 +49,8 @@ time resources to add new features to these providers. These providers are
 available in official Terraform releases, but the functionality is primarily
 contributed.
 
-The current list of HashiCorp Providers is as follows:
+The current list of HashiCorp Providers can be found on the [Terraform Registry](https://registry.terraform.io/browse/providers?tier=official).
 
- * [Amazon Web Services](https://github.com/terraform-providers/terraform-provider-aws)
- * [Azure RM](https://github.com/terraform-providers/terraform-provider-azurerm)
- * [Google Cloud Platform](https://github.com/terraform-providers/terraform-provider-google)
- * [Oracle Public Cloud](https://github.com/terraform-providers/terraform-provider-opc)
 
 Our testing standards are the same for both HashiCorp and Community providers,
 and HashiCorp runs full acceptance test suites for every provider nightly to

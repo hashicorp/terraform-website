@@ -106,21 +106,9 @@
 	path = ext/providers/oneandone
 	url = https://github.com/terraform-providers/terraform-provider-oneandone
 	branch = stable-website
-[submodule "ext/providers/opc"]
-	path = ext/providers/opc
-	url = https://github.com/terraform-providers/terraform-provider-opc
-	branch = stable-website
 [submodule "ext/providers/openstack"]
 	path = ext/providers/openstack
 	url = https://github.com/terraform-providers/terraform-provider-openstack
-	branch = stable-website
-[submodule "ext/providers/oraclepaas"]
- 	path = ext/providers/oraclepaas
- 	url = https://github.com/terraform-providers/terraform-provider-oraclepaas
- 	branch = stable-website
-[submodule "ext/providers/ovh"]
-	path = ext/providers/ovh
-	url = https://github.com/terraform-providers/terraform-provider-ovh
 	branch = stable-website
 [submodule "ext/providers/postgresql"]
 	path = ext/providers/postgresql
@@ -197,10 +185,6 @@
 [submodule "ext/providers/telefonicaopencloud"]
 	path = ext/providers/telefonicaopencloud
 	url = https://github.com/terraform-providers/terraform-provider-telefonicaopencloud
-	branch = stable-website
-[submodule "ext/providers/huaweicloud"]
-	path = ext/providers/huaweicloud
-	url = https://github.com/terraform-providers/terraform-provider-huaweicloud
 	branch = stable-website
 [submodule "ext/providers/acme"]
 	path = ext/providers/acme
@@ -313,10 +297,6 @@
 [submodule "ext/providers/ksyun"]
 	path = ext/providers/ksyun
 	url = https://github.com/terraform-providers/terraform-provider-ksyun
-	branch = stable-website
-[submodule "ext/providers/wavefront"]
-	path = ext/providers/wavefront
-	url = https://github.com/terraform-providers/terraform-provider-wavefront
 	branch = stable-website
 [submodule "ext/providers/cohesity"]
 	path = ext/providers/cohesity

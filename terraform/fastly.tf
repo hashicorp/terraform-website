@@ -61,10 +61,10 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "gridscale" : "gridscale/gridscale"
     "hcloud" : "hetznercloud/hcloud"
     "heroku" : "heroku/heroku"
+    "huaweicloud" : "huaweicloud/huaweicloud"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
-    "opentelekomcloud" : "opentelekomcloud/opentelekomcloud" # unverified
     "mongodbatlas" : "mongodb/mongodbatlas"
     "ncloud" : "NaverCloudPlatform/ncloud" # unverified
     "newrelic" : "newrelic/newrelic"
@@ -72,7 +72,9 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "nsxt" : "vmware/nsxt"
     "okta" : "oktadeveloper/okta"
     "oktaasa" : "oktadeveloper/oktaasa"
+    "opentelekomcloud" : "opentelekomcloud/opentelekomcloud" # unverified
     "opsgenie" : "opsgenie/opsgenie"
+    "ovh": "ovh/ovh" # unverified?
     "packet" : "packethost/packet"
     "pagerduty" : "PagerDuty/pagerduty"
     "rancher2" : "rancher/rancher2"
@@ -87,6 +89,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "ucloud" : "ucloud/ucloud" # unverified
     "vra7" : "vmware/vra7"
     "vultr" : "vultr/vultr"
+    "wavefront": "vmware/wavefront"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more
