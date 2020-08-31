@@ -326,10 +326,6 @@
 	path = ext/providers/rubrik
 	url = https://github.com/terraform-providers/terraform-provider-rubrik
 	branch = stable-website
-[submodule "ext/providers/prismacloud"]
-	path = ext/providers/prismacloud
-	url = https://github.com/terraform-providers/terraform-provider-prismacloud
-	branch = stable-website
 [submodule "ext/providers/cloudamqp"]
 	path = ext/providers/cloudamqp
 	url = https://github.com/terraform-providers/terraform-provider-cloudamqp
