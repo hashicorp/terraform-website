@@ -15,7 +15,7 @@ HashiCorp Terraform Cloud customers can integrate with Kubernetes using the offi
 
 ## Prerequisites
 
-Access and support for the Terraform Cloud Operator for Kubernetes is to all customers in the Terraform Cloud.  Some features of Terraform Cloud that are [limited to certain tiers](/docs/cloud/paid.html) and aren't available to the Terraform Cloud Operator for Kubernetes unless you've purchased the corresponding tier.
+All Terraform Cloud users can use the Terraform Cloud Operator for Kubernetes. Some features of Terraform Cloud that are [limited to certain tiers](/docs/cloud/paid.html) aren't available to the Terraform Cloud Operator for Kubernetes unless you've purchased the corresponding tier.
 
 ## Terraform Cloud Operator for Kubernetes
 
