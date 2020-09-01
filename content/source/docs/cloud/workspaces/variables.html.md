@@ -70,13 +70,13 @@ Terraform often needs cloud provider credentials and other sensitive information
 
 To protect these secrets, you can mark any any Terraform or environment variable as sensitive data by clicking its "Sensitive" checkbox (visible when editing).
 
-Marking a variable as sensitive prevents anybody (including you) from viewing its value in Terraform Cloud's UI or API.
+Marking a variable as sensitive prevents anybody (including you) from viewing its value in the variables section of the workspace in Terraform Cloud's UI or with its Variables API endpoint.
 
 Users with permission to read and write variables can set new values for sensitive variables.  No other attribute of a sensitive variable can be modified. To update other attributes, delete the variable and create a new variable to replace it.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-~> **Important:** Terraform runs will receive the full text of sensitive variables, and might print the value in logs and state files if the configuration pipes the value through to an output or a resource parameter. Take care when writing your configurations to avoid unnecessary credential disclosure. Whenever possible, use environment variables since these cannot end up in state files. (Environment variables can end up in log files if TF_LOG is set to TRACE.)
+~> **Important:** Terraform runs will receive the full text of sensitive variables, and might print the value in logs and state files if the configuration pipes the value through to an output or a resource parameter. Additionally, Sentinel mocks downloaded from runs will contain the sensitive values of Terraform (but not environment) variables. Take care when writing your configurations to avoid unnecessary credential disclosure. Whenever possible, use environment variables since these cannot end up in state files or in Sentinel mocks. (Environment variables can end up in log files if TF_LOG is set to TRACE.)
 
 ### Looking Up Variable Names
 
