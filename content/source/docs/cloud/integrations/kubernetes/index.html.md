@@ -11,7 +11,7 @@ description: |-
 
 ## Overview
 
-HashiCorp Terraform Cloud customers can integrate with Kubernetes using the official [Terraform Cloud Operator for Kubernetes](https://github.com/hashicorp/terraform-k8s) to provision infrastructure internal or external to the Kubernetes cluster directly from the Kubernetes control plane.  Using the Terraform Cloud Operator for Kubernetes' CustomResourceDefition (CRD), users can dynamically create Terraform Cloud workspaces, populate variables, and apply a Terraform configuration stored in a git repository or directly from the [Terraform Registry](https://registry.terraform.io/).
+HashiCorp Terraform Cloud customers can integrate with Kubernetes using the official [Terraform Cloud Operator for Kubernetes](https://github.com/hashicorp/terraform-k8s) to provision infrastructure internal or external to the Kubernetes cluster directly from the Kubernetes control plane.  Using the Terraform Cloud Operator for Kubernetes' CustomResourceDefinition (CRD), users can dynamically create Terraform Cloud workspaces (using a Terraform configuration from a git repository or from the [Terraform Registry](https://registry.terraform.io/), populate variables, and perform Terraform runs to provision infrastructure.
 
 ## Prerequisites
 
