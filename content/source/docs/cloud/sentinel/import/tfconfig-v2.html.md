@@ -99,8 +99,9 @@ tfconfig/v2
         ├── name (string)
         ├── source (string)
         ├── config (block expression representation)
-        ├── count (expression representation) (not implemented)
-        ├── for_each (expression representation) (not implemented)
+        ├── count (expression representation)
+        ├── depends_on (expression representation)
+        ├── for_each (expression representation)
         └── version_constraint (string)
 ```
 
@@ -427,11 +428,10 @@ delimiter are omitted for the root module.
   representation](#block-expression-representation) for all parameter values
   sent to the module.
 * `count` - An [expression representation](#expression-representations) for the
-  `count` field (not currently in use).
+  `count` field.
+* `depends_on`: An [expression representation](#expression-representations) for the
+  `depends_on` field.
 * `for_each` - An [expression representation](#expression-representations) for
-  the `for_each` field (not currently in use).
+  the `for_each` field.
 * `version_constraint` - The string value found in the `version` field of the
   module declaration.
-
--> **NOTE:** As `count` and `for_each` are currently not implemented in modules,
-the `count` and `for_each` fields will always be blank.
