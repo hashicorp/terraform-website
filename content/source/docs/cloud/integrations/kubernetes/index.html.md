@@ -35,7 +35,7 @@ The current release of the Terraform Cloud Operator for Kubernetes supports the 
 
 ### Installation & Configuration
 
-* Generate an [Organization token](/docs/cloud/users-teams-organizations/api-tokens.html#organization-api-tokens) within Terraform Cloud and save it to a `credentials` file
+1. Generate an [organization token](/docs/cloud/users-teams-organizations/api-tokens.html#organization-api-tokens) within Terraform Cloud and save it to a file. (These instructions assume you're using a file named `credentials`.)
 * Create a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/) with the Terraform Cloud API credentials
 ```
 kubectl -n $NAMESPACE create secret generic terraformrc --from-file=credentials
