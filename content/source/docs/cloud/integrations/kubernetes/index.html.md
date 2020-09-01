@@ -7,7 +7,7 @@ description: |-
 
 # Terraform Cloud Operator for Kubernetes Setup Instructions
 
--> **Note:** The Terraform Cloud Operator for Kubernetes is still under development and in the alpha testing stage. It is not ready for production use.
+~> **Important:** The Terraform Cloud Operator for Kubernetes is still under development and in the alpha testing stage. It is not ready for production use.
 
 ## Overview
 
