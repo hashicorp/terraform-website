@@ -43,25 +43,28 @@ The current release of the Terraform Cloud Operator for Kubernetes supports the 
     kubectl -n $NAMESPACE create secret generic terraformrc --from-file=credentials
     ```
 
-* Add sensitive variables, such as your cloud provider credentials, to the workspace
-```
-kubectl -n $NAMESPACE create secret generic workspacesecrets --from-literal=secret_key=abc123
-```
-* Install the [Terraform Cloud Operator for Kubernetes via Helm](https://github.com/hashicorp/terraform-helm)
-```
-helm repo add hashicorp https://helm.releases.hashicorp.com
-```
-```
-helm install --devel --namespace ${RELEASE_NAMESPACE} hashicorp/terraform --generate-name
-```
-* To create a Terraform workspace, you can create a separate Helm chart to deploy the custom resource or examine this [example](https://github.com/hashicorp/terraform-helm/tree/master/example).
+1. Add sensitive variables, such as your cloud provider credentials, to the workspace
+
+    ```
+    kubectl -n $NAMESPACE create secret generic workspacesecrets --from-literal=secret_key=abc123
+    ```
+
+1. Install the [Terraform Cloud Operator for Kubernetes via Helm](https://github.com/hashicorp/terraform-helm)
+
+    ```
+    helm repo add hashicorp https://helm.releases.hashicorp.com
+
+    helm install --devel --namespace ${RELEASE_NAMESPACE} hashicorp/terraform --generate-name
+    ```
+
+1. To create a Terraform workspace, you can create a separate Helm chart to deploy the custom resource or examine this [example](https://github.com/hashicorp/terraform-helm/tree/master/example).
 
 ### Upgrading
 
-The Helm chart automatically installs all Custom Resource Definitions under the `crds/` directory. As a result, any updates to the schema must be manually copied into the directory and removed from the Kubernetes cluster.
+When a new version of the Terraform Cloud Operator for Kubernetes Helm Chart is available from the HashiCorp Helm repository, it can be upgraded with the following command:
 
 ```
-kubectl delete crd workspaces.app.terraform.io
+helm upgrade --devel --namespace ${RELEASE_NAMESPACE} ${RELEASE_NAME} hashicorp/terraform
 ```
 
-If the CRD is not updated correctly, you will not be able to create a Workspace Custom Resource.
+
