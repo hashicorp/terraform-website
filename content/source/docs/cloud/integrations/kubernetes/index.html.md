@@ -31,25 +31,26 @@ Hostname | Port/Protocol | Directionality | Purpose
 
 The current release of the Terraform Cloud Operator for Kubernetes supports the following versions:
 
-* Kubernetes 1.14 and above
+* Helm 3.0.1 and above
+* Kubernetes 1.15 and above
 
 ### Installation & Configuration
 
 1. Generate an [organization token](/docs/cloud/users-teams-organizations/api-tokens.html#organization-api-tokens) within Terraform Cloud and save it to a file. (These instructions assume you're using a file named `credentials`.)
 
-1. Create a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/) with the Terraform Cloud API credentials
+1. Create a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/) with the Terraform Cloud API credentials.
 
     ```
     kubectl -n $NAMESPACE create secret generic terraformrc --from-file=credentials
     ```
 
-1. Add sensitive variables, such as your cloud provider credentials, to the workspace
+1. Add sensitive variables, such as your cloud provider credentials, to the workspace.
 
     ```
     kubectl -n $NAMESPACE create secret generic workspacesecrets --from-literal=secret_key=abc123
     ```
 
-1. Install the [Terraform Cloud Operator for Kubernetes via Helm](https://github.com/hashicorp/terraform-helm)
+1. Install the [Terraform Cloud Operator for Kubernetes via Helm](https://github.com/hashicorp/terraform-helm).
 
     ```
     helm repo add hashicorp https://helm.releases.hashicorp.com
@@ -57,7 +58,7 @@ The current release of the Terraform Cloud Operator for Kubernetes supports the 
     helm install --devel --namespace ${RELEASE_NAMESPACE} hashicorp/terraform --generate-name
     ```
 
-1. To create a Terraform workspace, you can create a separate Helm chart to deploy the custom resource or examine this [example](https://github.com/hashicorp/terraform-helm/tree/master/example).
+1. To create a Terraform workspace, you can create a separate Helm chart to deploy the custom resource or examine these [examples](https://github.com/hashicorp/terraform-helm/tree/master/example).
 
 ### Upgrading
 
