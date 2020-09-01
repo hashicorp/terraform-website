@@ -472,8 +472,6 @@
 /docs/providers/openstack/r/networking_router_route_v2.html
 /docs/providers/openstack/r/networking_router_v2.html
 /docs/providers/openstack/r/networking_subnet_v2.html
-/docs/providers/ovh/index.html
-/docs/providers/panos/index.html
 /docs/providers/postgresql/index.html
 /docs/providers/powerdns/index.html
 /docs/providers/profitbricks/index.html

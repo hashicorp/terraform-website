@@ -77,6 +77,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "ovh": "ovh/ovh" # unverified?
     "packet" : "packethost/packet"
     "pagerduty" : "PagerDuty/pagerduty"
+    "panos" : "PaloAltoNetworks/panos" # unverified
     "prismacloud": "PaloAltoNetworks/prismacloud" # unverified
     "rancher2" : "rancher/rancher2"
     "scaleway" : "scaleway/scaleway"
@@ -96,6 +97,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     # manually enable Google indexing, contact the team / Paul Tyng for more
     "archive" : "hashicorp/archive"
     "aws" : "hashicorp/aws"
+    "azuread" : "hashicorp/azuread"
     "azurestack" : "hashicorp/azurestack"
     "ciscoasa" : "hashicorp/ciscoasa"
     "cloudinit" : "hashicorp/cloudinit"

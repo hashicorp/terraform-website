@@ -166,10 +166,6 @@
 	path = ext/providers/cloudscale
 	url = https://github.com/terraform-providers/terraform-provider-cloudscale
 	branch = stable-website
-[submodule "ext/providers/panos"]
-	path = ext/providers/panos
-	url = https://github.com/terraform-providers/terraform-provider-panos
-	branch = stable-website
 [submodule "ext/providers/flexibleengine"]
 	path = ext/providers/flexibleengine
 	url = https://github.com/terraform-providers/terraform-provider-flexibleengine
