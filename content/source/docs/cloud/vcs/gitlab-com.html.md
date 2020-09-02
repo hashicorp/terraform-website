@@ -13,12 +13,12 @@ Configuring a new VCS provider requires permission to manage VCS settings for th
 
 Connecting Terraform Cloud to your VCS involves four steps:
 
-On your VCS                                                                    | On Terraform Cloud
---                                                                             |--
-&nbsp;                                                                         | Create a new connection in Terraform Cloud. Get redirect URI.
-Register your Terraform Cloud organization as a new app. Provide redirect URI. | &nbsp;
-&nbsp;                                                                         | Provide Terraform Cloud with application ID and secret. Request VCS access.
-Approve access request.                                                        | &nbsp;
+| On your VCS                                                                    | On Terraform Cloud                                                          |
+| ------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| &nbsp;                                                                         | Create a new connection in Terraform Cloud. Get redirect URI.               |
+| Register your Terraform Cloud organization as a new app. Provide redirect URI. | &nbsp;                                                                      |
+| &nbsp;                                                                         | Provide Terraform Cloud with application ID and secret. Request VCS access. |
+| Approve access request.                                                        | &nbsp;                                                                      |
 
 The rest of this page explains the GitLab.com versions of these steps.
 
@@ -65,12 +65,12 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
     Fill out the form as follows:
 
-    Field                   | Value
-    ------------------------|--------------------------------------------------
-    Name                    | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)
-    Redirect URI            |`https://app.terraform.io/<YOUR CALLBACK URL>`, the redirect URI you copied from Terraform Cloud
-    Confidential (checkbox) | ✔️ (enabled)
-    Scopes (all checkboxes) | (empty)
+    | Field                   | Value                                                                                            |
+    | ----------------------- | ------------------------------------------------------------------------------------------------ |
+    | Name                    | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)                                                     |
+    | Redirect URI            | `https://app.terraform.io/<YOUR CALLBACK URL>`, the redirect URI you copied from Terraform Cloud |
+    | Confidential (checkbox) | ✔️ (enabled)                                                                                      |
+    | Scopes (all checkboxes) | api                                                                                              |
 
 4. Click the "Save application" button, which creates the application and takes you to its page.
 
@@ -120,4 +120,3 @@ Most organizations will not need to add an SSH private key. However, if the orga
 ## Finished
 
 At this point, GitLab.com access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization's shared repositories.
-
