@@ -187,10 +187,11 @@ RUN update-ca-certificates
 The alternative worker image supports executing custom scripts during different points of a Terraform Enterprise run.
 These custom scripts allow Terraform Enterprise administrators to extend the functionality of Terraform Enterprise runs.
 
-Please note the following when utilizing custom scripts.
+Please note the following when utilizing custom scripts:
 
 - If the script exits with a non-zero exit code, the Terraform Enterprise run will immediately fail with an error.
-- The name, location, and permissions of the script are not customizable. 
+- The name and location of the script are not customizable. 
+- The script must be executable. That is, the script must have execute permissions.
 - The execution of the script does not have a timeout. It is up to the Terraform Enterprise administrator to ensure
   scripts execute in a timely fashion.
 - The execution of the script is not sandboxed. The script is executed in the same container `terraform` is executed in.
