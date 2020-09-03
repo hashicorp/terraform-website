@@ -74,11 +74,11 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "oktaasa" : "oktadeveloper/oktaasa"
     "opentelekomcloud" : "opentelekomcloud/opentelekomcloud" # unverified
     "opsgenie" : "opsgenie/opsgenie"
-    "ovh": "ovh/ovh" # unverified?
+    "ovh" : "ovh/ovh" # unverified?
     "packet" : "packethost/packet"
     "pagerduty" : "PagerDuty/pagerduty"
-    "panos" : "PaloAltoNetworks/panos" # unverified
-    "prismacloud": "PaloAltoNetworks/prismacloud" # unverified
+    "panos" : "PaloAltoNetworks/panos"             # unverified
+    "prismacloud" : "PaloAltoNetworks/prismacloud" # unverified
     "rancher2" : "rancher/rancher2"
     "scaleway" : "scaleway/scaleway"
     "selectel" : "selectel/selectel" # unverified
@@ -91,7 +91,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "ucloud" : "ucloud/ucloud" # unverified
     "vra7" : "vmware/vra7"
     "vultr" : "vultr/vultr"
-    "wavefront": "vmware/wavefront"
+    "wavefront" : "vmware/wavefront"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more
@@ -115,8 +115,10 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "oraclepaas" : "hashicorp/oraclepaas"
     "random" : "hashicorp/random"
     "template" : "hashicorp/template"
+    "tfe" : "hashicorp/tfe"
     "time" : "hashicorp/time"
     "tls" : "hashicorp/tls"
+    "vault" : "hashicorp/vault"
     "vsphere" : "hashicorp/vsphere"
   }
 
