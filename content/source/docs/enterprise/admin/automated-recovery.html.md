@@ -196,7 +196,7 @@ set -e -u -o pipefail
 
 path=absolute_path_to_directory_of_snapshots
 
-access="--store local --path '$path'"
+access="--store local --path $path"
 
 # jq is used by this script, so install it. For other Linux distros, either preinstall jq
 # and remove these lines, or change to the mechanism your distro uses to install jq.
