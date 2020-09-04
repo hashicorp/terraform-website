@@ -57,6 +57,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
     "exoscale" : "exoscale/exoscale"
     "fastly" : "fastly/fastly"
+    "flexibleengine" : "FlexibleEngineCloud/flexibleengine"
     "fortios" : "fortinetdev/fortios"
     "gridscale" : "gridscale/gridscale"
     "hcloud" : "hetznercloud/hcloud"
@@ -89,6 +90,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "triton" : "joyent/triton"
     "turbot" : "turbot/turbot"
     "ucloud" : "ucloud/ucloud" # unverified
+    "venafi" : "Venafi/venafi"
     "vra7" : "vmware/vra7"
     "vultr" : "vultr/vultr"
     "wavefront" : "vmware/wavefront"

@@ -166,10 +166,6 @@
 	path = ext/providers/cloudscale
 	url = https://github.com/terraform-providers/terraform-provider-cloudscale
 	branch = stable-website
-[submodule "ext/providers/flexibleengine"]
-	path = ext/providers/flexibleengine
-	url = https://github.com/terraform-providers/terraform-provider-flexibleengine
-	branch = stable-website
 [submodule "ext/providers/azurestack"]
 	path = ext/providers/azurestack
 	url = https://github.com/terraform-providers/terraform-provider-azurestack
@@ -241,10 +237,6 @@
 [submodule "ext/providers/genymotion"]
 	path = ext/providers/genymotion
 	url = https://github.com/terraform-providers/terraform-provider-genymotion
-	branch = stable-website
-[submodule "ext/providers/venafi"]
-	path = ext/providers/venafi
-	url = https://github.com/terraform-providers/terraform-provider-venafi
 	branch = stable-website
 [submodule "ext/providers/dome9"]
 	path = ext/providers/dome9
