@@ -312,6 +312,8 @@ Different VCS providers handle forks differently, but a fork is usually owned by
 
 Terraform Cloud makes extensive use of VCS repos, and assumes that forks of a trusted repo are not necessarily trusted. As such, Terraform Cloud avoids evaluating any code from external forks, which prevents Terraform Cloud from running [speculative plans][] for [pull requests][] from forks.
 
+On [Terraform Enterprise][], [speculative plans][] on [pull requests][] from forks can be enabled by an administrator. 
+
 ## Git
 
 [git]: glossary.html#git
@@ -732,6 +734,16 @@ In Terraform Cloud, runs are performed in a series of stages ([plan][], [policy 
 - [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
+## Run Triggers
+
+[run triggers]: glossary.html#run-triggers
+
+-> Terraform Cloud
+
+Terraform Cloud provides a way to connect a given workspace to one or more workspaces within an organization, known as "source workspaces". These connections, called run triggers, allow runs to queue automatically in your workspace on successful apply of runs in any of the source workspaces.
+
+- [Terraform Cloud docs: Runs Triggers](/docs/cloud/workspaces/run-triggers.html)
+
 ## S3
 
 [s3]: glossary.html#s3
@@ -796,7 +808,7 @@ A type of access credential based on public key cryptography, used to log into s
 Terraform Cloud uses SSH private keys for two kinds of operations:
 
 - Downloading private Terraform [modules][] with [Git][]-based sources during a Terraform run. Keys for downloading modules are assigned per-workspace.
-- Bringing content from a connected [VCS provider][] into Terraform Cloud, usually when pulling in a Terraform [configuration][] for a [workspace][] or importing a module into the [private module registry][]. Only some VCS providers require an SSH key, but others can optionally use SSH if an SSH key is provided.
+- Bringing content from a connected [VCS provider][] into Terraform Cloud, usually when pulling in a Terraform [configuration][] for a [workspace][] or importing a module into the [private module registry][]. Only some VCS providers require an SSH key, but other providers only need an SSH key if your repositories include submodules that are only accessible via SSH (instead of your VCS provider's API).
 
 - [Wikipedia: SSH](https://en.wikipedia.org/wiki/Secure_Shell)
 - [Terraform Cloud docs: SSH Keys for Cloning Modules](/docs/cloud/workspaces/ssh-keys.html)

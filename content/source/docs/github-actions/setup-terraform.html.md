@@ -55,7 +55,7 @@ The workflow file below expects a secret named `TF_API_TOKEN`, whose value is a 
 
 See also:
 
-- [Configuring GitHub Actions secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-)
+- [Configuring GitHub Actions secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets)
 
 ### GitHub Actions Workflow YAML
 

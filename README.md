@@ -70,9 +70,16 @@ While the preview is running, you can edit pages and Middleman will automaticall
 
 ↥ [back to top](#table-of-contents)
 
-To preview changes from your fork of Terraform or one of the providers, first make sure the necessary submodule is active. Run `git submodule init ext/terraform` or `git submodule init ext/providers/<SHORT NAME>` (where `<SHORT NAME>` is the name used in the provider's docs URLs), then run `git submodule update`. (For more information, see [Living With Submodules][inpage-submodules] below.)
+To preview changes from your fork of Terraform or one of the providers, first make sure the necessary submodule is active:
 
-Once the submodule is active, you can go into its directory and fetch and check out new commits. If you plan to routinely edit those docs, you can add an additional remote to make it easier to fetch from and push to your fork.
+1. **Init.** Run `git submodule init ext/terraform` or `git submodule init ext/providers/<SHORT NAME>` (where `<SHORT NAME>` is the name used in the provider's docs URLs).
+
+    You can skip this if you know you've already initialized this submodule. But also it's idempotent, and running it again is probably faster than grepping the output of `git submodule status`.
+2. **Update.** Run `git submodule update`.
+
+    The init command doesn't actually init things all the way, so if you forget to run update, you might have a bad afternoon. (For more information, see [Living With Submodules][inpage-submodules] below.)
+
+Once the submodule is active, you can go into its directory to fetch and check out new commits. If you plan to routinely edit those docs, you can add an additional remote to make it easier to fetch from and push to your fork.
 
 You can even make direct edits to the submodule's content, as long as you remember to commit them and push your branch before resetting the submodule.
 
@@ -146,11 +153,11 @@ Content is in Markdown, with a few local syntax additions described below. Try t
 
 If you start a paragraph with a special arrow-like sigil, it will become a colored callout box. You can't make multi-paragraph callouts. For colorblind users (and for clarity in general), we try to start callouts with a strong-emphasized word to indicate their function.
 
-Sigil | Start text with   | Color
-------|-------------------|-------
-`->`  | `**Note:**`       | blue
-`~>`  | `**Important:**`  | yellow
-`!>`  | `**Warning:**`    | red
+Sigil | Start text with  | Color
+------|------------------|-------
+`->`  | `**Note:**`      | blue
+`~>`  | `**Important:**` | yellow
+`!>`  | `**Warning:**`   | red
 
 
 #### Auto Header IDs
@@ -241,7 +248,7 @@ Avoid running `git rm` on a submodule unless you know what you're doing. You usu
 
 Earlier instructions for working with this repo said to use `git submodule init` (with no `<PATH>` argument) or `git submodule update --init` or `make sync` to activate everything. **Don't do that.** Git commands will take forever to run, and if your `$PS1` includes hints about the current directory's Git status, your entire terminal will slow to a **c r a w l.**
 
-Instead, only init the specific submodules you currently need to work with (`git submodule init ext/providers/aws`), and feel free to de-init them when you're done. De-initting is non-destructive as long as you've committed your changes within the submodule (and preferably pushed your branch) -- Git keeps the repository data cached out of the way, so it dosen't even need to clone the entire repo again the next time you init it.
+Instead, only init the specific submodules you currently need to work with (`git submodule init ext/providers/aws`), and feel free to de-init them when you're done. De-initting is non-destructive as long as you've committed your changes within the submodule (and preferably pushed your branch) -- Git keeps the repository data cached out of the way, so it doesn't even need to clone the entire repo again the next time you init it.
 
 If you previously activated a hundred submodules and regret it, you can run `git submodule deinit --all` or `make deinit` to start fresh.
 
@@ -336,7 +343,6 @@ http://127.0.0.1:4567/intro/getting-started/variables.html
 This task checks a list of our most popular search engine results to make sure we don't move important pages without redirecting them. (BY THE WAY, you should also redirect _unimportant_ pages whenever you move them. **URLs are forever.**)
 
 ```
-2020-03-04 16:13:33 URL: http://127.0.0.1:4567/docs/providers/hcloud/index.html 200 OK
 2020-03-04 16:13:33 URL: http://127.0.0.1:4567/docs/providers/helm/index.html 200 OK
 http://127.0.0.1:4567/docs/providers/helm/release.html:
 Remote file does not exist -- broken link!!!

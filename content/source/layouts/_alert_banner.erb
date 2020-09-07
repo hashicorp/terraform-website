@@ -1,0 +1,22 @@
+<div class="g-alert-banner <% if show %><%= ' show' %><% else %><%= '' %><% end %> <% if tag.length > 3 %><%= ' has-large-tag' %><% else %><%= '' %><% end %>">
+  <div class="g-container">
+    <a
+      href="<%= url %>"
+    >
+      <div class="tag g-type-label">
+        <span><%= tag %></span>
+      </div>
+      <div class="text g-type-body-small-strong">
+        <span><%= text %></span>
+      </div>
+      <% if cta.length != 0 %>
+        <div class="link-text g-type-body-small-strong">
+          <span><%= cta %></span>
+        </div>
+      <% end %>
+    </a>
+  </div>
+  <span class="close">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM15 9l-6 6M9 9l6 6" stroke="#000"/></svg>
+  </span>
+</div>

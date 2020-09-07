@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Plans - API Docs - Terraform Cloud"
+page_title: "Plans - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -24,6 +24,22 @@ page_title: "Plans - API Docs - Terraform Cloud"
 # Plans API
 
 A plan represents the execution plan of a Run in a Terraform workspace.
+
+## Attributes
+
+### Plan States
+
+The plan state is found in `data.attributes.status`, and you can reference the following list of possible states.
+
+State                     | Description
+--------------------------|------------
+`pending`                 | The initial status of a plan once it has been created.
+`managed_queued`/`queued` | The plan has been queued, awaiting backend service capacity to run terraform.
+`running`                 | The plan is running.
+`errored`                 | The plan has errored. This is a final state.
+`canceled`                | The plan has been canceled. This is a final state.
+`finished`                | The plan has completed sucessfully. This is a final state.
+`unreachable`             | The plan will not run. This is a final state.
 
 ## Show a plan
 
@@ -97,7 +113,9 @@ This temporary URL provided by the redirect has a life of **1 minute**, and shou
 
 -> **Note:** This endpoint is available for plans using Terraform 0.12 and later.
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens) that has [**admin** level permission](../users-teams-organizations/permissions.html#admin) for the workspace.
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens) that has admin level access to the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Status  | Response                  | Reason
 --------|---------------------------|----------

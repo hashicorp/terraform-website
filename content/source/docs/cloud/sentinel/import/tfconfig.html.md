@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "tfconfig - Imports - Sentinel - Terraform Cloud"
+page_title: "tfconfig - Imports - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
   The tfconfig import provides access to a Terraform configuration.
 ---
@@ -317,7 +317,7 @@ based on type and name. Some examples of multi-level access are below:
 
 * To fetch all `aws_instance` resources within the root module, you can specify
   `tfconfig.resources.aws_instance`. This would give you a map of resource
-  namespaces indexed off of the names of each resource (`foo`, `bar`, and so
+  namespaces indexed from the names of each resource (`foo`, `bar`, and so
   on).
 * To fetch all resources within the root module, irrespective of type, use
   `tfconfig.resources`. This is indexed by type, as shown above with

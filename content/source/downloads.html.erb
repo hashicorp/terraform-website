@@ -41,7 +41,7 @@ show_notification: false
       </p>
 
       <div class="alert alert-info" role="alert">
-        <p><strong>Note:</strong> When you upgrade to Terraform 0.12, your existing Terraform configurations might need syntax updates. You can make most of these updates automatically with the <code>terraform 0.12upgrade</code> command; for more information, see <a href="/upgrade-guides/0-12.html">Upgrading to Terraform 0.12</a>.</p>
+        <p><strong>Note:</strong> When you upgrade to Terraform 0.13, your existing Terraform configurations might need syntax updates. You can make most of these updates automatically with the <code>terraform 0.13upgrade</code> command; for more information, see <a href="/upgrade-guides/0-13.html">Upgrading to Terraform 0.13</a>.</p>
       </div>
     </div>
   </div>
@@ -59,6 +59,10 @@ show_notification: false
           </ul>
           <div class="clearfix"></div>
         </div>
+        <div class="learn-cta">
+          <%= inline_svg "grad-hat.svg", width: 20, height: 15 %>
+          <p>Get started with a hands-on tutorial at <a href="https://learn.hashicorp.com/terraform?utm_source=terraform_io_download">HashiCorp Learn</a></p>
+        </div>
       </div>
     </div>
   <% end %>
@@ -68,6 +72,24 @@ show_notification: false
       <a href="https://www.fastly.com?utm_source=hashicorp" target="_blank" rel="nofollow noopener noreferrer">
         <%= inline_svg "fastly.svg", height: 50 %>
       </a>
+    </div>
+  </div>
+
+  <div class='cloud-learn-cta'>
+    <div class='top'>
+      <h3>Getting Started</h3>
+      <p>Terraform is distributed as a binary or as a package for each of the major operating systems and multiple Linux distributions. See the tutorials below which include instructions for your operating system.</p>
+    </div>
+    <div class='contain'>
+      <div class='cloud'>
+        <img src='/assets/images/terraform-cloud-logo.svg' alt='HashiCorp Terraform Cloud Logo' />
+        <a href='https://app.terraform.io/signup/account?utm_source=terraform_io_download'>Sign up for Terraform Cloud</a>
+      </div>
+      <ul>
+        <li><a href='https://learn.hashicorp.com/collections/terraform/aws-get-started'>Get started with Terraform and AWS</a></li>
+        <li><a href='https://learn.hashicorp.com/collections/terraform/azure-get-started'>Get started with Terraform and Microsoft Azure</a></li>
+        <li><a href='https://learn.hashicorp.com/collections/terraform/gcp-get-started'>Get started with Terraform and Google Cloud</a></li>
+      </ul>
     </div>
   </div>
 </section>

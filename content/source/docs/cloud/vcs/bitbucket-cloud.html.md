@@ -1,11 +1,15 @@
 ---
 layout: "cloud"
-page_title: "Bitbucket Cloud - VCS Providers - Terraform Cloud"
+page_title: "Bitbucket Cloud - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring Bitbucket Cloud Access
 
 These instructions are for using Bitbucket Cloud for Terraform Cloud's VCS features. Bitbucket Cloud is the cloud-hosted version of Bitbucket; [self-hosted Bitbucket Server instances have separate instructions,](./bitbucket-server.html) as do the [other supported VCS providers.](./index.html)
+
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Connecting Terraform Cloud to your VCS involves four steps:
 
@@ -97,6 +101,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 ### Important Notes
 
+- SSH will only be used to clone Git submodules. All other Git operations will still use HTTPS.
 - Do not use your personal SSH key to connect Terraform Cloud and Bitbucket Cloud; generate a new one or use an existing key reserved for service access.
 - In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to Bitbucket Cloud.
 - **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.

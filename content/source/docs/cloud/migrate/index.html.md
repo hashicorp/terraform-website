@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Migrating State from Local Terraform - Terraform Cloud"
+page_title: "Migrating State from Local Terraform - Terraform Cloud and Terraform Enterprise"
 ---
 
 [state]: /docs/state/index.html
@@ -14,6 +14,8 @@ page_title: "Migrating State from Local Terraform - Terraform Cloud"
 [workspaces]: ../workspaces/index.html
 
 # Migrating State from Local Terraform
+
+> For a hands-on tutorial, try the [Migrate State to Terraform Cloud](https://learn.hashicorp.com/terraform/state/tfc_migration?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
 
 If you already use Terraform to manage infrastructure, you're probably managing some resources that you want to transfer to Terraform Cloud. By migrating your Terraform [state][] to Terraform Cloud, you can continue managing that infrastructure without de-provisioning anything.
 
@@ -38,7 +40,9 @@ Make sure you have all of the following:
     - For other backends, you need the path to the particular storage being used (usually already included in the configuration) and access credentials (which you usually must set as an environment variable).
 - A Terraform Cloud user account.
 
-    This account must be a member of your organization's [owners team][], so you can create workspaces.
+    This account must have permission to manage workspaces for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 You also need to authenticate Terraform with Terraform Cloud.  If you're using Terraform 0.12.21 or later, you can use the `terraform login` command. Alternatively, you can create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
 

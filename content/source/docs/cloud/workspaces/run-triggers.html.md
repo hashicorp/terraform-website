@@ -1,9 +1,11 @@
 ---
 layout: "cloud"
-page_title: "Run Triggers - Workspaces - Terraform Cloud"
+page_title: "Run Triggers - Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Run Triggers
+
+> For a hands-on tutorial, try the [Connect Workspaces with Run Triggers](https://learn.hashicorp.com/terraform/tfc/tfc_run_triggers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
 
 Terraform Cloud provides a way to connect your workspace to one or more workspaces within your organization, known as "source workspaces". These connections, called run triggers, allow runs to queue automatically in your workspace on successful apply of runs in any of the source workspaces. You can connect your workspace to up to 20 source workspaces.
 
@@ -11,23 +13,23 @@ When used in conjunction with [`terraform_remote_state` data sources](/docs/prov
 
 -> **API:** See the [Run Triggers APIs](../api/run-triggers.html).
 
--> **Guide:**: For a hands-on guide that will walk you through the process of creating and using a run trigger, see our [run triggers guide on
-learn.hashicorp.com](https://learn.hashicorp.com/terraform/tfc/tfc_run_triggers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
-
 ## Viewing and Managing Run Triggers
 
 To add or delete a run trigger, navigate to the desired workspace and choose "Run Triggers" from the "Settings" menu:
 
 ![Screenshot: a workspace's settings drop-down menu](./images/run-triggers-workspace-settings.png)
 
-This takes you to the run triggers settings page, which shows any existing run triggers. This, and all workspace setting pages, require the current user to have [admin privileges](../users-teams-organizations/permissions.html) on that workspace. Admins are able to delete any of their workspace’s run triggers from this page.
+This takes you to the run triggers settings page, which shows any existing run triggers. Configuring run triggers requires admin access to the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) Admins are able to delete any of their workspace’s run triggers from this page.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ![Screenshot: a workspace's run triggers settings page](./images/run-triggers-index.png)
 
 ## Creating a Run Trigger
 
+Creating run triggers requires admin access to the workspace. You must also have permission to read runs for the source workspace you wish to connect to. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
-To create a run trigger you must first have [admin privileges](../users-teams-organizations/permissions.html) on the workspace, allowing you access to the workspace's settings pages. You must also have at least [read privileges](../users-teams-organizations/permissions.html) on the source workspace you wish to connect to.
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Under the "Source Workspaces" section, select the workspace you would like to connect as your source and click "Add workspace". You now have a run trigger established with your source workspace. Any run from that source workspace which applies successfully will now cause a new run to be queued in your workspace.
 

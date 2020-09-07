@@ -1,9 +1,9 @@
 ---
 layout: "cloud"
-page_title: "Plan Exports - API Docs - Terraform Cloud"
+page_title: "Plan Exports - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
-# Plans API
+# Plan Exports API
 
 Plan exports allow users to download data exported from the plan of a Run in a Terraform workspace. Currently, the only supported format for exporting plan data is to generate mock data for Sentinel.
 

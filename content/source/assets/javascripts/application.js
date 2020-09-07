@@ -24,7 +24,7 @@ document.addEventListener("turbolinks:load", function() {
 
     // Move the header (if any) into the grid container so we can make things line up nicely.
     var sidebarHeaderGrid = $("#sidebar-header-grid");
-    var sidebarHeader = $("#docs-sidebar").children("h1,h2,h3,h4,h5,h6").not("#otherdocs").first();
+    var sidebarHeader = $("#docs-sidebar").find("h1,h2,h3,h4,h5,h6").not("#otherdocs").first();
     sidebarHeaderGrid.append(sidebarHeader);
 
     // Collapse most subnavs, but reveal any that contain the
@@ -207,4 +207,22 @@ document.addEventListener("turbolinks:load", function() {
             quickNav.removeClass('active');
         });
     }
+
+    // Downloads CTA
+    var $downloadLinks = $("section.downloads .details a");
+    var $learnCtas = $("section.downloads .learn-cta");
+    $downloadLinks.on("click", function () {
+        var $learnCta = $(this).parents(".download").find(".learn-cta");
+
+        // Terminate early if user is downloading same OS different arch
+        if ($learnCta.hasClass("show")) return;
+
+        // When downloading first first time or for an additional OS
+        $learnCtas.each(function () {
+        $(this).removeClass("show");
+        });
+
+        $learnCta.addClass("show");
+    });
+
 });

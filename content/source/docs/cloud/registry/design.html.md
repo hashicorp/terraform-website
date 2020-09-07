@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Using the Configuration Designer - Private Module Registry - Terraform Cloud"
+page_title: "Using the Configuration Designer - Private Module Registry - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Using the Configuration Designer
@@ -49,7 +49,8 @@ Each variable is labeled as required or optional. Once you've set a value for al
 
 ### Interpolation Searching
 
-Variable values can be literal strings, or can interpolate other values. When you start typing an interpolation token (`${`), the designer displays a help message. As you continue typing, it searches the available outputs in your other selected modules, as well as workspace-level outputs from other workspaces. You can select one of these search results, or type a full name if you need to reference a value Terraform Cloud doesn't know about.
+Variable values can be literal strings, or can interpolate other values. When you start typing an interpolation token (`${`), the designer displays a help message. As you continue typing, it searches the available outputs in your other selected modules, as well as outputs from workspaces where you are authorized to read state outputs. You can select one of these search results, or type a full name if you need to reference a value Terraform Cloud doesn't know about.
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ![Terraform Cloud screenshot: interpolation help](./images/design-variables-help.png)
 

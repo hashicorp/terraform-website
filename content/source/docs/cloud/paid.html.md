@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Free and Paid Plans - Terraform Cloud"
+page_title: "Free and Paid Plans - Terraform Cloud and Terraform Enterprise"
 ---
 
 [owners]: ./users-teams-organizations/teams.html#the-owners-team
@@ -29,7 +29,9 @@ Some of Terraform Cloud's features are limited to particular paid upgrade plans.
 
 -> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-When a paid upgrade plan is a strict superset of another plan, its name will also include that plan's name. For example, the "Team & Governance" plan includes all of the features of the "Team" plan.
+Each higher paid upgrade plan is a strict superset of any lower plans — for example, the "Team & Governance" plan includes all of the features of the "Team" plan. Paid feature callouts in the documentation indicate the _lowest_ tier at which the feature is available, but any higher plans also include that feature.
+
+Terraform Enterprise generally includes all of Terraform Cloud's paid features, plus additional features geared toward large enterprises. However, some features are implemented differently due to the differences between self-hosted and SaaS environments, and some features might be absent due to being impractical or irrelevant in the types of organizations that need Terraform Enterprise. Cloud-only or Enterprise-only features are clearly indicated in documentation.
 
 ## Changing Your Payment Plan
 

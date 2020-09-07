@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Runs - API Docs - Terraform Cloud"
+page_title: "Runs - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -33,11 +33,43 @@ Performing a run on a new configuration is a multi-step process.
 
 Alternatively, you can create a run with a pre-existing configuration version, even one from another workspace. This is useful for promoting known good code from one workspace to another.
 
+## Attributes
+
+### Run States
+
+The run state is found in `data.attributes.status`, and you can reference the following list of possible states.
+
+State                  | Description
+-----------------------|------------
+`pending`              | The initial status of a run once it has been created.
+`plan_queued`          | Once a workspace has the availability to start a new run, the next run will transition to `plan_queued`. This status indicates that the it should start as soon as the backend services that run terraform have available capacity.  In Terraform Cloud, you should seldom see this status, as our aim is to always have capacity. However, in Terraform Enterprise this status will be more common due to the self-hosted nature.
+`planning`             | The planning phase of a run is in progress.
+`planned`              | The planning phase of a run has completed.
+`cost_estimating`      | The cost estimation phase of a run is in progress.
+`cost_estimated`       | The cost estimation phase of a run has completed.
+`policy_checking`      | The sentinel policy checking phase of a run is in progress.
+`policy_override`      | A sentinel policy has soft failed, and can be overriden.
+`policy_soft_failed`   | A sentinel policy has soft failed for a plan-only run.  This is a final state.
+`policy_checked`       | The sentinel policy checking phase of a run has completed.
+`confirmed`            | The plan produced by the run has been confirmed.
+`planned_and_finished` | The completion of a run containing a plan only, or a run the produces a plan with no changes to apply.  This is a final state.
+`apply_queued`         | Once the changes in the plan have been confirmed, the run run will transition to `apply_queued`. This status indicates that the run should start as soon as the backend services that run terraform have available capacity. In Terraform Cloud, you should seldom see this status, as our aim is to always have capacity. However, in Terraform Enterprise this status will be more common due to the self-hosted nature.
+`applying`             | The applying phase of a run is in progress.
+`applied`              | The applying phase of a run has completed.
+`discarded`            | The run has been discarded. This is a final state.
+`errored`              | The run has errored. This is a final state.
+`canceled`             | The run has been canceled.
+`force_canceled`       | The run has been canceled forcefully.
+
 ## Create a Run
 
 `POST /runs`
 
 A run performs a plan and apply, using a configuration version and the workspace’s current variables. You can specify a configuration version when creating a run; if you don’t provide one, the run defaults to the workspace’s most recently used version. (A configuration version is “used” when it is created or used for a run in this workspace.)
+
+Creating a run requires permission to queue plans for the specified workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
@@ -51,7 +83,8 @@ Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.attributes.is-destroy` | bool | false | Specifies if this plan is a destroy plan, which will destroy all provisioned resources.
 `data.attributes.message` | string | "Queued manually via the Terraform Enterprise API" | Specifies the message to be associated with this run.
-`data.relationships.workspace.data.id` | string | | Specifies the workspace ID where the run will be executed.
+`data.attributes.target-addrs` | array[string] | (nothing) | Specifies an optional list of resource addresses to be passed to the `-target` flag.
+`data.relationships.workspace.data.id` | string | (nothing) | Specifies the workspace ID where the run will be executed.
 `data.relationships.configuration-version.data.id` | string | (nothing) | Specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
 
 Status  | Response                               | Reason
@@ -68,8 +101,9 @@ Status  | Response                               | Reason
 {
   "data": {
     "attributes": {
-      "is-destroy":false,
-      "message": "Custom message"
+      "is-destroy": false,
+      "message": "Custom message",
+      "target-addrs": ["example.resource_address"]
     },
     "type":"runs",
     "relationships": {
@@ -120,6 +154,7 @@ curl \
       "terraform-version": "0.10.8",
       "created-at": "2017-11-29T19:56:15.205Z",
       "has-changes": false,
+      "target-addrs": ["example.resource_address"],
       "actions": {
         "is-cancelable": true,
         "is-confirmable": false,
@@ -163,11 +198,15 @@ Parameter | Description
 ----------|------------
 `run_id`  | The run ID to apply
 
-Applies a run that is paused waiting for confirmation after a plan. This includes runs in the "needs confirmation" and "policy checked" states. This action is only required for runs that can't be auto-applied. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with write permissions.)
+Applies a run that is paused waiting for confirmation after a plan. This includes runs in the "needs confirmation" and "policy checked" states. This action is only required for runs that can't be auto-applied. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs for the workspace.
+
+Applying a run requires permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 This endpoint queues the request to perform an apply; the apply might not happen immediately.
 
-This endpoint represents an action as opposed to a resource. As such, the endpoint does not return any object in the response body.
+Since this endpoint represents an action (not a resource), it does not return any object in the response body.
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
@@ -394,6 +433,10 @@ Parameter | Description
 
 The `discard` action can be used to skip any remaining work on runs that are paused waiting for confirmation or priority. This includes runs in the "pending," "needs confirmation," "policy checked," and "policy override" states.
 
+Discarding a run requires permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 This endpoint queues the request to perform a discard; the discard might not happen immediately. After discarding, the run is completed and later runs can proceed.
 
 This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
@@ -445,6 +488,10 @@ Parameter | Description
 
 The `cancel` action can be used to interrupt a run that is currently planning or applying. Performing a cancel is roughly equivalent to hitting ctrl+c during a Terraform plan or apply on the CLI. The running Terraform process is sent an `INT` signal, which instructs Terraform to end its work and wrap up in the safest way possible.
 
+Canceling a run requires permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 This endpoint queues the request to perform a cancel; the cancel might not happen immediately. After canceling, the run is completed and later runs can proceed.
 
 This endpoint represents an action as opposed to a resource. As such, it does not return any object in the response body.
@@ -494,7 +541,9 @@ Parameter | Description
 ----------|------------
 `run_id`  | The run ID to cancel
 
-The `force-cancel` action is like [cancel](#cancel-a-run), but ends the run immediately. Once invoked, the run is placed into a `canceled` state, and the running Terraform process is terminated. The workspace is immediately unlocked, allowing further runs to be queued. The `force-cancel` operation requires workspace admin privileges.
+The `force-cancel` action is like [cancel](#cancel-a-run), but ends the run immediately. Once invoked, the run is placed into a `canceled` state, and the running Terraform process is terminated. The workspace is immediately unlocked, allowing further runs to be queued. The `force-cancel` operation requires admin access to the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 This endpoint enforces a prerequisite that a [non-forceful cancel](#cancel-a-run) is performed first, and a cool-off period has elapsed. To determine if this criteria is met, it is useful to check the `data.attributes.is-force-cancelable` value of the [run details endpoint](#get-run-details). The time at which the force-cancel action will become available can be found using the [run details endpoint](#get-run-details), in the key `data.attributes.force_cancel_available_at`. Note that this key is only present in the payload after the initial cancel has been initiated.
 
@@ -548,6 +597,10 @@ Parameter | Description
 `run_id`  | The run ID to execute
 
 The force-execute action cancels all prior runs that are not already complete, unlocking the run's workspace and allowing the run to be executed. (It initiates the same actions as the "Run this plan now" button at the top of the view of a pending run.)
+
+Force-executing a run requires permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 This endpoint enforces the following prerequisites:
 

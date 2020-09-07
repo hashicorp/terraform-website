@@ -1,16 +1,17 @@
 ---
 layout: "cloud"
-page_title: "CLI-driven Runs - Runs - Terraform Cloud"
+page_title: "CLI-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [sentinel]: ../sentinel/index.html
 [private]: ../registry/index.html
 [remote]: /docs/backends/types/remote.html
 [speculative plan]: ./index.html#speculative-plans
-[permissions]: ../users-teams-organizations/permissions.html
 [tfe-provider]: /docs/providers/tfe/index.html
 
 # The CLI-driven Run Workflow
+
+> For a hands-on tutorial, try the [Authenticate the CLI with Terraform Cloud](https://learn.hashicorp.com/terraform/tfc/tfc_login?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
 
 Terraform Cloud has three workflows for managing Terraform runs.
 
@@ -112,7 +113,9 @@ you can do so by defining a [`.terraformignore` file in your configuration direc
 
 To run a [speculative plan][] on your configuration, use the `terraform plan` command. The plan will run in Terraform Cloud, and the logs will stream back to the command line along with a URL to view the plan in the Terraform Cloud UI.
 
-Users can run speculative plans in any workspace where they have [plan access][permissions].
+Users can run speculative plans in any workspace where they have permission to queue plans. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
@@ -143,7 +146,9 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 
 When configuration changes are ready to be applied, use the `terraform apply` command. The apply will start in Terraform Cloud, and the command line will prompt for approval before applying the changes.
 
-Remote applies require [write access][permissions] to the workspace.
+Remote applies require permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Remote applies use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
@@ -204,3 +209,19 @@ FALSE - my-policy.sentinel:1:1 - Rule "main"
 
 Error: Organization policy check hard failed.
 ```
+
+## Targeted Plan and Apply
+
+-> **Version note:** Targeting support was added client-side in Terraform v0.12.26 and also requires server-side support that may not be available for all Terraform Enterprise deployments yet.
+
+The `terraform plan` and `terraform apply` commands described in earlier
+sections support [Resource Targeting](https://www.terraform.io/docs/commands/plan.html#resource-targeting) as in the local operations workflow, using the `-target` option on the command line.
+
+As with local usage, targeting is intended for exceptional circumstances only
+and should not be used routinely. The usual caveats for targeting in local operations imply some additional limitations on Terraform Cloud features for remote plans created with targeting:
+
+* [Sentinel](../sentinel/) policy checks for targeted plans will see only the selected subset of resource instances planned for changes in [the `tfplan` import](../sentinel/import/tfplan.html) and [the `tfplan/v2` import](../sentinel/import/tfplan-v2.html), which may cause an unintended failure for any policy that requires a planned change to a particular resource instance selected by its address.
+
+* [Cost Estimation](../cost-estimation/) is disabled for any run created with `-target` set, to prevent producing a misleading underestimate of cost due to resource instances being excluded from the plan.
+
+You can disable or constrain use of targeting in a particular workspace using a Sentinel policy based on [the `tfrun.target_addrs` value](../sentinel/import/tfrun.html#value-target_addrs).

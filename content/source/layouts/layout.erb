@@ -5,6 +5,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= description_for(current_page) %>">
+    <% if current_page.data.hidden %>
+      <meta name="robots" content="noindex">
+    <% end %>
 
     <link rel="canonical" href="<%= File.join(base_url, current_page.url) %>" />
     <link rel="apple-touch-icon" sizes="180x180" href="<%= image_path("favicons/apple-touch-icon.png") %>">
@@ -39,6 +42,7 @@
     <!-- Site scripts -->
     <!--[if lt IE 9]><%= javascript_include_tag "ie-compat", defer: true %><![endif]-->
     <%= javascript_include_tag "application", defer: true %>
+    <%= javascript_include_tag "alert-banner", defer: true %>
     <%= javascript_include_tag "terraform-overview/home-hero", defer: true %>
 
     <!-- Analytics scrpts -->
@@ -50,6 +54,7 @@
   </head>
 
   <body id="<%= body_id_for(current_page) %>" class="<%= body_classes_for(current_page) %>">
+    <%= partial("layouts/alert_banner", locals: {show: true, theme: 'terraform', url:"https://www.hashicorp.com/webinars/terraform-cloud-business-tier-managing-spend-reducing-operational-expenses/", tag:"Webinar", text:"Terraform Cloud Business Tier: Managing Spend & Reducing Operational Expenses", cta:"Register Now"}) %>
 
     <%= mega_nav :terraform %>
 
@@ -73,16 +78,16 @@
 
             <%
               docs_items = <<-EOT
-                <li><a href="/docs/index.html">Docs Home</a></li>
-                <li><a href="/docs/cli-index.html">Terraform CLI</a></li>
-                <li><a href="/docs/cloud/index.html">Terraform Cloud</a></li>
-                <li><a href="/docs/enterprise/index.html">Terraform Enterprise</a></li>
-                <li><a href="/docs/providers/index.html">Providers</a></li>
-                <li><a href="/docs/glossary.html">Glossary</a></li>
-                <li><a href="/guides/index.html">Guides and Whitepapers</a></li>
-                <li><a href="/docs/registry/index.html">Registry</a></li>
-                <li><a href="/docs/github-actions/index.html">GitHub Actions</a></li>
-                <li><a href="/docs/extend/index.html">Extending Terraform</a></li>
+                <li><a data-track='docs-home' href="/docs/index.html">Docs Home</a></li>
+                <li><a data-track='docs-cli' href="/docs/cli-index.html">Terraform CLI</a></li>
+                <li><a data-track='docs-cloud' href="/docs/cloud/index.html">Terraform Cloud</a></li>
+                <li><a data-track='docs-ent' href="/docs/enterprise/index.html">Terraform Enterprise</a></li>
+                <li><a data-track='docs-providers' href="/docs/providers/index.html">Providers</a></li>
+                <li><a data-track='docs-glossary' href="/docs/glossary.html">Glossary</a></li>
+                <li><a data-track='docs-guides' href="/guides/index.html">Guides and Whitepapers</a></li>
+                <li><a data-track='docs-registry' href="/docs/registry/index.html">Registry</a></li>
+                <li><a data-track='docs-gh-actions' href="/docs/github-actions/index.html">GitHub Actions</a></li>
+                <li><a data-track='docs-extending' href="/docs/extend/index.html">Extending Terraform</a></li>
               EOT
             %>
 
@@ -91,41 +96,41 @@
                 <ul class="main-links nav navbar-nav navbar-right">
                   <li class="visible-sm"><span><a href="/index.html">Info</a><svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span>
                     <ul class="dropdown">
-                      <li><a href="/intro/index.html">Intro</a></li>
-                      <li><a href="https://learn.hashicorp.com/terraform/">Learn</a></li>
-                      <li><a href="/community.html">Community</a></li>
-                      <li><a href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
+                      <li><a data-track='intro' href="/intro/index.html">Intro</a></li>
+                      <li><a data-track='learn' href="https://learn.hashicorp.com/terraform/">Tutorials</a></li>
+                      <li><a data-track='community' href="/community.html">Community</a></li>
+                      <li><a data-track='enterprise' href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
                     </ul>
                   </li>
-                  <li class="hidden-sm"><a href="/intro/index.html">Intro</a></li>
-                  <li class="hidden-sm"><a href="https://learn.hashicorp.com/terraform/">Learn</a></li>
-                  <li><span><a href="/docs/index.html">Docs</a><svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span>
+                  <li class="hidden-sm"><a data-track='intro' href="/intro/index.html">Intro</a></li>
+                  <li class="hidden-sm"><a data-track='learn' href="https://learn.hashicorp.com/terraform/">Tutorials</a></li>
+                  <li><span><a data-track='docs' href="/docs/index.html">Docs</a><svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span>
                     <ul class="dropdown">
                       <%= docs_items %>
                     </ul>
                   </li>
-                  <li class="hidden-sm"><a href="/community.html">Community</a></li>
-                  <li class="hidden-sm"><a href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
+                  <li class="hidden-sm"><a data-track='community' href="/community.html">Community</a></li>
+                  <li class="hidden-sm"><a data-track='enterprise' href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
                   <li>
-                    <a href="/downloads.html">
+                    <a data-track='download' href="/downloads.html">
                       <%= inline_svg "download.svg" %> Download
                     </a>
                   </li>
                   <li>
-                    <a href="https://github.com/hashicorp/terraform">
+                    <a data-track='github' href="https://github.com/hashicorp/terraform">
                       <%= inline_svg "github.svg" %> GitHub
                     </a>
                   </li>
                    <li id="terraform-overview-sign-in-link">
                    <div>
-                    <a href="https://app.terraform.io/session?utm_source=docs_banner">
+                    <a data-track='sign-in' href="https://app.terraform.io/session?utm_source=docs_banner">
                       Sign In
                     </a>
                     </div>
                   </li>
                    <li id="terraform-overview-sign-up-link" class="hidden-md hidden-sm">
                    <div>
-                    <a href="https://app.terraform.io/signup/account?utm_source=docs_banner">
+                    <a data-track='sign-up' href="https://app.terraform.io/signup/account?utm_source=docs_banner">
                       Create Account
                     </a>
                     </div>

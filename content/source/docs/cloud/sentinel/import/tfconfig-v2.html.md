@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "tfconfig/v2 - Imports - Sentinel - Terraform Cloud"
+page_title: "tfconfig/v2 - Imports - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
   The tfconfig/v2 import provides access to a Terraform configuration.
 ---
@@ -99,8 +99,9 @@ tfconfig/v2
         ├── name (string)
         ├── source (string)
         ├── config (block expression representation)
-        ├── count (expression representation) (not implemented)
-        ├── for_each (expression representation) (not implemented)
+        ├── count (expression representation)
+        ├── depends_on (expression representation)
+        ├── for_each (expression representation)
         └── version_constraint (string)
 ```
 
@@ -222,7 +223,7 @@ There are two major parts to an expression representation:
   representation](/docs/internals/json-format.html#expression-representation)
   section of the JSON output format documentation.
 
-So to, for example, determine if an output is working off of a particular
+For example, to determine if an output is based on a particular
 resource value, one could do:
 
 ```
@@ -258,7 +259,7 @@ is not a block in the resource's schema.
 ```
 
 As an example, one can validate expressions in an
-[`aws_instance`](/docs/providers/aws/r/instance.html) resource using the
+[`aws_instance`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) resource using the
 following:
 
 ```
@@ -272,7 +273,7 @@ main = rule {
 Note that _nested blocks_, sometimes known as _sub-resources_, will be nested in
 configuration as as list of blocks (reflecting their ultimate nature as a list
 of objects). An example would be the `aws_instance` resource's
-[`ebs_block_device`](/docs/providers/aws/r/instance.html#block-devices) block:
+[`ebs_block_device`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#block-devices) block:
 
 ```
 import "tfconfig/v2" as tfconfig
@@ -427,11 +428,10 @@ delimiter are omitted for the root module.
   representation](#block-expression-representation) for all parameter values
   sent to the module.
 * `count` - An [expression representation](#expression-representations) for the
-  `count` field (not currently in use).
+  `count` field.
+* `depends_on`: An [expression representation](#expression-representations) for the
+  `depends_on` field.
 * `for_each` - An [expression representation](#expression-representations) for
-  the `for_each` field (not currently in use).
+  the `for_each` field.
 * `version_constraint` - The string value found in the `version` field of the
   module declaration.
-
--> **NOTE:** As `count` and `for_each` are currently not implemented in modules,
-the `count` and `for_each` fields will always be blank.

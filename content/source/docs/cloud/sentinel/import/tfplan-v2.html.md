@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "tfplan/v2 - Imports - Sentinel - Terraform Cloud"
+page_title: "tfplan/v2 - Imports - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
   The tfplan/v2 import provides access to a Terraform plan.
 ---
@@ -312,6 +312,8 @@ and data sources within this plan.
 
 This includes all resources that have been found in the configuration and state,
 regardless of whether or not they are changing.
+
+~> When [resource targeting](/docs/commands/plan.html#resource-targeting) is in effect, the `resource_changes` collection will only include the resources specified as targets for the run. This may lead to unexpected outcomes if a policy expects a resource to be present in the plan. To prohibit targeted runs altogether, ensure [`tfrun.target_addrs`](./tfrun.html#value-target_addrs) is undefined or empty.
 
 This collection is indexed on the complete resource address as the key. If
 `deposed` is non-empty, it is appended to the end, and may look something like

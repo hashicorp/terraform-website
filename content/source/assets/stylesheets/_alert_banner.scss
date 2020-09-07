@@ -1,0 +1,102 @@
+.g-alert-banner {
+  background: linear-gradient(90deg, #5f43e9 1.56%, #2a1c73 100%);
+  color: #ffffff;
+  display: none;
+  overflow: hidden;
+  position: relative;
+  transition: height 0.3s ease-out;
+
+  & svg path {
+    stroke: #a291f2;
+  }
+
+  &.show {
+    display: block;
+  }
+
+  &.has-large-tag {
+    & > div {
+      @media (max-width: 575px) {
+        flex-direction: column;
+      }
+    }
+
+    & .text {
+      @media (max-width: 575px) {
+        margin-right: 0;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  & > a {
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  & .g-container > a {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    position: relative;
+    color: #ffffff;
+    text-decoration: none;
+
+    @media (max-width: 1120px) {
+      align-items: flex-start;
+    }
+  }
+
+  & .tag {
+    flex-shrink: 0;
+    background: none;
+    margin-right: 28px;
+
+    & span {
+      border: 1px solid #ffffff;
+      border-radius: 4px;
+      color: #ffffff;
+      padding: 3px 7px;
+    }
+
+    @media (max-width: 768px) {
+      margin-right: 18px;
+    }
+  }
+
+  & .text span {
+    margin-right: 28px;
+  }
+
+  & .link-text {
+    text-decoration: underline;
+    white-space: nowrap;
+
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+
+  & .close {
+    cursor: pointer;
+    position: absolute;
+    right: 24px;
+    top: 16px;
+    z-index: 2;
+    opacity: 1;
+
+    & path {
+      stroke: #66a2ff;
+    }
+
+    @media (max-width: 768px) {
+      right: 24px;
+    }
+  }
+}

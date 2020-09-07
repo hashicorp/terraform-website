@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Notification Configurations - API Docs - Terraform Cloud"
+page_title: "Notification Configurations - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -23,6 +23,10 @@ page_title: "Notification Configurations - API Docs - Terraform Cloud"
 # Notification Configurations API
 
 Terraform Cloud can be configured to send notifications for run state transitions. The configuration allows you to specify a destination URL, request type, and what events will trigger the notification. Each workspace can have up to 20 notification configurations, and they apply to all runs for that workspace.
+
+Interacting with notification configurations requires admin access to the relevant workspace. ([More about permissions](../users-teams-organizations/permissions.html).)
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Notification Triggers
 

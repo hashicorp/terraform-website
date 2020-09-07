@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Policies - API Docs - Terraform Cloud"
+page_title: "Policies - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -38,7 +38,9 @@ This page documents the API endpoints to create, read, update, and delete the Se
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The organization to create the policy in. The organization must already exist in the system, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:organization_name` | The organization to create the policy in. The organization must already exist in the system, and the token authenticating the API request must have permission to manage policies. (([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers)
 
 This creates a new policy object for the organization, but does not upload the actual policy code. After creation, you must use the [Upload a Policy endpoint (below)](#upload-a-policy) with the new policy's upload path. (This endpoint's response body includes the upload path in its `links.upload` property.)
 

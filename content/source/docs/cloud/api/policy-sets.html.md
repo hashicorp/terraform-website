@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Policy Sets - API Docs - Terraform Cloud"
+page_title: "Policy Sets - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -30,13 +30,19 @@ Policy sets are groups of policies that are applied together to related workspac
 
 This page documents the API endpoints to create, read, update, and delete policy sets in an organization. To view and manage policies, use the [Policies API](./policies.html).
 
+Interacting with policy sets requires permission to manage policies. ([More about permissions](../users-teams-organizations/permissions.html).)
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 ## Create a Policy Set
 
 `POST /organizations/:organization_name/policy-sets`
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The organization to create the policy set in. The organization must already exist in the system, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:organization_name` | The organization to create the policy set in. The organization must already exist in the system, and the token authenticating the API request must have permission to manage policies. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Status  | Response                                      | Reason
 --------|-----------------------------------------------|----------
@@ -843,6 +849,24 @@ curl \
 ```
 
 The `upload` link URL in the above response is valid for one hour after creation. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the [Show Policy Set](#show-a-policy-set) endpoint again to verify that the status has changed from `pending` to `ready`.
+
+## Upload Policy Set Versions
+
+`PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
+
+The URL is provided in the `upload` attribute in the `policy-set-versions` resource.
+
+### Sample Request
+
+In the example below, `policy-set.tar.gz` is the local filename of the policy set version file to upload.
+
+```shell
+curl \
+  --header "Content-Type: application/octet-stream" \
+  --request PUT \
+  --data-binary @policy-set.tar.gz \
+  https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox...
+```
 
 ## Show a Policy Set Version
 

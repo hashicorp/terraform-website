@@ -86,8 +86,9 @@ An Azure Blob Storage
 must be specified during the Terraform Enterprise installation for application data to
 be stored securely and redundantly away from the Azure VMs running the
 Terraform Enterprise application. This Azure Blob Storage container must be in the same
-region as the VMs and Azure Database for PostgreSQL instance. It is recommended
-the virtual network containing the Terraform Enterprise servers be configured with a
+region as the VMs and Azure Database for PostgreSQL instance.
+
+We recommend that the virtual network containing the Terraform Enterprise servers be configured with a
 [Virtual Network (VNet) service
 endpoint](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview)
 for Azure Storage. Vault is used to encrypt all application data stored
@@ -95,6 +96,8 @@ in the Azure Blob Storage container. This allows for further
 [server-side
 encryption](https://docs.microsoft.com/en-us/azure/storage/common/storage-service-encryption)
 by Azure Blob Storage if required by your security policy.
+
+For increased durability in a single-region deployment, we recommend using zone-redundant storage (ZRS) which synchronously writes across three Azure availability zones in the region.  For a multi-region deployment, use geo-zone-redundant storage (GZRS) for added region redundancy.
 
 ### Other Considerations
 
@@ -156,15 +159,13 @@ certificate codified during an unattended installation.
 
 The above diagram show the infrastructure components at a high-level.
 
+-> **Note:** The diagram shows an Azure load balancer but for private IP usage in a hybrid model, use an Azure Application Gateway v1. Also note that the VM Scale Set would be declared as multi-zone in order to benefit from cross-availability zone redundancy.
+
 ### Application Layer
 
-The Application Layer is composed of two Terraform Enterprise servers (Azure VMs)
-running in different subnets and operating in an active/standby
-configuration. Traffic is routed to the active Terraform Enterprise server via the Load Balancer
-rules and health checks. In the event that the active Terraform Enterprise server becomes unavailable,
-the traffic will then route to the standby server, making it the new active
-server. Routing changes can also be managed by a human triggering a change in
-the Load Balancer configuration to switch between the servers.
+For a single-region deployment, the Application Layer is composed of a multi-AZ VM scale set of one Terraform Enterprise server (Azure VM) running in different availability zones in a single subnet. Were the VM to fail due to unplanned events such as hardware or software faults or a network issue such as an availability zone outage, the scale set would recreate the instance in the other zone.
+
+-> **Note:** As Microsoft currently do not support multi-region global load balancing using private IP addressing, a multi-region deployment is only possible using public IP addressing.  See [this document](https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/load-balancing-overview#decision-tree-for-load-balancing-in-azure) for more information.
 
 ### Storage Layer
 
@@ -289,8 +290,8 @@ services such as DNS.
     provides the ability to recover the database backup to the
     secondary Azure Region.
 
-  - [Geo-redundant storage (GRS) for Azure
-    Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy-grs)
+  - [Geo-zone-redundant storage (GZRS) for Azure
+    Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy#redundancy-in-a-secondary-region)
     must be configured so the object storage component of the Storage
     Layer is available in the secondary Azure Region.
 

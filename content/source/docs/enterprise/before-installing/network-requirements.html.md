@@ -9,12 +9,39 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 ## Ingress
 
-* **22**: To access the instance via SSH from your computer. SSH access to the instance is required for administration and debugging.
-* **80**: To access the Terraform Enterprise application via HTTP. This port redirects to port 443 for HTTPS.
-* **443**: To access the Terraform Enterprise application via HTTPS.
-* **8800**: To access the installer dashboard.
-* **9870-9880 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
-* **23000-23100 (inclusive)**: For internal communication on the host and its subnet; not publicly accessible.
+### Source — User/Client/VCS
+
+* **80:** Terraform Enterprise application access (HTTP; redirects to HTTPS)
+* **443:** Terraform Enterprise application access (HTTPS)
+
+### Source — Administrators
+
+* **22:** SSH access (administration and debugging)
+* **8800:** Replicated (TFE setup dashboard, HTTPS)
+* **32846:** TFE admin console (a Replicated service)
+
+### Source — TFE Server(s)
+
+* **2003:** Graphite (Carbon) feeding port (monitoring, metrics)
+* **2004:** Graphite (Carbon) feeding port (monitoring, metrics)
+* **4150-4151, 4160-4161, 4170-4171:** Replicated NSQD (messaging platform daemon for internal communication)
+* **5432:** PostgreSQL
+* **5672:** RabbitMQ TFE worker coordination
+* **6379:** Redis (application-level caching and coordination)
+* **7586:** TFE ingress (pulls in version control system data for application, stores it via Archivist)
+* **7588:** TFE state parser
+* **7675:** TFE Archivist (stores data in object storage, encrypts it via Vault)
+* **8089:** InfluxDB default UDP Service (monitoring, metrics)
+* **8125:** StatsD (monitoring, metrics)
+* **8200:** Vault (encryption service)
+* **9292:** Atlas engine (old name of TFE engine)
+* **9870-9880 (inclusive):** host and subnet traffic only; not publicly accessible
+    * **9873:** Replicated Retraced engine API (Replicated audit subcomponent)
+    * **9874-9879:** Replicated entry point span
+* **23000-23100 (inclusive):** host and subnet traffic only; not publicly accessible
+    * **23005:** TFE health check point
+    * **23020:** Nomad (scheduler for Sentinel runs)
+* **32774-32776:** Replicated internal Graphite and StatsD ports (mapped to external ports 2003, 2004, and 8125)
 
 ## Egress
 
@@ -24,9 +51,11 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 * `get.replicated.com`
 * `registry-data.replicated.com`
 * `registry.replicated.com`
-* `quay.io`
+* `*.quay.io`
+* `cdn.quay.io`
 * `quay-registry.s3.amazonaws.com`
-* `cloudfront.net`
+* `*.cloudfront.net`
+* `hub.docker.com`
 * `index.docker.io`
 * `auth.docker.io`
 * `registry-1.docker.io`
@@ -42,11 +71,14 @@ is supplied:
 * `registry.terraform.io` (when using Terraform 0.12 and later)
 * `releases.hashicorp.com`
 
+Online and airgap installs also need egress access to any VCS servers/services that will be utilized, login/authentication servers if SAML will be configured (ADFS, Okta, etc), the various cloud API endpoints that will be managed with Terraform and any other third party services that will either be integrated with the Terraform Enteprise server or managed with it.
+
 When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-integration) is enabled, it uses the respective cloud provider's APIs to get up-to-date pricing info.
 
 * `api.pricing.us-east-1.amazonaws.com`
-* `cloud.google.com`
-* `azure.microsoft.com`
+* `cloudbilling.googleapis.com`
+* `management.azure.com`
+* `ratecard.azure-api.net`
 
 ## Other Configuration
 
@@ -62,3 +94,4 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
     }
     ```
 
+1. Ensure the Docker bridge network address is not in use elsewhere on the network. If it is, please refer to the [Docker documentation](https://success.docker.com/article/how-do-i-configure-the-default-bridge-docker0-network-for-docker-engine-to-a-different-subnet) for information on how to change it.

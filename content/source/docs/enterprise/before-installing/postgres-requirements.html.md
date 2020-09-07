@@ -10,7 +10,8 @@ page_title: "PostgreSQL Requirements - Before Installing - Terraform Enterprise"
 To use an external PostgreSQL database with Terraform Enterprise, the following
 requirements must be met:
 
-* The PostgreSQL Server version must be one of the following:
+* A PostgreSQL server such as Amazon RDS for PostgreSQL or a PostgreSQL-compatible server such as Amazon Aurora PostgreSQL must be used.
+* The PostgreSQL server version must be one of the following:
   * 9.4, 9.5, 9.6, 10.x, 11.x.
 * A PostgreSQL user must be created with the following permissions on the database:
   * The ability to create, modify, and read all tables and indices on all schemas within the database. Usually this is granted if the user is an owner of the database.
@@ -49,4 +50,4 @@ When providing optional extra keyword parameters for the database connection,
 note an additional restriction on the `sslmode` parameter is that only the
 `require`, `verify-full`, `verify-ca`, and `disable` values are allowed. The default value of `sslmode` is set to `require` with _External Services_ installation or `disable` with *Demo* installation.
 
--> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/9.6/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt` (location is `/tmp/certs/cust-ca-certificates.crt` in a clustered install), which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting.
+-> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/9.6/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt`, which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting.

@@ -19,7 +19,7 @@ This guide will walk through both of these steps.
 Snapshots are taken on the Terraform Enterprise instance. That instance can
 have two types of data on it:
 
-- Terraform Cloud application data: The core product data such as
+- Terraform Enterprise application data: The core product data such as
 run history, configuration history, state history. This data
 changes frequently.
 - Terraform Enterprise installer data: The data used
@@ -87,6 +87,13 @@ apt-get install -y jq
 
 curl https://install.terraform.io/ptfe/stable | bash -s fast-timeouts
 
+# Wait for replicated to start before proceeding
+until replicatedctl system status --template '{{and (eq .Replicated "ready") (eq .Retraced "ready")}}' | grep -q true; do
+  sleep 1
+  echo "Replicated is not yet ready."
+done
+echo "Replicated is ready."
+
 # This retrieves a list of all the snapshots currently available.
 replicatedctl snapshot ls $access -o json > /tmp/snapshots.json
 
@@ -141,6 +148,13 @@ apt-get install -y jq
 
 curl https://install.terraform.io/ptfe/stable | bash -s fast-timeouts
 
+# Wait for replicated to start before proceeding
+until replicatedctl system status --template '{{and (eq .Replicated "ready") (eq .Retraced "ready")}}' | grep -q true; do
+  sleep 1
+  echo "Replicated is not yet ready."
+done
+echo "Replicated is ready."
+
 # This retrieves a list of all the snapshots currently available.
 replicatedctl snapshot ls $access -o json > /tmp/snapshots.json
 
@@ -193,6 +207,13 @@ apt-get install -y jq
 # Run the installer.
 
 curl https://install.terraform.io/ptfe/stable | bash -s fast-timeouts
+
+# Wait for replicated to start before proceeding
+until replicatedctl system status --template '{{and (eq .Replicated "ready") (eq .Retraced "ready")}}' | grep -q true; do
+  sleep 1
+  echo "Replicated is not yet ready."
+done
+echo "Replicated is ready."
 
 # This retrieves a list of all the snapshots currently available.
 replicatedctl snapshot ls $access -o json > /tmp/snapshots.json

@@ -1,11 +1,15 @@
 ---
 layout: "cloud"
-page_title: "Azure DevOps Services - VCS Providers - Terraform Cloud"
+page_title: "Azure DevOps Services - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring Azure DevOps Services Access
 
 These instructions are for using dev.azure.com for Terraform Cloud's VCS features. [Other supported VCS providers](./index.html) have separate instructions.
+
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Connecting Terraform Cloud to your Azure DevOps Services VCS involves four steps:
 
@@ -17,6 +21,8 @@ Register your Terraform Cloud organization as a new app. Get ID and key and prov
 Approve access request. | &nbsp;
 
 The rest of the page explains these steps in more detail.
+
+~> **Important:** Terraform Cloud only supports Azure DevOps connections which use the `dev.azure.com` domain. If your Azure DevOps project uses the older `visualstudio.com` domain, you will need to migrate using the [steps provided by Microsoft](https://docs.microsoft.com/en-us/azure/devops/release-notes/2018/sep-10-azure-devops-launch#switch-existing-organizations-to-use-the-new-domain-name-url).
 
 ## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
@@ -86,6 +92,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 ### Important Notes
 
+- SSH will only be used to clone Git submodules. All other Git operations will still use HTTPS.
 - Do not use your personal SSH key to connect Terraform Cloud and Azure DevOps Services; generate a new one or use an existing key reserved for service access.
 - In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to Azure DevOps Services.
 - **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.

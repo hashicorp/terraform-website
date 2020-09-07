@@ -1,0 +1,31 @@
+comment,src,dst
+newrelic - v1 docs,/docs/providers/newrelic/d/v1/alert_channel.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/alert_channel
+newrelic - v1 docs,/docs/providers/newrelic/d/v1/alert_policy.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/alert_policy
+newrelic - v1 docs,/docs/providers/newrelic/d/v1/application.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/application
+newrelic - v1 docs,/docs/providers/newrelic/d/v1/entity.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/entity
+newrelic - v1 docs,/docs/providers/newrelic/d/v1/key_transaction.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/key_transaction
+newrelic - v1 docs,/docs/providers/newrelic/d/v1/plugin_component.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/plugin_component
+newrelic - v1 docs,/docs/providers/newrelic/d/v1/plugin.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/plugin
+newrelic - v1 docs,/docs/providers/newrelic/d/v1/synthetics_monitor.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/synthetics_monitor
+newrelic - v1 docs,/docs/providers/newrelic/d/v1/synthetics_secure_credential.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/synthetics_secure_credential
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/alert_channel.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/alert_channel
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/alert_condition.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/alert_condition
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/alert_policy_channel.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/alert_policy_channel
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/alert_policy.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/alert_policy
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/dashboard.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/dashboard
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/entity_tags.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/entity_tags
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/events_to_metrics_rule.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/events_to_metrics_rule
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/infra_alert_condition.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/infra_alert_condition
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/insights_event.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/insights_event
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/nrql_alert_condition.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/nrql_alert_condition
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/plugins_alert_condition.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/plugins_alert_condition
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/synthetics_alert_condition.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/synthetics_alert_condition
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/synthetics_label.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/synthetics_label
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/synthetics_monitor_script.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/synthetics_monitor_script
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/synthetics_monitor.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/synthetics_monitor
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/synthetics_secure_credential.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/synthetics_secure_credential
+newrelic - v1 docs,/docs/providers/newrelic/r/v1/workload.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/resources/workload
+newrelic - v1 docs,/docs/providers/newrelic/v1/index.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/
+null - malformed,/docs/providers/null/data_source.html,https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source
+null - malformed,/docs/providers/null/resource.html,https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource
+external - malformed,/docs/providers/external/data_source.html,https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/data_source

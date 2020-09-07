@@ -1,0 +1,47 @@
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+
+    <h4><a href="/docs/enterprise/index.html">Terraform Enterprise</a></h4>
+
+    <h5>Terraform Enterprise Clusters (Beta)</h5>
+
+    <ul class="nav docs-sidenav">
+
+      <li>
+        <a href="/docs/enterprise/before-installing/cluster-architecture.html">Cluster Architecture</a>
+      </li>
+
+      <li>
+        <a href="#">Clustered Deployment</a>
+        <ul class="nav nav-auto-expand">
+          <li>
+            <a href="/docs/enterprise/install/cluster-aws.html">AWS Instructions</a>
+          </li>
+          <li>
+            <a href="/docs/enterprise/install/cluster-azure.html">Azure Instructions</a>
+          </li>
+          <li>
+            <a href="/docs/enterprise/install/cluster-gcp.html">GCP Instructions</a>
+          </li>
+          <li>
+            <a href="/docs/enterprise/install/cluster-custom.html">Custom Instructions</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+
+    <h5>Deployment and Operation</h5>
+
+    <%= partial("layouts/enterprise_content") %>
+
+    <h5>Application Usage</h5>
+
+    <%= partial("layouts/cloud_content") %>
+
+    <%= partial("layouts/otherdocs", :locals => { :skip => "Terraform Enterprise" }) %>
+
+  <% end %>
+
+  <%= yield %>
+<% end %>

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Applies - API Docs - Terraform Cloud"
+page_title: "Applies - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -23,6 +23,22 @@ page_title: "Applies - API Docs - Terraform Cloud"
 # Applies API
 
 An apply represents the results of applying a Terraform Run's execution plan.
+
+## Attributes
+
+### Apply States
+
+You'll find the apply state in `data.attributes.status`, as one of the following values.
+
+State                     | Description
+--------------------------|------------
+`pending`                 | The initial status of a apply once it has been created.
+`managed_queued`/`queued` | The apply has been queued, awaiting backend service capacity to run terraform.
+`running`                 | The apply is running.
+`errored`                 | The apply has errored. This is a final state.
+`canceled`                | The apply has been canceled. This is a final state.
+`finished`                | The apply has completed sucessfully. This is a final state.
+`unreachable`             | The apply will not run. This is a final state.
 
 ## Show an apply
 
@@ -88,4 +104,3 @@ curl \
   }
 }
 ```
-

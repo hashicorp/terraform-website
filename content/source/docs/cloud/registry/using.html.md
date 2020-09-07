@@ -1,9 +1,11 @@
 ---
 layout: "cloud"
-page_title: "Using Private Modules - Private Module Registry - Terraform Cloud"
+page_title: "Using Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Using Modules from the Terraform Cloud Private Module Registry
+
+> For a hands-on tutorial, try the [Use Terraform Modules](https://learn.hashicorp.com/terraform/modules/using-modules?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
 
 By design, Terraform Cloud's private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already familiar with the public registry, here are the main differences:
 
@@ -94,6 +96,8 @@ If you're using Terraform 0.11 or higher, you can use private modules when apply
 #### Permissions
 
 When you authenticate with a user token, you can access modules from any organization you are a member of. (A user is a member of an organization if they belong to any team in that organization.)
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Within a given Terraform configuration, you should only use modules from one organization. Mixing modules from different organizations might work on the CLI with your user token, but it will make your configuration difficult or impossible to collaborate with. If you want to use the same module in multiple organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html#sharing-modules-across-organizations).)
 

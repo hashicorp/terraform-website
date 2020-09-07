@@ -1,11 +1,13 @@
 ---
 layout: "cloud"
-page_title: "Two-factor Authentication - Terraform Cloud"
+page_title: "Two-factor Authentication - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Two-factor Authentication
 
 User accounts can be additionally protected with two-factor authentication (2FA), and an organization owner can make this a requirement for all users.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Setting up Two-factor Authentication
 
@@ -30,6 +32,8 @@ If necessary you can also use a backup code by clicking "Use a recovery code". P
 ## Requiring Two-factor Authentication for All Users
 
 If you are an organization owner you can require all users within your organization to use two-factor authentication.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 To reach your organization settings page, click the name of your organization in the upper left corner and choose "Organization Settings" from the menu. On this page click "Authentication" on the left navigation menu.
 

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "SSH Keys - API Docs - Terraform Cloud"
+page_title: "SSH Keys - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -26,8 +26,12 @@ The `ssh-key` object represents an SSH key which includes a name and the SSH pri
 
 SSH keys can be used in two places:
 
-- They can be assigned to VCS provider integrations ([available in the API as `oauth-tokens`](./oauth-tokens.html)). Bitbucket Server requires an SSH key; other providers only need an SSH key if your repositories include submodules that are only accessible via SSH (instead of your VCS provider's API).
+- They can be assigned to VCS provider integrations ([available in the API as `oauth-tokens`](./oauth-tokens.html)). Azure DevOps Server and Bitbucket Server require an SSH key. Other providers only need an SSH key if your repositories include submodules that are only accessible via SSH (instead of your VCS provider's API).
 - They can be [assigned to workspaces](./workspaces.html#assign-an-ssh-key-to-a-workspace) and used when Terraform needs to clone modules from a Git server. This is only necessary when your configurations directly reference modules from a Git server; you do not need to do this if you use Terraform Cloud's [private module registry](../registry/index.html).
+
+Listing and viewing SSH keys requires either permission to manage VCS settings for the organization, or admin access to at least one workspace. ([More about permissions.](../users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ~> **Important:** The list and read methods on this API only provide metadata about SSH keys. The actual private key text is write-only, and Terraform Cloud never provides it to users via the API or UI.
 
@@ -123,7 +127,9 @@ curl \
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to create an SSH key in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:organization_name` | The name of the organization to create an SSH key in. The organization must already exist, and the token authenticating the API request must have permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
@@ -200,7 +206,9 @@ Parameter            | Description
 
 This endpoint replaces the name and/or key text of an existing SSH key. Existing workspaces that use the key will be updated with the new values.
 
-Only members of the owners team (or the owners team API token) can edit SSH keys.
+Editing SSH keys requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
@@ -270,7 +278,9 @@ Parameter            | Description
 ---------------------|------------
 `:ssh_key_id`        | The SSH key ID to delete.
 
-Only members of the owners team (or the owners team API token) can delete SSH keys.
+Deleting SSH keys requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
 
