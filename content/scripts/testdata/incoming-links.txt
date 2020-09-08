@@ -440,8 +440,6 @@
 /docs/providers/google/r/storage_bucket.html
 /docs/providers/google/r/vpc_access_connector.html
 /docs/providers/grafana/index.html
-/docs/providers/huaweicloud/index.html
-/docs/providers/icinga2/index.html
 /docs/providers/ignition/d/filesystem.html
 /docs/providers/ignition/index.html
 /docs/providers/index.html
