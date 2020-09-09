@@ -499,6 +499,8 @@
 # /docs/cloud/getting-started/runs.html                 https://learn.hashicorp.com/terraform/cloud-getting-started/apply-changes
 # /docs/cloud/getting-started/policies.html             https://learn.hashicorp.com/terraform/cloud-getting-started/enforce-policies
 # /docs/cloud/getting-started/cost-estimation.html      https://learn.hashicorp.com/terraform/cloud-getting-started/cost-estimation
+# /docs/github-actions/index.html                       https://learn.hashicorp.com/tutorials/terraform/github-actions
+# /docs/github-actions/setup-terraform.html             https://learn.hashicorp.com/tutorials/terraform/github-actions
 
 # The great Google data source rename
 # cf. commit 373c12f992c02fd3c96ec00a3dabc55143b74f8b in terraform-providers/terraform-provider-google-beta
