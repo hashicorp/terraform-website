@@ -80,7 +80,7 @@ Terraform Enterprise is an on-premise distribution of Terraform Cloud. It offers
 
 Documentation about the [Terraform Registry](https://registry.terraform.io/), a web service for distributing Terraform modules. Includes information about publishing, finding, and using modules.
 
-### [Terraform GitHub Actions ➜](/docs/github-actions/index.html)
+### [Terraform GitHub Actions ➜](https://learn.hashicorp.com/tutorials/terraform/github-actions)
 
 Documentation about the Terraform GitHub Actions. [GitHub Actions](https://developer.github.com/actions) is GitHub's service for running commands in reaction to events in a Git repository, and HashiCorp publishes several actions for validating repositories that contain Terraform configurations.
 
