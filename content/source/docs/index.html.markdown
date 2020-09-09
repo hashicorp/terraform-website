@@ -12,9 +12,7 @@ show_notification: false
 
 Welcome to the Terraform documentation!
 
-There are a lot of things a user of Terraform might need to know about. To help you manage this information, we've divided the Terraform docs into several sections.
-
-You can navigate the docs via this index page, or you can jump from section to section using the "Other Docs" area of the navigation sidebar, available in most areas of this site.
+We've divided the Terraform docs into several sections to make it easier to find things. Navigate using this index page, or jump from section to section in the "Other Docs" section of the navigation sidebar.
 
 <div class="container-fluid"><div class="row">
 
