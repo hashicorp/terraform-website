@@ -31,7 +31,7 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 * **7586:** TFE ingress (pulls in version control system data for application, stores it via Archivist)
 * **7588:** TFE state parser
 * **7675:** TFE Archivist (stores data in object storage, encrypts it via Vault)
-* **8089:** InfluxDB default UDP Service (monitoring, metrics)
+* **8086:** InfluxDB default UDP Service (monitoring, metrics)
 * **8125:** StatsD (monitoring, metrics)
 * **8200:** Vault (encryption service)
 * **9292:** Atlas engine (old name of TFE engine)
