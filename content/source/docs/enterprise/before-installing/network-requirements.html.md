@@ -86,7 +86,7 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
 1. Get a domain name for the instance. Using an IP address to access the product is not supported as many systems use TLS and need to verify that the certificate is correct, which can only be done with a hostname at present.
 1. **For GCP only:** Configure Docker to use an MTU (maximum transmission unit) of 1460, as required by Google ([GCP Cloud VPN Documentation: MTU Considerations](https://cloud.google.com/vpn/docs/concepts/mtu-considerations)).
 
-    To configure Docker's MTU, create an `/etc/docker/daemon.conf` file with the following content:
+    To configure Docker's MTU, create an `/etc/docker/daemon.json` file with the following content:
 
     ```json
     {
