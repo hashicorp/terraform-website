@@ -134,6 +134,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
 func testAccPreCheck(t *testing.T) {
   if v := os.Getenv("EXAMPLE_KEY"); v == "" {
     t.Fatal("EXAMPLE_KEY must be set for acceptance tests")
+  }
   if v := os.Getenv("EXAMPLE_SECRET"); v == "" {
     t.Fatal("EXAMPLE_SECRET must be set for acceptance tests")
   }
