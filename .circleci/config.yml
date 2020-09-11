@@ -65,6 +65,7 @@ workflows:
       - website-test 
       - deploy-website:
           context: static-sites
+          requires: [ website-test ]
           filters:
             branches:
               only: master
