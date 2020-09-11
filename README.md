@@ -1,4 +1,4 @@
-# Terraform Website
+# Terraform Website [![CI Status](https://circleci.com/gh/hashicorp/terraform-website.svg?style=svg&circle-token=8b4edf41fc4a4a822fc5c6d10e45f0c5140beaf8)](https://circleci.com/gh/hashicorp/terraform-website/tree/master)
 
 This repository contains the build infrastructure and some of the content for [terraform.io][]. Pull requests from the community are welcomed!
 
@@ -306,12 +306,11 @@ Broken links are the scourge of the web, so the tooling around terraform.io incl
 
 ### Step 1: See a Failing Build
 
-There are two places that typically warn you about broken links:
+There is one place that will typically warn you about broken links:
 
-- Failing Travis CI jobs. Travis builds happen for pull requests to `terraform-website` or `terraform`, and the result is shown in the PR.
-- Failing CircleCI builds. Circle is what deploys the website to prod, and it sends success/fail messages to the `#proj-terraform-docs` channel in HashiCorp's Slack workspace. (This one isn't intended as a link check, but it spiders the whole site to warm up the Fastly cache, which has almost the same effect. The only real difference is that it obeys redirects, since it's hitting prod.)
+- Failing CircleCI builds. CircleCI runs tests on pull requests to terraform-website, and the result is shown in the PR. Circle also deploys the website to prod, and sends success/fail messages to the #proj-terraform-docs channel in HashiCorp's Slack workspace. (This one isn't intended as a link check, but it spiders the whole site to warm up the Fastly cache, which has almost the same effect. The only real difference is that it obeys redirects, since it's hitting prod.)
 
-In both of these cases, the failing job usually _doesn't_ mean the actual build or deploy failed, and instead means that the link-checking or cache-warming scripts found a broken link and exited with a non-zero status code.
+In this case, the failing job usually doesn't mean the actual build or deploy failed, and instead means that the link-checking or cache-warming scripts found a broken link and exited with a non-zero status code.
 
 ### Step 1a: Identify the First Bad Build
 
