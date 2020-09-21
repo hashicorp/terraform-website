@@ -38,14 +38,6 @@
 	path = ext/providers/cobbler
 	url = https://github.com/terraform-providers/terraform-provider-cobbler
 	branch = stable-website
-[submodule "ext/providers/datadog"]
-	path = ext/providers/datadog
-	url = https://github.com/terraform-providers/terraform-provider-datadog
-	branch = stable-website
-[submodule "ext/providers/dme"]
-	path = ext/providers/dme
-	url = https://github.com/terraform-providers/terraform-provider-dme
-	branch = stable-website
 [submodule "ext/providers/dnsimple"]
 	path = ext/providers/dnsimple
 	url = https://github.com/terraform-providers/terraform-provider-dnsimple
@@ -61,10 +53,6 @@
 [submodule "ext/providers/github"]
 	path = ext/providers/github
 	url = https://github.com/terraform-providers/terraform-provider-github
-	branch = stable-website
-[submodule "ext/providers/gitlab"]
-	path = ext/providers/gitlab
-	url = https://github.com/terraform-providers/terraform-provider-gitlab
 	branch = stable-website
 [submodule "ext/providers/google"]
 	path = ext/providers/google
@@ -281,10 +269,6 @@
 [submodule "ext/providers/cohesity"]
 	path = ext/providers/cohesity
 	url = https://github.com/terraform-providers/terraform-provider-cohesity
-	branch = stable-website
-[submodule "ext/providers/constellix"]
-	path = ext/providers/constellix
-	url = https://github.com/terraform-providers/terraform-provider-constellix
 	branch = stable-website
 [submodule "ext/providers/lacework"]
 	path = ext/providers/lacework

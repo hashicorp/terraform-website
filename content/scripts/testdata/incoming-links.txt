@@ -330,12 +330,6 @@
 /docs/providers/clc/index.html
 /docs/providers/clc/r/server.html
 /docs/providers/cobbler/index.html
-/docs/providers/datadog/index.html
-/docs/providers/datadog/r/dashboard.html
-/docs/providers/datadog/r/downtime.html
-/docs/providers/datadog/r/monitor.html
-/docs/providers/datadog/r/timeboard.html
-/docs/providers/dme/index.html
 /docs/providers/dnsimple/index.html
 /docs/providers/docker/index.html
 /docs/providers/docker/r/container.html
@@ -349,7 +343,6 @@
 /docs/providers/github/r/branch_protection.html
 /docs/providers/github/r/issue_label.html
 /docs/providers/github/r/repository.html
-/docs/providers/gitlab/index.html
 /docs/providers/google/d/client_config.html
 /docs/providers/google/d/compute_image.html
 /docs/providers/google/d/compute_instance.html
