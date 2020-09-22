@@ -73,12 +73,14 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
     "mongodbatlas" : "mongodb/mongodbatlas"
+    "mso": "CiscoDevNet/mso"
     "ncloud" : "NaverCloudPlatform/ncloud" # unverified
     "newrelic" : "newrelic/newrelic"
     "ns1" : "ns1-terraform/ns1"
     "nsxt" : "vmware/nsxt"
     "okta" : "oktadeveloper/okta"
     "oktaasa" : "oktadeveloper/oktaasa"
+    "openstack": "terraform-provider-openstack/openstack" # unverified
     "opentelekomcloud" : "opentelekomcloud/opentelekomcloud" # unverified
     "opsgenie" : "opsgenie/opsgenie"
     "ovh" : "ovh/ovh" # unverified?

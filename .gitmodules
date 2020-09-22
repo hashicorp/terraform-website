@@ -90,10 +90,6 @@
 	path = ext/providers/oneandone
 	url = https://github.com/terraform-providers/terraform-provider-oneandone
 	branch = stable-website
-[submodule "ext/providers/openstack"]
-	path = ext/providers/openstack
-	url = https://github.com/terraform-providers/terraform-provider-openstack
-	branch = stable-website
 [submodule "ext/providers/postgresql"]
 	path = ext/providers/postgresql
 	url = https://github.com/terraform-providers/terraform-provider-postgresql
@@ -277,10 +273,6 @@
 [submodule "ext/providers/ecl"]
 	path = ext/providers/ecl
 	url = https://github.com/terraform-providers/terraform-provider-ecl
-	branch = stable-website
-[submodule "ext/providers/mso"]
-	path = ext/providers/mso
-	url = https://github.com/terraform-providers/terraform-provider-mso
 	branch = stable-website
 [submodule "ext/providers/azuredevops"]
 	path = ext/providers/azuredevops
