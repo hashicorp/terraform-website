@@ -68,7 +68,7 @@ HCL can be used for Terraform variables, but not for environment variables. The 
 
 Terraform often needs cloud provider credentials and other sensitive information that shouldn't be widely available within your organization.
 
-To protect these secrets, you can mark any any Terraform or environment variable as sensitive data by clicking its "Sensitive" checkbox (visible when editing).
+To protect these secrets, you can mark any Terraform or environment variable as sensitive data by clicking its "Sensitive" checkbox (visible when editing).
 
 Marking a variable as sensitive prevents anybody (including you) from viewing its value in the variables section of the workspace in Terraform Cloud's UI or with its Variables API endpoint.
 
