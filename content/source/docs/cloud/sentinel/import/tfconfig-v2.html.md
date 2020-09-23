@@ -115,7 +115,7 @@ The collections are:
   definitions across all modules in the configuration.
 * [`outputs`](#the-outputs-collection) - The configuration of all output
   definitions across all modules in the configuration.
-* [`module_calls`](#the-variables-collection) - The configuration of all module
+* [`module_calls`](#the-module_calls-collection) - The configuration of all module
   calls (individual [`module`](/docs/configuration/modules.html) blocks) across
   all modules in the configuration.
 
