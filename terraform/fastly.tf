@@ -46,8 +46,10 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   dictionary_id = local.tf_provider_namespaces_dictionary_id
   items = {
     # verified partners
+    "aci" : "CiscoDevNet/aci"
     "akamai" : "akamai/akamai"
     "alicloud" : "aliyun/alicloud"
+    "auth0" : "alexkappa/auth0"
     "aviatrix" : "AviatrixSystems/aviatrix"
     "bigip" : "F5Networks/bigip"
     "brightbox" : "brightbox/brightbox"
@@ -59,6 +61,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "digitalocean" : "digitalocean/digitalocean"
     "dme" : "DNSMadeEasy/dme"
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
+    "dome9" : "dome9/dome9"
     "exoscale" : "exoscale/exoscale"
     "fastly" : "fastly/fastly"
     "flexibleengine" : "FlexibleEngineCloud/flexibleengine"
@@ -73,14 +76,14 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
     "mongodbatlas" : "mongodb/mongodbatlas"
-    "mso": "CiscoDevNet/mso"
+    "mso" : "CiscoDevNet/mso"
     "ncloud" : "NaverCloudPlatform/ncloud" # unverified
     "newrelic" : "newrelic/newrelic"
     "ns1" : "ns1-terraform/ns1"
     "nsxt" : "vmware/nsxt"
     "okta" : "oktadeveloper/okta"
     "oktaasa" : "oktadeveloper/oktaasa"
-    "openstack": "terraform-provider-openstack/openstack" # unverified
+    "openstack" : "terraform-provider-openstack/openstack"   # unverified
     "opentelekomcloud" : "opentelekomcloud/opentelekomcloud" # unverified
     "opsgenie" : "opsgenie/opsgenie"
     "ovh" : "ovh/ovh" # unverified?
@@ -100,8 +103,10 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "ucloud" : "ucloud/ucloud" # unverified
     "venafi" : "Venafi/venafi"
     "vra7" : "vmware/vra7"
+    "vthunder" : "a10networks/vthunder"
     "vultr" : "vultr/vultr"
     "wavefront" : "vmware/wavefront"
+    "yandex" : "yandex-cloud/yandex"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more

@@ -194,10 +194,6 @@
 	path = ext/providers/hedvig
 	url = https://github.com/terraform-providers/terraform-provider-hedvig
 	branch = stable-website
-[submodule "ext/providers/yandex"]
-	path = ext/providers/yandex
-	url = https://github.com/terraform-providers/terraform-provider-yandex
-	branch = stable-website
 [submodule "ext/providers/jdcloud"]
 	path = ext/providers/jdcloud
 	url = https://github.com/terraform-providers/terraform-provider-jdcloud
@@ -205,10 +201,6 @@
 [submodule "ext/providers/avi"]
 	path = ext/providers/avi
 	url = https://github.com/terraform-providers/terraform-provider-avi
-	branch = stable-website
-[submodule "ext/providers/aci"]
-	path = ext/providers/aci
-	url = https://github.com/terraform-providers/terraform-provider-aci
 	branch = stable-website
 [submodule "ext/providers/pureport"]
 	path = ext/providers/pureport
@@ -218,17 +210,9 @@
 	path = ext/providers/genymotion
 	url = https://github.com/terraform-providers/terraform-provider-genymotion
 	branch = stable-website
-[submodule "ext/providers/dome9"]
-	path = ext/providers/dome9
-	url = https://github.com/terraform-providers/terraform-provider-dome9
-	branch = stable-website
 [submodule "ext/providers/cherryservers"]
 	path = ext/providers/cherryservers
 	url = https://github.com/terraform-providers/terraform-provider-cherryservers
-	branch = stable-website
-[submodule "ext/providers/vthunder"]
-	path = ext/providers/vthunder
-	url = https://github.com/terraform-providers/terraform-provider-vthunder
 	branch = stable-website
 [submodule "ext/providers/opennebula"]
 	path = ext/providers/opennebula
@@ -241,10 +225,6 @@
 [submodule "ext/providers/incapsula"]
 	path = ext/providers/incapsula
 	url = https://github.com/terraform-providers/terraform-provider-incapsula
-	branch = stable-website
-[submodule "ext/providers/auth0"]
-	path = ext/providers/auth0
-	url = https://github.com/terraform-providers/terraform-provider-auth0
 	branch = stable-website
 [submodule "ext/providers/baiducloud"]
 	path = ext/providers/baiducloud
