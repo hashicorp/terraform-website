@@ -118,7 +118,7 @@ A number of environment variables are available to control aspects of acceptance
 
  - `TF_ACC_TERRAFORM_PATH`: Used to specify the path to a Terraform binary on the local filesystem to be used during testing.
  - `TF_ACC_LOG_PATH`: Used to specify a path for Terraform logs during testing.
- - `TF_ACC_TMP_DIR`: Used to specify a temporary directory used by the test driver. If this is not set, the default system temporary directory (as identified by `os.TempDir()`) will be used.
+ - `TF_ACC_TEMP_DIR`: Used to specify a temporary directory used by the test driver. If this is not set, the default system temporary directory (as identified by `os.TempDir()`) will be used.
  - `TF_ACC_PROVIDER_NAMESPACE`: Used to control the namespace of the provider under test; only needed if config specifies a namespace for provider source.
  - `TF_ACC_PROVIDER_HOST`: Used to control the host of the provider under test; only needed if config specifies a host for provider source.
  - `TF_ACC_STATE_LINEAGE`: Set to "1" to enable state lineage debug logs, which are normally suppressed during acceptance testing.
