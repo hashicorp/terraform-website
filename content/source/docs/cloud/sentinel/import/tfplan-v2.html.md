@@ -334,9 +334,9 @@ An element contains the following fields:
   where a provider offers a resource type whose name does not start with its own
   name, such as the `googlebeta` provider offering `google_compute_instance`.
 
--> Starting with Terraform 0.13, the `provider_name` field will contain the
-_full_ source address to the provider in the Terraform Registry. Example:
-`registry.terraform.io/hashicorp/null` for the null provider.
+    -> **Note:** Starting with Terraform 0.13, the `provider_name` field contains the
+    _full_ source address to the provider in the Terraform Registry. Example:
+    `registry.terraform.io/hashicorp/null` for the null provider.
 
 * `deposed` - An identifier used during replacement operations, and can be used
   to identify the exact resource being replaced in state.
