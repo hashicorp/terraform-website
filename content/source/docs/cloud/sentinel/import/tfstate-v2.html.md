@@ -142,6 +142,11 @@ An element in the collection has the following values:
   allows the provider to be interpreted unambiguously in the unusual situation
   where a provider offers a resource type whose name does not start with its own
   name, such as the `googlebeta` provider offering `google_compute_instance`.
+
+    -> **Note:** Starting with Terraform 0.13, the `provider_name` field contains the
+    _full_ source address to the provider in the Terraform Registry. Example:
+    `registry.terraform.io/hashicorp/null` for the null provider.
+
 * `values` - An object (map) representation of the attribute values of the
   resource, whose structure depends on the resource type schema. When accessing
   proposed state through the [`planned_values`](./tfplan-v2.html#the-planned_values-collection)
