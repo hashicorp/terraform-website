@@ -19,9 +19,9 @@ Allow one individual (or a small group) in your engineering team to get familiar
 
 Write your first [Terraform Configuration file](https://learn.hashicorp.com/tutorials/terraform/aws-build?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
 
-## 3. Read the Getting Started Guide
+## 3. Follow the Getting Started Tutorials
 
-Follow the rest of the [Terraform getting started guide](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS). These pages will walk you through [changing](https://learn.hashicorp.com/tutorials/terraform/aws-change?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) and [destroying](https://learn.hashicorp.com/tutorials/terraform/aws-destroy?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) resources, and more.
+Follow the rest of the [Terraform: Get Started collection](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) on HashiCorp Learn. These tutorials will walk you through [changing](https://learn.hashicorp.com/tutorials/terraform/aws-change?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) and [destroying](https://learn.hashicorp.com/tutorials/terraform/aws-destroy?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) resources, and more.
 
 ## 4. Implement a Real Infrastructure Project
 
