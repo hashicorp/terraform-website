@@ -16,7 +16,7 @@ jobs:
       - checkout
 
       - run:
-          name: gem and bundle install 
+          name: gem and bundle install
           command: |
             gem install bundler -v '1.17.3' --no-document
             bundle _1.17.3_ install --jobs=3 --retry=3
@@ -62,10 +62,9 @@ workflows:
   website:
     jobs:
       # run on all branches and PR's
-      - website-test 
+      - website-test
       - deploy-website:
           context: static-sites
-          requires: [ website-test ]
           filters:
             branches:
               only: master
