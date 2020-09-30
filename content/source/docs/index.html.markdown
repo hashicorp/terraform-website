@@ -40,7 +40,7 @@ Documentation for Terraform's core functionality, including:
 
 -> New users can start here.
 
-Interactive guides to teach you how to use Terraform's features. Begin with the [Getting Started guide](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS), then continue with task-specific advanced guides or go directly to the [Terraform CLI docs](/docs/cli-index.html).
+Interactive tutorials to teach you how to use Terraform's features. Begin with the [Get Started collection](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS), then continue with task-specific tutorials or go directly to the [Terraform CLI docs](/docs/cli-index.html).
 
 ### [Guides and Whitepapers ➜](/guides/index.html)
 
@@ -52,7 +52,7 @@ Detailed descriptions of various Terraform workflows, both general and specific.
 - [The long-term process of evolving provisioning practices in a large organization](/docs/cloud/guides/recommended-practices/index.html)
 - [Tasks for upgrading to major new Terraform versions](/upgrade-guides/index.html)
 
-This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the guides at [Learn Terraform](https://learn.hashicorp.com/terraform/?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)), but to explain best practices and show how the different pieces of a workflow fit together.
+This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the tutorials at [Learn Terraform](https://learn.hashicorp.com/terraform/?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)), but to explain best practices and show how the different pieces of a workflow fit together.
 
 </div>
 

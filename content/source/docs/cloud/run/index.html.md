@@ -5,7 +5,7 @@ page_title: "Terraform Runs and Remote Operations - Terraform Cloud and Terrafor
 
 # Terraform Runs and Remote Operations
 
-> **Hands-on:** Try the [Get Started — Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-sign-up?in=terraform/cloud-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+> **Hands-on:** Try the [Get Started — Terraform Cloud](https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
 
 Terraform Cloud provides a central interface for running Terraform within a large collaborative organization. If you're accustomed to running Terraform from your workstation, the way Terraform Cloud manages runs can be unfamiliar.
 
