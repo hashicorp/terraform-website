@@ -17,6 +17,7 @@ Below is a list of resources that cost estimation supports:
 
 * aws_alb
 * aws_autoscaling_group
+* aws_cloudhsm_v2_hsm
 * aws_cloudwatch_dashboard
 * aws_cloudwatch_metric_alarm
 * aws_db_instance
@@ -26,5 +27,6 @@ Below is a list of resources that cost estimation supports:
 * aws_elasticsearch_domain
 * aws_elb
 * aws_instance
+* aws_kms_key
 * aws_lb
 * aws_rds_cluster
