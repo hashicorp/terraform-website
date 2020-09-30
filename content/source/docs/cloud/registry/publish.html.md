@@ -7,7 +7,7 @@ page_title: "Publishing Private Modules - Private Module Registry - Terraform Cl
 
 # Publishing Modules to the Terraform Cloud Private Module Registry
 
-> For a hands-on tutorial, try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/terraform/modules/private-modules?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
+> For a hands-on walkthrough, try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
 Terraform Cloud's private module registry lets you publish Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
 

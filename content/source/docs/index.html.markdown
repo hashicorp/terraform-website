@@ -36,11 +36,11 @@ Documentation for Terraform's core functionality, including:
 
 ...and much more.
 
-### [Learn Terraform ➜](https://learn.hashicorp.com/terraform/) (external site)
+### [Learn Terraform ➜](https://learn.hashicorp.com/terraform/?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) (external site)
 
 -> New users can start here.
 
-Interactive guides to teach you how to use Terraform's features. Begin with the [Getting Started guide](https://learn.hashicorp.com/terraform/getting-started/install), then continue with task-specific advanced guides or go directly to the [Terraform CLI docs](/docs/cli-index.html).
+Interactive guides to teach you how to use Terraform's features. Begin with the [Getting Started guide](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS), then continue with task-specific advanced guides or go directly to the [Terraform CLI docs](/docs/cli-index.html).
 
 ### [Guides and Whitepapers ➜](/guides/index.html)
 
@@ -52,7 +52,7 @@ Detailed descriptions of various Terraform workflows, both general and specific.
 - [The long-term process of evolving provisioning practices in a large organization](/docs/cloud/guides/recommended-practices/index.html)
 - [Tasks for upgrading to major new Terraform versions](/upgrade-guides/index.html)
 
-This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the guides at [Learn Terraform](https://learn.hashicorp.com/terraform/)), but to explain best practices and show how the different pieces of a workflow fit together.
+This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the guides at [Learn Terraform](https://learn.hashicorp.com/terraform/?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)), but to explain best practices and show how the different pieces of a workflow fit together.
 
 </div>
 
@@ -78,9 +78,9 @@ Terraform Enterprise is an on-premise distribution of Terraform Cloud. It offers
 
 Documentation about the [Terraform Registry](https://registry.terraform.io/), a web service for distributing Terraform modules. Includes information about publishing, finding, and using modules.
 
-### [Terraform GitHub Actions ➜](https://learn.hashicorp.com/tutorials/terraform/github-actions)
+### [Terraform GitHub Actions ➜](https://learn.hashicorp.com/tutorials/terraform/github-actions?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)
 
-Documentation about the Terraform GitHub Actions. [GitHub Actions](https://developer.github.com/actions) is GitHub's service for running commands in reaction to events in a Git repository, and HashiCorp publishes several actions for validating repositories that contain Terraform configurations.
+Tutorials about using Terraform with GitHub Actions. [GitHub Actions](https://developer.github.com/actions) is GitHub's service for running commands in reaction to events in a Git repository, and HashiCorp publishes a helper action for running Terraform commands against repositories that contain Terraform configurations.
 
 ### [Extending Terraform ➜](/docs/extend/index.html)
 

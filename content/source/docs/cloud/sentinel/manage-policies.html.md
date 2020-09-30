@@ -7,7 +7,7 @@ page_title: "Managing Sentinel Policies - Sentinel - Terraform Cloud and Terrafo
 
 -> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-> For a hands-on tutorial, try the [Enforce Policy with Sentinel](https://learn.hashicorp.com/terraform/sentinel/sentinel-intro?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) track on HashiCorp Learn.
+> For a hands-on walkthrough, try the [Enforce Policy with Sentinel](https://learn.hashicorp.com/collections/terraform/policy?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
 
 Sentinel Policies are rules which are enforced on Terraform runs to validate that the plan and corresponding resources are in compliance with company policies.
 
@@ -20,11 +20,11 @@ Sentinel Policies are rules which are enforced on Terraform runs to validate tha
 [users]: ../users-teams-organizations/users.html
 [workspaces]: ../workspaces/index.html
 
-**Policies** are written using the Sentinel [language](https://docs.hashicorp.com/sentinel/concepts/language). Policies are the guardrails that prevent Terraform runs from performing dangerous actions. Upon evaluation, policies will adhere to a predefined [enforcement level](#enforcement-levels). 
+**Policies** are written using the Sentinel [language](https://docs.hashicorp.com/sentinel/concepts/language). Policies are the guardrails that prevent Terraform runs from performing dangerous actions. Upon evaluation, policies will adhere to a predefined [enforcement level](#enforcement-levels).
 
 Policies are managed as parts of versioned policy sets, which allow individual policy files to be stored in a supported VCS provider or uploaded via the Terraform Cloud API.
 
--> **Note:** It's also possible to manage policies and policy sets individually. However, this is a deprecated feature in Terraform Cloud, and we recommend always using versioned policy sets to manage policies. 
+-> **Note:** It's also possible to manage policies and policy sets individually. However, this is a deprecated feature in Terraform Cloud, and we recommend always using versioned policy sets to manage policies.
 
 **Policy sets** are groups of policies that can be enforced on [workspaces][]. A policy set can be enforced on designated workspaces, or to all workspaces in the organization.
 

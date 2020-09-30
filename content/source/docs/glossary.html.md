@@ -312,7 +312,7 @@ Different VCS providers handle forks differently, but a fork is usually owned by
 
 Terraform Cloud makes extensive use of VCS repos, and assumes that forks of a trusted repo are not necessarily trusted. As such, Terraform Cloud avoids evaluating any code from external forks, which prevents Terraform Cloud from running [speculative plans][] for [pull requests][] from forks.
 
-On [Terraform Enterprise][], [speculative plans][] on [pull requests][] from forks can be enabled by an administrator. 
+On [Terraform Enterprise][], [speculative plans][] on [pull requests][] from forks can be enabled by an administrator.
 
 ## Git
 
@@ -731,7 +731,7 @@ The process of using Terraform to make real infrastructure match the desired sta
 
 In Terraform Cloud, runs are performed in a series of stages ([plan][], [policy check][], and [apply][]), though not every stage occurs in every run. Terraform Cloud saves information about historical runs.
 
-- [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install)
+- [Learn Terraform: Get Started](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Run Triggers

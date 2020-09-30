@@ -33,5 +33,5 @@ The [Terraform Enterprise deployment and operation documentation](/docs/enterpri
 
 ## Where Should I Go First?
 
-- If you want to learn by doing, begin with [the Terraform Cloud Getting Started Guide](https://learn.hashicorp.com/terraform/cloud-gettingstarted/tfc_overview) on learn.hashicorp.com.
+- If you want to learn by doing, begin with [the Terraform Cloud Getting Started Guide](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) on learn.hashicorp.com.
 - If you want a high-level overview of nearly everything Terraform Cloud does, begin with [the overview of features](./overview.html).

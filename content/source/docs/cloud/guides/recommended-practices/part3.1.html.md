@@ -13,15 +13,15 @@ Allow one individual (or a small group) in your engineering team to get familiar
 
 ## 1. Install Terraform
 
-[Follow the instructions here to install Terraform OSS](https://learn.hashicorp.com/terraform/getting-started/install).
+[Follow the instructions here to install Terraform OSS](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
 
 ## 2. Write Some Code
 
-Write your first [Terraform Configuration file](https://learn.hashicorp.com/terraform/getting-started/build).
+Write your first [Terraform Configuration file](https://learn.hashicorp.com/tutorials/terraform/aws-build?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
 
 ## 3. Read the Getting Started Guide
 
-Follow the rest of the [Terraform getting started guide](https://learn.hashicorp.com/terraform/getting-started/change). These pages will walk you through [changing](https://learn.hashicorp.com/terraform/getting-started/change) and [destroying](https://learn.hashicorp.com/terraform/getting-started/destroy) resources, working with [resource dependencies](https://learn.hashicorp.com/terraform/getting-started/dependencies), and more.
+Follow the rest of the [Terraform getting started guide](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS). These pages will walk you through [changing](https://learn.hashicorp.com/tutorials/terraform/aws-change?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) and [destroying](https://learn.hashicorp.com/tutorials/terraform/aws-destroy?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) resources, and more.
 
 ## 4. Implement a Real Infrastructure Project
 
