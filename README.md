@@ -1,6 +1,7 @@
 # Terraform Website [![CI Status](https://circleci.com/gh/hashicorp/terraform-website.svg?style=svg&circle-token=8b4edf41fc4a4a822fc5c6d10e45f0c5140beaf8)](https://circleci.com/gh/hashicorp/terraform-website/tree/master)
 
 This repository contains the build infrastructure and some of the content for [terraform.io][]. Pull requests from the community are welcomed!
+Get started on Terraform Cloud for free. Automation and collaboration features to empower individuals and small teams, including VCS integration, remote operations, and state management.
 
 ## Table of Contents
 - [Where the Docs Live](#where-the-docs-live)
