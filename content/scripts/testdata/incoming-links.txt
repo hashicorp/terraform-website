@@ -324,7 +324,6 @@
 /docs/providers/azurerm/r/virtual_machine.html
 /docs/providers/azurerm/r/virtual_network_gateway.html
 /docs/providers/azurerm/r/virtual_network.html
-/docs/providers/bigip/index.html
 /docs/providers/bitbucket/index.html
 /docs/providers/chef/index.html
 /docs/providers/clc/index.html
@@ -429,7 +428,6 @@
 /docs/providers/google/r/storage_bucket_object.html
 /docs/providers/google/r/storage_bucket.html
 /docs/providers/google/r/vpc_access_connector.html
-/docs/providers/grafana/index.html
 /docs/providers/ignition/d/filesystem.html
 /docs/providers/ignition/index.html
 /docs/providers/index.html

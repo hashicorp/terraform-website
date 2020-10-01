@@ -58,10 +58,6 @@
 	path = ext/providers/google
 	url = https://github.com/terraform-providers/terraform-provider-google-beta
 	branch = stable-website
-[submodule "ext/providers/grafana"]
-	path = ext/providers/grafana
-	url = https://github.com/terraform-providers/terraform-provider-grafana
-	branch = stable-website
 [submodule "ext/providers/ignition"]
 	path = ext/providers/ignition
 	url = https://github.com/terraform-providers/terraform-provider-ignition
@@ -178,10 +174,6 @@
 	path = ext/providers/rightscale
 	url = https://github.com/terraform-providers/terraform-provider-rightscale
 	branch = stable-website
-[submodule "ext/providers/bigip"]
-	path = ext/providers/bigip
-	url = https://github.com/terraform-providers/terraform-provider-bigip
-	branch = stable-website
 [submodule "ext/providers/nutanix"]
 	path = ext/providers/nutanix
 	url = https://github.com/terraform-providers/terraform-provider-nutanix
@@ -225,10 +217,6 @@
 [submodule "ext/providers/incapsula"]
 	path = ext/providers/incapsula
 	url = https://github.com/terraform-providers/terraform-provider-incapsula
-	branch = stable-website
-[submodule "ext/providers/baiducloud"]
-	path = ext/providers/baiducloud
-	url = https://github.com/terraform-providers/terraform-provider-baiducloud
 	branch = stable-website
 [submodule "ext/providers/vmc"]
 	path = ext/providers/vmc
