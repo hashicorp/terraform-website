@@ -5,7 +5,7 @@ page_title: "Private Module Registry - Terraform Cloud and Terraform Enterprise"
 
 # Private Module Registry
 
-> For a hands-on tutorial, try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/terraform/modules/private-modules?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) guide on HashiCorp Learn.
+> **Hands-on:** Try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
 Terraform Cloud's private module registry helps you share [Terraform modules](/docs/modules/index.html) across your organization. It includes support for module versioning, a searchable and filterable list of available modules, and a configuration designer to help you build new workspaces faster.
 

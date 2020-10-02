@@ -29,7 +29,7 @@ guidance specific to Go.
 - Infrastructure as Code. If this is a new term for you, check out
 [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_Code)
 on Wikipedia for a brief introduction. Our [Getting Started
-guide](https://learn.hashicorp.com/terraform/getting-started/install) is a great way to get started as
+collection](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) is a great way to get started as
 well.
 
 ## HashiCorp vs. Community Providers

@@ -55,5 +55,5 @@ You have successfully configured the installation and configuration steps that
 are specific to Terraform Enterprise! You can now configure SMTP
 (`https://<TFE HOSTNAME>/app/admin/smtp/`), Twilio (`https://<TFE HOSTNAME>/app/admin/twillio`),
 SAML (`https://<TFE HOSTNAME>/app/admin/saml`), or follow the
-[Get Started - Terraform Cloud](https://learn.hashicorp.com/terraform/cloud-getting-started/signup)
-track on HashiCorp Learn to start using the software.
+[Get Started - Terraform Cloud](https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)
+collection on HashiCorp Learn to start using the software.

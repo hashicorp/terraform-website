@@ -8,7 +8,7 @@ description: |-
 
 # Resources
 
-A key component to Terraform Provider development is defining the creation, read, update, and deletion functionality of a resource to map those API operations into the Terraform lifecycle. While the basic aspects of developing Terraform resources have already been covered in [Writing Custom Providers/Call APIs with Terraform Providers Learn Track](https://learn.hashicorp.com/terraform/providers/setup-implement-read) and [Schemas](/docs/extend/schemas/), this section covers more advanced features of resource development.
+A key component to Terraform Provider development is defining the creation, read, update, and deletion functionality of a resource to map those API operations into the Terraform lifecycle. While the basic aspects of developing Terraform resources have already been covered in the [Call APIs with Terraform Providers Learn collection](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) and [Schemas](/docs/extend/schemas/), this section covers more advanced features of resource development.
 
 ## Import
 
@@ -24,6 +24,6 @@ Terraform tracks the state of provisioned resources in its state file, and compa
 
 ## State Migrations
 
-Resources define the data types and API interactions required to create, update, and destroy infrastructure with a cloud vendor, while the [Terraform state](/docs/state/index.html) stores mapping and metadata information for those remote objects. 
+Resources define the data types and API interactions required to create, update, and destroy infrastructure with a cloud vendor, while the [Terraform state](/docs/state/index.html) stores mapping and metadata information for those remote objects.
 
 When resource implementations change (due to bug fixes, improvements, or changes to the backend APIs Terraform interacts with), they can sometimes become incompatible with existing state. When this happens, a migration is needed for resources provisioned in the wild with old schema configurations. Terraform resources support migrating state values in these scenarios via [State Migration](/docs/extend/resources/state-migration.html).
