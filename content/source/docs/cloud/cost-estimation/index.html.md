@@ -7,7 +7,7 @@ page_title: "Overview - Cost Estimation - Terraform Cloud and Terraform Enterpri
 
 -> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
-> **Hands-on:** Try the [Verify Costs in Policies](https://learn.hashicorp.com/tutorials/terraform/cost-estimation?in=terraform/cloud-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+> **Hands-on:** Try the [Control Costs with Policies](https://learn.hashicorp.com/tutorials/terraform/cost-estimation?in=terraform/cloud-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
 Terraform Cloud provides cost estimates for many resources found in your Terraform configuration. For each resource an hourly and monthly cost is shown, along with the monthly delta. The total cost and delta of all estimable resources is also shown.
 

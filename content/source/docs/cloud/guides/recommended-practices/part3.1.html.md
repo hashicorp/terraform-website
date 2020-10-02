@@ -13,7 +13,7 @@ Allow one individual (or a small group) in your engineering team to get familiar
 
 ## 1. Install Terraform
 
-[Follow the instructions here to install Terraform OSS](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
+[Follow the instructions here to install Terraform OSS](https://learn.hashicorp.com/tutorials/terraform/install-cli?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
 
 ## 2. Write Some Code
 

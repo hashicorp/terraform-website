@@ -36,7 +36,7 @@ Documentation for Terraform's core functionality, including:
 
 ...and much more.
 
-### [Learn Terraform ➜](https://learn.hashicorp.com/terraform/?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) (external site)
+### [Learn Terraform ➜](https://learn.hashicorp.com/terraform?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) (external site)
 
 -> New users can start here.
 
@@ -52,7 +52,7 @@ Detailed descriptions of various Terraform workflows, both general and specific.
 - [The long-term process of evolving provisioning practices in a large organization](/docs/cloud/guides/recommended-practices/index.html)
 - [Tasks for upgrading to major new Terraform versions](/upgrade-guides/index.html)
 
-This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the tutorials at [Learn Terraform](https://learn.hashicorp.com/terraform/?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)), but to explain best practices and show how the different pieces of a workflow fit together.
+This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the tutorials at [Learn Terraform](https://learn.hashicorp.com/terraform?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)), but to explain best practices and show how the different pieces of a workflow fit together.
 
 </div>
 
