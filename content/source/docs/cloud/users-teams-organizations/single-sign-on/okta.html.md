@@ -43,8 +43,13 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
 
     ![sso-wizard-configure-settings-okta](../images/sso/wizard-configure-settings-okta.png)
 
-5. Verify your settings and click "Enable".
+5. Click "Test".
+    * This will attempt to initiate SSO sign-in with Okta.
+    * You will be redirected briefly to Okta. You may need to reauthenticate depending on your session context.
+    * Finally you should be redirected back to the Terraform Cloud settings SSO page with a message about a successful test and the "enable" action should now be accessible.
 
-6. Your Okta SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
+6. Click "Enable".
+
+7. Your Okta SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
 
     ![sso-settings](../images/sso/settings-okta.png)
