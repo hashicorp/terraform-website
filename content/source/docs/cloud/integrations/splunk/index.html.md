@@ -11,7 +11,7 @@ description: |-
 
 ## Overview
 
-HashiCorp Terraform Cloud customers can integrate with Splunk® using the official [Terraform Cloud for Splunk](https://splunkbase.splunk.com/app/5141/) app to understand Terraform Cloud operations. Audit logs from Terraform Cloud are regularly pulled into Splunk, immediately giving visibility into key platform events within the predefined dashboards. Identify the most active policies, significant changes in resource operations, or filter actions by specific users within your organization. The app can be used with Splunk Enterprise. Support for Splunk Cloud is coming soon.
+HashiCorp Terraform Cloud customers can integrate with Splunk® using the official [Terraform Cloud for Splunk](https://splunkbase.splunk.com/app/5141/) app to understand Terraform Cloud operations. Audit logs from Terraform Cloud are regularly pulled into Splunk, immediately giving visibility into key platform events within the predefined dashboards. Identify the most active policies, significant changes in resource operations, or filter actions by specific users within your organization. The app can be used with Splunk Cloud and Splunk Enterprise.
 
 
 ## Prerequisites
@@ -20,7 +20,7 @@ Access and support for the Terraform Cloud for Splunk app is limited to customer
 
 ### Splunk Cloud
 
-Support for Splunk Cloud is coming soon.
+There are no special prerequisites for Splunk Cloud users.
 
 ### Splunk Enterprise
 
@@ -42,6 +42,7 @@ The current release of the Terraform Cloud for Splunk app supports the following
 ## Installation & Configuration
 
 * Install the [Terraform Cloud for Splunk app via Splunkbase](https://splunkbase.splunk.com/app/5141/)
+  * Splunk Cloud users should consult the latest instructions on how to [use IDM with cloud-based add-ons](https://docs.splunk.com/Documentation/SplunkCloud/8.0.2007/Admin/IntroGDI#Use_IDM_with_cloud-based_add-ons) within the Splunk documentation.
 * Click "Configure the application"
 * Generate an [Organization token](/docs/cloud/users-teams-organizations/api-tokens.html#organization-api-tokens) within Terraform Cloud
 * Click "complete setup"
