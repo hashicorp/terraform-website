@@ -19,7 +19,7 @@ Select your preferred provider to learn more about what is supported for that pr
 
 * [Okta](./single-sign-on/okta.html)
 * [SAML](./single-sign-on/saml.html)
-* [Azure AD](./single-sign-on/azure.html)
+* [Azure AD](./single-sign-on/azure-ad.html)
 
 ## How SSO Works
 

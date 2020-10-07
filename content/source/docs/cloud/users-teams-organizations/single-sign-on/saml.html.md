@@ -1,4 +1,5 @@
---- layout: "cloud"
+---
+layout: "cloud"
 page_title: "SAML - Single Sign-on - Terraform Cloud and Terraform Enterprise"
 ---
 
@@ -34,13 +35,8 @@ The SAML SSO integration can be configured by providing a metadata URL or manual
 
 5. Click "Save settings".
 
-6. Click "Test".
-    * This will attempt to initiate SSO sign-in with the IdP.
-    * You will be redirected briefly to the IdP. You may need to reauthenticate depending on your session context.
-    * Finally you should be redirected back to the Terraform Cloud settings SSO page with a message about a successful test and the "enable" action should now be accessible.
+6. [Verify](./testing.html) your settings and click "Enable".
 
-7. Click "Enable".
-
-8. Your SAML SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
+7. Your SAML SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
 
     ![sso-settings](../images/sso/settings-saml.png)
