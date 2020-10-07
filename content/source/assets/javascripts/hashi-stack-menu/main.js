@@ -1,5 +1,5 @@
 document.addEventListener("turbolinks:load", function () {
-  var hashiStackMenuRoot = document.querySelector(".hashiStackMenuRoot"); // This is explicitly looking for the first element <ul> & its children are tab <li>'s
+  var hashiStackMenuRoot = document.querySelector(".hashiStackMenuRoot");
 
   function getActiveButton() {
     return document.querySelector(
