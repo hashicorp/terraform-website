@@ -15,13 +15,12 @@
   --gray-1: #1d1e23;
   --black: #000000;
 }
-
+.hashiStackMenuRoot.hashiStackMenu {
+  width: 100%;
+  background: var(--gray-7);
+  height: 56px;
+}
 .hashiStackMenuRoot {
-  .hashiStackMenu {
-    width: 100%;
-    background: var(--gray-7);
-    height: 56px;
-  }
   .nav {
     height: 100%;
     display: -webkit-box;
@@ -50,6 +49,7 @@
     -webkit-box-pack: center;
     justify-content: center;
     max-width: 101px;
+    height:100%;
   }
   .logoLink svg {
     height: 100%;
