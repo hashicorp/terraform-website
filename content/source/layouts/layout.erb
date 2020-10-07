@@ -55,9 +55,138 @@
 
   <body id="<%= body_id_for(current_page) %>" class="<%= body_classes_for(current_page) %>">
     <%= partial("layouts/alert_banner", locals: {show: false, theme: 'terraform', url:"https://www.hashicorp.com/webinars/provision-infrastructure-using-cloud-development-kit-for-terraform/", tag:"Live Webinar", text:"Write an infrastructure application in TypeScript and Python using CDK for Terraform", cta:"Register Now"}) %>
-
-    <%= mega_nav :terraform %>
-
+  
+    <header class="hashiStackMenuRoot hashiStackMenu">
+            <nav class="nav g-container">
+              <a class="logoLink" href="/"><div data-testid="root"> <%= inline_svg "hashicorp-logo.svg" %> </div></a>
+              <menu class="menu">
+              <li class="navItem">
+                <button
+                    type="button"
+                    class="buttonReset link"
+                  >
+                    Browse Products
+                    <span class="visuallyHidden">Open this menu</span>
+                    <div data-testid="root">
+                      <%= inline_svg "hashi-stack-menu/icon-dropdown.svg" %>
+                    </div>
+                  </button>
+                  <section class="browsePanel isOpen">
+                    <menu class="stackMenuSection">
+                      <li class="stackGroup">
+                        <h5 class="stackGroupHeading">Infrastructure</h5>
+                        <ul class="stackGroupLinkList">
+                          <li class="stackItem">
+                            <a href="https://www.packer.io" class="itemLink"
+                              ><img
+                                src="https://www.hashicorp.com/img/product-logos/packer-icon-color.svg"
+                                class="productIcon"
+                                alt="packer by HashiCorp"
+                              /><span class="productName itemName">packer</span></a
+                            >
+                          </li>
+                          <li class="stackItem">
+                            <a href="https://www.terraform.io" class="itemLink"
+                              ><img
+                                src="https://www.hashicorp.com/img/product-logos/terraform-icon-color.svg"
+                                class="productIcon"
+                                alt="terraform by HashiCorp"
+                              /><span class="productName itemName">terraform</span></a
+                            >
+                          </li>
+                          <li class="stackItem">
+                            <a href="https://www.vagrantup.com" class="itemLink"
+                              ><img
+                                src="https://www.hashicorp.com/img/product-logos/vagrant-icon-color.svg"
+                                class="productIcon"
+                                alt="vagrant by HashiCorp"
+                              /><span class="productName itemName">vagrant</span></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="stackGroup">
+                        <h5 class="stackGroupHeading">Networking</h5>
+                        <ul class="stackGroupLinkList">
+                          <li class="stackItem">
+                            <a href="https://www.consul.io" class="itemLink"
+                              ><img
+                                src="https://www.hashicorp.com/img/product-logos/consul-icon-color.svg"
+                                class="productIcon"
+                                alt="consul by HashiCorp"
+                              /><span class="productName itemName">consul</span></a
+                            >
+                          </li>
+                        </ul>
+                      </li></menu
+                    ><menu class="stackMenuSection"
+                      ><li class="stackGroup">
+                        <h5 class="stackGroupHeading">Security</h5>
+                        <ul class="stackGroupLinkList">
+                          <li class="stackItem">
+                            <a href="https://www.vaultproject.io" class="itemLink"
+                              ><img
+                                src="https://www.hashicorp.com/img/product-logos/vault-icon-color.svg"
+                                class="productIcon"
+                                alt="vault by HashiCorp"
+                              /><span class="productName itemName">vault</span></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="stackGroup">
+                        <h5 class="stackGroupHeading">Applications</h5>
+                        <ul class="stackGroupLinkList">
+                          <li class="stackItem">
+                            <a href="https://www.nomadproject.io" class="itemLink"
+                              ><img
+                                src="https://www.hashicorp.com/img/product-logos/nomad-icon-color.svg"
+                                class="productIcon"
+                                alt="nomad by HashiCorp"
+                              /><span class="productName itemName">nomad</span></a
+                            >
+                          </li>
+                        </ul>
+                      </li></menu
+                    ><menu class="stackMenuSectionPlusDivider stackMenuSection"
+                      ><li class="stackGroup">
+                        <h5 class="stackGroupHeading">HashiCorp Cloud Platform</h5>
+                        <ul class="stackGroupLinkList">
+                          <li class="stackItem">
+                            <a href="https://app.terraform.io" class="itemLink"
+                              ><img
+                                src="https://www.hashicorp.com/img/product-logos/terraform-icon-color.svg"
+                                class="productIcon"
+                                alt="terraform by HashiCorp"
+                              /><span class="productName itemName">terraform</span></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="stackGroup">
+                        <h5 class="stackGroupHeading">Partner Services</h5>
+                        <ul class="stackGroupLinkList">
+                          <li class="stackItem">
+                            <a
+                              class="itemLink"
+                              href="https://www.hashicorp.com/products/consul/service-on-azure"
+                              ><span class="itemName"
+                                >HashiCorp Consul Service on Azure</span
+                              ></a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                      </menu>
+                  </section>
+                </li>
+                <li class="navItem">
+                  <a
+                    class="link"
+                    href="https://www.hashicorp.com/about">About HashiCorp</a>
+                </li></menu>
+            </nav>
+    </header>
     <div id="header" class="navigation navbar-static-top hidden-print">
       <div class="container">
         <div class="row">
