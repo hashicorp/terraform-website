@@ -1,13 +1,12 @@
 //= require turbolinks
 //= require jquery
 
-//= require hashicorp/mega-nav
 //= require hashicorp/sidebar
 //= require hashicorp/analytics
 
 //= require analytics
 
-
+//= require hashi-stack-menu/main
 //= require terraform-overview/vendor-scripts/object-fit-images.min.js
 // DON'T require terraform-overview/home-hero, because the compressor is old.
 //= require terraform-overview/hashi-tabbed-content
