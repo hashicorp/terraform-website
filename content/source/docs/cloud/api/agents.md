@@ -22,7 +22,9 @@ page_title: "Agent Pools and Agents - API Docs - Terraform Cloud and Terraform E
 
 # Agent Pools and Agents API
 
-An Agent Pool represents a group of Agents.
+An Agent Pool represents a group of Agents, often related to one another by sharing a common network segment or purpose.
+A workspace may be configured to use one of the organization's agent pools to run remote operations with isolated,
+private, or on-premises infrastructure.
 
 -> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
 
@@ -41,6 +43,13 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][] (`type: "agent-pools"`) | Success
 [404][] | [JSON API error object][]                    | Organization not found
 
+### Query Parameters
+
+Parameter                   | Description
+----------------------------|------------
+`sort`                        | **Optional.** Allows sorting the returned agents pools. Valid values are `"name"` and `"created-at"`. Prepending a hyphen to the sort parameter will reverse the order (e.g. `"-name"`).
+
+
 ### Sample Request
 
 ```shell
@@ -55,52 +64,55 @@ curl \
 
 ```json
 {
-    "data": [
-        {
-            "id": "apool-MCf6kkxu5FyHbqhd",
-            "type": "agent-pools",
-            "attributes": {
-                "name": "Default"
-            },
-            "relationships": {
-                "agents": {
-                    "data": [
-                        {
-                            "id": "agent-73PJNzbZB5idR7AQ",
-                            "type": "agents"
-                        }
-                    ],
-                    "links": {
-                        "related": "/api/v2/agent-pools/apool-MCf6kkxu5FyHbqhd/agents"
-                    }
-                },
-                "authentication-tokens": {
-                    "links": {
-                        "related": "/api/v2/agent-pools/apool-MCf6kkxu5FyHbqhd/authentication-tokens"
-                    }
-                }
-            },
-            "links": {
-                "self": "/api/v2/agent-pools/apool-MCf6kkxu5FyHbqhd"
+  "data": [
+    {
+      "id": "apool-yoGUFz5zcRMMz53i",
+      "type": "agent-pools",
+      "attributes": {
+        "name": "example-pool",
+        "created-at": "2020-08-05T18:10:26.964Z"
+      },
+      "relationships": {
+        "agents": {
+          "links": {
+            "related": "/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i/agents"
+          }
+        },
+        "authentication-tokens": {
+          "links": {
+            "related": "/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i/authentication-tokens"
+          }
+        },
+        "workspaces": {
+          "data": [
+            {
+              "id": "ws-9EEkcEQSA3XgWyGe",
+              "type": "workspaces"
             }
+          ]
         }
-    ],
-    "links": {
-        "self": "https://app.terraform.io/api/v2/organizations/my-organization/agent-pools?page%5Bnumber%5D=1&page%5Bsize%5D=20",
-        "first": "https://app.terraform.io/api/v2/organizations/my-organization/agent-pools?page%5Bnumber%5D=1&page%5Bsize%5D=20",
-        "prev": null,
-        "next": null,
-        "last": "https://app.terraform.io/api/v2/organizations/my-organization/agent-pools?page%5Bnumber%5D=1&page%5Bsize%5D=20"
-    },
-    "meta": {
-        "pagination": {
-            "current-page": 1,
-            "prev-page": null,
-            "next-page": null,
-            "total-pages": 1,
-            "total-count": 1
-        }
+      },
+      "links": {
+        "self": "/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i"
+      }
     }
+  ],
+  "links": {
+    "self": "https://app.terraform.io/api/v2/organizations/my-organization/agent-pools?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://app.terraform.io/api/v2/organizations/my-organization/agent-pools?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "https://app.terraform.io/api/v2/organizations/my-organization/agent-pools?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 1,
+      "total-count": 1
+    }
+  }
 }
 ```
 
@@ -118,6 +130,8 @@ Status  | Response                                     | Reason
 [404][] | [JSON API error object][]                    | Agent Pool not found, or user unauthorized to perform action
 
 ### Query Parameters
+
+[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter                   | Description
 ----------------------------|------------
@@ -137,37 +151,63 @@ curl \
 
 ```json
 {
-    "data": [
-        {
-            "id": "agent-gcQ4JQgWzb3dVWGJ",
-            "type": "agents",
-            "attributes": {
-                "name": "token1",
-                "status": "idle",
-                "ip-address": "173.91.35.112",
-                "last-ping-at": "2020-08-11T13:11:42.728Z"
-            },
-            "links": {
-                "self": "/api/v2/agents/agent-gcQ4JQgWzb3dVWGJ"
-            }
-        }
-    ],
-    "links": {
-        "self": "https://app.terraform.io/api/v2/agent-pools/apool-xkuMi7x4LsEnBUdY/agents?page%5Bnumber%5D=1&page%5Bsize%5D=20",
-        "first": "https://app.terraform.io/api/v2/agent-pools/apool-xkuMi7x4LsEnBUdY/agents?page%5Bnumber%5D=1&page%5Bsize%5D=20",
-        "prev": null,
-        "next": null,
-        "last": "https://app.terraform.io/api/v2/agent-pools/apool-xkuMi7x4LsEnBUdY/agents?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  "data": [
+    {
+      "id": "agent-A726QeosTCpCumAs",
+      "type": "agents",
+      "attributes": {
+        "name": "my-cool-agent",
+        "status": "idle",
+        "ip-address": "123.123.123.123",
+        "last-ping-at": "2020-10-09T18:52:25.246Z"
+      },
+      "links": {
+        "self": "/api/v2/agents/agent-A726QeosTCpCumAs"
+      }
     },
-    "meta": {
-        "pagination": {
-            "current-page": 1,
-            "prev-page": null,
-            "next-page": null,
-            "total-pages": 1,
-            "total-count": 1
-        }
+    {
+      "id": "agent-4cQzjbr1cnM6Pcxr",
+      "type": "agents",
+      "attributes": {
+        "name": "my-other-cool-agent",
+        "status": "exited",
+        "ip-address": "123.123.123.123",
+        "last-ping-at": "2020-08-12T15:25:09.726Z"
+      },
+      "links": {
+        "self": "/api/v2/agents/agent-4cQzjbr1cnM6Pcxr"
+      }
+    },
+    {
+      "id": "agent-yEJjXQCucpNxtxd2",
+      "type": "agents",
+      "attributes": {
+        "name": null,
+        "status": "errored",
+        "ip-address": "123.123.123.123",
+        "last-ping-at": "2020-08-11T06:22:20.300Z"
+      },
+      "links": {
+        "self": "/api/v2/agents/agent-yEJjXQCucpNxtxd2"
+      }
     }
+  ],
+  "links": {
+    "self": "https://app.terraform.io/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i/agents?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://app.terraform.io/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i/agents?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "https://app.terraform.io/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i/agents?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 1,
+      "total-count": 3
+    }
+  }
 }
 ```
 
@@ -184,6 +224,7 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][] (`type: "agent-pools"`) | Success
 [404][] | [JSON API error object][]                    | Agent Pool not found, or user unauthorized to perform action
 
+
 ### Sample Request
 
 ```shell
@@ -199,32 +240,35 @@ curl \
 ```json
 {
   "data": {
-      "id": "apool-MCf6kkxu5FyHbqhd",
-      "type": "agent-pools",
-      "attributes": {
-          "name": "Default"
+    "id": "apool-yoGUFz5zcRMMz53i",
+    "type": "agent-pools",
+    "attributes": {
+      "name": "example-pool",
+      "created-at": "2020-08-05T18:10:26.964Z"
+    },
+    "relationships": {
+      "agents": {
+        "links": {
+          "related": "/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i/agents"
+        }
       },
-      "relationships": {
-          "agents": {
-              "data": [
-                  {
-                      "id": "agent-73PJNzbZB5idR7AQ",
-                      "type": "agents"
-                  }
-              ],
-              "links": {
-                  "related": "/api/v2/agent-pools/apool-MCf6kkxu5FyHbqhd/agents"
-              }
-          },
-          "authentication-tokens": {
-              "links": {
-                  "related": "/api/v2/agent-pools/apool-MCf6kkxu5FyHbqhd/authentication-tokens"
-              }
+      "authentication-tokens": {
+        "links": {
+          "related": "/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i/authentication-tokens"
+        }
+      },
+      "workspaces": {
+        "data": [
+          {
+            "id": "ws-9EEkcEQSA3XgWyGe",
+            "type": "workspaces"
           }
-      },
-      "links": {
-          "self": "/api/v2/agent-pools/apool-MCf6kkxu5FyHbqhd"
+        ]
       }
+    },
+    "links": {
+      "self": "/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i"
+    }
   }
 }
 ```
@@ -256,19 +300,19 @@ curl \
 
 ```json
 {
-    "data": {
-        "id": "agent-73PJNzbZB5idR7AQ",
-        "type": "agents",
-        "attributes": {
-            "name": "testing",
-            "status": "exited",
-            "ip-address": "173.91.35.112",
-            "last-ping-at": "2020-08-07T19:40:55.149Z"
-        },
-        "links": {
-            "self": "/api/v2/agents/agent-73PJNzbZB5idR7AQ"
-        }
+  "data": {
+    "id": "agent-Zz9PTEcUgBtYzht8",
+    "type": "agents",
+    "attributes": {
+      "name": "my-agent",
+      "status": "busy",
+      "ip-address": "123.123.123.123",
+      "last-ping-at": "2020-09-08T18:47:35.361Z"
+    },
+    "links": {
+      "self": "/api/v2/agents/agent-Zz9PTEcUgBtYzht8"
     }
+  }
 }
 ```
 
@@ -292,12 +336,22 @@ Status  | Response                                        | Reason
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
 
+Properties without a default value are required.
+
+Key path                                      | Type    | Default   | Description
+----------------------------------------------|---------|-----------|------------
+`data.type`                                   | string  |           | Must be `"agent-pools"`.
+`data.attributes.name`                        | string  |           | The name of the agent-pool, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+
 ### Sample Payload
 
 ```json
 {
     "data": {
-        "type": "agent-pools"
+        "type": "agent-pools",
+        "attributes": {
+            "name": "my-pool"
+        }
     }
 }
 ```
@@ -318,27 +372,137 @@ curl \
 ```json
 {
   "data": {
-      "id": "apool-xkuMi7x4LsEnBUdY",
-      "type": "agent-pools",
-      "attributes": {
-          "name": "Default"
+    "id": "apool-55jZekR57npjHHYQ",
+    "type": "agent-pools",
+    "attributes": {
+      "name": "my-pool",
+      "created-at": "2020-10-13T16:32:45.165Z"
+    },
+    "relationships": {
+      "agents": {
+        "links": {
+          "related": "/api/v2/agent-pools/apool-55jZekR57npjHHYQ/agents"
+        }
       },
-      "relationships": {
-          "agents": {
-              "data": [],
-              "links": {
-                  "related": "/api/v2/agent-pools/apool-xkuMi7x4LsEnBUdY/agents"
-              }
-          },
-          "authentication-tokens": {
-              "links": {
-                  "related": "/api/v2/agent-pools/apool-xkuMi7x4LsEnBUdY/authentication-tokens"
-              }
-          }
+      "authentication-tokens": {
+        "links": {
+          "related": "/api/v2/agent-pools/apool-55jZekR57npjHHYQ/authentication-tokens"
+        }
       },
-      "links": {
-          "self": "/api/v2/agent-pools/apool-xkuMi7x4LsEnBUdY"
+      "workspaces": {
+        "data": []
       }
+    },
+    "links": {
+      "self": "/api/v2/agent-pools/apool-55jZekR57npjHHYQ"
+    }
   }
 }
 ```
+
+## Update an Agent Pool
+
+`PATCH /agent-pools/:id`
+
+Parameter            | Description
+---------------------|------------
+`:id`                | The ID of the Agent Pool to update
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "agent-pools"`) | Success
+[404][] | [JSON API error object][]                    | Agent Pool not found, or user unauthorized to perform action
+[422][] | JSON error document                          | Malformed request body (missing attributes, wrong types, etc.)
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+Key path                              | Type   | Default   | Description
+-----------------------               |--------|-----------|------------
+`data.type`                           | string |           | Must be `"agent-pools"`.
+`data.attributes.name`                | string | (previous value) | The name of the agent pool, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "type": "agent-pools",
+    "attributes": {
+      "name": "example-pool"
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/agent-pools/apool-MCf6kkxu5FyHbqhd
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "apool-yoGUFz5zcRMMz53i",
+    "type": "agent-pools",
+    "attributes": {
+      "name": "example-pool",
+      "created-at": "2020-08-05T18:10:26.964Z"
+    },
+    "relationships": {
+      "agents": {
+        "links": {
+          "related": "/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i/agents"
+        }
+      },
+      "authentication-tokens": {
+        "links": {
+          "related": "/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i/authentication-tokens"
+        }
+      },
+      "workspaces": {
+        "data": [
+          {
+            "id": "ws-9EEkcEQSA3XgWyGe",
+            "type": "workspaces"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/api/v2/agent-pools/apool-yoGUFz5zcRMMz53i"
+    }
+  }
+}
+```
+
+## Delete an Agent Pool
+
+`DELETE /agent-pools/:agent_pool_id`
+
+Parameter   | Description
+------------|------------
+`:agent_pool_id`  | The ID of the agent pool ID to delete
+
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/agent-pools/apool-MCf6kkxu5FyHbqhd
+```
+

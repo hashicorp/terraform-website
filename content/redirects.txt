@@ -570,3 +570,7 @@
 /docs/providers/google/d/google_storage_transfer_project_service_account.html   /docs/providers/google/d/storage_transfer_project_service_account.html
 /docs/providers/google/d/datasource_tpu_tensorflow_versions.html                /docs/providers/google/d/tpu_tensorflow_versions.html
 /docs/registry/support.html                                                     /docs/registry/index.html#getting-help
+
+# Moving "Terraform Cloud Agents" out from underneath "Workspaces"
+
+/docs/cloud/workspaces/agent.html   /docs/cloud/agents/index.html

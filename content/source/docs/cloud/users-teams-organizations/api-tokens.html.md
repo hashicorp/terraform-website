@@ -50,7 +50,7 @@ Organization API tokens have permissions across the entire organization. They ca
 
 ## Agent API Tokens
 
-[Agent pools](/docs/cloud/workspaces/agent.html) have their own set of API tokens which allow agents to communicate with Terraform Cloud, scoped to an organization. These tokens are not valid for direct usage in the V2 API and are only used by agents.
+[Agent pools](/docs/cloud/agents/index.html) have their own set of API tokens which allow agents to communicate with Terraform Cloud, scoped to an organization. These tokens are not valid for direct usage in the Terraform Cloud API and are only used by agents.
 
 ## Access Levels
 
