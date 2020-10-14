@@ -24,21 +24,21 @@ The Azure SSO integration currently supports the following SAML features:
 
 ### Using the updated Azure AD UI
 1. In your desired Azure AD Directory, navigate to the Enterprise Applications page and create a "+ New Application".
-2. locate and select the "+ Create your own appliction" option.
-3. In the resulting sidebar, name your application, and select the option, "Integrate any other application you don't find in the gallery" and click "Create" at the bottom of the page.
+2. Locate and select the "+ Create your own appliction" option.
+3. In the resulting sidebar, name your application, select the option to "Integrate any other application you don't find in the gallery," and click "Create" at the bottom of the page.
 
 4. Under the "Getting Started" section, select "Set up single sign on."
-5. Select the SAML option
-6. You should now see a 5 part set up list. Ignore step 1 for now, we will come back to that.
+5. Select the SAML option.
+6. You should now see a 5-part set up list. Ignore step 1 for now, we will come back to that.
 7. Edit step 2, "User Attributes & Claims".
-8. Select the required Name ID claim.  Ensure that its name identifier format is "Email address".
-9. Select "Add a certificate", located in item 3 of the list.
+8. Select the required Name ID claim. Ensure that its name identifier format is "Email address".
+9. Select "Add a certificate", located in step 3 of the list.
     1. Import or create a certificate.
     1. If the certificate is not listed as active, use the meatball menu to its right to set it to active.
     1. Set Signing option to Sign SAML response and assertion.
-    1. Set Signing Algorithm to SHA-256
+    1. Set Signing Algorithm to `SHA-256`
     1. Save this.
-10. After saving certificate settings you should now see a field in step 3 labeled "App Federation Metadata Url".  Copy that!  You're ready to head over to your organization in Terraform Cloud.
+10. After saving certificate settings you should now see a field in step 3 labeled "App Federation Metadata Url". Copy that. You're ready to head over to your organization in Terraform Cloud.
 
 ## Configuration (Terraform Cloud)
 
@@ -65,7 +65,7 @@ The Azure SSO integration currently supports the following SAML features:
 Returning to the SAML configuration page for your custom enterprise application in Azure:
 
 1. Edit step 1, "Basic SAML Configuration"
-2. Provide the copied Entity ID  and Asserion Consumer Service URL from Terraform Cloud.
+2. Provide the copied Entity ID and Asserion Consumer Service URL from Terraform Cloud.
 3. Save.
 
 4. [Verify](./testing.html) your settings and click "Enable".
@@ -78,8 +78,8 @@ Returning to the SAML configuration page for your custom enterprise application 
 
 To configure team management in your Azure AD application:
 1. Navigate to the single sign-on page.
-1. Edit step 2, "User Attributes & Claims"
-1. We recomoned naming it "MemberOF", leaving the namespace blank, and potentially sourcing `user.assignedroles` as an easy starting point.
+1. Edit step 2, "User Attributes & Claims."
+1. We recomoned naming it "MemberOf", leaving the namespace blank, and potentially sourcing `user.assignedroles` as an easy starting point.
 
 If you plan to make use of SAML to set usernames in your Azure AD application:
 1. Navigate to the single sign-on page.
@@ -87,5 +87,4 @@ If you plan to make use of SAML to set usernames in your Azure AD application:
 1. We recomend naming the claim "Username", leaving the namespace blank, and sourcing something like `user.displayname` or `user.mailnickname`.
 
 
-Be sure to set your attribute names to match the claims you configured in Azure. If you followed the recomended claims configuration in Azure AD, you shouldn't need to change anything in the default Terraform Cloud SAML configuration. If you did use a different claim name or added a namespace in your Azure AD configuration, change the related attribute name in Terraform Cloud to match the form `<claim_namespace/claim_name>`.
-
+If you namespaced any of your claims, note that the attribute name passed by Azure AD will follow the form `<claim_namespace/claim_name>`. Consider this when setting Team and Username attribute names.
