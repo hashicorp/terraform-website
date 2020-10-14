@@ -75,6 +75,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "huaweicloud" : "huaweicloud/huaweicloud"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "icinga2" : "Icinga/icinga2"
+    "lacework" : "lacework/lacework"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
     "mongodbatlas" : "mongodb/mongodbatlas"
@@ -104,6 +105,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "turbot" : "turbot/turbot"
     "ucloud" : "ucloud/ucloud" # unverified
     "venafi" : "Venafi/venafi"
+    "vmc" : "vmware/vmc"
     "vra7" : "vmware/vra7"
     "vthunder" : "a10networks/vthunder"
     "vultr" : "vultr/vultr"
@@ -137,6 +139,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "tls" : "hashicorp/tls"
     "vault" : "hashicorp/vault"
     "vsphere" : "hashicorp/vsphere"
+
   }
 
   # prevent destroying this dictionary to cause redirects to break

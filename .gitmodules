@@ -218,10 +218,6 @@
 	path = ext/providers/incapsula
 	url = https://github.com/terraform-providers/terraform-provider-incapsula
 	branch = stable-website
-[submodule "ext/providers/vmc"]
-	path = ext/providers/vmc
-	url = https://github.com/terraform-providers/terraform-provider-vmc
-	branch = stable-website
 [submodule "ext/providers/infoblox"]
 	path = ext/providers/infoblox
 	url = https://github.com/terraform-providers/terraform-provider-infoblox
@@ -233,10 +229,6 @@
 [submodule "ext/providers/cohesity"]
 	path = ext/providers/cohesity
 	url = https://github.com/terraform-providers/terraform-provider-cohesity
-	branch = stable-website
-[submodule "ext/providers/lacework"]
-	path = ext/providers/lacework
-	url = https://github.com/terraform-providers/terraform-provider-lacework
 	branch = stable-website
 [submodule "ext/providers/ecl"]
 	path = ext/providers/ecl
