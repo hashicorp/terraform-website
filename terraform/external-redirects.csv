@@ -1,6 +1,6 @@
 comment,src,dst
 external - malformed,/docs/providers/external/data_source.html,https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/data_source
-http - malformed,/docs/providers/http/data_source.html,https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/data_source
+http - malformed,/docs/providers/http/data_source.html,https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http
 newrelic - v1 docs,/docs/providers/newrelic/d/v1/alert_channel.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/alert_channel
 newrelic - v1 docs,/docs/providers/newrelic/d/v1/alert_policy.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/alert_policy
 newrelic - v1 docs,/docs/providers/newrelic/d/v1/application.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/application
