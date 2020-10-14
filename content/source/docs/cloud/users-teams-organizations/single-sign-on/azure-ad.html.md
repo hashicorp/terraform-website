@@ -13,6 +13,8 @@ The Azure SSO integration currently supports the following SAML features:
 - Identity Provider (IdP)-initiated SSO
 - Just-in-Time Provisioning
 
+For more information on the listed features, visit the [Azure SAML Protocol Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol).
+
 ## Configuration (Azure AD)
 
 -> **Note:** Azure is rolling out a new interface for setting up Enterprise Applications. The first 3 steps vary depending on your UI choice.
