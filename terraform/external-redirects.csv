@@ -1,4 +1,6 @@
 comment,src,dst
+external - malformed,/docs/providers/external/data_source.html,https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/data_source
+http - malformed,/docs/providers/http/data_source.html,https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/data_source
 newrelic - v1 docs,/docs/providers/newrelic/d/v1/alert_channel.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/alert_channel
 newrelic - v1 docs,/docs/providers/newrelic/d/v1/alert_policy.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/alert_policy
 newrelic - v1 docs,/docs/providers/newrelic/d/v1/application.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/data-sources/application
@@ -28,4 +30,3 @@ newrelic - v1 docs,/docs/providers/newrelic/r/v1/workload.html,https://registry.
 newrelic - v1 docs,/docs/providers/newrelic/v1/index.html,https://registry.terraform.io/providers/newrelic/newrelic/1.19.1/docs/
 null - malformed,/docs/providers/null/data_source.html,https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source
 null - malformed,/docs/providers/null/resource.html,https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource
-external - malformed,/docs/providers/external/data_source.html,https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/data_source
