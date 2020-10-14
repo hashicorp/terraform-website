@@ -49,7 +49,7 @@
     -webkit-box-pack: center;
     justify-content: center;
     max-width: 101px;
-    height:100%;
+    height: 100%;
   }
   .logoLink svg {
     height: 100%;
@@ -62,7 +62,7 @@
     height: 100%;
     width: auto;
   }
-  @media (min-width: 1120px) {
+  @media (min-width: 960px) {
     .menu {
       display: -webkit-box;
       display: flex;
@@ -159,6 +159,7 @@
     justify-content: flex-start;
     width: 832px;
     z-index: 901;
+    min-height: 340px;
   }
   .stackMenuSection {
     display: -webkit-box;
@@ -173,11 +174,12 @@
     padding: 0;
     margin: 0;
     -webkit-box-flex: 1;
-    flex: 1 1 auto;
+    flex: 1 1 125px;
   }
   .stackMenuSectionPlusDivider {
+    flex: 1 0 260px;
     padding: 0;
-    margin-left: 4rem;
+    margin-left: 80px;
     position: relative;
   }
   .stackMenuSectionPlusDivider:before {
@@ -186,7 +188,7 @@
     width: 1px;
     height: 100%;
     background: var(--gray-6);
-    left: -4rem;
+    left: -64px;
   }
   .stackGroup {
     padding: 0;
@@ -198,6 +200,14 @@
     flex-direction: column;
     -webkit-box-pack: start;
     justify-content: flex-start;
+    flex: 1 0 50%;
+    margin-bottom: 1.25rem;
+  }
+  .stackGroup + .stackGroup {
+    margin-bottom: 0;
+    & > .stackGroupLinkList {
+      padding-bottom: 0;
+    }
   }
   .stackGroupHeading {
     text-transform: uppercase;
@@ -245,20 +255,21 @@
     text-transform: capitalize;
   }
   .productIcon {
-    margin-right: 0.75rem;
+    margin-right: 8px;
     width: 22px;
+    height: auto;
   }
   .badge {
     position: absolute;
     text-align: center;
-    left: calc(100% + 1rem);
+    left: calc(100% + 10px);
     top: 4px;
     padding: 1.5px 4px 1.5px 6px;
     border-radius: 2px;
     display: block;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 0.6875rem;
+    font-size: 10px;
     line-height: 1.272727273em;
     text-transform: uppercase;
     letter-spacing: 0.08em;
