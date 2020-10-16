@@ -439,7 +439,6 @@
 /docs/providers/netlify/index.html
 /docs/providers/nutanix/index.html
 /docs/providers/oneandone/index.html
-/docs/providers/opennebula/index.html
 /docs/providers/postgresql/index.html
 /docs/providers/powerdns/index.html
 /docs/providers/profitbricks/index.html
@@ -466,9 +465,6 @@
 /docs/providers/vault/r/aws_auth_backend_role.html
 /docs/providers/vault/r/aws_secret_backend_role.html
 /docs/providers/vault/r/generic_secret.html
-/docs/providers/vcd/index.html
-/docs/providers/vcd/r/firewall_rules.html
-/docs/providers/vcd/r/vapp_vm.html
 /docs/provisioners/chef.html
 /docs/provisioners/connection.html
 /docs/provisioners/file.html

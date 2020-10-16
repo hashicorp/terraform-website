@@ -111,6 +111,8 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "vultr" : "vultr/vultr"
     "wavefront" : "vmware/wavefront"
     "yandex" : "yandex-cloud/yandex"
+    "vcd" : "vmware/vcd"
+    "opennebula" : "OpenNebula/opennebula"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more

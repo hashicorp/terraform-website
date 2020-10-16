@@ -130,10 +130,6 @@
 	path = ext/providers/vault
 	url = https://github.com/terraform-providers/terraform-provider-vault
 	branch = stable-website
-[submodule "ext/providers/vcd"]
-	path = ext/providers/vcd
-	url = https://github.com/terraform-providers/terraform-provider-vcd
-	branch = stable-website
 [submodule "ext/providers/logicmonitor"]
 	path = ext/providers/logicmonitor
 	url = https://github.com/terraform-providers/terraform-provider-logicmonitor
@@ -205,10 +201,6 @@
 [submodule "ext/providers/cherryservers"]
 	path = ext/providers/cherryservers
 	url = https://github.com/terraform-providers/terraform-provider-cherryservers
-	branch = stable-website
-[submodule "ext/providers/opennebula"]
-	path = ext/providers/opennebula
-	url = https://github.com/terraform-providers/terraform-provider-opennebula
 	branch = stable-website
 [submodule "ext/providers/metalcloud"]
 	path = ext/providers/metalcloud
