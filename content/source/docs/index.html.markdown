@@ -24,17 +24,17 @@ We've divided the Terraform docs into several sections to make it easier to find
 
 A broad overview of what Terraform is and why people use it.
 
-### [Terraform CLI ➜](/docs/cli-index.html)
+### [Terraform Language ➜](/docs/configuration/index.html)
 
 -> Intermediate and advanced users spend most of their time here.
 
-Documentation for Terraform's core functionality, including:
+Documentation for Terraform's configuration language.
 
-- [Terraform's configuration language](/docs/configuration/index.html)
-- [The `terraform` binary and its subcommands](/docs/commands/index.html)
-- [The main Terraform providers](/docs/providers/index.html)
+The Terraform language is Terraform's primary user interface. This section is relevant to all users of Terraform, including Terraform Cloud and Terraform Enterprise users.
 
-...and much more.
+### [Terraform CLI ➜](/docs/cli-index.html)
+
+Documentation for Terraform's command-line workflows, including docs for [the `terraform` binary and its subcommands](/docs/commands/index.html).
 
 ### [Learn Terraform ➜](https://learn.hashicorp.com/terraform?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) (external site)
 
