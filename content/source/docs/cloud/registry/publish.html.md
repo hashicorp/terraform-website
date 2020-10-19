@@ -21,7 +21,7 @@ Only members of the "owners" team can publish new modules. Once a module is publ
 
 ## Workflow Summary
 
-The private module registry is designed to be be as automatic as possible, so it defers to your VCS provider for most management tasks. The only manual tasks are adding a new module and deleting versions.
+The private module registry is designed to be as automatic as possible, so it defers to your VCS provider for most management tasks. The only manual tasks are adding a new module and deleting versions.
 
 After configuring at least one [connection to a VCS provider][vcs], you can publish a new module by specifying a properly formatted VCS repository (one module per repo, with an expected name and tag format; see below for details). The registry automatically detects the rest of the information it needs, including the module's name and its available versions.
 
