@@ -19,6 +19,7 @@
   width: 100%;
   background: var(--gray-7);
   height: 56px;
+  border-bottom: 1px solid var(--gray-6);
 }
 .hashiStackMenuRoot {
   .nav {
@@ -95,7 +96,12 @@
     transition: 0.3s transform, 0.3s -webkit-transform;
   }
   .link {
-    /* g-type-buttons-and-standalone-links */
+    /* start .g-type-body-small-strong styles */
+    font-size: 15.008px;
+    letter-spacing: 0.15008px;
+    line-height: 25.0167px;
+    font-weight: 600;
+    /* end .g-type-body-small-strong styles */
     position: relative;
     color: var(--gray-4);
     padding: 1rem 1.25rem 1rem 1rem;
