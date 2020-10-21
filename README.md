@@ -13,7 +13,6 @@ This repository contains the build infrastructure and some of the content for [t
 - [Living With Submodules](#living-with-submodules)
 - [Finding Broken Links](#finding-broken-links)
 - [More about `stable-website`](#more-about-stable-website)
-
 [terraform.io]: https://terraform.io
 [middleman]: https://www.middlemanapp.com
 [tf-repo]: https://github.com/hashicorp/terraform/
@@ -56,7 +55,6 @@ The [terraform.io][] site gets deployed by a CI job, currently managed by Circle
 ↥ [back to top](#table-of-contents)
 
 You can preview the website from a local checkout of this repo as follows:
-
 1. Install [Docker](https://docs.docker.com/install/) if you have not already done so.
 2. Go to the top directory of this repo in your terminal, and run `make website`.
 3. Open `http://localhost:4567` in your web browser.
@@ -84,7 +82,6 @@ Once the submodule is active, you can go into its directory to fetch and check o
 You can even make direct edits to the submodule's content, as long as you remember to commit them and push your branch before resetting the submodule.
 
 For example:
-
 ```
 $ cd ext/providers/rundeck
 $ git status
@@ -95,7 +92,6 @@ $ git checkout FETCH_HEAD
 ```
 
 To find your fork's repo URL, use the "Clone or Download" button on the main page of your fork on GitHub.
-
 Once you finish testing your changes, you can reset the submodule to its normal state by returning to the root of `terraform-website` and running `git submodule update`.
 
 > ### Tip: Refreshing Symlinked Nav Sidebars
@@ -165,7 +161,6 @@ Sigil | Start text with  | Color
 Like GitHub and a lot of other places, terraform.io automatically generates `id` attributes for headers to enable direct linking.
 
 The basic transform to make IDs from header text is something like "lowercase it, delete anything other than `[a-z0-9_-]`, and replace runs of spaces with a hyphen," but since the exact behavior can be squirrelly, we recommend checking the actual ID in a preview before linking to it. The in-page quick-nav menu at the top of each page is helpful for finding the header you want.
-
 We also auto-generate IDs for code spans that are the first child of a list item, since it's common for long lists of arguments or attributes to be formatted that way.
 
 ## Screenshots
