@@ -5,21 +5,37 @@
     <ul class="nav docs-sidenav">
 
       <li>
-        <a href="#">Home</a>
+        <a href="/docs/cli-index.html">Home</a>
       </li>
 
       <li>
         <a href="#">Initializing Working Directories</a>
         <ul class="nav">
+<!--
+          <li>
+            <a href="/docs/cli/init/index.html">Overview</a>
+          </li>
+ -->
+
           <li>
             <a href="/docs/commands/init.html"><code>init</code></a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/get.html"><code>get</code></a>
           </li>
         </ul>
       </li>
 
       <li>
-        <a href="#">Performing Terraform Runs</a>
+        <a href="#">Provisioning Infrastructure</a>
         <ul class="nav">
+<!--
+          <li>
+            <a href="/docs/cli/run/index.html">Overview</a>
+          </li>
+ -->
+
           <li>
             <a href="/docs/commands/plan.html"><code>plan</code></a>
           </li>
@@ -37,6 +53,12 @@
       <li>
         <a href="#">Authenticating</a>
         <ul class="nav">
+<!--
+          <li>
+            <a href="/docs/cli/auth/index.html">Overview</a>
+          </li>
+ -->
+
           <li>
             <a href="/docs/commands/login.html"><code>login</code></a>
           </li>
@@ -50,6 +72,12 @@
       <li>
         <a href="#">Writing and Modifying Code</a>
         <ul class="nav">
+<!--
+          <li>
+            <a href="/docs/cli/code/index.html">Overview</a>
+          </li>
+ -->
+
           <li>
             <a href="/docs/commands/console.html"><code>console</code></a>
           </li>
@@ -75,6 +103,12 @@
       <li>
         <a href="#">Inspecting Infrastructure</a>
         <ul class="nav">
+<!--
+          <li>
+            <a href="/docs/cli/inspect/index.html">Overview</a>
+          </li>
+ -->
+
           <li>
             <a href="/docs/commands/graph.html"><code>graph</code></a>
           </li>
@@ -92,6 +126,12 @@
       <li>
         <a href="#">Manipulating State</a>
         <ul class="nav">
+<!--
+          <li>
+            <a href="/docs/cli/state/index.html">Overview</a>
+          </li>
+ -->
+
           <li>
             <a href="/docs/commands/taint.html"><code>taint</code></a>
           </li>
@@ -161,15 +201,17 @@
       </li>
 
       <li>
-        <a href="#">Managing Working Directories</a>
+        <a href="#">Managing Workspaces</a>
         <ul class="nav">
+<!--
           <li>
-            <a href="/docs/commands/get.html"><code>get</code></a>
+            <a href="/docs/cli/workspaces/index.html">Overview</a>
           </li>
+ -->
 
           <li>
             <a href="/docs/commands/workspace/index.html"><code>workspace</code></a>
-            <ul class="nav">
+            <ul class="nav nav-auto-expand">
               <li>
                 <a href="/docs/commands/workspace/list.html"><code>list</code></a>
               </li>
@@ -197,11 +239,17 @@
       <li>
         <a href="/docs/plugins/index.html">Managing Plugins</a>
         <ul class="nav">
+<!--
+          <li>
+            <a href="/docs/cli/plugins/index.html">Overview</a>
+          </li>
+ -->
+
           <li>
             <a href="/docs/commands/providers.html"><code>providers</code></a>
-            <ul class="nav">
+            <ul class="nav nav-auto-expand">
               <li>
-                <a href="/docs/commands/providers/lock.html">lock</a>
+                <a href="/docs/commands/providers/lock.html"><code>lock</code></a>
               </li>
 
               <li>
@@ -233,8 +281,14 @@
       </li>
 
       <li>
-        <a href="#">Advanced Configuration</a>
+        <a href="#">CLI Configuration</a>
         <ul class="nav">
+<!--
+          <li>
+            <a href="/docs/cli/config/index.html">Overview</a>
+          </li>
+ -->
+
           <li>
             <a href="/docs/commands/cli-config.html">CLI Config File</a>
           </li>
@@ -246,16 +300,20 @@
       </li>
 
       <li>
-        <a href="/docs/github-actions/index.html">GitHub Actions</a>
+        <a href="#">Automating Terraform</a>
         <ul class="nav">
           <li>
-            <a href="/docs/github-actions/setup-terraform.html">hashicorp/setup-terraform</a>
+            <a href="https://learn.hashicorp.com/tutorials/terraform/automate-terraform?in=terraform/automation&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS">Running Terraform in Automation</a>
+          </li>
+
+          <li>
+            <a href="https://learn.hashicorp.com/tutorials/terraform/github-actions?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS">GitHub Actions</a>
           </li>
         </ul>
       </li>
 
       <li>
-        <a href="/docs/commands/index.html">All Terraform Commands</a>
+        <a href="/docs/commands/index.html">Alphabetical List of Commands</a>
         <ul class="nav">
 
           <li>
@@ -316,6 +374,10 @@
 
           <li>
             <a href="/docs/commands/providers.html"><code>providers</code></a>
+          </li>
+
+          <li>
+            <a href="/docs/commands/providers/lock.html"><code>providers lock</code></a>
           </li>
 
           <li>
@@ -399,11 +461,72 @@
           </li>
 
           <li>
-            <a href="/docs/commands/0.13upgrade.html"><code>0.13upgrade</code></a>
+            <a href="/docs/commands/0.12upgrade.html"><code>0.12upgrade</code></a>
           </li>
 
           <li>
-            <a href="/docs/commands/0.12upgrade.html"><code>0.12upgrade</code></a>
+            <a href="/docs/commands/0.13upgrade.html"><code>0.13upgrade</code></a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">Internals</a>
+        <ul class="nav">
+          <li>
+            <a href="/docs/internals/index.html">Overview</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/credentials-helpers.html">Credentials Helpers</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/debugging.html">Debugging Terraform</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/module-registry-protocol.html">Module Registry Protocol</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/provider-network-mirror-protocol.html">Provider Network Mirror Protocol</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/provider-registry-protocol.html">Provider Registry Protocol</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/graph.html">Resource Graph</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/lifecycle.html">Resource Lifecycle</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/login-protocol.html">Login Protocol</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/resource-addressing.html">Resource Addressing</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/json-format.html">JSON Output Format</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/remote-service-discovery.html">Remote Service Discovery</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/internal-plugins.html">Internal Plugins</a>
+          </li>
+
+          <li>
+            <a href="/docs/internals/provider-meta.html">Provider Metadata</a>
           </li>
         </ul>
       </li>
