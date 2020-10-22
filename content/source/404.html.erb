@@ -14,8 +14,5 @@ description: |-
 
 <script>
   // Fire a custom event to Segment to surface paths that are causing 404s
-  window && window.analytics && window.analytics.track(window.location.href, {
-    category: '404 Response',
-    label: document.referrer || 'No Referrer'
-  })
+  window && window.analytics && window.analytics.track('404 Response')
 </script>
