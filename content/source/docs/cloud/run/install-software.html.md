@@ -43,8 +43,13 @@ If you have a custom provider that you'd rather not publish in the public Terraf
     ```
     
     Terraform Cloud will be able to use your compiled provider if you place it at `terraform.d/plugins/my-host/my-namespace/custom/1.0.0/linux_amd64/terraform-provider-custom`.
-    
+
+- Use a privately-owned provider registry service which implements the [provider registry protocol](/docs/internals/provider-registry-protocol.html) to distribute custom providers. Be sure to include the full [source address](/docs/configuration/provider-requirements.html#source-addresses), including the hostname, when referencing providers.
+
 - **Terraform Enterprise only:** Use [the `terraform-bundle` tool][bundle] to add custom providers.
+
+-> **Note:** Using a [network mirror](/docs/internals/provider-network-mirror-protocol.html) to host custom providers for installation is not currently supported in Terraform Cloud, since the network mirror cannot be activated without a [`provider_installation`](/docs/commands/cli-config.html#explicit-installation-method-configuration) block in the CLI configuration file.
+
 
 ### Terraform 0.12 and earlier
 
