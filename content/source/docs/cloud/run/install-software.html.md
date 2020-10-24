@@ -11,25 +11,65 @@ In rare cases, it might also be necessary to install extra software on the Terra
 
 ## Installing Terraform Providers
 
-### Providers Distributed by HashiCorp
+The mechanics of provider installation changed in Terraform 0.13, thanks to the introduction of the [Terraform Registry][registry] for providers which allows custom and community providers to be installed via `terraform init`. Prior to Terraform 0.13, Terraform could only automatically install providers distributed by HashiCorp.
 
-Terraform Cloud runs `terraform init` before every plan or apply, which automatically downloads any [providers](/docs/configuration/providers.html) Terraform needs.
+### Terraform 0.13 and later
 
-Terraform Enterprise instances can automatically install providers as long as they can access `releases.hashicorp.com`. If that isn't feasible due to security requirements, you can manually install providers. Use [the `terraform-bundle` tool][bundle] to build a custom version of Terraform that includes the necessary providers, and configure your workspaces to use that bundled version.
+#### Providers From the Terraform Registry
+
+The [Terraform Registry][registry] allows anyone to publish and distribute providers which can be automatically downloaded and installed via `terraform init`.
+
+Terraform Enterprise instances must be able to access `registry.terraform.io` to use providers from the public registry; otherwise, you can install providers using [the `terraform-bundle` tool][bundle].
+
+[registry]: https://registry.terraform.io/browse/providers
+
+#### In-House Providers
+
+If you have a custom provider that you'd rather not publish in the public Terraform Registry, you have a few options:
+
+- Add the provider binary to the VCS repo (or manually-uploaded configuration version). Place the compiled `linux_amd64` version of the plugin at `terraform.d/plugins/<SOURCE HOST>/<SOURCE NAMESPACE>/<PLUGIN NAME>/<VERSION>/linux_amd64`, relative to the root of the directory.
+
+    The source host and namespace will need to match the source given in the  `required_providers` block within the configuration, but can otherwise be arbitrary identifiers. For instance, if your `required_providers` block looks like this:
+    
+    ```
+    terraform {
+      required_providers {
+        custom = {
+          source = "my-host/my-namespace/custom"
+          version = "1.0.0"
+        }
+      }
+    }
+    ```
+    
+    Terraform Cloud will be able to use your compiled provider if you place it at `terraform.d/plugins/my-host/my-namespace/custom/1.0.0/linux_amd64/terraform-provider-custom`.
+
+- Use a privately-owned provider registry service which implements the [provider registry protocol](/docs/internals/provider-registry-protocol.html) to distribute custom providers. Be sure to include the full [source address](/docs/configuration/provider-requirements.html#source-addresses), including the hostname, when referencing providers.
+
+- **Terraform Enterprise only:** Use [the `terraform-bundle` tool][bundle] to add custom providers.
+
+-> **Note:** Using a [network mirror](/docs/internals/provider-network-mirror-protocol.html) to host custom providers for installation is not currently supported in Terraform Cloud, since the network mirror cannot be activated without a [`provider_installation`](/docs/commands/cli-config.html#explicit-installation-method-configuration) block in the CLI configuration file.
+
+
+### Terraform 0.12 and earlier
+
+#### Providers Distributed by HashiCorp
+
+Terraform Cloud can automatically install providers distributed by HashiCorp. Terraform Enterprise instances can do this as well as long as they can access `releases.hashicorp.com`.
+
+If that isn't feasible due to security requirements, you can manually install providers. Use [the `terraform-bundle` tool][bundle] to build a custom version of Terraform that includes the necessary providers, and configure your workspaces to use that bundled version.
 
 [bundle]: https://github.com/hashicorp/terraform/tree/master/tools/terraform-bundle#installing-a-bundle-in-on-premises-terraform-enterprise
 
-### Custom and Community Providers
+#### Custom and Community Providers
 
--> **Note:** We are investigating how to improve custom provider installation, so this information might change in the near future.
+To use community providers or your own custom providers with Terraform versions prior to 0.13, you must install them yourself.
 
-Terraform only automatically installs plugins from [the main list of providers](/docs/providers/index.html); to use community providers or your own custom providers, you must install them yourself.
+There are two ways to accomplish this:
 
-Currently, there are two ways to use custom provider plugins with Terraform Cloud.
+- Add the provider binary to the VCS repo (or manually-uploaded configuration version) for any workspace that uses it. Place the compiled `linux_amd64` version of the plugin at `terraform.d/plugins/linux_amd64/<PLUGIN NAME>` (as a relative path from the root of the working directory). The plugin name should follow the [naming scheme](/docs/configuration-0-11/providers.html#plugin-names-and-versions) and the plugin file must have read and execute permissions. (Third-party plugins are often distributed with an appropriate filename already set in the distribution archive.)
 
-- Add the provider binary to the VCS repo (or manually-uploaded configuration version) for any workspace that uses it. Place the compiled `linux_amd64` version of the plugin at `.terraform/plugins/linux_amd64/<PLUGIN NAME>` (as a relative path from the root of the working directory). The plugin name should follow the [naming scheme](/docs/configuration/providers.html#plugin-names-and-versions) and the plugin file must have read and execute permissions. (Third-party plugins are often distributed with an appropriate filename already set in the distribution archive.)
-
-    You can add plugins directly to a configuration repo, or you can add them as Git submodules and symlink the files into `.terraform/plugins/linux_amd64/`. Submodules are a good choice when many workspaces use the same custom provider, since they keep your repos smaller. If using submodules, enable the ["Include submodules on clone" setting](../workspaces/vcs.html#include-submodules-on-clone) on any affected workspace.
+    You can add plugins directly to a configuration repo, or you can add them as Git submodules and symlink the executable files into `terraform.d/plugins/`. Submodules are a good choice when many workspaces use the same custom provider, since they keep your repos smaller. If using submodules, enable the ["Include submodules on clone" setting](../workspaces/vcs.html#include-submodules-on-clone) on any affected workspace.
 
 - **Terraform Enterprise only:** Use [the `terraform-bundle` tool][bundle] to add custom providers to a custom Terraform version. This keeps custom providers out of your configuration repos entirely, and is easier to update when many workspaces use the same provider.
 
