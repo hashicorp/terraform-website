@@ -40,6 +40,17 @@ There are three kinds of token available:
 - [Team tokens](../users-teams-organizations/api-tokens.html#team-api-tokens) — each team can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.
 - [Organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens) — each organization can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.
 
+### Archivist (blob storage) Authentication
+
+Terraform Cloud relies on a blob storage service called Archivist for storing statefiles and multiple other pieces of customer data, all of which are documented on our [data security page](../architectural-details/data-security.html).
+
+Unlike the Terraform Cloud's API, Archivist does not require that a bearer token be submitted with each request. Instead, Archivist URLS contain a Vault token that is used for authentication and authorization, and is valid for 25 hours.
+
+For example, the [state versions api](./state-versions.html) returns a field named `hosted-state-download`, which is a URL of this form:
+`https://archivist.terraform.io/v1/object/<this long string is an encoded vault token>`
+
+It is important to treat these URLS themselves as secrets. They should not be logged, or shared with untrusted parties.
+
 ## Feature Entitlements
 
 Terraform Cloud is available at multiple pricing tiers (including free), which offer different feature sets.
