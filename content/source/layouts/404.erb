@@ -1,0 +1,20 @@
+<% wrap_layout :inner do %>
+    <%= yield %>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (
+                typeof window !== 'undefined' &&
+                typeof window.analytics !== 'undefined' &&
+                typeof window.analytics.track === 'function' &&
+                typeof window.document.referrer === 'string' &&
+                typeof window.location.href === 'string'
+            ) {
+                window.analytics.track(window.location.href, {
+                    category: '404 Response',
+                    label: window.document.referrer || 'No Referrer',
+                });
+            }
+        });
+    </script>
+<% end %>
