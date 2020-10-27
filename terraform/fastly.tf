@@ -57,6 +57,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "checkpoint" : "CheckPointSW/checkpoint"
     "circonus" : "circonus-labs/circonus"
     "cloudflare" : "cloudflare/cloudflare"
+    "cloudscale": "cloudscale-ch/cloudscale"
     "constellix" : "Constellix/constellix"
     "datadog" : "DataDog/datadog"
     "digitalocean" : "digitalocean/digitalocean"
@@ -78,6 +79,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "lacework" : "lacework/lacework"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
+    "mailgun": "wgebis/mailgun"
     "mongodbatlas" : "mongodb/mongodbatlas"
     "mso" : "CiscoDevNet/mso"
     "ncloud" : "NaverCloudPlatform/ncloud" # unverified
@@ -86,6 +88,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "nsxt" : "vmware/nsxt"
     "okta" : "oktadeveloper/okta"
     "oktaasa" : "oktadeveloper/oktaasa"
+    "opennebula" : "OpenNebula/opennebula"
     "openstack" : "terraform-provider-openstack/openstack"   # unverified
     "opentelekomcloud" : "opentelekomcloud/opentelekomcloud" # unverified
     "opsgenie" : "opsgenie/opsgenie"
@@ -98,12 +101,14 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "scaleway" : "scaleway/scaleway"
     "selectel" : "selectel/selectel" # unverified
     "signalfx" : "splunk-terraform/signalfx"
+    "spotinst": "spotinst/spotinst"
     "stackpath" : "stackpath/stackpath" # unverified
     "sumologic" : "SumoLogic/sumologic"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
     "triton" : "joyent/triton"
     "turbot" : "turbot/turbot"
     "ucloud" : "ucloud/ucloud" # unverified
+    "vcd" : "vmware/vcd"
     "venafi" : "Venafi/venafi"
     "vmc" : "vmware/vmc"
     "vra7" : "vmware/vra7"
@@ -111,8 +116,6 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "vultr" : "vultr/vultr"
     "wavefront" : "vmware/wavefront"
     "yandex" : "yandex-cloud/yandex"
-    "vcd" : "vmware/vcd"
-    "opennebula" : "OpenNebula/opennebula"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more

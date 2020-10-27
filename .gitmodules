@@ -74,10 +74,6 @@
 	path = ext/providers/logentries
 	url = https://github.com/terraform-providers/terraform-provider-logentries
 	branch = stable-website
-[submodule "ext/providers/mailgun"]
-	path = ext/providers/mailgun
-	url = https://github.com/terraform-providers/terraform-provider-mailgun
-	branch = stable-website
 [submodule "ext/providers/mysql"]
 	path = ext/providers/mysql
 	url = https://github.com/terraform-providers/terraform-provider-mysql
@@ -114,10 +110,6 @@
 	path = ext/providers/softlayer
 	url = https://github.com/terraform-providers/terraform-provider-softlayer
 	branch = stable-website
-[submodule "ext/providers/spotinst"]
-	path = ext/providers/spotinst
-	url = https://github.com/terraform-providers/terraform-provider-spotinst
-	branch = stable-website
 [submodule "ext/providers/statuscake"]
 	path = ext/providers/statuscake
 	url = https://github.com/terraform-providers/terraform-provider-statuscake
@@ -133,10 +125,6 @@
 [submodule "ext/providers/logicmonitor"]
 	path = ext/providers/logicmonitor
 	url = https://github.com/terraform-providers/terraform-provider-logicmonitor
-	branch = stable-website
-[submodule "ext/providers/cloudscale"]
-	path = ext/providers/cloudscale
-	url = https://github.com/terraform-providers/terraform-provider-cloudscale
 	branch = stable-website
 [submodule "ext/providers/azurestack"]
 	path = ext/providers/azurestack
