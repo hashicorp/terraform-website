@@ -20,6 +20,15 @@
     a { display: inline; }
   }
 
+  // Code spans in nav links shouldn't get bootstrap default code span styles;
+  // make them just inherit everything.
+  code {
+    padding: unset;
+    color: unset;
+    background-color: unset;
+    border-radius: unset;
+  }
+
   // hide an outdated implementation of expand/collapse link
   a.subnav-toggle {
     display: none;
