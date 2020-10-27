@@ -44,12 +44,12 @@ There are three kinds of token available:
 
 Terraform Cloud relies on a blob storage service called Archivist for storing statefiles and multiple other pieces of customer data, all of which are documented on our [data security page](../architectural-details/data-security.html).
 
-Unlike the Terraform Cloud's API, Archivist does not require that a bearer token be submitted with each request. Instead, Archivist URLS contain a Vault token that is used for authentication and authorization, and is valid for 25 hours.
+Unlike the Terraform Cloud's API, Archivist does not require that a bearer token be submitted with each request. Instead, Archivist uses secret URLs which are valid for 25 hours.
 
 For example, the [state versions api](./state-versions.html) returns a field named `hosted-state-download`, which is a URL of this form:
-`https://archivist.terraform.io/v1/object/<this long string is an encoded vault token>`
+`https://archivist.terraform.io/v1/object/<secret value>`
 
-It is important to treat these URLS themselves as secrets. They should not be logged, or shared with untrusted parties.
+It is important to treat these URLs themselves as secrets. They should not be logged, or shared with untrusted parties.
 
 ## Feature Entitlements
 
