@@ -1,6 +1,6 @@
 ---
 page_title: "Part 3.1: From Manual Changes to Semi-Automation - Terraform Recommended Practices"
-layout: "guides"
+layout: "intro"
 ---
 
 # Part 3.1: How to Move from Manual Changes to Semi-Automation

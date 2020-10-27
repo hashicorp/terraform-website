@@ -1,6 +1,6 @@
 ---
 page_title: "Part 3.2: From Semi-Automation to Infrastructure as Code - Terraform Recommended Practices"
-layout: "guides"
+layout: "intro"
 ---
 
 # Part 3.2: How to Move from Semi-Automation to Infrastructure as Code

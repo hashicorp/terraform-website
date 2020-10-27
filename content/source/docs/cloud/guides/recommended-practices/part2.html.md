@@ -1,6 +1,6 @@
 ---
 page_title: "Part 2: Evaluating Your Current Provisioning Practices - Terraform Recommended Practices"
-layout: "guides"
+layout: "intro"
 ---
 
 
