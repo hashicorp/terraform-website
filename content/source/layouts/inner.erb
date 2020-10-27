@@ -31,7 +31,10 @@
       <div id="inner-header-grid">
         <div id="external-docs-link">
           <% if external_docs_links[current_page.url] %>
-            <a href="<%= external_docs_links[current_page.url] %>">View on Terraform Registry <span class="glyphicon glyphicon-new-window" aria-hidden="true" /></a>
+            <a href="<%= external_docs_links[current_page.url] %>">
+              View on Terraform Registry
+              <img src="/assets/images/outbound-link.svg" width="20" height="20" aria-hidden="true" style="vertical-align: text-bottom;">
+            </a>
           <% end %>
         </div>
       </div>
