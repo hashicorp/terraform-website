@@ -122,6 +122,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "archive" : "hashicorp/archive"
     "aws" : "hashicorp/aws"
     "azuread" : "hashicorp/azuread"
+    "azurerm" : "hashicorp/azurerm"
     "azurestack" : "hashicorp/azurestack"
     "ciscoasa" : "hashicorp/ciscoasa"
     "cloudinit" : "hashicorp/cloudinit"
