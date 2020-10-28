@@ -128,6 +128,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "consul" : "hashicorp/consul"
     "dns" : "hashicorp/dns"
     "external" : "hashicorp/external"
+    "google": "hashicorp/google"
     "helm" : "hashicorp/helm"
     "http" : "hashicorp/http"
     "kubernetes" : "hashicorp/kubernetes"
