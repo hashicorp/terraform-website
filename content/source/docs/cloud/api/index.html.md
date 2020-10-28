@@ -42,14 +42,14 @@ There are three kinds of token available:
 
 ### Blob Storage Authentication
 
-Terraform Cloud relies on a Hashicorp-developed blob storage service for storing statefiles and multiple other pieces of customer data, all of which are documented on our [data security page](../architectural-details/data-security.html).
+Terraform Cloud relies on a HashiCorp-developed blob storage service for storing statefiles and multiple other pieces of customer data, all of which are documented on our [data security page](../architectural-details/data-security.html).
 
 Unlike the Terraform Cloud's API, this service does not require that a bearer token be submitted with each request. Instead, it includes a securely generated secret in the URLs which are valid for 25 hours.
 
 For example, the [state versions api](./state-versions.html) returns a field named `hosted-state-download`, which is a URL of this form:
 `https://archivist.terraform.io/v1/object/<secret value>`
 
-It is important to treat these URLs themselves as secrets. They should not be logged, nor shared with untrusted parties.
+This is a broadly accepted pattern for secure access. It is important to treat these URLs themselves as secrets. They should not be logged, nor shared with untrusted parties.
 
 ## Feature Entitlements
 
