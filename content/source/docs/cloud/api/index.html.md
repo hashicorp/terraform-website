@@ -40,11 +40,11 @@ There are three kinds of token available:
 - [Team tokens](../users-teams-organizations/api-tokens.html#team-api-tokens) — each team can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.
 - [Organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens) — each organization can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.
 
-### Archivist (blob storage) Authentication
+### Blob Storage Authentication
 
-Terraform Cloud relies on a blob storage service called Archivist for storing statefiles and multiple other pieces of customer data, all of which are documented on our [data security page](../architectural-details/data-security.html).
+Terraform Cloud relies on a Hashicorp-developed blob storage service for storing statefiles and multiple other pieces of customer data, all of which are documented on our [data security page](../architectural-details/data-security.html).
 
-Unlike the Terraform Cloud's API, Archivist does not require that a bearer token be submitted with each request. Instead, Archivist includes a securely generated secret in the URLs which are valid for 25 hours.
+Unlike the Terraform Cloud's API, this service does not require that a bearer token be submitted with each request. Instead, it includes a securely generated secret in the URLs which are valid for 25 hours.
 
 For example, the [state versions api](./state-versions.html) returns a field named `hosted-state-download`, which is a URL of this form:
 `https://archivist.terraform.io/v1/object/<secret value>`
