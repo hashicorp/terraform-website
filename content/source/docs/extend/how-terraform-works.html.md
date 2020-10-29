@@ -151,3 +151,28 @@ acceptable version of a given provider is installed elsewhere,
 
 [0]: https://en.wikipedia.org/wiki/Static_build#Static_building
 [1]: https://golang.org/
+
+### Debug gRPC
+
+When a given provider is running for instance with: `go run main.go` it will start a process that will listen on a UNIX socket.
+
+```
+$ go run main.go -debuggable                                                                                      
+{"@level":"debug","@message":"plugin address","@timestamp":"2020-10-14T14:33:48.857941+02:00","address":"/var/folders/sm/h3cw_xsj0279j12fnhv6bzd40000gn/T/plugin230687691","network":"unix"}
+Provider server started; to attach Terraform, set TF_REATTACH_PROVIDERS to the following:
+{"registry.terraform.io/scaleway/scaleway":{"Protocol":"grpc","Pid":63444,"Test":true,"Addr":{"Network":"unix","String":"/var/folders/sm/h3cw_xsj0279j12fnhv6bzd40000gn/T/plugin230687691"}}}
+```
+
+You can send requests to this server using a gRPC client such as [grpcURL](https://github.com/fullstorydev/grpcurl) or [bloomprc](https://github.com/uw-labs/bloomrpc). 
+For instance using grpcurl you can run: 
+
+`grpcurl -unix -plaintext /var/folders/sm/h3cw_xsj0279j12fnhv6bzd40000gn/T/plugin230687691 list
+ grpc.health.v1.Health
+ grpc.reflection.v1alpha.ServerReflection
+ plugin.GRPCBroker
+ plugin.GRPCController
+ plugin.GRPCStdio
+ tfplugin5.Provider
+`    
+
+By doing so you see that your provider is running and accepting gRPC requests.
