@@ -29,3 +29,10 @@ body {
 .sidebar .sidebar-nav li a {
   line-height: 18px;
 }
+
+.sidebar .sidebar-nav li a .hack-outbound-svg {
+  fill: none !important;
+  path {
+    stroke: $sidebar-link-color !important;
+  }
+}
