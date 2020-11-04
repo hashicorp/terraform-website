@@ -62,6 +62,13 @@
           svg {
             fill: $header-link-color-hover;
           }
+
+          .hack-outbound-svg {
+            fill: none !important;
+            path {
+              stroke: $header-link-color-hover !important;
+            }
+          }
         }
       }
 
@@ -88,6 +95,13 @@
         width: 14px;
         height: 14px;
         margin-right: 3px;
+      }
+
+      .hack-outbound-svg {
+        fill: none !important;
+        path {
+          stroke: $header-link-color !important;
+        }
       }
 
       &:hover > ul {

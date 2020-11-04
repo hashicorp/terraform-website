@@ -32,6 +32,13 @@
             svg {
               fill: $home-header-link-color-hover;
             }
+
+            .hack-outbound-svg {
+              fill: none !important;
+              path {
+                stroke: $home-header-link-color-hover !important;
+              }
+            }
           }
         }
 
@@ -43,6 +50,13 @@
 
         svg {
           fill: $home-header-link-color;
+        }
+
+        .hack-outbound-svg {
+          fill: none !important;
+          path {
+            stroke: $home-header-link-color !important;
+          }
         }
 
         ul {

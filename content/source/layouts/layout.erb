@@ -55,7 +55,7 @@
 
   <body id="<%= body_id_for(current_page) %>" class="<%= body_classes_for(current_page) %>">
     <%= partial("layouts/alert_banner", locals: {show: false, theme: 'terraform', url:"https://www.hashicorp.com/webinars/provision-infrastructure-using-cloud-development-kit-for-terraform/", tag:"Live Webinar", text:"Write an infrastructure application in TypeScript and Python using CDK for Terraform", cta:"Register Now"}) %>
-  
+
     <header class="hashiStackMenuRoot hashiStackMenu">
             <nav class="nav g-container">
               <a class="logoLink" href="https://www.hashicorp.com">
@@ -259,6 +259,12 @@
                 <li><a data-track='docs-cloud' href="/docs/cloud/index.html">Terraform Cloud</a></li>
                 <li><a data-track='docs-ent' href="/docs/enterprise/index.html">Terraform Enterprise</a></li>
                 <li><a data-track='docs-providers' href="/docs/providers/index.html">Providers</a></li>
+                <li>
+                  <a data-track='docs-registry-outbound' href="https://registry.terraform.io">
+                    Terraform Registry
+                    #{inline_svg("outbound-link.svg", class: "hack-outbound-svg")}
+                  </a>
+                </li>
                 <li><a data-track='docs-glossary' href="/docs/glossary.html">Glossary</a></li>
                 <li><a data-track='docs-registry' href="/docs/registry/index.html">Publishing Providers &amp; Modules</a></li>
                 <li><a data-track='docs-extending' href="/docs/extend/index.html">Extending Terraform</a></li>
