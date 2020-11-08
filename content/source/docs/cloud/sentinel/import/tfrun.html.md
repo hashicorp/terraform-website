@@ -158,8 +158,10 @@ As an example, in a workspace named `app-us-east-dev` the following policy would
 import "tfrun"
 import "strings"
 
-main = rule {
-    strings.has_suffix(tfrun.workspace.name, "-dev")
+evaluate_production_policy = rule { false }
+
+main = rule when strings.has_suffix(tfrun.workspace.name, "-dev") is false {
+    evaluate_production_policy
 }
 ```
 
