@@ -83,7 +83,7 @@ The default value is *"Queued manually via the Terraform Enterprise API"*.
 
 * **Value Type:** String.
 
-Specifies the checksum hash (SHA) that identifies the commit
+Specifies the checksum hash (SHA) that identifies the commit.
 
 ### Value: `speculative`
 
