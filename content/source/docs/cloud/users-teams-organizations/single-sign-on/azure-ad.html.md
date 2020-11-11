@@ -17,30 +17,18 @@ For more information on the listed features, visit the [Azure SAML Protocol Docu
 
 ## Configuration (Azure AD)
 
--> **Note:** Azure is rolling out a new interface for setting up Enterprise Applications. The first 3 steps vary depending on your UI choice.
-
-### Using the current Azure AD UI
-1. In your desired Azure AD Directory, navigate to the Enterprise Applications page and create a "+ New Application".
-2. Select the non-gallery application option.
-3. Give your application a name and click "Add."
-
-### Using the updated Azure AD UI
-1. In your desired Azure AD Directory, navigate to the Enterprise Applications page and create a "+ New Application".
-2. Locate and select the "+ Create your own appliction" option.
-3. In the resulting sidebar, name your application, select the option to "Integrate any other application you don't find in the gallery," and click "Create" at the bottom of the page.
-
-4. Under the "Getting Started" section, select "Set up single sign on."
-5. Select the SAML option.
-6. You should now see a 5-part set up list. Ignore step 1 for now, we will come back to that.
-7. Edit step 2, "User Attributes & Claims".
-8. Select the required Name ID claim. Ensure that its name identifier format is "Email address".
-9. Select "Add a certificate", located in step 3 of the list.
-    1. Import or create a certificate.
-    1. If the certificate is not listed as active, use the meatball menu to its right to set it to active.
-    1. Set Signing option to Sign SAML response and assertion.
-    1. Set Signing Algorithm to `SHA-256`
-    1. Save this.
-10. After saving certificate settings you should now see a field in step 3 labeled "App Federation Metadata Url". Copy that. You're ready to head over to your organization in Terraform Cloud.
+1. Sign in to the Azure portal.
+2. On the left navigation pane, select the **Azure Active Directory** service.
+3. Navigate to **Enterprise Applications** and then select **All Applications**.
+4. To add new application, select **New application**.
+5. In the **Add from the gallery** section, type **Terraform Cloud** in the search box.
+6. Select **Terraform Cloud** from results panel and then add the app. Wait a few seconds while the app is added to your tenant.
+7. On the **Terraform Cloud** application integration page, find the **Manage** section and select **single sign-on**.
+8. On the **Select a single sign-on method** page, select **SAML**.
+9. In the **SAML Signing Certificate** section select **Add a certificate**.
+    1. Select **New Certificate**.
+    1. Select **Save**.
+10. In the SAML Signing Certificate section (you may need to refresh the page) copy the **App Federation Metadata Url**.
 
 ## Configuration (Terraform Cloud)
 
@@ -62,17 +50,21 @@ For more information on the listed features, visit the [Azure SAML Protocol Docu
 
 6. Copy Entity ID and Assertion Consumer Service URL.
 
-## Configuration (Azure)
+## Configuration (Azure AD)
 
-Returning to the SAML configuration page for your custom enterprise application in Azure:
+1. In the Azure portal, on the **Terraform Cloud** application integration page, find the **Manage**section and select **single sign-on**.
+2. On the **Select a single sign-on method** page, select **SAML**.
+3. On the **Set up single sign-on with SAML** page, click the edit/pen icon for **Basic SAML Configuration** to edit the settings.
+    1. In the **Identifier** text box, paste the **Entity ID**.
+    2. In the **Reply URL** text box, paste the **Assertion Consumer Service URL**.
+    3. In the **Sign-on URL** text box, type the URL: `https://app.terraform.io/session`
+    4. Select **Save**.
 
-1. Edit step 1, "Basic SAML Configuration"
-2. Provide the copied Entity ID and Asserion Consumer Service URL from Terraform Cloud.
-3. Save.
+## Configuration (Terraform Cloud)
 
-4. [Verify](./testing.html) your settings and click "Enable".
+1. [Verify](./testing.html) your settings and click "Enable".
 
-5. Your Azure SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
+2. Your Azure SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
 
     ![sso-settings](../images/sso/settings-azure.png)
 
