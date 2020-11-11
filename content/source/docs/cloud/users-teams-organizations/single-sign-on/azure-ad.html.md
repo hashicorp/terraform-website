@@ -52,7 +52,7 @@ For more information on the listed features, visit the [Azure AD SAML Protocol D
 
 ## Configuration (Azure AD)
 
-1. In the Azure portal, on the **Terraform Cloud** application integration page, find the **Manage**section and select **single sign-on**.
+1. In the Azure portal, on the **Terraform Cloud** application integration page, find the **Manage** section and select **single sign-on**.
 2. On the **Select a single sign-on method** page, select **SAML**.
 3. On the **Set up single sign-on with SAML** page, click the edit/pen icon for **Basic SAML Configuration** to edit the settings.
     1. In the **Identifier** text box, paste the **Entity ID**.
