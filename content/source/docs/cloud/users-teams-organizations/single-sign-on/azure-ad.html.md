@@ -9,8 +9,8 @@ page_title: "Azure AD - Singlge Sign-On - Terraform Cloud and Terraform Enterpri
 
 The Azure SSO integration currently supports the following SAML features:
 
-- Service Provider (SP)-initiated SSO
-- Identity Provider (IdP)-initiated SSO
+- Service Provider (SP) initiated SSO
+- Identity Provider (IdP) initiated SSO
 - Just-in-Time Provisioning
 
 For more information on the listed features, visit the [Azure SAML Protocol Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol).
