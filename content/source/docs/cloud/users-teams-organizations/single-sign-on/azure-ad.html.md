@@ -7,13 +7,13 @@ page_title: "Azure AD - Singlge Sign-On - Terraform Cloud and Terraform Enterpri
 
 # Single Sign-on: Azure AD
 
-The Azure SSO integration currently supports the following SAML features:
+The Azure AD SSO integration currently supports the following SAML features:
 
 - Service Provider (SP) initiated SSO
 - Identity Provider (IdP) initiated SSO
 - Just-in-Time Provisioning
 
-For more information on the listed features, visit the [Azure SAML Protocol Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol).
+For more information on the listed features, visit the [Azure AD SAML Protocol Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/single-sign-on-saml-protocol).
 
 ## Configuration (Azure AD)
 
@@ -59,6 +59,11 @@ For more information on the listed features, visit the [Azure SAML Protocol Docu
     2. In the **Reply URL** text box, paste the **Assertion Consumer Service URL**.
     3. In the **Sign-on URL** text box, type the URL: `https://app.terraform.io/session`
     4. Select **Save**.
+4. In the app's overview page, find the **Manage** section and select **Users and groups**.
+5. Select **Add user**, then select **Users and groups** in the **Add Assignment** dialog.
+6. In the **Users and groups** dialog, select your user from the Users list, then click the **Select** button at the bottom of the screen.
+7. If you are expecting a role to be assigned to the users, you can select it from the **Select a role** dropdown. If no role has been set up for this app, you see "Default Access" role selected.
+8. In the **Add Assignment** dialog, click the **Assign** button.
 
 ## Configuration (Terraform Cloud)
 
