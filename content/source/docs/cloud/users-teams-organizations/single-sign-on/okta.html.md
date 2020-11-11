@@ -43,7 +43,7 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
 
     ![sso-wizard-configure-settings-okta](../images/sso/wizard-configure-settings-okta.png)
 
-5. Verify your settings and click "Enable".
+5. [Verify](./testing.html) your settings and click "Enable".
 
 6. Your Okta SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
 
