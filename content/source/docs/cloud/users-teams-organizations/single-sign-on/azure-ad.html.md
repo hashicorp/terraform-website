@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Azure AD - Singlge Sign-On - Terraform Cloud and Terraform Enterprise"
+page_title: "Azure AD - Single Sign-on - Terraform Cloud and Terraform Enterprise"
 ---
 
 -> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
