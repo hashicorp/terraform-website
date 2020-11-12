@@ -44,7 +44,9 @@ In the above example we see the usage of the timeouts in the schema being config
 
 ## Retry
 
-A common case for requiring retries or polling is when the backend infrastructure being provisioned is designed to be asynchronous, requiring the developer to repeatedly check the status of the resource. The retry helper takes a timeout and a function that is retried repeatedly. The timeout can be retrieved from the `*schema.ResourceData` struct, using the `Timeout` method, passing in the appropriate timeout key (`schema.TimeoutCreate`). The retry function provided should return either a `resource.NonRetryableError` for unexpected errors or states, otherwise continue to retry with a `resource.RetryableError`. In the context of a `CREATE` function, once the backend responds with the desired state, finish the function with a `resource.NonRetryableError` wrapping the `READ` function (anything that goes wrong in there is considered unexpected).
+A common case for requiring retries or polling is when the backend infrastructure being provisioned is designed to be asynchronous, requiring the developer to repeatedly check the status of the resource. The retry helper takes a timeout and a function that is retried repeatedly. The timeout can be retrieved from the `*schema.ResourceData` struct, using the `Timeout` method, passing in the appropriate timeout key (`schema.TimeoutCreate`). The retry function provided should return either a `resource.NonRetryableError` for unexpected errors or states, otherwise continue to retry with a `resource.RetryableError`.
+
+In the context of a `CREATE` function, once the backend responds with the desired state, invoke the `READ` function. If `READ` errors, return that error wrapped with `resource.NonRetryableError`. Otherwise, return `nil` (no error) from the retry function. (Updated to reflect [stricter behavior of Terraform SDK v2](https://www.terraform.io/docs/extend/guides/v2-upgrade-guide.html#clearer-handling-of-nil-for-helper-resource-nonretryableerror-and-helper-resource-retryableerror).)
 
 ```go
 func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) error {
@@ -67,7 +69,12 @@ func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) err
             return resource.RetryableError(fmt.Errorf("Expected instance to be created but was in state %s", resp.Status))
         }
 
-        return resource.NonRetryableError(resourceExampleInstanceRead(d, meta))
+        err = resourceExampleInstanceRead(d, meta)
+        if err != nil {
+            return resource.NonRetryableError(err)
+        } else {
+            return nil
+        }
     })
 }
 ```
