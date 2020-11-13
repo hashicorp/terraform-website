@@ -56,8 +56,9 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "brightbox" : "brightbox/brightbox"
     "checkpoint" : "CheckPointSW/checkpoint"
     "circonus" : "circonus-labs/circonus"
+    "cloudamqp" : "cloudamqp/cloudamqp"
     "cloudflare" : "cloudflare/cloudflare"
-    "cloudscale": "cloudscale-ch/cloudscale"
+    "cloudscale" : "cloudscale-ch/cloudscale"
     "constellix" : "Constellix/constellix"
     "datadog" : "DataDog/datadog"
     "digitalocean" : "digitalocean/digitalocean"
@@ -79,7 +80,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "lacework" : "lacework/lacework"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
-    "mailgun": "wgebis/mailgun"
+    "mailgun" : "wgebis/mailgun"
     "mongodbatlas" : "mongodb/mongodbatlas"
     "mso" : "CiscoDevNet/mso"
     "ncloud" : "NaverCloudPlatform/ncloud" # unverified
@@ -95,13 +96,15 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "ovh" : "ovh/ovh" # unverified?
     "packet" : "packethost/packet"
     "pagerduty" : "PagerDuty/pagerduty"
-    "panos" : "PaloAltoNetworks/panos"             # unverified
+    "panos" : "PaloAltoNetworks/panos" # unverified
+    "postgresql" : "cyrilgdn/postgresql"
     "prismacloud" : "PaloAltoNetworks/prismacloud" # unverified
+    "rabbitmq" : "cyrilgdn/rabbitmq"
     "rancher2" : "rancher/rancher2"
     "scaleway" : "scaleway/scaleway"
     "selectel" : "selectel/selectel" # unverified
     "signalfx" : "splunk-terraform/signalfx"
-    "spotinst": "spotinst/spotinst"
+    "spotinst" : "spotinst/spotinst"
     "stackpath" : "stackpath/stackpath" # unverified
     "sumologic" : "SumoLogic/sumologic"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
@@ -129,7 +132,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "consul" : "hashicorp/consul"
     "dns" : "hashicorp/dns"
     "external" : "hashicorp/external"
-    "google": "hashicorp/google"
+    "google" : "hashicorp/google"
     "helm" : "hashicorp/helm"
     "http" : "hashicorp/http"
     "kubernetes" : "hashicorp/kubernetes"
