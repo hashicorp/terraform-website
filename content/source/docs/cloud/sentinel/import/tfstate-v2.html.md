@@ -69,8 +69,7 @@ The collections are:
 
 * [`resources`](#the-resources-collection) - The state of all resources across
   all modules in the state.
-* [`outputs`](#the-outputs-collection) - The state of all outputs across all
-  modules in the state.
+* [`outputs`](#the-outputs-collection) - The state of all outputs from the root module in the state.
 
 These collections are specifically designed to be used with the
 [`filter`](https://docs.hashicorp.com/sentinel/language/collection-operations/#filter-expression)
