@@ -54,10 +54,6 @@
 	path = ext/providers/github
 	url = https://github.com/terraform-providers/terraform-provider-github
 	branch = stable-website
-[submodule "ext/providers/google"]
-	path = ext/providers/google
-	url = https://github.com/terraform-providers/terraform-provider-google-beta
-	branch = stable-website
 [submodule "ext/providers/ignition"]
 	path = ext/providers/ignition
 	url = https://github.com/terraform-providers/terraform-provider-ignition
@@ -82,10 +78,6 @@
 	path = ext/providers/oneandone
 	url = https://github.com/terraform-providers/terraform-provider-oneandone
 	branch = stable-website
-[submodule "ext/providers/postgresql"]
-	path = ext/providers/postgresql
-	url = https://github.com/terraform-providers/terraform-provider-postgresql
-	branch = stable-website
 [submodule "ext/providers/powerdns"]
 	path = ext/providers/powerdns
 	url = https://github.com/terraform-providers/terraform-provider-powerdns
@@ -93,10 +85,6 @@
 [submodule "ext/providers/profitbricks"]
 	path = ext/providers/profitbricks
 	url = https://github.com/terraform-providers/terraform-provider-profitbricks
-	branch = stable-website
-[submodule "ext/providers/rabbitmq"]
-	path = ext/providers/rabbitmq
-	url = https://github.com/terraform-providers/terraform-provider-rabbitmq
 	branch = stable-website
 [submodule "ext/providers/rancher"]
 	path = ext/providers/rancher
@@ -221,8 +209,4 @@
 [submodule "ext/providers/rubrik"]
 	path = ext/providers/rubrik
 	url = https://github.com/terraform-providers/terraform-provider-rubrik
-	branch = stable-website
-[submodule "ext/providers/cloudamqp"]
-	path = ext/providers/cloudamqp
-	url = https://github.com/terraform-providers/terraform-provider-cloudamqp
 	branch = stable-website
