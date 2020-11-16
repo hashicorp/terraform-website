@@ -25,7 +25,7 @@ For more information on the listed features, visit the [Okta Glossary](https://h
 6. Visit the "Sign On" tab in the application.
 7. Copy the "Identity Provider Metadata" URL.
 
-For information on configuring automated Team Mapping using Okta Group Membership, please see the 'Configuration - Team Mapping (Okta)' section below. 
+For information on configuring automated Team Mapping using Okta Group Membership, please see the [Configuration - Team Mapping (Okta)](./okta.html.md#configuration---team-mapping-okta) section below. 
 
 ## Configuration (Terraform Cloud)
 
