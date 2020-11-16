@@ -58,10 +58,10 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
 * Expand the `Attributes` section of the Application configuration (under the `Sign On` tab):
 
 * Set the `Group Attribute` Statements to the following:
-** Name: MemberOf
-** Name format: Basic
-** Filter: Matches regex
-** Filter value: .*
+    * Name: `MemberOf`
+    * Name format: `Basic`
+    * Filter: `Matches regex`
+    * Filter value: `.*`
 
 Once these configure steps have been completed, ALL Okta groups to which a given User belongs will be passed in the SAML assertion upon login to Terraform Cloud, which means that User will get added automatically to any Teams within Terraform Cloud for which there’s an **exact** name match.  
 
