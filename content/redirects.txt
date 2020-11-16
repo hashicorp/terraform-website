@@ -570,3 +570,10 @@
 /docs/providers/google/d/google_storage_transfer_project_service_account.html   /docs/providers/google/d/storage_transfer_project_service_account.html
 /docs/providers/google/d/datasource_tpu_tensorflow_versions.html                /docs/providers/google/d/tpu_tensorflow_versions.html
 /docs/registry/support.html                                                     /docs/registry/index.html#getting-help
+
+# Redirect removed terraform examples to learn.hashicorp.com
+/intro/examples/aws.html        https://learn.hashicorp.com/terraform
+/intro/examples/consul.html     https://learn.hashicorp.com/terraform
+/intro/examples/count           https://learn.hashicorp.com/terraform
+/intro/examples/cross-provider  https://learn.hashicorp.com/terraform
+/intro/examples/                https://learn.hashicorp.com/terraform
