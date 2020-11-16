@@ -52,7 +52,7 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
     ![sso-settings](../images/sso/settings-okta.png)
 
 ## Configuration - Team Mapping (Okta)
-1. Complete all steps outlined in the [Configuration (Okta)](okta.html#configuration-okta-) section above, and take note of the default team mapping behavior as described [here](../single-sign-on.html#managing-team-membership-through-sso).
+1. Complete all steps outlined in the [Configuration (Okta)](./okta.html#configuration-okta-) section above, and take note of the default team mapping behavior as described [here](../single-sign-on.html#managing-team-membership-through-sso).
 
 2. Edit your Terraform Cloud Okta Application and complete the following steps:
 * Expand the `Attributes` section of the Application configuration (under the `Sign On` tab):
@@ -63,6 +63,6 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
     * Filter: `Matches regex`
     * Filter value: `.*`
 
-Once these configure steps have been completed, ALL Okta groups to which a given User belongs will be passed in the SAML assertion upon login to Terraform Cloud, which means that User will get added automatically to any Teams within Terraform Cloud for which there’s an **exact** name match.  
+Once these configure steps have been completed, **all** Okta groups to which a given User belongs will be passed in the SAML assertion upon login to Terraform Cloud, which means that User will get added automatically to any Teams within Terraform Cloud for which there’s an **exact** name match.  
 
 Using the above SAML assertion as an example, the User in question would get added to the `Everyone`, `ops`, and `test` Teams in Terraform Cloud if those Teams exist in the target Organization, but those values will simply be ignored if no matching Team name is found.
