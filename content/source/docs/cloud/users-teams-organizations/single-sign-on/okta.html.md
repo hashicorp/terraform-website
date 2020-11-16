@@ -52,7 +52,7 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
     ![sso-settings](../images/sso/settings-okta.png)
 
 ## Configuration - Team Mapping (Okta)
-1. Complete all steps outlined in the [Configuration (Okta)](https://www.terraform.io/docs/cloud/users-teams-organizations/single-sign-on/okta.html#configuration-okta-) section above, and take note of the default team mapping behavior as described [here](https://www.terraform.io/docs/cloud/users-teams-organizations/single-sign-on.html#managing-team-membership-through-sso).
+1. Complete all steps outlined in the [Configuration (Okta)](okta.html#configuration-okta-) section above, and take note of the default team mapping behavior as described [here](../single-sign-on.html#managing-team-membership-through-sso).
 
 2. Edit your Terraform Cloud Okta Application and complete the following steps:
 * Expand the `Attributes` section of the Application configuration (under the `Sign On` tab):
