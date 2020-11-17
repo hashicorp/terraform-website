@@ -571,6 +571,9 @@
 /docs/providers/google/d/datasource_tpu_tensorflow_versions.html                /docs/providers/google/d/tpu_tensorflow_versions.html
 /docs/registry/support.html                                                     /docs/registry/index.html#getting-help
 
+# Moving "Terraform Cloud Agents" out from underneath "Workspaces"
+/docs/cloud/workspaces/agent.html   /docs/cloud/agents/index.html
+
 # Redirect removed terraform examples to learn.hashicorp.com
 /intro/examples/aws.html        https://learn.hashicorp.com/terraform
 /intro/examples/consul.html     https://learn.hashicorp.com/terraform

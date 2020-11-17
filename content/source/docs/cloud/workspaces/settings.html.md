@@ -54,7 +54,7 @@ The default value is "Remote", which instructs Terraform Cloud to perform Terraf
 
 To disable remote execution for a workspace, change its execution mode to "Local". The workspace will store state, which Terraform can access using the [remote backend][].
 
-If you instead need to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure, consider using [Terraform Cloud Agents](../workspaces/agent.html). By deploying a lightweight agent, you can establish a simple connection between your environment and Terraform Cloud.
+If you instead need to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure, consider using [Terraform Cloud Agents](../agents/index.html). By deploying a lightweight agent, you can establish a simple connection between your environment and Terraform Cloud.
 
 Changing your workspace's execution mode after a run has already been planned will cause the run to error when it is applied.
 
