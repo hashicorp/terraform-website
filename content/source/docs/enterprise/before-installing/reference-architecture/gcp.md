@@ -37,10 +37,10 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 
 ### Terraform Enterprise Server (Compute Engine VM via Regional Managed Instance Group)
 
-| Type        | CPU      | Memory       | Disk        | GCP Machine Types              |
-|-------------|----------|--------------|-------------|--------------------------------|
-| Minimum     | 2 core   | 7.5 GB RAM   | 50GB/200GB* | n1-standard-2                 |
-| Recommended | 4-8 core | 15-30 GB RAM | 50GB/200GB* | n1-standard-4, n1-standard-8   |
+| Type    | CPU    | Memory    | Disk        | GCP Machine Types |
+|---------|--------|-----------|-------------|-------------------|
+| Minimum | 4 core | 15 GB RAM | 50GB/200GB* | n1-standard-4     |
+| Scaled  | 8 core | 30 GB RAM | 50GB/200GB* | n1-standard-8     |
 
 #### Hardware Sizing Considerations
 
@@ -53,22 +53,22 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a
+- The scaled size is for production environments where there is a
   consistent high workload in the form of concurrent Terraform runs.
 
 ### PostgreSQL Database (Cloud SQL PostgreSQL Production)
 
-| Type        | CPU      | Memory       | Storage | GCP Machine Types            |
-|-------------|----------|--------------|---------|------------------------------|
-| Minimum     | 2 core   | 8 GB RAM     | 50GB    | Custom PostgreSQL Production |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB    | Custom PostgreSQL Production |
+| Type    | CPU    | Memory    | Storage | GCP Machine Types            |
+|---------|--------|-----------|---------|------------------------------|
+| Minimum | 4 core | 16 GB RAM | 50GB    | Custom PostgreSQL Production |
+| Scaled  | 8 core | 32 GB RAM | 50GB    | Custom PostgreSQL Production |
 
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a
+- The scaled size is for production environments where there is a
   consistent high workload in the form of concurrent Terraform runs.
 
 ### Object Storage (Cloud Storage)

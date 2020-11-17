@@ -48,19 +48,19 @@ the internal database or Vault may result in serious performance issues.
 
 ### Terraform Enterprise Servers
 
-| Type        | CPU Sockets | Total Cores\* | Memory       | Disk |
-| ----------- | ----------- | ------------- | ------------ | ---- |
-| Minimum     | 2           | 2             | 8 GB RAM     | 40GB |
-| Recommended | 2           | 4             | 16-32 GB RAM | 40GB |
+| Type    | CPU Sockets | Total Cores\* | Memory    | Disk |
+|---------|-------------|---------------|-----------|------|
+| Minimum | 2           | 4             | 16 GB RAM | 40GB |
+| Scaled  | 2           | 8             | 32 GB RAM | 40GB |
 
--> **Note:** Per VMWare’s recommendation, always allocate the least amount of CPU necessary. HashiCorp recommends starting with 2 CPUs and increasing if necessary.
+-> **Note:** Per VMWare’s recommendation, always allocate the least amount of CPU necessary. HashiCorp recommends starting with 4 CPUs and increasing if necessary.
 
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is
+- The scaled size is for production environments where there is
   a consistent high workload in the form of concurrent terraform
   runs.
 
@@ -245,5 +245,5 @@ and is not covered in this document. We do recommend regular database snapshots.
 
 | Type        | CPU Sockets | Total Cores | Memory       | Storage |
 | ----------- | ----------- | ----------- | ------------ | ------- |
-| Minimum     | 2           | 2 core      | 8 GB RAM     | 50GB    |
-| Recommended | 2           | 4-8 core    | 16-32 GB RAM | 50GB    |
+| Demo        | 2           | 2 core      | 8 GB RAM     | 50GB    |
+| Production  | 2           | 4-8 core    | 16-32 GB RAM | 50GB    |

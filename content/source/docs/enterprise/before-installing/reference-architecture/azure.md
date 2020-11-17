@@ -44,10 +44,10 @@ instances.
 
 ### Terraform Enterprise Servers (Azure VMs)
 
-| Type        | CPU      | Memory       | Disk | Azure VM Sizes                     |
-| ----------- | -------- | ------------ | ---- | ---------------------------------- |
-| Minimum     | 2 core   | 8 GB RAM     | 50GB | Standard\_D2\_v3                   |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB | Standard\_D4\_v3, Standard\_D8\_v3 |
+| Type    | CPU    | Memory    | Disk | Azure VM Sizes   |
+|---------|--------|-----------|------|------------------|
+| Minimum | 4 core | 16 GB RAM | 50GB | Standard\_D4\_v3 |
+| Scaled  | 8 core | 32 GB RAM | 50GB | Standard\_D8\_v3 |
 
 #### Hardware Sizing Considerations
 
@@ -60,21 +60,21 @@ instances.
 - The minimum size would be appropriate for most initial production
   deployments or for development/testing environments.
 
-- The recommended size is for production environments where there is a
+- The scaled size is for production environments where there is a
   consistently high workload in the form of concurrent Terraform runs.
 
 ### PostgreSQL Database (Azure Database for PostgreSQL)
 
-| Type        | CPU      | Memory      | Storage | Azure DB Sizes                                     |
-| ----------- | -------- | ----------- | ------- | -------------------------------------------------- |
-| Minimum     | 2 core   | 4 GB RAM    | 50GB    | General Purpose 2 vCores                           |
-| Recommended | 4-8 core | 8-16 GB RAM | 50GB    | General Purpose 4 vCores, General Purpose 8 vCores |
+| Type    | CPU    | Memory    | Storage | Azure DB Sizes |
+|---------|--------|-----------|---------|----------------|
+| Minimum | 4 core | 8 GB RAM  | 50GB    | GP_Gen5_4      |
+| Scaled  | 8 core | 16 GB RAM | 50GB    | GP_Gen5_8      |
 
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
   deployments or for development/testing environments.
-- The recommended size is for production environments where there is
+- The scaled size is for production environments where there is
   a consistent high workload in the form of concurrent Terraform
   runs.
   - Be aware that a 4 vCPU database has a maximum capacity of 1Tb.  For organizations which require long-term logging for audit, larger databases may be required.  The 8 vCPU database has a maximum of 1.5Tb.
