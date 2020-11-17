@@ -143,7 +143,7 @@ The instance profile of Terraform Enterprise's instance is the operator's respon
 
 #### S3 IAM Policy
 
-Terraform Enterprise's usage of S3 requires these permissions:
+At a minimum, Terraform Enterprise requires the following S3 permissions:
 
 ```
 {
