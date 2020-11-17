@@ -58,28 +58,29 @@ For these use cases, we recommend you leverage the information provided by the [
 
 Organizations are limited to 20 pools each.
 
-## Configuration
+## Managing Agent Pools
+
+Agents are organized into pools, which can be managed in Terraform Cloud's UI. Each workspace can specify which agent pool should run its workloads.
 
 -> **Note:** You must be a member of the “Owners” team within your organization in order to manage an organization's agents in Terraform Cloud. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-### Managing Agents and Pools
-
-#### Create a new Agent Pool
+### Create a new Agent Pool
 
 1. Navigate to **Organization Settings > Agents** and click "New agent pool".
 
-![Screenshot: The Agents page with no pools](./images/agent-first-pool.png)
+    ![Screenshot: The Agents page with no pools](./images/agent-first-pool.png)
 
 2. Give your pool a name, then click "Continue". This name will be used to distinguish your pools when changing the settings of a workspace.
 
-![Screenshot: Step 1 of pool creation, naming the agent pool](./images/agent-first-pool-name.png)
+    ![Screenshot: Step 1 of pool creation, naming the agent pool](./images/agent-first-pool-name.png)
 
 3. Give your token a description and click "Create Token".
-    - **Note:** Your token information will not be displayed again. Make sure to save it appropriately before moving to the final step.
 
-![Screenshot: Step 2 of pool creation, token creation](./images/agent-first-pool-tokens.png)
+    -> **Note:** Your token information will not be displayed again. Make sure to save it appropriately before moving to the final step.
+
+    ![Screenshot: Step 2 of pool creation, token creation](./images/agent-first-pool-tokens.png)
 
 4. Click "Finish".
 
@@ -89,23 +90,43 @@ Organizations are limited to 20 pools each.
 
 2. Click "Delete agent pool".
 
-![Screenshot: Deleting an agent pool](./images/agent-delete-valid.png)
+    ![Screenshot: Deleting an agent pool](./images/agent-delete-valid.png)
 
 3. Confirm the deletion of the pool by clicking "Yes, delete agent pool".
 
-![Screenshot: Confirmation to delete an agent pool](./images/agent-delete-valid-confirm.png)
+    ![Screenshot: Confirmation to delete an agent pool](./images/agent-delete-valid-confirm.png)
 
-~> **Important:** Agent pools which are still associated with a workspace are unable to be deleted. To delete these pools, first ensure the related workspace has completed all in progress runs, and remove the association to the agent pool in **Workspace Settings > General Settings**.
+    ~> **Important:** Agent pools which are still associated with a workspace are unable to be deleted. To delete these pools, first ensure the related workspace has completed all in progress runs, and remove the association to the agent pool in **Workspace Settings > General Settings**.
 
-![Screenshot: Unable to delete an agent pool with attached workspace](./images/agent-delete-invalid.png)
+    ![Screenshot: Unable to delete an agent pool with attached workspace](./images/agent-delete-invalid.png)
 
-#### Download and Install the Agent
+### Revoke an Agent Token
+
+You may revoke an issued token from your agents at any time.
+
+Revoking a token will cause the agents using it to exit. For agents to continue servicing workspace jobs, they must be reinitialized with a new token. Under normal circumstances, it may be desirable to generate a new token first, initialize the agents using it, then revoke the old token once no agents are using it. Agent tokens display information about the last time they were used to help you decide whether they are safe to revoke.
+
+1. Navigate to **Organization Settings > Agents**, then click on the agent pool you would like to manage.
+
+2. Click **"Revoke Token"** for the token you would like to revoke.
+
+    ![Screenshot: The Agent tokens list with the "Revoke Token" link highlighted](./images/agent-revoke-token.png)
+
+3. Confirm the deletion of the token by clicking "Yes, delete token".
+
+    ![Screenshot: The "Revoke agent token" confirmation modal](./images/agent-revoke-token-confirm.png)
+
+## Managing Agents
+
+The agent software runs on your own infrastructure. Agent pool membership is determined by which token you provide when starting the agent.
+
+### Download and Install the Agent
 
 1. Download the latest [agent release](https://releases.hashicorp.com/tfc-agent), the associated checksum file (.SHA256sums), and the checksum signature (.sig).
 1. Verify the integrity of the downloaded archive, as well as the signature of the `SHA256SUMS` file using the instructions available on [HashiCorp's security page](https://www.hashicorp.com/security).
 1. Extract the release archive. The `unzip` utility is available on most Linux distributions and may be invoked as `unzip <archive file>`. Two individual binaries will be extracted (`tfc-agent` and `tfc-agent-core`). These binaries _must_ reside in the same directory for the agent to function properly.
 
-#### Start the Agent
+### Start the Agent
 
 Using the Agent token you copied earlier, set the `TFC_AGENT_TOKEN` and `TFC_AGENT_NAME` environment variables.
 
@@ -121,7 +142,7 @@ Once complete, your agent will appear on the Agents page and display its current
 
 ![Screenshot: The Agents page with one connected agent in the idle state](./images/agent-idle.png)
 
-##### Optional Configuration: Running an Agent using Docker
+#### Optional Configuration: Running an Agent using Docker
 
 Alternatively, you can use our official agent Docker container to run the Agent.
 
@@ -131,13 +152,13 @@ docker run -e TFC_AGENT_TOKEN=your-token -e
 TFC_AGENT_NAME=your-agent-name hashicorp/tfc-agent
 ```
 
-##### Optional Configuration: Single-execution mode
+#### Optional Configuration: Single-execution mode
 
 The Agent can also be configured to run in single-execution mode, which will ensure that the Agent only runs a single workload, then terminates. This can be used in combination with Docker and a process supervisor to ensure a clean working environment for every Terraform run.
 
 To use single-execution mode, start the agent with the `-single` command line argument.
 
-### Configuring Workspaces to use the Agent
+## Configuring Workspaces to use the Agent
 
 -> **Note:** You must have “Admin” access to the workspace you are configuring to change the [execution mode](/docs/cloud/workspaces/settings.html#execution-mode). ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
@@ -157,7 +178,7 @@ To configure a workspace to execute runs using an agent:
 
 ![Screenshot: The Workspace General settings page, with agent selected for execution mode](./images/agent-execution-mode.png)
 
-#### Run Details
+### Run Details
 
 Runs which are processed by an agent will have additional information about that agent in the details section of the run:
 
@@ -165,25 +186,9 @@ Runs which are processed by an agent will have additional information about that
 
 -> **Note:** Different agents may be used for the plan and apply operations, depending on agent availability within the pool.
 
-#### Running Multiple Agents
+### Running Multiple Agents
 
 You may choose to run multiple agents within your network for improved resiliency. If there are multiple agents available within an organization, Terraform Cloud will select the first available agent.
-
-#### Revoking an Agent Token
-
-You may revoke an issued token from your agents at any time.
-
-Revoking a token will cause the agents using it to exit. For agents to continue servicing workspace jobs, they must be reinitialized with a new token. Under normal circumstances, it may be desirable to generate a new token first, initialize the agents using it, then revoke the old token once no agents are using it. Agent tokens display information about the last time they were used to help you decide whether they are safe to revoke.
-
-1. Navigate to **Organization Settings > Agents**, then click on the agent pool you would like to manage.
-
-2. Click **"Revoke Token"** for the token you would like to revoke.
-
-    ![Screenshot: The Agent tokens list with the "Revoke Token" link highlighted](./images/agent-revoke-token.png)
-
-3. Confirm the deletion of the token by clicking "Yes, delete token".
-
-    ![Screenshot: The "Revoke agent token" confirmation modal](./images/agent-revoke-token-confirm.png)
 
 ## Troubleshooting
 
