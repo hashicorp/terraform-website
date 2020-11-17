@@ -25,7 +25,7 @@ For more information on the listed features, visit the [Okta Glossary](https://h
 6. Visit the "Sign On" tab in the application.
 7. Copy the "Identity Provider Metadata" URL.
 
-For information on configuring automated Team Mapping using Okta Group Membership, please see the [Configuration - Team Mapping (Okta)](./okta.html.md#configuration---team-mapping-okta) section below. 
+For information on configuring automated Team Mapping using Okta group membership, please see the [Team Mapping Configuration (Okta)](#configuration---team-mapping-okta) section below. 
 
 ## Configuration (Terraform Cloud)
 
@@ -51,24 +51,27 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
 
     ![sso-settings](../images/sso/settings-okta.png)
 
-## Configuration - Team Mapping (Okta)
-1. Complete all steps outlined in the [Configuration (Okta)](./okta.html#configuration-okta-) section above, and take note of the default team mapping behavior as described [here](../single-sign-on.html#managing-team-membership-through-sso).
+## Team Mapping Configuration (Okta)
 
-2. Edit your Terraform Cloud Okta Application and complete the following steps:
-* Expand the `Attributes` section of the Application configuration (under the `Sign On` tab):
+Terraform Cloud can automatically add users to teams based on their SAML assertion, so you can manage team membership in your directory service. To do this, you must specify the `MemberOf` SAML attribute, and make sure the AttributeStatement in the SAML Response contains a list of AttributeValue items in the correct format (i.e., comma-separated list of team names). For additional details on this and other SSO concepts within the context of Terraform Cloud, please refer to [this](../single-sign-on.html) overview page.
 
-    ![sso-okta-attribute-settings](../images/sso/okta-attribute-settings.png)
+If you haven't yet completed all steps outlined in the [Configuration (Okta)](#configuration-okta-) section above, please do so before proceeding.
 
-* Set the `Group Attribute` Statements to the following:
+To enable this automated team mapping functionality, edit your Terraform Cloud Okta Application and complete the following steps:
+1. Expand the `Attributes` section of the Application configuration (under the `Sign On` tab):
+
+    ![The button for expanding the customizable Attributes section in the Okta portal appears to the left of the text "Attributes (optional)"](../images/sso/okta-attribute-settings.png)
+
+2. Set the `Group Attribute` Statements to the following:
     * Name: `MemberOf`
     * Name format: `Basic`
     * Filter: `Matches regex`
     * Filter value: `.*`
 
-    ![sso-okta-team-mapping](../images/sso/okta-team-mapping.png)
+    ![The customizable Group Attribute fields appear beneath the text "Group Attribute Statements (optiional)"](../images/sso/okta-team-mapping.png)
 
-Once these configure steps have been completed, **all** Okta groups to which a given User belongs will be passed in the SAML assertion upon login to Terraform Cloud, which means that User will get added automatically to any Teams within Terraform Cloud for which there’s an **exact** name match.  
+Once these configure steps have been completed, **all** Okta groups to which a given user belongs will be passed in the SAML assertion upon login to Terraform Cloud, which means that user will get added automatically to any teams within Terraform Cloud for which there’s an **exact** name match.  
 
-![sso-okta-saml-assertion](../images/sso/okta-saml-assertion.png)
+![The groups to which a user belongs are passed as values in the SAML assertion.  These values appear under the "AttributeStatement" block, with each unique name housed within its own individual "AttributeValue" block](../images/sso/okta-saml-assertion.png)
 
-Using the above SAML assertion as an example, the User in question would get added to the `Everyone`, `ops`, and `test` Teams in Terraform Cloud if those Teams exist in the target Organization, but those values will simply be ignored if no matching Team name is found.
+Using the above SAML assertion as an example, the user in question would get added to the `Everyone`, `ops`, and `test` teams in Terraform Cloud if those teams exist in the target Organization, but those values will simply be ignored if no matching team name is found.
