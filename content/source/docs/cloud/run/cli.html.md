@@ -182,7 +182,39 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ## Sentinel Policies
 
-If the specified workspace uses Sentinel policies, those policies will run against all speculative plans and remote applies in that workspace. The policy output will be available in the terminal. Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
+If the specified workspace uses Sentinel policies, those policies will run against all speculative plans and remote applies in that workspace. The policy output will be available in the terminal. Soft mandatory checks can be overridden by users with the [Manage Policies](docs/cloud/users-teams-organizations/permissions.html#manage-policies) permission by typing "override" in response to the prompt. (Note that "yes" will not work.)
+
+```
+$ terraform apply
+
+[...]
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+------------------------------------------------------------------------
+
+Organization policy check:
+
+Sentinel Result: false
+
+Sentinel evaluated to false because one or more Sentinel policies evaluated
+to false. This false was not due to an undefined value or runtime error.
+
+1 policies evaluated.
+## Policy 1: my-policy.sentinel (soft-mandatory)
+
+Result: false
+
+FALSE - my-policy.sentinel:1:1 - Rule "main"
+
+Do you want to override the soft failed policy check?
+  Only 'override' will be accepted to override.
+
+  Enter a value: override
+```
+If you do override, you will then be prompted to apply the run. 
+
+Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
 
 ```
 $ terraform apply
