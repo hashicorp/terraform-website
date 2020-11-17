@@ -141,7 +141,7 @@ Terraform Enterprise's instance profile serves as default credentials for Terraf
 
 The instance profile of Terraform Enterprise's instance is the operator's responsibility. If you plan to specify any non-default permissions for Terraform Enterprise's instance profile, be aware that Terraform runs might use those permissions and plan accordingly.
 
-#### AWS S3 IAM Profile
+#### S3 IAM Policy
 
 Terraform Enterprise's usage of S3 requires these permissions:
 
