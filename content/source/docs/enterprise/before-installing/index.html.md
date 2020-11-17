@@ -141,6 +141,27 @@ Terraform Enterprise's instance profile serves as default credentials for Terraf
 
 The instance profile of Terraform Enterprise's instance is the operator's responsibility. If you plan to specify any non-default permissions for Terraform Enterprise's instance profile, be aware that Terraform runs might use those permissions and plan accordingly.
 
+#### AWS S3 IAM Profile
+
+Terraform Enterprise's usage of S3 requires these permissions:
+
+```
+{
+    "Effect": "Allow",
+    "Action": [
+        "s3:PutObject",
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:GetBucketLocation"
+    ],
+    "Resource": [
+        "<BUCKET_ARN>",
+        "<BUCKET_ARN>/*"
+    ]
+}
+```
+
 ### SELinux
 
 SELinux is supported when Terraform Enterprise runs in _External Services_ mode and only the default SELinux policies provided by RedHat are used. Terraform Enterprise v201812-1 or later is required for this support.
