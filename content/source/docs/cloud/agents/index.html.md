@@ -29,7 +29,9 @@ Additionally, the agent must also be able to communicate with any services requi
 
 Hostname | Port/Protocol | Directionality | Purpose
 --|--|--|--
-app.terraform.io | tcp/443, HTTPS | Outbound | Polling for new workloads and providing status updates
+app.terraform.io | tcp/443, HTTPS | Outbound | Polling for new workloads, providing status updates, and downloading
+private modules from Terraform Cloud's Private Module Registry
+registry.terraform.io | tcp/443, HTTPS | Outbound | Downloading public modules from the Terraform Registry
 releases.hashicorp.com | tcp/443, HTTPS | Outbound | Updating agent components and downloading Terraform binaries
 archivist.terraform.io | tcp/443, HTTPS | Outbound | Blob Storage
 
