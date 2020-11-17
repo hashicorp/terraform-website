@@ -68,7 +68,7 @@ To enable this automated team mapping functionality, edit your Terraform Cloud O
     * Filter: `Matches regex`
     * Filter value: `.*`
 
-    ![The customizable Group Attribute fields appear beneath the text "Group Attribute Statements (optiional)"](../images/sso/okta-team-mapping.png)
+    ![The customizable Group Attribute fields appear beneath the text "Group Attribute Statements (optional)"](../images/sso/okta-team-mapping.png)
 
 Once these configure steps have been completed, **all** Okta groups to which a given user belongs will be passed in the SAML assertion upon login to Terraform Cloud, which means that user will get added automatically to any teams within Terraform Cloud for which there’s an **exact** name match.  
 
