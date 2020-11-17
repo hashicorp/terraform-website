@@ -70,7 +70,7 @@ To enable this automated team mapping functionality, edit your Terraform Cloud O
 
     ![The customizable Group Attribute fields appear beneath the text "Group Attribute Statements (optional)"](../images/sso/okta-team-mapping.png)
 
-Once these configure steps have been completed, **all** Okta groups to which a given user belongs will be passed in the SAML assertion upon login to Terraform Cloud, which means that user will get added automatically to any teams within Terraform Cloud for which there’s an **exact** name match.  
+Once these configure steps have been completed, **all** Okta groups to which a given user belongs will be passed in the SAML assertion upon login to Terraform Cloud, which means that user will get added automatically to any teams within Terraform Cloud for which there’s an **exact** name match.  Importantly, please note that those users will also be removed from any teams that *aren't* included in their assertion. This overrides any manually set team memberships, so whenever a user logs in via SSO, their team membership is adjusted to match their SAML assertion.
 
 ![The groups to which a user belongs are passed as values in the SAML assertion.  These values appear under the "AttributeStatement" block, with each unique name housed within its own individual "AttributeValue" block](../images/sso/okta-saml-assertion.png)
 
