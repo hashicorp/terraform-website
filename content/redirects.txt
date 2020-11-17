@@ -16,6 +16,15 @@
 #
 #     /original-path    /new-path
 #
+# RELATIVE PATHS ONLY
+#
+# You may need to do a redirect to some external URL (to https://somewhere.com).
+# These sorts of redirect are commented out in this file, because they need a "real"
+# Varnish rewrite rule. We're adding them here anyway, to ensure redirects.txt
+# is a complete record of all the rewrites this site uses.
+#
+# If you need to redirect to an external URL, you must contact it-helpdesk.
+#
 # INDEX.HTML AND PARENT PATHS
 #
 # The live terraform.io website handles index.html files in the normal fashion:
@@ -218,9 +227,6 @@
 /docs/providers/google/r/source_repo_repository_iam.html        /docs/providers/google/r/sourcerepo_repository_iam.html
 
 # Move content to learn.hashicorp.com:
-# These redirects are inert in this file, because they need a "real" Varnish
-# rewrite rule. We're adding them here anyway, to ensure redirects.txt is a
-# complete record of all the rewrites this site uses.
 # /guides/running-terraform-in-automation.html            https://learn.hashicorp.com/terraform/development/running-terraform-in-automation
 # /intro/getting-started/build.html                       https://learn.hashicorp.com/terraform/getting-started/build
 # /intro/getting-started/change.html                      https://learn.hashicorp.com/terraform/getting-started/change
@@ -490,9 +496,6 @@
 /docs/cloud/workspaces/repo-structure.html                          /docs/cloud/workspaces/configurations.html
 
 # Move content to learn.hashicorp.com:
-# These redirects are commented out because they require #team-eng-serv to
-# configure Varnish directly, but are preserved in this file to ensure it's a
-# reliable record of known redirects.
 # /docs/cloud/getting-started/index.html                https://learn.hashicorp.com/terraform/cloud-getting-started/signup
 # /docs/cloud/getting-started/access.html               https://learn.hashicorp.com/terraform/cloud-getting-started/signup
 # /docs/cloud/getting-started/vcs.html                  https://learn.hashicorp.com/terraform/cloud-getting-started/create-workspace
@@ -575,8 +578,8 @@
 /docs/cloud/workspaces/agent.html   /docs/cloud/agents/index.html
 
 # Redirect removed terraform examples to learn.hashicorp.com
-/intro/examples/aws.html        https://learn.hashicorp.com/terraform
-/intro/examples/consul.html     https://learn.hashicorp.com/terraform
-/intro/examples/count           https://learn.hashicorp.com/terraform
-/intro/examples/cross-provider  https://learn.hashicorp.com/terraform
-/intro/examples/                https://learn.hashicorp.com/terraform
+# /intro/examples/aws.html        https://learn.hashicorp.com/terraform
+# /intro/examples/consul.html     https://learn.hashicorp.com/terraform
+# /intro/examples/count           https://learn.hashicorp.com/terraform
+# /intro/examples/cross-provider  https://learn.hashicorp.com/terraform
+# /intro/examples/                https://learn.hashicorp.com/terraform
