@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Terraform Cloud Agents - Workspaces - Terraform Cloud and Terraform Enterprise"
+page_title: "Terraform Cloud Agents - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Terraform Cloud Agents
