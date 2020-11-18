@@ -1,6 +1,6 @@
 ---
 page_title: "Part 3.3: From Infrastructure as Code to Collaborative Infrastructure as Code - Terraform Recommended Practices"
-layout: "guides"
+layout: "intro"
 ---
 
 # Part 3.3: How to Move from Infrastructure as Code to Collaborative Infrastructure as Code
