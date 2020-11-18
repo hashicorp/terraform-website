@@ -74,9 +74,9 @@ Documentation for Terraform Enterprise.
 
 Terraform Enterprise is an on-premise distribution of Terraform Cloud. It offers enterprises a private instance of the Terraform Cloud application, with no resource limits and with additional enterprise-grade architectural features like audit logging and SAML single sign-on.
 
-### [Terraform Registry ➜](/docs/registry/index.html)
+### [Publishing Providers and Modules ➜](/docs/registry/index.html)
 
-Documentation about the [Terraform Registry](https://registry.terraform.io/), a web service for distributing Terraform modules. Includes information about publishing, finding, and using modules.
+Documentation about publishing Terraform providers and modules on the [Terraform Registry](https://registry.terraform.io/).
 
 ### [Terraform GitHub Actions ➜](https://learn.hashicorp.com/tutorials/terraform/github-actions?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)
 
