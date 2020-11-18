@@ -29,6 +29,16 @@ If any automatically loaded variables have the same names as variables specified
 
 You can also use the optional [Terraform Cloud Provider](/docs/providers/tfe/r/variable.html) to update a workspace's variables. This has the same effect as managing workspace variables manually or via the API, but can be more convenient for large numbers of complex variables.
 
+## Variable Limits
+
+The following limits apply to variables:
+
+Component   |  Limit
+------------|---------------------------
+description |  512 characters
+key         |  128 characters
+value       |  256 kilobytes
+
 ## Managing Variables in the UI
 
 To view and manage a workspace's variables, navigate to that workspace and click the "Variables" navigation link at the top.
@@ -87,8 +97,6 @@ If a required input variable is missing, Terraform plans in the workspace will f
 ### Descriptions
 
 Variable descriptions help distinguish between similarly named variables. These optional fields are only shown on this "Variables" page and are completely independent from any variable descriptions declared in Terraform CLI.
-
-The maximum length of a variable description is 512 characters.
 
 ## How Terraform Cloud Uses Variables
 
