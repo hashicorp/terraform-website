@@ -84,7 +84,7 @@ The release must meet the following criteria:
     * The archive name is `terraform-provider-{NAME}_{VERSION}_{OS}_{ARCH}.zip`
 * There is a `terraform-provider-{NAME}_{VERSION}_SHA256SUMS` file, which contains a sha256 sum for each zip file in the release.
     * `shasum -a 256 *.zip > terraform-provider-{NAME}_{VERSION}_SHA256SUMS`
-* There is a `terraform-provider-{NAME}_{VERSION}_SHA256SUMS.sig` file, which is a valid GPG signature of the `terraform-provider-{NAME}_{VERSION}_SHA256SUMS` file using the keypair.
+* There is a `terraform-provider-{NAME}_{VERSION}_SHA256SUMS.sig` file, which is a valid GPG binary (**not ASCII armored**) signature of the `terraform-provider-{NAME}_{VERSION}_SHA256SUMS` file using the keypair.
     * `gpg --detach-sign terraform-provider-{NAME}_{VERSION}_SHA256SUMS`
 * Release is finalized (not a private draft).
 
