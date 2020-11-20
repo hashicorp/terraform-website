@@ -243,7 +243,7 @@
 # /docs/providers/aws/guides/iam-policy-documents.html    https://learn.hashicorp.com/terraform/aws/iam-policy
 # /docs/providers/aws/guides/serverless-with-aws-lambda-and-api-gateway.html    https://learn.hashicorp.com/terraform/aws/lambda-api-gateway
 # /docs/cloud/free/index.html                             https://learn.hashicorp.com/terraform/cloud-gettingstarted/tfc_overview
-# /docs/cloud/free/overview.html                          https://learn.hashicorp.com/terraform/cloud-gettingstarted/
+# /docs/cloud/free/overview.html                          https://learn.hashicorp.com/collections/terraform/cloud-get-started
 # /intro/examples/index.html                              https://learn.hashicorp.com/terraform
 # /intro/examples/aws.html                                https://learn.hashicorp.com/terraform
 # /intro/examples/consul.html                             https://learn.hashicorp.com/terraform
