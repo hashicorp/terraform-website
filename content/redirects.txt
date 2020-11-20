@@ -247,7 +247,7 @@
 # /intro/examples/index.html                              https://learn.hashicorp.com/terraform
 # /intro/examples/aws.html                                https://learn.hashicorp.com/terraform
 # /intro/examples/consul.html                             https://learn.hashicorp.com/tutorials/consul/terraform-consul-provider
-# /intro/examples/count.html                              https://learn.hashicorp.com/terraform
+# /intro/examples/count.html                              https://learn.hashicorp.com/tutorials/terraform/count
 # /intro/examples/cross-provider.html                     https://learn.hashicorp.com/terraform
 
 # Most Terraform v0.11 config language doc pages were updated in-place by
