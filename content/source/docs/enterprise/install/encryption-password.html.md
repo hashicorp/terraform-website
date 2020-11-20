@@ -5,10 +5,9 @@ page_title: "Encryption Password - Install and Config - Terraform Enterprise"
 
 # Terraform Enterprise Encryption Password
 
-During the installation of Terraform Enterprise,
-a password is used to encrypt sensitive information at
-rest. The default value is auto-generated, but we
-strongly suggest you create your own password.
+During installation, Terraform Enterprise requires that
+the operator specify a password that will be used to
+encrypt and decrypt Terraform Enterprise application data.
 
 Be sure to retain the value, because you will need
 to use this password to restore access to the data
@@ -36,7 +35,7 @@ using the automated install procedure](./automating-the-installer.html#available
         "value": "poc"
     },
     "enc_password": {
-        "value": "jzrtY@KE-bQ@mwQdxhYxj$WhhpPpZ8jz"
+        "value": "CHANGEME"
     }
 }
 ```

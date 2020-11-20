@@ -34,8 +34,8 @@ The settings file is JSON formatted. All values must be strings.  The example be
     "installation_type": {
         "value": "poc"
     },
-    "capacity_concurrency": {
-        "value": "5"
+    "enc_password": {
+        "value": "CHANGEME"
     }
 }
 ```
@@ -144,7 +144,7 @@ The following settings apply to every installation:
 
 - `hostname` — (Required) The hostname you will use to access your installation.
 - `installation_type` — (Required) One of `poc` or `production`.
-- `enc_password` — Set the [encryption password](./encryption-password.html) for the install.
+- `enc_password` — (Required) Set the [encryption password](./encryption-password.html) for the install.
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`.
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `512`.
 - `enable_metrics_collection` — Whether Terraform Enterprise's [internal metrics collection](../admin/monitoring.html#internal-monitoring) should be enabled; defaults to `true`.
