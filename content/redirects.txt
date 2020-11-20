@@ -246,7 +246,7 @@
 # /docs/cloud/free/overview.html                          https://learn.hashicorp.com/collections/terraform/cloud-get-started
 # /intro/examples/index.html                              https://learn.hashicorp.com/terraform
 # /intro/examples/aws.html                                https://learn.hashicorp.com/terraform
-# /intro/examples/consul.html                             https://learn.hashicorp.com/terraform
+# /intro/examples/consul.html                             https://learn.hashicorp.com/tutorials/consul/terraform-consul-provider
 # /intro/examples/count.html                              https://learn.hashicorp.com/terraform
 # /intro/examples/cross-provider.html                     https://learn.hashicorp.com/terraform
 
