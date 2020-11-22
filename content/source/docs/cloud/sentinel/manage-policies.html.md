@@ -190,6 +190,8 @@ When creating or editing a policy set, the following fields are available:
 - **Workspaces:** Which workspaces the policy set should be enforced on. This is only shown when the scope of policies is set to "Policies enforced on selected workspaces." Use the drop-down menu and "Add workspace" button to add workspaces, and the trash can (🗑) button to remove them.
 - **Parameters:** A list of key/value parameters that will be sent to the Sentinel runtime when a policy check is being performed for the policy set. If the value can be parsed as JSON, it will be sent to Sentinel as the corresponding type (string, boolean, integer, map or list). If it fails JSON validation, it will be sent as a string. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/).
 
+-> **Note:** Parameters are only available for versioned policy sets. If you are using an individually managed policy set, you will need to migrate it to a versioned policy set.
+
 ## Migrating individually managed policies to versioned policy sets
 
 Individually managed policies were a proof-of-concept feature in Terraform Cloud which allowed editing policy code directly in the UI and combining these policies into policy sets. This workflow is deprecated and is being replaced by versioned policy sets, which are managed as an immutable, atomic, and versioned unit, using VCS or directly uploading entire policy sets through the API.
