@@ -352,7 +352,6 @@
 /docs/providers/nutanix/index.html
 /docs/providers/oneandone/index.html
 /docs/providers/powerdns/index.html
-/docs/providers/profitbricks/index.html
 /docs/providers/rancher/index.html
 /docs/providers/rightscale/index.html
 /docs/providers/runscope/index.html

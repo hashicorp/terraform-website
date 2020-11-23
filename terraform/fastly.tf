@@ -99,6 +99,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "panos" : "PaloAltoNetworks/panos" # unverified
     "postgresql" : "cyrilgdn/postgresql"
     "prismacloud" : "PaloAltoNetworks/prismacloud" # unverified
+    "profitbricks" : "ionos-cloud/profitbricks"
     "rabbitmq" : "cyrilgdn/rabbitmq"
     "rancher2" : "rancher/rancher2"
     "scaleway" : "scaleway/scaleway"
@@ -115,7 +116,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "venafi" : "Venafi/venafi"
     "vmc" : "vmware/vmc"
     "vra7" : "vmware/vra7"
-    "vthunder" : "a10networks/vthunder"
+    "vthunder" : "a10networks/thunder"
     "vultr" : "vultr/vultr"
     "wavefront" : "vmware/wavefront"
     "yandex" : "yandex-cloud/yandex"
@@ -149,7 +150,6 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "tls" : "hashicorp/tls"
     "vault" : "hashicorp/vault"
     "vsphere" : "hashicorp/vsphere"
-
   }
 
   # prevent destroying this dictionary to cause redirects to break

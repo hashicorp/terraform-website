@@ -82,10 +82,6 @@
 	path = ext/providers/powerdns
 	url = https://github.com/terraform-providers/terraform-provider-powerdns
 	branch = stable-website
-[submodule "ext/providers/profitbricks"]
-	path = ext/providers/profitbricks
-	url = https://github.com/terraform-providers/terraform-provider-profitbricks
-	branch = stable-website
 [submodule "ext/providers/rancher"]
 	path = ext/providers/rancher
 	url = https://github.com/terraform-providers/terraform-provider-rancher
