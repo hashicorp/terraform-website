@@ -14,7 +14,7 @@ API tokens are displayed only once when they are created, and are obfuscated the
 
 ## User API Tokens
 
-API tokens may belong directly to a user. User tokens are the most flexible token type because they inherit permissions from the user they are associated with. For more information on user tokens and how to generate them, see the [Users](./users.html#api-tokens) documenatation.
+API tokens may belong directly to a user. User tokens are the most flexible token type because they inherit permissions from the user they are associated with. For more information on user tokens and how to generate them, see the [Users](./users.html#api-tokens) documentation.
 
 ## Team API Tokens
 
