@@ -399,7 +399,7 @@ delimiter are omitted for the root module.
   [`sensitive`](/docs/configuration/outputs.html#sensitive-suppressing-values-in-cli-output).
 * `value` - An [expression representation](#expression-representations) for the output.
 * `description` - The description of the output.
-* `depends_on`: A list of resource names that the output depends on. These are
+* `depends_on` - A list of resource names that the output depends on. These are
   the hard-defined output dependencies as defined in the
   [`depends_on`](/docs/configuration/outputs.html#depends_on-explicit-output-dependencies)
   field in an output declaration, not the dependencies that get derived from
