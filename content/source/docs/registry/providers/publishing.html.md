@@ -26,7 +26,7 @@ Providers published to the Terraform Registry are written and built in the same 
     - [AzureRM](https://github.com/terraform-providers/terraform-provider-azurerm)
 - [Contributing to Terraform guidelines](/docs/extend/community/contributing.html)
 
-~> **Important:** In order to be detected by the Terraform Registry, all provider repositories on GitHub must match the pattern `terraform-provider-{NAME}`, and the repository must be public.
+~> **Important:** In order to be detected by the Terraform Registry, all provider repositories on GitHub must match the pattern `terraform-provider-{NAME}`, and the repository must be public. Only lowercase repository names are supported.
 
 ### Documenting your Provider
 
