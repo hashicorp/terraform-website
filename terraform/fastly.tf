@@ -47,10 +47,12 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   items = {
     # verified partners
     "aci" : "CiscoDevNet/aci"
+    "acme" : "vancluever/acme"
     "akamai" : "akamai/akamai"
     "alicloud" : "aliyun/alicloud"
     "auth0" : "alexkappa/auth0"
     "aviatrix" : "AviatrixSystems/aviatrix"
+    "azuredevops" : "microsoft/azuredevops"
     "baiducloud" : "baidubce/baiducloud"
     "bigip" : "F5Networks/bigip"
     "brightbox" : "brightbox/brightbox"
@@ -63,7 +65,9 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "datadog" : "DataDog/datadog"
     "digitalocean" : "digitalocean/digitalocean"
     "dme" : "DNSMadeEasy/dme"
+    "dnsimple" : "dnsimple/dnsimple"
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
+    "docker" : "kreuzwerker/docker"
     "dome9" : "dome9/dome9"
     "exoscale" : "exoscale/exoscale"
     "fastly" : "fastly/fastly"
@@ -87,6 +91,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "newrelic" : "newrelic/newrelic"
     "ns1" : "ns1-terraform/ns1"
     "nsxt" : "vmware/nsxt"
+    "nutanix" : "nutanix/nutanix"
     "okta" : "oktadeveloper/okta"
     "oktaasa" : "oktadeveloper/oktaasa"
     "opennebula" : "OpenNebula/opennebula"
