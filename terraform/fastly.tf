@@ -48,6 +48,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     # verified partners
     "aci" : "CiscoDevNet/aci"
     "acme" : "vancluever/acme"
+    "ado" : "microsoft/azuredevops" # legacy naming of azuredevops
     "akamai" : "akamai/akamai"
     "alicloud" : "aliyun/alicloud"
     "auth0" : "alexkappa/auth0"

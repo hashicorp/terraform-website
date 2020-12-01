@@ -38,14 +38,6 @@
 	path = ext/providers/cobbler
 	url = https://github.com/terraform-providers/terraform-provider-cobbler
 	branch = stable-website
-[submodule "ext/providers/dnsimple"]
-	path = ext/providers/dnsimple
-	url = https://github.com/terraform-providers/terraform-provider-dnsimple
-	branch = stable-website
-[submodule "ext/providers/docker"]
-	path = ext/providers/docker
-	url = https://github.com/terraform-providers/terraform-provider-docker
-	branch = stable-website
 [submodule "ext/providers/dyn"]
 	path = ext/providers/dyn
 	url = https://github.com/terraform-providers/terraform-provider-dyn
@@ -122,10 +114,6 @@
 	path = ext/providers/telefonicaopencloud
 	url = https://github.com/terraform-providers/terraform-provider-telefonicaopencloud
 	branch = stable-website
-[submodule "ext/providers/acme"]
-	path = ext/providers/acme
-	url = https://github.com/terraform-providers/terraform-provider-acme
-	branch = stable-website
 [submodule "ext/providers/tfe"]
 	path = ext/providers/tfe
 	url = https://github.com/terraform-providers/terraform-provider-tfe
@@ -141,10 +129,6 @@
 [submodule "ext/providers/rightscale"]
 	path = ext/providers/rightscale
 	url = https://github.com/terraform-providers/terraform-provider-rightscale
-	branch = stable-website
-[submodule "ext/providers/nutanix"]
-	path = ext/providers/nutanix
-	url = https://github.com/terraform-providers/terraform-provider-nutanix
 	branch = stable-website
 [submodule "ext/providers/skytap"]
 	path = ext/providers/skytap
@@ -197,10 +181,6 @@
 [submodule "ext/providers/ecl"]
 	path = ext/providers/ecl
 	url = https://github.com/terraform-providers/terraform-provider-ecl
-	branch = stable-website
-[submodule "ext/providers/azuredevops"]
-	path = ext/providers/azuredevops
-	url = https://github.com/terraform-providers/terraform-provider-azuredevops
 	branch = stable-website
 [submodule "ext/providers/rubrik"]
 	path = ext/providers/rubrik

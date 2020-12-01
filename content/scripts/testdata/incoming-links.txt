@@ -229,8 +229,6 @@
 /docs/plugins/basics.html
 /docs/plugins/index.html
 /docs/plugins/provider.html
-/docs/providers/acme/index.html
-/docs/providers/acme/r/certificate.html
 /docs/providers/azure/index.html
 /docs/providers/azure/r/instance.html
 /docs/providers/azure/r/security_group_rule.html
@@ -329,12 +327,6 @@
 /docs/providers/clc/index.html
 /docs/providers/clc/r/server.html
 /docs/providers/cobbler/index.html
-/docs/providers/dnsimple/index.html
-/docs/providers/docker/index.html
-/docs/providers/docker/r/container.html
-/docs/providers/docker/r/image.html
-/docs/providers/docker/r/network.html
-/docs/providers/docker/r/volume.html
 /docs/providers/dyn/index.html
 /docs/providers/github/d/user.html
 /docs/providers/github/index.html
@@ -349,7 +341,6 @@
 /docs/providers/logicmonitor/index.html
 /docs/providers/mysql/index.html
 /docs/providers/netlify/index.html
-/docs/providers/nutanix/index.html
 /docs/providers/oneandone/index.html
 /docs/providers/powerdns/index.html
 /docs/providers/rancher/index.html
