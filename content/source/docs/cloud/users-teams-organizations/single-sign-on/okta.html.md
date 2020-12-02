@@ -63,7 +63,7 @@ To enable this automated team mapping functionality, edit your Terraform Cloud O
 
     ![The button for expanding the customizable Attributes section in the Okta portal appears to the left of the text "Attributes (optional)"](../images/sso/okta-attribute-settings.png)
 
-2. Set the `Group Attribute` Statements to the following:
+2. Set the "Group Attribute Statements" to the following:
     * Name: `MemberOf`
     * Name format: `Basic`
     * Filter: `Matches regex`
