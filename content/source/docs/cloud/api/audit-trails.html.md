@@ -94,19 +94,19 @@ $ curl \
 
 Each JSON object in the response data array will include the following details, if available:
 
-| Key                  | Description                                                 |
-| -------------------- | ----------------------------------------------------------- |
-| id                   | ID of this audit trail (UUID format)                        |
-| version              | version of HashiCorp Audit Trail schema                     |
-| type                 | type of Audit Trail (defaults to `Resource`)                |
-| timestamp            | UTC ISO8901 DateTime (e.g. `2020-06-16T20:26:58.000Z`)      |
-| auth.accessor_id     | ID of audited actor (e.g. `user-V3R563qtJNcExAkN`)          |
-| auth.description     | Username of audited actor                                   |
-| auth.type            | Authentication Type (one of Client, Impersonated or System) |
-| auth.impersonator_id | ID of impersonating actor (if available)                    |
-| auth.organization_id | ID of organization (e.g. `org-QpXoEnULx3r2r1CA`)            |
-| request.id           | ID for request (if available) (UUID format)                 |
-| resource.id          | ID of resource (e.g. `run-FwnENkvDnrpyFC7M`)                |
-| resource.type        | Type of resource (e.g. `run`)                               |
-| resource.action      | Action audited (e.g. `applied`)                             |
-| resource.meta        | Key-value metadata about this audited event                 |
+| Key                    | Description                                                 |
+| ---------------------- | ----------------------------------------------------------- |
+| `id`                   | The ID of this audit trail (UUID format)                    |
+| `version`              | The audit trail schema version                              |
+| `type`                 | The type of audit trail (defaults to `Resource`)            |
+| `timestamp`            | UTC ISO8901 DateTime (e.g. `2020-06-16T20:26:58.000Z`)      |
+| `auth.accessor_id`     | The ID of audited actor (e.g. `user-V3R563qtJNcExAkN`)      |
+| `auth.description`     | Username of audited actor                                   |
+| `auth.type`            | Authentication Type (one of Client, Impersonated or System) |
+| `auth.impersonator_id` | The ID of impersonating actor (if available)                |
+| `auth.organization_id` | The ID of organization (e.g. `org-QpXoEnULx3r2r1CA`)        |
+| `request.id`           | The ID for request (if available) (UUID format)             |
+| `resource.id`          | The ID of resource (e.g. `run-FwnENkvDnrpyFC7M`)            |
+| `resource.type`        | Type of resource (e.g. `run`)                               |
+| `resource.action`      | Action audited (e.g. `applied`)                             |
+| `resource.meta`        | Key-value metadata about this audited event                 |
