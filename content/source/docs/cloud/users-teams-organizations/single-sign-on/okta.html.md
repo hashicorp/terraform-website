@@ -59,7 +59,7 @@ If you haven't yet completed all steps outlined in the [Configuration (Okta)](#c
 
 To enable this automated team mapping functionality, edit your Terraform Cloud Okta Application and complete the following steps:
 
-1. Expand the `Attributes` section of the Application configuration (under the `Sign On` tab):
+1. Expand the "Attributes" section of the Application configuration (under the "Sign On" tab):
 
     ![The button for expanding the customizable Attributes section in the Okta portal appears to the left of the text "Attributes (optional)"](../images/sso/okta-attribute-settings.png)
 
