@@ -1,6 +1,6 @@
 ---
 page_title: "Index - Terraform Recommended Practices"
-layout: "guides"
+layout: "intro"
 ---
 
 # Terraform Recommended Practices
