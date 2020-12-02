@@ -6,7 +6,7 @@ document.addEventListener("turbolinks:load", function () {
       ".hashiStackMenuRoot li > button.buttonActive"
     );
   }
-  
+
   function getActiveBrowsePanel() {
     return document.querySelector(".hashiStackMenuRoot li > section.isOpen");
   }
@@ -26,12 +26,12 @@ document.addEventListener("turbolinks:load", function () {
   }
 
   function selectNextNavButon(list, nextButton) {
-    // Get the currently active button if available  
+    // Get the currently active button if available
     var currentActiveNavButton = list.find(function (el) {
       return el.classList.contains("buttonActive");
     });
     // Get the browse panel that corresponds to this button by index; buttonIdx => 0, browsePanelIdx => 1
-    let correspondingBrowsePanel = nextButton.parentNode.children.item(1);
+    var correspondingBrowsePanel = nextButton.parentNode.children.item(1);
     // If none are active, set the corresponding panel to open & button to active
     if (!currentActiveNavButton) {
       correspondingBrowsePanel.classList.add("isOpen");
@@ -45,10 +45,10 @@ document.addEventListener("turbolinks:load", function () {
     }
     // The last possible scenario is to deactivate one item and activate another
     // Get the active BrowsePanel
-    let currentActiveBrowsePanel = currentActiveNavButton.parentNode.children.item(
+    var currentActiveBrowsePanel = currentActiveNavButton.parentNode.children.item(
       1
     );
-    // Make the changes necessary 
+    // Make the changes necessary
     currentActiveBrowsePanel.classList.remove("isOpen");
     correspondingBrowsePanel.classList.add("isOpen");
     currentActiveNavButton.classList.remove("buttonActive");
@@ -74,7 +74,7 @@ document.addEventListener("turbolinks:load", function () {
   if (hashiStackMenuRoot) {
     addClickOutsideListener();
 
-    let buttonList = document.querySelectorAll(
+    var buttonList = document.querySelectorAll(
       ".hashiStackMenuRoot li > button.buttonReset.link"
     );
 
