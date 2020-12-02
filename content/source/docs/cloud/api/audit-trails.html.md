@@ -95,7 +95,7 @@ $ curl \
 Each JSON object in the response data array will include the following details, if available:
 
 | Key                    | Description                                                 |
-| ---------------------- | ------------------------------------------------------------|
+| ---------------------- | ----------------------------------------------------------- |
 | `id`                   | The ID of this audit trail (UUID format)                    |
 | `version`              | The audit trail schema version                              |
 | `type`                 | The type of audit trail (defaults to `Resource`)            |
