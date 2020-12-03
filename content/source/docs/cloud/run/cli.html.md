@@ -212,9 +212,6 @@ Do you want to override the soft failed policy check?
 
   Enter a value: override
 ```
-If you do override, you will then be prompted to apply the run. 
-
-Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
 
 ```
 $ terraform apply
