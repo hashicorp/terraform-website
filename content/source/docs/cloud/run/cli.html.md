@@ -220,32 +220,6 @@ Do you want to override the soft failed policy check?
   Enter a value: override
 ```
 
-```
-$ terraform apply
-
-[...]
-
-Plan: 1 to add, 0 to change, 1 to destroy.
-
-------------------------------------------------------------------------
-
-Organization policy check:
-
-Sentinel Result: false
-
-Sentinel evaluated to false because one or more Sentinel policies evaluated
-to false. This false was not due to an undefined value or runtime error.
-
-1 policies evaluated.
-## Policy 1: my-policy.sentinel (hard-mandatory)
-
-Result: false
-
-FALSE - my-policy.sentinel:1:1 - Rule "main"
-
-Error: Organization policy check hard failed.
-```
-
 ## Targeted Plan and Apply
 
 -> **Version note:** Targeting support was added client-side in Terraform v0.12.26 and also requires server-side support that may not be available for all Terraform Enterprise deployments yet.
