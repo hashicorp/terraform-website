@@ -42,7 +42,7 @@ The current release of the Terraform Cloud for Splunk app supports the following
 ## Installation & Configuration
 
 * Install the [Terraform Cloud for Splunk app via Splunkbase](https://splunkbase.splunk.com/app/5141/)
-  * Splunk Cloud users should consult the latest instructions on how to [use IDM with cloud-based add-ons](https://docs.splunk.com/Documentation/SplunkCloud/8.0.2007/Admin/IntroGDI#Use_IDM_with_cloud-based_add-ons) within the Splunk documentation.
+    * Splunk Cloud users should consult the latest instructions on how to [use IDM with cloud-based add-ons](https://docs.splunk.com/Documentation/SplunkCloud/8.0.2007/Admin/IntroGDI#Use_IDM_with_cloud-based_add-ons) within the Splunk documentation.
 * Click "Configure the application"
 * Generate an [Organization token](/docs/cloud/users-teams-organizations/api-tokens.html#organization-api-tokens) within Terraform Cloud
 * Click "complete setup"
