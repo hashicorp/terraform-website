@@ -10,14 +10,6 @@
 	path = ext/providers/azure
 	url = https://github.com/terraform-providers/terraform-provider-azure
 	branch = stable-website
-[submodule "ext/providers/azuread"]
-	path = ext/providers/azuread
-	url = https://github.com/terraform-providers/terraform-provider-azuread
-	branch = stable-website
-[submodule "ext/providers/azurerm"]
-	path = ext/providers/azurerm
-	url = https://github.com/terraform-providers/terraform-provider-azurerm
-	branch = stable-website
 [submodule "ext/providers/bitbucket"]
 	path = ext/providers/bitbucket
 	url = https://github.com/terraform-providers/terraform-provider-bitbucket
@@ -94,17 +86,9 @@
 	path = ext/providers/ultradns
 	url = https://github.com/terraform-providers/terraform-provider-ultradns
 	branch = stable-website
-[submodule "ext/providers/vault"]
-	path = ext/providers/vault
-	url = https://github.com/terraform-providers/terraform-provider-vault
-	branch = stable-website
 [submodule "ext/providers/logicmonitor"]
 	path = ext/providers/logicmonitor
 	url = https://github.com/terraform-providers/terraform-provider-logicmonitor
-	branch = stable-website
-[submodule "ext/providers/azurestack"]
-	path = ext/providers/azurestack
-	url = https://github.com/terraform-providers/terraform-provider-azurestack
 	branch = stable-website
 [submodule "ext/providers/runscope"]
 	path = ext/providers/runscope
@@ -114,17 +98,9 @@
 	path = ext/providers/telefonicaopencloud
 	url = https://github.com/terraform-providers/terraform-provider-telefonicaopencloud
 	branch = stable-website
-[submodule "ext/providers/tfe"]
-	path = ext/providers/tfe
-	url = https://github.com/terraform-providers/terraform-provider-tfe
-	branch = stable-website
 [submodule "ext/providers/netlify"]
 	path = ext/providers/netlify
 	url = https://github.com/terraform-providers/terraform-provider-netlify
-	branch = stable-website
-[submodule "ext/providers/oci"]
-	path = ext/providers/oci
-	url = https://github.com/terraform-providers/terraform-provider-oci
 	branch = stable-website
 [submodule "ext/providers/rightscale"]
 	path = ext/providers/rightscale
