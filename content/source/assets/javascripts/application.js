@@ -12,6 +12,20 @@
 //= require terraform-overview/hashi-tabbed-content
 
 
+// Be less hurky-jerky when clicking in-same-page anchor links, and just let the
+// browser handle it.
+document.addEventListener("turbolinks:click", function(e) {
+    var here = document.location;
+    var dest = new URL(e.data.url);
+    if ( here.origin === dest.origin
+      && here.pathname === dest.pathname
+      && here.search === dest.search )
+    {
+        // cancel the turbolinks visit. Doesn't affect "real" click event.
+        e.preventDefault();
+    }
+});
+
 // When doing a turbolinks visit, handle all the layout changes BEFORE we allow
 // turbolinks to consider itself finished. It calls Element.scrollIntoView() to
 // handle anchor links, and the browser handles that scrolling async without any
