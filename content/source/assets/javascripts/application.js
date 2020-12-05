@@ -51,7 +51,6 @@ document.addEventListener("turbolinks:load", function() {
         if (e.target == this) {
             $(this).toggleClass("active");
         }
-        e.stopPropagation();
     });
     // If the subnav header doesn't link to a different page, use it as a toggle.
     docsSidebar.find("a[href^='#']").on("click", function(e) {
