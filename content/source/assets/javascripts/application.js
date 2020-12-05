@@ -188,21 +188,20 @@ document.addEventListener("turbolinks:load", function() {
         });
         // Attach event listeners:
         // Trigger opens and closes.
-        $('#inner-quicknav #inner-quicknav-trigger').on('click', function(e) {
-            $(this).siblings('ul').toggleClass('active');
-            e.stopPropagation();
-        });
-        // Clicking inside the quick-nav doesn't close it.
-        quickNav.on('click', function(e) {
-            e.stopPropagation();
-        });
-        // Jumping to a section means you're done with the quick-nav.
-        quickNav.find('li a').on('click', function() {
-            quickNav.removeClass('active');
-        });
-        // Clicking outside the quick-nav closes it.
-        $('body').on('click', function() {
-            quickNav.removeClass('active');
+        $('body').on('click', function(e) {
+            var $target = $(e.target);
+            if ($target.is('#inner-quicknav #inner-quicknav-trigger')) {
+                // clicking trigger toggles quick-nav.
+                quickNav.toggleClass('active');
+            } else if ($target.is('#inner-quicknav > ul.dropdown li a')) {
+                // Jumping to a section means you're done with quick-nav.
+                quickNav.removeClass('active');
+            } else if ($target.closest(quickNav).length > 0) {
+                // Do nothing, clicking inside quick-nav doesn't close it.
+            } else {
+                // Clicking outside quick-nav closes it.
+                quickNav.removeClass('active');
+            }
         });
     }
 
