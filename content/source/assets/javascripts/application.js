@@ -11,8 +11,27 @@
 // DON'T require terraform-overview/home-hero, because the compressor is old.
 //= require terraform-overview/hashi-tabbed-content
 
-// Set up terraform.io UI helpers
-document.addEventListener("turbolinks:load", function() {
+
+// When doing a turbolinks visit, handle all the layout changes BEFORE we allow
+// turbolinks to consider itself finished. It calls Element.scrollIntoView() to
+// handle anchor links, and the browser handles that scrolling async without any
+// way to spy on it; if we're modifying the height of the page WHILE the browser
+// is trying to scroll somewhere specific, we clip through the floor and launch
+// ourselves out into the skybox. Anyway, by doing this on the new body element
+// before turbolinks tries to shim it into place, we're finished long before it
+// decides where it's scrolling.
+document.addEventListener("turbolinks:before-render", function(e) {
+    setUpUIFeatures(e.data.newBody);
+});
+
+// Except, the first time we load a page, it's not considered a turbolinks
+// visit! So we need to have a special case handler for initial page load.
+document.addEventListener("DOMContentLoaded", function(_e) {
+    setUpUIFeatures(document.body);
+});
+
+// Modify the page layout, and set up terraform.io UI features
+function setUpUIFeatures(bodyElement) {
     "use strict";
 
     // SIDEBAR STUFF:
@@ -22,14 +41,14 @@ document.addEventListener("turbolinks:load", function() {
     // - Collapse/expand is managed by the "active" class on the <li>.
 
     // Move the header (if any) into the grid container so we can make things line up nicely.
-    var sidebarHeaderGrid = $("#sidebar-header-grid");
-    var sidebarHeader = $("#docs-sidebar").find("h1,h2,h3,h4,h5,h6").not("#otherdocs").first();
+    var sidebarHeaderGrid = $("#sidebar-header-grid", bodyElement);
+    var sidebarHeader = $("#docs-sidebar", bodyElement).find("h1,h2,h3,h4,h5,h6").not("#otherdocs").first();
     sidebarHeaderGrid.append(sidebarHeader);
 
     // Collapse most subnavs, but reveal any that contain the
     // current page. The a.current-page class is added during build by
     // layouts/inner.erb.
-    var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav");
+    var docsSidebar = $("#docs-sidebar ul.nav.docs-sidenav", bodyElement);
     var subNavs = docsSidebar.find("ul").addClass("nav-hidden").parent("li");
         // we leave the nav-hidden class alone after this.
     function resetActiveSubnavs() {
@@ -62,7 +81,7 @@ document.addEventListener("turbolinks:load", function() {
     // and filter it.
     var sidebarLinks = docsSidebar.find("a");
     if (sidebarLinks.length > 30) {
-        if ($("#sidebar-controls").length === 0) { // then add it!
+        if ($("#sidebar-controls", bodyElement).length === 0) { // then add it!
             var sidebarControlsHTML =
                 '<div id="sidebar-controls">' +
                     '<div id="sidebar-filter">' +
@@ -80,11 +99,11 @@ document.addEventListener("turbolinks:load", function() {
             sidebarHeaderGrid.append(sidebarControlsHTML);
         }
 
-        var filterDiv = $("div#sidebar-filter");
-        var buttonsDiv = $("div#sidebar-buttons");
-        var subnavToggle = $("#sidebar-controls #toggle-button");
-        var filterField = $("#sidebar-controls input#sidebar-filter-field");
-        var filterButton = $("#filter-button");
+        var filterDiv = $("div#sidebar-filter", bodyElement);
+        var buttonsDiv = $("div#sidebar-buttons", bodyElement);
+        var subnavToggle = $("#sidebar-controls #toggle-button", bodyElement);
+        var filterField = $("#sidebar-controls input#sidebar-filter-field", bodyElement);
+        var filterButton = $("#filter-button", bodyElement);
 
         filterDiv.hide();
 
@@ -95,7 +114,7 @@ document.addEventListener("turbolinks:load", function() {
         });
 
         // Filter field's close button: defer to reset button.
-        $("#filter-close").on("click", function(e) {
+        $("#filter-close", bodyElement).on("click", function(e) {
             subnavToggle.trigger("reset");
         });
 
@@ -147,7 +166,7 @@ document.addEventListener("turbolinks:load", function() {
             }
         });
         // Type slash to focus sidebar filter:
-        $("body").keydown(function(e) {
+        $(bodyElement).keydown(function(e) {
             // 191 = / (forward slash) key
             if (e.keyCode !== 191) {
                 return;
@@ -162,13 +181,13 @@ document.addEventListener("turbolinks:load", function() {
 
 
     // Move the main title into the grid container, so we can make things line up nicely.
-    var innerHeaderGrid = $('#inner-header-grid');
-    innerHeaderGrid.append( $("#inner h1").first() );
+    var innerHeaderGrid = $('#inner-header-grid', bodyElement);
+    innerHeaderGrid.append( $("#inner h1", bodyElement).first() );
 
     // On docs/content pages, add a hierarchical quick nav menu if there are
     // more than two H2/H3/H4 headers.
-    var headers = $('#inner').find('h2, h3, h4');
-    if (headers.length > 2 && $("div#inner-quicknav").length === 0) {
+    var headers = $('#inner', bodyElement).find('h2, h3, h4');
+    if (headers.length > 2 && $("div#inner-quicknav", bodyElement).length === 0) {
         // Build the quick-nav HTML:
         innerHeaderGrid.append(
             '<div id="inner-quicknav">' +
@@ -179,7 +198,7 @@ document.addEventListener("turbolinks:load", function() {
                 '<ul class="dropdown"></ul>' +
             '</div>'
         );
-        var quickNav = $('#inner-quicknav > ul.dropdown');
+        var quickNav = $('#inner-quicknav > ul.dropdown', bodyElement);
         headers.each(function(index, element) {
             var level = element.nodeName.toLowerCase();
             var header_text = $(element).text();
@@ -188,7 +207,7 @@ document.addEventListener("turbolinks:load", function() {
         });
         // Attach event listeners:
         // Trigger opens and closes.
-        $('body').on('click', function(e) {
+        $(bodyElement).on('click', function(e) {
             var $target = $(e.target);
             if ($target.is('#inner-quicknav #inner-quicknav-trigger')) {
                 // clicking trigger toggles quick-nav.
@@ -206,8 +225,8 @@ document.addEventListener("turbolinks:load", function() {
     }
 
     // Downloads CTA
-    var $downloadLinks = $("section.downloads .details a");
-    var $learnCtas = $("section.downloads .learn-cta");
+    var $downloadLinks = $("section.downloads .details a", bodyElement);
+    var $learnCtas = $("section.downloads .learn-cta", bodyElement);
     $downloadLinks.on("click", function () {
         var $learnCta = $(this).parents(".download").find(".learn-cta");
 
@@ -222,4 +241,4 @@ document.addEventListener("turbolinks:load", function() {
         $learnCta.addClass("show");
     });
 
-});
+}
