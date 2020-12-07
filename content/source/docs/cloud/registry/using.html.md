@@ -37,6 +37,18 @@ You can browse the complete list, or shrink the list by searching or filtering.
 - The "Providers" drop-down filters the list to show only modules for the selected provider.
 - The search field searches by keyword. This only searches the titles of modules, not READMEs or resource details.
 
+
+### Shared Modules in Terraform Enterprise
+
+On Terraform Enterprise, you may have access to modules outside your organization depending on how your site admin has configured [module sharing](/docs/enterprise/admin/module-sharing.html). Modules that are shared with the current organization will have a "Shared"
+badge.
+
+![Terraform Enterprise screenshot: shared module](./images/using-modules-list-shared.png)
+
+If the current organization's modules are being shared with other organizations, they will have a badge on them that says "Sharing".
+
+![Terraform Enterprise screenshot: sharing module](./images/using-modules-list-sharing.png)
+
 ### Viewing Module Details and Versions
 
 Click a module's "Details" button to view its details page. Use the "Versions" dropdown in the upper right to switch between the available versions, and use the Readme/Inputs/Outputs/Dependencies/Resources tabs to view detailed documentation and information about a version.
@@ -54,7 +66,7 @@ module "vpc" {
 }
 ```
 
-If you're using the SaaS version of Terraform Cloud, the hostname is `app.terraform.io`; Terraform Enterprise instances have their own hostnames. The second part of the source string (the namespace) is the name of your organization.
+If you're using the SaaS version of Terraform Cloud, the hostname is `app.terraform.io`; Terraform Enterprise instances have their own hostnames. The second part of the source string (the namespace) is the name of your organization. If you are using a shared module with Terraform Enterprise, be sure to use the module's organization name in the module source, which may be different than your organization's name.
 
 For more details on using modules in Terraform configurations, see ["Configuration Language: Modules"](/docs/configuration/modules.html) in the Terraform docs.
 
@@ -87,7 +99,7 @@ Configurations that reference modules via the generic hostname can be used witho
 
 Terraform Cloud can use your private modules during plans and applies with no extra configuration, _as long as the workspace is configured to use Terraform 0.11 or higher._
 
-A given workspace can only use private modules from the organization it belongs to. If you want to use the same module in multiple organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html#sharing-modules-across-organizations).)
+A given workspace can only use private modules from the organization it belongs to. If you want to use the same module in multiple organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html#sharing-modules-across-organizations).) If you are using Terraform Enterprise v202012-1 or later, workspaces can also use private modules from organizations that are sharing modules with the workspace's organization.
 
 ### On the Command Line
 
@@ -95,11 +107,11 @@ If you're using Terraform 0.11 or higher, you can use private modules when apply
 
 #### Permissions
 
-When you authenticate with a user token, you can access modules from any organization you are a member of. (A user is a member of an organization if they belong to any team in that organization.)
+When you authenticate with a user token, you can access modules from any organization you are a member of. (A user is a member of an organization if they belong to any team in that organization.) If you are using Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any organization you are a member of.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-Within a given Terraform configuration, you should only use modules from one organization. Mixing modules from different organizations might work on the CLI with your user token, but it will make your configuration difficult or impossible to collaborate with. If you want to use the same module in multiple organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html#sharing-modules-across-organizations).)
+Within a given Terraform configuration, you should only use modules from one organization. Mixing modules from different organizations might work on the CLI with your user token, but it will make your configuration difficult or impossible to collaborate with. If you want to use the same module in multiple organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html#sharing-modules-across-organizations).) On Terraform Enterprise, it is possible to mix modules from different organizations according to your site's [module sharing](../../enterprise/admin/module-sharing.html) configuration.
 
 #### Configuration
 
