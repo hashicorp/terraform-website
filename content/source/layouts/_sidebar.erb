@@ -6,25 +6,22 @@
   </div>
 
   <ul class="nav sidebar-nav">
-    <li><a data-track='intro' href="/intro/index.html">Intro</a></li>
-    <li><a data-track='learn' href="https://learn.hashicorp.com/terraform/">Learn</a></li>
+    <li><a data-track='overview' href="/">Overview</a></li>
+    <li><a data-track='registry' href="https://registry.terraform.io">Registry</a></li>
+    <li><a data-track='learn' href="https://learn.hashicorp.com/terraform/">Tutorials</a></li>
     <li><a data-track='community' href="/community.html">Community</a></li>
-    <li><a data-track='enterprise' href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
+    <li><a data-track='github' href="https://github.com/hashicorp/terraform">GitHub</a></li>
+    <li><a data-track='download-cli' href="/downloads.html">Download CLI</a></li>
+    <li><a data-track='sign-up' href="https://app.terraform.io/signup/account?utm_source=docs_banner">Terraform Cloud</a></li>
   </ul>
 
   <div class="divider"></div>
 
-  <ul class="external nav sidebar-nav">
-    <li>
-      <a data-track='download' href="/downloads.html">
-        <%= inline_svg "download.svg" %> Download
-      </a>
-    </li>
-    <li>
-      <a data-track='github' href="https://github.com/hashicorp/terraform">
-        <%= inline_svg "github.svg" %> GitHub
-      </a>
-    </li>
+  <ul class="nav sidebar-nav">
+      <li>
+        <p>Editions</p>
+      </li>
+      <%= editions_items %>
   </ul>
 
   <div class="divider"></div>
