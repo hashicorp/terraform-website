@@ -5,14 +5,14 @@ page_title: "Module Sharing - Application Administration - Terraform Enterprise"
 
 # Administration: Module Sharing
 
-Site administrators can share modules from an organization's private registry with other organizations in the same Terraform Enterprise instance.  This allows other organizations to use these modules in their Terraform configuration without needing to ingress or maintain the modules themselves.
+Site administrators can share modules from an organization's private registry with other organizations in the same Terraform Enterprise instance. This allows other organizations to use these modules in their Terraform configuration without needing to ingress or maintain the modules themselves.
   
 There are two ways to share modules between organizations:
 
 1. [Global module sharing](#global-module-sharing): modules from an organization are available to all other organizations in that Terraform Enterprise instance
 1. [Module partnership sharing](#module-partnership-sharing): modules from an organization are available to a specific set of organizations in that Terraform Enterprise instance
 
-**Note**: The two sharing options are mutually exclusive, so turning one on will turn the other one off. This means that if you have configured a set of module partnerships for an organization, they will be lost if you switch that organization to use global module sharing.
+**Note:** The two sharing options are mutually exclusive, so turning one on will turn the other one off. This means that if you have configured a set of module partnerships for an organization, they will be lost if you switch that organization to use global module sharing.
 
 -> **API:** See the [Admin Organizations API](/docs/cloud/api/admin/organizations.html), and [Admin Module Sharing API](/docs/cloud/api/admin/module-sharing.html).
 
@@ -26,7 +26,7 @@ Click on **Select organization** to choose the organization that contains the mo
 
 ![screenshot: selecting an organization to share](./images/admin-registry-share-organization-registry.png)
 
-Once the sharing organization is selected, the sharing type can be configured.
+Once you select the sharing organization, you can configure the sharing type.
 
 ### Global Module Sharing
 

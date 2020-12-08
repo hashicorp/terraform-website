@@ -30,7 +30,7 @@ page_title: "Module Sharing - Admin - API Docs - Terraform Enterprise"
 
 `PATCH /admin/organizations/:name/module-consumers`
 
-This endpoint sets the list of organizations that can use modules from the sharing organization's private registry. If the sharing organization has `global-module-sharing` set to `true`, `global-module-sharing` will be set to `false`.
+This endpoint sets the list of organizations that can use modules from the sharing organization's private registry. It also turns off global module sharing for the sharing organization when called.
 
 Parameter  | Description
 -----------|------------
