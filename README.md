@@ -3,6 +3,7 @@
 This repository contains the build infrastructure and some of the content for [terraform.io][]. Pull requests from the community are welcomed!
 
 ## Table of Contents
+
 - [Where the Docs Live](#where-the-docs-live)
 - [Deploying Changes to terraform.io](#deploying-changes-to-terraformio)
 - [Running the Site Locally](#running-the-site-locally)
@@ -159,6 +160,19 @@ Sigil | Start text with  | Color
 `~>`  | `**Important:**` | yellow
 `!>`  | `**Warning:**`   | red
 
+#### Learn Tutorial Crosslink Callouts
+
+We use a standard markdown snippet when linking to a relevant Learn tutorial near the top of a page or section:
+
+> **Hands-on:** Try the [Manage Permissions in Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-permissions?in=terraform/cloud&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+
+We're (mis)using the blockquote element (`>`) to set these links apart from the rest of the text without causing "blue box fatigue." Also note that we're adding UTM tags to the links, to help keep track of where traffic to Learn is coming from. The snippet to use is:
+
+```markdown
+> **Hands-on:** Try the [<NAME>](<URL>&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+```
+
+If a whole collection is relevant, you can say "try the NAME collection" instead.
 
 #### Auto Header IDs
 
@@ -220,7 +234,7 @@ Sidebars generally look like this:
 - `nav-auto-expand` -- Used for inner `<ul>`s that should default to "open" whenever their parent is opened. Useful for when you want to separate things into subcategories but don't want to require an extra click to navigate into those subcategories.
 - `nav-visible` -- Used for inner `<ul>`s that should always display as "open," regardless of the current page. Use this sparingly, and avoid using it for large sections; readers can use the "expand all" control if they need to see everything at once.
 
-A lot of existing sidebars have a ton of ERB tags that call a `sidebar_current` method. Ignore these, and don't worry about including them when making updates. They were for a hack that isn't needed anymore.
+A lot of existing sidebars have a ton of ERB tags that call a `sidebar_current` method. Ignore or remove these, and don't add more of them. They were part of a hack that we don't use anymore.
 
 You don't need to add anything special to a sidebar to get the dynamic JavaScript open/close behavior, but note that the "expand all" and filter controls are only added for sidebars with more than a certain number of links.
 
