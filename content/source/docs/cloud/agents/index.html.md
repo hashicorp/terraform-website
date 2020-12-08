@@ -209,7 +209,7 @@ Agent status appear on the **Organization Settings > Agents** page and will cont
 
 Agents are considered active and count towards the usage of the organization's total capacity if they are in the **Idle**, **Busy**, or **Unknown** state. Agents which are in the **Errored** or **Exited** state do not count towards the usage of the total capacity.
 
-The number of active agents you are eligible to deploy is determined by the number of Concurrent Runs your organization is entitled to. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+The number of active agents you are eligible to deploy is determined by the number of Concurrent Runs your organization is entitled to. 
 
 Agents are considered active and count towards the organization's total agent allowance if they are in the **Idle**, **Busy**, or **Unknown** state. Agents which are in the **Errored** or **Exited** state do not count towards the organizations total agent capacity.
 
