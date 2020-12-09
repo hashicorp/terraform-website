@@ -26,11 +26,18 @@ page_title: "Module Sharing - Admin - API Docs - Terraform Enterprise"
 
 -> These API endpoints are available in Terraform Enterprise as of version 202012-1.
 
+There are two ways to configure module sharing via the admin API:
+
+- This endpoint, which allows an organization to share modules with a specific list of other organizations.
+- The [update an organization endpoint](./organizations.html#update-an-organization), whose `data.attributes.global-module-sharing` property allows an organization to share modules with every organization in the instance.
+
+Enabling either option will disable the other. For more information, see [Administration: Module Sharing](/docs/enterprise/admin/module-sharing.html).
+
 ## Update an Organization's Module Consumers
 
 `PATCH /admin/organizations/:name/module-consumers`
 
-This endpoint sets the list of organizations that can use modules from the sharing organization's private registry. It also turns off global module sharing for the sharing organization when called.
+This endpoint sets the list of organizations that can use modules from the sharing organization's private registry. Sharing with specific organizations will automatically turn off global module sharing, which is configured with the [update an organization endpoint](./organizations.html#update-an-organization) (via the `data.attributes.global-module-sharing` property).
 
 Parameter  | Description
 -----------|------------

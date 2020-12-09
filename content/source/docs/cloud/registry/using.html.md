@@ -66,7 +66,7 @@ module "vpc" {
 }
 ```
 
-If you're using the SaaS version of Terraform Cloud, the hostname is `app.terraform.io`; Terraform Enterprise instances have their own hostnames. The second part of the source string (the namespace) is the name of your organization. If you are using a shared module with Terraform Enterprise, be sure to use the module's organization name in the module source, which may be different than your organization's name.
+If you're using the SaaS version of Terraform Cloud, the hostname is `app.terraform.io`; Terraform Enterprise instances have their own hostnames. The second part of the source string (the namespace) is the name of your organization. If you are using a shared module with Terraform Enterprise, be sure to use the module's organization name in the module source, which may be different than your organization's name. The source string shown on a module's registry page will always include the proper organization name.
 
 For more details on using modules in Terraform configurations, see ["Configuration Language: Modules"](/docs/configuration/modules.html) in the Terraform docs.
 
