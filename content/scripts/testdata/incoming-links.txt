@@ -3,7 +3,6 @@
 /docs/backends/config.html
 /docs/backends/index.html
 /docs/backends/init.html
-/docs/backends/legacy-0-8.html
 /docs/backends/operations.html
 /docs/backends/state.html
 /docs/backends/types/artifactory.html
@@ -218,7 +217,6 @@
 /docs/internals/archiving.html
 /docs/internals/debugging.html
 /docs/internals/graph.html
-/docs/internals/internal-plugins.html
 /docs/internals/json-format.html
 /docs/internals/lifecycle.html
 /docs/internals/remote-service-discovery.html
