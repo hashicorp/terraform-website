@@ -64,7 +64,7 @@ Resource Name | Description
 curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  "https://app.terraform.io/api/v2/admin/organizations"
+  "https://tfe.example.com/api/v2/admin/organizations"
 ```
 
 ### Sample Response
@@ -76,48 +76,57 @@ curl \
       "id": "my-organization",
       "type": "organizations",
       "attributes": {
+        "access-beta-tools": false,
+        "external-id": "org-XBiRp755dav5p3P2",
+        "is-disabled": false,
         "name": "my-organization",
-        "enterprise-plan": "pro",
-        "trial-expires-at": "2018-05-22T00:00:00.000Z",
-        "notification-email": "my-organization@example.com"
+        "terraform-build-worker-apply-timeout": null,
+        "terraform-build-worker-plan-timeout": null,
+        "terraform-worker-sudo-enabled": false,
+        "notification-email": "my-organization@example.com",
+        "global-module-sharing": false,
+        "sso-enabled": false
       },
       "relationships": {
         "owners": {
           "data": [
             {
-              "id": "user-mVPjPn2hRJFtHMF5",
+              "id": "user-hxTQDETqnJsi5VYP",
               "type": "users"
             }
           ]
+        },
+        "subscription": {
+          "data": null
+        },
+        "feature-set": {
+          "data": null
         }
       },
       "links": {
-        "self": "/api/v2/organizations/my-organization"
+        "self": "/api/v2/admin/organizations/my-organization"
       }
     }
   ],
   "links": {
-    "self": "https://app.terraform.io/api/v2/admin/organizations?page%5Bnumber%5D=1&page%5Bsize%5D=20",
-    "first": "https://app.terraform.io/api/v2/admin/organizations?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "self": "https://tfe.example.com/api/v2/admin/organizations?page%5Bnumber%5D=1\u0026page%5Bsize%5D=20",
+    "first": "https://tfe.example.com/api/v2/admin/organizations?page%5Bnumber%5D=1\u0026page%5Bsize%5D=20",
     "prev": null,
     "next": null,
-    "last": "https://app.terraform.io/api/v2/admin/organizations?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+    "last": "https://tfe.example.com/api/v2/admin/organizations?page%5Bnumber%5D=1\u0026page%5Bsize%5D=20"
   },
   "meta": {
+    "status-counts": {
+      "total": 1,
+      "active": 1,
+      "disabled": 0
+    },
     "pagination": {
       "current-page": 1,
       "prev-page": null,
       "next-page": null,
       "total-pages": 1,
       "total-count": 1
-    },
-    "status-counts": {
-      "total": 1,
-      "active-trial": 0,
-      "expired-trial": 0,
-      "pro": 1,
-      "premium": 0,
-      "disabled": 0
     }
   }
 }
@@ -151,7 +160,7 @@ Resource Name | Description
 curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/admin/organizations/my-organization
+  https://tfe.example.com/api/v2/admin/organizations/my-organization
 ```
 
 ### Sample Response
@@ -162,21 +171,129 @@ curl \
     "id": "my-organization",
     "type": "organizations",
     "attributes": {
+      "access-beta-tools": false,
+      "external-id": "org-XBiRp755dav5p3P2",
+      "is-disabled": false,
       "name": "my-organization",
-      "notification-email": "my-organization@example.com"
+      "terraform-build-worker-apply-timeout": null,
+      "terraform-build-worker-plan-timeout": null,
+      "terraform-worker-sudo-enabled": false,
+      "notification-email": "my-organization@example.com",
+      "global-module-sharing": false,
+      "sso-enabled": false
     },
     "relationships": {
       "owners": {
         "data": [
           {
-            "id": "user-mVPjPn2hRJFtHMF5",
+            "id": "user-hxTQDETqnJsi5VYP",
             "type": "users"
           }
         ]
+      },
+      "subscription": {
+        "data": null
+      },
+      "feature-set": {
+        "data": null
       }
     },
     "links": {
-      "self": "/api/v2/organizations/my-organization"
+      "self": "/api/v2/admin/organizations/my-organization"
+    }
+  }
+}
+```
+
+## Update an Organization
+
+`PATCH /organizations/:organization_name`
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to update
+
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "organizations"`) | The organization was successfully updated
+[404][] | [JSON API error object][]                       | Organization not found or user unauthorized to perform action
+[422][] | [JSON API error object][]                       | Malformed request body (missing attributes, wrong types, etc.)
+
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload. Note that the Admin Organizations API may offer a different set of attributes than the [Organizations API](/docs/cloud/api/organizations.html#request-body-1).
+
+Key path                                               | Type    | Default   | Description
+-------------------------------------------------------|---------|-----------|------------
+`data.type`                                            | string  |           | Must be `"organizations"`
+`data.attributes.access-beta-tools`                    | boolean | false     | Whether or not workspaces in the organization can be configured to use beta versions of Terraform.
+`data.attributes.global-module-sharing`                | boolean | false     | If true, modules in the organization's private module repository will be available to all other organizations in this TFE instance. Enabling this will disable any previously configured [module consumers](./module-sharing.html).
+`data.attributes.is-disabled`                          | boolean | false     | Disabling the organization will remove all permissions and no longer be accessible to users.
+`data.attributes.terraform-build-worker-apply-timeout` | string  | 24h       | Maximum run time for Terraform applies for this organization. Will use the configured global defaults if left unset. Specify a duration with a decimal number and a unit suffix.
+`data.attributes.terraform-build-worker-plan-timeout`  | string  | 2h        | Maximum run time for Terraform plans for this organization. Will use the configured global defaults if left unset. Specify a duration with a decimal number and a unit suffix.
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "type": "organizations",
+    "attributes": {
+      "global-module-sharing": true
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://tfe.example.com/api/v2/organizations/my-organization
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "my-organization",
+    "type": "organizations",
+    "attributes": {
+      "access-beta-tools": false,
+      "external-id": "org-XBiRp755dav5p3P2",
+      "is-disabled": false,
+      "name": "my-organization",
+      "terraform-build-worker-apply-timeout": null,
+      "terraform-build-worker-plan-timeout": null,
+      "terraform-worker-sudo-enabled": false,
+      "notification-email": "my-organization@example.com",
+      "global-module-sharing": true,
+      "sso-enabled": false
+    },
+    "relationships": {
+      "owners": {
+        "data": [
+          {
+            "id": "user-hxTQDETqnJsi5VYP",
+            "type": "users"
+          }
+        ]
+      },
+      "subscription": {
+        "data": null
+      },
+      "feature-set": {
+        "data": null
+      }
+    },
+    "links": {
+      "self": "/api/v2/admin/organizations/my-organization"
     }
   }
 }
@@ -203,5 +320,5 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/admin/organizations/my-organization
+  https://tfe.example.com/api/v2/admin/organizations/my-organization
 ```

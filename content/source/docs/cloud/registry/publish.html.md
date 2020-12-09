@@ -99,6 +99,7 @@ To delete a module or version:
 4. Select the desired action from the drop-down and confirm with the "Delete" button.
     - "Delete only this module version" affects the version of the module you were viewing when you clicked delete.
     - The other two options are only different if you have modules with the same name but different providers. (For example, if you have module repos named `terraform-aws-appserver` and `terraform-azure-appserver`, the registry treats them as alternate providers of the same `appserver` module.) If you use multi-provider modules like this, the "Delete all providers and versions for this module" option can delete multiple modules.
+5. Type the module's name to confirm the deletion.
 
 ~> **Note:** If a deletion would leave a module with no versions, the module will be automatically deleted.
 
@@ -109,3 +110,5 @@ To delete a module or version:
 In normal operation, Terraform Cloud doesn't allow one organization's workspaces to use private modules from a different organization. (When Terraform Cloud runs Terraform, it provides temporary credentials that are only valid for the workspace's organization, and uses those credentials to access modules.) And although it's possible to mix modules from multiple organizations when running Terraform on the command line, we strongly recommend against it.
 
 However, you can easily share modules across organizations by sharing the underlying VCS repository. Grant each organization access to the module's repo, then add the module to each organization's registry. When you push tags to publish new module versions, both organizations will update appropriately.
+
+In Terraform Enterprise version 202012-1 and later, organizations may be able to use private modules from other organizations depending on how the site admin has configured [module sharing](/docs/enterprise/admin/module-sharing.html).
