@@ -30,7 +30,7 @@ Providers published to the Terraform Registry are written and built in the same 
 
 ### Documenting your Provider
 
-Your provider should contain an overview document (index.md), as well as a doc for each resource and data-source. See [Documenting Providers](./docs.html) for details about how to ensure your provider documentation renders properly on the Terraform Registry.
+Your provider should contain an overview document (index.md), as well as a doc for each resource and data-source. See [Documenting Providers](./docs.html) for details about generating documentation and how to ensure your provider documentation renders properly on the Terraform Registry.
 
 -> **Note:** In order to test how documents will render in the Terraform Registry, you can use the [Terraform Registry Doc Preview Tool](https://registry.terraform.io/tools/doc-preview).
 
