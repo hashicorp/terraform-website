@@ -291,10 +291,6 @@
 /guides/core-workflow.html
 /guides/index.html
 /guides/terraform-provider-development-program.html
-/intro/examples/aws.html
-/intro/examples/consul.html
-/intro/examples/count.html
-/intro/examples/index.html
 /intro/index.html
 /intro/use-cases.html
 /intro/vs/boto.html
