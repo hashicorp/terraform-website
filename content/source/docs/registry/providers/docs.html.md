@@ -34,7 +34,7 @@ The [terraform-provider-scaffolding](https://github.com/hashicorp/terraform-prov
 //go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs
 ```
 
-Or it can be invoked manually for your provider. It produces content that satisfies the below format, but you can also create the documentation manually. For more information on how the generation works, please see the [terraform-plugin-docs](https://github.com/hashicorp/terraform-plugin-docs) repository.
+If preferred you can choose to also invoke this manually for your provider. Once run, this command produces all of the content that satisfies the expected format for the Registry. Finally you can also create the documentation manually following the format and structure below. For more information on how the generation tool works, please see the [terraform-plugin-docs](https://github.com/hashicorp/terraform-plugin-docs) repository.
 
 ## Format
 
