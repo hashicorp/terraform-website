@@ -24,6 +24,18 @@ The maximum number of documents allowed for a single provider version is 1000.
 
 Each document can contain no more than 500KB of data. Documents which exceed this limit will be truncated, and a note will be displayed in the Terraform Registry.
 
+## Generating Documentation
+
+The [tfplugindocs](https://github.com/hashicorp/terraform-plugin-docs) command can be used to automatically generate documentation for your provider in the format necessary for the Terraform Registry. It will read descriptions and schema from each resource and data source in your provider and generate the relevant markdown files for you.
+
+The [terraform-provider-scaffolding](https://github.com/hashicorp/terraform-provider-scaffolding) template repository includes example usage of the `tfplugindocs` command via `go generate`: 
+
+```go
+//go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs
+```
+
+If preferred you can choose to also invoke this manually for your provider. Once run, this command produces all of the content that satisfies the expected format for the Registry. Finally you can also create the documentation manually following the format and structure below. For more information on how the generation tool works, please see the [terraform-plugin-docs](https://github.com/hashicorp/terraform-plugin-docs) repository.
+
 ## Format
 
 Provider documentation should be a directory of Markdown documents in the provider repository. Each Markdown document is rendered as a separate page. The directory should include a document for the provider index, a document for each resource and data source, and optional documents for any guides.
