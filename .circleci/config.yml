@@ -25,7 +25,7 @@ jobs:
 
       - run: make website-test
 
-  deploy-website:
+  website-build-and-upload:
     docker:
       - image: *MIDDLEMAN_IMAGE
     steps:
@@ -56,15 +56,35 @@ jobs:
 
       - run:
           working_directory: content
-          command: ./scripts/deploy.sh
+          command: ./scripts/upload.sh
+
+  website-warm-cache-check-links:
+    docker:
+      - image: *MIDDLEMAN_IMAGE
+    steps:
+      # Don't need gems or anything
+      - run:
+          name: Warm cache and check for broken links
+          command: wget --delete-after --level inf --no-directories --no-host-directories --no-verbose --page-requisites --recursive --spider "https://www.terraform.io/"
+
 
 workflows:
-  website:
+  linkcheck:
+    # run on branches and PRs; ignore master, since the cache warming also checks links.
     jobs:
-      # run on all branches and PR's
-      - website-test
-      - deploy-website:
+      - website-test:
+        filters:
+          branches:
+            ignore: master
+  website-deploy:
+    # only run on main branch
+    jobs:
+      - website-build-and-upload:
           context: static-sites
           filters:
             branches:
               only: master
+      - website-warm-cache-check-links:
+          context: static-sites
+          requires:
+            - website-build-and-upload
