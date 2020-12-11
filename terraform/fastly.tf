@@ -1,7 +1,3 @@
-provider "fastly" {
-  version = "~> 0.17.0"
-}
-
 locals {
   static_sites_service_id              = "7GrxRJP3PVBuqQbyxYQ0MV"
   tf_registry_docs_type_dictionary_id  = "2meQ4j47Me81w1jSb5m9lh"
