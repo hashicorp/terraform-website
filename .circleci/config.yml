@@ -86,8 +86,5 @@ workflows:
               only: master
       - website-warm-cache-check-links:
           context: static-sites
-          filters:
-            branches:
-              only: master
           requires:
             - website-build-and-upload
