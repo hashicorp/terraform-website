@@ -50,7 +50,7 @@ The audit trails API exposes a stream of audit events, which describe changes to
 $ curl \
   --header "Authorization: Bearer $TOKEN" \
   --request GET \
-  https://app.terraform.io/api/v2/organization/audit-trail?page[number]=1&since=2020-05-30T17:52:46.000Z
+  "https://app.terraform.io/api/v2/organization/audit-trail?page[number]=1&since=2020-05-30T17:52:46.000Z"
 ```
 
 ### Sample Response
