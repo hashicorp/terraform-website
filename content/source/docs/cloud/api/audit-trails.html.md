@@ -38,6 +38,8 @@ The audit trails API exposes a stream of audit events, which describe changes to
 
 ### Query Parameters
 
+[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
 | Parameter | Description                                                                                                                                                                      |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `since`   | **Optional.** Returns only audit trails created after this date (UTC and in [ISO8601 Format](https://www.iso.org/iso-8601-date-and-time-format.html) - YYYY-MM-DDTHH:MM:SS.SSSZ) |
