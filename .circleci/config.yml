@@ -62,12 +62,10 @@ jobs:
     docker:
       - image: *MIDDLEMAN_IMAGE
     steps:
-      - checkout
-
       # Don't need gems or anything
       - run:
-          working_directory: content
-          command: ./scripts/warm-cache.sh
+          name: Warm cache and check for broken links
+          command: wget --delete-after --level inf --no-directories --no-host-directories --no-verbose --page-requisites --recursive --spider "https://www.terraform.io/"
 
 
 workflows:
