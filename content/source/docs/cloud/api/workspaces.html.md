@@ -99,8 +99,7 @@ _With a VCS repository_
       "vcs-repo": {
         "identifier": "skierkowski/terraform-test-proj",
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
-        "branch": "",
-        "default-branch": true
+        "branch": ""
       }
     },
     "type": "workspaces"
@@ -123,8 +122,7 @@ A run will be triggered in this workspace when changes are detected in any of th
       "vcs-repo": {
         "identifier": "skierkowski/terraform-test-proj-monorepo",
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
-        "branch": "",
-        "default-branch": true
+        "branch": ""
       }
     },
     "type": "workspaces"
@@ -474,7 +472,6 @@ $ curl \
         "trigger-prefixes": [],
         "vcs-repo": {
           "branch": "",
-          "default-branch": true,
           "ingress-submodules": false
         },
         "working-directory": ""
@@ -518,7 +515,6 @@ $ curl \
         "trigger-prefixes": [],
         "vcs-repo": {
           "branch": "",
-          "default-branch": true,
           "ingress-submodules": false
         },
         "working-directory": ""
@@ -971,7 +967,6 @@ $ curl \
       "trigger-prefixes": [],
       "vcs-repo": {
         "branch": "",
-        "default-branch": true,
         "ingress-submodules": false
       },
       "working-directory": ""
@@ -1073,7 +1068,6 @@ $ curl \
       "trigger-prefixes": [],
       "vcs-repo": {
         "branch": "",
-        "default-branch": true,
         "ingress-submodules": false
       },
       "working-directory": ""
