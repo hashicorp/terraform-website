@@ -1,5 +1,9 @@
 version: 2.1
 
+orbs:
+  # Slack orb v. 3 uses a webhook URL for auth. If upgrading to v. 4+, we'll need a token instead.
+  slack: circleci/slack@3.4.2
+
 references:
   images:
     middleman: &MIDDLEMAN_IMAGE docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:0.3.44
@@ -25,10 +29,18 @@ jobs:
 
       - run: make website-test
 
+      - slack/status:
+          success_message: ":white_check_mark: Finished link check for branch. :meow_yay: No broken links!"
+          failure_message: ":broken_image: Found broken links when checking branch."
+
   website-build-and-upload:
     docker:
       - image: *MIDDLEMAN_IMAGE
     steps:
+      - slack/notify:
+          message: ":terraform-loading: Starting build/deploy for terraform.io..."
+          color: "#ECB942"
+
       - checkout
 
       # pull and update git submodules
@@ -58,6 +70,10 @@ jobs:
           working_directory: content
           command: ./scripts/upload.sh
 
+      - slack/status:
+          success_message: ":terraformda: Successfully deployed to terraform.io."
+          failure_message: ":boom: Failed to deploy terraform.io! Urgent attention needed! <!here>"
+
   website-warm-cache-check-links:
     docker:
       - image: *MIDDLEMAN_IMAGE
@@ -67,6 +83,9 @@ jobs:
           name: Warm cache and check for broken links
           command: wget --delete-after --level inf --no-directories --no-host-directories --no-verbose --page-requisites --recursive --spider "https://www.terraform.io/"
 
+      - slack/status:
+          success_message: ":white_check_mark: Finished warming cache for terraform.io. :meow_yay: No broken links!"
+          failure_message: ":broken_image: Found broken links while warming cache for terraform.io. For details, check job log and :command:-F for 'broken'."
 
 workflows:
   linkcheck:
