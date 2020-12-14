@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  slack: circleci/slack@3.4.2
+
 references:
   images:
     middleman: &MIDDLEMAN_IMAGE docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:0.3.44
@@ -13,6 +16,10 @@ jobs:
     machine:
       image: *UBUNTU_IMAGE
     steps:
+      - slack/notify:
+          message: ":white_check_mark: Test message (notify): The linktest job has begun!"
+          color: "#29993b"
+
       - checkout
 
       - run:
@@ -24,6 +31,10 @@ jobs:
       - run: make sync
 
       - run: make website-test
+
+      - slack/status:
+          success_message: "And here's the slack/status message, at the end of the job (success version)"
+          failure_message: "And here's the slack/status message, at the end of the job (failure version)"
 
   website-build-and-upload:
     docker:
