@@ -92,9 +92,9 @@ workflows:
     # run on branches and PRs; ignore master, since the cache warming also checks links.
     jobs:
       - website-test:
-        filters:
-          branches:
-            ignore: master
+          filters:
+            branches:
+              ignore: master
   website-deploy:
     # only run on main branch
     jobs:
