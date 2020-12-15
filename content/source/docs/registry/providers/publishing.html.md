@@ -68,7 +68,7 @@ GoReleaser is a tool for building Go projects for multiple platforms, creating a
 1. Copy the [.goreleaser.yml file](https://github.com/hashicorp/terraform-provider-scaffolding/blob/master/.goreleaser.yml) from the [hashicorp/terraform-provider-scaffolding](https://github.com/hashicorp/terraform-provider-scaffolding) repository.
 1. Cache the password for your GPG private key with `gpg --armor --detach-sign` (see note below).
 1. Set your `GITHUB_TOKEN` to a [Personal Access Token](https://github.com/settings/tokens/new?scopes=public_repo) that has the **public_repo** scope.
-1. Tag your version with `git tag v1.2.3`.
+1. Tag your version with `git tag v1.2.3` and push your tags to GitHub.
 1. Build, sign, and upload your release with `goreleaser release --rm-dist`.
 
 -> GoReleaser does not support signing binaries with a GPG key that requires a passphrase. Some systems may cache your GPG passphrase for a few minutes. If you are unable to cache the passphrase for GoReleaser, please use the manual release preparation process below, or remove the signature step from GoReleaser and sign it prior to moving the GitHub release from draft to published.
