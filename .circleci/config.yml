@@ -27,6 +27,7 @@ jobs:
 
       - slack/notify:
           message: ":boom: Website deploy failed! Urgent attention needed!"
+          mentions: "here"
           color: "#ed5c5c"
 
       - slack/notify:
