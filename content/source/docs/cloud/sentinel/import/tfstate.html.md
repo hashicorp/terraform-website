@@ -378,7 +378,7 @@ sources share the same namespace as resources, but need to be loaded with the
 `data` key. For more information, see the
 [synopsis](#namespace-resources-data-sources) for the namespace itself.
 
-[ref-tf-null-data-source]: /docs/providers/null/data_source.html
+[ref-tf-null-data-source]: https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source
 
 As an example, given the following data source:
 

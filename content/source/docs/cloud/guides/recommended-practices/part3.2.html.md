@@ -70,7 +70,7 @@ If you’re just getting started, try this tutorial on how to [create a Chef coo
 
 ## 7. Manage Secrets
 
-Integrate Terraform with [Vault](/docs/providers/vault/index.html) or another secret management tool. Secrets like service provider credentials must stay secret, but they also must be easy to use when needed. The best way to address those needs is to use a dedicated secret management tool. We believe HashiCorp’s Vault is the best choice for most people, but Terraform can integrate with other secret management tools as well.
+Integrate Terraform with [Vault](https://registry.terraform.io/providers/hashicorp/vault/latest/docs) or another secret management tool. Secrets like service provider credentials must stay secret, but they also must be easy to use when needed. The best way to address those needs is to use a dedicated secret management tool. We believe HashiCorp’s Vault is the best choice for most people, but Terraform can integrate with other secret management tools as well.
 
 ## Next
 

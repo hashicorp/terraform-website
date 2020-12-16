@@ -18,7 +18,7 @@ Terraform Cloud manages SSH keys used to clone Terraform modules at the organiza
 To assign a key to a workspace, go to its settings and choose a previously added key from the drop-down menu on Integrations under "SSH Key". Each workspace can only use one SSH key.
 
 -> **API:** See the [SSH Keys API](../api/ssh-keys.html) and [Assign an SSH Key to a Workspace endpoint](../api/workspaces.html#assign-an-ssh-key-to-a-workspace). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_ssh_key`](/docs/providers/tfe/r/ssh_key.html) resource.
+**Terraform:** See the `tfe` provider's [`tfe_ssh_key`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docsr/ssh_key.html) resource.
 
 ## Adding and Deleting Keys
 

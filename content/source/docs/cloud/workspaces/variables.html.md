@@ -19,7 +19,7 @@ Viewing variables requires permission to read variables for the workspace, and s
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **API:** See the [Variables API](../api/variables.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_variable`](/docs/providers/tfe/r/variable.html) resource.
+**Terraform:** See the `tfe` provider's [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docsr/variable.html) resource.
 
 ## Loading Variables from Files
 
@@ -27,7 +27,7 @@ If a workspace is configured to use Terraform 0.10.0 or later, you can commit an
 
 If any automatically loaded variables have the same names as variables specified in the Terraform Cloud workspace, the workspace's values will override the automatic values (except for map values, [which are merged](/docs/configuration/variables.html#variable-merging)).
 
-You can also use the optional [Terraform Cloud Provider](/docs/providers/tfe/r/variable.html) to update a workspace's variables. This has the same effect as managing workspace variables manually or via the API, but can be more convenient for large numbers of complex variables.
+You can also use the optional [Terraform Cloud Provider](https://registry.terraform.io/providers/hashicorp/tfe/latest/docsr/variable.html) to update a workspace's variables. This has the same effect as managing workspace variables manually or via the API, but can be more convenient for large numbers of complex variables.
 
 ## Variable Limits
 

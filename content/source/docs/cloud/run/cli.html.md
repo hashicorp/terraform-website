@@ -7,7 +7,7 @@ page_title: "CLI-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
 [private]: ../registry/index.html
 [remote]: /docs/backends/types/remote.html
 [speculative plan]: ./index.html#speculative-plans
-[tfe-provider]: /docs/providers/tfe/index.html
+[tfe-provider]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs
 
 # The CLI-driven Run Workflow
 

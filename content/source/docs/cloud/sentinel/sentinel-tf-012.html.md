@@ -95,7 +95,7 @@ As a consequence of no longer receiving raw Terraform configuration, map values
 are no longer represented as lists separated by their block index.
 
 This can be best demonstrated with a simple Sentinel policy for
-[`null_resource`](/docs/providers/null/resource.html). In Terraform 0.11 and
+[`null_resource`](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource). In Terraform 0.11 and
 earlier, this is a valid `null_resource` declaration, and the two map values
 would be merged:
 

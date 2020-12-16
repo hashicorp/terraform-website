@@ -49,7 +49,7 @@ Decide where you'll be running Terraform, and ensure:
 
 - [The latest Terraform 0.11 release][tf11] is installed and available in the PATH.
 - The system running Terraform has access to the target subnet.
-- The system running Terraform can authenticate to Azure. For more details, see [Azure Provider: Authenticating to Azure](/docs/providers/azurerm/index.html#authenticating-to-azure).
+- The system running Terraform can authenticate to Azure. For more details, see [Azure Provider: Authenticating to Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#authenticating-to-azure).
 - You're familiar enough with Terraform to write simple configurations that call [modules ](/docs/configuration-0-11/modules.html) and specify [output values](/docs/configuration-0-11/outputs.html).
 
 ## Prepare Infrastructure

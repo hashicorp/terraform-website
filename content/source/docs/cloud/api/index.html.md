@@ -26,7 +26,7 @@ Terraform Cloud provides an API for a subset of its features. If you have any qu
 
 See the navigation sidebar for the list of available endpoints.
 
--> **Note:** Before planning an API integration, consider whether [the `tfe` Terraform provider](/docs/providers/tfe/index.html) meets your needs. It can't create or approve runs in response to arbitrary events, but it's a useful tool for managing your organizations, teams, and workspaces as code.
+-> **Note:** Before planning an API integration, consider whether [the `tfe` Terraform provider](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs) meets your needs. It can't create or approve runs in response to arbitrary events, but it's a useful tool for managing your organizations, teams, and workspaces as code.
 
 HashiCorp provides a [stability policy](./stability-policy.html) for the Terraform Cloud API, ensuring backwards compatibility for stable endpoints.
 
