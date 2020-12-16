@@ -44,6 +44,10 @@ jobs:
           name: test color
           command: echo -e "\033[0;32mGREEN\t\033[1;32mLIGHT_GREEN"
       - run:
+          name: debxug
+          command: echo $TERM && echo $COLORTERM
+
+      - run:
           name: install filiph/linkcheck
           command: pub global activate linkcheck
 
