@@ -35,6 +35,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Git](#git)
 - [HCL](#hcl)
 - [ID](#id)
+- [Infrastructure-as-Code](#infrastructure-as-code)
 - [Ingress](#ingress)
 - [Input Variables](#input-variables)
 - [Interpolation](#interpolation)
@@ -352,6 +353,12 @@ In Terraform, many [resource][] types have an ID [attribute][] that helps link T
 In Terraform Cloud, most internal application objects (like [workspaces][], users, [policies][], etc.) can be identified by both a name and by an opaque, permanent ID. Most API endpoints use IDs instead of names, since names sometimes change. IDs for Terraform Cloud's application objects are sometimes called "external IDs."
 
 You can usually copy an external ID from the URL bar when viewing an object in Terraform Cloud's UI. Workspaces don't display an ID in the URL bar, but their general settings page includes a UI control for viewing and copying the ID.
+
+## Infrastructure as Code
+
+[infrastructure-as-code]: glossary.html#infrastructure-as-code
+
+Infrastructure-as-Code (IaC) is the process of managing infrastructure in a file or files rather than manually configuring it via a user interface. Infrastructure resource types managed with IaC can include virtual machines, security groups, network interfaces, and many others.
 
 ## Ingress
 
