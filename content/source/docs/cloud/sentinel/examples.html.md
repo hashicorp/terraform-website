@@ -47,4 +47,16 @@ This page lists some example policies. These examples are not exhaustive, but th
 * [Restrict size of VM disks](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/vmware/restrict-vm-disk-size.sentinel)
 * [Require NFS 4.1 and Kerberos on NAS datastores](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/vmware/require_nfs41_and_kerberos.sentinel)
 
+### Cloud-Agnostic
+
+* [Allowed providers](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/cloud-agnostic/allowed-providers.sentinel)
+* [Prohibited providers](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/cloud-agnostic/prohibited-providers.sentinel)
+* [Limit proposed monthly costs](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/cloud-agnostic/limit-proposed-monthly-cost.sentinel)
+* [Prevent providers in non-root modules](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/cloud-agnostic/prevent-non-root-providers.sentinel)
+* [Require all modules have version constraints](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/cloud-agnostic/require-all-modules-have-version-constraint.sentinel)
+* [Require all resources be created in modules in a private module registry](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/cloud-agnostic/require-all-resources-from-pmr.sentinel)
+* [Use most recent versions of modules in a private module registry](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/cloud-agnostic/http-examples/use-latest-module-versions.sentinel)
+
+Note that the last policy illustrates how to use Sentinel's [http import](https://docs.hashicorp.com/sentinel/imports/http) to send an HTTP request to an API endpoint (Terraform Cloud's own API in this case).
+
 -> **Note:** We've also developed a number of first-class foundational policies to work out-of-the-box with Amazon Web Services, Microsoft Azure and Google Cloud Platform. These policies are based on several [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks/). Check out the library of [Terraform Foundational Policies](https://github.com/hashicorp/terraform-foundational-policies-library) written by HashiCorp to get up and running with your next [Policy Set](./manage-policies.html#policies-and-policy-sets).
