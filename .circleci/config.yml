@@ -53,7 +53,7 @@ jobs:
 
       - run:
           name: Warm cache and check for broken links
-          command: /root/.pub-cache/bin/linkcheck --nice http://isitsnowinginpdx.com/
+          command: TERM=xterm /root/.pub-cache/bin/linkcheck --nice http://isitsnowinginpdx.com/
 
 
   website-build-and-upload:
