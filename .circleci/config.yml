@@ -8,6 +8,9 @@ references:
   images:
     middleman: &MIDDLEMAN_IMAGE docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:0.3.44
     ubuntu: &UBUNTU_IMAGE ubuntu-1604:201903-01
+    # We rely on dart-lang/sdk commit 7e7c01e804179782f884b174706ed0c80fb2ef71
+    # -- earliest viable container version is 2.11.0-182.0.dev
+    dart: &DART docker.mirror.hashicorp.services/google/dart:2.12.0-133.2.beta
 
   cache:
     rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
@@ -76,16 +79,21 @@ jobs:
 
   website-warm-cache-check-links:
     docker:
-      - image: *MIDDLEMAN_IMAGE
+      - image: *DART
     steps:
-      # Don't need gems or anything
+      # TODO: This should be in the container, but we want to get the kinks
+      # worked out before committing to the overhead. Also the install takes 3s.
+      - run:
+          name: install filiph/linkcheck
+          command: pub global activate linkcheck
+
       - run:
           name: Warm cache and check for broken links
-          command: wget --delete-after --level inf --no-directories --no-host-directories --no-verbose --page-requisites --recursive --spider "https://www.terraform.io/"
+          command: /root/.pub-cache/bin/linkcheck https://www.terraform.io/
 
       - slack/status:
           success_message: ":white_check_mark: Finished warming cache for terraform.io. :meow_yay: No broken links!"
-          failure_message: ":broken_image: Found broken links while warming cache for terraform.io. For details, check job log and :command:-F for 'broken'."
+          failure_message: ":broken_image: Found broken links while warming cache for terraform.io. For details, check job log."
 
 workflows:
   linkcheck:
