@@ -43,6 +43,14 @@ jobs:
       - run:
           name: test color
           command: echo -e "\033[0;32mGREEN\t\033[1;32mLIGHT_GREEN"
+      - run:
+          name: install filiph/linkcheck
+          command: pub global activate linkcheck
+
+      - run:
+          name: Warm cache and check for broken links
+          command: /root/.pub-cache/bin/linkcheck --nice http://isitsnowinginpdx.com/
+
 
   website-build-and-upload:
     docker:
