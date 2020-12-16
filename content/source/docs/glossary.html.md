@@ -22,7 +22,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Blob Storage](#blob-storage)
 - [Block](#block)
 - [Branch](#branch)
-- [CI/CD](ci-cd)
+- [CI/CD](#ci-cd)
 - [CLI](#cli)
 - [Commit](#commit)
 - [(Terraform) Configuration](#terraform-configuration)
