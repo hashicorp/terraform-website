@@ -22,6 +22,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Blob Storage](#blob-storage)
 - [Block](#block)
 - [Branch](#branch)
+- [CI/CD](ci-cd)
 - [CLI](#cli)
 - [Commit](#commit)
 - [(Terraform) Configuration](#terraform-configuration)
@@ -201,6 +202,12 @@ resource "aws_vpc" "main" {
 In some [version control systems][vcs]: a semi-independent history of changes to content in a repository. A branch generally shares some history with other branches in the same repository, but eventually diverges to include changes that aren't yet present elsewhere.
 
 A repository usually has a default branch (whose name, in [Git][], defaults to `master`), which successful changes are eventually merged into. Most modern development workflows also include topic branches (where a specific set of changes is explored, iterated on, and verified), and some workflows include long-lived branches other than the default branch.
+
+## CI/CD
+
+[ci-cd]: glossary.html#ci-cd
+
+CI/CD (Continuous Integration/Continuous Delivery) platforms provide automated, structured pipelines for new releases. Infrastructure management, typically handled by operations teams, can also fit into an automated release workflow using infrastructure as code with Terraform.
 
 ## CLI
 
