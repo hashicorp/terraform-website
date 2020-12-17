@@ -58,7 +58,7 @@ If documentation or UI text states that an action requires a specific permission
 
 ### General Workspace Permissions
 
-[All Workspace Permissions]: #all-workspace-permissions
+[General Workspace Permissions]: #general-workspace-permissions
 
 The following workspace permissions can be granted to teams on a per-workspace basis. They can be granted via either fixed permission sets or custom workspace permissions.
 
@@ -96,7 +96,7 @@ Workspace admins have the following permissions on their workspace:
 - Set or remove workspace permissions for any team (workspace admins only)
 - Delete workspace (workspace admins only)
 
-See [All Workspace Permissions][] above for details about specific permissions.
+See [General Workspace Permissions][] above for details about specific permissions.
 
 ### Fixed Permission Sets
 
@@ -112,7 +112,7 @@ The "read" permission set is for people who need to view information about the s
 - Read variables
 - Read state versions
 
-See [All Workspace Permissions][] above for details about specific permissions.
+See [General Workspace Permissions][] above for details about specific permissions.
 
 #### Plan
 
@@ -122,7 +122,7 @@ The "plan" permission set is for people who might propose changes to managed inf
 - Read variables
 - Read state versions
 
-See [All Workspace Permissions][] above for details about specific permissions.
+See [General Workspace Permissions][] above for details about specific permissions.
 
 #### Write
 
@@ -134,13 +134,13 @@ The "write" permission set is for people who do most of the day-to-day work of p
 - Read and write variables
 - Read and write state versions
 
-See [All Workspace Permissions][] above for details about specific permissions.
+See [General Workspace Permissions][] above for details about specific permissions.
 
 ### Custom Workspace Permissions
 
 Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide. This enables more task-focused permission sets and tighter control of sensitive information.
 
-You can use custom permissions to assign any of the permissions listed above under [All Workspace Permissions](#all-workspace-permissions), with the exception of admin-only permissions.
+You can use custom permissions to assign any of the permissions listed above under [General Workspace Permissions](#all-workspace-permissions), with the exception of admin-only permissions.
 
 The minimum custom permissions set for a workspace is the permission to read runs; the only way to grant a team lower access is to not add them to the workspace at all.
 

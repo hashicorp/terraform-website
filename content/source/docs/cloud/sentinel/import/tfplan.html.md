@@ -479,7 +479,7 @@ main = rule { tfplan.resources.null_resource.foo[0].requires_new }
 
 The **diff namespace** is a namespace that represents the diff for a specific
 attribute within a resource. For details on reading a particular attribute,
-see the [`diff`](#diff) value in the [resource
+see the [`diff`](#value-diff) value in the [resource
 namespace](#namespace-resources-data-sources).
 
 ### Value: `computed`

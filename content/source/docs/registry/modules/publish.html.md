@@ -65,7 +65,7 @@ with your repository. We require access to your email address so that we can
 email you alerts about your module. We will not spam you.
 
 The upload page will list your available repositories, filtered to those that
-match the [naming convention described above](#Requirements). This is shown in
+match the [naming convention described above](#requirements). This is shown in
 the screenshot below. Select the repository of the module you want to add and
 click "Publish Module."
 

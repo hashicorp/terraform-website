@@ -25,7 +25,7 @@ Viewing variables requires permission to read variables for the workspace, and s
 
 If a workspace is configured to use Terraform 0.10.0 or later, you can commit any number of [`*.auto.tfvars` files](/docs/configuration/variables.html#variable-files) to provide default variable values. Terraform will automatically load variables from those files.
 
-If any automatically loaded variables have the same names as variables specified in the Terraform Cloud workspace, the workspace's values will override the automatic values (except for map values, [which are merged](/docs/configuration/variables.html#variable-merging)).
+If any automatically loaded variables have the same names as variables specified in the Terraform Cloud workspace, the workspace's values will override the automatic values.
 
 You can also use the optional [Terraform Cloud Provider](https://registry.terraform.io/providers/hashicorp/tfe/latest/docsr/variable.html) to update a workspace's variables. This has the same effect as managing workspace variables manually or via the API, but can be more convenient for large numbers of complex variables.
 

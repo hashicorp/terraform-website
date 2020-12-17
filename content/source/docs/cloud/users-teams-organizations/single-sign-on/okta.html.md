@@ -25,7 +25,7 @@ For more information on the listed features, visit the [Okta Glossary](https://h
 6. Visit the "Sign On" tab in the application.
 7. Copy the "Identity Provider Metadata" URL.
 
-For information on configuring automated team mapping using Okta group membership, please see the [Team Mapping Configuration (Okta)](#team-mapping-configuration-okta-) section below. 
+For information on configuring automated team mapping using Okta group membership, please see the [Team Mapping Configuration (Okta)](#team-mapping-configuration-okta-) section below.
 
 ## Configuration (Terraform Cloud)
 
@@ -47,7 +47,7 @@ Be sure to copy the metadata URL (from the final step of configuring Okta) befor
 
 5. [Verify](./testing.html) your settings and click "Enable".
 
-6. Your Okta SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
+6. Your Okta SSO configuration is complete and ready to [use](../single-sign-on.html#signing-in-with-sso).
 
     ![sso-settings](../images/sso/settings-okta.png)
 

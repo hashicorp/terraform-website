@@ -136,7 +136,7 @@ This change representation contains the following fields:
 * `actions` - A list of actions being carried out for this change. The order is
   important, for example a regular replace operation is denoted by `["delete",
   "create"]`, but a
-  [`create_before_destroy`](/docs/configuration/resources.html#create_before_destroy)
+  [`create_before_destroy`](/docs/configuration/meta-arguments/lifecycle.html#create_before_destroy)
   resource will have an operation order of `["create", "delete"]`.
 * `before` - The representation of the resource data object value before the
   action. For create-only actions, this is unset. For no-op actions, this value
@@ -178,7 +178,7 @@ action orders apply:
 * **Normal replacement:** `["delete", "create"]` - Applies to default lifecycle
   configurations.
 * **Create-before-destroy:** `["create", "delete"]` - Applies when
-  [`create_before_destroy`](/docs/configuration/resources.html#create_before_destroy)
+  [`create_before_destroy`](/docs/configuration/meta-arguments/lifecycle.html#create_before_destroy)
   is used in a lifecycle configuration.
 
 Note that, in most situations, the plan will list all "changes", including no-op

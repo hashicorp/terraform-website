@@ -139,7 +139,7 @@ In Terraform's [configuration][] language: a syntax construct that assigns a val
 
 Most of a Terraform configuration consists of using arguments to configure Terraform [resources][]. Each resource type defines the arguments its resources can use, the allowed values for each argument, and which arguments are required or optional. Information about a given resource type can be found in the docs for that resource's [provider][].
 
-- [Terraform docs: Config Language — Arguments, Blocks and Expressions](/docs/configuration/index.html#arguments-blocks-and-expressions)
+- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/configuration/syntax.html#arguments-and-blocks)
 
 ## Attribute
 
@@ -191,7 +191,7 @@ resource "aws_vpc" "main" {
 }
 ```
 
-- [Terraform docs: Config Language — Arguments, Blocks and Expressions](/docs/configuration/index.html#arguments-blocks-and-expressions)
+- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/configuration/syntax.html#arguments-and-blocks)
 
 ## Branch
 
@@ -580,7 +580,7 @@ A list of [Sentinel][] [policies][] to enforce globally or on specific workspace
 
 - [Terraform Cloud docs: Managing Sentinel Policies](/docs/cloud/sentinel/manage-policies.html)
 
-## Private Module Registry
+## Private Terraform Registry
 
 [private terraform registry]: glossary.html#private-terraform-registry
 [private module registry]: glossary.html#private-terraform-registry
@@ -590,7 +590,7 @@ A list of [Sentinel][] [policies][] to enforce globally or on specific workspace
 
 -> Terraform Cloud
 
-Also "private Terraform registry".
+Also "private module registry".
 
 A version of the [Terraform Registry][] that is built-in to Terraform Cloud, to enable code sharing within an organization. It includes a configuration designer, which lets you combine and configure modules to generate a Terraform [configuration][] that uses them.
 

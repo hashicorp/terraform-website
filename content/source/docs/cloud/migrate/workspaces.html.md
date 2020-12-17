@@ -129,7 +129,7 @@ In Terraform Cloud's UI, make any settings changes necessary for your new worksp
 
 ## Step 8: Queue Runs in the New Workspaces
 
-For each migrated workspace, either run `terraform plan` on the CLI or navigate to the workspace in Terraform Cloud's UI and [queue a plan](../run/ui.html#starting-runs). Examine the results.
+For each migrated workspace, either run `terraform plan` on the CLI or navigate to the workspace in Terraform Cloud's UI and [queue a plan](../run/ui.html#manually-starting-runs). Examine the results.
 
 If all went well, each plan should result in no changes or very small changes. Terraform Cloud can now take over all Terraform runs for this infrastructure.
 

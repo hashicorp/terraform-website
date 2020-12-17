@@ -69,7 +69,7 @@ For more information on the listed features, visit the [Microsoft Azure AD SAML 
 
 1. [Verify](./testing.html) your settings and click "Enable".
 
-2. Your Azure SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
+2. Your Azure SSO configuration is complete and ready to [use](../single-sign-on.html#signing-in-with-sso).
 
     ![sso-settings](../images/sso/settings-azure.png)
 

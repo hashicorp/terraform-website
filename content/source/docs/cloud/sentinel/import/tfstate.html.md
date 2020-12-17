@@ -208,7 +208,7 @@ supports policy checks in other stages of the workspace lifecycle. See the
 [`terraform_version`][import-tfplan-terraform-version] reference within the
 `tfplan` import for more details.
 
-[import-tfplan-terraform-version]: ./tfplan.html#value-terraform-version
+[import-tfplan-terraform-version]: ./tfplan.html#value-terraform_version
 
 ## Namespace: Module
 
@@ -447,7 +447,7 @@ This namespace is indexed by output name.
 The `sensitive` value within the [output namespace](#namespace-outputs) is
 `true` when the output has been [marked as sensitive][ref-tf-sensitive-outputs].
 
-[ref-tf-sensitive-outputs]: /docs/configuration/outputs.html#sensitive-outputs
+[ref-tf-sensitive-outputs]: /docs/configuration/outputs.html#sensitive
 
 As an example, given the following output:
 
