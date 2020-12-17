@@ -19,8 +19,8 @@ language, see [the Sentinel
 documentation](https://docs.hashicorp.com/sentinel/writing/).
 
 You can also use the
-[`tfe_sentinel_policy`](/docs/providers/tfe/r/sentinel_policy.html) resource
-from the [Terraform Enterprise provider](/docs/providers/tfe/) to upload a
+[`tfe_sentinel_policy`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/sentinel_policy) resource
+from the [Terraform Enterprise provider](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs) to upload a
 policy using Terraform itself.
 
 ## Sentinel in Terraform Cloud

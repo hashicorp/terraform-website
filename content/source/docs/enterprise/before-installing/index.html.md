@@ -21,7 +21,7 @@ Prepare all of the following before installing:
 Terraform Enterprise can store its state in a few different ways, and you'll
 need to decide which works best for your installation. Each option has a
 different approach to
-[recovering from failures](../system-overview/reliability-availability.html#recovery-from-failures-1)
+[reliability and availability](../system-overview/reliability-availability.html)
 and should be selected based on your organization's preferences.
 
 ~> **Important:** Make this decision before you begin installation, because some modes have additional preflight requirements.
@@ -67,7 +67,7 @@ The key and X.509 certificate should both be PEM (base64) encoded, and should be
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
    running within Terraform Enterprise to access each other properly.
-   See [Installation: Trusting SSL/TLS Certificates](../install/installer.html#trusting-ssl-tls-certificates)
+   See [Installation: Certificate Authority (CA) Bundle](../install/installer.html#certificate-authority-ca-bundle)
    for more on this.
 
 ## Data Storage
@@ -117,6 +117,8 @@ Terraform Enterprise application as well as the Terraform plans and applies.
 Terraform Enterprise is a networked application. Its Linux instance(s) needs to allow several kinds of incoming and outgoing network traffic.
 
 See [Network Requirements](./network-requirements.html) for details.
+
+<a id="software-requirements"></a>
 
 ### Software Requirements (Standalone Deployment)
 

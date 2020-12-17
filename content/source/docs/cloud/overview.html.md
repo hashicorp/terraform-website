@@ -106,7 +106,7 @@ In addition to providing powerful extensions to the core Terraform workflow, Ter
 
 ### Full API
 
-Nearly all of Terraform Cloud's features are available in [its API](./api/index.html), which means other services can create or configure workspaces, upload configurations, start Terraform runs, and more. There's even [a Terraform provider based on the API](/docs/providers/tfe/index.html), so you can manage your Terraform Cloud teams and workspaces as a Terraform configuration.
+Nearly all of Terraform Cloud's features are available in [its API](./api/index.html), which means other services can create or configure workspaces, upload configurations, start Terraform runs, and more. There's even [a Terraform provider based on the API](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs), so you can manage your Terraform Cloud teams and workspaces as a Terraform configuration.
 
 - More info: [API](./api/index.html)
 

@@ -37,6 +37,6 @@ The SAML SSO integration can be configured by providing a metadata URL or manual
 
 6. [Verify](./testing.html) your settings and click "Enable".
 
-7. Your SAML SSO configuration is complete and ready to [use](../single-sign-on.html#using-sso).
+7. Your SAML SSO configuration is complete and ready to [use](../single-sign-on.html#signing-in-with-sso).
 
     ![sso-settings](../images/sso/settings-saml.png)

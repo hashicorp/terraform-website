@@ -302,6 +302,8 @@ The root-level `data`, `modules`, `providers`, `resources`, and `variables` keys
 all alias to their corresponding namespaces within the module namespace, loaded
 for the root module. They are the equivalent of running `module([]).KEY`.
 
+<a id="namespace-resources"></a>
+
 ## Namespace: Resources/Data Sources
 
 The **resource namespace** is a namespace _type_ that applies to both resources
@@ -381,7 +383,7 @@ main = rule {
 }
 ```
 
-<a id="resources-value-provisioners" />
+<a id="resources-value-references" />
 
 ### Value: `references`
 
@@ -474,7 +476,7 @@ See the [documentation on `references`](#references-with-terraform-0-12) for mor
 
 * **Value Type:** String.
 
-The `type` value within the [provisioner namespace](#namespace-provisioner)
+The `type` value within the [provisioner namespace](#namespace-provisioners)
 represents the type of the specific provisioner.
 
 As an example, in the following resource block:
@@ -800,7 +802,7 @@ represents all declared [non-default provider
 instances][ref-tf-provider-instances] for a specific provider type, indexed by
 their specific alias.
 
-[ref-tf-provider-instances]: /docs/configuration/providers.html#multiple-provider-instances
+[ref-tf-provider-instances]: /docs/configuration/providers.html#alias-multiple-provider-configurations
 
 The return type is a provider namespace with the data for the instance in
 question loaded. The `alias` key will not be available within this namespace.

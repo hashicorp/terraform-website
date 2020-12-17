@@ -190,7 +190,7 @@ These custom scripts allow Terraform Enterprise administrators to extend the fun
 Please note the following when utilizing custom scripts:
 
 - If the script exits with a non-zero exit code, the Terraform Enterprise run will immediately fail with an error.
-- The name and location of the script are not customizable. 
+- The name and location of the script are not customizable.
 - The script must be executable. That is, the script must have execute permissions.
 - The execution of the script does not have a timeout. It is up to the Terraform Enterprise administrator to ensure
   scripts execute in a timely fashion.
@@ -226,7 +226,7 @@ ADD finalize_custom_worker.sh /usr/local/bin/finalize_custom_worker.sh
 Terraform Enterprise can store its state in a few different ways, and you'll
 need to decide which works best for your installation. Each option has a
 different approach to
-[recovering from failures](../system-overview/reliability-availability.html#recovery-from-failures-1).
+[recovering from failures](../admin/automated-recovery.html).
 The mode should be selected based on your organization's needs. See
 [Pre-Install Checklist: Operational Mode Decision](../before-installing/index.html#operational-mode-decision)
 for more details.

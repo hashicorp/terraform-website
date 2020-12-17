@@ -297,7 +297,7 @@ Status  | Response                                          | Reason
 
 Parameter                                |         |         | Description
 -----------------------------------------|---------|---------| --------------
-`:id`                                    |         |         | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-workspaces) described above.
+`:id`                                    |         |         | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-a-workspace) described above.
 `data.attributes.access`                 | string  |         | The type of access to grant. Valid values are `read`, `plan`, `write`, `admin`, or `custom`.
 `data.attributes.runs`                   | string  | "read"  | If `access` is `custom`, the permission to grant for the workspace's runs. Can only be used when `access` is `custom`.
 `data.attributes.variables`              | string  | "none"  | If `access` is `custom`, the permission to grant for the workspace's variables. Can only be used when `access` is `custom`.
@@ -381,7 +381,7 @@ Status  | Response                                          | Reason
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-workspaces) described above.
+`:id`     | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-a-workspace) described above.
 
 ### Sample Request
 

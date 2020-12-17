@@ -11,7 +11,7 @@ page_title: "Enforce and Override Policies - Sentinel - Terraform Cloud and Terr
 
 Once a policy is added to an organization it is enforced on all runs.
 
-The policy check will occur immediately after a plan is successfully executed in the run. If the plan fails, the policy check will not be performed. The policy check uses the generated tfplan file, [simulated apply object](./import/tfplan.html#resource-applied-field), state and configuration to verify the rules in each of the policies.
+The policy check will occur immediately after a plan is successfully executed in the run. If the plan fails, the policy check will not be performed. The policy check uses the generated tfplan file, [simulated apply object](./import/tfplan.html#value-applied), state and configuration to verify the rules in each of the policies.
 
 Enforcement level details can be found in the [Managing Policies](./manage-policies.html) documentation.
 

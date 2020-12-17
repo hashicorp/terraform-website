@@ -24,9 +24,9 @@ All community members are responsible for their interactions with the rest of th
 
 ## Provider Development Program
 
-Providers in the development program get vetted and hosted in the terraform-providers GitHub organization. Please see [the website](/guides/terraform-provider-development-program.html#checklist) for instructions on following that process.
+Providers in the development program get vetted and hosted in the terraform-providers GitHub organization. Please see [the website](/guides/terraform-provider-development-program.html) for instructions on following that process.
 
-## Maintainer Responsibilities 
+## Maintainer Responsibilities
 
 Being a maintainer of a provider involves several responsibilities from triaging issues and pull requests to editing the changelog and requesting for releases to be cut.
 

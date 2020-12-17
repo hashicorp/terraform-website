@@ -51,7 +51,7 @@ See also:
 
 -> **Note:** This setting only affects workspaces that specify a Terraform working directory. Without a working directory, the entire repository is considered relevant and any change will trigger a run. [The working directory setting](./settings.html#terraform-working-directory) can be found on the "General" settings page.
 
-For workspaces that specify a Terraform working directory, Terraform Cloud assumes that only some content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. This behavior also applies to [speculative plans](./index.html#speculative-plans) on pull requests — Terraform Cloud won't queue plans for changes that aren't considered relevant.
+For workspaces that specify a Terraform working directory, Terraform Cloud assumes that only some content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. This behavior also applies to [speculative plans](../run/index.html#speculative-plans) on pull requests — Terraform Cloud won't queue plans for changes that aren't considered relevant.
 
 By default, only the designated working directory is considered relevant.
 
