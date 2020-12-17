@@ -14,7 +14,7 @@ Teams with [admin access](../users-teams-organizations/permissions.html) on a wo
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **API:** See the [Team Access APIs](../api/team-access.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_team_access`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docsr/team_access.html) resource.
+**Terraform:** See the `tfe` provider's [`tfe_team_access`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_access) resource.
 
 ## Background
 

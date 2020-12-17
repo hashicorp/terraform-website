@@ -14,7 +14,7 @@ Each new workspace needs a unique name, and needs to know where its Terraform co
 For more information about how configuration versions and connected repositories work, see [Terraform Configurations in Terraform Cloud Workspaces](./configurations.html).
 
 -> **API:** See the [Create a Workspace endpoint](../api/workspaces.html#create-a-workspace) (`POST /organizations/:organization/workspaces`). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_workspace`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docsr/workspace.html) resource.
+**Terraform:** See the `tfe` provider's [`tfe_workspace`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace) resource.
 
 ## Required Permissions
 

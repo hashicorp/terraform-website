@@ -20,7 +20,7 @@ Teams can only have permissions on workspaces within their organization, althoug
 If a user belongs to at least one team in an organization, they are considered a member of that organization.
 
 -> **API:** See the [Teams API](../api/teams.html), [Team Members API](../api/team-members.html), [Team Tokens API](../api/team-tokens.html), and [Team Access API](../api/team-access.html).<br/>
-**Terraform:** See the `tfe` provider's [`tfe_team`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docsr/team.html), [`tfe_team_members`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docsr/team_members.html), and [`tfe_team_access`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docsr/team_access.html) resources.
+**Terraform:** See the `tfe` provider's [`tfe_team`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team), [`tfe_team_members`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_members), and [`tfe_team_access`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_access) resources.
 
 ## The Owners Team
 
