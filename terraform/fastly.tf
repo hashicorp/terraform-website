@@ -82,6 +82,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "huaweicloud" : "huaweicloud/huaweicloud"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "icinga2" : "Icinga/icinga2"
+    "incapsula" : "imperva/incapsula"
     "lacework" : "lacework/lacework"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
@@ -104,6 +105,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "pagerduty" : "PagerDuty/pagerduty"
     "panos" : "PaloAltoNetworks/panos" # unverified
     "postgresql" : "cyrilgdn/postgresql"
+    "powerdns" : "pan-net/powerdns"
     "prismacloud" : "PaloAltoNetworks/prismacloud" # unverified
     "profitbricks" : "ionos-cloud/profitbricks"
     "rabbitmq" : "cyrilgdn/rabbitmq"
