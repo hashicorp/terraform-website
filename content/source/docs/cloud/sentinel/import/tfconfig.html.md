@@ -802,7 +802,7 @@ represents all declared [non-default provider
 instances][ref-tf-provider-instances] for a specific provider type, indexed by
 their specific alias.
 
-[ref-tf-provider-instances]: /docs/configuration/providers.html#multiple-provider-configurations
+[ref-tf-provider-instances]: /docs/configuration/providers.html#alias-multiple-provider-configurations
 
 The return type is a provider namespace with the data for the instance in
 question loaded. The `alias` key will not be available within this namespace.

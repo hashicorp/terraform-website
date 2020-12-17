@@ -226,7 +226,7 @@ ADD finalize_custom_worker.sh /usr/local/bin/finalize_custom_worker.sh
 Terraform Enterprise can store its state in a few different ways, and you'll
 need to decide which works best for your installation. Each option has a
 different approach to
-[recovering from failures](../system-overview/reliability-availability.html#recovery-from-failures).
+[recovering from failures](../admin/automated-recovery.html).
 The mode should be selected based on your organization's needs. See
 [Pre-Install Checklist: Operational Mode Decision](../before-installing/index.html#operational-mode-decision)
 for more details.

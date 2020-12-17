@@ -140,7 +140,7 @@ See [General Workspace Permissions][] above for details about specific permissio
 
 Custom permissions let you assign specific, finer-grained permissions to a team than the broader fixed permission sets provide. This enables more task-focused permission sets and tighter control of sensitive information.
 
-You can use custom permissions to assign any of the permissions listed above under [General Workspace Permissions](#all-workspace-permissions), with the exception of admin-only permissions.
+You can use custom permissions to assign any of the permissions listed above under [General Workspace Permissions][], with the exception of admin-only permissions.
 
 The minimum custom permissions set for a workspace is the permission to read runs; the only way to grant a team lower access is to not add them to the workspace at all.
 
@@ -177,4 +177,3 @@ Since Terraform Cloud integrates with other systems, the permissions models of t
 - If you use Terraform Cloud's API to create a Slack bot for provisioning infrastructure, anyone able to issue commands to that Slack bot can implicitly act with that bot's permissions, regardless of their own membership and permissions in the Terraform Cloud organization.
 
 When integrating Terraform Cloud with other systems, you are responsible for understanding the effects on your organization's security. An integrated system is able to delegate any level of access that it has been granted, so carefully consider the conditions and events that will cause it to delegate that access.
-

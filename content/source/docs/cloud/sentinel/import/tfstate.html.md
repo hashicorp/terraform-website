@@ -447,7 +447,7 @@ This namespace is indexed by output name.
 The `sensitive` value within the [output namespace](#namespace-outputs) is
 `true` when the output has been [marked as sensitive][ref-tf-sensitive-outputs].
 
-[ref-tf-sensitive-outputs]: /docs/configuration/outputs.html#sensitive
+[ref-tf-sensitive-outputs]: /docs/configuration/outputs.html#sensitive-suppressing-values-in-cli-output
 
 As an example, given the following output:
 
