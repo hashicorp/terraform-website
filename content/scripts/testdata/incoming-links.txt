@@ -259,10 +259,6 @@
 /docs/providers/statuscake/index.html
 /docs/providers/terraform/d/remote_state.html
 /docs/providers/terraform/index.html
-/docs/providers/type/cloud-index.html
-/docs/providers/type/community-index.html
-/docs/providers/type/major-index.html
-/docs/providers/type/network-index.html
 /docs/providers/ultradns/index.html
 /docs/provisioners/chef.html
 /docs/provisioners/connection.html
