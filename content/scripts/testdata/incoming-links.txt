@@ -254,7 +254,6 @@
 /docs/providers/rancher/index.html
 /docs/providers/rightscale/index.html
 /docs/providers/runscope/index.html
-/docs/providers/skytap/index.html
 /docs/providers/softlayer/r/virtual_guest.html
 /docs/providers/statuscake/index.html
 /docs/providers/terraform/d/remote_state.html

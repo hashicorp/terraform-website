@@ -106,10 +106,6 @@
 	path = ext/providers/rightscale
 	url = https://github.com/terraform-providers/terraform-provider-rightscale
 	branch = stable-website
-[submodule "ext/providers/skytap"]
-	path = ext/providers/skytap
-	url = https://github.com/terraform-providers/terraform-provider-skytap
-	branch = stable-website
 [submodule "ext/providers/hedvig"]
 	path = ext/providers/hedvig
 	url = https://github.com/terraform-providers/terraform-provider-hedvig
@@ -153,10 +149,6 @@
 [submodule "ext/providers/cohesity"]
 	path = ext/providers/cohesity
 	url = https://github.com/terraform-providers/terraform-provider-cohesity
-	branch = stable-website
-[submodule "ext/providers/ecl"]
-	path = ext/providers/ecl
-	url = https://github.com/terraform-providers/terraform-provider-ecl
 	branch = stable-website
 [submodule "ext/providers/rubrik"]
 	path = ext/providers/rubrik
