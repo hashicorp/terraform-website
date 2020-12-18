@@ -208,7 +208,7 @@ A repository usually has a default branch (whose name, in [Git][], defaults to `
 
 [ci-cd]: glossary.html#ci-cd
 
-CI/CD (Continuous Integration/Continuous Delivery) platforms provide automated, structured pipelines for new releases. Infrastructure management, typically handled by operations teams, can also fit into an automated release workflow using infrastructure as code with Terraform.
+CI/CD (Continuous Integration/Continuous Delivery) platforms perform pre-defined tasks (like tests or builds) in response to trigger events (like new commits in a project). This helps make new releases more automated, predictable, and understandable. Infrastructure management, typically handled by operations teams, can also fit into an automated release workflow using infrastructure as code with Terraform.
 
 ## CLI
 
