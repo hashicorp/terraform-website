@@ -22,6 +22,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Blob Storage](#blob-storage)
 - [Block](#block)
 - [Branch](#branch)
+- [CI/CD](#ci-cd)
 - [CLI](#cli)
 - [Commit](#commit)
 - [(Terraform) Configuration](#terraform-configuration)
@@ -34,6 +35,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Git](#git)
 - [HCL](#hcl)
 - [ID](#id)
+- [Infrastructure-as-Code](#infrastructure-as-code)
 - [Ingress](#ingress)
 - [Input Variables](#input-variables)
 - [Interpolation](#interpolation)
@@ -202,6 +204,12 @@ In some [version control systems][vcs]: a semi-independent history of changes to
 
 A repository usually has a default branch (whose name, in [Git][], defaults to `master`), which successful changes are eventually merged into. Most modern development workflows also include topic branches (where a specific set of changes is explored, iterated on, and verified), and some workflows include long-lived branches other than the default branch.
 
+## CI/CD
+
+[ci-cd]: glossary.html#ci-cd
+
+CI/CD (Continuous Integration/Continuous Delivery) platforms perform pre-defined tasks (like tests or builds) in response to trigger events (like new commits in a project). This helps make new releases more automated, predictable, and understandable. Infrastructure management, typically handled by operations teams, can also fit into an automated release workflow using infrastructure as code with Terraform.
+
 ## CLI
 
 [cli]: glossary.html#cli
@@ -345,6 +353,12 @@ In Terraform, many [resource][] types have an ID [attribute][] that helps link T
 In Terraform Cloud, most internal application objects (like [workspaces][], users, [policies][], etc.) can be identified by both a name and by an opaque, permanent ID. Most API endpoints use IDs instead of names, since names sometimes change. IDs for Terraform Cloud's application objects are sometimes called "external IDs."
 
 You can usually copy an external ID from the URL bar when viewing an object in Terraform Cloud's UI. Workspaces don't display an ID in the URL bar, but their general settings page includes a UI control for viewing and copying the ID.
+
+## Infrastructure as Code
+
+[infrastructure-as-code]: glossary.html#infrastructure-as-code
+
+Infrastructure-as-Code (IaC) is the practice of managing infrastructure in a file or files rather than manually configuring it via a user interface. Infrastructure resource types managed with IaC can include virtual machines, security groups, network interfaces, and many others.
 
 ## Ingress
 
