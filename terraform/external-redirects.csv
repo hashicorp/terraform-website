@@ -422,12 +422,6 @@ rancher - to github,/docs/providers/rancher/r/registry.html,https://github.com/h
 rancher - to github,/docs/providers/rancher/r/secret.html,https://github.com/hashicorp/terraform-provider-rancher/blob/stable-website/website/docs/r/secret.html.markdown
 rancher - to github,/docs/providers/rancher/r/stack.html,https://github.com/hashicorp/terraform-provider-rancher/blob/stable-website/website/docs/r/stack.html.markdown
 rancher - to github,/docs/providers/rancher/r/volume.html,https://github.com/hashicorp/terraform-provider-rancher/blob/stable-website/website/docs/r/volume.html.markdown
-rundeck - to github,/docs/providers/rundeck/index.html,https://github.com/hashicorp/terraform-provider-rundeck/blob/stable-website/website/docs/index.html.markdown
-rundeck - to github,/docs/providers/rundeck/r/job.html,https://github.com/hashicorp/terraform-provider-rundeck/blob/stable-website/website/docs/r/job.html.md
-rundeck - to github,/docs/providers/rundeck/r/private_key.html,https://github.com/hashicorp/terraform-provider-rundeck/blob/stable-website/website/docs/r/private_key.html.md
-rundeck - to github,/docs/providers/rundeck/r/project.html,https://github.com/hashicorp/terraform-provider-rundeck/blob/stable-website/website/docs/r/project.html.md
-rundeck - to github,/docs/providers/rundeck/r/public_key.html,https://github.com/hashicorp/terraform-provider-rundeck/blob/stable-website/website/docs/r/public_key.html.md
-rundeck - to github,/docs/providers/rundeck/r/acl_policy.html,https://github.com/hashicorp/terraform-provider-rundeck/blob/stable-website/website/docs/r/acl_policy.md
 azure classic - to azurerm,/docs/providers/azure/index.html,https://registry.terraform.io/providers/hashicorp/azurerm/latest
 azure classic - to azurerm,/docs/providers/azure/r/affinity_group.html,https://registry.terraform.io/providers/hashicorp/azurerm/latest
 azure classic - to azurerm,/docs/providers/azure/r/data_disk.html,https://registry.terraform.io/providers/hashicorp/azurerm/latest
