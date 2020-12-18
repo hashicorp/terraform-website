@@ -107,7 +107,7 @@ Terraform relies on cloud service provider APIs to manage resources; each servic
 Terraform Cloud also offers its own API, for managing resources like team membership, policies, and workspaces. That API, in turn, is used by the `tfe` Terraform provider, so you can use Terraform to manage the system that runs Terraform for you.
 
 - [Terraform Cloud docs: API](/docs/cloud/api/index.html)
-- [Terraform providers: `tfe`](/docs/providers/tfe/index.html)
+- [Terraform providers: `tfe`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs)
 
 ## Apply (noun)
 
@@ -916,7 +916,7 @@ A particular version of the `terraform` binary available for use in Terraform Cl
 
 A Terraform provider that manages Terraform Cloud. Allows you to manage Terraform Cloud using a Terraform [configuration][].
 
-- [Provider docs: tfe](/docs/providers/tfe/index.html)
+- [Provider docs: tfe](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs)
 
 ## (API) Token
 
