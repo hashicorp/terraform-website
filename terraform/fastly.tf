@@ -66,6 +66,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
     "docker" : "kreuzwerker/docker"
     "dome9" : "dome9/dome9"
+    "ecl" : "nttcom/ecl"
     "exoscale" : "exoscale/exoscale"
     "fastly" : "fastly/fastly"
     "flexibleengine" : "FlexibleEngineCloud/flexibleengine"
@@ -109,6 +110,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "scaleway" : "scaleway/scaleway"
     "selectel" : "selectel/selectel" # unverified
     "signalfx" : "splunk-terraform/signalfx"
+    "skytap" : "skytap/skytap" # unverified
     "spotinst" : "spotinst/spotinst"
     "stackpath" : "stackpath/stackpath" # unverified
     "sumologic" : "SumoLogic/sumologic"
@@ -137,6 +139,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "consul" : "hashicorp/consul"
     "dns" : "hashicorp/dns"
     "external" : "hashicorp/external"
+    "github" : "hashicorp/github"
     "google" : "hashicorp/google"
     "helm" : "hashicorp/helm"
     "http" : "hashicorp/http"
