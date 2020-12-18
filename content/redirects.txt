@@ -588,3 +588,14 @@
 # /intro/examples/count           https://learn.hashicorp.com/terraform
 # /intro/examples/cross-provider  https://learn.hashicorp.com/terraform
 # /intro/examples/                https://learn.hashicorp.com/terraform
+
+# Removing the lists of provider docs
+/docs/providers/type/cloud-index.html          /docs/providers/index.html
+/docs/providers/type/community-index.html      /docs/providers/index.html
+/docs/providers/type/database-index.html       /docs/providers/index.html
+/docs/providers/type/infra-index.html          /docs/providers/index.html
+/docs/providers/type/major-index.html          /docs/providers/index.html
+/docs/providers/type/misc-index.html           /docs/providers/index.html
+/docs/providers/type/monitor-index.html        /docs/providers/index.html
+/docs/providers/type/network-index.html        /docs/providers/index.html
+/docs/providers/type/vcs-index.html            /docs/providers/index.html
