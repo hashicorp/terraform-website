@@ -17,24 +17,42 @@ references:
 
 jobs:
   website-test:
-    machine:
-      image: *UBUNTU_IMAGE
+    docker:
+      - image: *MIDDLEMAN_IMAGE
     steps:
       - checkout
 
-      - run:
-          name: gem and bundle install
-          command: |
-            gem install bundler -v '1.17.3' --no-document
-            bundle _1.17.3_ install --jobs=3 --retry=3
-
       - run: make sync
 
-      - run: make website-test
+      # restores gem cache
+      - restore_cache:
+          key: *RUBYGEM_CACHE_KEY
 
-      - slack/status:
-          success_message: ":white_check_mark: Finished link check for branch. :meow_yay: No broken links!"
-          failure_message: ":broken_image: Found broken links when checking branch."
+      - run:
+          name: install gems
+          working_directory: content
+          command: bundle check || bundle install --path vendor/bundle --retry=3
+
+      # saves gem cache if we have changed the Gemfile
+      - save_cache:
+          key: *RUBYGEM_CACHE_KEY
+          paths:
+            - content/vendor/bundle
+
+      - run:
+          name: run middleman in background
+          working_directory: content
+          background: true
+          command: bundle exec middleman server
+
+      - run:
+          name: wait for server to start
+          command: until curl -sS http://localhost:4567/ > /dev/null; do sleep 1; done
+
+      - run:
+          name: check links in changed pages
+          working_directory: content
+          command: git diff --name-only --diff-filter=AMRCT $(git merge-base HEAD origin/master)..HEAD | bundle exec ./scripts/check-pr-links.rb
 
   website-build-and-upload:
     docker:
