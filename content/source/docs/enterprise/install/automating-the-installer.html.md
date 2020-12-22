@@ -180,7 +180,7 @@ If you have chosen `production` for the `installation_type`, `production_type` i
 
 - `production_type` — One of `external` or `disk`.
 
-If you have chosen `disk` for `production_type`, `disk_path` and `pg_password` are required:
+If you have chosen `disk` for `production_type`, `disk_path` is required:
 
 - `disk_path` — Path on instance to persistent storage.
 - `pg_password` — The password for the internal PostgreSQL access.
