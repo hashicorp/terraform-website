@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Workspace Variables - API Docs - Terraform Cloud"
+page_title: "Workspace Variables - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -24,6 +24,9 @@ page_title: "Workspace Variables - API Docs - Terraform Cloud"
 
 This set of APIs covers create, update, list and delete operations on workspace variables.
 
+Viewing variables requires permission to read variables for their workspace. Creating, updating, and deleting variables requires permission to read and write variables for their workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Create a Variable
 
@@ -182,7 +185,7 @@ Parameter       | Description
 
 ### Request Body
 
-This POST endpoint requires a JSON object with the following properties as a request payload.
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
 Properties without a default value are required.
 

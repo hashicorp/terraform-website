@@ -12,6 +12,7 @@ body.layout-downloads {
         border-bottom: 1px solid #b2b2b2;
         display: flex;
         padding: 15px;
+        flex-wrap: wrap;
 
         .details {
           padding-left: 20px;
@@ -50,11 +51,126 @@ body.layout-downloads {
           font-size: 40px;
           margin-bottom: -3px;
         }
+
+        .learn-cta {
+          opacity: 0;
+          display: flex;
+          align-items: center;
+          padding: 8px 16px;
+          background: $terraform-l3;
+          border-radius: 2px;
+          flex-basis: 100%;
+          margin-top: 2rem;
+          transition: opacity 0.5s ease-in-out;
+
+          &.show {
+            display: flex !important;
+            opacity: 1;
+          }
+
+          @media (min-width: 1200px) {
+            margin-top: 0;
+            margin-left: auto;
+            flex-basis: 490px;
+          }
+
+          svg {
+            margin-right: 10px;
+          }
+
+          p {
+            margin: 0;
+            color: $terraform;
+          }
+
+          a {
+            text-decoration: underline;
+          }
+        }
       }
 
       .poweredby {
         margin-top: 20px;
         text-align: center;
+      }
+
+      .cloud-learn-cta {
+        margin-bottom: 50px;
+
+        .top {
+          text-align: center;
+
+          h3 {
+            font-size: 2rem;
+          }
+        }
+
+        .contain {
+          display: flex;
+          margin-top: 50px;
+
+          .cloud {
+            width: 40%;
+            border: 1px solid #ccc;
+            text-align: center;
+
+            a {
+              margin-bottom: 26px;
+              display: inline-block;
+              border-bottom: 1px solid #ccc;
+
+              &:hover {
+                text-decoration: none;
+                border-bottom-color: #aaa;
+              }
+            }
+
+            img {
+              margin-bottom: 15px;
+            }
+          }
+
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 55%;
+            margin-left: 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            & li {
+              margin-left: 25px;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+
+            & a {
+              border-bottom: 1px solid #ccc;
+              position: relative;
+
+              &::before {
+                content: "";
+                background: url("/assets/images/grad-cap-dark.svg");
+                width: 23px;
+                height: 17px;
+                display: block;
+                position: absolute;
+                left: -30px;
+                top: 3px;
+                opacity: 0.7;
+              }
+
+              &:hover {
+                text-decoration: none;
+                border-bottom-color: #aaa;
+              }
+            }
+          }
+        }
       }
     }
   }

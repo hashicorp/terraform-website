@@ -1,20 +1,24 @@
 ---
 layout: "cloud"
-page_title: "GitLab EE and CE - VCS Providers - Terraform Cloud"
+page_title: "GitLab EE and CE - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring GitLab EE and CE Access
 
 These instructions are for using an on-premise installation of GitLab Enterprise Edition (EE) or GitLab Community Edition (CE) for Terraform Cloud's VCS features. [GitLab.com has separate instructions,](./gitlab-com.html) as do the [other supported VCS providers.](./index.html)
 
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 Connecting Terraform Cloud to your VCS involves four steps:
 
-On your VCS | On Terraform Cloud
---|--
-&nbsp; | Create a new connection in Terraform Cloud. Get redirect URI.
-Register your Terraform Cloud organization as a new app. Provide redirect URI. Get ID and key. | &nbsp;
-&nbsp;  | Provide Terraform Cloud with application ID and secret. Request VCS access.
-Approve access request. | &nbsp;
+| On your VCS                                                                                    | On Terraform Cloud                                                          |
+| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| &nbsp;                                                                                         | Create a new connection in Terraform Cloud. Get redirect URI.               |
+| Register your Terraform Cloud organization as a new app. Provide redirect URI. Get ID and key. | &nbsp;                                                                      |
+| &nbsp;                                                                                         | Provide Terraform Cloud with application ID and secret. Request VCS access. |
+| Approve access request.                                                                        | &nbsp;                                                                      |
 
 The rest of this page explains the on-premise GitLab versions of these steps.
 
@@ -41,10 +45,10 @@ The rest of this page explains the on-premise GitLab versions of these steps.
 
 1. In the "Set up provider" step, fill in the **HTTP URL** and **API URL** of your GitLab Enterprise Edition or GitLab Community Edition instance, as well as an optional **Name** for this VCS connection. Click "Continue."
 
-    Field          | Value
-    ---------------|--------------------------------------------
-    HTTP URL       | `https://<GITLAB INSTANCE HOSTNAME>`
-    API URL        | `https://<GITLAB INSTANCE HOSTNAME>/api/v4`
+    | Field    | Value                                       |
+    | -------- | ------------------------------------------- |
+    | HTTP URL | `https://<GITLAB INSTANCE HOSTNAME>`        |
+    | API URL  | `https://<GITLAB INSTANCE HOSTNAME>/api/v4` |
 
     ![Terraform Cloud screenshot: add HTTP URL and API URL fields](./images/gitlab-eece-tfe-add-url-fields.png)
 
@@ -74,12 +78,12 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
     Fill out the form as follows:
 
-    Field                   | Value
-    ------------------------|--------------------------------------------------
-    Name                    | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)
-    Redirect URI            |`https://app.terraform.io/<YOUR CALLBACK URL>`
-    Confidential (checkbox) | ✔️ (enabled)
-    Scopes (all checkboxes) | (empty)
+    | Field                   | Value                                          |
+    | ----------------------- | ---------------------------------------------- |
+    | Name                    | Terraform Cloud (`<YOUR ORGANIZATION NAME>`)   |
+    | Redirect URI            | `https://app.terraform.io/<YOUR CALLBACK URL>` |
+    | Confidential (checkbox) | ✔️ (enabled)                                    |
+    | Scopes (all checkboxes) | api                                            |
 
 1. Click the "Save application" button, which creates the application and takes you to its page.
 
@@ -101,23 +105,24 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
 1. Click the green "Authorize" button at the bottom of the authorization page.
 
-## Step 4: On Terraform Cloud, Set Up SSH Keypair (Optional)
+## Step 4: On Terraform Cloud, Set Up a PEM formatted SSH Keypair (Optional)
 
 Most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. You can add or update the SSH private key at a later time.
 
 ### Important Notes
 
+- SSH will only be used to clone Git submodules. All other Git operations will still use HTTPS.
 - Do not use your personal SSH key to connect Terraform Cloud and GitLab; generate a new one or use an existing key reserved for service access.
 - In the following steps, you must provide Terraform Cloud with the private key. Although Terraform Cloud does not display the text of the key to users after it is entered, it retains it and will use it for authenticating to GitLab.
 - **Protect this private key carefully.** It can push code to the repositories you use to manage your infrastructure. Take note of your organization's policies for protecting important credentials and be sure to follow them.
 
-### If You Don't Need an SSH Keypair:
+### If You Don't Need a PEM formatted SSH Keypair:
 
 1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Providers page, which now includes your new GitLab client.
 
-### If You Do Need an SSH Keypair:
+### If You Do Need a PEM formatted SSH Keypair:
 
-1. On a secure workstation, create an SSH keypair that Terraform Cloud can use to connect to GitLab. The exact command depends on your OS, but is usually something like:
+1. On a secure workstation, create a PEM formatted SSH keypair that Terraform Cloud can use to connect to GitLab. The exact command depends on your OS, but is usually something like:
    `ssh-keygen -t rsa -m PEM -f "/Users/<NAME>/.ssh/service_terraform" -C "service_terraform_enterprise"`
    This creates a `service_terraform` file with the private key, and a `service_terraform.pub` file with the public key. This SSH key **must have an empty passphrase**. Terraform Cloud cannot use SSH keys that require a passphrase.
 
@@ -130,4 +135,3 @@ Most organizations will not need to add an SSH private key. However, if the orga
 ## Finished
 
 At this point, GitLab access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization's shared repositories.
-

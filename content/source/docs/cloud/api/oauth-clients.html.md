@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "OAuth Clients - API Docs - Terraform Cloud"
+page_title: "OAuth Clients - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -160,9 +160,11 @@ curl \
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization that will be connected to the VCS provider. The organization must already exist in the system, and the user must have permissions to initiate the connection.
+`:organization_name` | The name of the organization that will be connected to the VCS provider. The organization must already exist in the system, and the user must have permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
-This endpoint allows you to create a VCS connection between an organization and a VCS provider (GitHub or GitLab) for use when creating or setting up workspaces. By using this API endpoint, you can provide a pre-generated OAuth token string instead of going through the process of creating a GitHub or GitLab OAuth Application. 
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+This endpoint allows you to create a VCS connection between an organization and a VCS provider (GitHub or GitLab) for use when creating or setting up workspaces. By using this API endpoint, you can provide a pre-generated OAuth token string instead of going through the process of creating a GitHub or GitLab OAuth Application.
 
 To learn how to generate one of these token strings for your VCS provider, you can read the following documentation:
 
@@ -192,7 +194,7 @@ Key path                             | Type   | Default | Description
 `data.attributes.http-url`           | string |         | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
 `data.attributes.api-url`            | string |         | The base URL of your VCS provider's API (e.g. `"https://api.github.com"` or `"https://ghe.example.com/api/v3"`)
 `data.attributes.oauth-token-string` | string |         | The token string you were given by your VCS provider
-`data.attributes.private-key`        | string |         | **Required for Azure DevOps Server** The text of the SSH private key associated with your Azure DevOps Server account.
+`data.attributes.private-key`        | string |         | **Required for Azure DevOps Server. Not used for any other providers.** The text of the SSH private key associated with your Azure DevOps Server account.
 
 ### Sample Payload
 
@@ -204,8 +206,7 @@ Key path                             | Type   | Default | Description
       "service-provider": "github",
       "http-url": "https://github.com",
       "api-url": "https://api.github.com",
-      "oauth-token-string": "4306823352f0009d0ed81f1b654ac17a",
-      "private-key": "-----BEGIN RSA PRIVATE KEY-----\ncontent\n-----END RSA PRIVATE KEY-----"
+      "oauth-token-string": "4306823352f0009d0ed81f1b654ac17a"
     }
   }
 }

@@ -1,6 +1,6 @@
 ---
 page_title: "Part 3.1: From Manual Changes to Semi-Automation - Terraform Recommended Practices"
-layout: "guides"
+layout: "intro"
 ---
 
 # Part 3.1: How to Move from Manual Changes to Semi-Automation
@@ -13,21 +13,21 @@ Allow one individual (or a small group) in your engineering team to get familiar
 
 ## 1. Install Terraform
 
-[Follow the instructions here to install Terraform OSS](https://learn.hashicorp.com/terraform/getting-started/install).
+[Follow the instructions here to install Terraform OSS](https://learn.hashicorp.com/tutorials/terraform/install-cli?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
 
 ## 2. Write Some Code
 
-Write your first [Terraform Configuration file](https://learn.hashicorp.com/terraform/getting-started/build).
+Write your first [Terraform Configuration file](https://learn.hashicorp.com/tutorials/terraform/aws-build?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
 
-## 3. Read the Getting Started Guide
+## 3. Follow the Getting Started Tutorials
 
-Follow the rest of the [Terraform getting started guide](https://learn.hashicorp.com/terraform/getting-started/change). These pages will walk you through [changing](https://learn.hashicorp.com/terraform/getting-started/change) and [destroying](https://learn.hashicorp.com/terraform/getting-started/destroy) resources, working with [resource dependencies](https://learn.hashicorp.com/terraform/getting-started/dependencies), and more.
+Follow the rest of the [Terraform: Get Started collection](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) on HashiCorp Learn. These tutorials will walk you through [changing](https://learn.hashicorp.com/tutorials/terraform/aws-change?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) and [destroying](https://learn.hashicorp.com/tutorials/terraform/aws-destroy?in=terraform/aws-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) resources, and more.
 
 ## 4. Implement a Real Infrastructure Project
 
 Choose a small real-life project and implement it with Terraform. Look at your organization’s list of upcoming projects, and designate one to be a Terraform proof-of-concept. Alternately, you can choose some existing infrastructure to re-implement with Terraform.
 
-The key is to choose a project with limited scope and clear boundaries, such as provisioning infrastructure for a new application on AWS. This helps keep your team from getting overwhelmed with features and possibilities. You can also look at some [example projects](https://github.com/hashicorp/terraform/tree/master/examples/) to get a feel for your options. (The [AWS two-tier example](https://github.com/terraform-providers/terraform-provider-aws/tree/master/examples/two-tier) is often a good start.)
+The key is to choose a project with limited scope and clear boundaries, such as provisioning infrastructure for a new application on AWS. This helps keep your team from getting overwhelmed with features and possibilities. You can also look at some [example AWS projects](https://github.com/terraform-providers/terraform-provider-aws/tree/master/examples) to get a feel for your options. (The [AWS two-tier example](https://github.com/terraform-providers/terraform-provider-aws/tree/master/examples/two-tier) is often a good start.)
 
 Your goal here is to build a small but reliable core of expertise with Terraform, and demonstrate its benefits to others in the organization.
 

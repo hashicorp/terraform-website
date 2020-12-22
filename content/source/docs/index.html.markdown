@@ -12,9 +12,7 @@ show_notification: false
 
 Welcome to the Terraform documentation!
 
-There are a lot of things a user of Terraform might need to know about. To help you manage this information, we've divided the Terraform docs into several sections.
-
-You can navigate the docs via this index page, or you can jump from section to section using the "Other Docs" area of the navigation sidebar, available in most areas of this site.
+We've divided the Terraform docs into several sections to make it easier to find things. Navigate using this index page, or jump from section to section in the "Other Docs" section of the navigation sidebar.
 
 <div class="container-fluid"><div class="row">
 
@@ -26,43 +24,31 @@ You can navigate the docs via this index page, or you can jump from section to s
 
 A broad overview of what Terraform is and why people use it.
 
-### [Terraform CLI ➜](/docs/cli-index.html)
+### [Terraform Glossary ➜](/docs/glossary.html)
+
+Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
+
+### [Terraform Language ➜](/docs/configuration/index.html)
 
 -> Intermediate and advanced users spend most of their time here.
 
-Documentation for Terraform's core functionality, including:
+Documentation for Terraform's configuration language.
 
-- [Terraform's configuration language](/docs/configuration/index.html)
-- [The `terraform` binary and its subcommands](/docs/commands/index.html)
-- [The main Terraform providers](/docs/providers/index.html)
+The Terraform language is Terraform's primary user interface. This section is relevant to all users of Terraform, including Terraform Cloud and Terraform Enterprise users.
 
-...and much more.
+### [Terraform CLI ➜](/docs/cli-index.html)
 
-### [Learn Terraform ➜](https://learn.hashicorp.com/terraform/) (external site)
+Documentation for Terraform's command-line workflows, including docs for [the `terraform` binary and its subcommands](/docs/commands/index.html).
+
+### [Learn Terraform ➜](https://learn.hashicorp.com/terraform?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) (external site)
 
 -> New users can start here.
 
-Interactive guides to teach you how to use Terraform's features. Begin with the [Getting Started guide](https://learn.hashicorp.com/terraform/getting-started/install), then continue with task-specific advanced guides or go directly to the [Terraform CLI docs](/docs/cli-index.html).
-
-### [Guides and Whitepapers ➜](/guides/index.html)
-
--> Intermediate users can go here for a deeper understanding of what's possible with Terraform.
-
-Detailed descriptions of various Terraform workflows, both general and specific. This includes things like:
-
-- [The end-to-end loop of making infrastructure changes with Terraform](/guides/core-workflow.html)
-- [The long-term process of evolving provisioning practices in a large organization](/docs/cloud/guides/recommended-practices/index.html)
-- [Tasks for upgrading to major new Terraform versions](/upgrade-guides/index.html)
-
-This section is devoted to overviews and explanations of complex systems; the goal isn't to teach you how to accomplish a particular task (like the guides at [Learn Terraform](https://learn.hashicorp.com/terraform/)), but to explain best practices and show how the different pieces of a workflow fit together.
+Interactive tutorials to teach you how to use Terraform's features. Begin with the [Get Started collection](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS), then continue with task-specific tutorials or go directly to the [Terraform CLI docs](/docs/cli-index.html).
 
 </div>
 
 <div class="col-md-6 col-sm-12">
-
-### [Terraform Glossary ➜](/docs/glossary.html)
-
-Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
 
 ### [Terraform Cloud ➜](/docs/cloud/index.html)
 
@@ -76,13 +62,9 @@ Documentation for Terraform Enterprise.
 
 Terraform Enterprise is an on-premise distribution of Terraform Cloud. It offers enterprises a private instance of the Terraform Cloud application, with no resource limits and with additional enterprise-grade architectural features like audit logging and SAML single sign-on.
 
-### [Terraform Registry ➜](/docs/registry/index.html)
+### [Publishing Providers and Modules ➜](/docs/registry/index.html)
 
-Documentation about the [Terraform Registry](https://registry.terraform.io/), a web service for distributing Terraform modules. Includes information about publishing, finding, and using modules.
-
-### [Terraform GitHub Actions ➜](/docs/github-actions/index.html)
-
-Documentation about the Terraform GitHub Actions. [GitHub Actions](https://developer.github.com/actions) is GitHub's service for running commands in reaction to events in a Git repository, and HashiCorp publishes several actions for validating repositories that contain Terraform configurations.
+Documentation about publishing Terraform providers and modules on the [Terraform Registry](https://registry.terraform.io/).
 
 ### [Extending Terraform ➜](/docs/extend/index.html)
 

@@ -1,21 +1,27 @@
 ---
 layout: "cloud"
-page_title: "Publishing Private Modules - Private Module Registry - Terraform Cloud"
+page_title: "Publishing Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
 ---
 
 [vcs]: ../vcs/index.html
 
 # Publishing Modules to the Terraform Cloud Private Module Registry
 
+> **Hands-on:** Try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+
 Terraform Cloud's private module registry lets you publish Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
 
+All members of an organization can view modules.
+
 Only members of the "owners" team can publish new modules. Once a module is published, the ability to release new versions is managed by your VCS provider.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **API:** See the [Registry Modules API](../api/modules.html). Note that the API also supports publishing modules without using a VCS repo as the source, which is not possible via the UI.
 
 ## Workflow Summary
 
-The private module registry is designed to be be as automatic as possible, so it defers to your VCS provider for most management tasks. The only manual tasks are adding a new module and deleting versions.
+The private module registry is designed to be as automatic as possible, so it defers to your VCS provider for most management tasks. The only manual tasks are adding a new module and deleting versions.
 
 After configuring at least one [connection to a VCS provider][vcs], you can publish a new module by specifying a properly formatted VCS repository (one module per repo, with an expected name and tag format; see below for details). The registry automatically detects the rest of the information it needs, including the module's name and its available versions.
 
@@ -43,7 +49,7 @@ infrastructure. The `<NAME>` segment can contain additional hyphens. Examples:
 `terraform-google-vault` or `terraform-aws-ec2-instance`.
 
 - **Standard module structure.** The module must adhere to the
-[standard module structure](/docs/modules/index.html#standard-module-structure).
+[standard module structure](/docs/modules/structure.html).
 This allows the registry to inspect your module and generate documentation,
 track resource usage, and more.
 
@@ -93,6 +99,7 @@ To delete a module or version:
 4. Select the desired action from the drop-down and confirm with the "Delete" button.
     - "Delete only this module version" affects the version of the module you were viewing when you clicked delete.
     - The other two options are only different if you have modules with the same name but different providers. (For example, if you have module repos named `terraform-aws-appserver` and `terraform-azure-appserver`, the registry treats them as alternate providers of the same `appserver` module.) If you use multi-provider modules like this, the "Delete all providers and versions for this module" option can delete multiple modules.
+5. Type the module's name to confirm the deletion.
 
 ~> **Note:** If a deletion would leave a module with no versions, the module will be automatically deleted.
 
@@ -103,3 +110,5 @@ To delete a module or version:
 In normal operation, Terraform Cloud doesn't allow one organization's workspaces to use private modules from a different organization. (When Terraform Cloud runs Terraform, it provides temporary credentials that are only valid for the workspace's organization, and uses those credentials to access modules.) And although it's possible to mix modules from multiple organizations when running Terraform on the command line, we strongly recommend against it.
 
 However, you can easily share modules across organizations by sharing the underlying VCS repository. Grant each organization access to the module's repo, then add the module to each organization's registry. When you push tags to publish new module versions, both organizations will update appropriately.
+
+In Terraform Enterprise version 202012-1 and later, organizations may be able to use private modules from other organizations depending on how the site admin has configured [module sharing](/docs/enterprise/admin/module-sharing.html).

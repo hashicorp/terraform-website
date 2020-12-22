@@ -18,13 +18,14 @@ At this time, the available site-wide integrations are:
 
 ## Cost Estimation Integration
 
-Cost Estimation integration allows Terraform Enterprise to estimate costs for resources during a run. Usage instructions are in the [Getting Started Guide](/docs/cloud/getting-started/cost-estimation.html).
+Cost Estimation integration allows Terraform Enterprise to estimate costs for resources during a run. See the [usage instructions](/docs/cloud/cost-estimation/index.html) in the Terraform Cloud documentation.
 
 To access the Cost Estimation settings, click **Cost Estimation** in the left menu. To enable Cost Estimation, check the **Enable Cost Estimation** box on the settings page, configure the settings, and click "Save settings." At least one provider needs to be configured in order to save.
 
 ![screenshot: the Cost Estimation admin page](./images/admin-cost-estimation.png)
 
-* **AWS Access Key ID**: The AWS Access Key ID for a given IAM user. The role associated to these credentials must have full access to the "Price List" service and all of that service's resources.
+* **AWS Instance Profile**: If checked this option will be used without need to input the Access Key or Secret Key in the above form (fields will be greyed out).
+* **AWS Access Key ID**: The AWS Access Key ID for a given IAM user. The role associated to these credentials must have full access to the "Price List" service and all of that service's resources. Cost Estimation makes API calls in the `us-east-1` region.
 * **AWS Secret Key**: The AWS Secret Key pair for the same Access Key ID.
 * **GCP Credentials**: The contents of the JSON that is downloaded when you create a GCP Service Account.
 * **Azure Client ID**: The Azure Client ID for a given Service Account. The role associated to these credentials must have full access to the `RateCard` service and all of that service's resources.

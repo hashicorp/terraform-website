@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Connecting VCS Providers - Terraform Cloud"
+page_title: "Connecting VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Connecting VCS Providers to Terraform Cloud
@@ -12,6 +12,10 @@ Terraform Cloud is more powerful when you integrate it with your version control
 - Publishing new versions of a [private Terraform module](../registry/publish.html) is as easy as pushing a tag to the module's repository.
 
 We recommend configuring VCS access when first setting up an organization, and you might need to add additional VCS providers later depending on how your organization grows.
+
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Supported VCS Providers
 
@@ -48,13 +52,15 @@ To use configurations from VCS, Terraform Cloud needs to do several things:
 Terraform Cloud uses webhooks to monitor new commits and pull requests.
 
 - When someone adds new commits to a branch, any Terraform Cloud workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can prevent automatic runs by locking a workspace.
-- When someone submits a pull request/merge request to a branch from another branch in the same repository, Terraform Cloud performs a [speculative plan](../run/index.html#speculative-plans) with the contents of the request and links to the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
+- When someone submits a pull request/merge request to a branch, any Terraform Cloud workspaces based on that branch will perform a [speculative plan](../run/index.html#speculative-plans) with the contents of the request and links to the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
 
 ### SSH Keys
 
-For most supported VCS providers, Terraform Cloud does not need an SSH key — it can do everything it needs with the provider's API and an OAuth token. The exception is Bitbucket Server, which requires an SSH key for downloading repository contents. The [setup instructions for Bitbucket Server](./bitbucket-server.html) include this step.
+For most supported VCS providers, Terraform Cloud does not need an SSH key — it can do everything it needs with the provider's API and an OAuth token. The exceptions are Azure DevOps Server and Bitbucket Server, which require an SSH key for downloading repository contents. The setup instructions for  [Azure DevOps Server](./azure-devops-server.html) and [Bitbucket Server](./bitbucket-server.html) include this step.
 
-For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials.
+For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. 
+
+For VCS providers where adding an SSH private key is optional, SSH will only be used to clone Git submodules. All other Git operations will still use HTTPS.
 
 If submodules will be cloned via SSH from a private VCS instance, SSH must be running on the standard port 22 on the VCS server.
 

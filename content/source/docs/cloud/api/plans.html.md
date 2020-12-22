@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Plans - API Docs - Terraform Cloud"
+page_title: "Plans - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -24,6 +24,22 @@ page_title: "Plans - API Docs - Terraform Cloud"
 # Plans API
 
 A plan represents the execution plan of a Run in a Terraform workspace.
+
+## Attributes
+
+### Plan States
+
+The plan state is found in `data.attributes.status`, and you can reference the following list of possible states.
+
+State                     | Description
+--------------------------|------------
+`pending`                 | The initial status of a plan once it has been created.
+`managed_queued`/`queued` | The plan has been queued, awaiting backend service capacity to run terraform.
+`running`                 | The plan is running.
+`errored`                 | The plan has errored. This is a final state.
+`canceled`                | The plan has been canceled. This is a final state.
+`finished`                | The plan has completed sucessfully. This is a final state.
+`unreachable`             | The plan will not run. This is a final state.
 
 ## Show a plan
 
@@ -59,6 +75,52 @@ curl \
     "id": "plan-8F5JFydVYAmtTjET",
     "type": "plans",
     "attributes": {
+      "execution-details": {
+        "mode": "remote",
+      },
+      "has-changes": true,
+      "resource-additions": 0,
+      "resource-changes": 1,
+      "resource-destructions": 0,
+      "status": "finished",
+      "status-timestamps": {
+        "queued-at": "2018-07-02T22:29:53+00:00",
+        "pending-at": "2018-07-02T22:29:53+00:00",
+        "started-at": "2018-07-02T22:29:54+00:00",
+        "finished-at": "2018-07-02T22:29:58+00:00"
+      },
+      "log-read-url": "https://archivist.terraform.io/v1/object/dmF1bHQ6djE6OFA1eEdlSFVHRSs4YUcwaW83a1dRRDA0U2E3T3FiWk1HM2NyQlNtcS9JS1hHN3dmTXJmaFhEYTlHdTF1ZlgxZ2wzVC9kVTlNcjRPOEJkK050VFI3U3dvS2ZuaUhFSGpVenJVUFYzSFVZQ1VZYno3T3UyYjdDRVRPRE5pbWJDVTIrNllQTENyTndYd1Y0ak1DL1dPVlN1VlNxKzYzbWlIcnJPa2dRRkJZZGtFeTNiaU84YlZ4QWs2QzlLY3VJb3lmWlIrajF4a1hYZTlsWnFYemRkL2pNOG9Zc0ZDakdVMCtURUE3dDNMODRsRnY4cWl1dUN5dUVuUzdnZzFwL3BNeHlwbXNXZWRrUDhXdzhGNnF4c3dqaXlZS29oL3FKakI5dm9uYU5ZKzAybnloREdnQ3J2Rk5WMlBJemZQTg"
+    },
+    "relationships": {
+      "state-versions": {
+        "data": []
+      }
+    },
+    "links": {
+      "self": "/api/v2/plans/plan-8F5JFydVYAmtTjET",
+      "json-output": "/api/v2/plans/plan-8F5JFydVYAmtTjET/json-output"
+    }
+  }
+}
+```
+
+_Using Terraform Cloud Agents_
+
+[Terraform Cloud Agents](/docs/cloud/api/agents.html) are a solution to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure. When a workspace is set to use the agent execution mode, the plan response will include additional details about the agent pool and agent used.
+
+```json
+{
+  "data": {
+    "id": "plan-8F5JFydVYAmtTjET",
+    "type": "plans",
+    "attributes": {
+      "execution-details": {
+        "agent-id": "agent-S1Y7tcKxXPJDQAvq",
+        "agent-name": "agent_01",
+        "agent-pool-id": "apool-Zigq2VGreKq7nwph",
+        "agent-pool-name": "first-pool",
+        "mode": "agent",
+      },
       "has-changes": true,
       "resource-additions": 0,
       "resource-changes": 1,
@@ -95,9 +157,11 @@ These endpoints generate a temporary authenticated URL to the location of the [J
 
 This temporary URL provided by the redirect has a life of **1 minute**, and should not be relied upon beyond the initial request.  If you need repeat access, you should use this endpoint to generate a new URL each time.
 
--> **Note:** This endpoint is available for plans using Terraform 0.12 and later.
+-> **Note:** This endpoint is available for plans using Terraform 0.12 and later. For Terraform Enterprise, this endpoint is available from v202005-1, and its stability was improved in v202007-1.
 
--> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens) that has [**admin** level permission](../users-teams-organizations/permissions.html#admin) for the workspace.
+-> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens) that has admin level access to the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Status  | Response                  | Reason
 --------|---------------------------|----------

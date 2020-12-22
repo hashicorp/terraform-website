@@ -1,1 +1,19 @@
-../../../ext/providers/template/website/template.erb
+<%#
+This is a do-nothing template that's only here to prevent build breakages.
+Please leave it be until all of the provider docs have migrated to the registry.
+
+The reason it's here is because many providers initialized their docs directory
+by copying content from the template provider. If they accidentally left any of
+the template provider's docs files in place, or if they made a copy-paste error
+when creating their own files, they can introduce pages that refer to the
+`template` layout (the canonical copy of which was removed when the template
+provider's docs were migrated to the registry). If that layout doesn't exist, it
+breaks the whole website deploy job. So now that layout has to exist. FOREVER.
+(Or for a little while longer, at least.) -NF
+%>
+<% wrap_layout :inner do %>
+  <% content_for :sidebar do %>
+  <% end %>
+
+  <%= yield %>
+<% end %>

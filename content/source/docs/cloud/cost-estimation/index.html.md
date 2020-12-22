@@ -1,11 +1,13 @@
 ---
 layout: "cloud"
-page_title: "Overview - Cost Estimation - Terraform Cloud"
+page_title: "Overview - Cost Estimation - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Cost Estimation in Terraform Cloud
 
 -> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+
+> **Hands-on:** Try the [Control Costs with Policies](https://learn.hashicorp.com/tutorials/terraform/cost-estimation?in=terraform/cloud-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
 Terraform Cloud provides cost estimates for many resources found in your Terraform configuration. For each resource an hourly and monthly cost is shown, along with the monthly delta. The total cost and delta of all estimable resources is also shown.
 
@@ -34,6 +36,10 @@ import "tfrun"
 import "decimal"
 
 delta_monthly_cost = decimal.new(tfrun.cost_estimate.delta_monthly_cost)
+
+if delta_monthly_cost.greater_than(100) {
+    print("This policy prevents a user from increasing their spending by more than $100 per month in a single run without a warning.")
+}
 
 main = rule {
 	delta_monthly_cost.less_than(100)

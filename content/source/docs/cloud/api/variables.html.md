@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Variables - API Docs - Terraform Cloud"
+page_title: "Variables - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -140,7 +140,9 @@ Parameter                    | Description
 `filter[workspace][name]`    | **Optional** The name of one workspace to list variables for. If included, you must also include the organization name filter.
 `filter[organization][name]` | **Optional** The name of the organization that owns the desired workspace. If included, you must also included the workspace name filter.
 
-These two parameters are optional but linked; if you include one, you must include both. Without a filter, this method lists variables for all workspaces you can access.
+These two parameters are optional but linked; if you include one, you must include both. Without a filter, this method lists variables for all workspaces where you have permission to read variables. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ### Sample Request
 

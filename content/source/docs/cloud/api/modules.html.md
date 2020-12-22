@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Modules - API Docs - Terraform Cloud"
+page_title: "Modules - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -96,9 +96,9 @@ The OAuth Token ID identifies the VCS connection, and therefore the organization
   "data": {
     "attributes": {
       "vcs-repo": {
-        "identifier":"SKI/terraform-aws-instance",
+        "identifier":"lafentres/terraform-aws-my-module",
         "oauth-token-id":"ot-hmAyP66qk2AMVdbJ",
-        "display_identifier":"SKI/terraform-aws-instance"
+        "display_identifier":"lafentres/terraform-aws-my-module"
       }
     },
     "type":"registry-modules"
@@ -122,15 +122,23 @@ curl \
 ```json
 {
   "data": {
-    "id": "mod-1JqHG3j71bwoukuX",
+    "id": "mod-fZn7uHu99ZCpAKZJ",
     "type": "registry-modules",
     "attributes": {
-      "name": "instance",
+      "name": "my-module",
       "provider": "aws",
       "status": "pending",
       "version-statuses": [],
-      "created-at": "2017-11-30T00:00:52.386Z",
-      "updated-at": "2017-11-30T00:00:52.386Z",
+      "created-at": "2020-07-09T19:36:56.288Z",
+      "updated-at": "2020-07-09T19:36:56.288Z",
+      "vcs-repo": {
+        "branch": "",
+        "ingress-submodules": true,
+        "identifier": "lafentres/terraform-aws-my-module",
+        "display-identifier": "lafentres/terraform-aws-my-module",
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "webhook-url": "https://app.terraform.io/webhooks/vcs/a12b3456..."
+      },
       "permissions": {
         "can-delete": true,
         "can-resync": true,
@@ -140,13 +148,13 @@ curl \
     "relationships": {
       "organization": {
         "data": {
-          "id": "org-QpXoEnULx3r2r1CA",
+          "id": "my-organization",
           "type": "organizations"
         }
       }
     },
     "links": {
-      "self": "/api/v2/registry-modules/show/skierkowski-v2/instance/aws"
+      "self": "/api/v2/registry-modules/show/my-organization/my-module/aws"
     }
   }
 }
@@ -159,6 +167,8 @@ curl \
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Creates a new registry module without a backing VCS repository. After creating a module, a version must be created and uploaded in order to be usable. Modules created this way do not automatically update with new versions; instead, you must explicitly create and upload each new version with the [Create a Module Version](#create-a-module-version) endpoint.
 
@@ -214,32 +224,32 @@ curl \
 ```json
 {
   "data": {
+    "id": "mod-fZn7uHu99ZCpAKZJ",
+    "type": "registry-modules",
     "attributes": {
-      "created-at": "2018-09-24T20:45:13.614Z",
       "name": "my-module",
+      "provider": "aws",
+      "status": "pending",
+      "version-statuses": [],
+      "created-at": "2020-07-09T19:36:56.288Z",
+      "updated-at": "2020-07-09T19:36:56.288Z",
       "permissions": {
         "can-delete": true,
         "can-resync": true,
         "can-retry": true
-      },
-      "provider": "aws",
-      "status": "pending",
-      "updated-at": "2018-09-24T20:45:13.614Z",
-      "version-statuses": []
-    },
-    "id": "mod-kno8GMqyUFAdbExr",
-    "links": {
-      "self": "/api/v2/registry-modules/show/my-organization/my-module/aws"
+      }
     },
     "relationships": {
       "organization": {
         "data": {
-          "id": "org-qScjTapEAMHut5ky",
+          "id": "my-organization",
           "type": "organizations"
         }
       }
     },
-    "type": "registry-modules"
+    "links": {
+      "self": "/api/v2/registry-modules/show/my-organization/my-module/aws"
+    }
   }
 }
 ```
@@ -253,6 +263,8 @@ Parameter            | Description
 `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 `:name`              | The name of the module for which the version is being created.
 `:provider`          | The name of the provider for which the version is being created.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Creates a new registry module version. This endpoint only applies to modules without a VCS repository; VCS-linked modules automatically create new versions for new tags. After creating the version, the module should be uploaded to the returned upload link.
 
@@ -375,6 +387,81 @@ curl \
 
 After the registry module version is successfully parsed, its status will become `"ok"`.
 
+## Show a Module
+
+`GET /registry-modules/show/:organization_name/:name/:provider`
+
+### Parameters
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization the  module belongs to.
+`:name`              | The module name.
+`:provider`          | The module provider.
+
+Status  | Response                                           | Reason
+--------|----------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "registry-modules"`) | The request was successful
+[404][] | [JSON API error object][]                          | Module not found or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --request GET \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/registry-modules/show/my-organization/my-module/aws
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "mod-fZn7uHu99ZCpAKZJ",
+    "type": "registry-modules",
+    "attributes": {
+      "name": "my-module",
+      "provider": "aws",
+      "status": "setup_complete",
+      "version-statuses": [
+        {
+          "version": "1.0.0",
+          "status": "ok"
+        }
+      ],
+      "created-at": "2020-07-09T19:36:56.288Z",
+      "updated-at": "2020-07-09T20:16:20.538Z",
+      "vcs-repo": {
+        "branch": "",
+        "ingress-submodules": true,
+        "identifier": "lafentres/terraform-aws-my-module",
+        "display-identifier": "lafentres/terraform-aws-my-module",
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "webhook-url": "https://app.terraform.io/webhooks/vcs/a12b3456..."
+      },
+      "permissions": {
+        "can-delete": true,
+        "can-resync": true,
+        "can-retry": true
+      }
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/registry-modules/show/my-organization/my-module/aws"
+    }
+  }
+}
+```
+
 ## Delete a Module
 
 * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
@@ -389,6 +476,8 @@ Parameter            | Description
 `:name`              | The module name that the deletion will affect.
 `:provider`          | If specified, the provider for the module that the deletion will affect.
 `:version`           | If specified, the version for the module and provider that will be deleted.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 When removing modules, there are three versions of the endpoint, depending on how many parameters are specified.
 

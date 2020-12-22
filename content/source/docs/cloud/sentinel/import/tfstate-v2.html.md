@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "tfstate/v2 - Imports - Sentinel - Terraform Cloud"
+page_title: "tfstate/v2 - Imports - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
   The tfstate/v2 import provides access to a Terraform state.
 ---
@@ -69,8 +69,7 @@ The collections are:
 
 * [`resources`](#the-resources-collection) - The state of all resources across
   all modules in the state.
-* [`outputs`](#the-outputs-collection) - The state of all outputs across all
-  modules in the state.
+* [`outputs`](#the-outputs-collection) - The state of all outputs from the root module in the state.
 
 These collections are specifically designed to be used with the
 [`filter`](https://docs.hashicorp.com/sentinel/language/collection-operations/#filter-expression)
@@ -142,6 +141,11 @@ An element in the collection has the following values:
   allows the provider to be interpreted unambiguously in the unusual situation
   where a provider offers a resource type whose name does not start with its own
   name, such as the `googlebeta` provider offering `google_compute_instance`.
+
+    -> **Note:** Starting with Terraform 0.13, the `provider_name` field contains the
+    _full_ source address to the provider in the Terraform Registry. Example:
+    `registry.terraform.io/hashicorp/null` for the null provider.
+
 * `values` - An object (map) representation of the attribute values of the
   resource, whose structure depends on the resource type schema. When accessing
   proposed state through the [`planned_values`](./tfplan-v2.html#the-planned_values-collection)

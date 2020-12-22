@@ -3,7 +3,7 @@ layout: "enterprise"
 page_title: "Automated Installation - Install and Config - Terraform Enterprise"
 ---
 
-# Automated Terraform Enterprise Installation — Standalone Instance
+# Automated Terraform Enterprise Installation
 
 The installation of Terraform Enterprise can be automated for both online and airgapped installs. There are two parts to automating the install: configuring [Replicated](https://help.replicated.com/) -- the platform which runs Terraform Enterprise -- and configuring Terraform Enterprise itself.
 
@@ -242,7 +242,7 @@ See the full set of configuration parameters in the [Replicated documentation](h
     "TlsBootstrapCert":             "/etc/server.crt",
     "TlsBootstrapKey":              "/etc/server.key",
     "BypassPreflightChecks":        true,
-    "ImportSettingsFrom":           "/path/to/application-settings.json",
+    "ImportSettingsFrom":           "/path/to/settings.json",
     "LicenseFileLocation":          "/path/to/license.rli"
 }
 ```
@@ -273,7 +273,7 @@ The following is an example `/etc/replicated.conf` suitable for an automated air
     "TlsBootstrapCert":                  "/etc/server.crt",
     "TlsBootstrapKey":                   "/etc/server.key",
     "BypassPreflightChecks":             true,
-    "ImportSettingsFrom":                "/path/to/application-settings.json",
+    "ImportSettingsFrom":                "/path/to/settings.json",
     "LicenseFileLocation":               "/path/to/license.rli",
     "LicenseBootstrapAirgapPackagePath": "/path/to/bundle.airgap"
 }

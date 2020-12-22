@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Using Sentinel with Terraform 0.12 - Terraform Cloud"
+page_title: "Using Sentinel with Terraform 0.12 - Terraform Cloud and Terraform Enterprise"
 description: |-
   Read about the changes made to Sentinel in Terraform 0.12.
 ---
@@ -95,7 +95,7 @@ As a consequence of no longer receiving raw Terraform configuration, map values
 are no longer represented as lists separated by their block index.
 
 This can be best demonstrated with a simple Sentinel policy for
-[`null_resource`](/docs/providers/null/resource.html). In Terraform 0.11 and
+[`null_resource`](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource). In Terraform 0.11 and
 earlier, this is a valid `null_resource` declaration, and the two map values
 would be merged:
 
@@ -264,7 +264,7 @@ Use the steps below to generate mock data for both Terraform versions:
 1. Follow the instructions on [configuring the Terraform version of the
    workspace](/docs/cloud/workspaces/settings.html#terraform-version) and
    ensure that it set to the latest 0.11 release.
-1. [Start a run](/docs/cloud/run/ui.html#starting-runs) for the workspace
+1. [Start a run](/docs/cloud/run/ui.html#manually-starting-runs) for the workspace
    and let it finish the plan phase.
 1. Follow the instructions to [generate mock data using the
    UI](./mock.html#generating-mock-data-using-the-ui)

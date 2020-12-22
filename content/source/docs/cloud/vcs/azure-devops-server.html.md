@@ -1,11 +1,15 @@
 ---
 layout: "cloud"
-page_title: "Azure DevOps Server - VCS Providers - Terraform Cloud"
+page_title: "Azure DevOps Server - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring Azure DevOps Server Access
 
 These instructions are for using an on-premises installation of Azure DevOps Server 2019 for Terraform Cloud's VCS features. [Azure DevOps Services has separate instructions,](./azure-devops-services.html) as do the [other supported VCS providers.](./index.html)
+
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## Important Notes About Authentication
 

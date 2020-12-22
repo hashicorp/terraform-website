@@ -3,7 +3,7 @@ layout: "enterprise"
 page_title: "Interactive Installation - Install and Config - Terraform Enterprise"
 ---
 
-# Interactive Terraform Enterprise Installation — Standalone Instance
+# Interactive Terraform Enterprise Installation
 
 ## Delivery
 
@@ -51,6 +51,24 @@ This change updates the proxy settings for the Terraform Enterprise application 
 3. Docker also needs to be able to communicate to endpoints with the same rules of proxy settings as `replicated` and `replicated-operator`, the steps 1-6 of this [document](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) are required.
 `NOTE: Please take precautions on application outage when applying configuration change, i.e. wait for all runs to finish, prevent new runs to trigger`
 4. Restart the Replicated services following [the instructions for your distribution](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#restarting-replicated).
+
+### Proxy and Service Discovery Process
+
+Unless the execution mode of a workspace is set to "local", Terraform Enterprise performs [remote operations](/docs/cloud/run/index.html#remote-operations), running Terraform in its own worker VMs.
+
+When running within Terraform Enterprise's worker VMs, Terraform uses [service discovery](/docs/internals/remote-service-discovery.html) to find the Terraform Enterprise service itself. Depending on your infrastructure setup, you may need to tell Terraform Enterprise not to access its own hostname via the proxy, so that Terraform can communicate with the Terraform Enterprise services.
+
+To do this, add Terraform Enterprise's fully qualified hostname to the **Proxy Bypass** setting in Terraform Enterprise's dashboard. The proxy bypass setting can be found on port **8800** on the path `/settings`.
+
+![Terraform Enterprise Proxy Bypass](./assets/tfe-proxy-bypass.png)
+
+Save the configuration using the **Save** button at the bottom of the page. Once configuration has been saved, please proceed to restart the application.
+
+You can use the equivalent setting, [extra_no_proxy](./automating-the-installer.html#available-settings), to automate this step.
+
+The Terraform CLI performs a TLS handshake with Terraform Enterprise during service discovery, and will need access to the Certificate Authority that Terraform Enterprise uses.
+
+Either add the CA to the [CA Custom Bundle](#certificate-authority-ca-bundle) configuration so that Terraform Enterprise will make the CA available in the worker container, or, if a [custom worker image](#alternative-terraform-worker-image) is configured, add the CA directly to its certificate file (located at `/etc/ssl/certs/ca-certificates.crt`).
 
 ## TLS Configuration
 
@@ -143,34 +161,72 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
 ### Requirements
  - The base image must be `ubuntu:xenial`.
  - The image must exist on the Terraform Enterprise host. It can be added by running `docker pull` from a local registry or any other similar method.
- - CA certificates must be available when Terraform runs. During image creation, a file containing all necessary PEM encoded CA certificates must be placed in `/etc/ssl/certs/ca-certificates.crt`.
- - Terraform must not be installed on the image. TFE will take care of that at runtime.
+ - All necessary PEM-encoded CA certificates must be placed within the `/usr/local/share/ca-certificates` directory. Each file added to this directory must end with the `.crt` extension. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
+ - Terraform must not be installed on the image. Terraform Enterprise will take care of that at runtime.
 
- This is a sample `Dockerfile` you can use to start building your own image:
+This is a sample `Dockerfile` you can use to start building your own image:
 
- ```
+```
 # This Dockerfile builds the image used for the worker containers.
 FROM ubuntu:xenial
 
-# Inject the ssl certificates
-ADD ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-
-# Install software used by TFE
+# Install software used by Terraform Enterprise.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    sudo unzip daemontools git-core ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd
- ```
+    sudo unzip daemontools git-core awscli ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd ca-certificates
 
-### Image initialization
-To run initialization commands in your image during runtime, create a script at `/usr/local/bin/init_custom_worker.sh` and make it executable. This script, and all commands it invokes, will be executed before TFE runs `terraform init`.
+# Include all necessary CA certificates.
+ADD example-root-ca.crt /usr/local/share/ca-certificates/
+ADD example-intermediate-ca.crt /usr/local/share/ca-certificates/
 
-The name, location, and permissions of the script are not customizable.
+# Update the CA certificates bundle to include newly added CA certificates.
+RUN update-ca-certificates
+```
+
+### Executing Custom Scripts
+
+The alternative worker image supports executing custom scripts during different points of a Terraform Enterprise run.
+These custom scripts allow Terraform Enterprise administrators to extend the functionality of Terraform Enterprise runs.
+
+Please note the following when utilizing custom scripts:
+
+- If the script exits with a non-zero exit code, the Terraform Enterprise run will immediately fail with an error.
+- The name and location of the script are not customizable.
+- The script must be executable. That is, the script must have execute permissions.
+- The execution of the script does not have a timeout. It is up to the Terraform Enterprise administrator to ensure
+  scripts execute in a timely fashion.
+- The execution of the script is not sandboxed. The script is executed in the same container `terraform` is executed in.
+
+#### Initialize Script
+
+To execute an initialize script, ensure your worker image contains an executable shell script at
+`/usr/local/bin/init_custom_worker.sh`. This script, and all commands it invokes, will be executed before a Terraform
+Enterprise run executes `terraform init`. This initialize script will be executed during both plans and applies.
+
+Example `Dockerfile` snippet for adding an initialize script:
+
+```
+ADD init_custom_worker.sh /usr/local/bin/init_custom_worker.sh
+```
+
+#### Finalize Script
+
+To execute a finalize script, ensure your worker image contains an executable shell script at
+`/usr/local/bin/finalize_custom_worker.sh`. This script, and all commands it invokes, will be executed after a Terraform
+Enterprise run finishes executing `terraform plan` or `terraform apply`. This finalize script will be executed during
+both plans and applies.
+
+Example `Dockerfile` snippet for adding a finalize script:
+
+```
+ADD finalize_custom_worker.sh /usr/local/bin/finalize_custom_worker.sh
+```
 
 ## Operational Mode Decision
 
 Terraform Enterprise can store its state in a few different ways, and you'll
 need to decide which works best for your installation. Each option has a
 different approach to
-[recovering from failures](../system-overview/reliability-availability.html#recovery-from-failures-1).
+[recovering from failures](../admin/automated-recovery.html).
 The mode should be selected based on your organization's needs. See
 [Pre-Install Checklist: Operational Mode Decision](../before-installing/index.html#operational-mode-decision)
 for more details.
@@ -186,8 +242,9 @@ The installer can run in two modes, Online or Airgapped. Each of these modes has
 If your instance can access the Internet, use the Online install mode.
 
 1. From a shell on your instance:
-    * To execute the installer directly, run `curl https://install.terraform.io/ptfe/stable | sudo bash`
+    * To execute the installer directly, run `curl https://install.terraform.io/ptfe/stable | sudo bash`.
     * To inspect the script locally before running, run `curl https://install.terraform.io/ptfe/stable > install.sh` and, once you are satisfied with the script's content, execute it with `sudo bash install.sh`.
+      * RedHat Enterprise Linux requires Docker to be pre-installed. As such, execute the installer script using `sudo bash install.sh no-docker` to prevent the installer script from automatically installing Docker.
 1. The installation will take a few minutes and you'll be presented with a message
     about how and where to access the rest of the setup via the web. This will be
     `https://<TFE HOSTNAME>:8800`.

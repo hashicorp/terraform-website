@@ -45,7 +45,7 @@ to the latest Terraform SDK involves upgrading all of the dependencies on
 Go packages with the prefix `github.com/hashicorp/terraform/` to a version
 with support for the new provider protocol.
 
-~> **NOTE:** The SDK is now its own Go module. Existing providers should upgrade to at least v0.12.7 before [switching to the standalone SDK](/docs/extend/plugin-sdk.html). This is to isolate issues between Terraform SDK v0.11 and v0.12, and the standalone SDK. New providers should vendor the standalone SDK from the start.
+~> **NOTE:** The SDK is now its own Go module. Existing providers should upgrade to at least v0.12.7 before [switching to the standalone SDK](/docs/extend/guides/v1-upgrade-guide.html). This is to isolate issues between Terraform SDK v0.11 and v0.12, and the standalone SDK. New providers should vendor the standalone SDK from the start.
 
 Terraform Core is now using
 [Go Modules](https://github.com/golang/go/wiki/Modules) for dependency

@@ -1,16 +1,17 @@
 ---
 layout: "cloud"
-page_title: "CLI-driven Runs - Runs - Terraform Cloud"
+page_title: "CLI-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [sentinel]: ../sentinel/index.html
 [private]: ../registry/index.html
 [remote]: /docs/backends/types/remote.html
 [speculative plan]: ./index.html#speculative-plans
-[permissions]: ../users-teams-organizations/permissions.html
-[tfe-provider]: /docs/providers/tfe/index.html
+[tfe-provider]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs
 
 # The CLI-driven Run Workflow
+
+> **Hands-on:** Try the [Authenticate the CLI with Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-login?in=terraform/0-13&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
 Terraform Cloud has three workflows for managing Terraform runs.
 
@@ -112,7 +113,9 @@ you can do so by defining a [`.terraformignore` file in your configuration direc
 
 To run a [speculative plan][] on your configuration, use the `terraform plan` command. The plan will run in Terraform Cloud, and the logs will stream back to the command line along with a URL to view the plan in the Terraform Cloud UI.
 
-Users can run speculative plans in any workspace where they have [plan access][permissions].
+Users can run speculative plans in any workspace where they have permission to queue plans. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
@@ -143,7 +146,9 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 
 When configuration changes are ready to be applied, use the `terraform apply` command. The apply will start in Terraform Cloud, and the command line will prompt for approval before applying the changes.
 
-Remote applies require [write access][permissions] to the workspace.
+Remote applies require permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Remote applies use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
@@ -177,7 +182,14 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ## Sentinel Policies
 
-If the specified workspace uses Sentinel policies, those policies will run against all speculative plans and remote applies in that workspace. The policy output will be available in the terminal. Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
+If the specified workspace uses Sentinel policies, those policies will run against all speculative plans and remote applies in that workspace. Policy output is shown in the terminal.
+
+Failed policies can pause or prevent an apply, depending on the enforcement level:
+
+- Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
+- Soft mandatory checks can be overridden by users with permission to [manage policies](/docs/cloud/users-teams-organizations/permissions.html#manage-policies). If your account can override a failed check, Terraform will prompt you to type "override" to confirm. (Note that typing "yes" will not work.) If you override the check, you will be prompted to apply the run (unless auto-apply is enabled).
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ```
 $ terraform apply
@@ -196,11 +208,30 @@ Sentinel evaluated to false because one or more Sentinel policies evaluated
 to false. This false was not due to an undefined value or runtime error.
 
 1 policies evaluated.
-## Policy 1: my-policy.sentinel (hard-mandatory)
+## Policy 1: my-policy.sentinel (soft-mandatory)
 
 Result: false
 
 FALSE - my-policy.sentinel:1:1 - Rule "main"
 
-Error: Organization policy check hard failed.
+Do you want to override the soft failed policy check?
+  Only 'override' will be accepted to override.
+
+  Enter a value: override
 ```
+
+## Targeted Plan and Apply
+
+-> **Version note:** Targeting support was added client-side in Terraform v0.12.26 and also requires server-side support that may not be available for all Terraform Enterprise deployments yet.
+
+The `terraform plan` and `terraform apply` commands described in earlier
+sections support [Resource Targeting](https://www.terraform.io/docs/commands/plan.html#resource-targeting) as in the local operations workflow, using the `-target` option on the command line.
+
+As with local usage, targeting is intended for exceptional circumstances only
+and should not be used routinely. The usual caveats for targeting in local operations imply some additional limitations on Terraform Cloud features for remote plans created with targeting:
+
+* [Sentinel](../sentinel/) policy checks for targeted plans will see only the selected subset of resource instances planned for changes in [the `tfplan` import](../sentinel/import/tfplan.html) and [the `tfplan/v2` import](../sentinel/import/tfplan-v2.html), which may cause an unintended failure for any policy that requires a planned change to a particular resource instance selected by its address.
+
+* [Cost Estimation](../cost-estimation/) is disabled for any run created with `-target` set, to prevent producing a misleading underestimate of cost due to resource instances being excluded from the plan.
+
+You can disable or constrain use of targeting in a particular workspace using a Sentinel policy based on [the `tfrun.target_addrs` value](../sentinel/import/tfrun.html#value-target_addrs).

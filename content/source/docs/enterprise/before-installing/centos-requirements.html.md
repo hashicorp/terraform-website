@@ -9,14 +9,16 @@ When installing Terraform Enterprise on CentOS Linux, ensure your OS and Docker 
 
 ## Install Requirements
 
-* CentOS Linux version 7.4 - 7.8
+* A [supported version](/docs/enterprise/before-installing/index.html#operating-system-requirements) of CentOS.
 * A suitable version of Docker:
    * Docker 1.13.1 (available in the `extras` repository).
-   * [Docker CE](https://docs.docker.com/install/linux/docker-ce/centos/) version 17.06 through 18.x (Docker v19.x is currently unsupported.)
-   * [Docker EE](https://docs.docker.com/install/linux/docker-ee/centos/) version 17.06 through 18.x (Docker v19.x is currently unsupported.)
+   * [Docker CE](https://docs.docker.com/install/linux/docker-ce/centos/) version 17.06 through 19.03.8.
+   * [Docker EE](https://docs.docker.com/install/linux/docker-ee/centos/) version 17.06 through 19.03.8.
    * Or you can allow the installer to install Docker for you.
 * A properly configured docker storage backend, either:
    * Devicemapper configured for production usage, in accordance with the [Docker documentation](https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production). This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
+**Note:** Current, [Docker documentation] (https://docs.docker.com/storage/storagedriver/select-storage-driver/) states that the `devicemapper` storage driver is deprecated in Docker Engine 18.09 and will be removed in a future release. It is recommended that users of the `devicemapper` storage driver migrate to `overlay2`. 
+   
    * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag `ftype=1`. The full documentation on this configuration is on the [Docker site](https://docs.docker.com/storage/storagedriver/overlayfs-driver/).
 
 If you choose to have Docker installed via the install script, ensure that `/etc/docker/daemon.json` is set up correctly, first.  The installer's default configuration sets up the devicemapper driver to use a loopback file, which is explicitly not supported, and the installation script will fail.  Setting up the driver for direct-lvm usage before installation will help ensure a successful installation.

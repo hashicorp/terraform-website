@@ -1,9 +1,11 @@
 ---
 layout: "cloud"
-page_title: "Terraform Runs and Remote Operations - Terraform Cloud"
+page_title: "Terraform Runs and Remote Operations - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Terraform Runs and Remote Operations
+
+> **Hands-on:** Try the [Get Started — Terraform Cloud](https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
 
 Terraform Cloud provides a central interface for running Terraform within a large collaborative organization. If you're accustomed to running Terraform from your workstation, the way Terraform Cloud manages runs can be unfamiliar.
 
@@ -53,7 +55,11 @@ In more abstract terms, runs can be initiated by VCS webhooks, the manual "Queue
 
 ## Plans and Applies
 
-Terraform Cloud enforces Terraform's division between _plan_ and _apply_ operations. It always plans first, saves the plan's output, and uses that output for the apply. In the default configuration, it waits for user approval before running an apply, but you can configure workspaces to [automatically apply](../workspaces/settings.html#auto-apply-and-manual-apply) successful plans. (Some plans can't be auto-applied, like plans queued by [run triggers](../workspaces/run-triggers.html) or by users without write permissions.)
+Terraform Cloud enforces Terraform's division between _plan_ and _apply_ operations. It always plans first, saves the plan's output, and uses that output for the apply.
+
+In the default configuration, Terraform Cloud waits for user approval before running an apply, but you can configure workspaces to [automatically apply](../workspaces/settings.html#auto-apply-and-manual-apply) successful plans. Some plans can't be auto-applied, like plans queued by [run triggers](../workspaces/run-triggers.html) or by users without permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers)
 
 ### Speculative Plans
 
@@ -67,6 +73,18 @@ There are three ways to run speculative plans:
 - With the [remote backend](/docs/backends/types/remote.html) configured, running `terraform plan` on the command line starts a speculative plan. The plan output streams to the terminal, and a link to the plan is also included.
 - The runs API creates speculative plans whenever the specified configuration version is marked as speculative. See [the `configuration-versions` API](../api/configuration-versions.html#create-a-configuration-version) for more information.
 
+#### Retry a speculative plan in the UI
+
+If a speculative plan fails due to an external factor, you can run it again using the "Retry Run" button on its page:
+
+![Screenshot: Clicking on the "Retry Run" button to trigger a new run](./images/retry.gif)
+
+Retrying a plan requires permission to queue plans for that workspace. ([More about permissions.](../users-teams-organizations/permissions.html)) Only failed or canceled plans can be retried.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+Retrying the run will create a new run with the same configuration version. If it is a VCS-backed workspace, the pull request interface will receive the status of the new run, along with a link to the new run.
+
 ## Run States
 
 Terraform Cloud shows the progress of each run as it passes through each run state (pending, plan, policy check, apply, and completion). In some states, the run might require confirmation before continuing or ending; see [Managing Runs: Interacting with Runs](./manage.html#interacting-with-runs) for more information.
@@ -76,3 +94,9 @@ In the list of workspaces on Terraform Cloud's main page, each workspace shows t
 For full details about the stages of a run, see [Run States and Stages][].
 
 [Run States and Stages]: ./states.html
+
+## Import
+
+Terraform Cloud does not support remote execution for `terraform import`. For this command the workspace acts only as a remote backend for Terraform state, with all execution occuring on your own workstations or continuous integration workers.
+
+Since `terraform import` runs locally, environment variables defined in the workspace are not available. Any environment variables required by the provider you're importing from must be defined within your local execution scope.

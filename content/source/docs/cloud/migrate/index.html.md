@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Migrating State from Local Terraform - Terraform Cloud"
+page_title: "Migrating State from Local Terraform - Terraform Cloud and Terraform Enterprise"
 ---
 
 [state]: /docs/state/index.html
@@ -15,9 +15,9 @@ page_title: "Migrating State from Local Terraform - Terraform Cloud"
 
 # Migrating State from Local Terraform
 
-If you already use Terraform to manage infrastructure, you're probably managing some resources that you want to transfer to Terraform Cloud. By migrating your Terraform [state][] to Terraform Cloud, you can continue managing that infrastructure without de-provisioning anything.
+> **Hands-on:** Try the [Migrate State to Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-migrate?in=terraform/state&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
-These reference docs describe the process for migrating state. To practice using a hands-on, step-by-step example follow the [HashiCorp Learn guide](https://learn.hashicorp.com/terraform/tfc/tfc_migration?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS).
+If you already use Terraform to manage infrastructure, you're probably managing some resources that you want to transfer to Terraform Cloud. By migrating your Terraform [state][] to Terraform Cloud, you can continue managing that infrastructure without de-provisioning anything.
 
 ~> **Important:** These instructions are for migrating state in a basic working directory that only uses the `default` workspace. If you use multiple [workspaces][cli-workspaces] in one working directory, the instructions are different; see [Migrating State from Multiple Terraform Workspaces](./workspaces.html) instead.
 
@@ -38,7 +38,9 @@ Make sure you have all of the following:
     - For other backends, you need the path to the particular storage being used (usually already included in the configuration) and access credentials (which you usually must set as an environment variable).
 - A Terraform Cloud user account.
 
-    This account must be a member of your organization's [owners team][], so you can create workspaces.
+    This account must have permission to manage workspaces for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 You also need to authenticate Terraform with Terraform Cloud.  If you're using Terraform 0.12.21 or later, you can use the `terraform login` command. Alternatively, you can create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
 
@@ -108,7 +110,7 @@ In Terraform Cloud's UI, make any settings changes necessary for your new worksp
 
 ## Step 8: Queue a Run in the New Workspace
 
-Either run `terraform plan` on the CLI or navigate to the workspace in Terraform Cloud's UI and [queue a plan](../run/ui.html#starting-runs). Examine the results.
+Either run `terraform plan` on the CLI or navigate to the workspace in Terraform Cloud's UI and [queue a plan](../run/ui.html#manually-starting-runs). Examine the results.
 
 If all went well, the plan should result in no changes or very small changes. Terraform Cloud can now take over all Terraform runs for this infrastructure.
 

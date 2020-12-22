@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Run States and Stages - Runs - Terraform Cloud"
+page_title: "Run States and Stages - Runs - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Run States and Stages
@@ -32,12 +32,14 @@ _Leaving this stage:_
 
 - If the `terraform plan` command failed, the run skips to completion (**Plan Errored** state).
 - If a user canceled the plan by pressing the "Cancel Run" button, the run skips to completion (**Canceled** state).
-- If the plan succeeded and doesn't require any changes (since it already matches the current infrastructure state), the run skips to completion (**No Changes** state).
+- If the plan succeeded and doesn't require any changes (since it already matches the current infrastructure state), the run skips to completion (**Planned** state).
 - If the plan succeeded and requires changes:
     - If cost estimation is enabled, the run proceeds automatically to the cost estimation stage.
     - If cost estimation is disabled and [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
-    - If there are no Sentinel policies and the plan can be auto-applied, the run proceeds automatically to the apply stage. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with write permissions.)
-    - If there are no Sentinel policies and the plan can't be auto-applied, the run pauses in the **Needs Confirmation** state until a user with write access to the workspace takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
+    - If there are no Sentinel policies and the plan can be auto-applied, the run proceeds automatically to the apply stage. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+    - If there are no Sentinel policies and the plan can't be auto-applied, the run pauses in the **Needs Confirmation** state until a user with permission to apply runs takes action. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## 3. The Cost Estimation Stage
 
@@ -62,19 +64,22 @@ This stage only occurs if [Sentinel policies][] are enabled. After a successful 
 _States in this stage:_
 
 - **Policy Check:** Terraform Cloud is currently checking the plan against the organization's policies.
-- **Policy Override:** The policy check finished, but a soft-mandatory policy failed, so an apply cannot proceed without approval from a member of the owners team. The run pauses in this state.
+- **Policy Override:** The policy check finished, but a soft-mandatory policy failed, so an apply cannot proceed without approval from a user with permission to manage policies for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) The run pauses in this state.
 - **Policy Checked:** The policy check succeeded, and Sentinel will allow an apply to proceed. The run sometimes pauses in this state, depending on workspace settings.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 _Leaving this stage:_
 
 - If any hard-mandatory policies failed, the run skips to completion (**Plan Errored** state).
 - If any soft-mandatory policies failed, the run pauses in the **Policy Override** state.
-    - If a member of the owners team overrides the failed policy, the run proceeds to the **Policy Checked** state.
-    - If an owner or a user with write access discards the run, the run skips to completion (**Discarded** state).
+    - If a user with permission to manage policies overrides the failed policy, the run proceeds to the **Policy Checked** state. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+    - If a user with permission to apply runs discards the run, the run skips to completion (**Discarded** state). ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 - If the run reaches the **Policy Checked** state (no mandatory policies failed, or soft-mandatory policies were overridden):
-    - If the plan can be auto-applied, the run proceeds automatically to the apply stage. (Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with write permissions.)
-    - If the plan can't be auto-applied, the run pauses in the **Policy Checked** state until a user with write access takes action. The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
+    - If the plan can be auto-applied, the run proceeds automatically to the apply stage. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+    - If the plan can't be auto-applied, the run pauses in the **Policy Checked** state until a user with permission to apply runs takes action. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
 
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## 5. The Apply Stage
 
@@ -97,7 +102,7 @@ A run is considered completed if it finishes applying, if any part of the run fa
 _States in this stage:_
 
 - **Applied:** The run was successfully applyed.
-- **No Changes:** `terraform plan`'s output already matches the current infrastructure state, so `terraform apply` doesn't need to do anything.
+- **Planned:** `terraform plan`'s output already matches the current infrastructure state, so `terraform apply` doesn't need to do anything.
 - **Apply Errored:** The `terraform apply` command failed, possibly due to a missing or misconfigured provider or an illegal operation on a provider.
 - **Plan Errored:** The `terraform plan` command failed (usually requiring fixes to variables or code), or a hard-mandatory Sentinel policy failed. The run cannot be applied.
 - **Discarded:** A user chose not to continue this run.

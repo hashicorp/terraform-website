@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
-page_title: "Example Customizations - ServiceNow Service Catalog Integration - Terraform Cloud"
+page_title: "Example Customizations - ServiceNow Service Catalog Integration - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Example customizations for the ServiceNow Service Catalog Integration.
 ---
 
 # Example Customizations
@@ -45,41 +47,36 @@ This example use case creates a Terraform catalog item for resources that limits
 1. Search for and select the variable set you created (`Example Pinned Variables`).
 1. Click "Submit".
 
-### Create Custom Workflow
+### Create Flow
 
-This example uses the "Example With Pinned Variables" workflow, which is one of the example workflows included with the integration.
+This example uses the "Provision Resources With Vars" flow, which is an example of flows with actions, included with the integration.
 
 In the ServiceNow Studio:
 
-1. Navigate to "Workflow" > "Workflow" > "Example With Pinned Variables".
-1. Double click on the "Run Script" item.
-1. Copy the script code from the editor.
-1. Close the "Run Script" and "Workflow" windows.
-1. Create a new custom workflow, by clicking "Create Application File" and choosing "Workflow".
-    - Name: `Example Pinned Variables` (replace with your custom workflow name)
-    - Table: `Requested Item [sc_req_item]` and Click "Submit"
-1. Add a "Run Script" item to the workflow, by navigating to the "Core" tab and selecting "Utilities" > "Run Script".
-    - Name: `Example Workflow Pinned Variables`
-    - Script:
-        - Paste in the code copied from the "Provision Resources with Variables" workflow, and change the following lines:
-
-            ```javascript
-              // ** Custom Variables **
-              var VAR_SET_NAME = "example_pinned_variables";
-              var VCS_REPO     = "ORG_NAME/REPO_NAME";
-            ```
-
-1. Click "Submit"
-1. Ensure that the ServiceNow Run Script is part of the workflow. (The summary of the workflow should look like "Begin" > "Run Script" > "End".)
-1. Click the menu at the top left and select "Publish"
+1. Navigate to "Flow Designer" > "Flows" > "Provision Resources With Vars".
+   1. This will be flow that can be used as an example.
+1. Create a new flow by selecting "New" in Flow Designer
+1. Name it "Example Flow" and click "submit"
+1. Edit your example flow
+   1. Trigger: Service Catalog
+   1. 1st Action: Get Catalog Variables
+      1. Drag "Requested Item Record" to "Submitted Request" field
+      1. Template Catalog Item: This should be your example catalog item created above
+      1. Catalog Variables: Move all of your variables to "Selected" side
+      1. Select "Done" to finish this action
+   1. Add another action and select the "Terraform Create Workspace with Var"
+      1. Using the Flow "Provision Resources With Vars" as an example:
+      1. Move the variables from the "Data" options on the right of the flow designer to match the example flow
+      1. Select "Done" to save this flow
+1. Click "Save" then "Activate" to enable your flow
 
 ### Set The Workflow for Catalog Item
 
 In the ServiceNow Studio:
 
 1. Select the "Example with Pinned Variables" catalog item. ("Service Catalog" > "Catalog Item" > "Example With Pinned Variables")
-2. Select the "Process Engine" tab.
-3. Set the workflow field by searching for the "Example Pinned Variables" workflow and clicking "Update".
+1. Select the "Process Engine" tab.
+1. Set the "Flow" field by searching for the "Example Pinned Variables" flow and clicking "Update".
 
 ### Test the Catalog Item
 

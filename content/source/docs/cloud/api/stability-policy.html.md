@@ -1,5 +1,5 @@
 ---
-page_title: "API Stability Policy - API Docs - Terraform Cloud"
+page_title: "API Stability Policy - API Docs - Terraform Cloud and Terraform Enterprise"
 layout: "cloud"
 ---
 

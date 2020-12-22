@@ -13,7 +13,7 @@ build:
 		--volume "$(shell pwd)/content:/website" \
 		--volume "$(shell pwd)/content/build:/website/build" \
 		-e "DEPLOY_ENV=${DEPLOY_ENV}" \
-		hashicorp/middleman-hashicorp:${VERSION} \
+		docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:${VERSION} \
 		bundle exec middleman build --verbose --clean
 
 website:
@@ -27,7 +27,7 @@ website:
 		-e "DEPLOY_ENV=${DEPLOY_ENV}" \
 		--volume "$(shell pwd)/ext:/ext" \
 		--volume "$(shell pwd)/content:/website" \
-		hashicorp/middleman-hashicorp:${VERSION}
+		docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:${VERSION}
 
 website-test:
 	@echo "==> Testing website in Docker..."
@@ -39,7 +39,7 @@ website-test:
 		--publish "4567:4567" \
 		--volume "$(shell pwd)/ext:/ext" \
 		--volume "$(shell pwd)/content:/website" \
-		hashicorp/middleman-hashicorp:${VERSION}
+		docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:${VERSION}
 	until curl -sS http://localhost:4567/ > /dev/null; do sleep 1; done
 	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567" "/"
 	@docker stop "tf-website-temp"
@@ -70,7 +70,7 @@ endif
 		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
 		--workdir /terraform-website \
 		-e PROVIDER_SLUG=$(PROVIDER_SLUG) \
-		hashicorp/middleman-hashicorp:${VERSION}
+		docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:${VERSION}
 
 website-provider-test:
 ifeq ($(PROVIDER_PATH),)
@@ -97,7 +97,7 @@ endif
 		--volume "$(shell pwd)/content/source/assets:/website/docs/assets" \
 		--volume "$(shell pwd)/content/source/layouts:/website/docs/layouts" \
 		--workdir /terraform-website \
-		hashicorp/middleman-hashicorp:${VERSION}
+		docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:${VERSION}
 	until curl -sS http://localhost:4567/ > /dev/null; do sleep 1; done
 	$(MKFILE_PATH)/content/scripts/check-links.sh "http://127.0.0.1:4567/docs/providers/$(PROVIDER_SLUG)/"
 	@docker stop "tf-website-$(PROVIDER_NAME)-temp"
@@ -115,7 +115,7 @@ spellcheck:
 	@find content/ -type f | xargs docker run \
 	 -v $(CURDIR):/scripts \
 	 --workdir=/scripts \
-	 nickg/misspell:latest \
+	 docker.mirror.hashicorp.services/nickg/misspell:latest \
 	 misspell -w -source=text
 	@echo "==> Spell check complete"
 

@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Organization Memberships - API Docs - Terraform Cloud"
+page_title: "Organization Memberships - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -20,8 +20,6 @@ page_title: "Organization Memberships - API Docs - Terraform Cloud"
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: http://jsonapi.org/format/#error-objects
 
-[speculative plans]: ../run/index.html#speculative-plans
-
 # Organization Memberships API
 
 Users are added to organizations by inviting them to join. Once accepted, they become members of the organization. The Organization Membership resource represents this membership.
@@ -40,6 +38,8 @@ Parameter            | Description
 
 -> **Note:** Organization membership management is restricted to members of the owners team, the owners [team API token](../users-teams-organizations/api-tokens.html#team-api-tokens), and the [organization API token](../users-teams-organizations/api-tokens.html#organization-api-tokens).
 
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 Status  | Response                  | Reason
 --------|---------------------------|-------
 [201][] | [JSON API document][]     | Successfully invited the user
@@ -57,7 +57,7 @@ Key path                                      | Type            | Default   | De
 ----------------------------------------------|-----------------|-----------|------------
 `data.type`                                   | string          |           | Must be `"organization-memberships"`.
 `data.attributes.email`                       | string          |           | The email address of the user to be invited.
-`data.relationships.teams.data[]`             | array\[object\] |           | A list of resource identifier objects that defines which teams the invited user will be a member of. These objects must contain `id` and `type` properties, and the `type` property must be `teams` (e.g. `{ "id": "team-GeLZkdnK6xAVjA5H", "type": "teams" }`). Obtain team IDs from the [List Teams](./teams.html#list-teams) endpoint. All users must be added to at least one team. 
+`data.relationships.teams.data[]`             | array\[object\] |           | A list of resource identifier objects that defines which teams the invited user will be a member of. These objects must contain `id` and `type` properties, and the `type` property must be `teams` (e.g. `{ "id": "team-GeLZkdnK6xAVjA5H", "type": "teams" }`). Obtain team IDs from the [List Teams](./teams.html#list-teams) endpoint. All users must be added to at least one team.
 
 ### Sample Payload
 

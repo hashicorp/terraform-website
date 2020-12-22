@@ -22,6 +22,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Blob Storage](#blob-storage)
 - [Block](#block)
 - [Branch](#branch)
+- [CI/CD](#ci-cd)
 - [CLI](#cli)
 - [Commit](#commit)
 - [(Terraform) Configuration](#terraform-configuration)
@@ -34,6 +35,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Git](#git)
 - [HCL](#hcl)
 - [ID](#id)
+- [Infrastructure as Code](#infrastructure-as-code)
 - [Ingress](#ingress)
 - [Input Variables](#input-variables)
 - [Interpolation](#interpolation)
@@ -54,7 +56,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Policy](#policy)
 - [Policy Check](#policy-check)
 - [Policy Set](#policy-set)
-- [Private Module Registry](#private-module-registry)
+- [Private Terraform Registry](#private-terraform-registry)
 - [Private Terraform Enterprise (PTFE)](#private-terraform-enterprise-ptfe-)
 - [(Terraform) Provider](#terraform-provider)
 - [Pull Request (PR)](#pull-request-pr-)
@@ -67,6 +69,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Root Module](#root-module)
 - [Root Outputs](#root-outputs)
 - [Run](#run)
+- [Run Triggers](#run-triggers)
 - [S3](#s3)
 - [SAML](#saml)
 - [Sentinel](#sentinel)
@@ -105,7 +108,7 @@ Terraform relies on cloud service provider APIs to manage resources; each servic
 Terraform Cloud also offers its own API, for managing resources like team membership, policies, and workspaces. That API, in turn, is used by the `tfe` Terraform provider, so you can use Terraform to manage the system that runs Terraform for you.
 
 - [Terraform Cloud docs: API](/docs/cloud/api/index.html)
-- [Terraform providers: `tfe`](/docs/providers/tfe/index.html)
+- [Terraform providers: `tfe`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs)
 
 ## Apply (noun)
 
@@ -139,7 +142,7 @@ In Terraform's [configuration][] language: a syntax construct that assigns a val
 
 Most of a Terraform configuration consists of using arguments to configure Terraform [resources][]. Each resource type defines the arguments its resources can use, the allowed values for each argument, and which arguments are required or optional. Information about a given resource type can be found in the docs for that resource's [provider][].
 
-- [Terraform docs: Config Language — Arguments, Blocks and Expressions](/docs/configuration/index.html#arguments-blocks-and-expressions)
+- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/configuration/syntax.html#arguments-and-blocks)
 
 ## Attribute
 
@@ -191,7 +194,7 @@ resource "aws_vpc" "main" {
 }
 ```
 
-- [Terraform docs: Config Language — Arguments, Blocks and Expressions](/docs/configuration/index.html#arguments-blocks-and-expressions)
+- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/configuration/syntax.html#arguments-and-blocks)
 
 ## Branch
 
@@ -201,6 +204,12 @@ resource "aws_vpc" "main" {
 In some [version control systems][vcs]: a semi-independent history of changes to content in a repository. A branch generally shares some history with other branches in the same repository, but eventually diverges to include changes that aren't yet present elsewhere.
 
 A repository usually has a default branch (whose name, in [Git][], defaults to `master`), which successful changes are eventually merged into. Most modern development workflows also include topic branches (where a specific set of changes is explored, iterated on, and verified), and some workflows include long-lived branches other than the default branch.
+
+## CI/CD
+
+[ci-cd]: glossary.html#ci-cd
+
+CI/CD (Continuous Integration/Continuous Delivery) platforms perform pre-defined tasks (like tests or builds) in response to trigger events (like new commits in a project). This helps make new releases more automated, predictable, and understandable. Infrastructure management, typically handled by operations teams, can also fit into an automated release workflow using infrastructure as code with Terraform.
 
 ## CLI
 
@@ -312,6 +321,8 @@ Different VCS providers handle forks differently, but a fork is usually owned by
 
 Terraform Cloud makes extensive use of VCS repos, and assumes that forks of a trusted repo are not necessarily trusted. As such, Terraform Cloud avoids evaluating any code from external forks, which prevents Terraform Cloud from running [speculative plans][] for [pull requests][] from forks.
 
+On [Terraform Enterprise][], [speculative plans][] on [pull requests][] from forks can be enabled by an administrator.
+
 ## Git
 
 [git]: glossary.html#git
@@ -343,6 +354,12 @@ In Terraform, many [resource][] types have an ID [attribute][] that helps link T
 In Terraform Cloud, most internal application objects (like [workspaces][], users, [policies][], etc.) can be identified by both a name and by an opaque, permanent ID. Most API endpoints use IDs instead of names, since names sometimes change. IDs for Terraform Cloud's application objects are sometimes called "external IDs."
 
 You can usually copy an external ID from the URL bar when viewing an object in Terraform Cloud's UI. Workspaces don't display an ID in the URL bar, but their general settings page includes a UI control for viewing and copying the ID.
+
+## Infrastructure as Code
+
+[infrastructure-as-code]: glossary.html#infrastructure-as-code
+
+Infrastructure-as-Code (IaC) is the practice of managing infrastructure in a file or files rather than manually configuring it via a user interface. Infrastructure resource types managed with IaC can include virtual machines, security groups, network interfaces, and many others.
 
 ## Ingress
 
@@ -578,7 +595,7 @@ A list of [Sentinel][] [policies][] to enforce globally or on specific workspace
 
 - [Terraform Cloud docs: Managing Sentinel Policies](/docs/cloud/sentinel/manage-policies.html)
 
-## Private Module Registry
+## Private Terraform Registry
 
 [private terraform registry]: glossary.html#private-terraform-registry
 [private module registry]: glossary.html#private-terraform-registry
@@ -588,7 +605,7 @@ A list of [Sentinel][] [policies][] to enforce globally or on specific workspace
 
 -> Terraform Cloud
 
-Also "private Terraform registry".
+Also "private module registry".
 
 A version of the [Terraform Registry][] that is built-in to Terraform Cloud, to enable code sharing within an organization. It includes a configuration designer, which lets you combine and configure modules to generate a Terraform [configuration][] that uses them.
 
@@ -729,8 +746,18 @@ The process of using Terraform to make real infrastructure match the desired sta
 
 In Terraform Cloud, runs are performed in a series of stages ([plan][], [policy check][], and [apply][]), though not every stage occurs in every run. Terraform Cloud saves information about historical runs.
 
-- [Learn Terraform: Getting Started](https://learn.hashicorp.com/terraform/getting-started/install)
+- [Learn Terraform: Get Started](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
+
+## Run Triggers
+
+[run triggers]: glossary.html#run-triggers
+
+-> Terraform Cloud
+
+Terraform Cloud provides a way to connect a given workspace to one or more workspaces within an organization, known as "source workspaces". These connections, called run triggers, allow runs to queue automatically in your workspace on successful apply of runs in any of the source workspaces.
+
+- [Terraform Cloud docs: Runs Triggers](/docs/cloud/workspaces/run-triggers.html)
 
 ## S3
 
@@ -796,7 +823,7 @@ A type of access credential based on public key cryptography, used to log into s
 Terraform Cloud uses SSH private keys for two kinds of operations:
 
 - Downloading private Terraform [modules][] with [Git][]-based sources during a Terraform run. Keys for downloading modules are assigned per-workspace.
-- Bringing content from a connected [VCS provider][] into Terraform Cloud, usually when pulling in a Terraform [configuration][] for a [workspace][] or importing a module into the [private module registry][]. Only some VCS providers require an SSH key, but others can optionally use SSH if an SSH key is provided.
+- Bringing content from a connected [VCS provider][] into Terraform Cloud, usually when pulling in a Terraform [configuration][] for a [workspace][] or importing a module into the [private module registry][]. Only some VCS providers require an SSH key, but other providers only need an SSH key if your repositories include submodules that are only accessible via SSH (instead of your VCS provider's API).
 
 - [Wikipedia: SSH](https://en.wikipedia.org/wiki/Secure_Shell)
 - [Terraform Cloud docs: SSH Keys for Cloning Modules](/docs/cloud/workspaces/ssh-keys.html)
@@ -890,7 +917,7 @@ A particular version of the `terraform` binary available for use in Terraform Cl
 
 A Terraform provider that manages Terraform Cloud. Allows you to manage Terraform Cloud using a Terraform [configuration][].
 
-- [Provider docs: tfe](/docs/providers/tfe/index.html)
+- [Provider docs: tfe](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs)
 
 ## (API) Token
 

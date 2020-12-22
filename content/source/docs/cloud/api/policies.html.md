@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Policies - API Docs - Terraform Cloud"
+page_title: "Policies - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -26,7 +26,7 @@ page_title: "Policies - API Docs - Terraform Cloud"
 
 [Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Cloud.
 
-Policies are configured on a per-organization level and are organized and grouped into [policy sets](../sentinel/manage-policies.html#organizing-policies-with-policy-sets), which define the workspaces on which policies are enforced during runs. In these workspaces, the plan's changes are validated against the relevant policies after the plan step. (For details, see [Run States and Stages](../run/states.html).)
+Policies are configured on a per-organization level and are organized and grouped into [policy sets](../sentinel/manage-policies.html#policies-and-policy-sets), which define the workspaces on which policies are enforced during runs. In these workspaces, the plan's changes are validated against the relevant policies after the plan step. (For details, see [Run States and Stages](../run/states.html).)
 
 This page documents the API endpoints to create, read, update, and delete the Sentinel policies in an organization. Use of these endpoints provides a method to manually manage individual policies within Terraform Cloud. To view and manage the results of a specific run's policy check, use the [Runs API](./run.html).
 
@@ -38,7 +38,9 @@ This page documents the API endpoints to create, read, update, and delete the Se
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The organization to create the policy in. The organization must already exist in the system, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:organization_name` | The organization to create the policy in. The organization must already exist in the system, and the token authenticating the API request must have permission to manage policies. (([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers)
 
 This creates a new policy object for the organization, but does not upload the actual policy code. After creation, you must use the [Upload a Policy endpoint (below)](#upload-a-policy) with the new policy's upload path. (This endpoint's response body includes the upload path in its `links.upload` property.)
 

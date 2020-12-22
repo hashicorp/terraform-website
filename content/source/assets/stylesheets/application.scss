@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 // Fonts
-@import '_fonts';
+@import "_fonts";
 
 // Mega Nav
 @import "hashicorp/mega-nav";
@@ -17,12 +17,13 @@
 @import "hashicorp/sidebar";
 
 // Typography
-@import '_typography';
+@import "_typography";
 
 //Global Site
 @import "_global";
 
 // Components
+@import "_hashi-stack-menu";
 @import "_header";
 @import "_footer";
 @import "_inner";
@@ -30,13 +31,13 @@
 @import "_syntax";
 @import "_logos";
 @import "_notification";
+@import "_alert_banner";
 @import "_tag";
 
 // Pages
 @import "_community";
 @import "_docs";
 @import "_downloads";
-
 
 @import "_home";
 @import "terraform-overview/_index";

@@ -1,5 +1,5 @@
 ---
-page_title: "API Docs - Terraform Cloud"
+page_title: "API Docs - Terraform Cloud and Terraform Enterprise"
 layout: "cloud"
 ---
 
@@ -26,7 +26,7 @@ Terraform Cloud provides an API for a subset of its features. If you have any qu
 
 See the navigation sidebar for the list of available endpoints.
 
--> **Note:** Before planning an API integration, consider whether [the `tfe` Terraform provider](/docs/providers/tfe/index.html) meets your needs. It can't create or approve runs in response to arbitrary events, but it's a useful tool for managing your organizations, teams, and workspaces as code.
+-> **Note:** Before planning an API integration, consider whether [the `tfe` Terraform provider](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs) meets your needs. It can't create or approve runs in response to arbitrary events, but it's a useful tool for managing your organizations, teams, and workspaces as code.
 
 HashiCorp provides a [stability policy](./stability-policy.html) for the Terraform Cloud API, ensuring backwards compatibility for stable endpoints.
 
@@ -39,6 +39,17 @@ There are three kinds of token available:
 - [User tokens](../users-teams-organizations/users.html#api-tokens) — each Terraform Cloud user can have any number of API tokens, which can make requests on their behalf.
 - [Team tokens](../users-teams-organizations/api-tokens.html#team-api-tokens) — each team can have one API token at a time. This is intended for performing plans and applies via a CI/CD pipeline.
 - [Organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens) — each organization can have one API token at a time. This is intended for automating the management of teams, team membership, and workspaces. The organization token cannot perform plans and applies.
+
+### Blob Storage Authentication
+
+Terraform Cloud relies on a HashiCorp-developed blob storage service for storing statefiles and multiple other pieces of customer data, all of which are documented on our [data security page](../architectural-details/data-security.html).
+
+Unlike the Terraform Cloud API, this service does not require that a bearer token be submitted with each request. Instead, each URL includes a securely generated secret and is only valid for 25 hours.
+
+For example, the [state versions api](./state-versions.html) returns a field named `hosted-state-download`, which is a URL of this form:
+`https://archivist.terraform.io/v1/object/<secret value>`
+
+This is a broadly accepted pattern for secure access. It is important to treat these URLs themselves as secrets. They should not be logged, nor shared with untrusted parties.
 
 ## Feature Entitlements
 
@@ -58,6 +69,7 @@ The following entitlements are available:
 - `sentinel` — Allows an organization to use [Sentinel][]. Affects the [policies][], [policy sets][], and [policy checks][] endpoints.
 - `private-module-registry` — Allows an organization to publish and use modules with the [private module registry][]. Affects the [registry modules][] endpoints.
 - `teams` — Allows an organization to manage access to its workspaces with [teams](../users-teams-organizations/teams.html). Without this entitlement, an organization only has an owners team. Affects the [teams][], [team members][], [team access][], and [team tokens][] endpoints.
+- `agents` — Allows isolated, private or on-premises infrastructure to communicate with an organization in Terraform Cloud. Affects the [agent pools][], [agents][], and [agent tokens][] endpoints.
 
 [state versions]: ./state-versions.html
 [runs]: ./run.html
@@ -77,6 +89,9 @@ The following entitlements are available:
 [team members]: ./team-members.html
 [team access]: ./team-access.html
 [team tokens]: ./team-tokens.html
+[agent pools]: ./agents.html
+[agents]: ./agents.html
+[agent tokens]: ./agent-tokens.html
 
 ## Response Codes
 
@@ -290,3 +305,4 @@ If you have built a client library and would like to add it to this community li
 - [tfc-client](https://github.com/adeo/iwc-tfc-client): Object oriented Python API library.
 - [terraform-enterprise-client](https://github.com/skierkowski/terraform-enterprise-client): Ruby API library and console app
 - [pyterprise](https://github.com/JFryy/terraform-enterprise-api-python-client): A simple Python API client library.
+- [Tfe.NetClient](https://github.com/everis-technology/Tfe.NetClient): .NET Client Library

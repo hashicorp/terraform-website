@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Bitbucket Server and Data Center - VCS Providers - Terraform Cloud"
+page_title: "Bitbucket Server and Data Center - VCS Providers - Terraform Cloud and Terraform Enterprise"
 ---
 
 
@@ -10,17 +10,21 @@ These instructions are for using **Bitbucket Server** for Terraform Cloud's VCS 
 
 These instructions also apply to **Bitbucket Data Center,** which is a variant of Bitbucket Server that supports clustering. Terraform Cloud treats these two products identically, and Bitbucket Data Center users will select **Bitbucket Server** as their VCS Provider type. Unless stated otherwise, any reference to Bitbucket Server in this document also applies to Bitbucket Data Center.
 
+Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
 [Bitbucket Cloud has separate instructions,](./bitbucket-cloud.html) as do the [other supported VCS providers.](./index.html)
 
-Note that Bitbucket Server requires both OAuth authentication and an SSH key. The instructions below include SSH key configuration.
+Note that Bitbucket Server requires both OAuth authentication and an SSH key, both of which are covered in the instructions below.
 
--> **Version note:** Terraform Cloud supports Bitbucket Server versions 4.9.1 and newer, and Bitbucket Data Center versions 5.4.0 and newer. HashiCorp does not test older versions of Bitbucket Server with Terraform Cloud, and they might not work as expected. Also note that, although we do not deliberately remove support for versions that have reached end of life (per the [Atlassian Support End of Life Policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html)), our ability to resolve customer issues with end of life versions might be limited.
+-> **Version note:** Terraform Cloud supports Bitbucket Server and Bitbucket Data Center versions 5.4.0 and above. <br /><br />Support for Bitbucket Server versions between 4.9.1 and 5.3.7 is deprecated. Terraform Cloud currently works with these versions, but will stop supporting them in the near future. <br /><br />HashiCorp does not test older versions of Bitbucket Server with Terraform Cloud, and they might not work as expected. Also note that, although we do not proactively remove support for versions that have reached end of life (per the [Atlassian Support End of Life Policy](https://confluence.atlassian.com/support/atlassian-support-end-of-life-policy-201851003.html)), our ability to resolve customer issues with end of life versions might be limited.
 
 ~> **Important:** Terraform Cloud needs to contact Bitbucket Server over both SSH and HTTP (or HTTPS) during setup and during normal operation. For the SaaS version of Terraform Cloud, this means Bitbucket Server must be internet-accessible on its SSH and HTTP(S) ports; for Terraform Enterprise, you must have network connectivity between your Terraform Enterprise and Bitbucket Server instances. <br /><br /> Note that [Bitbucket Server's default ports](https://confluence.atlassian.com/bitbucketserverkb/which-ports-does-bitbucket-server-listen-on-and-what-are-they-used-for-806029586.html) are 7999 for SSH and 7990 for HTTP; check your configuration to confirm your instance's real ports.
 
 ## Before You Begin: Determine Your Bitbucket Server Version
 
-Terraform Cloud requires support for the delivery of webhooks to perform many operations, including tracking newly available configuration versions. When using Bitbucket Server version 5.3 or lower, Atlassian's webhooks plugin is required to be configured on Bitbucket Server. If using version 5.4 or higher, no plugin is required, as webhooks are supported natively.
+Terraform Cloud requires support for the delivery of webhooks to perform many operations, including tracking newly available configuration versions. When using Bitbucket Server version 5.3 or below (**deprecated**), Atlassian's webhooks plugin is required to be configured on Bitbucket Server. If using version 5.4 or above, no plugin is required, as webhooks are supported natively.
 
 1. Open your Bitbucket server instance in your browser and log in as an admin user.
 2. In the footer of every page is a reference to the instance's current version. **If your version is greater than v5.4.0, you may skip all remaining steps in this section.**
@@ -55,14 +59,16 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
 1. Enter the URL of your Bitbucket Server instance in the **HTTP URL** and **API URL** fields.
 
-    If your Bitbucket Server instance does not have a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set, the **API URL** should be the same as the **HTTP URL**.
+    ~> **Important:** The values for the **HTTP URL** and **API URL** fields differ depending on whether or not your Bitbucket Server instance has a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set.
+    
+    If your Bitbucket Server instance does not have a context path set, the **API URL** should be the same as the **HTTP URL**.
 
-    If your Bitbucket Server instance has a [context path](https://confluence.atlassian.com/bitbucketserver/moving-bitbucket-server-to-a-different-context-path-776640153.html) set:
+    If your Bitbucket Server instance has a context path set:
 
     1. Set the **HTTP URL** to the URL of your Bitbucket Server instance with the context path included, `https://<BITBUCKET INSTANCE HOSTNAME>/<CONTEXT PATH>`.
-    1. Set the **API URL** to the URL of your Bitbucket Server instance **without** the context path, `https://<BITBUCKET INSTANCE HOSTNAME>/`.
+    1. Set the **API URL** to the URL of your Bitbucket Server instance **without** the context path, `https://<BITBUCKET INSTANCE HOSTNAME>`.
 
-    ~> **Note:** If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL. If you omit the port in the URL, Terraform Cloud uses the standard port for the protocol (80 for HTTP, 443 for HTTPS).
+    ~> **Important:** If Bitbucket Server isn't accessible on the standard ports (for example, if it's using its default ports of 7990 or 8443 and is not behind a reverse proxy), make sure to specify the port in the URL. If you omit the port in the URL, Terraform Cloud uses the standard port for the protocol (80 for HTTP, 443 for HTTPS).
 
     ![Terraform Cloud screenshot: text fields for adding a Bitbucket Server VCS provider](./images/bitbucket-server-tfe-add-url-fields.png)
 
@@ -143,4 +149,3 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 ## Finished
 
 At this point, Bitbucket Server access for Terraform Cloud is fully configured, and you can create Terraform workspaces based on your organization's shared repositories.
-

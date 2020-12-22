@@ -37,32 +37,32 @@ or “Burstable CPU” in AWS terms, such as T-series instances.
 
 ### Terraform Enterprise Server (EC2 via Auto Scaling Group)
 
-| Type        | CPU      | Memory       | Disk | AWS Instance Types    |
-|-------------|----------|--------------|------|-----------------------|
-| Minimum     | 2 core   | 8 GB RAM     | 50GB | m5.large              |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB | m5.xlarge, m5.2xlarge |
+| Type    | CPU    | Memory    | Disk | AWS Instance Types |
+|---------|--------|-----------|------|--------------------|
+| Minimum | 4 core | 16 GB RAM | 50GB | m5.xlarge          |
+| Scaled  | 8 core | 32 GB RAM | 50GB | m5.2xlarge         |
 
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a
+- The scaled size is for production environments where there is a
   consistent high workload in the form of concurrent Terraform runs.
 
 ### PostgreSQL Database (RDS Multi-AZ)
 
-| Type        | CPU      | Memory       | Storage | AWS Instance Types          |
-|-------------|----------|--------------|---------|-----------------------------|
-| Minimum     | 2 core   | 8 GB RAM     | 50GB    | db.m4.large                 |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB    | db.m4.xlarge, db.m4.2xlarge |
+| Type    | CPU    | Memory    | Storage | AWS Instance Types |
+|---------|--------|-----------|---------|--------------------|
+| Minimum | 4 core | 16 GB RAM | 50GB    | db.m4.xlarge       |
+| Scaled  | 8 core | 32 GB RAM | 50GB    | db.m4.2xlarge      |
 
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a
+- The scaled size is for production environments where there is a
   consistent high workload in the form of concurrent Terraform runs.
 
 ### Object Storage (S3)
@@ -152,7 +152,7 @@ the private key of a public ACM certificate on your Terraform Enterprise instanc
 
 ## Infrastructure Diagram
 
-![aws-infrastructure-diagram-asg](./assets/aws-setup-guide-tfe-asg.png)
+![aws-infrastructure-diagram-asg](./assets/aws-infrastructure-diagram.png)
 
 ### Application Layer
 

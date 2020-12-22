@@ -23,8 +23,7 @@ architecture.
 
 ## Infrastructure Requirements
 
--> **Note:** This reference architecture focuses on the _External
-Services_ operational mode.
+-> **Note:** This reference architecture focuses on the _External Services_ operational mode.
 
 Depending on the chosen [operational
 mode](../index.html#operational-mode-decision),
@@ -38,10 +37,10 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 
 ### Terraform Enterprise Server (Compute Engine VM via Regional Managed Instance Group)
 
-| Type        | CPU      | Memory       | Disk        | GCP Machine Types              |
-|-------------|----------|--------------|-------------|--------------------------------|
-| Minimum     | 2-4 core | 8-16 GB RAM  | 50GB/200GB* | n1-standard-2, n1-standard-4   |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB/200GB* | n1-standard-4, n1-standard-8   |
+| Type    | CPU    | Memory    | Disk        | GCP Machine Types |
+|---------|--------|-----------|-------------|-------------------|
+| Minimum | 4 core | 15 GB RAM | 50GB/200GB* | n1-standard-4     |
+| Scaled  | 8 core | 30 GB RAM | 50GB/200GB* | n1-standard-8     |
 
 #### Hardware Sizing Considerations
 
@@ -54,22 +53,22 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a
+- The scaled size is for production environments where there is a
   consistent high workload in the form of concurrent Terraform runs.
 
 ### PostgreSQL Database (Cloud SQL PostgreSQL Production)
 
-| Type        | CPU      | Memory       | Storage | GCP Machine Types            |
-|-------------|----------|--------------|---------|------------------------------|
-| Minimum     | 2 core   | 8 GB RAM     | 50GB    | Custom PostgreSQL Production |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB    | Custom PostgreSQL Production |
+| Type    | CPU    | Memory    | Storage | GCP Machine Types            |
+|---------|--------|-----------|---------|------------------------------|
+| Minimum | 4 core | 16 GB RAM | 50GB    | Custom PostgreSQL Production |
+| Scaled  | 8 core | 32 GB RAM | 50GB    | Custom PostgreSQL Production |
 
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a
+- The scaled size is for production environments where there is a
   consistent high workload in the form of concurrent Terraform runs.
 
 ### Object Storage (Cloud Storage)
@@ -79,7 +78,7 @@ specified during the Terraform Enterprise installation for application data to b
 securely and redundantly away from the Compute Engine VMs running the
 application. This Cloud Storage bucket must be in the same region as the Compute Engine and Cloud SQL
 instances.
-Vault is used to encrypt all application data stored in the Cloud Storage bucket.  This
+Vault is used to encrypt all application data stored in the Cloud Storage bucket. This
 allows for further [server-side
 encryption](https://cloud.google.com/storage/docs/encryption/).
 by Cloud Storage.
@@ -265,11 +264,23 @@ primary GCP Region hosting the Terraform Enterprise application failing, the sec
 GCP Region will require some configuration before traffic is directed to
 it along with some global services such as DNS.
 
-- [Cloud SQL cross-region read replicas](https://cloud.google.com/sql/docs/postgres/replication/manage-replicas) can be used in a warm standby architecture or [Cloud SQL database backups](https://cloud.google.com/sql/docs/postgres/backup-recovery/restoring) can be used in a cold standby architecture.
+- [Cloud SQL cross-region read replicas](https://cloud.google.com/sql/docs/postgres/replication/cross-region-replicas)  can be used in a warm standby architecture. See also [Managing Cloud SQL read replicas](https://cloud.google.com/sql/docs/postgres/replication/manage-replicas).
+
+  - Note that read replicas do not inherently provide high availability in the sense that there can be automatic failover from the primary to the read replica. As described in the above reference, the read replica will need to be promoted to a stand-alone Cloud SQL primary instance. Promoting a replica to a stand-alone Cloud SQL primary instance is an irreversible action, so when the failover needs to be reverted, the database must be restored to an original primary location (potentially by starting it as a read replica and promoting it), and the secondary read replica will need to be destroyed and re-established.
+
+  - GCP now offers a [high availability option for Cloud SQL](https://cloud.google.com/sql/docs/mysql/high-availability) databases which could be incorporated into a more automatic failover scenario.\*
+
+- [Cloud SQL database backups](https://cloud.google.com/sql/docs/postgres/backup-recovery/restoring) can be used in a cold standby architecture.
+
+  - GCP now offers a [Point-in-time recovery](https://cloud.google.com/sql/docs/postgres/backup-recovery/pitr) option for Cloud SQL databases which could be incorporated into a backup and recovery scheme with reduced downtime and higher reliability.\*
 
 - [Multi-Regional Cloud Storage replication](https://cloud.google.com/storage/docs/storage-classes#multi-regional) must be configured so the object storage component of the Storage Layer is available in multiple GCP Regions.
 
 - DNS must be redirected to the Forwarding Rule acting as the entry point for the infrastructure deployed in the secondary GCP Region.
+
+- Terraform Enterprise in the Standalone architecture is an Active:Passive model. At no point should more than one Terraform Enterprise instance be actively connected to the same database instance.
+
+\* **Note:** We are investigating incorporating these newer CloudSQL capabilities into this reference architecture, but do not have additional details at this time.
 
 #### Data Corruption
 

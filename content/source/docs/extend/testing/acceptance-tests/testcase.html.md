@@ -134,6 +134,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
 func testAccPreCheck(t *testing.T) {
   if v := os.Getenv("EXAMPLE_KEY"); v == "" {
     t.Fatal("EXAMPLE_KEY must be set for acceptance tests")
+  }
   if v := os.Getenv("EXAMPLE_SECRET"); v == "" {
     t.Fatal("EXAMPLE_SECRET must be set for acceptance tests")
   }
@@ -143,10 +144,10 @@ func testAccPreCheck(t *testing.T) {
 ### Providers 
 
 **Type:**
-`map[string]`[terraform.ResourceProvider](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/terraform/resource_provider.go#L12-L172)  
+`map[string]`[\*schema.Provider](https://github.com/hashicorp/terraform-plugin-sdk/blob/a8e5eaf628dcbd66869b9512e81c3495cfac5722/helper/schema/provider.go#L40-L96)  
 **Required:** Yes  
 
-**Providers** is a map of `terraform.ResourceProvider` values with `string`
+**Providers** is a map of `*schema.Provider` values with `string`
 keys, representing the Providers that will be under test. Only the Providers
 included in this map will be loaded during the test, so any Provider included in
 a configuration file for testing must be represented in this map or the test
@@ -172,12 +173,12 @@ func TestAccExampleWidget_basic(t *testing.T) {
 // File: example/provider_test.go
 package example
 
-var testAccProviders map[string]terraform.ResourceProvider
+var testAccProviders map[string]*schema.Provider
 var testAccProvider *schema.Provider
 
 func init() {
   testAccProvider = Provider().(*schema.Provider)
-  testAccProviders = map[string]terraform.ResourceProvider{
+  testAccProviders = map[string]*schema.Provider{
     "example": testAccProvider,
   }
 }

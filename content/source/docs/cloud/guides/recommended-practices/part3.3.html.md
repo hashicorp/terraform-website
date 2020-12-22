@@ -1,6 +1,6 @@
 ---
 page_title: "Part 3.3: From Infrastructure as Code to Collaborative Infrastructure as Code - Terraform Recommended Practices"
-layout: "guides"
+layout: "intro"
 ---
 
 # Part 3.3: How to Move from Infrastructure as Code to Collaborative Infrastructure as Code
@@ -27,7 +27,7 @@ Get familiar with how Terraform runs work in Terraform Cloud. With Terraform OSS
 
 Terraform Cloud does things differently: a workspace is associated directly with a VCS repo, and you use Terraform Cloud’s UI or API to start and monitor runs. To get familiar with this operating model:
 
-* Read the documentation on how to [perform and configureTerraform runs](../../getting-started/runs.html) in Terraform Cloud.
+* Read the documentation on how to [perform and configure Terraform runs](/docs/cloud/run/index.html) in Terraform Cloud.
 * Create a proof-of-concept workspace, associate it with Terraform code in a VCS repo, set variables as needed, and use Terraform Cloud to perform some Terraform runs with that code.
 
 ## 3. Design Your Organization’s Workspace Structure
@@ -73,16 +73,20 @@ When managing team membership, you have two options:
 
 ## 6. Assign Permissions
 
-Assign workspace ownership and permissions to teams. Each workspace has three levels of permissions you can grant to any user or team: admin, read/write, and read-only. Admins effectively own the workspace, and can change the permissions of other users on it.
+Assign workspace ownership and permissions to teams.
+
+Terraform Cloud supports granular team permissions for each workspace. For complete information about the available permissions, see [the Terraform Cloud permissions documentation.](/docs/cloud/users-teams-organizations/permissions.html)
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Most workspaces will give access to multiple teams with different permissions.
 
 Workspace       | Team Permissions
 ----------------|-----------------
-app1-dev        | Team-eng-app1: Read/write  <br> Team-owners-app1: Admin  <br> Team-central-IT: Admin
-app1-prod       | Team-eng-app1: Read-only  <br> Team-owners-app1: Read/write  <br> Team-central-IT: Admin
-networking-dev  | Team-eng-networking: Read/write  <br> Team-owners-networking: Admin  <br> Team-central-IT: Admin
-networking-prod | Team-eng-networking: Read-only  <br> Team-owners-networking: Read/write  <br> Team-central-IT: Admin
+app1-dev        | Team-eng-app1: Apply runs, read and write variables  <br> Team-owners-app1: Admin  <br> Team-central-IT: Admin
+app1-prod       | Team-eng-app1: Queue plans, read variables  <br> Team-owners-app1: Apply runs, read and write variables  <br> Team-central-IT: Admin
+networking-dev  | Team-eng-networking: Apply runs, read and write variables  <br> Team-owners-networking: Admin  <br> Team-central-IT: Admin
+networking-prod | Team-eng-networking: Queue plans, read variables  <br> Team-owners-networking: Apply runs, read and write variables  <br> Team-central-IT: Admin
 
 ## 7. Restrict Non-Terraform Access
 

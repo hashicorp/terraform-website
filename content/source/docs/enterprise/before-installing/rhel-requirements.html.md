@@ -9,14 +9,16 @@ When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure y
 
 ## Install Requirements
 
-* RedHat Enterprise Linux version 7.4 - 7.8.
-* Docker 1.13.1 (available in RHEL extras), or Docker EE version 17.06 through 18.x (Docker v19.x is currently unsupported.) The later versions are not available in the standard RHEL yum repositories.
-   * For Docker EE, [these](https://docs.docker.com/install/linux/docker-ee/rhel/) are the explicit RHEL instructions to follow.
+* A [supported version](https://www.terraform.io/docs/enterprise/before-installing/index.html#operating-system-requirements) of RedHat Enterprise Linux.
+* Docker 1.13.1 (available in RHEL extras), or Docker EE version 17.06 through 19.03.8. The later versions are not available in the standard RHEL yum repositories.
+   * For Docker EE, [these](https://docs.mirantis.com/docker-enterprise/v3.1/dockeree-products/docker-engine-enterprise/dee-linux/rhel.html) are the explicit RHEL instructions to follow.
    * For Docker from RHEL extras, the following should enable the RHEL extras repository:
       * `yum-config-manager --enable rhel-7-server-extras-rpms`
       * on AWS: `yum-config-manager --enable rhui-REGION-rhel-server-extras`
 * A properly configured docker storage backend, either:
    * Devicemapper configured for production usage, according to [the Docker documentation](https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production). This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
+   **Note:** Current, [Docker documentation] (https://docs.docker.com/storage/storagedriver/select-storage-driver/) states that the `devicemapper` storage driver is deprecated in Docker Engine 18.09 and will be removed in a future release. It is recommended that users of the `devicemapper` storage driver migrate to `overlay2`. 
+   
    * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag `ftype=1`. The full documentation on this configuration is [here](https://docs.docker.com/storage/storagedriver/overlayfs-driver/).
    * If using Docker from RHEL Extras, storage can be configured using the `docker-storage-setup` command.
 

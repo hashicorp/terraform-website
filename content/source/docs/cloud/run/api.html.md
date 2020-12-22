@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "API-driven Runs - Runs - Terraform Cloud"
+page_title: "API-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
 ---
 
 # The API-driven Run Workflow
@@ -26,6 +26,10 @@ The most significant difference in this workflow is that Terraform Cloud _does n
 ## Pushing a New Configuration Version
 
 Pushing a new configuration to an existing workspace is a multi-step process. This section walks through each step in detail, using an example bash script to illustrate.
+
+Creating new configuration versions requires permission to queue plans for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ### 1. Define Variables
 
@@ -94,7 +98,9 @@ UPLOAD_URL=($(curl \
 
 Next, upload the configuration version `tar.gz` file to the upload URL extracted from the previous step. If a file is not uploaded, the configuration version will not be usable, since it will have no Terraform configuration files.
 
-Terraform Cloud automatically creates a new run with a plan once the new file is uploaded. If the workspace is configured to auto-apply, it will also apply if the plan succeeds; otherwise, an apply can be triggered via the [Run Apply API](../api/run.html#apply). (If the API token used for the upload only has plan permissions, the run can't be auto-applied.)
+Terraform Cloud automatically creates a new run with a plan once the new file is uploaded. If the workspace is configured to auto-apply, it will also apply if the plan succeeds; otherwise, an apply can be triggered via the [Run Apply API](../api/run.html#apply). If the API token used for the upload lacks permission to apply runs for the workspace, the run can't be auto-applied. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ```bash
 curl \

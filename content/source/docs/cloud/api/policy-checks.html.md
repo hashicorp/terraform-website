@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Policy Checks - API Docs - Terraform Cloud"
+page_title: "Policy Checks - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

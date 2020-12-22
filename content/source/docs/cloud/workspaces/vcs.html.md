@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "VCS Connections - Workspaces - Terraform Cloud"
+page_title: "VCS Connections - Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Configuring Workspace VCS Connections
@@ -28,7 +28,7 @@ Clicking this control will navigate to a separate page, which will walk you thro
 
 1. On the first screen, choose your VCS provider (or choose "No VCS connection" to disconnect the workspace from version control).
 
-    If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](../vcs/index.html) for more information. Only organization owners can configure VCS providers.
+    If you haven't added a VCS provider for your organization yet, choosing one here will prompt you to configure it. See [Connecting VCS Providers](../vcs/index.html) for more information. Configuring a VCS provider requires permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 1. On the second screen, choose a repository from the filterable list. This screen is skipped if you chose "No VCS connection".
 
@@ -37,6 +37,8 @@ Clicking this control will navigate to a separate page, which will walk you thro
     For some VCS providers, this list includes a drop-down menu for changing which account's repositories are shown. Other providers combine all available accounts into a single list.
 
 1. On the third screen, confirm or cancel your choice. Confirmed changes will be saved immediately, and you will be returned to the "Version Control" settings page.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 See also:
 
@@ -49,7 +51,7 @@ See also:
 
 -> **Note:** This setting only affects workspaces that specify a Terraform working directory. Without a working directory, the entire repository is considered relevant and any change will trigger a run. [The working directory setting](./settings.html#terraform-working-directory) can be found on the "General" settings page.
 
-For workspaces that specify a Terraform working directory, Terraform Cloud assumes that only some content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. This behavior also applies to [speculative plans](./index.html#speculative-plans) on pull requests — Terraform Cloud won't queue plans for changes that aren't considered relevant.
+For workspaces that specify a Terraform working directory, Terraform Cloud assumes that only some content in the repository is relevant to the workspace. Only changes that affect the relevant content will trigger a run. This behavior also applies to [speculative plans](../run/index.html#speculative-plans) on pull requests — Terraform Cloud won't queue plans for changes that aren't considered relevant.
 
 By default, only the designated working directory is considered relevant.
 

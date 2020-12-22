@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Users, Teams, and Organizations - Terraform Cloud"
+page_title: "Users, Teams, and Organizations - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Users, Teams, and Organizations
@@ -13,4 +13,4 @@ are granted permissions on an organization’s workspaces.
 structure. Organization owners can create teams and manage their membership.
 - [Organizations](./organizations.html) are shared spaces for teams to collaborate on workspaces.
 An organization can have many teams, and the owners of the organization set
-which teams have which permissions (read/write/admin) on which workspaces.
+which teams have which permissions on which workspaces.

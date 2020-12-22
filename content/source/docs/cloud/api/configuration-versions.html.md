@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Configuration Versions - API Docs - Terraform Cloud"
+page_title: "Configuration Versions - API Docs - Terraform Cloud and Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
@@ -25,6 +25,10 @@ page_title: "Configuration Versions - API Docs - Terraform Cloud"
 -> **Note:** Before working with the runs or configuration versions APIs, read the [API-driven run workflow](../run/api.html) page, which includes both a full overview of this workflow and a walkthrough of a simple implementation of it.
 
 A configuration version (`configuration-version`) is a resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
+
+Listing and viewing configuration versions for a workspace requires permission to read runs; creating new configuration versions requires permission to queue plans. ([More about permissions.](../users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## List Configuration Versions
 

@@ -1,18 +1,49 @@
----
-version: 2
+version: 2.1
+
+orbs:
+  # Slack orb v. 3 uses a webhook URL for auth. If upgrading to v. 4+, we'll need a token instead.
+  slack: circleci/slack@3.4.2
 
 references:
   images:
-    middleman: &MIDDLEMAN_IMAGE hashicorp/middleman-hashicorp:0.3.44
+    middleman: &MIDDLEMAN_IMAGE docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:0.3.44
+    ubuntu: &UBUNTU_IMAGE ubuntu-1604:201903-01
+    # We rely on dart-lang/sdk commit 7e7c01e804179782f884b174706ed0c80fb2ef71
+    # -- earliest viable container version is 2.11.0-182.0.dev
+    dart: &DART docker.mirror.hashicorp.services/google/dart:2.12.0-133.2.beta
 
   cache:
     rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
 
 jobs:
-  deploy-website:
+  website-test:
+    machine:
+      image: *UBUNTU_IMAGE
+    steps:
+      - checkout
+
+      - run:
+          name: gem and bundle install
+          command: |
+            gem install bundler -v '1.17.3' --no-document
+            bundle _1.17.3_ install --jobs=3 --retry=3
+
+      - run: make sync
+
+      - run: make website-test
+
+      - slack/status:
+          success_message: ":white_check_mark: Finished link check for branch. :meow_yay: No broken links!"
+          failure_message: ":broken_image: Found broken links when checking branch."
+
+  website-build-and-upload:
     docker:
       - image: *MIDDLEMAN_IMAGE
     steps:
+      - slack/notify:
+          message: ":terraform-loading: Starting build/deploy for terraform.io..."
+          color: "#ECB942"
+
       - checkout
 
       # pull and update git submodules
@@ -40,14 +71,47 @@ jobs:
 
       - run:
           working_directory: content
-          command: ./scripts/deploy.sh
+          command: ./scripts/upload.sh
+
+      - slack/status:
+          success_message: ":terraformda: Successfully deployed to terraform.io."
+          failure_message: ":boom: Failed to deploy terraform.io! Urgent attention needed! <!here>"
+
+  website-warm-cache-check-links:
+    docker:
+      - image: *DART
+    steps:
+      # TODO: This should be in the container, but we want to get the kinks
+      # worked out before committing to the overhead. Also the install takes 3s.
+      - run:
+          name: install filiph/linkcheck
+          command: pub global activate linkcheck
+
+      - run:
+          name: Warm cache and check for broken links
+          command: /root/.pub-cache/bin/linkcheck https://www.terraform.io/
+
+      - slack/status:
+          success_message: ":white_check_mark: Finished warming cache for terraform.io. :meow_yay: No broken links!"
+          failure_message: ":broken_image: Found broken links while warming cache for terraform.io. For details, check job log."
 
 workflows:
-  version: 2
-  website:
+  linkcheck:
+    # run on branches and PRs; ignore master, since the cache warming also checks links.
     jobs:
-      - deploy-website:
+      - website-test:
+          filters:
+            branches:
+              ignore: master
+  website-deploy:
+    # only run on main branch
+    jobs:
+      - website-build-and-upload:
           context: static-sites
           filters:
             branches:
               only: master
+      - website-warm-cache-check-links:
+          context: static-sites
+          requires:
+            - website-build-and-upload

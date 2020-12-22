@@ -1,0 +1,1 @@
+For admin-cost-estimation.png it's recommended to make the window as narrow as possible prior to taking the full window screenshot so the text remains large enough when uploaded and seen in preview mode.

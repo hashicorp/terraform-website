@@ -1,9 +1,11 @@
 ---
 layout: "cloud"
-page_title: "Workspaces - Terraform Cloud"
+page_title: "Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
 # Workspaces
+
+> **Hands-on:** Try the [Get Started - Terraform Cloud](https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
 
 Workspaces are how Terraform Cloud organizes infrastructure.
 
@@ -47,7 +49,9 @@ Terraform Cloud's top navigation bar includes a "Workspaces" link, which takes y
 
 ![Screenshot: the list of workspaces](./images/index-list.png)
 
-This list only includes workspaces where your user account has at least [read permissions](../users-teams-organizations/permissions.html).
+This list only includes workspaces where the current user account has permission to read runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 If the list is large, you can use the filter tools at the top of the list to find the workspaces you're interested in.
 

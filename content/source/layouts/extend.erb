@@ -11,10 +11,25 @@
       </li>
       <li<%= sidebar_current("docs-extend-writing-custom-providers") %>>
         <!-- possibly make this "Guides" and collect some? -->
-        <a href="/docs/extend/writing-custom-providers.html">Writing Custom Providers</a>
+        <a href="https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS">
+          Writing Custom Providers
+          <img src="/assets/images/outbound-link.svg" width="20" height="20" aria-hidden="true" style="vertical-align: text-bottom;">
+        </a>
       </li>
       <li<%= sidebar_current("docs-extend-hashicorp-provider-design-principles") %>>
         <a href="/docs/extend/hashicorp-provider-design-principles.html">HashiCorp Provider Design Principles</a>
+      </li>
+
+      <li<%= sidebar_current("docs-extend-guides") %>>
+        <a href="#">Guides</a>
+        <ul class="nav">
+          <li<%= sidebar_current("docs-extend-plugin-sdk") %>>
+            <a href="/docs/extend/guides/v1-upgrade-guide.html">Switching to the standalone SDK</a>
+          </li>
+          <li<%= sidebar_current("docs-extend-guides-v2-upgrade") %>>
+            <a href="/docs/extend/guides/v2-upgrade-guide.html">v2 Upgrade Guide</a>
+          </li>
+        </ul>
       </li>
 
       <li<%= sidebar_current("docs-extend-schemas") %>>
@@ -85,6 +100,10 @@
           <li<%= sidebar_current("docs-extend-best-practices-versioning") %>>
             <a href="/docs/extend/best-practices/versioning.html">Versioning and Changelog</a>
           </li>
+
+          <li<%= sidebar_current("docs-extend-best-practices-other-languages") %>>
+            <a href="/docs/extend/best-practices/other-languages.html">Writing Non-Go Providers</a>
+          </li>
         </ul>
       </li>
 
@@ -141,10 +160,6 @@
 
       <li<%= sidebar_current("docs-extend-0.12-compatibility") %>>
         <a href="/docs/extend/terraform-0.12-compatibility.html">Compatibility with Terraform 0.12</a>
-      </li>
-
-      <li<%= sidebar_current("docs-extend-plugin-sdk") %>>
-        <a href="/docs/extend/plugin-sdk.html">Switching to the standalone SDK</a>
       </li>
 
       <li<%= sidebar_current("guides-terraform-provider-development-program") %>>

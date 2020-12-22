@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "tfplan/v2 - Imports - Sentinel - Terraform Cloud"
+page_title: "tfplan/v2 - Imports - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
   The tfplan/v2 import provides access to a Terraform plan.
 ---
@@ -136,7 +136,7 @@ This change representation contains the following fields:
 * `actions` - A list of actions being carried out for this change. The order is
   important, for example a regular replace operation is denoted by `["delete",
   "create"]`, but a
-  [`create_before_destroy`](/docs/configuration/resources.html#create_before_destroy)
+  [`create_before_destroy`](/docs/configuration/meta-arguments/lifecycle.html#create_before_destroy)
   resource will have an operation order of `["create", "delete"]`.
 * `before` - The representation of the resource data object value before the
   action. For create-only actions, this is unset. For no-op actions, this value
@@ -178,7 +178,7 @@ action orders apply:
 * **Normal replacement:** `["delete", "create"]` - Applies to default lifecycle
   configurations.
 * **Create-before-destroy:** `["create", "delete"]` - Applies when
-  [`create_before_destroy`](/docs/configuration/resources.html#create_before_destroy)
+  [`create_before_destroy`](/docs/configuration/meta-arguments/lifecycle.html#create_before_destroy)
   is used in a lifecycle configuration.
 
 Note that, in most situations, the plan will list all "changes", including no-op
@@ -313,6 +313,8 @@ and data sources within this plan.
 This includes all resources that have been found in the configuration and state,
 regardless of whether or not they are changing.
 
+~> When [resource targeting](/docs/commands/plan.html#resource-targeting) is in effect, the `resource_changes` collection will only include the resources specified as targets for the run. This may lead to unexpected outcomes if a policy expects a resource to be present in the plan. To prohibit targeted runs altogether, ensure [`tfrun.target_addrs`](./tfrun.html#value-target_addrs) is undefined or empty.
+
 This collection is indexed on the complete resource address as the key. If
 `deposed` is non-empty, it is appended to the end, and may look something like
 `aws_instance.foo:deposed-abc123`.
@@ -331,6 +333,11 @@ An element contains the following fields:
   allows the provider to be interpreted unambiguously in the unusual situation
   where a provider offers a resource type whose name does not start with its own
   name, such as the `googlebeta` provider offering `google_compute_instance`.
+
+    -> **Note:** Starting with Terraform 0.13, the `provider_name` field contains the
+    _full_ source address to the provider in the Terraform Registry. Example:
+    `registry.terraform.io/hashicorp/null` for the null provider.
+
 * `deposed` - An identifier used during replacement operations, and can be used
   to identify the exact resource being replaced in state.
 * `change` - The data describing the change that will be made to this resource.

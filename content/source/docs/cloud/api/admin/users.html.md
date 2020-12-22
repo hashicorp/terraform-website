@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Users - Admin - API Docs - Terraform Cloud"
+page_title: "Users - Admin - API Docs - Terraform Enterprise"
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
