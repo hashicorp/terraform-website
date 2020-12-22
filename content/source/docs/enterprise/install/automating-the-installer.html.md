@@ -183,7 +183,7 @@ If you have chosen `production` for the `installation_type`, `production_type` i
 If you have chosen `disk` for `production_type`, `disk_path` is required:
 
 - `disk_path` — Path on instance to persistent storage.
-- `pg_password` — The password for the internal PostgreSQL access.
+- `pg_password` — The password for the internal PostgreSQL access, the password will be auto-generated for each installation if not provided.
 
 If you want to use an [alternative Terraform build worker image](./installer.html#alternative-terraform-worker-image), the following settings apply:
 
