@@ -183,7 +183,7 @@ If you have chosen `production` for the `installation_type`, `production_type` i
 If you have chosen `disk` for `production_type`, `disk_path` is required:
 
 - `disk_path` — Path on instance to persistent storage.
-- `pg_password` — The password for the internal PostgreSQL access, the password will be auto-generated for each installation if not provided.
+- `pg_password` — The password for the internal PostgreSQL access. The password will be auto-generated for each installation if not provided.
 
 If you want to use an [alternative Terraform build worker image](./installer.html#alternative-terraform-worker-image), the following settings apply:
 
@@ -330,4 +330,3 @@ sudo systemctl start replicated replicated-ui replicated-operator
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
 - [`/etc/replicated.conf`](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically)
 - [application settings](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-app-settings-automatically)
-
