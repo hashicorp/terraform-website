@@ -24,6 +24,7 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 * **2003:** Graphite (Carbon) feeding port (monitoring, metrics)
 * **2004:** Graphite (Carbon) feeding port (monitoring, metrics)
+* **3121:** TFE private registry
 * **4150-4151, 4160-4161, 4170-4171:** Replicated NSQD (messaging platform daemon for internal communication)
 * **5432:** PostgreSQL
 * **5672:** RabbitMQ TFE worker coordination
