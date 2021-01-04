@@ -92,7 +92,7 @@ docs](/docs/commands/cli-config.html#provider-installation)
 have up-to-date and detailed information about where Terraform looks for plugin
 binaries as part of `terraform init`. Consult that documentation for
 [information on where to place binaries during
-development](https://www.terraform.io/docs/commands/cli-config.html#development-overrides-for-provider-developers).
+development](/docs/commands/cli-config.html#development-overrides-for-provider-developers).
 
 ### Selecting Plugins
 
