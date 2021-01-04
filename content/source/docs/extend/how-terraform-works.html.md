@@ -87,36 +87,12 @@ Third-party providers and provisioners | Must be manually installed.
 
 ### Plugin Locations
 
--> **Note:** Third-party plugins should usually be installed in the user
-plugins directory, which is located at `~/.terraform.d/plugins` on most
-operating systems and `%APPDATA%\terraform.d\plugins` on Windows.
-
-By default, `terraform init` searches the following directories for plugins.
-Some of these directories are static, and some are relative to the current
-working directory.
-
-Directory                                                                           | Purpose
-------------------------------------------------------------------------------------|------------
-`.`                                                                                 | For convenience during plugin development.
-Location of the `terraform` binary (`/usr/local/bin`, for example.)                 | For airgapped installations; see [`terraform bundle`][bundle].
-`terraform.d/plugins/<OS>_<ARCH>`                                                   | For checking custom providers into a configuration's VCS repository. Not usually desirable, but sometimes necessary in Terraform Enterprise.
-`.terraform/plugins/<OS>_<ARCH>`                                                    | Automatically downloaded providers.
-`~/.terraform.d/plugins` or `%APPDATA%\terraform.d\plugins`                         | The user plugins directory.
-`~/.terraform.d/plugins/<OS>_<ARCH>` or `%APPDATA%\terraform.d\plugins\<OS>_<ARCH>` | The user plugins directory, with explicit OS and architecture.
-
--> **Note:** `<OS>` and `<ARCH>` use the Go language's standard OS and
-architecture names; for example, `darwin_amd64`.
-
-If `terraform init` is run with the `-plugin-dir=<PATH>` option (with a
-non-empty `<PATH>`), it overrides the default plugin locations and searches
-only the specified path.
-
-Provider and provisioner plugins can be installed in the same directories.
-Provider plugin binaries are named with the scheme `terraform-provider-<NAME>_vX.Y.Z`,
-while provisioner plugins use the scheme `terraform-provisioner-<NAME>_vX.Y.Z`.
-Terraform relies on filenames to determine plugin types, names, and versions.
-
-[bundle]: https://github.com/hashicorp/terraform/tree/master/tools/terraform-bundle
+The [Terraform CLI
+docs](https://www.terraform.io/docs/commands/cli-config.html#provider-installation)
+have up-to-date and detailed information about where Terraform looks for plugin
+binaries as part of `terraform init`. Consult that documentation for
+[information on where to place binaries during
+development](https://www.terraform.io/docs/commands/cli-config.html#development-overrides-for-provider-developers).
 
 ### Selecting Plugins
 
