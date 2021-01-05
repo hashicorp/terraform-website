@@ -16,7 +16,7 @@ references:
     rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
 
 jobs:
-  website-test:
+  website-link-check:
     docker:
       - image: *MIDDLEMAN_IMAGE
     steps:
@@ -114,10 +114,10 @@ jobs:
           failure_message: ":broken_image: Found broken links while warming cache for terraform.io. For details, check job log."
 
 workflows:
-  linkcheck:
+  website-test:
     # run on branches and PRs; ignore master, since the cache warming also checks links.
     jobs:
-      - website-test:
+      - website-link-check:
           filters:
             branches:
               ignore: master
