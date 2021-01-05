@@ -54,7 +54,7 @@ input_files.each {|input_file|
     end
 
     anchor = link_url.fragment
-    if (anchor)
+    if (anchor && link_html)
       link_page = Nokogiri::HTML(link_html)
 
       # anchor fragments can contain characters that are illegal in #id selectors (like '.'),
