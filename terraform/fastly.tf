@@ -80,6 +80,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "icinga2" : "Icinga/icinga2"
     "incapsula" : "imperva/incapsula"
+    "ksyun" : "kingsoftcloud/ksyun"
     "lacework" : "lacework/lacework"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
