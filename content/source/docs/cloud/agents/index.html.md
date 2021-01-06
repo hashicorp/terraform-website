@@ -193,7 +193,7 @@ You may choose to run multiple agents within your network, up to the organizatio
 
 #### Resilience
 
-Presently, there isn't a provision for backup or standby agents. Agents should be run in a scheduler (Kubernetes, [Nomad](https://www.nomadproject.io/), etc) for resource management purposes.
+If an agent terminates abnormally, any running jobs can be restarted where they left off by resubmitting them. We strongly recommend pairing the agent with a process supervisor to ensure that it is automatically restarted in case of an error.
 
 (See **Agent Capacity Usage** below).
 
