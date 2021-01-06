@@ -52,7 +52,15 @@ jobs:
       - run:
           name: check links in changed pages
           working_directory: content
-          command: git diff --name-only --diff-filter=AMRCT $(git merge-base HEAD origin/master)..HEAD | bundle exec ./scripts/check-pr-links.rb
+          command: git diff --name-only -z --diff-filter=AMRCT $(git merge-base HEAD origin/master)..HEAD | bundle exec ./scripts/check-pr-links.rb
+            # --name-only: Return a list of affected files but don't show the changes.
+            # -z: Make that a null-separated list (instead of newline-separated), and
+            #     DON'T mangle non-ASCII characters.
+            # --diff-filter=AMRCT: Only list files that were added, modified, renamed,
+            #     copied, or had their type changed (file, symlink, etc.). In
+            #     particular, we don't want to check deleted files.
+            # $(git merge-base HEAD origin/master)..HEAD: Only consider files that have
+            #     changed since this branch diverged from master.
 
   website-build-and-upload:
     docker:
