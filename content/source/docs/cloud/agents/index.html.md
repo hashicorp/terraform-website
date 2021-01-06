@@ -189,7 +189,7 @@ Runs which are processed by an agent will have additional information about that
 
 ### Running Multiple Agents
 
-You may choose to run multiple agents within your network for improved resiliency. If there are multiple agents available within an organization, Terraform Cloud will select the first available agent.
+You may choose to run multiple agents within your network, up to the organization's purchased agent limit. If there are multiple agents available within an organization, Terraform Cloud will select the first available agent within the target pool.
 
 #### Resilience
 
