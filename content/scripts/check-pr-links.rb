@@ -4,18 +4,25 @@
 require 'nokogiri'
 require 'open-uri'
 
-# Takes a list of source files to check, piped to STDIN.
-# from content directory:
-# git diff --name-only --diff-filter=AMRCT $(git merge-base HEAD origin/master)..HEAD | bundle exec ./scripts/check-pr-links.rb
+# Takes a list of source files to check on STDIN, and checks against a webserver
+# at localhost:4567. File list can be NULL-SEPARATED or NEWLINE-SEPARATED. You
+# usually want null-separated, because Git commands can do strange things to
+# file names with non-ASCII characters unless you pass -z.
 
-# content/source/ for terraform-website, website/ for terraform
+# Suggested use (from "content" directory):
+# git diff --name-only -z --diff-filter=AMRCT $(git merge-base HEAD origin/master)..HEAD \
+#   | bundle exec ./scripts/check-pr-links.rb
+
+# Only checking files in website content.
+# Main content dir is "content/source/" for terraform-website, "website/" for terraform.
 site_root_paths = %r{^(content/source/|website/)}
-# middleman mostly accepts any combination of those extensions
+# Only checking files that get turned into web pages, which usually have some
+# combination of these extensions (like ".html.md")
 page_extensions = /(\.(html|markdown|md))+$/
 
 ARGF.set_encoding('utf-8')
 input = ARGF.read
-input_files = input.split("\n")
+input_files = input.split(/\x00|\n/)
 input_files.reject! { |f| f !~ site_root_paths || f !~ page_extensions }
 
 puts 'Checking URLs in the following pages:'
@@ -27,12 +34,12 @@ errors = {}
 
 input_files.each do |input_file|
   errors[input_file] = []
-  input_url = input_file.sub(site_root_paths, 'http://localhost:4567/').sub(page_extensions, '.html')
+  input_url = URI.escape(input_file).sub(site_root_paths, 'http://localhost:4567/').sub(page_extensions, '.html')
 
   begin
     page_html = open(input_url)
   rescue StandardError
-    errors[input_file] << "Couldn't open page at all; something's extra-wrong."
+    errors[input_file] << "  - Couldn't open page at all; something's extra-wrong.\n    (checked URL: #{input_url})"
     next
   end
 
