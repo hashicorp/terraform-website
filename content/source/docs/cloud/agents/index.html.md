@@ -189,7 +189,13 @@ Runs which are processed by an agent will have additional information about that
 
 ### Running Multiple Agents
 
-You may choose to run multiple agents within your network for improved resiliency. If there are multiple agents available within an organization, Terraform Cloud will select the first available agent.
+You may choose to run multiple agents within your network, up to the organization's purchased agent limit. If there are multiple agents available within an organization, Terraform Cloud will select the first available agent within the target pool.
+
+#### Resilience
+
+If an agent terminates abnormally, any running jobs can be restarted where they left off by resubmitting them. We strongly recommend pairing the agent with a process supervisor to ensure that it is automatically restarted in case of an error.
+
+(See **Agent Capacity Usage** below).
 
 ## Troubleshooting
 
@@ -207,11 +213,9 @@ Agent status appear on the **Organization Settings > Agents** page and will cont
 
 ### Agent Capacity Usage
 
-Agents are considered active and count towards the usage of the organization's total capacity if they are in the **Idle**, **Busy**, or **Unknown** state. Agents which are in the **Errored** or **Exited** state do not count towards the usage of the total capacity.
+Agents are considered active and count towards the organization's purchased agent capacity if they are in the **Idle**, **Busy**, or **Unknown** state. Agents which are in the **Errored** or **Exited** state do not count towards the organization's total agent capacity.
 
 The number of active agents you are eligible to deploy is determined by the number of Concurrent Runs your organization is entitled to. Agents are available as part of the [Terraform Cloud Business] (https://www.hashicorp.com/products/terraform/pricing/) tier.
-
-Agents are considered active and count towards the organization's total agent allowance if they are in the **Idle**, **Busy**, or **Unknown** state. Agents which are in the **Errored** or **Exited** state do not count towards the organizations total agent capacity.
 
 Agents in the **Unknown** state continue to be counted against the organization's total agent allowance, as this status is typically an indicator of a temporary communication issue between the agent and Terraform Cloud. **Unknown** agents which do not respond after a period of 2 hours will automatically transition to an **Errored** state, at which point they will not count against the agent allowance.
 
