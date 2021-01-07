@@ -55,6 +55,16 @@ Click a module's "Details" button to view its details page. Use the "Versions" d
 
 ![Terraform Cloud screenshot: a module details page](./images/publish-module-details.png)
 
+### Viewing Nested Modules
+If a module contains nested modules following the [standard module structure](/docs/modules/structure.html), then a "Submodules" dropdown will appear below the module source information. 
+
+![Terraform Cloud screenshot: a module submodules button](./images/publish-submodules-dropdown.png)
+
+Use the "Submodules" dropdown to navigate to nested modules and use the  Readme/Inputs/Outputs/Dependencies/Resources tabs to view detailed documentation and information about the nested module.
+
+
+![Terraform Cloud screenshot: a module submodules detail page](./images/publish-module-submodules.png)
+
 ## Using Private Modules in Terraform Configurations
 
 In Terraform configurations, you can use any private module from your organization's registry. The syntax for referencing private modules in `source` attributes is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
