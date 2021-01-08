@@ -11,11 +11,19 @@ description: |-
 This document provides recommended practices and a reference architecture for
 HashiCorp Terraform Enterprise implementations on GCP.
 
+## Implementation Modes
+
+Terraform Enterprise can be installed and function in different implementation modes with increasing capability and complexity:
+- _StandAlone_: The base architecture with a single application node that supports the standard implementation requirements for the platform.
+- _Active-Active_: This is an extension of StandAlone mode that adds multiple active node capability that can expand horizontally to support larger and increasing execution loads.   
+
+Since the architectures of the modes progresses logically, this guide will present the base StandAlone mode first and then discuss the differences that alter the implementation into the Active-Active mode.
+
 ## Required Reading
 
 Prior to making hardware sizing and architectural decisions, read through the
 [pre-install checklist](../index.html)
-to familiarise yourself with the application components and architecture.
+to familiarize yourself with the application components and architecture.
 Further, read the [reliability and availability
 guidance](../../system-overview/reliability-availability.html)
 as a primer to understanding the recommendations in this reference
@@ -124,7 +132,7 @@ UI-based installation or in a configuration file used for an unattended installa
 
 ## Infrastructure Diagram
 
-![gcp-infrastructure-diagram](./assets/gcp-infrastructure-diagram.png)
+![gcp-infrastructure-diagram](./assets/RA-TFE-SA-GCP-SingleRegion.png)
 
 The above diagram shows the infrastructure components at a high-level.
 
@@ -245,42 +253,8 @@ From the GCP website:
 GCP provides guidance on [designing robust systems](https://cloud.google.com/compute/docs/tutorials/robustsystems).
 Working in accordance with those recommendations the Terraform Enterprise Reference Architecture is designed to handle
 different failure scenarios that have different probabilities. As the
-architecture evolves it may provide a higher level of service
+architecture evolves it will continue to provide a higher level of service
 continuity.
-
-#### Region Failure
-
-Terraform Enterprise is currently architected to provide high availability within a
-single GCP Region. Using multiple GCP Regions will give you greater
-control over your recovery time in the event of a hard dependency
-failure on a regional GCP service. In this section, we’ll discuss
-various implementation patterns and their typical availability.
-
-An identical infrastructure should be provisioned in a secondary GCP
-Region. Depending on recovery time objectives and tolerances for
-additional cost to support GCP Region failure, the infrastructure can be
-running (Warm Standby) or stopped (Cold Standby). In the event of the
-primary GCP Region hosting the Terraform Enterprise application failing, the secondary
-GCP Region will require some configuration before traffic is directed to
-it along with some global services such as DNS.
-
-- [Cloud SQL cross-region read replicas](https://cloud.google.com/sql/docs/postgres/replication/cross-region-replicas)  can be used in a warm standby architecture. See also [Managing Cloud SQL read replicas](https://cloud.google.com/sql/docs/postgres/replication/manage-replicas).
-
-  - Note that read replicas do not inherently provide high availability in the sense that there can be automatic failover from the primary to the read replica. As described in the above reference, the read replica will need to be promoted to a stand-alone Cloud SQL primary instance. Promoting a replica to a stand-alone Cloud SQL primary instance is an irreversible action, so when the failover needs to be reverted, the database must be restored to an original primary location (potentially by starting it as a read replica and promoting it), and the secondary read replica will need to be destroyed and re-established.
-
-  - GCP now offers a [high availability option for Cloud SQL](https://cloud.google.com/sql/docs/mysql/high-availability) databases which could be incorporated into a more automatic failover scenario.\*
-
-- [Cloud SQL database backups](https://cloud.google.com/sql/docs/postgres/backup-recovery/restoring) can be used in a cold standby architecture.
-
-  - GCP now offers a [Point-in-time recovery](https://cloud.google.com/sql/docs/postgres/backup-recovery/pitr) option for Cloud SQL databases which could be incorporated into a backup and recovery scheme with reduced downtime and higher reliability.\*
-
-- [Multi-Regional Cloud Storage replication](https://cloud.google.com/storage/docs/storage-classes#multi-regional) must be configured so the object storage component of the Storage Layer is available in multiple GCP Regions.
-
-- DNS must be redirected to the Forwarding Rule acting as the entry point for the infrastructure deployed in the secondary GCP Region.
-
-- Terraform Enterprise in the Standalone architecture is an Active:Passive model. At no point should more than one Terraform Enterprise instance be actively connected to the same database instance.
-
-\* **Note:** We are investigating incorporating these newer CloudSQL capabilities into this reference architecture, but do not have additional details at this time.
 
 #### Data Corruption
 
@@ -323,3 +297,104 @@ is identified as a solution targeted more for DR backups. From the GCP website:
 > files once a month for analysis, Nearline Storage is a great choice.
 > Nearline Storage is also appropriate for data backup, disaster recovery, and archival storage.
 ([source](https://cloud.google.com/storage/docs/storage-classes#nearline))*
+
+## Multi-Region Implementation to Address Region Failure
+
+Terraform Enterprise is currently architected to provide high availability within a
+single GCP Region only. It is possible to deploy to multiple GCP Regions to give you greater
+control over your recovery time in the event of a hard dependency
+failure on a regional GCP service. In this section, we’ll discuss
+implementation patterns to support this.
+
+An identical infrastructure should be provisioned in a secondary GCP
+Region. Depending on recovery time objectives and tolerances for
+additional cost to support GCP Region failure, the infrastructure can be
+running (Warm Standby) or stopped (Cold Standby). In the event of the
+primary GCP Region hosting the Terraform Enterprise application failing, the secondary
+GCP Region will require some configuration before traffic is directed to
+it along with some global services such as DNS.
+
+- [Cloud SQL cross-region read replicas](https://cloud.google.com/sql/docs/postgres/replication/cross-region-replicas)  can be used in a warm standby architecture. See also [Managing Cloud SQL read replicas](https://cloud.google.com/sql/docs/postgres/replication/manage-replicas).
+
+  - Note that read replicas do not inherently provide high availability in the sense that there can be automatic failover from the primary to the read replica. As described in the above reference, the read replica will need to be promoted to a stand-alone Cloud SQL primary instance. Promoting a replica to a stand-alone Cloud SQL primary instance is an irreversible action, so when the failover needs to be reverted, the database must be restored to an original primary location (potentially by starting it as a read replica and promoting it), and the secondary read replica will need to be destroyed and re-established.
+
+  - GCP now offers a [high availability option for Cloud SQL](https://cloud.google.com/sql/docs/mysql/high-availability) databases which could be incorporated into a more automatic failover scenario.\*
+
+- [Cloud SQL database backups](https://cloud.google.com/sql/docs/postgres/backup-recovery/restoring) can be used in a cold standby architecture.
+
+  - GCP now offers a [Point-in-time recovery](https://cloud.google.com/sql/docs/postgres/backup-recovery/pitr) option for Cloud SQL databases which could be incorporated into a backup and recovery scheme with reduced downtime and higher reliability.\*
+
+- [Multi-Regional Cloud Storage replication](https://cloud.google.com/storage/docs/storage-classes#multi-regional) must be configured so the object storage component of the Storage Layer is available in multiple GCP Regions.
+
+- DNS must be redirected to the Forwarding Rule acting as the entry point for the infrastructure deployed in the secondary GCP Region.
+
+- Terraform Enterprise in the _StandAlone_ mode is an Active:Passive model. At no point should more than one Terraform Enterprise instance be actively connected to the same database instance.
+
+\* **Note:** We are investigating incorporating these newer CloudSQL capabilities into this reference architecture, but do not have additional details at this time.
+
+## Active-Active Implementation Mode 
+
+### Overview
+
+As stated previously, the _Active-Active_ implementation mode is an extension of the _StandAlone_ implementation mode that increases the scalability and load capacity of the Terraform Enterprise platform. The same application runs on multiple Terraform Enterprise instances utilizing the same external services in a shared model. The primary architectural and implementation differences for _Active-Active_ are:
+
+- It can only be run in the External Services Mode.
+- The second/alternate and additional nodes are active and processing work at all times.
+- There is an addition to the existing external services which is a memory cache which is currently implemented with cloud native implementations of Redis. This is used for the processing queue for the application and has been moved from the individual instance to be a shared resource that manages distribution of work. 
+- There are additional configuration parameters to manage the operation of the node cluster and the memory cache.
+
+The following sections will provide further detail on the infrastructure and implementation differences.
+
+### Infrastructure Diagram
+
+![gcp-aa-infrastructure-diagram](./assets/RA-TFE-AA-GCP-SingleRegion.png)
+
+The above diagram shows the infrastructure components of an _Active-Active_ implementation at a high-level.
+
+### Infrastructure Requirements
+
+#### Active Nodes
+
+The diagram depicts 2 active nodes to be concise. Additional nodes can be added by simply launching another instance with the identical configuration that points to the same shared external services. The number and sizing of nodes should be based on load requirements and redundancy needs. Nodes should be deployed in alternate zones to accommodate zone failure.
+
+The cluster is comprised of essentially independent nodes in a SaaS type model. There are no concerns of leader election or minimal or optimum node counts. When a new node enters the cluster it simply starts taking new work from the load balancer and from the memory cache queue and thus spreading the load horizontally.  
+
+#### Memory Cache
+
+The GCP implementation of the memory cache is handled by [Google Cloud Memorystore services](https://https://cloud.google.com/memorystore). Specifically using [Memorystore for Redis](https://https://cloud.google.com/memorystore/docs/redis).
+
+The [Memorystore for Redis Overview](https://cloud.google.com/memorystore/docs/redis/redis-overview) provides a high level description of the implementation options for the memory cache. A primary differentiator is Basic Tier and Standard Tier. The primary difference is that the Standard Tier offers [high availability](https://cloud.google.com/memorystore/docs/redis/high-availability)] where instances are always replicated across zones and provides 99.9% availability SLAs (note that reading from a replica is not supported). A lower testing or sandbox environment could use the Basic Tier, however, a production level environment should always use Standard Tier to gain the HA features that coincide with the other external services in the Terraform Enterprise platform.
+
+Memorystore for Redis service supports [realtime scaling of instance size](https://cloud.google.com/memorystore/docs/redis/scaling-instances). You can start the size off in a smaller range with some consideration of anticipated active load, and scale up or down as demand is understood with the aid of [monitoring ](https://cloud.google.com/memorystore/docs/redis/monitoring-instances).
+
+Enterprise-grade security is inherently covered in the Memorystore for Redis implementation because Redis instances are protected from the internet using private IPs, and access to instances is controlled and limited to applications running on the same Virtual Private Network as the Redis instance. Additional security measures can be instituted using [IAM based access control and permissions](https://cloud.google.com/memorystore/docs/redis/access-control). However, this may add additional complication to your realtime scaling of instances.
+
+### Normal Operation
+
+#### Component Interaction
+
+The Forwarding Rule routes traffic to the *Terraform Enterprise* node instances, which is managed by
+a Regional Managed Instance Group. This is a standard round-robin distribution for now, with no accounting for current load on the nodes. The instance counts on the Regional Managed Instance Group control the number of nodes in operation and can be used to increase or decrease the number of active nodes.
+
+_Active_Active_ Terraform Enterprise is not currently architected to support dynamic scaling based on load or other factors. The maximum and minimum instance counts on the Regional Managed Instance Group should be set to the same value. Adding a node can be done at will bt setting these values. However, removing a node requires that the node be allowed to finish active work and stop accepting new work before being terminated. The operational documentation has the details on how to "drain" a node. 
+
+#### Replicated Console
+
+The Replicated Console that allows access to certain information and realtime configuration for _StandAlone_ is not available in _Active-Active_. This functionality, including generating support bundles, has been replaced with CLI commands to be executed on the nodes. The operational documentation has the details on how to utilize these commands.
+
+#### Upgrades
+
+Upgrading the Terraform Enterprise version still follows a similar pattern as with _StandAlone_. However, there is not an online option with the Replicated Console. It is possible to upgrade a minor release with CLI commands in a rolling fashion. A "required" release or any change the potentially affects the shared external services will need to be done with a short outage. This involves scaling down to a single node, replacing that node, and then scaling back out. The operational documentation has the details on how these processes can operate. 
+
+### Failure Scenarios
+
+#### Memory Cache
+
+As mentioned, the Memorystore for Redis service in Standard Tier mode provides automatic replication and failover. In the event of a larger failure or any normal maintenance with proper draining, the memory cache will not be required to be restored. If it is damaged it can be re-paved, and if not it can be left to continue operation.
+
+### Multi-Region Implementation to Address Region Failure
+
+Similar to _StandAlone_, _Active_Active_ Terraform Enterprise is currently architected to provide high availability within a
+single GCP Region. You cannot deploy additional nodes associated to the primary cluster in different regions. It is possible to deploy to multiple GCP Regions to give you greater
+control over your recovery time in the event of a hard dependency
+failure on a regional GCP service. An identical infrastructure will still need to be instantiated separately with a failover scenario resulting in control of processing being transferred to the second implementation, as described in the earlier section on this topic. In addition, this identical infrastructure will require its own Memory Cache external service instance.
