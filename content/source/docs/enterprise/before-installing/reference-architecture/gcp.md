@@ -9,15 +9,15 @@ description: |-
 # Terraform Enterprise GCP Reference Architecture
 
 This document provides recommended practices and a reference architecture for
-HashiCorp Terraform Enterprise implementations on GCP.
+HashiCorp *Terraform Enterprise* implementations on GCP.
 
 ## Implementation Modes
 
-Terraform Enterprise can be installed and function in different implementation modes with increasing capability and complexity:
+*Terraform Enterprise* can be installed and function in different implementation modes with increasing capability and complexity:
 - _StandAlone_: The base architecture with a single application node that supports the standard implementation requirements for the platform.
 - _Active-Active_: This is an extension of StandAlone mode that adds multiple active node capability that can expand horizontally to support larger and increasing execution loads.   
 
-Since the architectures of the modes progresses logically, this guide will present the base StandAlone mode first and then discuss the differences that alter the implementation into the Active-Active mode.
+Since the architectures of the modes progresses logically, this guide will present the base StandAlone mode first and then discuss the differences that alter the implementation into the _Active-Active_ mode.
 
 ## Required Reading
 
@@ -35,7 +35,7 @@ architecture.
 
 Depending on the chosen [operational
 mode](../index.html#operational-mode-decision),
-the infrastructure requirements for Terraform Enterprise range from a single Cloud Compute VM instance
+the infrastructure requirements for *Terraform Enterprise* range from a single Cloud Compute VM instance
 for demo installations to multiple instances connected to Cloud SQL and Cloud Storage for a
 stateless production installation.
 
@@ -52,7 +52,7 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 
 #### Hardware Sizing Considerations
 
-- \*Terraform Enterprise requires 50GB for installation, but
+- \**Terraform Enterprise* requires 50GB for installation, but
   [GCP documentation for storage performance](https://cloud.google.com/compute/docs/disks/#performance)
   recommends "to ensure consistent performance for more general use of the boot device,
   use either an SSD persistent disk as your boot disk or use a standard persistent disk
@@ -82,7 +82,7 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 ### Object Storage (Cloud Storage)
 
 A [Regional Cloud Storage](https://cloud.google.com/storage/docs/storage-classes#regional) bucket must be
-specified during the Terraform Enterprise installation for application data to be stored
+specified during the *Terraform Enterprise* installation for application data to be stored
 securely and redundantly away from the Compute Engine VMs running the
 application. This Cloud Storage bucket must be in the same region as the Compute Engine and Cloud SQL
 instances.
@@ -110,7 +110,7 @@ also be permitted to create the following GCP resources:
 
 #### Network
 
-To deploy Terraform Enterprise in GCP you will need to create new or use existing
+To deploy *Terraform Enterprise* in GCP you will need to create new or use existing
 networking infrastructure. The below infrastructure diagram highlights
 some of the key components (network, subnets) and you will
 also have firewall and gateway requirements. These
@@ -120,14 +120,14 @@ something this Reference Architecture can specify in detail.
 #### DNS
 
 DNS can be configured external to GCP or using [Cloud DNS](https://cloud.google.com/dns/). The
-fully qualified domain name should resolve to the Forwarding Rules associated with the Terraform Enterprise deployment.
+fully qualified domain name should resolve to the Forwarding Rules associated with the *Terraform Enterprise* deployment.
 Creating the required DNS entry is outside the scope
 of this guide.
 
 #### SSL/TLS Certificates and Load Balancers
 
 An SSL/TLS certificate signed by a public or private CA is required for secure communication between
-clients, VCS systems, and the Terraform Enterprise application server. The certificate can be specified during the
+clients, VCS systems, and the *Terraform Enterprise* application server. The certificate can be specified during the
 UI-based installation or in a configuration file used for an unattended installation.
 
 ## Infrastructure Diagram
@@ -155,7 +155,7 @@ provided by GCP.
 
 ## Infrastructure Provisioning
 
-The recommended way to deploy Terraform Enterprise is through use of a Terraform configuration
+The recommended way to deploy *Terraform Enterprise* is through use of a Terraform configuration
 that defines the required resources, their references to other resources, and
 dependencies.
 
@@ -166,12 +166,20 @@ dependencies.
 The Forwarding Rule routes all traffic to the *Terraform Enterprise* instance, which is managed by
 a Regional Managed Instance Group with maximum and minimum instance counts set to one.
 
-The Terraform Enterprise application is connected to the PostgreSQL database via the Cloud SQL
+The *Terraform Enterprise* application is connected to the PostgreSQL database via the Cloud SQL
 endpoint and all database requests are routed via the Cloud SQL endpoint to the database instance.
 
-The Terraform Enterprise application is connected to object storage via the Cloud Storage endpoint
+The *Terraform Enterprise* application is connected to object storage via the Cloud Storage endpoint
 for the defined bucket and all object storage requests are routed to the
 highly available infrastructure supporting Cloud Storage.
+
+### Monitoring
+
+There is not currently a full monitoring guide for *Terraform Enterprise*. The following pages include information relevant to monitoring:
+
+- [Logging](../../admin/logging.html)
+- [Diagnostics](../../support/index.html)
+- [Reliability and Availability](../../system-overview/reliability-availability.html)
 
 ### Upgrades
 
@@ -182,9 +190,9 @@ See [the Upgrades section](../../admin/upgrades.html) of the documentation.
 ### Failure Scenarios
 
 GCP provides guidance on [designing robust systems](https://cloud.google.com/compute/docs/tutorials/robustsystems).
-Working in accordance with those recommendations the Terraform Enterprise Reference
+Working in accordance with those recommendations the *Terraform Enterprise* Reference
 Architecture is designed to handle different failure scenarios with
-different probabilities. As the architecture evolves it may provide a
+different probabilities. As the architecture evolves it will provide a
 higher level of service continuity.
 
 #### Single Compute Engine Instance Failure
@@ -193,7 +201,7 @@ In the event of the *Terraform Enterprise* instance failing in a way that GCP ca
 observe, [Live Migration](https://cloud.google.com/compute/docs/instances/live-migration)
 is used to move the instance to new physical hardware automatically.
 In the event that Live Migration is not possible the instance will crash and be restarted
-on new physical hardware automatically. During instance startup the Terraform Enterprise services will
+on new physical hardware automatically. During instance startup the *Terraform Enterprise* services will
 be started and service will resume.
 
 #### Zone Failure
@@ -205,7 +213,7 @@ begin booting a new one in an operational Zone.
 - Cloud SQL automatically and transparently fails over to the standby zone.
   The [GCP documentation provides more
   detail](https://cloud.google.com/sql/docs/postgres/high-availability)
-  on the exact behaviour and expected impact.
+  on the exact behavior and expected impact.
 
 - Cloud Storage is resilient to Zone failure based on its architecture.
 
@@ -213,11 +221,11 @@ See below for more detail on how each component handles Zone failure.
 
 ##### Terraform Enterprise Server
 
-By utilizing a Regional Managed Instance Group, the Terraform Enterprise instance automatically recovers
+By utilizing a Regional Managed Instance Group, the *Terraform Enterprise* instance automatically recovers
 in the event of any outage except for the loss of an entire region.
 
 With _External Services_ (PostgreSQL Database, Object Storage) in use,
-there is still some application configuration data present on the Terraform Enterprise server
+there is still some application configuration data present on the *Terraform Enterprise* server
 such as installation type, database connection settings, hostname. This data
 rarely changes. If the configuration on *Terraform Enterprise* changes you should update the
 Instance Template to include this updated configuration so that any newly
@@ -251,14 +259,14 @@ From the GCP website:
 ### Failure Scenarios
 
 GCP provides guidance on [designing robust systems](https://cloud.google.com/compute/docs/tutorials/robustsystems).
-Working in accordance with those recommendations the Terraform Enterprise Reference Architecture is designed to handle
+Working in accordance with those recommendations the *Terraform Enterprise* Reference Architecture is designed to handle
 different failure scenarios that have different probabilities. As the
 architecture evolves it will continue to provide a higher level of service
 continuity.
 
 #### Data Corruption
 
-The Terraform Enterprise application architecture relies on multiple service endpoints
+The *Terraform Enterprise* application architecture relies on multiple service endpoints
 (Cloud SQL, Cloud Storage) all providing their own backup and recovery
 functionality to support a low MTTR in the event of data corruption.
 
@@ -266,7 +274,7 @@ functionality to support a low MTTR in the event of data corruption.
 
 With _External Services_ (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
-Terraform Enterprise server such as installation type, database connection settings,
+*Terraform Enterprise* server such as installation type, database connection settings,
 hostname. This data rarely changes. We recommend [configuring automated
 snapshots](../../admin/automated-recovery.html#configure-snapshots)
 for this installation data so it can be recovered in the event of data
@@ -287,7 +295,7 @@ More details of Cloud SQL (PostgreSQL) features are available [here](https://clo
 ##### Object Storage
 
 There is no automatic backup/snapshot of Cloud Storage by GCP, so it is recommended
-to script a bucket copy process from the bucket used by the Terraform Enterprise
+to script a bucket copy process from the bucket used by the *Terraform Enterprise*
 application to a “backup bucket” in Cloud Storage that runs at regular intervals.
 The [Nearline Storage](https://cloud.google.com/storage/docs/storage-classes#nearline) storage class
 is identified as a solution targeted more for DR backups. From the GCP website:
@@ -300,7 +308,7 @@ is identified as a solution targeted more for DR backups. From the GCP website:
 
 ## Multi-Region Implementation to Address Region Failure
 
-Terraform Enterprise is currently architected to provide high availability within a
+*Terraform Enterprise* is currently architected to provide high availability within a
 single GCP Region only. It is possible to deploy to multiple GCP Regions to give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional GCP service. In this section, we’ll discuss
@@ -310,7 +318,7 @@ An identical infrastructure should be provisioned in a secondary GCP
 Region. Depending on recovery time objectives and tolerances for
 additional cost to support GCP Region failure, the infrastructure can be
 running (Warm Standby) or stopped (Cold Standby). In the event of the
-primary GCP Region hosting the Terraform Enterprise application failing, the secondary
+primary GCP Region hosting the *Terraform Enterprise* application failing, the secondary
 GCP Region will require some configuration before traffic is directed to
 it along with some global services such as DNS.
 
@@ -328,7 +336,7 @@ it along with some global services such as DNS.
 
 - DNS must be redirected to the Forwarding Rule acting as the entry point for the infrastructure deployed in the secondary GCP Region.
 
-- Terraform Enterprise in the _StandAlone_ mode is an Active:Passive model. At no point should more than one Terraform Enterprise instance be actively connected to the same database instance.
+- *Terraform Enterprise* in the _StandAlone_ mode is an Active:Passive model. At no point should more than one *Terraform Enterprise* instance be actively connected to the same database instance.
 
 \* **Note:** We are investigating incorporating these newer CloudSQL capabilities into this reference architecture, but do not have additional details at this time.
 
@@ -336,7 +344,7 @@ it along with some global services such as DNS.
 
 ### Overview
 
-As stated previously, the _Active-Active_ implementation mode is an extension of the _StandAlone_ implementation mode that increases the scalability and load capacity of the Terraform Enterprise platform. The same application runs on multiple Terraform Enterprise instances utilizing the same external services in a shared model. The primary architectural and implementation differences for _Active-Active_ are:
+As stated previously, the _Active-Active_ implementation mode is an extension of the _StandAlone_ implementation mode that increases the scalability and load capacity of the *Terraform Enterprise* platform. The same application runs on multiple *Terraform Enterprise* instances utilizing the same external services in a shared model. The primary architectural and implementation differences for _Active-Active_ are:
 
 - It can only be run in the External Services Mode.
 - The second/alternate and additional nodes are active and processing work at all times.
@@ -363,7 +371,7 @@ The cluster is comprised of essentially independent nodes in a SaaS type model. 
 
 The GCP implementation of the memory cache is handled by [Google Cloud Memorystore services](https://https://cloud.google.com/memorystore). Specifically using [Memorystore for Redis](https://https://cloud.google.com/memorystore/docs/redis).
 
-The [Memorystore for Redis Overview](https://cloud.google.com/memorystore/docs/redis/redis-overview) provides a high level description of the implementation options for the memory cache. A primary differentiator is Basic Tier and Standard Tier. The primary difference is that the Standard Tier offers [high availability](https://cloud.google.com/memorystore/docs/redis/high-availability)] where instances are always replicated across zones and provides 99.9% availability SLAs (note that reading from a replica is not supported). A lower testing or sandbox environment could use the Basic Tier, however, a production level environment should always use Standard Tier to gain the HA features that coincide with the other external services in the Terraform Enterprise platform.
+[Memorystore for Redis Overview](https://cloud.google.com/memorystore/docs/redis/redis-overview) provides a high level description of the implementation options for the memory cache. A primary differentiator is Basic Tier and Standard Tier. The primary difference is that the Standard Tier offers [high availability](https://cloud.google.com/memorystore/docs/redis/high-availability)] where instances are always replicated across zones and provides 99.9% availability SLAs (note that reading from a replica is not supported). A lower testing or sandbox environment could use the Basic Tier, however, a production level environment should always use Standard Tier to gain the HA features that coincide with the other external services in the *Terraform Enterprise* platform.
 
 Memorystore for Redis service supports [realtime scaling of instance size](https://cloud.google.com/memorystore/docs/redis/scaling-instances). You can start the size off in a smaller range with some consideration of anticipated active load, and scale up or down as demand is understood with the aid of [monitoring ](https://cloud.google.com/memorystore/docs/redis/monitoring-instances).
 
@@ -376,7 +384,7 @@ Enterprise-grade security is inherently covered in the Memorystore for Redis imp
 The Forwarding Rule routes traffic to the *Terraform Enterprise* node instances, which is managed by
 a Regional Managed Instance Group. This is a standard round-robin distribution for now, with no accounting for current load on the nodes. The instance counts on the Regional Managed Instance Group control the number of nodes in operation and can be used to increase or decrease the number of active nodes.
 
-_Active_Active_ Terraform Enterprise is not currently architected to support dynamic scaling based on load or other factors. The maximum and minimum instance counts on the Regional Managed Instance Group should be set to the same value. Adding a node can be done at will bt setting these values. However, removing a node requires that the node be allowed to finish active work and stop accepting new work before being terminated. The operational documentation has the details on how to "drain" a node. 
+_Active-Active_ *Terraform Enterprise* is not currently architected to support dynamic scaling based on load or other factors. The maximum and minimum instance counts on the Regional Managed Instance Group should be set to the same value. Adding a node can be done at will bt setting these values. However, removing a node requires that the node be allowed to finish active work and stop accepting new work before being terminated. The operational documentation has the details on how to "drain" a node. 
 
 #### Replicated Console
 
@@ -384,7 +392,7 @@ The Replicated Console that allows access to certain information and realtime co
 
 #### Upgrades
 
-Upgrading the Terraform Enterprise version still follows a similar pattern as with _StandAlone_. However, there is not an online option with the Replicated Console. It is possible to upgrade a minor release with CLI commands in a rolling fashion. A "required" release or any change the potentially affects the shared external services will need to be done with a short outage. This involves scaling down to a single node, replacing that node, and then scaling back out. The operational documentation has the details on how these processes can operate. 
+Upgrading the *Terraform Enterprise* version still follows a similar pattern as with _StandAlone_. However, there is not an online option with the Replicated Console. It is possible to upgrade a minor release with CLI commands in a rolling fashion. A "required" release or any change the potentially affects the shared external services will need to be done with a short outage. This involves scaling down to a single node, replacing that node, and then scaling back out. The operational documentation has the details on how these processes can operate. 
 
 ### Failure Scenarios
 
@@ -394,7 +402,7 @@ As mentioned, the Memorystore for Redis service in Standard Tier mode provides a
 
 ### Multi-Region Implementation to Address Region Failure
 
-Similar to _StandAlone_, _Active_Active_ Terraform Enterprise is currently architected to provide high availability within a
-single GCP Region. You cannot deploy additional nodes associated to the primary cluster in different regions. It is possible to deploy to multiple GCP Regions to give you greater
+Similar to _StandAlone_, _Active-Active_ *Terraform Enterprise* is currently architected to provide high availability within a
+single region. You cannot deploy additional nodes associated to the primary cluster in different regions. It is possible to deploy to multiple regions to give you greater
 control over your recovery time in the event of a hard dependency
-failure on a regional GCP service. An identical infrastructure will still need to be instantiated separately with a failover scenario resulting in control of processing being transferred to the second implementation, as described in the earlier section on this topic. In addition, this identical infrastructure will require its own Memory Cache external service instance.
+failure on a regional service. An identical infrastructure will still need to be instantiated separately with a failover scenario resulting in control of processing being transferred to the second implementation, as described in the earlier section on this topic. In addition, this identical infrastructure will require its own Memory Cache external service instance.
