@@ -353,6 +353,12 @@ As stated previously, the _Active-Active_ implementation mode is an extension of
 
 The following sections will provide further detail on the infrastructure and implementation differences.
 
+### Migration to Active-Active
+
+If you are considering a migration from a _StandAlone_ implementation to _Active-Active_, it is very straightforward and there is guidance available to assist with that effort. However, you should first make a determination if the move is necessary. The _StandAlone_ mode is capable of handling significant load and the first paths to supporting higher load can be simply increasing the compute power in the existing implementation.  A discussion with your HashiCorp representatives may be warranted.
+
+Also note that if your existing architecture does not already depict what is shown and discussed above, you will likely need to make adjustments to bring it into alignment. This could be either before or during the migration. Certain tenants of the reference architectures described here are highly recommended and potentially necessary to support _Active-Active_ mode such as load balancers and scaling groups.
+
 ### Infrastructure Diagram
 
 ![gcp-aa-infrastructure-diagram](./assets/RA-TFE-AA-GCP-SingleRegion.png)
