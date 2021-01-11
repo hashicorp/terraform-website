@@ -23,7 +23,7 @@ We also recommend shipping binaries for the following combinations, but we typic
 * FreeBSD / 386
 * FreeBSD / AMD64
 
--> **Note:** Darwin / ARMv8 support (the new M1 chip), once GA in Go 1.16, will add this to our recommended combinations.
+-> **Note:** Darwin / ARMv8 support (the new M1 chip), once GA in Go 1.16, will be added to our recommended combinations.
 
 ## Terraform Cloud Compatibility
 
