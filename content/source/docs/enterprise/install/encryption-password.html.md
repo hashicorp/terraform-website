@@ -39,3 +39,12 @@ For automated installations, the encryption password can be specified via the `e
     }
 }
 ```
+
+## Retrieving the Encryption Password
+
+To retrieve the encryption password that Terraform Enterprise is currently configured to use, connect to your Terraform
+Enterprise instance and execute the following: 
+
+```
+replicatedctl app-config export --template '{{.enc_password.Value}}'
+```
