@@ -23,6 +23,8 @@ We also recommend shipping binaries for the following combinations, but we typic
 * FreeBSD / 386
 * FreeBSD / AMD64
 
+-> **Note:** Darwin / ARMv8 support (the new M1 chip), once GA in Go 1.16, will add this to our recommended combinations.
+
 ## Terraform Cloud Compatibility
 
 To ensure your provider can run in Terraform Cloud, please include a Linux / AMD64 binary. This binary should also not have CGO enabled and should not depend on command line execution of any external tools or binaries. We cannot guaruntee availibility of any package/library/binary within the Terraform Cloud images.
