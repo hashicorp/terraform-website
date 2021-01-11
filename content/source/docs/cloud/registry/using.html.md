@@ -55,15 +55,21 @@ Click a module's "Details" button to view its details page. Use the "Versions" d
 
 ![Terraform Cloud screenshot: a module details page](./images/publish-module-details.png)
 
-### Viewing Nested Modules
-If a module contains nested modules following the [standard module structure](/docs/modules/structure.html), then a "Submodules" dropdown will appear below the module source information. 
+### Viewing Nested Modules and Examples
 
-![Terraform Cloud screenshot: a module submodules button](./images/publish-submodules-dropdown.png)
+If a module contains nested modules following the [standard module structure](/docs/modules/structure.html), then a "Submodules" dropdown will appear below the module source information. The "Examples" dropdown will appear if there are examples.
+
+![Terraform Cloud screenshot: a module submodules button](./images/using-submodules-dropdown.png)
 
 Use the "Submodules" dropdown to navigate to nested modules and use the  Readme/Inputs/Outputs/Dependencies/Resources tabs to view detailed documentation and information about the nested module.
 
 
-![Terraform Cloud screenshot: a module submodules detail page](./images/publish-module-submodules.png)
+![Terraform Cloud screenshot: a module submodules detail page](./images/using-module-submodules.png)
+
+Use the "Examples" dropdown to navigate to example modules and use the  Readme/Inputs/Outputs tabs to view detailed documentation and information about the example module.
+
+
+![Terraform Cloud screenshot: a module submodules detail page](./images/using-module-submodules.png)
 
 ## Using Private Modules in Terraform Configurations
 
