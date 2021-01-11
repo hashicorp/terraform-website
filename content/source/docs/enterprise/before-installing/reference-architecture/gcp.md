@@ -156,7 +156,7 @@ provided by GCP.
 ## Infrastructure Provisioning
 
 The recommended way to deploy *Terraform Enterprise* is through use of a Terraform configuration
-that defines the required resources, their references to other resources, and
+that defines the required resources, their references to other resources, and associated
 dependencies.
 
 ## Normal Operation

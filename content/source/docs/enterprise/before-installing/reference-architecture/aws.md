@@ -182,7 +182,7 @@ provided by AWS.
 ## Infrastructure Provisioning
 
 The recommended way to deploy *Terraform Enterprise* is through use of a Terraform configuration
-that defines the required resources, their references to other resources, and
+that defines the required resources, their references to other resources, and associated
 dependencies. An [example Terraform
 configuration](https://github.com/hashicorp/private-terraform-enterprise/blob/master/examples/aws/pes/main.tf)
 is provided to demonstrate how these resources can be provisioned and how they
@@ -294,8 +294,8 @@ From the AWS website:
 
 ### Failure Scenarios
 
-AWS provides availability and reliability recommendations in the
-Well-Architected framework. Working in accordance with those
+AWS provides availability and reliability recommendations in the [Well-Architected
+framework](https://aws.amazon.com/architecture/well-architected/). Working in accordance with those
 recommendations the *Terraform Enterprise* Reference Architecture is designed to handle
 different failure scenarios that have different probabilities. As the
 architecture evolves it will provide a higher level of service
