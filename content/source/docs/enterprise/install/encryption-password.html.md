@@ -5,14 +5,13 @@ page_title: "Encryption Password - Install and Config - Terraform Enterprise"
 
 # Terraform Enterprise Encryption Password
 
-When using internally managed Vault, Terraform Enterprise requires that the operator specify a password that will be
-used to to encrypt and decrypt the internally managed Vault unseal key and root token. This pasword is called the
-encryption password. Please be sure to retain the value of the encryption password as it will be needed in the of a
-re-installation.
+When using internally-managed Vault, Terraform Enterprise requires that the operator specify a password that will be
+used to to encrypt and decrypt the internally-managed Vault unseal key and root token. This password is called the
+"encryption password". Please be sure to retain this value as it will be needed in the event of a re-installation.
 
-The encryption password is used to protect the internally managed Vault unseal key and root token with a password
-provided by the operator. It allows us to store the Vault unseal key and root token in PostgreSQL, which means that
-Vault is only dependent on the encryption password itself and the data in PostgreSQL.
+The encryption password is used to protect the internally-managed Vault unseal key and root token with a password
+provided by the operator. It allows Terraform Enterprise to securely store the Vault unseal key and root token in
+PostgreSQL, which means that Vault is only dependent on the encryption password itself and the data in PostgreSQL.
 
 ## Specifying the Encryption Password
 
