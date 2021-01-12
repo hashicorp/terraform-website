@@ -14,9 +14,11 @@ Plugins. Tests are a vital part of the Terraform ecosystem, verifying we can
 deliver on our mission to safely and predictably create, change, and improve
 infrastructure. Documentation for Terraform tests are broken into categories
 briefly described below. Each category has more detailed information by clicking
-on the matching item in the left navigation. 
+on the matching item in the left navigation.
 
-## Acceptance Tests 
+-> Recent versions of Terraform CLI also support [developer overrides in the CLI configuration](https://www.terraform.io/docs/commands/cli-config.html#development-overrides-for-provider-developers), which may be useful for manually testing providers. The acceptance testing framework uses real Terraform CLI executions, so developer overrides is only recommended as a last resort option for missing functionality.
+
+## Acceptance Tests
 
 In order to
 deliver on our promise to be safe and predictable, we need to be able to easily
