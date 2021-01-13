@@ -12,16 +12,16 @@ description: |-
 ## Introduction
 
 This document provides recommended practices and a reference
-architecture for HashiCorp *Terraform Enterprise*
+architecture for HashiCorp Terraform Enterprise
 implementations on Azure.
 
 ## Implementation Modes
 
-*Terraform Enterprise* can be installed and function in different implementation modes with increasing capability and complexity:
-- _StandAlone_: The base architecture with a single application node that supports the standard implementation requirements for the platform.
-- _Active-Active_: This is an extension of StandAlone mode that adds multiple active node capability that can expand horizontally to support larger and increasing execution loads.   
+Terraform Enterprise can be installed and function in different implementation modes with increasing capability and complexity:
+- _Standalone_: The base architecture with a single application node that supports the standard implementation requirements for the platform.
+- _Active/Active_: This is an extension of Standalone mode that adds multiple active node capability that can expand horizontally to support larger and increasing execution loads.   
 
-Since the architectures of the modes progresses logically, this guide will present the base StandAlone mode first and then discuss the differences that alter the implementation into the _Active-Active_ mode.
+Since the architectures of the modes progresses logically, this guide will present the base _Standalone_ mode first and then discuss the differences that alter the implementation into the _Active/Active_ mode.
 
 ## Required Reading
 
@@ -39,7 +39,7 @@ architecture.
 
 Depending on the chosen [operational
 mode](../index.html#operational-mode-decision),
-the infrastructure requirements for *Terraform Enterprise* range from a single [Azure VM
+the infrastructure requirements for Terraform Enterprise range from a single [Azure VM
 instance](https://azure.microsoft.com/en-us/services/virtual-machines/) for
 demo or proof of concept installations to multiple instances connected to
 [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/) and
@@ -91,12 +91,12 @@ instances.
 
 An Azure Blob Storage
 [container](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction#container)
-must be specified during the *Terraform Enterprise* installation for application data to
+must be specified during the Terraform Enterprise installation for application data to
 be stored securely and redundantly away from the Azure VMs running the
-*Terraform Enterprise* application. This Azure Blob Storage container must be in the same
+Terraform Enterprise application. This Azure Blob Storage container must be in the same
 region as the VMs and Azure Database for PostgreSQL instance.
 
-We recommend that the virtual network containing the *Terraform Enterprise* servers be configured with a
+We recommend that the virtual network containing the Terraform Enterprise servers be configured with a
 [Virtual Network (VNet) service
 endpoint](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview)
 for Azure Storage. Vault is used to encrypt all application data stored
@@ -130,7 +130,7 @@ also be permitted to create the following Azure resources:
 
 #### Network
 
-To deploy *Terraform Enterprise* in Azure you will need to create new or use existing
+To deploy Terraform Enterprise in Azure you will need to create new or use existing
 networking infrastructure. The infrastructure diagram highlights some of
 the key components. These elements are likely to be very unique to your
 environment and not something this Reference Architecture can specify in
@@ -157,7 +157,7 @@ required DNS entry is outside the scope of this guide.
 #### SSL/TLS
 
 An SSL/TLS certificate is required for secure communication between
-clients and the *Terraform Enterprise* application server. The certificate can be
+clients and the Terraform Enterprise application server. The certificate can be
 specified during the UI-based installation or the path to the
 certificate codified during an unattended installation.
 
@@ -171,7 +171,7 @@ The above diagram show the infrastructure components at a high-level.
 
 ### Application Layer
 
-For a single-region deployment, the Application Layer is composed of a multi-AZ VM scale set of one *Terraform Enterprise* server (Azure VM) running in different availability zones in a single subnet. Were the VM to fail due to unplanned events such as hardware or software faults or a network issue such as an availability zone outage, the scale set would recreate the instance in the other zone.
+For a single-region deployment, the Application Layer is composed of a multi-AZ VM scale set of one Terraform Enterprise server (Azure VM) running in different availability zones in a single subnet. Were the VM to fail due to unplanned events such as hardware or software faults or a network issue such as an availability zone outage, the scale set would recreate the instance in the other zone.
 
 -> **Note:** As Microsoft currently do not support multi-region global load balancing using private IP addressing, a multi-region deployment is only possible using public IP addressing.  See [this document](https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/load-balancing-overview#decision-tree-for-load-balancing-in-azure) for more information.
 
@@ -189,7 +189,7 @@ inherent resiliency provided by Azure.
 
 ## Infrastructure Provisioning
 
-The recommended way to deploy *Terraform Enterprise* is through use of a Terraform
+The recommended way to deploy Terraform Enterprise is through use of a Terraform
 configuration that defines the required resources, their references to
 other resources, and associated dependencies.
 
@@ -197,20 +197,20 @@ other resources, and associated dependencies.
 
 ### Component Interaction
 
-The Load Balancer routes all traffic to the active *Terraform Enterprise* instance, which
-handles all requests to the *Terraform Enterprise* application.
+The Load Balancer routes all traffic to the active Terraform Enterprise instance, which
+handles all requests to the Terraform Enterprise application.
 
-The *Terraform Enterprise* application is connected to the PostgreSQL database via the
+The Terraform Enterprise application is connected to the PostgreSQL database via the
 Azure provided database server name endpoint. All database requests are
 routed to the highly available infrastructure supporting Azure Database for PostgreSQL.
 
-The *Terraform Enterprise* application is connected to object storage via the Azure Blob
+The Terraform Enterprise application is connected to object storage via the Azure Blob
 Storage endpoint for the defined container. All object storage requests
 are routed to the highly available infrastructure supporting Azure Storage.
 
 ### Monitoring
 
-There is not currently a full monitoring guide for *Terraform Enterprise*. The following pages include information relevant to monitoring:
+There is not currently a full monitoring guide for Terraform Enterprise. The following pages include information relevant to monitoring:
 
 - [Logging](../../admin/logging.html)
 - [Diagnostics](../../support/index.html)
@@ -224,7 +224,7 @@ See [the Upgrades section](../../admin/upgrades.html) of the documentation.
 
 ### Failure Scenarios
 
-Azure provides availability and reliability recommendations on [Azure reliability](https://azure.microsoft.com/en-us/features/reliability/). Working in accordance with those recommendations the  *Terraform Enterprise* Reference Architecture is designed to handle different failure
+Azure provides availability and reliability recommendations on [Azure reliability](https://azure.microsoft.com/en-us/features/reliability/). Working in accordance with those recommendations the  Terraform Enterprise Reference Architecture is designed to handle different failure
 scenarios that have different probabilities. As the architecture evolves it will provide a
 higher level of service continuity.
 
@@ -236,10 +236,10 @@ In the event of the active instance failing, the Load Balancer
 should be reconfigured (manually or automatically) to route all traffic
 to the standby instance.
 
-~> **Important:** Active-active configuration is not supported due to a serialisation requirement in the core components of *Terraform Enterprise*; therefore, all traffic from the Load Balancer *MUST* be routed to a single instance.
+~> **Important:** Active-active configuration is not supported due to a serialisation requirement in the core components of Terraform Enterprise; therefore, all traffic from the Load Balancer *MUST* be routed to a single instance.
 
 When using the *External Services* operational mode (PostgreSQL Database and Object Storage), there is still some application configuration data present on the
-*Terraform Enterprise* server such as installation type, database connection settings, and
+Terraform Enterprise server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. If the application configuration has
 not changed since installation, both TFE1 and TFE2 will
 use the same configuration and no action is required.
@@ -271,13 +271,13 @@ documentation](https://docs.microsoft.com/en-us/azure/storage/common/storage-red
 
 ### Failure Scenarios
 
-Azure provides availability and reliability recommendations on [Azure reliability](https://azure.microsoft.com/en-us/features/reliability/).Working in accordance with those recommendations the  *Terraform Enterprise* Reference Architecture is designed to handle different failure
+Azure provides availability and reliability recommendations on [Azure reliability](https://azure.microsoft.com/en-us/features/reliability/).Working in accordance with those recommendations the  Terraform Enterprise Reference Architecture is designed to handle different failure
 scenarios that have different probabilities. The ability to provide better
 service continuity will improve as the architecture evolves.
 
 #### Data Corruption
 
-The *Terraform Enterprise* application architecture relies on multiple service endpoints
+The Terraform Enterprise application architecture relies on multiple service endpoints
 (Azure DB and Azure Storage) all providing their own backup and
 recovery functionality to support a low MTTR in the event of data
 corruption.
@@ -286,7 +286,7 @@ corruption.
 
 With _External Services_ (PostgreSQL Database, Object Storage) in
 use, there is still some application configuration data present on the
-*Terraform Enterprise* server such as installation type, database connection settings, and
+Terraform Enterprise server such as installation type, database connection settings, and
 hostname; however, this data rarely changes. We recommend
 [configuring automated
 snapshots](../../admin/automated-recovery.html#configure-snapshots)
@@ -313,14 +313,14 @@ and summarised below:
 
 There is no automatic backup/snapshot of Azure Blob Storage by Azure, so it
 is recommended to script a container copy process from the container
-used by the *Terraform Enterprise* application to a “backup container” in Azure Blob Storage
+used by the Terraform Enterprise application to a “backup container” in Azure Blob Storage
 that runs at regular intervals. It is important the copy process is not
 so frequent that data corruption in the source content is copied to the
 backup before it is identified.
 
 ## Multi-Region Implementation to Address Region Failure
 
-*Terraform Enterprise* is currently architected to provide high availability within a
+Terraform Enterprise is currently architected to provide high availability within a
 single Azure Region only. It is possible to deploy to multiple Azure Regions to give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional Azure service. In this section, we’ll discuss
@@ -329,7 +329,7 @@ implementation patterns to support this.
 An identical infrastructure should be provisioned in a secondary Azure
 Region. Depending on recovery time objectives and tolerances for
 additional cost to support Azure Region failure, the infrastructure can be
-running (Warm Standby) or stopped (Cold Standby). In the event of the primary Azure Region hosting the *Terraform Enterprise*
+running (Warm Standby) or stopped (Cold Standby). In the event of the primary Azure Region hosting the Terraform Enterprise
 application failing, the secondary Azure Region will require some
 configuration before traffic is directed to it along with some global
 services such as DNS.
@@ -349,30 +349,30 @@ services such as DNS.
     point for the infrastructure deployed in the secondary Azure
     Region.
 
-## Active-Active Implementation Mode 
+## Active/Active Implementation Mode 
 
 ### Overview
 
-As stated previously, the _Active-Active_ implementation mode is an extension of the _StandAlone_ implementation mode that increases the scalability and load capacity of the *Terraform Enterprise* platform. The same application runs on multiple *Terraform Enterprise* instances utilizing the same external services in a shared model. The primary architectural and implementation differences for _Active-Active_ are:
+As stated previously, the _Active/Active_ implementation mode is an extension of the _Standalone_ implementation mode that increases the scalability and load capacity of the Terraform Enterprise platform. The same application runs on multiple Terraform Enterprise instances utilizing the same external services in a shared model. The primary architectural and implementation differences for _Active/Active_ are:
 
-- It can only be run in the External Services Mode.
+- It can only be run in the _External Services_ mode.
 - The second/alternate and additional nodes are active and processing work at all times.
 - There is an addition to the existing external services which is a memory cache which is currently implemented with cloud native implementations of Redis. This is used for the processing queue for the application and has been moved from the individual instance to be a shared resource that manages distribution of work. 
 - There are additional configuration parameters to manage the operation of the node cluster and the memory cache.
 
 The following sections will provide further detail on the infrastructure and implementation differences.
 
-### Migration to Active-Active
+### Migration to Active/Active
 
-If you are considering a migration from a _StandAlone_ implementation to _Active-Active_, it is very straightforward and there is guidance available to assist with that effort. However, you should first make a determination if the move is necessary. The _StandAlone_ mode is capable of handling significant load and the first paths to supporting higher load can be simply increasing the compute power in the existing implementation.  A discussion with your HashiCorp representatives may be warranted.
+If you are considering a migration from a _Standalone_ implementation to _Active/Active_, it is very straightforward and there is guidance available to assist with that effort. However, you should first make a determination if the move is necessary. The _Standalone_ mode is capable of handling significant load and the first paths to supporting higher load can be simply increasing the compute power in the existing implementation.  A discussion with your HashiCorp representatives may be warranted.
 
-Also note that if your existing architecture does not already depict what is shown and discussed above, you will likely need to make adjustments to bring it into alignment. This could be either before or during the migration. Certain tenants of the reference architectures described here are highly recommended and potentially necessary to support _Active-Active_ mode such as load balancers and scaling groups.
+Also note that if your existing architecture does not already depict what is shown and discussed above, you will likely need to make adjustments to bring it into alignment. This could be either before or during the migration. Certain tenants of the reference architectures described here are highly recommended and potentially necessary to support _Active/Active_ mode such as load balancers and scaling groups.
 
 ### Infrastructure Diagram
 
 ![aws-aa-infrastructure-diagram](./assets/RA-TFE-AA-Azure-SingleRegion.png)
 
-The above diagram shows the infrastructure components of an _Active-Active_ implementation at a high-level.
+The above diagram shows the infrastructure components of an _Active/Active_ implementation at a high-level.
 
 ### Infrastructure Requirements
 
@@ -386,32 +386,32 @@ The cluster is comprised of essentially independent nodes in a SaaS type model. 
 
 The Azure implementation of the memory cache is handled by [Azure Cache for Redis](https://azure.microsoft.com/en-us/services/cache/). Specifically documented in [Azure Cache for Redis Documentation](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/).
 
-[About Azure Cache for Redis](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview) provides a high level walk-through of implementing the memory cache and walks through high level description of the implementation options for the memory cache. Primary differentiators are are set by tiers described there by feature sets from "basic" to "Enterprise Flash". The primary differences are sizing/capacity and how far high availability might extend. <Copy Paste from AWS continues from Here> extends the cluster to multiple Node Groups and will benefit larger scale, multi-client implementations. The only clients for *Terraform Enterprise* are the compute instances in a single region, so this is not required or suggested. Here is  additional information on [Managing Your ElastiCache Clusters](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.html).
+[About Azure Cache for Redis](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview) provides a high level walk-through of implementing the memory cache with a description of some of the implementation options. Primary differentiators are are set by tiers from "Basic" to "Enterprise Flash" described [this section](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview#service-tiers) including a chart by feature sets . The primary differences are sizing/capacity and how far high availability and fault tolerance might extend. Note that only the Premium and Enterprise tiers provide persistence and encryption and true zone redundancy.  The enterprise tiers involve actually acquiring Redis Enterprise licencees through the Azure Marketplace which is an option if that level of direct vendor support is desired/required. You can start at a lower tier and migrate upwards, however, migrating downwards is not supported, other than re-creating the memory cache.  
 
-You should enable Multi-AZ with Redis Replication Groups where memory cache instances are replicated across availability zones as described in [Mitigating Failures](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/FaultTolerance.html). Note there will be a primary and read replicas across the AZs. This failover and promotion of primaries can be configured to happen automatically on an AZ failure. There should be a memory cache node in every AZ that has a *Terraform Enterprise* node is deployed. A lower testing or sandbox environment could use just a single node, however, a production level environment should always be configured for high availability to benefit from the HA features that coincide with the other external services in the *Terraform Enterprise* platform. Note there is also a rudimentary mechanism of transaction logs available called Redis Append Only Files (AOF) which is not recommended as an alternative.
+You should start by selecting the tier level appropriate to the environment you are deploying. A lower testing or sandbox environment could use a Basic or Standard tier. However, a production level environment should always be configured with Premium or Enterprise tiers to benefit from the HA features that coincide with the other external services in the Terraform Enterprise platform. Additional considerations described in [Best practices](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-best-practices) can be useful for ensuring reliability and failover requirements for the environment.
 
-The concept of Local Zone exists for Amazon ElasticCache. This is an extension of an AWS Region that is geographically close to your users. This is not required or recommended as the memory cache just needs to be close to TFE compute, limited locations are implemented so far, and it does not support Multi-AZ.
+Sizing for Azure Cache for Redis is determined by the tier, tier family, and capacity. Cache Names within tiers specify the sizing such as shown in these [pricing tables](https://azure.microsoft.com/en-au/pricing/details/cache/). You can start the size off in a small to moderate range such as a "P1" for Premium tier, with some consideration of anticipated active load, and scale up or down as demand is understood with the aid of [monitor Azure Cache for Redis](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-how-to-monitor).
 
-Sizing for Amazon ElasticCache is determined by cache ec2 instance sizes defined for the cluster. You can start the size off in a smaller range such as a "cache.m5.large" with some consideration of anticipated active load, and scale up or down as demand is understood by changing node size. with the aid of [Choosing Your Node Size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html#CacheNodes.SelectSize).
+Enterprise-grade security is inherently covered in the Azure Cache for Redis implementation because Redis instances are protected with [network isolation options](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-network-isolation) and particularly with [virtual network support](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-how-to-premium-vnet) in the Premium tier. There is also  [detailed security information](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/security-baseline) available for hardening your implementation.
 
-Enterprise-grade security is inherently covered in the Amazon ElasticCache implementation because Redis instances are protected from the internet using private IPs, and access to instances is controlled and limited to the account creating owning the cluster. Security Group(s) should be used to limit the access by port to the Redis cluster. Here is additional information on [Access Authorization](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/GettingStarted.AuthorizeAccess.html)
+Terraform Enterprise supports Redis versions 4.0 and 5.0, but 5.0 is recommended unless there is strong reason to deviate. Azure Cache for Redis supports 5.0 and 6.0 as a preview mode, so still remain with 5.0 until 6.0 has been certified everywhere and do explicitly specify the version. The minimum TLS version can also be configured and defaults to 1.0 - you should explicitly set it to 1.2 for latest. 
 
 ### Normal Operation
 
 #### Component Interaction
 
-The Load Balancer routes all traffic to the *Terraform Enterprise* instance, which is managed by
+The Load Balancer routes all traffic to the Terraform Enterprise instance, which is managed by
 an VM Scale Set. This is a standard round-robin distribution for now, with no accounting for current load on the nodes. The instance counts on the VM Scale Set control the number of nodes in operation and can be used to increase or decrease the number of active nodes.
 
-_Active-Active_ *Terraform Enterprise* is not currently architected to support dynamic scaling based on load or other factors. The maximum and minimum instance counts on the VM Scale Set should be set to the same value. Adding a node can be done at will bt setting these values. However, removing a node requires that the node be allowed to finish active work and stop accepting new work before being terminated. The operational documentation has the details on how to "drain" a node. 
+_Active/Active_ Terraform Enterprise is not currently architected to support dynamic scaling based on load or other factors. The maximum and minimum instance counts on the VM Scale Set should be set to the same value. Adding a node can be done at will bt setting these values. However, removing a node requires that the node be allowed to finish active work and stop accepting new work before being terminated. The operational documentation has the details on how to "drain" a node. 
 
 #### Replicated Console
 
-The Replicated Console that allows access to certain information and realtime configuration for _StandAlone_ is not available in _Active-Active_. This functionality, including generating support bundles, has been replaced with CLI commands to be executed on the nodes. The operational documentation has the details on how to utilize these commands.
+The Replicated Console that allows access to certain information and realtime configuration for _Standalone_ is not available in _Active/Active_. This functionality, including generating support bundles, has been replaced with CLI commands to be executed on the nodes. The operational documentation has the details on how to utilize these commands.
 
 #### Upgrades
 
-Upgrading the *Terraform Enterprise* version still follows a similar pattern as with _StandAlone_. However, there is not an online option with the Replicated Console. It is possible to upgrade a minor release with CLI commands in a rolling fashion. A "required" release or any change the potentially affects the shared external services will need to be done with a short outage. This involves scaling down to a single node, replacing that node, and then scaling back out. The operational documentation has the details on how these processes can operate. 
+Upgrading the Terraform Enterprise version still follows a similar pattern as with _Standalone_. However, there is not an online option with the Replicated Console. It is possible to upgrade a minor release with CLI commands in a rolling fashion. A "required" release or any change the potentially affects the shared external services will need to be done with a short outage. This involves scaling down to a single node, replacing that node, and then scaling back out. The operational documentation has the details on how these processes can operate. 
 
 ### Failure Scenarios
 
@@ -421,7 +421,7 @@ As mentioned, the Azure Cache for Redis service at the proper tier level provide
 
 ### Multi-Region Implementation to Address Region Failure
 
-Similar to _StandAlone_, _Active-Active_ *Terraform Enterprise* is currently architected to provide high availability within a
+Similar to _Standalone_, _Active/Active_ Terraform Enterprise is currently architected to provide high availability within a
 single region. You cannot deploy additional nodes associated to the primary cluster in different regions. It is possible to deploy to multiple regions to give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional service. An identical infrastructure will still need to be instantiated separately with a failover scenario resulting in control of processing being transferred to the second implementation, as described in the earlier section on this topic. In addition, this identical infrastructure will require its own Memory Cache external service instance.
