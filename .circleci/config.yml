@@ -16,25 +16,51 @@ references:
     rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
 
 jobs:
-  website-test:
-    machine:
-      image: *UBUNTU_IMAGE
+  website-link-check:
+    docker:
+      - image: *MIDDLEMAN_IMAGE
     steps:
       - checkout
 
-      - run:
-          name: gem and bundle install
-          command: |
-            gem install bundler -v '1.17.3' --no-document
-            bundle _1.17.3_ install --jobs=3 --retry=3
-
       - run: make sync
 
-      - run: make website-test
+      # restores gem cache
+      - restore_cache:
+          key: *RUBYGEM_CACHE_KEY
 
-      - slack/status:
-          success_message: ":white_check_mark: Finished link check for branch. :meow_yay: No broken links!"
-          failure_message: ":broken_image: Found broken links when checking branch."
+      - run:
+          name: install gems
+          working_directory: content
+          command: bundle check || bundle install --path vendor/bundle --retry=3
+
+      # saves gem cache if we have changed the Gemfile
+      - save_cache:
+          key: *RUBYGEM_CACHE_KEY
+          paths:
+            - content/vendor/bundle
+
+      - run:
+          name: run middleman in background
+          working_directory: content
+          background: true
+          command: bundle exec middleman server
+
+      - run:
+          name: wait for server to start
+          command: until curl -sS http://localhost:4567/ > /dev/null; do sleep 1; done
+
+      - run:
+          name: check links in changed pages
+          working_directory: content
+          command: git diff --name-only -z --diff-filter=AMRCT $(git merge-base HEAD origin/master)..HEAD | bundle exec ./scripts/check-pr-links.rb
+            # --name-only: Return a list of affected files but don't show the changes.
+            # -z: Make that a null-separated list (instead of newline-separated), and
+            #     DON'T mangle non-ASCII characters.
+            # --diff-filter=AMRCT: Only list files that were added, modified, renamed,
+            #     copied, or had their type changed (file, symlink, etc.). In
+            #     particular, we don't want to check deleted files.
+            # $(git merge-base HEAD origin/master)..HEAD: Only consider files that have
+            #     changed since this branch diverged from master.
 
   website-build-and-upload:
     docker:
@@ -96,10 +122,10 @@ jobs:
           failure_message: ":broken_image: Found broken links while warming cache for terraform.io. For details, check job log."
 
 workflows:
-  linkcheck:
+  website-test:
     # run on branches and PRs; ignore master, since the cache warming also checks links.
     jobs:
-      - website-test:
+      - website-link-check:
           filters:
             branches:
               ignore: master
