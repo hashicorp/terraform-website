@@ -71,6 +71,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "fastly" : "fastly/fastly"
     "flexibleengine" : "FlexibleEngineCloud/flexibleengine"
     "fortios" : "fortinetdev/fortios"
+    "github" : "integrations/github"
     "gitlab" : "gitlabhq/gitlab"
     "grafana" : "grafana/grafana"
     "gridscale" : "gridscale/gridscale"
