@@ -69,7 +69,7 @@ Use the "Submodules" dropdown to navigate to nested modules and use the  Readme/
 Use the "Examples" dropdown to navigate to example modules and use the  Readme/Inputs/Outputs tabs to view detailed documentation and information about the example module.
 
 
-![Terraform Cloud screenshot: a module submodules detail page](./images/using-module-submodules.png)
+![Terraform Cloud screenshot: a module submodules detail page](./images/using-module-examples.png)
 
 ## Using Private Modules in Terraform Configurations
 
