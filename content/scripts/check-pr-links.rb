@@ -121,7 +121,9 @@ puts "\n\nResults:"
 if errors.empty?
   puts '=== No broken links! ==='
 else
-  puts "=== Found broken links! ===\nFix before merging... or if they're not really broken, explain why.\n\n"
+  puts "=== Found broken links! ==="
+  puts "Fix before merging... or if they're not really broken, explain why."
+  puts "(NOTE: This script reports false positives for Vercel app routes like /cloud. Sorry!)\n\n"
   errors.each do |file, problems|
     puts file
     puts problems.join("\n")
