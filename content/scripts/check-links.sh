@@ -11,7 +11,7 @@ fi
 
 if [[ $ACCEPT_PATH == "/" ]]; then
 	redirects_file="$(mktemp)"
-	cat content/redirects.txt| awk -F' ' '{print $1}' | grep -v '^#' | sort | uniq > "$redirects_file"
+	cat content/redirects.txt| awk -F' ' '{print $1}' | grep -v -E -e '^#' -e '^\s*$' | sort | uniq > "$redirects_file"
 
 	echo "Checking known incoming links..."
 	grep -v -x -f "$redirects_file" content/scripts/testdata/incoming-links.txt \
