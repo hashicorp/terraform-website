@@ -16,15 +16,22 @@ require 'erb'
 
 # Only checking files in website content.
 # Main content dir is "content/source/" for terraform-website, "website/" for terraform.
-site_root_paths = %r{^(content/source/|website/)}
+SITE_ROOT_PATHS = %r{^(content/source/|website/)}
 # Only checking files that get turned into web pages, which usually have some
 # combination of these extensions (like ".html.md")
-page_extensions = /(\.(html|markdown|md))+$/
+PAGE_EXTENSIONS = /(\.(html|markdown|md))+$/
+ROOT_URL = 'http://localhost:4567/'
+# As of early 2021, terraform.io is a hybrid site, with some marketing pages
+# served by a Next.js app on Vercel instead of the Middleman static site. Those
+# pages will look like broken links if we check them on the local build, so we
+# special-case them.
+VERCEL_ROUTES = ['/community', '/cloud']
+VERCEL_REGEXP = /^(#{VERCEL_ROUTES.join('|')})/
 
 ARGF.set_encoding('utf-8')
 input = ARGF.read
 input_files = input.split(/\x00|\n/)
-input_files.reject! { |f| f !~ site_root_paths || f !~ page_extensions }
+input_files.reject! { |f| f !~ SITE_ROOT_PATHS || f !~ PAGE_EXTENSIONS }
 
 puts 'Checking URLs in the following pages:'
 input_files.each do |input_file|
@@ -35,6 +42,14 @@ errors = {}
 
 # takes a `URI` object, returns [ok, html-or-error]
 def check_link(url)
+  # Special case for Vercel routes: can't check them against a local build, so
+  # change URL to check prod.
+  if url.path =~ VERCEL_REGEXP && url.to_s =~ /^#{ROOT_URL}/
+    url.scheme = 'https'
+    url.host = 'www.terraform.io'
+    url.port = 443
+  end
+
   response = Net::HTTP.get_response(url)
 
   # Only 200s are "ok"; if it successfully redirects, you should still fix it anyway.
@@ -84,8 +99,8 @@ input_files.each do |input_file|
   # `encodeURIComponent()`, and ERB::Util.url_encode is the one that properly
   # escapes spaces as %20.
   url_string = input_file.split('/').map { |s| ERB::Util.url_encode(s) }.join('/')
-  url_string.sub!(site_root_paths, 'http://localhost:4567/')
-  url_string.sub!(page_extensions, '.html')
+  url_string.sub!(SITE_ROOT_PATHS, ROOT_URL)
+  url_string.sub!(PAGE_EXTENSIONS, '.html')
   input_url = URI(url_string)
 
   ok, result = check_link(input_url)
@@ -122,8 +137,7 @@ if errors.empty?
   puts '=== No broken links! ==='
 else
   puts "=== Found broken links! ==="
-  puts "Fix before merging... or if they're not really broken, explain why."
-  puts "(NOTE: This script reports false positives for Vercel app routes like /cloud. Sorry!)\n\n"
+  puts "Fix before merging... or if they're not really broken, explain why.\n\n"
   errors.each do |file, problems|
     puts file
     puts problems.join("\n")
