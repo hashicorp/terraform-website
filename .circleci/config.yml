@@ -121,6 +121,21 @@ jobs:
           success_message: ":white_check_mark: Finished warming cache for terraform.io. :meow_yay: No broken links!"
           failure_message: ":broken_image: Found broken links while warming cache for terraform.io. For details, check job log."
 
+  website-check-incoming-links:
+    docker:
+      - image: *MIDDLEMAN_IMAGE
+    steps:
+      - checkout
+
+      # Don't need to set up gems, submodules, or anything like that. We just
+      # need the script and the data files.
+
+      - run: ./content/scripts/check-incoming-links.sh https://www.terraform.io
+
+      - slack/status:
+          success_message: ":white_check_mark: WEEKLY INCOMING LINKS CHECK: :meow_yay: No broken links!"
+          failure_message: ":broken_image: WEEKLY INCOMING LINKS CHECK: An important page was deleted without getting a redirect! :fire_on_fire: Please check the job log and make sure that page gets redirected."
+
 workflows:
   website-test:
     # run on branches and PRs; ignore master, since the cache warming also checks links.
@@ -141,3 +156,13 @@ workflows:
           context: static-sites
           requires:
             - website-build-and-upload
+  website-weekly-check:
+    jobs:
+      - website-check-incoming-links
+    triggers:
+      - schedule:
+          # ~11 am pacific time (19 UTC), every monday
+          cron: "0 19 * * 1"
+          filters:
+            branches:
+              only: master
