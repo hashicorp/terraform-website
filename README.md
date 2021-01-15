@@ -63,11 +63,15 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 - **For changes in this repo:** Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
 - **For changes in hashicorp/terraform:** Merge the PR to master. Then, either:
     - Wait for the next Terraform release. The changes will be deployed automatically.
-    - If you don't want to wait for a release, cherry-pick the commit(s) to that repo's `stable-website` branch and push. Then, either:
-        - Wait for the next unrelated site deploy (probably happening in a couple hours), which will pick up your changes automatically.
-        - Do a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so.
+    - If you want your changes deployed sooner, cherry-pick them to the `stable-website` branch and push. They'll be included in the next site deploy.
 
-The [terraform.io][] site gets deployed by a CI job, currently managed by CircleCI. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master. (Note that Terraform releases and provider releases create sync commits to terraform-website, which will trigger a deploy.) In practice, the site gets deployed a few times a day.
+        New commits in hashicorp/terraform don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can do a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
+
+        - Log in to circleci.com, and  make sure you're viewing the HashiCorp organization.
+        - Go to the terraform-website project's list of workflows.
+        - Find the most recent "website-deploy" workflow, and click the "Rerun workflow from start" button (which looks like a refresh button with a numeral "1" inside).
+
+The [terraform.io][] site gets deployed by a CI job, currently managed by CircleCI. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master. (Note that Terraform releases create sync commits to terraform-website, which will trigger a deploy.) In practice, the site gets deployed a few times a day.
 
 ## Running the Site Locally
 
@@ -269,7 +273,7 @@ Once you `init` a submodule, you usually need to run `git submodule update`, whi
 
 If a submodule shows up as "changed" in `git status` but you haven't done anything with it, it probably just means you updated your `terraform-website` branch and it now says the submodule should be at a newer commit. Run `git submodule update` to resolve it. Inactive submodules don't show up in `git status`.
 
-In general, you should never need to commit a submodule update to `terraform-website`; updates get handled automatically during provider releases, and aren't necessary for getting new content onto the website anyway.
+In general, you should never need to commit a submodule update to `terraform-website`; they're updated automatically during releases, and deploys use fresh content from the upstream stable-website branch anyway.
 
 Avoid running `git rm` on a submodule unless you know what you're doing. You usually want `git submodule deinit` instead.
 
@@ -314,17 +318,12 @@ We run a weekly check to make sure we don't delete popular pages without redirec
 
 [inpage-stable]: #more-about-stable-website
 
-Each submodule repo (Terraform and the providers) is expected to have a special `stable-website` branch with docs for the most recent production release of that repo's software. When the website is deployed, it pulls in the current content of `stable-website` for every submodule.
+Terraform has a special `stable-website` branch with docs for the most recent release. When the website is deployed, it uses the current content of `stable-website`.
 
-The same CI system handles releases of Terraform and the various providers, and it has some special behavior around `stable-website`:
+When we release a new version of Terraform, we automatically force-push the corresponding commit to `stable-website`. (We also automatically update the ext/terraform submodule in this repo, but that's only for convenience when doing local previews; normal deployment to [terraform.io][] ignores the current state of the submodules.)
 
-- When releasing a production build of Terraform or a provider, CI does a hard reset and a force-push to sync `stable-website` to the current release's commit.
+Between releases, we update docs on the `master` branch and on the current release's maintenance branch (like `v0.14`). By default, we assume these updates are relevant to a future release, so we don't display them on the website yet. **If a docs update should be shown immediately,** cherry-pick it onto `stable-website` _after_ it has been merged to `master` and/or the maintenance branch.
 
-    CI also automatically commits to `terraform-website` (this repo) to update every submodule to the current head of its `stable-website` branch, but this is only for the convenience of people working locally on the website; normal deployment to [terraform.io][] ignores the current state of the submodules.
-- Between releases, engineers and others routinely update the docs on the `master` branch. By default, we assume these updates are relevant to the _next_ release, so we don't display them on the website yet.
-- **If a docs update is also relevant to the current release,** it should be cherry-picked onto `stable-website` _after_ it has been merged to `master`. (Unless it's a low-priority fix that can wait until the next release.)
+This happens routinely, so anyone who can merge to `master` should also be able to merge to (or directly push) `stable-website`. Whoever clicks the merge button should make sure they know whether this commit needs a cherry-pick.
 
-    This happens routinely, so anyone who can merge to `master` should also be able to merge to (or directly push) `stable-website`. Whoever clicks the merge button should make sure they know whether this commit needs a cherry-pick.
-- During the next release, `stable-website` gets forcibly reset to that release's commit (which is probably from `master`), blowing away anything done on `stable-website` in the meantime.
-
-To ensure your provider doesn't lose any docs content, make sure the only changes you merge to `stable-website` are cherry-picks from `master`. The only case for unique commits is if you specifically _want_ a change to be reverted upon the next release (for example, a warning about a bug that was just fixed on `master`).
+**Be aware:** Since `stable-website` gets forcibly reset during releases, make sure to never commit new changes to `stable-website`. You should only commit cherry-picks from a long-lived branch.
