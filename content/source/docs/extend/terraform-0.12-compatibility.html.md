@@ -254,7 +254,7 @@ Terraform v0.12 does not support using `Computed` with a collection of
 sub-resources, but to avoid breaking existing uses of that mechanism for the
 reason described above, we introduced a compromise which you can read more
 about from the end-user perspective in
-[Attributes as Blocks](/docs/configuration/attr-as-blocks.html).
+[Attributes as Blocks](/docs/language/attr-as-blocks.html).
 
 If you have an existing `Computed` attribute that has `Elem: *schema.Resource`
 and which expects to treat explicit assignment of an empty list differently

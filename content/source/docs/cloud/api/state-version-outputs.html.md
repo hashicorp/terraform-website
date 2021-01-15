@@ -10,7 +10,7 @@ page_title: "State Version Outputs - API Docs - Terraform Cloud and Terraform En
 
 # State Version Outputs API
 
-State version outputs are the [output values](/docs/configuration/outputs.html) from a Terraform state file. They include
+State version outputs are the [output values](/docs/language/values/outputs.html) from a Terraform state file. They include
 the name and value of the output, as well as a sensitive boolean if the value
 should be hidden by default in UIs.
 

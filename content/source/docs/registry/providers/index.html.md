@@ -19,7 +19,7 @@ The Registry is directly integrated with Terraform. To use any provider from the
 
 For more information, see:
 
-- [Configuration Language: Provider Requirements](/docs/configuration/provider-requirements.html)
+- [Configuration Language: Provider Requirements](/docs/language/providers/requirements.html)
 
 ## Provider Tiers & Namespaces
 

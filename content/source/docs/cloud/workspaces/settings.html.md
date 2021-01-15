@@ -46,7 +46,7 @@ The display name of the workspace.
 
 ### Execution Mode
 
-[remote backend]: /docs/backends/types/remote.html
+[remote backend]: /docs/language/settings/backends/remote.html
 
 Whether to use Terraform Cloud as the Terraform execution platform for this workspace.
 
@@ -139,7 +139,7 @@ See [Run Triggers](./run-triggers.html) for detailed information about configuri
 
 ## SSH Key
 
-If a workspace's configuration uses [Git-based module sources](/docs/modules/sources.html) to reference Terraform modules in private Git repositories, Terraform needs an SSH key to clone those repositories. The "SSH Key" page lets you choose which key it should use.
+If a workspace's configuration uses [Git-based module sources](/docs/language/modules/sources.html) to reference Terraform modules in private Git repositories, Terraform needs an SSH key to clone those repositories. The "SSH Key" page lets you choose which key it should use.
 
 See [Using SSH Keys for Cloning Modules](./ssh-keys.html) for detailed information about this page.
 

@@ -3,12 +3,12 @@ layout: "cloud"
 page_title: "Migrating State from Local Terraform - Terraform Cloud and Terraform Enterprise"
 ---
 
-[state]: /docs/state/index.html
+[state]: /docs/language/state/index.html
 [backend]: /docs/backends/index.html
 [backend-config]: /docs/backends/config.html
-[cli-workspaces]: /docs/state/workspaces.html
+[cli-workspaces]: /docs/language/state/workspaces.html
 [user-token]: ../users-teams-organizations/users.html#api-tokens
-[remote-backend]: /docs/backends/types/remote.html
+[remote-backend]: /docs/language/settings/backends/remote.html
 [cli-credentials]: /docs/commands/cli-config.html#credentials
 [owners team]: ../users-teams-organizations/teams.html#the-owners-team
 [workspaces]: ../workspaces/index.html

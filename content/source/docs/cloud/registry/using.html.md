@@ -57,7 +57,7 @@ Click a module's "Details" button to view its details page. Use the "Versions" d
 
 ### Viewing Nested Modules and Examples
 
-If a module contains nested modules following the [standard module structure](/docs/modules/structure.html), then a "Submodules" dropdown will appear below the module source information. The "Examples" dropdown will appear if there are examples.
+If a module contains nested modules following the [standard module structure](/docs/language/modules/develop/structure.html), then a "Submodules" dropdown will appear below the module source information. The "Examples" dropdown will appear if there are examples.
 
 ![Terraform Cloud screenshot: a module submodules button](./images/using-submodules-dropdown.png)
 

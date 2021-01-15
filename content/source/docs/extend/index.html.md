@@ -12,7 +12,7 @@ description: |-
 Terraform can be extended to allow users to manage more infrastructure providers with
 [Providers](/docs/providers/index.html)
 (containing [Resources](/docs/configuration/resources.html)
-and/or [Data Sources](/docs/configuration/data-sources.html)). **Providers**
+and/or [Data Sources](/docs/language/data-sources/index.html)). **Providers**
 are a type of Terraform "Plugin".
 
 ~> This is an advanced section! If you are looking for information on using
