@@ -597,7 +597,7 @@ Requirements/Options:
 *   **location_id** - What region to deploy into - should be the same one TFE is deployed into. If Standard_HA tier is selected, an alternative_location_id will also need to be provided as a failover location.
 *   **redis_version** - Both 4.0 and 5.0 work without issue but 5.0 is recommended
 
-The default example provided on the provider page can be used to deploy memorystore [here](https://www.terraform.io/docs/providers/google/r/redis_instance.html). The host output of the resource can then be provided to the terraform module in order to configure connectivity.
+The default example provided on the provider page can be used to deploy memorystore [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/redis_instance). The host output of the resource can then be provided to the terraform module in order to configure connectivity.
 
 
 ## 
@@ -636,5 +636,5 @@ The minimum instance size for Redis to be used with TFE is 6 GiB. For Azure, thi
 
 Make sure you configure the minimum TLS version to the TFE supported version of 1.2 as the Azure resource defaults to 1.0. The default port for Azure Cache for Redis is 6380 and will need to be modified in the Application Settings `ptfe-replicated.conf` in order for TFE to connect to Azure Cache for Redis.
 
-The default example provided on the provider page can be used to deploy Azure Cache for Redis [here](https://www.terraform.io/docs/providers/azurerm/r/redis_cache.html). The outputs of the resource can then be provided to the Terraform module in order to configure connectivity
+The default example provided on the provider page can be used to deploy Azure Cache for Redis [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache). The outputs of the resource can then be provided to the Terraform module in order to configure connectivity
 
