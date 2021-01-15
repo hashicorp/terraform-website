@@ -62,7 +62,7 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 
 - **For changes in this repo:** Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
 - **For changes in hashicorp/terraform:** Merge the PR to master. Then, either:
-    - Wait for the next release of the project in question. The changes will be deployed automatically.
+    - Wait for the next Terraform release. The changes will be deployed automatically.
     - If you don't want to wait for a release, cherry-pick the commit(s) to that repo's `stable-website` branch and push. Then, either:
         - Wait for the next unrelated site deploy (probably happening in a couple hours), which will pick up your changes automatically.
         - Do a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so.
@@ -286,7 +286,7 @@ All of these jobs are configured in `./circleci/config.yml`, in this repo and in
 We run a global link check for the whole site after every deploy.
 
 - **Where:** The job reports its status in the `#proj-terraform-docs` channel in Hashicorp's Slack.
-- **What:** This job only checks internal links within terraform.io, not external links to the rest of the web. (We deploy a _lot,_ and we don't want to be a nuisance on someone else's servers.)
+- **What:** This job only checks internal links within terraform.io, not external links to the rest of the web. (It runs frequently, and we don't want to be a nuisance.)
 - **Who:** The Terraform Education team is ultimately responsible for dealing with any broken links this turns up, but anyone in the channel is welcome to fix something if they see it first!
 - **How:** We're using [filiph/linkcheck](https://github.com/filiph/linkcheck/) for this. In addition to checking links, this also warms up the Fastly cache for the site.
 
@@ -297,7 +297,7 @@ We run a targeted link check for docs PRs, in this repo and in hashicorp/terrafo
 - **Where:** It shows up as a GitHub PR check. It only runs for PRs from people in the HashiCorp GitHub organization (which should be fine, since we're the most likely to change a bunch of links at once.)
 - **What:** This job only checks links in the _content area_ (not navs/headers) of _pages that were changed in the current PR._ It checks both internal and external links.
 - **Who:** If this job is red in your PR, please fix your broken links before merging! Alternately, if it throws a false-positive and complains about a link that is actually fine, make sure to explain that before merging.
-- **How:** This is a custom-built Ruby script, because we weren't able to find an off-the-shelf link checker that met our requirements (i.e. don't complain about problems that have nothing to do with this PR).
+- **How:** This is a custom Ruby script, because we weren't able to find an off-the-shelf link checker that met our requirements (i.e. don't complain about problems that have nothing to do with this PR). ([content/scripts/check-pr-links.rb](./content/scripts/check-pr-links.rb))
 
 ### Known Incoming Link Check
 
@@ -306,7 +306,7 @@ We run a weekly check to make sure we don't delete popular pages without redirec
 - **Where:** The job reports its status mid-morning (PST) every Monday, in the `#proj-terraform-docs` channel in Hashicorp's Slack.
 - **What:** This job checks a list of paths from the `content/scripts/testdata/incoming-links.txt` file.
 - **Who:** The Terraform Education team is ultimately responsible for dealing with any broken links this turns up, but anyone in the channel is welcome to fix something if they see it first!
-- **How:** This is a custom-built shell script that uses `wget`.
+- **How:** This is a custom shell script that uses `wget`. ([content/scripts/check-incoming-links.sh](./content/scripts/check-incoming-links.sh))
 
 ## More About `stable-website`
 
