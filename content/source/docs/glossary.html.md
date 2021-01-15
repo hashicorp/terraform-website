@@ -164,7 +164,7 @@ The part of Terraform's core that determines how Terraform stores [state][] and 
 
 In a general computer science sense, a backend is any lower-level implementation that enables a higher-level feature. But in the context of Terraform, "backend" always means the built-in code that handles state and operations.
 
-- [Terraform docs: Backends](/docs/backends/index.html)
+- [Terraform docs: Backends](/docs/language/settings/backends/index.html)
 
 ## Blob Storage
 
@@ -675,7 +675,7 @@ The ability to start a [run][] (or perform a few other tasks) from your local [C
 
 Terraform Cloud performs Terraform runs in its own disposable VMs, where it can capture information, control access to secrets, etc., but many users are accustomed to running Terraform on their local machines. Remote operations exist to help split the difference.
 
-- [Terraform docs: Remote Operations](/docs/backends/operations.html)
+- [Terraform docs: Backends — Operations](/docs/language/settings/backends/index.html#operations)
 
 ## Remote Backend
 

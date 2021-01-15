@@ -599,3 +599,12 @@
 /docs/providers/type/monitor-index.html        /docs/providers/index.html
 /docs/providers/type/network-index.html        /docs/providers/index.html
 /docs/providers/type/vcs-index.html            /docs/providers/index.html
+
+# Removing some ghost pages
+/docs/backends/index.html           /docs/language/settings/backends/index.html
+/docs/backends/config.html          /docs/language/settings/backends/configuration.html
+/docs/backends/init.html            /docs/language/settings/backends/index.html
+/docs/backends/operations.html      /docs/language/settings/backends/index.html
+/docs/backends/types/index.html     /docs/language/settings/backends/index.html
+/docs/state/environments.html       /docs/language/state/workspaces.html
+/docs/providers/terraform/index.html    /docs/language/state/remote-state-data.html
