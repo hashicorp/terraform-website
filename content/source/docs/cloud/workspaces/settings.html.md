@@ -119,12 +119,6 @@ If you need to prevent Terraform runs for any reason, you can lock a workspace. 
 
 Locking a workspace also restricts state uploads. In order to upload state, the workspace must be locked by the user who is uploading state.
 
-~> **Important:** [The `atlas` backend][atlas-backend] ignores this restriction, and allows users with permission to read and write state versions to modify state while the workspace is locked. To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows and use the `remote` backend instead; see [Terraform Cloud's CLI-driven workflow](../run/cli.html) for details.
-
-[permissions-citation]: #intentionally-unused---keep-for-maintainers
-
-[atlas-backend]: /docs/backends/types/terraform-enterprise.html
-
 Users with permission to lock and unlock a workspace can't unlock a workspace which was locked by another user. Users with admin access to a workspace can force unlock a workspace even if another user has locked it.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
