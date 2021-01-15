@@ -34,8 +34,9 @@ Both of these approaches are discouraged and will be removed from the
 HashiCorp-supported providers over time. This strategy was tailored to a time
 when Terraform's state had to be stored in cleartext on any machine running
 `terraform apply`, and was meant to provide a bit of security in that scenario.
-With the introduction and use of [enhanced remote
-backends](/docs/backends/types/index.html) and especially the availability of
+With the introduction and use of
+[remote backends](/docs/language/settings/backends/index.html)
+and especially the availability of
 [Terraform Cloud](https://app.terraform.io/), there are now a variety of
 backends that will encrypt state at rest and will not store the state in
 cleartext on machines running `terraform apply`. This means the original

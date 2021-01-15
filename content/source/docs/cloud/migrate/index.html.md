@@ -4,8 +4,8 @@ page_title: "Migrating State from Local Terraform - Terraform Cloud and Terrafor
 ---
 
 [state]: /docs/language/state/index.html
-[backend]: /docs/backends/index.html
-[backend-config]: /docs/backends/config.html
+[backend]: /docs/language/settings/backends/index.html
+[backend-config]: /docs/language/settings/backends/configuration.html
 [cli-workspaces]: /docs/language/state/workspaces.html
 [user-token]: ../users-teams-organizations/users.html#api-tokens
 [remote-backend]: /docs/language/settings/backends/remote.html
