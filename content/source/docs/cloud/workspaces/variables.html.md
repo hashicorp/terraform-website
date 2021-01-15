@@ -3,7 +3,7 @@ layout: "cloud"
 page_title: "Variables - Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
-[variables]: /docs/configuration/variables.html
+[variables]: /docs/language/values/variables.html
 
 # Variables
 
@@ -23,7 +23,7 @@ Viewing variables requires permission to read variables for the workspace, and s
 
 ## Loading Variables from Files
 
-If a workspace is configured to use Terraform 0.10.0 or later, you can commit any number of [`*.auto.tfvars` files](/docs/configuration/variables.html#variable-files) to provide default variable values. Terraform will automatically load variables from those files.
+If a workspace is configured to use Terraform 0.10.0 or later, you can commit any number of [`*.auto.tfvars` files](/docs/language/values/variables.html#variable-files) to provide default variable values. Terraform will automatically load variables from those files.
 
 If any automatically loaded variables have the same names as variables specified in the Terraform Cloud workspace, the workspace's values will override the automatic values.
 

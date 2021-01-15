@@ -142,7 +142,7 @@ In Terraform's [configuration][] language: a syntax construct that assigns a val
 
 Most of a Terraform configuration consists of using arguments to configure Terraform [resources][]. Each resource type defines the arguments its resources can use, the allowed values for each argument, and which arguments are required or optional. Information about a given resource type can be found in the docs for that resource's [provider][].
 
-- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/configuration/syntax.html#arguments-and-blocks)
+- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/language/syntax/configuration.html#arguments-and-blocks)
 
 ## Attribute
 
@@ -194,7 +194,7 @@ resource "aws_vpc" "main" {
 }
 ```
 
-- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/configuration/syntax.html#arguments-and-blocks)
+- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/language/syntax/configuration.html#arguments-and-blocks)
 
 ## Branch
 
@@ -242,7 +242,7 @@ Also "config".
 
 Code written in [Terraform's configuration language][hcl] that declaratively describes the desired state of your infrastructure. A complete config consists of a [root module][], which can optionally call any number of child [modules][].
 
-- [Terraform docs: Configuration Language](/docs/configuration/index.html)
+- [Terraform docs: Configuration Language](/docs/language/index.html)
 - [Introduction to Terraform](/intro/index.html)
 
 ## Configuration Version
@@ -284,7 +284,7 @@ Unlike resources, data sources do not create or manage infrastructure. Instead, 
 
 Data sources are implemented by [providers][].
 
-- [Terraform docs: Data Sources](/docs/configuration/data-sources.html)
+- [Terraform docs: Data Sources](/docs/language/data-sources/index.html)
 
 ## Deposed
 
@@ -340,7 +340,7 @@ HashiCorp Configuration Language. The structured configuration syntax that serve
 HCL establishes the syntax Terraform uses for things like [arguments][], [blocks][], literal values, and [expressions][]. But what most people think of as the Terraform language extends beyond just the syntax; the built-in functions, Terraform-specific block types (like `resource` and `variable`), and Terraform-specific named values available in expressions are all implementation details of Terraform itself.
 
 - [GitHub: HCL](https://github.com/hashicorp/hcl)
-- [Terraform docs: Configuration Language](/docs/configuration/index.html)
+- [Terraform docs: Configuration Language](/docs/language/index.html)
 
 ## ID
 
@@ -401,7 +401,7 @@ Interpolation is a very common feature in programming languages; for example, Ru
 Terraform and Terraform Cloud often interact with JSON data in order to consume or provide APIs. Terraform also supports JSON as an alternate format for [configurations][].
 
 - [Wikipedia: JSON](https://en.wikipedia.org/wiki/Json)
-- [Terraform docs: JSON Configuration Syntax](/docs/configuration/syntax-json.html)
+- [Terraform docs: JSON Configuration Syntax](/docs/language/syntax/json.html)
 
 ## Locking
 
@@ -434,7 +434,7 @@ Other Terraform configurations can _call_ a module, which tells Terraform to man
 
 Modules define [input variables][] (which the calling module can set values for) and [output values][] (which the calling module can reference in [expressions][]).
 
-- [Terraform docs: Modules](/docs/modules/index.html)
+- [Terraform docs: Modules](/docs/language/modules/develop/index.html)
 
 ## OAuth
 
@@ -685,7 +685,7 @@ A Terraform CLI feature that lets Terraform connect to Terraform Cloud, by speci
 
 See also [backend][]. Older documentation sometimes refers to backends like `s3` or `consul` as "remote backends," since they store Terraform's state in a remote service instead of the local filesystem, but today this term usually means the specific backend whose name is `remote`.
 
-- [Terraform docs: The `remote` Backend](/docs/backends/types/remote.html)
+- [Terraform docs: The `remote` Backend](/docs/language/settings/backends/remote.html)
 
 ## Repository
 
@@ -836,7 +836,7 @@ Terraform's cached information about your managed infrastructure and [configurat
 
 Without state, Terraform has no way to identify the real resources it created during previous runs. Thus, when multiple people are collaborating on shared infrastructure, it's important to store state in a shared location, like a free Terraform Cloud organization.
 
-- [Terraform docs: State](/docs/state/index.html)
+- [Terraform docs: State](/docs/language/state/index.html)
 
 ## State Version
 
@@ -960,7 +960,7 @@ In Terraform, "variables" almost always refers to _input variables,_ which are k
 
 Terraform Cloud lets you set values for root input variables in a [workspace][], so all collaborators can use the same values. Variable values marked as "sensitive" become unreadable in the UI and API, and all variable values are protected by Vault.
 
-- [Terraform docs: Input Variables](/docs/configuration/variables.html)
+- [Terraform docs: Input Variables](/docs/language/values/variables.html)
 - [Terraform Cloud docs: Variables](/docs/cloud/workspaces/variables.html)
 
 ## VCS
@@ -1024,4 +1024,4 @@ In Terraform Cloud, a workspace is a complex object that represents everything n
 All Terraform Cloud runs occur in the context of a workspace — they use that workspace's config data, use that workspace's state to identify the real infrastructure being managed, and edit that workspace's state to match any infrastructure changes during the run. A workspace belongs to an [organization][].
 
 - [Terraform Cloud docs: Workspaces](/docs/cloud/workspaces/index.html)
-- [Terraform docs: Workspaces](/docs/state/workspaces.html)
+- [Terraform docs: Workspaces](/docs/language/state/workspaces.html)

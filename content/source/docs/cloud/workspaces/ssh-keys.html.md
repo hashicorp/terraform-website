@@ -5,7 +5,7 @@ page_title: "SSH Keys for Cloning Modules - Workspaces - Terraform Cloud and Ter
 
 # Using SSH Keys for Cloning Modules
 
-Terraform configurations can pull in Terraform modules from [a variety of different sources](/docs/modules/sources.html), and private Git repositories are a common source for private modules.
+Terraform configurations can pull in Terraform modules from [a variety of different sources](/docs/language/modules/sources.html), and private Git repositories are a common source for private modules.
 
 -> **Note:** The [private module registry](../registry/index.html) is an easier way to manage private Terraform modules in Terraform Cloud, and doesn't require setting SSH keys for workspaces. The rest of this page only applies to configurations that fetch modules directly from a private Git repository.
 

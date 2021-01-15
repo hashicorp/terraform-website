@@ -6,11 +6,11 @@ page_title: "Overview of Features - Terraform Cloud and Terraform Enterprise"
 # Overview of Terraform Cloud Features
 
 [cli]: /docs/cli-index.html
-[remote backend]: /docs/backends/types/remote.html
+[remote backend]: /docs/language/settings/backends/remote.html
 [speculative plans]: ./run/index.html#speculative-plans
-[remote_state]: /docs/providers/terraform/d/remote_state.html
-[outputs]: /docs/configuration/outputs.html
-[modules]: /docs/modules/index.html
+[remote_state]: /docs/language/state/remote-state-data.html
+[outputs]: /docs/language/values/outputs.html
+[modules]: /docs/language/modules/develop/index.html
 [terraform enterprise]: /docs/enterprise/index.html
 
 

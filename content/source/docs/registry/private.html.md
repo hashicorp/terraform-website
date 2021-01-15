@@ -13,8 +13,8 @@ only hosts public modules, but most organizations have some modules that
 can't, shouldn't, or don't need to be public.
 
 You can load private modules [directly from version control and other
-sources](/docs/modules/sources.html), but those sources don't support [version
-constraints](/docs/configuration/blocks/modules/syntax.html#version) or a browsable
+sources](/docs/language/modules/sources.html), but those sources don't support [version
+constraints](/docs/language/modules/syntax.html#version) or a browsable
 marketplace of modules, both of which are important for enabling a
 producers-and-consumers content model in a large organization.
 

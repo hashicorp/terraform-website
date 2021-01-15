@@ -91,7 +91,7 @@ This example function does several useful things while finding resources:
   `resources` namespace is more convenient, but it only reveals resources from
   the root module.
 - It iterates over the named resources and [resource
-  instances](/docs/configuration/expressions/references.html#resources)
+  instances](/docs/language/expressions/references.html#resources)
   found in each module, starting with `tfplan.module(path).resources[type]`
   which is a series of nested maps keyed by resource names and instance counts.
 - It uses the Sentinel [`else`

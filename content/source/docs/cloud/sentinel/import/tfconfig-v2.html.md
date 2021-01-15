@@ -396,12 +396,12 @@ delimiter are omitted for the root module.
 * `module_address` - The address of the module the output was found in.
 * `name` - The name of the output.
 * `sensitive` - Indicates whether or not the output was marked as
-  [`sensitive`](/docs/configuration/outputs.html#sensitive-suppressing-values-in-cli-output).
+  [`sensitive`](/docs/language/values/outputs.html#sensitive-suppressing-values-in-cli-output).
 * `value` - An [expression representation](#expression-representations) for the output.
 * `description` - The description of the output.
 * `depends_on` - A list of resource names that the output depends on. These are
   the hard-defined output dependencies as defined in the
-  [`depends_on`](/docs/configuration/outputs.html#depends_on-explicit-output-dependencies)
+  [`depends_on`](/docs/language/values/outputs.html#depends_on-explicit-output-dependencies)
   field in an output declaration, not the dependencies that get derived from
   natural evaluation of the output expression (these can be found in the
   `references` field of the expression representation).

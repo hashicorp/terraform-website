@@ -12,7 +12,7 @@ The [Terraform Registry](https://registry.terraform.io) is an interactive resour
 
 ![screenshot: terraform registry landing page](./images/registry1.png)
 
-The Terraform Registry is integrated [directly into Terraform](/docs/configuration/provider-requirements.html) so you can directly specify providers and modules. Anyone can publish and consume providers and modules on the public [Terraform Registry](https://registry.terraform.io). (To publish private modules within your organization, you can use a [private registry](/docs/registry/private.html) or [reference repositories and other sources directly](/docs/modules/sources.html).)
+The Terraform Registry is integrated [directly into Terraform](/docs/language/providers/requirements.html) so you can directly specify providers and modules. Anyone can publish and consume providers and modules on the public [Terraform Registry](https://registry.terraform.io). (To publish private modules within your organization, you can use a [private registry](/docs/registry/private.html) or [reference repositories and other sources directly](/docs/language/modules/sources.html).)
 
 Use the navigation to the left to learn more about using the Terraform Registry.
 

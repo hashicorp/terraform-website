@@ -28,7 +28,7 @@ A broad overview of what Terraform is and why people use it.
 
 Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
 
-### [Terraform Language ➜](/docs/configuration/index.html)
+### [Terraform Language ➜](/docs/language/index.html)
 
 -> Intermediate and advanced users spend most of their time here.
 

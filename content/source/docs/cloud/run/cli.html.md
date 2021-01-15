@@ -5,7 +5,7 @@ page_title: "CLI-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
 
 [sentinel]: ../sentinel/index.html
 [private]: ../registry/index.html
-[remote]: /docs/backends/types/remote.html
+[remote]: /docs/language/settings/backends/remote.html
 [speculative plan]: ./index.html#speculative-plans
 [tfe-provider]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs
 

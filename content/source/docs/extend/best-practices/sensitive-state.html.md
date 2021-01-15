@@ -10,7 +10,7 @@ description: |-
 
 Many organizations use Terraform to manage their entire infrastructure, and
 it's inevitable that [sensitive information will find its way into
-Terraform](/docs/state/sensitive-data.html) in these circumstances. There are a
+Terraform](/docs/language/state/sensitive-data.html) in these circumstances. There are a
 couple of recommended approaches for managing sensitive state in Terraform.
 
 ## Using the `Sensitive` Flag
