@@ -234,7 +234,7 @@ higher level of service continuity.
 
 ### Terraform Enterprise Server
 
-By utilizing an Auto Scaling Group, a Terraform Enterprise instance automatically recovers
+By utilizing an Auto Scaling Group, a Terraform Enterprise instance can automatically recover
 in the event of any outage except for the loss of an entire region.
 
 In the event of a Terraform Enterprise instance failing in a way that AWS can
@@ -366,8 +366,8 @@ it along with some global services such as DNS.
 As stated previously, the _Active/Active_ implementation mode is an extension of the _Standalone_ implementation mode that increases the scalability and load capacity of the Terraform Enterprise platform. The same application runs on multiple Terraform Enterprise instances utilizing the same external services in a shared model. The primary architectural and implementation differences for _Active/Active_ are:
 
 - It can only be run in the _External Services_ mode.
-- The second/alternate and additional nodes are active and processing work at all times.
-- There is an addition to the existing external services which is a memory cache which is currently implemented with cloud native implementations of Redis. This is used for the processing queue for the application and has been moved from the individual instance to be a shared resource that manages distribution of work.
+- The additional nodes are active and processing work at all times.
+- In addition to the existing external services, there is a memory cache which is currently implemented with cloud native implementations of Redis. This is used for the processing queue for the application and has been moved from the individual instance to be a shared resource that manages distribution of work.
 - There are additional configuration parameters to manage the operation of the node cluster and the memory cache.
 
 The following sections will provide further detail on the infrastructure and implementation differences.
@@ -388,7 +388,7 @@ The above diagram shows the infrastructure components of an _Active/Active_ impl
 
 #### Active Nodes
 
-The diagram depicts two active nodes to be concise. Additional nodes can be added by simply launching another instance with the identical configuration that points to the same shared external services. The number and sizing of nodes should be based on load requirements and redundancy needs. Nodes should be deployed in alternate zones to accommodate zone failure.
+The diagram depicts two active nodes to be concise. Additional nodes can be added by altering your configuration to launch another instance that points to the same shared external services. The number and sizing of nodes should be based on load requirements and redundancy needs. Nodes should be deployed in alternate zones to accommodate zone failure.
 
 The cluster is comprised of essentially independent nodes in a SaaS type model. There are no concerns of leader election or minimal or optimum node counts. When a new node enters the cluster it simply starts taking new work from the load balancer and from the memory cache queue and thus spreading the load horizontally.
 
