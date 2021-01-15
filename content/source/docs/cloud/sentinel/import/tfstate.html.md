@@ -15,7 +15,7 @@ The _state_ is the data that Terraform has recorded about a workspace at a
 particular point in its lifecycle, usually after an apply. You can read more
 general information about how Terraform uses state [here][ref-tf-state].
 
-[ref-tf-state]: /docs/state/index.html
+[ref-tf-state]: /docs/language/state/index.html
 
 -> **Note:** Since Terraform Cloud currently only supports policy checks at plan
 time, the usefulness of this import is somewhat limited, as it will usually give
@@ -447,7 +447,7 @@ This namespace is indexed by output name.
 The `sensitive` value within the [output namespace](#namespace-outputs) is
 `true` when the output has been [marked as sensitive][ref-tf-sensitive-outputs].
 
-[ref-tf-sensitive-outputs]: /docs/configuration/outputs.html#sensitive-suppressing-values-in-cli-output
+[ref-tf-sensitive-outputs]: /docs/language/values/outputs.html#sensitive-suppressing-values-in-cli-output
 
 As an example, given the following output:
 

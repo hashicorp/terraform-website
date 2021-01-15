@@ -49,7 +49,7 @@ infrastructure. The `<NAME>` segment can contain additional hyphens. Examples:
 `terraform-google-vault` or `terraform-aws-ec2-instance`.
 
 - **Standard module structure.** The module must adhere to the
-[standard module structure](/docs/modules/structure.html).
+[standard module structure](/docs/language/modules/develop/structure.html).
 This allows the registry to inspect your module and generate documentation,
 track resource usage, and more.
 

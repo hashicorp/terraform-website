@@ -70,7 +70,7 @@ Speculative plans are plan-only runs: they show a set of possible changes (and c
 There are three ways to run speculative plans:
 
 - In VCS-backed workspaces, pull requests start speculative plans, and the VCS provider's pull request interface includes a link to the plan. See [UI/VCS Runs: Speculative Plans on Pull Requests](./ui.html#speculative-plans-on-pull-requests) for more details.
-- With the [remote backend](/docs/backends/types/remote.html) configured, running `terraform plan` on the command line starts a speculative plan. The plan output streams to the terminal, and a link to the plan is also included.
+- With the [remote backend](/docs/language/settings/backends/remote.html) configured, running `terraform plan` on the command line starts a speculative plan. The plan output streams to the terminal, and a link to the plan is also included.
 - The runs API creates speculative plans whenever the specified configuration version is marked as speculative. See [the `configuration-versions` API](../api/configuration-versions.html#create-a-configuration-version) for more information.
 
 #### Retry a speculative plan in the UI

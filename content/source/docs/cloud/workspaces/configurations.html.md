@@ -7,9 +7,9 @@ page_title: "Terraform Configurations - Workspaces - Terraform Cloud and Terrafo
 # Terraform Configurations in Terraform Cloud Workspaces
 
 [remote operations]: ../run/index.html
-[remote backend]: /docs/backends/types/remote.html
+[remote backend]: /docs/language/settings/backends/remote.html
 [execution mode]: ./settings.html#execution-mode
-[Terraform configuration]: /docs/configuration/index.html
+[Terraform configuration]: /docs/language/index.html
 
 Each Terraform Cloud workspace is associated with a particular [Terraform configuration][], which is expected to change and evolve over time.
 

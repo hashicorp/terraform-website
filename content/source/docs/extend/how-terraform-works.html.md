@@ -68,7 +68,7 @@ destruction.
 
 ~> **Advanced topic:** This section describes Terraform's plugin discovery
 behavior at the level of detail a plugin developer might need. For instructions
-suited to normal Terraform use, see [Configuring Providers](/docs/configuration/providers.html).
+suited to normal Terraform use, see [Configuring Providers](/docs/language/providers/configuration.html).
 
 When `terraform init` is run, Terraform reads configuration files in the working
 directory to determine which plugins are necessary, searches for installed
@@ -97,7 +97,7 @@ development](/docs/commands/cli-config.html#development-overrides-for-provider-d
 ### Selecting Plugins
 
 After locating any installed plugins, `terraform init` compares them to the
-configuration's [version constraints](/docs/configuration/providers.html#provider-versions)
+configuration's [version constraints](/docs/language/providers/configuration.html#provider-versions)
 and chooses a version for each plugin as follows:
 
 - If any acceptable versions are installed, Terraform uses the newest

@@ -19,7 +19,7 @@ The `tfstate/v2` import provides access to a Terraform state.
 The _state_ is the data that Terraform has recorded about a workspace at a
 particular point in its lifecycle, usually after an apply. You can read more
 general information about how Terraform uses state
-[here](/docs/state/index.html).
+[here](/docs/language/state/index.html).
 
 -> **NOTE:** Since Terraform Cloud currently only supports policy checks at plan
 time, the usefulness of this import is somewhat limited, as it will usually give
@@ -171,7 +171,7 @@ The collection is indexed on the output name, with the following fields:
 
 * `name`: The name of the output, also the collection key.
 * `sensitive`: Whether or not the value was marked as
-  [sensitive](/docs/configuration/outputs.html#sensitive-suppressing-values-in-cli-output)
+  [sensitive](/docs/language/values/outputs.html#sensitive-suppressing-values-in-cli-output)
   in
   configuration.
 * `value`: The value of the output.
