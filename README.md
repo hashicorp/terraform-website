@@ -12,7 +12,7 @@ This repository contains the build infrastructure and some of the content for [t
 - [Writing Normal Docs Content](#writing-normal-docs-content)
 - [Screenshots](#screenshots)
 - [Navigation Sidebars](#navigation-sidebars)
-- [Basics of Using Submodules](#basics-of-using-submodules)
+- [Using Submodules](#using-submodules)
 - [Finding Broken Links](#finding-broken-links)
 - [More about `stable-website`](#more-about-stable-website)
 
@@ -255,11 +255,11 @@ A lot of existing sidebars have a ton of ERB tags that call a `sidebar_current` 
 
 You don't need to add anything special to a sidebar to get the dynamic JavaScript open/close behavior, but note that the "expand all" and filter controls are only added for sidebars with more than a certain number of links.
 
-## Basics of Using Submodules
+## Using Submodules
 
 ↥ [back to top](#table-of-contents)
 
-[inpage-submodules]: #basics-of-using-submodules
+[inpage-submodules]: #using-submodules
 
 Right now, the only submodule that matters much is the one for hashicorp/terraform. (We used to have a lot more, back when we hosted the documentation for most providers on terraform.io.)
 
