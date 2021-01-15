@@ -42,7 +42,7 @@ Terraform Cloud can also delay some runs in order to make performance more consi
 [CLI config file]: /docs/commands/cli-config.html
 [remote]: /docs/language/settings/backends/remote.html
 
-Terraform Cloud stores state for its workspaces. During a run, Terraform CLI uses a [backend](/docs/backends/index.html) to read from and write to Terraform Cloud's stored state.
+Terraform Cloud stores state for its workspaces. During a run, Terraform CLI uses a [backend](/docs/language/settings/backends/index.html) to read from and write to Terraform Cloud's stored state.
 
 When Terraform Cloud performs a Terraform run, it uses [the `remote` backend][remote], overriding any existing backend in the configuration.
 
