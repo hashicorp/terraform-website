@@ -120,3 +120,9 @@ If all went well, the plan should result in no changes or very small changes. Te
 
     In the case of a wrong state file, you can recover by fixing your local working directory and trying again. You'll need to re-set to the local backend, run `terraform init`, replace the state file with the correct one, change back to the `remote` backend, run `terraform init` again, and confirm that you want to replace the remote state with the current local state.
 - If the plan recognizes the existing resources but would make unexpected changes, check whether the designated VCS branch for the workspace is the same branch you've been running Terraform on; if not, update it. You can also check whether variables in the Terraform Cloud workspace have the correct values.
+
+- If you got a message like _"Setup failed: Terraform Cloud detected a terraform.tfstate file"_ when run `terraform plan` or `terraform apply` **after** changing a working directory to use remote backend instead of local and ran successfuly `terraform init` with no confirmation messages at all, your local state file probably was not migrated to cloud because it was empty from resources. To workarround this, follow this steps:
+  - Comment your recently applied remote backend config;
+  - Apply your terraform infrastructure;
+  - Uncomment the remote backend config;
+  - Rerun this tutorial starting form [step 6](#step-6-run-terraform-init-to-migrate-the-workspace) 
