@@ -36,15 +36,15 @@ Documentation for Terraform's configuration language.
 
 The Terraform language is Terraform's primary user interface. This section is relevant to all users of Terraform, including Terraform Cloud and Terraform Enterprise users.
 
-### [Terraform CLI ➜](/docs/cli-index.html)
+### [Terraform CLI ➜](/docs/cli/index.html)
 
-Documentation for Terraform's command-line workflows, including docs for [the `terraform` binary and its subcommands](/docs/commands/index.html).
+Documentation for Terraform's command-line workflows, including docs for [the `terraform` binary and its subcommands](/docs/cli/commands/index.html).
 
 ### [Learn Terraform ➜](https://learn.hashicorp.com/terraform?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) (external site)
 
 -> New users can start here.
 
-Interactive tutorials to teach you how to use Terraform's features. Begin with the [Get Started collection](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS), then continue with task-specific tutorials or go directly to the [Terraform CLI docs](/docs/cli-index.html).
+Interactive tutorials to teach you how to use Terraform's features. Begin with the [Get Started collection](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS), then continue with task-specific tutorials or go directly to the [Terraform CLI docs](/docs/cli/index.html).
 
 </div>
 

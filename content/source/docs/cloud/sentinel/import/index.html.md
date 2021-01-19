@@ -103,7 +103,7 @@ This example function does several useful things while finding resources:
   evaluate rules.
 - It computes an `address` variable for each resource instance and uses this as
   the key in the `resources` map. This allows writers of Sentinel policies to
-  print the full [address](/docs/internals/resource-addressing.html) of each
+  print the full [address](/docs/cli/state/resource-addressing.html) of each
   resource instance that violate a policy, using the same address format used in
   plan and apply logs. Doing this tells users who see violation messages exactly
   which resources they need to modify in their Terraform code to comply with the

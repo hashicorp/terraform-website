@@ -7,7 +7,7 @@ page_title: "Migrating State from Multiple Local Workspaces - Terraform Cloud an
 [user-token]: ../users-teams-organizations/users.html#api-tokens
 [backend]: /docs/language/settings/backends/index.html
 [remote-backend]: /docs/language/settings/backends/remote.html
-[cli-credentials]: /docs/commands/cli-config.html#credentials
+[cli-credentials]: /docs/cli/config/config-file.html#credentials
 
 # Migrating State from Multiple Local Workspaces
 

@@ -16,7 +16,7 @@ infrastructure. Documentation for Terraform tests are broken into categories
 briefly described below. Each category has more detailed information by clicking
 on the matching item in the left navigation.
 
--> **Note:** Recent versions of Terraform CLI also support [developer overrides in the CLI configuration](/docs/commands/cli-config.html#development-overrides-for-provider-developers), which can be useful for manually testing providers. The acceptance testing framework uses real Terraform CLI executions, so developer overrides are only recommended as a last resort option for missing functionality.
+-> **Note:** Recent versions of Terraform CLI also support [developer overrides in the CLI configuration](/docs/cli/config/config-file.html#development-overrides-for-provider-developers), which can be useful for manually testing providers. The acceptance testing framework uses real Terraform CLI executions, so developer overrides are only recommended as a last resort option for missing functionality.
 
 ## Acceptance Tests
 

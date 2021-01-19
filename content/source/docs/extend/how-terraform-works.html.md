@@ -88,11 +88,11 @@ Third-party providers and provisioners | Must be manually installed.
 ### Plugin Locations
 
 The [Terraform CLI
-docs](/docs/commands/cli-config.html#provider-installation)
+docs](/docs/cli/config/config-file.html#provider-installation)
 have up-to-date and detailed information about where Terraform looks for plugin
 binaries as part of `terraform init`. Consult that documentation for
 [information on where to place binaries during
-development](/docs/commands/cli-config.html#development-overrides-for-provider-developers).
+development](/docs/cli/config/config-file.html#development-overrides-for-provider-developers).
 
 ### Selecting Plugins
 

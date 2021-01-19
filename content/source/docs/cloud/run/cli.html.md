@@ -53,7 +53,7 @@ terraform {
 }
 ```
 
-Next, run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/commands/cli-config.html#credentials).
+Next, run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/cli/config/config-file.html#credentials).
 
 The backend can be initialized with `terraform init`.
 
@@ -225,7 +225,7 @@ Do you want to override the soft failed policy check?
 -> **Version note:** Targeting support was added client-side in Terraform v0.12.26 and also requires server-side support that may not be available for all Terraform Enterprise deployments yet.
 
 The `terraform plan` and `terraform apply` commands described in earlier
-sections support [Resource Targeting](https://www.terraform.io/docs/commands/plan.html#resource-targeting) as in the local operations workflow, using the `-target` option on the command line.
+sections support [Resource Targeting](https://www.terraform.io/docs/cli/commands/plan.html#resource-targeting) as in the local operations workflow, using the `-target` option on the command line.
 
 As with local usage, targeting is intended for exceptional circumstances only
 and should not be used routinely. The usual caveats for targeting in local operations imply some additional limitations on Terraform Cloud features for remote plans created with targeting:

@@ -48,7 +48,7 @@ If you have a custom provider that you'd rather not publish in the public Terraf
 
 - **Terraform Enterprise only:** Use [the `terraform-bundle` tool][bundle] to add custom providers.
 
--> **Note:** Using a [network mirror](/docs/internals/provider-network-mirror-protocol.html) to host custom providers for installation is not currently supported in Terraform Cloud, since the network mirror cannot be activated without a [`provider_installation`](/docs/commands/cli-config.html#explicit-installation-method-configuration) block in the CLI configuration file.
+-> **Note:** Using a [network mirror](/docs/internals/provider-network-mirror-protocol.html) to host custom providers for installation is not currently supported in Terraform Cloud, since the network mirror cannot be activated without a [`provider_installation`](/docs/cli/config/config-file.html#explicit-installation-method-configuration) block in the CLI configuration file.
 
 
 ### Terraform 0.12 and earlier

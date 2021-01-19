@@ -93,7 +93,7 @@ lots of details on the common situations in
 
 If you see an error you're not sure how to resolve, it may help to copy the
 configuration snippet into a separate `.tf` file in a new directory and use
-[the `terraform 0.12upgrade` command](/docs/commands/0.12upgrade.html)
+[the `terraform 0.12upgrade` command](/docs/cli/commands/0.12upgrade.html)
 to see what changes Terraform itself proposes.
 
 One particular situation that we've seen crop up a lot in provider upgrades
