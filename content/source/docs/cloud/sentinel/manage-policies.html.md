@@ -89,7 +89,7 @@ policy "aws-cis-4.1-networking-deny-public-ssh-acl-rules" {
 
 -> **NOTE:** At this time, only HTTP/HTTPS remote sources are supported.
 
--> **NOTE:** Using the URL of the raw content of the policy is required. Using a URL like
+-> **NOTE:** Using the URL of the raw content of the policy is required when using Github. Using a URL like
 "https://github.com/hashicorp/terraform-foundational-policies-library/master/cis/aws/networking/aws-cis-4.1-networking-deny-public-ssh-acl-rules/aws-cis-4.1-networking-deny-public-ssh-acl-rules.sentinel" will give a hard error when the policy is checked.
 
 When no `source` line is specified, a policy file matching the name of the policy will be assumed as the source. As an example, for the `terraform-maintenance-windows` policy example above, the equivalent default is the source explicitly defined in the example, `./terraform-maintenance-windows.sentinel`.
