@@ -5,7 +5,7 @@ page_title: "Overview of Features - Terraform Cloud and Terraform Enterprise"
 
 # Overview of Terraform Cloud Features
 
-[cli]: /docs/cli-index.html
+[cli]: /docs/cli/index.html
 [remote backend]: /docs/language/settings/backends/remote.html
 [speculative plans]: ./run/index.html#speculative-plans
 [remote_state]: /docs/language/state/remote-state-data.html

@@ -354,7 +354,7 @@ Some examples of multi-level access are below:
   `tfplan.resources.aws_instance`, with names being the next level down, and so
   on.
 
-~> When [resource targeting](/docs/commands/plan.html#resource-targeting) is in effect, `tfplan.resources` will only include the resources specified as targets for the run. This may lead to unexpected outcomes if a policy expects a resource to be present in the plan. To prohibit targeted runs altogether, ensure [`tfrun.target_addrs`](./tfrun.html#value-target_addrs) is undefined or empty.
+~> When [resource targeting](/docs/cli/commands/plan.html#resource-targeting) is in effect, `tfplan.resources` will only include the resources specified as targets for the run. This may lead to unexpected outcomes if a policy expects a resource to be present in the plan. To prohibit targeted runs altogether, ensure [`tfrun.target_addrs`](./tfrun.html#value-target_addrs) is undefined or empty.
 
 Further explanation of the namespace will be in the context of resources. As
 mentioned, when operating on data sources, use the same syntax, except with

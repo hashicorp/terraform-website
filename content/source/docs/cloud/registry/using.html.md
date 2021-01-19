@@ -18,7 +18,7 @@ By design, Terraform Cloud's private module registry works much like the [public
       version = "1.0.4"
     }
     ```
-- Terraform Cloud can automatically access your private modules during Terraform runs. However, when running Terraform on the command line, you must configure a `credentials` block in your [CLI configuration file (`.terraformrc`)](/docs/commands/cli-config.html). See below for the [credentials format](#on-the-command-line).
+- Terraform Cloud can automatically access your private modules during Terraform runs. However, when running Terraform on the command line, you must configure a `credentials` block in your [CLI configuration file (`.terraformrc`)](/docs/cli/config/config-file.html). See below for the [credentials format](#on-the-command-line).
 
 ## Finding Modules
 
@@ -136,4 +136,4 @@ To configure private module access, you need to authenticate against Terraform C
 Make sure the hostname matches the hostname you use in module sources — if the same Terraform Cloud server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, use the `terraform login` command multiple times, specifying the hostname each time.
 
 [user-token]: ../users-teams-organizations/users.html#api-tokens
-[cli-credentials]: /docs/commands/cli-config.html#credentials
+[cli-credentials]: /docs/cli/config/config-file.html#credentials

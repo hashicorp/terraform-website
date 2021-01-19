@@ -9,7 +9,7 @@ page_title: "Migrating State from Local Terraform - Terraform Cloud and Terrafor
 [cli-workspaces]: /docs/language/state/workspaces.html
 [user-token]: ../users-teams-organizations/users.html#api-tokens
 [remote-backend]: /docs/language/settings/backends/remote.html
-[cli-credentials]: /docs/commands/cli-config.html#credentials
+[cli-credentials]: /docs/cli/config/config-file.html#credentials
 [owners team]: ../users-teams-organizations/teams.html#the-owners-team
 [workspaces]: ../workspaces/index.html
 

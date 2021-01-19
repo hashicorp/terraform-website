@@ -119,7 +119,7 @@ One of the stages of a [run][], in which changes are made to real infrastructure
 
 In Terraform's CLI, applies are performed with the `terraform apply` command. Terraform Cloud runs `terraform apply` using a [plan file][] as its input.
 
-- [Terraform docs: The `terraform apply` command](/docs/commands/apply.html)
+- [Terraform docs: The `terraform apply` command](/docs/cli/commands/apply.html)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Apply (verb)
@@ -130,7 +130,7 @@ To make changes to real infrastructure in order to make it match the desired sta
 
 In conversation, it's common to refer to "applying a [plan][]" (usually in the context of Terraform Cloud's workflow) or "applying a [configuration][]" (usually in the context of the Terraform CLI workflow).
 
-- [Terraform docs: The `terraform apply` command](/docs/commands/apply.html)
+- [Terraform docs: The `terraform apply` command](/docs/cli/commands/apply.html)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Argument
@@ -220,7 +220,7 @@ Command-line interface. The `terraform` command expects to be run in a CLI (a Un
 We often use "Terraform CLI" to refer to the core open source Terraform binary when we need to distinguish it from other parts of the Terraform ecosystem (like Terraform Cloud or the Terraform GitHub Actions).
 
 - [Wikipedia: Command-line Interface](https://en.wikipedia.org/wiki/Command-line_interface)
-- [Terraform docs: Commands (CLI)](/docs/commands/index.html)
+- [Terraform docs: Commands (CLI)](/docs/cli/commands/index.html)
 
 ## Commit
 
@@ -546,7 +546,7 @@ In Terraform Cloud, plans are performed by committing changes to a workspace's c
 
 Terraform Cloud's workflow always creates a [plan file][], which can be auto-applied or can wait for a user's approval. Terraform Cloud also supports [speculative plans][], which are for informational purposes only and cannot be applied.
 
-- [Terraform docs: The `terraform plan` command](/docs/commands/plan.html)
+- [Terraform docs: The `terraform plan` command](/docs/cli/commands/plan.html)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Plan File
