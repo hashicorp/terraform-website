@@ -91,6 +91,28 @@ curl \
       }
     },
     {
+      "id": "fs-4ec3b3RVJWsBkst3",
+      "type": "feature-sets",
+      "attributes": {
+        "comparison-description": "Gain additional features built for larger teams and enterprise environments.",
+        "cost": 0,
+        "description": "Full access to Terraform Cloud's enterprise features",
+        "identifier": "business",
+        "is-current": true,
+        "is-free-tier": true,
+        "name": "Business",
+        "plan": null,
+        "self-serve-billing": false,
+        "cost-estimation": true,
+        "sentinel": true,
+        "teams": true,
+        "user-limit": null,
+        "audit-logging": true,
+        "sso": true,
+        "private-networking": true
+      }
+    },
+    {
       "id": "fs-T9BCyZi3KJyWHebk",
       "type": "feature-sets",
       "attributes": {
@@ -140,7 +162,7 @@ curl \
 
 ## List Feature Sets for Organization
 
-This endpoint lists the feature sets available to a particular organization. The results may differ from the previous global endpoint - for instance, if the organization has already had a free trial, the trial feature set will not appear in this list.
+This endpoint lists the feature sets a particular organization is eligible to access. The results may differ from the previous global endpoint - for instance, if the organization has already had a free trial, the trial feature set will not appear in this list.
 
 `GET /organizations/:organization_name/feature-sets`
 
@@ -204,6 +226,28 @@ curl \
         "audit-logging": false,
         "sso": false,
         "private-networking": false
+      }
+    },
+    {
+      "id": "fs-4ec3b3RVJWsBkst3",
+      "type": "feature-sets",
+      "attributes": {
+        "comparison-description": "Gain additional features built for larger teams and enterprise environments.",
+        "cost": 0,
+        "description": "Full access to Terraform Cloud's enterprise features",
+        "identifier": "business",
+        "is-current": true,
+        "is-free-tier": true,
+        "name": "Business",
+        "plan": null,
+        "self-serve-billing": false,
+        "cost-estimation": true,
+        "sentinel": true,
+        "teams": true,
+        "user-limit": null,
+        "audit-logging": true,
+        "sso": true,
+        "private-networking": true
       }
     },
     {

@@ -26,6 +26,8 @@ page_title: "Subscriptions - API Docs - Terraform Cloud and Terraform Enterprise
 
 An organization can subscribe to different [feature sets](./feature-sets.html), which represent the [pricing plans](/docs/cloud/paid.html) available in Terraform Cloud. An organization's [entitlement set](./index.html#feature-entitlements) is calculated using its subscription and feature set.
 
+To change the subscription for an organization, use the billing settings in the Terraform Cloud UI.
+
 ## Show Subscription For Organization
 
 `GET /organizations/:organization_name/subscription`

@@ -28,9 +28,18 @@ Organizations on credit-card-billed plans may view their previous and upcoming i
 
 ## List Invoices
 
-This endpoint lists the previous invoices for an organization.
+This endpoint lists the previous invoices for an organization. 
+
+It uses a pagination scheme that's somewhat different from [our standard pagination](/docs/cloud/api/index.html#pagination). The page size is always 10 items and is not configurable; if there are no more items, `meta.continuation` will be null. The current page is controlled by the `cursor` parameter, described below. 
 
 `GET /organizations/:organization_name/invoices`
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization you'd like to view invoices for
+`:cursor`            | **Optional.** The ID of the invoice where the page should start. If omitted, the endpoint will return the first page.
+
+### Pagination
 
 ### Sample Request
 
@@ -51,26 +60,30 @@ curl \
       "type": "billing-invoices",
       "attributes": {
         "created-at": "2021-01-01T19:00:38Z",
-        "external-link": "https://pay.stripe.com/invoice/acct_1Eov7THcjZv6Wm0g/invst_IgFMMfdzAZzMQq8GXyUbrk9lFMqvp9S/pdf",
+        "external-link": "https://pay.stripe.com/invoice/acct_1Eov7THcjZv6Wm0g/invst_IgFMMfdzAZzMQq8GXyUbrk9lFMqvp9SX/pdf",
         "number": "2F8CA1AE-0006",
         "paid": true,
         "status": "paid",
         "total": 21000
       }
     },
+    {...}
     {
       "id": "in_1Hte5nHcjZv6Wm0g2Q8hFctH",
       "type": "billing-invoices",
       "attributes": {
-        "created-at": "2020-12-01T19:00:51Z",
-        "external-link": "https://pay.stripe.com/invoice/acct_1Eov7THcjZv6Wm0g/invst_IUdMM6wl0JfA95tgWGZxpBGXYtJwmBg/pdf",
+        "created-at": "2020-06-01T19:00:51Z",
+        "external-link": "https://pay.stripe.com/invoice/acct_1Eov7THcjZv6Wm0g/invst_IUdMM6wl0JfA95tgWGZxpBGXYtJwmBgY/pdf",
         "number": "2F8CA1AE-0005",
         "paid": true,
         "status": "paid",
         "total": 21000
       }
     }
-  ]
+  ],
+  "meta": {
+    "continuation": "in_1IBpkEHcjZv6Wm0gHcgc2uwN"
+  }
 }
 ```
 
