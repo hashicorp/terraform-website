@@ -43,9 +43,7 @@ errors = {}
 # takes a `URI` object, returns [ok, html-or-error]
 def check_link(url)
   # Ignore non-web protocols like mailto:
-  unless url.scheme == 'https' || url.scheme == 'http'
-    return [true, 'Not an HTTP(S) URL']
-  end
+   return [true, 'Not an HTTP(S) URL'] unless url.scheme == 'https' || url.scheme == 'http'
 
   # Special case for Vercel routes: can't check them against a local build, so
   # change URL to check prod.
