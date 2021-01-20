@@ -22,6 +22,12 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 ### Source — TFE Server(s)
 
+* **8201:** Vault HA request forwarding (only necessary when operating in Active/Active mode)
+
+Additionally, the following ports are used by various application components internally.
+This list serves as a point of reference; it is not necessary to expose these ports
+for accessibility in a firewall:
+
 * **2003:** Graphite (Carbon) feeding port (monitoring, metrics)
 * **2004:** Graphite (Carbon) feeding port (monitoring, metrics)
 * **3121:** TFE private registry
