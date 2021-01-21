@@ -10,10 +10,6 @@
 	path = ext/providers/cobbler
 	url = https://github.com/terraform-providers/terraform-provider-cobbler
 	branch = stable-website
-[submodule "ext/providers/github"]
-	path = ext/providers/github
-	url = https://github.com/terraform-providers/terraform-provider-github
-	branch = stable-website
 [submodule "ext/providers/mysql"]
 	path = ext/providers/mysql
 	url = https://github.com/terraform-providers/terraform-provider-mysql
@@ -33,10 +29,6 @@
 [submodule "ext/providers/infoblox"]
 	path = ext/providers/infoblox
 	url = https://github.com/terraform-providers/terraform-provider-infoblox
-	branch = stable-website
-[submodule "ext/providers/ksyun"]
-	path = ext/providers/ksyun
-	url = https://github.com/terraform-providers/terraform-provider-ksyun
 	branch = stable-website
 [submodule "ext/providers/rubrik"]
 	path = ext/providers/rubrik
