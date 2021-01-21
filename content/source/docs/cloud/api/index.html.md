@@ -18,7 +18,7 @@ layout: "cloud"
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # Terraform Cloud API Documentation
 
@@ -63,35 +63,45 @@ The [show entitlement set](./organizations.html#show-the-entitlement-set) endpoi
 
 The following entitlements are available:
 
-- `state-storage` — Allows an organization to store state versions in its workspaces, which enables local Terraform runs with the remote backend. Affects the [state versions][] endpoints.
-- `operations` — Allows an organization to perform runs within Terraform Cloud. Affects the [runs][], [plans][], and [applies][] endpoints.
-- `vcs-integrations` — Allows an organization to [connect with a VCS provider][vcs integrations] and link VCS repositories to workspaces. Affects the [OAuth Clients][o-clients], and [OAuth Tokens][o-tokens] endpoints, and determines whether the `data.attributes.vcs-repo` property can be set for [workspaces][].
-- `sentinel` — Allows an organization to use [Sentinel][]. Affects the [policies][], [policy sets][], and [policy checks][] endpoints.
-- `private-module-registry` — Allows an organization to publish and use modules with the [private module registry][]. Affects the [registry modules][] endpoints.
-- `teams` — Allows an organization to manage access to its workspaces with [teams](../users-teams-organizations/teams.html). Without this entitlement, an organization only has an owners team. Affects the [teams][], [team members][], [team access][], and [team tokens][] endpoints.
 - `agents` — Allows isolated, private or on-premises infrastructure to communicate with an organization in Terraform Cloud. Affects the [agent pools][], [agents][], and [agent tokens][] endpoints.
+- `audit-logging` — Allows an organization to access [audit trails][].
+- `configuration-designer` — Allows an organization to use the [Configuration Designer][].
+- `cost-estimation` — Allows an organization to access [cost estimation][].
+- `operations` — Allows an organization to perform runs within Terraform Cloud. Affects the [runs][], [plans][], and [applies][] endpoints.
+- `private-module-registry` — Allows an organization to publish and use modules with the [private module registry][]. Affects the [registry modules][] endpoints.
+- `self-serve-billing` — Allows an organization to pay via credit card using the in-app billing UI.
+- `state-storage` — Allows an organization to store state versions in its workspaces, which enables local Terraform runs with the remote backend. Affects the [state versions][] endpoints.
+- `sentinel` — Allows an organization to use [Sentinel][]. Affects the [policies][], [policy sets][], and [policy checks][] endpoints.
+- `sso` — Allows an organization to manage and authenticate users via [single sign on][].
+- `teams` — Allows an organization to manage access to its workspaces with [teams](../users-teams-organizations/teams.html). Without this entitlement, an organization only has an owners team. Affects the [teams][], [team members][], [team access][], and [team tokens][] endpoints.
+- `user-limit` — An integer value representing the maximum number of users allowed for the organization. If blank, there is no limit.  
+- `vcs-integrations` — Allows an organization to [connect with a VCS provider][vcs integrations] and link VCS repositories to workspaces. Affects the [OAuth Clients][o-clients], and [OAuth Tokens][o-tokens] endpoints, and determines whether the `data.attributes.vcs-repo` property can be set for [workspaces][].
 
-[state versions]: ./state-versions.html
-[runs]: ./run.html
+[agents]: ./agents.html
+[agent pools]: ./agents.html
+[agent tokens]: ./agent-tokens.html
 [applies]: ./applies.html
-[plans]: ./plans.html
-[vcs integrations]: ../vcs/index.html
-[o-tokens]: ./oauth-tokens.html
+[audit trails]: ./audit-trails.html
+[Configuration Designer]: ../registry/design.html
+[cost estimation]: ../cost-estimation/index.html
 [o-clients]: ./oauth-clients.html
-[workspaces]: ./workspaces.html
-[Sentinel]: ../sentinel/index.html
+[o-tokens]: ./oauth-tokens.html
+[plans]: ./plans.html
 [policies]: ./policies.html
-[policy sets]: ./policy-sets.html
 [policy checks]: ./policy-checks.html
+[policy sets]: ./policy-sets.html
 [private module registry]: ../registry/index.html
 [registry modules]: ./modules.html
+[runs]: ./run.html
+[Sentinel]: ../sentinel/index.html
+[single sign on]: ../users-teams-organizations/single-sign-on.html
+[state versions]: ./state-versions.html
 [teams]: ./teams.html
-[team members]: ./team-members.html
 [team access]: ./team-access.html
+[team members]: ./team-members.html
 [team tokens]: ./team-tokens.html
-[agent pools]: ./agents.html
-[agents]: ./agents.html
-[agent tokens]: ./agent-tokens.html
+[vcs integrations]: ../vcs/index.html
+[workspaces]: ./workspaces.html
 
 ## Response Codes
 
@@ -113,14 +123,14 @@ For example, if the API endpoint documentation defines the path `/runs` then the
 
 ## JSON API Formatting
 
-The Terraform Cloud endpoints use the [JSON API specification](http://jsonapi.org/), which specifies key aspects of the API. Most notably:
+The Terraform Cloud endpoints use the [JSON API specification](https://jsonapi.org/), which specifies key aspects of the API. Most notably:
 
-- [HTTP error codes](http://jsonapi.org/examples/#error-objects-error-codes)
-- [Error objects](http://jsonapi.org/examples/#error-objects-basics)
+- [HTTP error codes](https://jsonapi.org/examples/#error-objects-error-codes)
+- [Error objects](https://jsonapi.org/examples/#error-objects-basics)
 - [Document structure][document]
-- [HTTP request/response headers](http://jsonapi.org/format/#content-negotiation)
+- [HTTP request/response headers](https://jsonapi.org/format/#content-negotiation)
 
-[document]: http://jsonapi.org/format/#document-structure
+[document]: https://jsonapi.org/format/#document-structure
 
 ### JSON API Documents
 
@@ -297,7 +307,7 @@ HashiCorp maintains [go-tfe](https://github.com/hashicorp/go-tfe), a Go client f
 
 Additionally, the community of Terraform Cloud users and vendors have built client libraries in other languages. These client libraries and tools are not tested nor officially maintained by HashiCorp, but are listed below in order to help users find them easily.
 
-If you have built a client library and would like to add it to this community list, please [contribute](https://github.com/hashicorp/terraform-website#contributions-welcome) to [this page](https://github.com/hashicorp/terraform-website/blob/master/content/source/docs/cloud/api/index.html.md).
+If you have built a client library and would like to add it to this community list, please [contribute](https://github.com/hashicorp/terraform-website) to [this page](https://github.com/hashicorp/terraform-website/blob/master/content/source/docs/cloud/api/index.html.md).
 
 - [tfh](https://github.com/hashicorp-community/tf-helper): UNIX shell console app
 - [tf_api_gateway](https://github.com/PlethoraOfHate/tf_api_gateway): Python API library and console app
