@@ -612,6 +612,8 @@
 /docs/plugins/basics.html           /docs/extend/index.html
 /docs/plugins/provider.html         /docs/extend/index.html
 /docs/commands/state/addressing.html    /docs/cli/state/resource-addressing.html
+/docs/backends/types/terraform-enterprise.html  /docs/language/settings/backends/remote.html
+/docs/configuration/terraform-enterprise.html   /docs/language/settings/backends/remote.html
 
 # Language docs URL overhaul
 /docs/configuration/attr-as-blocks.html                       /docs/language/attr-as-blocks.html
