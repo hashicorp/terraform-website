@@ -602,13 +602,21 @@
 
 # Removing some ghost pages
 /docs/backends/index.html           /docs/language/settings/backends/index.html
+/docs/backends/                     /docs/language/settings/backends/index.html
+/docs/backends                      /docs/language/settings/backends/index.html
 /docs/backends/config.html          /docs/language/settings/backends/configuration.html
 /docs/backends/init.html            /docs/language/settings/backends/index.html
 /docs/backends/operations.html      /docs/language/settings/backends/index.html
 /docs/backends/types/index.html     /docs/language/settings/backends/index.html
+/docs/backends/types/               /docs/language/settings/backends/index.html
+/docs/backends/types                /docs/language/settings/backends/index.html
 /docs/state/environments.html       /docs/language/state/workspaces.html
 /docs/providers/terraform/index.html    /docs/language/state/remote-state-data.html
+/docs/providers/terraform/              /docs/language/state/remote-state-data.html
+/docs/providers/terraform               /docs/language/state/remote-state-data.html
 /docs/plugins/index.html            /docs/extend/index.html
+/docs/plugins/                      /docs/extend/index.html
+/docs/plugins                       /docs/extend/index.html
 /docs/plugins/basics.html           /docs/extend/index.html
 /docs/plugins/provider.html         /docs/extend/index.html
 /docs/commands/state/addressing.html    /docs/cli/state/resource-addressing.html
@@ -618,13 +626,21 @@
 # Language docs URL overhaul
 /docs/configuration/attr-as-blocks.html                       /docs/language/attr-as-blocks.html
 /docs/configuration/index.html                                /docs/language/index.html
+/docs/configuration/                                          /docs/language/index.html
+/docs/configuration                                           /docs/language/index.html
 /docs/configuration/files/index.html                          /docs/language/files/index.html
+/docs/configuration/files/                                    /docs/language/files/index.html
+/docs/configuration/files                                     /docs/language/files/index.html
 /docs/configuration/override.html                             /docs/language/files/override.html
 /docs/configuration/syntax/index.html                         /docs/language/syntax/index.html
+/docs/configuration/syntax/                                   /docs/language/syntax/index.html
+/docs/configuration/syntax                                    /docs/language/syntax/index.html
 /docs/configuration/syntax.html                               /docs/language/syntax/configuration.html
 /docs/configuration/syntax-json.html                          /docs/language/syntax/json.html
 /docs/configuration/style.html                                /docs/language/syntax/style.html
 /docs/configuration/blocks/resources/index.html               /docs/language/resources/index.html
+/docs/configuration/blocks/resources/                         /docs/language/resources/index.html
+/docs/configuration/blocks/resources                          /docs/language/resources/index.html
 /docs/configuration/blocks/resources/syntax.html              /docs/language/resources/syntax.html
 /docs/configuration/blocks/resources/behavior.html            /docs/language/resources/behavior.html
 /docs/configuration/meta-arguments/depends_on.html            /docs/language/meta-arguments/depends_on.html
@@ -633,7 +649,11 @@
 /docs/configuration/meta-arguments/resource-provider.html     /docs/language/meta-arguments/resource-provider.html
 /docs/configuration/meta-arguments/lifecycle.html             /docs/language/meta-arguments/lifecycle.html
 /docs/configuration/blocks/resources/provisioners/index.html  /docs/language/resources/provisioners/index.html
+/docs/configuration/blocks/resources/provisioners/            /docs/language/resources/provisioners/index.html
+/docs/configuration/blocks/resources/provisioners             /docs/language/resources/provisioners/index.html
 /docs/provisioners/index.html                                 /docs/language/resources/provisioners/syntax.html
+/docs/provisioners/                                           /docs/language/resources/provisioners/syntax.html
+/docs/provisioners                                            /docs/language/resources/provisioners/syntax.html
 /docs/provisioners/connection.html                            /docs/language/resources/provisioners/connection.html
 /docs/provisioners/null_resource.html                         /docs/language/resources/provisioners/null_resource.html
 /docs/provisioners/file.html                                  /docs/language/resources/provisioners/file.html
@@ -645,23 +665,33 @@
 /docs/provisioners/salt-masterless.html                       /docs/language/resources/provisioners/salt-masterless.html
 /docs/configuration/data-sources.html                         /docs/language/data-sources/index.html
 /docs/configuration/blocks/providers/index.html               /docs/language/providers/index.html
+/docs/configuration/blocks/providers/                         /docs/language/providers/index.html
+/docs/configuration/blocks/providers                          /docs/language/providers/index.html
 /docs/configuration/provider-requirements.html                /docs/language/providers/requirements.html
 /docs/configuration/providers.html                            /docs/language/providers/configuration.html
 /docs/configuration/dependency-lock.html                      /docs/language/dependency-lock.html
 /docs/configuration/blocks/values/index.html                  /docs/language/values/index.html
+/docs/configuration/blocks/values/                            /docs/language/values/index.html
+/docs/configuration/blocks/values                             /docs/language/values/index.html
 /docs/configuration/variables.html                            /docs/language/values/variables.html
 /docs/configuration/outputs.html                              /docs/language/values/outputs.html
 /docs/configuration/locals.html                               /docs/language/values/locals.html
 /docs/configuration/blocks/modules/index.html                 /docs/language/modules/index.html
+/docs/configuration/blocks/modules/                           /docs/language/modules/index.html
+/docs/configuration/blocks/modules                            /docs/language/modules/index.html
 /docs/configuration/blocks/modules/syntax.html                /docs/language/modules/syntax.html
 /docs/modules/sources.html                                    /docs/language/modules/sources.html
 /docs/configuration/meta-arguments/module-providers.html      /docs/language/meta-arguments/module-providers.html
 /docs/modules/index.html                                      /docs/language/modules/develop/index.html
+/docs/modules/                                                /docs/language/modules/develop/index.html
+/docs/modules                                                 /docs/language/modules/develop/index.html
 /docs/modules/structure.html                                  /docs/language/modules/develop/structure.html
 /docs/modules/providers.html                                  /docs/language/modules/develop/providers.html
 /docs/modules/composition.html                                /docs/language/modules/develop/composition.html
 /docs/modules/publish.html                                    /docs/language/modules/develop/publish.html
 /docs/configuration/expressions/index.html                    /docs/language/expressions/index.html
+/docs/configuration/expressions/                              /docs/language/expressions/index.html
+/docs/configuration/expressions                               /docs/language/expressions/index.html
 /docs/configuration/expressions/types.html                    /docs/language/expressions/types.html
 /docs/configuration/expressions/strings.html                  /docs/language/expressions/strings.html
 /docs/configuration/expressions/references.html               /docs/language/expressions/references.html
@@ -713,6 +743,9 @@
 /docs/configuration/functions/element.html                    /docs/language/functions/element.html
 /docs/configuration/functions/flatten.html                    /docs/language/functions/flatten.html
 /docs/configuration/functions/index.html                      /docs/language/functions/index_function.html
+# These two go to a different spot, because you wouldn't expect /functions/ to go to That One Function Named "Index".
+/docs/configuration/functions/                                /docs/language/functions/index.html
+/docs/configuration/functions                                 /docs/language/functions/index.html
 /docs/configuration/functions/keys.html                       /docs/language/functions/keys.html
 /docs/configuration/functions/length.html                     /docs/language/functions/length.html
 /docs/configuration/functions/list.html                       /docs/language/functions/list.html
@@ -786,6 +819,8 @@
 /docs/configuration/functions/try.html                        /docs/language/functions/try.html
 /docs/configuration/terraform.html                            /docs/language/settings/index.html
 /docs/configuration/blocks/backends/index.html                /docs/language/settings/backends/index.html
+/docs/configuration/blocks/backends/                          /docs/language/settings/backends/index.html
+/docs/configuration/blocks/backends                           /docs/language/settings/backends/index.html
 /docs/configuration/backend.html                              /docs/language/settings/backends/configuration.html
 /docs/backends/types/local.html                               /docs/language/settings/backends/local.html
 /docs/backends/types/remote.html                              /docs/language/settings/backends/remote.html
@@ -804,6 +839,8 @@
 /docs/backends/types/s3.html                                  /docs/language/settings/backends/s3.html
 /docs/backends/types/swift.html                               /docs/language/settings/backends/swift.html
 /docs/state/index.html                                        /docs/language/state/index.html
+/docs/state/                                                  /docs/language/state/index.html
+/docs/state                                                   /docs/language/state/index.html
 /docs/state/purpose.html                                      /docs/language/state/purpose.html
 /docs/providers/terraform/d/remote_state.html                 /docs/language/state/remote-state-data.html
 /docs/backends/state.html                                     /docs/language/state/backends.html
@@ -816,6 +853,8 @@
 # CLI docs URL overhaul
 /docs/cli-index.html                        /docs/cli/index.html
 /docs/commands/index.html                   /docs/cli/commands/index.html
+/docs/commands/                             /docs/cli/commands/index.html
+/docs/commands                              /docs/cli/commands/index.html
 /docs/commands/init.html                    /docs/cli/commands/init.html
 /docs/commands/get.html                     /docs/cli/commands/get.html
 /docs/commands/plan.html                    /docs/cli/commands/plan.html
@@ -834,6 +873,8 @@
 /docs/commands/state/list.html              /docs/cli/commands/state/list.html
 /docs/commands/state/show.html              /docs/cli/commands/state/show.html
 /docs/import/index.html                     /docs/cli/import/index.html
+/docs/import/                               /docs/cli/import/index.html
+/docs/import                                /docs/cli/import/index.html
 /docs/commands/import.html                  /docs/cli/commands/import.html
 /docs/import/usage.html                     /docs/cli/import/usage.html
 /docs/import/importability.html             /docs/cli/import/importability.html
@@ -848,6 +889,8 @@
 /docs/commands/state/push.html              /docs/cli/commands/state/push.html
 /docs/commands/force-unlock.html            /docs/cli/commands/force-unlock.html
 /docs/commands/workspace/index.html         /docs/cli/commands/workspace/index.html
+/docs/commands/workspace/                   /docs/cli/commands/workspace/index.html
+/docs/commands/workspace                    /docs/cli/commands/workspace/index.html
 /docs/commands/workspace/list.html          /docs/cli/commands/workspace/list.html
 /docs/commands/workspace/select.html        /docs/cli/commands/workspace/select.html
 /docs/commands/workspace/new.html           /docs/cli/commands/workspace/new.html
