@@ -870,6 +870,9 @@
 /docs/commands/graph.html                   /docs/cli/commands/graph.html
 /docs/commands/output.html                  /docs/cli/commands/output.html
 /docs/commands/show.html                    /docs/cli/commands/show.html
+/docs/commands/state/index.html             /docs/cli/commands/state/list.html
+/docs/commands/state/                       /docs/cli/commands/state/list.html
+/docs/commands/state                        /docs/cli/commands/state/list.html
 /docs/commands/state/list.html              /docs/cli/commands/state/list.html
 /docs/commands/state/show.html              /docs/cli/commands/state/show.html
 /docs/import/index.html                     /docs/cli/import/index.html
