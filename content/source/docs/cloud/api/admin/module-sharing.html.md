@@ -81,7 +81,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://tfe.example.com/api/v2/organizations/my-organization
+  https://tfe.example.com/api/v2/admin/organizations/my-organization/module-consumers
 ```
 
 ### Sample Response
