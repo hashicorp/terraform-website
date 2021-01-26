@@ -186,15 +186,7 @@ provided by AWS.
 
 The recommended way to deploy Terraform Enterprise is through use of a Terraform configuration
 that defines the required resources, their references to other resources, and associated
-dependencies. An [example Terraform
-configuration](https://github.com/hashicorp/private-terraform-enterprise/blob/master/examples/aws/pes/main.tf)
-is provided to demonstrate how these resources can be provisioned and how they
-interrelate. This Terraform configuration assumes the required networking
-components are already in place. If you are creating networking components for
-this installation, an [example Terraform configuration is available for
-the networking
-resources](https://github.com/hashicorp/private-terraform-enterprise/blob/master/examples/aws/network/main.tf)
-as well.
+dependencies.
 
 ## Normal Operation
 
