@@ -27,10 +27,13 @@ Terraform Enterprise can automatically generate a support bundle including logs 
 
 Diagnostic information is available via in the installer dashboard on port 8800 of your installation.
 
--> **Note**: For [Terraform Enterprise Active/Active](https://www.terraform.io/docs/enterprise/install/active-active.html) implementations in which the installer
-dashboard is disabled, support bundles can be generated for every node and then saved to the 
-configured object storage location by executing `tfe-admin support-bundle` command from the 
-command line on any node. 
+-> **Note**: For [Terraform Enterprise Active/Active](https://www.terraform.io/docs/enterprise/install/active-active.html) implementations the 
+installer dashboard is disabled. Support bundles can instead be generated and saved to the configured 
+object storage location by executing this command from the command line on a node instance:
+```
+tfe-admin support-bundle
+```
+This will create a support bundle from every node in the cluster.
 
 
 On the dashboard, click on the Support tab:
