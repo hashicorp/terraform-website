@@ -12,7 +12,7 @@ requirements must be met:
 
 * A PostgreSQL server such as Amazon RDS for PostgreSQL or a PostgreSQL-compatible server such as Amazon Aurora PostgreSQL must be used.
 * The PostgreSQL server version must be one of the following:
-  * 9.4, 9.5, 9.6, 10.x, 11.x.
+  * 9.6, 10.x, 11.x, 12.x
 * A PostgreSQL user must be created with the following permissions on the database:
   * The ability to create, modify, and read all tables and indices on all schemas within the database. Usually this is granted if the user is an owner of the database.
   * The ability to create extensions. If it is not feasible to have a user with the "CREATE EXTENSION" privilege, then refer to the [Creating Extensions](#creating-extensions) section below for information on creating the necessary extensions.
