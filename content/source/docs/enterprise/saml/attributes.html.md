@@ -66,3 +66,16 @@ There is a special-case role `site-admins` that will add a user as a site admin 
   </saml:Attribute>
 </saml:AttributeStatement>
 ```
+
+## IsServiceAccount
+
+If the `IsServiceAccount` (case-sensitive) attribute is present and `true` (case-insensitive), the system will mark the user as a service account.
+This will ensure API tokens created for this user will not expire as normal user account tokens expire when reaching the API token session timeout. 
+
+```xml
+<saml:AttributeStatement>
+  <saml:Attribute Name="IsServiceAccount">
+    <saml:AttributeValue xsi:type="xs:boolean">true</saml:AttributeValue>
+  </saml:Attribute>
+</saml:AttributeStatement>
+```
