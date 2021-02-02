@@ -227,15 +227,7 @@
 /docs/plugins/basics.html
 /docs/plugins/index.html
 /docs/plugins/provider.html
-/docs/providers/chef/index.html
-/docs/providers/cobbler/index.html
-/docs/providers/github/d/user.html
-/docs/providers/github/index.html
-/docs/providers/github/r/branch_protection.html
-/docs/providers/github/r/issue_label.html
-/docs/providers/github/r/repository.html
 /docs/providers/index.html
-/docs/providers/mysql/index.html
 /docs/providers/terraform/d/remote_state.html
 /docs/providers/terraform/index.html
 /docs/provisioners/chef.html

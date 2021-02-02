@@ -58,6 +58,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "cloudamqp" : "cloudamqp/cloudamqp"
     "cloudflare" : "cloudflare/cloudflare"
     "cloudscale" : "cloudscale-ch/cloudscale"
+    "cobbler" : "cobber/cobbler"
     "constellix" : "Constellix/constellix"
     "datadog" : "DataDog/datadog"
     "digitalocean" : "digitalocean/digitalocean"
@@ -85,6 +86,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "lacework" : "lacework/lacework"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
+    "logicmonitor" : "logicmonitor/logicmonitor"
     "mailgun" : "wgebis/mailgun"
     "mongodbatlas" : "mongodb/mongodbatlas"
     "mso" : "CiscoDevNet/mso"
@@ -115,6 +117,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "skytap" : "skytap/skytap"
     "spotinst" : "spotinst/spotinst"
     "stackpath" : "stackpath/stackpath" # unverified
+    "statuscake" : "StatusCakeDev/statuscake"
     "sumologic" : "SumoLogic/sumologic"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
     "triton" : "joyent/triton"
