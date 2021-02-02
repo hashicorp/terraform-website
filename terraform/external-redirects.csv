@@ -128,17 +128,6 @@ logentries - to github,/docs/providers/logentries/d/logentries_logset.html,https
 logentries - to github,/docs/providers/logentries/index.html,https://github.com/hashicorp/terraform-provider-logentries/blob/stable-website/website/docs/index.html.markdown
 logentries - to github,/docs/providers/logentries/r/log.html,https://github.com/hashicorp/terraform-provider-logentries/blob/stable-website/website/docs/r/log.html.markdown
 logentries - to github,/docs/providers/logentries/r/logset.html,https://github.com/hashicorp/terraform-provider-logentries/blob/stable-website/website/docs/r/logset.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/d/collectors.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/d/collectors.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/d/dashboard.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/d/dashboard.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/d/dashboardgroup.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/d/dashboardgroup.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/d/devicegroup.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/d/devicegroup.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/index.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/index.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/r/collector.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/r/collector.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/r/collectorgroup.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/r/collectorgroup.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/r/dashboard.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/r/dashboard.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/r/dashboardgroup.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/r/dashboardgroup.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/r/device.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/r/device.html.markdown
-logicmonitor - to github,/docs/providers/logicmonitor/r/devicegroup.html,https://github.com/hashicorp/terraform-provider-logicmonitor/blob/stable-website/website/docs/r/devicegroup.html.markdown
 netlify - to github,/docs/providers/netlify/index.html,https://github.com/hashicorp/terraform-provider-netlify/blob/stable-website/website/docs/index.html.markdown
 netlify - to github,/docs/providers/netlify/r/netlify_build_hook.html,https://github.com/hashicorp/terraform-provider-netlify/blob/stable-website/website/docs/r/netlify_build_hook.html.markdown
 netlify - to github,/docs/providers/netlify/r/netlify_deploy_key.html,https://github.com/hashicorp/terraform-provider-netlify/blob/stable-website/website/docs/r/netlify_deploy_key.html.markdown
@@ -205,8 +194,6 @@ runscope - to github,/docs/providers/runscope/r/test.html,https://github.com/has
 softlayer - to github,/docs/providers/softlayer/index.html,https://github.com/hashicorp/terraform-provider-softlayer/blob/stable-website/website/docs/index.html.markdown
 softlayer - to github,/docs/providers/softlayer/r/ssh_key.html,https://github.com/hashicorp/terraform-provider-softlayer/blob/stable-website/website/docs/r/ssh_key.html.markdown
 softlayer - to github,/docs/providers/softlayer/r/virtual_guest.html,https://github.com/hashicorp/terraform-provider-softlayer/blob/stable-website/website/docs/r/virtual_guest.html.markdown
-statuscake - to github,/docs/providers/statuscake/index.html,https://github.com/hashicorp/terraform-provider-statuscake/blob/stable-website/website/docs/index.html.markdown
-statuscake - to github,/docs/providers/statuscake/r/test.html,https://github.com/hashicorp/terraform-provider-statuscake/blob/stable-website/website/docs/r/test.html.markdown
 telefonicaopencloud - to github,/docs/providers/telefonicaopencloud/d/dns_zone_v2.html,https://github.com/hashicorp/terraform-provider-telefonicaopencloud/blob/stable-website/website/docs/d/dns_zone_v2.html.markdown
 telefonicaopencloud - to github,/docs/providers/telefonicaopencloud/d/networking_network_v2.html,https://github.com/hashicorp/terraform-provider-telefonicaopencloud/blob/stable-website/website/docs/d/networking_network_v2.html.markdown
 telefonicaopencloud - to github,/docs/providers/telefonicaopencloud/d/networking_secgroup_v2.html,https://github.com/hashicorp/terraform-provider-telefonicaopencloud/blob/stable-website/website/docs/d/networking_secgroup_v2.html.markdown
