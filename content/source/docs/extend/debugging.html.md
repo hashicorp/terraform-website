@@ -44,7 +44,7 @@ We recommend using the standard library `log` package to achieve this,
 via `log.Println` or `log.Printf` or similar functions.
 
 Log lines must be prefixed with the level of the log in square brackets. Valid
-levels are:
+levels, in decreasing order of severity, are:
 
 * ERROR
 * WARN
