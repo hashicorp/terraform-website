@@ -102,7 +102,7 @@ happening in the provider as part of the execution.
 
 Debugging is available for providers using Terraform Plugin SDK versions 2.0.0
 and above. The plugin must also be started in debug
-mode, called `plugin.Debug` instead of `plugin.Serve`. It is recommended you
+mode, called `plugin.Debug` instead of `plugin.Serve`. We recommend that you
 enable this using a flag, as the provider should use `plugin.Serve` under
 normal operation, when not being debugged.
 
