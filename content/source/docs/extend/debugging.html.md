@@ -36,7 +36,7 @@ Terraform providers all log to `stderr`. Any output to `stderr` will be passed
 over the gRPC protocol to Terraform, which will then write it to its
 destination.
 
-~> **NOTE:** Don't write to `stdout` on any Terraform providers! It can cause
+~> **Important:** Don't write to `stdout` on any Terraform providers! It can cause
    problems with our plugin system, which uses `stdout` as a communication
    channel.
 
