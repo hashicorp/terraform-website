@@ -106,8 +106,8 @@ happening in the provider as part of the execution.
 
 ### Enabling Debugging In A Provider
 
-Before a debugger can attach to a provider, the provider must be using version
-2.0.0 of the Terraform Plugin SDK. The plugin must also be started in debug
+Debugging is available for providers using Terraform Plugin SDK versions 2.0.0
+and above. The plugin must also be started in debug
 mode, called `plugin.Debug` instead of `plugin.Serve`. It is recommended you
 enable this using a flag, as the provider should use `plugin.Serve` under
 normal operation, when not being debugged.
