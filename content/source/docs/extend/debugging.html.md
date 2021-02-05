@@ -95,7 +95,7 @@ when a bug has been reliably reproduced. It does, however, enable developers to
 ask arbitrary questions and step through provider executions, exploring what is
 happening in the provider as part of the execution.
 
-~> **NOTE**: Debugger-based debugging only works with Terraform versions
+-> **Note**: Debugger-based debugging only works with Terraform versions
    0.12.26 and higher.
 
 ### Enabling Debugging In A Provider
