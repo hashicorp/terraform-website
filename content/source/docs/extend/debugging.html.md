@@ -84,16 +84,16 @@ to different levels. Set either to `off` to turn off its logging entirely.
 
 ## Debugger-Based Debugging
 
-Debugger-based debugging is a method of using debugging tools like
+Debugger-based debugging is a method of using a debugging tool similar to
 [delve](https://github.com/go-delve/delve) to inspect what is happening in a
 provider as it is happening, often using breakpoints to pause execution of the
 provider and examine the values of variables. This method of debugging must be
 done contemporaneously; the developer doing the debugging needs to actively run
 Terraform using the appropriate configuration and in the appropriate
 environment to induce the behavior being examined. It is therefore most useful
-when a bug has been reliably reproduced. It does, however, enable developers to
-ask arbitrary questions and step through provider executions, exploring what is
-happening in the provider as part of the execution.
+when a bug is reliably reproducible. This level of analysis enables developers to
+ask arbitrary questions and step through provider executions, allowing them to 
+explore what is happening in the provider during runtime.
 
 -> **Note**: Debugger-based debugging only works with Terraform versions
    0.12.26 and higher.
