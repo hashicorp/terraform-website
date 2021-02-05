@@ -8,12 +8,6 @@ description: |-
 
 # Debugging Providers
 
-Terraform's providers are complicated programs in their own right, and
-sometimes they don't end up working the way you expect them to. In those
-situations, it's not always obvious how to get information about what's
-actually happening inside a provider or why things are behaving the way they
-do.
-
 This guide documents a few different ways to access more information about the
 runtime operations of Terraform providers. It is intended for Terraform
 provider developers, though sufficiently advanced users may also be able to use
