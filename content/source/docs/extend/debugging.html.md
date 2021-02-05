@@ -40,8 +40,8 @@ destination.
    problems with our plugin system, which uses `stdout` as a communication
    channel.
 
-It is recommended to use the standard library `log` package to achieve this,
-using `log.Println` or `log.Printf` or similar functions.
+We recommend using the standard library `log` package to achieve this,
+via `log.Println` or `log.Printf` or similar functions.
 
 Log lines must be prefixed with the level of the log in square brackets. Valid
 levels are:
