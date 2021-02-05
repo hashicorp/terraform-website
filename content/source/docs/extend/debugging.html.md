@@ -128,7 +128,7 @@ func main() {
 }
 ```
 
-It is important that a provider only be started in debug mode when you intend
+It is important to start a provider in debug mode only when you intend
 to debug it, as its behavior will change in minor ways from normal operation of
 providers. The main differences are:
 
