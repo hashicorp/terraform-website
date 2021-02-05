@@ -77,10 +77,10 @@ truncated before log output is written.
 #### Separating Out Provider Logs
 
 Terraform can have some verbose logging and it can be difficult to parse log
-files when both Terraform and providers are writing to the same log file. To
-address this, following the 0.15.0 release of Terraform, the `TF_LOG_CORE`
-environment variable and `TF_LOG_PROVIDER` environment variable can now be set
-to different levels. Set either to `off` to turn off its logging entirely.
+files when both Terraform and providers are writing to the same log file. In
+Terraform 0.15.0 and later, you can address this by setting the `TF_LOG_CORE`
+and `TF_LOG_PROVIDER` environment variables to different log levels.
+Set either to `off` to turn off its logging entirely.
 
 ## Debugger-Based Debugging
 
