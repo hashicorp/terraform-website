@@ -50,10 +50,6 @@ When providing optional extra keyword parameters for the database connection,
 note an additional restriction on the `sslmode` parameter is that only the
 `require`, `verify-full`, `verify-ca`, and `disable` values are allowed. The default value of `sslmode` is set to `require` with _External Services_ installation or `disable` with *Demo* installation.
 
-<<<<<<< HEAD
 -> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/9.6/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt`, which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting.
 
 -> **Note:** The [Client Certificates](https://www.postgresql.org/docs/9.6/libpq-ssl.html) configuration is currently not supported by Terraform Enterprise due to the limitation of storing certificate files for the `sslcert`, and `sslkey` connection paramters.
-=======
--> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/9.6/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt`, which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting, however, Terraform Enterprise currently does **not** support the client-side certificate parameters `sslcert` and `sslkey`.
->>>>>>> 856d27d99dc5dacecd41ff00e9dd7b21fee25a30
