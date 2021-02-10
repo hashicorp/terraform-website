@@ -60,7 +60,21 @@ Most of the organization settings are documented near the specific workflows the
 
 The general settings page is shown to all users in an organization, and displays the organization's name and contact email.
 
-Organization owners can use this page to update the organization's contact email or delete the organization.
+Organization owners can use this page to change the organization's name and contact email or delete the organization.
+
+#### Renaming an Organization
+
+!> **Warning:** Renaming an organization can be very disruptive. With the exception of new organizations with no collaborators, we strongly recommend against renaming organizations.
+
+To rename a new organization with few or no collaborators, make sure there are no runs in progress and then update the name on the general settings page. Renaming a brand new organization is generally harmless and non-disruptive.
+
+To rename an organization that is already managing significant infrastructure, you must:
+
+1. Alert all members of the organization ahead of time, so they're prepared for the disruption.
+1. Lock all workspaces, and bring all current and pending runs to an end (by cancelling them or by waiting for them to finish). For your protection, Terraform Cloud won't change the name of an organization with runs in progress; locking workspaces ensures no new runs will start before you attempt to change the name.
+1. Rename the organization.
+1. Update anything that uses Terraform Cloud's API with the organization to use its new name. This includes Terraform's `remote` backend, the `tfe` Terraform provider, and any external API integrations.
+1. Unlock workspaces and resume normal operations.
 
 ### Plan & Billing
 
