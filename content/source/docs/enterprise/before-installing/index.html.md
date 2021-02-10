@@ -163,6 +163,8 @@ At a minimum, Terraform Enterprise requires the following S3 permissions:
     ]
 }
 ```
+-> **Note:** The `s3:ListAllMyBuckets` permission is necessary when testing authentication via the Replicated web console. However, the permission is not required for Terraform Enterprise to function and can be removed once the authentication is successfully tested.
+
 
 #### KMS Policy
 
