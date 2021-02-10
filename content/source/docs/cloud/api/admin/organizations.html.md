@@ -101,6 +101,11 @@ curl \
         },
         "feature-set": {
           "data": null
+        },
+        "module-consumers": {
+          "links": {
+            "related": "/api/v2/admin/organizations/my-organization/relationships/module-consumers"
+          }
         }
       },
       "links": {
@@ -196,6 +201,11 @@ curl \
       },
       "feature-set": {
         "data": null
+      },
+      "module-consumers": {
+        "links": {
+          "related": "/api/v2/admin/organizations/my-organization/relationships/module-consumers"
+        }
       }
     },
     "links": {
@@ -290,6 +300,11 @@ curl \
       },
       "feature-set": {
         "data": null
+      },
+      "module-consumers": {
+        "links": {
+          "related": "/api/v2/admin/organizations/my-organization/relationships/module-consumers"
+        }
       }
     },
     "links": {
