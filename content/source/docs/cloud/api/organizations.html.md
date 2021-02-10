@@ -121,6 +121,91 @@ curl \
 }
 ```
 
+_Terraform Enterprise_
+
+In Terraform Enterprise there is an additional relationship returned for module-producers:
+
+```json
+{
+  "data": [
+    {
+      "id": "hashicorp",
+      "type": "organizations",
+      "attributes": {
+        "name": "hashicorp",
+        "cost-estimation-enabled": true,
+        "created-at": "2017-09-07T14:34:40.492Z",
+        "email": "user@example.com",
+        "session-timeout": null,
+        "session-remember": null,
+        "collaborator-auth-policy": "password",
+        "plan-expired": false,
+        "plan-expires-at": null,
+        "plan-is-trial": false,
+        "plan-is-enterprise": false,
+        "permissions": {
+          "can-update": true,
+          "can-destroy": true,
+          "can-access-via-teams": true,
+          "can-create-module": true,
+          "can-create-team": true,
+          "can-create-workspace": true,
+          "can-manage-users": true,
+          "can-manage-subscription": true,
+          "can-manage-sso": false,
+          "can-update-oauth": true,
+          "can-update-sentinel": true,
+          "can-update-ssh-keys": true,
+          "can-update-api-token": true,
+          "can-traverse": true,
+          "can-start-trial": false,
+          "can-update-agent-pools": false
+        },
+        "fair-run-queuing-enabled": true,
+        "saml-enabled": false,
+        "owners-team-saml-role-id": null,
+        "two-factor-conformant": true
+      },
+      "relationships": {
+        "oauth-tokens": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/oauth-tokens"
+          }
+        },
+        "authentication-token": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/authentication-token"
+          }
+        },
+        "entitlement-set": {
+          "data": {
+            "id": "org-MxtxBC6ihhU6u8AG",
+            "type": "entitlement-sets"
+          },
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/entitlement-set"
+          }
+        },
+        "subscription": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/subscription"
+          }
+        },
+        "module-producers": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/relationships/module-producers"
+          }
+        }
+      },
+      "links": {
+        "self": "/api/v2/organizations/hashicorp"
+      }
+    }
+  ]
+}
+
+```
+
 ## Show an Organization
 
 `GET /organizations/:organization_name`
