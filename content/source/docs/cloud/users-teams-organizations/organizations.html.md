@@ -100,7 +100,7 @@ User invitations are always sent by email; you cannot invite someone using their
 
 ### Teams
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The teams page is shown to all users in an organization.
 
@@ -134,7 +134,7 @@ The SSH keys page manages any keys necessary for cloning Git-based module source
 
 ### Cost Estimation
 
--> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The Cost Estimation page allows for enabling and disabling the [cost estimation](../cost-estimation/index.html) feature for all workspaces.
 
@@ -144,7 +144,7 @@ The policies page is a deprecated interface for managing Sentinel policies. Use 
 
 ### Policy Sets
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces. It is available to users with permission to manage policies. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
