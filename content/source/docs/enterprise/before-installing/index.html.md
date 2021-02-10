@@ -163,7 +163,7 @@ At a minimum, Terraform Enterprise requires the following S3 permissions:
     ]
 }
 ```
--> **Note:** During the interactive installation Replicated (TFE setup dashboard) can execute S3 access tests that will be perfomed using `ListAllMyBuckets` action. And, as a result - require additional permission added *temporary* to the policy above - **ListAllMyBuckets**. Later, in operations Terraform Enterprise not require this permission.  
+-> **Note:** The `s3:ListAllMyBuckets` permission is necessary when testing authentication via the Replicated web console. However, the permission is not required for Terraform Enterprise to function and can be removed once the authentication is successfully tested.
 
 
 #### KMS Policy
