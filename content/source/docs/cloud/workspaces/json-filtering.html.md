@@ -41,7 +41,8 @@ Selectors allow you to pick an index out of a JSON object, and are written as
 `{"foo": {"bar": "baz"}}`, and the filter `.foo.bar`, the result would be
 displayed as `"baz"`.
 
-A single dot (`.`) without anything else always denotes the current context
+A single dot (`.`) without anything else always denotes the current value,
+unaltered.
 
 ### Indexes
 
@@ -67,7 +68,7 @@ same rules applied, with the first character of the string being index 0.
 Iterators can iterate over arrays and objects. The syntax is `[]`.
 
 Iterators iterate over the _values_ of an object only. So given a object of
-`{"foo": 1, "bar": 2}`, the filter .[] would yield an iteration of `1, 2`.
+`{"foo": 1, "bar": 2}`, the filter `.[]` would yield an iteration of `1, 2`.
 
 Note that iteration results are not necessarily always arrays. Iterators are
 handled in a special fashion when dealing with pipes and object creators (see
@@ -75,12 +76,12 @@ below).
 
 ### Array Construction
 
-Wrapping an expression in brackets `[]` creates an array with the
+Wrapping an expression in brackets (`[ ... ]`) creates an array with the
 sub-expressions inside the array. The results are always concatenated.
 
 For example, for an object of `{"foo": [1, 2], "bar": [3, 4]}`, the construction
 expressions `[.foo[], .bar[]]` and `[.[][]]`, are the same, producing the
-resulting array [1, 2, 3, 4].
+resulting array `[1, 2, 3, 4]`.
 
 ### Object Construction
 
