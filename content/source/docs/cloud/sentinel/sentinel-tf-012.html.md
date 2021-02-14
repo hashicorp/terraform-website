@@ -172,7 +172,7 @@ following exceptions:
 
 Unknown values within `applied` in the
 [resource namespace](./import/tfplan.html#namespace-resources-data-sources)
-no longer return interpolated values, or the magic UUID (defined as
+no longer return values with interpolation sequences, or the magic UUID (defined as
 `74D93920-ED26-11E3-AC10-0800200C9A66` in Terraform 0.11 or earlier). Instead,
 unknown values are now returned as `undefined`.
 
