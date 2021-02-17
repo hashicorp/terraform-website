@@ -44,11 +44,12 @@ Status  | Response                                        | Reason
 
 [These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
-Parameter           | Description
---------------------|------------
-`q`                 | **Optional.** A search query string. Organizations are searchable by name and notification email.
-`page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
-`page[size]`        | **Optional.** If omitted, the endpoint will return 20 organizations per page.
+Parameter                 | Description
+--------------------------|------------
+`q`                       | **Optional.** A search query string. Organizations are searchable by name and notification email.
+`filter[module_producer]` | **Optional.** Allows filtering organizations based on their module sharing configuration. Accepts a boolean true/false value. A `true` value returns organizations that are configured to share their modules, and a `false` value returns organizations that are not configured to share their modules. This option is available in Terraform Enterprise v202103-1 or later.
+`page[number]`            | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`              | **Optional.** If omitted, the endpoint will return 20 organizations per page.
 
 ### Available Related Resources
 
