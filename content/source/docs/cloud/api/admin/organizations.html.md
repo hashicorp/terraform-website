@@ -46,7 +46,9 @@ Status  | Response                                        | Reason
 
 Parameter                 | Description
 --------------------------|------------
-`q`                       | **Optional.** A search query string. Organizations are searchable by name and notification email.
+`q`                       | **Optional.** A search query string. Organizations are searchable by name and notification email. This takes precidence over the attribute specific searches `q[email]` or `q[name]`.
+`q[email]`                | **Optional.** A search query string. This will search organizations by notification email. If used with `q[name]`, it will return organizations that match both queries. This option is available in Terraform Enterprise v202103-1 or later.
+`q[name]`                 | **Optional.** A search query string. This will search organizations by name. If used with `q[email]`, it will return organizations that match both queries. This option is available in Terraform Enterprise v202103-1 or later.
 `filter[module_producer]` | **Optional.** Allows filtering organizations based on their module sharing configuration. Accepts a boolean true/false value. A `true` value returns organizations that are configured to share their modules, and a `false` value returns organizations that are not configured to share their modules. This option is available in Terraform Enterprise v202103-1 or later.
 `page[number]`            | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`              | **Optional.** If omitted, the endpoint will return 20 organizations per page.
