@@ -48,7 +48,7 @@ There are two new considerations when thinking about ingress and egress:
 
 
 *   **Port 6379** (or the port the external Redis will be configured to use below) must be open between the instances and the Redis service
-*   **Ports 8201** must be open between the instances to allow Vault to run in [High Availability](https://www.vaultproject.io/docs/internals/high-availability) mode
+*   **Port 8201** must be open between the instances to allow Vault to run in [High Availability](https://www.vaultproject.io/docs/internals/high-availability) mode
 *   **Port 8800** should be closed; since the admin dashboard is no longer available when running multiple nodes
 
 
