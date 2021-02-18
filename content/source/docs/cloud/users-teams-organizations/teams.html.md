@@ -121,7 +121,7 @@ Organization-level permissions (see [Managing Organization Access](./teams.html#
 
 ## Managing Organization Access
 
-A team can be granted permissions to manage policies, workspaces, and/or VCS settings across an organization.
+A team can be granted permissions to manage policies, workspaces, VCS settings, and/or policy overrides across an organization.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 

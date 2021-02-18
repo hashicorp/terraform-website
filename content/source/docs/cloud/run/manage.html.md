@@ -44,7 +44,7 @@ Button              | Available when:
 --------------------|----------------
 Add Comment         | Always.
 Confirm & Apply     | A plan needs confirmation.
-Override & Continue | A soft-mandatory policy failed. Requires permission to manage policies for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+Override & Continue | A soft-mandatory policy failed. Requires permission to manage policy overrides for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 Discard Run         | A plan needs confirmation or a soft-mandatory policy failed.
 Cancel Run          | A plan or apply is currently running.
 Force Cancel Run    | A plan or apply was canceled, but something went wrong and Terraform Cloud couldn't end the run gracefully. Requires admin access to the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
