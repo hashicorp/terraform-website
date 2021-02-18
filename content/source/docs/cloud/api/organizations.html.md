@@ -558,7 +558,7 @@ curl \
 
 ~> **Note:** This endpoint is available in Terraform Enterprise v202103-1 or later. It is not available on Terraform Cloud.
 
-This endpoint shows organizations that are configured to share modules with an organization through [Module Sharing](/docs/cloud/api/admin/module-sharing.html).
+This endpoint shows organizations that are configured to share modules with an organization through [Module Sharing](/docs/enterprise/admin/module-sharing.html).
 
 `GET /organizations/:organization_name/relationships/module-producers`
 
