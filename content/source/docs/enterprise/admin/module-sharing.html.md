@@ -14,7 +14,7 @@ There are two ways to share modules between organizations:
 
 **Note:** The two sharing options are mutually exclusive, so turning one on will turn the other one off. This means that if you have configured a set of module partnerships for an organization, they will be lost if you switch that organization to use global module sharing.
 
--> **API:** See the [Admin Organizations API](/docs/cloud/api/admin/organizations.html), and [Admin Module Sharing API](/docs/cloud/api/admin/module-sharing.html).
+-> **API:** See the [Admin Organizations Update API](/docs/cloud/api/admin/organizations.html#update-an-organization), and [Admin Organizations Module Consumer API](/docs/cloud/api/admin/organizations.html#update-an-organization-39-s-module-consumers).
 
 ## Managing Shared Registries
 

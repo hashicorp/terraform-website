@@ -28,7 +28,7 @@ page_title: "Organizations - Admin - API Docs - Terraform Enterprise"
 
 The Organizations Admin API contains endpoints to help site administrators manage organizations.
 
-## List all organizations
+## List all Organizations
 
 `GET /admin/organizations`
 
@@ -140,7 +140,7 @@ curl \
 }
 ```
 
-## Show an organization
+## Show an Organization
 
 `GET /admin/organizations/:name`
 
@@ -220,11 +220,11 @@ curl \
 
 ## Update an Organization
 
-`PATCH /admin/organizations/:organization_name`
+`PATCH /admin/organizations/:name`
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to update
+`:name`              | The name of the organization to update
 
 Status  | Response                                        | Reason
 --------|-------------------------------------------------|----------
@@ -241,7 +241,7 @@ Key path                                               | Type    | Default   | D
 -------------------------------------------------------|---------|-----------|------------
 `data.type`                                            | string  |           | Must be `"organizations"`
 `data.attributes.access-beta-tools`                    | boolean | false     | Whether or not workspaces in the organization can be configured to use beta versions of Terraform.
-`data.attributes.global-module-sharing`                | boolean | false     | If true, modules in the organization's private module repository will be available to all other organizations in this TFE instance. Enabling this will disable any previously configured [module consumers](./module-sharing.html).
+`data.attributes.global-module-sharing`                | boolean | false     | If true, modules in the organization's private module repository will be available to all other organizations in this TFE instance. Enabling this will disable any previously configured [module consumers](#list-module-consumers-for-an-organization).
 `data.attributes.is-disabled`                          | boolean | false     | Disabling the organization will remove all permissions and no longer be accessible to users.
 `data.attributes.terraform-build-worker-apply-timeout` | string  | 24h       | Maximum run time for Terraform applies for this organization. Will use the configured global defaults if left unset. Specify a duration with a decimal number and a unit suffix.
 `data.attributes.terraform-build-worker-plan-timeout`  | string  | 2h        | Maximum run time for Terraform plans for this organization. Will use the configured global defaults if left unset. Specify a duration with a decimal number and a unit suffix.
@@ -317,7 +317,7 @@ curl \
 }
 ```
 
-## Delete an organization
+## Delete an Organization
 
 `DELETE /admin/organizations/:name`
 
@@ -351,7 +351,7 @@ This endpoint lists specific organizations in the Terraform Enterprise installat
 
 Parameter  | Description
 -----------|------------
-`:name`    | The name of the organization whose registry is being shared
+`:name`    | The name of the organization whose module consumers should be listed
 
 Status  | Response                                        | Reason
 --------|-------------------------------------------------|----------
