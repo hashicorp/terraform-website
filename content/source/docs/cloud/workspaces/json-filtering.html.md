@@ -11,6 +11,8 @@ viewer](/docs/cloud/sentinel/json.html), allow you to filter the results. This
 enables you to see just the data you need, and even create entirely new datasets
 to see data in the way you want to see it!
 
+![entering a json filter](/assets/images/guides/sentinel/json-viewer-intro.png)
+
 -> **NOTE:** _Filtering_ the data in the JSON viewer is separate from
 _searching_ it. To search, press Control-F (or Command-F on MacOS). You can
 search and apply a filter at the same time.
@@ -22,6 +24,8 @@ the JSON viewer. After entering the filter, pressing **Apply** or the enter key
 on your keyboard will apply the filter. The filtered results, if any, are
 displayed in result box. Clearing the filter will restore the original JSON
 data.
+
+![entering a json filter](/assets/images/guides/sentinel/sentinel-json-enter-filter.png)
 
 ## Filter Language
 

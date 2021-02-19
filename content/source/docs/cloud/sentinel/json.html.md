@@ -29,6 +29,8 @@ page](/docs/cloud/run/manage.html) if it is not already expanded. The logs are
 always displayed first, so click the **View JSON Data** button to view the JSON
 data. You can click the **View Logs** button to switch back to the log view.
 
+![viewing json data](/assets/images/guides/sentinel/sentinel-view-json.png)
+
 ## Filtering JSON Data
 
 The JSON data is filterable using a [jq](https://stedolan.github.io/jq/)-subset
@@ -42,9 +44,13 @@ on your keyboard will apply the filter. The filtered results, if any, are
 displayed in result box. Clearing the filter will restore the original JSON
 data.
 
+![entering a json filter](/assets/images/guides/sentinel/sentinel-json-enter-filter.png)
+
 ### Quick-Filtering `main` Rules
 
 Clicking the **Filter "main" rules** button will quickly apply a filter that
 shows you the results of the `main` rule for every policy in the policy set. You
 can use this to quickly get the results of each policy in the set, without
 having navigate through the rest of the policy result data.
+
+![using the quick filter](/assets/images/guides/sentinel/sentinel-json-quick-filter.png)
