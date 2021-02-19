@@ -114,7 +114,7 @@ Terraform Cloud performs Terraform runs on disposable Linux worker VMs using a P
 
 Terraform Cloud uses some special environment variables to control dangerous or rarely used run behaviors.
 
-- `TFE_PARALLELISM` — If present, Terraform Cloud uses this to set `terraform apply`'s `-parallelism=<N>` flag ([more info](/docs/internals/graph.html#walking-the-graph)). Valid values are between 1 and 256, inclusive; the default is `10`. This is rarely necessary, but can fix problems with infrastructure providers that error on concurrent operations or use non-standard rate limiting. We recommend talking to HashiCorp support before using this.
+- `TFE_PARALLELISM` — If present, Terraform Cloud uses this to set `terraform plan` and `terraform apply`'s `-parallelism=<N>` flag ([more info](/docs/internals/graph.html#walking-the-graph)). Valid values are between 1 and 256, inclusive; the default is `10`. This is rarely necessary, but can fix problems with infrastructure providers that error on concurrent operations or use non-standard rate limiting. We recommend talking to HashiCorp support before using this.
 
 ### Secure Storage of Variables
 
