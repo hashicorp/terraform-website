@@ -147,18 +147,19 @@ run, specifying whatever flags, environment variables, or other input is
 necessary to start your provider in debug mode:
 
 ```sh
-$ dlv exec --headless ./terraform-provider-my-provider -- --debug
+$ dlv exec --headless --accept-multiclient --continue ./terraform-provider-my-provider -- --debug
 ```
 
-Connect your debugger (whether it's your IDE or the debugger client) to the
-debugger server. Have it continue execution (it pauses the process by default)
-and it will print output like the following to `stdout`:
+The debug flag matches the one specified in your `main.go`.
+It will print output like the following to `stdout`:
 
 ```
 Provider started, to attach Terraform set the TF_REATTACH_PROVIDERS env var:
 
         TF_REATTACH_PROVIDERS='{"registry.terraform.io/my-org/my-provider":{"Protocol":"grpc","Pid":3382870,"Test":true,"Addr":{"Network":"unix","String":"/tmp/plugin713096927"}}}'
 ```
+
+Connect your debugger (whether it's your IDE or the debugger client) to the debugger server.
 
 ### Running Terraform With A Provider In Debug Mode
 
