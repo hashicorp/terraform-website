@@ -5,6 +5,8 @@ page_title: "Terraform Cloud Agents - Terraform Cloud and Terraform Enterprise"
 
 # Terraform Cloud Agents
 
+> **Hands-on:** Try the [Manage Private Environments with Terraform Cloud Agents](https://learn.hashicorp.com/tutorials/terraform/cloud-agents?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+
 -> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/). The number of agents you are eligible to deploy is determined by the number of concurrent runs your organization is entitled to.
 
 Terraform Cloud Agents allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure. By deploying lightweight agents within a specific network segment, you can establish a simple connection between your environment and Terraform Cloud which allows for provisioning operations and management. This is useful for on-premises infrastructure types such as vSphere, Nutanix, OpenStack, enterprise networking providers, and anything you might have in a protected enclave.
