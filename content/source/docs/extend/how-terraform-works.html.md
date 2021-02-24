@@ -107,9 +107,6 @@ and chooses a version for each plugin as follows:
   [providers distributed by HashiCorp](/docs/providers/index.html),
   Terraform downloads the newest acceptable version from
   releases.hashicorp.com and saves it in `.terraform/plugins/<OS>_<ARCH>`.
-
-    - This step is skipped if `terraform init` is run with the
-      `-plugin-dir=<PATH>` or `-get-plugins=false` options.
 - If no acceptable versions are installed and the plugin is not distributed
   by HashiCorp, initialization fails and the user must manually install an
   appropriate version.
