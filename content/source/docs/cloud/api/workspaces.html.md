@@ -1526,6 +1526,8 @@ Status code `204`.
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
 
 * `organization` - The full organization record.
+* `current_configuration_version` - The last configuration this workspace received, excluding plan-only configurations. If you start a run without providing a different configuration, it will use this one.
+* `current_configuration_version.ingress_attributes` - The commit information for the current configuration version.
 * `current_run` - Additional information about the current run.
 * `current_run.plan` - The plan used in the current run.
 * `current_run.configuration_version` - The configuration used in the current run.
