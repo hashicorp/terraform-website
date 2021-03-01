@@ -21,19 +21,22 @@ version. [Learn more about availability during upgrades here](../system-overview
 
 1. Login to a command line terminal of the Terraform Enterprise host machine.
 1. Execute the command below to fetch the versions of Terraform Enterprise.
+   
     ```
     replicatedctl app-release ls --fetch
     ```
+
 1. In order to upgrade to the latest version of Terraform Enterprise, execute command below:
-   ```
-   replicatedctl app-release apply
-   ```
+   
+    ```
+    replicatedctl app-release apply
+    ```
 
-   Alternatively, execute the command below to upgrade to a specific version of Terraform Enterprise:
+    Alternatively, execute the command below to upgrade to a specific version of Terraform Enterprise:
 
-   ```
-   replicatedctl app-release apply --sequence "504"
-   ```
+    ```
+    replicatedctl app-release apply --sequence "504"
+    ```
 
 ## Airgapped
 
@@ -66,18 +69,18 @@ version. [Learn more about availability during upgrades here](../system-overview
 
 1. Execute the command below to list the available versions of Terraform Enterprise:
    
-   ```
-   replicatedctl app-release ls
-   ```
+    ```
+    replicatedctl app-release ls
+    ```
 
 1. In order to upgrade to the latest version of the available airgap packages, execute command below:
    
-   ```
-   replicatedctl app-release apply
-   ```
+    ```
+    replicatedctl app-release apply
+    ```
 
-   Alternatively, execute the command below to upgrade to a specific version of the available airgap packages:
+    Alternatively, execute the command below to upgrade to a specific version of the available airgap packages, the sequence numbers are available in the output of the command `replicatedctl app-release ls` above:
 
-   ```
-   replicatedctl app-release apply --sequence "504"
-   ```
+    ```
+    replicatedctl app-release apply --sequence "504"
+    ```
