@@ -20,7 +20,7 @@ page_title: "IP Ranges - API Docs - Terraform Cloud and Terraform Enterprise"
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [If-Modified-Since]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 [CIDR Notation]: https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation
 
 # IP Ranges API
