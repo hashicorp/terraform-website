@@ -22,7 +22,7 @@ page_title: "Audit Trails - API Docs - Terraform Cloud"
 
 # Audit Trails API
 
--> **Note:** Audit trails are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Audit trails are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 -> **Note:** This endpoint cannot be accessed with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens). You must access it with an [organization token](../users-teams-organizations/api-tokens.html#organization-api-tokens).
 

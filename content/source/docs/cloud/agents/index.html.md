@@ -7,7 +7,7 @@ page_title: "Terraform Cloud Agents - Terraform Cloud and Terraform Enterprise"
 
 > **Hands-on:** Try the [Manage Private Environments with Terraform Cloud Agents](https://learn.hashicorp.com/tutorials/terraform/cloud-agents?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
--> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/). The number of agents you are eligible to deploy is determined by the number of concurrent runs your organization is entitled to.
+-> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing). The number of agents you are eligible to deploy is determined by the number of concurrent runs your organization is entitled to.
 
 Terraform Cloud Agents allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure. By deploying lightweight agents within a specific network segment, you can establish a simple connection between your environment and Terraform Cloud which allows for provisioning operations and management. This is useful for on-premises infrastructure types such as vSphere, Nutanix, OpenStack, enterprise networking providers, and anything you might have in a protected enclave.
 
@@ -217,7 +217,7 @@ Agent status appear on the **Organization Settings > Agents** page and will cont
 
 Agents are considered active and count towards the organization's purchased agent capacity if they are in the **Idle**, **Busy**, or **Unknown** state. Agents which are in the **Errored** or **Exited** state do not count towards the organization's total agent capacity.
 
-The number of active agents you are eligible to deploy is determined by the number of Concurrent Runs your organization is entitled to. Agents are available as part of the [Terraform Cloud Business] (https://www.hashicorp.com/products/terraform/pricing/) tier.
+The number of active agents you are eligible to deploy is determined by the number of Concurrent Runs your organization is entitled to. Agents are available as part of the [Terraform Cloud Business] (https://www.hashicorp.com/products/terraform/pricing) tier.
 
 Agents in the **Unknown** state continue to be counted against the organization's total agent allowance, as this status is typically an indicator of a temporary communication issue between the agent and Terraform Cloud. **Unknown** agents which do not respond after a period of 2 hours will automatically transition to an **Errored** state, at which point they will not count against the agent allowance.
 

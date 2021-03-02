@@ -22,7 +22,7 @@ page_title: "Team Membership - API Docs - Terraform Cloud and Terraform Enterpri
 
 # Team Membership API
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations can also use this API, but can only manage membership of their owners team. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations can also use this API, but can only manage membership of their owners team. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The Team Membership API is used to add or remove users from teams. The [Team API](./teams.html) is used to create or destroy teams.
 
