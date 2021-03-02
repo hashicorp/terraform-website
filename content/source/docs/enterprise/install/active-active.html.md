@@ -15,7 +15,7 @@ However, the benefits that come with the Active/Active architecture need to be w
 *   Observability concerns when monitoring multiple instances
 *   Custom automation required to manage the lifecycle of application nodes
 
--> **Note**: Please contact your Technical Account Manager before attempting to follow this guide. They will be able to walk you through the process to make it as seamless as possible.
+-> **Note**: Please contact your Customer Success Manager before attempting to follow this guide. They will be able to walk you through the process to make it as seamless as possible.
 
 
 ### Prerequisite
