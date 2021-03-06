@@ -30,12 +30,12 @@ This page lists some example policies. These examples are not exhaustive, but th
 * [Restrict VM images](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-vm-image-id.sentinel)
 * [Restrict the size of Azure VMs](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-vm-size.sentinel)
 * [Enforce limits on AKS clusters](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-aks-clusters.sentinel)
-* [Restict CIDR blocks of security groups](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-source-address-prefixes.sentinel)
+* [Restict CIDR blocks of security groups](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-inbound-source-address-prefixes.sentinel)
 
 ### Google Cloud Platform
 
 * [Enforce mandatory labels on VMs](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/gcp/enforce-mandatory-labels.sentinel)
-* [Disallow 0.0.0.0/0 CIDR block in network firewalls](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/gcp/restrict-firewall-source-ranges.sentinel)
+* [Disallow 0.0.0.0/0 CIDR block in network firewalls](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/gcp/restrict-ingress-firewall-source-ranges.sentinel)
 * [Enforce limits on GKE clusters](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/gcp/restrict-gke-clusters.sentinel)
 * [Restrict machine type of VMs](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/gcp/restrict-gce-machine-type.sentinel)
 
