@@ -17,7 +17,7 @@ The agent architecture is pull-based, so no inbound connectivity is required. An
 
 ### Supported Operating Systems
 
-[Agents](https://releases.hashicorp.com/tfc-agent) currently only support 64 bit Linux operating systems. You can also run the agent within Docker using our official [Terraform Agent Docker container](https://hub.docker.com/r/hashicorp/tfc-agent).
+[Agents](https://releases.hashicorp.com/tfc-agent/) currently only support 64 bit Linux operating systems. You can also run the agent within Docker using our official [Terraform Agent Docker container](https://hub.docker.com/r/hashicorp/tfc-agent).
 
 ### Supported Terraform Versions
 
@@ -125,7 +125,7 @@ The agent software runs on your own infrastructure. Agent pool membership is det
 
 ### Download and Install the Agent
 
-1. Download the latest [agent release](https://releases.hashicorp.com/tfc-agent), the associated checksum file (.SHA256sums), and the checksum signature (.sig).
+1. Download the latest [agent release](https://releases.hashicorp.com/tfc-agent/), the associated checksum file (.SHA256sums), and the checksum signature (.sig).
 1. Verify the integrity of the downloaded archive, as well as the signature of the `SHA256SUMS` file using the instructions available on [HashiCorp's security page](https://www.hashicorp.com/security).
 1. Extract the release archive. The `unzip` utility is available on most Linux distributions and may be invoked as `unzip <archive file>`. Two individual binaries will be extracted (`tfc-agent` and `tfc-agent-core`). These binaries _must_ reside in the same directory for the agent to function properly.
 
