@@ -273,7 +273,7 @@ main = rule {
 Note that _nested blocks_, sometimes known as _sub-resources_, will be nested in
 configuration as as list of blocks (reflecting their ultimate nature as a list
 of objects). An example would be the `aws_instance` resource's
-[`ebs_block_device`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#block-devices) block:
+[`ebs_block_device`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs-ephemeral-and-root-block-devices) block:
 
 ```
 import "tfconfig/v2" as tfconfig
