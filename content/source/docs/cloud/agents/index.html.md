@@ -54,7 +54,7 @@ Agents should be considered a global resource within an organization. Once confi
 
 Agents are designed to allow you to run Terraform operations from a Terraform Cloud workspace on your private infrastructure. The following use cases are not supported by agents:
 
-- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http/)
+- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http)
 - Connecting Terraform Cloud workspaces to private VCS repositories
 
 For these use cases, we recommend you leverage the information provided by the [IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html) to permit direct communication from the appropriate Terraform Cloud service to your internal infrastructure.

@@ -100,7 +100,7 @@ When no `source` line is specified, a policy file matching the name of the polic
 
 Terraform Cloud has support for Sentinel's modules feature. This allows you to write re-usable policy code that can be imported from within several policies as once, reducing the amount of boilerplate from within a policy itself.
 
--> **NOTE:** We recommend you read the [Sentinel runtime's modules documentation](https://docs.hashicorp.com/sentinel/extending/modules/) in order to understand how to fully use modules within Sentinel. Note that the configuration examples in the runtime documentation pertain to the Sentinel CLI and not Terraform Cloud. HCL-based configuration will be coming to the Sentinel CLI in future releases, at which point in time both Sentinel and TFC configurations will be much more similar.
+-> **NOTE:** We recommend you read the [Sentinel runtime's modules documentation](https://docs.hashicorp.com/sentinel/extending/modules) in order to understand how to fully use modules within Sentinel. Note that the configuration examples in the runtime documentation pertain to the Sentinel CLI and not Terraform Cloud. HCL-based configuration will be coming to the Sentinel CLI in future releases, at which point in time both Sentinel and TFC configurations will be much more similar.
 
 To configure a module, add a `module` entry to your `sentinel.hcl` file:
 
@@ -166,11 +166,11 @@ main = rule {
 }
 ```
 
-In the example above we have used a [rule expression](https://docs.hashicorp.com/sentinel/language/spec/#rule-expressions) with the `when` predicate. If the value of `tfrun.workspace.auto_apply` is false, the rule will not be evaluated and return true
+In the example above we have used a [rule expression](https://docs.hashicorp.com/sentinel/language/spec#rule-expressions) with the `when` predicate. If the value of `tfrun.workspace.auto_apply` is false, the rule will not be evaluated and return true
 
-For a more robust or flexible policy, we could expand the enforcement logic to also restrict provisioning to occur out of hours using the [time.hour](https://docs.hashicorp.com/sentinel/imports/time/#time-hour) function.
+For a more robust or flexible policy, we could expand the enforcement logic to also restrict provisioning to occur out of hours using the [time.hour](https://docs.hashicorp.com/sentinel/imports/time#time-hour) function.
 
-The above examples use parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/).
+The above examples use parameters to to facilitate module reuse within Terraform. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters).
 
 ## Managing Policy Sets
 
@@ -191,7 +191,7 @@ When creating or editing a policy set, the following fields are available:
 - **VCS Branch**: This field allows specifying the branch within a VCS repository from which to import new versions of policies. If left blank, the value your version control provides as the default branch of the VCS repository is used.
 - **Policies Path**: This field allows specifying a sub-directory within a VCS repository for the policy set files. This allows maintaining multiple policy sets within a single repository. The value of this field should be the path to the directory containing the `sentinel.hcl` configuration file of the policy set you wish to configure. If left blank, the root of the repository is used. A leading `/` may be used, but is optional (relative paths are assumed to originate from the root of the repository).
 - **Workspaces:** Which workspaces the policy set should be enforced on. This is only shown when the scope of policies is set to "Policies enforced on selected workspaces." Use the drop-down menu and "Add workspace" button to add workspaces, and the trash can (🗑) button to remove them.
-- **Parameters:** A list of key/value parameters that will be sent to the Sentinel runtime when a policy check is being performed for the policy set. If the value can be parsed as JSON, it will be sent to Sentinel as the corresponding type (string, boolean, integer, map or list). If it fails JSON validation, it will be sent as a string. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters/).
+- **Parameters:** A list of key/value parameters that will be sent to the Sentinel runtime when a policy check is being performed for the policy set. If the value can be parsed as JSON, it will be sent to Sentinel as the corresponding type (string, boolean, integer, map or list). If it fails JSON validation, it will be sent as a string. For more information on parameters, see the [Sentinel parameter documentation](https://docs.hashicorp.com/sentinel/language/parameters).
 
 -> **Note:** Parameters are only available for versioned policy sets. If you are using an individually managed policy set, you will need to migrate it to a versioned policy set.
 
