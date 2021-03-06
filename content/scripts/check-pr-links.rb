@@ -28,6 +28,13 @@ ROOT_URL = 'http://localhost:4567/'
 VERCEL_ROUTES = ['/community', '/cloud']
 VERCEL_REGEXP = /^(#{VERCEL_ROUTES.join('|')})/
 
+IGNORE_LIST = [
+  # The front page of TFC redirects to /session, but we *don't* want to update
+  # our links to go there, and we link to TFC a LOT.
+  'https://app.terraform.io',
+  'https://app.terraform.io/',
+]
+
 ARGF.set_encoding('utf-8')
 input = ARGF.read
 input_files = input.split(/\x00|\n/)
@@ -44,6 +51,8 @@ errors = {}
 def check_link(url)
   # Ignore non-web protocols like mailto:
    return [true, 'Not an HTTP(S) URL'] unless url.scheme == 'https' || url.scheme == 'http'
+  # Ignore special-cased URLs
+  return [true, 'Ignoring special URL'] if IGNORE_LIST.include?(url.to_s)
 
   # Special case for Vercel routes: can't check them against a local build, so
   # change URL to check prod.
