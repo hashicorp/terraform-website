@@ -80,7 +80,8 @@ _Without a VCS repository_
 {
   "data": {
     "attributes": {
-      "name": "workspace-1"
+      "name": "workspace-1",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "type": "workspaces"
   }
@@ -100,7 +101,8 @@ _With a VCS repository_
         "identifier": "skierkowski/terraform-test-proj",
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
         "branch": ""
-      }
+      },
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "type": "workspaces"
   }
@@ -123,7 +125,8 @@ A run will be triggered in this workspace when changes are detected in any of th
         "identifier": "skierkowski/terraform-test-proj-monorepo",
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
         "branch": ""
-      }
+      },
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "type": "workspaces"
   }
@@ -140,7 +143,8 @@ _Using Terraform Cloud Agents_
     "attributes": {
       "name":"workspace-1",
       "execution-mode": "agent",
-      "agent-pool-id": "apool-ZjT6A7mVFm5WHT5a"
+      "agent-pool-id": "apool-ZjT6A7mVFm5WHT5a",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     }
   },
   "type": "workspaces"
@@ -190,7 +194,8 @@ _Without a VCS repository_
       "trigger-prefixes": [],
       "vcs-repo": null,
       "working-directory": "",
-      "execution-mode": "agent"
+      "execution-mode": "agent",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "relationships": {
       "organization": {
@@ -258,7 +263,8 @@ _With a VCS repository_
         "ingress-submodules": false
       },
       "working-directory": null,
-      "execution-mode": "agent"
+      "execution-mode": "agent",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "relationships": {
       "organization": {
@@ -348,7 +354,8 @@ Key path                                      | Type           | Default        
         "branch": "",
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
-      }
+      },
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "type": "workspaces"
   }
@@ -395,7 +402,8 @@ $ curl \
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       },
-      "working-directory": ""
+      "working-directory": "",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "relationships": {
       "organization": {
@@ -474,7 +482,8 @@ $ curl \
           "branch": "",
           "ingress-submodules": false
         },
-        "working-directory": ""
+        "working-directory": "",
+        "updated-at": "2017-11-29T19:18:09.976Z"
       },
       "relationships": {
         "organization": {
@@ -517,7 +526,8 @@ $ curl \
           "branch": "",
           "ingress-submodules": false
         },
-        "working-directory": ""
+        "working-directory": "",
+        "updated-at": "2017-11-29T19:18:09.976Z"
       },
       "relationships": {
         "organization": {
@@ -605,7 +615,8 @@ $ curl \
       "source-url": null,
       "terraform-version": "0.11.3",
       "trigger-prefixes": [],
-      "working-directory": null
+      "working-directory": null,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "relationships": {
       "organization": {
@@ -737,7 +748,8 @@ $ curl \
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       },
-      "working-directory": null
+      "working-directory": null,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-SihZTyXKfNXUWuUa",
     "relationships": {
@@ -819,7 +831,8 @@ $ curl \
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       },
-      "working-directory": null
+      "working-directory": null,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces"
@@ -890,7 +903,8 @@ $ curl \
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       },
-      "working-directory": null
+      "working-directory": null,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces"
@@ -969,7 +983,8 @@ $ curl \
         "branch": "",
         "ingress-submodules": false
       },
-      "working-directory": ""
+      "working-directory": "",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-SihZTyXKfNXUWuUa",
     "links": {
@@ -1070,7 +1085,8 @@ $ curl \
         "branch": "",
         "ingress-submodules": false
       },
-      "working-directory": ""
+      "working-directory": "",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-erEAnPmgtm5mJr77",
     "links": {
