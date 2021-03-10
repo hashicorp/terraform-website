@@ -582,6 +582,19 @@ The other refers to a workspace by its name and organization:
 | `:organization_name` | The name of the organization the workspace belongs to.                                                |
 | `:name`              | The name of the workspace to show details for, which can only include letters, numbers, `-`, and `_`. |
 
+### Workspace performance attributes
+
+The follow attributes are helpful in determining the overall health and performance of your workspace run configuration.  These metrics refer to the **past 30 runs that have resulted in an error or successfully applied**.
+
+| Parameter                                  | Type   | Description                                                                                                                                                              |
+| ------------------------------------------ | ------ | --------------------------------------------------------------------------------------- |
+| `data.attributes.apply-duration-average`   | number | This is the average time runs spend in the **apply** phase, represented in milliseconds |
+| `data.attributes.plan-duration-average`    | number | This is the average time runs spend in the **plan** phase, represented in milliseconds  |
+| `data.attributes.policy-check-failures`    | number | Reports the number of run failures resulting from a policy check failure                |
+| `data.attributes.run-failures`             | number | Reports the number of failed runs                                                       |
+| `data.attributes.workspace-kpis-run-count` | number | Total number of runs taken into account by these metrics                                |
+
+
 ### Sample Request
 
 ```shell
