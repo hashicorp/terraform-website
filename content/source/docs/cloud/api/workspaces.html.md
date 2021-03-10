@@ -650,6 +650,103 @@ $ curl \
 }
 ```
 
+_With Outputs_
+
+
+
+```json
+{
+  "data": {
+    "id": "ws-mD5bmJ8ry3uTzuHi",
+    "type": "workspaces",
+    "attributes": {
+      "actions": {
+        "is-destroyable": true
+      },
+      "auto-apply": false,
+      "allow-destroy-plan": true,
+      "created-at": "2018-03-08T22:30:00.404Z",
+      "description": null,
+      "environment": "default",
+      "file-triggers-enabled": true,
+      "locked": false,
+      "name": "workspace-1",
+      "permissions": {
+        "can-update": true,
+        "can-destroy": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-update-variable": true,
+        "can-lock": true,
+        "can-read-settings": true
+      },
+      "queue-all-runs": false,
+      "resource-count": 5,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
+      "terraform-version": "0.11.3",
+      "trigger-prefixes": [],
+      "working-directory": null,
+      "updated-at": "2017-11-29T19:18:09.976Z"
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "org-MxtxBC6ihhU6u8AG",
+          "type": "organizations"
+        }
+      },
+      "current-run": {
+        "data": {
+          "id": "run-ZbX5Lb4n8Kdu4roV",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-ZbX5Lb4n8Kdu4roV"
+        }
+      },
+      "latest-run": {
+        "data": {
+          "id": "run-ZbX5Lb4n8Kdu4roV",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-ZbX5Lb4n8Kdu4roV"
+        }
+      },
+      "outputs": {
+        "data": [{
+          "id": "wsout-tZ2bJSSeECSBkCiS",
+          "type": "workspace-outputs"
+        }]
+      },
+    },
+    "included": [{
+      "id": "wsout-tZ2bJSSeECSBkCiS",
+      "type": "workspace-outputs",
+      "attributes": {
+        "name": "random",
+        "sensitive": false,
+        "output-type": "string",
+        "workspace-attributes": {
+          "id": "ws-sKRZA6LNRdViecHa",
+          "name": "terraform-testing"
+        },
+        "organization-attributes": {
+          "id": "org-MsM3mTFU49nX3Qbo",
+          "name": "jondavidjohn"
+        },
+        "value": "evenly-rapidly-noticeably-model-horse"
+      }
+    }],
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
+    }
+  }
+}
+```
+
 ## Delete a workspace
 
 A workspace can be deleted via two endpoints, which behave identically. One refers to a workspace by its ID, and the other by its name and organization.
