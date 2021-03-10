@@ -81,6 +81,7 @@ _Without a VCS repository_
   "data": {
     "attributes": {
       "name": "workspace-1",
+      "resource-count": 0,
       "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "type": "workspaces"
@@ -95,6 +96,7 @@ _With a VCS repository_
   "data": {
     "attributes": {
       "name": "workspace-2",
+      "resource-count": 0,
       "terraform_version": "0.11.1",
       "working-directory": "",
       "vcs-repo": {
@@ -118,6 +120,7 @@ A run will be triggered in this workspace when changes are detected in any of th
   "data": {
     "attributes": {
       "name": "workspace-3",
+      "resource-count": 0,
       "terraform_version": "0.12.1",
       "trigger-prefixes": ["/modules", "/vendor"],
       "working-directory": "/networking",
@@ -144,6 +147,7 @@ _Using Terraform Cloud Agents_
       "name":"workspace-1",
       "execution-mode": "agent",
       "agent-pool-id": "apool-ZjT6A7mVFm5WHT5a",
+      "resource-count": 0,
       "updated-at": "2017-11-29T19:18:09.976Z"
     }
   },
@@ -190,6 +194,7 @@ _Without a VCS repository_
         "can-read-settings": true
       },
       "queue-all-runs": false,
+      "resource-count": 0,
       "terraform-version": "0.11.0",
       "trigger-prefixes": [],
       "vcs-repo": null,
@@ -251,6 +256,7 @@ _With a VCS repository_
         "can-read-settings": true
       },
       "queue-all-runs": false,
+      "resource-count": 0,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -347,6 +353,7 @@ Key path                                      | Type           | Default        
   "data": {
     "attributes": {
       "name": "workspace-2",
+      "resource-count": 0,
       "terraform_version": "0.11.1",
       "working-directory": "",
       "vcs-repo": {
@@ -391,6 +398,7 @@ $ curl \
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
+      "resource-count": 0,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -473,6 +481,7 @@ $ curl \
         "locked": false,
         "name": "workspace-2",
         "queue-all-runs": false,
+        "resource-count": 5,
         "source": "tfe-ui",
         "source-name": null,
         "source-url": null,
@@ -517,6 +526,7 @@ $ curl \
         "locked": false,
         "name": "workspace-1",
         "queue-all-runs": false,
+        "resource-count": 5,
         "source": "tfe-ui",
         "source-name": null,
         "source-url": null,
@@ -610,6 +620,7 @@ $ curl \
         "can-read-settings": true
       },
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -737,6 +748,7 @@ $ curl \
         "can-update-variable": true
       },
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -820,6 +832,7 @@ $ curl \
         "can-update-variable": true
       },
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -892,6 +905,7 @@ $ curl \
         "can-update-variable": true
       },
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -974,6 +988,7 @@ $ curl \
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -1076,6 +1091,7 @@ $ curl \
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
