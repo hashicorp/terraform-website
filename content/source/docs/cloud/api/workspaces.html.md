@@ -594,6 +594,9 @@ The follow attributes are helpful in determining the overall health and performa
 | `data.attributes.run-failures`             | number | Reports the number of failed runs                                                       |
 | `data.attributes.workspace-kpis-run-count` | number | Total number of runs taken into account by these metrics                                |
 
+### Readme
+
+Workspace resources include a `readme` field.  When a workspace is VCS backed, that field is populated with the contents of the repository README.md file.  This contents of this field is not filtered or sanitized.  Terraform Cloud does this on the frontend at render time.
 
 ### Sample Request
 
@@ -636,6 +639,7 @@ $ curl \
       "plan-duration-average": 600000,
       "policy-check-failures": 5,
       "queue-all-runs": false,
+      "readme": "",
       "resource-count": 5,
       "run-failures": 2,
       "workspace-kpis-run-count": 10,
