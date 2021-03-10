@@ -584,7 +584,7 @@ The other refers to a workspace by its name and organization:
 
 ### Workspace performance attributes
 
-The follow attributes are helpful in determining the overall health and performance of your workspace run configuration.  These metrics refer to the **past 30 runs that have resulted in an error or successfully applied**.
+The following attributes are helpful in determining the overall health and performance of your workspace configuration.  These metrics refer to the **past 30 runs that have either resulted in an error or successfully applied**.
 
 | Parameter                                  | Type   | Description                                                                                                                                                              |
 | ------------------------------------------ | ------ | --------------------------------------------------------------------------------------- |
@@ -596,7 +596,7 @@ The follow attributes are helpful in determining the overall health and performa
 
 ### Readme
 
-Workspace resources include a `readme` field.  When a workspace is VCS backed, that field is populated with the contents of the repository README.md file.  This contents of this field is not filtered or sanitized.  Terraform Cloud does this sanitization on the client-side.
+The workspace resource includes a `readme` attribute.  When a workspace is VCS backed, that field is populated with the contents of the repository `README.md` file.  The contents of this field is not filtered or sanitized.  Terraform Cloud does this sanitization on the client-side.
 
 ### Sample Request
 
