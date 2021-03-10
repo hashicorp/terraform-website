@@ -652,8 +652,6 @@ $ curl \
 
 _With Outputs_
 
-
-
 ```json
 {
   "data": {
