@@ -596,7 +596,7 @@ The follow attributes are helpful in determining the overall health and performa
 
 ### Readme
 
-Workspace resources include a `readme` field.  When a workspace is VCS backed, that field is populated with the contents of the repository README.md file.  This contents of this field is not filtered or sanitized.  Terraform Cloud does this on the frontend at render time.
+Workspace resources include a `readme` field.  When a workspace is VCS backed, that field is populated with the contents of the repository README.md file.  This contents of this field is not filtered or sanitized.  Terraform Cloud does this sanitization on the client-side.
 
 ### Sample Request
 
