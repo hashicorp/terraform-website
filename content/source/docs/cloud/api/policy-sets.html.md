@@ -22,7 +22,7 @@ page_title: "Policy Sets - API Docs - Terraform Cloud and Terraform Enterprise"
 
 # Policy Sets API
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 [Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Cloud.
 

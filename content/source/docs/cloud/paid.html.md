@@ -27,7 +27,7 @@ Free organizations are limited to five active members.
 
 Some of Terraform Cloud's features are limited to particular paid upgrade plans. In the documentation, pages that document a paid feature are marked with callout boxes, like the one below:
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 Each higher paid upgrade plan is a strict superset of any lower plans — for example, the "Team & Governance" plan includes all of the features of the "Team" plan. Paid feature callouts in the documentation indicate the _lowest_ tier at which the feature is available, but any higher plans also include that feature.
 
@@ -41,4 +41,4 @@ The plan and billing settings include an integrated storefront, and you can subs
 
 ## Available Plans
 
-For up-to-date information about the currently available billing plans, as well as details about each plan's features, see [the Terraform pricing page on HashiCorp.com](https://www.hashicorp.com/products/terraform/pricing/) or the purchase interface in your plan and billing settings.
+For up-to-date information about the currently available billing plans, as well as details about each plan's features, see [the Terraform pricing page on HashiCorp.com](https://www.hashicorp.com/products/terraform/pricing) or the purchase interface in your plan and billing settings.

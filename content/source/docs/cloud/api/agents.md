@@ -26,7 +26,7 @@ An Agent Pool represents a group of Agents, often related to one another by shar
 A workspace may be configured to use one of the organization's agent pools to run remote operations with isolated,
 private, or on-premises infrastructure.
 
--> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 ## List Agent Pools
 

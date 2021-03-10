@@ -7,7 +7,7 @@ description: |-
 
 # Terraform Cloud for Splunk setup instructions
 
--> **Note:** Terraform Cloud for Splunk is a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Terraform Cloud for Splunk is a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 ## Overview
 

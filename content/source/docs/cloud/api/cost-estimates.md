@@ -22,7 +22,7 @@ page_title: "Cost Estimates - API Docs - Terraform Cloud and Terraform Enterpris
 
 # Cost Estimates API
 
--> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 ## Show a cost estimate
 

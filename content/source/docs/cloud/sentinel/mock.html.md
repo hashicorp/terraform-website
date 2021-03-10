@@ -5,7 +5,7 @@ page_title: "Mocking Terraform Sentinel Data - Sentinel - Terraform Cloud and Te
 
 # Mocking Terraform Sentinel Data
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 We recommend that you test your Sentinel policies extensively before deploying
 them within Terraform Cloud. An important part of this process is mocking
