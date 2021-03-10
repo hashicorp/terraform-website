@@ -602,6 +602,7 @@ $ curl \
       "actions": {
         "is-destroyable": true
       },
+      "apply-duration-average": 600000,
       "auto-apply": false,
       "allow-destroy-plan": true,
       "created-at": "2018-03-08T22:30:00.404Z",
@@ -619,67 +620,12 @@ $ curl \
         "can-lock": true,
         "can-read-settings": true
       },
+      "plan-duration-average": 600000,
+      "policy-check-failures": 5,
       "queue-all-runs": false,
       "resource-count": 5,
-      "source": "tfe-ui",
-      "source-name": null,
-      "source-url": null,
-      "terraform-version": "0.11.3",
-      "trigger-prefixes": [],
-      "working-directory": null,
-      "updated-at": "2017-11-29T19:18:09.976Z"
-    },
-    "relationships": {
-      "organization": {
-        "data": {
-          "id": "my-organization",
-          "type": "organizations"
-        }
-      },
-      "latest-run": {
-        "data": null
-      },
-      "current-run": {
-        "data": null
-      }
-    },
-    "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
-    }
-  }
-}
-```
-
-_With Outputs_
-
-```json
-{
-  "data": {
-    "id": "ws-mD5bmJ8ry3uTzuHi",
-    "type": "workspaces",
-    "attributes": {
-      "actions": {
-        "is-destroyable": true
-      },
-      "auto-apply": false,
-      "allow-destroy-plan": true,
-      "created-at": "2018-03-08T22:30:00.404Z",
-      "description": null,
-      "environment": "default",
-      "file-triggers-enabled": true,
-      "locked": false,
-      "name": "workspace-1",
-      "permissions": {
-        "can-update": true,
-        "can-destroy": true,
-        "can-queue-destroy": true,
-        "can-queue-run": true,
-        "can-update-variable": true,
-        "can-lock": true,
-        "can-read-settings": true
-      },
-      "queue-all-runs": false,
-      "resource-count": 5,
+      "run-failures": 2,
+      "workspace-kpis-run-count": 10,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
