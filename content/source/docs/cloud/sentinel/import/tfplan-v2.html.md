@@ -88,7 +88,7 @@ The collections are:
   Terraform Cloud.
 
 These collections are specifically designed to be used with the
-[`filter`](https://docs.hashicorp.com/sentinel/language/collection-operations/#filter-expression)
+[`filter`](https://docs.hashicorp.com/sentinel/language/collection-operations#filter-expression)
 quantifier expression in Sentinel, so that one can collect a list of resources
 to perform policy checks on without having to write complex discovery code. As
 an example, the following code will return all `aws_instance` resource changes,
