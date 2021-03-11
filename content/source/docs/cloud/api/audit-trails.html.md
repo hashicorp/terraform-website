@@ -18,11 +18,11 @@ page_title: "Audit Trails - API Docs - Terraform Cloud"
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # Audit Trails API
 
--> **Note:** Audit trails are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Audit trails are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 -> **Note:** This endpoint cannot be accessed with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens). You must access it with an [organization token](../users-teams-organizations/api-tokens.html#organization-api-tokens).
 

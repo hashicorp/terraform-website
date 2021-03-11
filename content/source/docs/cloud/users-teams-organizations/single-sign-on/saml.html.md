@@ -3,7 +3,7 @@ layout: "cloud"
 page_title: "SAML - Single Sign-on - Terraform Cloud and Terraform Enterprise"
 ---
 
--> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 # Single Sign-on: SAML
 

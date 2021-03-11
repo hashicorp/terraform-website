@@ -5,10 +5,10 @@ page_title: "Defining Policies - Sentinel - Terraform Cloud and Terraform Enterp
 
 # Defining Policies
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 Sentinel Policies for Terraform are defined using the [Sentinel policy
-language](https://docs.hashicorp.com/sentinel/language/). A policy can include
+language](https://docs.hashicorp.com/sentinel/language). A policy can include
 [imports](https://docs.hashicorp.com/sentinel/concepts/imports) which enable a
 policy to access reusable libraries, external data and functions. Terraform
 Cloud provides four imports to define policy rules for the plan, configuration,
@@ -28,7 +28,7 @@ state, and run associated with a policy check.
 
 Terraform Cloud allows you to create mocks of these imports from plans for use
 with the mocking or testing features of the [Sentinel
-CLI](https://docs.hashicorp.com/sentinel/commands/). For more information, see
+CLI](https://docs.hashicorp.com/sentinel/commands). For more information, see
 [Mocking Terraform Sentinel Data](../mock.html).
 
 -> **Note:** Terraform Cloud does not currently support custom imports.

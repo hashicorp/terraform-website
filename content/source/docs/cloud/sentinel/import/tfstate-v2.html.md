@@ -5,7 +5,7 @@ description: |-
   The tfstate/v2 import provides access to a Terraform state.
 ---
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 -> **Note:** This is documentation for the next version of the `tfstate`
 Sentinel import, designed specifically for Terraform 0.12. This import requires
@@ -72,7 +72,7 @@ The collections are:
 * [`outputs`](#the-outputs-collection) - The state of all outputs from the root module in the state.
 
 These collections are specifically designed to be used with the
-[`filter`](https://docs.hashicorp.com/sentinel/language/collection-operations/#filter-expression)
+[`filter`](https://docs.hashicorp.com/sentinel/language/collection-operations#filter-expression)
 quantifier expression in Sentinel, so that one can collect a list of resources
 to perform policy checks on without having to write complex module traversal. As
 an example, the following code will return all `aws_instance` resource types

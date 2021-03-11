@@ -5,7 +5,7 @@ page_title: "Overview - Cost Estimation - Terraform Cloud and Terraform Enterpri
 
 # Cost Estimation in Terraform Cloud
 
--> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 > **Hands-on:** Try the [Control Costs with Policies](https://learn.hashicorp.com/tutorials/terraform/cost-estimation?in=terraform/cloud-get-started&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 

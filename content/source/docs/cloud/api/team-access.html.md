@@ -18,11 +18,11 @@ page_title: "Team Acccess - API Docs - Terraform Cloud and Terraform Enterprise"
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # Team Access API
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The team access APIs are used to associate a team to permissions on a workspace. A single `team-workspace` resource contains the relationship between the Team and Workspace, including the privileges the team has on the workspace.
 

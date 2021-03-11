@@ -18,7 +18,7 @@ page_title: "OAuth Clients - API Docs - Terraform Cloud and Terraform Enterprise
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # OAuth Clients API
 
@@ -168,7 +168,7 @@ This endpoint allows you to create a VCS connection between an organization and 
 
 To learn how to generate one of these token strings for your VCS provider, you can read the following documentation:
 
-* [GitHub and GitHub Enterprise](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+* [GitHub and GitHub Enterprise](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 * [GitLab, GitLab Community Edition, and GitLab Enterprise Edition](https://docs.gitlab.com/ce/user/profile/personal_access_tokens.html#creating-a-personal-access-token)
 * [Azure DevOps Server](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops-2019&tabs=preview-page)
 

@@ -18,7 +18,7 @@ page_title: "Agent Pools and Agents - API Docs - Terraform Cloud and Terraform E
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # Agent Pools and Agents API
 
@@ -26,7 +26,7 @@ An Agent Pool represents a group of Agents, often related to one another by shar
 A workspace may be configured to use one of the organization's agent pools to run remote operations with isolated,
 private, or on-premises infrastructure.
 
--> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 ## List Agent Pools
 

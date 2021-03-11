@@ -7,7 +7,7 @@ page_title: "Terraform Cloud Agents - Terraform Cloud and Terraform Enterprise"
 
 > **Hands-on:** Try the [Manage Private Environments with Terraform Cloud Agents](https://learn.hashicorp.com/tutorials/terraform/cloud-agents?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
--> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/). The number of agents you are eligible to deploy is determined by the number of concurrent runs your organization is entitled to.
+-> **Note:** Terraform Cloud Agents are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing). The number of agents you are eligible to deploy is determined by the number of concurrent runs your organization is entitled to.
 
 Terraform Cloud Agents allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure. By deploying lightweight agents within a specific network segment, you can establish a simple connection between your environment and Terraform Cloud which allows for provisioning operations and management. This is useful for on-premises infrastructure types such as vSphere, Nutanix, OpenStack, enterprise networking providers, and anything you might have in a protected enclave.
 
@@ -17,7 +17,7 @@ The agent architecture is pull-based, so no inbound connectivity is required. An
 
 ### Supported Operating Systems
 
-[Agents](https://releases.hashicorp.com/tfc-agent) currently only support 64 bit Linux operating systems. You can also run the agent within Docker using our official [Terraform Agent Docker container](https://hub.docker.com/r/hashicorp/tfc-agent).
+[Agents](https://releases.hashicorp.com/tfc-agent/) currently only support 64 bit Linux operating systems. You can also run the agent within Docker using our official [Terraform Agent Docker container](https://hub.docker.com/r/hashicorp/tfc-agent).
 
 ### Supported Terraform Versions
 
@@ -54,7 +54,7 @@ Agents should be considered a global resource within an organization. Once confi
 
 Agents are designed to allow you to run Terraform operations from a Terraform Cloud workspace on your private infrastructure. The following use cases are not supported by agents:
 
-- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http/)
+- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http)
 - Connecting Terraform Cloud workspaces to private VCS repositories
 
 For these use cases, we recommend you leverage the information provided by the [IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html) to permit direct communication from the appropriate Terraform Cloud service to your internal infrastructure.
@@ -125,7 +125,7 @@ The agent software runs on your own infrastructure. Agent pool membership is det
 
 ### Download and Install the Agent
 
-1. Download the latest [agent release](https://releases.hashicorp.com/tfc-agent), the associated checksum file (.SHA256sums), and the checksum signature (.sig).
+1. Download the latest [agent release](https://releases.hashicorp.com/tfc-agent/), the associated checksum file (.SHA256sums), and the checksum signature (.sig).
 1. Verify the integrity of the downloaded archive, as well as the signature of the `SHA256SUMS` file using the instructions available on [HashiCorp's security page](https://www.hashicorp.com/security).
 1. Extract the release archive. The `unzip` utility is available on most Linux distributions and may be invoked as `unzip <archive file>`. Two individual binaries will be extracted (`tfc-agent` and `tfc-agent-core`). These binaries _must_ reside in the same directory for the agent to function properly.
 
@@ -217,7 +217,7 @@ Agent status appear on the **Organization Settings > Agents** page and will cont
 
 Agents are considered active and count towards the organization's purchased agent capacity if they are in the **Idle**, **Busy**, or **Unknown** state. Agents which are in the **Errored** or **Exited** state do not count towards the organization's total agent capacity.
 
-The number of active agents you are eligible to deploy is determined by the number of Concurrent Runs your organization is entitled to. Agents are available as part of the [Terraform Cloud Business] (https://www.hashicorp.com/products/terraform/pricing/) tier.
+The number of active agents you are eligible to deploy is determined by the number of Concurrent Runs your organization is entitled to. Agents are available as part of the [Terraform Cloud Business] (https://www.hashicorp.com/products/terraform/pricing) tier.
 
 Agents in the **Unknown** state continue to be counted against the organization's total agent allowance, as this status is typically an indicator of a temporary communication issue between the agent and Terraform Cloud. **Unknown** agents which do not respond after a period of 2 hours will automatically transition to an **Errored** state, at which point they will not count against the agent allowance.
 

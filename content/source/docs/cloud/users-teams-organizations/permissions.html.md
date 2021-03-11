@@ -5,7 +5,7 @@ page_title: "Permissions - Terraform Cloud and Terraform Enterprise"
 
 # Permissions
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
