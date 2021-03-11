@@ -95,7 +95,7 @@ This example function does several useful things while finding resources:
   found in each module, starting with `tfplan.module(path).resources[type]`
   which is a series of nested maps keyed by resource names and instance counts.
 - It uses the Sentinel [`else`
-  operator](https://docs.hashicorp.com/sentinel/languagespec#else-operator) to
+  operator](https://docs.hashicorp.com/sentinel/language/spec#else-operator) to
   recover from `undefined` values which would occur for modules that don't have
   any resources of the specified type.
 - It builds a flat `resources` map of all resource instances of the specified
@@ -119,10 +119,10 @@ their addresses, you usually want to validate that one or more resource
 attributes meets some conditions by iterating over the resource instances.
 
 While you could use Sentinel's [`all` and `any`
-expressions](https://docs.hashicorp.com/sentinel/languageboolexpr#any-all-expressions)
+expressions](https://docs.hashicorp.com/sentinel/language/boolexpr#any-all-expressions)
 directly inside Sentinel rules, your rules would only report the first violation
 because Sentinel uses short-circuit logic. It is therefore usually preferred to
-use a [`for` loop](https://docs.hashicorp.com/sentinel/languageloops) outside
+use a [`for` loop](https://docs.hashicorp.com/sentinel/language/loops) outside
 of your rules so that you can report all violations that occur. You can do this
 inside functions or directly in the policy itself.
 
