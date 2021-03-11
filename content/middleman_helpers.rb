@@ -119,7 +119,7 @@ module Helpers
     end
 
     if fn.start_with?('../ext/terraform/')
-      return "https://github.com/hashicorp/terraform/edit/master/#{fn['../ext/terraform/'.length..-1]}"
+      return "https://github.com/hashicorp/terraform/edit/main/#{fn['../ext/terraform/'.length..-1]}"
     end
 
     if fn.start_with?('../ext/providers/')
