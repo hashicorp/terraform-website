@@ -103,7 +103,7 @@ For complete details, click the link for your VCS provider:
 
 -> **Note**: The VCS Event Viewer is still in beta while support is added for additional VCS providers. Currently only GitLab.com connections established after December 2020 are supported.
 
-VCS events describe changes within your organization for VCS-related actions, such as creating a new VCS provider (also called OAuth Client), loading repositories while creating a new workspace, or processing incoming webhooks. Events are limited to the past 10 days.
+VCS events describe changes within your organization for VCS-related actions, such as creating a new VCS provider (also called an OAuth Client), loading repositories while creating a new workspace, or processing incoming webhooks. Displayed events are limited to the past 10 days.
 
 Viewing VCS events requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
