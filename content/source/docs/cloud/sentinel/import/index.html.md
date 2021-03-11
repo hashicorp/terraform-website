@@ -8,7 +8,7 @@ page_title: "Defining Policies - Sentinel - Terraform Cloud and Terraform Enterp
 -> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 Sentinel Policies for Terraform are defined using the [Sentinel policy
-language](https://docs.hashicorp.com/sentinel/language/). A policy can include
+language](https://docs.hashicorp.com/sentinel/language). A policy can include
 [imports](https://docs.hashicorp.com/sentinel/concepts/imports) which enable a
 policy to access reusable libraries, external data and functions. Terraform
 Cloud provides four imports to define policy rules for the plan, configuration,
@@ -28,7 +28,7 @@ state, and run associated with a policy check.
 
 Terraform Cloud allows you to create mocks of these imports from plans for use
 with the mocking or testing features of the [Sentinel
-CLI](https://docs.hashicorp.com/sentinel/commands/). For more information, see
+CLI](https://docs.hashicorp.com/sentinel/commands). For more information, see
 [Mocking Terraform Sentinel Data](../mock.html).
 
 -> **Note:** Terraform Cloud does not currently support custom imports.
@@ -95,7 +95,7 @@ This example function does several useful things while finding resources:
   found in each module, starting with `tfplan.module(path).resources[type]`
   which is a series of nested maps keyed by resource names and instance counts.
 - It uses the Sentinel [`else`
-  operator](https://docs.hashicorp.com/sentinel/language/spec#else-operator) to
+  operator](https://docs.hashicorp.com/sentinel/languagespec#else-operator) to
   recover from `undefined` values which would occur for modules that don't have
   any resources of the specified type.
 - It builds a flat `resources` map of all resource instances of the specified
@@ -119,10 +119,10 @@ their addresses, you usually want to validate that one or more resource
 attributes meets some conditions by iterating over the resource instances.
 
 While you could use Sentinel's [`all` and `any`
-expressions](https://docs.hashicorp.com/sentinel/language/boolexpr#any-all-expressions)
+expressions](https://docs.hashicorp.com/sentinel/languageboolexpr#any-all-expressions)
 directly inside Sentinel rules, your rules would only report the first violation
 because Sentinel uses short-circuit logic. It is therefore usually preferred to
-use a [`for` loop](https://docs.hashicorp.com/sentinel/language/loops) outside
+use a [`for` loop](https://docs.hashicorp.com/sentinel/languageloops) outside
 of your rules so that you can report all violations that occur. You can do this
 inside functions or directly in the policy itself.
 
