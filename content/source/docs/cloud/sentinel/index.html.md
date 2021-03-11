@@ -16,7 +16,7 @@ information from external sources.
 
 To learn how to use Sentinel and begin writing policies with the Sentinel
 language, see [the Sentinel
-documentation](https://docs.hashicorp.com/sentinel/writing/).
+documentation](https://docs.hashicorp.com/sentinel/writing).
 
 You can also use the
 [`tfe_sentinel_policy`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/sentinel_policy) resource
@@ -44,7 +44,7 @@ Using Sentinel with Terraform Cloud involves:
   or the `terraform apply` is executed.
 - [Mocking Sentinel Terraform data](./mock.html) - Terraform Cloud provides the
   ability to generate mock data for any run within a workspace. This data can be
-  used with the [Sentinel CLI](https://docs.hashicorp.com/sentinel/commands/) to
+  used with the [Sentinel CLI](https://docs.hashicorp.com/sentinel/commands) to
   test policies before deployment.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
@@ -52,4 +52,4 @@ Using Sentinel with Terraform Cloud involves:
 ### Standard Imports
 
 The Terraform integration for HashiCorp Sentinel implements all of the
-available [standard imports](https://docs.hashicorp.com/sentinel/imports/).
+available [standard imports](https://docs.hashicorp.com/sentinel/imports).
