@@ -5,7 +5,7 @@ page_title: "VCS Events - API Docs - Terraform Cloud and Terraform Enterprise"
 
 # VCS Events API
 
--> **Note**: The VCS Events API is still in beta as support while added for additional VCS providers. Currently only GitLab.com connections established after December 2020 are supported.
+-> **Note**: The VCS Events API is still in beta as support is being added for additional VCS providers. Currently only GitLab.com connections established after December 2020 are supported.
 
 VCS (version control system) events describe changes within your organization for VCS-related actions. Events are only stored for 10 days. If information about the [OAuth Client](./oauth-clients.html) or [OAuth Token](./oauth-tokens.html) are available at the time of the event, it will be logged with the event.
 
