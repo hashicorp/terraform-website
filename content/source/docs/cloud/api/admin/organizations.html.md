@@ -347,7 +347,7 @@ curl \
 
 `GET /admin/organizations/:name/relationships/module-consumers`
 
-This endpoint lists specific organizations in the Terraform Enterprise installation that have been granted permission to use an organization's modules. It will be empty if the organization is sharing modules using global module sharing, or if the organization has no module sharing configuration.
+This endpoint lists specific organizations in the Terraform Enterprise installation that have permission to use an organization's modules. It will be empty if the organization is sharing modules using global module sharing, or if the organization has no module sharing configuration.
 
 Parameter  | Description
 -----------|------------
