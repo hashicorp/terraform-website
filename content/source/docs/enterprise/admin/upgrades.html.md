@@ -55,12 +55,13 @@ version. [Learn more about availability during upgrades here](../system-overview
 ### Replicated Command Line Interface
 
 1. Login to a command line terminal of the Terraform Enterprise host machine.
-1. Execute the command below and take note on the location from the property `AirgapPackagePath` to upload the desired airgap packages into on the Terraform Enterprise host machine:
+1. Execute the command below and take note on the location from the property `AirgapPackagePath`:
    
     ```
     replicatedctl params export | grep AirgapPackagePath
     ```
 
+1. Upload the desired airgap packages into the location of `AirgapPackagePath` from the previous step on the Terraform Enterprise host machine.
 1. Execute the command below to fetch the versions of Terraform Enterprise from the uploaded airgap packages.
    
     ```
