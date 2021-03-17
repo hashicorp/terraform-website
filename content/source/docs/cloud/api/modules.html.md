@@ -68,7 +68,7 @@ $ curl \
 
 `POST /organizations/:organization_name/registry/modules`
 
-**Deprecated API**
+**Deprecated**
 `POST /registry-modules`
 
 Parameter            | Description
