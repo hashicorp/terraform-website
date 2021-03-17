@@ -570,7 +570,7 @@ Requirements/Options:
 
 The default example provided on the provider page can be used to deploy memorystore [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/redis_instance). The host output of the resource can then be provided to the terraform module in order to configure connectivity.
 
-You may consider using other options in the configuration depending on your requirements, such as including the **auth_enabled** flag set to true, which must then be accompanied by including an additional tfe configuration item called **redis_password** set to the value returned in the **auth_string** attribute from the memorystore resource.  
+You may consider using other options in the configuration depending on your requirements, such as including the **auth_enabled** flag set to true, which must then be accompanied by including an additional TFE configuration item called **redis_password** set to the value returned in the **auth_string** attribute from the memorystore resource.  
 
 
 ## 
