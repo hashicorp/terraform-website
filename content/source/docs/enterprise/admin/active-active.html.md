@@ -52,9 +52,9 @@ tfe-admin app-config -k <KEY> -v <VALUE>
 
 This command allows users to make ad hoc/realtime application changes, such as `capacity_concurrency` via the CLI. Both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value) must be provided. A complete list of the current `app-config` settings can be found by running `replicatedctl app-config export`. You will be warned to restart the TFE application after running this command and must do so with a `replicatedctl app restart` command for the configuration changes to be in effect.
 
--> **Note:** You should ensure that any ad-hoc changes made in this fashion are captured in the standard node build configuration, as the next time you build/rebuild a node only the configuration stored for that purpose will be in effect and ad-hoc changes could be lost.
+-> **Note:** You should ensure that any ad hoc changes made in this fashion are captured in the standard node build configuration, as the next time you build/rebuild a node only the configuration stored for that purpose will be in effect and ad hoc changes could be lost.
 
--> **Hint:** Adding a function to your Linux start-up like an alias can give you a short cut to the admin app-config command only requiring a single command and parameters, such as:
+-> **Hint:** Adding a function to your Linux start-up like an alias can give you a short cut to the admin `app-config` command only requiring a single command and parameters, such as:
 
 ```bash
 # shortcut: tfe-app-config <KEY> <VALUE>
@@ -66,7 +66,7 @@ tfe-app-config ()
 
 ## Other Supporting Commands
 
-There are additional commands available for checking status and troubleshooting directly on nodes. You can use them to confirm successful installation or to check on the status of a running node as part of troubleshooting activities.  Also, there are additional command aliases available that allow you to run more abbreviated versions of commands like just _support-bundle_. Run an _alias_ command with no parameters to see the list of available command aliases.
+There are additional commands available for checking status and troubleshooting directly on nodes. You can use them to confirm successful installation or to check on the status of a running node as part of troubleshooting activities.  Also, there are additional command aliases available that allow you to run more abbreviated versions of commands like just `support-bundle`. Run an `alias` command with no parameters to see the list of available command aliases.
 
 ### Commands
 
@@ -98,17 +98,17 @@ replicatedctl app status
 
 ```
 
-Displays status info on the replicated sub-system. Key values to note are that `State` and `DesiredState` are both "started" and `IsTransitioning` is false.
+Displays status info on the Replicated sub-system. Key values to note are that `State` and `DesiredState` are both "started" and `IsTransitioning` is false.
 
 ## Upgrading TFE or Patching TFE Node Instances
 
-The mechanism used to upgrade the TFE node instances is to fully repave the instances (destroy and rebuild entirely)
-. This is another reason why using automation to build the instances is important. Currently, the safest way to perform and upgrade is to shut down all node instances, rebuild one node to validate a successful upgrade, and then scale to additional nodes (currently max 2).
+The mechanism used to upgrade the TFE node instances is to fully repave the instances (destroy and rebuild entirely).
+This is another reason why using automation to build the instances is important. Currently, the safest way to perform and upgrade is to shut down all node instances, rebuild one node to validate a successful upgrade, and then scale to additional nodes (currently max 2).
 
 These are the steps required to repave the node instances:
 
-*   Run the _node-drain_ command as described previously on each node to complete active work and stop new work from being processed.
+*   Run the `node-drain` command as described previously on each node to complete active work and stop new work from being processed.
 *   Update the instance build configuration such as setting a new **ReleaseSequence** to upgrade versions and/or make any other alterations such as patching the base image used for building the instances.
-*   Follow the instructions in [Terraform Enterprise Active/Active](https://www.terraform.io/docs/enterprise/install/active-active.html) to scale down to zero nodes and proceed through scaling up to 1 node, validating success, and then scaling additional nodes.
+*   Follow the instructions in [Terraform Enterprise Active/Active](https://www.terraform.io/docs/enterprise/install/active-active.html) to scale down to zero nodes and proceed through scaling up to one node, validating success, and then scaling additional nodes.
 
-If planned and orchestrated efficiently, the total downtime for the repaving will be the amount of time it has taken to build 1 node as processing will resume as soon as the first node is functional.
+If planned and orchestrated efficiently, the total downtime for the repaving will be the amount of time it has taken to build one node as processing will resume as soon as the first node is functional.
