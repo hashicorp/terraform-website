@@ -13,7 +13,7 @@ The Active/Active operational mode disables use of the Replicated UI.  To accomm
 
 ### Commands
 
-Note that "tfe-admin" is an alias for "replicated admin", and can be used interchangeably.
+Note that `tfe-admin` is an alias for `replicated admin`, and can be used interchangeably.
 
 #### support-bundle
 
