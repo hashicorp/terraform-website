@@ -487,7 +487,7 @@ You need to wait up to 15 minutes for the application to respond as healthy on b
 
 #### Validate Application
 
-Finally, confirm the application is functioning as expected when running multiple nodes. Run Terraform Plan and Applies through the system (and any other tests specific to your environment) like you did to validate the application in Step 3. 
+Finally, confirm the application is functioning as expected when running multiple nodes. Run Terraform plan and applies through the system (and any other tests specific to your environment) like you did to validate the application in Step 3. 
 
 Confirm the general functionality of the UI to validate the tokens you added in Step 2 are set correctly. Browse the `Run` interface and your organization's private registry to confirm your application functions as expected.
 
