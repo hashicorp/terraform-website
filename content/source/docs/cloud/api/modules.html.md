@@ -20,11 +20,16 @@ page_title: "Modules - API Docs - Terraform Cloud and Terraform Enterprise"
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
 [JSON API error object]: https://jsonapi.org/format/#error-objects
 
-# Registry Modules API
+# Registry Modules APIs
 
 -> **Note**: These API endpoints are in beta and are subject to change.
 
-## Listing and reading modules, providers and versions
+The Terraform Cloud Registry API consists of two sets of related APIs, the first set is
+an implementation of the [Registry standard API](../../registry/api.html). The
+second set is a companion API used to upload/delete modules versions and provide
+additional information about the ingress status of a module.
+
+## Terraform Cloud Registry API implementation
 
 The Terraform Cloud Module Registry implements the [Registry standard API](../../registry/api.html) for consuming the modules. Refer to the [Module Registry HTTP API](../../registry/api.html) to perform the following:
 
@@ -61,7 +66,14 @@ $ curl \
 
 ## Publish a Module from a VCS
 
+`POST /organizations/:organization_name/registry/modules`
+
+**Deprecated API**
 `POST /registry-modules`
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 
 Publishes a new registry module from a VCS repository, with module versions managed automatically by the repository's tags. The publishing process will fetch all tags in the source repository that look like [SemVer](https://semver.org/) versions with optional 'v' prefix. For each version, the tag is cloned and the config parsed to populate module details (input and output variables, readme, submodules, etc.). The [Module Registry Requirements](../../registry/modules/publish.html#requirements) define additional requirements on naming, standard module structure and tags for releases.
 
@@ -114,7 +126,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/registry-modules
+  https://app.terraform.io/api/v2//organizations/my-organization/registry/modules
 ```
 
 ### Sample Response
@@ -154,7 +166,7 @@ curl \
       }
     },
     "links": {
-      "self": "/api/v2/registry-modules/show/my-organization/my-module/aws"
+      "self": "/api/v2//organizations/my-organization/registry/modules/private/my-organization/my-module/aws"
     }
   }
 }
@@ -162,7 +174,10 @@ curl \
 
 ## Create a Module
 
- `POST /organizations/:organization_name/registry-modules`
+`POST /organizations/:organization_name/registry/modules`
+
+**Deprecated**
+`POST /organizations/:organization_name/registry-modules`
 
 Parameter            | Description
 ---------------------|------------
@@ -216,7 +231,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-modules
+  https://app.terraform.io/api/v2/organizations/my-organization/registry/modules
 ```
 
 ### Sample Response
@@ -248,7 +263,7 @@ curl \
       }
     },
     "links": {
-      "self": "/api/v2/registry-modules/show/my-organization/my-module/aws"
+      "self": "/api/v2/organizations/my-organization/registry/modules/private/my-organization/my-module/aws"
     }
   }
 }
@@ -256,11 +271,16 @@ curl \
 
 ## Create a Module Version
 
+`POST /organizations/:organization_name/registry/modules/:registry_name/:namespace/:name/:provider/versions`
+
+**Deprecated**
 `POST /registry-modules/:organization_name/:name/:provider/versions`
 
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:registry_name`     | The name of the registry to create a module in. This must be the value "private".
+`:namespace`         | The name of the namespace to create a module in. This must be the same as the "organization_name" parameter.
 `:name`              | The name of the module for which the version is being created.
 `:provider`          | The name of the provider for which the version is being created.
 
@@ -308,7 +328,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/registry-modules/my-organization/my-module/aws/versions
+  https://app.terraform.io/api/v2/organizations/my-organization/registry/modules/private/my-organization/my-module/aws/versions
 ```
 
 ### Sample Response
@@ -389,13 +409,18 @@ After the registry module version is successfully parsed, its status will become
 
 ## Show a Module
 
+`GET /organizations/:organization_name/registry/modules/:registry_name/:namespace/:name/:provider`
+
+**Deprecated**
 `GET /registry-modules/show/:organization_name/:name/:provider`
 
 ### Parameters
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization the  module belongs to.
+`:organization_name` | The name of the organization the module belongs to.
+`:registry_name`     | The name of the registry the module belongs to. This must be the value "private"
+`:namespace`         | The name of the namespace the module belongs to. This must be the same as the "organization_name" parameter.
 `:name`              | The module name.
 `:provider`          | The module provider.
 
@@ -411,7 +436,7 @@ curl \
   --request GET \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/registry-modules/show/my-organization/my-module/aws
+  https://app.terraform.io/api/v2/organizations/my-organization/registry/modules/private/my-organization/my-module/aws
 ```
 
 ### Sample Response
@@ -456,7 +481,7 @@ curl \
       }
     },
     "links": {
-      "self": "/api/v2/registry-modules/show/my-organization/my-module/aws"
+      "self": "/api/v2/organizations/my-organizations/registry/modules/private/my-organization/my-module/aws"
     }
   }
 }
@@ -464,15 +489,17 @@ curl \
 
 ## Delete a Module
 
-* `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
-* `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
-* `POST /registry-modules/actions/delete/:organization_name/:name`
+* `POST /organizations/:organization_name/registry/modules/actions/delete/:registry_name/:namespace/:name/:provider/:version`
+* `POST /organizations/:organization_name/registry/modules/actions/delete/:registry_name/:namespace/:name/:provider`
+* `POST /organizations/:organization_name/registry/modules/actions/delete/:registry_name/:namespace/:name`
 
 ### Parameters
 
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to delete a module from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:registry_name`     | The name of the registry to delete a module from. This must be the value "private"
+`:namespace`         | The name of the namespace the module belongs to. This must be the same as the "organization_name" parameter.
 `:name`              | The module name that the deletion will affect.
 `:provider`          | If specified, the provider for the module that the deletion will affect.
 `:version`           | If specified, the version for the module and provider that will be deleted.
@@ -500,5 +527,5 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
-  https://app.terraform.io/api/v2/registry-modules/actions/delete/my-organization/my-module
+  https://app.terraform.io/api/v2/organizations/my-organization/registry/modules/actions/delete/private/my-organization/my-module
 ```
