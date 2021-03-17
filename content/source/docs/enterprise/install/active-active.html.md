@@ -445,7 +445,7 @@ See [Active/Active Administration](https://www.terraform.io/docs/enterprise/admi
 
 #### Validate Application
 
-With installation complete, it is time to validate the new Redis connection. Terraform Enterprise uses Redis both as a cache for API requests and a queue for long running jobs, e.g. Terraform Runs.  Test the latter behavior by running real Terraform Plans & Applies through the system. 
+With installation complete, it is time to validate the new Redis connection. Terraform Enterprise uses Redis both as a cache for API requests and a queue for long running jobs, e.g. Terraform Runs. Test the latter behavior by running real Terraform plans and applies through the system. 
 
 Once you are satisfied the application is running as expected, you can move on to step 4 to scale up to two nodes.
 
