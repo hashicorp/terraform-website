@@ -50,7 +50,7 @@ This command will quiesce the current node and remove it from service. It will a
 tfe-admin app-config -k <KEY> -v <VALUE>
 ```
 
-This command allows users to make ad-hoc/realtime application changes, such as capacity_concurrency via the CLI. Both an allowable <KEY> (setting name) and <VALUE> (new setting value) must be provided. A complete list of the current app-config settings can be found by running _replicatedctl app-config export_. You will be warned to restart the TFE application after running this command and must do so with a _replicatedctl app restart_ command for the configuration changes to be in effect.
+This command allows users to make ad hoc/realtime application changes, such as `capacity_concurrency` via the CLI. Both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value) must be provided. A complete list of the current `app-config` settings can be found by running `replicatedctl app-config export`. You will be warned to restart the TFE application after running this command and must do so with a `replicatedctl app restart` command for the configuration changes to be in effect.
 
 -> **Note:** You should ensure that any ad-hoc changes made in this fashion are captured in the standard node build configuration, as the next time you build/rebuild a node only the configuration stored for that purpose will be in effect and ad-hoc changes could be lost.
 
