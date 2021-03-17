@@ -475,7 +475,7 @@ Scale down to zero nodes to fully disable the admin dashboard. Once the existing
 
 Now that you have tested your external Redis connection change the min and max instance count of your Auto Scaling Group to two nodes. 
 
--> **Note**: Running more than two instances is not _currently_ supported. Please contact your Technical Account Manager if there are any questions/concerns.
+-> **Note**: Running more than two instances is not _currently_ supported. Please contact your Customer Success Manager if there are any questions/concerns.
 
 
 #### Wait for Terraform Enterprise to Install
