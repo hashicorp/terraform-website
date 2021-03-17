@@ -357,7 +357,7 @@ For example:
    
    "user_token":{
       "value":"6c403112981d0ae2ce6b4b2c7a1b1997"
-   }
+   },
   
    "archivist_token":{
       "value":"8019fe7227d1de1029ad7c1bf6f9e676"
