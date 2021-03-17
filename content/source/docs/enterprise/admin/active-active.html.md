@@ -9,7 +9,7 @@ When your organization requires increased reliability or performance from Terraf
 
 ## Active/Active Admin Commands
 
-The Active/Active operational mode disables use of the replicated UI.  To accommodate this, there are now admin commands to facilitate configuration changes, safe application stops, and producing support bundles. There is a new container in the TFE architecture to support this called "tfe-admin". You must login to a node in the Active/Active cluster in a terminal mode to run these commands from the command line.
+The Active/Active operational mode disables use of the Replicated UI.  To accommodate this, there are now admin commands to facilitate configuration changes, safe application stops, and producing support bundles. There is a new container in the TFE architecture to support this called "tfe-admin". You must login to a node in the Active/Active cluster using SSH to run these commands from the command line.
 
 ### Commands
 
