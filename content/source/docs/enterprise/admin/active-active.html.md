@@ -41,7 +41,7 @@ support-bundles
 tfe-admin node-drain 
 ```
 
-This command will quiesce the current node and remove it from service. It will allow current work to complete and safely stop the node from picking up any new jobs from the redis queue, allowing the application to be safely stopped. Currently, it only affects  localhost and so only the host it is executed on (it does not support running on one node to drain other nodes). There is also not currently a reverse drain command - a restart is needed to restore the node.
+This command will quiesce the current node and remove it from service. It will allow current work to complete and safely stop the node from picking up any new jobs from the Redis queue, allowing the application to be safely stopped. Currently, it only affects `localhost` (it does not support running on one node to drain other nodes). Currently, there is no reverse drain command - a restart is needed to restore the node.
 
 
 ####  app-config
