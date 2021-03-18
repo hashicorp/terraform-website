@@ -80,7 +80,9 @@ _Without a VCS repository_
 {
   "data": {
     "attributes": {
-      "name": "workspace-1"
+      "name": "workspace-1",
+      "resource-count": 0,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "type": "workspaces"
   }
@@ -94,13 +96,15 @@ _With a VCS repository_
   "data": {
     "attributes": {
       "name": "workspace-2",
+      "resource-count": 0,
       "terraform_version": "0.11.1",
       "working-directory": "",
       "vcs-repo": {
         "identifier": "skierkowski/terraform-test-proj",
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
         "branch": ""
-      }
+      },
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "type": "workspaces"
   }
@@ -116,6 +120,7 @@ A run will be triggered in this workspace when changes are detected in any of th
   "data": {
     "attributes": {
       "name": "workspace-3",
+      "resource-count": 0,
       "terraform_version": "0.12.1",
       "trigger-prefixes": ["/modules", "/vendor"],
       "working-directory": "/networking",
@@ -123,7 +128,8 @@ A run will be triggered in this workspace when changes are detected in any of th
         "identifier": "skierkowski/terraform-test-proj-monorepo",
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
         "branch": ""
-      }
+      },
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "type": "workspaces"
   }
@@ -140,7 +146,9 @@ _Using Terraform Cloud Agents_
     "attributes": {
       "name":"workspace-1",
       "execution-mode": "agent",
-      "agent-pool-id": "apool-ZjT6A7mVFm5WHT5a"
+      "agent-pool-id": "apool-ZjT6A7mVFm5WHT5a",
+      "resource-count": 0,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     }
   },
   "type": "workspaces"
@@ -186,11 +194,13 @@ _Without a VCS repository_
         "can-read-settings": true
       },
       "queue-all-runs": false,
+      "resource-count": 0,
       "terraform-version": "0.11.0",
       "trigger-prefixes": [],
       "vcs-repo": null,
       "working-directory": "",
-      "execution-mode": "agent"
+      "execution-mode": "agent",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "relationships": {
       "organization": {
@@ -246,6 +256,7 @@ _With a VCS repository_
         "can-read-settings": true
       },
       "queue-all-runs": false,
+      "resource-count": 0,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -258,7 +269,8 @@ _With a VCS repository_
         "ingress-submodules": false
       },
       "working-directory": null,
-      "execution-mode": "agent"
+      "execution-mode": "agent",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "relationships": {
       "organization": {
@@ -341,6 +353,7 @@ Key path                                      | Type           | Default        
   "data": {
     "attributes": {
       "name": "workspace-2",
+      "resource-count": 0,
       "terraform_version": "0.11.1",
       "working-directory": "",
       "vcs-repo": {
@@ -348,7 +361,8 @@ Key path                                      | Type           | Default        
         "branch": "",
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
-      }
+      },
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "type": "workspaces"
   }
@@ -384,6 +398,7 @@ $ curl \
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
+      "resource-count": 0,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -395,7 +410,8 @@ $ curl \
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       },
-      "working-directory": ""
+      "working-directory": "",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "relationships": {
       "organization": {
@@ -465,6 +481,7 @@ $ curl \
         "locked": false,
         "name": "workspace-2",
         "queue-all-runs": false,
+        "resource-count": 5,
         "source": "tfe-ui",
         "source-name": null,
         "source-url": null,
@@ -474,7 +491,8 @@ $ curl \
           "branch": "",
           "ingress-submodules": false
         },
-        "working-directory": ""
+        "working-directory": "",
+        "updated-at": "2017-11-29T19:18:09.976Z"
       },
       "relationships": {
         "organization": {
@@ -508,6 +526,7 @@ $ curl \
         "locked": false,
         "name": "workspace-1",
         "queue-all-runs": false,
+        "resource-count": 5,
         "source": "tfe-ui",
         "source-name": null,
         "source-url": null,
@@ -517,7 +536,8 @@ $ curl \
           "branch": "",
           "ingress-submodules": false
         },
-        "working-directory": ""
+        "working-directory": "",
+        "updated-at": "2017-11-29T19:18:09.976Z"
       },
       "relationships": {
         "organization": {
@@ -562,6 +582,18 @@ The other refers to a workspace by its name and organization:
 | `:organization_name` | The name of the organization the workspace belongs to.                                                |
 | `:name`              | The name of the workspace to show details for, which can only include letters, numbers, `-`, and `_`. |
 
+### Workspace performance attributes
+
+The following attributes are helpful in determining the overall health and performance of your workspace configuration.  These metrics refer to the **past 30 runs that have either resulted in an error or successfully applied**.
+
+| Parameter                                  | Type   | Description                                                                                                                                                              |
+| ------------------------------------------ | ------ | --------------------------------------------------------------------------------------- |
+| `data.attributes.apply-duration-average`   | number | This is the average time runs spend in the **apply** phase, represented in milliseconds |
+| `data.attributes.plan-duration-average`    | number | This is the average time runs spend in the **plan** phase, represented in milliseconds  |
+| `data.attributes.policy-check-failures`    | number | Reports the number of run failures resulting from a policy check failure                |
+| `data.attributes.run-failures`             | number | Reports the number of failed runs                                                       |
+| `data.attributes.workspace-kpis-run-count` | number | Total number of runs taken into account by these metrics                                |
+
 ### Sample Request
 
 ```shell
@@ -582,6 +614,7 @@ $ curl \
       "actions": {
         "is-destroyable": true
       },
+      "apply-duration-average": 600000,
       "auto-apply": false,
       "allow-destroy-plan": true,
       "created-at": "2018-03-08T22:30:00.404Z",
@@ -599,28 +632,70 @@ $ curl \
         "can-lock": true,
         "can-read-settings": true
       },
+      "plan-duration-average": 600000,
+      "policy-check-failures": 5,
       "queue-all-runs": false,
+      "resource-count": 5,
+      "run-failures": 2,
+      "workspace-kpis-run-count": 10,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
       "terraform-version": "0.11.3",
       "trigger-prefixes": [],
-      "working-directory": null
+      "working-directory": null,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "relationships": {
       "organization": {
         "data": {
-          "id": "my-organization",
+          "id": "org-MxtxBC6ihhU6u8AG",
           "type": "organizations"
         }
       },
-      "latest-run": {
-        "data": null
-      },
       "current-run": {
-        "data": null
-      }
+        "data": {
+          "id": "run-ZbX5Lb4n8Kdu4roV",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-ZbX5Lb4n8Kdu4roV"
+        }
+      },
+      "latest-run": {
+        "data": {
+          "id": "run-ZbX5Lb4n8Kdu4roV",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-ZbX5Lb4n8Kdu4roV"
+        }
+      },
+      "outputs": {
+        "data": [{
+          "id": "wsout-tZ2bJSSeECSBkCiS",
+          "type": "workspace-outputs"
+        }]
+      },
     },
+    "included": [{
+      "id": "wsout-tZ2bJSSeECSBkCiS",
+      "type": "workspace-outputs",
+      "attributes": {
+        "name": "random",
+        "sensitive": false,
+        "output-type": "string",
+        "workspace-attributes": {
+          "id": "ws-sKRZA6LNRdViecHa",
+          "name": "terraform-testing"
+        },
+        "organization-attributes": {
+          "id": "org-MsM3mTFU49nX3Qbo",
+          "name": "jondavidjohn"
+        },
+        "value": "evenly-rapidly-noticeably-model-horse"
+      }
+    }],
     "links": {
       "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
     }
@@ -726,6 +801,7 @@ $ curl \
         "can-update-variable": true
       },
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -737,7 +813,8 @@ $ curl \
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       },
-      "working-directory": null
+      "working-directory": null,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-SihZTyXKfNXUWuUa",
     "relationships": {
@@ -808,6 +885,7 @@ $ curl \
         "can-update-variable": true
       },
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -819,7 +897,8 @@ $ curl \
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       },
-      "working-directory": null
+      "working-directory": null,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces"
@@ -879,6 +958,7 @@ $ curl \
         "can-update-variable": true
       },
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -890,7 +970,8 @@ $ curl \
         "ingress-submodules": false,
         "oauth-token-id": "ot-hmAyP66qk2AMVdbJ"
       },
-      "working-directory": null
+      "working-directory": null,
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-SihZTyXKfNXUWuUa",
     "type": "workspaces"
@@ -960,6 +1041,7 @@ $ curl \
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -969,7 +1051,8 @@ $ curl \
         "branch": "",
         "ingress-submodules": false
       },
-      "working-directory": ""
+      "working-directory": "",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-SihZTyXKfNXUWuUa",
     "links": {
@@ -1061,6 +1144,7 @@ $ curl \
       "locked": false,
       "name": "workspace-2",
       "queue-all-runs": false,
+      "resource-count": 5,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
@@ -1070,7 +1154,8 @@ $ curl \
         "branch": "",
         "ingress-submodules": false
       },
-      "working-directory": ""
+      "working-directory": "",
+      "updated-at": "2017-11-29T19:18:09.976Z"
     },
     "id": "ws-erEAnPmgtm5mJr77",
     "links": {
@@ -1104,3 +1189,5 @@ The GET endpoints above can optionally return related resources, if requested wi
 * `current_run.plan` - The plan used in the current run.
 * `current_run.configuration_version` - The configuration used in the current run.
 * `current_run.configuration_version.ingress_attributes` - The commit information used in the current run.
+* `readme` - The most recent workspace README.md
+* `outputs` - The outputs for the most recently applied run.
