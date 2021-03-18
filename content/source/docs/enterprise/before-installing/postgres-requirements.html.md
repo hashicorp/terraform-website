@@ -12,7 +12,7 @@ requirements must be met:
 
 * A PostgreSQL server such as Amazon RDS for PostgreSQL or a PostgreSQL-compatible server such as Amazon Aurora PostgreSQL must be used.
 * The PostgreSQL server version must be one of the following:
-  * 9.6, 10.x, 11.x, 12.x
+  * 10.x, 11.x, 12.x
 * A PostgreSQL user must be created with the following permissions on the database:
   * The ability to create, modify, and read all tables and indices on all schemas within the database. Usually this is granted if the user is an owner of the database.
   * The ability to create extensions. If it is not feasible to have a user with the "CREATE EXTENSION" privilege, then refer to the [Creating Extensions](#creating-extensions) section below for information on creating the necessary extensions.
@@ -50,6 +50,12 @@ When providing optional extra keyword parameters for the database connection,
 note an additional restriction on the `sslmode` parameter is that only the
 `require`, `verify-full`, `verify-ca`, and `disable` values are allowed. The default value of `sslmode` is set to `require` with _External Services_ installation or `disable` with *Demo* installation.
 
--> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/9.6/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt`, which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting.
+-> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/12/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt`, which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting.
 
--> **Note:** The [Client Certificates](https://www.postgresql.org/docs/9.6/libpq-ssl.html) configuration is currently not supported by Terraform Enterprise due to the limitation of storing certificate files for the `sslcert`, and `sslkey` connection paramters.
+-> **Note:** The [Client Certificates](https://www.postgresql.org/docs/12/libpq-ssl.html) configuration is currently not supported by Terraform Enterprise due to the limitation of storing certificate files for the `sslcert`, and `sslkey` connection paramters.
+
+## PostgreSQL 9.5 to 12 Upgrade
+
+In Terraform Enterprise v202103-1, the internally-managed PostgreSQL server has been upgraded from PostgreSQL 9.5 to PostgreSQL 12. This change only affects mounted disk and proof of concept installations.
+
+For more details, consult the v202103-1 [release notes](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202103-1.md).
