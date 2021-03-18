@@ -1,6 +1,6 @@
 ---
 layout: "enterprise"
-page_title: "Active/Active -  - Infrastructure Administration - Terraform Enterprise"
+page_title: "Active/Active - Infrastructure Administration - Terraform Enterprise"
 ---
 
 # Terraform Enterprise Active/Active
