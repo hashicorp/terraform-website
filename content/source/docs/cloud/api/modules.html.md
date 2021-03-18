@@ -66,7 +66,7 @@ $ curl \
 
 ## Publish a Module from a VCS
 
-`POST /organizations/:organization_name/registry/modules`
+`POST /organizations/:organization_name/registry/modules/vcs`
 
 **Deprecated**
 `POST /registry-modules`
@@ -99,7 +99,7 @@ Key path                                      | Type   | Default | Description
 
 A VCS repository identifier is a reference to a VCS repository in the format `:org/:repo`, where `:org` and `:repo` refer to the organization (or project key, for Bitbucket Server) and repository in your VCS provider. The format for Azure DevOps is `:org/:project/_git/:repo`.
 
-The OAuth Token ID identifies the VCS connection, and therefore the organization, that the module will be created in.
+The OAuth Token ID identifies the VCS connection, and therefore the organization, that the module will be created in. This OAuth token must be valid for the "organization_name" parameter.
 
 ### Sample Payload
 
@@ -126,7 +126,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2//organizations/my-organization/registry/modules
+  https://app.terraform.io/api/v2/organizations/my-organization/registry/modules/vcs
 ```
 
 ### Sample Response
@@ -166,7 +166,7 @@ curl \
       }
     },
     "links": {
-      "self": "/api/v2//organizations/my-organization/registry/modules/private/my-organization/my-module/aws"
+      "self": "/api/v2/organizations/my-organization/registry/modules/private/my-organization/my-module/aws"
     }
   }
 }
