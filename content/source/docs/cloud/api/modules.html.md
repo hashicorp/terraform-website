@@ -139,6 +139,7 @@ curl \
     "attributes": {
       "name": "my-module",
       "provider": "aws",
+      "registry": "private",
       "status": "pending",
       "version-statuses": [],
       "created-at": "2020-07-09T19:36:56.288Z",
@@ -244,6 +245,7 @@ curl \
     "attributes": {
       "name": "my-module",
       "provider": "aws",
+      "registry": "private",
       "status": "pending",
       "version-statuses": [],
       "created-at": "2020-07-09T19:36:56.288Z",
@@ -449,6 +451,7 @@ curl \
     "attributes": {
       "name": "my-module",
       "provider": "aws",
+      "registry": "private",
       "status": "setup_complete",
       "version-statuses": [
         {
