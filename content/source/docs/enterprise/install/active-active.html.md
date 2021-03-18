@@ -22,7 +22,7 @@ However, the benefits that come with the Active/Active architecture need to be w
 
 As mentioned above, the Active/Active architecture requires an existing [automated installation](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html) of Terraform Enterprise that follows our [best practices for deployment](https://www.terraform.io/docs/enterprise/before-installing/reference-architecture/index.html). 
 
-The primary requirement is an auto scaling group (or equivalent) with a single instance running Terraform Enterprise. This ASG should be behind a load balancer and can be exposed to the public Internet or not depending on your requirements. As mentioned earlier, the installation of the Terraform Enterprise application should be automated completely so that the ASG can be scaled to zero and back to one without human intervention. 
+The primary requirement is an auto scaling group (or equivalent) with a single instance running Terraform Enterprise. This ASG should be behind a load balancer and can be exposed to the public Internet or not depending on your requirements. As mentioned earlier, the installation of the Terraform Enterprise application should be automated completely so that the auto scaling group can be scaled to zero and back to one without human intervention. 
 
 The application itself must be using [External Services](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision) mode to connect to an external PostgreSQL database and object storage. 
 
