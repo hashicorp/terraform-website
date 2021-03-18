@@ -50,7 +50,7 @@ This command will quiesce the current node and remove it from service. It will a
 tfe-admin app-config -k <KEY> -v <VALUE>
 ```
 
-This command allows users to make ad hoc/realtime application changes, such as `capacity_concurrency` via the CLI. Both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value) must be provided. A complete list of the current `app-config` settings can be found by running `replicatedctl app-config export`. You will be warned to restart the TFE application after running this command and must do so with a `replicatedctl app restart` command for the configuration changes to be in effect.
+This command allows users to make ad hoc/realtime application changes, such as `capacity_concurrency` via the CLI. Both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value) must be provided. A complete list of the current `app-config` settings can be found by running `replicatedctl app-config export`. You will be warned to restart the TFE application after running this command and must do so with a `replicatedctl app restart` command **on each node instance** for the configuration changes to be in effect.
 
 -> **Note:** You should ensure that any ad hoc changes made in this fashion are captured in the standard node build configuration, as the next time you build/rebuild a node only the configuration stored for that purpose will be in effect and ad hoc changes could be lost.
 
@@ -88,7 +88,7 @@ replicatedctl system status
 
 ```
 
-Displays status info on the TFE application. Key values to note are that status values return as "ready".
+Displays status info on the Replicated sub-system. Key values to note are that status values return as "ready". This reports on the status of the system on the node instance that it is run on.
 
 
 #### tfe application status
@@ -98,7 +98,8 @@ replicatedctl app status
 
 ```
 
-Displays status info on the Replicated sub-system. Key values to note are that `State` and `DesiredState` are both "started" and `IsTransitioning` is false.
+Displays status info on the TFE application. Key values to note are that `State` and `DesiredState` are both "started" and `IsTransitioning` is false. This reports on the status of the application on the node instance that it is run on.
+
 
 ## Upgrading TFE or Patching TFE Node Instances
 
@@ -108,7 +109,7 @@ This is another reason why using automation to build the instances is important.
 These are the steps required to repave the node instances:
 
 *   Run the `node-drain` command as described previously on each node to complete active work and stop new work from being processed.
-*   Update the instance build configuration such as setting a new **ReleaseSequence** to upgrade versions and/or make any other alterations such as patching the base image used for building the instances.
+*   Update the instance build configuration such as setting a new `ReleaseSequence` to upgrade versions and/or make any other alterations such as patching the base image used for building the instances.
 *   Follow the instructions in [Terraform Enterprise Active/Active](https://www.terraform.io/docs/enterprise/install/active-active.html) to scale down to zero nodes and proceed through scaling up to one node, validating success, and then scaling additional nodes.
 
 If planned and orchestrated efficiently, the total downtime for the repaving will be the amount of time it has taken to build one node as processing will resume as soon as the first node is functional.
