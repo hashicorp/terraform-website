@@ -55,17 +55,36 @@ If you would rather automatically apply plans that don't have errors, you can [e
 
 ## Speculative Plans on Pull Requests
 
-When branch in a linked repo receives a pull request (PR) from another branch in that repo, Terraform Cloud runs a [speculative plan][] in every workspace linked to the destination branch. Links to those plans appear in the PR, and members of your organization with permission to read runs for those workspaces can view the plan results when reviewing PRs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+To help you review proposed changes, Terraform Cloud can automatically run [speculative plans][speculative plan] for pull requests or merge requests.
+
+### Viewing Pull Request Plans
+
+Speculative plans don't appear in a workspace's list of normal runs. Instead, Terraform Cloud adds a link to the run in the pull request itself, along with an indicator of the run's status.
+
+A single pull request can include links to multiple plans, depending on how many workspaces are connected to the destination branch. If a pull request is updated, Terraform Cloud will perform new speculative plans and update the links.
+
+Although any contributor to the repository can see the status indicators for pull request plans, only members of your Terraform Cloud organization with permission to read runs for the affected workspaces can click through and view the complete plan output. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-Speculative plans are re-run if the code in a pull request is updated.
+### Rules for Triggering Pull Request Plans
 
-Speculative plans for PRs are based on the contents of the head branch (the branch that the PR proposes to merge into the destination branch), and they compare against the workspace's current state at the time the plan was run. This means that if the destination branch changes significantly after the head branch is created, the speculative plan might not accurately show the results of accepting the PR. To get a more accurate view, you can rebase the head branch onto a more recent commit, or merge the destination branch into the head branch.
+Whenever a pull request is _created or updated,_ Terraform Cloud checks whether it should run speculative plans in workspaces connected to that repository, based on the following rules:
 
--> **Note:** To avoid executing malicious code or exposing sensitive information, Terraform Cloud doesn't run speculative plans for pull requests that originate from other forks of a repository. 
+- Only pull requests that originate from within the same repository can trigger speculative plans.
 
-On Terraform Enterprise versions v202005-1 or later, administrators can allow speculative plans on pull requests that originate from forks. To learn more about this setting, refer to the [general settings documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
+    To avoid executing malicious code or exposing sensitive information, Terraform Cloud doesn't run speculative plans for pull requests that originate from other forks of a repository.
+
+    -> **Note:** On Terraform Enterprise versions v202005-1 or later, administrators can choose allow speculative plans on pull requests that originate from forks. To learn more about this setting, refer to the [general settings documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
+- Pull requests can only trigger runs in workspaces where automatic speculative plans are allowed. You can [disable automatic speculative plans](/docs/cloud/workspaces/vcs.html#automatic-speculative-plans) in a workspace's VCS settings.
+- A pull request will only trigger speculative plans in workspaces that are connected to that pull request's destination branch.
+
+    The destination branch is the branch that a pull request proposes to make changes to; this is often the repository's main branch, but not always.
+- If a workspace is configured to only treat certain directories in a repository as relevant, pull requests that don't touch those directories won't trigger speculative plans in that workspace. For more information, see [VCS settings: automatic run triggering](/docs/cloud/workspaces/vcs.html#automatic-run-triggering).
+
+### Contents of Pull Request Plans
+
+Speculative plans for pull requests use the contents of the head branch (the branch that the PR proposes to merge into the destination branch), and they compare against the workspace's current state at the time of the plan. This means that if the destination branch changes significantly after the head branch is created, the speculative plan might not accurately show the results of accepting the PR. To get a more accurate view, you can rebase the head branch onto a more recent commit, or merge the destination branch into the head branch.
 
 ## Speculative Plans During Development
 
