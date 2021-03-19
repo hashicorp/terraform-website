@@ -12,6 +12,8 @@ installer to set up Terraform Enterprise on a customer-controlled machine.
 
 -> **Important:** Before you begin, consult the [Pre-Install Checklist](../before-installing/index.html) for prerequisites. You'll need to prepare data files and a Linux instance.
 
+-> **Important:** Cloning an already installed Terraform Enterprise host machine can be done with extra cares. It is not allowed to have more than one Terraform Enterprise instances connecting to the same database unless the installation is performed for the [Active/Active architecture](active-active.html). When cloning Terraform Enterprise host machine, these following files contain the private IP address of the installed environment, `/etc/sysconfig/replicated` or `/etc/default/replicated` and `/etc/sysconfig/replicated-operator` or `/etc/default/replicated-operator`. It is required to ensure that those configuration files maintain the correct private IP address of the Terraform Enterprise host machine at the restoration from the image. The `replicated` and `replicated-operator` services should also be restarted when the configuration files are updated.
+
 ## Proxy Usage
 
 If your installation requires using a proxy server, you will be asked for the proxy server information when you first
