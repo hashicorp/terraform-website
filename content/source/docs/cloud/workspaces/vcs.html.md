@@ -68,6 +68,12 @@ You can adjust this behavior in two ways:
 
 Terraform Cloud retrieves the changed files for each push or pull request using your VCS provider's API. If for some reason the list of changed files cannot be retrieved, or if it is too large to process, the default behaviour is to trigger runs on all attached workspaces. Should this happen, you may see several runs with state "Planned", due to the push resulting in no changes to infrastructure.
 
+## Automatic Speculative Plans
+
+Whether to perform [speculative plans on pull requests](/docs/cloud/run/ui.html#speculative-plans-on-pull-requests) to the connected repository, to assist in reviewing proposed changes.
+
+Automatic speculative plans are enabled by default, but you can disable them for any workspace.
+
 ## VCS Branch
 
 Which branch of the repository to use. If left blank, Terraform Cloud will use the repository's default branch.
