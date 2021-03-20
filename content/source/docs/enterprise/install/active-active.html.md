@@ -233,7 +233,7 @@ For example:
 
 ##### Add Common Configuration
 
-!> A number of configuration values need to match between instances for the Active/Active architecture to function, the values of these tokens must be set to the same value in the `settings.json` on all instances:
+!> A number of configuration values need to match between instances for the Active/Active architecture to function, the values of these tokens must be set to the same value in the `ptfe-settings.json` on all instances:
 
 
 <table>
@@ -404,7 +404,7 @@ locals {
 
 ### Step 3: Connect to External Redis
 
-Once you include the above configuration options in your `settings.json` file, connect a single node to your newly provisioned Redis service. Before scaling to two nodes, ensure your new service functions as expected by testing on a single node.
+Once you include the above configuration options in your `ptfe-settings.json` file, connect a single node to your newly provisioned Redis service. Before scaling to two nodes, ensure your new service functions as expected by testing on a single node.
 
 #### Reprovision Instance
 
