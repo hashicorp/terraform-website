@@ -453,9 +453,9 @@ Once you are satisfied the application is running as expected, you can move on t
 
 You can now safely change the number of instances in your Auto Scaling Group ( or equivalent) to two.
 
-#### Disable the Admin Dashboard
+#### Disable the Replicated Admin Console
 
-Before scaling beyond the first node, you must disable the  as mentioned earlier in this guide. This is done by adding the `disable-replicated-ui` flag as a parameter when you call the install script, as such:
+Before scaling beyond the first node, you must disable the Replicated Admin Console as mentioned earlier in this guide. This is done by adding the `disable-replicated-ui` flag as a parameter when you call the install script, as such:
 
 
 ```
