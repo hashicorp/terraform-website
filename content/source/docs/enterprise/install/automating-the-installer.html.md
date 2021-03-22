@@ -201,7 +201,7 @@ If you have chosen `external` for `production_type`, the following settings appl
 - `pg_password` — (Required) The password for the PostgreSQL user.
 - `pg_netloc` — (Required) The hostname and port of the target PostgreSQL server, in the format `hostname:port`.
 - `pg_dbname` — (Required) The database name.
-- `pg_extra_params` — (Optional) Parameter keywords of the form `param1=value1&param2=value2` to support additional options that may be necessary for your specific PostgreSQL server.  Allowed values are [documented on the PostgreSQL site](https://www.postgresql.org/docs/9.4/libpq-connect.html#LIBPQ-PARAMKEYWORDS).  An additional restriction on the `sslmode` parameter is that only the `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
+- `pg_extra_params` — (Optional) Parameter keywords of the form `param1=value1&param2=value2` to support additional options that may be necessary for your specific PostgreSQL server.  Allowed values are [documented on the PostgreSQL site](https://www.postgresql.org/docs/12/libpq-connect.html#LIBPQ-PARAMKEYWORDS).  An additional restriction on the `sslmode` parameter is that only the `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
 Select which placement will be used for blob storage: S3, Azure, or GCS. Based on this value, you only need to provide one set of the following variables.
 
