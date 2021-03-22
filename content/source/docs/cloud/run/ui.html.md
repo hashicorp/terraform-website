@@ -80,7 +80,9 @@ Whenever a pull request is _created or updated,_ Terraform Cloud checks whether 
 - A pull request will only trigger speculative plans in workspaces that are connected to that pull request's destination branch.
 
     The destination branch is the branch that a pull request proposes to make changes to; this is often the repository's main branch, but not always.
-- If a workspace is configured to only treat certain directories in a repository as relevant, pull requests that don't touch those directories won't trigger speculative plans in that workspace. For more information, see [VCS settings: automatic run triggering](/docs/cloud/workspaces/vcs.html#automatic-run-triggering).
+- If a workspace is configured to only treat certain directories in a repository as relevant, pull requests that don't affect those directories won't trigger speculative plans in that workspace. For more information, see [VCS settings: automatic run triggering](/docs/cloud/workspaces/vcs.html#automatic-run-triggering).
+
+    -> **Note:** If Terraform Cloud skips a plan because the changes weren't relevant, it will still post a passing commit status to the pull request.
 
 ### Contents of Pull Request Plans
 
