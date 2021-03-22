@@ -233,7 +233,6 @@ For example:
 
 !> A number of Terraform Enterprise application configuration values must be added and are **required to be identical between node instances** for the Active/Active architecture to function:
 
-
 <table>
   <tr>
    <td><strong>Key</strong>
