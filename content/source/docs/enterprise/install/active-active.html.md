@@ -45,8 +45,8 @@ The requirement for automation is two-fold. First, the nodes need to be able to 
 There are new access requirements involving ingress and egress:
 
 
-*   **Port 6379** (or the port the external Redis will be configured to use) must be open between the node instances and the Redis service
-*   **Port 8201** must be open between the node instances to allow Vault to run in [High Availability](https://www.vaultproject.io/docs/internals/high-availability) mode
+*   **Port 6379** (or the port the external Redis will be configured to use) must be open between the nodes and the Redis service
+*   **Port 8201** must be open between the nodes to allow Vault to run in [High Availability](https://www.vaultproject.io/docs/internals/high-availability) mode
 *   **Port 8800** should now be closed, as the Replicated Admin Console is no longer available when running multiple nodes
 
 
