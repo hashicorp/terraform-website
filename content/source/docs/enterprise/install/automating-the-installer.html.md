@@ -218,6 +218,8 @@ For S3 (or S3-compatible storage providers):
 - `s3_sse` — (Optional) Enables server-side encryption of objects in S3; if provided, must be set to `aws:kms`.
 - `s3_sse_kms_key_id` — (Optional) An optional KMS key for use when S3 server-side encryption is enabled.
 
+As of the `v202103-1` release, Terraform Enterprise supports using AWS IMDSv2 when using the instance profile to obtain credentials to connect to S3 object storage.
+
 For Azure:
 
 - `azure_account_name` — (Required) The account name for the Azure account to access the container.
