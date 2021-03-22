@@ -5,7 +5,7 @@ page_title: "Active/Active - Infrastructure Administration - Terraform Enterpris
 
 # Terraform Enterprise Active/Active
 
-When your organization requires increased reliability or performance from Terraform Enterprise that your current single application instance cannot provide, it is time to scale to the Active/Active architecture. Please refer to  [Terraform Enterprise Active/Active](https://www.terraform.io/docs/enterprise/install/active-active.html) for more information on moving to Active/Active.
+When your organization requires increased reliability or performance from Terraform Enterprise that your current single application instance cannot provide, it is time to scale to the Active/Active architecture. Please refer to  [Terraform Enterprise Active/Active](/docs/enterprise/install/active-active.html) for more information on moving to Active/Active.
 
 ## Active/Active Admin Commands
 
@@ -110,6 +110,6 @@ These are the steps required to repave the node instances:
 
 *   Run the `node-drain` command as described previously on each node to complete active work and stop new work from being processed.
 *   Update the instance build configuration such as setting a new `ReleaseSequence` to upgrade versions and/or make any other alterations such as patching the base image used for building the instances.
-*   Follow the instructions in [Terraform Enterprise Active/Active](https://www.terraform.io/docs/enterprise/install/active-active.html) to scale down to zero nodes and proceed through scaling up to one node, validating success, and then scaling additional nodes.
+*   Follow the instructions in [Terraform Enterprise Active/Active](/docs/enterprise/install/active-active.html) to scale down to zero nodes and proceed through scaling up to one node, validating success, and then scaling additional nodes.
 
 If planned and orchestrated efficiently, the total downtime for the repaving will be the amount of time it has taken to build one node as processing will resume as soon as the first node is functional.

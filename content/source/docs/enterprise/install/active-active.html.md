@@ -106,7 +106,7 @@ The following example pins the deployment to the the ([v202101-1](https://github
 
 #### Update Application Settings
 
-The existing settings for the Terraform Enterprise application (`ptfe-settings.json`) are still needed and require to be expanded. Please see documentation for the existing options [here](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html#application-settings).
+The existing settings for the Terraform Enterprise application (`ptfe-settings.json`) are still needed and require to be expanded. Please see documentation for the existing options [here](/docs/enterprise/install/automating-the-installer.html#application-settings).
 
 
 ##### Enable Active/Active
@@ -439,7 +439,7 @@ Which will output something similar to the following:
 
 Installation is complete once `isTransitioning` is `false` and `State` is `started`.
 
-See [Active/Active Administration](https://www.terraform.io/docs/enterprise/admin/active-active.html) for more status and troubleshooting commands.
+See [Active/Active Administration](/docs/enterprise/admin/active-active.html) for more status and troubleshooting commands.
 
 
 #### Validate Application
