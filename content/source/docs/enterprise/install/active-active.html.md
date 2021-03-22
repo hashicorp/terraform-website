@@ -380,7 +380,7 @@ For example:
 ```
 
 
--> **Note**: The individual settings need to match across node instances. The values should not be the same, e.g. `cookie_hash` and `internal_api_token` would not contain identical values.
+-> **Note**: The individual settings need to match across nodes. The values should not be the same, e.g. `cookie_hash` and `internal_api_token` would not contain identical values.
 
 
 ##### Tip: Generating Hex Values with Terraform
