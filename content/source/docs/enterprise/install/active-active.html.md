@@ -410,7 +410,7 @@ Terminate the existing instance by scaling down to zero. Once terminated, you ca
 
 #### Wait for Terraform Enterprise to Install
 
-It can take up to 15 minutes for the node instance to provision and the TFE application to be installed and respond as healthy. You can monitor the status of the node instance provisioning by watching your Auto Scaling Group in your cloud’s web console. To confirm the successful implementation of the TFE application you can SSH onto the instance and run the following command to monitor the installation directly:
+It can take up to 15 minutes for the node to provision and the TFE application to be installed and respond as healthy. You can monitor the status of the node provisioning by watching your auto scaling group in your cloud’s web console. To confirm the successful implementation of the TFE application you can SSH onto the node and run the following command to monitor the installation directly:
 
 
 ```bash
