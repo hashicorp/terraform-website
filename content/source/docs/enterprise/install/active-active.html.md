@@ -26,7 +26,7 @@ The primary requirement is an auto scaling group (or equivalent) with a single i
 
 The application itself must be using [External Services](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision) mode to connect to an external PostgreSQL database and object storage. 
 
-All admin and application configuration must be automated via your settings files and current with running configuration, i.e. it cannot have been altered via the Admin UI and not synced to the file. Specifically, you should be using the following configuration files:
+All admin and application configuration must be automated via your settings files and current with running configuration, i.e. it cannot have been altered via the Replicated Admin Console and not synced to the file. Specifically, you should be using the following configuration files:
 
 
 *   `/etc/replicated.conf`    - contains the configuration for the Replicated installer
@@ -34,7 +34,7 @@ All admin and application configuration must be automated via your settings file
 
 -> **Note**: The location for the latter is controlled by the "ImportSettingsFrom" setting in `/etc/replicated.conf` and is sometimes named `settings.json` or `replicated-tfe.conf`
 
-The requirement for automation is two-fold. First, the nodes need to be able to spin up and down without human intervention. More importantly though, you will need to ensure configuration is managed in this way going forward as the Admin UI will be disabled. **The Admin UI does not function correctly when running multiple nodes and must not be used**.
+The requirement for automation is two-fold. First, the nodes need to be able to spin up and down without human intervention. More importantly though, you will need to ensure configuration is managed in this way going forward as the Replicated Admin Console will be disabled. **The Replicated Admin Console does not function correctly when running multiple nodes and must not be used**.
 
 
 ### Step 1: Prepare to Externalize Redis
@@ -47,7 +47,7 @@ There are new access requirements involving ingress and egress:
 
 *   **Port 6379** (or the port the external Redis will be configured to use) must be open between the node instances and the Redis service
 *   **Port 8201** must be open between the node instances to allow Vault to run in [High Availability](https://www.vaultproject.io/docs/internals/high-availability) mode
-*   **Port 8800** should now be closed, as the admin dashboard is no longer available when running multiple nodes
+*   **Port 8800** should now be closed, as the Replicated Admin Console is no longer available when running multiple nodes
 
 
 #### Provision Redis 
@@ -374,7 +374,7 @@ For example:
    },
    "registry_session_secret_key":{
       "value":"6c1c4d73cc0a6cccbbb61284b0c32b35"
-   },
+   }
 }
 
 ```
@@ -456,7 +456,7 @@ You can now safely change the number of instances in your Auto Scaling Group ( o
 
 #### Disable the Admin Dashboard
 
-Before scaling beyond the first node, you must disable the Admin dashboard as mentioned earlier in this guide. This is done by adding the `disable-replicated-ui` flag as a parameter when you call the install script, as such:
+Before scaling beyond the first node, you must disable the  as mentioned earlier in this guide. This is done by adding the `disable-replicated-ui` flag as a parameter when you call the install script, as such:
 
 
 ```
@@ -489,7 +489,7 @@ You need to wait up to 15 minutes for the application to respond as healthy on b
 
 Finally, confirm the application is functioning as expected when running multiple nodes. Run Terraform plan and applies through the system (and any other tests specific to your environment) like you did to validate the application in Step 3. 
 
-Confirm the general functionality of the UI to validate the tokens you added in Step 2 are set correctly. Browse the `Run` interface and your organization's private registry to confirm your application functions as expected.
+Confirm the general functionality of the Terraform Enterprise UI to validate the tokens you added in Step 2 are set correctly. Browse the `Run` interface and your organization's private registry to confirm your application functions as expected.
 
 
 ## 
