@@ -1,6 +1,6 @@
 ---
 page_title: "Part 3.1: From Manual Changes to Semi-Automation - Terraform Recommended Practices"
-layout: "guides"
+layout: "intro"
 ---
 
 # Part 3.1: How to Move from Manual Changes to Semi-Automation
@@ -27,7 +27,7 @@ Follow the rest of the [Terraform: Get Started collection](https://learn.hashico
 
 Choose a small real-life project and implement it with Terraform. Look at your organization’s list of upcoming projects, and designate one to be a Terraform proof-of-concept. Alternately, you can choose some existing infrastructure to re-implement with Terraform.
 
-The key is to choose a project with limited scope and clear boundaries, such as provisioning infrastructure for a new application on AWS. This helps keep your team from getting overwhelmed with features and possibilities. You can also look at some [example projects](https://github.com/hashicorp/terraform/tree/master/examples/) to get a feel for your options. (The [AWS two-tier example](https://github.com/terraform-providers/terraform-provider-aws/tree/master/examples/two-tier) is often a good start.)
+The key is to choose a project with limited scope and clear boundaries, such as provisioning infrastructure for a new application on AWS. This helps keep your team from getting overwhelmed with features and possibilities. You can also look at some [example AWS projects](https://github.com/terraform-providers/terraform-provider-aws/tree/master/examples) to get a feel for your options. (The [AWS two-tier example](https://github.com/terraform-providers/terraform-provider-aws/tree/master/examples/two-tier) is often a good start.)
 
 Your goal here is to build a small but reliable core of expertise with Terraform, and demonstrate its benefits to others in the organization.
 

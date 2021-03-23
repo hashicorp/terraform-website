@@ -34,8 +34,8 @@ The settings file is JSON formatted. All values must be strings.  The example be
     "installation_type": {
         "value": "poc"
     },
-    "capacity_concurrency": {
-        "value": "5"
+    "enc_password": {
+        "value": "CHANGEME"
     }
 }
 ```
@@ -60,8 +60,8 @@ $ python -m json.tool settings.json
     "installation_type": {
         "value": "poc"
     },
-    "capacity_concurrency": {
-        "value": "5"
+    "enc_password": {
+        "value": "CHANGEME"
     }
 }
 ```
@@ -98,6 +98,9 @@ tfe$ cat settings.json
         "value": "hashicorp/build-worker:now"
     },
     "disk_path": {},
+    "enc_password": {
+        "value": "CHANGEME"
+    }
     "extern_vault_addr": {},
     "extern_vault_enable": {},
     "extern_vault_path": {},
@@ -109,7 +112,7 @@ tfe$ cat settings.json
     "gcs_credentials": {},
     "gcs_project": {},
     "hostname": {
-        "value": "tfe.mycompany.com"
+        "value": "terraform.example.com"
     },
     "installation_type": {
         "value": "poc"
@@ -144,13 +147,14 @@ The following settings apply to every installation:
 
 - `hostname` — (Required) The hostname you will use to access your installation.
 - `installation_type` — (Required) One of `poc` or `production`.
-- `enc_password` — Set the [encryption password](./encryption-password.html) for the install.
+- `enc_password` — (Required) The [password](./encryption-password.html) used to encrypt and decrypt the internally-managed Vault unseal key and root token. Not required only when opting out of internally-managed Vault.
 - `capacity_concurrency` — number of concurrent plans and applies; defaults to `10`.
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `512`.
 - `enable_metrics_collection` — Whether Terraform Enterprise's [internal metrics collection](../admin/monitoring.html#internal-monitoring) should be enabled; defaults to `true`.
 - `iact_subnet_list` - A comma-separated list of CIDR masks that configure the ability to retrieve the [IACT](./automating-initial-user.html) from outside the host. For example: 10.0.0.0/24. If not set, no subnets can retrieve the IACT.
 - `iact_subnet_time_limit` - The time limit that requests from the subnets listed can request the [IACT](./automating-initial-user.html), as measured from the instance creation in minutes; defaults to 60.
 - `extra_no_proxy` — (Optional) When configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
+- `hairpin_addressing` - When set, TFE services will direct traffic destined for the installation's FQDN toward the instance's internal IP address. This is useful for cloud environments where HTTP clients running on instances behind a load balancer cannot send requests to the public hostname of that load balancer. Defaults to `false`.
 - `ca_certs` — (Optional) Custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
   in the data with `\n`. For instance:
 
@@ -183,6 +187,7 @@ If you have chosen `production` for the `installation_type`, `production_type` i
 If you have chosen `disk` for `production_type`, `disk_path` is required:
 
 - `disk_path` — Path on instance to persistent storage.
+- `pg_password` — The password for the internal PostgreSQL access. The password will be auto-generated for each installation if not provided.
 
 If you want to use an [alternative Terraform build worker image](./installer.html#alternative-terraform-worker-image), the following settings apply:
 
@@ -329,4 +334,3 @@ sudo systemctl start replicated replicated-ui replicated-operator
 - [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
 - [`/etc/replicated.conf`](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically)
 - [application settings](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-app-settings-automatically)
-

@@ -37,7 +37,7 @@ The recommended process for removing an attribute from a data source or resource
 
 ## Provider Attribute Rename
 
-When renaming an attribute from one name to another, it is important to keep backwards compatibility with both existing Terraform configurations and the [Terraform state](/docs/state/index.html) while operators migrate. To accomplish this, there will be some duplicated logic to support both attributes until the next `MAJOR` release. Once both attributes are appropriately handled, the process for deprecating and removing the old attribute is the same as noted in the [Provider Attribute Removal section](#provider-attribute-removal).
+When renaming an attribute from one name to another, it is important to keep backwards compatibility with both existing Terraform configurations and the [Terraform state](/docs/language/state/index.html) while operators migrate. To accomplish this, there will be some duplicated logic to support both attributes until the next `MAJOR` release. Once both attributes are appropriately handled, the process for deprecating and removing the old attribute is the same as noted in the [Provider Attribute Removal section](#provider-attribute-removal).
 
 The procedure for renaming an attribute depends on what type of attribute it is:
 

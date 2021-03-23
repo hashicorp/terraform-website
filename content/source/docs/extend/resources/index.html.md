@@ -24,6 +24,6 @@ Terraform tracks the state of provisioned resources in its state file, and compa
 
 ## State Migrations
 
-Resources define the data types and API interactions required to create, update, and destroy infrastructure with a cloud vendor, while the [Terraform state](/docs/state/index.html) stores mapping and metadata information for those remote objects.
+Resources define the data types and API interactions required to create, update, and destroy infrastructure with a cloud vendor, while the [Terraform state](/docs/language/state/index.html) stores mapping and metadata information for those remote objects.
 
 When resource implementations change (due to bug fixes, improvements, or changes to the backend APIs Terraform interacts with), they can sometimes become incompatible with existing state. When this happens, a migration is needed for resources provisioned in the wild with old schema configurations. Terraform resources support migrating state values in these scenarios via [State Migration](/docs/extend/resources/state-migration.html).

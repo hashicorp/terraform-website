@@ -55,10 +55,11 @@
 
   <body id="<%= body_id_for(current_page) %>" class="<%= body_classes_for(current_page) %>">
     <%= partial("layouts/alert_banner", locals: {show: false, theme: 'terraform', url:"https://www.hashicorp.com/webinars/provision-infrastructure-using-cloud-development-kit-for-terraform/", tag:"Live Webinar", text:"Write an infrastructure application in TypeScript and Python using CDK for Terraform", cta:"Register Now"}) %>
-  
+
     <header class="hashiStackMenuRoot hashiStackMenu">
             <nav class="nav g-container">
-              <a class="logoLink" href="/"><div data-testid="root"> <%= inline_svg "hashicorp-logo.svg" %> </div></a>
+              <a class="logoLink" href="https://www.hashicorp.com">
+              <div data-testid="root"> <%= inline_svg "hashicorp-logo.svg" %> </div></a>
               <menu class="menu">
               <li class="navItem">
                 <button
@@ -175,14 +176,14 @@
                         <h5 class="stackGroupHeading">HashiCorp Cloud Platform</h5>
                         <ul class="stackGroupLinkList">
                           <li class="stackItem">
-                          <a href="https://www.hashicorp.com/cloud-platform" class="itemLink">
+                          <a href="https://cloud.hashicorp.com/" class="itemLink">
                           <img
                               src="/assets/images/product-icons/consul-icon-color.svg"
                               class="productIcon"
                               alt="consul by HashiCorp"
                             />
                             <span class="productName itemName">consul</span>
-                            <span class="badge">Public Beta</span>
+                            <span class="badge">Generally Available</span>
                             </a>
                         </li>
                           <li class="stackItem">
@@ -195,13 +196,13 @@
                             >
                           </li>
                           <li class="stackItem">
-                            <a href="https://www.hashicorp.com/cloud-platform" class="itemLink"
+                            <a href="https://cloud.hashicorp.com/" class="itemLink"
                               ><img
                                 src="/assets/images/product-icons/vault-icon-color.svg"
                                 class="productIcon"
                                 alt="vault by HashiCorp"
                               /><span class="productName itemName">vault</span>
-                              <span class="badge">Private Beta</span>
+                              <span class="badge">Public Beta</span>
                               </a
                             >
                           </li>
@@ -252,60 +253,98 @@
 
             <%
               docs_items = <<-EOT
-                <li><a data-track='docs-home' href="/docs/index.html">Docs Home</a></li>
-                <li><a data-track='docs-cli' href="/docs/cli-index.html">Terraform CLI</a></li>
+                <li><a data-track='docs-home' href="/docs/index.html">About the Docs</a></li>
+                <li><a data-track='docs-intro' href="/intro/index.html">Intro to Terraform</a></li>
+                <li><a data-track='docs-language' href="/docs/language/index.html">Terraform Language</a></li>
+                <li><a data-track='docs-cli' href="/docs/cli/index.html">Terraform CLI</a></li>
                 <li><a data-track='docs-cloud' href="/docs/cloud/index.html">Terraform Cloud</a></li>
                 <li><a data-track='docs-ent' href="/docs/enterprise/index.html">Terraform Enterprise</a></li>
                 <li><a data-track='docs-providers' href="/docs/providers/index.html">Providers</a></li>
                 <li><a data-track='docs-glossary' href="/docs/glossary.html">Glossary</a></li>
-                <li><a data-track='docs-guides' href="/guides/index.html">Guides and Whitepapers</a></li>
-                <li><a data-track='docs-registry' href="/docs/registry/index.html">Registry</a></li>
-                <li><a data-track='docs-gh-actions' href="https://learn.hashicorp.com/tutorials/terraform/github-actions">GitHub Actions</a></li>
+                <li><a data-track='docs-registry' href="/docs/registry/index.html">Publishing Providers &amp; Modules</a></li>
                 <li><a data-track='docs-extending' href="/docs/extend/index.html">Extending Terraform</a></li>
+              EOT
+            %>
+
+            <%
+              editions_items = <<-EOT
+                <li><a data-track='editions-cli' href="/">Terraform CLI</a></li>
+                <li><a data-track='editions-cloud' href="/cloud">Terraform Cloud</a></li>
+                <li><a data-track='editions-enterprise' href="https://www.hashicorp.com/products/terraform">Terraform Enterprise</a></li>
               EOT
             %>
 
             <div class="buttons hidden-xs">
               <nav class="navigation-links" role="navigation">
                 <ul class="main-links nav navbar-nav navbar-right">
-                  <li class="visible-sm"><span><a href="/index.html">Info</a><svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span>
+                  <li><a data-track='overview' href="/">Overview</a></li>
+                  <li><span><a data-track='editions'>Editions</a><svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span>
                     <ul class="dropdown">
-                      <li><a data-track='intro' href="/intro/index.html">Intro</a></li>
-                      <li><a data-track='learn' href="https://learn.hashicorp.com/terraform/">Tutorials</a></li>
-                      <li><a data-track='community' href="/community.html">Community</a></li>
-                      <li><a data-track='enterprise' href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
+                      <%= editions_items %>
                     </ul>
                   </li>
-                  <li class="hidden-sm"><a data-track='intro' href="/intro/index.html">Intro</a></li>
-                  <li class="hidden-sm"><a data-track='learn' href="https://learn.hashicorp.com/terraform/">Tutorials</a></li>
+                  <li class="hidden-sm"><a data-track='registry' href="https://registry.terraform.io">Registry</a></li>
+                  <li class="hidden-sm"><a data-track='learn' href="https://learn.hashicorp.com/terraform/?utm_source=terraform_io">Tutorials</a></li>
                   <li><span><a data-track='docs' href="/docs/index.html">Docs</a><svg width="9" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z" fill-rule="evenodd"/></svg></span>
                     <ul class="dropdown">
                       <%= docs_items %>
                     </ul>
                   </li>
-                  <li class="hidden-sm"><a data-track='community' href="/community.html">Community</a></li>
-                  <li class="hidden-sm"><a data-track='enterprise' href="https://www.hashicorp.com/products/terraform/?utm_source=oss&utm_medium=header-nav&utm_campaign=terraform">Enterprise</a></li>
-                  <li>
-                    <a data-track='download' href="/downloads.html">
-                      <%= inline_svg "download.svg" %> Download
-                    </a>
+                  <li class="visible-sm">
+                    <span>
+                      <a href="/">Info</a>
+                      <svg
+                        width="9"
+                        height="5"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8.811 1.067a.612.612 0 0 0 0-.884.655.655 0 0 0-.908 0L4.5 3.491 1.097.183a.655.655 0 0 0-.909 0 .615.615 0 0 0 0 .884l3.857 3.75a.655.655 0 0 0 .91 0l3.856-3.75z"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    <ul class="dropdown">
+                      <li>
+                        <a
+                          data-track="registry"
+                          href="https://registry.terraform.io/"
+                        >
+                          Registry
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          data-track="learn"
+                          href="https://learn.hashicorp.com/terraform/?utm_source=terraform_io"
+                        >
+                          Tutorials
+                        </a>
+                      </li>
+                      <li>
+                        <a data-track="community" href="/community">
+                          Community
+                        </a>
+                      </li>
+                    </ul>
                   </li>
+                  <li class="hidden-sm"><a data-track='community' href="/community">Community</a></li>
                   <li>
                     <a data-track='github' href="https://github.com/hashicorp/terraform">
-                      <%= inline_svg "github.svg" %> GitHub
+                      GitHub
                     </a>
                   </li>
                    <li id="terraform-overview-sign-in-link">
                    <div>
-                    <a data-track='sign-in' href="https://app.terraform.io/session?utm_source=docs_banner">
-                      Sign In
+                    <a data-track='download-cli' href="/downloads.html">
+                      Download CLI
                     </a>
                     </div>
                   </li>
                    <li id="terraform-overview-sign-up-link" class="hidden-md hidden-sm">
                    <div>
-                    <a data-track='sign-up' href="https://app.terraform.io/signup/account?utm_source=docs_banner">
-                      Create Account
+                    <a data-track='sign-up' href="/cloud">
+                      Terraform Cloud
                     </a>
                     </div>
                   </li>
@@ -317,7 +356,7 @@
       </div>
     </div>
 
-    <%= partial("layouts/sidebar", locals: {docs_items: docs_items}) %>
+    <%= partial("layouts/sidebar", locals: {docs_items: docs_items, editions_items: editions_items}) %>
 
     <%= yield %>
 
@@ -326,7 +365,7 @@
         <div class="row">
           <div class="col-xs-12">
             <ul class="footer-links nav navbar-nav">
-              <li><a href="/intro/index.html">Intro</a></li>
+              <li><a href="/">Overview</a></li>
               <li><a href="/docs/index.html">Docs</a></li>
               <li><a href="/docs/extend/index.html">Extend</a></li>
               <li><a href="https://www.hashicorp.com/privacy">Privacy</a></li>

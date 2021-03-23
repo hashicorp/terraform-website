@@ -18,7 +18,7 @@ page_title: "Terraform Enterprise Settings - API Docs - Terraform Enterprise"
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 [speculative plans]: /docs/cloud/run/index.html#speculative-plans
 
@@ -195,7 +195,7 @@ Key path                                | Type   | Default | Description
 `data.attributes.enabled`               | bool   | `false` | Allows organizations to opt-in to the Cost Estimation feature.
 `data.attributes.aws-access-key-id`     | string |         | An AWS Access Key ID that the Cost Estimation feature will use to authorize to AWS's Pricing API.
 `data.attributes.aws-secret-key`        | string |         | An AWS Secret Key that the Cost Estimation feature will use to authorize to AWS's Pricing API.
-`data.attributes.gcp-credentials`       | string |         | A JSON string containing GCP credentials that the Cost Estimation feature will use to authorize to the Google Cloud Platform's Pricing API. This must be the contents of a valid JSON key that is downloaded when [creating a Service Account in GCP](https://cloud.google.com/video-intelligence/docs/common/auth#set_up_a_service_account).
+`data.attributes.gcp-credentials`       | string |         | A JSON string containing GCP credentials that the Cost Estimation feature will use to authorize to the Google Cloud Platform's Pricing API. This must be the contents of a valid JSON key that is downloaded when [creating a Service Account in GCP](https://cloud.google.com/video-intelligence/docs/common/auth#creating_a_service_account_in_the).
 `data.attributes.azure-client-id`       | string |         | An Azure Client ID that the Cost Estimation feature will use to authorize to Azure's RateCard API.
 `data.attributes.azure-client-secret`   | string |         | An Azure Client Secret that the Cost Estimation feature will use to authorize to Azure's RateCard API.
 `data.attributes.azure-subscription-id` | string |         | An Azure Subscription ID that the Cost Estimation feature will use to authorize to Azure's RateCard API.

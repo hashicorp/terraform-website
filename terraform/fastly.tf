@@ -1,7 +1,3 @@
-provider "fastly" {
-  version = "~> 0.17.0"
-}
-
 locals {
   static_sites_service_id              = "7GrxRJP3PVBuqQbyxYQ0MV"
   tf_registry_docs_type_dictionary_id  = "2meQ4j47Me81w1jSb5m9lh"
@@ -47,26 +43,36 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
   items = {
     # verified partners
     "aci" : "CiscoDevNet/aci"
+    "acme" : "vancluever/acme"
+    "ado" : "microsoft/azuredevops" # legacy naming of azuredevops
     "akamai" : "akamai/akamai"
     "alicloud" : "aliyun/alicloud"
     "auth0" : "alexkappa/auth0"
     "aviatrix" : "AviatrixSystems/aviatrix"
+    "azuredevops" : "microsoft/azuredevops"
     "baiducloud" : "baidubce/baiducloud"
     "bigip" : "F5Networks/bigip"
     "brightbox" : "brightbox/brightbox"
     "checkpoint" : "CheckPointSW/checkpoint"
     "circonus" : "circonus-labs/circonus"
+    "cloudamqp" : "cloudamqp/cloudamqp"
     "cloudflare" : "cloudflare/cloudflare"
+    "cloudscale" : "cloudscale-ch/cloudscale"
+    "cobbler" : "cobber/cobbler"
     "constellix" : "Constellix/constellix"
     "datadog" : "DataDog/datadog"
     "digitalocean" : "digitalocean/digitalocean"
     "dme" : "DNSMadeEasy/dme"
+    "dnsimple" : "dnsimple/dnsimple"
     "do" : "digitalocean/digitalocean" # legacy website naming of digitalocean
+    "docker" : "kreuzwerker/docker"
     "dome9" : "dome9/dome9"
+    "ecl" : "nttcom/ecl"
     "exoscale" : "exoscale/exoscale"
     "fastly" : "fastly/fastly"
     "flexibleengine" : "FlexibleEngineCloud/flexibleengine"
     "fortios" : "fortinetdev/fortios"
+    "github" : "integrations/github"
     "gitlab" : "gitlabhq/gitlab"
     "grafana" : "grafana/grafana"
     "gridscale" : "gridscale/gridscale"
@@ -75,56 +81,70 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "huaweicloud" : "huaweicloud/huaweicloud"
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "icinga2" : "Icinga/icinga2"
+    "incapsula" : "imperva/incapsula"
+    "ksyun" : "kingsoftcloud/ksyun"
     "lacework" : "lacework/lacework"
     "launchdarkly" : "launchdarkly/launchdarkly"
     "linode" : "linode/linode"
+    "logicmonitor" : "logicmonitor/logicmonitor"
+    "mailgun" : "wgebis/mailgun"
     "mongodbatlas" : "mongodb/mongodbatlas"
     "mso" : "CiscoDevNet/mso"
     "ncloud" : "NaverCloudPlatform/ncloud" # unverified
     "newrelic" : "newrelic/newrelic"
     "ns1" : "ns1-terraform/ns1"
     "nsxt" : "vmware/nsxt"
+    "nutanix" : "nutanix/nutanix"
     "okta" : "oktadeveloper/okta"
     "oktaasa" : "oktadeveloper/oktaasa"
+    "opennebula" : "OpenNebula/opennebula"
     "openstack" : "terraform-provider-openstack/openstack"   # unverified
     "opentelekomcloud" : "opentelekomcloud/opentelekomcloud" # unverified
     "opsgenie" : "opsgenie/opsgenie"
     "ovh" : "ovh/ovh" # unverified?
     "packet" : "packethost/packet"
     "pagerduty" : "PagerDuty/pagerduty"
-    "panos" : "PaloAltoNetworks/panos"             # unverified
+    "panos" : "PaloAltoNetworks/panos" # unverified
+    "postgresql" : "cyrilgdn/postgresql"
+    "powerdns" : "pan-net/powerdns"
     "prismacloud" : "PaloAltoNetworks/prismacloud" # unverified
+    "profitbricks" : "ionos-cloud/profitbricks"
+    "rabbitmq" : "cyrilgdn/rabbitmq"
     "rancher2" : "rancher/rancher2"
     "scaleway" : "scaleway/scaleway"
     "selectel" : "selectel/selectel" # unverified
     "signalfx" : "splunk-terraform/signalfx"
+    "skytap" : "skytap/skytap"
+    "spotinst" : "spotinst/spotinst"
     "stackpath" : "stackpath/stackpath" # unverified
+    "statuscake" : "StatusCakeDev/statuscake"
     "sumologic" : "SumoLogic/sumologic"
     "tencentcloud" : "tencentcloudstack/tencentcloud"
     "triton" : "joyent/triton"
     "turbot" : "turbot/turbot"
     "ucloud" : "ucloud/ucloud" # unverified
+    "vcd" : "vmware/vcd"
     "venafi" : "Venafi/venafi"
     "vmc" : "vmware/vmc"
     "vra7" : "vmware/vra7"
-    "vthunder" : "a10networks/vthunder"
+    "vthunder" : "a10networks/thunder"
     "vultr" : "vultr/vultr"
     "wavefront" : "vmware/wavefront"
     "yandex" : "yandex-cloud/yandex"
-    "vcd" : "vmware/vcd"
-    "opennebula" : "OpenNebula/opennebula"
 
     # HashiCorp providers, if moving more of these, you may need the Registry to
     # manually enable Google indexing, contact the team / Paul Tyng for more
     "archive" : "hashicorp/archive"
     "aws" : "hashicorp/aws"
     "azuread" : "hashicorp/azuread"
+    "azurerm" : "hashicorp/azurerm"
     "azurestack" : "hashicorp/azurestack"
     "ciscoasa" : "hashicorp/ciscoasa"
     "cloudinit" : "hashicorp/cloudinit"
     "consul" : "hashicorp/consul"
     "dns" : "hashicorp/dns"
     "external" : "hashicorp/external"
+    "google" : "hashicorp/google"
     "helm" : "hashicorp/helm"
     "http" : "hashicorp/http"
     "kubernetes" : "hashicorp/kubernetes"
@@ -141,7 +161,6 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "tls" : "hashicorp/tls"
     "vault" : "hashicorp/vault"
     "vsphere" : "hashicorp/vsphere"
-
   }
 
   # prevent destroying this dictionary to cause redirects to break

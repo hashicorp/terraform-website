@@ -8,14 +8,25 @@ description: |-
 
 # Terraform Enterprise AWS Reference Architecture
 
+## Introduction
+
 This document provides recommended practices and a reference architecture for
 HashiCorp Terraform Enterprise implementations on AWS.
+
+## Implementation Modes
+
+Terraform Enterprise can be installed and function in different implementation modes with increasing capability and complexity:
+
+- _Standalone:_ The base architecture with a single application node that supports the standard implementation requirements for the platform.
+- _Active/Active:_ This is an extension of _Standalone_ mode that adds multiple active node capability that can expand horizontally to support larger and increasing execution loads.
+
+Since the architectures of the modes progresses logically, this guide will present the base _Standalone_ mode first and then discuss the differences that alter the implementation into the _Active/Active_ mode.
 
 ## Required Reading
 
 Prior to making hardware sizing and architectural decisions, read through the
 [pre-install checklist](../index.html)
-to familiarise yourself with the application components and architecture.
+to familiarize yourself with the application components and architecture.
 Further, read the [reliability and availability
 guidance](../../system-overview/reliability-availability.html)
 as a primer to understanding the recommendations in this reference
@@ -37,32 +48,32 @@ or “Burstable CPU” in AWS terms, such as T-series instances.
 
 ### Terraform Enterprise Server (EC2 via Auto Scaling Group)
 
-| Type        | CPU      | Memory       | Disk | AWS Instance Types    |
-|-------------|----------|--------------|------|-----------------------|
-| Minimum     | 2 core   | 8 GB RAM     | 50GB | m5.large              |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB | m5.xlarge, m5.2xlarge |
+| Type    | CPU    | Memory    | Disk | AWS Instance Types |
+|---------|--------|-----------|------|--------------------|
+| Minimum | 4 core | 16 GB RAM | 50GB | m5.xlarge          |
+| Scaled  | 8 core | 32 GB RAM | 50GB | m5.2xlarge         |
 
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a
+- The scaled size is for production environments where there is a
   consistent high workload in the form of concurrent Terraform runs.
 
 ### PostgreSQL Database (RDS Multi-AZ)
 
-| Type        | CPU      | Memory       | Storage | AWS Instance Types          |
-|-------------|----------|--------------|---------|-----------------------------|
-| Minimum     | 2 core   | 8 GB RAM     | 50GB    | db.m4.large                 |
-| Recommended | 4-8 core | 16-32 GB RAM | 50GB    | db.m4.xlarge, db.m4.2xlarge |
+| Type    | CPU    | Memory    | Storage | AWS Instance Types |
+|---------|--------|-----------|---------|--------------------|
+| Minimum | 4 core | 16 GB RAM | 50GB    | db.m4.xlarge       |
+| Scaled  | 8 core | 32 GB RAM | 50GB    | db.m4.2xlarge      |
 
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is a
+- The scaled size is for production environments where there is a
   consistent high workload in the form of concurrent Terraform runs.
 
 ### Object Storage (S3)
@@ -150,9 +161,9 @@ A public AWS Certificate Manager (ACM) certificate cannot be used with a Network
 be placed on NLBs and AWS does not support exporting the private key for public ACM certificates. This means you cannot load
 the private key of a public ACM certificate on your Terraform Enterprise instance.
 
-## Infrastructure Diagram
+### Infrastructure Diagram - Standalone
 
-![aws-infrastructure-diagram-asg](./assets/aws-infrastructure-diagram.png)
+![aws-sa-infrastructure-diagram](./assets/RA-TFE-SA-AWS-SingleRegion.png)
 
 ### Application Layer
 
@@ -174,22 +185,14 @@ provided by AWS.
 ## Infrastructure Provisioning
 
 The recommended way to deploy Terraform Enterprise is through use of a Terraform configuration
-that defines the required resources, their references to other resources, and
-dependencies. An [example Terraform
-configuration](https://github.com/hashicorp/private-terraform-enterprise/blob/master/examples/aws/pes/main.tf)
-is provided to demonstrate how these resources can be provisioned and how they
-interrelate. This Terraform configuration assumes the required networking
-components are already in place. If you are creating networking components for
-this installation, an [example Terraform configuration is available for
-the networking
-resources](https://github.com/hashicorp/private-terraform-enterprise/blob/master/examples/aws/network/main.tf)
-as well.
+that defines the required resources, their references to other resources, and associated
+dependencies.
 
 ## Normal Operation
 
 ### Component Interaction
 
-The Load Balancer routes all traffic to the *Terraform Enterprise* instance, which is managed by
+The Load Balancer routes all traffic to the Terraform Enterprise instance, which is managed by
 an Auto Scaling Group with maximum and minimum instance counts set to one.
 
 The Terraform Enterprise application is connected to the PostgreSQL database via the RDS
@@ -212,26 +215,34 @@ There is not currently a full monitoring guide for Terraform Enterprise. The fol
 
 See [the Upgrades section](../../admin/upgrades.html) of the documentation.
 
-## High Availability
-
-### Failure Scenarios
+## High Availability - Failure Scenarios
 
 AWS provides availability and reliability recommendations in the [Well-Architected
 framework](https://aws.amazon.com/architecture/well-architected/).
-Working in accordance with those recommendations the Terraform Enterprise Reference
+Working in accordance with those recommendations, the Terraform Enterprise Reference
 Architecture is designed to handle different failure scenarios with
-different probabilities. As the architecture evolves it may provide a
+different probabilities. As the architecture evolves it will provide a
 higher level of service continuity.
 
-#### Single EC2 Instance Failure
+### Terraform Enterprise Server
 
-In the event of the *Terraform Enterprise* instance failing in a way that AWS can
+By utilizing an Auto Scaling Group, a Terraform Enterprise instance can automatically recover
+in the event of any outage except for the loss of an entire region.
+
+In the event of a Terraform Enterprise instance failing in a way that AWS can
 observe, the health checks on the Auto Scaling Group trigger, causing
-a new instance to be launched. Once the new EC2 instance is launched,
-it reinitializes the software and once that is complete, service would
+a replacement instance to be launched. Once launched,
+it reinitializes the software, and on completion, processing on this EC2 instance will
 resume as normal.
 
-#### Availability Zone Failure
+With *External Services* (PostgreSQL Database, Object Storage) in use,
+there is still some application configuration data present on the Terraform Enterprise server
+such as installation type, database connection settings, hostname. This data
+rarely changes. If the configuration on Terraform Enterprise changes you should update the
+Launch Configuration to include the updates so that any newly
+launched EC2 instance uses them.
+
+### Availability Zone Failure
 
 In the event of the Availability Zone hosting the main instances (EC2
 and RDS) failing, the Auto Scaling Group for the EC2 instance will automatically
@@ -240,25 +251,13 @@ begin booting a new one in an operational AZ.
 - Multi-AZ RDS automatically fails over to the RDS Standby Replica
   (*RDS-standby*). The [AWS documentation provides more
   detail](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)
-  on the exact behaviour and expected impact.
+  on the exact behavior and expected impact.
 
 - S3 is resilient to Availability Zone failure based on its architecture.
 
 See below for more detail on how each component handles Availability Zone failure.
 
-##### Terraform Enterprise Server
-
-By utilizing an Auto Scaling Group, the Terraform Enterprise instance automatically recovers
-in the event of any outage except for the loss of an entire region.
-
-With *External Services* (PostgreSQL Database, Object Storage) in use,
-there is still some application configuration data present on the Terraform Enterprise server
-such as installation type, database connection settings, hostname. This data
-rarely changes. If the configuration on *Terraform Enterprise* changes you should update the
-Launch Configuration to include this updated configuration so that any newly
-launched EC2 instance uses this new configuration.
-
-##### PostgreSQL Database
+### PostgreSQL Database
 
 Using RDS Multi-AZ as an external database service leverages the highly
 available infrastructure provided by AWS. From the AWS website:
@@ -269,7 +268,7 @@ available infrastructure provided by AWS. From the AWS website:
 > instance, Amazon RDS automatically switches to a standby replica in
 > another Availability Zone. ([source](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html))*
 
-##### Object Storage
+### Object Storage
 
 Using S3 as an external object store leverages the highly available
 infrastructure provided by AWS. S3 buckets are replicated to all
@@ -282,56 +281,22 @@ From the AWS website:
 > a minimum of three physical facilities that are geographically
 > separated within an AWS Region. ([source](https://aws.amazon.com/s3/))*
 
-## Disaster Recovery
+## Disaster Recovery - Failure Scenarios
 
-### Failure Scenarios
-
-AWS provides availability and reliability recommendations in the
-Well-Architected framework. Working in accordance with those
+AWS provides availability and reliability recommendations in the [Well-Architected
+framework](https://aws.amazon.com/architecture/well-architected/). Working in accordance with those
 recommendations the Terraform Enterprise Reference Architecture is designed to handle
 different failure scenarios that have different probabilities. As the
-architecture evolves it may provide a higher level of service
+architecture evolves it will provide a higher level of service
 continuity.
 
-#### Region Failure
-
-Terraform Enterprise is currently architected to provide high availability within a
-single AWS Region. Using multiple AWS Regions will give you greater
-control over your recovery time in the event of a hard dependency
-failure on a regional AWS service. In this section, we’ll discuss
-various implementation patterns and their typical availability.
-
-An identical infrastructure should be provisioned in a secondary AWS
-Region. Depending on recovery time objectives and tolerances for
-additional cost to support AWS Region failure, the infrastructure can be
-running (Warm Standby) or stopped (Cold Standby). In the event of the
-primary AWS Region hosting the Terraform Enterprise application failing, the secondary
-AWS Region will require some configuration before traffic is directed to
-it along with some global services such as DNS.
-
-- [RDS cross-region read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.XRgn) can be used in a warm standby architecture or [RDS database backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html) can be used in a cold standby architecture.
-
-- [S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) must be configured so the object storage component of the Storage Layer is available in the secondary AWS Region.
-
-- DNS must be redirected to the Load Balancer acting as the entry point for the infrastructure deployed in the secondary AWS Region.
-
-#### Data Corruption
+### Data Corruption
 
 The Terraform Enterprise application architecture relies on multiple service endpoints
 (RDS, S3) all providing their own backup and recovery
 functionality to support a low MTTR in the event of data corruption.
 
-##### Terraform Enterprise Servers
-
-With _External Services_ (PostgreSQL Database, Object Storage) in
-use, there is still some application configuration data present on the
-Terraform Enterprise server such as installation type, database connection settings,
-hostname. This data rarely changes. We recommend [configuring automated
-snapshots](../../admin/automated-recovery.html#configure-snapshots)
-for this installation data so it can be recovered in the event of data
-corruption.
-
-##### PostgreSQL Database
+### PostgreSQL Database
 
 Backup and recovery of PostgreSQL is managed by AWS and configured
 through the AWS management console on CLI. More details of RDS for
@@ -347,7 +312,7 @@ and summarised below:
 > Instance. These full database backups will be stored by Amazon RDS
 > until you explicitly delete them.*
 
-##### Object Storage
+### Object Storage
 
 There is no automatic backup/snapshot of S3 by AWS, so it is recommended
 to script a bucket copy process from the bucket used by the Terraform Enterprise
@@ -364,3 +329,104 @@ Standard. From the AWS website:
 > storage price and per GB retrieval fee. This combination of low cost
 > and high performance make S3 Standard-IA ideal for long-term storage,
 > backups, and as a data store for disaster recovery. ([source](https://aws.amazon.com/s3/storage-classes/))*
+
+## Multi-Region Deployment to Address Region Failure
+
+Terraform Enterprise is currently architected to provide high availability within a
+single AWS Region. Using multiple AWS Regions will give you greater
+control over your recovery time in the event of a hard dependency
+failure on a regional AWS service. In this section, implementation patterns to support this are discussed.
+
+An identical infrastructure should be provisioned in a secondary AWS
+Region. Depending on recovery time objectives and tolerances for
+additional cost to support AWS Region failure, the infrastructure can be
+running (Warm Standby) or stopped (Cold Standby). In the event of the
+primary AWS Region hosting the Terraform Enterprise application failing, the secondary
+AWS Region will require some configuration before traffic is directed to
+it along with some global services such as DNS.
+
+- [RDS cross-region read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.XRgn) can be used in a warm standby architecture or [RDS database backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html) can be used in a cold standby architecture.
+
+- [S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) must be configured so the object storage component of the Storage Layer is available in the secondary AWS Region.
+
+- DNS must be redirected to the Load Balancer acting as the entry point for the infrastructure deployed in the secondary AWS Region.
+
+## Active/Active Implementation Mode
+
+### Overview
+
+As stated previously, the _Active/Active_ implementation mode is an extension of the _Standalone_ implementation mode that increases the scalability and load capacity of the Terraform Enterprise platform. The same application runs on multiple Terraform Enterprise instances utilizing the same external services in a shared model. The primary architectural and implementation differences for _Active/Active_ are:
+
+- It can only be run in the _External Services_ mode.
+- The additional nodes are active and processing work at all times.
+- In addition to the existing external services, there is a memory cache which is currently implemented with cloud native implementations of Redis. This is used for the processing queue for the application and has been moved from the individual instance to be a shared resource that manages distribution of work.
+- There are additional configuration parameters to manage the operation of the node cluster and the memory cache.
+
+The following sections will provide further detail on the infrastructure and implementation differences.
+
+### Migration to Active/Active
+
+If you are considering a migration from a _Standalone_ implementation to _Active/Active_, it is  straightforward and there is guidance available to assist with that effort. However, you should first make a determination if the move is necessary. The _Standalone_ mode is capable of handling significant load and the first paths to supporting higher load can be simply increasing the compute power in the existing implementation.  A discussion with your HashiCorp representatives may be warranted.
+
+Also note that if your existing architecture does not already depict what is shown and discussed above, you will likely need to make adjustments to bring it into alignment. This could be either before or during the migration. Certain tenets of the reference architecture described here are highly recommended and potentially necessary to support _Active/Active_ mode such as load balancers and scaling groups.
+
+### Infrastructure Diagram - Active/Active
+
+![aws-aa-infrastructure-diagram](./assets/RA-TFE-AA-AWS-SingleRegion.png)
+
+The above diagram shows the infrastructure components of an _Active/Active_ implementation at a high-level.
+
+### Infrastructure Requirements
+
+#### Active Nodes
+
+The diagram depicts two active nodes to be concise. Additional nodes can be added by altering your configuration to launch another instance that points to the same shared external services. The number and sizing of nodes should be based on load requirements and redundancy needs. Nodes should be deployed in alternate zones to accommodate zone failure.
+
+The cluster is comprised of essentially independent nodes in a SaaS type model. There are no concerns of leader election or minimal or optimum node counts. When a new node enters the cluster it simply starts taking new work from the load balancer and from the memory cache queue and thus spreading the load horizontally.
+
+#### Memory Cache
+
+The AWS implementation of the memory cache is handled by [Amazon ElastiCache](https://aws.amazon.com/elasticache/). Specifically using [Amazon ElastiCache for Redis](https://aws.amazon.com/elasticache/redis/). [Getting Started with Amazon ElastiCache for Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/GettingStarted.html) provides a high level walk-through of implementing the memory cache.
+
+[Determine Your Requirements](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/cluster-create-determine-requirements.html) provides a high level description of the implementation options for the memory cache. Primary differentiators are Cluster Mode and Multi-AZ. The primary difference is how far high availability might extend. Cluster Mode extends the cluster to multiple Node Groups and will benefit larger scale, multi-client implementations. The only clients for Terraform Enterprise are the compute instances in a single region, so this is not required or suggested. Here is  additional information on [Managing Your ElastiCache Clusters](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.html).
+
+You should enable Multi-AZ with Redis Replication Groups where memory cache instances are replicated across availability zones as described in [Mitigating Failures](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/FaultTolerance.html). Note there will be a primary and read replicas across the AZs. This failover and promotion of primaries can be configured to happen automatically on an AZ failure. There should be a memory cache node in every AZ that has a Terraform Enterprise node is deployed. A lower testing or sandbox environment could use just a single node, however, a production level environment should always be configured for high availability to benefit from the HA features that coincide with the other external services in the Terraform Enterprise platform. Note there is also a rudimentary mechanism of transaction logs available called Redis Append Only Files (AOF) which is not recommended as an alternative.
+
+The concept of Local Zone exists for Amazon ElasticCache. This is an extension of an AWS Region that is geographically close to your users. This is not required or recommended as the memory cache just needs to be close to TFE compute, limited locations are implemented so far, and it does not support Multi-AZ.
+
+Sizing for Amazon ElasticCache is determined by cache ec2 instance sizes defined for the cluster. You can start the size off in a smaller range such as a "cache.m5.large" with some consideration of anticipated active load, and scale up or down as demand is understood by changing node size. with the aid of [Choosing Your Node Size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html#CacheNodes.SelectSize).
+
+Enterprise-grade security is inherently covered in the Amazon ElasticCache implementation because Redis instances are protected from the internet using private IPs, and access to instances is controlled and limited to the account creating owning the cluster. Security Group(s) should be used to limit the access by port to the Redis cluster. Here is additional information on [Access Authorization](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/GettingStarted.AuthorizeAccess.html).
+
+Terraform Enterprise supports Redis versions 4.0 and 5.0, but 5.0 is recommended unless there is strong reason to deviate. Amazon ElastiCache for Redis supports Redis versions from 2.x to 6.x down to the minor version, so do explicitly specify the version such as 5.0.6.
+
+### Normal Operation
+
+#### Component Interaction
+
+The Load Balancer routes all traffic to the Terraform Enterprise instance, which is managed by
+an Auto Scaling Group. This is a standard round-robin distribution for now, with no accounting for current load on the nodes. The instance counts on the Auto Scaling Group control the number of nodes in operation and can be used to increase or decrease the number of active nodes.
+
+_Active/Active_ Terraform Enterprise is not currently architected to support dynamic scaling based on load or other factors. The maximum and minimum instance counts on the Auto Scaling Group should be set to the same value. Adding a node can be done at will bt setting these values. However, removing a node requires that the node be allowed to finish active work and stop accepting new work before being terminated. The operational documentation has the details on how to "drain" a node.
+
+#### Replicated Console
+
+The Replicated Console that allows access to certain information and realtime configuration for _Standalone_ is not available in _Active/Active_. This functionality, including generating support bundles, has been replaced with CLI commands to be executed on the nodes. The operational documentation has the details on how to utilize these commands.
+
+#### Upgrades
+
+Upgrading the Terraform Enterprise version still follows a similar pattern as with _Standalone_. However, there is not an online option with the Replicated Console. It is possible to upgrade a minor release with CLI commands in a rolling fashion. A "required" release or any change the potentially affects the shared external services will need to be done with a short outage. This involves scaling down to a single node, replacing that node, and then scaling back out. The operational documentation has the details on how these processes can operate.
+
+### Failure Scenarios
+
+#### Memory Cache
+
+As mentioned, the Amazon ElasticCache service in Multi-AZ mode provides automatic replication and failover. In the event of a larger failure or any normal maintenance with proper draining, the memory cache will not be required to be restored. If it is damaged it can be re-paved, and if not it can be left to continue operation.
+
+### Multi-Region Implementation to Address Region Failure
+
+Similar to _Standalone_, _Active/Active_ Terraform Enterprise is currently architected to provide high availability within a
+single region. You cannot deploy additional nodes associated to the primary cluster in different regions. It is possible to deploy to multiple regions to give you greater
+control over your recovery time in the event of a hard dependency
+failure on a regional service. An identical infrastructure will still need to be instantiated separately with a failover scenario resulting in control of processing being transferred to the second implementation, as described in the earlier section on this topic. In addition, this identical infrastructure will require its own Memory Cache external service instance.
+

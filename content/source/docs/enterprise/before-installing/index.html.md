@@ -14,14 +14,14 @@ Prepare all of the following before installing:
 2. **Choose an operational mode:** Decide how Terraform Enterprise should store its data. This is affected by your choice of deployment method.
 3. **Credentials:** Ensure you have a Terraform Enterprise license and a TLS certificate for Terraform Enterprise to use.
 4. **Data storage:** Depending on your operational mode, prepare data storage services or a block storage device.
-5. **Linux instance:** Prepare a running Linux instance for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements. Also check the Terraform Enterprise [pre-install checklist](https://www.terraform.io/docs/enterprise/before-installing/index.html) for further details.
+5. **Linux instance:** Prepare a running Linux instance for Terraform Enterprise. This might require additional configuration or software installation, depending on the OS and your operational requirements. [See below](#linux-instance) for further details.
 
 ## Operational Mode Decision
 
 Terraform Enterprise can store its state in a few different ways, and you'll
 need to decide which works best for your installation. Each option has a
 different approach to
-[recovering from failures](../system-overview/reliability-availability.html#recovery-from-failures-1)
+[reliability and availability](../system-overview/reliability-availability.html)
 and should be selected based on your organization's preferences.
 
 ~> **Important:** Make this decision before you begin installation, because some modes have additional preflight requirements.
@@ -67,7 +67,7 @@ The key and X.509 certificate should both be PEM (base64) encoded, and should be
    Authority, you must provide the certificate for that CA in the
    `Certificate Authority (CA) Bundle` section of the installation. This allows services
    running within Terraform Enterprise to access each other properly.
-   See [Installation: Trusting SSL/TLS Certificates](../install/installer.html#trusting-ssl-tls-certificates)
+   See [Installation: Certificate Authority (CA) Bundle](../install/installer.html#certificate-authority-ca-bundle)
    for more on this.
 
 ## Data Storage
@@ -110,13 +110,15 @@ Terraform Enterprise application as well as the Terraform plans and applies.
 * At least 10GB of disk space on the root volume
 * At least 40GB of disk space for the Docker data directory (defaults to `/var/lib/docker`)
 * At least 8GB of system memory
-* At least 2 CPU cores
+* At least 4 CPU cores
 
 ### Network Requirements
 
 Terraform Enterprise is a networked application. Its Linux instance(s) needs to allow several kinds of incoming and outgoing network traffic.
 
 See [Network Requirements](./network-requirements.html) for details.
+
+<a id="software-requirements"></a>
 
 ### Software Requirements (Standalone Deployment)
 
@@ -140,6 +142,49 @@ For other Linux distributions, check Docker compatibility:
 Terraform Enterprise's instance profile serves as default credentials for Terraform's AWS provider. Workspaces without environment variables for credentials will attempt to use the instance profile to provision AWS resources.
 
 The instance profile of Terraform Enterprise's instance is the operator's responsibility. If you plan to specify any non-default permissions for Terraform Enterprise's instance profile, be aware that Terraform runs might use those permissions and plan accordingly.
+
+#### S3 Policy
+
+At a minimum, Terraform Enterprise requires the following S3 permissions:
+
+```
+{
+    "Effect": "Allow",
+    "Action": [
+        "s3:PutObject",
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:GetBucketLocation"
+    ],
+    "Resource": [
+        "<BUCKET_ARN>",
+        "<BUCKET_ARN>/*"
+    ]
+}
+```
+-> **Note:** The `s3:ListAllMyBuckets` permission is necessary when testing authentication via the Replicated web console. However, the permission is not required for Terraform Enterprise to function and can be removed once the authentication is successfully tested.
+
+
+#### KMS Policy
+
+At a minimum, Terraform Enterprise will require the following permissions if the objects in the bucket are to be encrypted via resources in AWS's KMS:
+
+```
+{
+    "Effect": "Allow",
+    "Action": [
+        "kms:Decrypt",
+        "kms:Encrypt",
+        "kms:DescribeKey",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*"
+    ],
+    "Resource": [
+        "<KMS_KEY_ARN>"
+    ]
+}
+```
 
 ### SELinux
 

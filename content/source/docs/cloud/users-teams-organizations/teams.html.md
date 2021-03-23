@@ -9,7 +9,7 @@ page_title: "Teams - Terraform Cloud and Terraform Enterprise"
 
 # Teams
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 > **Hands-on:** Try the [Manage Permissions in Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-permissions?in=terraform/cloud&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
@@ -20,7 +20,7 @@ Teams can only have permissions on workspaces within their organization, althoug
 If a user belongs to at least one team in an organization, they are considered a member of that organization.
 
 -> **API:** See the [Teams API](../api/teams.html), [Team Members API](../api/team-members.html), [Team Tokens API](../api/team-tokens.html), and [Team Access API](../api/team-access.html).<br/>
-**Terraform:** See the `tfe` provider's [`tfe_team`](/docs/providers/tfe/r/team.html), [`tfe_team_members`](/docs/providers/tfe/r/team_members.html), and [`tfe_team_access`](/docs/providers/tfe/r/team_access.html) resources.
+**Terraform:** See the `tfe` provider's [`tfe_team`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team), [`tfe_team_members`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_members), and [`tfe_team_access`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_access) resources.
 
 ## The Owners Team
 
@@ -98,7 +98,7 @@ read a team and its membership. This is the default setting.
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 To simplify workspace administration, we recommend making most (or all) teams visible. Secret teams should only have
-[organization-level permissions](./permissions.html#organization-level-permissions), since workspace admins can't manage permissions for teams they can't view.
+[organization-level permissions](./permissions.html#organization-permissions), since workspace admins can't manage permissions for teams they can't view.
 
 ### API Tokens
 
@@ -109,7 +109,7 @@ Each team can have a special API token that is not associated with a specific us
 A team can be given various permissions on one or more workspaces.
 
 - Use any workspace's "Access" tab to manage team permissions on that workspace. For full instructions, see [Managing Access to Workspaces](../workspaces/access.html).
-- For detailed information about the available permissions levels, see [Permissions](./permissions.html#workspace-level-permissions).
+- For detailed information about the available permissions levels, see [Permissions](./permissions.html#workspace-permissions).
 
 When determining whether a user can take an action on a resource, Terraform Cloud uses the highest permission level from that user's teams. For example, if a user belongs to a team that only has permission to read runs for a workspace and another team with admin access to that workspace, that user has admin access.
 
@@ -126,4 +126,4 @@ A team can be granted permissions to manage policies, workspaces, and/or VCS set
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 - Organization owners can manage a team's organization-level permissions on the team's settings page under "Organization Access".
-- For detailed information about the available permissions, see [Permissions](./permissions.html#organization-level-permissions).
+- For detailed information about the available permissions, see [Permissions](./permissions.html#organization-permissions).

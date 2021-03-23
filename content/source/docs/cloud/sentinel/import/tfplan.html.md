@@ -7,7 +7,7 @@ description: |-
 
 # Import: tfplan
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The `tfplan` import provides access to a Terraform plan. A Terraform plan is the
 file created as a result of `terraform plan` and is the input to `terraform
@@ -354,7 +354,7 @@ Some examples of multi-level access are below:
   `tfplan.resources.aws_instance`, with names being the next level down, and so
   on.
 
-~> When [resource targeting](/docs/commands/plan.html#resource-targeting) is in effect, `tfplan.resources` will only include the resources specified as targets for the run. This may lead to unexpected outcomes if a policy expects a resource to be present in the plan. To prohibit targeted runs altogether, ensure [`tfrun.target_addrs`](./tfrun.html#value-target_addrs) is undefined or empty.
+~> When [resource targeting](/docs/cli/commands/plan.html#resource-targeting) is in effect, `tfplan.resources` will only include the resources specified as targets for the run. This may lead to unexpected outcomes if a policy expects a resource to be present in the plan. To prohibit targeted runs altogether, ensure [`tfrun.target_addrs`](./tfrun.html#value-target_addrs) is undefined or empty.
 
 Further explanation of the namespace will be in the context of resources. As
 mentioned, when operating on data sources, use the same syntax, except with
@@ -479,7 +479,7 @@ main = rule { tfplan.resources.null_resource.foo[0].requires_new }
 
 The **diff namespace** is a namespace that represents the diff for a specific
 attribute within a resource. For details on reading a particular attribute,
-see the [`diff`](#diff) value in the [resource
+see the [`diff`](#value-diff) value in the [resource
 namespace](#namespace-resources-data-sources).
 
 ### Value: `computed`

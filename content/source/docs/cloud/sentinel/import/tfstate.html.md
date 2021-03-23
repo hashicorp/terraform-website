@@ -7,7 +7,7 @@ description: |-
 
 # Import: tfstate
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The `tfstate` import provides access to the Terraform state.
 
@@ -15,7 +15,7 @@ The _state_ is the data that Terraform has recorded about a workspace at a
 particular point in its lifecycle, usually after an apply. You can read more
 general information about how Terraform uses state [here][ref-tf-state].
 
-[ref-tf-state]: /docs/state/index.html
+[ref-tf-state]: /docs/language/state/index.html
 
 -> **Note:** Since Terraform Cloud currently only supports policy checks at plan
 time, the usefulness of this import is somewhat limited, as it will usually give
@@ -208,7 +208,7 @@ supports policy checks in other stages of the workspace lifecycle. See the
 [`terraform_version`][import-tfplan-terraform-version] reference within the
 `tfplan` import for more details.
 
-[import-tfplan-terraform-version]: ./tfplan.html#value-terraform-version
+[import-tfplan-terraform-version]: ./tfplan.html#value-terraform_version
 
 ## Namespace: Module
 
@@ -378,7 +378,7 @@ sources share the same namespace as resources, but need to be loaded with the
 `data` key. For more information, see the
 [synopsis](#namespace-resources-data-sources) for the namespace itself.
 
-[ref-tf-null-data-source]: /docs/providers/null/data_source.html
+[ref-tf-null-data-source]: https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source
 
 As an example, given the following data source:
 
@@ -447,7 +447,7 @@ This namespace is indexed by output name.
 The `sensitive` value within the [output namespace](#namespace-outputs) is
 `true` when the output has been [marked as sensitive][ref-tf-sensitive-outputs].
 
-[ref-tf-sensitive-outputs]: /docs/configuration/outputs.html#sensitive-outputs
+[ref-tf-sensitive-outputs]: /docs/language/values/outputs.html#sensitive-suppressing-values-in-cli-output
 
 As an example, given the following output:
 

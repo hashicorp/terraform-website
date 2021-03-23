@@ -22,7 +22,7 @@ The benefits of this practice include:
 
 ## Resources should represent a single API object
 
-A Terraform resource should be a declarative representation of single component, usually with create, read, delete, and optionally update methods. In general, abstractions of multiple components or advanced behaviors in Terraform should be accomplished via [Terraform Modules](/docs/modules/), potentially hosted in the [Terraform Registry](https://registry.terraform.io/).
+A Terraform resource should be a declarative representation of single component, usually with create, read, delete, and optionally update methods. In general, abstractions of multiple components or advanced behaviors in Terraform should be accomplished via [Terraform Modules](/docs/language/modules/develop/index.html), potentially hosted in the [Terraform Registry](https://registry.terraform.io/).
 
 The benefits of this practice include:
 
@@ -32,7 +32,7 @@ The benefits of this practice include:
 
 ## Resource and attribute schema should closely match the underlying API
 
-A Terraform resource and associated schema should follow the naming and structure of the API, unless the it degrades the user experience or works in a way counter to a user's expectations of Terraform. Simplification of an API in Terraform should be accomplished via [Terraform Modules](/docs/modules/), potentially hosted in the [Terraform Registry](https://registry.terraform.io/). Additional guidance can be found in the [resource and attribute naming guide](/docs/extend/best-practices/naming.html).
+A Terraform resource and associated schema should follow the naming and structure of the API, unless the it degrades the user experience or works in a way counter to a user's expectations of Terraform. Simplification of an API in Terraform should be accomplished via [Terraform Modules](/docs/language/modules/develop/index.html), potentially hosted in the [Terraform Registry](https://registry.terraform.io/). Additional guidance can be found in the [resource and attribute naming guide](/docs/extend/best-practices/naming.html).
 
 The benefits of this practice include:
 

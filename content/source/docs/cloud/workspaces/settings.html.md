@@ -46,7 +46,7 @@ The display name of the workspace.
 
 ### Execution Mode
 
-[remote backend]: /docs/backends/types/remote.html
+[remote backend]: /docs/language/settings/backends/remote.html
 
 Whether to use Terraform Cloud as the Terraform execution platform for this workspace.
 
@@ -54,7 +54,7 @@ The default value is "Remote", which instructs Terraform Cloud to perform Terraf
 
 To disable remote execution for a workspace, change its execution mode to "Local". The workspace will store state, which Terraform can access using the [remote backend][].
 
-If you instead need to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure, consider using [Terraform Cloud Agents](../workspaces/agent.html). By deploying a lightweight agent, you can establish a simple connection between your environment and Terraform Cloud.
+If you instead need to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure, consider using [Terraform Cloud Agents](../agents/index.html). By deploying a lightweight agent, you can establish a simple connection between your environment and Terraform Cloud.
 
 Changing your workspace's execution mode after a run has already been planned will cause the run to error when it is applied.
 
@@ -119,12 +119,6 @@ If you need to prevent Terraform runs for any reason, you can lock a workspace. 
 
 Locking a workspace also restricts state uploads. In order to upload state, the workspace must be locked by the user who is uploading state.
 
-~> **Important:** [The `atlas` backend][atlas-backend] ignores this restriction, and allows users with permission to read and write state versions to modify state while the workspace is locked. To prevent confusion and accidents, avoid using the `atlas` backend in normal workflows and use the `remote` backend instead; see [Terraform Cloud's CLI-driven workflow](../run/cli.html) for details.
-
-[permissions-citation]: #intentionally-unused---keep-for-maintainers
-
-[atlas-backend]: /docs/backends/types/terraform-enterprise.html
-
 Users with permission to lock and unlock a workspace can't unlock a workspace which was locked by another user. Users with admin access to a workspace can force unlock a workspace even if another user has locked it.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
@@ -145,7 +139,7 @@ See [Run Triggers](./run-triggers.html) for detailed information about configuri
 
 ## SSH Key
 
-If a workspace's configuration uses [Git-based module sources](/docs/modules/sources.html) to reference Terraform modules in private Git repositories, Terraform needs an SSH key to clone those repositories. The "SSH Key" page lets you choose which key it should use.
+If a workspace's configuration uses [Git-based module sources](/docs/language/modules/sources.html) to reference Terraform modules in private Git repositories, Terraform needs an SSH key to clone those repositories. The "SSH Key" page lets you choose which key it should use.
 
 See [Using SSH Keys for Cloning Modules](./ssh-keys.html) for detailed information about this page.
 

@@ -48,19 +48,19 @@ the internal database or Vault may result in serious performance issues.
 
 ### Terraform Enterprise Servers
 
-| Type        | CPU Sockets | Total Cores\* | Memory       | Disk |
-| ----------- | ----------- | ------------- | ------------ | ---- |
-| Minimum     | 2           | 2             | 8 GB RAM     | 40GB |
-| Recommended | 2           | 4             | 16-32 GB RAM | 40GB |
+| Type    | CPU Sockets | Total Cores\* | Memory    | Disk |
+|---------|-------------|---------------|-----------|------|
+| Minimum | 2           | 4             | 16 GB RAM | 40GB |
+| Scaled  | 2           | 8             | 32 GB RAM | 40GB |
 
--> **Note:** Per VMWare’s recommendation, always allocate the least amount of CPU necessary. HashiCorp recommends starting with 2 CPUs and increasing if necessary.
+-> **Note:** Per VMWare’s recommendation, always allocate the least amount of CPU necessary. HashiCorp recommends starting with 4 CPUs and increasing if necessary.
 
 #### Hardware Sizing Considerations
 
 - The minimum size would be appropriate for most initial production
   deployments, or for development/testing environments.
 
-- The recommended size is for production environments where there is
+- The scaled size is for production environments where there is
   a consistent high workload in the form of concurrent terraform
   runs.
 
@@ -91,7 +91,7 @@ of this guide. You will be prompted for the public and private certificates duri
 
 ## Infrastructure Diagram
 
-![vmware-mounted-disk-infrastructure-diagram](./assets/vmware-mounted-disk-infrastructure-diagram.jpg)
+![vmware-mounted-disk-infrastructure-diagram](./assets/vmware-mounted-disk-infrastructure-diagram.png)
 
 ### Application Layer
 
@@ -102,7 +102,7 @@ providing an auto-recovery mechanism in the event of virtual machine or physical
 
 The Storage Layer is provided in the form of attached disk space configured with or benefiting from inherent resiliency
 provided by the NAS or SAN. The primary Terraform Enterprise VM will have 2 disks which must meet the requirements detailed [here](../disk-requirements.html). The first disk is independent to this VM and contains the OS and Terraform Enterprise components specific to this individual install, such as configuration information. The second disk will contain Terraform Enterprise's configuration information such as Workspaces and their resulting Terraform state files.  This second disk needs to be regularly backed up, for instance via replication or snapshotting inherent to your SAN or other software, at a rate that meets your desired RPO.
-Similarly, the standby VM will have two disks. An OS disk that is independent to that VM and a disk which is simply a point in time copy of the primary instance's second disk. 
+Similarly, the standby VM will have two disks. An OS disk that is independent to that VM and a disk which is simply a point in time copy of the primary instance's second disk.
 
 -> **Note:** Terraform Enterprise's storage device or service must be highly reliable and high-speed in both I/O and connectivity to meet performance requirements. Device types in the supported list will usually meet these requirements, but many standard NAS and other device types will not perform at the level required. Only use a NAS or other device type not in the supported list if you are certain it can accommodate these requirements.
 
@@ -230,7 +230,7 @@ by S3 if required by your security policy.
 
 Recommended object storage solutions are AWS S3, Google Cloud storage, Azure blob storage. Other options for S3-compatible storage are [MinIO](https://www.minio.io/), and [Ceph](https://ceph.com/), and [ECS](https://www.delltechnologies.com/en-us/storage/ecs/index.html/), among many others. Please feel free to reach out to [support](https://www.hashicorp.com/support) with questions.
 
-### External Services - PostgreSQL Database 
+### External Services - PostgreSQL Database
 
 #### External Services - PostgreSQL Database Management
 
@@ -245,5 +245,5 @@ and is not covered in this document. We do recommend regular database snapshots.
 
 | Type        | CPU Sockets | Total Cores | Memory       | Storage |
 | ----------- | ----------- | ----------- | ------------ | ------- |
-| Minimum     | 2           | 2 core      | 8 GB RAM     | 50GB    |
-| Recommended | 2           | 4-8 core    | 16-32 GB RAM | 50GB    |
+| Demo        | 2           | 2 core      | 8 GB RAM     | 50GB    |
+| Production  | 2           | 4-8 core    | 16-32 GB RAM | 50GB    |

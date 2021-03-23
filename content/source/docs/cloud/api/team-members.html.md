@@ -18,11 +18,11 @@ page_title: "Team Membership - API Docs - Terraform Cloud and Terraform Enterpri
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # Team Membership API
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations can also use this API, but can only manage membership of their owners team. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations can also use this API, but can only manage membership of their owners team. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The Team Membership API is used to add or remove users from teams. The [Team API](./teams.html) is used to create or destroy teams.
 

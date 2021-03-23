@@ -5,27 +5,26 @@ page_title: "Encryption Password - Install and Config - Terraform Enterprise"
 
 # Terraform Enterprise Encryption Password
 
-During the installation of Terraform Enterprise,
-a password is used to encrypt sensitive information at
-rest. The default value is auto-generated, but we
-strongly suggest you create your own password.
+When using internally-managed Vault, Terraform Enterprise requires that the operator specify a password that will be
+used to to encrypt and decrypt the internally-managed Vault unseal key and root token. This password is called the
+"encryption password". Please be sure to retain this value as it will be needed in the event of a re-installation.
 
-Be sure to retain the value, because you will need
-to use this password to restore access to the data
-in the event of a reinstall.
-
-The Encryption Password is used to protect the Vault unseal
-key and root token when the internal Vault is used.
-It allows us to store those details in PostgreSQL,
-which means that Vault is only dependent on the
-encryption password itself and details in PostgreSQL.
+The encryption password is used to protect the internally-managed Vault unseal key and root token with a password
+provided by the operator. It allows Terraform Enterprise to securely store the Vault unseal key and root token in
+PostgreSQL, which means that Vault is only dependent on the encryption password itself and the data in PostgreSQL.
 
 ## Specifying the Encryption Password
 
-The password can be specified during an unattended
-installation with the installer option `enc_password`
-within the [application settings JSON file when
-using the automated install procedure](./automating-the-installer.html#available-settings):
+### Manual Installation
+
+For manual installations, the encryption password can be specified via the "Encryption Password" field:
+
+![User interface for encryption password field.](./assets/enc-password-manual-install.png)
+
+### Automated Installation
+
+For automated installations, the encryption password can be specified via the `enc_password` setting in the
+[application settings JSON file](./automating-the-installer.html#available-settings):
 
 ```json
 {
@@ -36,7 +35,16 @@ using the automated install procedure](./automating-the-installer.html#available
         "value": "poc"
     },
     "enc_password": {
-        "value": "jzrtY@KE-bQ@mwQdxhYxj$WhhpPpZ8jz"
+        "value": "CHANGEME"
     }
 }
+```
+
+## Retrieving the Encryption Password
+
+To retrieve the encryption password that Terraform Enterprise is currently configured to use, connect to your Terraform
+Enterprise instance and execute the following: 
+
+```
+replicatedctl app-config export --template '{{.enc_password.Value}}'
 ```

@@ -6,11 +6,11 @@ page_title: "State Version Outputs - API Docs - Terraform Cloud and Terraform En
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
 [404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # State Version Outputs API
 
-State version outputs are the [output values](/docs/configuration/outputs.html) from a Terraform state file. They include
+State version outputs are the [output values](/docs/language/values/outputs.html) from a Terraform state file. They include
 the name and value of the output, as well as a sensitive boolean if the value
 should be hidden by default in UIs.
 

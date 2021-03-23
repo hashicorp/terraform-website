@@ -5,7 +5,7 @@ page_title: "Managing Access - Workspaces - Terraform Cloud and Terraform Enterp
 
 # Managing Access to Workspaces
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 Terraform Cloud workspaces can only be accessed by users with the correct permissions. You can manage permissions for a workspace on a per-team basis.
 
@@ -14,7 +14,7 @@ Teams with [admin access](../users-teams-organizations/permissions.html) on a wo
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **API:** See the [Team Access APIs](../api/team-access.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_team_access`](/docs/providers/tfe/r/team_access.html) resource.
+**Terraform:** See the `tfe` provider's [`tfe_team_access`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/team_access) resource.
 
 ## Background
 

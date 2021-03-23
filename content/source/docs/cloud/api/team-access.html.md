@@ -18,15 +18,17 @@ page_title: "Team Acccess - API Docs - Terraform Cloud and Terraform Enterprise"
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # Team Access API
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The team access APIs are used to associate a team to permissions on a workspace. A single `team-workspace` resource contains the relationship between the Team and Workspace, including the privileges the team has on the workspace.
 
 -> **Note**: A `team-workspace` resource represents a team's _local_ permissions on a specific workspace. Teams can also have _organization-level_ permissions that grant access to workspaces, and Terraform Cloud uses whichever access level is higher. (For example: a team with the "manage workspaces" permission has admin access on all workspaces, even if their `team-workspace` on a particular workspace only grants read access.) For more information, see [Managing Workspace Access](../users-teams-organizations/teams.html#managing-workspace-access).
+
+Any member of an organization can view team access relative to their own team memberships, including secret teams of which they are a member. Organization owners and workspace admins can modify team access or view the full set of secret team accesses. The organization token and the owners team token can act as an owner on these endpoints. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 ## List Team Access to a Workspace
 
@@ -41,9 +43,13 @@ Status  | Response                                          | Reason
 
 [These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters).  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
+
 Parameter               | Description
 ------------------------|------------
 `filter[workspace][id]` | **Required.** The workspace ID to list team access for. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.
+`page[number]` | **Optional.**
+`page[size]`   | **Optional.**
 
 ### Sample Request
 
@@ -297,7 +303,7 @@ Status  | Response                                          | Reason
 
 Parameter                                |         |         | Description
 -----------------------------------------|---------|---------| --------------
-`:id`                                    |         |         | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-workspaces) described above.
+`:id`                                    |         |         | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-a-workspace) described above.
 `data.attributes.access`                 | string  |         | The type of access to grant. Valid values are `read`, `plan`, `write`, `admin`, or `custom`.
 `data.attributes.runs`                   | string  | "read"  | If `access` is `custom`, the permission to grant for the workspace's runs. Can only be used when `access` is `custom`.
 `data.attributes.variables`              | string  | "none"  | If `access` is `custom`, the permission to grant for the workspace's variables. Can only be used when `access` is `custom`.
@@ -381,7 +387,7 @@ Status  | Response                                          | Reason
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-workspaces) described above.
+`:id`     | The ID of the team/workspace relationship. Obtain this from the [list team access action](#list-team-access-to-a-workspace) described above.
 
 ### Sample Request
 

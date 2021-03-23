@@ -48,7 +48,7 @@ The required CPU resources for an individual Terraform run vary considerably, bu
 factor than memory due to Terraform mostly waiting on IO from APIs to return.
 
 Our rule of thumb is 10 Terraform runs per CPU core, with 2 CPU cores allocated for the base Terraform Enterprise services.
-So an 8-core instance with 16 GB of memory could comfortably run 20 Terraform runs, if the runs are allocated the default
+So a 4-core instance with 16 GB of memory could comfortably run 20 Terraform runs, if the runs are allocated the default
 512 MB each.
 
 ## Disk

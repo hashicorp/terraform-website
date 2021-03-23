@@ -7,7 +7,7 @@ description: |-
 
 # Terraform ServiceNow Service Catalog Integration Setup Instructions
 
--> **Integration version:**  v2.0.0
+-> **Integration version:**  v2.1.0
 
 The Terraform ServiceNow Service Catalog integration enables your end-users to
 provision self-serve infrastructure via ServiceNow. By connecting ServiceNow to
@@ -76,9 +76,9 @@ To start using Terraform with the ServiceNow Catalog Integration, you must have:
 
 This integration has been tested on the following ServiceNow server versions:
 
-- Madrid
 - New York
 - Orlando
+- Paris
 
 It requires the following ServiceNow Plugins as dependencies:
 

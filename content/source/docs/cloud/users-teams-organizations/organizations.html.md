@@ -12,7 +12,7 @@ page_title: "Organizations - Terraform Cloud and Terraform Enterprise"
 Organizations are a shared space for [teams][] to collaborate on workspaces in Terraform Cloud.
 
 -> **API:** See the [Organizations API](../api/organizations.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_organization`](/docs/providers/tfe/r/organization.html) resource.
+**Terraform:** See the `tfe` provider's [`tfe_organization`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/organization) resource.
 
 ## Selecting Organizations
 
@@ -60,7 +60,21 @@ Most of the organization settings are documented near the specific workflows the
 
 The general settings page is shown to all users in an organization, and displays the organization's name and contact email.
 
-Organization owners can use this page to update the organization's contact email or delete the organization.
+Organization owners can use this page to change the organization's name and contact email or delete the organization.
+
+#### Renaming an Organization
+
+!> **Warning:** Renaming an organization can be very disruptive. With the exception of new organizations with no collaborators, we strongly recommend against renaming organizations.
+
+To rename a new organization with few or no collaborators, make sure there are no runs in progress and then update the name on the general settings page. Renaming a brand new organization is generally harmless and non-disruptive.
+
+To rename an organization that is already managing significant infrastructure, you must:
+
+1. Alert all members of the organization ahead of time, so they're prepared for the disruption.
+1. Lock all workspaces, and bring all current and pending runs to an end (by cancelling them or by waiting for them to finish). For your protection, Terraform Cloud won't change the name of an organization with runs in progress; locking workspaces ensures no new runs will start before you attempt to change the name.
+1. Rename the organization.
+1. Update anything that uses Terraform Cloud's API with the organization to use its new name. This includes Terraform's `remote` backend, the `tfe` Terraform provider, and any external API integrations.
+1. Unlock workspaces and resume normal operations.
 
 ### Plan & Billing
 
@@ -86,7 +100,7 @@ User invitations are always sent by email; you cannot invite someone using their
 
 ### Teams
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The teams page is shown to all users in an organization.
 
@@ -120,7 +134,7 @@ The SSH keys page manages any keys necessary for cloning Git-based module source
 
 ### Cost Estimation
 
--> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Cost estimation is a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The Cost Estimation page allows for enabling and disabling the [cost estimation](../cost-estimation/index.html) feature for all workspaces.
 
@@ -130,7 +144,7 @@ The policies page is a deprecated interface for managing Sentinel policies. Use 
 
 ### Policy Sets
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The policy sets page is for creating groups of Sentinel policies from a connected VCS repository, and assigning those policy sets to workspaces. It is available to users with permission to manage policies. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 

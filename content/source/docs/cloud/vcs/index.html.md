@@ -97,4 +97,16 @@ For complete details, click the link for your VCS provider:
 - [Azure DevOps Server](./azure-devops-server.html)
 - [Azure DevOps Services](./azure-devops-services.html)
 
--> **Note:** Alternately, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using Terraform Cloud's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
+-> **Note:** Alternatively, you can skip the OAuth configuration process and authenticate with a personal access token. This requires using Terraform Cloud's API. For details, see [the OAuth Clients API page](../api/oauth-clients.html).
+
+## Viewing events
+
+-> **Note**: The VCS Event Viewer is still in beta as support is being added for additional VCS providers. Currently only GitLab.com connections established after December 2020 are supported.
+
+VCS events describe changes within your organization for VCS-related actions, such as creating a new VCS provider (also called an OAuth Client), loading repositories while creating a new workspace, or processing incoming webhooks. Displayed events are limited to the past 10 days.
+
+Viewing VCS events requires permission to manage VCS settings for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+![Screenshot: the VCS Event Viewer UI, showing sample events and filtering capability](./images/vcs-event-viewer.png)

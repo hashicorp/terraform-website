@@ -5,10 +5,10 @@ page_title: "Defining Policies - Sentinel - Terraform Cloud and Terraform Enterp
 
 # Defining Policies
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 Sentinel Policies for Terraform are defined using the [Sentinel policy
-language](https://docs.hashicorp.com/sentinel/language/). A policy can include
+language](https://docs.hashicorp.com/sentinel/language). A policy can include
 [imports](https://docs.hashicorp.com/sentinel/concepts/imports) which enable a
 policy to access reusable libraries, external data and functions. Terraform
 Cloud provides four imports to define policy rules for the plan, configuration,
@@ -28,7 +28,7 @@ state, and run associated with a policy check.
 
 Terraform Cloud allows you to create mocks of these imports from plans for use
 with the mocking or testing features of the [Sentinel
-CLI](https://docs.hashicorp.com/sentinel/commands/). For more information, see
+CLI](https://docs.hashicorp.com/sentinel/commands). For more information, see
 [Mocking Terraform Sentinel Data](../mock.html).
 
 -> **Note:** Terraform Cloud does not currently support custom imports.
@@ -91,7 +91,7 @@ This example function does several useful things while finding resources:
   `resources` namespace is more convenient, but it only reveals resources from
   the root module.
 - It iterates over the named resources and [resource
-  instances](/docs/configuration/resources.html#count-multiple-resource-instances)
+  instances](/docs/language/expressions/references.html#resources)
   found in each module, starting with `tfplan.module(path).resources[type]`
   which is a series of nested maps keyed by resource names and instance counts.
 - It uses the Sentinel [`else`
@@ -103,7 +103,7 @@ This example function does several useful things while finding resources:
   evaluate rules.
 - It computes an `address` variable for each resource instance and uses this as
   the key in the `resources` map. This allows writers of Sentinel policies to
-  print the full [address](/docs/internals/resource-addressing.html) of each
+  print the full [address](/docs/cli/state/resource-addressing.html) of each
   resource instance that violate a policy, using the same address format used in
   plan and apply logs. Doing this tells users who see violation messages exactly
   which resources they need to modify in their Terraform code to comply with the

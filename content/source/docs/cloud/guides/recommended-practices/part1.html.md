@@ -1,6 +1,6 @@
 ---
 page_title: "Part 1: Overview of Our Recommended Workflow - Terraform Recommended Practices"
-layout: "guides"
+layout: "intro"
 ---
 
 
@@ -22,7 +22,7 @@ There are two major challenges everyone faces when trying to improve their provi
 
     To delegate a large application, companies often split it into small, focused microservice components that are owned by specific teams. Each microservice provides an API, and as long as those APIs don't change, microservice teams can make changes in parallel despite relying on each others' functionality.
 
-    Similarly, infrastructure code can be split into smaller Terraform configurations, which have limited scope and are owned by specific teams. These independent configurations use [output variables](/docs/configuration/outputs.html) to publish information and [remote state resources](/docs/providers/terraform/d/remote_state.html) to access output data from other workspaces. Just like microservices communicate and connect via APIs, Terraform workspaces connect via remote state.
+    Similarly, infrastructure code can be split into smaller Terraform configurations, which have limited scope and are owned by specific teams. These independent configurations use [output variables](/docs/language/values/outputs.html) to publish information and [remote state resources](/docs/language/state/remote-state-data.html) to access output data from other workspaces. Just like microservices communicate and connect via APIs, Terraform workspaces connect via remote state.
 
     Once you have loosely-coupled Terraform configurations, you can delegate their development and maintenance to different teams. To do this effectively, you need to control access to that code. Version control systems can regulate who can commit code, but since Terraform affects real infrastructure, you also need to regulate who can run the code.
 

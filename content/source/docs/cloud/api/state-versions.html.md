@@ -18,7 +18,7 @@ page_title: "State Versions - API Docs - Terraform Cloud and Terraform Enterpris
 [500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
 [504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
 [JSON API document]: /docs/cloud/api/index.html#json-api-documents
-[JSON API error object]: http://jsonapi.org/format/#error-objects
+[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # State Versions API
 
@@ -30,7 +30,7 @@ page_title: "State Versions - API Docs - Terraform Cloud and Terraform Enterpris
 | --------------- | --------------------------------------------------------- |
 | `:workspace_id` | The workspace ID to create the new state version in. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint. |
 
-Creates a state version and sets it as the current state version for the given workspace. The workspace must be locked by the user creating a state version. The workspace may be locked [with the API](./workspaces.html#lock-a-workspace) or [with the UI](../workspaces/settings.html#workspace-lock). This is most useful for migrating existing state from open source Terraform into a new Terraform Cloud workspace.
+Creates a state version and sets it as the current state version for the given workspace. The workspace must be locked by the user creating a state version. The workspace may be locked [with the API](./workspaces.html#lock-a-workspace) or [with the UI](../workspaces/settings.html#locking). This is most useful for migrating existing state from open source Terraform into a new Terraform Cloud workspace.
 
 Creating state versions requires permission to read and write state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 

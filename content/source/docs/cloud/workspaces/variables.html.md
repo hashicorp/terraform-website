@@ -3,14 +3,14 @@ layout: "cloud"
 page_title: "Variables - Workspaces - Terraform Cloud and Terraform Enterprise"
 ---
 
-[variables]: /docs/configuration/variables.html
+[variables]: /docs/language/values/variables.html
 
 # Variables
 
 Terraform Cloud workspaces can set values for two kinds of variables:
 
 - [Terraform input variables][variables], which define the parameters of a Terraform configuration.
-- Shell environment variables, which many providers can use for credentials and other data. You can also set [environment variables that affect Terraform's behavior](/docs/commands/environment-variables.html), like `TF_LOG`.
+- Shell environment variables, which many providers can use for credentials and other data. You can also set [environment variables that affect Terraform's behavior](/docs/cli/config/environment-variables.html), like `TF_LOG`.
 
 You can edit a workspace's variables via the UI or the API. All runs in a workspace use its variables.
 
@@ -19,15 +19,25 @@ Viewing variables requires permission to read variables for the workspace, and s
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **API:** See the [Variables API](../api/variables.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_variable`](/docs/providers/tfe/r/variable.html) resource.
+**Terraform:** See the `tfe` provider's [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) resource.
 
 ## Loading Variables from Files
 
-If a workspace is configured to use Terraform 0.10.0 or later, you can commit any number of [`*.auto.tfvars` files](/docs/configuration/variables.html#variable-files) to provide default variable values. Terraform will automatically load variables from those files.
+If a workspace is configured to use Terraform 0.10.0 or later, you can commit any number of [`*.auto.tfvars` files](/docs/language/values/variables.html#variable-files) to provide default variable values. Terraform will automatically load variables from those files.
 
-If any automatically loaded variables have the same names as variables specified in the Terraform Cloud workspace, the workspace's values will override the automatic values (except for map values, [which are merged](/docs/configuration/variables.html#variable-merging)).
+If any automatically loaded variables have the same names as variables specified in the Terraform Cloud workspace, the workspace's values will override the automatic values.
 
-You can also use the optional [Terraform Cloud Provider](/docs/providers/tfe/r/variable.html) to update a workspace's variables. This has the same effect as managing workspace variables manually or via the API, but can be more convenient for large numbers of complex variables.
+You can also use the optional [Terraform Cloud Provider](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) to update a workspace's variables. This has the same effect as managing workspace variables manually or via the API, but can be more convenient for large numbers of complex variables.
+
+## Variable Limits
+
+The following limits apply to variables:
+
+Component   |  Limit
+------------|---------------------------
+description |  512 characters
+key         |  128 characters
+value       |  256 kilobytes
 
 ## Managing Variables in the UI
 
@@ -88,8 +98,6 @@ If a required input variable is missing, Terraform plans in the workspace will f
 
 Variable descriptions help distinguish between similarly named variables. These optional fields are only shown on this "Variables" page and are completely independent from any variable descriptions declared in Terraform CLI.
 
-The maximum length of a variable description is 512 characters.
-
 ## How Terraform Cloud Uses Variables
 
 ### Terraform Variables
@@ -106,7 +114,7 @@ Terraform Cloud performs Terraform runs on disposable Linux worker VMs using a P
 
 Terraform Cloud uses some special environment variables to control dangerous or rarely used run behaviors.
 
-- `TFE_PARALLELISM` — If present, Terraform Cloud uses this to set `terraform apply`'s `-parallelism=<N>` flag ([more info](/docs/internals/graph.html#walking-the-graph)). Valid values are between 1 and 256, inclusive; the default is `10`. This is rarely necessary, but can fix problems with infrastructure providers that error on concurrent operations or use non-standard rate limiting. We recommend talking to HashiCorp support before using this.
+- `TFE_PARALLELISM` — If present, Terraform Cloud uses this to set `terraform plan` and `terraform apply`'s `-parallelism=<N>` flag ([more info](/docs/internals/graph.html#walking-the-graph)). Valid values are between 1 and 256, inclusive; the default is `10`. This is rarely necessary, but can fix problems with infrastructure providers that error on concurrent operations or use non-standard rate limiting. We recommend talking to HashiCorp support before using this.
 
 ### Secure Storage of Variables
 

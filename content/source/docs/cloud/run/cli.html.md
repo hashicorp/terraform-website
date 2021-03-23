@@ -5,9 +5,9 @@ page_title: "CLI-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
 
 [sentinel]: ../sentinel/index.html
 [private]: ../registry/index.html
-[remote]: /docs/backends/types/remote.html
+[remote]: /docs/language/settings/backends/remote.html
 [speculative plan]: ./index.html#speculative-plans
-[tfe-provider]: /docs/providers/tfe/index.html
+[tfe-provider]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs
 
 # The CLI-driven Run Workflow
 
@@ -53,7 +53,7 @@ terraform {
 }
 ```
 
-Next, run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/commands/cli-config.html#credentials).
+Next, run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/cli/config/config-file.html#credentials).
 
 The backend can be initialized with `terraform init`.
 
@@ -182,7 +182,14 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 ## Sentinel Policies
 
-If the specified workspace uses Sentinel policies, those policies will run against all speculative plans and remote applies in that workspace. The policy output will be available in the terminal. Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
+If the specified workspace uses Sentinel policies, those policies will run against all speculative plans and remote applies in that workspace. Policy output is shown in the terminal.
+
+Failed policies can pause or prevent an apply, depending on the enforcement level:
+
+- Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
+- Soft mandatory checks can be overridden by users with permission to [manage policies](/docs/cloud/users-teams-organizations/permissions.html#manage-policies). If your account can override a failed check, Terraform will prompt you to type "override" to confirm. (Note that typing "yes" will not work.) If you override the check, you will be prompted to apply the run (unless auto-apply is enabled).
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ```
 $ terraform apply
@@ -201,13 +208,16 @@ Sentinel evaluated to false because one or more Sentinel policies evaluated
 to false. This false was not due to an undefined value or runtime error.
 
 1 policies evaluated.
-## Policy 1: my-policy.sentinel (hard-mandatory)
+## Policy 1: my-policy.sentinel (soft-mandatory)
 
 Result: false
 
 FALSE - my-policy.sentinel:1:1 - Rule "main"
 
-Error: Organization policy check hard failed.
+Do you want to override the soft failed policy check?
+  Only 'override' will be accepted to override.
+
+  Enter a value: override
 ```
 
 ## Targeted Plan and Apply
@@ -215,7 +225,7 @@ Error: Organization policy check hard failed.
 -> **Version note:** Targeting support was added client-side in Terraform v0.12.26 and also requires server-side support that may not be available for all Terraform Enterprise deployments yet.
 
 The `terraform plan` and `terraform apply` commands described in earlier
-sections support [Resource Targeting](https://www.terraform.io/docs/commands/plan.html#resource-targeting) as in the local operations workflow, using the `-target` option on the command line.
+sections support [Resource Targeting](https://www.terraform.io/docs/cli/commands/plan.html#resource-targeting) as in the local operations workflow, using the `-target` option on the command line.
 
 As with local usage, targeting is intended for exceptional circumstances only
 and should not be used routinely. The usual caveats for targeting in local operations imply some additional limitations on Terraform Cloud features for remote plans created with targeting:

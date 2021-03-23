@@ -22,6 +22,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Blob Storage](#blob-storage)
 - [Block](#block)
 - [Branch](#branch)
+- [CI/CD](#ci-cd)
 - [CLI](#cli)
 - [Commit](#commit)
 - [(Terraform) Configuration](#terraform-configuration)
@@ -34,6 +35,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Git](#git)
 - [HCL](#hcl)
 - [ID](#id)
+- [Infrastructure as Code](#infrastructure-as-code)
 - [Ingress](#ingress)
 - [Input Variables](#input-variables)
 - [Interpolation](#interpolation)
@@ -54,7 +56,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Policy](#policy)
 - [Policy Check](#policy-check)
 - [Policy Set](#policy-set)
-- [Private Module Registry](#private-module-registry)
+- [Private Terraform Registry](#private-terraform-registry)
 - [Private Terraform Enterprise (PTFE)](#private-terraform-enterprise-ptfe-)
 - [(Terraform) Provider](#terraform-provider)
 - [Pull Request (PR)](#pull-request-pr-)
@@ -67,6 +69,7 @@ This page collects brief definitions of some of the technical terms used in the 
 - [Root Module](#root-module)
 - [Root Outputs](#root-outputs)
 - [Run](#run)
+- [Run Triggers](#run-triggers)
 - [S3](#s3)
 - [SAML](#saml)
 - [Sentinel](#sentinel)
@@ -105,7 +108,7 @@ Terraform relies on cloud service provider APIs to manage resources; each servic
 Terraform Cloud also offers its own API, for managing resources like team membership, policies, and workspaces. That API, in turn, is used by the `tfe` Terraform provider, so you can use Terraform to manage the system that runs Terraform for you.
 
 - [Terraform Cloud docs: API](/docs/cloud/api/index.html)
-- [Terraform providers: `tfe`](/docs/providers/tfe/index.html)
+- [Terraform providers: `tfe`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs)
 
 ## Apply (noun)
 
@@ -116,7 +119,7 @@ One of the stages of a [run][], in which changes are made to real infrastructure
 
 In Terraform's CLI, applies are performed with the `terraform apply` command. Terraform Cloud runs `terraform apply` using a [plan file][] as its input.
 
-- [Terraform docs: The `terraform apply` command](/docs/commands/apply.html)
+- [Terraform docs: The `terraform apply` command](/docs/cli/commands/apply.html)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Apply (verb)
@@ -127,7 +130,7 @@ To make changes to real infrastructure in order to make it match the desired sta
 
 In conversation, it's common to refer to "applying a [plan][]" (usually in the context of Terraform Cloud's workflow) or "applying a [configuration][]" (usually in the context of the Terraform CLI workflow).
 
-- [Terraform docs: The `terraform apply` command](/docs/commands/apply.html)
+- [Terraform docs: The `terraform apply` command](/docs/cli/commands/apply.html)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Argument
@@ -139,7 +142,7 @@ In Terraform's [configuration][] language: a syntax construct that assigns a val
 
 Most of a Terraform configuration consists of using arguments to configure Terraform [resources][]. Each resource type defines the arguments its resources can use, the allowed values for each argument, and which arguments are required or optional. Information about a given resource type can be found in the docs for that resource's [provider][].
 
-- [Terraform docs: Config Language — Arguments, Blocks and Expressions](/docs/configuration/index.html#arguments-blocks-and-expressions)
+- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/language/syntax/configuration.html#arguments-and-blocks)
 
 ## Attribute
 
@@ -161,7 +164,7 @@ The part of Terraform's core that determines how Terraform stores [state][] and 
 
 In a general computer science sense, a backend is any lower-level implementation that enables a higher-level feature. But in the context of Terraform, "backend" always means the built-in code that handles state and operations.
 
-- [Terraform docs: Backends](/docs/backends/index.html)
+- [Terraform docs: Backends](/docs/language/settings/backends/index.html)
 
 ## Blob Storage
 
@@ -191,7 +194,7 @@ resource "aws_vpc" "main" {
 }
 ```
 
-- [Terraform docs: Config Language — Arguments, Blocks and Expressions](/docs/configuration/index.html#arguments-blocks-and-expressions)
+- [Terraform Language docs: Syntax — Arguments and Blocks](/docs/language/syntax/configuration.html#arguments-and-blocks)
 
 ## Branch
 
@@ -202,6 +205,12 @@ In some [version control systems][vcs]: a semi-independent history of changes to
 
 A repository usually has a default branch (whose name, in [Git][], defaults to `master`), which successful changes are eventually merged into. Most modern development workflows also include topic branches (where a specific set of changes is explored, iterated on, and verified), and some workflows include long-lived branches other than the default branch.
 
+## CI/CD
+
+[ci-cd]: glossary.html#ci-cd
+
+CI/CD (Continuous Integration/Continuous Delivery) platforms perform pre-defined tasks (like tests or builds) in response to trigger events (like new commits in a project). This helps make new releases more automated, predictable, and understandable. Infrastructure management, typically handled by operations teams, can also fit into an automated release workflow using infrastructure as code with Terraform.
+
 ## CLI
 
 [cli]: glossary.html#cli
@@ -211,7 +220,7 @@ Command-line interface. The `terraform` command expects to be run in a CLI (a Un
 We often use "Terraform CLI" to refer to the core open source Terraform binary when we need to distinguish it from other parts of the Terraform ecosystem (like Terraform Cloud or the Terraform GitHub Actions).
 
 - [Wikipedia: Command-line Interface](https://en.wikipedia.org/wiki/Command-line_interface)
-- [Terraform docs: Commands (CLI)](/docs/commands/index.html)
+- [Terraform docs: Commands (CLI)](/docs/cli/commands/index.html)
 
 ## Commit
 
@@ -233,7 +242,7 @@ Also "config".
 
 Code written in [Terraform's configuration language][hcl] that declaratively describes the desired state of your infrastructure. A complete config consists of a [root module][], which can optionally call any number of child [modules][].
 
-- [Terraform docs: Configuration Language](/docs/configuration/index.html)
+- [Terraform docs: Configuration Language](/docs/language/index.html)
 - [Introduction to Terraform](/intro/index.html)
 
 ## Configuration Version
@@ -275,7 +284,7 @@ Unlike resources, data sources do not create or manage infrastructure. Instead, 
 
 Data sources are implemented by [providers][].
 
-- [Terraform docs: Data Sources](/docs/configuration/data-sources.html)
+- [Terraform docs: Data Sources](/docs/language/data-sources/index.html)
 
 ## Deposed
 
@@ -331,7 +340,7 @@ HashiCorp Configuration Language. The structured configuration syntax that serve
 HCL establishes the syntax Terraform uses for things like [arguments][], [blocks][], literal values, and [expressions][]. But what most people think of as the Terraform language extends beyond just the syntax; the built-in functions, Terraform-specific block types (like `resource` and `variable`), and Terraform-specific named values available in expressions are all implementation details of Terraform itself.
 
 - [GitHub: HCL](https://github.com/hashicorp/hcl)
-- [Terraform docs: Configuration Language](/docs/configuration/index.html)
+- [Terraform docs: Configuration Language](/docs/language/index.html)
 
 ## ID
 
@@ -345,6 +354,12 @@ In Terraform, many [resource][] types have an ID [attribute][] that helps link T
 In Terraform Cloud, most internal application objects (like [workspaces][], users, [policies][], etc.) can be identified by both a name and by an opaque, permanent ID. Most API endpoints use IDs instead of names, since names sometimes change. IDs for Terraform Cloud's application objects are sometimes called "external IDs."
 
 You can usually copy an external ID from the URL bar when viewing an object in Terraform Cloud's UI. Workspaces don't display an ID in the URL bar, but their general settings page includes a UI control for viewing and copying the ID.
+
+## Infrastructure as Code
+
+[infrastructure-as-code]: glossary.html#infrastructure-as-code
+
+Infrastructure-as-Code (IaC) is the practice of managing infrastructure in a file or files rather than manually configuring it via a user interface. Infrastructure resource types managed with IaC can include virtual machines, security groups, network interfaces, and many others.
 
 ## Ingress
 
@@ -386,7 +401,7 @@ Interpolation is a very common feature in programming languages; for example, Ru
 Terraform and Terraform Cloud often interact with JSON data in order to consume or provide APIs. Terraform also supports JSON as an alternate format for [configurations][].
 
 - [Wikipedia: JSON](https://en.wikipedia.org/wiki/Json)
-- [Terraform docs: JSON Configuration Syntax](/docs/configuration/syntax-json.html)
+- [Terraform docs: JSON Configuration Syntax](/docs/language/syntax/json.html)
 
 ## Locking
 
@@ -419,7 +434,7 @@ Other Terraform configurations can _call_ a module, which tells Terraform to man
 
 Modules define [input variables][] (which the calling module can set values for) and [output values][] (which the calling module can reference in [expressions][]).
 
-- [Terraform docs: Modules](/docs/modules/index.html)
+- [Terraform docs: Modules](/docs/language/modules/develop/index.html)
 
 ## OAuth
 
@@ -531,7 +546,7 @@ In Terraform Cloud, plans are performed by committing changes to a workspace's c
 
 Terraform Cloud's workflow always creates a [plan file][], which can be auto-applied or can wait for a user's approval. Terraform Cloud also supports [speculative plans][], which are for informational purposes only and cannot be applied.
 
-- [Terraform docs: The `terraform plan` command](/docs/commands/plan.html)
+- [Terraform docs: The `terraform plan` command](/docs/cli/commands/plan.html)
 - [Terraform Cloud docs: About Runs](/docs/cloud/run/index.html)
 
 ## Plan File
@@ -580,7 +595,7 @@ A list of [Sentinel][] [policies][] to enforce globally or on specific workspace
 
 - [Terraform Cloud docs: Managing Sentinel Policies](/docs/cloud/sentinel/manage-policies.html)
 
-## Private Module Registry
+## Private Terraform Registry
 
 [private terraform registry]: glossary.html#private-terraform-registry
 [private module registry]: glossary.html#private-terraform-registry
@@ -590,7 +605,7 @@ A list of [Sentinel][] [policies][] to enforce globally or on specific workspace
 
 -> Terraform Cloud
 
-Also "private Terraform registry".
+Also "private module registry".
 
 A version of the [Terraform Registry][] that is built-in to Terraform Cloud, to enable code sharing within an organization. It includes a configuration designer, which lets you combine and configure modules to generate a Terraform [configuration][] that uses them.
 
@@ -660,7 +675,7 @@ The ability to start a [run][] (or perform a few other tasks) from your local [C
 
 Terraform Cloud performs Terraform runs in its own disposable VMs, where it can capture information, control access to secrets, etc., but many users are accustomed to running Terraform on their local machines. Remote operations exist to help split the difference.
 
-- [Terraform docs: Remote Operations](/docs/backends/operations.html)
+- [Terraform docs: Backends — Operations](/docs/language/settings/backends/index.html#operations)
 
 ## Remote Backend
 
@@ -670,7 +685,7 @@ A Terraform CLI feature that lets Terraform connect to Terraform Cloud, by speci
 
 See also [backend][]. Older documentation sometimes refers to backends like `s3` or `consul` as "remote backends," since they store Terraform's state in a remote service instead of the local filesystem, but today this term usually means the specific backend whose name is `remote`.
 
-- [Terraform docs: The `remote` Backend](/docs/backends/types/remote.html)
+- [Terraform docs: The `remote` Backend](/docs/language/settings/backends/remote.html)
 
 ## Repository
 
@@ -821,7 +836,7 @@ Terraform's cached information about your managed infrastructure and [configurat
 
 Without state, Terraform has no way to identify the real resources it created during previous runs. Thus, when multiple people are collaborating on shared infrastructure, it's important to store state in a shared location, like a free Terraform Cloud organization.
 
-- [Terraform docs: State](/docs/state/index.html)
+- [Terraform docs: State](/docs/language/state/index.html)
 
 ## State Version
 
@@ -902,7 +917,7 @@ A particular version of the `terraform` binary available for use in Terraform Cl
 
 A Terraform provider that manages Terraform Cloud. Allows you to manage Terraform Cloud using a Terraform [configuration][].
 
-- [Provider docs: tfe](/docs/providers/tfe/index.html)
+- [Provider docs: tfe](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs)
 
 ## (API) Token
 
@@ -945,7 +960,7 @@ In Terraform, "variables" almost always refers to _input variables,_ which are k
 
 Terraform Cloud lets you set values for root input variables in a [workspace][], so all collaborators can use the same values. Variable values marked as "sensitive" become unreadable in the UI and API, and all variable values are protected by Vault.
 
-- [Terraform docs: Input Variables](/docs/configuration/variables.html)
+- [Terraform docs: Input Variables](/docs/language/values/variables.html)
 - [Terraform Cloud docs: Variables](/docs/cloud/workspaces/variables.html)
 
 ## VCS
@@ -1009,4 +1024,4 @@ In Terraform Cloud, a workspace is a complex object that represents everything n
 All Terraform Cloud runs occur in the context of a workspace — they use that workspace's config data, use that workspace's state to identify the real infrastructure being managed, and edit that workspace's state to match any infrastructure changes during the run. A workspace belongs to an [organization][].
 
 - [Terraform Cloud docs: Workspaces](/docs/cloud/workspaces/index.html)
-- [Terraform docs: Workspaces](/docs/state/workspaces.html)
+- [Terraform docs: Workspaces](/docs/language/state/workspaces.html)

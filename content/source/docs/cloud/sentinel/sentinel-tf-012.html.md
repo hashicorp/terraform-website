@@ -7,7 +7,7 @@ description: |-
 
 # Using Sentinel with Terraform 0.12
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The Terraform Sentinel imports
 ([`tfconfig`](./import/tfconfig.html),
@@ -95,7 +95,7 @@ As a consequence of no longer receiving raw Terraform configuration, map values
 are no longer represented as lists separated by their block index.
 
 This can be best demonstrated with a simple Sentinel policy for
-[`null_resource`](/docs/providers/null/resource.html). In Terraform 0.11 and
+[`null_resource`](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource). In Terraform 0.11 and
 earlier, this is a valid `null_resource` declaration, and the two map values
 would be merged:
 
@@ -172,7 +172,7 @@ following exceptions:
 
 Unknown values within `applied` in the
 [resource namespace](./import/tfplan.html#namespace-resources-data-sources)
-no longer return the magic UUID value (defined as
+no longer return values with interpolation sequences, or the magic UUID (defined as
 `74D93920-ED26-11E3-AC10-0800200C9A66` in Terraform 0.11 or earlier). Instead,
 unknown values are now returned as `undefined`.
 
@@ -184,6 +184,7 @@ within the [diff
 namespace](./import/tfplan.html#namespace-resource-diff)
 to validate whether or not a value is unknown before looking for it in
 `applied`.
+
 
 ### Changes Affecting Resources Being Destroyed but not Re-created
 
@@ -264,7 +265,7 @@ Use the steps below to generate mock data for both Terraform versions:
 1. Follow the instructions on [configuring the Terraform version of the
    workspace](/docs/cloud/workspaces/settings.html#terraform-version) and
    ensure that it set to the latest 0.11 release.
-1. [Start a run](/docs/cloud/run/ui.html#starting-runs) for the workspace
+1. [Start a run](/docs/cloud/run/ui.html#manually-starting-runs) for the workspace
    and let it finish the plan phase.
 1. Follow the instructions to [generate mock data using the
    UI](./mock.html#generating-mock-data-using-the-ui)

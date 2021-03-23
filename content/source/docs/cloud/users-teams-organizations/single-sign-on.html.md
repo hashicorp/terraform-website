@@ -5,7 +5,7 @@ page_title: "Single Sign-on - Terraform Cloud and Terraform Enterprise"
 
 # Single Sign-on
 
--> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 ~> **Important:** This page is about configuring single sign-on in Terraform Cloud. Terraform Enterprise's single sign-on is configured differently. If you administer a Terraform Enterprise instance, see [Terraform Enterprise: SAML Configuration](/docs/enterprise/saml/configuration.html).
 
@@ -17,9 +17,9 @@ Current users of Terraform Cloud can link their SSO identity to their existing a
 
 Select your preferred provider to learn more about what is supported for that provider and how to configure SSO for it.
 
+* [Microsoft Azure AD](./single-sign-on/azure-ad.html)
 * [Okta](./single-sign-on/okta.html)
 * [SAML](./single-sign-on/saml.html)
-* Azure AD (coming soon)
 
 ## How SSO Works
 

@@ -7,7 +7,7 @@ description: |-
 
 # Import: tfrun
 
--> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing/).
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The `tfrun` import provides access to data associated with a [Terraform run][run-glossary].
 
@@ -16,8 +16,10 @@ This import currently consists of run attributes, as well as namespaces for the 
 
 ```
 tfrun
+├── id (string)
 ├── created_at (string)
 ├── message (string)
+├── commit_sha (string)
 ├── speculative (boolean)
 ├── is_destroy (boolean)
 ├── variables (map of keys)
@@ -25,6 +27,7 @@ tfrun
 ├── organization
 │   └── name (string)
 ├── workspace
+│   ├── id (string)
 │   ├── name (string)
 │   ├── description (string)
 │   ├── auto_apply (bool)
@@ -54,21 +57,33 @@ to only enforce the policy on non-development workspaces is more appropriate.
 
 The **root namespace** contains data associated with the current run.
 
+### Value: `id`
+
+* **Value Type:** String.
+
+Specifies the ID that is associated with the current Terraform run.
+
 ### Value: `created_at`
 
 * **Value Type:** String.
 
-The `created_at` value within the [root namespace](#root-namespace) specifies the time that the run was created. The timestamp returned follows the format outlined in [RFC3339](https://tools.ietf.org/html/rfc3339).
+The `created_at` value within the [root namespace](#namespace-root) specifies the time that the run was created. The timestamp returned follows the format outlined in [RFC3339](https://tools.ietf.org/html/rfc3339).
 
-Users can use the `time` import to [load](https://docs.hashicorp.com/sentinel/imports/time/#timeloadtimeish) a run timestamp and create a new timespace from the specicied value. See the `time` import [documentation](https://docs.hashicorp.com/sentinel/imports/time/#import-time) for available actions that can be performed on timespaces.
+Users can use the `time` import to [load](https://docs.hashicorp.com/sentinel/imports/time#time-load-timeish) a run timestamp and create a new timespace from the specicied value. See the `time` import [documentation](https://docs.hashicorp.com/sentinel/imports/time#import-time) for available actions that can be performed on timespaces.
 
 ### Value: `message`
 
 * **Value Type:** String.
 
-Specifies the message that is associated with the run.
+Specifies the message that is associated with the Terraform run.
 
 The default value is *"Queued manually via the Terraform Enterprise API"*.
+
+### Value: `commit_sha`
+
+* **Value Type:** String.
+
+Specifies the checksum hash (SHA) that identifies the commit.
 
 ### Value: `speculative`
 
@@ -97,9 +112,9 @@ variables (map of keys)
 
 ### Value: `target_addrs`
 
-* **Value Type:** An array of strings representing [resource addresses](/docs/internals/resource-addressing.html).
+* **Value Type:** An array of strings representing [resource addresses](/docs/cli/state/resource-addressing.html).
 
-Provides the targets specified using the [`-target`](/docs/commands/plan.html#resource-targeting) flag in the CLI or the `target-addrs` attribute in the API. Will be undefined if no resource targets are specified.
+Provides the targets specified using the [`-target`](/docs/cli/commands/plan.html#resource-targeting) flag in the CLI or the `target-addrs` attribute in the API. Will be undefined if no resource targets are specified.
 
 To prohibit targeted runs altogether, make sure the `target_addrs` value is undefined or empty:
 
@@ -108,7 +123,6 @@ import "tfrun"
 
 main = (length(tfrun.target_addrs) else 0) == 0
 ```
-
 
 ## Namespace: organization
 
@@ -124,13 +138,19 @@ Specifies the name assigned to the Terraform Cloud organization.
 
 The **workspace namespace** contains data associated with the current run's workspace.
 
+### Value: `id`
+
+* **Value Type:** String.
+
+Specifies the ID that is associated with the Terraform workspace.
+
 ### Value: `name`
 
 * **Value Type:** String.
 
 The name of the workspace, which can only include letters, numbers, `-`, and `_`.
 
-As an example, in a workspace named `app-dev-us-east` the following policy would evaluate to `true`:
+As an example, in a workspace named `app-us-east-dev` the following policy would evaluate to `true`:
 
 ```
 # Enforces production rules on all non-development workspaces
@@ -139,14 +159,10 @@ import "tfrun"
 import "strings"
 
 # (Actual policy logic omitted)
-meets_production_policy = rule { ... }
+evaluate_production_policy = rule { ... }
 
-main = rule {
-    if strings.has_suffix(tfrun.workspace.name, "-dev") {
-        true
-    } else
-        meets_production_policy
-    }
+main = rule when strings.has_suffix(tfrun.workspace.name, "-dev") is false {
+    evaluate_production_policy
 }
 ```
 
@@ -196,7 +212,7 @@ The **cost_estimation namespace** contains data associated with the current run'
 
 This namespace is only present if a cost estimate is available.
 
--> Cost estimation is disabled for runs using [resource targeting](/docs/commands/plan.html#resource-targeting), which may cause unexpected failures.
+-> Cost estimation is disabled for runs using [resource targeting](/docs/cli/commands/plan.html#resource-targeting), which may cause unexpected failures.
 
 -> **Note:** Cost estimates are not available for Terraform 0.11.
 
