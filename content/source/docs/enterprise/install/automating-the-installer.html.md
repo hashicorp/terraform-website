@@ -155,6 +155,7 @@ The following settings apply to every installation:
 - `iact_subnet_time_limit` - The time limit that requests from the subnets listed can request the [IACT](./automating-initial-user.html), as measured from the instance creation in minutes; defaults to 60.
 - `extra_no_proxy` — (Optional) When configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
 - `hairpin_addressing` - When set, TFE services will direct traffic destined for the installation's FQDN toward the instance's internal IP address. This is useful for cloud environments where HTTP clients running on instances behind a load balancer cannot send requests to the public hostname of that load balancer. Defaults to `false`.
+- `force_tls` - When set, TFE will require all application traffic to use HTTPS by sending a 'Strict-Transport-Security' header value in responses, and marking cookies as secure. A valid, trusted TLS certificate must be installed when this option is set, as browsers will refuse to serve webpages that have an HSTS header set that also serve self-signed or untrusted certificates.
 - `ca_certs` — (Optional) Custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
   in the data with `\n`. For instance:
 
@@ -200,7 +201,7 @@ If you have chosen `external` for `production_type`, the following settings appl
 - `pg_password` — (Required) The password for the PostgreSQL user.
 - `pg_netloc` — (Required) The hostname and port of the target PostgreSQL server, in the format `hostname:port`.
 - `pg_dbname` — (Required) The database name.
-- `pg_extra_params` — (Optional) Parameter keywords of the form `param1=value1&param2=value2` to support additional options that may be necessary for your specific PostgreSQL server.  Allowed values are [documented on the PostgreSQL site](https://www.postgresql.org/docs/9.4/static/libpq-connect.html#LIBPQ-PARAMKEYWORDS).  An additional restriction on the `sslmode` parameter is that only the `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
+- `pg_extra_params` — (Optional) Parameter keywords of the form `param1=value1&param2=value2` to support additional options that may be necessary for your specific PostgreSQL server.  Allowed values are [documented on the PostgreSQL site](https://www.postgresql.org/docs/12/libpq-connect.html#LIBPQ-PARAMKEYWORDS).  An additional restriction on the `sslmode` parameter is that only the `require`, `verify-full`, `verify-ca`, and `disable` values are allowed.
 
 Select which placement will be used for blob storage: S3, Azure, or GCS. Based on this value, you only need to provide one set of the following variables.
 
@@ -216,6 +217,8 @@ For S3 (or S3-compatible storage providers):
 - `s3_region` — (Required) The region where the S3 bucket exists.
 - `s3_sse` — (Optional) Enables server-side encryption of objects in S3; if provided, must be set to `aws:kms`.
 - `s3_sse_kms_key_id` — (Optional) An optional KMS key for use when S3 server-side encryption is enabled.
+
+As of the `v202103-1` release, Terraform Enterprise supports using AWS IMDSv2 when using the instance profile to obtain credentials to connect to S3 object storage.
 
 For Azure:
 
@@ -236,7 +239,7 @@ For GCS:
 
 The following is an example `/etc/replicated.conf` suitable for an automated online install using a certificate trusted by a public or private CA. `ImportSettingsFrom` must be the full path to the application settings file. You also need to provide the full path to your license file in `LicenseFileLocation`.
 
-See the full set of configuration parameters in the [Replicated documentation](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically).
+See the full set of configuration parameters in the [Replicated documentation](https://help.replicated.com/docs/native/customer-installations/automating/#configure-replicated-automatically).
 
 ```json
 {
@@ -331,6 +334,6 @@ sudo systemctl start replicated replicated-ui replicated-operator
 
 ## References
 
-- [Replicated installer flags](https://help.replicated.com/docs/distributing-an-application/installing-via-script/#flags)
-- [`/etc/replicated.conf`](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-replicated-automatically)
-- [application settings](https://help.replicated.com/docs/kb/developer-resources/automate-install/#configure-app-settings-automatically)
+- [Replicated installer flags](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#flags)
+- [`/etc/replicated.conf`](https://help.replicated.com/docs/native/customer-installations/automating/#configure-replicated-automatically)
+- [application settings](https://help.replicated.com/docs/native/customer-installations/automating/#configure-replicated-automatically)
