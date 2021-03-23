@@ -73,9 +73,9 @@ Whenever a pull request is _created or updated,_ Terraform Cloud checks whether 
 
 - Only pull requests that originate from within the same repository can trigger speculative plans.
 
-    To avoid executing malicious code or exposing sensitive information, Terraform Cloud doesn't run speculative plans for pull requests that originate from other forks of a repository.
+    To avoid executing malicious code or exposing sensitive information, Terraform Cloud doesn't run speculative plans for pull requests that originate from forks of a repository.
 
-    -> **Note:** On Terraform Enterprise versions v202005-1 or later, administrators can choose allow speculative plans on pull requests that originate from forks. To learn more about this setting, refer to the [general settings documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
+    -> **Note:** On Terraform Enterprise versions v202005-1 or later, administrators can choose to allow speculative plans on pull requests that originate from forks. To learn more about this setting, refer to the [general settings documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
 - Pull requests can only trigger runs in workspaces where automatic speculative plans are allowed. You can [disable automatic speculative plans](/docs/cloud/workspaces/vcs.html#automatic-speculative-plans) in a workspace's VCS settings.
 - A pull request will only trigger speculative plans in workspaces that are connected to that pull request's destination branch.
 
