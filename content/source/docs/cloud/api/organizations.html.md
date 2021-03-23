@@ -553,3 +553,75 @@ curl \
   }
 }
 ```
+
+## Show Module Producers
+
+~> **Note:** This endpoint is available in Terraform Enterprise v202103-1 or later. It is not available on Terraform Cloud.
+
+This endpoint shows organizations that are configured to share modules with an organization through [Module Sharing](/docs/enterprise/admin/module-sharing.html).
+
+`GET /organizations/:organization_name/relationships/module-producers`
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization's module producers to view
+
+Status  | Response                                        | Reason
+--------|-------------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "organizations"`) | The request was successful
+[404][] | [JSON API error object][]                       | Organization not found or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://tfe.example.com/api/v2/organizations/hashicorp/relationships/module-producers
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "hc-nomad",
+      "type": "organizations",
+      "attributes": {
+        "name": "hc-nomad",
+        "external-id": "org-ArQSQMAkFQsSUZjB"
+      },
+      "links": {
+        "self": "/api/v2/organizations/hc-nomad"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://tfe.example.com/api/v2/organizations/hashicorp/relationships/module-producers?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://tfe.example.com/api/v2/organizations/hashicorp/relationships/module-producers?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "https://tfe.example.com/api/v2/organizations/hashicorp/relationships/module-producers?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 1,
+      "total-count": 1
+    }
+  }
+}
+```
+
+## Relationships
+
+The following relationships may be present in various responses:
+
+* `module-producers`: Other organizations that are configured to share modules with the organization. Terraform Enterprise v202103-1 or later only.
+* `oauth-tokens`: OAuth tokens associated with VCS configurations for the organization.
+* `authentication-token`: The API token for an organization.
+* `entitlement-set`: The entitlement set that determines which Terraform Cloud features the organization can use.
+* `subscription`: The current subscription for an organization.

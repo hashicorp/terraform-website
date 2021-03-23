@@ -24,9 +24,9 @@ page_title: "Module Sharing - Admin - API Docs - Terraform Enterprise"
 
 -> **Terraform Enterprise feature:** The admin API is exclusive to Terraform Enterprise, and can only be used by the admins and operators who install and maintain their organization's Terraform Enterprise instance.
 
--> These API endpoints are available in Terraform Enterprise as of version 202012-1.
+~> **Tip**: This Admin Module Sharing API is **deprecated** and will be removed in a future release. Transition existing integrations with this API to the [Admin Organizations Module Consumers API](./organizations.html#update-an-organization-39-s-module-consumers). Global module sharing should still be configured using the [Admin Organizations API](./organizations.html#update-an-organization).
 
-There are two ways to configure module sharing via the admin API:
+There are two ways to configure module sharing via the Admin API:
 
 - This endpoint, which allows an organization to share modules with a specific list of other organizations.
 - The [update an organization endpoint](./organizations.html#update-an-organization), whose `data.attributes.global-module-sharing` property allows an organization to share modules with every organization in the instance.
@@ -34,6 +34,8 @@ There are two ways to configure module sharing via the admin API:
 Enabling either option will disable the other. For more information, see [Administration: Module Sharing](/docs/enterprise/admin/module-sharing.html).
 
 ## Update an Organization's Module Consumers
+
+-> This API endpoint is available in Terraform Enterprise as of version 202012-1.
 
 `PATCH /admin/organizations/:name/module-consumers`
 
