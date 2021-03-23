@@ -22,20 +22,19 @@ However, the benefits that come with the Active/Active architecture need to be w
 
 As mentioned above, the Active/Active architecture requires an existing [automated installation](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html) of Terraform Enterprise that follows our [best practices for deployment](https://www.terraform.io/docs/enterprise/before-installing/reference-architecture/index.html). 
 
-The primary requirement is an Auto Scaling Group (or equivalent) with a single instance running Terraform Enterprise. This ASG should be behind a Load Balancer and can be exposed to the public internet or not depending on your requirements. As mentioned earlier, the installation of the Terraform Enterprise application should be automated completely so that the ASG can be scaled to zero and back to one without human intervention. 
+The primary requirement is an auto scaling group (or equivalent) with a single instance running Terraform Enterprise. This ASG should be behind a load balancer and can be exposed to the public Internet or not depending on your requirements. As mentioned earlier, the installation of the Terraform Enterprise application should be automated completely so that the auto scaling group can be scaled to zero and back to one without human intervention. 
 
-The application itself should be using [External Services](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision) mode to connect to an external PostgreSQL database and block storage. 
+The application itself must be using [External Services](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision) mode to connect to an external PostgreSQL database and object storage. 
 
-All admin and application configuration must be automated via your settings files, i.e. it cannot have been configured via the Admin UI. Specifically, you should be using the following configuration files:
+All admin and application configuration must be automated via your settings files and current with running configuration, i.e. it cannot have been altered via the Replicated Admin Console and not synced to the file. Specifically, you should be using the following configuration files:
 
 
+*   `/etc/replicated.conf`    - contains the configuration for the Replicated installer
+*   `/etc/ptfe-settings.json` - contains the configuration for the TFE application 
 
-*   **/etc/replicated.conf** which houses the configuration for the Replicated installer
-*   **/etc/ptfe-settings.json** which controls the configuration of TFE itself
+-> **Note**: The location for the latter is controlled by the "ImportSettingsFrom" setting in `/etc/replicated.conf` and is sometimes named `settings.json` or `replicated-tfe.conf`
 
--> **Note**: The location for the latter is controlled by the "ImportSettingsFrom" setting in `/etc/replicated.conf`
-
-The requirement for automation is two-fold. First, the nodes need to be able to spin up and down without human intervention. More importantly though, you will be disabling the Admin UI altogether later in this guide. **The Admin UI does not function correctly when running multiple nodes and must not be used** after Step 3 below.
+The requirement for automation is two-fold. First, the nodes need to be able to spin up and down without human intervention. More importantly though, you will need to ensure configuration is managed in this way going forward as the Replicated Admin Console will be disabled. **The Replicated Admin Console does not function correctly when running multiple nodes and must not be used**.
 
 
 ### Step 1: Prepare to Externalize Redis
@@ -43,13 +42,12 @@ The requirement for automation is two-fold. First, the nodes need to be able to 
 
 #### Prepare Network
 
-There are two new considerations when thinking about ingress and egress:
+There are new access requirements involving ingress and egress:
 
 
-
-*   **Port 6379** (or the port the external Redis will be configured to use below) must be open between the instances and the Redis service
-*   **Port 8201** must be open between the instances to allow Vault to run in [High Availability](https://www.vaultproject.io/docs/internals/high-availability) mode
-*   **Port 8800** should be closed; since the admin dashboard is no longer available when running multiple nodes
+*   **Port 6379** (or the port the external Redis will be configured to use) must be open between the nodes and the Redis service
+*   **Port 8201** must be open between the nodes to allow Vault to run in [High Availability](https://www.vaultproject.io/docs/internals/high-availability) mode
+*   **Port 8800** should now be closed, as the Replicated Admin Console is no longer available when running multiple nodes
 
 
 #### Provision Redis 
@@ -61,17 +59,17 @@ Externalizing Redis allows multiple active application nodes. Terraform Enterpri
 
 ### Step 2: Update your Configuration File Templates
 
-Before installing, you need to make two sets of changes to the templates for the configuration files mentioned earlier in the prerequisites. 
+Before installing, you need to make changes to the templates for the configuration files mentioned earlier in the prerequisites. 
 
 
 #### Update Installer Settings
 
-The settings around the installer and infrastructure which are located at `/etc/replicated.conf`. Please see existing documentation around the options [here](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html#installer-settings). 
+The existing settings for the installer and infrastructure (`replicated.conf`) are still needed and require to be expanded. Please see documentation for the existing options [here](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html#installer-settings). 
 
 
 ##### Pin Your Version
 
-To expose the Active/Active functionality, you need to pin your installation to the appropriate  channel and release by setting the following in your `replicated.conf` file:
+To upgrade to the  Active/Active functionality and for ongoing upgrades, you need to pin your installation to the appropriate  release by setting the following:
 
 
 <table>
@@ -108,7 +106,7 @@ The following example pins the deployment to the the ([v202101-1](https://github
 
 #### Update Application Settings
 
-The settings for the Terraform Enterprise application are located by default in `/etc/ptfe-settings.json`. Please see the full documentation for more information [here](https://www.terraform.io/docs/enterprise/install/automating-the-installer.html#application-settings).
+The existing settings for the Terraform Enterprise application (`ptfe-settings.json`) are still needed and require to be expanded. Please see documentation for the existing options [here](/docs/enterprise/install/automating-the-installer.html#application-settings).
 
 
 ##### Enable Active/Active
@@ -148,7 +146,7 @@ The settings for the Terraform Enterprise application are located by default in 
 
 ##### Configure External Redis
 
-The updated application settings schema requires several new values in order to use an external Redis instance.
+The settings for the Terraform Enterprise application must also be expanded to support an external Redis instance:
 
 
 <table>
@@ -203,7 +201,7 @@ The updated application settings schema requires several new values in order to 
 </table>
 
 
-_* Fields marked with an asterisk are only necessary  if your external Redis instance requires them._
+_* Fields marked with an asterisk are only necessary if your particular external Redis instance requires them._
 
 For example:
 
@@ -233,8 +231,7 @@ For example:
 
 ##### Add Common Configuration
 
-!> A number of configuration values need to match between instances for the Active/Active architecture to function, the values of these tokens must be set to the same value in the `ptfe-settings.json` on all instances:
-
+!> A number of Terraform Enterprise application configuration values must be added and are **required to be identical between node instances** for the Active/Active architecture to function:
 
 <table>
   <tr>
@@ -376,13 +373,13 @@ For example:
    },
    "registry_session_secret_key":{
       "value":"6c1c4d73cc0a6cccbbb61284b0c32b35"
-   },
+   }
 }
 
 ```
 
 
--> **Note**: It’s the individual settings that need to match across nodes. All of these values do not need to be the same, e.g. `cookie_hash` and `internal_api_token` do not need to be the same.
+-> **Note**: The individual settings need to match across nodes. The values should not be the same, e.g. `cookie_hash` and `internal_api_token` would not contain identical values.
 
 
 ##### Tip: Generating Hex Values with Terraform
@@ -404,15 +401,15 @@ locals {
 
 ### Step 3: Connect to External Redis
 
-Once you include the above configuration options in your `ptfe-settings.json` file, connect a single node to your newly provisioned Redis service. Before scaling to two nodes, ensure your new service functions as expected by testing on a single node.
+Once you are prepared to include the modified configuration options in your configuration files, you must connect a single node to your newly provisioned Redis service by rebuilding your node instance with the new settings.
 
-#### Reprovision Instance
+#### Re-provision Terraform Enterprise Instance
 
-You need to terminate the existing instance by scaling down to zero. Once you terminate the instance, you can scale back up to one instance using your latest config templates. 
+Terminate the existing instance by scaling down to zero. Once terminated, you can scale back up to one instance using your revised configuration. 
 
 #### Wait for Terraform Enterprise to Install
 
-It can take up to 15 minutes for the application to respond as healthy. You can monitor the status of the install by watching your Auto Scaling Group in your cloud’s web console. Alternatively, you can SSH onto the instance and run the following command to monitor the installation directly:
+It can take up to 15 minutes for the node to provision and the TFE application to be installed and respond as healthy. You can monitor the status of the node provisioning by watching your auto scaling group in your cloud’s web console. To confirm the successful implementation of the TFE application you can SSH onto the node and run the following command to monitor the installation directly:
 
 
 ```bash
@@ -442,32 +439,33 @@ Which will output something similar to the following:
 
 Installation is complete once `isTransitioning` is `false` and `State` is `started`.
 
+See [Active/Active Administration](/docs/enterprise/admin/active-active.html) for more status and troubleshooting commands.
+
 
 #### Validate Application
 
-With installation complete, it is time to validate the new Redis connection. Terraform Enterprise uses Redis both as a cache for API requests and a queue for long running jobs, e.g. Terraform Runs.  You will want to test the latter behavior by running real Terraform Plans & Applies through the system. 
+With installation complete, it is time to validate the new Redis connection. Terraform Enterprise uses Redis both as a cache for API requests and a queue for long running jobs, e.g. Terraform Runs. Test the latter behavior by running real Terraform plans and applies through the system. 
 
-Once you are satisfied the application is running as expected, scale to two nodes.
+Once you are satisfied the application is running as expected, you can move on to step 4 to scale up to two nodes.
 
 
 ### Step 4: Scale to Two Nodes
 
 You can now safely change the number of instances in your Auto Scaling Group ( or equivalent) to two.
 
-#### Disable the Admin Dashboard
+#### Disable the Replicated Admin Console
 
-Before you scale up, disable the Admin dashboard as mentioned earlier in this guide. Add the `disable-replicated-ui` flag when you call the install script, as such:
+Before scaling beyond the first node, you must disable the Replicated Admin Console as mentioned earlier in this guide. This is done by adding the `disable-replicated-ui` flag as a parameter when you call the install script, as such:
 
 
 ```
 sudo bash ./install.sh disable-replicated-ui
 ```
 
+Locate where the `install.sh` script is run as part of your provisioning/installation process and add the parameter. If there are other parameters on the same line, they should be left in place.
 
-You are almost there!
 
-
-##### Scale Down to Zero Nodes
+#### Scale Down to Zero Nodes
 
 Scale down to zero nodes to fully disable the admin dashboard. Once the existing instance has terminated...
 
@@ -476,49 +474,21 @@ Scale down to zero nodes to fully disable the admin dashboard. Once the existing
 
 Now that you have tested your external Redis connection change the min and max instance count of your Auto Scaling Group to two nodes. 
 
-!> Running more than two instances is not currently supported. Please reachout to your Technical Account Manager for questions/concerns.
+-> **Note**: Running more than two instances is not _currently_ supported. Please contact your Customer Success Manager if there are any questions/concerns.
 
 
 #### Wait for Terraform Enterprise to Install
 
-It can take up to 15 minutes for the application to respond as healthy. You can monitor the status of the install by watching your Auto Scaling Group in your cloud’s web console. Alternatively, you can SSH onto either instance and run the following command to monitor the installation directly:
+You need to wait up to 15 minutes for the application to respond as healthy on both nodes. Monitor the status of the install with the same methods used previously for one node in Step 3. 
 
-
-```bash
-replicatedctl app status
-```
-
-
-Which will output something similar to the following:
-
-
-```json
-[
-    {
-        "AppID": "218b78fa2bd6f0044c6a1010a51d5852",
-        "Sequence": 504,
-        "PatchSequence": 0,
-        "State": "starting",
-        "DesiredState": "started",
-        "IsCancellable": false,
-        "IsTransitioning": true,
-        "LastModifiedAt": "2021-01-07T21:15:11.650385151Z"
-    }
-]
-
-```
-
-
-Installation is complete once `isTransitioning` is `false` and `State` is `started`.
-
--> **Note**: This command only reports the status of the current node. 
+-> **Note**: Each node needs to be checked independently.
 
 
 #### Validate Application
 
-Finally, confirm the application is functioning as expected when running multiple nodes. You will want to run Terraform Plan and Applies through the system (and any other tests specific to your environment) like you did to validate the application in Step 3. 
+Finally, confirm the application is functioning as expected when running multiple nodes. Run Terraform plan and applies through the system (and any other tests specific to your environment) like you did to validate the application in Step 3. 
 
-Confirm the general functionality of the UI to validate the tokens you added in Step 2 are set correctly. Browse the `Run` interface and your organization's private registry to confirm your application functions as expected.
+Confirm the general functionality of the Terraform Enterprise UI to validate the tokens you added in Step 2 are set correctly. Browse the `Run` interface and your organization's private registry to confirm your application functions as expected.
 
 
 ## 
@@ -599,6 +569,8 @@ Requirements/Options:
 
 The default example provided on the provider page can be used to deploy memorystore [here](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/redis_instance). The host output of the resource can then be provided to the terraform module in order to configure connectivity.
 
+You may consider using other options in the configuration depending on your requirements, such as including the **auth_enabled** flag set to true, which must then be accompanied by including an additional TFE configuration item called **redis_password** set to the value returned in the **auth_string** attribute from the memorystore resource.  
+
 
 ## 
 
@@ -637,4 +609,3 @@ The minimum instance size for Redis to be used with TFE is 6 GiB. For Azure, thi
 Make sure you configure the minimum TLS version to the TFE supported version of 1.2 as the Azure resource defaults to 1.0. The default port for Azure Cache for Redis is 6380 and will need to be modified in the Application Settings `ptfe-replicated.conf` in order for TFE to connect to Azure Cache for Redis.
 
 The default example provided on the provider page can be used to deploy Azure Cache for Redis [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache). The outputs of the resource can then be provided to the Terraform module in order to configure connectivity
-
