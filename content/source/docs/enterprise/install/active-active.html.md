@@ -14,6 +14,7 @@ However, the benefits that come with the Active/Active architecture need to be w
 *   Hard requirement of a completely automated installation
 *   Observability concerns when monitoring multiple instances
 *   Custom automation required to manage the lifecycle of application nodes
+*   [New CLI-based commands](/docs/enterprise/admin/active-active.html) vs UI dashboard for administration 
 
 -> **Note**: Please contact your Customer Success Manager before attempting to follow this guide. They will be able to walk you through the process to make it as seamless as possible.
 
