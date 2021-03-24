@@ -582,18 +582,6 @@ The other refers to a workspace by its name and organization:
 | `:organization_name` | The name of the organization the workspace belongs to.                                                |
 | `:name`              | The name of the workspace to show details for, which can only include letters, numbers, `-`, and `_`. |
 
-### Workspace performance attributes
-
-The following attributes are helpful in determining the overall health and performance of your workspace configuration.  These metrics refer to the **past 30 runs that have either resulted in an error or successfully applied**.
-
-| Parameter                                  | Type   | Description                                                                                                                                                              |
-| ------------------------------------------ | ------ | --------------------------------------------------------------------------------------- |
-| `data.attributes.apply-duration-average`   | number | This is the average time runs spend in the **apply** phase, represented in milliseconds |
-| `data.attributes.plan-duration-average`    | number | This is the average time runs spend in the **plan** phase, represented in milliseconds  |
-| `data.attributes.policy-check-failures`    | number | Reports the number of run failures resulting from a policy check failure                |
-| `data.attributes.run-failures`             | number | Reports the number of failed runs                                                       |
-| `data.attributes.workspace-kpis-run-count` | number | Total number of runs taken into account by these metrics                                |
-
 ### Sample Request
 
 ```shell
@@ -614,7 +602,6 @@ $ curl \
       "actions": {
         "is-destroyable": true
       },
-      "apply-duration-average": 600000,
       "auto-apply": false,
       "allow-destroy-plan": true,
       "created-at": "2018-03-08T22:30:00.404Z",
@@ -632,12 +619,8 @@ $ curl \
         "can-lock": true,
         "can-read-settings": true
       },
-      "plan-duration-average": 600000,
-      "policy-check-failures": 5,
       "queue-all-runs": false,
       "resource-count": 5,
-      "run-failures": 2,
-      "workspace-kpis-run-count": 10,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
