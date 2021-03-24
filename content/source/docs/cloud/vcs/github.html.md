@@ -39,7 +39,7 @@ The rest of this page explains the GitHub versions of these steps.
 
 1. The "Add VCS Provider" page is divided into multiple steps to guide you through adding a new VCS provider.
 
-    For the first step, select "GitHub" then select "GitHub.com (Custom)" from the dropdown. The page will move to the next step.
+    For the first step, select "GitHub" then select "GitHub.com" from the dropdown. The page will move to the next step.
 
 Leave the page open in a browser tab. In the next step you will copy values from this page, and in later steps you will continue configuring Terraform Cloud.
 
