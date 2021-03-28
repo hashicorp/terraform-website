@@ -27,4 +27,4 @@ We also recommend shipping binaries for the following combinations, but we typic
 
 ## Terraform Cloud Compatibility
 
-To ensure your provider can run in Terraform Cloud, please include a Linux / AMD64 binary. This binary should also not have CGO enabled and should not depend on command line execution of any external tools or binaries. We cannot guaruntee availibility of any package/library/binary within the Terraform Cloud images.
+To ensure your provider can run in Terraform Cloud, please include a Linux / AMD64 binary. This binary should also not have CGO enabled and should not depend on command line execution of any external tools or binaries. We cannot guarantee availibility of any package/library/binary within the Terraform Cloud images.
