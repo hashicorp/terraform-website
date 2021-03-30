@@ -23,7 +23,7 @@ Only members of the "owners" team can publish new modules. Once a module is publ
 
 The private module registry is designed to be as automatic as possible, so it defers to your VCS provider for most management tasks. The only manual tasks are adding a new module and deleting versions.
 
-After configuring at least one [connection to a VCS provider][vcs], you can publish a new module by specifying a properly formatted VCS repository (one module per repo, with an expected name and tag format; see below for details). The registry automatically detects the rest of the information it needs, including the module's name and its available versions.
+After configuring at least one [connection to a VCS provider][vcs], you can publish a new module by specifying a properly formatted VCS repository (see below for details). The registry automatically detects the rest of the information it needs, including the module's name and its available versions.
 
 To release a new version of an existing module, push a new tag to its repo. The registry updates automatically.
 
@@ -38,9 +38,6 @@ your configured [VCS providers][vcs], and Terraform Cloud's VCS user account mus
 access to the repository. (Since the registry uses webhooks to import new module
 versions, it needs admin access to create those webhooks.) For GitLab, the repository
 must be in the main organization or group, not in any subgroups.
-
-- **One module per repository.** The registry cannot use combined repositories
-with multiple modules.
 
 - **Named `terraform-<PROVIDER>-<NAME>`.** Module repositories must use this
 three-part name format, where `<NAME>` reflects the type of infrastructure the
