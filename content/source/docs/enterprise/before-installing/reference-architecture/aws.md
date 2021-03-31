@@ -407,7 +407,7 @@ Terraform Enterprise supports Redis versions 4.0 and 5.0, but 5.0 is recommended
 The Load Balancer routes all traffic to the Terraform Enterprise instance, which is managed by
 an Auto Scaling Group. This is a standard round-robin distribution for now, with no accounting for current load on the nodes. The instance counts on the Auto Scaling Group control the number of nodes in operation and can be used to increase or decrease the number of active nodes.
 
-_Active/Active_ Terraform Enterprise is not currently architected to support dynamic scaling based on load or other factors. The maximum and minimum instance counts on the Auto Scaling Group should be set to the same value. Adding a node can be done at will bt setting these values. However, removing a node requires that the node be allowed to finish active work and stop accepting new work before being terminated. The operational documentation has the details on how to "drain" a node.
+_Active/Active_ Terraform Enterprise is not currently architected to support dynamic scaling based on load or other factors. The maximum and minimum instance counts on the Auto Scaling Group should be set to the same value. Adding a node can be done at will by setting these values. However, removing a node requires that the node be allowed to finish active work and stop accepting new work before being terminated. The operational documentation has the details on how to "drain" a node.
 
 #### Replicated Console
 
