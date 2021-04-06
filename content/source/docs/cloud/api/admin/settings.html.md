@@ -59,7 +59,8 @@ curl \
       "api-rate-limiting-enabled": true,
       "api-rate-limit": 30,
       "send-passing-statuses-for-untriggered-speculative-plans": true,
-      "allow-speculative-plans-on-pull-requests-from-forks": false
+      "allow-speculative-plans-on-pull-requests-from-forks": false,
+      "default-remote-state-access": true
     }
   }
 }
@@ -86,6 +87,7 @@ Key path                                                                 | Type 
 `data.attributes.api-rate-limit`                                         | integer  | 30                        | The number of allowable API requests per second for any client. This value cannot be less than 30. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
 `data.attributes.send-passing-statuses-for-untriggered-speculative-plans`| bool     | `true`                    | When set to `true`, workspaces automatically send passing commit statuses for any pull requests that don't affect their tracked files.
 `data.attributes.allow-speculative-plans-on-pull-requests-from-forks`    | bool     | `false`                   | When set to `false`, [speculative plans][] are not run on pull requests from forks of a repository. This setting is available in Terraform Enterprise versions v202005-1 or later. It is currently supported for the following VCS providers: GitHub.com, GitHub.com (OAuth), GitHub Enterprise, Bitbucket Cloud, Azure DevOps Server, Azure DevOps Services. To learn more about this setting, refer to the [documentation](/docs/enterprise/admin/general.html#allow-speculative-plans-on-pull-requests-from-forks)
+`data.attributes.default-remote-state-access`    | bool     | `true`                   | When set to `true`, new workspaces will deafult to allowing remote state access to them.
 
 [rate limiting documentation]: ../index.html#rate-limiting
 
@@ -126,7 +128,8 @@ curl \
       "api-rate-limiting-enabled": true,
       "api-rate-limit": 50,
       "send-passing-statuses-for-untriggered-speculative-plans": true,
-      "allow-speculative-plans-on-pull-requests-from-forks": false
+      "allow-speculative-plans-on-pull-requests-from-forks": false,
+      "default-remote-state-access": true
     }
   }
 }
