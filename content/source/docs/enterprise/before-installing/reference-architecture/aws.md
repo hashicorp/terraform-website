@@ -345,6 +345,8 @@ primary AWS Region hosting the Terraform Enterprise application failing, the sec
 AWS Region will require some configuration before traffic is directed to
 it along with some global services such as DNS.
 
+Please note that with _Standalone_ implementation mode, only one Terraform Enterprise instance can be running against the same database. This deployment acts to minimize the Mean Time To Recovery (MTTR) in the event of a regional failure, avoiding the need to replicate and stand up the data plane infrastructure during an outage.
+
 - [RDS cross-region read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.XRgn) can be used in a warm standby architecture or [RDS database backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html) can be used in a cold standby architecture.
 
 - [S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) must be configured so the object storage component of the Storage Layer is available in the secondary AWS Region.
