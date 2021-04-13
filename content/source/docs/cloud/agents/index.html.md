@@ -195,7 +195,7 @@ You may choose to run multiple agents within your network, up to the organizatio
 
 #### Resilience
 
-If an agent terminates abnormally, any running jobs can be restarted where they left off by resubmitting them. We strongly recommend pairing the agent with a process supervisor to ensure that it is automatically restarted in case of an error.
+It is possible that an agent process could be terminated unexpectedly (due to killing the process forcefully, power cycling the host machine, etc.). We strongly recommend pairing the agent with a process supervisor to ensure that it is automatically restarted in case of an error.
 
 (See **Agent Capacity Usage** below).
 
