@@ -27,6 +27,7 @@ Permissions for the owners team include:
 
 - Manage workspaces (see [Organization Permissions][] below; equivalent to admin permissions on every workspace)
 - Manage policies (see [Organization Permissions][] below)
+- Manage policy overrides (see [Organization Permissions][] below)
 - Manage VCS settings (see [Organization Permissions][] below)
 - Publish private modules (owners only)
 - Invite users to organization (owners only)
@@ -152,9 +153,15 @@ Separate from workspace permissions, teams can be granted permissions to manage 
 
 ### Manage Policies
 
-Allows members to create, edit, and delete the organization's Sentinel policies and override soft-mandatory policy checks.
+Allows members to create, edit, and delete the organization's Sentinel policies.
 
 This permission implicitly gives permission to read runs on all workspaces, which is necessary to set enforcement of [policy sets](../sentinel/manage-policies.html).
+
+### Manage Policy Overrides
+
+Allows members to override soft-mandatory policy checks.
+
+This permission implicitly gives permission to read runs on all workspaces, which is necessary to override policy checks.
 
 ### Manage Workspaces
 

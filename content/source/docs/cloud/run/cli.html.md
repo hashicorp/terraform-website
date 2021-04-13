@@ -187,7 +187,7 @@ If the specified workspace uses Sentinel policies, those policies will run again
 Failed policies can pause or prevent an apply, depending on the enforcement level:
 
 - Hard mandatory checks cannot be overridden and they prevent `terraform apply` from applying changes.
-- Soft mandatory checks can be overridden by users with permission to [manage policies](/docs/cloud/users-teams-organizations/permissions.html#manage-policies). If your account can override a failed check, Terraform will prompt you to type "override" to confirm. (Note that typing "yes" will not work.) If you override the check, you will be prompted to apply the run (unless auto-apply is enabled).
+- Soft mandatory checks can be overridden by users with permission to [manage policy overrides](/docs/cloud/users-teams-organizations/permissions.html#manage-policy-overrides). If your account can override a failed check, Terraform will prompt you to type "override" to confirm. (Note that typing "yes" will not work.) If you override the check, you will be prompted to apply the run (unless auto-apply is enabled).
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 

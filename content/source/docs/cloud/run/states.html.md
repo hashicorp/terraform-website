@@ -64,7 +64,7 @@ This stage only occurs if [Sentinel policies][] are enabled. After a successful 
 _States in this stage:_
 
 - **Policy Check:** Terraform Cloud is currently checking the plan against the organization's policies.
-- **Policy Override:** The policy check finished, but a soft-mandatory policy failed, so an apply cannot proceed without approval from a user with permission to manage policies for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) The run pauses in this state.
+- **Policy Override:** The policy check finished, but a soft-mandatory policy failed, so an apply cannot proceed without approval from a user with permission to manage policy overrides for the organization. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) The run pauses in this state.
 - **Policy Checked:** The policy check succeeded, and Sentinel will allow an apply to proceed. The run sometimes pauses in this state, depending on workspace settings.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
@@ -73,7 +73,7 @@ _Leaving this stage:_
 
 - If any hard-mandatory policies failed, the run skips to completion (**Plan Errored** state).
 - If any soft-mandatory policies failed, the run pauses in the **Policy Override** state.
-    - If a user with permission to manage policies overrides the failed policy, the run proceeds to the **Policy Checked** state. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+    - If a user with permission to manage policy overrides, overrides the failed policy, the run proceeds to the **Policy Checked** state. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
     - If a user with permission to apply runs discards the run, the run skips to completion (**Discarded** state). ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 - If the run reaches the **Policy Checked** state (no mandatory policies failed, or soft-mandatory policies were overridden):
     - If the plan can be auto-applied, the run proceeds automatically to the apply stage. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
