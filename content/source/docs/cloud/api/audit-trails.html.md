@@ -24,17 +24,17 @@ page_title: "Audit Trails - API Docs - Terraform Cloud"
 
 -> **Note:** Audit trails are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
--> **Note:** This endpoint cannot be accessed with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens). You must access it with an [organization token](../users-teams-organizations/api-tokens.html#organization-api-tokens).
-
--> **Note:** Unlike other endpoints, the Audit Trails API does not use the [JSON API specification](./index.html#json-api-formatting).
+-> **Note:** Unlike other APIs, the Audit Trails API does not use the [JSON API specification](./index.html#json-api-formatting).
 
 -> **Note:** Terraform Cloud retains 14 days of audit log information.
 
 The audit trails API exposes a stream of audit events, which describe changes to the application entities (workspaces, runs, etc.) that belong to a Terraform Cloud organization.
 
-## List Audit Trails
+## List an organization's audit events
 
 `GET /organization/audit-trail`
+
+-> **Note:** This endpoint cannot be accessed with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens). You must access it with an [organization token](../users-teams-organizations/api-tokens.html#organization-api-tokens).
 
 ### Query Parameters
 
