@@ -155,6 +155,17 @@ docker run -e TFC_AGENT_TOKEN=your-token -e
 TFC_AGENT_NAME=your-agent-name hashicorp/tfc-agent
 ```
 
+### Stopping the Agent
+
+The agent maintains a registration and a liveness indicator within Terraform Cloud during the entire course of its runtime. When an agent is to be retired, it must deregister itself from Terraform Cloud. The agent performs deregistration automatically as part of its shutdown procedure in the following scenarios:
+
+* If using an interactive terminal, Ctrl-C is pressed.
+* One of `SIGINT`, `SIGTERM`, or `SIGQUIT` is sent to the agent process ID. It is important to send only one signal. If a second signal is received by the agent, it is interpreted as a forceful termination signal and will cause the agent to exit immediately.
+
+In both cases, after initiating a graceful shutdown, the terminal user or parent program should wait for the agent to exit. The amount of time this takes depends on the agent's current workload. The agent will wait for any current operations to complete before deregistering and exiting.
+
+It is highly recommended that the agent is only terminated using one of the above methods. Abruptly terminating an agent by forcefully killing the process, power cycling the host, etc., will not provide the agent the opportunity to deregister, and will result in an **Unknown** agent status. This may cause further capacity issues, as outlined below in [Agent Capacity Usage](#agent-capacity-usage).
+
 #### Optional Configuration: Single-execution mode
 
 The Agent can also be configured to run in single-execution mode, which will ensure that the Agent only runs a single workload, then terminates. This can be used in combination with Docker and a process supervisor to ensure a clean working environment for every Terraform run.
@@ -220,6 +231,8 @@ Agents are considered active and count towards the organization's purchased agen
 The number of active agents you are eligible to deploy is determined by the number of Concurrent Runs your organization is entitled to. Agents are available as part of the [Terraform Cloud Business] (https://www.hashicorp.com/products/terraform/pricing) tier.
 
 Agents in the **Unknown** state continue to be counted against the organization's total agent allowance, as this status is typically an indicator of a temporary communication issue between the agent and Terraform Cloud. **Unknown** agents which do not respond after a period of 2 hours will automatically transition to an **Errored** state, at which point they will not count against the agent allowance.
+
+Agents may have an **Unknown** status if they are terminated without gracefully exiting. Agents should always be shut down according to the [Stopping the Agent](#stopping-the-agent) section to allow them to deregister from Terraform Cloud. We strongly recommend ensuring that any process supervisor, application scheduler, or other runtime manager is configured to follow this procedure to minimize **Unknown** agent statuses.
 
 ### Viewing Agent Logs
 
