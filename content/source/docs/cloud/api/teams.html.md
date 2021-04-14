@@ -82,6 +82,7 @@ $ curl \
         },
         "organization-access": {
           "manage-policies": true,
+          "manage-policy-overrides": false,
           "manage-workspaces": false,
           "manage-vcs-settings": false
         }
@@ -129,7 +130,7 @@ Key path                              | Type   | Default   | Description
 -----------------------               |--------|-----------|------------
 `data.type`                           | string |           | Must be `"teams"`.
 `data.attributes.name`                | string |           | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-`data.attributes.organization-access` | object | (nothing) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
+`data.attributes.organization-access` | object | (nothing) | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
 `data.attributes.visibility` **(beta)** | string | `"secret"`| The team's visibility. Must be `"secret"` or `"organization"` (visible).
 
 ### Sample Payload
@@ -169,6 +170,7 @@ $ curl \
       "name": "team-creation-test",
       "organization-access": {
         "manage-policies": false,
+        "manage-policy-overrides": false,
         "manage-vcs-settings": false,
         "manage-workspaces": true
       },
@@ -236,6 +238,7 @@ $ curl \
       },
       "organization-access": {
         "manage-policies": true,
+        "manage-policy-overrides": false,
         "manage-workspaces": false,
         "manage-vcs-settings": false
       }
@@ -282,7 +285,7 @@ Key path                              | Type   | Default   | Description
 -----------------------               |--------|-----------|------------
 `data.type`                           | string |           | Must be `"teams"`.
 `data.attributes.name`                | string | (previous value) | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.
-`data.attributes.organization-access` | object | (previous value) | Settings for the team's organization access. This object can include `manage-policies`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
+`data.attributes.organization-access` | object | (previous value) | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-workspaces`, and `manage-vcs-settings` properties with boolean values. All properties default to `false`.
 `data.attributes.visibility` **(beta)** | string | (previous value) | The team's visibility. Must be `"secret"` or `"organization"` (visible).
 
 ### Sample Payload
@@ -322,6 +325,7 @@ $ curl \
       "name": "team-creation-test",
       "organization-access": {
         "manage-policies": false,
+        "manage-policy-overrides": false,
         "manage-vcs-settings": true,
         "manage-workspaces": true
       },
