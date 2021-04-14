@@ -319,4 +319,13 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   https://app.terraform.io/api/v2/run-triggers/rt-3yVQZvHzf5j3WRJ1
-```
+  ```
+
+## Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
+
+These includes respect read permissions. If you do not have access to read the related resource, it will not be returned.
+
+* `workspace` - The full workspace object.
+* `sourceable` - The full source workspace object.
