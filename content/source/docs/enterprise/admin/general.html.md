@@ -52,3 +52,20 @@ However, if this results in sending too many status checks to your VCS provider 
 ~> **Note:** This setting is available in Terraform Enterprise versions v202005-1 or later. It is currently supported for the following VCS providers: GitHub.com, GitHub.com (OAuth), GitHub Enterprise, Bitbucket Cloud, Azure DevOps Server, Azure DevOps Services.
 
 By default, this setting is disabled because Terraform Enterprise assumes that forks of a trusted repository are not necessarily themselves trusted. Enabling this setting may allow Terraform Enterprise to execute malicious code or expose sensitive information through [speculative plans][] on pull requests that originated from a repository fork.
+
+## Default Global Remote State
+
+This settings effects the `global_remote_state` field on a Workspace **during**
+Workspace creation.
+
+If the `global_remote_state` parameter is passed when a
+Workspace is being created, than this setting is ignored. When the
+`global_remote_state` parameter is **not** passed when a Workspace is being
+created, then the value of `global_remote_state` is set to the value of this
+setting.
+
+
+This setting defaults to `true`. Which implies that the `global_remote_state` of
+a Workspace, when the parameter is not passed, will default to `true`. If this
+is updated to `false`, then that would mean that `global_remote_state` of
+a Workspace, when the parameter is not passed, will default to `false`.
