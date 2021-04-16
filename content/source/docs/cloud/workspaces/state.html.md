@@ -31,13 +31,30 @@ Manual state manipulation in Terraform Cloud workspaces requires the use of Terr
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-## Cross-Workspace State Access
+## Accessing State from Other Workspaces
 
-In your Terraform configurations, you can use a [`terraform_remote_state` data source](/docs/language/state/remote-state-data.html) to access [outputs](/docs/language/values/outputs.html) from your other workspaces.
+-> **Note:** Provider-specific [data sources](/docs/language/data-sources/index.html) are usually the most resilient way to share information between separate Terraform configurations. `terraform_remote_state` is more flexible, but we recommend using specialized data sources whenever it is convenient to do so.
 
-~> **Important:** A given workspace can only access state data from within the same organization. If you plan to use multiple Terraform Cloud organizations, make sure to keep related groups of workspaces together in the same organization.
+Terraform's built-in [`terraform_remote_state` data source](/docs/language/state/remote-state-data.html) lets you share arbitrary information between configurations via root module [outputs](/docs/language/values/outputs.html).
 
-To configure a data source that references a Terraform Cloud workspace, set the data source's `backend` argument to `remote` and specify the organization and workspace in the `config` argument.
+Terraform Cloud automatically manages API credentials for `terraform_remote_state` access during [runs managed by Terraform Cloud](/docs/cloud/run/index.html#remote-operations). This means you do not usually need to include an API token in a `terraform_remote_state` data source's configuration.
+
+### Remote State Access Controls
+
+Remote state access between workspaces is subject to access controls:
+
+- Only workspaces within the same organization can access each other's state.
+- The workspace whose state is being read must be configured to allow that access. State access permissions are configured on a workspace's [general settings page](/docs/cloud/workspaces/settings.html). There are two ways a workspace can allow access:
+    - Globally, to all workspaces within the same organization.
+    - Selectively, to a list of specific approved workspaces.
+
+By default, new workspaces do not allow other workspaces to access their state. We recommend that you follow the principle of least privilege and only enable state access between workspaces that specifically need information from each other.
+
+~> **Important:** The default access permissions for new workspaces changed in April 2021. Workspaces created before this change defaulted to allowing global access within their organization. These workspaces can be changed to more restrictive access at any time on their [general settings page](/docs/cloud/workspaces/settings.html).
+
+### Data Source Configuration
+
+To configure a `terraform_remote_state` data source that references a Terraform Cloud workspace, set the data source's `backend` argument to `remote` and specify the organization and workspace in the `config` argument.
 
 ``` hcl
 data "terraform_remote_state" "vpc" {
@@ -51,10 +68,7 @@ data "terraform_remote_state" "vpc" {
 }
 
 resource "aws_instance" "redis_server" {
-  # Terraform 0.12 syntax: use the "outputs.<OUTPUT NAME>" attribute
+  # Terraform 0.12 and later: use the "outputs.<OUTPUT NAME>" attribute
   subnet_id = data.terraform_remote_state.vpc.outputs.subnet_id
-
-  # Terraform 0.11 syntax: use the "<OUTPUT NAME>" attribute
-  subnet_id = "${data.terraform_remote_state.vpc.subnet_id}"
 }
 ```

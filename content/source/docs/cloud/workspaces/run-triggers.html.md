@@ -7,9 +7,9 @@ page_title: "Run Triggers - Workspaces - Terraform Cloud and Terraform Enterpris
 
 > **Hands-on:** Try the [Connect Workspaces with Run Triggers](https://learn.hashicorp.com/tutorials/terraform/cloud-run-triggers?in=terraform/cloud&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
-Terraform Cloud provides a way to connect your workspace to one or more workspaces within your organization, known as "source workspaces". These connections, called run triggers, allow runs to queue automatically in your workspace on successful apply of runs in any of the source workspaces. You can connect your workspace to up to 20 source workspaces.
+Terraform Cloud provides a way to connect your workspace to one or more workspaces within your organization, known as "source workspaces". These connections, called run triggers, allow runs to queue automatically in your workspace on successful apply of runs in any of the source workspaces. You can connect each workspace to up to 20 source workspaces.
 
-When used in conjunction with [`terraform_remote_state` data sources](/docs/language/state/remote-state-data.html), run triggers provide the ability to manage updates to your configurations more seamlessly.
+Run triggers are designed for workspaces that rely on information or infrastructure produced by other workspaces. If a Terraform configuration uses [data sources](/docs/language/data-sources/index.html) to read values that might be changed by another workspace, run triggers let you explicitly specify that external dependency.
 
 -> **API:** See the [Run Triggers APIs](../api/run-triggers.html).
 
@@ -49,8 +49,6 @@ Operators of your source workspaces will be informed of the connection to your w
 
 ## Using a Remote State Data Source
 
-Run triggers are designed for workspaces that rely on information produced by other workspaces.
+A common way to share information between workspaces is the [`terraform_remote_state` data source](/docs/language/state/remote-state-data.html), which allows a Terraform configuration to access a source workspace's root-level [outputs](/docs/language/values/outputs.html).
 
-The primary way to share information between workspaces is the [`terraform_remote_state` data source](/docs/language/state/remote-state-data.html), which allows a Terraform configuration to access a source workspace's root-level [outputs](/docs/language/values/outputs.html).
-
-For more information about cross-workspace state access in Terraform Cloud, see [Terraform State in Terraform Cloud](./state.html).
+Before other workspaces can read the outputs of a workspace, it must be configured to allow access. For more information about cross-workspace state access in Terraform Cloud, see [Terraform State in Terraform Cloud](./state.html).

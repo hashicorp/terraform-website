@@ -109,6 +109,19 @@ In [runs triggered by VCS commits](../run/ui.html), this is automatic. In [CLI-d
 
 If you use the working directory setting, always run Terraform from a complete copy of the configuration directory. Moving one subdirectory to a new location can result in unexpected content uploads.
 
+### Remote State Sharing
+
+Which other workspaces within the organization can access the state of the workspace during [runs managed by Terraform Cloud](/docs/cloud/run/index.html#remote-operations). The [`terraform_remote_state` data source](/docs/language/state/remote-state-data.html) relies on state sharing to access workspace outputs.
+
+- If "Share state globally" is enabled, all other workspaces within the organization can access this workspace's state during runs.
+- If global sharing is turned off, you can specify a list of workspaces within the organization that can access this workspace's state; no other workspaces will be allowed.
+
+    The workspace selector is searchable; if you don't initially see a workspace you're looking for, type part of its name.
+
+By default, new workspaces do not allow other workspaces to access their state. We recommend that you follow the principle of least privilege and only enable state access between workspaces that specifically need information from each other.
+
+~> **Important:** The default access permissions for new workspaces changed in April 2021. Workspaces created before this change defaulted to allowing global access within their organization. These workspaces can be changed to more restrictive access at any time.
+
 ## Locking
 
 ~> **Important:** Unlike other settings, locks can also be managed by users with permission to lock and unlock the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
