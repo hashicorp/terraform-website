@@ -101,26 +101,27 @@ configuration's [version constraints](/docs/language/providers/configuration.htm
 and chooses a version for each plugin as follows:
 
 - If any acceptable versions are installed, Terraform uses the newest
-  _installed_ version that meets the constraint (even if releases.hashicorp.com
+  _installed_ version that meets the constraint (even if the
+[Terraform Registry](https://registry.terraform.io/)
   has a newer acceptable version).
 - If no acceptable versions are installed and the plugin is one of the
-  [providers distributed by HashiCorp](/docs/providers/index.html),
-  Terraform downloads the newest acceptable version from
-  releases.hashicorp.com and saves it in `.terraform/plugins/<OS>_<ARCH>`.
-- If no acceptable versions are installed and the plugin is not distributed
-  by HashiCorp, initialization fails and the user must manually install an
-  appropriate version.
+  [providers distributed by HashiCorp](/docs/providers/index.html), Terraform
+  downloads the newest acceptable version from the [Terraform Registry](https://registry.terraform.io/) 
+  and saves it in a subdirectory under `.terraform/providers/`.
+- If no acceptable versions are installed and the plugin is not distributed in
+  the [Terraform Registry](https://registry.terraform.io/), initialization
+  fails and the user must manually install an appropriate version.
 
 ### Upgrading Plugins
 
-When `terraform init` is run with the `-upgrade` option, it re-checks
-releases.hashicorp.com for newer acceptable provider versions and downloads them
-if available.
+When `terraform init` is run with the `-upgrade` option, it re-checks the
+[Terraform Registry](https://registry.terraform.io/) for newer acceptable
+provider versions and downloads them if available.
 
 This behavior only applies to providers whose _only_ acceptable versions are in
-`.terraform/plugins/<OS>_<ARCH>` (the automatic downloads directory); if any
-acceptable version of a given provider is installed elsewhere,
-`terraform init -upgrade` will not download a newer version of it.
+the correct subdirectories under `.terraform/providers/` (the automatic downloads
+directory); if any acceptable version of a given provider is installed
+elsewhere, `terraform init -upgrade` will not download a newer version of it.
 
 [0]: https://en.wikipedia.org/wiki/Static_build#Static_building
 [1]: https://golang.org/
