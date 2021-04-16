@@ -77,14 +77,6 @@ which plugin versions to use, and writes a lock file to ensure Terraform will
 use the same plugin versions in this directory until `terraform init` runs
 again.
 
-For purposes of discovery, Terraform plugins behave in one of three ways:
-
-Kind                                   | Behavior
----------------------------------------|------------------------------------------------
-Built-in provisioners                  | Always available; included in Terraform binary.
-Providers distributed by HashiCorp     | Automatically downloaded if not already installed.
-Third-party providers and provisioners | Must be manually installed.
-
 ### Plugin Locations
 
 The [Terraform CLI
