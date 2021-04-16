@@ -171,7 +171,7 @@ This is a sample `Dockerfile` you can use to start building your own image:
 FROM ubuntu:bionic
 
 # Install software used by Terraform Enterprise.
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     sudo unzip daemontools git-core awscli ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd ca-certificates
 
 # Include all necessary CA certificates.
