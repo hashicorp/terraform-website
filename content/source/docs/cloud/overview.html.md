@@ -58,7 +58,7 @@ Terraform Cloud acts as a remote backend for your Terraform state. State storage
 
 Terraform Cloud also enables you to share information between workspaces with root-level [outputs][]. Separate groups of infrastructure resources often need to share a small amount of information, and workspace outputs are an ideal interface for these dependencies.
 
-Any workspace that uses remote operations can use [`terraform_remote_state` data sources][remote_state] to access other workspaces' outputs, without any additional configuration or authentication. And since new information from one workspace might change the desired infrastructure state in another, you can create workspace-to-workspace run triggers to ensure downstream workspaces react when their dependencies change.
+Workspaces that use remote operations can use [`terraform_remote_state` data sources][remote_state] to access other workspaces' outputs, subject to per-workspace access controls. And since new information from one workspace might change the desired infrastructure state in another, you can create workspace-to-workspace run triggers to ensure downstream workspaces react when their dependencies change.
 
 - More info: [Terraform State in Terraform Cloud](./workspaces/state.html), [Run Triggers](./workspaces/run-triggers.html)
 
