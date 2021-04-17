@@ -48,9 +48,9 @@ Remote state access between workspaces is subject to access controls:
     - Globally, to all workspaces within the same organization.
     - Selectively, to a list of specific approved workspaces.
 
-By default, new workspaces do not allow other workspaces to access their state. We recommend that you follow the principle of least privilege and only enable state access between workspaces that specifically need information from each other.
+By default, new workspaces in Terraform Cloud do not allow other workspaces to access their state. We recommend that you follow the principle of least privilege and only enable state access between workspaces that specifically need information from each other.
 
-~> **Important:** The default access permissions for new workspaces changed in April 2021. Workspaces created before this change defaulted to allowing global access within their organization. These workspaces can be changed to more restrictive access at any time on their [general settings page](/docs/cloud/workspaces/settings.html).
+-> **Note:** The default access permissions for new workspaces in Terraform Cloud changed in April 2021. Workspaces created before this change defaulted to allowing global access within their organization. These workspaces can be changed to more restrictive access at any time on their [general settings page](/docs/cloud/workspaces/settings.html). Terraform Enterprise administrators can choose whether new workspaces on their instances default to global access or selective access.
 
 ### Data Source Configuration
 
