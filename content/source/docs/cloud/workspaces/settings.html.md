@@ -118,9 +118,9 @@ Which other workspaces within the organization can access the state of the works
 
     The workspace selector is searchable; if you don't initially see a workspace you're looking for, type part of its name.
 
-By default, new workspaces do not allow other workspaces to access their state. We recommend that you follow the principle of least privilege and only enable state access between workspaces that specifically need information from each other.
+By default, new workspaces in Terraform Cloud do not allow other workspaces to access their state. We recommend that you follow the principle of least privilege and only enable state access between workspaces that specifically need information from each other.
 
-~> **Important:** The default access permissions for new workspaces changed in April 2021. Workspaces created before this change defaulted to allowing global access within their organization. These workspaces can be changed to more restrictive access at any time.
+-> **Note:** The default access permissions for new workspaces in Terraform Cloud changed in April 2021. Workspaces created before this change defaulted to allowing global access within their organization. These workspaces can be changed to more restrictive access at any time. Terraform Enterprise administrators can choose whether new workspaces on their instances default to global access or selective access.
 
 ## Locking
 
