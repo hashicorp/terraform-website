@@ -57,21 +57,21 @@ Key path                                      | Type    | Default   | Descriptio
 `data.attributes.auto-apply`                  | boolean | `false`   | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
 `data.attributes.description`                 | string  | (nothing) | A description for the workspace.
 `data.attributes.execution-mode`              | string  | `remote`  | Which [execution mode](/docs/cloud/workspaces/settings.html#execution-mode) to use. Valid values are `remote`, `local`, and `agent`. When set to `local`, the workspace will be used for state storage only. This value must not be specified if `operations` is specified.
-`data.attributes.operations`                  | boolean | `true`    | **DEPRECATED** Use `execution-mode` instead. Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only. This value must not be specified if `execution-mode` is specified.
 `data.attributes.file-triggers-enabled`       | boolean | `true`    | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
+`data.attributes.global-remote-state`         | boolean | `false`   | Whether the workspace should allow all workspaces in the organization to [access its state data](/docs/cloud/workspaces/state.html) during runs. If `false`, then only specifically approved workspaces can access its state. Manage allowed workspaces using the [Remote State Consumers](/docs/cloud/api/workspaces.html#get-remote-state-consumers) endpoints, documented later on this page. **Note:** Terraform Enterprise admins can choose the default value for new workspaces if this attribute is omitted.
+`data.attributes.operations`                  | boolean | `true`    | **DEPRECATED** Use `execution-mode` instead. Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only. This value must not be specified if `execution-mode` is specified.
+`data.attributes.queue-all-runs`              | boolean | `false`   | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
 `data.attributes.source-name` **(beta)**      | string  | (nothing) | A friendly name for the application or client creating this workspace. If set, this will be displayed on the workspace as "Created via `<SOURCE NAME>`".
 `data.attributes.source-url` **(beta)**       | string  | (nothing) | A URL for the application or client creating this workspace. This can be the URL of a related resource in another app, or a link to documentation or other info about the client.
-`data.attributes.queue-all-runs`              | boolean | `false`   | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
 `data.attributes.speculative-enabled`         | boolean | true      | Whether this workspace allows automatic [speculative plans][]. Setting this to `false` prevents Terraform Cloud from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors. It doesn't prevent manual speculative plans via the remote backend or the runs API.
 `data.attributes.terraform-version`           | string  | (nothing) | The version of Terraform to use for this workspace. Upon creating a workspace, the latest version is selected unless otherwise specified (e.g. `"0.11.1"`).
 `data.attributes.trigger-prefixes`            | array   | `[]`      | List of repository-root-relative paths which should be tracked for changes, in addition to the working directory.
-`data.attributes.working-directory`           | string  | (nothing) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
-`data.attributes.global-remote-state`         | boolean | true      | Determines whether or not the remote state of this workspace can be accessed by anyone or by explicit set of remote state consumer. It defaults to `true`, meaning any other workspace can access it. If you set it to `false`, then you must explicitly add remote state consumers to this workspace. See [Remote State Consumers](/docs/cloud/api/workspaces.html#get-remote-state-consumers) for how to do that.
 `data.attributes.vcs-repo`                    | object  | (nothing) | Settings for the workspace's VCS repository. If omitted, the workspace is created without a VCS repo. If included, you must specify at least the `oauth-token-id` and `identifier` keys below.
 `data.attributes.vcs-repo.oauth-token-id`     | string  |           | The VCS Connection (OAuth Connection + Token) to use. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 `data.attributes.vcs-repo.branch`             | string  | (nothing) | The repository branch that Terraform will execute from. If omitted or submitted as an empty string, this defaults to the repository's default branch (e.g. `master`) .
 `data.attributes.vcs-repo.ingress-submodules` | boolean | `false`   | Whether submodules should be fetched when cloning the VCS repository.
 `data.attributes.vcs-repo.identifier`         | string  |           | A reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider. The format for Azure DevOps is `:org/:project/_git/:repo`.
+`data.attributes.working-directory`           | string  | (nothing) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 
 ### Sample Payload
 
@@ -331,24 +331,24 @@ Key path                                      | Type           | Default        
 ----------------------------------------------|----------------|------------------|------------
 `data.type`                                   | string         |                  | Must be `"workspaces"`.
 `data.attributes.name`                        | string         | (previous value) | A new name for the workspace, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization. **Warning:** Changing a workspace's name changes its URL in the API and UI.
-`data.attributes.description`                 | string         | (previous value) | A description for the workspace.
 `data.attributes.agent-pool-id`               | string         | (previous value) | Required when `execution-mode` is set to `agent`. The ID of the agent pool belonging to the workspace's organization. This value must not be specified if `execution-mode` is set to `remote` or `local` or if `operations` is set to `true`.
-`data.attributes.auto-apply`                  | boolean        | (previous value) | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
 `data.attributes.allow-destroy-plan`          | boolean        | (previous value) | Whether destroy plans can be queued on the workspace.
+`data.attributes.auto-apply`                  | boolean        | (previous value) | Whether to automatically apply changes when a Terraform plan is successful, [with some exceptions](../workspaces/settings.html#auto-apply-and-manual-apply).
+`data.attributes.description`                 | string         | (previous value) | A description for the workspace.
 `data.attributes.execution-mode`              | string         | (previous value) | Which [execution mode](/docs/cloud/workspaces/settings.html#execution-mode) to use. Valid values are `remote`, `local`, and `agent`. When set to `local`, the workspace will be used for state storage only. This value must not be specified if `operations` is specified.
-`data.attributes.operations`                  | boolean        | (previous value) | **DEPRECATED** Use `execution-mode` instead. Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only. This value must not be specified if `execution-mode` is specified.
 `data.attributes.file-triggers-enabled`       | boolean        | (previous value) | Whether to filter runs based on the changed files in a VCS push. If enabled, the `working-directory` and `trigger-prefixes` describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run.
+`data.attributes.global-remote-state`         | boolean        | (previous value) | Whether the workspace should allow all workspaces in the organization to [access its state data](/docs/cloud/workspaces/state.html) during runs. If `false`, then only specifically approved workspaces can access its state. Manage allowed workspaces using the [Remote State Consumers](/docs/cloud/api/workspaces.html#get-remote-state-consumers) endpoints, documented later on this page.
+`data.attributes.operations`                  | boolean        | (previous value) | **DEPRECATED** Use `execution-mode` instead. Whether to use remote execution mode. When set to `false`, the workspace will be used for state storage only. This value must not be specified if `execution-mode` is specified.
 `data.attributes.queue-all-runs`              | boolean        | (previous value) | Whether runs should be queued immediately after workspace creation. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued.
 `data.attributes.speculative-enabled`         | boolean        | (previous value) | Whether this workspace allows automatic [speculative plans][]. Setting this to `false` prevents Terraform Cloud from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors. It doesn't prevent manual speculative plans via the remote backend or the runs API.
 `data.attributes.terraform-version`           | string         | (previous value) | The version of Terraform to use for this workspace.
 `data.attributes.trigger-prefixes`            | array          | (previous value) | List of repository-root-relative paths which should be tracked for changes, in addition to the working directory.
-`data.attributes.working-directory`           | string         | (previous value) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
-`data.attributes.global-remote-state`         | boolean        | true             | Determines whether or not the remote state of this workspace can be accessed by anyone or by explicit set of remote state consumer. It defaults to `true`, meaning any other workspace can access it. If you set it to `false`, then you must explicitly add remote state consumers to this workspace. See [Remote State Consumers](/docs/cloud/api/workspaces.html#get-remote-state-consumers) for how to do that.
 `data.attributes.vcs-repo`                    | object or null | (previous value) | To delete a workspace's existing VCS repo, specify `null` instead of an object. To modify a workspace's existing VCS repo, include whichever of the keys below you wish to modify. To add a new VCS repo to a workspace that didn't previously have one, include at least the `oauth-token-id` and `identifier` keys.
 `data.attributes.vcs-repo.oauth-token-id`     | string         | (previous value) | The VCS Connection (OAuth Connection + Token) to use. This ID can be obtained from the [oauth-tokens](./oauth-tokens.html) endpoint.
 `data.attributes.vcs-repo.branch`             | string         | (previous value) | The repository branch that Terraform will execute from.
 `data.attributes.vcs-repo.ingress-submodules` | boolean        | (previous value) | Whether submodules should be fetched when cloning the VCS repository.
 `data.attributes.vcs-repo.identifier`         | string         | (previous value) | A reference to your VCS repository in the format :org/:repo where :org and :repo refer to the organization and repository in your VCS provider. The format for Azure DevOps is `:org/:project/_git/:repo`.
+`data.attributes.working-directory`           | string         | (previous value) | A relative path that Terraform will execute within. This defaults to the root of your repository and is typically set to a subdirectory matching the environment when multiple environments exist within the same repository.
 
 ### Sample Payload
 
@@ -1195,14 +1195,27 @@ $ curl \
 
 ## Get Remote State Consumers
 
-This endpiont retrieves remote state consumers of a given Workspace.
-
 `GET /workspaces/:workspace_id/relationships/remote_state_consumers`
 
 | Parameter            | Description      |
 | -------------------- | -----------------|
-| `:workspace_id`      | The workspace ID |
+| `:workspace_id`      | The workspace ID to get remote state consumers for. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
+This endpoint retrieves the list of other workspaces that are allowed to access the given workspace's state during runs.
+
+- If `global-remote-state` is set to false for the workspace, this will return the list of other workspaces that are specifically authorized to access the workspace's state.
+- If `global-remote-state` is set to true, this will return a list of every workspace in the organization except for the subject workspace.
+
+The list returned by this endpoint is subject to the caller's normal workspace permissions; it will not include workspaces that the provided API token is unable to read.
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter      | Description
+---------------|------------
+`page[number]` | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 20 workspaces per page.
 
 ### Sample Request
 
@@ -1325,16 +1338,25 @@ $ curl \
 }
 ```
 
-## Update Remote State Consumers
-
-This endpoint updates the Workspace's remote state consumers to be of those in the payload.
+## Replace Remote State Consumers
 
 `PATCH /workspaces/:workspace_id/relationships/remote_state_consumers`
 
 | Parameter            | Description      |
 | -------------------- | -----------------|
-| `:workspace_id`      | The workspace ID |
+| `:workspace_id`      | The workspace ID to replace remote state consumers for. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
+This endpoint updates the workspace's remote state consumers to be _exactly_ the list of workspaces specified in the payload. It can only be used for workspaces where `global-remote-state` is false.
+
+This endpoint can only be used by teams with permission to manage workspaces for the entire organization — only those who can _view_ the entire list of consumers can _replace_ the entire list. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) Teams with admin permissions on specific workspaces can still modify remote state consumers for those workspaces, but must use the add (POST) and remove (DELETE) endpoints listed below instead of this PATCH endpoint.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[204][] | Nothing                                      | Successfully updated remote state consumers
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]                    | Problem with payload or request; details provided in the error object
 
 ### Request Body
 
@@ -1344,15 +1366,13 @@ Properties without a default value are required.
 
 | Key path                | Type   | Default | Description             |
 | --------------------    | ------ | ------- | ----------------------- |
-| `workspace_external_id` | string |         | The Workspace ID.       |
 | `data[].type`           | string |         | Must be `"workspaces"`. |
-| `data[].id`             | string |         | Must be the ID of the Workspace that is the remote state consumer. |
+| `data[].id`             | string |         | The ID of a workspace to be set as a remote state consumer. |
 
 ### Sample Payload
 
 ```json
 {
-  "workspace_external_id": "ws-UYv6RYM8fVhzeGG5",
   "data": [
     {
       "id": "ws-7aiqKYf6ejMFdtWS",
@@ -1381,14 +1401,23 @@ Status code `204`.
 
 ## Add Remote State Consumers
 
-This endpoint adds a remote state consumer to the Workspace.
-
 `POST /workspaces/:workspace_id/relationships/remote_state_consumers`
 
 | Parameter            | Description      |
 | -------------------- | -----------------|
-| `:workspace_id`      | The workspace ID |
+| `:workspace_id`      | The workspace ID to add remote state consumers for. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
+This endpoint adds one or more remote state consumers to the workspace. It can only be used for workspaces where `global-remote-state` is false.
+
+- The workspaces specified as consumers must be readable to the API token that makes the request.
+- A workspace cannot be added as a consumer of itself. (A workspace can always read its own state, regardless of access settings.)
+- You can safely add a consumer workspace that is already present; it will be ignored, and the rest of the consumers in the request will be processed normally.
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[204][] | Nothing                                      | Successfully updated remote state consumers
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]                    | Problem with payload or request; details provided in the error object
 
 ### Request Body
 
@@ -1398,15 +1427,13 @@ Properties without a default value are required.
 
 | Key path                | Type   | Default | Description             |
 | --------------------    | ------ | ------- | ----------------------- |
-| `workspace_external_id` | string |         | The Workspace ID.       |
 | `data[].type`           | string |         | Must be `"workspaces"`. |
-| `data[].id`             | string |         | Must be the ID of the Workspace that is the remote state consumer. |
+| `data[].id`             | string |         | The ID of a workspace to be set as a remote state consumer. |
 
 ### Sample Payload
 
 ```json
 {
-  "workspace_external_id": "ws-UYv6RYM8fVhzeGG5",
   "data": [
     {
       "id": "ws-7aiqKYf6ejMFdtWS",
@@ -1435,15 +1462,22 @@ Status code `204`.
 
 ## Delete Remote State Consumers
 
-This endpoint removes remote state consumers from a Workspace that match what
-is in the payload.
-
 `DELETE /workspaces/:workspace_id/relationships/remote_state_consumers`
 
 | Parameter            | Description      |
 | -------------------- | -----------------|
-| `:workspace_id`      | The workspace ID |
+| `:workspace_id`      | The workspace ID to remove remote state consumers for. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
+This endpoint removes one or more remote state consumers from a workspace, according to the contents of the payload. It can only be used for workspaces where `global-remote-state` is false.
+
+- The workspaces specified as consumers must be readable to the API token that makes the request.
+- You can safely remove a consumer workspace that is already absent; it will be ignored, and the rest of the consumers in the request will be processed normally.
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[204][] | Nothing                                      | Successfully updated remote state consumers
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]                    | Problem with payload or request; details provided in the error object
 
 ### Request Body
 
@@ -1453,15 +1487,13 @@ Properties without a default value are required.
 
 | Key path                | Type   | Default | Description             |
 | --------------------    | ------ | ------- | ----------------------- |
-| `workspace_external_id` | string |         | The Workspace ID.       |
 | `data[].type`           | string |         | Must be `"workspaces"`. |
-| `data[].id`             | string |         | Must be the ID of the Workspace that is the remote state consumer. |
+| `data[].id`             | string |         | The ID of a workspace to remove from the remote state consumers. |
 
 ### Sample Payload
 
 ```json
 {
-  "workspace_external_id": "ws-UYv6RYM8fVhzeGG5",
   "data": [
     {
       "id": "ws-7aiqKYf6ejMFdtWS",
