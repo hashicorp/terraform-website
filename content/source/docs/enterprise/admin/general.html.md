@@ -47,25 +47,24 @@ Workspaces that use part of a shared repository typically don't run plans for ch
 
 However, if this results in sending too many status checks to your VCS provider due to a large number of workspaces sharing one VCS repository, you can disable this behavior and ignore the pending status checks for unaffected workspaces.
 
+## Remote State Sharing
+
+-> **Note:** This setting is available in Terraform Enterprise versions v202104-1 and later. Prior to its introduction, all workspaces shared state globally.
+
+The "Share state globally by default" admin setting determines the default value for the "Share state globally" setting on newly created workspaces.
+
+- When true, a newly created workspace will allow all workspaces in its organization to read its state.
+- When false, a newly created workspace will not allow any other workspaces to read its state.
+
+In all cases, a workspace's state access settings can be changed after creation by workspace admins; this admin setting only affects the initial default value. Additionally, if the `global-remote-state` attribute is provided when creating a workspace via the API, the provided value will be used instead of using the default.
+
+For more information, see:
+
+- [Terraform State in Terraform Cloud: Accessing State from Other Workspaces](/docs/cloud/workspaces/state.html#accessing-state-from-other-workspaces)
+- [Workspace Settings: Remote State Sharing](/docs/cloud/workspaces/settings.html#remote-state-sharing)
+
 ## Allow Speculative Plans on Pull Requests from Forks
 
 ~> **Note:** This setting is available in Terraform Enterprise versions v202005-1 or later. It is currently supported for the following VCS providers: GitHub.com, GitHub.com (OAuth), GitHub Enterprise, Bitbucket Cloud, Azure DevOps Server, Azure DevOps Services.
 
 By default, this setting is disabled because Terraform Enterprise assumes that forks of a trusted repository are not necessarily themselves trusted. Enabling this setting may allow Terraform Enterprise to execute malicious code or expose sensitive information through [speculative plans][] on pull requests that originated from a repository fork.
-
-## Default Global Remote State
-
-This settings effects the `global_remote_state` field on a Workspace **during**
-Workspace creation.
-
-If the `global_remote_state` parameter is passed when a
-Workspace is being created, than this setting is ignored. When the
-`global_remote_state` parameter is **not** passed when a Workspace is being
-created, then the value of `global_remote_state` is set to the value of this
-setting.
-
-
-This setting defaults to `true`. Which implies that the `global_remote_state` of
-a Workspace, when the parameter is not passed, will default to `true`. If this
-is updated to `false`, then that would mean that `global_remote_state` of
-a Workspace, when the parameter is not passed, will default to `false`.
