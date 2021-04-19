@@ -28,6 +28,13 @@ ROOT_URL = 'http://localhost:4567/'
 VERCEL_ROUTES = ['/community', '/cloud']
 VERCEL_REGEXP = /^(#{VERCEL_ROUTES.join('|')})/
 
+# A few documents intentionally contain links that would be flagged by this script,
+# but that we don't want (or can't) "fix". Rather than continually failing CI checks,
+# let's silence those false positives so failures don't become ignored noise.
+IGNORE_PROBLEMS = {
+  "content/source/docs/enterprise/install/installer.html.md" => ["https://install.terraform.io/airgap/latest.tar.gz"],
+}
+
 ARGF.set_encoding('utf-8')
 input = ARGF.read
 input_files = input.split(/\x00|\n/)
@@ -118,7 +125,7 @@ input_files.each do |input_file|
     link_url = URI.join(input_url, link)
     link_ok, link_result = check_link(link_url)
 
-    unless link_ok
+    unless link_ok or IGNORE_PROBLEMS[input_file].include? link
       errors[input_file] << "  - Broken link: #{link}\n    #{link_result}"
       next
     end
