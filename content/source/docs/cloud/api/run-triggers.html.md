@@ -319,7 +319,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   https://app.terraform.io/api/v2/run-triggers/rt-3yVQZvHzf5j3WRJ1
-  ```
+```
 
 ## Available Related Resources
 
