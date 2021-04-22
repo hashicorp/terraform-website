@@ -44,6 +44,7 @@ errors = {}
 def check_link(url)
   # Ignore non-web protocols like mailto:
    return [true, 'Not an HTTP(S) URL'] unless url.scheme == 'https' || url.scheme == 'http'
+   return [true, 'Not checking large file download'] if url.path =~ /\.(gz|zip)$/
 
   # Special case for Vercel routes: can't check them against a local build, so
   # change URL to check prod.
@@ -55,9 +56,17 @@ def check_link(url)
 
   response = Net::HTTP.get_response(url)
 
-  # Only 200s are "ok"; if it successfully redirects, you should still fix it anyway.
+  # 200s are always ok
   if response.code == '200'
     [true, response.body]
+  # 301/308 might be ok; follow the redirect and find out. But also, log a
+  # warning so you can update them if you're already fixing something else.
+  elsif ['301', '308'].include?(response.code)
+    puts "!! REDIRECTED: #{url} -> #{response['Location']}"
+    redirect = URI.join(url, response['Location'])
+    # Just in case of a loop:
+    return [false, "[infinite redirect] #{url}"] if redirect.to_s == url.to_s
+    check_link(redirect)
   else
     [false, "[#{response.code} #{response.message.strip}] #{url}"]
   end
