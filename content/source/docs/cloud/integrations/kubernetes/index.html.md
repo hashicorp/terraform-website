@@ -7,8 +7,6 @@ description: |-
 
 # Terraform Cloud Operator for Kubernetes Setup Instructions
 
-~> **Important:** The Terraform Cloud Operator for Kubernetes is still under development and in the alpha testing stage. It is not ready for production use.
-
 ## Overview
 
 HashiCorp Terraform Cloud customers can integrate with Kubernetes using the official [Terraform Cloud Operator for Kubernetes](https://github.com/hashicorp/terraform-k8s) to provision infrastructure internal or external to the Kubernetes cluster directly from the Kubernetes control plane.  Using the Terraform Cloud Operator for Kubernetes' CustomResourceDefinition (CRD), users can dynamically create Terraform Cloud workspaces using a Terraform configuration from a git repository or from the [Terraform Registry](https://registry.terraform.io/), populate variables, and perform Terraform runs to provision infrastructure.
@@ -55,7 +53,7 @@ The current release of the Terraform Cloud Operator for Kubernetes supports the 
     ```
     helm repo add hashicorp https://helm.releases.hashicorp.com
 
-    helm install --devel --namespace ${RELEASE_NAMESPACE} hashicorp/terraform --generate-name
+    helm install --namespace ${RELEASE_NAMESPACE} hashicorp/terraform --generate-name
     ```
 
 1. To create a Terraform workspace, you can create a separate Helm chart to deploy the custom resource or examine these [examples](https://github.com/hashicorp/terraform-helm/tree/master/example).
@@ -65,7 +63,7 @@ The current release of the Terraform Cloud Operator for Kubernetes supports the 
 When a new version of the Terraform Cloud Operator for Kubernetes Helm Chart is available from the HashiCorp Helm repository, it can be upgraded with the following command:
 
 ```
-helm upgrade --devel --namespace ${RELEASE_NAMESPACE} ${RELEASE_NAME} hashicorp/terraform
+helm upgrade --namespace ${RELEASE_NAMESPACE} ${RELEASE_NAME} hashicorp/terraform
 ```
 
 
