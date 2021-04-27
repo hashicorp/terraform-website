@@ -22,5 +22,11 @@
 
   <% end %>
 
-  <%= yield %>
+  <% if current_page.data.page_id %>
+    <div id="<%= current_page.data.page_id %>">
+      <%= yield %>
+    </div>
+  <% else %>
+    <%= yield %>
+  <% end %>
 <% end %>
