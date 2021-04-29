@@ -7,7 +7,15 @@ page_title: "Architecture Summary - System Overview - Terraform Enterprise"
 
 This page describes aspects of the architecture of Terraform Enterprise.
 
--> **Note:** This page was written for a prior implementation of Terraform Enterprise, and may be outdated. We plan to review our architecture documentation in the near future.
+-> **Note:** As this page summarises architectural internals of Terraform Enterprise, the content should be considered as advanced. Contact your Customer Success Manager for more information if required.
+
+## Overview
+
+Terraform Enterprise (PTFE) is powered by the same set of services behind HashiCorp’s public SaaS application Terraform Cloud.  The architecture can seem daunting at first, but this guide will streamline your understanding by presenting what operators need to know to effectively troubleshoot a PTFE installation:
+
+- The layers of functionality and how they interact
+- Which containers are involved in common tasks
+
 
 ## Services
 
