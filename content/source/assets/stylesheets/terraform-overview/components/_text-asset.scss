@@ -231,9 +231,9 @@
 
       &:before {
         position: absolute;
-        background: url("/assets/images/terraform-overview/icons/check-circle-purple.svg")
+        background: url('/assets/images/terraform-overview/icons/check-circle-purple.svg')
           no-repeat;
-        content: "";
+        content: '';
         left: 10px;
         float: left;
         height: 19px;
@@ -244,9 +244,9 @@
       & > a {
         color: $body-font-color;
         text-decoration: underline;
-        text-decoration-color: $terraform;
+        text-decoration-color: $terraform-link;
         &:hover {
-          color: $terraform;
+          color: $terraform-link;
         }
       }
       & > span.shrink {
