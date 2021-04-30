@@ -54,8 +54,8 @@ You can check the version using `replicatedctl version`.
 
 ## Script
 Below are examples of restore scripts that are run on machine boot.
-There are many mechanisms that can run a script on boot (cloud-init, systemd, /etc/init.d),
-which one is used is up to the user
+There are many mechanisms that can run a script on boot (cloud-init, systemd, /etc/init.d).
+Which one is used is up to the user.
 
 This script is presented as an example. Anyone using it needs to understand
 what it's doing and is free to modify it to meet any additional needs they have.
