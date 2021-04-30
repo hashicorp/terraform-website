@@ -52,7 +52,7 @@ note an additional restriction on the `sslmode` parameter is that only the
 
 -> **Note:** See the PostgreSQL library documentation for more about [extra parameters related to sslmode](https://www.postgresql.org/docs/12/libpq-ssl.html). Terraform Enterprise provides a certificates file at `/tmp/cust-ca-certificates.crt`, which is required by the `verify-full` and `verify-ca` modes. Additional certificates can be added via the [CA Custom Bundle](../install/installer.html#certificate-authority-ca-bundle) setting.
 
--> **Note:** The [Client Certificates](https://www.postgresql.org/docs/12/libpq-ssl.html) configuration is currently not supported by Terraform Enterprise due to the limitation of storing certificate files for the `sslcert`, and `sslkey` connection paramters.
+-> **Note:** The [Client Certificates](https://www.postgresql.org/docs/12/libpq-ssl.html) configuration is currently not supported by Terraform Enterprise due to the limitation of storing certificate files for the `sslcert`, and `sslkey` connection parameters.
 
 ## PostgreSQL 9.5 to 12 Upgrade
 
