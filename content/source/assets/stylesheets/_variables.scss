@@ -3,39 +3,46 @@ $white: #ffffff;
 $black: #000000;
 $gray-darker: #1d1e23;
 
-$vagrant-l3: #eff5ff;
-$vagrant-l2: #d0e0ff;
-$vagrant-l1: #66a2ff;
-$vagrant: #1563ff;
-$vagrant-d1: #0d44cc;
-$vagrant-d2: #08368b;
-$packer-l3: #ebf8ff;
-$packer-l2: #bfe8fe;
-$packer-l1: #6bceff;
-$packer: #00acff;
-$packer-d1: #0074ba;
-$packer-d2: #005283;
-$nomad-l3: #ebfdf7;
-$nomad-l2: #c1f1e0;
-$nomad-l1: #6bd8b4;
-$nomad-on-dark: #00bc7f;
-$nomad: #00bc7f;
-$nomad-d1: #007854;
-$nomad-d2: #004c3a;
-$terraform-l3: #f5f3ff;
-$terraform-l2: #ddd6fa;
-$terraform-l1: #a28ce8;
-$terraform-on-dark: #7c65ef;
-$terraform: #623ce4;
-$terraform-d1: #3c2aa8;
-$terraform-d2: #2a1c73;
-$consul-l3: #fff2f8;
-$consul-l2: #f8d9e7;
-$consul-l1: #e07eac;
-$consul-on-dark: #e03a89;
-$consul: #ca2171;
-$consul-d1: #8e134a;
-$consul-d2: #650d34;
+/** 05.21 - These colors have been mapped to new brand values
+* to match mktg-global-styles.
+* d1,d2,l1 --> $brand
+* l2,l3 --> $brand-secondary
+*/
+
+$vagrant-l3: #d6ebff;
+$vagrant-l2: #d6ebff;
+$vagrant-l1: #2e71e5;
+$vagrant: #2e71e5;
+$vagrant-d1: #2e71e5;
+$vagrant-d2: #2e71e5;
+$packer-l3: #d4f2ff;
+$packer-l2: #d4f2ff;
+$packer-l1: #63d0ff;
+$packer: #63d0ff;
+$packer-d1: #63d0ff;
+$packer-d2: #63d0ff;
+$nomad-l3: #d3fdeb;
+$nomad-l2: #d3fdeb;
+$nomad-l1: #60dea9;
+$nomad-on-dark: #60dea9;
+$nomad: #60dea9;
+$nomad-d1: #60dea9;
+$nomad-d2: #60dea9;
+$terraform-l3: #f4ecff;
+$terraform-l2: #f4ecff;
+$terraform-l1: #844fba;
+$terraform-on-dark: #ac72f0;
+$terraform: #844fba;
+$terraform-link: #8040c9;
+$terraform-d1: #844fba;
+$terraform-d2: #844fba;
+$consul-l3: #ffe9f1;
+$consul-l2: #ffe9f1;
+$consul-l1: #dc477d;
+$consul-on-dark: #f85c94;
+$consul: #dc477d;
+$consul-d1: #dc477d;
+$consul-d2: #dc477d;
 $vault-l3: #f7f7f9;
 $vault-l2: #dcdde0;
 $vault-l1: #bdbec2;
@@ -51,15 +58,15 @@ $font-weight-reg: 400;
 $font-weight-medium: 500;
 $font-weight-semi-bold: 600;
 $font-weight-bold: 700;
-$font-display: "gilmer-web", "Gilmer", Geneva, Tahoma, Helvetica, Verdana,
+$font-display: 'gilmer-web', 'Gilmer', Geneva, Tahoma, Helvetica, Verdana,
   sans-serif;
-$font-body: "metro-web", "Metro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-  Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-$font-monospace: "dejavu-sans-mono-web", monospace;
+$font-body: 'metro-web', 'Metro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+$font-monospace: 'dejavu-sans-mono-web', monospace;
 
 // Body
 $body-font-color: $gray-darker;
-$body-link-color: $terraform;
+$body-link-color: $terraform-link;
 
 // Home
 $home-header-background-color: $white;
