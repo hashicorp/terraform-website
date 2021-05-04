@@ -230,7 +230,7 @@ For example:
 
 
 
-##### Add Common Encryption Password
+##### Add Encryption Password
 
 !> The Encryption Password value must be added to the config and is **required to be identical between node instances** for the Active/Active architecture to function:
 
