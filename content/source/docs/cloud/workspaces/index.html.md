@@ -68,7 +68,7 @@ The following filters are available:
 
 ## Planning and Organizing Workspaces
 
-We recommend that organizations break down large monolithic Terraform configurations into smaller ones, then assign each one to its own workspace and delegate permissions and responsibilities for them. Terraform Cloud can manage monolithic configurations just fine, but managing smaller infrastructure components is the best way to take full advantage of Terraform Cloud's governance and delegation features.
+We recommend that organizations break down large monolithic Terraform configurations into smaller ones, then assign each one to its own workspace and delegate permissions and responsibilities for them. Terraform Cloud can manage monolithic configurations just fine, but managing infrastructure as smaller components is the best way to take full advantage of Terraform Cloud's governance and delegation features.
 
 For example, the code that manages your production environment's infrastructure could be split into a networking configuration, the main application's configuration, and a monitoring configuration. After splitting the code, you would create "networking-prod", "app1-prod", "monitoring-prod" workspaces, and assign separate teams to manage them.
 
