@@ -230,9 +230,9 @@ For example:
 
 
 
-##### Add Common Configuration
+##### Add Encryption Password
 
-!> A number of Terraform Enterprise application configuration values must be added and are **required to be identical between node instances** for the Active/Active architecture to function:
+!> The Encryption Password value must be added to the config and is **required to be identical between node instances** for the Active/Active architecture to function:
 
 <table>
   <tr>
@@ -246,16 +246,6 @@ For example:
    </td>
   </tr>
   <tr>
-   <td>install_id
-   </td>
-   <td>Used to tag install internally for support
-   </td>
-   <td>Yes
-   </td>
-   <td>No
-   </td>
-  </tr>
-  <tr>
    <td>enc_password
    </td>
    <td>Used to encrypt sensitive data (<a href="https://www.terraform.io/docs/enterprise/install/encryption-password.html">docs</a>)
@@ -265,139 +255,20 @@ For example:
    <td>No
    </td>
   </tr>
-  <tr>
-   <td>root_secret 
-   </td>
-   <td>Used to encrypt the shared Vault token
-   </td>
-   <td>Yes
-   </td>
-   <td>No
-   </td>
-  </tr>
-  <tr>
-   <td>user_token
-   </td>
-   <td>Is the IACT token used to create the first admin user (<a href="https://www.terraform.io/docs/enterprise/install/automating-initial-user.html">docs</a>)
-   </td>
-   <td>Yes
-   </td>
-   <td>No
-   </td>
-  </tr>
-  <tr>
-   <td>archivist_token
-   </td>
-   <td>Used internally to generate short-lived authentication tokens for Archivist
-   </td>
-   <td>Yes
-   </td>
-   <td>No
-   </td>
-  </tr>
-  <tr>
-   <td>cookie_hash
-   </td>
-   <td>Used by Atlas as a salt during cookie generation
-   </td>
-   <td>Yes
-   </td>
-   <td>No
-   </td>
-  </tr>
-  <tr>
-   <td>registry_session_encryption_key
-   </td>
-   <td>Used by registry as part of the cookie session storage
-   </td>
-   <td>Yes
-   </td>
-   <td><strong>Yes.</strong> Must be a hex value<strong>.</strong>
-   </td>
-  </tr>
-  <tr>
-   <td> registry_session_secret_key
-   </td>
-   <td>Used by registry as part of the cookie session storage
-   </td>
-   <td>Yes
-   </td>
-   <td><strong>Yes.</strong> Must be a hex value
-   </td>
-  </tr>
-  <tr>
-   <td> internal_api_token
-   </td>
-   <td>Used by internal services to talk to Atlas API
-   </td>
-   <td>Yes
-   </td>
-   <td><strong>Yes.</strong> Must be a hex value
-   </td>
-  </tr>
 </table>
 
 
 
 ```json
 {
-   "install_id":{
-      "value":"my-random-id"
-   },   
-
    "enc_password":{
       "value":"767fee4e6046de48943df2decc55f3cd"
    },
-
-   "root_secret":{
-      "value":"c459ff2cd1346ef4c6da4b950ac59423"
-   },
-   
-   "user_token":{
-      "value":"6c403112981d0ae2ce6b4b2c7a1b1997"
-   },
-  
-   "archivist_token":{
-      "value":"8019fe7227d1de1029ad7c1bf6f9e676"
-   },
-   
-   "cookie_hash":{
-      "value":"c8b3227dbb93d73a0cbaa294172aba80"
-   },
-
-   "internal_api_token":{
-      "value":"da25f5700fc28639334040c3418939db"
-   },
-
-   "registry_session_encryption_key":{
-      "value":"4d579751597b3bdf6dd7b3eaab3067f5"
-   },
-   "registry_session_secret_key":{
-      "value":"6c1c4d73cc0a6cccbbb61284b0c32b35"
-   }
 }
 
 ```
 
-
--> **Note**: The individual settings need to match across nodes. The values should not be the same, e.g. `cookie_hash` and `internal_api_token` would not contain identical values.
-
-
-##### Tip: Generating Hex Values with Terraform
-
-The following snippet is an example of how to use the [random provider](https://registry.terraform.io/providers/hashicorp/random/latest/docs) to generate a hex value:
-
-
-```terraform
-resource "random_id" "registry_session_secret_key" {
-  byte_length = 16
-}
-
-locals {
-  registry_session_secret_key = random_id.registry_session_secret_key.hex
-}
-```
-
+-> **Note**: In versions prior to `v202104-1` the following values were also required to be set: `install_id`, `root_secret`, `user_token`, `cookie_hash`, `archivist_token`, `internal_api_token`, `registry_session_encryption_key` (HEX), and `registry_session_encryption_key` (HEX). These varlues are no longer required but will still work if they are still set by your configuration.  
 
 
 ### Step 3: Connect to External Redis
