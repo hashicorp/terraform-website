@@ -88,7 +88,7 @@ framework provides developers an opportunity to check the results by providing a
 “Check” function. While possible to only supply a single function, it is
 recommended you use multiple functions to validate specific information about
 the results of the `terraform apply` ran in each `TestStep`. The `Check`
-attribute is of `TestStep` is singular, so in order to include multiple checks
+attribute of `TestStep` is singular, so in order to include multiple checks
 developers should use either `ComposeTestCheckFunc` or
 `ComposeAggregateTestCheckFunc` (defined below) to group multiple check
 functions, defined below:
