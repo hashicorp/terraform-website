@@ -580,7 +580,7 @@ The recommended process for removing a data source or resource from a provider i
 1. Add `DeprecationMessage` in the data source or resource schema definition. After an operator upgrades to this version, they will be shown a warning with the message provided when using the deprecated data source or resource, but the Terraform run will still complete.
 1. Ensure the changelog has an entry noting the deprecation.
 1. Release a `MINOR` version with the deprecation.
-1. In the next `MAJOR` version, remove all code associated with the deprecated data source or resource except for the schema and replace the `Create` and `Read` functions to always return an error. Remove the documentation sidebar link and update the resource or data source documentation page to include information about the removal and any potential migration infromation. After an operator upgrades to this version, they will be shown an error about the missing data source or resource.
+1. In the next `MAJOR` version, remove all code associated with the deprecated data source or resource except for the schema and replace the `Create` and `Read` functions to always return an error. Remove the documentation sidebar link and update the resource or data source documentation page to include information about the removal and any potential migration information. After an operator upgrades to this version, they will be shown an error about the missing data source or resource.
 1. Ensure the changelog has an entry noting the removal.
 1. Release the `MAJOR` version.
 1. In the next `MAJOR` version, remove all code associated with the removed data source or resource. Remove the resource or data source documentation page.

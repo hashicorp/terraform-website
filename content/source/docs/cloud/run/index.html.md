@@ -97,6 +97,6 @@ For full details about the stages of a run, see [Run States and Stages][].
 
 ## Import
 
-Terraform Cloud does not support remote execution for `terraform import`. For this command the workspace acts only as a remote backend for Terraform state, with all execution occuring on your own workstations or continuous integration workers.
+Terraform Cloud does not support remote execution for `terraform import`. For this command the workspace acts only as a remote backend for Terraform state, with all execution occurring on your own workstations or continuous integration workers.
 
 Since `terraform import` runs locally, environment variables defined in the workspace are not available. Any environment variables required by the provider you're importing from must be defined within your local execution scope.
