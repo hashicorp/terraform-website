@@ -51,7 +51,7 @@ We have a list of [recommend OS / architecture combinations](/docs/registry/prov
 To use GitHub Actions to publish new provider releases to the Terraform Registry:
 
 1. Create and export a signing key that you plan on using to sign your provider releases. See [Preparing and Adding a Signing Key](#preparing-and-adding-a-signing-key) for more information.
-1. Copy the [GoReleaser configuration from the terraform-provider-scaffolding repository](https://github.com/hashicorp/terraform-provider-scaffolding/blob/master/.goreleaser.yml) to the root of your repository.
+1. Copy the [GoReleaser configuration from the terraform-provider-scaffolding repository](https://github.com/hashicorp/terraform-provider-scaffolding/blob/main/.goreleaser.yml) to the root of your repository.
 1. Copy the [GitHub Actions workflow from the terraform-provider-scaffolding repository](https://github.com/hashicorp/terraform-provider-scaffolding/blob/master/.github/workflows/release.yml) to `.github/workflows/release.yml` in your repository.
 1. Go to *Settings > Secrets* in your repository, and add the following secrets:
   * `GPG_PRIVATE_KEY` - Your ASCII-armored GPG private key. You can export this with `gpg --armor --export-secret-keys [key ID or email]`.
@@ -65,7 +65,7 @@ Once a release is created, you can move on to [Publishing to the Registry](#publ
 GoReleaser is a tool for building Go projects for multiple platforms, creating a checksums file, and signing the release. It can also upload your release to GitHub Releases.
 
 1. Install [GoReleaser](https://goreleaser.com) using the [installation instructions](https://goreleaser.com/install/).
-1. Copy the [.goreleaser.yml file](https://github.com/hashicorp/terraform-provider-scaffolding/blob/master/.goreleaser.yml) from the [hashicorp/terraform-provider-scaffolding](https://github.com/hashicorp/terraform-provider-scaffolding) repository.
+1. Copy the [.goreleaser.yml file](https://github.com/hashicorp/terraform-provider-scaffolding/blob/main/.goreleaser.yml) from the [hashicorp/terraform-provider-scaffolding](https://github.com/hashicorp/terraform-provider-scaffolding) repository.
 1. Cache the password for your GPG private key with `gpg --armor --detach-sign` (see note below).
 1. Set your `GITHUB_TOKEN` to a [Personal Access Token](https://github.com/settings/tokens/new?scopes=public_repo) that has the **public_repo** scope.
 1. Tag your version with `git tag v1.2.3` and push your tags to GitHub.

@@ -8,7 +8,7 @@ description: |-
 
 # Recommended Provider Binary Operating Systems and Architectures
 
-We recommend the following operating system / architecture combinations for compiled binaries available in the registry (this list is already satisfied by our [recommended **.goreleaser.yml** configuration file](https://github.com/hashicorp/terraform-provider-scaffolding/blob/master/.goreleaser.yml)):
+We recommend the following operating system / architecture combinations for compiled binaries available in the registry (this list is already satisfied by our [recommended **.goreleaser.yml** configuration file](https://github.com/hashicorp/terraform-provider-scaffolding/blob/main/.goreleaser.yml)):
 
 * Darwin / AMD64
 * Linux / AMD64 (this is **required** for usage in Terraform Cloud, see below)
