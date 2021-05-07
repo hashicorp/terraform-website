@@ -175,7 +175,7 @@ Before beginning setup, the ServiceNow Admin must install the Terraform
 ServiceNow Catalog integration software.
 
 This can be added to your ServiceNow instance from the [ServiceNow
-Store](https://store.servicenow.com/sn_appstore_store.do#!/store/home). Search for the "Terraform" integration,
+Store](https://store.servicenow.com/sn_appstore_store.do). Search for the "Terraform" integration,
 published by "HashiCorp Inc".
 
 ![Screenshot: ServiceNow Store Page](./images/service-now-store.png "Screenshot of the ServiceNow Store listing for the Terraform Integration")

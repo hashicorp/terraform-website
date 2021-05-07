@@ -52,7 +52,7 @@ To use GitHub Actions to publish new provider releases to the Terraform Registry
 
 1. Create and export a signing key that you plan on using to sign your provider releases. See [Preparing and Adding a Signing Key](#preparing-and-adding-a-signing-key) for more information.
 1. Copy the [GoReleaser configuration from the terraform-provider-scaffolding repository](https://github.com/hashicorp/terraform-provider-scaffolding/blob/main/.goreleaser.yml) to the root of your repository.
-1. Copy the [GitHub Actions workflow from the terraform-provider-scaffolding repository](https://github.com/hashicorp/terraform-provider-scaffolding/blob/master/.github/workflows/release.yml) to `.github/workflows/release.yml` in your repository.
+1. Copy the [GitHub Actions workflow from the terraform-provider-scaffolding repository](https://github.com/hashicorp/terraform-provider-scaffolding/blob/main/.github/workflows/release.yml) to `.github/workflows/release.yml` in your repository.
 1. Go to *Settings > Secrets* in your repository, and add the following secrets:
   * `GPG_PRIVATE_KEY` - Your ASCII-armored GPG private key. You can export this with `gpg --armor --export-secret-keys [key ID or email]`.
   * `PASSPHRASE` - The passphrase for your GPG private key.
@@ -92,7 +92,7 @@ The release must meet the following criteria:
 
 ### Signing in
 
-Before publishing a provider, you must first sign in to the Terraform Registry with a GitHub account (see [the "User Account" section of the overview page](/docs/registry/index.html#user-account)). The GitHub account used must have the following permission scopes on the provider repository you’d like to publish. Permissions can be verified by going to your [GitHub Settings](https://github.com/settings/connections/applications/) and selecting the Terraform Registry Application under Authorized OAuth Apps.
+Before publishing a provider, you must first sign in to the Terraform Registry with a GitHub account (see [the "User Account" section of the overview page](/docs/registry/index.html#user-account)). The GitHub account used must have the following permission scopes on the provider repository you’d like to publish. Permissions can be verified by going to your [GitHub Settings](https://github.com/settings/connections/applications) and selecting the Terraform Registry Application under Authorized OAuth Apps.
 
 ![screenshot: terraform registry github oauth required permissions](./images/github-oauth-permissions.png)
 
