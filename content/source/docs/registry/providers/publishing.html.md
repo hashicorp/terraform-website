@@ -92,7 +92,7 @@ The release must meet the following criteria:
 
 ### Signing in
 
-Before publishing a provider, you must first sign in to the Terraform Registry with a GitHub account (see [the "User Account" section of the overview page](/docs/registry/index.html#user-account)). The GitHub account used must have the following permission scopes on the provider repository you’d like to publish. Permissions can be verified by going to your [GitHub Settings](https://github.com/settings/connections/applications) and selecting the Terraform Registry Application under Authorized OAuth Apps.
+Before publishing a provider, you must first sign in to the Terraform Registry with a GitHub account (see [the "User Account" section of the overview page](/docs/registry/index.html#user-account)). The GitHub account used must have the following permission scopes on the provider repository you’d like to publish. Permissions can be verified by going to your [GitHub Settings](https://github.com/settings/applications) and selecting the Terraform Registry Application under Authorized OAuth Apps.
 
 ![screenshot: terraform registry github oauth required permissions](./images/github-oauth-permissions.png)
 
