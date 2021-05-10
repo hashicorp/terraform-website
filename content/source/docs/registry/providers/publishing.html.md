@@ -13,6 +13,7 @@ Anyone can publish and share a provider by signing into the Registry using their
 This page describes how to prepare a [Terraform provider](/docs/language/providers/index.html) for publishing, and how to publish a prepared provider using the Registry's interface.
 
 > **Hands-on:** Try the [Release and Publish a Provider to the Terraform Registry](https://learn.hashicorp.com/tutorials/terraform/provider-release-publish?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn. In this tutorial, you will create a release for your custom Terraform provider and prepare your provider to publish to the Terraform Registry.
+
 ## Preparing your Provider
 
 ### Writing a Provider
