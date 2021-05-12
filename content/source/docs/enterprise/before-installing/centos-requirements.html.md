@@ -12,7 +12,7 @@ When installing Terraform Enterprise on CentOS Linux, ensure your OS and Docker 
 * A [supported version](/docs/enterprise/before-installing/index.html#operating-system-requirements) of CentOS.
 * One of the following installations of Docker:
   * Docker CE 17.06 or later. Docker CE can either be pre-installed by the operator or installed via our installation script. If Docker CE is pre-installed by the operator, be sure to pass the `no-docker` flag to the installation script to prevent it from trying to install Docker CE again.
-  * Docker EE 17.06 or later. Details for installing Docker EE can be found [here](https://docs.mirantis.com/containers/v3.1/mcr-deployment-guide/mcr-linux/rhel.html).
+  * Docker EE 17.06 or later.
   * Docker 1.13.1 installed via the Extras Packages for Enterprise Linux repository. Details on how to subscribe to the Extras Packages for Enterprise Linux repository can be found [here](https://fedoraproject.org/wiki/EPEL).
 * Docker configured with the `overlay2` storage driver. This is the default storage driver for the latest Docker installations.
 
@@ -25,6 +25,10 @@ When installing Terraform Enterprise on CentOS Linux, ensure your OS and Docker 
 ### Can I use the Docker version in the Extra Packages for Enterprise Linux repository?
 
 Sure! Just be sure to have at least 1.13.1.
+
+### Which storage driver should I use?
+
+Please ensure that you are using the `overlay2` storage driver.
 
 ### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
 

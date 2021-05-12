@@ -12,7 +12,7 @@ When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure y
 * A [supported version](/docs/enterprise/before-installing/index.html#operating-system-requirements) of RedHat Enterprise Linux.
 * One of the following installations of Docker:
   * Docker CE 17.06 or later. Docker CE can either be pre-installed by the operator or installed via our installation script. If Docker CE is pre-installed by the operator, be sure to pass the `no-docker` flag to the installation script to prevent it from trying to install Docker CE again.
-  * Docker EE 17.06 or later. Details for installing Docker EE can be found [here](https://docs.mirantis.com/containers/v3.1/mcr-deployment-guide/mcr-linux/rhel.html).
+  * Docker EE 17.06 or later.
   * Docker 1.13.1 installed via the RHEL Extras repository. Details on how to subscribe to the RHEL Extras repository can be found [here](https://access.redhat.com/solutions/912213).
 * Docker configured with the `overlay2` storage driver. This is the default storage driver for the latest Docker installations.
 
@@ -57,7 +57,11 @@ Sure! Just be sure to have at least 1.13.1 and authorization plugins disabled.
 
 ### When I run the installer, it allows me to download and install Docker CE on RedHat. Can I use that?
 
-Yes, Docker CE is compatible with Terraform Enterprise. However, it is not directly [supported by RedHat](https://access.redhat.com/articles/2726611). Please ensure the storage driver is `overlay2`.
+Yes, Docker CE is compatible with Terraform Enterprise. However, it is not directly [supported by RedHat](https://access.redhat.com/articles/2726611).
+
+### Which storage driver should I use?
+
+Please ensure that you are using the `overlay2` storage driver.
 
 ### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
 
