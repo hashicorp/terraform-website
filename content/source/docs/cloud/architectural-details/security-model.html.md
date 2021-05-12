@@ -38,9 +38,7 @@ Terraform Cloud executes Terraform configuration from connected VCS repositories
 
 ## Authorization Model
 
-<a href="/../../../assets/images/docs/terraform-cloud-authorization.png" target="_blank">
-![Terraform Cloud authorization model diagram](../../../assets/images/docs/terraform-cloud-authorization.png)
-</a>
+[![Terraform Cloud authorization model diagram](../../../assets/images/docs/terraform-cloud-authorization.png)](../../../assets/images/docs/terraform-cloud-authorization.png)
 _Click on the diagram for a larger view._
 
 ~> **Note:** This diagram displays a useful subset of TFC’s authorization model, but is not comprehensive. Some details were omitted for the sake of clarity. More information is available in our [Permissions documentation](../users-teams-organizations/permissions.html).
