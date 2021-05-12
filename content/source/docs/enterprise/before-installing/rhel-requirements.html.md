@@ -16,7 +16,7 @@ When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure y
   * Docker 1.13.1 installed via the RHEL Extras repository. Details on how to subscribe to the RHEL Extras repository can be found [here](https://access.redhat.com/solutions/912213).
 * Docker configured with the `overlay2` storage driver. This is the default storage driver for the latest Docker installations.
 
-~> **Note:** The `overlay2` storage driver requires kernel version 3.10.0-693 or greater and the `ftype=1` kernel option when using an XFS filesystem. More details regarding the `overlay2` storage driver can be found [here](https://docs.docker.com/storage/storagedriver/overlayfs-driver).
+~> **Note:** The `overlay2` storage driver requires kernel version 3.10.0-693 or greater and the `ftype=1` kernel option when using an XFS filesystem. More details regarding the `overlay2` storage driver can be found [here](https://docs.docker.com/storage/storagedriver/overlayfs-driver/).
 
 ~> **Note:** The [Docker documentation] (https://docs.docker.com/storage/storagedriver/select-storage-driver/) states that the `devicemapper` storage driver is deprecated and will be removed in a future release. Users of the `devicemapper` storage driver must migrate to `overlay2`.
 
