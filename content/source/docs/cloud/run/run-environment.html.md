@@ -81,3 +81,9 @@ Terraform Cloud for each run:
 - `TFC_CONFIGURATION_VERSION_GIT_TAG` - This is the name of the tag
   that the associated Terraform configuration version was ingressed from
   (e.g. `"v0.1.0"`).
+
+They are also available as Terraform input variables by defining a variable with the same name. E.g.
+
+```terraform
+variable "TFC_RUN_ID" {}
+```
