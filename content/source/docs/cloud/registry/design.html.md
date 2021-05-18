@@ -11,7 +11,7 @@ The configuration designer is sort of like interactive documentation for your pr
 
 ## Workflow Summary
 
-The configuration designer lets you outline a configuration for a new workspace by choosing any number of private modules. It then lists those modules' variables as a fillable HTML form, with a helper interface for finding interpolatable values.
+The configuration designer lets you outline a configuration for a new workspace by choosing any number of private modules. It then lists those modules' variables as a fillable HTML form, with a helper interface for finding values that you can interpolate.
 
 Once you finish, the designer returns the text of a `main.tf` configuration, which you must copy and paste to create a new VCS repo for workspaces. The designer does not automatically create any repos or workspaces; it's only a shortcut for writing Terraform code faster.
 

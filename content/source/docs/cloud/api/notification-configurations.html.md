@@ -39,7 +39,7 @@ Planning        | `"run:planning"`        | When a run acquires the lock and sta
 Needs Attention | `"run:needs_attention"` | Human decision required. When a plan has changes and is not auto-applied, or requires a policy override.
 Applying        | `"run:applying"`        | When a run begins the apply stage, after a plan is confirmed or auto-applied.
 Completed       | `"run:completed"`       | When the run has completed on a happy path and can't go any further.
-Errored         | `"run:errored"`         | When the run has terminated early due to error or cancelation.
+Errored         | `"run:errored"`         | When the run has terminated early due to error or cancellation.
 
 ## Notification Payload
 

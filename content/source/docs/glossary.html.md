@@ -101,7 +101,7 @@ This page collects brief definitions of some of the technical terms used in the 
 [api]: glossary.html#api
 [apis]: glossary.html#api
 
-"Application Programming Interface". Any interface designed to allow programatic manipulation of some kind of software system. For most software developers today, the most common kinds of APIs are based on HTTP requests.
+"Application Programming Interface". Any interface designed to allow programmatic manipulation of some kind of software system. For most software developers today, the most common kinds of APIs are based on HTTP requests.
 
 Terraform relies on cloud service provider APIs to manage resources; each service's Terraform provider is responsible for mapping Terraform's resource model to the series of actual API calls necessary to create, check, modify, or delete a real infrastructure resource in that cloud service.
 

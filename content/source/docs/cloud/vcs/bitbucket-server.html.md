@@ -136,7 +136,7 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 
 1. Go to the "SSH keys" page. You can click the profile icon in the upper right corner, choose "Manage account," then click "SSH keys" in the sidebar navigation, or you can go directly to `https://<BITBUCKET INSTANCE HOSTNAME>/plugins/servlet/ssh/account/keys`.
 
-    ![Bitbucket Server sceenshot: the SSH keys page](./images/bitbucket-server-ssh-keys.png)
+    ![Bitbucket Server screenshot: the SSH keys page](./images/bitbucket-server-ssh-keys.png)
 
 1. Click the "Add key" button. Paste the text of the **SSH public key** you created in step 4 (from the `.pub` file) into the text field, then click the "Add key" button to confirm.
 

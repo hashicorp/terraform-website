@@ -101,7 +101,7 @@ A run is considered completed if it finishes applying, if any part of the run fa
 
 _States in this stage:_
 
-- **Applied:** The run was successfully applyed.
+- **Applied:** The run was successfully applied.
 - **Planned:** `terraform plan`'s output already matches the current infrastructure state, so `terraform apply` doesn't need to do anything.
 - **Apply Errored:** The `terraform apply` command failed, possibly due to a missing or misconfigured provider or an illegal operation on a provider.
 - **Plan Errored:** The `terraform plan` command failed (usually requiring fixes to variables or code), or a hard-mandatory Sentinel policy failed. The run cannot be applied.

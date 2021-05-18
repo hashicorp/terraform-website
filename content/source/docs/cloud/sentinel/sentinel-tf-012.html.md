@@ -30,7 +30,7 @@ these attributes as strings. In particular, you might have to modify existence
 checks and comparisons done against numeric attributes.
 
 There are no explicit changes in the [`tfrun`](./import/tfrun.html) import for
-Terrraform 0.12, but the
+Terraform 0.12, but the
 [`cost_estimate` namespace](./import/tfrun.html#namespace-cost_estimate)
 does not appear in it for Terraform 0.11 since cost estimates are not available
 in workspaces that use Terraform 0.11.
@@ -308,7 +308,7 @@ allow you to have mock data for two versions co-exist at the same time:
         └── mock-tfstate.sentinel
 ```
 
-In this example, the `test_tf_011_012.sentinel` policy is a poilcy that would
+In this example, the `test_tf_011_012.sentinel` policy is a policy that would
 work for both Terraform 0.11 and Terraform 0.12. In the test suite
 (`test/test_tf_011_012`), we have two tests, one for each Terraform version,
 `tf011.json` (for Terraform 0.11) and `tf012.json` (for Terraform 0.12).

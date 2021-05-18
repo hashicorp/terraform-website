@@ -16,7 +16,7 @@ A Terraform provider should manage a single collection of components based on th
 
 The benefits of this practice include:
 
-- Simplyfing connectivity and authentication requirements for the provider
+- Simplifying connectivity and authentication requirements for the provider
 - Enabling composition of related or dependent systems in new and innovative ways
 - Allowing maintainers to be experts in a single system or ecosystem.
 
@@ -57,4 +57,4 @@ A Terraform resource should offer support for `terraform import`. Benefits inclu
 
 As soon as a provider is released, users may have started managing their infrastructure with it. Care should be given to ensure state continuity is maintained and backwards compatible. When breaking changes need to occur, appropriate warning should be given to users using the plugin SDK's built-in mechanisms for deprecation and removal. In many cases this means maintaining both old and new names of resources and attributes.
 
-Providers should follow [Semantic Versioning 2.0.0](https://semver.org/) in the context of user state and configurations. Code contracts and compatibility are not a concern in versioning. Breaking changes should increment the major version of the provider, backwards compatibile resource and attribute additions should increment a minor version, and backwards compatible bug fixes should increment a patch version.
+Providers should follow [Semantic Versioning 2.0.0](https://semver.org/) in the context of user state and configurations. Code contracts and compatibility are not a concern in versioning. Breaking changes should increment the major version of the provider, backwards compatible resource and attribute additions should increment a minor version, and backwards compatible bug fixes should increment a patch version.

@@ -10,7 +10,7 @@ page_title: "Okta - Single Sign-on - Terraform Cloud and Terraform Enterprise"
 The Okta SSO integration currently supports the following SAML features:
 
 - Service Provider (SP)-initiated SSO
-- Identity Provider (IdP)-initiaited SSO
+- Identity Provider (IdP)-initiated SSO
 - Just-in-Time Provisioning
 
 For more information on the listed features, visit the [Okta Glossary](https://help.okta.com/en/prod/Content/Topics/Reference/glossary.htm).

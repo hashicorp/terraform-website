@@ -30,7 +30,7 @@ This page lists some example policies. These examples are not exhaustive, but th
 * [Restrict VM images](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-vm-image-id.sentinel)
 * [Restrict the size of Azure VMs](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-vm-size.sentinel)
 * [Enforce limits on AKS clusters](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-aks-clusters.sentinel)
-* [Restict CIDR blocks of security groups](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-inbound-source-address-prefixes.sentinel)
+* [Restrict CIDR blocks of security groups](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/azure/restrict-inbound-source-address-prefixes.sentinel)
 
 ### Google Cloud Platform
 

@@ -79,11 +79,11 @@ This SSH key **must have an empty passphrase.** Terraform Cloud cannot use SSH k
 
 1. Navigate to User settings -> Security -> SSH public keys on your Azure DevOps Server instance.
 
-    ![Azure DevOps Server sceenshot: the SSH keys page](./images/azure-devops-server-public-keys.png)
+    ![Azure DevOps Server screenshot: the SSH keys page](./images/azure-devops-server-public-keys.png)
 
 2. Click the "Add" button. Paste the text of the **SSH public key** you created in step 3 (from the `.pub` file) into the text field, then click the "Add key" button to confirm.
 
-    ![Azure DevOps Server sceenshot: Add SSH key page](./images/azure-devops-server-public-keys-add.png)
+    ![Azure DevOps Server screenshot: Add SSH key page](./images/azure-devops-server-public-keys-add.png)
 
 ## Step 6: On Terraform Cloud, Add SSH Private Key
 

@@ -26,7 +26,7 @@ page_title: "Policy Sets - API Docs - Terraform Cloud and Terraform Enterprise"
 
 [Sentinel Policy as Code](../sentinel/index.html) is an embedded policy as code framework integrated with Terraform Cloud.
 
-Policy sets are groups of policies that are applied together to related workspaces. By using policy sets, you can group your policies by attributes such as environment or region. Individual policies within a policy set will only be checked for workspaces that the policy set is attached to. Policy sets can group indidual policies created via the [policies API](./policies.html), or act as versioned sets which are either sourced from a version control system (such as GitHub) or uploaded as a whole via the [policy set versions API](#create-a-policy-set-version).
+Policy sets are groups of policies that are applied together to related workspaces. By using policy sets, you can group your policies by attributes such as environment or region. Individual policies within a policy set will only be checked for workspaces that the policy set is attached to. Policy sets can group individual policies created via the [policies API](./policies.html), or act as versioned sets which are either sourced from a version control system (such as GitHub) or uploaded as a whole via the [policy set versions API](#create-a-policy-set-version).
 
 This page documents the API endpoints to create, read, update, and delete policy sets in an organization. To view and manage policies, use the [Policies API](./policies.html).
 
