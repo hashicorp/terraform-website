@@ -1,10 +1,14 @@
 .g-alert-banner {
-  background: linear-gradient(90deg, #5f43e9 1.56%, #2a1c73 100%);
-  color: #ffffff;
+  background: #f4ecff;
+  color: #000000;
   display: none;
   overflow: hidden;
   position: relative;
   transition: height 0.3s ease-out;
+
+  @media (max-width: 767px) {
+    display: none !important;
+  }
 
   & svg path {
     stroke: #a291f2;
@@ -45,7 +49,7 @@
     padding-bottom: 15px;
     padding-top: 15px;
     position: relative;
-    color: #ffffff;
+    color: #000000;
     text-decoration: none;
 
     @media (max-width: 1120px) {
@@ -56,22 +60,17 @@
   & .tag {
     flex-shrink: 0;
     background: none;
-    margin-right: 28px;
+    text-transform: unset;
 
     & span {
-      border: 1px solid #ffffff;
-      border-radius: 4px;
-      color: #ffffff;
-      padding: 3px 7px;
-    }
-
-    @media (max-width: 768px) {
-      margin-right: 18px;
+      border-right: 1px solid #000000;
+      color: #000000;
+      padding-right: 10px;
     }
   }
 
   & .text span {
-    margin-right: 28px;
+    margin-right: 4px;
   }
 
   & .link-text {
@@ -92,7 +91,7 @@
     opacity: 1;
 
     & path {
-      stroke: #66a2ff;
+      stroke: #000000;
     }
 
     @media (max-width: 768px) {
