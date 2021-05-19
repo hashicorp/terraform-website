@@ -30,7 +30,7 @@ Members of the [owners team](..//users-teams-organizations/teams.html#the-owners
 
 ### Workspace Team Members
 
-Teams all you to group users within an organization. You can grant teams [read, plan, write, admin, or a customized set of permissions](../users-teams-organizations/permissions.html), each of which allow them to perform various functions within the workspace. You can also grant Teams any [organization-level privileges](../users-teams-organizations/permissions.html#organization-permissions), which apply to workspaces across the organization.
+Teams allow you to group users within an organization. You can grant teams [read, plan, write, admin, or a customized set of permissions](../users-teams-organizations/permissions.html), each of which allow them to perform various functions within the workspace. You can also grant Teams any [organization-level privileges](../users-teams-organizations/permissions.html#organization-permissions), which apply to workspaces across the organization.
 
 ### Contributors to Connected VCS repositories
 
