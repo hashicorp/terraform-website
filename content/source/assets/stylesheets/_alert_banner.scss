@@ -6,6 +6,10 @@
   position: relative;
   transition: height 0.3s ease-out;
 
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+
   & svg path {
     stroke: #a291f2;
   }
