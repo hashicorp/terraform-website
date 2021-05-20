@@ -32,7 +32,7 @@ Terraform Cloud offers a team-oriented remote Terraform workflow, designed to be
 
 ### Remote Terraform Execution
 
-Terraform Cloud runs Terraform on disposable virtual machines in its own cloud infrastructure. Remote Terraform execution is sometimes referred to as "remote operations."
+Terraform Cloud runs Terraform on disposable virtual machines in its own cloud infrastructure by default. [Terraform Cloud Agents](./agents/index.html) can be leveraged to run Terraform on your own isolated, private, or on-premises infrastructure. Remote Terraform execution is sometimes referred to as "remote operations."
 
 Remote execution helps provide consistency and visibility for critical provisioning operations. It also enables powerful features like Sentinel policy enforcement, cost estimation, notifications, version control integration, and more.
 
