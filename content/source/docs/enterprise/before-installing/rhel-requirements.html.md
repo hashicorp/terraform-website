@@ -9,20 +9,18 @@ When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure y
 
 ## Install Requirements
 
-* A [supported version](https://www.terraform.io/docs/enterprise/before-installing/index.html#operating-system-requirements) of RedHat Enterprise Linux.
-* Docker 1.13.1 (available in RHEL extras), or Docker EE version 17.06 through 19.03.8. The later versions are not available in the standard RHEL yum repositories.
-   * For Docker EE, [these](https://docs.mirantis.com/containers/v3.1/mcr-deployment-guide/mcr-linux/rhel.html) are the explicit RHEL instructions to follow.
-   * For Docker from RHEL extras, the following should enable the RHEL extras repository:
-      * `yum-config-manager --enable rhel-7-server-extras-rpms`
-      * on AWS: `yum-config-manager --enable rhui-REGION-rhel-server-extras`
-* A properly configured docker storage backend, either:
-   * Devicemapper configured for production usage, according to [the Docker documentation](https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production). This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
-   **Note:** Current, [Docker documentation] (https://docs.docker.com/storage/storagedriver/select-storage-driver/) states that the `devicemapper` storage driver is deprecated in Docker Engine 18.09 and will be removed in a future release. It is recommended that users of the `devicemapper` storage driver migrate to `overlay2`. 
-   
-   * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag `ftype=1`. The full documentation on this configuration is [here](https://docs.docker.com/storage/storagedriver/overlayfs-driver/).
-   * If using Docker from RHEL Extras, storage can be configured using the `docker-storage-setup` command.
+* A [supported version](/docs/enterprise/before-installing/index.html#operating-system-requirements) of RedHat Enterprise Linux.
+* One of the following installations of Docker:
+  * Docker CE 17.06 or later. Docker CE can either be pre-installed by the operator or installed via our installation script. If Docker CE is pre-installed by the operator, be sure to pass the `no-docker` flag to the installation script to prevent it from trying to install Docker CE again.
+  * Docker EE 17.06 or later.
+  * Docker 1.13.1 installed via the RHEL Extras repository. Details on how to subscribe to the RHEL Extras repository can be found [here](https://access.redhat.com/solutions/912213).
+* Docker configured with the `overlay2` storage driver. This is the default storage driver for the latest Docker installations.
 
-**Note:** Using `docker-1.13.1-84.git07f3374.el7.x86_64` will result in an RPC error as well as 502 errors and inability to use the application.
+~> **Note:** The `overlay2` storage driver requires kernel version 3.10.0-693 or greater and the `ftype=1` kernel option when using an XFS filesystem. More details regarding the `overlay2` storage driver can be found [here](https://docs.docker.com/storage/storagedriver/overlayfs-driver/).
+
+~> **Note:** The [Docker documentation] (https://docs.docker.com/storage/storagedriver/select-storage-driver/) states that the `devicemapper` storage driver is deprecated and will be removed in a future release. Users of the `devicemapper` storage driver must migrate to `overlay2`.
+
+~> **Note:** Using `docker-1.13.1-84.git07f3374.el7.x86_64` will result in an RPC error as well as 502 errors and inability to use the application.
 
 ### Pinning the Docker Version
 
@@ -42,7 +40,7 @@ Afterwards, restart the Docker service and verify the newly installed version us
 
 ## Mandatory Configuration
 
-If you opt to use Docker from RHEL extras, then you must make a change to its default configuration to avoid hitting an out of memory bug.
+If you opt to use Docker 1.13.1 from RHEL extras, then you must make a change to its default configuration to avoid hitting an out of memory bug.
 
 1. Open `/usr/lib/systemd/system/docker.service`.
 1. Remove the line that contains `--authorization-plugin=rhel-push-plugin`.
@@ -53,13 +51,17 @@ If you opt to use Docker from RHEL extras, then you must make a change to its de
 
 ## FAQ
 
-### Can I use the Docker version in rpm-extras?
+### Can I use the Docker version in the RHEL Extras repository?
 
 Sure! Just be sure to have at least 1.13.1 and authorization plugins disabled.
 
 ### When I run the installer, it allows me to download and install Docker CE on RedHat. Can I use that?
 
-Yes, Docker CE is compatible with the current installer. However, it is not directly [supported by RedHat](https://access.redhat.com/articles/2726611). You still need to be sure that the storage backend is configured properly as by default, Docker will be using devicemapper in loopback, an entirely unsupported mode.
+Yes, Docker CE is compatible with Terraform Enterprise. However, it is not directly [supported by RedHat](https://access.redhat.com/articles/2726611).
+
+### Which storage driver should I use?
+
+Please ensure that you are using the `overlay2` storage driver.
 
 ### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
 

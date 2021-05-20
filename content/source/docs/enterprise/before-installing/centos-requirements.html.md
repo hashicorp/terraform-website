@@ -10,24 +10,25 @@ When installing Terraform Enterprise on CentOS Linux, ensure your OS and Docker 
 ## Install Requirements
 
 * A [supported version](/docs/enterprise/before-installing/index.html#operating-system-requirements) of CentOS.
-* A suitable version of Docker:
-   * Docker 1.13.1 (available in the `extras` repository).
-   * [Docker CE](https://docs.docker.com/install/linux/docker-ce/centos/) version 17.06 through 19.03.8.
-   * [Docker EE](https://docs.docker.com/install/linux/docker-ee/centos/) version 17.06 through 19.03.8.
-   * Or you can allow the installer to install Docker for you.
-* A properly configured docker storage backend, either:
-   * Devicemapper configured for production usage, in accordance with the [Docker documentation](https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production). This configuration requires a second block device available to the system to be used as a thin-pool for Docker. You may need to configure this block device before the host system is booted, depending on the hosting platform.
-**Note:** Current, [Docker documentation] (https://docs.docker.com/storage/storagedriver/select-storage-driver/) states that the `devicemapper` storage driver is deprecated in Docker Engine 18.09 and will be removed in a future release. It is recommended that users of the `devicemapper` storage driver migrate to `overlay2`. 
-   
-   * A system capable of using overlay2. The requires at least kernel version 3.10.0-693 and, if XFS is being used, the flag `ftype=1`. The full documentation on this configuration is on the [Docker site](https://docs.docker.com/storage/storagedriver/overlayfs-driver/).
+* One of the following installations of Docker:
+  * Docker CE 17.06 or later. Docker CE can either be pre-installed by the operator or installed via our installation script. If Docker CE is pre-installed by the operator, be sure to pass the `no-docker` flag to the installation script to prevent it from trying to install Docker CE again.
+  * Docker EE 17.06 or later.
+  * Docker 1.13.1 installed via the Extras Packages for Enterprise Linux repository. Details on how to subscribe to the Extras Packages for Enterprise Linux repository can be found [here](https://fedoraproject.org/wiki/EPEL).
+* Docker configured with the `overlay2` storage driver. This is the default storage driver for the latest Docker installations.
 
-If you choose to have Docker installed via the install script, ensure that `/etc/docker/daemon.json` is set up correctly, first.  The installer's default configuration sets up the devicemapper driver to use a loopback file, which is explicitly not supported, and the installation script will fail.  Setting up the driver for direct-lvm usage before installation will help ensure a successful installation.
+~> **Note:** The `overlay2` storage driver requires kernel version 3.10.0-693 or greater and the `ftype=1` kernel option when using an XFS filesystem. More details regarding the `overlay2` storage driver can be found [here](https://docs.docker.com/storage/storagedriver/overlayfs-driver/).
+
+~> **Note:** The [Docker documentation] (https://docs.docker.com/storage/storagedriver/select-storage-driver/) states that the `devicemapper` storage driver is deprecated and will be removed in a future release. Users of the `devicemapper` storage driver must migrate to `overlay2`.
 
 ## FAQ
 
-### Can I use the Docker version in `extras`?
+### Can I use the Docker version in the Extra Packages for Enterprise Linux repository?
 
 Sure! Just be sure to have at least 1.13.1.
+
+### Which storage driver should I use?
+
+Please ensure that you are using the `overlay2` storage driver.
 
 ### Can an installation where `docker info` says that I’m using devicemapper with a loopback file work?
 
