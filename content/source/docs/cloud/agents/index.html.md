@@ -25,7 +25,7 @@ Agents support Terraform versions 0.12 and above. Workspaces configured to use T
 
 ### Hardware Requirements
 
-The instance running the agent will consume varying amounts of resources depending on the workspace being run. Memory, CPU and disk space should be monitored on the agent instance and adjusted accordingly. Below is provided as a typical reference instance size.
+The instance running the agent will have varying resource requirements depending on the workspace being run. Memory, CPU and disk space should be monitored on the agent instance and adjusted accordingly. The specs below are provided as a reference. Depending on the type of environment you deploy to, the name of your instance may vary.
 
 * At least 4GB of free disk space
   * Each run requires the agent to temporarily store local copies of the tarred repository, extracted repository, state file, any providers or modules, and the Terraform binary itself.
