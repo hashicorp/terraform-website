@@ -20,10 +20,13 @@ tfrun
 ├── created_at (string)
 ├── message (string)
 ├── commit_sha (string)
-├── speculative (boolean)
 ├── is_destroy (boolean)
-├── variables (map of keys)
+├── refresh (boolean)
+├── refresh_only (boolean)
+├── replace_addrs (array of strings)
+├── speculative (boolean)
 ├── target_addrs (array of strings)
+├── variables (map of keys)
 ├── organization
 │   └── name (string)
 ├── workspace
@@ -85,30 +88,35 @@ The default value is *"Queued manually via the Terraform Enterprise API"*.
 
 Specifies the checksum hash (SHA) that identifies the commit.
 
-### Value: `speculative`
-
-* **Value Type:** Boolean.
-
-Specifies whether the plan associated with the run is a [speculative plan](../../run/index.html#speculative-plans) only.
-
 ### Value: `is_destroy`
 
 * **Value Type:** Boolean.
 
 Specifies if the plan is a destroy plan, which will destroy all provisioned resources.
 
-### Value: `variables`
+### Value: `refresh`
 
-* **Value Type:** A string-keyed map of values.
+* **Value Type:** Boolean.
 
-Provides the names of the variables that are configured within the run and the [sensitivity](../../workspaces/variables.html#sensitive-values) state of the value.
+Specifies whether the state was refreshed prior to the plan.
 
-```
-variables (map of keys)
-└── name (string)
-    └── category (string)
-    └── sensitive (boolean)
-```
+### Value: `refresh_only`
+
+* **Value Type:** Boolean.
+
+Specifies whether the plan is in refresh-only mode, which ignores configuration changes and updates state with any changes made outside of Terraform.
+
+### Value: `replace_addrs`
+
+* **Value Type:** An array of strings representing [resource addresses](/docs/cli/state/resource-addressing.html). 
+
+Provides the targets specified using the [`-replace`](/docs/cli/commands/plan.html#resource-targeting) flag in the CLI or the `replace-addrs` attribute in the API. Will be undefined if no resource targets are specified.
+
+### Value: `speculative`
+
+* **Value Type:** Boolean.
+
+Specifies whether the plan associated with the run is a [speculative plan](../../run/index.html#speculative-plans) only.
 
 ### Value: `target_addrs`
 
@@ -122,6 +130,19 @@ To prohibit targeted runs altogether, make sure the `target_addrs` value is unde
 import "tfrun"
 
 main = (length(tfrun.target_addrs) else 0) == 0
+```
+
+### Value: `variables`
+
+* **Value Type:** A string-keyed map of values.
+
+Provides the names of the variables that are configured within the run and the [sensitivity](../../workspaces/variables.html#sensitive-values) state of the value.
+
+```
+variables (map of keys)
+└── name (string)
+    └── category (string)
+    └── sensitive (boolean)
 ```
 
 ## Namespace: organization
