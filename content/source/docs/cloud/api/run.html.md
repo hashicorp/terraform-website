@@ -83,6 +83,9 @@ Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
 `data.attributes.is-destroy` | bool | false | Specifies if this plan is a destroy plan, which will destroy all provisioned resources.
 `data.attributes.message` | string | "Queued manually via the Terraform Enterprise API" | Specifies the message to be associated with this run.
+`data.attributes.refresh` | bool | true | Specifies whether or not to refresh the state before a plan.
+`data.attributes.refresh-only` | bool | false | Specifies whether the run should ignore configuration changes and only refresh the state.
+`data.attributes.replace-addrs` | array[string] | (nothing) | Specifies an optional list of resource addresses to be passed to the `-replace` flag.
 `data.attributes.target-addrs` | array[string] | (nothing) | Specifies an optional list of resource addresses to be passed to the `-target` flag.
 `data.relationships.workspace.data.id` | string | (nothing) | Specifies the workspace ID where the run will be executed.
 `data.relationships.configuration-version.data.id` | string | (nothing) | Specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
@@ -103,6 +106,9 @@ Status  | Response                               | Reason
     "attributes": {
       "is-destroy": false,
       "message": "Custom message",
+      "refresh": false,
+      "refresh-only": false,
+      "replace-addrs": ["example.resource_address"],
       "target-addrs": ["example.resource_address"]
     },
     "type":"runs",
@@ -143,35 +149,46 @@ curl \
     "id": "run-CZcmD7eagjhyX0vN",
     "type": "runs",
     "attributes": {
-      "auto-apply": false,
-      "error-text": null,
-      "is-destroy": false,
-      "message": "Custom Message",
-      "metadata": {},
-      "source": "tfe-ui",
-      "status": "pending",
-      "status-timestamps": {},
-      "terraform-version": "0.10.8",
-      "created-at": "2017-11-29T19:56:15.205Z",
-      "has-changes": false,
-      "target-addrs": ["example.resource_address"],
       "actions": {
         "is-cancelable": true,
         "is-confirmable": false,
         "is-discardable": false,
+        "is-force-cancelable": false
       },
+      "canceled-at": null,
+      "created-at": "2021-05-24T07:38:04.171Z",
+      "has-changes": false,
+      "is-destroy": false,
+      "message": "Custom message",
+      "plan-only": false,
+      "source": "tfe-api",
+      "status-timestamps": {
+        "plan-queueable-at": "2021-05-24T07:38:04+00:00"
+      },
+      "status": "pending",
+      "trigger-reason": "manual",
+      "target-addrs": [
+        "example.resource_address"
+      ],
       "permissions": {
         "can-apply": true,
         "can-cancel": true,
+        "can-comment": true,
         "can-discard": true,
-        "can-force-execute": true
-      }
+        "can-force-execute": true,
+        "can-force-cancel": true,
+        "can-override-policy-check": true
+      },
+      "refresh": false,
+      "refresh-only": false,
+      "replace-addrs": [
+        "example.resource_address"
+      ]
     },
     "relationships": {
       "apply": {...},
-      "canceled-by": { ... },
+      "comments": {...},
       "configuration-version": {...},
-      "confirmed-by": {...},
       "cost-estimate": {...},
       "created-by": {...},
       "input-state-version": {...},
@@ -179,7 +196,6 @@ curl \
       "run-events": {...},
       "policy-checks": {...},
       "workspace": {...},
-      "comments": {...},
       "workspace-run-alerts": {...}
       }
     },
@@ -285,52 +301,58 @@ curl \
 {
   "data": [
     {
-      "id": "run-bWSq4YeYpfrW4mx7",
+      "id": "run-CZcmD7eagjhyX0vN",
       "type": "runs",
       "attributes": {
-        "auto-apply": false,
-        "error-text": null,
-        "is-destroy": false,
-        "message": "",
-        "metadata": {},
-        "source": "tfe-configuration-version",
-        "status": "planned",
-        "status-timestamps": {
-          "planned-at": "2017-11-28T22:52:51+00:00"
-        },
-        "terraform-version": "0.11.0",
-        "created-at": "2017-11-28T22:52:46.711Z",
-        "has-changes": true,
         "actions": {
-          "is-cancelable": false,
-          "is-confirmable": true,
-          "is-discardable": true,
+          "is-cancelable": true,
+          "is-confirmable": false,
+          "is-discardable": false,
           "is-force-cancelable": false
         },
+        "canceled-at": null,
+        "created-at": "2021-05-24T07:38:04.171Z",
+        "has-changes": false,
+        "is-destroy": false,
+        "message": "Custom message",
+        "plan-only": false,
+        "source": "tfe-api",
+        "status-timestamps": {
+          "plan-queueable-at": "2021-05-24T07:38:04+00:00"
+        },
+        "status": "pending",
+        "trigger-reason": "manual",
+        "target-addrs": [
+          "example.resource_address"
+        ],
         "permissions": {
           "can-apply": true,
           "can-cancel": true,
+          "can-comment": true,
           "can-discard": true,
-          "can-force-cancel": false,
-          "can-force-execute": true
-        }
+          "can-force-execute": true,
+          "can-force-cancel": true,
+          "can-override-policy-check": true
+        },
+        "refresh": false,
+        "refresh-only": false,
+        "replace-addrs": [
+          "example.resource_address"
+        ]
       },
       "relationships": {
-        "workspace": {...},
         "apply": {...},
-        "canceled-by": {...},
+        "comments": {...},
         "configuration-version": {...},
-        "confirmed-by": {...},
         "cost-estimate": {...},
         "created-by": {...},
         "input-state-version": {...},
         "plan": {...},
         "run-events": {...},
         "policy-checks": {...},
-        "comments": {...},
-        "workspace-run-alerts": {...},
-        "triggering-source": {...},
-        "triggering-run": {...}
+        "workspace": {...},
+        "workspace-run-alerts": {...}
+        }
       },
       "links": {
         "self": "/api/v2/runs/run-bWSq4YeYpfrW4mx7"
@@ -369,52 +391,58 @@ curl \
 ```json
 {
   "data": {
-    "id": "run-bWSq4YeYpfrW4mx7",
+    "id": "run-CZcmD7eagjhyX0vN",
     "type": "runs",
     "attributes": {
-      "auto-apply": false,
-      "error-text": null,
-      "is-destroy": false,
-      "message": "",
-      "metadata": {},
-      "source": "tfe-configuration-version",
-      "status": "planned",
-      "status-timestamps": {
-        "planned-at": "2017-11-28T22:52:51+00:00"
-      },
-      "terraform-version": "0.11.0",
-      "created-at": "2017-11-28T22:52:46.711Z",
-      "has-changes": true,
       "actions": {
-        "is-cancelable": false,
-        "is-confirmable": true,
-        "is-discardable": true,
+        "is-cancelable": true,
+        "is-confirmable": false,
+        "is-discardable": false,
         "is-force-cancelable": false
       },
+      "canceled-at": null,
+      "created-at": "2021-05-24T07:38:04.171Z",
+      "has-changes": false,
+      "is-destroy": false,
+      "message": "Custom message",
+      "plan-only": false,
+      "source": "tfe-api",
+      "status-timestamps": {
+        "plan-queueable-at": "2021-05-24T07:38:04+00:00"
+      },
+      "status": "pending",
+      "trigger-reason": "manual",
+      "target-addrs": [
+        "example.resource_address"
+      ],
       "permissions": {
         "can-apply": true,
         "can-cancel": true,
+        "can-comment": true,
         "can-discard": true,
-        "can-force-cancel": false,
-        "can-force-execute": true
-      }
+        "can-force-execute": true,
+        "can-force-cancel": true,
+        "can-override-policy-check": true
+      },
+      "refresh": false,
+      "refresh-only": false,
+      "replace-addrs": [
+        "example.resource_address"
+      ]
     },
     "relationships": {
-      "workspace": {...},
       "apply": {...},
-      "canceled-by": {...},
+      "comments": {...},
       "configuration-version": {...},
-      "confirmed-by": {...},
       "cost-estimate": {...},
       "created-by": {...},
       "input-state-version": {...},
       "plan": {...},
       "run-events": {...},
       "policy-checks": {...},
-      "comments": {...},
-      "workspace-run-alerts": {...},
-      "triggering-source": {...},
-      "triggering-run": {...}
+      "workspace": {...},
+      "workspace-run-alerts": {...}
+      }
     },
     "links": {
       "self": "/api/v2/runs/run-bWSq4YeYpfrW4mx7"
