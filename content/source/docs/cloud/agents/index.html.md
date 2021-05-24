@@ -213,7 +213,7 @@ Runs which are processed by an agent will have additional information about that
 
 You may choose to run multiple agents within your network, up to the organization's purchased agent limit. If there are multiple agents available within an organization, Terraform Cloud will select the first available agent within the target pool.
 
-Each agent process will run a single Terraform run at a time. Multiple agent processes can be concurrently run on a single instance. 
+Each agent process will run a single Terraform run at a time. Multiple agent processes can be concurrently run on a single instance, license limit permitting. 
 
 #### Resilience
 
