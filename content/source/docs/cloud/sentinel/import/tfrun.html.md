@@ -70,7 +70,7 @@ Specifies the ID that is associated with the current Terraform run.
 
 * **Value Type:** String.
 
-The `created_at` value within the [root namespace](#namespace-root) specifies the time that the run was created. The timestamp returned follows the format outlined in [RFC3339](https://tools.ietf.org/html/rfc3339).
+The `created_at` value within the [root namespace](#namespace-root) specifies the time that the run was created. The timestamp returned follows the format outlined in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339).
 
 Users can use the `time` import to [load](https://docs.hashicorp.com/sentinel/imports/time#time-load-timeish) a run timestamp and create a new timespace from the specicied value. See the `time` import [documentation](https://docs.hashicorp.com/sentinel/imports/time#import-time) for available actions that can be performed on timespaces.
 
