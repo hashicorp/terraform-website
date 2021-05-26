@@ -81,10 +81,10 @@ Properties without a default value are required.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
-`data.attributes.is-destroy` | bool | false | Specifies if this plan is a destroy plan, which will destroy all provisioned resources.
+`data.attributes.is-destroy` | bool | false | Specifies if this plan is a destroy plan, which will destroy all provisioned resources. Mutually exclusive with `refresh-only`.
 `data.attributes.message` | string | "Queued manually via the Terraform Enterprise API" | Specifies the message to be associated with this run.
 `data.attributes.refresh` | bool | true | Specifies whether or not to refresh the state before a plan.
-`data.attributes.refresh-only` | bool | false | Specifies whether the run should ignore configuration changes and only refresh the state.
+`data.attributes.refresh-only` | bool | false | Whether this run should use the refresh-only plan mode, which will refresh the state without modifying any resources. Mutually exclusive with `is-destroy`.
 `data.attributes.replace-addrs` | array[string] | (nothing) | Specifies an optional list of resource addresses to be passed to the `-replace` flag.
 `data.attributes.target-addrs` | array[string] | (nothing) | Specifies an optional list of resource addresses to be passed to the `-target` flag.
 `data.relationships.workspace.data.id` | string | (nothing) | Specifies the workspace ID where the run will be executed.
@@ -104,12 +104,7 @@ Status  | Response                               | Reason
 {
   "data": {
     "attributes": {
-      "is-destroy": false,
       "message": "Custom message",
-      "refresh": false,
-      "refresh-only": false,
-      "replace-addrs": ["example.resource_address"],
-      "target-addrs": ["example.resource_address"]
     },
     "type":"runs",
     "relationships": {
@@ -167,9 +162,7 @@ curl \
       },
       "status": "pending",
       "trigger-reason": "manual",
-      "target-addrs": [
-        "example.resource_address"
-      ],
+      "target-addrs": null,
       "permissions": {
         "can-apply": true,
         "can-cancel": true,
@@ -181,9 +174,7 @@ curl \
       },
       "refresh": false,
       "refresh-only": false,
-      "replace-addrs": [
-        "example.resource_address"
-      ]
+      "replace-addrs": null
     },
     "relationships": {
       "apply": {...},
@@ -322,9 +313,7 @@ curl \
         },
         "status": "pending",
         "trigger-reason": "manual",
-        "target-addrs": [
-          "example.resource_address"
-        ],
+        "target-addrs": null,
         "permissions": {
           "can-apply": true,
           "can-cancel": true,
@@ -336,9 +325,7 @@ curl \
         },
         "refresh": false,
         "refresh-only": false,
-        "replace-addrs": [
-          "example.resource_address"
-        ]
+        "replace-addrs": null
       },
       "relationships": {
         "apply": {...},
@@ -412,9 +399,7 @@ curl \
       },
       "status": "pending",
       "trigger-reason": "manual",
-      "target-addrs": [
-        "example.resource_address"
-      ],
+      "target-addrs": null,
       "permissions": {
         "can-apply": true,
         "can-cancel": true,
@@ -426,9 +411,7 @@ curl \
       },
       "refresh": false,
       "refresh-only": false,
-      "replace-addrs": [
-        "example.resource_address"
-      ]
+      "replace-addrs": null
     },
     "relationships": {
       "apply": {...},

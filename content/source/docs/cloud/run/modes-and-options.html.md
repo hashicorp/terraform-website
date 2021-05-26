@@ -5,43 +5,51 @@ page_title: "Run Modes and Options - Runs - Terraform Cloud and Terraform Enterp
 
 # Run Modes and Options
 
-Terraform Cloud support many of the same modes and options available in local operations mode.
+Terraform Cloud runs support many of the same modes and options available in the Terraform CLI.
 
 ## Destroy Mode
 
 [Destroy mode](/docs/cli/commands/plan.html#planning-modes) instructs Terraform to create a plan which destroys all objects, regardless of configuration changes.
 
-Command line users can activate destroy mode using `terraform plan -destroy` or `terraform destroy`, while API users can use the `is-destroy` option. Destroy runs may also be created through the UI via the workspace's "Destruction and Deletion" settings page.
+- **CLI:** Use `terraform plan -destroy` or `terraform destroy`
+- **API:** Use the `is-destroy` option.
+- **UI:** Use a workspace's "Destruction and Deletion" settings page.
 
 ## Refresh-Only Mode
 
--> **Version note:** Refresh-only support is available in Terraform CLI versions v0.15.4 and later, with server-side support available in Terraform Cloud and Terraform Enterprise v202106-1 and later.
+-> **Version note:** Refresh-only support is available in Terraform Enterprise v202106-1 or later and requires a workspace using at least Terraform CLI v0.15.2.
 
 [Refresh-only mode](/docs/cli/commands/plan.html#planning-modes) instructs Terraform to create a plan which updates the Terraform state to match changes made to remote objects outside of Terraform.
 
-Activate refresh-only mode using the `-refresh-only` flag on the command line or the `refresh-only` option in the API.
+- **CLI:** Use `terraform plan -refresh-only` or `terraform apply -refresh-only`.
+- **API:** Use the `refresh-only` option.
 
-## Disable Automatic State Refresh
+## Skipping Automatic State Refresh
 
--> **Version note:** The ability to disable automatic state refresh is available in Terraform CLI versions v0.15.4 and later, with server-side support available in Terraform Cloud and Terraform Enterprise v202106-1 and later.
+-> **Version note:** The ability to skip automatic state refresh is available in Terraform Enterprise v202106-1 or later.
 
-The [`-refresh=false` option](/docs/cli/commands/plan.html#refresh-false) is used in normal planning mode to disable the default behavior of refreshing Terraform state before checking for configuration changes.
+The [`-refresh=false` option](/docs/cli/commands/plan.html#refresh-false) is used in normal planning mode to skip the default behavior of refreshing Terraform state before checking for configuration changes.
 
-Activate this option using the `-refresh=false` option on the command line or the `refresh` option in the API.
+- **CLI:** Use `terraform plan -refresh=false` or `terraform apply -refresh=false`.
+- **API:** Use the `refresh` option.
 
 ## Replacing Selected Resources
 
--> **Version note:** Replace support is available in Terraform CLI versions v0.15.4 and later, with server-side support available in Terraform Cloud and Terraform Enterprise v202106-1 and later.
+-> **Version note:** Replace support is available in Terraform Enterprise v202106-1 or later and requires a workspace using at least Terraform CLI v0.15.4.
 
 The [replace option](/docs/cli/commands/plan.html#replace-address) instructs Terraform to replace the object with the given resource address.
 
-Activate this option using the `-replace=ADDRESS` option on the command line or the `replace-addrs` option in the API.
+- **CLI:** Use `terraform plan -replace=ADDRESS` or `terraform apply -replace=ADDRESS`.
+- **API:** Use the `replace-addrs` option.
 
 ## Targeted Plan and Apply
 
--> **Version note:** Targeting support is available in Terraform CLI versions v0.12.26 and later, with server-side support available in Terraform Cloud and Terraform Enterprise v202006-1 and later.
+-> **Version note:** Targeting support is available in Terraform Enterprise v202006-1 or later.
 
-[Resource Targeting](/docs/cli/commands/plan.html#resource-targeting) is intended for exceptional circumstances only and should not be used routinely. To activate this option, use the `-target=ADDRESS` option on the command line or the `target-addrs` option in the API.
+[Resource Targeting](/docs/cli/commands/plan.html#resource-targeting) is intended for exceptional circumstances only and should not be used routinely.
+
+- **CLI:** Use `terraform plan -target=ADDRESS` or `terraform apply -target=ADDRESS`.
+- **API:** Use the `target-addrs` option.
 
 The usual caveats for targeting in local operations imply some additional limitations on Terraform Cloud features for remote plans created with targeting:
 
