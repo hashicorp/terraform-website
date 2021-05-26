@@ -176,12 +176,12 @@ The following table lists every container Terraform Enterprise runs via the Repl
 |  | `replicated-operator` | Replicated Operator | A utility image to transfer files between the host and daemon and to run application containers if using the native scheduler. It communicates internally with the Replicated daemon on port 9879. |
 |  | `replicated-ui` | Replicated UI | Provides the Replicated console which listens on host port 8800. It communicates internally with the Replicated daemon and with the premkit service. Absent in Active/Active. |
 |  | `replicated-premkit` | Replicated Premkit | This serves as a reverse proxy to the audit log, metrics, and integration services. It communicates internally with the daemon, audit log, and metrics services. |
-|  | `replicated-statsd` | Replicated StatsD | PENDING |
-|  | `retraced-api` | RetraceD API | PENDING |
-|  | `retraced-cron` | RetraceD Cron | PENDING |
-|  | `retraced-nsqd` | RetraceD NSQD | PENDING |
-|  | `retraced-postgres` | RetraceD PostgreSQL | PENDING |
-|  | `retraced-processor` | RetraceD Processor | PENDING |
+|  | `replicated-statsd` | Replicated StatsD | StatsD is a network daemon that listens for statistics and aggregates them for consumption. This is used to collect details for TFE support bundles. |
+|  | `retraced-api` | RetraceD API | API provider for the audit log component of Replicated and communicates internally with the audit log’s Postgres and NSQ services. |
+|  | `retraced-cron` | RetraceD Cron | Used to provide time-based audit message queue processing. |
+|  | `retraced-nsqd` | RetraceD NSQD | This is the queue for the Replicated audit log and is internal to Replicated. |
+|  | `retraced-processor` | RetraceD Processor | Processing facility for the audit log component of Replicated and communicates internally with the audit log’s Postgres and NSQ services |
+|  | `retraced-postgres` | RetraceD PostgreSQL | This is the database for the Replicated audit log and is internal to Replicated. |
 |  | `statsd-graphite` | StatsD | This image is used for a metrics service that runs when the application is running. |
 |  | `support-bundle` | Support Bundle Generator | This image is run to collect system information when the customer creates a support bundle. Not used in Active/Active - use [the CLI](https://www.terraform.io/docs/enterprise/admin/active-active.html#support-bundle) instead. |
 | Auxiliary | `influxdb` | InfluxDB |  This open source time series database is used with Telegraf for observability reasons. |
@@ -195,9 +195,12 @@ The following table lists every container Terraform Enterprise runs via the Repl
 
 ## Data Flow Diagram
 
-The following diagram shows the way data flows through the various services and data stores in Terraform Enterprise.
+The following diagram shows the way data flows through the various services and data stores in Terraform Enterprise.  Click the image for a closer look.
 
-![tfe-data-flow-arch](assets/tfe-data-flow-arch.png)
+<a href="assets/tfe-data-flow-arch.png" target="_blank" rel="noopener noreferrer">
+  <img alt="Data flow diagram of Terraform Enterprise" src="assets/tfe-data-flow-arch.png">
+</a>
+
 
 (Note: The services in double square brackets are soon to be replaced by the service that precedes them.)
 
