@@ -316,6 +316,29 @@ curl \
 }
 ```
 
+## Delete an Agent
+
+`DELETE /agents/:id`
+
+Parameter            | Description
+---------------------|------------
+`:id`                | The ID of the agent to delete
+
+Status  | Response                  | Reason
+--------|---------------------------|----------
+[204][] | Nothing                   | Success
+[412][] | [JSON API error object][] | Agent is not deletable. Agents must have a status of `unknown`, `errored`, or `exited` before being deleted.
+[404][] | [JSON API error object][] | Agent not found, or user unauthorized to perform action
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/agents/agent-73PJNzbZB5idR7AQ
+```
+
 ## Create an Agent Pool
 
 `POST /organizations/:organization_name/agent-pool`
