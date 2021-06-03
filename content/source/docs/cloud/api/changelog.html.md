@@ -23,7 +23,7 @@ Keep track of changes to the Terraform Cloud and Terraform Enterprise APIs.
 
 * Added the [delete endpoint](https://www.terraform.io/docs/cloud/api/agents.html#delete-an-agent) to the [Agents API](https://www.terraform.io/docs/cloud/api/agents.html).
 
-### 2021-04-28
+### 2021-05-19
 
 * Added the `refresh`, `refresh-only`, and `replace-addrs` attributes to the [Runs API](https://www.terraform.io/docs/cloud/api/runs.html).
 
