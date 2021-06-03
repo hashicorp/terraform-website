@@ -29,10 +29,10 @@ Keep track of changes to the Terraform Cloud and Terraform Enterprise APIs.
 
 ### 2021-04-16
 
-* Introduce [Controlled Remote State Access](https://www.hashicorp.com/blog/announcing-controlled-remote-state-access-for-terraform-cloud-and-enterprise).
-  * Updated [Admin Settings API](https://www.terraform.io/docs/cloud/api/admin/settings.html)
-  * Updated [Workspaces API](https://www.terraform.io/docs/cloud/api/workspaces.html).
-  * Added [Remote State Consumers](https://www.terraform.io/docs/cloud/api/workspaces.html#get-remote-state-consumers).
+* Introduced [Controlled Remote State Access](https://www.hashicorp.com/blog/announcing-controlled-remote-state-access-for-terraform-cloud-and-enterprise).
+    * [Admin Settings API](https://www.terraform.io/docs/cloud/api/admin/settings.html): added `default-remote-state-access` attribute.
+    * [Workspaces API](https://www.terraform.io/docs/cloud/api/workspaces.html): added `global-remote-state` attribute.
+    * Added [Remote State Consumers](https://www.terraform.io/docs/cloud/api/workspaces.html#get-remote-state-consumers) relationship for workspaces.
 
 ### 2021-04-13
 
