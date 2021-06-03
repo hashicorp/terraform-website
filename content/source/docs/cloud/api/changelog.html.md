@@ -12,13 +12,6 @@ page_id: "api-changelog"
 
 Keep track of changes to the Terraform Cloud and Terraform Enterprise APIs.
 
-### 2021-01-21
-
-* ![cloud][] A new Invoices API is available.
-* The terraform-version attribute in the Workspaces API is now deprecated. Please use terraform-requirement instead.
-* ![enterprise][] A new Module Sharing API is available for sharing Terraform modules across organizations.
-* ![breaking][] The X API will no longer return Y. To do Z, use this workaround. This is a breaking change necessary for the security of the platform, covered in our API stability policy.
-
 ### 2021-05-27
 
 * Added the [delete endpoint](https://www.terraform.io/docs/cloud/api/agents.html#delete-an-agent) to the [Agents API](https://www.terraform.io/docs/cloud/api/agents.html).
