@@ -104,7 +104,7 @@ Status  | Response                               | Reason
 {
   "data": {
     "attributes": {
-      "message": "Custom message",
+      "message": "Custom message"
     },
     "type":"runs",
     "relationships": {
