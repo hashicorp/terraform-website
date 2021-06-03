@@ -17,7 +17,9 @@ For expediency, this documentation refers to the application as Terraform Cloud.
 
 [Terraform Cloud](https://terraform.io/cloud) is an application that helps teams use Terraform together. It manages Terraform runs in a consistent and reliable environment, and includes easy access to shared state and secret data, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more.
 
-Terraform Cloud is available as a hosted service at [https://app.terraform.io](https://app.terraform.io). Small teams can sign up for free. As these teams scale, they can gain access to collaborative features through paid tiers. Finally, multiple teams within an organization can leverage [the Business tier](https://www.hashicorp.com/products/terraform/editions/cloud), which includes increased security, scalability, and visibility. 
+Terraform Cloud is available as a hosted service at [https://app.terraform.io](https://app.terraform.io). Small teams can sign up for free to connect Terraform to version control, share variables, run Terraform in a stable remote environment, and securely store remote state. Paid tiers allow you to add more than five users, create teams with different levels of permissions, enforce policies before creating infrastructure, and collaborate more effectively. 
+
+The [Business tier](https://www.hashicorp.com/products/terraform/editions/cloud) allows large organizations to scale to multiple concurrent runs, create infrastructure in private environments, manage user access with SSO, and automates self-service provisioning for infrastructure end users. 
 
 Enterprises with advanced security and compliance needs can purchase [Terraform Enterprise](/docs/enterprise/index.html), our self-hosted distribution of Terraform Cloud. It offers enterprises a private instance that includes the advanced features available in Terraform Cloud.
 
