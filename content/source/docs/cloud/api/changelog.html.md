@@ -48,4 +48,4 @@ Keep track of changes to the Terraform Cloud and Terraform Enterprise APIs.
 
 ### 2021-03-11
 
-* Added the [VCS Events API](https://www.terraform.io/docs/cloud/api/vcs-events.html).
+* Added the [VCS Events API](https://www.terraform.io/docs/cloud/api/vcs-events.html) for GitLab.com connections.
