@@ -84,8 +84,10 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
 
 * `api.pricing.us-east-1.amazonaws.com`
 * `cloudbilling.googleapis.com`
-* `management.azure.com`
-* `ratecard.azure-api.net`
+* `prices.azure.com`
+
+~> **Note:** Versions of Terraform Enterprise earlier than v202105-1 used `management.azure.com` and `ratecard.azure-api.net` rather than `prices.azure.com`.
+
 
 ## Other Configuration
 
