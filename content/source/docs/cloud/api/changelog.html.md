@@ -34,10 +34,14 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 ### 2021-03-23
 
-* ![enterprise][] Introduced [Share Modules Across Organizations with Terraform Enterprise](https://www.hashicorp.com/blog/share-modules-across-organizations-terraform-enterprise).
-  * [Admin Modules Sharing](https://www.terraform.io/docs/cloud/api/admin/module-sharing.html): ....
-  * [Admin Organizations](https://www.terraform.io/docs/cloud/api/admin/organizations.html): ....
-  * [Organizations](https://www.terraform.io/docs/cloud/api/organizations.html): ....
+* ![enterprise][] `v202103-1` Introduced [Share Modules Across Organizations with Terraform Enterprise](https://www.hashicorp.com/blog/share-modules-across-organizations-terraform-enterprise).
+  * [Admin Organizations](https://www.terraform.io/docs/cloud/api/admin/organizations.html):
+      * added new query parameters to [List all Organizations endpoint](https://www.terraform.io/docs/cloud/api/admin/organizations.html#query-parameters)
+      * added module-consumers link in `relationships` response
+      * added [update module consumers endpoint](https://www.terraform.io/docs/cloud/api/admin/organizations.html#update-an-organization-39-s-module-consumers)
+      * added [list module consumers endpoint](https://www.terraform.io/docs/cloud/api/admin/organizations.html#list-module-consumers-for-an-organization)
+  * [Organizations](https://www.terraform.io/docs/cloud/api/organizations.html): added [Module Producers](https://www.terraform.io/docs/cloud/api/organizations.html#show-module-producers)
+  * ![deprecation][] [Admin Module Sharing](https://www.terraform.io/docs/cloud/api/admin/module-sharing.html): is replaced with a new JSON::Api compliant [endpoint](https://www.terraform.io/docs/cloud/api/admin/organizations.html#update-an-organization-39-s-module-consumers)
 
 ### 2021-03-18
 
