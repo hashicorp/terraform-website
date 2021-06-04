@@ -6,6 +6,7 @@ page_id: "api-changelog"
 
 [breaking]: ./api/changelog/breaking.png "Breaking"
 [cloud]: ./api/changelog/cloud.png "Cloud"
+[deprecation]: ./api/changelog/deprecation.png "Deprecation"
 [enterprise]: ./api/changelog/enterprise.png "Enterprise"
 
 # API Changelog
