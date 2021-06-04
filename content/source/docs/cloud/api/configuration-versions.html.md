@@ -143,6 +143,82 @@ curl \
 }
 ```
 
+## Show a Configuration Version's commit information
+
+An ingress attributes resource (`ingress-attributes`) is used to reference commit information for configuration versions created in a workspace with a VCS repository.
+
+`GET /configuration-versions/:configuration-id/ingress-attributes`
+
+| Parameter           | Description                          |
+| ------------------- | ------------------------------------ |
+| `:configuration-id` | The id of the configuration to show. |
+
+Ingress attributes can also be fetched as part of a query to a particular configuration version via `include`:
+
+`GET /configuration-versions/:configuration-id?include=ingress-attributes`
+
+| Parameter           | Description                          |
+| ------------------- | ------------------------------------ |
+| `:configuration-id` | The id of the configuration to show. |
+
+<!-- Note: /ingress-attributes/:ingress-attributes-id is purposely not documented here, as its
+usefulness is questionable given the routes above; IAs are inherently a part of a CV and their
+separate resource is a vestige of the original Terraform Enterprise -->
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  https://app.terraform.io/api/v2/configuration-versions/cv-TrHjxIzad9Ae9i8x/ingress-attributes
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "ia-zqHjxJzaB9Ae6i9t",
+    "type": "ingress-attributes",
+    "attributes": {
+      "branch": "add-cool-stuff",
+      "clone-url": "https://github.com/hashicorp/foobar.git",
+      "commit-message": "Adding really cool infrastructure",
+      "commit-sha": "1e1c1018d1bbc0b8517d072718e0d87c1a0eda95",
+      "commit-url": "https://github.com/hashicorp/foobar/commit/1e1c1018d1bbc0b8517d072718e0d87c1a0eda95",
+      "compare-url": "https://github.com/hashicorp/foobar/pull/163",
+      "identifier": "hashicorp/foobar",
+      "is-pull-request": true,
+      "on-default-branch": false,
+      "pull-request-number": 163,
+      "pull-request-url": "https://github.com/hashicorp/foobar/pull/163",
+      "pull-request-title": "Adding really cool infrastructure",
+      "pull-request-body": "These are changes to add really cool stuff. We should absolutely merge this.",
+      "tag": null,
+      "sender-username": "chrisarcand",
+      "sender-avatar-url": "https://avatars.githubusercontent.com/u/2430490?v=4",
+      "sender-html-url": "https://github.com/chrisarcand"
+    },
+    "relationships": {
+      "created-by": {
+        "data": {
+          "id": "user-PQk2Z3dfXAax18P6s",
+          "type": "users"
+        },
+        "links": {
+          "related": "/api/v2/ingress-attributes/ia-zqHjxJzaB9Ae6i9t/created-by"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/ingress-attributes/ia-zqHjxJzaB9Ae6i9t"
+    }
+  }
+}
+```
+
 ## Create a Configuration Version
 
 `POST /workspaces/:workspace_id/configuration-versions`
