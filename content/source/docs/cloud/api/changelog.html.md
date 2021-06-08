@@ -4,10 +4,10 @@ layout: "cloud"
 page_id: "api-changelog"
 ---
 
-[breaking]: ./api/changelog/breaking.png "Breaking"
-[cloud]: ./api/changelog/cloud.png "Cloud"
-[deprecation]: ./api/changelog/deprecation.png "Deprecation"
-[enterprise]: ./api/changelog/enterprise.png "Enterprise"
+[breaking]: /assets/images/api/changelog/breaking.png "Breaking"
+[cloud]: /assets/images/api/changelog/cloud.png "Cloud"
+[deprecation]: /assets/images/api/changelog/deprecation.png "Deprecation"
+[enterprise]: /assets/images/api/changelog/enterprise.png "Enterprise"
 
 # API Changelog
 
