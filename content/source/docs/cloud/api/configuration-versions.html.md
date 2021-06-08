@@ -143,7 +143,7 @@ curl \
 }
 ```
 
-## Show a Configuration Version's commit information
+## Show a Configuration Version's Commit Information
 
 An ingress attributes resource (`ingress-attributes`) is used to reference commit information for configuration versions created in a workspace with a VCS repository.
 
