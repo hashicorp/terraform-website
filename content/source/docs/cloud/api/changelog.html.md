@@ -25,8 +25,9 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 * Introduced [Controlled Remote State Access](https://www.hashicorp.com/blog/announcing-controlled-remote-state-access-for-terraform-cloud-and-enterprise).
     * [Admin Settings](./admin/settings.html): added `default-remote-state-access` attribute.
-    * [Workspaces](./workspaces.html): added `global-remote-state` attribute.
-    * [Workspaces](./workspaces.html): added [Remote State Consumers](./workspaces.html#get-remote-state-consumers) relationship.
+    * [Workspaces](./workspaces.html):
+        * added `global-remote-state` attribute.
+        * added [Remote State Consumers](./workspaces.html#get-remote-state-consumers) relationship.
 
 ### 2021-04-13
 
@@ -35,21 +36,22 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 ### 2021-03-23
 
 * ![enterprise][] `v202103-1` Introduced [Share Modules Across Organizations with Terraform Enterprise](https://www.hashicorp.com/blog/share-modules-across-organizations-terraform-enterprise).
-  * [Admin Organizations](./admin/organizations.html):
-      * added new query parameters to [List all Organizations endpoint](./admin/organizations.html#query-parameters)
-      * added module-consumers link in `relationships` response
-      * added [update module consumers endpoint](./admin/organizations.html#update-an-organization-39-s-module-consumers)
-      * added [list module consumers endpoint](./admin/organizations.html#list-module-consumers-for-an-organization)
-  * [Organizations](./organizations.html): added [Module Producers](./organizations.html#show-module-producers)
-  * ![deprecation][] [Admin Module Sharing](./admin/module-sharing.html): is replaced with a new JSON::Api compliant [endpoint](./admin/organizations.html#update-an-organization-39-s-module-consumers)
+    * [Admin Organizations](./admin/organizations.html):
+        * added new query parameters to [List all Organizations endpoint](./admin/organizations.html#query-parameters)
+        * added module-consumers link in `relationships` response
+        * added [update module consumers endpoint](./admin/organizations.html#update-an-organization-39-s-module-consumers)
+        * added [list module consumers endpoint](./admin/organizations.html#list-module-consumers-for-an-organization)
+    * [Organizations](./organizations.html): added [Module Producers](./organizations.html#show-module-producers)
+    * ![deprecation][] [Admin Module Sharing](./admin/module-sharing.html): is replaced with a new JSON::Api compliant [endpoint](./admin/organizations.html#update-an-organization-39-s-module-consumers)
 
 ### 2021-03-18
 
 * ![cloud][] Introduced [New Workspace Overview for Terraform Cloud](https://www.hashicorp.com/blog/new-workspace-overview-for-terraform-cloud).
-  * [Workspaces](./workspaces.html): added `resource-count` and `updated-at` attributes.
-  * [Workspaces](./workspaces.html): added [performance attributes](./workspaces.html#workspace-performance-attributes) (`apply-duration-average`, `plan-duration-average`, `policy-check-failures`, `run-failures`, `workspaces-kpis-run-count`).
-  * [Workspaces](./workspaces.html): added `readme` and `outputs` [related resources](./workspaces.html#available-related-resources).
-  * [Team Access](./team-access.html): updated to support pagination.
+    * [Workspaces](./workspaces.html):
+        * added `resource-count` and `updated-at` attributes.
+        * added [performance attributes](./workspaces.html#workspace-performance-attributes) (`apply-duration-average`, `plan-duration-average`, `policy-check-failures`, `run-failures`, `workspaces-kpis-run-count`).
+        * added `readme` and `outputs` [related resources](./workspaces.html#available-related-resources).
+    * [Team Access](./team-access.html): updated to support pagination.
 
 ### 2021-03-11
 
