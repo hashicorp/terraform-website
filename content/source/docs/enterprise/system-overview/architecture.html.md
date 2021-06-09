@@ -5,7 +5,7 @@ page_title: "Architecture Summary - System Overview - Terraform Enterprise"
 
 # Terraform Enterprise Architecture
 
-Terraform Enterprise (TFE) is powered by the same set of services behind HashiCorp’s public SaaS application Terraform Cloud.  The sections below present the functional layers of the architecture, how they interact and details pertaining to the corresponding docker containers involved.  References to Docker containers in this document are those you will see when running a `docker ps` on a TFE application server while the application is up.
+Terraform Enterprise (TFE) is powered by the same set of services behind HashiCorp’s public SaaS application Terraform Cloud. The sections below present the functional layers of the architecture, how they interact and details pertaining to the corresponding Docker containers involved. References to Docker containers in this document are those you will see when running a `docker ps` on a TFE application server while the application is up.
 
 ~> **Advanced:** The content in this document is not required to operate TFE but is provided to help advanced users understand the product in more depth.
 
@@ -203,4 +203,3 @@ The following diagram shows the way data flows through the various services and 
 
 
 (Note: The services in double square brackets are soon to be replaced by the service that precedes them.)
-
