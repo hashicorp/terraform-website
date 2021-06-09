@@ -472,7 +472,7 @@ curl \
 }
 ```
 
-## Create a Module Version (private module)
+## Create a Module Version
 
 `POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions`
 
