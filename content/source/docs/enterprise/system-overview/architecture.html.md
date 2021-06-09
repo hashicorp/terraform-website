@@ -9,7 +9,7 @@ Terraform Enterprise (TFE) is powered by the same set of services behind HashiCo
 
 ~> **Advanced:** The content in this document is not required to operate TFE but is provided to help advanced users understand the product in more depth.
 
-~> **Note:** References to `ptfe` below is a historical reference. See [here](https://www.terraform.io/docs/enterprise/index.html#note-about-product-names) for more details.
+~> **Note:** Several services described below include the legacy string `ptfe` as part of their names. See [here](https://www.terraform.io/docs/enterprise/index.html#note-about-product-names) for more details.
 
 ## Application Layer
 
