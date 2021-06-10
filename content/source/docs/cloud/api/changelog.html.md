@@ -13,6 +13,15 @@ page_id: "api-changelog"
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
+### 2021-06-10
+
+* Updated [Registry Module APIs](./modules.html).
+    * added `registry_name` scoped APIs.
+    * added `organization_name` scoped APIs.
+    * added [Module List API](./modules.html#list-registry-modules-for-an-organization).
+    * updated [Module Delete APIs](./modules.html#delete-a-module).
+    * ![cloud][] added public registry module related APIs.
+
 ### 2021-05-27
 
 * ![cloud][] [Agents](./agents.html): added [delete endpoint](./agents.html#delete-an-agent).
