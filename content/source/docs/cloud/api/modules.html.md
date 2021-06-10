@@ -38,6 +38,7 @@ The Terraform Cloud Module Registry implements the [Registry standard API](../..
 - Download the latest version of a module
 
 For publicly curated modules, the Terraform Cloud Module Registry acts as a proxy to the [Terraform Registry](https://registry.terraform.io) for the following:
+
 - List available versions for a specific module
 - Get a specific module
 - Get the latest version for a specific module provider
@@ -97,11 +98,15 @@ Status  | Response                                           | Reason
 [404][] | [JSON API error object][]                          | Modules not found or user unauthorized to perform action
 
 ### Filtering / Pagination
+
 This endpoint supports Filtering and Pagination via the following attributes:
-- `q=<wild card filter>` - a wild card filter that will match full words for the name, namespace, provider fields for modules
-- `filter[<field name>]=<field name>` - an exact filter that will match a given field. The available fields to filter on are `registry_name`, `provider`, and `organization_name`.
-- `page[number]=<page>` - which page to return from the paginated results
-- `page[size]=<size>` - size of pages to return with the paginated results. The default is `20` with a max of `100`
+
+Query Parameter                     | Description
+------------------------------------|---------------------
+`q=<wild card filter>`              | a wild card filter that will match full words for the name, namespace, provider fields for modules
+`filter[<field name>]=<field name>` | an exact filter that will match a given field. The available fields to filter on are `registry_name`, `provider`, and `organization_name`.
+`page[number]=<page>`               | which page to return from the paginated results
+`page[size]=<size>`                 | size of pages to return with the paginated results. The default is `20` with a max of `100`
 
 ### Sample Request
 
@@ -337,6 +342,7 @@ Status  | Response                                           | Reason
 --------|----------------------------------------------------|----------
 [201][] | [JSON API document][] (`type: "registry-modules"`) | Successfully published module
 [422][] | [JSON API error object][]                          | Malformed request body (missing attributes, wrong types, etc.)
+[403][] | [JSON API error object][]                          | Forbidden - public module curation disabled
 [404][] | [JSON API error object][]                          | User not authorized
 
 
@@ -492,6 +498,7 @@ Status  | Response                                                   | Reason
 --------|------------------------------------------------------------|----------
 [201][] | [JSON API document][] (`type: "registry-module-versions"`) | Successfully published module version
 [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.)
+[403][] | [JSON API error object][]                                  | Forbidden - not available for public modules
 [404][] | [JSON API error object][]                                  | User not authorized
 
 
@@ -624,6 +631,7 @@ Parameter            | Description
 Status  | Response                                           | Reason
 --------|----------------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "registry-modules"`) | The request was successful
+[403][] | [JSON API error object][]                          | Forbidden - public module curation disabled
 [404][] | [JSON API error object][]                          | Module not found or user unauthorized to perform action
 
 ### Sample Request (private module)
@@ -766,6 +774,7 @@ If a version deletion would leave a provider with no versions, the provider will
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
 [204][] | Nothing                                              | Success
+[403][] | [JSON API error object][]                            | Forbidden - public module curation disabled
 [404][] | [JSON API error object][]                            | Module, provider, or version not found or user not authorized
 
 
