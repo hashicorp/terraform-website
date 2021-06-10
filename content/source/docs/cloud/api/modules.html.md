@@ -22,7 +22,7 @@ page_title: "Modules - API Docs - Terraform Cloud and Terraform Enterprise"
 
 # Registry Modules API
 
--> **Note**: These API endpoints are in beta and are subject to change.
+-> **Note:** Public Module Curation is only available in Terraform Cloud. Where applicable, the `registry_name` parameter must be `private` for Terraform Enterprise.
 
 ## Terraform Cloud Registry Implementation
 
