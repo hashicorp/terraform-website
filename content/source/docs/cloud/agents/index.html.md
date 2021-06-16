@@ -17,7 +17,7 @@ The agent architecture is pull-based, so no inbound connectivity is required. An
 
 ### Supported Operating Systems
 
-[Agents](https://releases.hashicorp.com/tfc-agent/) currently only support 64 bit Linux operating systems. You can also run the agent within Docker using our official [Terraform Agent Docker container](https://hub.docker.com/r/hashicorp/tfc-agent).
+[Agents](https://releases.hashicorp.com/tfc-agent/) currently only support x86_64 bit Linux operating systems. You can also run the agent within Docker using our official [Terraform Agent Docker container](https://hub.docker.com/r/hashicorp/tfc-agent).
 
 ### Supported Terraform Versions
 
