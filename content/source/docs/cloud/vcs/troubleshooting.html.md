@@ -94,8 +94,8 @@ Terraform Cloud does not allow you to change the API URL for an existing VCS con
 1. Obtain the [oauth-token IDs](../api/oauth-tokens.html) for the old and new OAuth clients.
 1. [List all workspaces](../api/workspaces.html#list-workspaces) (dealing with pagination if necessary), and use a JSON filtering tool like `jq` to make a list of all workspace IDs whose `attributes.vcs-repo.oauth-token-id` matches the old VCS connection.
 1. Iterate over the list of workspaces and [PATCH each one](../api/workspaces.html#update-a-workspace) to use the new `oauth-token-id`.
-1. [List all registry modules](../api/modules.html#listing-and-reading-modules-providers-and-versions) and use their `source` property to determine which ones came from the old VCS connection.
-1. [Delete each affected module](../api/modules.html#delete-a-module), then [create a new module](../api/modules.html#publish-a-module-from-a-vcs) from the new connection's version of the relevant repo.
+1. [List all registry modules](../../registry/api.html#list-modules) and use their `source` property to determine which ones came from the old VCS connection.
+1. [Delete each affected module](../api/modules.html#delete-a-module), then [create a new module](../api/modules.html#publish-a-private-module-from-a-vcs) from the new connection's version of the relevant repo.
 1. Delete the old VCS connection.
 
 ## Certificate Errors on Terraform Enterprise
