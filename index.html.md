@@ -38,10 +38,6 @@ components of Terraform (Core vs. Plugins) and the basics of how they interact.
 
 Learn about Terraform plugins that you can develop using the Terraform Plugin SDK (currently only Providers).
 
-## [Terraform custom plugin path](/docs/extend/custom-plugin-path.html)
-
-Terraform custom plugin path
-
 ## [Call APIs with Terraform Providers](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)
 
 A collection of step by step tutorials for writing, compiling, and executing an
