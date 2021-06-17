@@ -48,6 +48,10 @@ example Terraform Provider.
 Emergent practices learned by official Terraform Provider developers that can
 guide design and decision making for all providers.
 
+## [Terraform custom plugin path](/docs/extend/custom-plugin-path.html)
+
+Terraform custom plugin path
+
 ## [Schemas](/docs/extend/schemas/index.html)
 
 The Schema package is a high-level framework for easily writing Plugins for
