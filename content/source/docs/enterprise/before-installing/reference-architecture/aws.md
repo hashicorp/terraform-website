@@ -45,7 +45,7 @@ stateless production installation.
 The following table provides high-level server guidelines. Of particular
 note is the strong recommendation to avoid non-fixed performance CPUs,
 or “Burstable CPU” in AWS terms, such as T-series instances.
-
+Object
 ### Terraform Enterprise Server (EC2 via Auto Scaling Group)
 
 | Type    | CPU    | Memory    | Disk | AWS Instance Types |
@@ -89,6 +89,8 @@ Within the Terraform Enterprise application, Vault is used to encrypt all applic
 allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy.
+
+-> **Note:** Terraform Enterprise does not require S3 Versioning feature.
 
 ### Other Considerations
 
