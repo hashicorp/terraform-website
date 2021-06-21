@@ -155,6 +155,25 @@ docker run -e TFC_AGENT_TOKEN=your-token -e
 TFC_AGENT_NAME=your-agent-name hashicorp/tfc-agent
 ```
 
+This Docker image executes the tfc-agent process as the non-root tfc-agent user. For some workflows, such as those that require the ability to install software via apt-get during local-exec scripts, you may need to build a customized version of the agent Docker image for your internal use.
+
+```Dockerfile
+FROM hashicorp/tfc-agent:latest
+
+USER root
+
+# Install sudo. The container runs as a non-root user, but people may rely on
+# the ability to apt-get install things.
+RUN apt-get -y install sudo
+
+# Permit tfc-agent to use sudo apt-get commands.
+RUN echo 'tfc-agent ALL=NOPASSWD: /usr/bin/apt-get , /usr/bin/apt' >> /etc/sudoers.d/50-tfc-agent
+
+USER tfc-agent
+```
+
+An image customized in this way will permit installation of additional software via sudo apt-get.
+
 ### Stopping the Agent
 
 The agent maintains a registration and a liveness indicator within Terraform Cloud during the entire course of its runtime. When an agent is to be retired, it must deregister itself from Terraform Cloud. The agent performs deregistration automatically as part of its shutdown procedure in the following scenarios:
