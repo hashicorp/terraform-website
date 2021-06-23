@@ -90,6 +90,8 @@ allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy.
 
+-> **Note:** Terraform Enterprise does not require S3 Versioning feature.
+
 ### Other Considerations
 
 #### Additional AWS Resources
