@@ -45,7 +45,7 @@ stateless production installation.
 The following table provides high-level server guidelines. Of particular
 note is the strong recommendation to avoid non-fixed performance CPUs,
 or “Burstable CPU” in AWS terms, such as T-series instances.
-Object
+
 ### Terraform Enterprise Server (EC2 via Auto Scaling Group)
 
 | Type    | CPU    | Memory    | Disk | AWS Instance Types |
