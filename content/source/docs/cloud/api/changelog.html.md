@@ -14,6 +14,7 @@ page_id: "api-changelog"
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 ### 2021-06-8
+
 * Updated [Registry Module APIs](./modules.html).
     * added `registry_name` scoped APIs.
     * added `organization_name` scoped APIs.
