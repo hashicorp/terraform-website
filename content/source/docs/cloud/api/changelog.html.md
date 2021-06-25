@@ -14,13 +14,20 @@ page_id: "api-changelog"
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 ### 2021-06-8
-
 * Updated [Registry Module APIs](./modules.html).
     * added `registry_name` scoped APIs.
     * added `organization_name` scoped APIs.
     * added [Module List API](./modules.html#list-registry-modules-for-an-organization).
     * updated [Module Delete APIs](./modules.html#delete-a-module).
     * ![cloud][] added public registry module related APIs.
+* ![deprecation] [] The following [Registry Module APIs](./modules.html) have been replaced with newer apis and will be removed in the future.
+    * The following endpoints to delete modules are replaced with [Module Delete APIs](./modules.html#delete-a-module)
+        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
+        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
+        * `POST /registry-modules/actions/delete/:organization_name/:name`
+    * `POST /registry-modules` replaced with [Updated POST Endpoint](./modules.html#publish-a-private-module-from-a-vcs)
+    * `POST /registry-modules/:organization_name/:name/:provider/versions` replaced with new [endpoint](./modules.html#create-a-module-version)
+    * `GET /registry-modules/show/:organization_name/:name/:provider` replaced with new [GET Endpoint](./modules.html#get-a-module)
 
 ### 2021-05-27
 

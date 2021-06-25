@@ -218,6 +218,8 @@ curl \
 
 `POST /organizations/:organization_name/registry-modules/vcs`
 
+~> **Deprecation warning**: the following endpoint `POST /registry-modules` is replaced by the above endpoint and will be removed from future versions of the API!.
+
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
@@ -482,6 +484,8 @@ curl \
 
 `POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions`
 
+~> **Deprecation warning**: the following endpoint `POST /registry-modules/:organization_name/:name/:provider/versions` is replaced by the above endpoint and will be removed from future versions of the API!
+
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
@@ -618,6 +622,8 @@ After the registry module version is successfully parsed, its status will become
 
 `GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
 
+~> **Deprecation warning**: the following endpoint `GET /registry-modules/show/:organization_name/:name/:provider` is replaced by the above endpoint and will be removed from future versions of the API!
+
 ### Parameters
 
 Parameter            | Description
@@ -746,6 +752,12 @@ curl \
 * `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version`
 * `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
 * `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name`
+
+~> **Deprecation warning**: the following endpoints:
+  * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
+  * `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
+  * `POST /registry-modules/actions/delete/:organization_name/:name`
+are replaced by the above endpoints and will be removed from future versions of the API!.
 
 ### Parameters
 
