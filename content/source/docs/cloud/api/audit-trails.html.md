@@ -102,7 +102,7 @@ Each JSON object in the response data array will include the following details, 
 | `id`                   | The ID of this audit trail (UUID format)                    |
 | `version`              | The audit trail schema version                              |
 | `type`                 | The type of audit trail (defaults to `Resource`)            |
-| `timestamp`            | UTC ISO8901 DateTime (e.g. `2020-06-16T20:26:58.000Z`)      |
+| `timestamp`            | UTC ISO8601 DateTime (e.g. `2020-06-16T20:26:58.000Z`)      |
 | `auth.accessor_id`     | The ID of audited actor (e.g. `user-V3R563qtJNcExAkN`)      |
 | `auth.description`     | Username of audited actor                                   |
 | `auth.type`            | Authentication Type (one of Client, Impersonated or System) |
