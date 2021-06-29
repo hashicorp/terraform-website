@@ -216,9 +216,10 @@ curl \
 
 ## Publish a Private Module from a VCS
 
+~> **Deprecation warning**: the following endpoint `POST /registry-modules` is replaced by the below endpoint and will be removed from future versions of the API!
+
 `POST /organizations/:organization_name/registry-modules/vcs`
 
-~> **Deprecation warning**: the following endpoint `POST /registry-modules` is replaced by the above endpoint and will be removed from future versions of the API!
 
 Parameter            | Description
 ---------------------|------------
@@ -482,9 +483,9 @@ curl \
 
 ## Create a Module Version
 
-`POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions`
+~> **Deprecation warning**: the following endpoint `POST /registry-modules/:organization_name/:name/:provider/versions` is replaced by the below endpoint and will be removed from future versions of the API!
 
-~> **Deprecation warning**: the following endpoint `POST /registry-modules/:organization_name/:name/:provider/versions` is replaced by the above endpoint and will be removed from future versions of the API!
+`POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions`
 
 Parameter            | Description
 ---------------------|------------
@@ -620,9 +621,10 @@ After the registry module version is successfully parsed, its status will become
 
 ## GET a Module
 
+~> **Deprecation warning**: the following endpoint `GET /registry-modules/show/:organization_name/:name/:provider` is replaced by the below endpoint and will be removed from future versions of the API!
+
 `GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
 
-~> **Deprecation warning**: the following endpoint `GET /registry-modules/show/:organization_name/:name/:provider` is replaced by the above endpoint and will be removed from future versions of the API!
 
 ### Parameters
 
@@ -749,10 +751,6 @@ curl \
 
 ## Delete a Module
 
-* `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version`
-* `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
-* `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name`
-
 <div class="alert alert-warning" role="alert">
   **Deprecation warning**: the following endpoints:
 
@@ -760,9 +758,12 @@ curl \
   * `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
   * `POST /registry-modules/actions/delete/:organization_name/:name`
 
-  are replaced by the above endpoints and will be removed from future versions of the API!
+  are replaced by the below endpoints and will be removed from future versions of the API!
 </div>
 
+* `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version`
+* `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
+* `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name`
 
 
 ### Parameters
