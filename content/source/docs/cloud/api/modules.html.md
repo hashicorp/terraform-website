@@ -753,11 +753,17 @@ curl \
 * `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
 * `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name`
 
-~> **Deprecation warning**: the following endpoints:
+<div class="alert alert-warning" role="alert">
+  **Deprecation warning**: the following endpoints:
+
   * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
   * `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
   * `POST /registry-modules/actions/delete/:organization_name/:name`
-are replaced by the above endpoints and will be removed from future versions of the API!.
+
+  are replaced by the above endpoints and will be removed from future versions of the API!
+</div>
+
+
 
 ### Parameters
 
