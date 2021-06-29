@@ -218,7 +218,7 @@ curl \
 
 `POST /organizations/:organization_name/registry-modules/vcs`
 
-~> **Deprecation warning**: the following endpoint `POST /registry-modules` is replaced by the above endpoint and will be removed from future versions of the API!.
+~> **Deprecation warning**: the following endpoint `POST /registry-modules` is replaced by the above endpoint and will be removed from future versions of the API!
 
 Parameter            | Description
 ---------------------|------------
