@@ -86,7 +86,7 @@ Whenever a pull request is _created or updated,_ Terraform Cloud checks whether 
 
     -> **Note:** If Terraform Cloud skips a plan because the changes weren't relevant, it will still post a passing commit status to the pull request.
 
-- Status checks on the pull request are not updated after an apply, so a commit with a successful plan but an errored apply will still show the passing commit status relevant to the plan.
+- Terraform Cloud does not update the status checks on a pull request with the status of an associated apply. This means that a commit with a successful plan but an errored apply will still show the passing commit status from the plan.
 
 ### Contents of Pull Request Plans
 
