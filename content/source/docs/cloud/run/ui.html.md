@@ -86,6 +86,8 @@ Whenever a pull request is _created or updated,_ Terraform Cloud checks whether 
 
     -> **Note:** If Terraform Cloud skips a plan because the changes weren't relevant, it will still post a passing commit status to the pull request.
 
+- Terraform Cloud does not update the status checks on a pull request with the status of an associated apply. This means that a commit with a successful plan but an errored apply will still show the passing commit status from the plan.
+
 ### Contents of Pull Request Plans
 
 Speculative plans for pull requests use the contents of the head branch (the branch that the PR proposes to merge into the destination branch), and they compare against the workspace's current state at the time of the plan. This means that if the destination branch changes significantly after the head branch is created, the speculative plan might not accurately show the results of accepting the PR. To get a more accurate view, you can rebase the head branch onto a more recent commit, or merge the destination branch into the head branch.
