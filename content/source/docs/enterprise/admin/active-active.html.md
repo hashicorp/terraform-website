@@ -73,7 +73,7 @@ There are additional commands available for checking status and troubleshooting 
 #### health-check
 
 ```bash
-ptfe-admin health-check
+tfe-admin health-check
 (alias health-check)
 ```
 
