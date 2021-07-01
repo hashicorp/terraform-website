@@ -13,7 +13,7 @@ Terraform Cloud provides cost estimates for many resources found in your Terrafo
 
 ## Enabling Cost Estimation
 
-Cost estimation is enabled by default with the Team & Governance upgrade. You can enable or disable the feature in your organization's settings.
+The Team & Governance plan enables cost estimation by default. You can enable or disable the feature in your organization's settings.
 
 ![enable cost estimation](./images/cost-estimation-enable.png)
 
