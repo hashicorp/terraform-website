@@ -73,3 +73,7 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 ### 2021-03-11
 
 * Added [VCS Events](./vcs-events.html), limited to GitLab.com connections.
+
+### 2021-03-08
+
+* [Workspaces](./workspaces.html): added `current_configuration_version` and `current_configuration_version.ingress_attributes` as includable related resources.
