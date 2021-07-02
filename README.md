@@ -92,7 +92,7 @@ While the preview is running, you can edit pages and Middleman will automaticall
 
 ↥ [back to top](#table-of-contents)
 
-We keep documentation pertaining to core Terraform functionality in the `website` folder of the [`terraform` repository](https://github.com/hashicorp/terraform). You can preview changes to those files from here and from inside the `terraform` repository.
+We keep documentation pertaining to core Terraform functionality in the `website` folder of the [`terraform` repository](https://github.com/hashicorp/terraform). You can preview changes to those files from this repository and from inside the `terraform` repository.
 
 ### From the `terraform` repository
 The build includes content from the `terraform` repository and the `terraform-website` repository, allowing you to preview the entire Terraform documentation site. You can find instructions in [terraform/website/README.md](https://github.com/hashicorp/terraform/tree/main/website).
