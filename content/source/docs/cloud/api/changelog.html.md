@@ -16,6 +16,7 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 ### 2021-07-09
 
 * [State versions](./state-versions.html): Fixed the ID format for the workspace relationship of a state version. Previously, the reported ID was unusable due to a bug.
+* [Workspaces](./workspaces.html): Added `locked_by` as an includable related resource.
 
 ### 2021-06-8
 
