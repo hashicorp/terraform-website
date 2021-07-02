@@ -1532,5 +1532,6 @@ The GET endpoints above can optionally return related resources, if requested wi
 * `current_run.plan` - The plan used in the current run.
 * `current_run.configuration_version` - The configuration used in the current run.
 * `current_run.configuration_version.ingress_attributes` - The commit information used in the current run.
+* `locked_by` - The user, team, or run responsible for locking the workspace, if the workspace is currently locked.
 * `readme` - The most recent workspace README.md
 * `outputs` - The outputs for the most recently applied run.
