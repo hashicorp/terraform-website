@@ -92,16 +92,20 @@ While the preview is running, you can edit pages and Middleman will automaticall
 
 ↥ [back to top](#table-of-contents)
 
-To preview changes from a fork of Terraform core, you need to make sure the necessary submodule is active, then change the contents of the submodule to include your changes.
+We keep documentation pertaining to core Terraform functionality in the `website` folder of the [`terraform` repository](https://github.com/hashicorp/terraform). You can preview changes to those files from this repository or from inside the `terraform` repository itself.
 
-### Activating
+### From the `terraform-website` repository
+
+To preview changes from a fork of Terraform core, you need to first make sure the necessary submodule is active, and then change the contents of the submodule to include your changes.
+
+#### Activating
 
 1. **Init:** Run `git submodule init ext/terraform`.
 2. **Update:** Run `git submodule update`.
 
     The init command doesn't actually init things all the way, so if you forget to run update, you might have a bad afternoon. (For more information, see [Living With Submodules][inpage-submodules] below.)
 
-### Changing
+#### Changing
 
 Once the submodule is active, you can go into its directory to fetch and check out new commits. If you plan to routinely edit those docs, you can add an additional remote to make it easier to fetch from and push to your fork.
 
@@ -123,6 +127,10 @@ To find your fork's repo URL, use the "Clone or Download" button on the main pag
 Once you finish testing your changes, you can reset the submodule to its normal state by returning to the root of `terraform-website` and running `git submodule update`.
 
 **Note:** If you're updating a nav sidebar `.erb` file in a provider or in Terraform core, the Middleman preview server might not automatically refresh the affected pages. The easiest way to deal with it is to stop and restart the preview server.
+
+
+### From the `terraform` repository
+The build includes content from the `terraform` repository and the `terraform-website` repository, allowing you to preview the entire Terraform documentation site. You can find instructions in [terraform/website/README.md](https://github.com/hashicorp/terraform/tree/main/website).
 
 ## Writing Normal Docs Content
 
