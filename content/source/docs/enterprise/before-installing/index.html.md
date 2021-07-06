@@ -137,13 +137,22 @@ For other Linux distributions, check Docker compatibility:
 
 ~> **Important:** We do not recommend running Docker under a 2.x kernel.
 
-### AWS-Specific Configuration
+### Configuring IAM Policies
 
-Terraform Enterprise's instance profile serves as default credentials for Terraform's AWS provider. Workspaces without environment variables for credentials will attempt to use the instance profile to provision AWS resources.
+If you have chosen the [external services operational mode](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision), Terraform Enterprise will need access to an S3-compliant endpoint for object storage. You can grant access to the object storage endpoint by assigning an AWS instance profile, or equivalent IAM system in non-AWS environments.
 
-The instance profile of Terraform Enterprise's instance is the operator's responsibility. If you plan to specify any non-default permissions for Terraform Enterprise's instance profile, be aware that Terraform runs might use those permissions and plan accordingly.
+#### Using the Instance Profile as Default Credentials for Terraform Runs
+Terraform Enterprise's instance profile can also be used to provide default credentials to workspaces. Workspaces without environment variables for credentials will attempt to use the instance profile to provision resources. The convenience of credential-free workspaces comes with a few security caveats, however. Operators should be aware of these risks before choosing to rely on this behavior:
 
-#### S3 Policy
+1. All workspaces will have access to the same instance profile, and thus will have the same permissions. It is not possible to selectively allow or deny access to the instance profile on a per-workspace basis.
+2. Workspaces will share the instance profile with the Terraform Enterprise application. All workspaces within the application will have access to any resources that Terraform Enterprise depends on, such as its S3 bucket, KMS keys, etc.
+
+~> **Important:** If you choose to not rely on the instance profile for default credentials we highly recommend that you [restrict build worker metadata access](../system-overview/security-model.html#restrict-terraform-build-worker-metadata-access), preventing workspaces from accessing the instance profile.
+
+#### AWS Instance Profile Requirements
+Below are the IAM policies Terraform Enterprise requires to operate in AWS environments:
+
+##### S3 Policy
 
 At a minimum, Terraform Enterprise requires the following S3 permissions:
 
@@ -166,7 +175,7 @@ At a minimum, Terraform Enterprise requires the following S3 permissions:
 -> **Note:** The `s3:ListAllMyBuckets` permission is necessary when testing authentication via the Replicated web console. However, the permission is not required for Terraform Enterprise to function and can be removed once the authentication is successfully tested.
 
 
-#### KMS Policy
+##### KMS Policy
 
 At a minimum, Terraform Enterprise will require the following permissions if the objects in the bucket are to be encrypted via resources in AWS's KMS:
 
