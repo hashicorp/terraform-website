@@ -11,7 +11,7 @@ This document explains the security model of Terraform Enterprise and the securi
 
 ## Additional Personas for Terraform Enterprise
 
-In addition to the personas listed in the Terraform Cloud Security Model, Terraform enterprise requires two additional personas required for managing and administering the application.
+In addition to the personas listed in the Terraform Cloud Security Model, Terraform enterprise requires two additional personas for managing and administering the application.
 
 
 ### Infrastructure Admin
@@ -22,7 +22,7 @@ Due to the extensive capabilities granted to this role, the infrastructure admin
 
 ### Site Admin
 
-[Site admins](../admin/admin-access.html) are responsible for application-level configuration of Terraform Enterprise. Via the Admin interface, they will be able to manage all users, workspaces and organizations, and will have access to all data stored within Terraform Enterprise. Site admins are also responsible for configuring SAML, and will be the only users still able to access Terraform Enterprise via username/password once SAML is configured. 
+[Site admins](../admin/admin-access.html) are responsible for application-level configuration of Terraform Enterprise. Via the admin interface they will be able to manage all users, workspaces and organizations and will have access to all data stored within Terraform Enterprise. Site admins are also responsible for configuring SAML and will be the only users still able to access Terraform Enterprise via username/password once SAML is configured. 
 
 Due to the extensive capabilities granted to this role, the site admin role should be restricted to a small number of users within your organization.
 
@@ -55,7 +55,7 @@ In addition the the recommendations provided in the [Terraform Cloud security mo
 
 To minimize attack surface, we recommend running TFE in an isolated network and limiting ingress ports to only 80 and 443. 
 
-For standalone deployments, port 8800 is reserved for the [Replicated admin console](../admin/admin-access.html), which is used for configuring TFE. This port should only be exposed to TFE infrastructure admins. Alternatively, if you choose to configure TFE via the [automated process](../install/automating-the-installer.html), you can disable the Replicated admin console by passing the disable-replicated-ui argument to the installation script:
+For standalone deployments, port 8800 is reserved for the [Replicated admin console](../admin/admin-access.html), which is used for configuring TFE. This port should only be exposed to TFE infrastructure admins. Alternatively, if you choose to configure TFE via the [automated process](../install/automating-the-installer.html), you can disable the Replicated admin console by passing the `disable-replicated-ui` argument to the installation script:
 
 ```sudo bash ./install.sh disable-replicated-ui```
 
@@ -75,15 +75,19 @@ You can also enable this setting via the application settings file file with the
 
 #### Restrict Terraform Build Worker Metadata Access
 
-By default Terraform Enterprise does not prevent Terraform operations from accessing the instance metadata endpoint, which may contain IAM credential or other sensitive data. Unless you are relying on the [instance profile as a means of providing default credentials to TFE workspaces](../before-installing/index.html#aws-specific-configuration), we recommend enabling this setting to prevent Terraform operations from accessing the instance metadata endpoint. This feature can be enabled via the “Restrict Terraform Build Worker Instance Metadata Access” setting under the “Advanced Configuration” section in the installer dashboard’s settings page, or via the [restrict_worker_metadata_access](../install/automating-the-installer.html#restrict_worker_metadata_access) setting in the application settings file.
+By default Terraform Enterprise does not prevent Terraform operations from accessing the instance metadata service, which may contain IAM credentials or other sensitive data. Refer to [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html), [Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/instance-metadata-service?tabs=windows), or [Google Cloud's](https://cloud.google.com/compute/docs/storing-retrieving-metadata) documentation for more information on this service.
+
+TFE allows you to restrict access to the metadata endpoint from Terraform operations, preventing workspaces from reading any data from the metadata service. This feature can be enabled via the “Restrict Terraform Build Worker Instance Metadata Access” setting under the “Advanced Configuration” section in the installer dashboard’s settings page, or via the [restrict_worker_metadata_access](../install/automating-the-installer.html#restrict_worker_metadata_access) setting in the application settings file.
+
+Unless you are relying on the [instance profile as a means of providing default credentials to TFE workspaces](../before-installing/index.html#aws-specific-configuration), we recommend enabling this setting to prevent Terraform operations from accessing the instance metadata endpoint. 
 
 #### Ensure Global Remote State Sharing is Disabled
 
-TFE allows administrators to enable [global remote state sharing](../admin/general.html#remote-state-sharing), a feature that allows any workspace to access the state file of any other workspace within the same organization. We recommend disabling the feature, and relying on [controlled remote state access](https://www.hashicorp.com/blog/announcing-controlled-remote-state-access-for-terraform-cloud-and-enterprise) if you need to share state between workspaces.
+TFE allows administrators to enable [global remote state sharing](../admin/general.html#remote-state-sharing), a feature that allows any workspace to access the state versions of any other workspace within the same organization. We recommend disabling the feature and relying on [controlled remote state access](https://www.hashicorp.com/blog/announcing-controlled-remote-state-access-for-terraform-cloud-and-enterprise) if you need to share state between workspaces.
 
 #### Treat Support Bundles with Care
 
-Support bundles are used to share diagnostic information with HashiCorp support. Please note that support bundles may contain sensitive information from your Terraform Enterprise installation. You should consider these bundles sensitive; they should not be shared with untrusted parties, and should be deleted as soon as possible.
+Support bundles are used to share diagnostic information with HashiCorp support. Please note that support bundles may contain sensitive information from your Terraform Enterprise installation. You should consider these bundles sensitive; they should not be shared with untrusted parties and should be deleted as soon as possible.
 
 #### Regularly Update Terraform Enterprise
 
