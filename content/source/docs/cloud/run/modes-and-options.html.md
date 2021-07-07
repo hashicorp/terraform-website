@@ -17,6 +17,8 @@ Terraform Cloud runs support many of the same modes and options available in the
 
 ## Refresh-Only Mode
 
+> **Hands-on:** Try the [Use Refresh-Only Mode to Sync Terraform State](https://learn.hashicorp.com/tutorials/terraform/refresh) tutorial on HashiCorp Learn.
+
 -> **Version note:** Refresh-only support is available in Terraform Enterprise v202106-1 or later and requires a workspace using at least Terraform CLI v0.15.2.
 
 [Refresh-only mode](/docs/cli/commands/plan.html#planning-modes) instructs Terraform to create a plan which updates the Terraform state to match changes made to remote objects outside of Terraform.
