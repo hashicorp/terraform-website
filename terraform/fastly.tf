@@ -48,6 +48,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "akamai" : "akamai/akamai"
     "alicloud" : "aliyun/alicloud"
     "auth0" : "alexkappa/auth0"
+    "avi": "vmware/avi"
     "aviatrix" : "AviatrixSystems/aviatrix"
     "azuredevops" : "microsoft/azuredevops"
     "baiducloud" : "baidubce/baiducloud"
@@ -82,6 +83,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "huaweicloudstack" : "huaweicloud/huaweicloudstack"
     "icinga2" : "Icinga/icinga2"
     "incapsula" : "imperva/incapsula"
+    "infoblox": "infobloxopen/infoblox"
     "ksyun" : "kingsoftcloud/ksyun"
     "lacework" : "lacework/lacework"
     "launchdarkly" : "launchdarkly/launchdarkly"
@@ -111,6 +113,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "profitbricks" : "ionos-cloud/profitbricks"
     "rabbitmq" : "cyrilgdn/rabbitmq"
     "rancher2" : "rancher/rancher2"
+    "rundeck": "rundeck/rundeck"
     "scaleway" : "scaleway/scaleway"
     "selectel" : "selectel/selectel" # unverified
     "signalfx" : "splunk-terraform/signalfx"
