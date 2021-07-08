@@ -58,7 +58,7 @@ resource "fastly_service_dictionary_items_v1" "tf_provider_namespaces_dictionary
     "cloudamqp" : "cloudamqp/cloudamqp"
     "cloudflare" : "cloudflare/cloudflare"
     "cloudscale" : "cloudscale-ch/cloudscale"
-    "cobbler" : "cobber/cobbler"
+    "cobbler" : "cobbler/cobbler"
     "constellix" : "Constellix/constellix"
     "datadog" : "DataDog/datadog"
     "digitalocean" : "digitalocean/digitalocean"
