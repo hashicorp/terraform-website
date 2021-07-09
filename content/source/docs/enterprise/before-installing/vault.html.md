@@ -13,6 +13,8 @@ By default, Terraform Enterprise automatically configures and manages its own in
 Choosing this option means you assume full responsibility for how the Vault cluster is managed;
 for example, how it is sealed and unsealed, replicated, etc.
 
+!> **Warning:** Multiple Terraform Enterprise instances should not be configured to use the same Vault, unless they are a pair of Active/Active instances. Doing so can result in failures and loss of data. 
+
 ~> **Important:** The external Vault option must be selected at initial installation, and cannot be changed later.
 Do not attempt to migrate an existing Terraform Enterprise instance between internal and external
 Vault options.
