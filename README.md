@@ -60,8 +60,12 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 
 ↥ [back to top](#table-of-contents)
 
-**For changes in this repo:** Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
-**For changes in hashicorp/terraform:** Merge the PR to master. The changes will appear in the next major Terraform release.
+### For changes in this repo
+
+Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
+
+### For changes in `hashicorp/terraform`
+Merge the PR to master. The changes will appear in the next major Terraform release.
 
 If you need your changes to be deployed sooner, cherry-pick them to:
 - the current release branch (e.g. `v1.0`) and push. They will be deployed in the next minor version release (once every two weeks).
