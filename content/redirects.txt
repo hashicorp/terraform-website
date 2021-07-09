@@ -909,3 +909,8 @@
 /docs/commands/env.html                     /docs/cli/commands/env.html
 /docs/commands/push.html                    /docs/cli/commands/push.html
 /docs/plugins/signing.html                  /docs/cli/plugins/signing.html
+
+# Final cleanup of legacy providers docs
+/docs/providers/index.html          /docs/language/providers/index.html
+/docs/providers/                    /docs/language/providers/index.html
+/docs/providers                     /docs/language/providers/index.html
