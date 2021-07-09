@@ -24,7 +24,7 @@ page_title: "State Versions - API Docs - Terraform Cloud and Terraform Enterpris
 
 ## Create a State Version
 
-> **Hands-on:** Try the [Terraform API State Versioning](https://learn.hashicorp.com/tutorials/terraform/tfc-state-api?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+> **Hands-on:** Try the [Version Remote State with the Terraform Cloud API](https://learn.hashicorp.com/tutorials/terraform/cloud-state-api?in=terraform/cloud&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
 `POST /workspaces/:workspace_id/state-versions`
 
