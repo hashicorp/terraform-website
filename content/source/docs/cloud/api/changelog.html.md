@@ -13,6 +13,10 @@ page_id: "api-changelog"
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
+### 2021-07-09
+
+* [State versions](./state-versions.html): Fixed the ID format for the workspace relationship of a state version. Previously, the reported ID was unusable due to a bug.
+
 ### 2021-06-8
 
 * Updated [Registry Module APIs](./modules.html).
