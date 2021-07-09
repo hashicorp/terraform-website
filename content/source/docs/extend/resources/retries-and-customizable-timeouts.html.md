@@ -44,9 +44,12 @@ In the above example we see the usage of the timeouts in the schema being config
 
 ## Retry
 
-A common case for requiring retries or polling is when the backend infrastructure being provisioned is designed to be asynchronous, requiring the developer to repeatedly check the status of the resource. The retry helper takes a timeout and a function that is retried repeatedly. The timeout can be retrieved from the `*schema.ResourceData` struct, using the `Timeout` method, passing in the appropriate timeout key (`schema.TimeoutCreate`). The retry function provided should return either a `resource.NonRetryableError` for unexpected errors or states, otherwise continue to retry with a `resource.RetryableError`.
+The retry helper takes a timeout and a retry function. 
 
-In the context of a `CREATE` function, once the backend responds with the desired state, invoke the `READ` function. If `READ` errors, return that error wrapped with `resource.NonRetryableError`. Otherwise, return `nil` (no error) from the retry function. (Updated to reflect [stricter behavior of Terraform SDK v2](https://www.terraform.io/docs/extend/guides/v2-upgrade-guide.html#clearer-handling-of-nil-for-helper-resource-nonretryableerror-and-helper-resource-retryableerror).)
+- The **timeout** value specifies the maximum time Terraform will invoke the retry function. You can retrieve the timeout from the `*schema.ResourceData` struct by passing the timeout key (`schema.TimeoutCreate`) to the `Timeout` method.
+- The **retry function** returns either a `resource.NonRetryableError` for unexpected errors/states or a `resource.RetryableError` for expected errrors/states. If the function returns a `resource.RetryableError`, it will re-run the function.
+
+In the context of a `CREATE` function, once the backend responds with the desired state, invoke the `READ` function. If `READ` errors, return that error wrapped with `resource.NonRetryableError`. Otherwise, return `nil` (no error) from the retry function.
 
 ```go
 func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) error {
