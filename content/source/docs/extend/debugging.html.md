@@ -139,6 +139,13 @@ providers. The main differences are:
   graph; instead the same provider process will be reused until the command is
   completed.
 
+~> **Important:** You may need to disable compiler optimization and
+   [inlining](https://en.wikipedia.org/wiki/Inline_expansion)
+   to have the debugger work efficiently with the provider binary.
+   To do so, build the provider binary with the necessary
+   [Go compiler flags (gcflags)](https://golang.org/cmd/compile/):
+   `go build gcflags="all=-N -l"`
+   
 ### Starting A Provider In Debug Mode
 
 Once a provider has a debug mode added to its `main` function, it can be
