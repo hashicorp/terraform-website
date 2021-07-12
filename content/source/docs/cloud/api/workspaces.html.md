@@ -1645,7 +1645,7 @@ organization tag is found, no action will occur for that entry.
 
 | Parameter            | Description      |
 | -------------------- | -----------------|
-| `:workspace_id`      | The workspace ID to add tags to. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
+| `:workspace_id`      | The workspace ID to remove tags from. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
 
 Status  | Response                                     | Reason(s)
 --------|----------------------------------------------|----------
@@ -1661,8 +1661,8 @@ It is important to note that `type`, as well as one of `id` *or* `name` is requi
 | Key path      | Type   | Default | Description                      |
 | ------------- | ------ | ------- | -------------------------------- |
 | `data[].type` | string |         | Must be `"tags"`.                |
-| `data[].id`   | string |         | The id of the tag to add.        |
-| `data[].name` | string |         | The name of the tag to add.      |
+| `data[].id`   | string |         | The id of the tag to remove.        |
+| `data[].name` | string |         | The name of the tag to remove.      |
 
 ### Sample Request
 

@@ -1,0 +1,126 @@
+---
+layout: "cloud"
+page_title: "Organization Tags - API Docs - Terraform Cloud and Terraform Enterprise"
+---
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+[JSON API document]: /docs/cloud/api/index.html#json-api-documents
+[JSON API error object]: https://jsonapi.org/format/#error-objects
+
+# Organization Tags API
+
+TODO: Add a blurb
+
+## Get Tags
+
+`GET /organizations/:organization_name/tags`
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization's module producers to view
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/organizations/hashicorp/tags
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "tag-1",
+      "type": "tags",
+      "attributes": {
+        "name": "tag1",
+        "instance_count": 1
+      },
+      "relationships": {
+        "organization": {
+          "data": {
+            "id": "my-organization",
+            "type": "organizations"
+          }
+        }
+      }
+    },
+    {
+      "id": "tag-2",
+      "type": "tags",
+      "attributes": {
+        "name": "tag2",
+        "instance_count": 2
+      },
+      "relationships": {
+        "organization": {
+          "data": {
+            "id": "my-organization",
+            "type": "organizations"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+## Delete tags
+
+This endpoint deletes one or more tags from an organization. The organization and tags must already
+exist.
+
+`DELETE /organizations/hashicorp/tags`
+
+Parameter            | Description
+---------------------|------------
+`:organization_name` | The name of the organization to delete tags from
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[204][] | Nothing                                      | Successfully removed tags from organization
+[404][] | [JSON API error object][]                    | Organization or one or more tags not found, or user unauthorized to perform action
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+It is important to note that `type` and `id` are required.
+
+| Key path      | Type   | Default | Description                      |
+| ------------- | ------ | ------- | -------------------------------- |
+| `data[].type` | string |         | Must be `"tags"`.                |
+| `data[].id`   | string |         | The id of the tag to remove.     |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/organizations/hashicorp/tags
+
+## Sample Response
+
+No response body.
+
+Status code `204`.
