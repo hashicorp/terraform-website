@@ -157,11 +157,12 @@ func testAccCheckExampleResourceExists(n string, widget *example.Widget) resourc
 			return err
 		}
 
-		// If no error, assign the response Widget attribute to the widget pointer
-		*widget = *resp.Widget
-		if *widget == nil {
+		if resp.Widget == nil {
 			return fmt.Errorf("Widget (%s) not found", rs.Primary.ID)
 		}
+
+		// assign the response Widget attribute to the widget pointer
+		*widget = *resp.Widget
 
 		return nil
 	}
