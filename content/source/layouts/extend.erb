@@ -1,182 +1,178 @@
 <% wrap_layout :inner do %>
   <% content_for :sidebar do %>
-    <h4><a href="/docs/extend/index.html">Extending Terraform</a></h4>
+    <h4><a href="/docs/extend/index.html">Building Terraform Providers</a></h4>
 
     <ul class="nav docs-sidenav">
-      <li<%= sidebar_current("docs-extend-how-terraform-works") %>>
-        <a href="/docs/extend/how-terraform-works.html">How Terraform Works</a>
-      </li>
-      <li<%= sidebar_current("docs-extend-plugin-types") %>>
-        <a href="/docs/extend/plugin-types.html">Plugin Types</a>
-      </li>
-      <li<%= sidebar_current("docs-extend-writing-custom-providers") %>>
-        <!-- possibly make this "Guides" and collect some? -->
-        <a href="https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS">
-          Writing Custom Providers
-          <img src="/assets/images/outbound-link.svg" width="20" height="20" aria-hidden="true" style="vertical-align: text-bottom;">
-        </a>
-      </li>
-      <li<%= sidebar_current("docs-extend-hashicorp-provider-design-principles") %>>
-        <a href="/docs/extend/hashicorp-provider-design-principles.html">HashiCorp Provider Design Principles</a>
-      </li>
       <li>
-        <a href="/docs/extend/debugging.html">Debugging Providers</a>
-      </li>
-
-      <li<%= sidebar_current("docs-extend-guides") %>>
-        <a href="#">Guides</a>
+        <a href="/docs/extend/sdkv2.html">SDKv2</a>
         <ul class="nav">
-          <li<%= sidebar_current("docs-extend-plugin-sdk") %>>
-            <a href="/docs/extend/guides/v1-upgrade-guide.html">Switching to the standalone SDK</a>
+          <li>
+            <a href="/docs/extend/how-terraform-works.html">How Terraform Works</a>
           </li>
-          <li<%= sidebar_current("docs-extend-guides-v2-upgrade") %>>
-            <a href="/docs/extend/guides/v2-upgrade-guide.html">v2 Upgrade Guide</a>
+          <li>
+            <a href="/docs/extend/plugin-types.html">Plugin Types</a>
+          </li>
+          <li>
+            <!-- possibly make this "Guides" and collect some? -->
+            <a href="https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS">
+              Writing Custom Providers
+              <img src="/assets/images/outbound-link.svg" width="20" height="20" aria-hidden="true" style="vertical-align: text-bottom;">
+            </a>
+          </li>
+          <li>
+            <a href="/docs/extend/hashicorp-provider-design-principles.html">HashiCorp Provider Design Principles</a>
+          </li>
+          <li>
+            <a href="/docs/extend/debugging.html">Debugging Providers</a>
+          </li>
+
+          <li>
+            <a href="#">Guides</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/extend/terraform-0.12-compatibility.html">Compatibility with Terraform 0.12</a>
+              </li>
+              <li>
+                <a href="/docs/extend/guides/v1-upgrade-guide.html">Switching to the standalone SDK</a>
+              </li>
+              <li>
+                <a href="/docs/extend/guides/v2-upgrade-guide.html">v2 Upgrade Guide</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="/docs/extend/schemas/index.html">Schemas</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/extend/schemas/schema-types.html">Schema Types</a>
+              </li>
+              <li>
+                <a href="/docs/extend/schemas/schema-behaviors.html">Schema Behaviors</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/docs/extend/resources/index.html">Resources</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/extend/resources/customizing-differences.html">Customizing Differences</a>
+              </li>
+              <li>
+                <a href="/docs/extend/resources/import.html">Import</a>
+              </li>
+              <li>
+                <a href="/docs/extend/resources/retries-and-customizable-timeouts.html">Retries and Customizable Timeouts</a>
+              </li>
+              <li>
+                <a href="/docs/extend/resources/state-migration.html">State Migration</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/docs/extend/best-practices/index.html">Best Practices</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/extend/best-practices/naming.html">Naming</a>
+              </li>
+
+              <li>
+                <a href="/docs/extend/best-practices/depending-on-providers.html">Depending on Providers</a>
+              </li>
+
+              <li>
+                <a href="/docs/extend/best-practices/deprecations.html">Deprecations, Removals, and Renames</a>
+              </li>
+
+              <li>
+                <a href="/docs/extend/best-practices/detecting-drift.html">Detecting Drift</a>
+              </li>
+
+              <li>
+                <a href="/docs/extend/best-practices/sensitive-state.html">Handling Sensitive Data</a>
+              </li>
+
+              <li>
+                <a href="/docs/extend/best-practices/testing.html">Testing Patterns</a>
+              </li>
+
+              <li>
+                <a href="/docs/extend/best-practices/versioning.html">Versioning and Changelog</a>
+              </li>
+
+              <li>
+                <a href="/docs/extend/best-practices/other-languages.html">Writing Non-Go Providers</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="/docs/extend/testing/index.html">Testing</a>
+            <ul class="nav">
+              <li>
+                <a href="/docs/extend/testing/acceptance-tests/index.html">Acceptance Tests</a>
+                  <ul class="nav">
+                    <li>
+                      <a href="/docs/extend/testing/acceptance-tests/testcase.html">Test Cases</a>
+                    </li>
+                    <li>
+                      <a href="/docs/extend/testing/acceptance-tests/teststep.html">Test Steps</a>
+                    </li>
+                    <li>
+                      <a href="/docs/extend/testing/acceptance-tests/sweepers.html">Sweepers</a>
+                    </li>
+                  </ul>
+              </li>
+              <li>
+                <a href="/docs/extend/testing/unit-testing.html">Unit Testing</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>
 
-      <li<%= sidebar_current("docs-extend-schemas") %>>
-        <a href="/docs/extend/schemas/index.html">Schemas</a>
-        <ul class="nav">
-          <li<%= sidebar_current("docs-extend-schemas-types") %>>
-            <a href="/docs/extend/schemas/schema-types.html">Schema Types</a>
-          </li>
-          <li<%= sidebar_current("docs-extend-schemas-behaviors") %>>
-            <a href="/docs/extend/schemas/schema-behaviors.html">Schema Behaviors</a>
-          </li>
-<%
-#Not yet
-=begin
-          <li<%= sidebar_current("docs-extend-schemas-methods") \%\>>
-          TODO: fix the \%\> above, it's changed to not mess with the multiline begin/end comment
-            <!-- Document methods of type Schema: DiffSuppressFunc, DefaultFunc, StateFunc, et. al -->
-            <a href="/docs/extend/schemas/schema-methods.html">Schema Methods</a>
-          </li>
-=end
-%>
-        </ul>
-      </li>
-      <li<%= sidebar_current("docs-extend-resources") %>>
-        <a href="/docs/extend/resources/index.html">Resources</a>
-        <ul class="nav">
-          <li<%= sidebar_current("docs-extend-resources-customizing-differences") %>>
-            <a href="/docs/extend/resources/customizing-differences.html">Customizing Differences</a>
-          </li>
-          <li<%= sidebar_current("docs-extend-resources-import") %>>
-            <a href="/docs/extend/resources/import.html">Import</a>
-          </li>
-          <li<%= sidebar_current("docs-extend-resources-retries-and-customizable-timeouts") %>>
-            <a href="/docs/extend/resources/retries-and-customizable-timeouts.html">Retries and Customizable Timeouts</a>
-          </li>
-          <li<%= sidebar_current("docs-extend-resources-state-migration") %>>
-            <a href="/docs/extend/resources/state-migration.html">State Migration</a>
-          </li>
-        </ul>
-      </li>
-      <li<%= sidebar_current("docs-extend-best-practices") %>>
-        <a href="/docs/extend/best-practices/index.html">Best Practices</a>
-        <ul class="nav">
-          <li<%= sidebar_current("docs-extend-best-practices-naming") %>>
-            <a href="/docs/extend/best-practices/naming.html">Naming</a>
-          </li>
-
-	  <li<%= sidebar_current("docs-extend-best-practices-depending-on-providers") %>>
-            <a href="/docs/extend/best-practices/depending-on-providers.html">Depending on Providers</a>
-	  </li>
-
-          <li<%= sidebar_current("docs-extend-best-practices-deprecations") %>>
-            <a href="/docs/extend/best-practices/deprecations.html">Deprecations, Removals, and Renames</a>
-          </li>
-
-          <li<%= sidebar_current("docs-extend-best-practices-drift") %>>
-            <a href="/docs/extend/best-practices/detecting-drift.html">Detecting Drift</a>
-          </li>
-
-          <li<%= sidebar_current("docs-extend-best-practices-sensitive-state") %>>
-            <a href="/docs/extend/best-practices/sensitive-state.html">Handling Sensitive Data</a>
-          </li>
-
-          <li<%= sidebar_current("docs-extend-best-practices-testing") %>>
-            <a href="/docs/extend/best-practices/testing.html">Testing Patterns</a>
-          </li>
-
-          <li<%= sidebar_current("docs-extend-best-practices-versioning") %>>
-            <a href="/docs/extend/best-practices/versioning.html">Versioning and Changelog</a>
-          </li>
-
-          <li<%= sidebar_current("docs-extend-best-practices-other-languages") %>>
-            <a href="/docs/extend/best-practices/other-languages.html">Writing Non-Go Providers</a>
-          </li>
-        </ul>
-      </li>
-
-      <li<%= sidebar_current("docs-extend-testing") %>>
-        <a href="/docs/extend/testing/index.html">Testing</a>
-        <ul class="nav">
-          <li<%= sidebar_current("docs-extend-testing-acceptance") %>>
-            <a href="/docs/extend/testing/acceptance-tests/index.html">Acceptance Tests</a>
-              <ul class="nav">
-                <li<%= sidebar_current("docs-extend-testing-acceptance-testcase") %>>
-                  <a href="/docs/extend/testing/acceptance-tests/testcase.html">Test Cases</a>
-                </li>
-                <li<%= sidebar_current("docs-extend-testing-acceptance-teststep") %>>
-                  <a href="/docs/extend/testing/acceptance-tests/teststep.html">Test Steps</a>
-                </li>
-                <li<%= sidebar_current("docs-extend-testing-acceptance-sweepers") %>>
-                  <a href="/docs/extend/testing/acceptance-tests/sweepers.html">Sweepers</a>
-                </li>
-              </ul>
-          </li>
-          <li<%= sidebar_current("docs-extend-testing-unit") %>>
-            <a href="/docs/extend/testing/unit-testing.html">Unit Testing</a>
-          </li>
-          <!--
-          <li<%= sidebar_current("docs-extend-testing-patterns") %>>
-            <a href="/docs/extend/testing/testing-patterns.html">Resource Test Patterns</a>
-          </li>
-          -->
-        </ul>
-      </li>
-
-      <li<%= sidebar_current("docs-extend-community") %>>
+      <li>
         <a href="/docs/extend/community/index.html">Community</a>
         <ul class="nav">
-          <li<%= sidebar_current("docs-extend-community-contributing") %>>
+          <li>
             <a href="/docs/extend/community/contributing.html">Contributing</a>
           </li>
-          <li<%= sidebar_current("docs-extend-community-code-of-conduct") %>>
+          <li>
             <a href="/docs/extend/community/code-of-conduct.html">Code of Conduct</a>
           </li>
-          <li<%= sidebar_current("docs-extend-community-events") %>>
+          <li>
             <a href="/docs/extend/community/events/index.html">Events</a>
             <ul class="nav">
-              <li<%= sidebar_current("docs-extend-community-events-2018-fall-gardening") %>>
+              <li>
                 <a href="/docs/extend/community/events/2018/fall-gardening.html">Gardening - Fall 2018</a>
               </li>
             </ul>
           </li>
-          <li<%= sidebar_current("docs-extend-community-maintainers") %>>
+          <li>
             <a href="/docs/extend/community/maintainers.html">Maintainers</a>
           </li>
         </ul>
       </li>
 
-      <li<%= sidebar_current("docs-extend-0.12-compatibility") %>>
-        <a href="/docs/extend/terraform-0.12-compatibility.html">Compatibility with Terraform 0.12</a>
-      </li>
+      <!--
+      <li>
+        <a href="/docs/plugin/framework">terraform-plugin-framework Docs</a>
+        </li>
+        soon!
+      -->
 
-      <li<%= sidebar_current("guides-terraform-provider-development-program") %>>
+      <li>
         <a href="/guides/terraform-provider-development-program.html">Terraform Provider Development Program</a>
       </li>
 
       <hr>
 
-      <li<%= sidebar_current("docs-extend-internals") %>>
+      <li>
         <a class="back" href="/docs/internals/index.html">Terraform Internals</a>
       </li>
     </ul>
 
-    <%= partial("layouts/otherdocs", :locals => { :skip => "Extending Terraform" }) %>
+    <%= partial("layouts/otherdocs", :locals => { :skip => "Building Terraform Providers" }) %>
   <% end %>
 
   <%= yield %>

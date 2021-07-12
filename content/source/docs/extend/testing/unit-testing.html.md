@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Unit Testing"
+page_title: "Building Terraform Providers - Unit Testing"
 sidebar_current: "docs-extend-testing-unit"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
+  Building Terraform Providers is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
 ---
 

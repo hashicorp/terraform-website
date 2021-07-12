@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Non-Go Providers"
+page_title: "Building Terraform Providers: Non-Go Providers"
 sidebar_current: "docs-extend-best-practices-other-languages"
 description: |-
   Information about writing providers in programming languages other than Go.

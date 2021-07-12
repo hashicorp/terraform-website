@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Depending on Providers"
+page_title: "Building Terraform Providers: Depending on Providers"
 sidebar_current: "docs-extend-best-practices-depending-on-providers"
 description: |-
   How to safely depend on providers and understand their interfaces.

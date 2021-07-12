@@ -66,7 +66,7 @@ Terraform Enterprise is an on-premise distribution of Terraform Cloud. It offers
 
 Documentation about publishing Terraform providers and modules on the [Terraform Registry](https://registry.terraform.io/).
 
-### [Extending Terraform ➜](/docs/extend/index.html)
+### [Building Terraform Providers ➜](/docs/extend/index.html)
 
 -> If you need to create a new Terraform provider (for a public cloud service or a purely internal service), go here.
 

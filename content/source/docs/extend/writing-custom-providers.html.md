@@ -15,7 +15,7 @@ guide details how to build a custom provider for Terraform.
 ~> NOTE: This guide details steps to author code and compile a working Provider.
 It omits many implementation details in order to get developers going with
 coding an example Provider and executing it with Terraform. Please refer to the
-rest of the [Extending Terraform](/docs/extend/index.html) for a more complete
+rest of the [Building Terraform Providers](/docs/extend/index.html) for a more complete
 reference on authoring Providers and Resources. 
 
 ## Why?

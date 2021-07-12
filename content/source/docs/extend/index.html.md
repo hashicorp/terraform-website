@@ -1,29 +1,27 @@
 ---
 layout: "extend"
-page_title: "Home - Extending Terraform"
-sidebar_current: "docs-extend-home"
+page_title: "Home - Building Terraform Providers"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Building Terraform Providersis a section for content dedicated to developing
+  providers to extend Terraform's core offering.
 ---
 
-# Extending Terraform
+# Building Terraform Providers
 
 Terraform can be extended to allow users to manage more infrastructure providers with
-[Providers](/docs/providers/index.html)
-(containing [Resources](/docs/configuration/resources.html)
-and/or [Data Sources](/docs/language/data-sources/index.html)). **Providers**
-are a type of Terraform "Plugin".
+[providers](/docs/providers/index.html)
+(containing [resources](/docs/configuration/resources.html)
+and/or [data sources](/docs/language/data-sources/index.html)). **Providers**
+are a type of Terraform "plugin".
 
 ~> This is an advanced section! If you are looking for information on using
-Terraform with any of the existing Plugins, please refer to the
+Terraform with any of the existing plugins, please refer to the
 [Docs](/docs/index.html) section of this website.
 
-The Extending Terraform section contains content for users who wish to
-extend Terraform. The intended audience is anyone wanting to add or edit source
-code (“developers”) for either Terraform itself or a Terraform Plugin. The
-content assumes you have basic operating knowledge or experience using
-Terraform.
+The Building Terraform Providers section contains content for users who wish to
+build their own providers. The intended audience is anyone wanting to add or
+edit source code (“developers”) for a Terraform provider. The content assumes
+you have basic operating knowledge or experience using Terraform.
 
 Below is a brief description of each section. The content is organized from
 simplest to most complex — developers new to writing code for Terraform should

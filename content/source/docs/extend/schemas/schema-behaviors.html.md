@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Schema Behaviors"
+page_title: "Building Terraform Providers - Schema Behaviors"
 sidebar_current: "docs-extend-schemas-behaviors"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
+  Building Terraform Providers is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
 ---
 
