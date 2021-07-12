@@ -96,7 +96,7 @@ Parameter            | Description
 Status  | Response                                     | Reason(s)
 --------|----------------------------------------------|----------
 [204][] | Nothing                                      | Successfully removed tags from organization
-[404][] | [JSON API error object][]                    | Organization or one or more tags not found, or user unauthorized to perform action
+[404][] | [JSON API error object][]                    | Organization not found, or user unauthorized to perform action
 
 ### Request Body
 
@@ -120,6 +120,84 @@ curl \
   https://app.terraform.io/api/v2/organizations/hashicorp/tags
 
 ## Sample Response
+
+No response body.
+
+Status code `204`.
+
+## Add workspaces to a tag
+
+`POST /tags/:tag_id/relationships/workspaces`
+
+| Parameter            | Description      |
+| -------------------- | -----------------|
+| `:tag_id`            | The ID of the tag that workspaces should have added. |
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[204][] | Nothing                                      | Successfully added workspaces to tag
+[404][] | [JSON API error object][]                    | Tag not found, or user unauthorized to perform action
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+| Key path      | Type   | Default | Description                      |
+| ------------- | ------ | ------- | -------------------------------- |
+| `data[].type` | string |         | Must be `"workspaces"`.          |
+| `data[].id`   | string |         | The id of the workspace to add.  |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/tags/tag-2/relationships/workspaces
+```
+
+### Sample Response
+
+No response body.
+
+Status code `204`.
+
+## Remove workspaces from a tag
+
+`DELETE /tags/:tag_id/relationships/workspaces`
+
+| Parameter            | Description      |
+| -------------------- | -----------------|
+| `:tag_id`            | The ID of the tag that workspaces should have added. |
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[204][] | Nothing                                      | Successfully removed workspaces from tag
+[404][] | [JSON API error object][]                    | Tag not found, or user unauthorized to perform action
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+| Key path      | Type   | Default | Description                      |
+| ------------- | ------ | ------- | -------------------------------- |
+| `data[].type` | string |         | Must be `"workspaces"`.          |
+| `data[].id`   | string |         | The id of the workspace to remove.  |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/tags/tag-2/relationships/workspaces
+```
+
+### Sample Response
 
 No response body.
 
