@@ -87,7 +87,7 @@ $ curl \
 This endpoint deletes one or more tags from an organization. The organization and tags must already
 exist.
 
-`DELETE /organizations/hashicorp/tags`
+`DELETE /organizations/:organization_name/tags`
 
 Parameter            | Description
 ---------------------|------------
