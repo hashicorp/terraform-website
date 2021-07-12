@@ -75,7 +75,7 @@ If you need your changes to be deployed sooner, cherry-pick them to:
 Currently, HashiCorp uses a CircleCI job to deploy the [terraform.io](terraform.io) site. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
 
 
-New commits in `hashicorp/terraform` don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can do a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
+New commits in `hashicorp/terraform` don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can trigger a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
 - Log in to circleci.com, and  make sure you're viewing the HashiCorp organization.
 - Go to the terraform-website project's list of workflows.
 - Find the most recent "website-deploy" workflow, and click the "Rerun workflow from start" button (which looks like a refresh button with a numeral "1" inside).
