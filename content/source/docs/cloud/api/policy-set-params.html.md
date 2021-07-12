@@ -75,7 +75,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/policy-set/pol-u3S5p2Uwk21keu1s/parameters
+  https://app.terraform.io/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters
 ```
 
 ### Sample Response
