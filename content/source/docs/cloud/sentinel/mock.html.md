@@ -26,7 +26,7 @@ runtime documentation](https://docs.hashicorp.com/sentinel).
 and all data within the configuration, plan, and state. Terraform attempts to
 scrub sensitive data from these mocks, but we do not guarantee 100% accuracy.
 Treat this data with care, and avoid generating mocks with live sensitive data
-if at all possible. Access to this information requires permission to download
+when possible. Access to this information requires [permission to download Sentinel mocks](/docs/cloud/users-teams-organizations/permissions.html)
 Sentinel mocks for the workspace where the data was generated.  ([More about
 permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
