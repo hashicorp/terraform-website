@@ -30,7 +30,7 @@ The Users Admin API contains endpoints to help site administrators manage user a
 
 ## List all users
 
-`GET /admin/users`
+`GET /api/v2/admin/users`
 
 This endpoint lists all user accounts in the Terraform Enterprise installation.
 
