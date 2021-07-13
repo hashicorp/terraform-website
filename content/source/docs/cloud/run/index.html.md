@@ -43,6 +43,14 @@ Whenever a new run is initiated, it's added to the end of the queue. If there's 
 
 When you initiate a run, Terraform Cloud locks the run to a particular configuration version and set of variable values. If you change variables or commit new code before the run finishes, it will only affect future runs, not runs that are already pending, planning, or awaiting apply.
 
+### Workspace Locks
+
+When a workspace is _locked,_ new runs can be queued (automatically or manually) but no new runs can begin until the workspace is unlocked.
+
+When a run is in progress, that run locks the workspace, as described above under "Ordering and Timing".
+
+A user or team can also deliberately lock a workspace, to perform maintenance or for any other reason. For more details, see [Locking Workspaces (Preventing Runs)](manage.html#locking-workspaces-preventing-runs-).
+
 ## Starting Runs
 
 Terraform Cloud has three main workflows for managing runs, and your chosen workflow determines when and how Terraform runs occur. For detailed information, see:
@@ -51,7 +59,7 @@ Terraform Cloud has three main workflows for managing runs, and your chosen work
 - The [API-driven run workflow](./api.html), which is more flexible but requires you to create some tooling.
 - The [CLI-driven run workflow](./cli.html), which uses Terraform's standard CLI tools to execute runs in Terraform Cloud.
 
-In more abstract terms, runs can be initiated by VCS webhooks, the manual "Queue Plan" button on a workspace, the standard `terraform apply` command (with the remote backend configured), and [the Runs API](../api/run.html) (or any tool that uses that API).
+In more abstract terms, runs can be initiated by VCS webhooks, the manual "Start new run" action in the workspace actions menu, the standard `terraform apply` command (with the remote backend configured), and [the Runs API](../api/run.html) (or any tool that uses that API).
 
 ## Plans and Applies
 
@@ -84,6 +92,10 @@ Retrying a plan requires permission to queue plans for that workspace. ([More ab
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Retrying the run will create a new run with the same configuration version. If it is a VCS-backed workspace, the pull request interface will receive the status of the new run, along with a link to the new run.
+
+## Planning Modes and Options
+
+In addition to the normal run workflows described above, Terraform Cloud supports destroy runs, refresh-only runs, and several planning options that can modify the behavior of a run. For more details, see [Run Modes and Options](./modes-and-options.html).
 
 ## Run States
 

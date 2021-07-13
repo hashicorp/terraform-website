@@ -65,7 +65,6 @@ The following filters are available:
 
     The name filter can combine with a status filter, to narrow the list down further.
 
-
 ## Planning and Organizing Workspaces
 
 We recommend that organizations break down large monolithic Terraform configurations into smaller ones, then assign each one to its own workspace and delegate permissions and responsibilities for them. Terraform Cloud can manage monolithic configurations just fine, but managing infrastructure as smaller components is the best way to take full advantage of Terraform Cloud's governance and delegation features.

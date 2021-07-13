@@ -27,11 +27,13 @@ In a workspace linked to a VCS repo, runs start automatically when you merge or 
 
 A workspace is linked to one branch of its repository, and ignores changes to other branches. Workspaces can also ignore some changes within their branch: if a Terraform working directory is configured, Terraform Cloud assumes that only some of the content in the repository is relevant to Terraform, and ignores changes outside of that content. (This behavior can be configured; for details, see [Settings: Automatic Run Triggering](../workspaces/vcs.html#automatic-run-triggering).)
 
--> **Note:** A workspace with no runs will not accept new runs via VCS webhook. At least one run must be manually queued to confirm that the workspace is ready for further runs. 
+-> **Note:** A workspace with no runs will not accept new runs via VCS webhook. At least one run must be manually queued to confirm that the workspace is ready for further runs.
 
 ## Manually Starting Runs
 
-When you initially set up the workspace and add variables, or when the code in version control hasn't changed but you've modified some variables, you can manually queue a plan from the UI. Each workspace has a "Queue Plan" button for this purpose. Manually queueing a plan requires permission to queue plans for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+When you initially set up the workspace and add variables, or when the code in version control hasn't changed but you've modified some variables, you can manually start a run from the UI. Each workspace has an "Actions" menu in its header, which includes a "Start new plan" action for this purpose. When creating a new plan, you can optionally provide a message and can choose between normal and [refresh-only](./modes-and-options.html#refresh-only-mode) modes.
+
+Manually starting a run requires permission to queue plans for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
