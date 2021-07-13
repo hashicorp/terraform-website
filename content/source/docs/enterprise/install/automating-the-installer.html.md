@@ -18,6 +18,8 @@ You may also need to provide additional flags (such as the instance's public and
 
 This document expects that the user is already familiar with how to do a [manual install](./installer.html#installation).
 
+-> **Note**: The `/etc/replicated.conf`, the license file, and TLS certificate files need to allow read access from other groups.
+
 ## Application settings
 
 This file contains the values you would normally provide in the settings screen, which may be as simple as choosing the *Demo* installation type or as complex as specifying the PostgreSQL connection string and S3 bucket credentials and parameters. You need to create this file first since it is referenced in the `ImportSettingsFrom` property in `/etc/replicated.conf`, which will be described below.
