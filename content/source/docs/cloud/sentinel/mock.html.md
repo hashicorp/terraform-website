@@ -86,7 +86,7 @@ mock-tfrun.sentinel       # tfrun mock data
 sentinel.hcl              # sample configruation file
 ```
 
-The sample `sentinel.hcl` file will contain mappings to the mocks so that you
+The sample `sentinel.hcl` file contains mappings to the mocks so that you
 can get started testing with `sentinel apply` right away. For `sentinel test`,
 however, we recommend a more detailed layout.
 
