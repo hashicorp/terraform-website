@@ -90,7 +90,7 @@ The sample `sentinel.hcl` file contains mappings to the mocks so that you
 can get started testing with `sentinel apply` right away. For `sentinel test`,
 however, we recommend a more detailed layout.
 
-The recommended placement of the files for `sentinel test` is in a subdirectory
+We recommend placing the files for `sentinel test` in a subdirectory
 of the repository holding your policies, so they don't interfere with the
 command's automatic policy detection. While the test data is Sentinel code, it's
 not a policy and will produce errors if evaluated like one.
