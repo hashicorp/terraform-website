@@ -137,7 +137,7 @@ For other Linux distributions, check Docker compatibility:
 
 ~> **Important:** We do not recommend running Docker under a 2.x kernel.
 
-### Configuring IAM Policies
+### IAM Policies
 
 If you have chosen the [external services operational mode](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision), Terraform Enterprise will need access to an S3-compliant endpoint for object storage. You can grant access to the object storage endpoint by assigning an AWS instance profile, or equivalent IAM system in non-AWS environments.
 
