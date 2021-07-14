@@ -31,7 +31,7 @@ Due to the extensive capabilities granted to this role, the site admin role shou
 
 All of the content on [Terraform Cloud security model](../../cloud/architectural-details/security-model.html) applies to Terraform Enterprise, with the exception of the points listed below.
 
-### TFE Requires You to Manage and Secure the Underlying Network and Infrastructure
+### Terraform Enterprise Requires You to Manage and Secure the Underlying Network and Infrastructure
 
 Infrastructure admins are required to manage all aspects of the underlying infrastructure. This includes initial provisioning, secure configuration, access control, network ACL configuration, and OS-level software updates. Terraform Enterprise cannot ensure the security of your data if the underlying infrastructure is compromised.
 
