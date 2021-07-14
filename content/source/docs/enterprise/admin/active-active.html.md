@@ -50,7 +50,12 @@ This command will quiesce the current node and remove it from service. It will a
 tfe-admin app-config -k <KEY> -v <VALUE>
 ```
 
-This command allows users to make ad hoc/realtime application changes, such as `capacity_concurrency` via the CLI. Both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value) must be provided. A complete list of the current `app-config` settings can be found by running `replicatedctl app-config export`. After making configuration changes, the Terraform Enterprise application must be restarted **on each node instance** for the configuration changes to take effect. To restart Terraform Enterprise, first stop the application by executing `replicatedctl app stop`. Next, execute `replicatedctl app status` to confirm the application is stopped. Finally, execute `replicatedctl app start` to start the application.
+This command allows you to use the CLI to make real-time application changes, such as `capacity_concurrency`. You must provide both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value). Run `replicatedctl app-config export` for a complete list of the current `app-config` settings. 
+
+For the configuration changes to take effect, you must restart the Terraform Enterprise application **on each node instance**. To restart Terraform Enterprise:
+1. Run `replicatedctl app stop` to stop the application. 
+2. Run `replicatedctl app status` to confirm the application is stopped. 
+3. Run `replicatedctl app start` to start the application.
 
 -> **Note:** You should ensure that any ad hoc changes made in this fashion are captured in the standard node build configuration, as the next time you build/rebuild a node only the configuration stored for that purpose will be in effect and ad hoc changes could be lost.
 
