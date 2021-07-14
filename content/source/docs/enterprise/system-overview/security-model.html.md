@@ -100,4 +100,4 @@ We release Terraform Enterprise updates each month. Updates may contain addition
 
 We publish security updates that address security vulnerabilities in HashiCorp products. You can find them in the Security category of [HashiCorp Discuss](https://discuss.hashicorp.com/c/security/).
 
-We recommend that Terraform Enterprise administrators follow the [documented steps](https://discuss.hashicorp.com/t/about-hashicorp-security-updates/15330) to subscribe to email notifications or the RSS feed for Terraform Enterprise security updates.
+We recommend that Terraform Enterprise infrastructure admins follow the [documented steps](https://discuss.hashicorp.com/t/about-hashicorp-security-updates/15330) to subscribe to email notifications or the RSS feed for Terraform Enterprise security updates.
