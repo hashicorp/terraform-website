@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers: Sensitive State Best Practices"
+page_title: "Building Terraform Providers - Sensitive State Best Practices"
 sidebar_current: "docs-extend-best-practices-sensitive-state"
 description: |-
   Recommendations for handling sensitive information in state.
