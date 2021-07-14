@@ -2,7 +2,7 @@
 layout: "extend"
 page_title: "Home - Building Terraform Providers"
 description: |-
-  Building Terraform Providersis a section for content dedicated to developing
+  Building Terraform Providers is a section for content dedicated to developing
   providers to extend Terraform's core offering.
 ---
 
