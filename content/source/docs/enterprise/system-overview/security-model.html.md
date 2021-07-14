@@ -43,7 +43,7 @@ Security fixes are released along with application features and bug fixes via TF
 
 Infrastructure admins are responsible for all aspects of reliability and availability. Refer to Terraform Enterprise documentation on [monitoring](../admin/monitoring.html), [backups and restores](../admin/backup-restore.html), and [high availability mode (active/active)](../admin/active-active.html) for more guidance on this topic.
 
-### TFE Isolates Terraform Operations via Docker Containers, not a separate environment
+### Terraform Enterprise Isolates Terraform Operations via Docker Containers
 
 Unlike Terraform Cloud, TFE executes all Terraform operations in Docker containers on the TFE host. The containers are assigned to an isolated Docker network to prevent them from communicating with TFE’s backend services, but may have access to resources available on hosts accessible from the your TFE instance. 
 
