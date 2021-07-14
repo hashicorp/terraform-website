@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Home - Building Terraform Providers"
+page_title: "Home - Plugin Development"
 sidebar_current: "docs-extend-schemas-types"
 description: |-
-  Building Terraform Providers is a section for content dedicated to developing Plugins
+  Plugin Development is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
   
 ---

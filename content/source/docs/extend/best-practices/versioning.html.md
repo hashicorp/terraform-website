@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers - Versioning Best Practices"
+page_title: "Plugin Development - Versioning Best Practices"
 sidebar_current: "docs-extend-best-practices-versioning"
 description: |-
   Recommendations for version numbering and documentation.

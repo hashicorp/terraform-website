@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers - How Terraform Works"
+page_title: "Plugin Development - How Terraform Works"
 sidebar_current: "docs-extend-how-terraform-works"
 description: |-
-  Building Terraform Providers is a section for content dedicated to developing Plugins
+  Plugin Development is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
 ---
 

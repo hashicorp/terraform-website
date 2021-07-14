@@ -45,8 +45,8 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 - This repository, under `content/source/docs/`:
     - Terraform Cloud docs
     - Terraform Enterprise docs
-    - Building Terraform Providers
-    - Publishing Providers and Modules
+    - Plugin Development
+    - Terraform Registry Publishing
 
     **Notable branches:** `master` is the "live" content that gets deployed to terraform.io. The site gets redeployed for new commits to master.
 - [hashicorp/terraform][tf-repo], under `website/docs`:

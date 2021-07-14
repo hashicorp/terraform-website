@@ -1,12 +1,12 @@
 ---
 layout: "extend"
-page_title: "Home - Building Terraform Providers"
+page_title: "Home - Plugin Development"
 description: |-
-  Building Terraform Providers is a section for content dedicated to developing
+  Plugin Development is a section for content dedicated to developing
   providers to extend Terraform's core offering.
 ---
 
-# Building Terraform Providers
+# Plugin Development
 
 Terraform can be extended to manage infrastructure with
 [providers](/docs/providers/index.html)
@@ -18,7 +18,7 @@ are a type of Terraform "plugin".
 Terraform with any of the existing plugins, please refer to the
 [Docs](/docs/index.html) section of this website.
 
-The Building Terraform Providers section contains content for users who wish to
+The Plugin Development section contains content for users who wish to
 build their own providers. The intended audience is anyone wanting to add or
 edit source code (“developers”) for a Terraform provider. The content assumes
 you have basic operating knowledge or experience using Terraform.

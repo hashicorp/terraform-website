@@ -28,13 +28,13 @@ A broad overview of what Terraform is and why people use it.
 
 Definitions (and helpful links) for technical terms used throughout Terraform's documentation, help text, and UI. Visit the glossary whenever you get lost.
 
-### [Terraform Language ➜](/docs/language/index.html)
+### [Configuration Language ➜](/docs/language/index.html)
 
 -> Intermediate and advanced users spend most of their time here.
 
 Documentation for Terraform's configuration language.
 
-The Terraform language is Terraform's primary user interface. This section is relevant to all users of Terraform, including Terraform Cloud and Terraform Enterprise users.
+The Terraform configuration language is Terraform's primary user interface. This section is relevant to all users of Terraform, including Terraform Cloud and Terraform Enterprise users.
 
 ### [Terraform CLI ➜](/docs/cli/index.html)
 
@@ -62,11 +62,11 @@ Documentation for Terraform Enterprise.
 
 Terraform Enterprise is an on-premise distribution of Terraform Cloud. It offers enterprises a private instance of the Terraform Cloud application, with no resource limits and with additional enterprise-grade architectural features like audit logging and SAML single sign-on.
 
-### [Publishing Providers and Modules ➜](/docs/registry/index.html)
+### [Terraform Registry Publishing ➜](/docs/registry/index.html)
 
 Documentation about publishing Terraform providers and modules on the [Terraform Registry](https://registry.terraform.io/).
 
-### [Building Terraform Providers ➜](/docs/extend/index.html)
+### [Plugin Development ➜](/docs/extend/index.html)
 
 -> If you need to create a new Terraform provider (for a public cloud service or a purely internal service), go here.
 

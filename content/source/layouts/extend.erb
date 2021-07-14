@@ -1,6 +1,6 @@
 <% wrap_layout :inner do %>
   <% content_for :sidebar do %>
-    <h4>Building Terraform Providers</h4>
+    <h4>Plugin Development</h4>
 
     <ul class="nav docs-sidenav">
       <li>
@@ -135,14 +135,6 @@
             <a href="/docs/extend/community/code-of-conduct.html">Code of Conduct</a>
           </li>
           <li>
-            <a href="/docs/extend/community/events/index.html">Events</a>
-            <ul class="nav">
-              <li>
-                <a href="/docs/extend/community/events/2018/fall-gardening.html">Gardening - Fall 2018</a>
-              </li>
-            </ul>
-          </li>
-          <li>
             <a href="/docs/extend/community/maintainers.html">Maintainers</a>
           </li>
         </ul>
@@ -173,7 +165,7 @@
       </li>
     </ul>
 
-    <%= partial("layouts/otherdocs", :locals => { :skip => "Building Terraform Providers" }) %>
+    <%= partial("layouts/otherdocs", :locals => { :skip => "Plugin Development" }) %>
   <% end %>
 
   <%= yield %>

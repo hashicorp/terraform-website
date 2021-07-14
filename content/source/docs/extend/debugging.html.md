@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers - Debugging Providers"
+page_title: "Plugin Development - Debugging Providers"
 sidebar_current: "docs-extend-debugging-providers"
 description: |-
   How to debug providers.

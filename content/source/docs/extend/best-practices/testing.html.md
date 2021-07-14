@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers - Testing Patterns"
+page_title: "Plugin Development - Testing Patterns"
 sidebar_current: "docs-extend-best-practices-testing"
 description: |-
   Testing Patterns covers essential acceptance test patterns 

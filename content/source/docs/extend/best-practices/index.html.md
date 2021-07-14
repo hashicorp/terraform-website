@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers - Best Practices"
+page_title: "Plugin Development - Best Practices"
 sidebar_current: "docs-extend-best-practices"
 description: |-
-  Building Terraform Providers is a section for content dedicated to developing Plugins
+  Plugin Development is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
 ---
 
