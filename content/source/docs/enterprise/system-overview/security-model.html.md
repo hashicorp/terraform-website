@@ -9,7 +9,7 @@ page_title: "Security Model- System Overview - Terraform Enterprise"
 
 This document explains the security model of Terraform Enterprise and the security controls available to administrators and end users. This document is intended as a supplement to the [Terraform Cloud Security model](../../cloud/architectural-details/security-model.html) and describes aspects of the security model that are unique to Terraform Enterprise. We recommend familiarizing yourself with the Terraform Cloud security model before reading this document.
 
-## Additional Personas for Terraform Enterprise
+## Personas
 
 In addition to the personas listed in the Terraform Cloud Security Model, Terraform enterprise requires two additional personas for managing and administering the application.
 
