@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers: Deprecations, Removals, and Renames Best Practices"
+page_title: "Building Terraform Providers - Deprecations, Removals, and Renames Best Practices"
 sidebar_current: "docs-extend-best-practices-deprecations"
 description: |-
   Recommendations for deprecations, removals, and renames.
