@@ -147,7 +147,7 @@ You can use Terraform Enterprise's instance profile to provide default credentia
 1. All workspaces will have the same permissions because they have access to the same instance profile. You cannot selectively allow or deny access to the instance profile for each workspace.
 2. Workspaces will share the instance profile with the Terraform Enterprise application. All workspaces within the application will have access to any resources that Terraform Enterprise depends on, such as its S3 bucket, KMS keys, etc.
 
-~> **Important:** If you choose to not rely on the instance profile for default credentials we highly recommend that you [restrict build worker metadata access](../system-overview/security-model.html#restrict-terraform-build-worker-metadata-access), preventing workspaces from accessing the instance profile.
+~> **Important:** If you choose not to use the instance profile for default credentials, we highly recommend that you [restrict build worker metadata access](../system-overview/security-model.html#restrict-terraform-build-worker-metadata-access) to prevent workspaces from accessing the instance profile.
 
 #### AWS Instance Profile Requirements
 Below are the IAM policies Terraform Enterprise requires to operate in AWS environments:
