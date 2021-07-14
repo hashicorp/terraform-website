@@ -139,7 +139,7 @@ For other Linux distributions, check Docker compatibility:
 
 ### IAM Policies
 
-If you have chosen the [external services operational mode](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision), Terraform Enterprise will need access to an S3-compliant endpoint for object storage. You can grant access to the object storage endpoint by assigning an AWS instance profile, or equivalent IAM system in non-AWS environments.
+If you have chosen the [external services operational mode](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision), Terraform Enterprise will need access to an S3-compliant endpoint for object storage. You can grant access to the object storage endpoint by either assigning an AWS instance profile or an equivalent IAM system in non-AWS environments.
 
 #### Using the Instance Profile as Default Credentials for Terraform Runs
 Terraform Enterprise's instance profile can also be used to provide default credentials to workspaces. Workspaces without environment variables for credentials will attempt to use the instance profile to provision resources. The convenience of credential-free workspaces comes with a few security caveats, however. Operators should be aware of these risks before choosing to rely on this behavior:
