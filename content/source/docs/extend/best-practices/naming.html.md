@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers: Best Practices"
+page_title: "Building Terraform Providers - Naming Best Practices"
 sidebar_current: "docs-extend-best-practices-naming"
 description: |-
   Building Terraform Providers is a section for content dedicated to developing Plugins
