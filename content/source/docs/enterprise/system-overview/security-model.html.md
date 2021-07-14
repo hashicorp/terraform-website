@@ -91,7 +91,7 @@ Terraform Enterprise uses support bundles to share diagnostic information with H
 
 #### Regularly Update Terraform Enterprise
 
-Terraform Enterprise updates are released on a monthly cadence. Updates may contain additional security features or fixes for existing security vulnerabilities, so we recommend establishing a process for periodically updating your Terraform Enterprise installation.
+We release Terraform Enterprise updates each month. Updates may contain additional security features or fixes for existing security vulnerabilities, so we recommend establishing a process for periodically updating your Terraform Enterprise installation.
 
 #### Subscribe to Terraform Enterprise Security Bulletins
 
