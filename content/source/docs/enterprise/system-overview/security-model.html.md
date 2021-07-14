@@ -22,7 +22,7 @@ Due to the extensive capabilities granted to this role, the infrastructure admin
 
 ### Site Admin
 
-[Site admins](../admin/admin-access.html) are responsible for application-level configuration of Terraform Enterprise. Via the admin interface they will be able to manage all users, workspaces and organizations and will have access to all data stored within Terraform Enterprise. Site admins are also responsible for configuring SAML and will be the only users still able to access Terraform Enterprise via username/password once SAML is configured. 
+[Site admins](../admin/admin-access.html) are responsible for application-level configuration of Terraform Enterprise. They can manage all users, workspaces, and organizations through the admin interface and have access to all data stored within Terraform Enterprise. Site admins are also responsible for configuring SAML and are the only users that can access Terraform Enterprise with a username and password once SAML is configured. 
 
 Due to the extensive capabilities granted to this role, the site admin role should be restricted to a small number of users within your organization.
 
