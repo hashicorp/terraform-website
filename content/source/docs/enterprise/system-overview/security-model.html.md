@@ -49,7 +49,7 @@ Unlike Terraform Cloud, Terraform Enterprise executes all Terraform operations i
 
 ## Recommendations for Securely Operating Terraform Enterprise
 
-In addition the the recommendations provided in the [Terraform Cloud security model](../../cloud/architectural-overview/security-model.html), we offer these recommendations to users of Terraform Enterprise 
+In addition those provided in the [Terraform Cloud security model](../../cloud/architectural-overview/security-model.html), we recommend the following for Terraform Enterprise users. 
 
 ### Run Terraform Enterprise in an Isolated Network, Limit Ingress Ports, and Restrict Access to Underlying Infrastructure
 
