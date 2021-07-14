@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Home - Building Terraform Providers"
+page_title: "Building Terraform Providers - Schemas"
 sidebar_current: "docs-extend-schemas"
 description: |-
   Building Terraform Providers is a section for content dedicated to developing Plugins
