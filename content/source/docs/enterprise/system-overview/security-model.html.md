@@ -39,7 +39,7 @@ Infrastructure admins are required to manage all aspects of the underlying infra
 
 Security fixes are released along with application features and bug fixes via TFE’s standard monthly release cycle. TFE infrastructure admins are responsible for applying updates.
 
-### You are Responsible for TFE’s Availability, Backups, and Disaster Recovery
+### You are Responsible for Availability, Backups, and Disaster Recovery
 
 TFE infrastructure admins are responsible for all aspects of TFE’s reliability and availability. Refer to TFE documentation on [monitoring](../admin/monitoring.html), [backups and restores](../admin/backup-restore.html), and [high availability mode (active/active)](../admin/active-active.html) for more guidance on this topic.
 
