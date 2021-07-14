@@ -87,7 +87,7 @@ TFE allows administrators to enable [global remote state sharing](../admin/gener
 
 #### Treat Support Bundles with Care
 
-Support bundles are used to share diagnostic information with HashiCorp support. Please note that support bundles may contain sensitive information from your Terraform Enterprise installation. You should consider these bundles sensitive; they should not be shared with untrusted parties and should be deleted as soon as possible.
+Terraform Enterprise uses support bundles to share diagnostic information with HashiCorp support. Please note that support bundles may contain sensitive information from your Terraform Enterprise installation. You should not share them with untrusted parties and should delete them as soon as possible.
 
 #### Regularly Update Terraform Enterprise
 
