@@ -7,7 +7,7 @@ page_title: "Security Model- System Overview - Terraform Enterprise"
 
 ## Purpose of this document
 
-This document explains the security model of Terraform Enterprise and the security controls available to administrators and end users. This document is intended as a supplement to the [Terraform Cloud Security model](../../cloud/architectural-details/security-model.html) and describes aspects of the security model that are unique to Terraform Enterprise. We recommend familiarizing yourself with the Terraform Cloud security model before reading this document.
+This page explains the aspects of the Terraform security model that are unique to Terraform Enterprise. We recommend also reviewing the core concepts in [Terraform Cloud Security model](../../cloud/architectural-details/security-model.html).
 
 ## Personas
 
