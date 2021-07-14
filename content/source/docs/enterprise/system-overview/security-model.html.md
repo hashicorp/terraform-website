@@ -41,7 +41,7 @@ Security fixes are released along with application features and bug fixes via TF
 
 ### You are Responsible for Availability, Backups, and Disaster Recovery
 
-TFE infrastructure admins are responsible for all aspects of TFE’s reliability and availability. Refer to TFE documentation on [monitoring](../admin/monitoring.html), [backups and restores](../admin/backup-restore.html), and [high availability mode (active/active)](../admin/active-active.html) for more guidance on this topic.
+Infrastructure admins are responsible for all aspects of reliability and availability. Refer to Terraform Enterprise documentation on [monitoring](../admin/monitoring.html), [backups and restores](../admin/backup-restore.html), and [high availability mode (active/active)](../admin/active-active.html) for more guidance on this topic.
 
 ### TFE Isolates Terraform Operations via Docker Containers, not a separate environment
 
