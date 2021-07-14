@@ -35,7 +35,7 @@ All of the content on [Terraform Cloud security model](../../cloud/architectural
 
 Infrastructure admins are required to manage all aspects of the underlying infrastructure. This includes initial provisioning, secure configuration, access control, network ACL configuration, and OS-level software updates. Terraform Enterprise cannot ensure the security of your data if the underlying infrastructure is compromised.
 
-### You are Responsible for Updating Your TFE Deployment
+### You are Responsible for Updating Your Terraform Enterprise Deployment
 
 Security fixes are released along with application features and bug fixes via TFE’s standard monthly release cycle. TFE infrastructure admins are responsible for applying updates.
 
