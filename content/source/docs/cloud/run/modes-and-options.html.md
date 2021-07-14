@@ -38,7 +38,7 @@ The [`-refresh=false` option](/docs/cli/commands/plan.html#refresh-false) is use
 
 ## Replacing Selected Resources
 
--> **Version note:** Replace support is available in Terraform Enterprise v202106-1 or later and requires a workspace using at least Terraform CLI v0.15.4.
+-> **Version note:** Replace support is available in Terraform Enterprise v202106-1 or later and requires a workspace using at least Terraform CLI v0.15.2.
 
 The [replace option](/docs/cli/commands/plan.html#replace-address) instructs Terraform to replace the object with the given resource address.
 
