@@ -33,7 +33,7 @@ All of the content on [Terraform Cloud security model](../../cloud/architectural
 
 ### TFE Requires You to Manage and Secure the Underlying Network and Infrastructure
 
-TFE infrastructure admins are required to manage all aspects of the underlying infrastructure including initial provisioning, secure configuration, access control, configuring network ACLs, and OS-level software updates. TFE can not ensure the security of your data if the underlying infrastructure is compromised.
+Infrastructure admins are required to manage all aspects of the underlying infrastructure. This includes initial provisioning, secure configuration, access control, network ACL configuration, and OS-level software updates. Terraform Enterprise cannot ensure the security of your data if the underlying infrastructure is compromised.
 
 ### You are Responsible for Updating Your TFE Deployment
 
