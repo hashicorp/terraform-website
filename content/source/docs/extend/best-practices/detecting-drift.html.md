@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers: Best Practices"
+page_title: "Building Terraform Providers - Detecting Drift"
 sidebar_current: "docs-extend-best-practices-drift"
 description: |-
   Building Terraform Providers is a section for content dedicated to developing Plugins
@@ -188,7 +188,6 @@ be reconciled by using Terraform's [schema functions][2], such as
 [0]: /docs/extend/schemas/schema-types.html#primitive-types
 [1]: /docs/extend/schemas/schema-types.html#aggregate-types
 [2]: /docs/extend/schemas/schema-behaviors.html#function-behaviors
-
 
 
 
