@@ -144,7 +144,7 @@ If you have chosen the [external services operational mode](https://www.terrafor
 #### Using the Instance Profile as Default Credentials for Terraform Runs
 You can use Terraform Enterprise's instance profile to provide default credentials to workspaces. Terraform will attempt to use the instance profile to provision resources when you do not set credentials as environment variables. However, this approach presents a few security risks: 
 
-1. All workspaces will have access to the same instance profile, and thus will have the same permissions. It is not possible to selectively allow or deny access to the instance profile on a per-workspace basis.
+1. All workspaces will have the same permissions because they have access to the same instance profile. You cannot selectively allow or deny access to the instance profile for each workspace.
 2. Workspaces will share the instance profile with the Terraform Enterprise application. All workspaces within the application will have access to any resources that Terraform Enterprise depends on, such as its S3 bucket, KMS keys, etc.
 
 ~> **Important:** If you choose to not rely on the instance profile for default credentials we highly recommend that you [restrict build worker metadata access](../system-overview/security-model.html#restrict-terraform-build-worker-metadata-access), preventing workspaces from accessing the instance profile.
