@@ -11,7 +11,7 @@ This page explains the aspects of the Terraform security model that are unique t
 
 ## Personas
 
-In addition to the personas listed in the Terraform Cloud Security Model, Terraform enterprise requires two additional personas for managing and administering the application.
+In addition to those listed in [Terraform Cloud Security model](../../cloud/architectural-details/security-model.html), Terraform Enterprise requires the following personas for managing and administering the application.
 
 
 ### Infrastructure Admin
