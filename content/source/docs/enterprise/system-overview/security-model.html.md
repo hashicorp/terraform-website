@@ -53,7 +53,7 @@ In addition those provided in the [Terraform Cloud security model](../../cloud/a
 
 ### Run Terraform Enterprise in an Isolated Network, Limit Ingress Ports, and Restrict Access to Underlying Infrastructure
 
-To minimize attack surface, we recommend running TFE in an isolated network and limiting ingress ports to only 80 and 443. 
+To minimize attack surface, we recommend running Terraform Enterprise in an isolated network and limiting ingress ports to only 80 and 443. 
 
 For standalone deployments, port 8800 is reserved for the [Replicated admin console](../admin/admin-access.html), which is used for configuring TFE. This port should only be exposed to TFE infrastructure admins. Alternatively, if you choose to configure TFE via the [automated process](../install/automating-the-installer.html), you can disable the Replicated admin console by passing the `disable-replicated-ui` argument to the installation script:
 
