@@ -18,7 +18,7 @@ In addition to those listed in [Terraform Cloud Security model](../../cloud/arch
 
 Outside of the application, administrators of the Terraform Enterprise deployment are responsible for managing the underlying infrastructure, upgrading the application, and configuring Terraform Enterprise either via the [Replicated admin console](../install/config.html#system-configuration) or by editing the [application settings file](../install/automating-the-installer.html).
 
-Due to the extensive capabilities granted to this role, the infrastructure admin role be restricted to a small number of users within your organization.
+Terraform Enterprise grants extensive permissions to this role, so we recommend limiting the number of users who are infrastructure admins in your organization.
 
 ### Site Admin
 
