@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Home - Building Terraform Providers"
+page_title: "Building Terraform Providers - Plugin Types"
 sidebar_current: "docs-extend-plugin-types"
 description: |-
   Building Terraform Providers is a section for content dedicated to developing Plugins
