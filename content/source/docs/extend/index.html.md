@@ -8,7 +8,7 @@ description: |-
 
 # Building Terraform Providers
 
-Terraform can be extended to allow users to manage more infrastructure providers with
+Terraform can be extended to manage infrastructure with
 [providers](/docs/providers/index.html)
 (containing [resources](/docs/configuration/resources.html)
 and/or [data sources](/docs/language/data-sources/index.html)). **Providers**
