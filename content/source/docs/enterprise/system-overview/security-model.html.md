@@ -24,7 +24,7 @@ Due to the extensive capabilities granted to this role, the infrastructure admin
 
 [Site admins](../admin/admin-access.html) are responsible for application-level configuration of Terraform Enterprise. They can manage all users, workspaces, and organizations through the admin interface and have access to all data stored within Terraform Enterprise. Site admins are also responsible for configuring SAML and are the only users that can access Terraform Enterprise with a username and password once SAML is configured. 
 
-Due to the extensive capabilities granted to this role, the site admin role should be restricted to a small number of users within your organization.
+Terraform Enterprise grants extensive permissions to this role, so we recommend limiting the number of users who are site admins in your organization.
 
 
 ## Differences Between Terraform Enterprise and Terraform Cloud Security Models
@@ -37,7 +37,7 @@ Infrastructure admins are required to manage all aspects of the underlying infra
 
 ### You are Responsible for Updating Your Terraform Enterprise Deployment
 
-Security fixes are released along with application features and bug fixes via TFE’s standard monthly release cycle. TFE infrastructure admins are responsible for applying updates.
+We release security fixes, application features, and bug fixes for Terraform Enterprise each month. Infrastructure admins are responsible for applying updates.
 
 ### You are Responsible for Availability, Backups, and Disaster Recovery
 
@@ -59,31 +59,34 @@ For standalone deployments, port 8800 is reserved for the [Replicated admin cons
 
 ```sudo bash ./install.sh disable-replicated-ui```
 
-Additionally, we recommend restricting access to the nodes that are running TFE. TFE can not ensure the security or integrity of its data if the underlying infrastructure is compromised.
+Additionally, we recommend restricting access to the nodes that are running Terraform Enterprise. Terraform Enterprise can not ensure the security or integrity of its data if the underlying infrastructure is compromised.
 
 ### Enable Optional Security Features
 
 Once you are ready to use Terraform Enterprise for production workloads, we recommend enabling these optional security features.
 
-#### Strict Transport Security Header
+#### Enable Strict Transport Security Header
 
-You can configure TFE to set the [Strict Transport Security (HSTS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) header via the Settings page of the installer dashboard by enabling “Force TLS” radio button under “SSL/TLS Configuration”
+You can configure Terraform Enterprise to set the [Strict Transport Security (HSTS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) header by:
+* Visiting the installer dashboard "Settings" page and enabling “Force TLS” under the “SSL/TLS Configuration” section.
+* Setting [force_tls](../install/automating-the-installer.html#force_tls) in the application settings file.
 
-You can also enable this setting via the application settings file file with the [force_tls](../install/automating-the-installer.html#force_tls) setting.
 
-~> **Note:** Once properly configured, the HSTS header cannot be disabled and will prevent clients from accessing your TFE domain via HTTP or HTTPS using a self-signed cert. We recommend only enabling this setting for production TFE deployments.
+~> **Note:** Once properly configured, the HSTS header cannot be disabled and will prevent clients from accessing your Terraform Enterprise domain via HTTP or HTTPS using a self-signed cert. We recommend only enabling this setting for production Terraform Enterprise deployments.
 
 #### Restrict Terraform Build Worker Metadata Access
 
-By default Terraform Enterprise does not prevent Terraform operations from accessing the instance metadata service, which may contain IAM credentials or other sensitive data. Refer to [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html), [Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/instance-metadata-service?tabs=windows), or [Google Cloud's](https://cloud.google.com/compute/docs/storing-retrieving-metadata) documentation for more information on this service.
+By default, Terraform Enterprise does not prevent Terraform operations from accessing the instance metadata service, which may contain IAM credentials or other sensitive data. Refer to [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html), [Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/instance-metadata-service?tabs=windows), or [Google Cloud](https://cloud.google.com/compute/docs/storing-retrieving-metadata) documentation for more information on this service.
 
-TFE allows you to restrict access to the metadata endpoint from Terraform operations, preventing workspaces from reading any data from the metadata service. This feature can be enabled via the “Restrict Terraform Build Worker Instance Metadata Access” setting under the “Advanced Configuration” section in the installer dashboard’s settings page, or via the [restrict_worker_metadata_access](../install/automating-the-installer.html#restrict_worker_metadata_access) setting in the application settings file.
+Terraform Enterprise allows you to restrict access to the metadata endpoint from Terraform operations, preventing workspaces from reading any data from the metadata service. You can do this by:
+* Visiting the installer dashboard "Settings" page and enabling “Restrict Terraform Build Worker Instance Metadata Access” under the “Advanced Configuration” section. 
+* Setting [restrict_worker_metadata_access](../install/automating-the-installer.html#restrict_worker_metadata_access) in the application settings file.
 
-Unless you are relying on the [instance profile as a means of providing default credentials to TFE workspaces](../before-installing/index.html#aws-specific-configuration), we recommend enabling this setting to prevent Terraform operations from accessing the instance metadata endpoint. 
+We recommend enabling this setting to prevent Terraform operations from accessing the instance metadata endpoint, unless you are relying on the [instance profile to provide default credentials to workspaces](../before-installing/index.html#aws-specific-configuration). 
 
-#### Ensure Global Remote State Sharing is Disabled
+#### Disable Global Remote State Sharing
 
-TFE allows administrators to enable [global remote state sharing](../admin/general.html#remote-state-sharing), a feature that allows any workspace to access the state versions of any other workspace within the same organization. We recommend disabling the feature and relying on [controlled remote state access](https://www.hashicorp.com/blog/announcing-controlled-remote-state-access-for-terraform-cloud-and-enterprise) if you need to share state between workspaces.
+Terraform Enterprise allows site admins to enable [global remote state sharing](../admin/general.html#remote-state-sharing), which allows any workspace to access the state versions of any other workspace within the same organization. We recommend disabling this feature and relying on [controlled remote state access](https://www.hashicorp.com/blog/announcing-controlled-remote-state-access-for-terraform-cloud-and-enterprise) if you need to share state between workspaces.
 
 #### Treat Support Bundles with Care
 
