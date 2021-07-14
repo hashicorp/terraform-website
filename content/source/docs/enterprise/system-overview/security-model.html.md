@@ -29,7 +29,7 @@ Due to the extensive capabilities granted to this role, the site admin role shou
 
 ## Differences Between Terraform Enterprise and Terraform Cloud Security Models
 
-For the most part, Terraform Enterprise’s threat model can be considered a superset of the [Terraform Cloud security model](../../cloud/architectural-details/security-model.html) and (with the exception of the points listed below) all of the content on that page applies to Terraform Enterprise. Terraform Enterprise’s threat model differs from that of Terraform Clouds in these respects:
+All of the content on [Terraform Cloud security model](../../cloud/architectural-details/security-model.html) applies to Terraform Enterprise, with the exception of the points listed below.
 
 ### TFE Requires You to Manage and Secure the Underlying Network and Infrastructure
 
