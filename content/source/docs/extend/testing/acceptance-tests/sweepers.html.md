@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Building Terraform Providers - Acceptance Testing"
+page_title: "Building Terraform Providers - Acceptance Testing: Sweepers"
 sidebar_current: "docs-extend-testing-acceptance-sweepers"
 description: |-
   Building Terraform Providers is a section for content dedicated to developing Plugins
