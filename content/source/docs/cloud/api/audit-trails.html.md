@@ -55,6 +55,8 @@ $ curl \
   "https://app.terraform.io/api/v2/organization/audit-trail?page[number]=1&since=2020-05-30T17:52:46.000Z"
 ```
 
+> Do not substiute ***/organization/*** in the uri. Reminder: only an [organization token](../users-teams-organizations/api-tokens.html#organization-api-tokens) can be used to perform the request into Audit Trails API.
+
 ### Sample Response
 
 ```json
