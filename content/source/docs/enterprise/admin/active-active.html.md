@@ -21,7 +21,7 @@ Note that `tfe-admin` is an alias for `replicated admin`, and can be used interc
 tfe-admin support-bundle
 ```
 
-This command will generate a support bundle for all nodes. The support bundles will be uploaded to the same object store bucket that is used to store Terraform statefiles. The support bundles for a specific run of the admin command will all be uploaded to a directory with the same JobID (a timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format). If you are sending a support bundle to HashiCorp Support, package up the associated bundles and send all in order to ensure all needed information is made available.
+This command generates a support bundle for all nodes. The support bundles will be uploaded to the same object store bucket that is used to store Terraform state files. The support bundles for a specific run of the admin command will all be uploaded to a directory with the same JobID (a timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format). If you are sending a support bundle to HashiCorp Support, package and send all associated bundles to ensure that we have all the necessary information.
 
 Example upload structure
 
