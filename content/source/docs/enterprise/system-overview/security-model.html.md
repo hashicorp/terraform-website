@@ -58,7 +58,7 @@ For standalone deployments, port 8800 is reserved for the [Replicated admin cons
 
 ```sudo bash ./install.sh disable-replicated-ui```
 
-Additionally, we recommend restricting access to the nodes that are running Terraform Enterprise. Terraform Enterprise can not ensure the security or integrity of its data if the underlying infrastructure is compromised.
+Additionally, we recommend restricting access to the nodes that are running Terraform Enterprise. Terraform Enterprise can not ensure the security or integrity of your data if the underlying infrastructure is compromised.
 
 ### Enable Optional Security Features
 
