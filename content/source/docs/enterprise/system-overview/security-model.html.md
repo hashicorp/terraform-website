@@ -5,7 +5,6 @@ page_title: "Security Model- System Overview - Terraform Enterprise"
 
 # Terraform Enterprise Security Model
 
-## Purpose of this document
 
 This page explains the aspects of the Terraform security model that are unique to Terraform Enterprise. We recommend also reviewing the core concepts in [Terraform Cloud Security model](../../cloud/architectural-details/security-model.html).
 
@@ -92,12 +91,12 @@ Terraform Enterprise allows site admins to enable [global remote state sharing](
 
 Terraform Enterprise uses support bundles to share diagnostic information with HashiCorp support. Please note that support bundles may contain sensitive information from your Terraform Enterprise installation. You should not share them with untrusted parties and should delete them as soon as possible.
 
-#### Regularly Update Terraform Enterprise
+#### Update Terraform Enterprise Often
 
 We release Terraform Enterprise updates each month. Updates may contain additional security features or fixes for existing security vulnerabilities, so we recommend establishing a process for periodically updating your Terraform Enterprise installation.
 
 #### Subscribe to Terraform Enterprise Security Bulletins
 
-We publish security updates that address security vulnerabilities in HashiCorp products. You can find them in the Security category of [HashiCorp Discuss](https://discuss.hashicorp.com/c/security/).
+We publish updates that address security vulnerabilities in HashiCorp products. You can find them in the Security category of [HashiCorp Discuss](https://discuss.hashicorp.com/c/security/).
 
 We recommend that Terraform Enterprise infrastructure admins follow the [documented steps](https://discuss.hashicorp.com/t/about-hashicorp-security-updates/15330) to subscribe to email notifications or the RSS feed for Terraform Enterprise security updates.
