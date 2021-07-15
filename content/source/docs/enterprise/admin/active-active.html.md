@@ -21,7 +21,7 @@ Note that `tfe-admin` is an alias for `replicated admin`, and can be used interc
 tfe-admin support-bundle
 ```
 
-This command will generate a support bundle for all nodes. The support bundles will be uploaded to the same object store bucket that is used to store Terraform statefiles. The support bundles for a specific run of the admin command will all be uploaded to a directory with the same JobID (a timestamp in [RFC3339](https://tools.ietf.org/html/rfc3339) format). If you are sending a support bundle to HashiCorp Support, package up the associated bundles and send all in order to ensure all needed information is made available.
+This command generates a support bundle for all nodes. The support bundles will be uploaded to the same object store bucket that is used to store Terraform state files. The support bundles for a specific run of the admin command will all be uploaded to a directory with the same JobID (a timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format). If you are sending a support bundle to HashiCorp Support, package and send all associated bundles to ensure that we have all the necessary information.
 
 Example upload structure
 
@@ -50,7 +50,12 @@ This command will quiesce the current node and remove it from service. It will a
 tfe-admin app-config -k <KEY> -v <VALUE>
 ```
 
-This command allows users to make ad hoc/realtime application changes, such as `capacity_concurrency` via the CLI. Both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value) must be provided. A complete list of the current `app-config` settings can be found by running `replicatedctl app-config export`. You will be warned to restart the TFE application after running this command and must do so with a `replicatedctl app restart` command **on each node instance** for the configuration changes to be in effect.
+This command allows you to use the CLI to make real-time application changes, such as `capacity_concurrency`. You must provide both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value). Run `replicatedctl app-config export` for a complete list of the current `app-config` settings. 
+
+For the configuration changes to take effect, you must restart the Terraform Enterprise application **on each node instance**. To restart Terraform Enterprise:
+1. Run `replicatedctl app stop` to stop the application. 
+2. Run `replicatedctl app status` to confirm the application is stopped. 
+3. Run `replicatedctl app start` to start the application.
 
 -> **Note:** You should ensure that any ad hoc changes made in this fashion are captured in the standard node build configuration, as the next time you build/rebuild a node only the configuration stored for that purpose will be in effect and ad hoc changes could be lost.
 
@@ -73,7 +78,7 @@ There are additional commands available for checking status and troubleshooting 
 #### health-check
 
 ```bash
-ptfe-admin health-check
+tfe-admin health-check
 (alias health-check)
 ```
 
