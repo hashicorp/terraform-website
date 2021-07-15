@@ -372,6 +372,8 @@ Enterprise-grade security is inherently covered in the Azure Cache for Redis imp
 
 Terraform Enterprise supports Redis versions 4.0 and 5.0, but 5.0 is recommended unless there is strong reason to deviate. Azure Cache for Redis supports 5.0 and 6.0 as a preview mode, so still remain with 5.0 until 6.0 has been certified everywhere and do explicitly specify the version. The minimum TLS version can also be configured and defaults to 1.0 - you should explicitly set it to 1.2 for latest.
 
+Presently Terraform Enterprise active active does not support the redis cluster protocol and hence no clustering should be enabled for a successful active active setup.
+
 ### Normal Operation
 
 #### Component Interaction
