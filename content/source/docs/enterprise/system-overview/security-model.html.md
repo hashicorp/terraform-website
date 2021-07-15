@@ -44,7 +44,7 @@ Infrastructure admins are responsible for all aspects of reliability and availab
 
 ### Terraform Enterprise Isolates Terraform Operations via Docker Containers
 
-Unlike Terraform Cloud, Terraform Enterprise executes all Terraform operations in Docker containers on the Terraform Enterprise host. The containers are assigned to an isolated Docker network to prevent them from communicating with Terraform Enterprise backend services, but may have access to resources available on hosts accessible from the your Terraform Enterprise instance. 
+Unlike Terraform Cloud, Terraform Enterprise performs all Terraform operations in Docker containers on the Terraform Enterprise host. The containers are assigned to an isolated Docker network to prevent them from communicating with Terraform Enterprise backend services. However, Terraform Enterprise does not perform any egress filtering, so Terraform runs can still access available network resources.
 
 ## Recommendations for Securely Operating Terraform Enterprise
 
