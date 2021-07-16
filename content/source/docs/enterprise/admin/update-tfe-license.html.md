@@ -158,7 +158,9 @@ The error message below may occur due to several possible issues.
 
 The error message below indicates the incorrect version of airgap file being used against the installed version of Terraform Enterprise.
 
+    ```plaintext
     installed app release (325b33bf0ad539c994644423128cad5e:502) does not match the airgap package
+    ```
 
 You will be able to identify the version of an airgap file by browsing into the airgap download page where it displays the versions of Terraform Enterprise and their SHA256 checksum values, which can be used to identify against the downloaded airgap package in your local environment.
 
