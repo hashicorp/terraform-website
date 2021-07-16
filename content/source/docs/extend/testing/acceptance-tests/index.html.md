@@ -32,7 +32,7 @@ for Terraform to leave orphaned or “dangling” resources behind, depending on
 correctness of the code in development. The testing framework provides means to
 validate all resources are destroyed, alerting developers if any fail to
 destroy. It is the developer's responsibility to clean up any dangling resources
-left over from testing and development. 
+left over from testing and development.
 
 ~> **Acceptance tests require `terraform` version 0.12.26 or above.**
 
@@ -40,7 +40,7 @@ left over from testing and development.
 
 Provider acceptance tests run real Terraform commands using a Terraform CLI binary, approximating as closely as possible the experience of using the provider under test with Terraform in production. We refer to this functionality as the "binary test driver".
 
-Terraform Core and Terraform Plugins act as gRPC client and server, implemented using HashiCorp's [go-plugin](https://github.com/hashicorp/go-plugin) system (see the [RPC Plugin Model](https://github.com/hashicorp/terraform/tree/master/docs/plugin-protocol) section of the Terraform Core documentation).  When `go test` is run, the SDK's acceptance test framework starts a plugin server in the same process as the Go test framework. This plugin server runs for the duration of the test case, and each Terraform command (`terraform plan`, `terraform apply`, etc) creates a client that reattaches to this server.
+Terraform Core and Terraform Plugins act as gRPC client and server, implemented using HashiCorp's [go-plugin](https://github.com/hashicorp/go-plugin) system (see the [RPC Plugin Model](https://github.com/hashicorp/terraform/tree/main/docs/plugin-protocol) section of the Terraform Core documentation).  When `go test` is run, the SDK's acceptance test framework starts a plugin server in the same process as the Go test framework. This plugin server runs for the duration of the test case, and each Terraform command (`terraform plan`, `terraform apply`, etc) creates a client that reattaches to this server.
 
 Real-world Terraform usage requires a config file and Terraform working directory on the local filesystem. The helper library `github.com/hashicorp/terraform-plugin-test` is used to manage temporary directories and files during test runs. This library is not intended for use directly by provider developers.
 
@@ -88,7 +88,7 @@ signature:
 
 ## Running Acceptance Tests
 
-A `terraform` binary of version 0.12.26 or above must be available on the local system for the acceptance test driver to run, either on the system `$PATH` or supplied via the `TF_ACC_TERRAFORM_PATH` environment variable described below. If you are running acceptance tests in a CI environment, we recommend that you download and install Terraform with a prior build step. 
+A `terraform` binary of version 0.12.26 or above must be available on the local system for the acceptance test driver to run, either on the system `$PATH` or supplied via the `TF_ACC_TERRAFORM_PATH` environment variable described below. If you are running acceptance tests in a CI environment, we recommend that you download and install Terraform with a prior build step.
 
 Terraform requires an environment variable `TF_ACC` be set in order to run
 acceptance tests. This is by design, and intended to prevent developers from
@@ -96,7 +96,7 @@ incurring unintended charges when running tests. The easiest way to run
 acceptance tests is to use the built in `make` step `testacc`, which explicitly
 sets the `TF_ACC=true` value for you. Example:
 
-    $ make testacc 
+    $ make testacc
 
 **It’s important to reiterate that acceptance tests create actual cloud resources**,
 possibly incurring expenses which are the responsibility of the user running
@@ -122,20 +122,20 @@ A number of environment variables are available to control aspects of acceptance
  - `TF_ACC_PROVIDER_NAMESPACE`: Used to control the namespace of the provider under test; only needed if config specifies a namespace for provider source.
  - `TF_ACC_PROVIDER_HOST`: Used to control the host of the provider under test; only needed if config specifies a host for provider source.
  - `TF_ACC_STATE_LINEAGE`: Set to "1" to enable state lineage debug logs, which are normally suppressed during acceptance testing.
- 
+
 ## Troubleshooting
- 
+
 This section lists common errors encountered during testing.
 
 ### Unrecognized remote plugin message
 
 ```
 terraform failed: exit status 1
-        
+
         stderr:
-        
+
         Error: Failed to instantiate provider "random" to obtain schema: Unrecognized remote plugin message: --- FAIL: TestAccResourceID (4.28s)
-        
+
         This usually means that the plugin is either invalid or simply
         needs to be recompiled to support the latest protocol.
 ```

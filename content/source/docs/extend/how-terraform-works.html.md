@@ -96,7 +96,7 @@ and chooses a version for each plugin as follows:
 [Terraform Registry](https://registry.terraform.io/)
   has a newer acceptable version).
 - If no acceptable versions are installed and the plugin is one of the
-  [providers distributed by HashiCorp](/docs/providers/index.html), Terraform
+  [providers distributed by HashiCorp](/docs/language/providers/index.html), Terraform
   downloads the newest acceptable version from the [Terraform Registry](https://registry.terraform.io/)
   and saves it in a subdirectory under `.terraform/providers/`.
 - If no acceptable versions are installed and the plugin is not distributed in
