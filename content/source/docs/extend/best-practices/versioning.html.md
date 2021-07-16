@@ -16,7 +16,7 @@ Observing that Terraform plugins are in many ways analogous to shared libraries 
 
 - Increasing only the patch number suggests that the release includes only bug fixes, and is intended to be functionally equivalent.
 - Increasing the minor number suggests that new features have been added but that existing functionality remains broadly compatible.
-- Increasing the major number indicates that significant breaking changes have been made, and thus extra care or attention is required during an upgrade.
+- Increasing the major number indicates that significant breaking changes have been made, and thus extra care or attention is required during an upgrade. To allow practitioners sufficient time and opportunity to upgrade to the latest version of the provider, we recommend releasing major versions no more than once per year. Major version releases more frequent than this could present a barrier to adoption of the latest version of the provider due to the effort required to perform each upgrade.
 
 Version numbers above `1.0.0` signify stronger compatibility guarantees, based on the rules above. Each increasing level can also contain changes of the lower level (e.g. `MINOR` can contain `PATCH` changes).
 
