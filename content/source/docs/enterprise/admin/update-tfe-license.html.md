@@ -142,7 +142,9 @@ In the Airgap installation, the license update operation may finish without any 
 
 The error message below may occur due to several possible issues.
 
+    ```plaintext
     Unable to sync license: Error: Unsuccessful HTTP response
+    ```
 
 *   Network communication to the Replicated servers
 
