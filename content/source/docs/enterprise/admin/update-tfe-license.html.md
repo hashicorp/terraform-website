@@ -132,7 +132,9 @@ In the Airgap installation, the license update operation may finish without any 
 
 2.  Examine the output of the command `docker logs replicated` and look for the warning message below.
 
+         ```plaintext
          WARN 2021-02-22T01:40:00+00:00 tasks/app_tasksteps.go:113 Airgap license on disk does not match installed license
+         ```
 
 3.  If this warning message occurs, it indicates that the incorrect license file is being used. Please contact your Customer Success Manager if you have one assigned to your account, or contact [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) for further assistance. When contacting support, please include the output from the `replicatedctl license inspect` command after running it on the existing Terraform Enterprise host machine.
 
