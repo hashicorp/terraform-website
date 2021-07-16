@@ -20,7 +20,7 @@ Terraform currently supports one type of Plugin called [providers](/docs/languag
 - Try the [Call APIs with Terraform Providers](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorials on HashiCorp Learn.
 
 ## Develop and Share Providers
-- Learn more about how to use [SDKv2](/docs/extend/hashicorp-provider-design-principles.html) to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/extend/schemas/index.html), [develop resources](/docs/extend/resources/index.html), [debug providers](/docs/extend/debugging.html), and [test providers](/docs/extend/testing/index.html).
+- Learn more about how to use [SDKv2](/docs/extend/hashicorp-provider-design-principles.html) to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/extend/schemas/index.html), [develop resources](/docs/extend/resources/index.html), [debug providers](/docs/extend/debugging.html), and [test plugins](/docs/extend/testing/index.html).
 - [Publish your provider on the Terraform Registry](/docs/registry/index.html) to make it publicly available.   
 - Get HashiCorp to [officially approve and verify](/guides/terraform-provider-development-program.html) your provider. Verified providers get a special badge on the Terraform Registry to distinguish them from community-sourced providers.
 
