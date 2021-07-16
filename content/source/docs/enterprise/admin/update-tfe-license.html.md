@@ -117,7 +117,10 @@ With the online installation type, Terraform Enterprise can be configured to che
 
 3.  Execute the following command, updating the paths as needed.
 
-        $ replicatedctl license-load --airgap-package /path/to/bundle.airgap < /path/to/license.rli
+        ```shell
+        $ replicatedctl license-load \
+            --airgap-package /path/to/bundle.airgap < /path/to/license.rli
+        ```
 
 ## Troubleshooting Guides
 
