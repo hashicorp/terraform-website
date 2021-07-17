@@ -30,9 +30,10 @@ upgrading resource state, to help massage resources created with earlier
 schemas into the shape defined by the current schema. It will never be used for
 provider or data source schemas and can be omitted.
 
-~> **Important:** Upgrading resource state is not currently supported in the
-   next-generation framework. At this time, there is no reason to specify a
-   schema version. It can be safely omitted.
+~> **Important:** Upgrading resource state is [not currently
+supported](https://github.com/hashicorp/terraform-plugin-framework/issues/42)
+in the next-generation framework. At this time, there is no reason to specify a
+schema version. It can be safely omitted.
 
 ## DeprecationMessage
 
