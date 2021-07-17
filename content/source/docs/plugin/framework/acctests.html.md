@@ -6,6 +6,8 @@ description: |-
   framework.
 ---
 
+# Acceptance Tests
+
 The next-generation framework for Terraform provider development currently
 relies on the [acceptance test
 framework](/docs/extend/testing/acceptance-tests/index.html) shipped with
