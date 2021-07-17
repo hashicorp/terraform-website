@@ -27,7 +27,7 @@ The provider has four methods it needs to handle: `GetSchema`, `Configure`,
 ## GetSchema
 
 The provider's job in the `GetSchema` method is to return a
-[schema](/docs/plugin/framework/schema.html) that describes the provider's
+[schema](/docs/plugin/framework/schemas.html) that describes the provider's
 configuration block. This configuration block is used to offer practitioners
 the opportunity to supply values to the provider and configure its behavior,
 rather than needing to include those values in every resource and data source.
