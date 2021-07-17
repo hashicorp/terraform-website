@@ -44,8 +44,10 @@ practitioners that the provider, resource, or data source is deprecated, and
 will indicate a migration strategy.
 
 ~> **Important:** Deprecation messages will not currently be surfaced to users,
-   but will be in the near future. They can be safely added to your schemas to
-   take advantage of the behavior when the framework gains this capability.
+but [will be in the near
+future](https://github.com/hashicorp/terraform-plugin-framework/issues/71).
+They can be safely added to your schemas to take advantage of the behavior when
+the framework gains this capability.
 
 ## Description
 
@@ -279,5 +281,7 @@ Much like [resources, data sources, and providers can be
 deprecated](#deprecationmessage), so too can individual attributes.
 
 ~> **Important:** Deprecation messages will not currently be surfaced to users,
-   but will be in the near future. They can be safely added to your schemas to
-   take advantage of the behavior when the framework gains this capability.
+but [will be in the near
+future](https://github.com/hashicorp/terraform-plugin-framework/issues/71).
+They can be safely added to your schemas to take advantage of the behavior when
+the framework gains this capability.
