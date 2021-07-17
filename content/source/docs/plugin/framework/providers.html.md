@@ -80,11 +80,11 @@ In the example above, `example_foo.bar.name` is a read-only field on
 `example_foo.bar` that won't be set until after `example_foo.bar` has been
 applied. So the `Configure` method for the provider may report that the value
 is unknown. It is up to the provider developer how this should be handled. If
-the some resources or data sources can be used without knowing that value, it
-may be worthwhile to [emit a warning](/docs/plugin/framework/diagnostics.html)
-and check whether the value is set in resources and data sources before
-attempting to use it. If resources and data sources can't provide any
-functionality without knowing that value, it's often better to [return an
+some resources or data sources can be used without knowing that value, it may
+be worthwhile to [emit a warning](/docs/plugin/framework/diagnostics.html) and
+check whether the value is set in resources and data sources before attempting
+to use it. If resources and data sources can't provide any functionality
+without knowing that value, it's often better to [return an
 error](/docs/plugin/framework/diagnostics.html), which will halt the apply.
 
 ## GetResources
