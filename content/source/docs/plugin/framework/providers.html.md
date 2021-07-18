@@ -90,7 +90,7 @@ error](/docs/plugin/framework/diagnostics.html), which will halt the apply.
 ## GetResources
 
 The provider's job in the `GetResources` method is to return a map of [resource
-types](/docs/plugin/framework/resources.html#resource-types). The keys of the
+types](/docs/plugin/framework/resources.html#resourcetype). The keys of the
 map entries must be the name of the resource as it would appear in the
 configuration, including the provider prefix.
 
@@ -100,7 +100,7 @@ runtime, and should consistently return the same values.
 ## GetDataSources
 
 The provider's job in the `GetDataSources` method is to return a map of [data
-source types](/docs/plugin/framework/data-sources.html#data-source-types). The
+source types](/docs/plugin/framework/data-sources.html#datasourcetype). The
 keys of the map entries must be the name of the data source as it would appear
 in the configuration, including the provider prefix.
 
