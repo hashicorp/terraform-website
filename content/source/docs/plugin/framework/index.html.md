@@ -27,9 +27,10 @@ The next-generation framework for Terraform plugin development is still early
 in its development cycle; it may not support all the features provider
 developers are looking for yet, and it can only build providers that require
 Terraform v1.0.3 or later to use. It is currently under active development and
-its interfaces are currently subject to change. But HashiCorp is developing
-providers against it, and we believe it is ready for third party developers to
-develop against, as long as they understand its compatibility situation and
-current limitations. For more information on whether the next-generation
-framework is right for your provider, see [Which SDK Should I
+its interfaces are subject to change. But HashiCorp is developing providers
+against it, it provides new and exciting features for providers to take
+advantage of, and we believe it is ready for third party developers to develop
+against, as long as they understand its compatibility situation and current
+limitations. For more information on whether the next-generation framework is
+right for your provider, see [Which SDK Should I
 Use?](/docs/plugin/which-sdk.html).
