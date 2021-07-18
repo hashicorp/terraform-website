@@ -32,12 +32,12 @@ code that accesses values, but requires defining a type to contain the values.
 
 ```go
 type resourceData struct {
-  Name types.String `tfsdk:"name"`
-  Age types.Number `tfsdk:"age"`
-  Registered types.Bool `tfsdk:"registered"`
-  Pets types.List `tfsdk:"pets"`
-  Tags types.Map `tfsdk:"tags"`
-  Address types.Object `tfsdk:"address"`
+	Name types.String `tfsdk:"name"`
+	Age types.Number `tfsdk:"age"`
+	Registered types.Bool `tfsdk:"registered"`
+	Pets types.List `tfsdk:"pets"`
+	Tags types.Map `tfsdk:"tags"`
+	Address types.Object `tfsdk:"address"`
 }
 
 func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
@@ -100,7 +100,7 @@ func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest,
 }
 ```
 
-Like `Get`, `GetAttribute` can also do some conversion to normal Go types:
+Like `Get`, `GetAttribute` can also do some conversion to standard Go types:
 
 ```go
 func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
