@@ -132,8 +132,8 @@ present?
 * Computed attributes, whether optional or not, will never be null in the plan
   for Create, Read, Update, or Delete methods.
 * Computed attributes that are read-only (`Optional` is not `true`) will always
-  be `Computed` in the plan for Create, Read, Update, or Delete methods. They
-  will always be null in the configuration for Create, Read, Update, and Delete
+  be unknown in the plan for Create, Read, Update, or Delete methods. They will
+  always be null in the configuration for Create, Read, Update, and Delete
   methods.
 * Required attributes will never be null in a provider's Configure method. They
   may be unknown.
