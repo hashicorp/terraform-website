@@ -7,7 +7,7 @@ description: |-
 
 # Terraform Enterprise Architecture
 
-Terraform Enterprise is powered by the same set of services behind HashiCorp’s public SaaS application Terraform Cloud. The sections below present the functional layers of the architecture, how they interact and details pertaining to the corresponding Docker containers involved. References to Docker containers in this document are those you will see when running a `docker ps` on a Terraform Enterprise application server while the application is up.
+Terraform Enterprise is powered by the same set of services behind HashiCorp’s public SaaS application Terraform Cloud. The sections below present the functional layers of the architecture, how they interact, and details about the corresponding Docker containers. You can get a list of these Docker containers by running `docker ps` on a Terraform Enterprise application server while the application is up.
 
 ~> **Advanced:** The content in this document is not required to operate Terraform Enterprise but is provided to help advanced users understand the product in more depth.
 
