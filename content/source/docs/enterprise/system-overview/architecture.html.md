@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Architecture Summary - System Overview - Terraform Enterprise"
+description: |-
+  Learn about the functional layers of the architecture, how they interact, and details about the corresponding Docker containers.
 ---
 
 # Terraform Enterprise Architecture
