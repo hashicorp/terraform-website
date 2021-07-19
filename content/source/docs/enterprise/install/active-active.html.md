@@ -468,11 +468,11 @@ The minimum instance size for Redis to be used with TFE is 6 GiB. For Azure, thi
   <tr>
    <td><strong>Cache</strong> <strong>Name</strong>
    </td>
-   <td>C3
+   <td>C
    </td>
-   <td>C0
+   <td>C
    </td>
-   <td>P2
+   <td>P
    </td>
   </tr>
 </table>
