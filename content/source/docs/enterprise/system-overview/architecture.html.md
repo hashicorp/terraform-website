@@ -9,7 +9,7 @@ description: |-
 
 Terraform Enterprise is powered by the same set of services behind HashiCorp’s public SaaS application Terraform Cloud. The sections below present the functional layers of the architecture, how they interact, and details about the corresponding Docker containers. You can get a list of these Docker containers by running `docker ps` on a Terraform Enterprise application server while the application is up.
 
-~> **Advanced:** The content in this document is not required to operate Terraform Enterprise but is provided to help advanced users understand the product in more depth.
+~> **Advanced:** This information is not required to operate Terraform Enterprise. We provide this content to help advanced users understand the product in more depth.
 
 ~> **Note:** Several services described below include the legacy string `ptfe` as part of their names. See [here](https://www.terraform.io/docs/enterprise/index.html#note-about-product-names) for more details.
 
@@ -20,11 +20,11 @@ The application layer is divided conceptually into two areas, each with specific
 - Web Services - Answer requests forwarded by NginX and enqueue jobs for later
 - Background Services - Asynchronously process jobs enqueued by web services
 
-Most requests in Terraform Enterprise follow a similar lifecycle as shown in the diagram below.
+Most requests in Terraform Enterprise follow a similar lifecycle that is shown in the diagram below.
 
 ![tfe-int-app-layer](assets/tfe-int-app-layer.png)
 
-A web service receives a request and enqueues a background job to perform the task via the Coordination Layer (see below).  The web service then responds immediately to the original request instead of waiting for the job to be finished.
+A web service receives a request and enqueues a background job to perform the task via the Coordination Layer (see below). The web service then responds immediately to the original request instead of waiting for the job to be finished.
 
 A background service later claims the job from the Coordination Layer and performs the resource- or time-intensive task in the background without blocking the web service.
 
@@ -48,7 +48,7 @@ The Coordination Layer is responsible for queuing asynchronous jobs and distribu
 
 ## Storage Layer
 
-All application data is stored in PostgreSQL and object storage. If you have selected Mounted Disk mode, local services will be started for you, otherwise, the appropriate services will be configured to access a external PostgreSQL, S3-compatible blob storage, and, in active-active, Redis.
+All application data is stored in a PostgreSQL database and an S3-compatible object storage service. If you have selected Mounted Disk mode, local services will be started for you; otherwise, the application must be configured to access an external database and object storage service.
 
 ~> **Note:** The configuration information provided and/or generated during installation (e.g. database credentials, hostname, etc.) is stored outside of the application.
 
@@ -77,7 +77,7 @@ The application waits for `postgres`, `redis`, and `rabbitmq` to start as above.
 
 ![tfe-int-wait-for-dependencies](assets/tfe-int-wait-for-dependencies.png)
 
-1. The remaining services that do not rely on PostgreSQL are launched in parallel. Included in this batch are or two short lived containers, `ptfe_migrations` and `ptfe_registry_migrations`, which exist only to apply any necessary updates to the database schema.<br />
+1. Terraform launches the remaining services that do not rely on PostgreSQL in parallel. These include two short-lived containers, `ptfe_migrations` and `ptfe_registry_migrations`, that exist only to apply any necessary updates to the database schema.<br />
 2. The main **web** and **background** services start up:
 <br />2a. Once `ptfe_migrations` has finished, `ptfe_atlas` and `ptfe_sidekiq` are started in parallel.
 <br />2b. Once `ptfe_registry_migrations` has finished, `ptfe_registry_api` and `ptfe_registry_worker` are started in parallel.
@@ -96,7 +96,7 @@ The process of importing Terraform modules into the private module registry star
 1. `ptfe_archivist` persists the repository in blob storage and `POST`s the Object ID to `ptfe_atlas`.
 
 
-At this point, each tagged version of your repository has been persisted in the application. The process to make the modules available in your private module registry begins next:
+At this point, each tagged version of your repository has been persisted in the application. The process to make the modules available in your private module registry begins:
 
 ![tfe-int-module-availability](assets/tfe-int-module-availability.png)
 
@@ -108,7 +108,7 @@ Finally, `ptfe_atlas` receives the callback and sets the module’s state to *in
 
 ### Webhook Receipt
 
-Communications between Terraform Enterprise and a connected VCS server happen via HTTP webhooks.  The latest state of the connected Git repository is downloaded using the process below, and then followup Terraform commands are applied by the state machine.
+Communications between Terraform Enterprise and a connected VCS server happen via HTTP webhooks. Terraform downloads the latest state of the connected Git repository using the process below, and then the state machine applies the followup Terraform commands.
 
 ![tfe-int-webhook-receipt](assets/tfe-int-webhook-receipt.png)
 
@@ -156,7 +156,7 @@ Finally, `ptfe_atlas` updates the metadata in PostgreSQL after it receives confi
 
 ## Long-Running Container List
 
-The following table lists every container Terraform Enterprise runs via the Replicated Native Scheduler.  The list is presented by layer as per the above document sections and includes those long-running processes only, not ephemeral containers.
+The following table lists every container Terraform Enterprise runs via the Replicated Native Scheduler, following the layers outlined above. It does not include ephemeral containers, only those from long-running processes.
 
 | Layer | Container Name | Process Name | Container Function |
 | - | - | - | - |
@@ -165,8 +165,8 @@ The following table lists every container Terraform Enterprise runs via the Repl
 |  | `ptfe_nginx` | Nginx | NginX is used as a router in Terraform Enterprise. |
 | Background Services | `ptfe_sidekiq` | Sidekiq | Ruby workers that run asynchronous jobs enqueued by `ptfe_atlas`. |
 |  | `ptfe_state_parser` | Terraform State Parser | Go service that parses Terraform State Files. |
-|  | `ptfe_build_manager` | Terraform Build Manager | Go service that coordinates Terraform runs, plan and applies. |
-|  | `ptfe_registry_worker` | Private Module Registry Worker | Go service that parses Git repositories for Private Registry. |
+|  | `ptfe_build_manager` | Terraform Build Manager | Go service that coordinates Terraform runs, plans, and applies. |
+|  | `ptfe_registry_worker` | Private Module Registry Worker | Go service that parses Git repositories for private registry. |
 |  | `ptfe_build_worker` | Terraform Build Worker | Go service that manages the lifecycle of isolated worker containers. |
 |  | `ptfe_slug_ingress` | Slug Ingress | Go service that imports Git repositories. |
 | Coordination Layer | `ptfe_redis` | Redis Cache | In-memory database used for caching and Sidekiq queue. Only used in Mounted Disk mode and Standalone External Services mode deployments (not Active/Active). |
