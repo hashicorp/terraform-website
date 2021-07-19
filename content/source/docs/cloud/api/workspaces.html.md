@@ -457,6 +457,7 @@ Parameter      | Description
 ---------------|------------
 `page[number]` | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`   | **Optional.** If omitted, the endpoint will return 20 workspaces per page.
+`search[name]` | **Optional.** Allows searching the organization's workspaces by name.
 
 ### Sample Request
 
