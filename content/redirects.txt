@@ -23,7 +23,7 @@
 # Varnish rewrite rule. We're adding them here anyway, to ensure redirects.txt
 # is a complete record of all the rewrites this site uses.
 #
-# If you need to redirect to an external URL, you must contact it-helpdesk.
+# If you need to redirect to an external URL, you must contact submit a request through https://help.hashicorp.services --> Digital + Web will get you to the right team.
 #
 # INDEX.HTML AND PARENT PATHS
 #
