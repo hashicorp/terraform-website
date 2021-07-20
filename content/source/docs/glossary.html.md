@@ -1,5 +1,5 @@
 ---
-layout: intro
+layout: terraform-glossary
 page_title: "Terraform Glossary"
 sidebar_current: "terraform-glossary"
 description: |-
@@ -7,7 +7,7 @@ description: |-
   documentation and throughout the Terraform community.
 ---
 
-# Terraform Glossary
+# Glossary
 
 This page collects brief definitions of some of the technical terms used in the documentation for Terraform, as well as some terms that come up frequently in conversations throughout the Terraform community.
 
@@ -633,7 +633,8 @@ Terraform providers are generally tied to a specific _infrastructure provider,_ 
 
 There are many existing providers available, but providers can also be custom-built to work with any API.
 
-- [Terraform docs: Providers](/docs/providers/index.html)
+- [Terraform docs: Provider Use](/docs/language/providers/index.html)
+- [Terraform docs: Plugin Development](/docs/extend/index.html)
 
 ## Pull Request (PR)
 
