@@ -27,7 +27,7 @@ Terraform currently supports one type of Plugin called [providers](/docs/languag
 
 ## Get Support
 
-- Ask questions and learn useful patterns in the [Terraform Providers section](https://discuss.hashicorp.com/c/terraform-providers/31) of HashiCorp discuss.
+- Ask questions and learn useful patterns in the [Terraform Providers section](https://discuss.hashicorp.com/c/terraform-providers/tf-plugin-sdk/43) of HashiCorp discuss.
 
 - Report bugs to the [Terraform Plugin SDK Issue Tracker](https://github.com/hashicorp/terraform-plugin-sdk/issues).
 
