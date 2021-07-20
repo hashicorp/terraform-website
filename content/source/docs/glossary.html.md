@@ -1,5 +1,5 @@
 ---
-layout: intro
+layout: terraform-glossary 
 page_title: "Terraform Glossary"
 sidebar_current: "terraform-glossary"
 description: |-
