@@ -633,7 +633,8 @@ Terraform providers are generally tied to a specific _infrastructure provider,_ 
 
 There are many existing providers available, but providers can also be custom-built to work with any API.
 
-- [Terraform docs: Providers](/docs/providers/index.html)
+- [Terraform docs: Provider Use](/docs/language/providers/index.html)
+- [Terraform docs: Plugin Development](/docs/extend/index.html)
 
 ## Pull Request (PR)
 
