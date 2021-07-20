@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Unit Testing"
+page_title: "Plugin Development - Unit Testing"
 sidebar_current: "docs-extend-testing-unit"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
+  Plugin Development is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
 ---
 
@@ -18,7 +18,7 @@ writing Unit Tests for Terraform Plugin code.
 The procedure for writing unit tests for Terraform follows the same setup and
 conventions of writing any Go unit tests. We recommend naming tests to follow
 the same convention as our acceptance tests, `Test<Provider>_<Test Name>`. For more
-information on Go tests, see the [official Golang docs on testing][0]. 
+information on Go tests, see the [official Golang docs on testing](https://pkg.go.dev/testing).
 
 
 Below is an example unit test used in flattening AWS security group rules,
@@ -26,7 +26,7 @@ demonstrating a typical `flattener` type method that's commonly used to convert
 structures returned from APIs into data structures used by Terraform in saving
 to state. This example is truncated for brevity, but you can see the full test in the
 [aws/structure_test.go in the Terraform AWS Provider
-repository on GitHub](https://github.com/terraform-providers/terraform-provider-aws/blob/f22ae122d8407672bd38951f80a2813b8b9af683/aws/structure_test.go#L930-L1027)
+repository on GitHub](https://github.com/hashicorp/terraform-provider-aws/blob/f22ae122d8407672bd38951f80a2813b8b9af683/aws/structure_test.go#L930-L1027)
 
 ```go
 func TestFlattenSecurityGroups(t *testing.T) {
@@ -95,4 +95,3 @@ func TestFlattenSecurityGroups(t *testing.T) {
 }
 ```
 
-[0]: https://golang.org/pkg/testing/

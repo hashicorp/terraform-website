@@ -1,14 +1,13 @@
 ---
 layout: "extend"
-page_title: "Home - Extending Terraform"
+page_title: "Plugin Development - How Terraform Works With Plugins"
 sidebar_current: "docs-extend-how-terraform-works"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Learn the responsibilities of Terraform core and how Terraform interacts with plugins that expose the implementation of a specific service.
 ---
 
 
-# How Terraform Works
+# How Terraform Works With Plugins
 
 Terraform is a tool for building, changing, and versioning infrastructure safely
 and efficiently. Terraform is built on a plugin-based architecture, enabling
@@ -97,8 +96,8 @@ and chooses a version for each plugin as follows:
 [Terraform Registry](https://registry.terraform.io/)
   has a newer acceptable version).
 - If no acceptable versions are installed and the plugin is one of the
-  [providers distributed by HashiCorp](/docs/providers/index.html), Terraform
-  downloads the newest acceptable version from the [Terraform Registry](https://registry.terraform.io/) 
+  [providers distributed by HashiCorp](/docs/language/providers/index.html), Terraform
+  downloads the newest acceptable version from the [Terraform Registry](https://registry.terraform.io/)
   and saves it in a subdirectory under `.terraform/providers/`.
 - If no acceptable versions are installed and the plugin is not distributed in
   the [Terraform Registry](https://registry.terraform.io/), initialization

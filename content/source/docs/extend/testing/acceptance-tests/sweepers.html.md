@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Acceptance Testing"
+page_title: "Plugin Development - Acceptance Testing: Sweepers"
 sidebar_current: "docs-extend-testing-acceptance-sweepers"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
+  Plugin Development is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
 ---
 

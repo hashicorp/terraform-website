@@ -1,12 +1,12 @@
 ---
 layout: "extend"
-page_title: "HashiCorp Provider Design Principles - Guides"
+page_title: "Provider Design Principles - Guides"
 sidebar_current: "docs-extend-hashicorp-provider-design-principles"
 description: |-
   Design principles for officially maintained Terraform Providers.
 ---
 
-# HashiCorp Provider Design Principles
+# Provider Design Principles
 
 Over time, the Terraform development community has gained large amounts of experience across a wide breadth of Application Programming Interfaces (APIs) supported by Terraform and its Software Development Kit (SDK). Recommended practices have emerged with designing the expected operator and maintainer experience. The principles below highlight the most prolific patterns when designing Terraform providers and associated resources, which guide HashiCorp design decisions.
 
