@@ -8,29 +8,9 @@ description: |-
 
 # Next-Generation Plugin Framework
 
-Terraform can be extended to manage infrastructure with
-[providers](/docs/providers/index.html)
-(containing [resources](/docs/configuration/resources.html)
-and/or [data sources](/docs/language/data-sources/index.html)). **Providers**
-are a type of Terraform plugin.
+The next-generation plugin framework is a new way to develop Terraform plugins, providing improvements and new features from [Teraform Plugin SDKv2](/docs/extend/index.html).
 
-~> This is an advanced section! If you are looking for information on using
-Terraform with any of the existing plugins, please refer to the
-[Docs](/docs/index.html) section of this website.
+HashiCorp is currently developing providers against this new framework, and we believe it is ready for third-party developers to use. However, it is still early in its development cycle, so its interfaces are subject to change and it may not yet support all of your desired features. It can also only build providers that require **Terraform v1.0.3 or later**.
 
-This section of the documentation contains content for users who wish to use
-our next-generation framework to develop their own Terraform providers. For
-provider development using version 2 of the Terraform Plugin SDK, please see
-[the SDKv2 documentation](/docs/extend/index.html), instead.
-
-The next-generation framework for Terraform plugin development is still early
-in its development cycle; it may not support all the features provider
-developers are looking for yet, and it can only build providers that require
-Terraform v1.0.3 or later to use. It is currently under active development and
-its interfaces are subject to change. But HashiCorp is developing providers
-against it, it provides new and exciting features for providers to take
-advantage of, and we believe it is ready for third party developers to develop
-against, as long as they understand its compatibility situation and current
-limitations. For more information on whether the next-generation framework is
-right for your provider, see [Which SDK Should I
-Use?](/docs/plugin/which-sdk.html).
+[Which SDK Should I
+Use?](/docs/plugin/which-sdk.html) can help you decide whether the next-generation framework is right for your provider.
