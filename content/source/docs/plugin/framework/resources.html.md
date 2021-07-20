@@ -70,10 +70,11 @@ Resources are scoped to a single instance of a resource type. They modify a spec
 
 ### Create
 
-`Create` makes the necessary API calls to create the resource and then persist that resource's data into the Terraform state.
+`Create` makes the necessary API calls to create the resource and then persist that resource's data into the Terraform state. This is usually accomplished by:
 
-This is usually accomplished by [reading the plan data](/docs/plugin/framework/accessing-values.html) from the [`tfsdk.CreateResourceRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#CreateResourceRequest), using the configured API client injected into the resource by the resource type's `NewResource` method, and [writing to the
-state](/docs/plugin/framework/writing-state.html).
+1. [Reading the plan data](/docs/plugin/framework/accessing-values.html) from the [`tfsdk.CreateResourceRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#CreateResourceRequest)
+2. Using the configured API client injected into the resource by the resource type's `NewResource` method
+3. [Writing to the state](/docs/plugin/framework/writing-state.html).
 
 It is very important that every known value in the plan ends up in state as a
 byte-for-byte match, or Terraform will throw errors. The plan is the provider's
@@ -106,14 +107,12 @@ replaced with the new representation that the API is returning.
 
 ### Update
 
-`Update` makes the necessary API calls to modify the existing resource to match the configuration and then to persist that resource's data into the Terraform state.
+`Update` makes the necessary API calls to modify the existing resource to match the configuration and then to persist that resource's data into the Terraform state. This is usually accomplished by:
 
-This is usually accomplished by [reading the plan
-data](/docs/plugin/framework/accessing-values.html) from the
-[`tfsdk.UpdateResourceRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#UpdateResourceRequest),
-using the configured API client injected into the resource by the resource
-type's `NewResource` method, and [writing to the
-state](/docs/plugin/framework/writing-state.html).
+1. [Reading the plan data](/docs/plugin/framework/accessing-values.html) from the [`tfsdk.UpdateResourceRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#UpdateResourceRequest)
+2. Using the configured API client injected into the resource by the resource
+type's `NewResource` method
+3. [Writing to the state](/docs/plugin/framework/writing-state.html).
 
 It is very important that every known value in the plan ends up in state as a
 byte-for-byte match, or Terraform will throw errors. The plan is the provider's
@@ -124,13 +123,13 @@ value when it's set in the state; the state can never hold any unknown values.
 
 ### Delete
 
-`Delete` makes the necessary API calls to destroy a resource and then to remove that resource from the Terraform state.
+`Delete` makes the necessary API calls to destroy a resource and then to remove that resource from the Terraform state. This is usually accomplished by:
 
-This is usually accomplished by [reading the prior state
-data](/docs/plugin/framework/accessing-values.html) from the
-[`tfsdk.DeleteResourceRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DeleteResourceRequest),
-using the configured API client injected into the resource by the resource
-type's `NewResource` method, and calling the [`State.RemoveResource`
+1. [Reading the prior state data](/docs/plugin/framework/accessing-values.html) from the
+[`tfsdk.DeleteResourceRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DeleteResourceRequest)
+2. Using the configured API client injected into the resource by the resource
+type's `NewResource` method
+3. Calling the [`State.RemoveResource`
 method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#State.RemoveResource)
 on the state in the
 [`tfsdk.DeleteResourceResponse`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DeleteResourceResponse).
