@@ -82,6 +82,8 @@ The next-generation framework is still under development, and so some features
 that SDKv2 supports the next-generation framework may not support yet. These
 include:
 
+* The ability to validate configurations.
+* The ability to modify plans and force resource recreation.
 * The ability to use sets.
 * The ability to import resources.
 * The ability to use timeouts.
