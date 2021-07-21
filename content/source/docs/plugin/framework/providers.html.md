@@ -82,7 +82,7 @@ provider "example" {
 In the example above, `example_foo.bar.name` is a read-only field on
 `example_foo.bar` that won't be set until after `example_foo.bar` has been
 applied. So the `Configure` method for the provider may report that the value
-is unknown. It is up to the provider developer how this should be handled. If
+is unknown. You can choose how your provider handles this. If
 some resources or data sources can be used without knowing that value, it may
 be worthwhile to [emit a warning](/docs/plugin/framework/diagnostics.html) and
 check whether the value is set in resources and data sources before attempting
