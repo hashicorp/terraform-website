@@ -2,7 +2,7 @@ set :base_url, "https://www.terraform.io/"
 
 activate :hashicorp do |h|
   h.name        = "terraform"
-  h.version     = "1.0.2"
+  h.version     = "1.0.3"
   h.github_slug = "hashicorp/terraform"
 end
 
