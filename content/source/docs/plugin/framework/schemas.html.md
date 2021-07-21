@@ -23,8 +23,7 @@ sources](/docs/plugin/framework/data-sources.html).
 
 ## Version
 
-Every schema has a version. The version is an integer that allows provider
-developers to track changes to their schemas. It is generally only used when
+Every schema has a version, which is an integer that allows you to track changes to your schemas. It is generally only used when
 upgrading resource state, to help massage resources created with earlier
 schemas into the shape defined by the current schema. It will never be used for
 provider or data source schemas and can be omitted.
