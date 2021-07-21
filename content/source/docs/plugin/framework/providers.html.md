@@ -20,7 +20,7 @@ information on how to connect to the server to Terraform.
 The next-generation framework abstracts all this away, allowing any type that
 fills an
 [interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Provider)
-to be a provider. It is recommended that the provider developer define a struct
+to be a provider. We recommend that you define a `struct`
 type to fill this interface.
 
 The provider has four methods it needs to handle: `GetSchema`, `Configure`,
