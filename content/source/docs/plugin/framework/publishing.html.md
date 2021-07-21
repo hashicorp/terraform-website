@@ -17,7 +17,7 @@ providers being published support version 5 of the Terraform protocol, which
 providers built on the framework do not. The Registry needs to be told about
 this difference in protocol version support. This is done by adding a manifest
 to the provider's release assets.
-
+## Add a Version Manifest
 When uploading your new provider version to GitHub, next to the zip files
 containing your binaries for each platform, include a file named
 `terraform-provider-$NAME_$VERSION_manifest.json` (where `$NAME` is your
