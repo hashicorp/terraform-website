@@ -26,7 +26,7 @@ type to fill this interface.
 The provider has four methods it needs to handle: `GetSchema`, `Configure`,
 `GetResources`, and `GetDataSources`.
 
-## GetSchema
+### GetSchema
 
 The provider's job in the `GetSchema` method is to return a
 [schema](/docs/plugin/framework/schemas.html) that describes the provider's
