@@ -49,7 +49,7 @@ an empty schema.
 The schema is meant to be immutable. It should not change at runtime, and
 should consistently return the same value.
 
-## Configure
+### Configure
 
 The provider's job in the `Configure` method is to handle and store the values
 the user entered in the provider's configuration block. This can mean creating
