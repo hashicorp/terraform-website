@@ -3,7 +3,7 @@ layout: "extend"
 page_title: "Plugin Development - Debugging Providers"
 sidebar_current: "docs-extend-debugging-providers"
 description: |-
-  How to debug providers.
+  How to use both logs and debugging tools to debug Terraform providers.
 ---
 
 # Debugging Providers

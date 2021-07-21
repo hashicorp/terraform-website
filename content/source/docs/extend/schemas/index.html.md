@@ -3,8 +3,8 @@ layout: "extend"
 page_title: "Plugin Development - Schemas"
 sidebar_current: "docs-extend-schemas"
 description: |-
-  Plugin Development is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Schemas define plugin attributes and behaviors. Learn how to create schemas
+  in SDKv2.
 ---
 
 # Terraform Schemas

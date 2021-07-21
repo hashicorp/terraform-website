@@ -3,8 +3,8 @@ layout: "extend"
 page_title: "Plugin Development - Acceptance Testing: TestStep"
 sidebar_current: "docs-extend-testing-acceptance-teststep"
 description: |-
-  Plugin Development is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  TestSteps represent the application of an actual Terraform configuration
+  file to a given state.
 ---
 
 # Acceptance Tests: TestSteps

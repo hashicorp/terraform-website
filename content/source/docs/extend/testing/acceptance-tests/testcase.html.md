@@ -3,8 +3,8 @@ layout: "extend"
 page_title: "Plugin Development - Acceptance Testing: TestCase"
 sidebar_current: "docs-extend-testing-acceptance-testcase"
 description: |-
-  Plugin Development is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Acceptance tests are expressed in terms of Test Cases. Each Test Case
+  creates a set of resources then verifies the new infrastructure.
 ---
 
 # Acceptance Tests: TestCases

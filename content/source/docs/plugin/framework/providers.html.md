@@ -7,15 +7,15 @@ description: |-
 
 # Providers
 
-Providers are Terraform plugins that supply resources and data sources for
-practitioners to use. They are implemented as binaries that the Terraform CLI
-downloads, starts, and stops.
-The provider is responsible for:
-- providing a [gRPC](https://grpc.io) server that can correctly handle Terraform's handshake.
+Providers are Terraform plugins that supply
+[resources](/docs/plugin/framework/resources.html) and [data
+sources](/docs/plugin/framework/data-sources.html) for practitioners to use.
+They are implemented as binaries that the Terraform CLI downloads, starts,
+and stops. The provider is responsible for:
+
+- providing a [gRPC](https://grpc.io) server that can correctly handle
+  Terraform's handshake.
 - providing Terraform with information about how to connect to the server.
-responsibility is to provide a [gRPC](https://grpc.io) server that Terraform
-can interact with and correctly handle Terraform's handshake, supplying the
-information on how to connect to the server to Terraform.
 
 ## Implement Provider Interface
 The next-generation framework allows any type that
@@ -44,7 +44,7 @@ provider "example" {
 }
 ```
 
-Even if the provider does not want to accept user configuration, it must return
+Even if the provider does not want to accept practitioner configuration, it must return
 an empty schema.
 
 The schema is meant to be immutable. It should not change at runtime, and
@@ -52,20 +52,21 @@ should consistently return the same value.
 
 ### Configure
 
-The provider's job in the `Configure` method is to handle and store the values
-the user entered in the provider's configuration block. This can mean creating
-the API client, storing the data on the type that implements the provider
-interface, or otherwise handling the values. This is the only time those values
-will be made available to the provider, and so if the provider will want to
-reference them from within a resource or data source, they need to be
-persisted. This is why the recommendation is to use a struct to represent the
-provider, as it can hold multiple values in a strongly-typed way.
+The provider's job in the `Configure` method is to handle and store the
+values the practitioner entered in the provider's configuration block. This
+can mean creating the API client, storing the data on the type that
+implements the provider interface, or otherwise handling the values. This is
+the only time those values will be made available to the provider, so they
+need to be persisted if the provider will need to reference them from within
+a resource or data source. This is why the recommendation is to use a struct
+to represent the provider, as it can hold multiple values in a strongly-typed
+way.
 
 #### Unknown Values
 
 Not all values are guaranteed to be
 [known](/docs/plugin/framework/types.html#unknown) when `Configure` is called.
-For example, if a user interpolates a resource's unknown value into the block,
+For example, if a practitioner interpolates a resource's unknown value into the block,
 that value may show up as unknown depending on how the graph executes:
 
 ```tf

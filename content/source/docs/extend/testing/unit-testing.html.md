@@ -3,8 +3,8 @@ layout: "extend"
 page_title: "Plugin Development - Unit Testing"
 sidebar_current: "docs-extend-testing-unit"
 description: |-
-  Plugin Development is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Unit tests are commonly used for testing helper methods that expand or
+  flatten API responses into data structures that Terraform stores as state.
 ---
 
 # Unit Testing
