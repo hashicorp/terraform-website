@@ -17,12 +17,14 @@ Terraform currently supports one type of Plugin called [providers](/docs/languag
 ## Get Started
 - Learn more about [how Terraform Core interacts with plugins](/docs/extend/how-terraform-works.html).
 - Learn the [design principles](/docs/extend/hashicorp-provider-design-principles.html) HashiCorp developers follow when creating providers.
+- Decide [which SDK](/docs/plugin/which-sdk.html) is right for your provider.
 - Try the [Call APIs with Terraform Providers](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorials on HashiCorp Learn.
 
 ## Develop and Share Providers
-- Learn more about how to use [SDKv2](/docs/extend/hashicorp-provider-design-principles.html) to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/extend/schemas/index.html), [develop resources](/docs/extend/resources/index.html), [debug providers](/docs/extend/debugging.html), and [test plugins](/docs/extend/testing/index.html).
+- Learn more about **how to use [SDKv2](/docs/extend/hashicorp-provider-design-principles.html)** to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/extend/schemas/index.html), [develop resources](/docs/extend/resources/index.html), [debug providers](/docs/extend/debugging.html), and [test plugins](/docs/extend/testing/index.html).
+- Learn more about **how to use the [next-generation framework](/docs/plugin/framework/index.html)** to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/plugin/framework/schemas.html), develop [resources](/docs/plugin/framework/resources.html) and [data sources](/docs/plugin/framework/data-sources.html), and [write tests](/docs/plugin/framework/acctests.html).
 - [Publish your provider on the Terraform Registry](/docs/registry/index.html) to make it publicly available.   
-- Get HashiCorp to [officially approve and verify](/guides/terraform-provider-development-program.html) your provider. Verified providers get a special badge on the Terraform Registry to distinguish them from community-sourced providers.
+- Get HashiCorp to [officially approve and verify](/guides/terraform-provider-development-program.html) your provider. Verified providers get a special badge on the Terraform Registry.
 
 
 ## Get Support
