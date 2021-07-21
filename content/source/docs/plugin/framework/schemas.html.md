@@ -68,10 +68,7 @@ is a best practice to only alter the formatting, not the content, between the
 `Description` and `MarkdownDescription`.
 
 At the moment, if the `MarkdownDescription` property is set it will always be
-used instead of the `Description` property, but it is possible that in the
-future a different strategy will be employed to surface descriptions to other
-tooling in a format that best suits their needs, and so specifying both is a
-good future-proofing strategy.
+used instead of the `Description` property. It is possible that a different strategy may be employed in the future to surface descriptions to other tooling in a different format, so we recommend specifying both fields.
 
 ## Attributes
 
