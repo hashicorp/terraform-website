@@ -1,83 +1,34 @@
 ---
 layout: "extend"
-page_title: "Home - Extending Terraform"
-sidebar_current: "docs-extend-home"
+page_title: "Home - Plugin Development"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Learn about developing plugins that connect Terraform to external services.
 ---
 
-# Extending Terraform
+# Plugin Development
+Terraform is logically split into two main parts:
 
-Terraform can be extended to allow users to manage more infrastructure providers with
-[Providers](/docs/providers/index.html)
-(containing [Resources](/docs/configuration/resources.html)
-and/or [Data Sources](/docs/language/data-sources/index.html)). **Providers**
-are a type of Terraform "Plugin".
+- **Terraform Core**: This is the Terraform binary that communicates with plugins to manage infrastructure resources. It provides a common interface that allows you to leverage many different cloud providers, databases, services, and in-house solutions.
+- **Terraform Plugins**: These are executable binaries written in Go that communicate with Terraform Core over an RPC interface. Each plugin exposes an implementation for a specific service, such as the [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest)
+or the [cloud-init provider](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs).
 
-~> This is an advanced section! If you are looking for information on using
-Terraform with any of the existing Plugins, please refer to the
-[Docs](/docs/index.html) section of this website.
+Terraform currently supports one type of Plugin called [providers](/docs/language/providers/index.html).
 
-The Extending Terraform section contains content for users who wish to
-extend Terraform. The intended audience is anyone wanting to add or edit source
-code (“developers”) for either Terraform itself or a Terraform Plugin. The
-content assumes you have basic operating knowledge or experience using
-Terraform.
+## Get Started
+- Learn more about [how Terraform Core interacts with plugins](/docs/extend/how-terraform-works.html).
+- Learn the [design principles](/docs/extend/hashicorp-provider-design-principles.html) HashiCorp developers follow when creating providers.
+- Try the [Call APIs with Terraform Providers](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorials on HashiCorp Learn.
 
-Below is a brief description of each section. The content is organized from
-simplest to most complex — developers new to writing code for Terraform should
-start at the top.
+## Develop and Share Providers
+- Learn more about how to use [SDKv2](/docs/extend/hashicorp-provider-design-principles.html) to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/extend/schemas/index.html), [develop resources](/docs/extend/resources/index.html), [debug providers](/docs/extend/debugging.html), and [test plugins](/docs/extend/testing/index.html).
+- [Publish your provider on the Terraform Registry](/docs/registry/index.html) to make it publicly available.   
+- Get HashiCorp to [officially approve and verify](/guides/terraform-provider-development-program.html) your provider. Verified providers get a special badge on the Terraform Registry to distinguish them from community-sourced providers.
 
-## [How Terraform Works](/docs/extend/how-terraform-works.html)
 
-High level overview of how the Terraform tool works. Learn about the logical
-components of Terraform (Core vs. Plugins) and the basics of how they interact.
+## Get Support
 
-## [Plugin Types](/docs/extend/plugin-types.html)
+- Ask questions and learn useful patterns in the [Terraform Providers section](https://discuss.hashicorp.com/c/terraform-providers/tf-plugin-sdk/43) of HashiCorp discuss.
 
-Learn about Terraform plugins that you can develop using the Terraform Plugin SDK (currently only Providers).
+- Report bugs to the [Terraform Plugin SDK Issue Tracker](https://github.com/hashicorp/terraform-plugin-sdk/issues).
 
-## [Call APIs with Terraform Providers](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS)
 
-A collection of step by step tutorials for writing, compiling, and executing an
-example Terraform Provider.
-
-## [HashiCorp Provider Design Principles](/docs/extend/hashicorp-provider-design-principles.html)
-
-Emergent practices learned by official Terraform Provider developers that can
-guide design and decision making for all providers.
-
-## [Schemas](/docs/extend/schemas/index.html)
-
-The Schema package is a high-level framework for easily writing Plugins for
-Terraform. Providers (with Resources and/or Data Sources)
-are defined in terms of the Schema package, which includes builtin types
-and methods for developers to use when writing plugins.
-
-## [Resources](/docs/extend/resources/index.html)
-
-The Resource package provides several utilities and conveniences for handling
-tasks such as state migrations and customized difference behavior, these tasks
-often come up during provider development as schemas must change and evolve over
-time.
-
-## [Best Practices](/docs/extend/best-practices/index.html)
-
-The Best Practices section offers guides on techniques that range from the steps
-required to deprecate schema attributes, to testing patterns,
-and how to version and manage a provider changelog. These techniques were
-learned through years of Terraform development from both HashiCorp employees
-and Community members.
-
-## [Testing](/docs/extend/testing/index.html)
-
-Terraform provides a testing framework for validating resource implementations.
-The Testing section provides a breakdown of how to compose these tests using
-Test Cases and Test Steps, as well as covering unit test conventions and how
-they apply to Terraform plugin development.
-
-## [Community](/docs/extend/community/index.html)
-
-Terraform is a mature project with a growing community. There are active,
-dedicated people willing to help you through various mediums.

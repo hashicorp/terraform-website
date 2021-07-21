@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Testing Patterns"
+page_title: "Plugin Development - Testing Patterns"
 sidebar_current: "docs-extend-testing-patterns"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
+  Plugin Development is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
 ---
 

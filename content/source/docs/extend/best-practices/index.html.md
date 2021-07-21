@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Best Practices"
+page_title: "Plugin Development - Best Practices"
 sidebar_current: "docs-extend-best-practices"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
+  Plugin Development is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
 ---
 

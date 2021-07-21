@@ -23,7 +23,7 @@
 # Varnish rewrite rule. We're adding them here anyway, to ensure redirects.txt
 # is a complete record of all the rewrites this site uses.
 #
-# If you need to redirect to an external URL, you must contact it-helpdesk.
+# If you need to redirect to an external URL, you must contact submit a request through https://help.hashicorp.services --> Digital + Web will get you to the right team.
 #
 # INDEX.HTML AND PARENT PATHS
 #
@@ -914,3 +914,13 @@
 /docs/providers/index.html          /docs/language/providers/index.html
 /docs/providers/                    /docs/language/providers/index.html
 /docs/providers                     /docs/language/providers/index.html
+
+# Clean up Extend section (now Plugin Development)
+#/docs/extend/community/code-of-conduct.html    https://www.hashicorp.com/community-guidelines
+#/docs/extend/community/contributing.html       https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md
+#/docs/extend/community/events/index.html       https://www.terraform.io/community
+#/docs/extend/community/index.html              https://www.terraform.io/community
+#/docs/extend/community                         https://www.terraform.io/community
+#/docs/extend/community/                        https://www.terraform.io/community
+#/docs/extend/community/maintainers.html        https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md#maintainers
+/docs/extend/plugin-types.html.md               /docs/extend/index.html
