@@ -17,7 +17,8 @@ responsibility is to provide a [gRPC](https://grpc.io) server that Terraform
 can interact with and correctly handle Terraform's handshake, supplying the
 information on how to connect to the server to Terraform.
 
-The next-generation framework abstracts all this away, allowing any type that
+## Implement Provider Interface
+The next-generation framework allows any type that
 fills an
 [interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Provider)
 to be a provider. We recommend that you define a `struct`
