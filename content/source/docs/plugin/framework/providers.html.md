@@ -90,7 +90,7 @@ to use it. If resources and data sources can't provide any functionality
 without knowing that value, it's often better to [return an
 error](/docs/plugin/framework/diagnostics.html), which will halt the apply.
 
-## GetResources
+### GetResources
 
 The provider's job in the `GetResources` method is to return a map of [resource
 types](/docs/plugin/framework/resources.html#resourcetype). The keys of the
