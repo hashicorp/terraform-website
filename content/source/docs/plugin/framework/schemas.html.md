@@ -13,12 +13,12 @@ resource, or data source configuration block has, and give Terraform metadata
 about those fields. The schema can be thought of as the "type information" or
 the "shape" of a resource, data source, or provider.
 
-In the next-generation framework, schemas are defined using [the
+[The
 `schema.Schema`
 struct](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/schema#Schema)
-and returned from methods on the
+defines schemas that are returned from methods on the
 [provider](/docs/plugin/framework/providers.html),
-[resources](/docs/plugin/framework/resources.html) or [data
+[resources](/docs/plugin/framework/resources.html), and [data
 sources](/docs/plugin/framework/data-sources.html).
 
 ## Version
