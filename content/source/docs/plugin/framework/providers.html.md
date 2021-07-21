@@ -10,7 +10,9 @@ description: |-
 Providers are Terraform plugins that supply resources and data sources for
 practitioners to use. They are implemented as binaries that the Terraform CLI
 downloads, starts, and stops.
-meaning it has the responsibility of starting and stopping them. The provider's
+The provider is responsible for:
+- providing a [gRPC](https://grpc.io) server that can correctly handle Terraform's handshake.
+- providing Terraform with information about how to connect to the server.
 responsibility is to provide a [gRPC](https://grpc.io) server that Terraform
 can interact with and correctly handle Terraform's handshake, supplying the
 information on how to connect to the server to Terraform.
