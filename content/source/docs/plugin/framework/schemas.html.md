@@ -55,9 +55,7 @@ Various tooling like
 [terraform-plugin-docs](https://github.com/hashicorp/terraform-plugin-docs) and
 the [language server](https://github.com/hashicorp/terraform-ls) can use
 metadata in the schema to generate documentation or offer a better editor
-experience for practitioners. The `Description` property allows provider
-developers to add a description of a resource, data source, or provider that
-these tools can take advantage of.
+experience for practitioners. Use the `Description` property to add a description of a resource, data source, or provider that these tools can leverage.
 
 ## MarkdownDescription
 
