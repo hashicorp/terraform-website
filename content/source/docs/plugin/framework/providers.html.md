@@ -100,7 +100,7 @@ configuration, including the provider prefix.
 The list of resources is meant to be immutable. It should not change at
 runtime, and should consistently return the same values.
 
-## GetDataSources
+### GetDataSources
 
 The provider's job in the `GetDataSources` method is to return a map of [data
 source types](/docs/plugin/framework/data-sources.html#datasourcetype). The
