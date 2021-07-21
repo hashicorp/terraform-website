@@ -61,7 +61,7 @@ reference them from within a resource or data source, they need to be
 persisted. This is why the recommendation is to use a struct to represent the
 provider, as it can hold multiple values in a strongly-typed way.
 
-### Unknown Values
+#### Unknown Values
 
 Not all values are guaranteed to be
 [known](/docs/plugin/framework/types.html#unknown) when `Configure` is called.
