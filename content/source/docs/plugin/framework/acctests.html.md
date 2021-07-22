@@ -9,10 +9,11 @@ description: |-
 
 The framework for Terraform provider development currently relies on the
 [acceptance test framework](/docs/extend/testing/acceptance-tests/index.html)
-shipped with version 2 of the SDK. Tests are written and run with the same
-steps, and are otherwise indistinguishable from testing against version 2 of
-the SDK. The major difference is in how the provider is specified in [the
-`TestCase` struct](/docs/extend/testing/acceptance-tests/testcase.html).
+shipped with SDKv2. You will write and run tests with the same steps, and they
+are otherwise indistinguishable from testing against SDKv2.  The major
+difference is in how the provider is specified in [the `TestCase`
+struct](/docs/extend/testing/acceptance-tests/testcase.html).
+
 ## Specify Providers
 
 In SDKv2, providers were specified by using the [`Providers` property of the
@@ -54,5 +55,5 @@ See the [`TestCase`
 documentation](/docs/extend/testing/acceptance-tests/testcase.html) for more
 information on using `resource.TestCase`.
 
-We anticipate releasing an improved testing experience for the framework in the
-near future.
+-> **Note:** We anticipate releasing an improved testing experience for the
+framework in the near future.
