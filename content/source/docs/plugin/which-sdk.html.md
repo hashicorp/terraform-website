@@ -22,43 +22,39 @@ in SDKv2, or prepare for the future by writing providers in the framework.
 
 ## Are You Writing a New Provider or Maintaining an Existing Provider?
 
-We currently recommend that maintainers of large existing providers continue
-using SDKv2 for future resource and data source development in that provider.
-There is a migration story around building some resources of an otherwise-SDKv2
-provider using the framework, but it still needs a little tweaking. For those
-feeling adventurous, see
-[terraform-plugin-mux](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux).
+If you maintain a large existing provider, we recommend that you continue using
+SDKv2 to develop new resources and data sources. We are actively working on
+[terraform-plugin-mux](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux)
+support for the framework, which will eventually allow you to use the framework
+to build resources into an SDKv2 provider.
 
-Developers of greenfield providers likely should at least consider building
-their provider using the framework.
+If you are developing a greenfield provider, you should consider building it
+with the framework.
 
 ## Do You Need to Support Users Not On Terraform v1.0.3 Yet?
 
-Provider developers supporting user bases that have not upgraded to Terraform
-v1.0.3 in significant numbers yet may want to hold off on adopting the
-framework. The framework is built on Terraform protocol version 6, and
-Terraform didn't gain the ability to download providers using Terraform
-protocol version 6 until Terraform v1.0.3.
+If you support user bases that have not upgraded to Terraform v1.0.3 in
+significant numbers, we recommend that you continue using SDKv2. The framework
+is built on Terraform protocol version 6, and Terraform could not download
+providers using protocol version 6 until Terraform v1.0.3.
 
-For provider developers without an existing user base or with a user base that
-has mostly upgraded to v1.0.3, the framework may be appropriate.
+If you do not have a user base or your user base that has mostly upgraded to
+v1.0.3, the framework may be appropriate.
 
 ## Do You Have Bandwidth to Track and Resolve Breaking Changes?
 
 The framework is still under development and its interfaces may change as we
 learn more about how providers are interacting with it. We will strive to keep
-these changes as small and as least-disruptive as possible, but provider
-developers should understand that they are a possibility with the framework.
+these changes as small and as least-disruptive as possible, but they are a
+possibility with the framework.
 
-Provider developers that don't have the time, bandwidth, or tolerance for
-breaking changes are likely better served by SDKv2 than the framework at this
-time.
+If you don't have the time, bandwidth, or tolerance for breaking changes, we
+recommend that you continue using SDKv2.
 
 ## Do You Need More Features Than SDKv2 Provides?
 
-There are several features that SDKv2 doesn't provide that the framework
-surfaces for provider developers. Provider developers that would benefit from
-these features should consider whether the framework is an appropriate choice:
+The framework provides several features that are not available in SDKv2. You
+should consider using the framework if you would benefit from the ability to:
 
 * Tell whether a value was set in the config, the state, or the plan.
 * Tell whether a value is null, unknown, or the empty value.
@@ -69,8 +65,8 @@ these features should consider whether the framework is an appropriate choice:
 
 ## Do You Need Any Features That the Framework Doesn't Provide (Yet)?
 
-The framework is still under development, and so some features that SDKv2
-supports the framework may not support yet. These include:
+The framework is still under development, and so it may not yet support some
+features that are available in SDKv2. These include the ability to:
 
 * Validate configurations.
 * Modify plans and force resource recreation.
@@ -84,17 +80,14 @@ them _today_, SDKv2 may be a better choice.
 
 ## Can't I Just Wait Until the Framework Is Stable?
 
-Knowing that the framework doesn't have as strong a compatibility guarantee as
-SDKv2 does makes it tempting to just wait until it matures to the point that it
-does. This is a reasonable and understandable position for provider developers
-to take. But one of the things we're waiting for before adopting a stronger
-backwards compatibility guarantee for the framework is for it to have more
-mileage being used in more providers of varying types. SDKv2 has over a
-thousand providers built on it, and so we're confident in its interfaces; we
-want that confidence that the framework's interfaces will serve various API
-patterns well.  And while we aren't waiting for a thousand providers to be
-built on the framework to commit to its interfaces, community adoption is one
-of the things we're looking for before making that commitment. So we're hoping
-that provider developers that are able to will help us put some mileage on
-these interfaces, building confidence that they are appropriate for the next
-thousand Terraform providers.
+The framework doesn't have as strong a compatibility guarantee as SDKv2, so you
+may be tempted to wait until the framework matures before using it to develop
+providers. While this is a reasonable and understandable position, community
+adoption is important before we make a stronger backwards compatibility
+commitment. SDKv2 has over a thousand providers built on it, so we're confident
+in its interfaces. We want to make sure that the framework will also serve
+various API patterns well.
+
+So where possible, we are hoping that you will help us exercise the framework,
+building confidence that its interfaces are appropriate for the next thousand
+Terraform providers. We look forward to your feedback.
