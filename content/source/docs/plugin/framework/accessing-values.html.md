@@ -216,6 +216,8 @@ otherwise, the conversion rules for that type will apply.
 
 ### Detected Interfaces
 
+#### ValueConverter
+
 If a value is being set on a Go type that implements the [`tftypes.ValueConverter`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#ValueConverter),
 that interface will be delegated to to handle the conversion.
