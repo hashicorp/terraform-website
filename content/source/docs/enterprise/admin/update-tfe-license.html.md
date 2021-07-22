@@ -12,7 +12,7 @@ You can find the expiration date through either the Replicated console UI or the
 
 ### Replicated Console
 
-1.  Navigate to the Replicated console which is located at `https://<<TFE_HOSTNAME>>:8800` and click on the gear icon on the top-right corner.
+1.  Navigate to the Replicated console at `https://<<TFE_HOSTNAME>>:8800`, and click on the gear icon in the top-right corner.
 
     ![View License](./images/view-license.png)
 
