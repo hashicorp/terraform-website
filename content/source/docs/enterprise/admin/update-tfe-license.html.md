@@ -16,7 +16,7 @@ You can find the expiration date through either the Replicated console UI or the
 
     ![View License](./images/view-license.png)
 
-2.  Select the **View License** menu and the details of the existing license will be displayed on the screen with the expiration date.
+2.  Select the **View License** menu to display the license details, including the expiration date.
 
     ![License Expiration](./images/license-expiration.png)
 
