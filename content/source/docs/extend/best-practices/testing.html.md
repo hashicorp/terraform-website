@@ -3,9 +3,8 @@ layout: "extend"
 page_title: "Plugin Development - Testing Patterns"
 sidebar_current: "docs-extend-best-practices-testing"
 description: |-
-  Testing Patterns covers essential acceptance test patterns 
-  to implement for Terraform resources. 
-  
+  Testing Patterns covers essential acceptance test patterns to implement for
+  Terraform resources. 
 ---
 
 # Testing Patterns

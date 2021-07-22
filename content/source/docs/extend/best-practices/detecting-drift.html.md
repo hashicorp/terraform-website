@@ -3,8 +3,9 @@ layout: "extend"
 page_title: "Plugin Development - Detecting Drift"
 sidebar_current: "docs-extend-best-practices-drift"
 description: |-
-  Plugin Development is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  "Drift" describes changes to infrastructure outside of Terraform. Learn how
+  to ensure that Terraform detects drift so that users will know when their
+  infrastructure has changed.
 ---
 
 # Detecting Drift

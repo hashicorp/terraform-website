@@ -149,6 +149,9 @@
 /docs/extend/resources.html                              /docs/extend/resources/index.html
 # /docs/extend/writing-custom-providers.html               https://learn.hashicorp.com/terraform/providers/setup-implement-read
 /docs/extend/plugin-sdk.html				 /docs/extend/guides/v1-upgrade-guide.html
+/docs/plugin                                             /docs/extend/index.html
+/docs/plugin/                                            /docs/extend/index.html
+/docs/plugin/index.html                                  /docs/extend/index.html
 
 # Move the docs about TFE runs
 /docs/enterprise/workspaces/run-basics.html              /docs/enterprise/run/index.html

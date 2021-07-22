@@ -3,8 +3,9 @@ layout: "extend"
 page_title: "Plugin Development - Acceptance Testing: Sweepers"
 sidebar_current: "docs-extend-testing-acceptance-sweepers"
 description: |-
-  Plugin Development is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Acceptance tests in provision and verify real infrastructure using
+  Terraform's testing framework. Terraform provides sweepers to cleanup
+  leftover infrastructure.
 ---
 
 # Sweepers
