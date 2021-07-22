@@ -168,4 +168,4 @@ You will be able to identify the version of an airgap file by browsing into the 
 
 ## Additional information
 
-If you continue to experience the issues after following the guides, please contact [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) to request for further assistance.
+If you continue to experience the issues, please contact [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) for assistance.
