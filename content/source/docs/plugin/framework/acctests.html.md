@@ -13,11 +13,10 @@ shipped with version 2 of the SDK. Tests are written and run with the same
 steps, and are otherwise indistinguishable from testing against version 2 of
 the SDK. The major difference is in how the provider is specified in [the
 `TestCase` struct](/docs/extend/testing/acceptance-tests/testcase.html).
+## Specify Providers
 
-In version 2 of the SDK, providers were specified by using the [`Providers`
-property of the
-`resource.TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.Providers)
-to supply a map of
+In SDKv2, providers were specified by using the [`Providers` property of the
+`resource.TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.Providers) to supply a map of
 [`schema.Provider`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema/#Provider)s.
 
 For the framework, the same pattern applies, but instead the
@@ -27,7 +26,7 @@ to supply a map of functions that return a
 [`tfprotov6.ProviderServer`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/#ProviderServer).
 To get a `tfprotov6.ProviderServer` from a
 [`tfsdk.Provider`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Provider),
-you'll need to use the
+you need to use the
 [`tfsdk.NewProtocol6Server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#NewProtocol6Server)
 helper. For example:
 

@@ -28,7 +28,7 @@ The provider has four methods it needs to handle: `GetSchema`, `Configure`,
 
 ### GetSchema
 
-The provider's job in the `GetSchema` method is to return a
+`GetSchema` returns a
 [schema](/docs/plugin/framework/schemas.html) that describes the provider's
 configuration block. This configuration block is used to offer practitioners
 the opportunity to supply values to the provider and configure its behavior,
@@ -51,13 +51,13 @@ should consistently return the same value.
 
 ### Configure
 
-The provider's job in the `Configure` method is to handle and store the
+`Configure` handles and stores the
 values the practitioner entered in the provider's configuration block. This
 can mean creating the API client, storing the data on the type that
 implements the provider interface, or otherwise handling the values. This is
 the only time those values will be made available to the provider, so they
 need to be persisted if the provider will need to reference them from within
-a resource or data source. This is why the recommendation is to use a struct
+a resource or data source. This is why we recommend using a struct
 to represent the provider, as it can hold multiple values in a strongly-typed
 way.
 
@@ -92,7 +92,7 @@ error](/docs/plugin/framework/diagnostics.html), which will halt the apply.
 
 ### GetResources
 
-The provider's job in the `GetResources` method is to return a map of [resource
+`GetResources` returns a map of [resource
 types](/docs/plugin/framework/resources.html#resourcetype). The keys of the
 map entries must be the name of the resource as it would appear in the
 configuration, including the provider prefix.
@@ -102,7 +102,7 @@ runtime, and should consistently return the same values.
 
 ### GetDataSources
 
-The provider's job in the `GetDataSources` method is to return a map of [data
+`GetDataSources` returns a map of [data
 source types](/docs/plugin/framework/data-sources.html#datasourcetype). The
 keys of the map entries must be the name of the data source as it would appear
 in the configuration, including the provider prefix.

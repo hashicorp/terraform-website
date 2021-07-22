@@ -10,8 +10,8 @@ description: |-
 
 Attributes are the fields in a resource, data source, or provider. They hold
 the values that end up in state. Every attribute has an attribute type, which
-describes the constraints on the data the attribute can hold. When accessing an
-attribute from the configuration, state, or plan, provider developers are
+describes the constraints on the data the attribute can hold. When you access an
+attribute from the configuration, state, or plan, you are
 accessing attribute values, which are the actual data that was found in the
 configuration, state, or plan.
 
@@ -20,21 +20,21 @@ provider developers to implement their own attribute types and attribute
 values. It also has a built-in suite of generic attribute type and attribute
 value implementations that a provider developer can use.
 
-## Unknown and Null
+## Null and Unknown Values
 
 There are two values every attribute in Terraform can hold, regardless of their
 type: null and unknown.
 
 ### Null
 
-Null is used to represent the absence of a Terraform value. It is usually
+Null represents the absence of a Terraform value. It is usually
 encountered with optional attributes that the practitioner neglected to specify
 a value for, but can show up on any non-required attribute. Required attributes
 can never be null.
 
 ### Unknown
 
-Unknown is used to represent a Terraform value that is not yet known. Terraform
+Unknown represents a Terraform value that is not yet known. Terraform
 uses a graph of providers, resources, and data sources to do things in the
 right order, and when a provider, resource, or data source relies on a value
 from another provider, resource, or data source that has not been resolved yet,
@@ -53,14 +53,14 @@ resource "example_baz" "quux" {
 
 In the example above, `example_baz.quux` is relying on the `id` attribute of
 `example_foo.bar`. The `id` attribute of `example_foo.bar` isn't known until
-it's created, after the apply. The plan would list it as `(known after apply)`.
+it is created after the apply. The plan would list it as `(known after apply)`.
 During the plan phase, `example_baz.quux` would get an unknown value as the
 value for `foo_id`.
 
 Because they can result from interpolations in the practitioner's config,
-provider developers have no control over what attributes may contain an unknown
-value. By the time a resource is expected to be created, read, updated, or
-deleted, however, only its computed attributes can be unknown, the rest are
+you have no control over what attributes may contain an unknown
+value. However, by the time a resource is expected to be created, read, updated, or
+deleted, only its computed attributes can be unknown. The rest are
 guaranteed to have known values (or be null).
 
 Provider configuration values can be unknown, and providers should handle that
@@ -160,9 +160,7 @@ State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
 ### MapType and Map
 
 Maps are unordered collections of other types with unique string indexes.
-Their elements, the values inside the map, must all be of the same type, and
-the keys used to index the elements must be strings, but there are
-(theoretically) no limitations on what keys are acceptable or how many there
+Their elements, the values inside the map, must all be of the same type. The keys used to index the elements must be strings, but there are (theoretically) no limitations on what keys are acceptable or how many there
 can be.
 
 ```tf
@@ -237,45 +235,47 @@ method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types
 which uses the same conversion rules as the `Get` methods described in [Access
 State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
 
-## Creating Your Own Types and Values
+## Create Your Own Types and Values
 
-While the built-in types should be enough for most provider developers to build
-with, advanced provider developers may want to build their own attribute value
-and attribute type implementations. This allows for providers to bundle
-validation, description, and plan customization behaviors together into a
-reusable bundle, avoiding duplication or reimplementation and ensuring
-consistency.
+You may want to build your own attribute value and type implementations to allow your provider to combine validation, description, and plan customization behaviors into a reusable bundle. This helps avoid duplication or reimplementation and ensures consistency.
 
 ~> **Important:** Specifying validation and plan customization for attribute
 types is not yet supported, limiting their utility. Support is expected in the
 near future.
 
-### Implementing the `attr.Type` Interface
+### Implement the `attr.Type` Interface
 
-The [`attr.Type`
+Use the [`attr.Type`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#Type)
-is used to implement an attribute type. Its job is to describe to Terraform
-what its constraints are and to describe to the framework how to use it to
-create new attribute values from the information Terraform supplies.
+to implement an attribute type. It tells Terraform about its constraints and tells the framework how to create new attribute values from the information Terraform supplies. `attr.Type` has the following methods.
 
-The `TerraformType` method is expected to return the [`tftypes.Type`
+#### TerraformType
+
+`TerraformType` is expected to return the [`tftypes.Type`
 value](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#Type)
 that describes its type constraints. This is how Terraform will know what type
 of values it can accept.
 
-The `ValueFromTerraform` method is expected to return an attribute value from
-the
-[`tftypes.Value`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#Value)
+#### ValueFromTerraform
+`ValueFromTerraform` is expected to return an attribute value from
+the [`tftypes.Value`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#Value)
 that Terraform supplies, or to return an error if it cannot. This error should
-not be used for validation purposes, and is expected to indicate programmere
+not be used for validation purposes, and is expected to indicate programmer
 error, not practitioner error.
 
-The `Equal` method is expected to return true if the attribute type is
+#### Equal
+`Equal` is expected to return true if the attribute type is
 considered equal to the passed attribute type.
 
-Finally, the attribute type must implement the [`tftypes.AttributePathStepper`
+### Implement the `AttributePathStepper` Interface
+
+All attribute types must implement the [`tftypes.AttributePathStepper`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#AttributePathStepper),
 so the framework can access element or attribute types using attribute paths.
+
+### Implement Type-Specific Interfaces
+
+#### Contain Elements of the Same Type
 
 Attribute types that contain elements of the same type, like maps and lists,
 are required to implement the [`attr.TypeWithElementType`
@@ -285,6 +285,8 @@ interface. `WithElementType` must return a copy of the attribute type, but with
 its element type set to the passed type. `ElementType` must return the
 attribute type's element type.
 
+#### Contain Elements of Different Types
+
 Attribute types that contain elements of differing types, like tuples, are
 required to implement the [`attr.TypeWithElementTypes`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#TypeWithElementTypes),
@@ -292,6 +294,8 @@ which adds `WithElementTypes` and `ElementTypes` methods to the `attr.Type`
 interface. `WithElementTypes` must return a copy of the attribute type, but
 with its element types set to the passed element types. `ElementTypes` must
 return the attribute type's element types.
+
+#### Contain Attributes
 
 Attribute types that contain attributes, like objects, are required to
 implement the [`attr.TypeWithAttributeTypes`
@@ -301,7 +305,7 @@ interface. `WithAttributeTypes` must return a copy of the attribute type, but
 with its attribute types set to the passed attribute types. `AttributeTypes`
 must return the attribute type's attribute types.
 
-### Implementing the `attr.Value` Interface
+### Implement the `attr.Value` Interface
 
 The [`attr.Value`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#Value)

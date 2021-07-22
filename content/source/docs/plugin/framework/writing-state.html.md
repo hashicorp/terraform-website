@@ -8,7 +8,7 @@ description: |-
 # Writing State
 
 One of the primary jobs of a Terraform provider is to manage the provider's
-resources and data sources in the Terraform statefile. Writing values to state
+resources and data sources in the [Terraform statefile](/docs/language/state/index.html). Writing values to state
 is something that provider developers will do frequently.
 
 The state that a provider developer wants to update is usually stored in a
@@ -21,13 +21,10 @@ func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest,
 In this example, `resp` holds the state that the provider developer should
 update.
 
-## Replacing the Entire State
+## Replace the Entire State
 
 One way to set the state is to replace all the state values for a resource or
-data source all at once. This has the benefit of letting the compiler check all
-your code that sets values on state, leaving only the final call to persist
-state as capable of returning an error, but requires defining a type to contain
-the values.
+data source all at once. You need to define a type to contain the values. The benefit is that this allows the compiler to check all code that sets values on state, and only the final call to persist state can return an error.
 
 ```go
 type resourceData struct {
@@ -84,7 +81,7 @@ type resourceData struct {
 
 See [below](#conversion-rules) for the rules about conversion.
 
-## Setting a Single Attribute's Value
+## Set a Single Attribute's Value
 
 Another way to set values in the state is to write each new value separately.
 This doesn't require defining a type (except for objects), but means each value
@@ -183,11 +180,11 @@ type the pointer is referencing apply.
 
 ### Detected Interfaces
 
-If the Go type a value is being set on implements the [`tftypes.ValueCreator`
+If a value is set on a Go type that implements the [`tftypes.ValueCreator`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#ValueCreator),
 that interface will be delegated to to handle the conversion.
-
-If the Go type a value is being set on fills the following interface:
+#### Unknownable 
+If a value is set on a Go type that fills the `Unknownable` interface:
 
 ```go
 type Unknownable interface {
@@ -201,8 +198,9 @@ type Unknownable interface {
 It will be used to convert the value. The `interface{}` being passed and
 retrieved will be of a type that can be passed to
 [`tftypes.NewValue`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#NewValue).
+#### Nullable
 
-If the Go type a value is being set on fills the following interface:
+If a value is set on a Go type that fills the `Nullable` interface:
 
 ```go
 type Nullable interface {

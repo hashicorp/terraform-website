@@ -161,7 +161,7 @@ unknown.
 ### Number
 
 Numbers can be automatically converted to the following numeric types (or any
-aliases of them, like `type MyNumber int`) as long as the number value isn't
+aliases of them, like `type MyNumber int`) as long as the number value is not
 null or unknown:
 
 * `int`, `int8`, `int16`, `int32`, `int64`
@@ -169,13 +169,12 @@ null or unknown:
 * `float32`, `float64`
 * [`*big.Int`](https://golang.org/pkg/math/big#Int), [`*big.Float`](https://golang.org/pkg/math/big#Float)
 
-If the value of the number can't be stored in the numeric type supplied, either
-because of an overflow or other loss of precision, an error will be returned.
+An error will be returned if the value of the number cannot be stored in the numeric type supplied because of an overflow or other loss of precision.
 
 ### Boolean
 
 Booleans can be automatically converted to Go's `bool` type (or any aliases of
-it, like `type MyBoolean bool`) as long as the boolean value isn't null or
+it, like `type MyBoolean bool`) as long as the boolean value is not null or
 unknown.
 
 ### List
@@ -216,17 +215,17 @@ error.
 
 ### Pointers
 
-Pointers behave exactly like the type they're referencing, except they can hold
+Pointers behave exactly like the type they are referencing, except they can hold
 null values. A pointer will be set to `nil` when representing a null value;
 otherwise, the conversion rules for that type will apply.
 
 ### Detected Interfaces
 
-If the Go type a value is being set on implements the [`tftypes.ValueConverter`
+If a value is being set on a Go type that implements the [`tftypes.ValueConverter`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#ValueConverter),
 that interface will be delegated to to handle the conversion.
 
-If the Go type a value is being set on fills the following interface:
+If the value is being set on a Go type that fills the following interface:
 
 ```go
 type Unknownable interface {
@@ -241,8 +240,8 @@ It will be considered capable of handling unknown values, and those methods
 will be used to populate it and retrieve its value. The `interface{}` being
 passed and retrieved will be of a type that can be passed to
 [`tftypes.NewValue`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#NewValue).
-
-If the Go type a value is being set on fills the following interface:
+#### Unknownable
+If the value is being set on a Go type that fills the `Unknownable` interface:
 
 ```go
 type Nullable interface {

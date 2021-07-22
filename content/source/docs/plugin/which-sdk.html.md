@@ -11,8 +11,7 @@ description: |-
 Terraform plugin development is in an exciting time of flux, in which there are
 multiple SDKs available to build plugins against. The existing
 [SDKv2](/docs/extend/index.html) is what the bulk of existing providers are
-built on, and continues to provide a stable development experience for
-providers to build on. The [next-generation
+built on, and continues to provide a stable development experience. The [next-generation
 framework](/docs/plugin/framework/index.html) is a new SDK under heavy
 development, realigning the provider development experience and abstractions
 around the updated architecture of Terraform. It represents our vision of the
@@ -63,26 +62,24 @@ There are several features that SDKv2 doesn't provide that the framework
 surfaces for provider developers. Provider developers that would benefit from
 these features should consider whether the framework is an appropriate choice:
 
-* The ability to tell whether a value was set in the config, the state, or the
-  plan.
-* The ability to tell whether a value is null, unknown, or the empty value.
-* The ability to have structured types like objects.
-* The ability to use nested attributes.
-* The ability to use any type as the elements of a map.
-* The ability to tell when an optional and computed field has been removed from
-  a config.
+* Tell whether a value was set in the config, the state, or the plan.
+* Tell whether a value is null, unknown, or the empty value.
+* Have structured types like objects.
+* Use nested attributes.
+* Use any type as the elements of a map.
+* Tell when an optional and computed field has been removed from a config.
 
 ## Do You Need Any Features That the Framework Doesn't Provide (Yet)?
 
 The framework is still under development, and so some features that SDKv2
 supports the framework may not support yet. These include:
 
-* The ability to validate configurations.
-* The ability to modify plans and force resource recreation.
-* The ability to use sets.
-* The ability to import resources.
-* The ability to use timeouts.
-* The ability to define resource state upgraders.
+* Validate configurations.
+* Modify plans and force resource recreation.
+* Use sets.
+* Import resources.
+* Use timeouts.
+* Define resource state upgraders.
 
 These features are on our roadmap to implement and support, but if you need
 them _today_, SDKv2 may be a better choice.
