@@ -30,7 +30,6 @@ The host running the agent will have varying resource requirements depending on 
 * At least 4GB of free disk space
   * Each run requires the agent to temporarily store local copies of the tarred repository, extracted repository, state file, any providers or modules, and the Terraform binary itself.
 * At least 2GB of system memory
-* At least 2 CPU cores
 
 ### Networking Requirements
 
