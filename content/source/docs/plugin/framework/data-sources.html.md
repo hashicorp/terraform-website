@@ -68,7 +68,7 @@ Data sources are scoped to a single instance of the data source type. They modif
 
 ### Read
 
-The `Read` updates Terraform's state to reflect the API data described in the configuration. There is no plan or state to work with in `Read`. Data sources should [retrieve the data they need](/docs/plugin/framework/accessing-values.html) from the configuration included in the [`tfsdk.ReadDataSourceRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ReadDataSourceRequest).
+`Read` updates Terraform's state to reflect the API data described in the configuration. There is no plan or state to work with in `Read`. Data sources should [retrieve the data they need](/docs/plugin/framework/accessing-values.html) from the configuration included in the [`tfsdk.ReadDataSourceRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ReadDataSourceRequest).
 They can then use the configured API client injected into the data source by the
 data source type's `NewDataSource` method, and [write the results to the state](/docs/plugin/framework/writing-state.html).
 
