@@ -51,9 +51,9 @@ resource "example_baz" "quux" {
 
 In the example above, `example_baz.quux` is relying on the `id` attribute of
 `example_foo.bar`. The `id` attribute of `example_foo.bar` isn't known until
-it is created after the apply. The plan would list it as `(known after apply)`.
-During the plan phase, `example_baz.quux` would get an unknown value as the
-value for `foo_id`.
+after the apply. The plan would list it as `(known after apply)`.  During the
+plan phase, `example_baz.quux` would get an unknown value as the value for
+`foo_id`.
 
 Because they can result from interpolations in the practitioner's config,
 you have no control over what attributes may contain an unknown
