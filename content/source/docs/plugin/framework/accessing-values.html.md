@@ -155,7 +155,7 @@ the empty value is coming in the future.
 ### String
 
 Strings can be automatically converted to Go's `string` type (or any aliases of
-it, like `type MyString string`) as long as the string value isn't null or
+it, like `type MyString string`) as long as the string value is not null or
 unknown.
 
 ### Number
