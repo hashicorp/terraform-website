@@ -2,7 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Resources"
 description: |-
-  How to build resources in the next-generation provider development framework.
+  How to build resources in the provider development framework.
 ---
 
 # Resources

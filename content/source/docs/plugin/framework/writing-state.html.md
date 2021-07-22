@@ -2,8 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Writing State"
 description: |-
-  How to write update the statefile using the next-generation provider
-  development framework.
+  How to write update the statefile using the provider development framework.
 ---
 
 # Writing State

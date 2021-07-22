@@ -2,8 +2,8 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Errors and Warnings"
 description: |-
-  How to return errors and warnings from the next-generation Terraform provider
-  development framework.
+  How to return errors and warnings from the Terraform provider development
+  framework.
 ---
 
 # Returning Errors and Warnings
@@ -13,8 +13,8 @@ often find that they need to tell the practitioner about something that went
 wrong. Terraform's abstraction for this is called a "diagnostic", and it's a
 powerful tool for surfacing information to practitioners.
 
-In the next-generation provider development framework, diagnostics are often
-found in response structs or as returns from functions or methods:
+In the provider development framework, diagnostics are often found in response
+structs or as returns from functions or methods:
 
 ```go
 func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse)

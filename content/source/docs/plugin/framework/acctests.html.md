@@ -2,19 +2,17 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Acceptance Tests"
 description: |-
-  How to write acceptance tests for providers built on the next-generation
-  framework.
+  How to write acceptance tests for providers built on the framework.
 ---
 
 # Acceptance Tests
 
-The next-generation framework for Terraform provider development currently
-relies on the [acceptance test
-framework](/docs/extend/testing/acceptance-tests/index.html) shipped with
-version 2 of the SDK. Tests are written and run with the same steps, and are
-otherwise indistinguishable from testing against version 2 of the SDK. The
-major difference is in how the provider is specified in [the `TestCase`
-struct](/docs/extend/testing/acceptance-tests/testcase.html).
+The framework for Terraform provider development currently relies on the
+[acceptance test framework](/docs/extend/testing/acceptance-tests/index.html)
+shipped with version 2 of the SDK. Tests are written and run with the same
+steps, and are otherwise indistinguishable from testing against version 2 of
+the SDK. The major difference is in how the provider is specified in [the
+`TestCase` struct](/docs/extend/testing/acceptance-tests/testcase.html).
 
 In version 2 of the SDK, providers were specified by using the [`Providers`
 property of the
@@ -22,7 +20,7 @@ property of the
 to supply a map of
 [`schema.Provider`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema/#Provider)s.
 
-For the next-generation framework, the same pattern applies, but instead the
+For the framework, the same pattern applies, but instead the
 [`ProtoV6ProviderFactories` property of
 `resource.TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV6ProviderFactories)
 to supply a map of functions that return a
@@ -57,5 +55,5 @@ See the [`TestCase`
 documentation](/docs/extend/testing/acceptance-tests/testcase.html) for more
 information on using `resource.TestCase`.
 
-We anticipate releasing an improved testing experience for the next-generation
-framework in the near future.
+We anticipate releasing an improved testing experience for the framework in the
+near future.

@@ -2,8 +2,8 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Access State, Config, and Plan"
 description: |-
-  How to read values from state, config, and plan in the next-generation
-  Terraform provider development framework.
+  How to read values from state, config, and plan in the Terraform provider
+  development framework.
 ---
 
 # Access State, Config, and Plan

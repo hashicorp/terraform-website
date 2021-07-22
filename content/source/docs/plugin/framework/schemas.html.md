@@ -2,8 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Schemas"
 description: |-
-  How to define a schema using the next-generation provider development
-  framework.
+  How to define a schema using the provider development framework.
 ---
 
 # Schemas
@@ -30,8 +29,8 @@ provider or data source schemas and can be omitted.
 
 ~> **Important:** Upgrading resource state is [not currently
 supported](https://github.com/hashicorp/terraform-plugin-framework/issues/42)
-in the next-generation framework. At this time, there is no reason to specify a
-schema version. It can be safely omitted.
+in the framework. At this time, there is no reason to specify a schema version.
+It can be safely omitted.
 
 ## DeprecationMessage
 

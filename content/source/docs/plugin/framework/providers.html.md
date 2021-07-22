@@ -2,7 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Providers"
 description: |-
-  How to implement a provider in the next-generation framework.
+  How to implement a provider in the provider development framework.
 ---
 
 # Providers
@@ -18,8 +18,7 @@ and stops. The provider is responsible for:
 - providing Terraform with information about how to connect to the server.
 
 ## Implement Provider Interface
-The next-generation framework allows any type that
-fills an
+The framework allows any type that fills an
 [interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Provider)
 to be a provider. We recommend that you define a `struct`
 type to fill this interface.

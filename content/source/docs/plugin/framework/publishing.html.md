@@ -2,22 +2,23 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Publishing to the Registry"
 description: |-
-  How to publish providers built on the next-generation provider development
-  framework to the Terraform Registry.
+  How to publish providers built on the provider development framework to the
+  Terraform Registry.
 ---
 
 # Publishing to the Registry
 
-Publishing providers built on the next-generation provider development
-framework to the Terraform Registry works the same as [publishing providers
-built on SDKv2](/docs/registry/providers/publishing.html), with a minor
-difference. Providers built on the next-generation framework are built on
-version 6 of the Terraform protocol. The Registry, by default, assumes
-providers being published support version 5 of the Terraform protocol, which
-providers built on the framework do not. The Registry needs to be told about
-this difference in protocol version support. This is done by adding a manifest
-to the provider's release assets.
+Publishing providers built on the provider development framework to the
+Terraform Registry works the same as [publishing providers built on
+SDKv2](/docs/registry/providers/publishing.html), with a minor difference.
+Providers built on the framework are built on version 6 of the Terraform
+protocol. The Registry, by default, assumes providers being published support
+version 5 of the Terraform protocol, which providers built on the framework do
+not. The Registry needs to be told about this difference in protocol version
+support. This is done by adding a manifest to the provider's release assets.
+
 ## Add a Version Manifest
+
 When uploading your new provider version to GitHub, next to the zip files
 containing your binaries for each platform, include a file named
 `terraform-provider-$NAME_$VERSION_manifest.json` (where `$NAME` is your

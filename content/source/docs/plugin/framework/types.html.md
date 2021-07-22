@@ -2,8 +2,8 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Attribute Types"
 description: |-
-  A guide to the different attribute types available in the next-generation
-  provider development framework, and how to make your own.
+  A guide to the different attribute types available in the provider
+  development framework, and how to make your own.
 ---
 
 # Attribute Types
@@ -15,10 +15,10 @@ attribute from the configuration, state, or plan, provider developers are
 accessing attribute values, which are the actual data that was found in the
 configuration, state, or plan.
 
-The next-generation provider development framework separates these two
-concepts, and allows provider developers to implement their own attribute types
-and attribute values. It also has a built-in suite of generic attribute type
-and attribute value implementations that a provider developer can use.
+The provider development framework separates these two concepts, and allows
+provider developers to implement their own attribute types and attribute
+values. It also has a built-in suite of generic attribute type and attribute
+value implementations that a provider developer can use.
 
 ## Unknown and Null
 
@@ -68,8 +68,8 @@ situation, even if that means just returning an error.
 
 ## Built-In Types and Values
 
-The next-generation provider development framework provides a built-in
-collection of generic attribute type and attribute value implementations in the
+The provider development framework provides a built-in collection of generic
+attribute type and attribute value implementations in the
 [`types`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types)
 package.
 
