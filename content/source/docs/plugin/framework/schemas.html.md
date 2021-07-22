@@ -124,9 +124,8 @@ If an attribute is computed, all its nested attributes are considered computed,
 as well. Likewise, if an attribute is considered sensitive or deprecated, all
 its nested attributes are considered sensitive or deprecated.
 
-One, and only one, of the `Type` and `Attributes` properties of
-`schema.Attribute` is required. They cannot both be specified, and at least one
-must be.
+You must specify one of the `Type` and `Attributes` properties of
+`schema.Attribute`. You cannot specify both.
 
 -> **Note**: We recommend using an attribute with nested attributes when any of the inner fields should have their own flags or metadata (required, optional, computed, deprecated, sensitive, descriptions, etc.).  If the attribute is an atomic unit, we recommend using an object or list of objects instead.
 
