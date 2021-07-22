@@ -34,11 +34,11 @@ helper. For example:
 ```go
 resource.Test(t, resource.TestCase{
 	PreCheck: func() { testAccPreCheck(t) },
-	ProtoV6ProviderFactories: map[string]func() tfprotov6.ProviderServer{
-		"example_provider": func() tfprotov6.ProviderServer{
+	ProtoV6ProviderFactories: map[string]func() (tfprotov6.ProviderServer, error) {
+		"example_provider": func() (tfprotov6.ProviderServer, error) {
 			// newProvider is your function that returns a
 			// tfsdk.Provider implementation
-			return tfsdk.NewProtocol6Server(newProvider())
+			return tfsdk.NewProtocol6Server(newProvider()), nil
 		},
 	},
 	CheckDestroy: testAccCheckExampleResourceDestroy,
