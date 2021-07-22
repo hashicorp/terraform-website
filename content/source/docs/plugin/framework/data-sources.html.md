@@ -7,7 +7,7 @@ description: |-
 
 # Data Sources
 
-[Data sources](/docs/language/data-sources.index.html) are an abstraction that allow Terraform to reference external data. Unlike with resources, Terraform does not manage data sources and makes no attempt to modify the API.
+[Data sources](/docs/language/data-sources/index.html) are an abstraction that allow Terraform to reference external data. Unlike with resources, Terraform does not manage data sources and makes no attempt to modify the API.
 
 Providers have data sources that tell Terraform how to request external data and how to convert the response into a format that practitioners can interpolate. To create data sources for your provider, you need to define both the data source archetype and actions on specific data source instances.
 

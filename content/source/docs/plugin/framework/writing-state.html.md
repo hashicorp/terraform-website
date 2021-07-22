@@ -61,7 +61,7 @@ an unknown value in state, so there's no need to be able to express unknown
 values when setting state.
 
 To make things a little easier, and to ensure that any type that
-[`Get`](/docs/plugin/framework/accessing-values#getting-the-entire-configuration-plan-or-state)
+[`Get`](/docs/plugin/framework/accessing-values.html#get-the-entire-configuration-plan-or-state)
 can convert into can also be used as a value for `Set`, the framework can do
 some conversion on values passed to `Set`:
 

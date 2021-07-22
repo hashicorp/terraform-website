@@ -70,7 +70,7 @@ used instead of the `Description` property. It is possible that a different stra
 
 Attributes are the main point of a schema. They are used to describe the fields
 of a provider, resource, or data source. Attributes are defined as a map of
-[`schema.Attribute`](https://github.com/hashicorp/terraform-plugin-framework/schema#Attribute)s,
+[`schema.Attribute`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/schema#Attribute)s,
 with string keys.
 
 The keys are the names of the fields, and should only contain lowercase
