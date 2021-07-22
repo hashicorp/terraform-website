@@ -17,10 +17,8 @@ development, realigning the provider development experience and abstractions
 around the updated architecture of Terraform. It represents our vision of the
 future of Terraform plugin development.
 
-Which leads provider developers to be unsure whether they should stick with
-writing providers in the existing, reliable, stable SDKv2, or if they should
-prepare for the future by writing providers in the modern framework. This guide
-aims to help provider developers make that decision.
+This guide will help you decide whether you should stick with writing providers
+in SDKv2, or prepare for the future by writing providers in the framework.
 
 ## Are You Writing a New Provider or Maintaining an Existing Provider?
 
