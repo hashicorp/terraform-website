@@ -268,7 +268,7 @@ For example:
 
 ```
 
--> **Note**: In versions prior to `v202104-1` the following values were also required to be set: `install_id`, `root_secret`, `user_token`, `cookie_hash`, `archivist_token`, `internal_api_token`, `registry_session_encryption_key` (HEX), and `registry_session_encryption_key` (HEX). These varlues are no longer required but will still work if they are still set by your configuration.  
+-> **Note**: In versions prior to `v202104-1` the following values were also required to be set: `install_id`, `root_secret`, `user_token`, `cookie_hash`, `archivist_token`, `internal_api_token`, `registry_session_encryption_key` (HEX), and `registry_session_encryption_key` (HEX). These values are no longer required but will still work if they are still set by your configuration.  
 
 
 ### Step 3: Connect to External Redis
