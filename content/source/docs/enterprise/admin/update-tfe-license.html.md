@@ -162,7 +162,7 @@ This error indicates that you are using the incorrect version of airgap file aga
     installed app release (325b33bf0ad539c994644423128cad5e:502) does not match the airgap package
     ```
 
-You will be able to identify the version of an airgap file by browsing into the airgap download page where it displays the versions of Terraform Enterprise and their SHA256 checksum values, which can be used to identify against the downloaded airgap package in your local environment.
+The airgap download page displays the versions of Terraform Enterprise and their SHA256 checksum values. Check these against the version of the airgap package in your local environment.
 
 ![Checksums of the Airgap packages](./images/airgap-checksum.png)
 
