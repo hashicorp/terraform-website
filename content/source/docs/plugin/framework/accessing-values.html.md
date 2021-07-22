@@ -114,8 +114,7 @@ them soon.
 ## When Can a Value Be Unknown or Null?
 
 A lot of conversion rules say an error will be returned if a value is unknown
-or null. But it is safe to assume an unknown or null value will never be
-present when:
+or null. It is safe to assume:
 
 * Required attributes will never be null or unknown in Create, Read, Update, or
   Delete methods.
