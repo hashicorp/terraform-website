@@ -225,7 +225,9 @@ If a value is being set on a Go type that implements the [`tftypes.ValueConverte
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#ValueConverter),
 that interface will be delegated to to handle the conversion.
 
-If the value is being set on a Go type that fills the following interface:
+#### Unknownable
+
+If the value is being set on a Go type that fills the `Unknownable` interface:
 
 ```go
 type Unknownable interface {
@@ -240,8 +242,10 @@ It will be considered capable of handling unknown values, and those methods
 will be used to populate it and retrieve its value. The `interface{}` being
 passed and retrieved will be of a type that can be passed to
 [`tftypes.NewValue`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#NewValue).
-#### Unknownable
-If the value is being set on a Go type that fills the `Unknownable` interface:
+
+#### Nullable
+
+If the value is being set on a Go type that fills the `Nullable` interface:
 
 ```go
 type Nullable interface {
