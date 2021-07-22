@@ -82,7 +82,7 @@ type resourceData struct {
 
 See [below](#conversion-rules) for the rules about conversion.
 
-## Getting a Single Attribute's Value
+## Get a Single Attribute's Value
 
 Another way to interact with configuration, plan, and state values is to
 retrieve a single value from the configuration, plan, or state and convert it
