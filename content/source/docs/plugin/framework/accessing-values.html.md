@@ -216,6 +216,9 @@ otherwise, the conversion rules for that type will apply.
 
 ### Detected Interfaces
 
+`Get` detects and utilizes the following interfaces, if the target implements
+them.
+
 #### ValueConverter
 
 If a value is being set on a Go type that implements the [`tftypes.ValueConverter`
