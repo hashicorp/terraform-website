@@ -90,9 +90,8 @@ error to the practitioner, and this type determines what kind of attribute
 value is used when [accessing state, config, and plan
 values](/docs/plugin/framework/accessing-values.html).
 
-One, and only one, of the `Type` and `Attributes` properties of
-`schema.Attribute` is required. They cannot both be specified, and at least one
-must be.
+You must specify one of the `Type` and `Attributes` properties of
+`schema.Attribute`. You cannot specify both.
 
 ### Attributes
 
