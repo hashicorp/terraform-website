@@ -84,7 +84,7 @@ See [below](#conversion-rules) for the rules about conversion.
 
 Another way to interact with configuration, plan, and state values is to
 retrieve a single value from the configuration, plan, or state and convert it
-into a Go type. This doesn't require defining a type (except for objects), but
+into a Go type. This does not require defining a type (except for objects), but
 means each attribute access steps outside of what the compiler can check, and
 may return an error at runtime.
 
