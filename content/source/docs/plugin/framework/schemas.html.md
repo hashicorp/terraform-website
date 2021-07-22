@@ -9,7 +9,7 @@ description: |-
 
 Schemas specify the constraints of Terraform configuration blocks. They define what fields a provider,
 resource, or data source configuration block has, and give Terraform metadata
-about those fields. The schema can be thought of as the "type information" or
+about those fields. You can think of the schema as the "type information" or
 the "shape" of a resource, data source, or provider.
 
 [The
