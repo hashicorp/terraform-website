@@ -9,8 +9,8 @@ description: |-
 # Access State, Config, and Plan
 
 There are various points at which the provider needs access to the data from
-the practitioner's configuration, Terraform's state, or the plan that was
-generated. The same patterns are used for accessing this data, regardless of
+the practitioner's configuration, Terraform's state, or generated plan.
+The same patterns are used for accessing this data, regardless of
 its source.
 
 The data is usually stored in a request object:
