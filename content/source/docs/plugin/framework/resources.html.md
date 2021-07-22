@@ -43,8 +43,8 @@ configuration data.
 ```go
 type computeInstanceResourceType struct{}
 
-func (c computeInstanceResourceType) GetSchema(_ context.Context)
-(schema.Schema, []*tfprotov6.Diagnostic) {
+func (c computeInstanceResourceType) GetSchema(_ context.Context) (schema.Schema,
+	[]*tfprotov6.Diagnostic) {
 	return schema.Schema{
 		Attributes: map[string]tfsdk.Attribute{
 			"name": {
@@ -55,8 +55,8 @@ func (c computeInstanceResourceType) GetSchema(_ context.Context)
 	}, nil
 }
 
-func (c computeInstanceResourceType) NewResource(_ context.Context, p
-tfsdk.Provider) (tfsdk.Resource, []*tfprotov6.Diagnostic) {
+func (c computeInstanceResourceType) NewResource(_ context.Context,
+	p tfsdk.Provider) (tfsdk.Resource, []*tfprotov6.Diagnostic) {
 	return computeInstanceResource{
 		client: p.(*provider).client,
 	}, nil
@@ -143,8 +143,8 @@ the value must be an instance of the resource type.
  **Example**
 
 ```go
-func (p *provider) GetResources(_ context.Context)
-(map[string]tfsdk.ResourceType, []*tfprotov6.Diagnostic) {
+func (p *provider) GetResources(_ context.Context) (map[string]tfsdk.ResourceType,
+	[]*tfprotov6.Diagnostic) {
 	return map[string]tfsdk.ResourceType{
 		"example_compute_instance": computeInstanceResourceType{},
 	}, nil
