@@ -14,12 +14,16 @@ Providers have data sources that tell Terraform how to request external data and
 ## Define Data Source Archetype
 
 Implement the [`tfsdk.DataSourceType`
-interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DataSourceType) for every type of data source you want to support, such as disk images, compute instance groups, access policies, etc. It
-allows you to describe the resource archetype, which is the functionality related to all instances of that resource type. `DataSourceType` has the following methods.
+interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DataSourceType)
+for every type of data source you want to support, such as disk images, compute
+instance groups, access policies, etc. It allows you to describe the data
+source archetype, which is the functionality related to all instances of that
+data source type. `DataSourceType` has the following methods.
 
 ### GetSchema
 
-`GetSchema` returns a [schema](/docs/plugin/framework/schemas.html) describing what fields are available in the data source's configuration and state.
+`GetSchema` returns a [schema](/docs/plugin/framework/schemas.html) describing
+what fields are available in the data source's configuration and state.
 
 ### NewDataSource
 
