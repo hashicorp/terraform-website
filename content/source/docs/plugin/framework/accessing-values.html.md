@@ -16,7 +16,8 @@ its source.
 The data is usually stored in a request object:
 
 ```go
-func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse)
+func (m myResource) Create(ctx context.Context,
+	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse)
 ```
 
 In this example, `req` holds the configuration and plan, and there is no state
@@ -39,7 +40,8 @@ type resourceData struct {
 	Address types.Object `tfsdk:"address"`
 }
 
-func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
+func (m myResource) Create(ctx context.Context,
+	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
 	var plan resourceData
 	err := req.Plan.Get(ctx, &plan)
 	if err != nil {
@@ -89,7 +91,8 @@ means each attribute access steps outside of what the compiler can check, and
 may return an error at runtime.
 
 ```go
-func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
+func (m myResource) Create(ctx context.Context,
+	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
 	var age types.Number
 	err := req.Config.GetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
 	if err != nil {
@@ -101,7 +104,8 @@ func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest,
 Like `Get`, `GetAttribute` can also do some conversion to standard Go types:
 
 ```go
-func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
+func (m myResource) Create(ctx context.Context,
+	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
 	var age int64 
 	err := req.Config.GetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
 	if err != nil {

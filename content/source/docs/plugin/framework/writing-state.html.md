@@ -15,7 +15,8 @@ The state that a provider developer wants to update is usually stored in a
 response object:
 
 ```go
-func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse)
+func (m myResource) Create(ctx context.Context,
+	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse)
 ```
 
 In this example, `resp` holds the state that the provider developer should
@@ -36,7 +37,8 @@ type resourceData struct {
 	Address types.Object `tfsdk:"address"`
 }
 
-func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
+func (m myResource) Create(ctx context.Context,
+	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
 	var newState resourceData
 	// update newState by modifying each property as usual for Go values
 	newState.Name.Value = "J. Doe"
@@ -89,7 +91,8 @@ update steps outside of what the compiler can check, and may return an error at
 runtime.
 
 ```go
-func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
+func (m myResource) Create(ctx context.Context,
+	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
 	age := types.Number{Value: big.NewFloat(7)}
 	err := resp.State.SetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
 	if err != nil {
@@ -101,7 +104,8 @@ func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest,
 Like `Set`, `SetAttribute` can also do some conversion to standard Go types:
 
 ```go
-func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
+func (m myResource) Create(ctx context.Context,
+	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
 	var age int64
 	age = 7
 	err := resp.State.SetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
