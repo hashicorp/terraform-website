@@ -23,7 +23,7 @@ In this example, `req` holds the configuration and plan; there is no state
 value, as the resource doesn't exist in state yet (that's why it's being
 created).
 
-## Getting the Entire Configuration, Plan, or State
+## Get the Entire Configuration, Plan, or State
 
 One way to interact with configuration, plan, and state values is to convert
 the entire configuration, plan, or state into a Go type, then treat them as
