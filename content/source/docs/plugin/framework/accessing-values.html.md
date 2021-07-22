@@ -56,11 +56,7 @@ The configuration, plan, and state data is represented as an object, and
 accessed like an object. See the [conversion rules](#conversion-rules) for an
 explanation on how objects can be converted into Go types.
 
-Using the [`attr.Value` implementations](/docs/plugin/framework/types.html) can
-surface complexity that is unnecessary, however. In a create function,
-non-computed values are guaranteed not to be unknown, for example, so there's
-no need to worry about them. Likewise, a required value will never be null, and
-that complexity is also unnecessary.
+However, using the [`attr.Value` implementations](/docs/plugin/framework/types.html) can surface unnecessary complexity. For example, non-computed values are guaranteed not to be unknown in a create function, so you do not need to worry about them. Likewise, a required value will never be null.
 
 To aid in this, `Get` can do some conversion to Go types that can hold the data:
 
