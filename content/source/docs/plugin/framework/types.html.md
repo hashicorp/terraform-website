@@ -15,10 +15,8 @@ attribute from the configuration, state, or plan, you are
 accessing attribute values, which are the actual data that was found in the
 configuration, state, or plan.
 
-The provider development framework separates these two concepts, and allows
-provider developers to implement their own attribute types and attribute
-values. It also has a built-in suite of generic attribute type and attribute
-value implementations that a provider developer can use.
+You can either use the built-in attribute type and value implementations or
+implement your own.
 
 ## Null and Unknown Values
 
@@ -68,8 +66,8 @@ situation, even if that means just returning an error.
 
 ## Built-In Types and Values
 
-The provider development framework provides a built-in collection of generic
-attribute type and attribute value implementations in the
+A collection of attribute type and attribute value implementations is available
+in the
 [`types`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types)
 package.
 
@@ -307,11 +305,11 @@ must return the attribute type's attribute types.
 
 ### Implement the `attr.Value` Interface
 
-The [`attr.Value`
+Use the [`attr.Value`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#Value)
-is used to implement an attribute value. Its job is to describe to the
-framework how to express that attribute value in a way that Terraform will
-understand.
+to implement an attribute value. It tells the framework how to express that
+attribute value in a way that Terraform will understand. `attr.Value` has the
+following methods.
 
 #### ToTerraformValue
 
