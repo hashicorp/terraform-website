@@ -148,7 +148,7 @@ possibility that an unknown or null value may be presented to it.
 implementations when the provider doesn't care about the distinction between an
 empty value, unknown, and null. But if Terraform has a null or unknown value
 and the provider asks the framework to store it in a type that can't hold it,
-`Get` will return an error. Make sure the types you're using can hold the
+`Get` will return an error. Make sure the types you are using can hold the
 values they might contain! An opt-in conversion of null or unknown values to
 the empty value is coming in the future.
 
