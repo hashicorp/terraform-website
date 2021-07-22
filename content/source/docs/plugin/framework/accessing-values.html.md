@@ -88,38 +88,28 @@ Another way to interact with configuration, plan, and state values is to
 retrieve a single value from the configuration, plan, or state and convert it
 into a Go type. This does not require defining a type (except for objects), but
 means each attribute access steps outside of what the compiler can check, and
-may return an error at runtime.
+may return an error at runtime. It also requires a type assertion, though the
+type will always be the type produced by that attribute's `attr.Type`.
 
 ```go
 func (m myResource) Create(ctx context.Context,
 	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
-	var age types.Number
-	err := req.Config.GetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
+	attr, err := req.Config.GetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"))
 	if err != nil {
 		// TODO: handle error
 	}
+	age := attr.(types.Number)
 }
 ```
-
-Like `Get`, `GetAttribute` can also do some conversion to standard Go types:
-
-```go
-func (m myResource) Create(ctx context.Context,
-	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
-	var age int64 
-	err := req.Config.GetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
-	if err != nil {
-		// TODO: handle error
-	}
-}
-```
-
-See [below](#conversion-rules) for the rules about conversion.
 
 -> **Note:** The call to `tftypes.NewAttributePath` is creating an [attribute
 path](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#AttributePath)
 pointing to the specific attribute. A less-verbose way to specify attribute
 paths is coming soon.
+
+-> **Note:** Helpers to access `attr.Value`s using the same reflection rules
+`Get` has are planned, to avoid the need to type assert. We hope to release
+them soon.
 
 ## When Can a Value Be Unknown or Null?
 
