@@ -166,6 +166,6 @@ You will be able to identify the version of an airgap file by browsing into the 
 
 ![Checksums of the Airgap packages](./images/airgap-checksum.png)
 
-## Additional information
+## Get Support
 
 If you continue to experience the issues, please contact [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) for assistance.
