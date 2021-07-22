@@ -19,9 +19,8 @@ The data is usually stored in a request object:
 func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse)
 ```
 
-In this example, `req` holds the configuration and plan; there is no state
-value, as the resource doesn't exist in state yet (that's why it's being
-created).
+In this example, `req` holds the configuration and plan, and there is no state
+value because the resource does not yet exist in state.
 
 ## Get the Entire Configuration, Plan, or State
 
