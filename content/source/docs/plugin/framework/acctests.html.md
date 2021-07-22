@@ -20,7 +20,7 @@ In SDKv2, providers were specified by using the [`Providers` property of the
 `resource.TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.Providers) to supply a map of
 [`schema.Provider`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema/#Provider)s.
 
-For the framework, the same pattern applies, but instead the
+For the framework, the same pattern applies, but instead use the
 [`ProtoV6ProviderFactories` property of
 `resource.TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV6ProviderFactories)
 to supply a map of functions that return a
