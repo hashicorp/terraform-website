@@ -38,14 +38,14 @@ significant numbers, we recommend that you continue using SDKv2. The framework
 is built on Terraform protocol version 6, and Terraform could not download
 providers using protocol version 6 until Terraform v1.0.3.
 
-If you do not have a user base or your user base that has mostly upgraded to
-v1.0.3, the framework may be appropriate.
+If you do not have a user base or your user base has mostly upgraded to v1.0.3,
+the framework may be appropriate.
 
 ## Do You Have Bandwidth to Track and Resolve Breaking Changes?
 
 The framework is still under development and its interfaces may change as we
 learn more about how providers are interacting with it. We will strive to keep
-these changes as small and as least-disruptive as possible, but they are a
+these changes as small and as minimally disruptive as possible, but they are a
 possibility with the framework.
 
 If you don't have the time, bandwidth, or tolerance for breaking changes, we
