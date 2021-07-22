@@ -184,9 +184,15 @@ type the pointer is referencing apply.
 
 ### Detected Interfaces
 
+`Set` detects and utilizes the following interfaces, if the target implements
+them.
+
+#### ValueCreator
+
 If a value is set on a Go type that implements the [`tftypes.ValueCreator`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#ValueCreator),
 that interface will be delegated to to handle the conversion.
+
 #### Unknownable 
 If a value is set on a Go type that fills the `Unknownable` interface:
 
@@ -202,6 +208,7 @@ type Unknownable interface {
 It will be used to convert the value. The `interface{}` being passed and
 retrieved will be of a type that can be passed to
 [`tftypes.NewValue`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#NewValue).
+
 #### Nullable
 
 If a value is set on a Go type that fills the `Nullable` interface:
