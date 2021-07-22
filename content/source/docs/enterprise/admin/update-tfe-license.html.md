@@ -8,7 +8,7 @@ Terraform Enterprise requires an up-to-date license to maintain normal operation
 
 ## Finding the expiration date
 
-There are two methods to find the expiration date from the existing installation of Terraform Enterprise; the Replicated console UI or the Replicated command line interface.
+You can find the expiration date through either the Replicated console UI or the Replicated command line interface.
 
 ### Replicated Console
 
