@@ -183,7 +183,8 @@ Lists can be automatically converted to any Go slice type (or alias of a Go
 slice type, like `type MyList []string`), with the elements either being
 `attr.Value` implementations or being converted according to these rules. Go
 slice types are considered capable of handling null values; the slice will be
-set to nil. Unknown list values will still cause an error to be returned.
+set to nil. The `Get` method will still return an error for unknown list
+values.
 
 ### Map
 
@@ -191,8 +192,8 @@ Maps can be automatically converted to any Go map type with string keys (or any
 alias of a Go map type with string keys, like `type MyMap map[string]int`),
 with the elements either being `attr.Value` implementations or being converted
 according to these rules. Go map types are considered capable of handling null
-values; the map will be set to nil. Unknown map values will still cause an
-error to be returned.
+values; the map will be set to nil. The `Get` method will still return an error
+for unknown map values.
 
 ### Object
 
