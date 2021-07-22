@@ -128,12 +128,7 @@ One, and only one, of the `Type` and `Attributes` properties of
 `schema.Attribute` is required. They cannot both be specified, and at least one
 must be.
 
-It can be confusing knowing whether to use an attribute with nested attributes
-or a complex type like an object or list of objects. A good rule of thumb is
-that if any of the inner fields should have their own flags or metadata
-(required, optional, computed, deprecated, sensitive, descriptions, etc.) then
-an attribute with nested attributes should be used. If the attribute is an
-atomic unit, an object or list of objects is likely more appropriate.
+-> **Note**: We recommend using an attribute with nested attributes when any of the inner fields should have their own flags or metadata (required, optional, computed, deprecated, sensitive, descriptions, etc.).  If the attribute is an atomic unit, we recommend using an object or list of objects instead.
 
 #### SingleNestedAttributes
 
