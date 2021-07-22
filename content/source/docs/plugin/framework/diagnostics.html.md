@@ -8,13 +8,9 @@ description: |-
 
 # Returning Errors and Warnings
 
-It would be nice if things always worked, but that's rarely the case. Providers
-often find that they need to tell the practitioner about something that went
-wrong. Terraform's abstraction for this is called a "diagnostic", and it's a
-powerful tool for surfacing information to practitioners.
-
-In the provider development framework, diagnostics are often found in response
-structs or as returns from functions or methods:
+Providers use `Diagnostics` to surface errors and warnings to practitioners.
+You may encounter them in response structs or as returns from functions or
+methods:
 
 ```go
 func (m myResource) Create(ctx context.Context, req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse)
@@ -24,7 +20,9 @@ This is the most common form for Diagnostics: a slice that has one or more error
 
 ~> **Important:** The design of diagnostics is expected to change to something
 less verbose in the near future.
+
 ## Diagnostic Properties
+
 ### Severity
 
 Required
