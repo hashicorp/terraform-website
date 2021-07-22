@@ -309,12 +309,15 @@ is used to implement an attribute value. Its job is to describe to the
 framework how to express that attribute value in a way that Terraform will
 understand.
 
-The `ToTerraformValue` method is expected to return a Go type that is valid
-input for
-[`tftypes.NewValue`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#NewValue)
+#### ToTerraformValue
+
+`ToTerraformValue` returns a Go type that is valid
+input for [`tftypes.NewValue`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#NewValue)
 for the `tftypes.Type` specified by the `attr.Type` that creates the
 `attr.Value`.
 
-The `Equal` method is expected to return true if the passed attribute value
+#### Equal
+
+`Equal` returns true if the passed attribute value
 should be considered to the attribute value the method is being called on. The
 passed attribute value is not guaranteed to be of the same Go type.
