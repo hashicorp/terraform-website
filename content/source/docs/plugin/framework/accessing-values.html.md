@@ -120,8 +120,8 @@ paths is coming soon.
 ## When Can a Value Be Unknown or Null?
 
 A lot of conversion rules say an error will be returned if a value is unknown
-or null. But when is it safe to assume an unknown or null value will never be
-present?
+or null. But it is safe to assume an unknown or null value will never be
+present when:
 
 * Required attributes will never be null or unknown in Create, Read, Update, or
   Delete methods.
