@@ -204,8 +204,9 @@ information by failing as early, consistently, and loudly as possible.
 Properties can either be `attr.Value` implementations or will be converted
 according to these rules.
 
-Unknown and null values cannot be represented in structs and will return an
-error.
+Unknown and null objects cannot be represented as structs and will return an
+error. Their attributes may contain unknown or null values if the attribute's
+type can hold them.
 
 ### Pointers
 
