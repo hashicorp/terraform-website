@@ -233,7 +233,7 @@ method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types
 which uses the same conversion rules as the `Get` methods described in [Access
 State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
 
-## Create Your Own Types and Values
+## Create Types and Values
 
 You may want to build your own attribute value and type implementations to allow your provider to combine validation, description, and plan customization behaviors into a reusable bundle. This helps avoid duplication or reimplementation and ensures consistency.
 
