@@ -94,7 +94,7 @@ error](/docs/plugin/framework/diagnostics.html), which will halt the apply.
 ### GetResources
 
 `GetResources` returns a map of [resource
-types](/docs/plugin/framework/resources.html#resourcetype). The keys of the
+types](/docs/plugin/framework/resources.html). The keys of the
 map entries must be the name of the resource as it would appear in the
 configuration, including the provider prefix.
 
@@ -104,7 +104,7 @@ runtime, and should consistently return the same values.
 ### GetDataSources
 
 `GetDataSources` returns a map of [data
-source types](/docs/plugin/framework/data-sources.html#datasourcetype). The
+source types](/docs/plugin/framework/data-sources.html). The
 keys of the map entries must be the name of the data source as it would appear
 in the configuration, including the provider prefix.
 
