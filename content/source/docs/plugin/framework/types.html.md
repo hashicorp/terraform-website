@@ -241,69 +241,36 @@ You may want to build your own attribute value and type implementations to allow
 types is not yet supported, limiting their utility. Support is expected in the
 near future.
 
-### Implement the `attr.Type` Interface
+### `attr.Type` Interface
 
 Use the [`attr.Type`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#Type)
 to implement an attribute type. It tells Terraform about its constraints and tells the framework how to create new attribute values from the information Terraform supplies. `attr.Type` has the following methods.
 
-#### TerraformType
+| Method | Description |
+|--------|-------------|
+|`TerraformType`| Returns the [`tftypes.Type` value](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#Type) that describes its type constraints. This is how Terraform will know what type of values it can accept.|
+|`ValueFromTerraform` | Returns an attribute value from the [`tftypes.Value`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#Value) that Terraform supplies, or to return an error if it cannot. This error should not be used for validation purposes, and is expected to indicate programmer error, not practitioner error. |
+|`Equal` | Returns true if the attribute type is considered equal to the passed attribute type. |
 
-`TerraformType` is expected to return the [`tftypes.Type`
-value](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#Type)
-that describes its type constraints. This is how Terraform will know what type
-of values it can accept.
 
-#### ValueFromTerraform
-`ValueFromTerraform` is expected to return an attribute value from
-the [`tftypes.Value`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#Value)
-that Terraform supplies, or to return an error if it cannot. This error should
-not be used for validation purposes, and is expected to indicate programmer
-error, not practitioner error.
-
-#### Equal
-`Equal` is expected to return true if the attribute type is
-considered equal to the passed attribute type.
-
-### Implement the `AttributePathStepper` Interface
+### `AttributePathStepper` Interface
 
 All attribute types must implement the [`tftypes.AttributePathStepper`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#AttributePathStepper),
 so the framework can access element or attribute types using attribute paths.
 
-### Implement Type-Specific Interfaces
 
-#### Contain Elements of the Same Type
+### Type-Specific Interfaces
 
-Attribute types that contain elements of the same type, like maps and lists,
-are required to implement the [`attr.TypeWithElementType`
-interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#TypeWithElementType),
-which adds `WithElementType` and `ElementType` methods to the `attr.Type`
-interface. `WithElementType` must return a copy of the attribute type, but with
-its element type set to the passed type. `ElementType` must return the
-attribute type's element type.
+|Case | Interface | Description |
+|----------|-------------|--------|
+|Elements of the same type | [`TypeWithElementType`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#TypeWithElementType) | Attribute types that contain elements of the same type, like maps and lists, are required to implement `attr.TypeWithElementType`, which adds `WithElementType` and `ElementType` methods to the `attr.Type` interface. `WithElementType` must return a copy of the attribute type, but with its element type set to the passed type. `ElementType` must return the attribute type's element type.|
+|Elements of different types | [`TypeWithElementTypes`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#TypeWithElementType) | Attribute types that contain elements of differing types, like tuples, are required to implement the `attr.TypeWithElementTypes`, which adds `WithElementTypes` and `ElementTypes` methods to the `attr.Type` interface. `WithElementTypes` must return a copy of the attribute type, but with its element types set to the passed element types. `ElementTypes` must return the attribute type's element types.|
+|Contain attributes | [`TypeWithAttributeTypes`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#TypeWithAttributeTypes) | Attribute types that contain attributes, like objects, are required to implement the `attr.TypeWithAttributeTypes` interface, which adds `WithAttributeTypes` and `AttributeTypes` methods to the `attr.Type` interface. `WithAttributeTypes` must return a copy of the attribute type, but with its attribute types set to the passed attribute types. `AttributeTypes` must return the attribute type's attribute types.
 
-#### Contain Elements of Different Types
 
-Attribute types that contain elements of differing types, like tuples, are
-required to implement the [`attr.TypeWithElementTypes`
-interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#TypeWithElementTypes),
-which adds `WithElementTypes` and `ElementTypes` methods to the `attr.Type`
-interface. `WithElementTypes` must return a copy of the attribute type, but
-with its element types set to the passed element types. `ElementTypes` must
-return the attribute type's element types.
-
-#### Contain Attributes
-
-Attribute types that contain attributes, like objects, are required to
-implement the [`attr.TypeWithAttributeTypes`
-interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#TypeWithAttributeTypes),
-which adds `WithAttributeTypes` and `AttributeTypes` methods to the `attr.Type`
-interface. `WithAttributeTypes` must return a copy of the attribute type, but
-with its attribute types set to the passed attribute types. `AttributeTypes`
-must return the attribute type's attribute types.
-
-### Implement the `attr.Value` Interface
+### `attr.Value` Interface
 
 Use the [`attr.Value`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#Value)
@@ -311,15 +278,9 @@ to implement an attribute value. It tells the framework how to express that
 attribute value in a way that Terraform will understand. `attr.Value` has the
 following methods.
 
-#### ToTerraformValue
+| Method | Description |
+|--------|-------------|
+|`ToTerraformValue` | Returns a Go type that is valid input for [`tftypes.NewValue`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#NewValue) for the `tftypes.Type` specified by the `attr.Type` that creates the `attr.Value`.|
+|`Equal` | Returns true if the passed attribute value should be considered to the attribute value the method is being called on. The passed attribute value is not guaranteed to be of the same Go type. |
 
-`ToTerraformValue` returns a Go type that is valid
-input for [`tftypes.NewValue`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#NewValue)
-for the `tftypes.Type` specified by the `attr.Type` that creates the
-`attr.Value`.
 
-#### Equal
-
-`Equal` returns true if the passed attribute value
-should be considered to the attribute value the method is being called on. The
-passed attribute value is not guaranteed to be of the same Go type.
