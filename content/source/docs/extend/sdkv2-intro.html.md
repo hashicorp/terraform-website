@@ -17,7 +17,7 @@ Try the [Call APIs with Custom Providers](https://learn.hashicorp.com/collection
 
 ## Key Concepts
 
-- [Schemas](/docs/extend/schemas.index.html) define available fields for provider, resource, or provisioner configuration block, and give Terraform metadata about those fields.
+- [Schemas](/docs/extend/schemas/index.html) define available fields for provider, resource, or provisioner configuration block, and give Terraform metadata about those fields.
 - [Resources](/docs/extend/resources/index.html) are an abstraction that allow Terraform to manage infrastructure objects, such as a compute instance, an access policy, or disk. Providers act as a translation layer between Terraform and an API, offering one or more resources for practitioners to define in a configuration.
 
 ## Debug and Test
