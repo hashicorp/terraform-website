@@ -28,7 +28,7 @@ Terraform Enterprise grants extensive permissions to this role, so we recommend 
 
 ## Differences Between Terraform Enterprise and Terraform Cloud Security Models
 
-All of the content on [Terraform Cloud security model](../../cloud/architectural-details/security-model.html) applies to Terraform Enterprise, with the exception of the points listed below.
+All of the content on [Terraform Cloud security model](/docs/cloud/architectural-details/security-model.html) applies to Terraform Enterprise, with the exception of the points listed below.
 
 ### Terraform Enterprise Requires You to Manage and Secure the Underlying Network and Infrastructure
 
