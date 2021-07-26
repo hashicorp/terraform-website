@@ -90,7 +90,7 @@ allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy.
 
--> **Note:** Terraform Enterprise does not require S3 Versioning feature, however it is recommended to enable S3 Versioning for the backup purpose. The Terraform Enterprise also have routine jobs to delete the expired objects from the S3 storage. There are also certain operations that destroy database records and the associated storage objects, therefore the database backup restoration in the failure scenario fundamentally require the snapshot of the storage objects from the same point in time.
+-> **Note:** Terraform Enterprise has routine jobs that delete expired objects from S3 storage and operations that destroy database records and the associated storage objects. We recommend enabling S3 Versioning so that you will have regular snapshots that you can use to restore your database if necessary.
 
 ### Other Considerations
 
@@ -431,4 +431,3 @@ Similar to _Standalone_, _Active/Active_ Terraform Enterprise is currently archi
 single region. You cannot deploy additional nodes associated to the primary cluster in different regions. It is possible to deploy to multiple regions to give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional service. An identical infrastructure will still need to be instantiated separately with a failover scenario resulting in control of processing being transferred to the second implementation, as described in the earlier section on this topic. In addition, this identical infrastructure will require its own Memory Cache external service instance.
-
