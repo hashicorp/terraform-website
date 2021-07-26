@@ -90,7 +90,7 @@ allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy.
 
--> **Note:** Terraform Enterprise does not require S3 Versioning feature.
+-> **Note:** Terraform Enterprise does not require S3 Versioning feature, however it is recommended to enable S3 Versioning for the backup purpose. The Terraform Enterprise also have routine jobs to delete the expired objects from the S3 storage. There are also certain operations that destroy database records and the associated storage objects, therefore the database backup restoration in the failure scenario fundamentally require the snapshot of the storage objects from the same point in time.
 
 ### Other Considerations
 
