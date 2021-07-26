@@ -184,7 +184,7 @@ At a minimum, Terraform Enterprise will require the following permissions if the
 }
 ```
 
-#### Using the Instance Profile as Default Credentials for Terraform Runs
+#### Instance Profile as Default Credentials
 You can use Terraform Enterprise's instance profile to provide default credentials to workspaces. Terraform will attempt to use the instance profile to provision resources when you do not set credentials as environment variables. However, this approach presents a few security risks: 
 
 1. All workspaces will have the same permissions because they have access to the same instance profile. You cannot selectively allow or deny access to the instance profile for each workspace.
