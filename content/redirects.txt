@@ -926,4 +926,4 @@
 #/docs/extend/community                         https://www.terraform.io/community
 #/docs/extend/community/                        https://www.terraform.io/community
 #/docs/extend/community/maintainers.html        https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md#maintainers
-/docs/extend/plugin-types.html               /docs/extend/index.html
+/docs/extend/plugin-types.html                  /docs/extend/index.html
