@@ -67,6 +67,7 @@ Once you are ready to use Terraform Enterprise for production workloads, we reco
 #### Enable Strict Transport Security Header
 
 You can configure Terraform Enterprise to set the [Strict Transport Security (HSTS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) header by:
+
 * Visiting the installer dashboard "Settings" page and enabling “Force TLS” under the “SSL/TLS Configuration” section.
 * Setting [force_tls](../install/automating-the-installer.html#force_tls) in the application settings file.
 
@@ -78,7 +79,8 @@ You can configure Terraform Enterprise to set the [Strict Transport Security (HS
 By default, Terraform Enterprise does not prevent Terraform operations from accessing the instance metadata service, which may contain IAM credentials or other sensitive data. Refer to [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html), [Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/instance-metadata-service?tabs=windows), or [Google Cloud](https://cloud.google.com/compute/docs/storing-retrieving-metadata) documentation for more information on this service.
 
 Terraform Enterprise allows you to restrict access to the metadata endpoint from Terraform operations, preventing workspaces from reading any data from the metadata service. You can do this by:
-* Visiting the installer dashboard "Settings" page and enabling “Restrict Terraform Build Worker Instance Metadata Access” under the “Advanced Configuration” section.
+
+* Visiting the installer dashboard "Settings" page and enabling “Restrict Terraform Build Worker Instance Metadata Access” under the “Advanced Configuration” section. 
 * Setting [restrict_worker_metadata_access](../install/automating-the-installer.html#restrict_worker_metadata_access) in the application settings file.
 
 We recommend enabling this setting to prevent Terraform operations from accessing the instance metadata endpoint, unless you are relying on the [instance profile to provide default credentials to workspaces](../before-installing/index.html#instance-profile-as-default-credentials).
