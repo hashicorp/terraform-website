@@ -6,11 +6,11 @@ page_title: "Security Model- System Overview - Terraform Enterprise"
 # Terraform Enterprise Security Model
 
 
-This page explains the aspects of the Terraform security model that are unique to Terraform Enterprise. We recommend also reviewing the core concepts in [Terraform Cloud Security model](../../cloud/architectural-details/security-model.html).
+This page explains the aspects of the Terraform security model that are unique to Terraform Enterprise. We recommend also reviewing the core concepts in [Terraform Cloud Security model](/docs/cloud/architectural-details/security-model.html).
 
 ## Personas
 
-In addition to those listed in [Terraform Cloud Security model](../../cloud/architectural-details/security-model.html), Terraform Enterprise requires the following personas for managing and administering the application.
+In addition to those listed in [Terraform Cloud Security model](/docs/cloud/architectural-details/security-model.html), Terraform Enterprise requires the following personas for managing and administering the application.
 
 
 ### Infrastructure Admin
@@ -21,14 +21,14 @@ Terraform Enterprise grants extensive permissions to this role, so we recommend 
 
 ### Site Admin
 
-[Site admins](../admin/admin-access.html) are responsible for application-level configuration of Terraform Enterprise. They can manage all users, workspaces, and organizations through the admin interface and have access to all data stored within Terraform Enterprise. Site admins are also responsible for configuring SAML and are the only users that can access Terraform Enterprise with a username and password once SAML is configured. 
+[Site admins](../admin/admin-access.html) are responsible for application-level configuration of Terraform Enterprise. They can manage all users, workspaces, and organizations through the admin interface and have access to all data stored within Terraform Enterprise. Site admins are also responsible for configuring SAML and are the only users that can access Terraform Enterprise with a username and password once SAML is configured.
 
 Terraform Enterprise grants extensive permissions to this role, so we recommend limiting the number of users who are site admins in your organization.
 
 
 ## Differences Between Terraform Enterprise and Terraform Cloud Security Models
 
-All of the content on [Terraform Cloud security model](../../cloud/architectural-details/security-model.html) applies to Terraform Enterprise, with the exception of the points listed below.
+All of the content on [Terraform Cloud security model](/docs/cloud/architectural-details/security-model.html) applies to Terraform Enterprise, with the exception of the points listed below.
 
 ### Terraform Enterprise Requires You to Manage and Secure the Underlying Network and Infrastructure
 
@@ -48,11 +48,11 @@ Unlike Terraform Cloud, Terraform Enterprise performs all Terraform operations i
 
 ## Recommendations for Securely Operating Terraform Enterprise
 
-In addition those provided in the [Terraform Cloud security model](../../cloud/architectural-overview/security-model.html), we recommend the following for Terraform Enterprise users. 
+In addition those provided in the [Terraform Cloud security model](/docs/cloud/architectural-details/security-model.html), we recommend the following for Terraform Enterprise users.
 
 ### Run Terraform Enterprise in an Isolated Network, Limit Ingress Ports, and Restrict Access to Underlying Infrastructure
 
-To minimize attack surface, we recommend running Terraform Enterprise in an isolated network and limiting ingress ports to only 80 and 443. 
+To minimize attack surface, we recommend running Terraform Enterprise in an isolated network and limiting ingress ports to only 80 and 443.
 
 For standalone deployments, port 8800 is reserved for the [Replicated admin console](../admin/admin-access.html), which is used for configuring Terraform Enterprise. This port should only be exposed to infrastructure admins. If you choose to configure Terraform Enterprise with the [automated process](../install/automating-the-installer.html), you can disable the Replicated admin console by passing the `disable-replicated-ui` argument to the installation script:
 
@@ -78,10 +78,10 @@ You can configure Terraform Enterprise to set the [Strict Transport Security (HS
 By default, Terraform Enterprise does not prevent Terraform operations from accessing the instance metadata service, which may contain IAM credentials or other sensitive data. Refer to [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html), [Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/instance-metadata-service?tabs=windows), or [Google Cloud](https://cloud.google.com/compute/docs/storing-retrieving-metadata) documentation for more information on this service.
 
 Terraform Enterprise allows you to restrict access to the metadata endpoint from Terraform operations, preventing workspaces from reading any data from the metadata service. You can do this by:
-* Visiting the installer dashboard "Settings" page and enabling “Restrict Terraform Build Worker Instance Metadata Access” under the “Advanced Configuration” section. 
+* Visiting the installer dashboard "Settings" page and enabling “Restrict Terraform Build Worker Instance Metadata Access” under the “Advanced Configuration” section.
 * Setting [restrict_worker_metadata_access](../install/automating-the-installer.html#restrict_worker_metadata_access) in the application settings file.
 
-We recommend enabling this setting to prevent Terraform operations from accessing the instance metadata endpoint, unless you are relying on the [instance profile to provide default credentials to workspaces](../before-installing/index.html#aws-specific-configuration). 
+We recommend enabling this setting to prevent Terraform operations from accessing the instance metadata endpoint, unless you are relying on the [instance profile to provide default credentials to workspaces](../before-installing/index.html#instance-profile-as-default-credentials).
 
 #### Disable Global Remote State Sharing
 
