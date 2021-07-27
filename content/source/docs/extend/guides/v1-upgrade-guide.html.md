@@ -45,7 +45,7 @@ $ tf-sdk-migrator check
 
 If this command succeeds, proceed to Step 2.
 
-Otherwise, the tool will output the steps you need to take to ensure the provider can be migrated. Please see https://github.com/hashicorp/tf-sdk-migrator#tf-sdk-migrator-check-check-eligibility-for-migration for more information about the eligibility checks, and see the [Deprecations section](#deprecations) below for what to do if you are using deprecated packages or identifiers.
+Otherwise, the tool will output the steps you need to take to ensure the provider can be migrated. Please see https://github.com/hashicorp/tf-sdk-migrator for more information about the eligibility checks, and see the [Deprecations section](#deprecations) below for what to do if you are using deprecated packages or identifiers.
 
 Projects that are on an old version of the legacy Terraform plugin SDK, particularly < v0.12, should first [upgrade to v0.12](/docs/extend/terraform-0.12-compatibility.html).
 
