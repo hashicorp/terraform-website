@@ -211,7 +211,7 @@ resource "example_resource" "ex" {
 ## Aggregate Types
 
 ### TypeMap
-**Data structure:** [map](https://golang.org/doc/effective_go.html#maps): `map[string]interface{}`    
+**Data structure:** [map](https://golang.org/doc/effective_go#maps): `map[string]interface{}`    
 **Example:** `key = value`
 
 A key based map (also known as a dictionary) with string keys and values defined
@@ -253,7 +253,7 @@ items in a map is denoted by the `%` index:
 ```
 
 ### TypeList
-**Data structure:** [Slice](https://golang.org/doc/effective_go.html#slices): `[]interface{}`  
+**Data structure:** [Slice](https://golang.org/doc/effective_go#slices): `[]interface{}`  
 **Example:** `[]interface{"2", "3", "4"}`
 
 Used to represent an **ordered** collection of items, where the order the items

@@ -84,7 +84,7 @@ resource "example_volume" "ex" {
 ```
 
 ### Default
-**Data structure:** [interface](https://golang.org/doc/effective_go.html#interfaces)    
+**Data structure:** [interface](https://golang.org/doc/effective_go#interfaces)    
 **Value:** any value of an elements `Type` for primitive types, or the type
 defined by `Elem` for complex types.  
 **Restrictions:**  
