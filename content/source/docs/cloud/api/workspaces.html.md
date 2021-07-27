@@ -457,6 +457,7 @@ Parameter      | Description
 ---------------|------------
 `page[number]` | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`   | **Optional.** If omitted, the endpoint will return 20 workspaces per page.
+`search[name]` | **Optional.** Allows searching the organization's workspaces by name.
 
 ### Sample Request
 
@@ -1526,9 +1527,12 @@ Status code `204`.
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
 
 * `organization` - The full organization record.
+* `current_configuration_version` - The last configuration this workspace received, excluding plan-only configurations. Terraform uses this configuration for new runs, unless you provide a different one.
+* `current_configuration_version.ingress_attributes` - The commit information for the current configuration version.
 * `current_run` - Additional information about the current run.
 * `current_run.plan` - The plan used in the current run.
 * `current_run.configuration_version` - The configuration used in the current run.
 * `current_run.configuration_version.ingress_attributes` - The commit information used in the current run.
+* `locked_by` - The user, team, or run responsible for locking the workspace, if the workspace is currently locked.
 * `readme` - The most recent workspace README.md
 * `outputs` - The outputs for the most recently applied run.

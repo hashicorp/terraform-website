@@ -17,12 +17,15 @@ Terraform Cloud runs support many of the same modes and options available in the
 
 ## Refresh-Only Mode
 
--> **Version note:** Refresh-only support is available in Terraform Enterprise v202106-1 or later and requires a workspace using at least Terraform CLI v0.15.2.
+> **Hands-on:** Try the [Use Refresh-Only Mode to Sync Terraform State](https://learn.hashicorp.com/tutorials/terraform/refresh) tutorial on HashiCorp Learn.
+
+-> **Version note:** Refresh-only support is available in Terraform Enterprise v202106-1 or later and requires a workspace using at least Terraform CLI v0.15.4.
 
 [Refresh-only mode](/docs/cli/commands/plan.html#planning-modes) instructs Terraform to create a plan which updates the Terraform state to match changes made to remote objects outside of Terraform.
 
 - **CLI:** Use `terraform plan -refresh-only` or `terraform apply -refresh-only`.
 - **API:** Use the `refresh-only` option.
+- **UI:** Use the "Start new plan" action from a workspace's "Actions" menu, then choose the "Refresh-only" plan type in the new plan dialog.
 
 ## Skipping Automatic State Refresh
 
@@ -35,7 +38,7 @@ The [`-refresh=false` option](/docs/cli/commands/plan.html#refresh-false) is use
 
 ## Replacing Selected Resources
 
--> **Version note:** Replace support is available in Terraform Enterprise v202106-1 or later and requires a workspace using at least Terraform CLI v0.15.4.
+-> **Version note:** Replace support is available in Terraform Enterprise v202106-1 or later and requires a workspace using at least Terraform CLI v0.15.2.
 
 The [replace option](/docs/cli/commands/plan.html#replace-address) instructs Terraform to replace the object with the given resource address.
 

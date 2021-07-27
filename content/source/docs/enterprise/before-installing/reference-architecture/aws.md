@@ -90,7 +90,9 @@ allows for further [server-side
 encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 by S3 if required by your security policy.
 
+
 -> **Note:** Terraform Enterprise has routine jobs that delete expired objects from S3 storage and operations that destroy database records and the associated storage objects. We recommend enabling S3 Versioning so that you will have regular snapshots that you can use to restore your database if necessary.
+
 
 ### Other Considerations
 

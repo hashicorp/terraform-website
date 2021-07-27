@@ -1,10 +1,10 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Best Practices"
+page_title: "Plugin Development - Naming Best Practices"
 sidebar_current: "docs-extend-best-practices-naming"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Our recommendations for naming resources, data sources, and attributes in
+  providers.
 ---
 
 ## Naming

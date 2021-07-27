@@ -137,11 +137,9 @@ For other Linux distributions, check Docker compatibility:
 
 ~> **Important:** We do not recommend running Docker under a 2.x kernel.
 
-### AWS-Specific Configuration
+### IAM Policies
 
-Terraform Enterprise's instance profile serves as default credentials for Terraform's AWS provider. Workspaces without environment variables for credentials will attempt to use the instance profile to provision AWS resources.
-
-The instance profile of Terraform Enterprise's instance is the operator's responsibility. If you plan to specify any non-default permissions for Terraform Enterprise's instance profile, be aware that Terraform runs might use those permissions and plan accordingly.
+If you have chosen the [external services operational mode](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision), Terraform Enterprise will need access to an S3-compliant endpoint for object storage. You can grant access to the object storage endpoint by either assigning an AWS instance profile or an equivalent IAM system in non-AWS environments.
 
 #### S3 Policy
 
@@ -185,6 +183,14 @@ At a minimum, Terraform Enterprise will require the following permissions if the
     ]
 }
 ```
+
+#### Instance Profile as Default Credentials
+You can use Terraform Enterprise's instance profile to provide default credentials to workspaces. Terraform will attempt to use the instance profile to provision resources when you do not set credentials as environment variables. However, this approach presents a few security risks: 
+
+1. All workspaces will have the same permissions because they have access to the same instance profile. You cannot selectively allow or deny access to the instance profile for each workspace.
+2. Workspaces will share the instance profile with the Terraform Enterprise application. All workspaces within the application will have access to any resources that Terraform Enterprise depends on, such as its S3 bucket, KMS keys, etc.
+
+~> **Important:** If you choose not to use the instance profile for default credentials, we highly recommend that you [restrict build worker metadata access](../system-overview/security-model.html#restrict-terraform-build-worker-metadata-access) to prevent workspaces from accessing the instance profile.
 
 ### SELinux
 

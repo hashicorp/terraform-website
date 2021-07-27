@@ -1,11 +1,10 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Testing Patterns"
+page_title: "Plugin Development - Testing Patterns"
 sidebar_current: "docs-extend-best-practices-testing"
 description: |-
-  Testing Patterns covers essential acceptance test patterns 
-  to implement for Terraform resources. 
-  
+  Testing Patterns covers essential acceptance test patterns to implement for
+  Terraform resources. 
 ---
 
 # Testing Patterns
@@ -157,10 +156,14 @@ func testAccCheckExampleResourceExists(n string, widget *example.Widget) resourc
 			return err
 		}
 
-		// If no error, assign the response Widget attribute to the widget pointer
+		if resp.Widget == nil {
+			return fmt.Errorf("Widget (%s) not found", rs.Primary.ID)
+		}
+
+		// assign the response Widget attribute to the widget pointer
 		*widget = *resp.Widget
 
-		return fmt.Errorf("Widget (%s) not found", rs.Primary.ID)
+		return nil
 	}
 }
 
@@ -380,5 +383,4 @@ for safely managing infrastructure.
 [7]: https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L322-L325
 [8]: /docs/extend/testing/acceptance-tests/teststep.html#check-functions
 [9]: /docs/extend/testing/acceptance-tests/teststep.html#builtin-check-functions
-
 

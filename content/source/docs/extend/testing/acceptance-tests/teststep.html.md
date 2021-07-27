@@ -1,10 +1,10 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Acceptance Testing: TestStep"
+page_title: "Plugin Development - Acceptance Testing: TestStep"
 sidebar_current: "docs-extend-testing-acceptance-teststep"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  TestSteps represent the application of an actual Terraform configuration
+  file to a given state.
 ---
 
 # Acceptance Tests: TestSteps
@@ -88,7 +88,7 @@ framework provides developers an opportunity to check the results by providing a
 “Check” function. While possible to only supply a single function, it is
 recommended you use multiple functions to validate specific information about
 the results of the `terraform apply` ran in each `TestStep`. The `Check`
-attribute is of `TestStep` is singular, so in order to include multiple checks
+attribute of `TestStep` is singular, so in order to include multiple checks
 developers should use either `ComposeTestCheckFunc` or
 `ComposeAggregateTestCheckFunc` (defined below) to group multiple check
 functions, defined below:

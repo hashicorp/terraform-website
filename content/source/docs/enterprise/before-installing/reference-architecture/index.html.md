@@ -10,7 +10,7 @@ infrastructure and resources that should be provisioned in order to
 support a highly-available Terraform Enterprise deployment.
 
 Depending on where you choose to deploy Terraform Enterprise,
-there are different services available to maximise the resiliency of
+there are different services available to maximize the resiliency of
 the deployment, for example, most major cloud service providers offer
 a resilient relational database service offering, removing the need
 for the customer to manage a complex database cluster/failover

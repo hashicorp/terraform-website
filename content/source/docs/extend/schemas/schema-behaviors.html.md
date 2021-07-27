@@ -1,10 +1,10 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Schema Behaviors"
+page_title: "Plugin Development - Schema Behaviors"
 sidebar_current: "docs-extend-schemas-behaviors"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Schemas define plugin attributes and behaviors. Learn about the fields that
+  you can use to define element behaviors in SDKv2.
 ---
 
 # Schema Behaviors

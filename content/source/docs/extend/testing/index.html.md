@@ -1,10 +1,10 @@
 ---
 layout: "extend"
-page_title: "Home - Extending Terraform"
+page_title: "Plugin Development - Testing"
 sidebar_current: "docs-extend-testing"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Learn how to write successful acceptance and unit tests for Terraform
+  plugins.
 ---
 
 # Testing Terraform Plugins

@@ -30,7 +30,7 @@ The Terraform Versions Admin API lets site administrators manage which versions 
 
 ## List all Terraform versions
 
-`GET /admin/terraform-versions`
+`GET /api/v2/admin/terraform-versions`
 
 This endpoint lists all known versions of Terraform.
 
@@ -190,7 +190,7 @@ curl \
 
 ## Show a Terraform version
 
-`GET /admin/terraform-versions/:id`
+`GET /api/v2/admin/terraform-versions/:id`
 
 Parameter  | Description
 -----------|------------

@@ -1,11 +1,11 @@
 ---
 layout: "extend"
-page_title: "Home - Extending Terraform"
+page_title: "Home - Plugin Development"
 sidebar_current: "docs-extend-schemas-types"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
-  
+  Schemas define plugin behavior and attributes. The schema `type` attribute
+  defines what kind of values users can provide in their configuration for an
+  element.
 ---
 
 # Schema Attributes and Types

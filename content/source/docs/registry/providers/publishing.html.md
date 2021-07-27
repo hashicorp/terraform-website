@@ -27,7 +27,7 @@ Providers published to the Terraform Registry are written and built in the same 
 - Example providers for reference:
     - [AWS](https://github.com/terraform-providers/terraform-provider-aws)
     - [AzureRM](https://github.com/terraform-providers/terraform-provider-azurerm)
-- [Contributing to Terraform guidelines](/docs/extend/community/contributing.html)
+- [Contributing to Terraform](https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md)
 
 ~> **Important:** In order to be detected by the Terraform Registry, all provider repositories on GitHub must match the pattern `terraform-provider-{NAME}`, and the repository must be public. Only lowercase repository names are supported.
 
