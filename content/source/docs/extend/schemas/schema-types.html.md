@@ -294,7 +294,7 @@ resource "example_compute_instance" "ex" {
 ```
 
 ### TypeSet
-**Data structure:** [`*schema.Set`](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/set.go#L50)  
+**Data structure:** [`*schema.Set`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Set)  
 **Example:** `[]string{"one", "two", "three"}`
 
 `TypeSet` implements set behavior and is used to represent an **unordered**

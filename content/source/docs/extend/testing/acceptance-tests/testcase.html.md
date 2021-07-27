@@ -144,7 +144,7 @@ func testAccPreCheck(t *testing.T) {
 ### Providers
 
 **Type:**
-`map[string]`[\*schema.Provider](https://github.com/hashicorp/terraform-plugin-sdk/blob/a8e5eaf628dcbd66869b9512e81c3495cfac5722/helper/schema/provider.go#L40-L96)  
+`map[string]`[\*schema.Provider](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Provider)  
 **Required:** Yes  
 
 **Providers** is a map of `*schema.Provider` values with `string`
@@ -187,7 +187,7 @@ func init() {
 
 ### CheckDestroy
 
-**Type:** [TestCheckFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L192-L196)  
+**Type:** [TestCheckFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckFunc)  
 **Default:** `nil`  
 **Required:** no  
 
@@ -253,7 +253,7 @@ func testAccCheckExampleResourceDestroy(s *terraform.State) error {
 
 ### Steps
 
-**Type:** [`[]TestStep`](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L259-L391)  
+**Type:** [`[]TestStep`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep)  
 **Required:** yes  
 
 **TestStep** is a single apply sequence of a test, done within the context of a
@@ -302,6 +302,6 @@ creation to creating, adding, and removing specific properties. In the next
 Section [`TestSteps`][2], we’ll detail `Steps` portion of `TestCase` and see how
 to create these scenarios by iterating on Terraform configurations.
 
-[1]: https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L205-L257
+[1]: https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase
 [2]: /docs/extend/testing/acceptance-tests/teststep.html
 [3]: https://pkg.go.dev/testing#T
