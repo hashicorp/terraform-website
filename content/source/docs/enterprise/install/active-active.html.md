@@ -55,6 +55,8 @@ There are new access requirements involving ingress and egress:
 
 Externalizing Redis allows multiple active application nodes. Terraform Enterprise is validated to work with the managed Redis services from AWS, Azure, and GCP.
 
+-> **Note**: Terraform Enterprise does NOT support Redis Cluster. Redis Sentinel is supported for failover support along with active/passive deployments.
+
 -> **Note**: Please see the cloud-specific configuration guides at the end of this document for details [here](#appendix-1-aws-elasticcache). 
 
 
