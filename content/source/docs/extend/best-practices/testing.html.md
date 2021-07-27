@@ -99,7 +99,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
 	// generate a random name for each widget test run, to avoid
 	// collisions from multiple concurrent tests.
 	// the acctest package includes many helpers such as RandStringFromCharSet
-	// See https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/acctest
+	// See https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/acctest
 	rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
 
 	resource.Test(t, resource.TestCase{

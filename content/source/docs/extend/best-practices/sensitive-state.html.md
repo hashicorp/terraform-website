@@ -17,7 +17,7 @@ couple of recommended approaches for managing sensitive state in Terraform.
 
 When working with a field that contains information likely to be considered
 sensitive, it is best to set the
-[`Sensitive`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#Schema.Sensitive)
+[`Sensitive`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/schema#Schema.Sensitive)
 property on its schema to `true`. This will prevent the field's values from
 showing up in CLI output and in Terraform Cloud. It will **not encrypt** or obscure
 the value in the state, however.

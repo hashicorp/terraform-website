@@ -91,7 +91,7 @@ currently running.
 
 `TestCase` offers several fields for developers to add to customize and validate
 each test, defined below. The source for `TestCase` can be viewed [here on
-godoc.org](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCase)
+godoc.org](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCase)
 
 ### IsUnitTest
 **Type:** [bool](https://pkg.go.dev/builtin#bool)  

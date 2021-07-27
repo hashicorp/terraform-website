@@ -181,7 +181,7 @@ resource "example_spot_request" "ex" {
 
 ### Date & Time Data
 
-`TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/validation#ValidateRFC3339TimeString)).
+`TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/validation#ValidateRFC3339TimeString)).
 
 **Example:** `2006-01-02T15:04:05+07:00`
 
