@@ -94,7 +94,7 @@ each test, defined below. The source for `TestCase` can be viewed [here on
 godoc.org](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCase)
 
 ### IsUnitTest
-**Type:** [bool](https://golang.org/pkg/builtin/#bool)  
+**Type:** [bool](https://pkg.go.dev/builtin#bool)  
 **Default:** `false`  
 **Required:** no  
 
@@ -304,4 +304,4 @@ to create these scenarios by iterating on Terraform configurations.
 
 [1]: https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L205-L257
 [2]: /docs/extend/testing/acceptance-tests/teststep.html
-[3]: https://golang.org/pkg/testing/#T
+[3]: https://pkg.go.dev/testing#T

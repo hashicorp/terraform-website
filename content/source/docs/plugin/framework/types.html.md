@@ -103,7 +103,7 @@ struct in config, state, and plan. The `types.Number` struct has the following
 properties:
 
 * `Value` contains the number's value as a Go
-  [`*big.Float`](https://golang.org/pkg/math/big#Float) type.
+  [`*big.Float`](https://pkg.go.dev/math/big#Float) type.
 * `Null` is set to `true` when the number's value is null.
 * `Unknown` is set to `true` when the number's value is unknown.
 

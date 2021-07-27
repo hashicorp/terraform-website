@@ -140,7 +140,7 @@ aliases of them, like `type MyNumber int`):
 * `int`, `int8`, `int16`, `int32`, `int64`
 * `uint`, `uint8`, `uint16`, `uint32`, `uint64`
 * `float32`, `float64`
-* [`*big.Int`](https://golang.org/pkg/math/big#Int), [`*big.Float`](https://golang.org/pkg/math/big#Float)
+* [`*big.Int`](https://pkg.go.dev/math/big#Int), [`*big.Float`](https://pkg.go.dev/math/big#Float)
 
 ### Boolean
 
