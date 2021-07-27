@@ -63,8 +63,7 @@ resource "example_volume" "ex" {
 - Must be set if `Optional` is omitted **and** element is not `Computed`
 
 Indicates that this element must be provided in the configuration. Omitting this
-attribute from configuration, or later removing it, will result in a
-[plan-time]() error.
+attribute from configuration, or later removing it, will result in a plan-time error.
 
 **Schema example:**
 
