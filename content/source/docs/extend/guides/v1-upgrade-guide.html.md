@@ -154,10 +154,10 @@ Version 1.0.0 of the standalone plugin SDK is intended to differ as little as po
 
 The following packages, functions, and identifiers have been deprecated as of v0.12.7 of the legacy SDK in Core, and have removed altogether in the standalone SDK.
 
-* **`config.NewRawConfig()/terraform.NewResourceConfig()`** were sometimes used in tandem for testing provider block configuration. The config package has been removed entirely from the SDK as well as `terraform.NewResourceConfig`, you should now use `terraform.NewResourceConfigRaw()`. See [example](https://github.com/terraform-providers/terraform-provider-consul/pull/149/files)
+* **`config.NewRawConfig()/terraform.NewResourceConfig()`** were sometimes used in tandem for testing provider block configuration. The config package has been removed entirely from the SDK as well as `terraform.NewResourceConfig`, you should now use `terraform.NewResourceConfigRaw()`. See [example](https://github.com/hashicorp/terraform-provider-consul/pull/149/files)
 
 * Passing along a user agent header to backend APIs has been done a few ways. The new standalone SDK tries to standardize the creation of a user agent header, as well as provide an accurate version of Terraform calling the provider.
-  - **`terraform.VersionString()`** has been removed, it provided the version of terraform the dependency, which was not accurate. The version of terraform can now be accessed at runtime in a provider's `ConfigureFunc`. See [example](https://github.com/terraform-providers/terraform-provider-kubernetes/pull/620/files)
+  - **`terraform.VersionString()`** has been removed, it provided the version of terraform the dependency, which was not accurate. The version of terraform can now be accessed at runtime in a provider's `ConfigureFunc`. See [example](https://github.com/hashicorp/terraform-provider-kubernetes/pull/620/files)
   - **`httpclient.UserAgentString()/terraform.UserAgentString()`** have been removed. Please use [`httpclient.TerraformUserAgent()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/httpclient#TerraformUserAgent) instead.
   - **`httpclient.New()`** has been removed. Please use `github.com/hashicorp/go-cleanhttp.DefaultPooledClient()` directly with a custom transport. This is how [`httpclient.New()`](https://pkg.go.dev/github.com/hashicorp/terraform@v0.14.7/httpclient#New) was implemented in Core.
 
