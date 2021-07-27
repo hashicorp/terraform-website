@@ -11,7 +11,7 @@ Terraform Enterprise is powered by the same set of services behind HashiCorp’s
 
 ~> **Advanced:** This information is not required to operate Terraform Enterprise. We provide this content to help advanced users understand the product in more depth.
 
-~> **Note:** Several services described below include the string `ptfe` as part of their names. See [here](https://www.terraform.io/docs/enterprise/index.~> **Note:** Several services include the legacy string `ptfe` as part of their names because the self-hosted Terraform distribution used to be called Private Terraform Enterprise (PTFE).
+~> **Note:** Several services include the legacy string `ptfe` as part of their names because the self-hosted Terraform distribution used to be called Private Terraform Enterprise (PTFE).
 
 ## Application Layer
 
