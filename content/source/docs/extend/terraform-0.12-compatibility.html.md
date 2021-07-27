@@ -223,7 +223,7 @@ can explicitly set it to unknown to reflect that.
 
 For example, if your resource type has a `version` attribute that changes
 each time certain other attributes are updated, you can use
-[the `customdiff.ComputedIf` helper](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/customdiff#ComputedIf)
+[the `customdiff.ComputedIf` helper](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/customdiff#ComputedIf)
 to reflect that in the plan:
 
 ```go

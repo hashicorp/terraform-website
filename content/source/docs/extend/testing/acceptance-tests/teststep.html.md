@@ -29,7 +29,7 @@ when running `terraform import`.
 
 An acceptance test’s mode is implicitly determined by the fields provided in the
 `TestStep` definition. The applicable fields are defined in the [TestStep
-Reference API](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestStep).
+Reference API](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestStep).
 
 ## Steps
 
@@ -168,34 +168,34 @@ Below is a list of builtin check functions, with links to their corresponding
 documentation on godoc.org:
 
 - [TestCheckResourceAttrSet(name, key
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrSet)  
+string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrSet)  
 - [TestCheckModuleResourceAttrSet(mp []string, name string, key
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrSet)  
+string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrSet)  
 - [TestCheckResourceAttr(name, key, value
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttr)  
+string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttr)  
 - [TestCheckModuleResourceAttr(mp []string, name string, key string, value
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttr)
+string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttr)
 - [TestCheckNoResourceAttr(name, key
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckNoResourceAttr)  
+string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckNoResourceAttr)  
 - [TestCheckModuleNoResourceAttr(mp []string, name string, key
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleNoResourceAttr)  
+string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleNoResourceAttr)  
 - [TestCheckResourceAttrPtr(name string, key string, value
-*string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPtr)  
+*string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPtr)  
 - [TestCheckModuleResourceAttrPtr(mp []string, name string, key string, value
-*string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrPtr)  
+*string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrPtr)  
 - [TestCheckResourceAttrPair(nameFirst, keyFirst, nameSecond, keySecond
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPair)  
+string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPair)  
 - [TestCheckModuleResourceAttrPair(mpFirst []string, nameFirst string, keyFirst
 string, mpSecond []string, nameSecond string, keySecond
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrPair)  
+string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrPair)  
 - [TestCheckOutput(name, value
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckOutput)  
+string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckOutput)  
 
 
 ## Custom check functions 
 
 The `Check` field of `TestStep` accepts any function of type
-[TestCheckFunc](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckFunc).
+[TestCheckFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckFunc).
 Developers are free to write their own `check` functions to create customized
 validation functions for their plugin. Any function that matches the
 `TestCheckFunc` function signature of `func(*terraform.State) error` can be used

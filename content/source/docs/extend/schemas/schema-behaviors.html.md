@@ -63,8 +63,7 @@ resource "example_volume" "ex" {
 - Must be set if `Optional` is omitted **and** element is not `Computed`
 
 Indicates that this element must be provided in the configuration. Omitting this
-attribute from configuration, or later removing it, will result in a
-[plan-time]() error.
+attribute from configuration, or later removing it, will result in a plan-time error.
 
 **Schema example:**
 
@@ -84,7 +83,7 @@ resource "example_volume" "ex" {
 ```
 
 ### Default
-**Data structure:** [interface](https://golang.org/doc/effective_go.html#interfaces)    
+**Data structure:** [interface](https://golang.org/doc/effective_go#interfaces)    
 **Value:** any value of an elements `Type` for primitive types, or the type
 defined by `Elem` for complex types.  
 **Restrictions:**  
@@ -190,7 +189,7 @@ resource "example_instance" "ex" {
 ## Function Behaviors
 ### DiffSuppressFunc
 **Data structure:**
-[SchemaDiffSuppressFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/schema.go#L263-L268)    
+[SchemaDiffSuppressFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#SchemaDiffSuppressFunc)    
 
 When provided `DiffSuppressFunc` will be used by Terraform to calculate the diff
 of this field. Common use cases are capitalization differences in string names,
@@ -228,7 +227,7 @@ resource "example_instance" "ex" {
 
 ### DefaultFunc
 **Data structure:**
-[SchemaDefaultFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/schema.go#L270-L272)  
+[SchemaDefaultFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#SchemaDefaultFunc)  
 **Restrictions:**  
 
 - Cannot be used if `Default` is specified
@@ -292,7 +291,7 @@ provider "example" {
 ```
 
 ### StateFunc
-**Data structure:** [SchemaStateFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/schema.go#L306-L308)    
+**Data structure:** [SchemaStateFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#SchemaStateFunc)    
 
 `StateFunc` is a function used to convert the value of this element to a string to be stored in the state. 
 
@@ -327,14 +326,14 @@ Value in statefile:
 ```
 
 ### ValidateFunc
-**Data structure:** [SchemaValidateFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/schema.go#L310-L312)   
+**Data structure:** [SchemaValidateFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#SchemaValidateFunc)   
 **Restrictions:** 
 
 - Only works with primitive types  
 
 `ValidateFunc` is a function used to validate the value of a primitive type. Common use cases include ensuring an integer falls within a range or a string value is present in a list of valid options. The function returns two slices; the first for warnings, the second for errors which can be used to catch multiple invalid cases. Terraform will only halt execution if an error is returned. Returning warnings will warn the user but the data provided is considered valid.
 
-Terraform includes a number of validators for use in plugins in the validation package. A full list can be found here: https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/validation 
+Terraform includes a number of validators for use in plugins in the validation package. A full list can be found here: https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/validation 
 
 **Schema example:**
 

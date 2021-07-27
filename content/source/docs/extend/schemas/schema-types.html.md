@@ -181,7 +181,7 @@ resource "example_spot_request" "ex" {
 
 ### Date & Time Data
 
-`TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/validation#ValidateRFC3339TimeString)).
+`TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/validation#ValidateRFC3339TimeString)).
 
 **Example:** `2006-01-02T15:04:05+07:00`
 
@@ -211,7 +211,7 @@ resource "example_resource" "ex" {
 ## Aggregate Types
 
 ### TypeMap
-**Data structure:** [map](https://golang.org/doc/effective_go.html#maps): `map[string]interface{}`    
+**Data structure:** [map](https://golang.org/doc/effective_go#maps): `map[string]interface{}`    
 **Example:** `key = value`
 
 A key based map (also known as a dictionary) with string keys and values defined
@@ -253,7 +253,7 @@ items in a map is denoted by the `%` index:
 ```
 
 ### TypeList
-**Data structure:** [Slice](https://golang.org/doc/effective_go.html#slices): `[]interface{}`  
+**Data structure:** [Slice](https://golang.org/doc/effective_go#slices): `[]interface{}`  
 **Example:** `[]interface{"2", "3", "4"}`
 
 Used to represent an **ordered** collection of items, where the order the items
@@ -294,7 +294,7 @@ resource "example_compute_instance" "ex" {
 ```
 
 ### TypeSet
-**Data structure:** [`*schema.Set`](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/set.go#L50)  
+**Data structure:** [`*schema.Set`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Set)  
 **Example:** `[]string{"one", "two", "three"}`
 
 `TypeSet` implements set behavior and is used to represent an **unordered**
