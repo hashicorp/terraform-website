@@ -25,7 +25,7 @@ configuration, as opposed to trying to update the existing resource.
 -> **Note:** The primitive behavior fields cannot be set to `false`. You can opt out of a behavior by omitting it.
 
 ### Optional
-**Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
+**Data structure:** [bool](https://pkg.go.dev/builtin#bool)    
 **Values:** `true` 
 **Restrictions:**
 
@@ -54,7 +54,7 @@ resource "example_volume" "ex" {
 ```
 
 ### Required
-**Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
+**Data structure:** [bool](https://pkg.go.dev/builtin#bool)    
 **Values:** `true`
 **Restrictions:**  
 
@@ -124,7 +124,7 @@ resource "example_volume" "ex" {
 ```
 
 ### Computed
-**Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
+**Data structure:** [bool](https://pkg.go.dev/builtin#bool)    
 **Value:** `true`   
 **Restrictions:**  
 
@@ -161,7 +161,7 @@ output "volume_uuid" {
 ```
 
 ### ForceNew
-**Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
+**Data structure:** [bool](https://pkg.go.dev/builtin#bool)    
 **Value:** `true` 
 
 `ForceNew` indicates that any change in this field requires the resource to be

@@ -76,7 +76,7 @@ tracks the number of items the property contains.
 ## Primitive Types
 
 ### TypeBool
-**Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
+**Data structure:** [bool](https://pkg.go.dev/builtin#bool)    
 **Example:** `true` or `false`
 
 **Schema example:**
@@ -102,7 +102,7 @@ resource "example_volume" "ex" {
 ```
 
 ### TypeInt
-**Data structure:** [int](https://golang.org/pkg/builtin/#int)  
+**Data structure:** [int](https://pkg.go.dev/builtin#int)  
 **Example:** `-9`, `0`, `1`, `2`, `9`
 
 **Schema example:**
@@ -127,7 +127,7 @@ resource "example_compute_instance" "ex" {
 ```
 
 ### TypeFloat 
-**Data structure:** [float64](https://golang.org/pkg/builtin/#float64)  
+**Data structure:** [float64](https://pkg.go.dev/builtin#float64)  
 **Example:** `1.0`, `7.19009`
 
 **Schema example:**
@@ -154,7 +154,7 @@ resource "example_spot_request" "ex" {
 
 ### TypeString
 
-**Data structure:** [string](https://golang.org/pkg/builtin/#string)  
+**Data structure:** [string](https://pkg.go.dev/builtin#string)  
 **Example:** `"Hello, world!"`
 
 **Schema example:**
