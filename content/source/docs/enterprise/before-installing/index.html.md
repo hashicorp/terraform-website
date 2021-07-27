@@ -129,7 +129,7 @@ Some operating systems have specific configuration requirements:
 
 For other Linux distributions, check Docker compatibility:
 
-* The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 19.03.8). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
+* The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 19.03.11). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
     * Replicated 2.32.0 and above required when running Docker 18+.
     * In Online mode, the installer will install Docker automatically.
     * In Airgapped mode, Docker should be installed before you begin.
