@@ -52,6 +52,8 @@ for accessibility in a firewall:
 
 ## Egress
 
+### Destination - Online Installations
+
 If Terraform Enterprise is installed in online mode, it accesses the following hostnames to get software updates:
 
 * `api.replicated.com`
@@ -69,8 +71,6 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 * `download.docker.com`
 * `production.cloudflare.docker.com`
 
-Airgapped installs do not check for updates over the network.
-
 Additionally, the following hostnames are accessed unless a
 [custom Terraform bundle](/docs/cloud/run/install-software.html#custom-and-community-providers)
 is supplied:
@@ -78,7 +78,18 @@ is supplied:
 * `registry.terraform.io` (when using Terraform 0.12 and later)
 * `releases.hashicorp.com`
 
-Online and airgap installs also need egress access to any VCS servers/services that will be utilized, login/authentication servers if SAML will be configured (ADFS, Okta, etc), the various cloud API endpoints that will be managed with Terraform and any other third party services that will either be integrated with the Terraform Enteprise server or managed with it.
+~> **Note:** Airgapped installs do not check for updates over the network.
+
+### Destination - Additional Outbound Network Targets
+
+Terraform Enterprise also needs egress access to:
+
+* any VCS servers/services that will be utilized
+* login/authentication servers if SAML will be configured (ADFS, Okta, etc)
+* the various cloud API endpoints that will be managed with Terraform
+* any other third party services that will either be integrated with the Terraform Enteprise server or managed with it.
+
+### Destination - Cost Estimation APIs
 
 When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-integration) is enabled, it uses the respective cloud provider's APIs to get up-to-date pricing info.
 
@@ -87,7 +98,6 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
 * `prices.azure.com`
 
 ~> **Note:** Versions of Terraform Enterprise earlier than v202105-1 used `management.azure.com` and `ratecard.azure-api.net` rather than `prices.azure.com`.
-
 
 ## Other Configuration
 
