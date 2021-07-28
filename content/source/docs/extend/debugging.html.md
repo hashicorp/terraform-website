@@ -144,7 +144,7 @@ providers. The main differences are:
    to have the debugger work efficiently with the provider binary.
    To do so, build the provider binary with the necessary
    [Go compiler flags (gcflags)](https://golang.org/cmd/compile/):
-   `go build gcflags="all=-N -l"`
+   `go build -gcflags="all=-N -l"`
    
 ### Starting A Provider In Debug Mode
 
