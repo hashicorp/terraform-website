@@ -245,6 +245,8 @@ Third, the provider must be started by delve, and Terraform must be told how to
 connect to it. Providers using `plugin.Debug` will output instructions on how
 to tell Terraform how to connect.
 
+-> **Note**: You can find more details on the [Debugging Providers page](/docs/extend/debugging.html).
+
 ## Support for Provider Metadata
 A new feature, provider metadata, is landing in Terraform 0.13. This feature
 allows module authors and providers to share information through Terraform
