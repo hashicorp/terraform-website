@@ -78,8 +78,8 @@ For more information on the listed features, visit the [Microsoft Azure AD SAML 
 To configure team management in your Microsoft Azure AD application:
 
 1. Navigate to the single sign-on page.
-1. Edit step 2, "User Attributes & Claims."
-1. We recomoned naming it "MemberOf", leaving the namespace blank, and potentially sourcing `user.assignedroles` as an easy starting point.
+2. Edit step 2, "User Attributes & Claims."
+    We recommend naming it "MemberOf", leaving the namespace blank, and potentially sourcing `user.assignedroles` as an easy starting point.
 
 If you plan to make use of SAML to set usernames in your Microsoft Azure AD application:
 
