@@ -2,7 +2,7 @@
 layout: "extend"
 page_title: "Home - Plugin Development: SDKv2"
 description: |-
-  Learn about a framework you can use to develop Terraform plugins.
+  Learn about version 2 of the Terraform Plugin SDK.
 ---
 
 # Terraform Plugin SDKv2
@@ -24,4 +24,3 @@ Try the [Call APIs with Custom Providers](https://learn.hashicorp.com/collection
 
 - Learn how to [debug your provider](/docs/extend/debugging.html) using either logging calls or a debugging tool.
 - Learn how to [write successful acceptance and unit tests](/docs/extend/testing/index.html) for your provider.
-
