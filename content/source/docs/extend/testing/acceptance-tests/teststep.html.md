@@ -161,36 +161,40 @@ resource "example_widget" "foo" {
 
 Here the `name` represents the resource name in state (`example_widget.foo`),
 the `key` represents the attribute to check (`active`), and `value` represents
-the desired value to check against (`true`). Not all functions accept all three
-inputs.
+the desired value to check against (`true`). In this case, an equality check
+would be:
 
-Below is a list of builtin check functions, with links to their corresponding
-documentation on godoc.org:
+```go
+resource.TestCheckResourceAttr("example_widget.foo", "active", "true"),
+```
 
-- [TestCheckResourceAttrSet(name, key
-string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrSet)  
-- [TestCheckModuleResourceAttrSet(mp []string, name string, key
-string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrSet)  
-- [TestCheckResourceAttr(name, key, value
-string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttr)  
-- [TestCheckModuleResourceAttr(mp []string, name string, key string, value
-string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttr)
-- [TestCheckNoResourceAttr(name, key
-string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckNoResourceAttr)  
-- [TestCheckModuleNoResourceAttr(mp []string, name string, key
-string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleNoResourceAttr)  
-- [TestCheckResourceAttrPtr(name string, key string, value
-*string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPtr)  
-- [TestCheckModuleResourceAttrPtr(mp []string, name string, key string, value
-*string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrPtr)  
-- [TestCheckResourceAttrPair(nameFirst, keyFirst, nameSecond, keySecond
-string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPair)  
-- [TestCheckModuleResourceAttrPair(mpFirst []string, nameFirst string, keyFirst
-string, mpSecond []string, nameSecond string, keySecond
-string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrPair)  
-- [TestCheckOutput(name, value
-string)](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckOutput)  
+The full list of functions can be seen in the [`helper/resource` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource). Names for these begin with `TestCheck...` and `TestMatch...`. The most common checks for non-`TypeSet` attributes are below.
 
+| Function | Purpose |
+|----------|---------|
+| [`TestCheckResourceAttr(name string, key string, value string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttr) | Value equality checks |
+| [`TestMatchResourceAttr(name string, key string, regex *regexp.Regexp)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestMatchResourceAttr) | 
+Value regular expression checks |
+| [`TestCheckResourceAttrPair(nameFirst string, keyFirst string, nameSecond string, keySecond string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPair) | Value equality across two attributes (usually in different resources) |
+| [`TestCheckResourceAttrSet(name string, key string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrSet) | Passes if any value was set |
+| [`TestCheckNoResourceAttr(name string, key string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckNoResourceAttr) | Passes if no value was set |
+
+For `TypeSet` attributes, there are some additional functions that accept a `*` placeholder in attribute keys for indexing into the set.
+
+| Function | Purpose |
+|----------|---------|
+| [`TestCheckTypeSetElemAttr(name string, key string, value string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckTypeSetElemAttr) | Value is contained in set |
+| [`TestCheckTypeSetElemAttrPair(nameFirst string, keyFirst string, nameSecond string, keySecond string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckTypeSetElemAttrPair) | Value is contained in set from another attribute (usually in different resources) |
+| [`TestCheckTypeSetElemNestedAttrs(name string, key string, values map[string]string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckTypeSetElemNestedAttrs) | Map of values is contained in set (usually checking multiple attributes of a block) |
+
+All of these functions also accept the below syntax in attribute keys to enable additional behaviors.
+
+| Syntax | Purpose | Example |
+|--------|---------|---------|
+| `.{NUMBER}` | List index | `TestCheckResourceAttr("example_widget.foo", "some_block.0", "first value")` |
+| `.{KEY}` | Map key | `TestCheckResourceAttr("example_widget.foo", "some_map.some_key", "map value")` |
+| `.#` | Number of elements in list or set | `TestCheckResourceAttr("example_widget.foo", "some_list.#", "2")` |
+| `.%` | Number of keys in map | `TestCheckResourceAttr("example_widget.foo", "some_map.%", "2")` |
 
 ## Custom check functions 
 
