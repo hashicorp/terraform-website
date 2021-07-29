@@ -5,30 +5,30 @@ page_title: "Uninstall - Terraform Enterprise"
 
 # Uninstalling Terraform Enterprise
 
-While Terraform Enterprise is most often installed on a cloud provider, where creating and destroying instances is simple and fast, it is also commonly installed onto VMWare instances. Some customers may not be able to easily request new virtual machines in situations where a Terraform Enterprise installation has become broken or corrupted. As such, we have provided a simple script that will remove Terraform Enterprise and all its various services (excluding docker) from a system. 
+While Terraform Enterprise is most often installed on a cloud provider, where creating and destroying instances is simple and fast, it is also commonly installed onto VMWare instances. Some customers may not be able to easily request new virtual machines in situations where a Terraform Enterprise installation has become broken or corrupted. As such, we have provided a simple script that will remove Terraform Enterprise and all its various services (excluding Docker) from a system. 
 
 ## What does this script do?
 
 This script will first determine some basic information about the system it's being run on (operating system, init system). You will be presented with a warning that you are about to uninstall Terraform Enterprise and Replicated from the system. 
 ![Uninstall - Do you want to continue?][uninstall-prompt]
 
-After confirming you wish to continue, the script will stop the Replicated services, if they are running, and then remove the docker containers. Replicated executables and configuration files will be removed from the system. 
+After confirming you wish to continue, the script will stop the Replicated services, if they are running, and then remove the Docker containers. Replicated executables and configuration files will be removed from the system. 
 ![Uninstall - Application removed][uninstall-uninstalled]
 
-You will then be presented with the options around pruning docker volumes. 
+You will then be presented with the options around pruning Docker volumes. 
 ![Uninstall - Prune all docker volumes?][uninstall-prune]
 
-If the system was only utilized for Terraform Enterprise, you can select `Prune all docker volumes`.
+If the system was only utilized for Terraform Enterprise, you can select `Prune all Docker volumes`.
 ![Uninstall - Prune all][uninstall-prune-all]
 
-If the system has other docker containers running, and you wish to keep them, you'll need to select `Prune only application docker volumes`. This option will specifically prune Replicated and Hashicorp docker volumes. Lastly, you can opt to skip this step entirely, leaving any docker volumes intact.  
+If the system has other Docker containers running, and you wish to keep them, you'll need to select `Prune only application Docker volumes`. This option will specifically prune Replicated and Hashicorp Docker volumes. Lastly, you can opt to skip this step entirely, leaving any Docker volumes intact.  
 
-Finally, the script will clean up any dangling docker volumes and the docker networks that were created for the application. 
+Finally, the script will clean up any dangling Docker volumes and the Docker networks that were created for the application. 
 ![uninstall-cleanup][uninstall-cleanup]
 
 Terraform Enteprise mounted disk installations will need to clean up the mounted disk path manually, if they wish to remove that data. This script does not touch the mounted disk path.
 
-## How to run the installer
+## How to run the uninstaller
 
 ### Online
 
