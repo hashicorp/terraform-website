@@ -42,7 +42,7 @@ Provider acceptance tests run real Terraform commands using a Terraform CLI bina
 
 Terraform Core and Terraform Plugins act as gRPC client and server, implemented using HashiCorp's [go-plugin](https://github.com/hashicorp/go-plugin) system (see the [RPC Plugin Model](https://github.com/hashicorp/terraform/tree/main/docs/plugin-protocol) section of the Terraform Core documentation).  When `go test` is run, the SDK's acceptance test framework starts a plugin server in the same process as the Go test framework. This plugin server runs for the duration of the test case, and each Terraform command (`terraform plan`, `terraform apply`, etc) creates a client that reattaches to this server.
 
-Real-world Terraform usage requires a config file and Terraform working directory on the local filesystem. The helper library `github.com/hashicorp/terraform-plugin-test` is used to manage temporary directories and files during test runs. This library is not intended for use directly by provider developers.
+Real-world Terraform usage requires a config file and Terraform working directory on the local filesystem. The framework uses the [`internal/plugintest` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/internal/plugintest) to manage temporary directories and files during test runs. This library is not intended for use directly by provider developers.
 
 While the test framework provides a reasonable simulation of real-world usage, there are some differences, the major one being in the lifecycle of the plugin gRPC server. During normal Terraform operation, the plugin server starts and stops once per graph walk, of which there may be several during one Terraform command. The acceptance test framework, however, maintains one plugin gRPC server for the duration of each test case. In theory, it is possible for providers to carry internal state between operations during tests - but providers would have to go out of their way (and the SDK's public API) to do this.
 
@@ -61,7 +61,7 @@ func TestMain(m *testing.M) {
 }
 ```
 
-For more details, please see the package documentation for the `github.com/hashicorp/terraform-plugin-sdk/acctest` package.
+For more details, please see the [`github.com/hashicorp/terraform-plugin-sdk/acctest` package documentation](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/acctest).
 
 
 ## Test files
