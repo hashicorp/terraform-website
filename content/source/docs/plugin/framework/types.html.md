@@ -233,7 +233,7 @@ method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types
 which uses the same conversion rules as the `Get` methods described in [Access
 State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
 
-## Create Types and Values
+## Create Provider-Defined Types and Values
 
 You may want to build your own attribute value and type implementations to allow your provider to combine validation, description, and plan customization behaviors into a reusable bundle. This helps avoid duplication or reimplementation and ensures consistency.
 
@@ -282,5 +282,4 @@ following methods.
 |--------|-------------|
 |`ToTerraformValue` | Returns a Go type that is valid input for [`tftypes.NewValue`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#NewValue) for the `tftypes.Type` specified by the `attr.Type` that creates the `attr.Value`.|
 |`Equal` | Returns true if the passed attribute value should be considered to the attribute value the method is being called on. The passed attribute value is not guaranteed to be of the same Go type. |
-
 
