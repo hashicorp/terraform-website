@@ -7,9 +7,9 @@ description: |-
 
 # Terraform Plugin SDKv2
 
-Terraform Plugin SDKv2 is a precursor to the [Terraform Plugin Framework](/docs/plugin/framework/index.html) for developing Terraform plugins.
+Terraform Plugin SDKv2 is an established way to develop Terraform Plugins. It is the precursor to the [Terraform Plugin Framework](/docs/plugin/framework/index.html), which is still in early development.
 
-~> **Important**: If you maintain a large existing provider, we recommend that you continue using SDKv2 to develop new resources and data sources. [Which SDK Should I Use?](/docs/plugin/which-sdk.html) explains the differences between SDKv2 and the framework.
+~> **Important**: [Which SDK Should I Use?](/docs/plugin/which-sdk.html) explains the differences between the framework and SDKv2 to help you decide which option is right for your provider.
 
 ## Get Started
 
