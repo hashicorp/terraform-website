@@ -85,7 +85,7 @@ To upgrade to the  Active/Active functionality and for ongoing upgrades, you nee
   <tr>
    <td>ReleaseSequence
    </td>
-   <td>Refers to a version of TFE ([v202101-1](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202101-1.md)) on a specific release channel (Active/Active)
+   <td>Refers to a version of TFE ([v202101-1](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202101-1.md))
    </td>
    <td><strong>Yes</strong>, integer.
    </td>
