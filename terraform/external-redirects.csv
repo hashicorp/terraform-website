@@ -330,7 +330,3 @@ rubrik - to github,/docs/providers/rubrik/r/assign_sla.html,https://github.com/h
 rubrik - to github,/docs/providers/rubrik/r/configure_timezone.html,https://github.com/hashicorp/terraform-provider-rubrik/blob/stable-website/website/docs/r/configure_timezone.html.markdown
 rubrik - to github,/docs/providers/rubrik/index.html,https://github.com/hashicorp/terraform-provider-rubrik/blob/stable-website/website/docs/index.html.markdown
 rubrik - to github,/docs/providers/rubrik/d/cluster_version.html,https://github.com/hashicorp/terraform-provider-rubrik/blob/stable-website/website/docs/d/cluster_version.html.markdown
-community - to github,/docs/extend/community/contributing.html,https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md
-community - to github,/docs/extend/community/maintainers.html,https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md#maintainers
-community - to io,/docs/extend/community/index.html,https://www.terraform.io/community
-community - to io,/docs/extend/community/events/2018/fall-gardening.html,https://www.terraform.io/community
