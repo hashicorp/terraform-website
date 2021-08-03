@@ -20,10 +20,10 @@
 #
 # You may need to do a redirect to some external URL (to https://somewhere.com).
 # These sorts of redirect are commented out in this file, because they need a "real"
-# Varnish rewrite rule. We're adding them here anyway, to ensure redirects.txt
+# redirect in "terraform/external-redirects.csv". We're adding them here anyway, to ensure redirects.txt
 # is a complete record of all the rewrites this site uses.
 #
-# If you need to redirect to an external URL, you must contact submit a request through https://help.hashicorp.services --> Digital + Web will get you to the right team.
+# If you need to redirect to an external URL, update terraform/external-redirects.csv with the external endpoint.
 #
 # INDEX.HTML AND PARENT PATHS
 #

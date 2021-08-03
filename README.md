@@ -328,6 +328,8 @@ We run a weekly check to make sure we don't delete popular pages without redirec
 - **Who:** The Terraform Education team is ultimately responsible for dealing with any broken links this turns up, but anyone in the channel is welcome to fix something if they see it first!
 - **How:** This is a custom shell script that uses `wget`. ([content/scripts/check-incoming-links.sh](./content/scripts/check-incoming-links.sh))
 
+Redirects must be captured in "terraform/external-redirects.csv" or this job will fail.
+
 ## More About `stable-website`
 
 ↥ [back to top](#table-of-contents)
