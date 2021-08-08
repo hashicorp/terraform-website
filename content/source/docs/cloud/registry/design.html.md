@@ -64,6 +64,6 @@ When you've finished setting variables, click the "Next" button to view the comp
 
 ![Terraform Cloud screenshot: configuration designer output](./images/design-verify.png)
 
-This page has a large textarea that contains a Terraform configuration. You must copy and paste this code into your text editor, save it as the `main.tf` file in a new directory, and commit it to version control to enable creating workspaces with the configuration. You can also make arbitrary changes to the code, like adding non-module resources or public Terraform Registry modules.
+This page has a large text area that contains a Terraform configuration. You must copy and paste this code into your text editor, save it as the `main.tf` file in a new directory, and commit it to version control to enable creating workspaces with the configuration. You can also make arbitrary changes to the code, like adding non-module resources or public Terraform Registry modules.
 
 After you click "Next" again and click "Done," Terraform Cloud will discard the configuration you've created. Text from previous configuration designer runs is not preserved within Terraform Cloud.
