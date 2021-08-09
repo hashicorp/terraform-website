@@ -35,7 +35,7 @@ version. [Learn more about availability during upgrades here](../system-overview
     Alternatively, execute the command below to upgrade to a specific version of Terraform Enterprise:
 
     ```
-    replicatedctl app-release apply --sequence "504"
+    $ replicatedctl app-release apply --sequence "504"
     ```
 
 ## Airgapped
