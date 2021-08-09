@@ -40,7 +40,7 @@ version. [Learn more about availability during upgrades here](../system-overview
 
 ## Airgapped
 
-### Replicated Administration Console
+### Replicated Console
 
 1. Determine the update path where the installer will look for new `.airgap`
     packages. You can do this from the console settings of your instance
