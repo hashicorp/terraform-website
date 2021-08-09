@@ -10,7 +10,7 @@ version. [Learn more about availability during upgrades here](../system-overview
 
 ## Online
 
-### Replicated Administration Console
+### Replicated Console
 
 1. From the installer dashboard (`https://<TFE HOSTNAME>:8800/dashboard`),
     click the "Check Now" button; the new version should be recognized.
