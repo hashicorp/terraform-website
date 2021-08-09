@@ -58,7 +58,7 @@ version. [Learn more about availability during upgrades here](../system-overview
 1. Execute the command below and take note on the location from the property `AirgapPackagePath`:
    
     ```
-    replicatedctl params export | grep AirgapPackagePath
+    $ replicatedctl params export | grep AirgapPackagePath
     ```
 
 1. Upload the desired airgap packages into the location of `AirgapPackagePath` from the previous step on the Terraform Enterprise host machine.
