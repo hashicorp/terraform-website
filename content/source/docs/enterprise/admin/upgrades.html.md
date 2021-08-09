@@ -54,7 +54,7 @@ version. [Learn more about availability during upgrades here](../system-overview
 
 ### Replicated Command Line Interface
 
-1. Login to a command line terminal of the Terraform Enterprise host machine.
+1. Connect to the Terraform Enterprise host machine using SSH.
 1. Execute the command below and take note on the location from the property `AirgapPackagePath`:
    
     ```
