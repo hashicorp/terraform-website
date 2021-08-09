@@ -19,7 +19,7 @@ version. [Learn more about availability during upgrades here](../system-overview
 
 ### Replicated Command Line Interface
 
-1. Login to a command line terminal of the Terraform Enterprise host machine.
+1. Connect to the Terraform Enterprise host machine using SSH.
 1. Execute the command below to fetch the versions of Terraform Enterprise.
    
     ```
