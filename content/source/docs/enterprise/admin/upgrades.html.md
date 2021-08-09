@@ -65,7 +65,7 @@ version. [Learn more about availability during upgrades here](../system-overview
 1. Execute the command below to fetch the versions of Terraform Enterprise from the uploaded airgap packages.
    
     ```
-    replicatedctl app-release ls --fetch
+    $ replicatedctl app-release ls --fetch
     ```
 
 1. Execute the command below to list the available versions of airgap packages for the upgrade:
