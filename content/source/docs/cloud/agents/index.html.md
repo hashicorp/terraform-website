@@ -52,10 +52,10 @@ Agents should be considered a global resource within an organization. Once confi
 
 ### Limitations
 
-Agents are designed to allow you to run Terraform operations from a Terraform Cloud workspace on your private infrastructure. The following use cases are not supported by agents:
+Agents allow you to run Terraform operations from a Terraform Cloud workspace on your private infrastructure. Agents do not support:
 
-- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http)
-- Connecting Terraform Cloud workspaces to private VCS repositories
+- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http).
+- Connecting Terraform Cloud workspaces to VCS instances that do not allow access from the public internet. For example, you cannot use agents to connect to a GitHub Enterprise Server instance that requires access to your VPN.
 
 For these use cases, we recommend you leverage the information provided by the [IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html) to permit direct communication from the appropriate Terraform Cloud service to your internal infrastructure.
 
