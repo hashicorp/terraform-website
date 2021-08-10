@@ -23,6 +23,16 @@ The agent architecture is pull-based, so no inbound connectivity is required. An
 
 Agents support Terraform versions 0.12 and above. Workspaces configured to use Terraform versions below 0.12 will not be able to select the agent-based execution mode.
 
+### Hardware Requirements
+
+The host running the agent will have varying resource requirements depending on the workspace. A host can be a dedicated or shared cloud instance, virtual machine, bare metal server, or a container. You should monitor and adjust memory, CPU, and disk space based on each workspace's usage and performance. The name of your instance type may vary depending on your deployment environment. 
+
+The specs below are provided as a reference. 
+
+* At least 4GB of free disk space
+  * Each run requires the agent to temporarily store local copies of the tarred repository, extracted repository, state file, any providers or modules, and the Terraform binary itself.
+* At least 2GB of system memory
+
 ### Networking Requirements
 
 In order for an agent to function properly, it must be able to make outbound requests over HTTPS (TCP port 443) to the Terraform Cloud application APIs. This may require perimeter networking as well as container host networking changes, depending on your environment. The IP ranges are documented in the [Terraform Cloud IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html).
@@ -222,6 +232,8 @@ Runs which are processed by an agent will have additional information about that
 ### Running Multiple Agents
 
 You may choose to run multiple agents within your network, up to the organization's purchased agent limit. If there are multiple agents available within an organization, Terraform Cloud will select the first available agent within the target pool.
+
+Each agent process will run a single Terraform run at a time. Multiple agent processes can be concurrently run on a single instance, license limit permitting. 
 
 #### Resilience
 
