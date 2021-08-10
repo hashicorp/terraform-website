@@ -13,7 +13,7 @@ Terraform Plugin SDKv2 is an established way to develop Terraform Plugins. It is
 
 ## Get Started
 
-Try the [Call APIs with Custom Providers](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorials on Hashicorp Learn.
+Try the [Call APIs with Custom Providers](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorials on HashiCorp Learn.
 
 ## Key Concepts
 
