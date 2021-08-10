@@ -18,7 +18,6 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 * **22:** SSH access (administration and debugging)
 * **8800:** Replicated (TFE setup dashboard, HTTPS)
-* **32846:** TFE admin console (a Replicated service)
 
 ### Source — TFE Server(s)
 
