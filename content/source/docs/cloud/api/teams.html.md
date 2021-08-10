@@ -295,7 +295,7 @@ Key path                              | Type   | Default   | Description
   "data": {
     "type": "teams",
     "attributes": {
-      "visibilty": "organization",
+      "visibility": "organization",
       "organization-access": {
         "manage-vcs-settings": true
       }

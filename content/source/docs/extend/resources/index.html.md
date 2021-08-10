@@ -16,7 +16,7 @@ Many operators migrating to Terraform will have previously existing infrastructu
 
 ## Retries and Customizable Timeouts
 
-The reality of cloud infrastructure is that it typically takes time to perform operations such as booting operating systems, discovering services, and replicating state across network edges. Terraform implements functionality to retry API requests or specificaly declare state change criteria, while allowing customizable timeouts for operators. More information can be found in the [Retries and Customizable Timeouts section](/docs/extend/resources/retries-and-customizable-timeouts.html).
+The reality of cloud infrastructure is that it typically takes time to perform operations such as booting operating systems, discovering services, and replicating state across network edges. Terraform implements functionality to retry API requests or specifically declare state change criteria, while allowing customizable timeouts for operators. More information can be found in the [Retries and Customizable Timeouts section](/docs/extend/resources/retries-and-customizable-timeouts.html).
 
 ## Customizing Differences
 

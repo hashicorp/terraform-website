@@ -10,7 +10,7 @@ page_title: "SAML - Single Sign-on - Terraform Cloud and Terraform Enterprise"
 The SAML SSO integration currently supports the following features of SAML 2.0:
 
 - Service Provider (SP)-initiated SSO
-- Identity Provider (IdP)-initiaited SSO
+- Identity Provider (IdP)-initiated SSO
 - Just-in-Time Provisioning
 
 The SAML SSO integration can be configured by providing a metadata URL or manually with the Single Sign-on URL, Entity ID, and X.509 Certificate.

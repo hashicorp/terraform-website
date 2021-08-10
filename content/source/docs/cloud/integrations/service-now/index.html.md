@@ -156,14 +156,14 @@ OAuth Token ID (GitHub org: example-corp): `ot-DhjEXAMPLELVtFA`
   - Repository ID (Developer Environment): `example-corp/developer-repo`
     - Environment variables:
       - `AWS_ACCESS_KEY_ID=AKIAEXAMPLEKEY`
-      - `AWS_SECRET_ACCES_KEY=ZB0ExampleSecretAccessKeyGjUiJh`
+      - `AWS_SECRET_ACCESS_KEY=ZB0ExampleSecretAccessKeyGjUiJh`
       - `AWS_DEFAULT_REGION=us-west-2`
     - Terraform variables:
       - `instance_type=t2.medium`
   - Repository ID (Testing Environment): `example-corp/testing-repo`
     - Environment variables:
       - `AWS_ACCESS_KEY_ID=AKIAEXAMPLEKEY`
-      - `AWS_SECRET_ACCES_KEY=ZB0ExampleSecretAccessKeyGjUiJh`
+      - `AWS_SECRET_ACCESS_KEY=ZB0ExampleSecretAccessKeyGjUiJh`
       - `AWS_DEFAULT_REGION=us-west-2`
     - Terraform variables:
       - `instance_type=t2.large`
@@ -175,7 +175,7 @@ Before beginning setup, the ServiceNow Admin must install the Terraform
 ServiceNow Catalog integration software.
 
 This can be added to your ServiceNow instance from the [ServiceNow
-Store](https://store.servicenow.com/). Search for the "Terraform" integration,
+Store](https://store.servicenow.com/sn_appstore_store.do). Search for the "Terraform" integration,
 published by "HashiCorp Inc".
 
 ![Screenshot: ServiceNow Store Page](./images/service-now-store.png "Screenshot of the ServiceNow Store listing for the Terraform Integration")
