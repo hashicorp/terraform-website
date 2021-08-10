@@ -14,3 +14,4 @@ REVIEWS - For help from the education team, request review from "hashicorp/terra
 - [ ] new docs
 - [ ] cosmetic bug - fixing broken text or markup
 - [ ] enhancement - changing the website's behavior/layout
+- [ ] api - requires an update to the [changelog](https://www.terraform.io/docs/cloud/api/changelog.html)

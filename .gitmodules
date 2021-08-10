@@ -2,35 +2,3 @@
 	path = ext/terraform
 	url = https://github.com/hashicorp/terraform.git
 	branch = stable-website
-[submodule "ext/providers/chef"]
-	path = ext/providers/chef
-	url = https://github.com/terraform-providers/terraform-provider-chef
-	branch = stable-website
-[submodule "ext/providers/cobbler"]
-	path = ext/providers/cobbler
-	url = https://github.com/terraform-providers/terraform-provider-cobbler
-	branch = stable-website
-[submodule "ext/providers/mysql"]
-	path = ext/providers/mysql
-	url = https://github.com/terraform-providers/terraform-provider-mysql
-	branch = stable-website
-[submodule "ext/providers/rundeck"]
-	path = ext/providers/rundeck
-	url = https://github.com/terraform-providers/terraform-provider-rundeck
-	branch = stable-website
-[submodule "ext/providers/avi"]
-	path = ext/providers/avi
-	url = https://github.com/terraform-providers/terraform-provider-avi
-	branch = stable-website
-[submodule "ext/providers/genymotion"]
-	path = ext/providers/genymotion
-	url = https://github.com/terraform-providers/terraform-provider-genymotion
-	branch = stable-website
-[submodule "ext/providers/infoblox"]
-	path = ext/providers/infoblox
-	url = https://github.com/terraform-providers/terraform-provider-infoblox
-	branch = stable-website
-[submodule "ext/providers/rubrik"]
-	path = ext/providers/rubrik
-	url = https://github.com/terraform-providers/terraform-provider-rubrik
-	branch = stable-website

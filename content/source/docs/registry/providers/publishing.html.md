@@ -12,19 +12,22 @@ Anyone can publish and share a provider by signing into the Registry using their
 
 This page describes how to prepare a [Terraform provider](/docs/language/providers/index.html) for publishing, and how to publish a prepared provider using the Registry's interface.
 
+> **Hands-on:** Try the [Release and Publish a Provider to the Terraform Registry](https://learn.hashicorp.com/tutorials/terraform/provider-release-publish?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn. In this tutorial, you will create a release for your custom Terraform provider and prepare your provider to publish to the Terraform Registry.
+
 ## Preparing your Provider
 
 ### Writing a Provider
 
 Providers published to the Terraform Registry are written and built in the same way as other Terraform providers. A variety of resources are available to help our contributors build a quality integration:
 
-- The [Call APIs with Terraform Providers](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn
+> **Hands-on:** Try the [Call APIs with Terraform Providers](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn. In these tutorials, you will create a custom Terraform provider, complete with authentication and create/read/update/delete/import functionality.
+
 - [How to build a provider – Video](https://www.youtube.com/watch?v=2BvpqmFpchI)
 - [Sample provider developed by a HashiCorp partner](https://blog.container-solutions.com/write-terraform-provider-part-1)
 - Example providers for reference:
     - [AWS](https://github.com/terraform-providers/terraform-provider-aws)
     - [AzureRM](https://github.com/terraform-providers/terraform-provider-azurerm)
-- [Contributing to Terraform guidelines](/docs/extend/community/contributing.html)
+- [Contributing to Terraform](https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md)
 
 ~> **Important:** In order to be detected by the Terraform Registry, all provider repositories on GitHub must match the pattern `terraform-provider-{NAME}`, and the repository must be public. Only lowercase repository names are supported.
 

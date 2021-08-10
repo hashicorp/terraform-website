@@ -138,6 +138,8 @@ Users with permission to lock and unlock a workspace can't unlock a workspace wh
 
 Locks are managed with a single "Lock/Unlock/Force unlock `<WORKSPACE NAME>`" button. Terraform Cloud asks for confirmation when unlocking.
 
+You can also use the "Actions" menu in a workspace's header to manage the workspace's lock.
+
 ## Notifications
 
 The "Notifications" page allows Terraform Cloud to send webhooks to external services whenever specific run events occur in a workspace.

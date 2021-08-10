@@ -22,5 +22,13 @@
 
   <% end %>
 
-  <%= yield %>
+  <%# NOTE: This is used for the API changelog to allow for CSS overrides %>
+  <%# content/source/assets/stylesheets/terraform-cloud/api/_changelog.scss %>
+  <% if current_page.data.page_id %>
+    <div id="<%= current_page.data.page_id %>">
+      <%= yield %>
+    </div>
+  <% else %>
+    <%= yield %>
+  <% end %>
 <% end %>

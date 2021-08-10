@@ -372,6 +372,8 @@ Enterprise-grade security is inherently covered in the Azure Cache for Redis imp
 
 Terraform Enterprise supports Redis versions 4.0 and 5.0, but 5.0 is recommended unless there is strong reason to deviate. Azure Cache for Redis supports 5.0 and 6.0 as a preview mode, so still remain with 5.0 until 6.0 has been certified everywhere and do explicitly specify the version. The minimum TLS version can also be configured and defaults to 1.0 - you should explicitly set it to 1.2 for latest.
 
+Terraform Enterprise _Active/Active_ does not currently support the Redis cluster protocol, so you should not enable clustering for a successful _Active/Active_ setup.
+
 ### Normal Operation
 
 #### Component Interaction
@@ -401,4 +403,3 @@ Similar to _Standalone_, _Active/Active_ Terraform Enterprise is currently archi
 single region. You cannot deploy additional nodes associated to the primary cluster in different regions. It is possible to deploy to multiple regions to give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional service. An identical infrastructure will still need to be instantiated separately with a failover scenario resulting in control of processing being transferred to the second implementation, as described in the earlier section on this topic. In addition, this identical infrastructure will require its own Memory Cache external service instance.
-

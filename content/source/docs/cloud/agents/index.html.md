@@ -17,7 +17,7 @@ The agent architecture is pull-based, so no inbound connectivity is required. An
 
 ### Supported Operating Systems
 
-[Agents](https://releases.hashicorp.com/tfc-agent/) currently only support 64 bit Linux operating systems. You can also run the agent within Docker using our official [Terraform Agent Docker container](https://hub.docker.com/r/hashicorp/tfc-agent).
+[Agents](https://releases.hashicorp.com/tfc-agent/) currently only support x86_64 bit Linux operating systems. You can also run the agent within Docker using our official [Terraform Agent Docker container](https://hub.docker.com/r/hashicorp/tfc-agent).
 
 ### Supported Terraform Versions
 
@@ -52,10 +52,10 @@ Agents should be considered a global resource within an organization. Once confi
 
 ### Limitations
 
-Agents are designed to allow you to run Terraform operations from a Terraform Cloud workspace on your private infrastructure. The following use cases are not supported by agents:
+Agents allow you to run Terraform operations from a Terraform Cloud workspace on your private infrastructure. Agents do not support:
 
-- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http)
-- Connecting Terraform Cloud workspaces to private VCS repositories
+- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http).
+- Connecting Terraform Cloud workspaces to VCS instances that do not allow access from the public internet. For example, you cannot use agents to connect to a GitHub Enterprise Server instance that requires access to your VPN.
 
 For these use cases, we recommend you leverage the information provided by the [IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html) to permit direct communication from the appropriate Terraform Cloud service to your internal infrastructure.
 
@@ -154,6 +154,25 @@ docker pull hashicorp/tfc-agent:latest
 docker run -e TFC_AGENT_TOKEN=your-token -e
 TFC_AGENT_NAME=your-agent-name hashicorp/tfc-agent
 ```
+
+This Docker image executes the tfc-agent process as the non-root tfc-agent user. For some workflows, such as those that require the ability to install software via apt-get during local-exec scripts, you may need to build a customized version of the agent Docker image for your internal use.
+
+```Dockerfile
+FROM hashicorp/tfc-agent:latest
+
+USER root
+
+# Install sudo. The container runs as a non-root user, but people may rely on
+# the ability to apt-get install things.
+RUN apt-get -y install sudo
+
+# Permit tfc-agent to use sudo apt-get commands.
+RUN echo 'tfc-agent ALL=NOPASSWD: /usr/bin/apt-get , /usr/bin/apt' >> /etc/sudoers.d/50-tfc-agent
+
+USER tfc-agent
+```
+
+An image customized in this way will permit installation of additional software via sudo apt-get.
 
 ### Stopping the Agent
 

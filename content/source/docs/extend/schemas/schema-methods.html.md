@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Home - Extending Terraform"
+page_title: "Home - Plugin Development"
 sidebar_current: "docs-extend-schemas-methods"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
+  Plugin Development is a section for content dedicated to developing Plugins
   to extend Terraform's core offering.
 ---
 
@@ -13,7 +13,7 @@ description: |-
 `schema.Schema`
 
 Schema methods from
-[`helper/schema/schema.go`](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/schema.go#L202):
+[`schema.Schema`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Schema):
 
 ```
 // If one of these is set, then this item can come from the configuration.

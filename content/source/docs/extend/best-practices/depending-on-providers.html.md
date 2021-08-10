@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Depending on Providers"
+page_title: "Plugin Development - Depending on Providers"
 sidebar_current: "docs-extend-best-practices-depending-on-providers"
 description: |-
   How to safely depend on providers and understand their interfaces.
@@ -50,7 +50,7 @@ workspace.
 
 ## Using the RPC Protocol
 
-For projects that actually want to drive the provider, the supported option is to use the [gRPC protocol](https://github.com/hashicorp/terraform/tree/master/docs/plugin-protocol)
+For projects that actually want to drive the provider, the supported option is to use the [gRPC protocol](https://github.com/hashicorp/terraform/tree/main/docs/plugin-protocol)
 and the RPC calls the protocol supplies. This
 protocol is the same protocol that drives Terraform's CLI interface, and
 it is versioned using a protocol version. It changes relatively infrequently.

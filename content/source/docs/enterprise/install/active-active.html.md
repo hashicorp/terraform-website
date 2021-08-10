@@ -53,7 +53,7 @@ There are new access requirements involving ingress and egress:
 
 #### Provision Redis 
 
-Externalizing Redis allows multiple active application nodes. Terraform Enterprise is validated to work with the managed Redis services from AWS, Azure, and GCP.
+Externalizing Redis allows multiple active application nodes. Terraform Enterprise is validated to work with the managed Redis services from AWS, Azure, and GCP. Terraform Enterprise does _not_ support Redis Cluster, but does support Redis Sentinel for failover with active/passive deployments.
 
 -> **Note**: Please see the cloud-specific configuration guides at the end of this document for details [here](#appendix-1-aws-elasticcache). 
 
@@ -85,7 +85,7 @@ To upgrade to the  Active/Active functionality and for ongoing upgrades, you nee
   <tr>
    <td>ReleaseSequence
    </td>
-   <td>Refers to a version of TFE ([v202101-1](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202101-1.md)) on a specific release channel (Active/Active)
+   <td>Refers to a version of TFE ([v202101-1](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202101-1.md))
    </td>
    <td><strong>Yes</strong>, integer.
    </td>

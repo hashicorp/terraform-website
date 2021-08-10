@@ -62,7 +62,7 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
     ~> **Important:** The account you use for connecting Terraform Cloud **must have admin (master) access** to any shared repositories of Terraform configurations, since creating webhooks requires admin permissions. Do not create the application as an administrative application not owned by a user; Terraform Cloud needs user access to repositories to create webhooks and ingress configurations.
 
-    ~> **Important**: In GitLab CE or EE 10.6 and up, you may also need to enable **Allow requests to the local network from hooks and services** on the "Outbound requests" section inside the Admin area under Settings (`/admin/application_settings`). Refer to [the GitLab documentation](https://docs.gitlab.com/ee/security/webhooks.html) for details.
+    ~> **Important**: In GitLab CE or EE 10.6 and up, you may also need to enable **Allow requests to the local network from hooks and services** on the "Outbound requests" section inside the Admin area under Settings (`/admin/application_settings/network`). Refer to [the GitLab documentation](https://docs.gitlab.com/ee/security/webhooks.html) for details.
 
 1. Navigate to GitLab's "User Settings > Applications" page.
 

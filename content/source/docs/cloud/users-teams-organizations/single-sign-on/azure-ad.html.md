@@ -76,14 +76,16 @@ For more information on the listed features, visit the [Microsoft Azure AD SAML 
 ## Team and Username Attributes
 
 To configure team management in your Microsoft Azure AD application:
+
 1. Navigate to the single sign-on page.
-1. Edit step 2, "User Attributes & Claims."
-1. We recommend naming it "MemberOf", leaving the namespace blank, and potentially sourcing `user.assignedroles` as an easy starting point.
+2. Edit step 2, "User Attributes & Claims."
+    We recommend naming it "MemberOf", leaving the namespace blank, and potentially sourcing `user.assignedroles` as an easy starting point.
 
 If you plan to make use of SAML to set usernames in your Microsoft Azure AD application:
+
 1. Navigate to the single sign-on page.
-1. Edit step 2, "User Attributes & Claims"
-1. We recommend naming the claim "Username", leaving the namespace blank, and sourcing something like `user.displayname` or `user.mailnickname`.
+2. Edit step 2, "User Attributes & Claims."
+    We recommend naming the claim "Username", leaving the namespace blank, and sourcing something like `user.displayname` or `user.mailnickname`.
 
 
 If you namespaced any of your claims, note that the attribute name passed by Microsoft Azure AD will follow the form `<claim_namespace/claim_name>`. Consider this when setting Team and Username attribute names.

@@ -1,11 +1,11 @@
 ---
 layout: "extend"
-page_title: "Home - Extending Terraform"
+page_title: "Home - Plugin Development"
 sidebar_current: "docs-extend-schemas-types"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
-  
+  Schemas define plugin behavior and attributes. The schema `type` attribute
+  defines what kind of values users can provide in their configuration for an
+  element.
 ---
 
 # Schema Attributes and Types
@@ -76,7 +76,7 @@ tracks the number of items the property contains.
 ## Primitive Types
 
 ### TypeBool
-**Data structure:** [bool](https://golang.org/pkg/builtin/#bool)    
+**Data structure:** [bool](https://pkg.go.dev/builtin#bool)    
 **Example:** `true` or `false`
 
 **Schema example:**
@@ -102,7 +102,7 @@ resource "example_volume" "ex" {
 ```
 
 ### TypeInt
-**Data structure:** [int](https://golang.org/pkg/builtin/#int)  
+**Data structure:** [int](https://pkg.go.dev/builtin#int)  
 **Example:** `-9`, `0`, `1`, `2`, `9`
 
 **Schema example:**
@@ -127,7 +127,7 @@ resource "example_compute_instance" "ex" {
 ```
 
 ### TypeFloat 
-**Data structure:** [float64](https://golang.org/pkg/builtin/#float64)  
+**Data structure:** [float64](https://pkg.go.dev/builtin#float64)  
 **Example:** `1.0`, `7.19009`
 
 **Schema example:**
@@ -154,7 +154,7 @@ resource "example_spot_request" "ex" {
 
 ### TypeString
 
-**Data structure:** [string](https://golang.org/pkg/builtin/#string)  
+**Data structure:** [string](https://pkg.go.dev/builtin#string)  
 **Example:** `"Hello, world!"`
 
 **Schema example:**
@@ -181,7 +181,7 @@ resource "example_spot_request" "ex" {
 
 ### Date & Time Data
 
-`TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/validation#ValidateRFC3339TimeString)).
+`TypeString` is also used for date/time data, the preferred format is RFC 3339 (you can use the provided [validation function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/validation#ValidateRFC3339TimeString)).
 
 **Example:** `2006-01-02T15:04:05+07:00`
 
@@ -211,7 +211,7 @@ resource "example_resource" "ex" {
 ## Aggregate Types
 
 ### TypeMap
-**Data structure:** [map](https://golang.org/doc/effective_go.html#maps): `map[string]interface{}`    
+**Data structure:** [map](https://golang.org/doc/effective_go#maps): `map[string]interface{}`    
 **Example:** `key = value`
 
 A key based map (also known as a dictionary) with string keys and values defined
@@ -253,7 +253,7 @@ items in a map is denoted by the `%` index:
 ```
 
 ### TypeList
-**Data structure:** [Slice](https://golang.org/doc/effective_go.html#slices): `[]interface{}`  
+**Data structure:** [Slice](https://golang.org/doc/effective_go#slices): `[]interface{}`  
 **Example:** `[]interface{"2", "3", "4"}`
 
 Used to represent an **ordered** collection of items, where the order the items
@@ -294,7 +294,7 @@ resource "example_compute_instance" "ex" {
 ```
 
 ### TypeSet
-**Data structure:** [`*schema.Set`](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/schema/set.go#L50)  
+**Data structure:** [`*schema.Set`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Set)  
 **Example:** `[]string{"one", "two", "three"}`
 
 `TypeSet` implements set behavior and is used to represent an **unordered**

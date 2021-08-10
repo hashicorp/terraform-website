@@ -1,10 +1,11 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Acceptance Testing"
+page_title: "Plugin Development - Acceptance Testing: Sweepers"
 sidebar_current: "docs-extend-testing-acceptance-sweepers"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Acceptance tests in provision and verify real infrastructure using
+  Terraform's testing framework. Terraform provides sweepers to cleanup
+  leftover infrastructure.
 ---
 
 # Sweepers
@@ -62,13 +63,13 @@ import (
 
 func init() {
     resource.AddTestSweepers("example_compute", &resource.Sweeper{
-        Name:   "example_compute",
-        F:      func (region string) error {
+        Name: "example_compute",
+        F: func (region string) error {
             client, err := sharedClientForRegion(region)
             if err != nil {
                 return fmt.Errorf("Error getting client: %s", err)
             }
- 	        conn := client.(*ExampleClient)
+ 	          conn := client.(*ExampleClient)
 
             instances, err := conn.DescribeComputeInstances()
             if err != nil {
@@ -83,6 +84,7 @@ func init() {
                     }
                 }
             }
+            return nil
         },
     })
 }

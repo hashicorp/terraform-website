@@ -73,7 +73,9 @@ If you need to temporarily stop runs from being queued, you can lock the workspa
 
 A lock prevents Terraform Cloud from performing any plans or applies in the workspace. This includes automatic runs due to new commits in the VCS repository, manual runs queued via the UI, runs started on the command line with `terraform plan` and `terraform apply`, and runs created with the API. New runs remain in the "Pending" state until the workspace is unlocked.
 
-You can find the lock button in [the workspace settings page](../workspaces/settings.html). Locking a workspace requires permission to lock and unlock the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+The current lock status is shown in the workspace header, near the "Actions" menu.
+
+You can find the lock button in the "Actions" menu in a workspace's header, or in [the workspace settings page](../workspaces/settings.html). Locking a workspace requires permission to lock and unlock the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
