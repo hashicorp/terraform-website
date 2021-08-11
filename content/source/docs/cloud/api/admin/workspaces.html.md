@@ -144,7 +144,7 @@ curl \
 
 `GET /api/v2/admin/workspaces/:id`
 
-This endpoint lists all workspaces in the Terraform Enterprise installation.
+This endpoint returns the workspace with the specified `workspace_id`.
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
