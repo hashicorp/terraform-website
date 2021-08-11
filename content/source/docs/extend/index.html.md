@@ -22,7 +22,7 @@ Terraform currently supports one type of Plugin called [providers](/docs/languag
 
 ## Develop and Share Providers
 - Learn more about **how to use [SDKv2](/docs/extend/sdkv2-intro.html)** to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/extend/schemas/index.html), [develop resources](/docs/extend/resources/index.html), [debug providers](/docs/extend/debugging.html), and [test plugins](/docs/extend/testing/index.html).
-- Learn more about **how to use the [framework](/docs/plugin/framework/index.html)** to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/plugin/framework/schemas.html), develop [resources](/docs/plugin/framework/resources.html) and [data sources](/docs/plugin/framework/data-sources.html), and [write tests](/docs/plugin/framework/acctests.html).
+- Learn more about **how to use the [plugin framework](/docs/plugin/framework/index.html)** to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/plugin/framework/schemas.html), develop [resources](/docs/plugin/framework/resources.html) and [data sources](/docs/plugin/framework/data-sources.html), and [write tests](/docs/plugin/framework/acctests.html).
 - [Publish your provider on the Terraform Registry](/docs/registry/index.html) to make it publicly available.   
 - Get HashiCorp to [officially approve and verify](/guides/terraform-provider-development-program.html) your provider. Verified providers get a special badge on the Terraform Registry.
 
@@ -32,5 +32,4 @@ Terraform currently supports one type of Plugin called [providers](/docs/languag
 - Ask questions and learn useful patterns in the [Terraform Providers section](https://discuss.hashicorp.com/c/terraform-providers/tf-plugin-sdk/43) of HashiCorp discuss.
 
 - Report bugs to the [Terraform Plugin SDK Issue Tracker](https://github.com/hashicorp/terraform-plugin-sdk/issues).
-
 
