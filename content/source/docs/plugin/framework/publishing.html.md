@@ -30,4 +30,4 @@ When you upload your new provider version to GitHub:
 
 2. Include the SHA-256 checksum of this JSON file in your `SHA256SUMS` file.
 
-The Terraform Registry will detect this file and understand that this version of your provider only supports version 6 of the Terraform protocol. It and will correctly advertise that fact to Terraform, so that Terraform versions that don't support protocol 6 will not download it.
+The Terraform Registry will detect this file and understand that this version of your provider only supports version 6 of the Terraform protocol. It will correctly advertise that fact to Terraform, so that Terraform versions that don't support protocol 6 will not download it.
