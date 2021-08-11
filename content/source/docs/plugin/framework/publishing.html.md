@@ -21,7 +21,7 @@ When you upload your new provider version to GitHub:
 
     ```
 {
-  "version": 1.0.0,
+  "version": 1.2.3,
   "metadata": {
     "protocol_versions": ["6.0"],
   },
