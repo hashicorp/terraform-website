@@ -17,11 +17,11 @@ version 5 of the Terraform protocol, but providers built using the framework are
 
 When you upload your new provider version to GitHub:
 
-1. Next to the zip files containing your binaries for each platform, include a file named `terraform-provider-$NAME_$VERSION_manifest.json` (where `$NAME` is your provider's name, like `random` and `$VERSION` is your provider's version, like `1.2.3`). Add the following contents:
+1. Next to the zip files containing your binaries for each platform, include a file named `terraform-provider-$NAME_$VERSION_manifest.json` (where `$NAME` is your provider's name, like `random` and `$VERSION` is your provider's version, like `1.2.3`). Add the following contents, changing the "version" property for your provider:
 
     ```
 {
-  "version": 1,
+  "version": 1.0.0,
   "metadata": {
     "protocol_versions": ["6.0"],
   },
