@@ -13,6 +13,10 @@ page_id: "api-changelog"
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
+### 2021-08-11
+
+* [Configuration versions](./configuration-versions.html): upload-url attribute for [uploading configuration files](./configuration-versions.html#upload-configuration-files) is only available on create response.
+
 ### 2021-07-19
 
 * [Notification configurations](./notification-configurations.html): Gave organization tokens permission to create and manage notification configurations.
