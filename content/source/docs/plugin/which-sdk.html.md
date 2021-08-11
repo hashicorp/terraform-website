@@ -8,10 +8,10 @@ description: |-
 
 # Which SDK Should I Use?
 
-There are multiple SDKs that you can use to build Terraform providers:
+There are two SDKs that you can use to build Terraform providers:
 
 -  [SDKv2](/docs/extend/sdkv2-intro.html) is what the majority of existing providers are built on, and it continues to provide a stable development experience.
-- [Terraform Plugin Framework](/docs/plugin/framework/index.html) is a new SDK under heavy development, realigning the provider development experience and abstractions around the updated architecture of Terraform. It represents our vision of the future of Terraform plugin development.
+- [Terraform Plugin Framework](/docs/plugin/framework/index.html) is a new SDK under active development, realigning the provider development experience and abstractions around the updated architecture of Terraform. It represents our vision of the future of Terraform plugin development.
 
 This guide will help you decide whether you should continue using SDKv2, or begin using the framework.
 
