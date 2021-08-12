@@ -22,7 +22,7 @@ Terraform is an infrastructure as code (IaC) tool that allows you to build, chan
 
 ### Manage Infrastructure
 
-- Use [Terraform's configuration language](/docs/language/index.html) to describe infrastructure on various [providers](/docs/language/providers/index.html).
+- Describe infrastructure with [Terraform's configuration language](/docs/language/index.html) on various [providers](/docs/language/providers/index.html).
 - Use the [Terraform CLI](/docs/cli/index.html) with the Terraform binary for command-line workflows.
 
 
