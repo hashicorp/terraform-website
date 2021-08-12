@@ -9,6 +9,8 @@ show_notification: false
 
 # Terraform Documentation
 
+Terraform is an infrastructure as code (IaC) tool that allows you to build, change, and version infrastructure safely and efficiently. This includes both low-level components like compute instances, storage, and networking, as well as high-level components like DNS entries and SaaS features.
+
 <div class="container-fluid"><div class="row">
 <div class="col-md-6 col-sm-12">
 
