@@ -3,8 +3,7 @@ layout: 'docs-frontpage'
 page_title: 'Documentation'
 sidebar_current: 'docs-frontpage'
 description: |-
-  A brief map of the documentation for Terraform CLI, Terraform Enterprise, the
-  Terraform GitHub Actions, and the rest of the Terraform ecosystem.
+  Documentation for Terraform, including Terraform CLI, Terraform Cloud, and Terraform Enterprise.
 show_notification: false
 ---
 
@@ -21,7 +20,7 @@ show_notification: false
 
 ### Manage Infrastructure
 
-- Use the [Terraform Configuration Language](/docs/language/index.html) to describe infrastructure.
+- Use [Terraform's configuration language](/docs/language/index.html) to describe infrastructure on various [providers](/docs/language/providers/index.html).
 - Use the [Terraform CLI](/docs/cli/index.html) with the Terraform binary for command-line workflows.
 
 
