@@ -39,7 +39,7 @@ Terraform is an infrastructure as code (IaC) tool that allows you to build, chan
 ### Develop Plugins
 
 - [Create a provider](/docs/extend/index.html) to allow Terraform to interact with a service.
-- [Publish your provider](/docs/registry/index.html) to the Terraform Registry to make it publicly available.
+- [Publish a provider or module](/docs/registry/index.html) to the Terraform Registry to make it publicly available.
 </div>
 
 </div></div>
