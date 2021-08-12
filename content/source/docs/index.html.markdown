@@ -34,7 +34,7 @@ Terraform is an infrastructure as code (IaC) tool that allows you to build, chan
 ### Collaborate
 
 - [Terraform Cloud](/docs/cloud/index.html) helps teams use Terraform together, enabling version control, data sharing, and more.
-- [Terraform Enterprise](/docs/enterprise/index.html) offers a private instance of Terraform Cloud, with features like access control and governance.
+- [Terraform Enterprise](/docs/enterprise/index.html) is a self-hosted instance of Terraform Cloud.
 
 ### Develop Plugins
 
