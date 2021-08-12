@@ -16,7 +16,7 @@ show_notification: false
 ### Get Started
 
 - Learn how Terraform [solves infrastructure challenges](/intro/index.html) and how it [compares to other tools and services](/intro/vs/index.html).
-- [Follow the tutorials on HashiCorp Learn](https://learn.hashicorp.com/collections/terraform/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) to install Terraform, learn the Terraform workflow, and explore use cases.
+- [Follow hands-on tutorials on HashiCorp Learn](https://learn.hashicorp.com/collections/terraform/aws-get-started) to install Terraform, create infrastructure, and explore use cases.
 
 
 ### Manage Infrastructure
