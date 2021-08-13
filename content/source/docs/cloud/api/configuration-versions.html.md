@@ -295,6 +295,10 @@ curl \
 }
 ```
 
+### Configuration Files Upload URL
+
+Once a configuration version is created, use the `upload-url` attribute to [upload configuration files](#upload-configuration-files) associated with that version. The `upload-url` attribute is only provided in the response when creating configuration versions.
+
 ### Configuration Version Status
 
 A configuration version will be in the `pending` status when initially created. It will remain pending until configuration files are supplied via [upload](#upload-configuration-files), and while they are processed.
@@ -311,7 +315,7 @@ Runs cannot be created using `pending` or `errored` configuration versions.
 
 `PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
 
-**The URL is provided in the `upload-url` attribute in the `configuration-versions` resource.**
+**The URL is provided in the `upload-url` attribute when creating a `configuration-versions` resource. After creation, the URL is hidden on the resource and no longer available.**
 
 ### Sample Request
 
