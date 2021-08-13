@@ -406,6 +406,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -490,6 +491,7 @@ $ curl \
         "source": "tfe-ui",
         "source-name": null,
         "source-url": null,
+        "tag-names": [],
         "terraform-version": "0.10.8",
         "trigger-prefixes": [],
         "vcs-repo": {
@@ -536,6 +538,7 @@ $ curl \
         "source": "tfe-ui",
         "source-name": null,
         "source-url": null,
+        "tag-names": [],
         "terraform-version": "0.10.8",
         "trigger-prefixes": [],
         "vcs-repo": {
@@ -648,6 +651,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.11.3",
       "trigger-prefixes": [],
       "working-directory": null,
@@ -898,6 +902,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -972,6 +977,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -1056,6 +1062,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -1160,6 +1167,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -1244,6 +1252,7 @@ $ curl \
         "name": "SlothSpace-a6959312-555c-4b98-83ba-a5bb4eb5ea58",
         "queue-all-runs": false,
         "speculative-enabled": true,
+        "tag-names": [],
         "terraform-version": "0.13.4",
         "working-directory": "",
         "global-remote-state": false,
@@ -1610,13 +1619,13 @@ Status  | Response                                     | Reason(s)
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
 
-It is important to note that `type`, as well as one of `id` *or* `name` is required.
+It is important to note that `type`, as well as one of `id` *or* `attributes.name` is required.
 
-| Key path      | Type   | Default | Description                      |
-| ------------- | ------ | ------- | -------------------------------- |
-| `data[].type` | string |         | Must be `"tags"`.                |
-| `data[].id`   | string |         | The id of the tag to add.        |
-| `data[].name` | string |         | The name of the tag to add.      |
+| Key path                 | Type   | Default | Description                      |
+| ------------------------ | ------ | ------- | -------------------------------- |
+| `data[].type`            | string |         | Must be `"tags"`.                |
+| `data[].id`              | string |         | The id of the tag to add.        |
+| `data[].attributes.name` | string |         | The name of the tag to add.      |
 
 ### Sample Request
 
@@ -1656,13 +1665,13 @@ Status  | Response                                     | Reason(s)
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
 
-It is important to note that `type`, as well as one of `id` *or* `name` is required.
+It is important to note that `type`, as well as one of `id` *or* `attributes.name` is required.
 
-| Key path      | Type   | Default | Description                      |
-| ------------- | ------ | ------- | -------------------------------- |
-| `data[].type` | string |         | Must be `"tags"`.                |
-| `data[].id`   | string |         | The id of the tag to remove.        |
-| `data[].name` | string |         | The name of the tag to remove.      |
+| Key path                 | Type   | Default | Description                      |
+| ------------------------ | ------ | ------- | -------------------------------- |
+| `data[].type`            | string |         | Must be `"tags"`.                |
+| `data[].id`              | string |         | The id of the tag to remove.     |
+| `data[].attributes.name` | string |         | The name of the tag to remove.   |
 
 ### Sample Request
 

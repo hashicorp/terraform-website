@@ -22,7 +22,7 @@ page_title: "Organization Tags - API Docs - Terraform Cloud and Terraform Enterp
 
 # Organization Tags API
 
-TODO: Add a blurb
+This API returns the list of tags used with all resources across the organization. Tags can be added to this pool directly or via those resources. Tags deleted here will be removed from all other resources. Tags can be added, applied, removed and deleted in bulk.
 
 ## Get Tags
 
@@ -85,7 +85,7 @@ $ curl \
 ## Delete tags
 
 This endpoint deletes one or more tags from an organization. The organization and tags must already
-exist.
+exist. Tags deleted here will be removed from all other resources.
 
 `DELETE /organizations/:organization_name/tags`
 
@@ -118,6 +118,7 @@ curl \
   --request DELETE \
   --data @payload.json \
   https://app.terraform.io/api/v2/organizations/hashicorp/tags
+```
 
 ## Sample Response
 
@@ -129,8 +130,8 @@ Status code `204`.
 
 `POST /tags/:tag_id/relationships/workspaces`
 
-| Parameter            | Description      |
-| -------------------- | -----------------|
+| Parameter            | Description                                          |
+| -------------------- | -----------------------------------------------------|
 | `:tag_id`            | The ID of the tag that workspaces should have added. |
 
 Status  | Response                                     | Reason(s)
@@ -168,8 +169,8 @@ Status code `204`.
 
 `DELETE /tags/:tag_id/relationships/workspaces`
 
-| Parameter            | Description      |
-| -------------------- | -----------------|
+| Parameter            | Description                                          |
+| -------------------- | -----------------------------------------------------|
 | `:tag_id`            | The ID of the tag that workspaces should have added. |
 
 Status  | Response                                     | Reason(s)
@@ -181,9 +182,9 @@ Status  | Response                                     | Reason(s)
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
 
-| Key path      | Type   | Default | Description                      |
-| ------------- | ------ | ------- | -------------------------------- |
-| `data[].type` | string |         | Must be `"workspaces"`.          |
+| Key path      | Type   | Default | Description                         |
+| ------------- | ------ | ------- | ----------------------------------- |
+| `data[].type` | string |         | Must be `"workspaces"`.             |
 | `data[].id`   | string |         | The id of the workspace to remove.  |
 
 ### Sample Request
