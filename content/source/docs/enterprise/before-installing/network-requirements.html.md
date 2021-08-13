@@ -89,7 +89,7 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
 
 ## Other Configuration
 
-1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example:
+1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. 
    *  To do this with UFW run: `ufw allow in on docker0`.
    *  To do this with firewalld run:
 
