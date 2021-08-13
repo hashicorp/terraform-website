@@ -57,13 +57,14 @@ If the list is large, you can use the filter tools at the top of the list to fin
 
 The following filters are available:
 
-- **Status filters:** These filters sort workspaces by the status of their current run. There are four quick filter buttons that collect the most commonly used groups of statuses (success, error, needs attention, and running), and a custom filter button (with a funnel icon) where you can select any number of statuses from a menu.
+- **Status filters:** These filters show workspaces by the status of their current run. There are five quick filter buttons that collect the most commonly used groups of statuses (needs attention, errored, running, on hold and success), and a custom filter button (with a funnel icon) where you can select any number of statuses from a menu.
 
     When you choose a status filter, the list will only include workspaces whose current runs match the selected statuses. You can remove the status filter by clicking the "All" button, or by unchecking everything in the custom filter menu.
+- **Tag filter:** The tag filter shows a list of tags added to all workspaces. Choosing one or more will show only workspaces tagged with all of the chosen tags.
 - **List order:** The list order button is marked with two arrows, pointing up and down. You can choose to order the list by time or by name, in forward or reverse order.
 - **Name filter:** The search field at the far right of the filter bar lets you filter workspaces by name. If you enter a string in this field and press enter, only workspaces whose names contain that string will be shown.
 
-    The name filter can combine with a status filter, to narrow the list down further.
+    The name filter can combine with a status and/or tag filter, to narrow the list down further.
 
 ## Planning and Organizing Workspaces
 

@@ -406,6 +406,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -491,6 +492,7 @@ $ curl \
         "source": "tfe-ui",
         "source-name": null,
         "source-url": null,
+        "tag-names": [],
         "terraform-version": "0.10.8",
         "trigger-prefixes": [],
         "vcs-repo": {
@@ -537,6 +539,7 @@ $ curl \
         "source": "tfe-ui",
         "source-name": null,
         "source-url": null,
+        "tag-names": [],
         "terraform-version": "0.10.8",
         "trigger-prefixes": [],
         "vcs-repo": {
@@ -649,6 +652,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.11.3",
       "trigger-prefixes": [],
       "working-directory": null,
@@ -899,6 +903,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -973,6 +978,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -1057,6 +1063,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -1161,6 +1168,7 @@ $ curl \
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
+      "tag-names": [],
       "terraform-version": "0.10.8",
       "trigger-prefixes": [],
       "vcs-repo": {
@@ -1245,6 +1253,7 @@ $ curl \
         "name": "SlothSpace-a6959312-555c-4b98-83ba-a5bb4eb5ea58",
         "queue-all-runs": false,
         "speculative-enabled": true,
+        "tag-names": [],
         "terraform-version": "0.13.4",
         "working-directory": "",
         "global-remote-state": false,
@@ -1521,6 +1530,167 @@ No response body.
 
 Status code `204`.
 
+## Get Tags
+
+`GET /workspaces/:workspace_id/relationships/tags`
+
+| Parameter            | Description      |
+| -------------------- | -----------------|
+| `:workspace_id`      | The workspace ID to fetch tags for. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
+
+This endpoint returns the tags that are currently associated to a workspace.
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter      | Description
+---------------|------------
+`page[number]` | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`   | **Optional.** If omitted, the endpoint will return 20 workspaces per page.
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/workspaces/workspace-2/relationships/tags
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "tag-1",
+      "type": "tags",
+      "attributes": {
+        "name": "tag1",
+        "instance_count": 1
+      },
+      "relationships": {
+        "organization": {
+          "data": {
+            "id": "my-organization",
+            "type": "organizations"
+          }
+        }
+      }
+    },
+    {
+      "id": "tag-2",
+      "type": "tags",
+      "attributes": {
+        "name": "tag2",
+        "instance_count": 2
+      },
+      "relationships": {
+        "organization": {
+          "data": {
+            "id": "my-organization",
+            "type": "organizations"
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+## Add tags to a workspace
+
+This endpoints adds one or more tags to the workspace. The workspace must already exist, and any
+tag element that supplies an `id` attribute must exist. If the `name` attribute is used, and no
+matching organization tag exists with such name, a new one will be created.
+
+`POST /workspaces/:workspace_id/relationships/tags`
+
+| Parameter            | Description      |
+| -------------------- | -----------------|
+| `:workspace_id`      | The workspace ID to add tags to. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[204][] | Nothing                                      | Successfully added tags to workspace
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+It is important to note that `type`, as well as one of `id` *or* `attributes.name` is required.
+
+| Key path                 | Type   | Default | Description                      |
+| ------------------------ | ------ | ------- | -------------------------------- |
+| `data[].type`            | string |         | Must be `"tags"`.                |
+| `data[].id`              | string |         | The id of the tag to add.        |
+| `data[].attributes.name` | string |         | The name of the tag to add.      |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/workspace-2/relationships/tags
+```
+
+## Sample Response
+
+No response body.
+
+Status code `204`.
+
+## Remove tags from workspace
+
+This endpoint removes one or more tags from a workspace. The workspace must already exist, and tag
+element that supplies an `id` attribute must exist. If the `name` attribute is used, and no matching
+organization tag is found, no action will occur for that entry. Tags removed from all workspaces will be
+removed from the organization-wide list.
+
+`DELETE /workspaces/workspace-2/relationships/tags`
+
+| Parameter            | Description      |
+| -------------------- | -----------------|
+| `:workspace_id`      | The workspace ID to remove tags from. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](#show-workspace) endpoint. |
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[204][] | Nothing                                      | Successfully removed tags to workspace
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+It is important to note that `type`, as well as one of `id` *or* `attributes.name` is required.
+
+| Key path                 | Type   | Default | Description                      |
+| ------------------------ | ------ | ------- | -------------------------------- |
+| `data[].type`            | string |         | Must be `"tags"`.                |
+| `data[].id`              | string |         | The id of the tag to remove.     |
+| `data[].attributes.name` | string |         | The name of the tag to remove.   |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/workspace-2/relationships/tags
+```
+
+## Sample Response
+
+No response body.
+
+Status code `204`.
 
 ## Available Related Resources
 
