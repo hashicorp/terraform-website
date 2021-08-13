@@ -111,29 +111,36 @@ Configurations that reference modules via the generic hostname can be used witho
 
 ## Running Configurations with Private Modules
 
-### In Terraform Cloud
+### Version Requirements
 
-Terraform Cloud can use your private modules during plans and applies with no extra configuration, _as long as the workspace is configured to use Terraform 0.11 or higher._
+Terraform 0.11 or higher is required to:
 
-A given Terraform Cloud workspace can only use private modules from the organization it belongs to. If you want to use the same module in multiple organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html#sharing-modules-across-organizations).) If you are using Terraform Enterprise v202012-1 or later, workspaces can also use private modules from organizations that are sharing modules with the workspace's organization.
+- Use the CLI to apply configurations with private modules.
+- Include private modules in a Terraform Cloud configuration with no extra configuration.
 
-### On the Command Line
+TBD what do they do if they have a version before this?
 
-If you're using Terraform 0.11 or higher, you can use private modules when applying configurations on the CLI. To do this, you must provide a valid [Terraform Cloud API token](../users-teams-organizations/users.html#api-tokens).
+### Module Availability
 
-#### Permissions
+In Terraform Cloud, a workspace can only use private modules from its own organization. Mixing modules from different organizations might work on the CLI with your user token, but it will make your configuration difficult or impossible to collaborate with. To make the module available to multiple organizations, you should [add it to each organization's registry](./publish.html#sharing-modules-across-organizations).
 
-When you authenticate with a user token, you can access modules from any organization you are a member of. (A user is a member of an organization if they belong to any team in that organization.) If you are using Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any organization you are a member of.
+ On Terraform Enterprise, it is possible to mix modules from different organizations according to your site's [module sharing](../../enterprise/admin/module-sharing.html) configuration. In Terraform Enterprise v202012-1 or higher, workspaces can also use private modules from organizations that are sharing modules with the workspace's organization.
 
-[permissions-citation]: #intentionally-unused---keep-for-maintainers
+### Authentication
 
-Within a given Terraform configuration, you should only use modules from one organization. Mixing modules from different organizations might work on the CLI with your user token, but it will make your configuration difficult or impossible to collaborate with. If you want to use the same module in multiple Terraform Cloud organizations, you should add it to both organizations' registries. (See [Sharing Modules Across Organizations](./publish.html#sharing-modules-across-organizations).) On Terraform Enterprise, it is possible to mix modules from different organizations according to your site's [module sharing](../../enterprise/admin/module-sharing.html) configuration.
-
-#### Configuration
-
-To configure private module access, you need to authenticate against Terraform Cloud (or your Terraform Enterprise instance).  If you're using Terraform 0.12.21 or later, you can use the `terraform login` command. Alternatively, you can create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
+You need to authenticate against Terraform Cloud or your Terraform Enterprise instance to configure private module access. If you're using Terraform 0.12.21 or later with the CLI, you can use the `terraform login` command. Alternatively, you can create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
 
 Make sure the hostname matches the hostname you use in module sources — if the same Terraform Cloud server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, use the `terraform login` command multiple times, specifying the hostname each time.
 
+#### Permissions
+
+You can use either a user or a team token to access private modules.
+
+- **User Token**: Allows you to access modules from any organization in which you are a member. A user is a member of an organization if they belong to any team in that organization. If you are using Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any organization in which you are a member.
+- **Team Token**:
+
+ADD AN EXAMPLE
+
 [user-token]: ../users-teams-organizations/users.html#api-tokens
 [cli-credentials]: /docs/cli/config/config-file.html#credentials
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
