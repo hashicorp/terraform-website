@@ -1648,7 +1648,8 @@ Status code `204`.
 
 This endpoint removes one or more tags from a workspace. The workspace must already exist, and tag
 element that supplies an `id` attribute must exist. If the `name` attribute is used, and no matching
-organization tag is found, no action will occur for that entry.
+organization tag is found, no action will occur for that entry. Tags removed from all workspaces will be
+removed from the organization-wide list.
 
 `DELETE /workspaces/workspace-2/relationships/tags`
 
