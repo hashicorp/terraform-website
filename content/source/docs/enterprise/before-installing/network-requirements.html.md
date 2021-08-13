@@ -95,7 +95,7 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
 
         `firewall-cmd --permanent --zone=trusted --change-interface=docker0`
 
-    This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
+    This rule can be added before the `docker0` interface exists, so we recommend adding it before installing Docker.
 1. Get a domain name for the instance. Using an IP address to access the product is not supported as many systems use TLS and need to verify that the certificate is correct, which can only be done with a hostname at present.
 1. **For GCP only:** Configure Docker to use an MTU (maximum transmission unit) of 1460, as required by Google ([GCP Cloud VPN Documentation: MTU Considerations](https://cloud.google.com/network-connectivity/docs/vpn/concepts/mtu-considerations)).
 
