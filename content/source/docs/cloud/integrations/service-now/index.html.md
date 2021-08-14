@@ -52,7 +52,7 @@ repositories and variable definitions provided by the Terraform Admin.
 | | Create a team that can manage workspaces in that organization. |
 | | Create a team API token so the integration can use that team's permissions. |
 | | Retrieve the OAuth token IDs and repository identifiers that Terraform Cloud uses to identify your VCS repositories. |
-| | Provide the API token, OAuth token ID, repository identifiers, variable definitions, and Terraform Cloud hostname to the Service Now Admin. |
+| | Provide the API token, OAuth token ID, repository identifiers, variable definitions, and Terraform Cloud hostname to the ServiceNow Admin. |
 | Install the Terraform integration application from the ServiceNow App Store. | |
 | Connect the integration application with Terraform Cloud. | |
 | Add the Terraform Service Catalog to ServiceNow. | |
