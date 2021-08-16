@@ -278,68 +278,113 @@ _With a VCS repository_
 ```json
 {
   "data": {
-    "id": "ws-SihZTyXKfNXUWuUa",
-    "type": "workspaces",
     "attributes": {
+      "actions": {
+        "is-destroyable": true
+      },
+      "allow-destroy-plan": true,
+      "apply-duration-average": null,
       "auto-apply": false,
-      "allow-destroy-plan": false,
-      "can-queue-destroy-plan": true,
-      "created-at": "2017-11-02T23:55:16.142Z",
+      "auto-destroy-at": null,
+      "created-at": "2021-08-16T21:50:58.726Z",
       "description": null,
       "environment": "default",
+      "execution-mode": "remote",
       "file-triggers-enabled": true,
+      "global-remote-state": false,
+      "latest-change-at": "2021-08-16T21:50:58.726Z",
       "locked": false,
       "name": "workspace-2",
+      "operations": true,
       "permissions": {
+        "can-create-state-versions": true,
+        "can-destroy": true,
+        "can-force-unlock": true,
+        "can-lock": true,
+        "can-manage-tags": true,
+        "can-queue-apply": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-read-state-versions": true,
+        "can-read-variable": true,
+        "can-unlock": true,
         "can-update": true,
-        "can-destroy": false,
-        "can-queue-destroy": false,
-        "can-queue-run": false,
-        "can-update-variable": false,
-        "can-lock": false,
-        "can-read-settings": true
+        "can-update-variable": true
       },
+      "plan-duration-average": null,
+      "policy-check-failures": null,
       "queue-all-runs": false,
       "resource-count": 0,
-      "source": "tfe-ui",
+      "run-failures": null,
+      "source": "tfe-api",
       "source-name": null,
       "source-url": null,
-      "terraform-version": "0.10.8",
+      "speculative-enabled": true,
+      "structured-run-output-enabled": true,
+      "tag-names": [],
+      "terraform-version": "0.11.1",
       "trigger-prefixes": [],
+      "updated-at": "2021-08-16T21:50:58.726Z",
       "vcs-repo": {
-        "identifier": "skierkowski/terraform-test-proj",
         "branch": "",
-        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
-        "ingress-submodules": false
+        "display-identifier": "skierkowski/terraform-test-proj",
+        "identifier": "skierkowski/terraform-test-proj",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-4ecWLF8W8gfxxNXP",
+        "repository-http-url": "https://github.com/skierkowski/terraform-test-proj",
+        "service-provider": "github",
+        "webhook-url": "https://app.terraform.io/webhooks/vcs/704ac743-df64-4b8e-b9a3-a4c5fe1bec87"
       },
-      "working-directory": null,
-      "global-remote-state": true,
-      "execution-mode": "agent",
-      "updated-at": "2017-11-29T19:18:09.976Z"
+      "vcs-repo-identifier": "skierkowski/terraform-test-proj",
+      "working-directory": "",
+      "workspace-kpis-runs-count": null
+    },
+    "id": "ws-KTuq99JSzgmDSvYj",
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
     },
     "relationships": {
+      "agent-pool": {
+        "data": null
+      },
+      "current-configuration-version": {
+        "data": {
+          "id": "cv-9WgU5LYoTq3rrnG6",
+          "type": "configuration-versions"
+        },
+        "links": {
+          "related": "/api/v2/configuration-versions/cv-9WgU5LYoTq3rrnG6"
+        }
+      },
+      "current-run": {
+        "data": null
+      },
+      "current-state-version": {
+        "data": null
+      },
+      "latest-run": {
+        "data": null
+      },
       "organization": {
         "data": {
           "id": "my-organization",
           "type": "organizations"
         }
       },
-      "ssh-key": {
+      "outputs": {
+        "data": []
+      },
+      "readme": {
         "data": null
       },
-      "latest-run": {
-        "data": null
-      },
-      "agent-pool": {
-        "data": {
-          "id": "apool-ZjT6A7mVFm5WHT5a",
-          "type": "agent-pools"
+      "remote-state-consumers": {
+        "links": {
+          "related": "/api/v2/workspaces/ws-KTuq99JSzgmDSvYj/relationships/remote-state-consumers"
         }
       }
     },
-    "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
-    }
+    "type": "workspaces"
   }
 }
 ```
