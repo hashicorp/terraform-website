@@ -1973,108 +1973,142 @@ $ curl \
 {
   "data": [
     {
-      "id": "ws-kGUhmUEb5ep55auL",
-      "type": "workspaces",
       "attributes": {
-        "allow-destroy-plan": true,
-        "auto-apply": false,
-        "auto-destroy-at": null,
-        "created-at": "2021-04-16T14:02:30.116Z",
-        "environment": "default",
-        "locked": false,
-        "name": "SlothSpace-a6959312-555c-4b98-83ba-a5bb4eb5ea58",
-        "queue-all-runs": false,
-        "speculative-enabled": true,
-        "tag-names": [],
-        "terraform-version": "0.13.4",
-        "working-directory": "",
-        "global-remote-state": false,
-        "latest-change-at": "2021-04-16T14:02:30.116Z",
-        "operations": true,
-        "execution-mode": "remote",
-        "vcs-repo": null,
-        "vcs-repo-identifier": null,
-        "permissions": {
-          "can-update": true,
-          "can-destroy": true,
-          "can-queue-destroy": true,
-          "can-queue-run": true,
-          "can-queue-apply": true,
-          "can-read-state-versions": true,
-          "can-create-state-versions": true,
-          "can-read-variable": true,
-          "can-update-variable": true,
-          "can-lock": true,
-          "can-unlock": true,
-          "can-force-unlock": true,
-          "can-read-settings": true
-        },
         "actions": {
           "is-destroyable": true
         },
-        "description": "The workspace where we keep the sloths.",
+        "allow-destroy-plan": true,
+        "apply-duration-average": null,
+        "auto-apply": false,
+        "auto-destroy-at": null,
+        "created-at": "2021-08-16T21:50:58.726Z",
+        "description": null,
+        "environment": "default",
+        "execution-mode": "remote",
         "file-triggers-enabled": true,
-        "trigger-prefixes": [],
-        "source": null,
+        "global-remote-state": false,
+        "latest-change-at": "2021-08-16T21:50:58.726Z",
+        "locked": false,
+        "name": "workspace-2",
+        "operations": true,
+        "permissions": {
+          "can-create-state-versions": true,
+          "can-destroy": true,
+          "can-force-unlock": true,
+          "can-lock": true,
+          "can-manage-tags": true,
+          "can-queue-apply": true,
+          "can-queue-destroy": true,
+          "can-queue-run": true,
+          "can-read-settings": true,
+          "can-read-state-versions": true,
+          "can-read-variable": true,
+          "can-unlock": true,
+          "can-update": true,
+          "can-update-variable": true
+        },
+        "plan-duration-average": null,
+        "policy-check-failures": null,
+        "queue-all-runs": false,
+        "resource-count": 0,
+        "run-failures": null,
+        "source": "tfe-api",
         "source-name": null,
-        "source-url": null
+        "source-url": null,
+        "speculative-enabled": true,
+        "structured-run-output-enabled": true,
+        "tag-names": [],
+        "terraform-version": "0.11.1",
+        "trigger-prefixes": [],
+        "updated-at": "2021-08-16T22:57:28.163Z",
+        "vcs-repo": {
+          "branch": "",
+          "display-identifier": "my-organization/my-workspace",
+          "identifier": "my-organization/my-workspace",
+          "ingress-submodules": false,
+          "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+          "repository-http-url": "https://github.com/my-organization/my-workspace",
+          "service-provider": "github",
+          "webhook-url": "https://app.terraform.io/webhooks/vcs/704ac743-df64-4b8e-b9a3-a4c5fe1bec87"
+        },
+        "vcs-repo-identifier": "my-organization/my-workspace",
+        "working-directory": "",
+        "workspace-kpis-runs-count": null
+      },
+      "id": "ws-KTuq99JSzgmDSvYj",
+      "links": {
+        "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
       },
       "relationships": {
-        "organization": {
-          "data": {
-            "id": "organization_1",
-            "type": "organizations"
-          }
+        "agent-pool": {
+          "data": null
         },
-        "ssh-key": {
+        "current-configuration-version": {
           "data": {
-            "id": "sshkey-dVK2FiBVcbeKfcPy",
-            "type": "ssh-keys"
+            "id": "cv-9WgU5LYoTq3rrnG6",
+            "type": "configuration-versions"
           },
           "links": {
-            "related": "/api/v2/ssh-keys/sshkey-dVK2FiBVcbeKfcPy"
+            "related": "/api/v2/configuration-versions/cv-9WgU5LYoTq3rrnG6"
           }
         },
         "current-run": {
           "data": null
         },
-        "latest-run": {
-          "data": null
-        },
-        "remote-state-consumers": {
-          "links": {
-            "related": "/api/v2/workspaces/ws-kGUhmUEb5ep55auL/relationships/remote-state-consumers"
-          }
-        },
         "current-state-version": {
           "data": null
         },
-        "current-configuration-version": {
+        "latest-run": {
           "data": null
         },
-        "agent-pool": {
-          "data": null
+        "organization": {
+          "data": {
+            "id": "my-organization",
+            "type": "organizations"
+          }
+        },
+        "outputs": {
+          "data": []
+        },
+        "readme": {
+          "data": {
+            "id": "227347",
+            "type": "workspace-readme"
+          }
+        },
+        "remote-state-consumers": {
+          "links": {
+            "related": "/api/v2/workspaces/ws-KTuq99JSzgmDSvYj/relationships/remote-state-consumers"
+          }
+        },
+        "ssh-key": {
+          "data": {
+            "id": "sshkey-WfPdX2GKwGkK5rsB",
+            "type": "ssh-keys"
+          },
+          "links": {
+            "related": "/api/v2/ssh-keys/sshkey-WfPdX2GKwGkK5rsB"
+          }
         }
       },
-      "links": {
-        "self": "/api/v2/organizations/organization_1/workspaces/SlothSpace-a6959312-555c-4b98-83ba-a5bb4eb5ea58"
-      }
+      "type": "workspaces"
     }
   ],
   "links": {
-    "self": "http://test.host/api/v2/workspaces/ws-Jp5DW3dPpCLmR3um/relationships/remote-state-consumers?page%5Bnumber%5D=1&page%5Bsize%5D=20&show_only_configured=true",
-    "first": "http://test.host/api/v2/workspaces/ws-Jp5DW3dPpCLmR3um/relationships/remote-state-consumers?page%5Bnumber%5D=1&page%5Bsize%5D=20&show_only_configured=true",
-    "prev": null,
+    "first": "https://app.terraform.io/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "last": "https://app.terraform.io/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers?page%5Bnumber%5D=1&page%5Bsize%5D=20",
     "next": null,
-    "last": "http://test.host/api/v2/workspaces/ws-Jp5DW3dPpCLmR3um/relationships/remote-state-consumers?page%5Bnumber%5D=1&page%5Bsize%5D=20&show_only_configured=true"
+    "prev": null,
+    "self": "https://app.terraform.io/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers?page%5Bnumber%5D=1&page%5Bsize%5D=20"
   },
   "meta": {
     "pagination": {
       "current-page": 1,
-      "prev-page": null,
       "next-page": null,
-      "total-pages": 1,
-      "total-count": 1
+      "page-size": 20,
+      "prev-page": null,
+      "total-count": 1,
+      "total-pages": 1
     }
   }
 }
