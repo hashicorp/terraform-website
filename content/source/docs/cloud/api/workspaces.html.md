@@ -174,59 +174,101 @@ _Without a VCS repository_
 ```json
 {
   "data": {
-    "id": "ws-YnyXLq9fy38afEeb",
-    "type": "workspaces",
     "attributes": {
+      "actions": {
+        "is-destroyable": true
+      },
+      "allow-destroy-plan": true,
+      "apply-duration-average": null,
       "auto-apply": false,
-      "allow-destroy-plan": false,
-      "can-queue-destroy-plan": false,
-      "created-at": "2017-11-18T00:43:59.384Z",
+      "auto-destroy-at": null,
+      "created-at": "2021-08-16T21:22:49.566Z",
+      "description": null,
       "environment": "default",
+      "execution-mode": "agent",
       "file-triggers-enabled": true,
+      "global-remote-state": false,
+      "latest-change-at": "2021-08-16T21:22:49.566Z",
       "locked": false,
       "name": "workspace-1",
+      "operations": true,
       "permissions": {
+        "can-create-state-versions": true,
+        "can-destroy": true,
+        "can-force-unlock": true,
+        "can-lock": true,
+        "can-manage-tags": true,
+        "can-queue-apply": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-read-state-versions": true,
+        "can-read-variable": true,
+        "can-unlock": true,
         "can-update": true,
-        "can-destroy": false,
-        "can-queue-destroy": false,
-        "can-queue-run": false,
-        "can-update-variable": false,
-        "can-lock": false,
-        "can-read-settings": true
+        "can-update-variable": true
       },
+      "plan-duration-average": null,
+      "policy-check-failures": null,
       "queue-all-runs": false,
       "resource-count": 0,
-      "terraform-version": "0.11.0",
+      "run-failures": null,
+      "source": "tfe-api",
+      "source-name": null,
+      "source-url": null,
+      "speculative-enabled": true,
+      "structured-run-output-enabled": true,
+      "tag-names": [],
+      "terraform-version": "1.0.4",
       "trigger-prefixes": [],
+      "updated-at": "2021-08-16T21:22:49.566Z",
       "vcs-repo": null,
-      "working-directory": "",
-      "global-remote-state": true,
-      "execution-mode": "agent",
-      "updated-at": "2017-11-29T19:18:09.976Z"
+      "vcs-repo-identifier": null,
+      "working-directory": null,
+      "workspace-kpis-runs-count": null
+    },
+    "id": "ws-6jrRyVDv1J8zQMB5",
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
     },
     "relationships": {
+      "agent-pool": {
+        "data": {
+          "id": "apool-QxGd2tRjympfMvQc",
+          "type": "agent-pools"
+        }
+      },
+      "current-configuration-version": {
+        "data": null
+      },
+      "current-run": {
+        "data": null
+      },
+      "current-state-version": {
+        "data": null
+      },
+      "latest-run": {
+        "data": null
+      },
       "organization": {
         "data": {
           "id": "my-organization",
           "type": "organizations"
         }
       },
-      "ssh-key": {
+      "outputs": {
+        "data": []
+      },
+      "readme": {
         "data": null
       },
-      "latest-run": {
-        "data": null
-      },
-      "agent-pool": {
-        "data": {
-          "id": "apool-ZjT6A7mVFm5WHT5a",
-          "type": "agent-pools"
+      "remote-state-consumers": {
+        "links": {
+          "related": "/api/v2/workspaces/ws-6jrRyVDv1J8zQMB5/relationships/remote-state-consumers"
         }
       }
     },
-    "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
-    }
+    "type": "workspaces"
   }
 }
 ```
