@@ -33,7 +33,7 @@ In addition to health-check monitoring, we recommend monitoring standard server 
 
 As of the `v202108-1` release, TFE will attach additional labels to the Docker containers used to execute Terraform runs. These labels include:
 
-* `run_type`: The job’s run (either "plan" or "apply")
+* `run_type`: The job’s run type (either "plan" or "apply")
 * `run_id`: The job’s run ID (taking the form of "run-&lt;random string&gt;")
 * `workspace_name`: The workspace name under which the job is executing
 * `organization_name`: The organization under which the job is executing
