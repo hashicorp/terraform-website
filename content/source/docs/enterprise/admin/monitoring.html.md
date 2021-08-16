@@ -35,8 +35,8 @@ As of the `v202108-1` release, TFE will attach additional labels to the Docker c
 
 * `run_type`: The job’s run type (either "plan" or "apply")
 * `run_id`: The job’s run ID (taking the form of "run-&lt;random string&gt;")
-* `workspace_name`: The workspace name under which the job is executing
-* `organization_name`: The organization under which the job is executing
+* `workspace_name`: The name of the workspace under which the job is executing
+* `organization_name`: The name of the organization under which the job is executing
 
 Environments with Docker-aware observability tooling (such as `cAdvisor`) can leverage these labels to associate individual containers (and the resources they consume) with specific TFE runs.
 
