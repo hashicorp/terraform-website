@@ -1611,38 +1611,110 @@ $ curl \
 {
   "data": {
     "attributes": {
+      "actions": {
+        "is-destroyable": true
+      },
+      "allow-destroy-plan": true,
+      "apply-duration-average": null,
       "auto-apply": false,
-      "allow-destroy-plan": false,
-      "can-queue-destroy-plan": false,
-      "created-at": "2017-11-02T23:24:05.997Z",
-      "description": null,
+      "auto-destroy-at": null,
+      "created-at": "2021-08-16T19:44:45.241Z",
+      "description": "Example workspace for documentation.",
       "environment": "default",
-      "file-triggers-enabled": true,
+      "execution-mode": "agent",
+      "file-triggers-enabled": false,
+      "global-remote-state": false,
+      "latest-change-at": "2021-08-16T19:44:45.241Z",
       "locked": false,
-      "name": "workspace-2",
+      "name": "workspace-1",
+      "operations": true,
+      "permissions": {
+        "can-create-state-versions": true,
+        "can-destroy": true,
+        "can-force-unlock": true,
+        "can-lock": true,
+        "can-manage-tags": true,
+        "can-queue-apply": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-read-state-versions": true,
+        "can-read-variable": true,
+        "can-unlock": true,
+        "can-update": true,
+        "can-update-variable": true
+      },
+      "plan-duration-average": null,
+      "policy-check-failures": null,
       "queue-all-runs": false,
-      "resource-count": 5,
+      "resource-count": 0,
+      "run-failures": null,
       "source": "tfe-ui",
       "source-name": null,
       "source-url": null,
-      "tag-names": [],
-      "terraform-version": "0.10.8",
+      "speculative-enabled": false,
+      "structured-run-output-enabled": true,
+      "tag-names": [
+        "tag1",
+        "tag2"
+      ],
+      "terraform-version": "1.0.4",
       "trigger-prefixes": [],
+      "updated-at": "2021-08-16T22:59:56.631Z",
       "vcs-repo": {
         "branch": "",
-        "ingress-submodules": false
+        "display-identifier": "my-organization/my-repository",
+        "identifier": "my-organization/my-repository",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-4ecWLF8W8gfxxNXP",
+        "repository-http-url": "https://github.com/my-organization/my-repository",
+        "service-provider": "github",
+        "webhook-url": "https://app.terraform.io/webhooks/vcs/704ac743-df64-4b8e-b9a3-a4c5fe1bec87"
       },
+      "vcs-repo-identifier": "my-organization/my-repository",
       "working-directory": "",
-      "global-remote-state": true,
-      "updated-at": "2017-11-29T19:18:09.976Z"
+      "workspace-kpis-runs-count": null
     },
-    "id": "ws-SihZTyXKfNXUWuUa",
+    "id": "ws-FFP9JcN4m6czSRBj",
     "links": {
-      "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
     },
     "relationships": {
-      "latest-run": {
+      "agent-pool": {
+        "data": {
+          "id": "apool-QxGd2tRjympfMvQc",
+          "type": "agent-pools"
+        }
+      },
+      "current-configuration-version": {
+        "data": {
+          "id": "cv-EpThx8RZdxt8a2mK",
+          "type": "configuration-versions"
+        },
+        "links": {
+          "related": "/api/v2/configuration-versions/cv-EpThx8RZdxt8a2mK"
+        }
+      },
+      "current-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "current-state-version": {
         "data": null
+      },
+      "latest-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
       },
       "organization": {
         "data": {
@@ -1650,13 +1722,27 @@ $ curl \
           "type": "organizations"
         }
       },
+      "outputs": {
+        "data": []
+      },
+      "readme": {
+        "data": {
+          "id": "227247",
+          "type": "workspace-readme"
+        }
+      },
+      "remote-state-consumers": {
+        "links": {
+          "related": "/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers"
+        }
+      },
       "ssh-key": {
         "data": {
-          "id": "sshkey-GxrePWre1Ezug7aM",
+          "id": "sshkey-WfPdX2GKwGkK5rsB",
           "type": "ssh-keys"
         },
         "links": {
-          "related": "/api/v2/ssh-keys/sshkey-GxrePWre1Ezug7aM"
+          "related": "/api/v2/ssh-keys/sshkey-WfPdX2GKwGkK5rsB"
         }
       }
     },
