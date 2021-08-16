@@ -35,6 +35,7 @@ tfrun
 │   ├── created_at (string)
 │   ├── description (string)
 │   ├── auto_apply (bool)
+│   ├── tags (array of strings)
 │   ├── working_directory (string)
 │   └── vcs_repo (map of keys)
 └── cost_estimate
@@ -209,6 +210,12 @@ This value can be `null`.
 * **Value Type:** Boolean.
 
 Contains the workspace's [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) setting.
+
+### Value: `tags`
+
+* **Value Type:** Array of strings.
+
+Contains the list of tag names for the workspace.
 
 ### Value: `working_directory`
 
