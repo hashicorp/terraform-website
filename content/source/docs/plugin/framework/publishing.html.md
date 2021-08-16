@@ -17,17 +17,19 @@ version 5 of the Terraform protocol, but providers built using the framework are
 
 When you upload your new provider version to GitHub:
 
-1. Next to the zip files containing your binaries for each platform, include a file named `terraform-provider-$NAME_$VERSION_manifest.json` (where `$NAME` is your provider's name, like `random` and `$VERSION` is your provider's version, like `1.2.3`). Add the following contents, changing the "version" property for your provider:
+1. Next to the zip files containing your binaries for each platform, include a file named `terraform-provider-$NAME_$VERSION_manifest.json` where `$NAME` is your provider's name (e.g. `random`) and `$VERSION` is your provider's version (e.g. `1.2.3`).
+
+2. Add the following contents. The version number in the file is the version of the manifest format, not the version of your provider.
 
     ```
 {
-  "version": 1.2.3,
+  "version": 1,
   "metadata": {
     "protocol_versions": ["6.0"],
   },
 }
     ```
 
-2. Include the SHA-256 checksum of this JSON file in your `SHA256SUMS` file.
+3. Include the SHA-256 checksum of this JSON file in your `SHA256SUMS` file.
 
 The Terraform Registry will detect this file and understand that this version of your provider only supports version 6 of the Terraform protocol. It will correctly advertise that fact to Terraform, so that Terraform versions that don't support protocol 6 will not download it.
