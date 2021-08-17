@@ -75,7 +75,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters
+  https://app.terraform.io/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s/parameters
 ```
 
 ### Sample Response
@@ -98,12 +98,12 @@ curl \
           "type":"policy-sets"
         },
         "links": {
-          "related":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s"
+          "related":"/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s"
         }
       }
     },
     "links": {
-      "self":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-EavQ1LztoRTQHSNT"
+      "self":"/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s/parameters/var-EavQ1LztoRTQHSNT"
     }
   }
 }
@@ -123,7 +123,7 @@ Parameter       | Description
 $ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-"https://app.terraform.io/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters"
+"https://app.terraform.io/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s/parameters"
 ```
 
 ### Sample Response
@@ -147,12 +147,12 @@ $ curl \
             "type":"policy-sets"
           },
           "links": {
-            "related":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s"
+            "related":"/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s"
           }
         }
       },
       "links": {
-        "self":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-AD4pibb9nxo1468E"
+        "self":"/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s/parameters/var-AD4pibb9nxo1468E"
       }
     }
   ]
@@ -205,7 +205,7 @@ $ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-yRmifb4PJj7cLkMG
+  https://app.terraform.io/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s/parameters/var-yRmifb4PJj7cLkMG
 ```
 
 ### Sample Response
@@ -228,12 +228,12 @@ $ curl \
           "type":"policy-sets"
         },
         "links": {
-          "related":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s"
+          "related":"/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s"
         }
       }
     },
     "links": {
-      "self":"/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-yRmifb4PJj7cLkMG"
+      "self":"/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s/parameters/var-yRmifb4PJj7cLkMG"
     }
   }
 }
@@ -255,5 +255,5 @@ $ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/policy-sets/pol-u3S5p2Uwk21keu1s/parameters/var-yRmifb4PJj7cLkMG
+  https://app.terraform.io/api/v2/policy-sets/polset-u3S5p2Uwk21keu1s/parameters/var-yRmifb4PJj7cLkMG
 ```
