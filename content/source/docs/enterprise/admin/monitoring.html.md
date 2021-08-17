@@ -31,6 +31,15 @@ In addition to health-check monitoring, we recommend monitoring standard server 
 - CPU
 - Disk
 
+As of the `v202108-1` release, TFE will attach additional labels to the Docker containers used to execute Terraform runs. These labels include:
+
+* `run_type`: The job’s run type (either "plan" or "apply")
+* `run_id`: The job’s run ID (taking the form of "run-&lt;random string&gt;")
+* `workspace_name`: The name of the workspace under which the job is executing
+* `organization_name`: The name of the organization under which the job is executing
+
+Environments with Docker-aware observability tooling (such as `cAdvisor`) can leverage these labels to associate individual containers (and the resources they consume) with specific TFE runs.
+
 ## Internal Monitoring
 
 Beginning in version 201811-1, Terraform Enterprise includes internal monitoring of critical application metrics using a statsd collector. The resulting metrics are included with the [diagnostic bundles provided to HashiCorp Support](../support/index.html). If the Terraform Enterprise instance is already running a collector on the same port, Terraform Enterprise may not start up correctly due to the conflict, and logs will indicate:
