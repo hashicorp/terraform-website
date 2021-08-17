@@ -1652,7 +1652,7 @@ element that supplies an `id` attribute must exist. If the `name` attribute is u
 organization tag is found, no action will occur for that entry. Tags removed from all workspaces will be
 removed from the organization-wide list.
 
-`DELETE /workspaces/workspace-2/relationships/tags`
+`DELETE /workspaces/:workspace_id/relationships/tags`
 
 | Parameter            | Description      |
 | -------------------- | -----------------|
