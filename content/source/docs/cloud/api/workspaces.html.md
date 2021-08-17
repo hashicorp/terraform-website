@@ -1628,6 +1628,27 @@ It is important to note that `type`, as well as one of `id` *or* `attributes.nam
 | `data[].id`              | string |         | The id of the tag to add.        |
 | `data[].attributes.name` | string |         | The name of the tag to add.      |
 
+### Sample Payload
+
+```json
+{
+  "data": [
+    {
+      "type": "tags",
+      "attributes": {
+        "name": "foo"
+      }
+    },
+    {
+      "type": "tags",
+      "attributes": {
+        "name": "bar"
+      }
+    }
+  ]
+}
+```
+
 ### Sample Request
 
 ```shell
@@ -1674,6 +1695,19 @@ It is important to note that `type`, as well as one of `id` *or* `attributes.nam
 | `data[].type`            | string |         | Must be `"tags"`.                |
 | `data[].id`              | string |         | The id of the tag to remove.     |
 | `data[].attributes.name` | string |         | The name of the tag to remove.   |
+
+### Sample Payload
+
+```json
+{
+  "data": [
+    {
+      "type": "tags",
+      "id": "tag-Yfha4YpPievQ8wJw"
+    }
+  ]
+}
+```
 
 ### Sample Request
 
