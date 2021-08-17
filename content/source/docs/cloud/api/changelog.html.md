@@ -26,7 +26,7 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
         * added `POST /workspaces/:workspace_id/relationships/tags`
         * added `DELETE /workspaces/workspace-2/relationships/tags`
     * Added [Organization Tags](./organization-tags.html).
-    * Added `tags` attribute to [`tfrun`](./sentinel/import/tfrun.html.md)
+    * Added `tags` attribute to [`tfrun`](./sentinel/import/tfrun.html)
 
 ### 2021-07-19
 
