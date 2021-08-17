@@ -8,17 +8,12 @@ description: |-
 
 # Which SDK Should I Use?
 
-Terraform plugin development is in an exciting time of flux, in which there are
-multiple SDKs available to build plugins against. The existing
-[SDKv2](/docs/extend/index.html) is what the bulk of existing providers are
-built on, and continues to provide a stable development experience. The [next-generation
-framework](/docs/plugin/framework/index.html) is a new SDK under heavy
-development, realigning the provider development experience and abstractions
-around the updated architecture of Terraform. It represents our vision of the
-future of Terraform plugin development.
+There are two SDKs that you can use to build Terraform providers:
 
-This guide will help you decide whether you should stick with writing providers
-in SDKv2, or prepare for the future by writing providers in the framework.
+-  [SDKv2](/docs/extend/sdkv2-intro.html) is what the majority of existing providers are built on, and it continues to provide a stable development experience.
+- [Terraform Plugin Framework](/docs/plugin/framework/index.html) is a new SDK under active development, realigning the provider development experience and abstractions around the updated architecture of Terraform. It represents our vision of the future of Terraform plugin development.
+
+This guide will help you decide whether you should continue using SDKv2, or begin using the framework.
 
 ## Are You Writing a New Provider or Maintaining an Existing Provider?
 
