@@ -71,7 +71,7 @@ Use the "Examples" dropdown to navigate to example modules and use the  Readme/I
 
 ![Terraform Cloud screenshot: a module submodules detail page](./images/using-module-examples.png)
 
-## Using Private Modules
+## Adding Private Modules to Configurations
 
 The syntax for referencing private modules in the [module block](/docs/language/modules/syntax.html) `source` attribute is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
 
@@ -123,19 +123,26 @@ Terraform 0.11 or higher is required to:
 
 To configure authentication to Terraform Cloud or your Terraform Enterprise instance, you can:
 
-- (Terraform 0.12.21 or later) Use the [`terraform login`](/docs/cli/commands/login.html) command to obtain and save an API token.
-- Create an [API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
+- (Terraform 0.12.21 or later) Use the [`terraform login`](/docs/cli/commands/login.html) command to obtain and save a user API token.
+- Create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
 
 Make sure the hostname matches the hostname you use in module sources — if the same Terraform Cloud server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, use the `terraform login` command multiple times, specifying the hostname each time.
 
-#### Token Permissions
+-> **Note** When SAML SSO is enabled, there is a session timeout for user API tokens, and you must periodically re-authenticate through the web UI to keep your token active. See  [API Token Expiration] (/docs/enterprise/saml/login.html#api-token-expiration) for more details.
 
-You can use either a user token or a team token to access private modules.
 
-- [**User Token**](/docs/cloud/users-teams-organizations/users.html#api-tokens): Allows you to access modules from any organization in which you are a member. A user is a member of an organization if they belong to any team in that organization. If you are using Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any organization in which you are a member.
-- [**Team Token**](/docs/cloud/users-teams-organizations/api-tokens.html#team-api-tokens): Allows you to access the private module registry from that team's organization and modules from any organizations that are sharing a private module registry with that team's organization.
 
-For example: A user belongs to three organizations called A, B, and C. Organizations A and B share private module access with each other. The user's token gives them acces to the private module registries for all of the organizations they belong to: A, B, and C. But team token from a team in organization A would only give them access the private modules in organizations A and B.
+#### Permissions
+
+You can use either a [user token](/docs/cloud/users-teams-organizations/users.html#api-tokens) or a [team token](/docs/cloud/users-teams-organizations/api-tokens.html#team-api-tokens) for authentication, but the type of token you choose may grant you different permissions.
+
+- **User Token**: Allows you to access modules from any organization in which you are a member. You are a member of an organization if you belong to any team in that organization. For Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any of your organizations.
+- **Team Token**: Allows you to access the private module registry from that team's organization and modules from any organizations that are sharing a private module registry with that team's organization.
+
+
+_Permissions Example_
+
+A user belongs to three organizations called A, B, and C. Organizations A and B share private module access with each other. The user's token gives them access to the private module registries for all of the organizations they belong to: A, B, and C. But team token from a team in organization A would only give them access the private modules in organizations A and B.
 
 
 [user-token]: ../users-teams-organizations/users.html#api-tokens
