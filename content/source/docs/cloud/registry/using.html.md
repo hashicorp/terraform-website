@@ -6,46 +6,38 @@ page_title: "Using Private Modules - Private Module Registry - Terraform Cloud a
 # Using Modules from the Terraform Cloud Private Module Registry
 
 > **Hands-on:** Try the [Use Modules from the Registry](https://learn.hashicorp.com/tutorials/terraform/module-use?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+<br>
 
-By design, Terraform Cloud's private module registry works much like the [public Terraform Registry](/docs/registry/index.html). If you're already familiar with the public registry, here are the main differences:
+A Terraform Cloud private module registry has a few key differences from the [public Terraform Registry](/docs/registry/index.html):
 
-- Use Terraform Cloud's web UI to browse and search for modules.
-- Module `source` strings are slightly different. The public registry uses a three-part `<NAMESPACE>/<MODULE NAME>/<PROVIDER>` format, and private modules use a four-part `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>` format. For example, to load a module from the `example_corp` organization on the SaaS version of Terraform Cloud:
+- **Location:** You must use Terraform Cloud's web UI to search for modules and usage examples.
+- **Module `source` strings:** Private modules use a [four-part format](/docs/cloud/registry/using.html#adding-private-modules-to-configurations).
+- **Authentication:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs. But when you run Terraform on the command line, you must [configure authentication](/docs/cloud/registry/using.html#authentication) to Terraform Cloud or your Terraform enterprise instance
 
-    ```hcl
-    module "vpc" {
-      source  = "app.terraform.io/example_corp/vpc/aws"
-      version = "1.0.4"
-    }
-    ```
-- Terraform Cloud can automatically access your private modules during Terraform runs. However, when running Terraform on the command line, you must configure a `credentials` block in your [CLI configuration file (`.terraformrc`)](/docs/cli/config/config-file.html). See below for the [credentials format](#on-the-command-line).
 
 ## Finding Private Modules
 
-All users in your organization can view your private module registry.
-
-To see which modules are available, click the "Modules" button in Terraform Cloud's main navigation bar.
+All users in your organization can view your private module registry. To find available modules, click the "Modules" button in the Terraform Cloud main navigation bar.
 
 ![Terraform Cloud screenshot: Navigation bar with modules button highlighted](./images/using-modules-button.png)
 
-This brings you to the modules page, which lists all available modules.
+The module page appears, containing a list of all available modules. You can filter with the:
+
+- **"Providers" dropdown**: Shows only modules for the selected provider.
+- **Search field**: Shows modules with titles that contain the specified keyword. Note that it does not search READMEs or resource details.
 
 ![Terraform Cloud screenshot: the list of available modules](./images/using-modules-list.png)
 
-You can browse the complete list, or shrink the list by searching or filtering.
 
-- The "Providers" drop-down filters the list to show only modules for the selected provider.
-- The search field searches by keyword. This only searches the titles of modules, not READMEs or resource details.
 
 
 ### Shared Modules - Terraform Enterprise
 
-On Terraform Enterprise, you may have access to modules outside your organization depending on how your site admin has configured [module sharing](/docs/enterprise/admin/module-sharing.html). Modules that are shared with the current organization will have a "Shared"
-badge.
+On Terraform Enterprise, you may have access to modules outside your organization depending on how your site admin has configured [module sharing](/docs/enterprise/admin/module-sharing.html). Modules that are shared with the current organization have a "Shared" badge.
 
 ![Terraform Enterprise screenshot: shared module](./images/using-modules-list-shared.png)
 
-If the current organization's modules are being shared with other organizations, they will have a badge on them that says "Sharing".
+Modules in the current organization that are shared with other organizations have a badge that says "Sharing".
 
 ![Terraform Enterprise screenshot: sharing module](./images/using-modules-list-sharing.png)
 
@@ -73,10 +65,10 @@ Use the "Examples" dropdown to navigate to example modules and use the  Readme/I
 
 ## Adding Private Modules to Configurations
 
-The syntax for referencing private modules in the [module block](/docs/language/modules/syntax.html) `source` attribute is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
+The syntax for referencing private modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
 
 - **Hostname:** For the SaaS version of Terraform Cloud, use `app.terraform.io`. In Terraform Enterprise, use the hostname for your instance or the [generic hostname](/docs/cloud/registry/using.html#generic-hostname-terraform-enterprise).
-- **Organization:** If you are using a shared module with Terraform Enterprise, the module's organization name may be different than your organization's name. The source string on the module's registry page will always include the proper organization name.
+- **Organization:** If you are using a shared module with Terraform Enterprise, the module's organization name may be different than your organization's name. Check the source string at the top of the module's registry page to find the proper organization name.
 
 ```hcl
 module "vpc" {
@@ -89,7 +81,7 @@ To get started, you can copy and paste the usage example on the module's registr
 
 ### Generic Hostname - Terraform Enterprise
 
-You can use the generic hostname `localterraform.com` in module sources instead of the literal Terraform Enterprise hostname to reference modules without modifying the Terraform Enterprise instance. When Terraform is executed on a Terraform Enterprise instance, it automatically requests any `localterraform.com` modules from that instance.
+You can use the generic hostname `localterraform.com` in module sources to reference modules without modifying the Terraform Enterprise instance. When you run Terraform, it automatically requests any `localterraform.com` modules from the Terraform Enterprise instance.
 
 ```hcl
 module "vpc" {
@@ -100,24 +92,24 @@ module "vpc" {
 
 ~> **Important:** The generic hostname only works within a Terraform Enterprise instance.
 
-To test configurations on a developer workstation without the remote backend configured, you must replace the generic hostname with a literal hostname in any module sources, then change them back before committing to VCS. We are working on making smoother in the future, but we currently only recommend `localterraform.com` for large organizations that use multiple Terraform Enterprise instances.
+To test configurations on a developer workstation without the remote backend configured, you must replace the generic hostname with a literal hostname in all module sources and then change them back before committing to VCS. We are working on making this workflow smoother, but we currently only recommend `localterraform.com` for large organizations that use multiple Terraform Enterprise instances.
 
 ### Module Availability
 
-A workspace can only use private modules from its own organization's registry. To use modules from multiple organizations in the same configuration, we recommend:
+A workspace can only use private modules from its own organization's registry. When using modules from multiple organizations in the same configuration, we recommend:
 
-- **Terraform Cloud:** [Adding modules to the registry](./publish.html#sharing-modules-across-organizations) for each organization that requires access.  Users with the right permissions (see below) may be able to run configurations with modules from multiple organizations, but this can make collaboration more difficult.
+- **Terraform Cloud:** [Add modules to the registry](./publish.html#sharing-modules-across-organizations) for each organization that requires access.  
 
-- **Terraform Enterprise:** Checking your site's [module sharing](../../enterprise/admin/module-sharing.html) configuration to make sure it allows mixing modules from multiple organizations into the same configuration. Note that in Terraform Enterprise v202012-1 or higher, workspaces can also use private modules from organizations that are sharing modules with the workspace's organization.
+- **Terraform Enterprise:** Check your site's [module sharing](../../enterprise/admin/module-sharing.html) configuration. Note that in Terraform Enterprise v202012-1 or higher, workspaces can also use private modules from organizations that are sharing modules with the workspace's organization.
 
 ## Running Configurations with Private Modules
 
 ### Version Requirements
 
-Terraform 0.11 or higher is required to:
+Terraform 0.11 or later is required to:
 
+- Use private modules in Terraform Cloud workspaces with no extra setup.
 - Use the CLI to apply configurations with private modules.
-- Run Terraform Cloud configurations that include private modules with no extra setup. TBD what do they do if they have a version before this?
 
 ### Authentication
 
@@ -126,7 +118,7 @@ To configure authentication to Terraform Cloud or your Terraform Enterprise inst
 - (Terraform 0.12.21 or later) Use the [`terraform login`](/docs/cli/commands/login.html) command to obtain and save a user API token.
 - Create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
 
-Make sure the hostname matches the hostname you use in module sources — if the same Terraform Cloud server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, use the `terraform login` command multiple times, specifying the hostname each time.
+Make sure the hostname matches the hostname you use in module sources because if the same Terraform Cloud server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, use the `terraform login` command multiple times, specifying a different hostname each time.
 
 -> **Note** When SAML SSO is enabled, there is a session timeout for user API tokens, and you must periodically re-authenticate through the web UI to keep your token active. See  [API Token Expiration] (/docs/enterprise/saml/login.html#api-token-expiration) for more details.
 
@@ -134,15 +126,16 @@ Make sure the hostname matches the hostname you use in module sources — if th
 
 #### Permissions
 
-You can use either a [user token](/docs/cloud/users-teams-organizations/users.html#api-tokens) or a [team token](/docs/cloud/users-teams-organizations/api-tokens.html#team-api-tokens) for authentication, but the type of token you choose may grant you different permissions.
+You can use either a [user token](/docs/cloud/users-teams-organizations/users.html#api-tokens) or a [team token](/docs/cloud/users-teams-organizations/api-tokens.html#team-api-tokens) for authentication, but the type of token you choose may grant different permissions.
 
-- **User Token**: Allows you to access modules from any organization in which you are a member. You are a member of an organization if you belong to any team in that organization. For Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any of your organizations.
+- **User Token**: Allows you to access modules from any organization in which you are a member. You are a member of an organization if you belong to any team in that organization. In Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any of your organizations.
+
 - **Team Token**: Allows you to access the private module registry from that team's organization and modules from any organizations that are sharing a private module registry with that team's organization.
 
 
 _Permissions Example_
 
-A user belongs to three organizations called A, B, and C. Organizations A and B share private module access with each other. The user's token gives them access to the private module registries for all of the organizations they belong to: A, B, and C. But team token from a team in organization A would only give them access the private modules in organizations A and B.
+A user belongs to three organizations (1, 2, and 3), and organizations 1 and 2 share private module access with each other. In this case, the user's token gives them access to the private module registries for all of the organizations they belong to: 1, 2, and 3. However, a team token from a team in organization 1 only gives the user access the private modules in organizations 1 and 2.
 
 
 [user-token]: ../users-teams-organizations/users.html#api-tokens
