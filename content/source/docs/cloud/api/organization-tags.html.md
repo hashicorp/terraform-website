@@ -30,7 +30,7 @@ This API returns the list of tags used with all resources across the organizatio
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization's module producers to view
+`:organization_name` | The name of the organization to list tags from
 
 ### Sample Request
 
