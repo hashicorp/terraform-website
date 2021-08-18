@@ -109,6 +109,19 @@ It is important to note that `type` and `id` are required.
 | `data[].type` | string |         | Must be `"tags"`.                |
 | `data[].id`   | string |         | The id of the tag to remove.     |
 
+### Sample Payload
+
+```json
+{
+  "data": [
+    {
+      "type": "tags",
+      "id": "tag-Yfha4YpPievQ8wJw"
+    }
+  ]
+}
+```
+
 ### Sample Request
 
 ```shell
