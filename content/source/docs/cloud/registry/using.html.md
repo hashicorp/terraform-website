@@ -118,9 +118,9 @@ To configure authentication to Terraform Cloud or your Terraform Enterprise inst
 - (Terraform 0.12.21 or later) Use the [`terraform login`](/docs/cli/commands/login.html) command to obtain and save a user API token.
 - Create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
 
-Make sure the hostname matches the hostname you use in module sources because if the same Terraform Cloud server is available at two hostnames, Terraform doesn't have any way to know that they're the same. If you need to support multiple hostnames for module sources, use the `terraform login` command multiple times, specifying a different hostname each time.
+Make sure the hostname matches the hostname you use in module sources because if the same Terraform Cloud server is available at two hostnames, Terraform will not know that they are the same. To support multiple hostnames for module sources, use the `terraform login` command multiple times, and specify a different hostname each time.
 
--> **Note** When SAML SSO is enabled, there is a session timeout for user API tokens, and you must periodically re-authenticate through the web UI to keep your token active. See  [API Token Expiration] (/docs/enterprise/saml/login.html#api-token-expiration) for more details.
+-> **Note** When SAML SSO is enabled, there is a [session timeout for user API tokens] (/docs/enterprise/saml/login.html#api-token-expiration), requiring you to periodically re-authenticate through the web UI. Expired tokens produce a _401 Unauthorized_ error.
 
 
 
