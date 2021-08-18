@@ -109,6 +109,19 @@ It is important to note that `type` and `id` are required.
 | `data[].type` | string |         | Must be `"tags"`.                |
 | `data[].id`   | string |         | The id of the tag to remove.     |
 
+### Sample Payload
+
+```json
+{
+  "data": [
+    {
+      "type": "tags",
+      "id": "tag-Yfha4YpPievQ8wJw"
+    }
+  ]
+}
+```
+
 ### Sample Request
 
 ```shell
@@ -159,6 +172,19 @@ curl \
   https://app.terraform.io/api/v2/tags/tag-2/relationships/workspaces
 ```
 
+### Sample Payload
+
+```json
+{
+  "data": [
+      {
+          "type": "workspaces",
+          "id": "ws-pmKTbUwH2VPiiTC4"
+      }
+  ]
+}
+```
+
 ### Sample Response
 
 No response body.
@@ -171,7 +197,7 @@ Status code `204`.
 
 | Parameter            | Description                                          |
 | -------------------- | -----------------------------------------------------|
-| `:tag_id`            | The ID of the tag that workspaces should have added. |
+| `:tag_id`            | The ID of the tag that workspaces should have removed. |
 
 Status  | Response                                     | Reason(s)
 --------|----------------------------------------------|----------
@@ -186,6 +212,19 @@ This POST endpoint requires a JSON object with the following properties as a req
 | ------------- | ------ | ------- | ----------------------------------- |
 | `data[].type` | string |         | Must be `"workspaces"`.             |
 | `data[].id`   | string |         | The id of the workspace to remove.  |
+
+### Sample Payload
+
+```json
+{
+  "data": [
+      {
+          "type": "workspaces",
+          "id": "ws-pmKTbUwH2VPiiTC4"
+      }
+  ]
+}
+```
 
 ### Sample Request
 
