@@ -115,5 +115,6 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
     ```
 
 1. Ensure the Docker bridge network address is not in use elsewhere on the network. If it is, please refer to the [Docker documentation](https://docs.docker.com/network/bridge/) for information on how to change it.
-~> **Note:** Beginning in version `202004-1`, Docker non-default networks `tfe_services` and `tfe_terraform_isolation` were added for the Terraform Enterprise component Docker containers as part of a network segmentation update. Custom configuration is required for MTU settings. [MTU Configuration for Custom Networks](https://hashicorp.zendesk.com/knowledge/articles/4405507244691/en-us?brand_id=961948) 
+
+~> **Note:** Beginning in version `v202004-1`, Docker non-default networks `tfe_services` and `tfe_terraform_isolation` were added for the Terraform Enterprise component Docker containers as part of a network segmentation update. Custom configuration [may be required for MTU settings](https://support.hashicorp.com/hc/en-us/articles/4405507244691).
 
