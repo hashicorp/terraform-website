@@ -14,6 +14,10 @@ page_id: "api-changelog"
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 
+### 2021-08-18
+
+* ![breaking][] Removed documentation of `tag-names` field on workspace endpoint due to instability
+
 ### 2021-08-11
 
 * ![breaking][] Security fix to [Configuration versions](./configuration-versions.html): upload-url attribute for [uploading configuration files](./configuration-versions.html#upload-configuration-files) is now only available on the create response.
@@ -22,9 +26,9 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 * Introduced Workspace Tagging
     * Updated [Workspaces](./workspaces.html):
-        * added `tag_names` attribute.
+        * added `tag-names` attribute.
         * added `POST /workspaces/:workspace_id/relationships/tags`
-        * added `DELETE /workspaces/workspace-2/relationships/tags`
+        * added `DELETE /workspaces/:workspace_id/relationships/tags`
     * Added [Organization Tags](./organization-tags.html).
     * Added `tags` attribute to [`tfrun`](../sentinel/import/tfrun.html)
 
