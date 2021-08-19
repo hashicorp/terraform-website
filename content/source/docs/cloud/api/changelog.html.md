@@ -14,10 +14,6 @@ page_id: "api-changelog"
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 
-### 2021-08-18
-
-* ![breaking][] Removed documentation of `tag-names` field on workspace endpoint due to instability
-
 ### 2021-08-11
 
 * ![breaking][] Security fix to [Configuration versions](./configuration-versions.html): upload-url attribute for [uploading configuration files](./configuration-versions.html#upload-configuration-files) is now only available on the create response.
