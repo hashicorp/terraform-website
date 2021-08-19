@@ -591,6 +591,93 @@ curl \
 }
 ```
 
+## List State Version Outputs
+
+`GET /state-versions/:state_version_id/outputs`
+
+Listing state version outputs requires permission to read state outputs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+Parameter | Description
+----------|---------
+`:state_version_id` | The ID of the desired state version.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][]                        | Successfully returned a list of outputs for the given state version
+[404][] | [JSON API error object][]                    | State version not found, or user unauthorized to perform action
+
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/state-versions/sv-SDboVZC8TCxXEneJ/outputs
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "wsout-xFAmCR3VkBGepcee",
+      "type": "state-version-outputs",
+      "attributes": {
+        "name": "fruits",
+        "sensitive": false,
+        "type": "array",
+        "value": [
+          "apple",
+          "strawberry",
+          "blueberry",
+          "rasberry"
+        ]
+      },
+      "links": {
+        "self": "/api/v2/state-version-outputs/wsout-xFAmCR3VkBGepcee"
+      }
+    },
+    {
+      "id": "wsout-vspuB754AUNkfxwo",
+      "type": "state-version-outputs",
+      "attributes": {
+        "name": "vegetables",
+        "sensitive": false,
+        "type": "array",
+        "value": [
+          "carrots",
+          "potato",
+          "tomato",
+          "onions"
+        ]
+      },
+      "links": {
+        "self": "/api/v2/state-version-outputs/wsout-vspuB754AUNkfxwo"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://app.terraform.io/api/v2/state-versions/sv-SVB5wMrDL1XUgJ4G/outputs?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://app.terraform.io/api/v2/state-versions/sv-SVB5wMrDL1XUgJ4G/outputs?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "https://app.terraform.io/api/v2/state-versions/sv-SVB5wMrDL1XUgJ4G/outputs?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "page-size": 20,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 1,
+      "total-count": 2
+    }
+  }
+}
+```
+
 ### Available Related Resources
 
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
