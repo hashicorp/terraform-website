@@ -218,7 +218,6 @@ _Without a VCS repository_
       "source-url": null,
       "speculative-enabled": true,
       "structured-run-output-enabled": true,
-      "tag-names": [],
       "terraform-version": "1.0.4",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T21:22:49.566Z",
@@ -322,7 +321,6 @@ _With a VCS repository_
       "source-url": null,
       "speculative-enabled": true,
       "structured-run-output-enabled": true,
-      "tag-names": [],
       "terraform-version": "0.11.1",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T21:50:58.726Z",
@@ -520,7 +518,6 @@ $ curl \
       "source-url": null,
       "speculative-enabled": true,
       "structured-run-output-enabled": true,
-      "tag-names": [],
       "terraform-version": "0.11.1",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T21:50:58.726Z",
@@ -668,7 +665,6 @@ $ curl \
       "source-url": null,
       "speculative-enabled": true,
       "structured-run-output-enabled": true,
-      "tag-names": [],
       "terraform-version": "0.11.1",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T21:50:58.726Z",
@@ -781,7 +777,6 @@ $ curl \
         "source-url": null,
         "speculative-enabled": true,
         "structured-run-output-enabled": true,
-        "tag-names": [],
         "terraform-version": "1.0.4",
         "trigger-prefixes": [],
         "updated-at": "2021-08-16T21:22:49.566Z",
@@ -927,9 +922,6 @@ $ curl \
       "source-url": null,
       "speculative-enabled": true,
       "structured-run-output-enabled": false,
-      "tag-names": [
-        "tag1"
-      ],
       "terraform-version": "0.15.3",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T18:54:06.874Z",
@@ -1134,10 +1126,6 @@ $ curl \
       "source-url": null,
       "speculative-enabled": false,
       "structured-run-output-enabled": true,
-      "tag-names": [
-        "tag1",
-        "tag2"
-      ],
       "terraform-version": "1.0.4",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T22:39:15.912Z",
@@ -1307,10 +1295,6 @@ $ curl \
       "source-url": null,
       "speculative-enabled": false,
       "structured-run-output-enabled": true,
-      "tag-names": [
-        "tag1",
-        "tag2"
-      ],
       "terraform-version": "1.0.4",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T22:36:43.666Z",
@@ -1471,10 +1455,6 @@ $ curl \
       "source-url": null,
       "speculative-enabled": false,
       "structured-run-output-enabled": true,
-      "tag-names": [
-        "tag1",
-        "tag2"
-      ],
       "terraform-version": "1.0.4",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T22:42:06.143Z",
@@ -1654,10 +1634,6 @@ $ curl \
       "source-url": null,
       "speculative-enabled": false,
       "structured-run-output-enabled": true,
-      "tag-names": [
-        "tag1",
-        "tag2"
-      ],
       "terraform-version": "1.0.4",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T22:59:56.631Z",
@@ -1845,10 +1821,6 @@ $ curl \
       "source-url": null,
       "speculative-enabled": false,
       "structured-run-output-enabled": true,
-      "tag-names": [
-        "tag1",
-        "tag2"
-      ],
       "terraform-version": "1.0.4",
       "trigger-prefixes": [],
       "updated-at": "2021-08-16T23:06:08.609Z",
@@ -2017,7 +1989,6 @@ $ curl \
         "source-url": null,
         "speculative-enabled": true,
         "structured-run-output-enabled": true,
-        "tag-names": [],
         "terraform-version": "0.11.1",
         "trigger-prefixes": [],
         "updated-at": "2021-08-16T22:57:28.163Z",
