@@ -30,7 +30,7 @@ Finally, the script will clean up any dangling Docker volumes and the Docker net
 
 Terraform Enteprise mounted disk installations will need to clean up the mounted disk path manually, if they wish to remove that data. This script does not touch the mounted disk path.
 
-## How to run the uninstaller
+## Run the Uninstaller
 
 ### Online
 
