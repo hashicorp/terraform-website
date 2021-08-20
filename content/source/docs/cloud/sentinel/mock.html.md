@@ -84,7 +84,7 @@ mock-tfplan-v2.sentinel   # tfplan/v2 mock data
 mock-tfstate.sentinel     # tfstate mock data
 mock-tfstate-v2.sentinel  # tfstate/v2 mock data
 mock-tfrun.sentinel       # tfrun mock data
-sentinel.hcl              # sample configruation file
+sentinel.hcl              # sample configuration file
 ```
 
 The sample `sentinel.hcl` file contains mappings to the mocks so that you
