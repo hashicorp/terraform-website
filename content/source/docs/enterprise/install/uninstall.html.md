@@ -11,24 +11,25 @@ Please contact [support][support] with questions or issues.
 
 ## While the Script Runs
 
-This script will first determine some basic information about the system it's being run on (operating system, init system). You will be presented with a warning that you are about to uninstall Terraform Enterprise and Replicated from the system. 
-![Uninstall - Do you want to continue?][uninstall-prompt]
+## While the Script Runs
 
-After confirming you wish to continue, the script will stop the Replicated services, if they are running, and then remove the Docker containers. Replicated executables and configuration files will be removed from the system. 
-![Uninstall - Application removed][uninstall-uninstalled]
+After you initiate `install.sh`:
 
-You will then be presented with the options around pruning Docker volumes. 
-![Uninstall - Prune all docker volumes?][uninstall-prune]
+1. Enter `yes` when asked if you want to continue with the installation.
+   ![Uninstall - Do you want to continue?][uninstall-prompt]
 
-If the system was only utilized for Terraform Enterprise, you can select `Prune all Docker volumes`.
-![Uninstall - Prune all][uninstall-prune-all]
+	 The script stops the Replicated services, removes the Docker containers, and removes replicated executables and configuration files from the system.
+   ![Uninstall - Application removed][uninstall-uninstalled]
+2. Choose an option to prune Docker volumes:
+   - Select `Prune all Docker volumes` if you only use this system for Terraform Enterprise.
+   - Select `Prune only application Docker volumes` to prune only Replicated and Hashicorp Docker volumes and leave the rest intact.
+   - Select `Skip this step` to leave all Docker volumes intact.
 
-If the system has other Docker containers running, and you wish to keep them, you'll need to select `Prune only application Docker volumes`. This option will specifically prune Replicated and Hashicorp Docker volumes. Lastly, you can opt to skip this step entirely, leaving any Docker volumes intact.  
+3. The script removes dangling Docker volumes and the Docker networks that were created for the application. Terraform Enterprise has been removed from the system.
 
-Finally, the script will clean up any dangling Docker volumes and the Docker networks that were created for the application. 
 ![uninstall-cleanup][uninstall-cleanup]
 
-Terraform Enteprise mounted disk installations will need to clean up the mounted disk path manually, if they wish to remove that data. This script does not touch the mounted disk path.
+~> **Important**: This script does not touch the mounted disk path, so you will need to manually clean it up if necessary.
 
 ## Run the Uninstaller
 
