@@ -9,7 +9,7 @@ If you installed Terraform Enterprise on VMWare instances, you may not be able t
 
 Please contact [support][support] with questions or issues.
 
-## What does this script do?
+## While the Script Runs
 
 This script will first determine some basic information about the system it's being run on (operating system, init system). You will be presented with a warning that you are about to uninstall Terraform Enterprise and Replicated from the system. 
 ![Uninstall - Do you want to continue?][uninstall-prompt]
