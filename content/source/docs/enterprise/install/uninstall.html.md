@@ -5,7 +5,9 @@ page_title: "Uninstall - Terraform Enterprise"
 
 # Uninstall Terraform Enterprise
 
-While Terraform Enterprise is most often installed on a cloud provider, where creating and destroying instances is simple and fast, it is also commonly installed onto VMWare instances. Some customers may not be able to easily request new virtual machines in situations where a Terraform Enterprise installation has become broken or corrupted. As such, we have provided a simple script that will remove Terraform Enterprise and all its various services (excluding Docker) from a system. 
+If you installed Terraform Enterprise on VMWare instances, you may not be able to easily request new virtual machines for a broken or corrupted installation. Instead, you can use the `uninstall.sh` script to remove Terraform Enterprise and all its services (excluding Docker) from a system.
+
+Please contact [support][support] with questions or issues.
 
 ## What does this script do?
 
