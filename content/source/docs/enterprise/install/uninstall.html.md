@@ -42,11 +42,12 @@ If the system can reach [releases.hashicorp.com][releases], go to a shell on you
 
 ### Airgapped
 
-If the system cannot reach [releases.hashicorp.com][releases].
+If the system cannot reach [releases.hashicorp.com][releases]:
 
-1. You'll need to [download the uninstall script][uninstall link] from a machine that has access to [releases.hashicorp.com][releases], and then upload or copy the script to the Terraform Enterprise server. 
+1. [Download the uninstall script][uninstall link] from a machine that has access to [releases.hashicorp.com][releases], and upload the script to the Terraform Enterprise server.
 
-1. Then, you can run the script with `sudo bash uninstall.sh`.
+2. From a shell on your instance, run `sudo bash uninstall.sh`.
+
 
 ## When to contact support
 
