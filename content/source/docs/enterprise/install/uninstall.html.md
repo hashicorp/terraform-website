@@ -34,11 +34,11 @@ Terraform Enteprise mounted disk installations will need to clean up the mounted
 
 ### Online
 
-If the system is able to reach [releases.hashicorp.com][releases].
+If the system can reach [releases.hashicorp.com][releases], go to a shell on your instance and run one of the following:
 
-1. From a shell on your instance:
-	* To execute the uninstaller directly, run `curl https://releases.hashicorp.com/tfe/uninstall.sh | sudo bash`. 
-	* To inspect the script locally before running, run `curl https://releases.hashicorp.com/tfe/uninstall.sh > uninstall.sh` and, once you are satisfied with the script's content, execute it with `sudo bash uninstall.sh`.
+- **Execute uninstaller**: Run `curl https://releases.hashicorp.com/tfe/uninstall.sh | sudo bash`.
+
+- **Inspect script locally**: Run `curl https://releases.hashicorp.com/tfe/uninstall.sh > uninstall.sh`, check the script content, and run `sudo bash uninstall.sh` to execute the script.
 
 ### Airgapped
 
