@@ -14,14 +14,17 @@ Please contact [support][support] with questions or issues.
 After you initiate `uninstall`:
 
 1. Enter `yes` when asked if you want to continue with the installation.
-   ![Uninstall - Do you want to continue?][uninstall-prompt]
 
-	 The script stops the Replicated services, removes the Docker containers, and removes replicated executables and configuration files from the system.
-   ![Uninstall - Application removed][uninstall-uninstalled]
-2. Choose an option to prune Docker volumes:
-   - Select `Prune all Docker volumes` if you only use this system for Terraform Enterprise.
-   - Select `Prune only application Docker volumes` to prune only Replicated and Hashicorp Docker volumes and leave the rest intact.
-   - Select `Skip this step` to leave all Docker volumes intact.
+![Uninstall - Do you want to continue?][uninstall-prompt]
+
+   The script stops the Replicated services, removes the Docker containers, and removes replicated executables and configuration files from the system.  
+
+![Uninstall - Application removed][uninstall-uninstalled]
+2. Choose an option to prune Docker volumes:  
+  - Select `Prune all Docker volumes` if you only use this system for Terraform Enterprise.  
+  - Select `Prune only application Docker volumes` to prune only Replicated and Hashicorp Docker volumes and leave the rest intact.  
+  - Select `Skip this step` to leave all Docker volumes intact.  
+![Uninstall - Prune all Docker volumes][uninstall-prune-all]
 
 3. The script removes dangling Docker volumes and the Docker networks that were created for the application. Terraform Enterprise has been removed from the system.
 
@@ -33,7 +36,7 @@ After you initiate `uninstall`:
 
 ### Online
 
-If the system can reach [releases.hashicorp.com][releases], go to a shell on your instance and run one of the following:
+If the system can reach [install.terraform.io][install], go to a shell on your instance and run one of the following:
 
 - **Execute uninstaller**: Run `curl https://install.terraform.io/tfe/uninstall | sudo bash`.
 
@@ -41,16 +44,12 @@ If the system can reach [releases.hashicorp.com][releases], go to a shell on you
 
 ### Airgapped
 
-If the system cannot reach [releases.hashicorp.com][releases]:
+If the system cannot reach [install.terraform.io][install]:
 
-1. [Download the uninstall script][uninstall link] from a machine that has access to [releases.hashicorp.com][releases], and upload the script to the Terraform Enterprise server.
+1. [Download the uninstall script][uninstall link] from a machine that has access to [install.terraform.io][install], and upload the script to the Terraform Enterprise server.
 
 2. From a shell on your instance, run `sudo bash uninstall.sh`.
 
-
-## When to contact support
-
-If you have any questions about this process or the script, or run into any issues, please contact [support][support] for assistance.
 
 
 [uninstall-prompt]: ./assets/uninstall-prompt.png
@@ -58,6 +57,6 @@ If you have any questions about this process or the script, or run into any issu
 [uninstall-prune]: ./assets/uninstall-prune.png
 [uninstall-prune-all]: ./assets/uninstall-prune-all.png
 [uninstall-cleanup]: ./assets/uninstall-cleanup.png
-[releases]: https://releases.hashicorp.com
-[uninstall link]: https://releases.hashicorp.com/tfe/uninstall.sh
+[install]: https://install.terraform.io
+[uninstall link]: https://install.terraform.io/tfe/uninstall
 [support]: https://support.hashicorp.com
