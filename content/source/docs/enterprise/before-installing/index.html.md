@@ -33,7 +33,7 @@ The operational mode is selected at install time and cannot be changed once Terr
    check the [PostgreSQL Requirements](./postgres-requirements.html) for information that
    needs to be present for Terraform Enterprise to work. This option is best
    for users with expertise managing PostgreSQL or users that have access
-   to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/).
+   to managed PostgreSQL offerings like the offers from [Amazon](https://aws.amazon.com/rds/), [Azure](https://azure.microsoft.com/en-us/services/postgresql/), or [Google Cloud](https://cloud.google.com/sql/docs/postgres/).
 
 1. *Mounted Disk* - This mode stores data in a separate
    directory on the host, with the intention that the directory is
