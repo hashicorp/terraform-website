@@ -32,7 +32,7 @@ version. [Learn more about availability during upgrades here](../system-overview
     $ replicatedctl app-release apply
     ```
 
-    Alternatively, execute the command below to upgrade to a specific version of Terraform Enterprise:
+    Alternatively, upgrade to a specific version of Terraform Enterprise.
 
     ```
     $ replicatedctl app-release apply --sequence "504"
