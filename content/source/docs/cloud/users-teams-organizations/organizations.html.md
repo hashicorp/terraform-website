@@ -160,7 +160,11 @@ Sentinel is an embedded policy-as-code framework that can enforce rules about Te
 
 ### Task Event Hooks
 
-blah blah blah it's in beta ok! deal with it.
+-> **Note:** As of September 2021, Run Tasks are available only as a beta feature, and not all customers will see this functionality in their Terraform Cloud organization.
+
+Task event hooks are reusable [run tasks](../workspaces/run-tasks.html) configurations that can be attached to any workspace in an organization.
+
+A task event hook is made up of a friendly name, a complete endpoint URL which the hook will communicate with, and an optional HMAC key used to verify the authenticity of a request.
 
 ## Trial Expired Organizations
 
