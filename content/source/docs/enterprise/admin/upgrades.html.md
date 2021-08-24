@@ -74,7 +74,7 @@ version. [Learn more about availability during upgrades here](../system-overview
     $ replicatedctl app-release ls
     ```
 
-1. In order to upgrade to the latest version of the available airgap packages, execute command below:
+6. Upgrade to the latest version of the available airgap packages.
    
     ```
     $ replicatedctl app-release apply
