@@ -129,6 +129,8 @@ You can use either a [user token](/docs/cloud/users-teams-organizations/users.ht
 
 - **User Token**: Allows you to access modules from any organization in which you are a member. You are a member of an organization if you belong to any team in that organization. In Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any of your organizations.
 
+-> **Note** When SAML SSO is enabled, there is a [session timeout for user API tokens] (/docs/enterprise/saml/login.html#api-token-expiration), requiring you to periodically re-authenticate through the web UI. Expired tokens produce a _401 Unauthorized_ error. A SAML SSO account with [IsServiceAccount](https://www.terraform.io/docs/enterprise/saml/attributes.html#isserviceaccount) is treated as a service account and will not have the session timeout.
+
 - **Team Token**: Allows you to access the private module registry from that team's organization and modules from any organizations that are sharing a private module registry with that team's organization.
 
 
