@@ -80,7 +80,7 @@ version. [Learn more about availability during upgrades here](../system-overview
     $ replicatedctl app-release apply
     ```
 
-    Alternatively, execute the command below to upgrade to a specific version of the available airgap packages, the sequence numbers are available in the output of the command `replicatedctl app-release ls` above:
+    Alternatively, upgrade to a specific version, using one of the options listed in the output of the previous step.
 
     ```
     $ replicatedctl app-release apply --sequence "504"
