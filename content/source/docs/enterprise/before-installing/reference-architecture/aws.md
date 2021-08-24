@@ -340,9 +340,9 @@ failure on a regional AWS service. In this section, implementation patterns to s
 We recommend provisioning an identical infrastructure in a secondary AWS
 Region. Depending on recovery time objectives and tolerances for
 additional cost to support AWS Region failure, the infrastructure can be
-running (Warm Standby) or stopped (Cold Standby). Please note that with _Standalone_ implementation mode, only one Terraform Enterprise instance can be running against the same database. This deployment acts to minimize the Mean Time To Recovery (MTTR) in the event of a regional failure, avoiding the need to replicate and stand up the data plane infrastructure during an outage. In the event of the primary AWS Region hosting the Terraform Enterprise application fail, the secondary
-AWS Region will require some configuration before traffic is directed to
-it along with some global services such as DNS.
+running (Warm Standby) or stopped (Cold Standby). Please note that with _Standalone_ implementation mode, only one Terraform Enterprise instance can be running against the same database. 
+
+This deployment acts to minimize the Mean Time To Recovery (MTTR) in the event of a regional failure, avoiding the need to replicate and stand up the data plane infrastructure during an outage. If the primary AWS Region hosting the Terraform Enterprise application fails, you will need to perform some configuration before traffic is directed to the secondary AWS Region:
 
 - [RDS cross-region read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.XRgn) can be used in a warm standby architecture or [RDS database backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html) can be used in a cold standby architecture.
 
