@@ -62,7 +62,7 @@ version. [Learn more about availability during upgrades here](../system-overview
     ```
 
 3. On the Terraform Enterprise host machine, upload the desired airgap packages into the `AirgapPackagePath`.
-1. Execute the command below to fetch the versions of Terraform Enterprise from the uploaded airgap packages.
+4. Fetch the versions of Terraform Enterprise from the uploaded airgap packages.
    
     ```
     $ replicatedctl app-release ls --fetch
