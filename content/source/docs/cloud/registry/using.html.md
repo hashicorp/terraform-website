@@ -113,30 +113,28 @@ Terraform 0.11 or later is required to:
 
 ### Authentication
 
-To configure authentication to Terraform Cloud or your Terraform Enterprise instance, you can:
-
-- (Terraform 0.12.21 or later) Use the [`terraform login`](/docs/cli/commands/login.html) command to obtain and save a user API token.
-- Create a [user API token][user-token] and [manually configure credentials in the CLI config file][cli-credentials].
-
-Make sure the hostname matches the hostname you use in module sources because if the same Terraform Cloud server is available at two hostnames, Terraform will not know that they are the same. To support multiple hostnames for module sources, use the `terraform login` command multiple times, and specify a different hostname each time.
-
-
-
-
-#### Permissions
-
 You can use either a [user token](/docs/cloud/users-teams-organizations/users.html#api-tokens) or a [team token](/docs/cloud/users-teams-organizations/api-tokens.html#team-api-tokens) for authentication, but the type of token you choose may grant different permissions.
 
 - **User Token**: Allows you to access modules from any organization in which you are a member. You are a member of an organization if you belong to any team in that organization. In Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any of your organizations.
 
--> **Note** When SAML SSO is enabled, there is a [session timeout for user API tokens] (/docs/enterprise/saml/login.html#api-token-expiration), requiring you to periodically re-authenticate through the web UI. Expired tokens produce a _401 Unauthorized_ error. A SAML SSO account with [IsServiceAccount](https://www.terraform.io/docs/enterprise/saml/attributes.html#isserviceaccount) is treated as a service account and will not have the session timeout.
+    -> **Note** When SAML SSO is enabled, there is a [session timeout for user API tokens] (/docs/enterprise/saml/login.html#api-token-expiration), requiring you to periodically re-authenticate through the web UI. Expired tokens produce a _401 Unauthorized_ error. A SAML SSO account with [IsServiceAccount](https://www.terraform.io/docs/enterprise/saml/attributes.html#isserviceaccount) is treated as a service account and will not have the session timeout.
 
 - **Team Token**: Allows you to access the private module registry from that team's organization and modules from any organizations that are sharing a private module registry with that team's organization.
 
-
+<br>
 _Permissions Example_
 
 A user belongs to three organizations (1, 2, and 3), and organizations 1 and 2 share private module access with each other. In this case, the user's token gives them access to the private module registries for all of the organizations they belong to: 1, 2, and 3. However, a team token from a team in organization 1 only gives the user access the private modules in organizations 1 and 2.
+
+#### Configure Authentication
+
+To configure authentication to Terraform Cloud or your Terraform Enterprise instance, you can:
+
+- (Terraform 0.12.21 or later) Use the [`terraform login`](/docs/cli/commands/login.html) command to obtain and save a user API token.
+- Create a token and [manually configure credentials in the CLI config file][cli-credentials].
+
+Make sure the hostname matches the hostname you use in module sources because if the same Terraform Cloud server is available at two hostnames, Terraform will not know that they are the same. To support multiple hostnames for module sources, use the `terraform login` command multiple times, and specify a different hostname each time.
+
 
 
 [user-token]: ../users-teams-organizations/users.html#api-tokens
