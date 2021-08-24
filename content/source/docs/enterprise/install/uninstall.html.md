@@ -5,7 +5,7 @@ page_title: "Uninstall - Terraform Enterprise"
 
 # Uninstall Terraform Enterprise
 
-If you installed Terraform Enterprise on VMWare instances, you may not be able to easily request new virtual machines for a broken or corrupted installation. Instead, you can use the `uninstall` script to remove Terraform Enterprise and all of its services (excluding Docker) from a system.
+If you installed Terraform Enterprise on VMWare instances, you may not be able to easily request new virtual machines for a broken or corrupted installation. Instead, you can use the `uninstall` script to remove Terraform Enterprise and all of its services (excluding Docker) from a system. This includes the Replicated snapshot directory - `/var/lib/replicated/snapshots`. If you have Replicated snapshots you wish to keep, please backup this directory prior to running the uninstall script.
 
 ~> **Important**: This script does not touch the mounted disk path, so you will need to manually clean that up if necessary.
 
