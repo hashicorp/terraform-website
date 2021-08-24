@@ -81,9 +81,24 @@ _Leaving this stage:_
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-## 5. The PreApply stage
+## 5. The Pre-Apply stage
 
-Hey, it's a new stage!
+This stage only occurs if there are [run tasks](./workspaces/run-tasks.html) enabled for the workspace. This phase executes after the Plan phase completes (and, if enabled, the Cost Estimation and Policy Check phases as well) and will execute any configured run tasks. During this phase, Terraform Cloud will send information about your run to the configured external system and wait for a pass or fail response, to determine whether the plan can be applied. 
+
+The information sent to the configured external system includes the JSON output of your plan.
+
+_States in this stage:_
+
+- **Running tasks:** Terraform Cloud is currently waiting for a response from the configured external system(s).
+    - Exeternal systems being requested to execute a task must respond initially with a `200 OK` acknowledging the request is in progress. After that, they have 10 minutes to return a status of `passed` or `failed`, or the timeout will expire and the task will be assumed to be in the `failed` status.
+
+_Leaving this stage:_
+
+- If any mandatory tasks failed, the run skips to completion (**Plan Errored** state).
+- If any advisory tasks failed, the run proceeds to the in the **Applying** state, with a visible warning regarding the failed task.
+- If a combination of mandatory and advisory tasks are configured for a single run, the most restrictive action will win
+    - This means that if there are two advisory tasks which succeed and one mandatory task which fails, the run will fail. If one mandatory task succeeds and two advisory tasks fail, the run will succeed with a warning.
+- If a user canceled the apply by pressing the "Cancel Run" button, the run ends in the **Canceled** state.
 
 ## 6. The Apply Stage
 
