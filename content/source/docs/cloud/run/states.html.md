@@ -85,7 +85,7 @@ _Leaving this stage:_
 
 This stage only occurs if there are [run tasks](./workspaces/run-tasks.html) enabled for the workspace. This phase executes after the Plan phase completes (and, if enabled, the Cost Estimation and Policy Check phases as well) and will execute any configured run tasks. During this phase, Terraform Cloud will send information about your run to the configured external system and wait for a pass or fail response, to determine whether the plan can be applied. 
 
-The information sent to the configured external system includes the JSON output of your plan.
+-> **Note:** The information sent to the configured external system includes the [JSON output](./docs/internals/json-format.html) of your plan.
 
 _States in this stage:_
 
