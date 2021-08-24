@@ -5,7 +5,9 @@ page_title: "Uninstall - Terraform Enterprise"
 
 # Uninstall Terraform Enterprise
 
-If you installed Terraform Enterprise on VMWare instances, you may not be able to easily request new virtual machines for a broken or corrupted installation. Instead, you can use the `uninstall` script to remove Terraform Enterprise and all its services (excluding Docker) from a system.
+If you installed Terraform Enterprise on VMWare instances, you may not be able to easily request new virtual machines for a broken or corrupted installation. Instead, you can use the `uninstall` script to remove Terraform Enterprise and all of its services (excluding Docker) from a system.
+
+~> **Important**: This script does not touch the mounted disk path, so you will need to manually clean that up if necessary.
 
 Please contact [support][support] with questions or issues.
 
@@ -63,7 +65,7 @@ After you initiate `uninstall`:
 	Terraform Enterprise and Replicated should now be uninstalled.
 	```
 
-   The script stops the Replicated services, removes the Docker containers, and removes replicated executables and configuration files from the system.  
+   The script stops the Replicated services, removes the Docker containers, and removes Replicated executables and configuration files from the system.  
 
 
 2. Choose an option to prune Docker volumes:  
@@ -199,8 +201,6 @@ After you initiate `uninstall`:
 	```
 
 	You may see errors such as the ones above, these are normal and just mean the script is attempting to clean up something that's already been removed.
-
-~> **Important**: This script does not touch the mounted disk path, so you will need to manually clean it up if necessary.
 
 ## Run the Uninstaller
 
