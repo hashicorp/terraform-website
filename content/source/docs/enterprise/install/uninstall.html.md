@@ -123,7 +123,7 @@ After you initiate `uninstall`:
 	```
 
 
-3. The script removes dangling Docker volumes and the Docker networks that were created for the application.
+The script removes dangling Docker volumes and the Docker networks that were created for the application. You may see errors such as the ones below, these are normal and just mean the script is attempting to clean up something that's already been removed.
 
 	```
 	Deleted Networks:
@@ -199,8 +199,6 @@ After you initiate `uninstall`:
 	
 	Uninstall Complete
 	```
-
-	You may see errors such as the ones above, these are normal and just mean the script is attempting to clean up something that's already been removed.
 
 ## Run the Uninstaller
 
