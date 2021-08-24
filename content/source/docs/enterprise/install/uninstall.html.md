@@ -65,7 +65,7 @@ After you initiate `uninstall`:
 	Terraform Enterprise and Replicated should now be uninstalled.
 	```
 
-   The script stops the Replicated services, removes the Docker containers, and removes Replicated executables and configuration files from the system.  
+   	The script stops the Replicated services, removes the Docker containers, and removes Replicated executables and configuration files from the system.  
 
 
 2. Choose an option to prune Docker volumes:  
@@ -123,7 +123,7 @@ After you initiate `uninstall`:
 	```
 
 
-3. The script removes dangling Docker volumes and the Docker networks that were created for the application. Terraform Enterprise has been removed from the system.
+3. The script removes dangling Docker volumes and the Docker networks that were created for the application.
 
 	```
 	Deleted Networks:
