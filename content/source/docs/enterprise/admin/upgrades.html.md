@@ -68,7 +68,7 @@ version. [Learn more about availability during upgrades here](../system-overview
     $ replicatedctl app-release ls --fetch
     ```
 
-1. Execute the command below to list the available versions of airgap packages for the upgrade:
+5. List the available versions of airgap packages for the upgrade.
    
     ```
     $ replicatedctl app-release ls
