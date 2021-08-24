@@ -26,7 +26,7 @@ version. [Learn more about availability during upgrades here](../system-overview
     $ replicatedctl app-release ls --fetch
     ```
 
-1. In order to upgrade to the latest version of Terraform Enterprise, execute command below:
+3. Upgrade to the latest version of Terraform Enterprise.
    
     ```
     $ replicatedctl app-release apply
