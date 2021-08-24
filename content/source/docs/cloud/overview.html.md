@@ -62,12 +62,6 @@ Workspaces that use remote operations can use [`terraform_remote_state` data sou
 
 - More info: [Terraform State in Terraform Cloud](./workspaces/state.html), [Run Triggers](./workspaces/run-triggers.html)
 
-### Run Tasks
-
-Terraform lets you make tasks for runs. We call them run tasks.
-
-- More info: [Run Tasks](./workspaces/run-tasks.html)
-
 ### Version Control Integration
 
 Like other kinds of code, infrastructure-as-code belongs in version control, so Terraform Cloud is designed to work directly with your version control system (VCS) provider.
@@ -121,6 +115,18 @@ Nearly all of Terraform Cloud's features are available in [its API](./api/index.
 Terraform Cloud can send notifications about Terraform runs to other systems, including Slack and any other service that accepts webhooks. Notifications can be configured per-workspace.
 
 - More info: [Notifications](./workspaces/notifications.html)
+
+### Run Tasks
+
+-> **Note:** As of September 2021, Run Tasks are available only as a beta feature, and not all customers will see this functionality in their Terraform Cloud organization.
+
+Run Tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. The beta release of this feature allows users to add and execute these tasks during the new pre-apply stage which exists in between the plan and apply stages. Tasks are executed by sending an API payload to the external system. This payload contains a collection of run-related information and a callback URL which the external system can use to send updates back to Terraform Cloud. 
+
+The external system can then use this run information and respond back to Terraform Cloud with a passed or failed status. Terraform Cloud uses this status response to determine if a run should proceed, based on the task's enforcement settings within a workspace.
+
+There are several [partner integrations](https://www.hashicorp.com/integrations) already available, or you can create your own based on the [API](./api/run-tasks.html)
+
+- More info: [Run Tasks](./workspaces/run-tasks.html)
 
 ## Access Control and Governance
 
