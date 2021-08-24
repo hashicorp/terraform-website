@@ -19,7 +19,7 @@ After you initiate `uninstall`:
 
 	```
 	$ sudo ./uninstall.sh 
-	This script will completely uninstall Terraform Enterprise and Replicated on this system, as well as remove associated files. This includes the Replicated snapshot directory. Please back up /var/lib/replicated/snapshots if you wish to save those snapshots.
+	This script will completely uninstall Terraform Enterprise and Replicated on this system, as well as remove associated files. This includes the Replicated snapshot directory. Please back up /var/lib/replicated/snapshots if you wish to save them.
 	Do you wish to continue? (y/n)yes
 	Proceeding with uninstall...
 	Stopping and disabling the replicated services...
