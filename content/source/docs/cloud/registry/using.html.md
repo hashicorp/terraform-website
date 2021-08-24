@@ -63,7 +63,7 @@ Use the "Examples" dropdown to navigate to example modules and use the  Readme/I
 
 ![Terraform Cloud screenshot: a module submodules detail page](./images/using-module-examples.png)
 
-## Adding Private Modules to Configurations
+## Using Private Modules in Configurations
 
 The syntax for referencing private modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
 
