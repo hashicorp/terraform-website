@@ -337,7 +337,7 @@ single AWS Region. Using multiple AWS Regions will give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional AWS service. In this section, implementation patterns to support this are discussed.
 
-An identical infrastructure should be provisioned in a secondary AWS
+We recommend provisioning an identical infrastructure in a secondary AWS
 Region. Depending on recovery time objectives and tolerances for
 additional cost to support AWS Region failure, the infrastructure can be
 running (Warm Standby) or stopped (Cold Standby). Please note that with _Standalone_ implementation mode, only one Terraform Enterprise instance can be running against the same database. This deployment acts to minimize the Mean Time To Recovery (MTTR) in the event of a regional failure, avoiding the need to replicate and stand up the data plane infrastructure during an outage. In the event of the primary AWS Region hosting the Terraform Enterprise application fail, the secondary
