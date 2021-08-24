@@ -62,6 +62,12 @@ Workspaces that use remote operations can use [`terraform_remote_state` data sou
 
 - More info: [Terraform State in Terraform Cloud](./workspaces/state.html), [Run Triggers](./workspaces/run-triggers.html)
 
+### Run Tasks
+
+Terraform lets you make tasks for runs. We call them run tasks.
+
+- More info: [Run Tasks](./workspaces/run-tasks.html)
+
 ### Version Control Integration
 
 Like other kinds of code, infrastructure-as-code belongs in version control, so Terraform Cloud is designed to work directly with your version control system (VCS) provider.

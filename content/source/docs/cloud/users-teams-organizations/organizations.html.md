@@ -158,6 +158,10 @@ The policy sets page is for creating groups of Sentinel policies from a connecte
 
 Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information about Sentinel, or [Managing Sentinel Policies](../sentinel/manage-policies.html) for details about these two settings pages.
 
+### Task Event Hooks
+
+blah blah blah it's in beta ok! deal with it.
+
 ## Trial Expired Organizations
 
 Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a HashiCorp Sales Representative, please ask them about how to get a free trial.

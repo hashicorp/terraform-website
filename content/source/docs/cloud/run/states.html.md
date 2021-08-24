@@ -81,7 +81,11 @@ _Leaving this stage:_
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-## 5. The Apply Stage
+## 5. The PreApply stage
+
+Hey, it's a new stage!
+
+## 6. The Apply Stage
 
 _States in this stage:_
 
@@ -95,7 +99,7 @@ After applying, the run proceeds automatically to completion.
 - If the apply failed, the run ends in the **Apply Errored** state.
 - If a user canceled the apply by pressing the "Cancel Run" button, the run ends in the **Canceled** state.
 
-## 6. Completion
+## 7. Completion
 
 A run is considered completed if it finishes applying, if any part of the run fails, if there's nothing to do, or if a user chooses not to continue. Once a run is completed, the next run in the queue can enter the plan stage.
 
