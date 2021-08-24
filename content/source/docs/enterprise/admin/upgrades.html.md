@@ -20,7 +20,7 @@ version. [Learn more about availability during upgrades here](../system-overview
 ### Replicated Command Line Interface
 
 1. Connect to the Terraform Enterprise host machine using SSH.
-1. Execute the command below to fetch the versions of Terraform Enterprise.
+2. Fetch the versions of Terraform Enterprise.
    
     ```
     $ replicatedctl app-release ls --fetch
