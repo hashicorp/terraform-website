@@ -5,7 +5,7 @@ page_title: "Releases - Terraform Enterprise"
 
 # Terraform Enterprise Releases
 
-A new Terraform Enterprise release is shipped each month. The releases from the current calendar year are listed in the table below. The complete list is on [github](https://github.com/hashicorp/terraform-enterprise-release-notes).
+We ship a new Terraform Enterprise release each month. The releases from the current calendar year are listed in the table below, and the complete list is on [github](https://github.com/hashicorp/terraform-enterprise-release-notes).
 
 ~> The next release `v202109-1` is scheduled for September 14th, 2021.
 
@@ -23,4 +23,4 @@ A new Terraform Enterprise release is shipped each month. The releases from the 
 | [v202102-1](./v202102-1.html) |  507              | [2.29.0](https://release-notes.replicated.com/release-notes/2.29.0/)   |[0.13.5](https://github.com/hashicorp/terraform/releases/tag/v0.13.5)   | [0.16.1](https://docs.hashicorp.com/sentinel/changelog#0-16-1-october-21-2020) |
 | [v202101-1](./v202101-1.html) |  504              | [2.29.0](https://release-notes.replicated.com/release-notes/2.29.0/)   |[0.13.5](https://github.com/hashicorp/terraform/releases/tag/v0.13.5)   | [0.16.1](https://docs.hashicorp.com/sentinel/changelog#0-16-1-october-21-2020) |
 
-\*  Denotes a *required release*. All online upgrades will install this version before proceeding automatically, however airgap customers must upgrade to this version before proceeding to later releases.
+\* Denotes a <strong>required release</strong>. All online upgrades will automatically install this version, but airgap customers must upgrade to this version before proceeding to later releases.
