@@ -37,6 +37,8 @@ Terraform Cloud offers two kinds of CLI-driven runs, to support different stages
 
 To supplement these remote operations, you can also use the optional [Terraform Enterprise Provider][tfe-provider], which interacts with the resources supported by Terraform Cloud. It can be useful for editing variables and workspace settings through the Terraform CLI.
 
+-> **Note:** The [Structured Run Output](./workspaces/settings.html#user-interface) user interface will not apply to runs executed using the CLI-driven workflow, regardless of the setting in the Terraform Cloud workspace.
+
 ## Remote Backend Configuration
 
 To configure the remote backend, a stanza needs to be added to the Terraform configuration. It must specify the `remote` backend, the name of a Terraform Cloud organization, and the workspace(s) to use. The example below uses one workspace; see [the remote backend documentation][remote] for more details.
