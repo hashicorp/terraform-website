@@ -9,7 +9,7 @@ This section explains how to upgrade Terraform Enterprise to a new
 version. [Learn more about availability during upgrades here](../system-overview/reliability-availability.html#availability-during-upgrades).
 ## Before Upgrade
 
-Depending on the operation mode of your Terraform Enterprise, the matrix in the [Operation Modes](../system-overview/reliability-availability.html#operation-modes) section describes the responsibility of the backup and restore task on the storage layer.
+We strongly recommend creating a backup copy of the storage prior to upgrading your instance. Backup and restore responsibility varies depending on the [operation modes](../system-overview/reliability-availability.html#operation-modes).
 
 ## Online
 
