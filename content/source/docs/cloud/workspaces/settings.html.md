@@ -128,7 +128,7 @@ Select the user experience for displaying plan and apply details.
 
 The default experience is *Structured Run Output*, which displays your plan and applies in a friendly, human-readable format. Each individually expandable node represents a resource, with the relevant details contained within. There are also expandable sections displaying any configured outputs.
 
-~> **Note:** Your workspace must be configured to use a Terraform version of 1.0.5 or higher for the Structured Run Output experience to be fully supported. Workspaecs running versions from 0.15.2 may see partial functionality. Workspaces running versions below 0.15.2 will default to the "Console UI" experience regardless of the User Interface setting.  
+~> **Note:** Your workspace must be configured to use a Terraform version of 1.0.5 or higher for the Structured Run Output experience to be fully supported. Workspaces running versions from 0.15.2 may see partial functionality. Workspaces running versions below 0.15.2 will default to the "Console UI" experience regardless of the User Interface setting.  
 
 The Console UI experience is the traditional Terraform experience, where live text logging is streamed in real time to the UI.
 
