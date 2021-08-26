@@ -32,7 +32,7 @@ _Leaving this stage:_
 
 - If the `terraform plan` command failed, the run skips to completion (**Plan Errored** state).
 - If a user canceled the plan by pressing the "Cancel Run" button, the run skips to completion (**Canceled** state).
-- If the plan succeeded and doesn't require any changes (since it already matches the current infrastructure state), the run skips to completion (**Planned** state).
+- If the plan succeeded and neither cost estimatation nor Sentinel policy checks are will be done, the run skips to completion (**Planned** state).
 - If the plan succeeded and requires changes:
     - If cost estimation is enabled, the run proceeds automatically to the cost estimation stage.
     - If cost estimation is disabled and [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
