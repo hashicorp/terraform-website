@@ -122,6 +122,16 @@ By default, new workspaces in Terraform Cloud do not allow other workspaces to a
 
 -> **Note:** The default access permissions for new workspaces in Terraform Cloud changed in April 2021. Workspaces created before this change defaulted to allowing global access within their organization. These workspaces can be changed to more restrictive access at any time. Terraform Enterprise administrators can choose whether new workspaces on their instances default to global access or selective access.
 
+### User Interface
+
+Select the user experience for displaying plan and apply details. 
+
+The default experience is *Structured Run Output*, which displays your plan and apply results in a human-readable format. This includes nodes that you can expand to view details about each resource and any configured output. 
+
+The Console UI experience is the traditional Terraform experience, where live text logging is streamed in real time to the UI. This experience most closely emulates the CLI output.
+
+~> **Note:** Your workspace must be configured to use a Terraform version of 1.0.5 or higher for the Structured Run Output experience to be fully supported. Workspaces running versions from 0.15.2 may see partial functionality. Workspaces running versions below 0.15.2 will default to the "Console UI" experience regardless of the User Interface setting.  
+
 ## Locking
 
 ~> **Important:** Unlike other settings, locks can also be managed by users with permission to lock and unlock the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
