@@ -126,7 +126,7 @@ By default, new workspaces in Terraform Cloud do not allow other workspaces to a
 
 Select the user experience for displaying plan and apply details. 
 
-The default experience is *Structured Run Output*, which displays your plans and applies in a friendly, human-readable format. Each resource will be respresented by an individually expandable node, with the relevant details contained within. Any configured outputs will also be displayed in their own expandable section.
+The default experience is *Structured Run Output*, which displays your plan and applies in a friendly, human-readable format. Each individually expandable node represents a resource, with the relevant details contained within. There are also expandable sections displaying any configured outputs.
 
 -> **Note:** Your workspace must be configured to use a Terraform version of 1.0.5 or higher for the Structured Run Output experience to be fully supported. Workspaecs running versions from 0.15.2 may see partial functionality. Workspaces running versions below 0.15.2 will default to the "Console UI" experience regardless of the User Interface setting.  
 
