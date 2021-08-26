@@ -224,4 +224,4 @@ Do you want to override the soft failed policy check?
 
 ## Options for Plans and Applies
 
-To understand the various options available for plans and applies using the CLI-driven workflow, see [Run Modes and Options](/docs/cloud/run/modes-and-options.html).
+To understand the various options available for plans and applies using the CLI-driven workflow, visit [Run Modes and Options](/docs/cloud/run/modes-and-options.html).
