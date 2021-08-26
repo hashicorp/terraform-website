@@ -16,7 +16,7 @@ We strongly recommend creating a backup copy of the storage prior to upgrading y
 ### Replicated Console
 
 1. From the installer dashboard (`https://<TFE HOSTNAME>:8800/dashboard`),
-    click the "Check Now" button; the new version should be recognized.
+    click the "Check Now" button. Terraform recognizes the new version.
 1. Click "View Update".
 1. Review the release notes and then click "Install Update".
 
