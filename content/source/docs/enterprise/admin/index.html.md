@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Administration - Terraform Enterprise"
+description: |-
+  Find documentation about the two types of Terraform Enterprise administration: Infrastructure and Application.  
 ---
 
 # Administering Terraform Enterprise
