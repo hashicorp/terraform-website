@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Releases - Terraform Enterprise"
+description: |-
+  We ship a new Terraform Enterprise release each month. Find a list of recent releases and associated release notes.
 ---
 
 # Terraform Enterprise Releases
