@@ -12,7 +12,7 @@ A Terraform Cloud private module registry has a few key differences from the [pu
 
 - **Location:** You must use Terraform Cloud's web UI to search for modules and usage examples.
 - **Module `source` strings:** Private modules use a [four-part format](/docs/cloud/registry/using.html#using-private-modules-in-configurations).
-- **Authentication:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs. But when you run Terraform on the command line, you must [configure authentication](/docs/cloud/registry/using.html#authentication) to Terraform Cloud or your Terraform enterprise instance
+- **Authentication:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs. But when you run Terraform on the command line, you must [configure authentication](/docs/cloud/registry/using.html#authentication) to Terraform Cloud or your Terraform enterprise instance.
 
 
 ## Finding Private Modules
@@ -33,11 +33,11 @@ The module page appears, containing a list of all available modules. You can fil
 
 ### Shared Modules - Terraform Enterprise
 
-On Terraform Enterprise, you may have access to modules outside your organization depending on how your site admin has configured [module sharing](/docs/enterprise/admin/module-sharing.html). Modules that are shared with the current organization have a "Shared" badge.
+On Terraform Enterprise, your [module sharing](/docs/enterprise/admin/module-sharing.html) configuration may grant you access to modules outside your organization. Modules that are shared with your current organization have a "Shared" badge.
 
 ![Terraform Enterprise screenshot: shared module](./images/using-modules-list-shared.png)
 
-Modules in the current organization that are shared with other organizations have a badge that says "Sharing".
+Modules in your current organization that are shared with other organizations have a badge that says "Sharing".
 
 ![Terraform Enterprise screenshot: sharing module](./images/using-modules-list-sharing.png)
 
@@ -49,7 +49,7 @@ Click a module's "Details" button to view its details page. Use the "Versions" d
 
 ### Viewing Nested Modules and Examples
 
-If a module contains nested modules following the [standard module structure](/docs/language/modules/develop/structure.html), then a "Submodules" dropdown will appear below the module source information. The "Examples" dropdown will appear if there are examples.
+If a module contains nested modules following the [standard module structure](/docs/language/modules/develop/structure.html), then a "Submodules" dropdown appears below the module source information. An "Examples" dropdown also appears if there are examples.
 
 ![Terraform Cloud screenshot: a module submodules button](./images/using-submodules-dropdown.png)
 
@@ -77,7 +77,7 @@ module "vpc" {
 }
 ```
 
-To get started, you can copy and paste the usage example on the module's registry page, or use the [configuration designer](./design.html) to select multiple modules and fill in their variables.
+To get started, you can copy and paste the usage example on the module's registry page or use the [configuration designer](./design.html) to select multiple modules and fill in their variables.
 
 ### Generic Hostname - Terraform Enterprise
 
