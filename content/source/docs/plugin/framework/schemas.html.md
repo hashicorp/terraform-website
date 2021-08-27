@@ -2,7 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Schemas"
 description: |-
-  How to define a schema using the provider development framework.
+  How to define a schema using the provider development framework. Schemas specify the constraints of Terraform configuration blocks.
 ---
 
 # Schemas
