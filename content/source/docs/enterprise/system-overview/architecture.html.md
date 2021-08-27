@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Architecture Summary - System Overview - Terraform Enterprise"
+description: |-
+  Learn about the services used to run Terraform Enterprise and understand how data flows through the system.
 ---
 
 # Terraform Enterprise Architecture
