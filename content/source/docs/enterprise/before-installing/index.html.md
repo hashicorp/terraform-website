@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Pre-Install Checklist - Before Installing - Terraform Enterprise"
+description: |-
+  You need to make key architecture decisions and prepare infrastructure and data files before installing Terraform Enterprise. 
 ---
 
 # Terraform Enterprise Pre-Install Checklist
@@ -185,7 +187,7 @@ At a minimum, Terraform Enterprise will require the following permissions if the
 ```
 
 #### Instance Profile as Default Credentials
-You can use Terraform Enterprise's instance profile to provide default credentials to workspaces. Terraform will attempt to use the instance profile to provision resources when you do not set credentials as environment variables. However, this approach presents a few security risks: 
+You can use Terraform Enterprise's instance profile to provide default credentials to workspaces. Terraform will attempt to use the instance profile to provision resources when you do not set credentials as environment variables. However, this approach presents a few security risks:
 
 1. All workspaces will have the same permissions because they have access to the same instance profile. You cannot selectively allow or deny access to the instance profile for each workspace.
 2. Workspaces will share the instance profile with the Terraform Enterprise application. All workspaces within the application will have access to any resources that Terraform Enterprise depends on, such as its S3 bucket, KMS keys, etc.
