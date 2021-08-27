@@ -3,7 +3,7 @@ layout: "registry"
 page_title: "Terraform Registry - Private Registry"
 sidebar_current: "docs-registry-private"
 description: |-
-  Terraform can load private modules from private registries via Terraform Cloud.
+  Terraform Cloud allows Terraform to load private modules from private registries.
 ---
 
 # Private Registries
