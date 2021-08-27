@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Install and Config - Terraform Enterprise"
+description: |-
+  Terraform Enterprise must be installed on a customer-controlled machine. Installation steps vary by deployment method.
 ---
 
 # Install and Configure Terraform Enterprise
