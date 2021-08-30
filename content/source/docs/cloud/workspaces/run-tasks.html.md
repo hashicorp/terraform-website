@@ -17,7 +17,7 @@ The external system can then use this run information and respond back to Terraf
 
 ## Configuring a Run Task
 
--> **Note:** You must be an organization administrator to create a new task event hook. You must be at least a workspace owner in order to connect a task event hook to a given workspace.
+-> **Note:** You must be an organization owner to create a new task event hook. You must be at least a workspace administrator in order to connect a task event hook to a given workspace.
 
 To get started with run tasks, first navigate to the desired workspace, then select "Tasks" from the "Settings" menu:
 
