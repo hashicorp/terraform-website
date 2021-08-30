@@ -42,7 +42,7 @@ Environments with Docker-aware observability tooling (such as `cAdvisor`) can le
 
 ## Internal Monitoring
 
-Beginning in version 201811-1, Terraform Enterprise includes internal monitoring of critical application metrics using a statsd collector. The resulting metrics are included with the [diagnostic bundles provided to HashiCorp Support](../support/index.html). If the Terraform Enterprise instance is already running a collector on the same port, Terraform Enterprise may not start up correctly due to the conflict, and logs will indicate:
+Beginning in version 201811-1, Terraform Enterprise uses a statsd collector to monitor critical application metrics. Terraform Enterprise produces an error during start up if the instance is already running a collector on the same port:
 
 ```
 Error starting userland proxy: listen udp 0.0.0.0:XXXXX: bind: address already in use
