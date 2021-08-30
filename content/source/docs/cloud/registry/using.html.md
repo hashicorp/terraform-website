@@ -121,7 +121,7 @@ You can use either a [user token](/docs/cloud/users-teams-organizations/users.ht
 
 - **Team Token**: Allows you to access the private module registry from that team's organization and modules from any organizations that are sharing a private module registry with that team's organization.
 
-<br>
+<br/>
 _Permissions Example_
 
 A user belongs to three organizations (1, 2, and 3), and organizations 1 and 2 share private module access with each other. In this case, the user's token gives them access to the private module registries for all of the organizations they belong to: 1, 2, and 3. However, a team token from a team in organization 1 only gives the user access the private modules in organizations 1 and 2.
