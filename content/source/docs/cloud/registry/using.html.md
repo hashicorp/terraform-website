@@ -23,8 +23,8 @@ All users in your organization can view your private module registry. To find av
 
 The module page appears, containing a list of all available modules. You can filter with the:
 
-- **"Providers" dropdown**: Shows only modules for the selected provider.
 - **Search field**: Shows modules with titles that contain the specified keyword. Note that it does not search READMEs or resource details.
+- **"Providers" dropdown**: Shows only modules for the selected provider.
 
 ![Terraform Cloud screenshot: the list of available modules](./images/using-modules-list.png)
 
