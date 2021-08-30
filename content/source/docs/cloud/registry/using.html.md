@@ -11,7 +11,7 @@ page_title: "Using Private Modules - Private Module Registry - Terraform Cloud a
 A Terraform Cloud private module registry has a few key differences from the [public Terraform Registry](/docs/registry/index.html):
 
 - **Location:** You must use Terraform Cloud's web UI to search for modules and usage examples.
-- **Module `source` strings:** Private modules use a [four-part format](/docs/cloud/registry/using.html#using-private-modules-in-configurations).
+- **Module `source` strings:** Private modules use a [four-part format](/docs/cloud/registry/using.html#using-private-modules-in-configurations): `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
 - **Authentication:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs. But when you run Terraform on the command line, you must [authenticate](/docs/cloud/registry/using.html#authentication) to Terraform Cloud or your Terraform enterprise instance.
 
 
