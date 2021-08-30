@@ -49,7 +49,7 @@ resource "aws_instance" "example" {
     Name        = "Application Server"
     Environment = "production"
   }
-   root_block_device {
+  root_block_device {
     delete_on_termination = false
   }
 }
