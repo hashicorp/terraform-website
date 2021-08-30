@@ -366,7 +366,7 @@ curl \
     "attributes": {
       "external-id": "org-Bzyc2JuegvVLAibn",
       "created-at": "2021-08-30T18:09:57.561Z",
-      "email": "user@examplecom",
+      "email": "user@example.com",
       "session-timeout": null,
       "session-remember": null,
       "collaborator-auth-policy": "password",
