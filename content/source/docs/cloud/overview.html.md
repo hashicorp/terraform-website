@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Overview of Features - Terraform Cloud and Terraform Enterprise"
+description: |-
+  How Terraform Cloud and Terraform Enterprise help teams use Terraform to manage infrastructure at scale.
 ---
 
 # Overview of Terraform Cloud Features
