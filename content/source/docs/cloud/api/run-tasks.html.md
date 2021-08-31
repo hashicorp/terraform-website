@@ -382,7 +382,6 @@ curl \
 
 ## Attach an Event Hook to a Workspace as a Task
 
--------FIX ME BELOW THIS LINE-------
 `POST /workspaces/:workspace_id/tasks
 
 Parameter | Description
@@ -403,21 +402,29 @@ Properties without a default value are required.
 
 Key path | Type            | Default | Description
 ---------|-----------------|---------|------------
-`data.type`                                   | string  |                  | Must be `"event-hooks"`.
-`data.attributes.name`                        | string  | (previous value) | The name of the event hook. Can include letters, numbers, `-`, and `_ `.
-`data.attributes.url`                         | string  | (previous value) | URL to send a run task payload.
-`data.attributes.category`                    | string  | (previous value) | Must be `"task"`.
-`data.attributes.hmac-key`                    | string  | (previous value) | Optional HMAC key to verify event hook.
-`data[]` | array\[object\] |         | A list of resource identifier objects that defines the workspaces the policy set will be attached to. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`).
+`data.type`                                   | string |  | Must be `"tasks"`.
+`data.attributes.enforcement-level`           | string |  | The enforcement level of the task. Must be `"advisory"` or `"mandatory"`.
+`data.relationships.event-hook.data.id`       | string |  | The ID of the event hook.
+`data.relationships.event-hook.data.type`     | string |  | Must be `"event-hooks"`.
 
 ### Sample Payload
 
 ```json
 {
-  "data": [
-    { "id": "ws-u3S5p2Uwk21keu1s", "type": "workspaces" },
-    { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
-  ]
+  "data": {
+    "type": "tasks",
+      "attributes": {
+        "enforcement-level": "advisory"
+      },
+      "relationships": {
+        "event-hook": {
+          "data": {
+            "id": "evhook-7oD7doVTQdAFnMLV",
+            "type": "event-hooks"
+          }
+        }
+      }
+  }
 }
 ```
 
@@ -429,43 +436,207 @@ curl \
   -H "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1/relationships/workspaces
+  https://app.terraform.io/api/v2/workspaces/ws-PphL7ix3yGasYGrq/tasks
 ```
 
-## Remove Policies from the Policy Set
+### Sample Response
+```json
+{
+  "data": {
+    "id": "task-tBXYu8GVAFBpcmPm",
+      "type": "tasks",
+      "attributes": {
+        "enforcement-level": "advisory"
+      },
+      "relationships": {
+        "event-hook": {
+          "data": {
+            "id": "evhook-7oD7doVTQdAFnMLV",
+            "type": "event-hooks"
+          }
+        },
+        "workspace": {
+          "data": {
+            "id": "ws-PphL7ix3yGasYGrq",
+            "type": "workspaces"
+          }
+        }
+      },
+      "links": {
+        "self": "/api/v2/tasks/task-tBXYu8GVAFBpcmPm"
+      }
+  }
+}
+```
 
-`DELETE /policy-sets/:id/relationships/policies`
+## List Tasks
+
+`GET /workspaces/:workspace_id/tasks`
+
+Parameter            | Description
+---------------------|------------
+`:workspace_id` | The workspace to list tasks for.
+
+Status  | Response                                      | Reason
+--------|-----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "tasks"`)       | Request was successful
+[404][] | [JSON API error object][]                     | Workspace not found, or user unauthorized to perform action
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter           | Description
+--------------------|------------
+`page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`        | **Optional.** If omitted, the endpoint will return 20 policy sets per page.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  https://app.terraform.io/api/v2/workspaces/ws-kRsDRPtTmtcEme4t/tasks
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+  {
+    "id": "task-tBXYu8GVAFBpcmPm",
+      "type": "tasks",
+      "attributes": {
+        "enforcement-level": "advisory"
+      },
+      "relationships": {
+        "event-hook": {
+          "data": {
+            "id": "evhook-hu74ST39g566Q4m5",
+            "type": "event-hooks"
+          }
+        },
+        "workspace": {
+          "data": {
+            "id": "ws-kRsDRPtTmtcEme4t",
+            "type": "workspaces"
+          }
+        }
+      },
+      "links": {
+        "self": "/api/v2/tasks/task-tBXYu8GVAFBpcmPm"
+      }
+  }
+  ],
+  "links": {
+    "self": "https://app.terraform.io/api/v2/workspaces/ws-kRsDRPtTmtcEme4t/tasks?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://app.terraform.io/api/v2/workspaces/ws-kRsDRPtTmtcEme4t/tasks?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "https://app.terraform.io/api/v2/workspaces/ws-kRsDRPtTmtcEme4t/tasks?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "page-size": 20,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 1,
+      "total-count": 1
+    }
+  }
+}
+```
+
+## Show a Task
+
+`GET /tasks/:id`
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the policy set to remove policies from. Use the "List Policy Sets" endpoint to find IDs.
+`:id`     | The ID of the task to show. Use the "List Tasks" endpoint to find IDs.
 
-Status  | Response                  | Reason
---------|---------------------------|----------
-[204][] | Nothing                   | The request was successful
-[404][] | [JSON API error object][] | Policy set not found or user unauthorized to perform action
-[422][] | [JSON API error object][] | Malformed request body (wrong types, etc.)
+Status  | Response                                      | Reason
+--------|-----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "tasks"`) | The request was successful
+[404][] | [JSON API error object][]               | Task not found or user unauthorized to perform action
 
-~> **Note:** This endpoint may only be used when there is no VCS repository associated with the policy set.
+### Sample Request
+
+```shell
+curl --request GET \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/tasks/task-tBXYu8GVAFBpcmPm
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "task-tBXYu8GVAFBpcmPm",
+      "type": "tasks",
+      "attributes": {
+        "enforcement-level": "advisory"
+      },
+      "relationships": {
+        "event-hook": {
+          "data": {
+            "id": "evhook-hu74ST39g566Q4m5",
+            "type": "event-hooks"
+          }
+        },
+        "workspace": {
+          "data": {
+            "id": "ws-kRsDRPtTmtcEme4t",
+            "type": "workspaces"
+          }
+        }
+      },
+      "links": {
+        "self": "/api/v2/tasks/task-tBXYu8GVAFBpcmPm"
+      }
+  }
+}
+```
+
+## Update a Task
+
+`PATCH /tasks/:id`
+
+Parameter | Description
+----------|------------
+`:id`     | The ID of the task to update. Use the "List Tasks" endpoint to find IDs.
+
+Status  | Response                                      | Reason
+--------|-----------------------------------------------|----------
+[200][] | [JSON API document][] (`type: "tasks"`) | The request was successful
+[404][] | [JSON API error object][]               | Task not found or user unauthorized to perform action
+[422][] | [JSON API error object][]               | Malformed request body (missing attributes, wrong types, etc.)
 
 ### Request Body
 
-This DELETE endpoint requires a JSON object with the following properties as a request payload.
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
 Properties without a default value are required.
 
-Key path | Type            | Default | Description
----------|-----------------|---------|------------
-`data[]` | array\[object\] |         | A list of resource identifier objects that defines which policies will be removed from the set. These objects must contain `id` and `type` properties, and the `type` property must be `policies` (e.g. `{ "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" }`).
+Key path                                      | Type    | Default          | Description
+----------------------------------------------|-------- |------------------|------------
+`data.type`                                   | string  | (previous value) | Must be `"tasks"`.
+`data.attributes.enforcement-level`           | string  | (previous value) | The enforcement level of the task. Must be `"advisory"` or `"mandatory"`.
 
 ### Sample Payload
 
 ```json
 {
-  "data": [
-    { "id": "pol-u3S5p2Uwk21keu1s", "type": "policies" },
-    { "id": "pol-2HRvNs49EWPjDqT1", "type": "policies" }
-  ]
+  "data": {
+    "type": "tasks",
+      "attributes": {
+        "enforcement-level": "mandatory"
+      }
+  }
 }
 ```
 
@@ -473,74 +644,56 @@ Key path | Type            | Default | Description
 
 ```shell
 curl \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/vnd.api+json" \
-  --request DELETE \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
   --data @payload.json \
-  https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1/relationships/policies
+  https://app.terraform.io/api/v2/tasks/task-tBXYu8GVAFBpcmPm
 ```
 
-## Detach the Policy Set from workspaces
-
-`DELETE /policy-sets/:id/relationships/workspaces`
-
-Parameter | Description
-----------|------------
-`:id`     | The ID of the policy set to detach from workspaces. Use the "List Policy Sets" endpoint to find IDs.
-
--> **Note:** Policy sets marked as global cannot be detached from individual workspaces.
-
-Status  | Response                  | Reason
---------|---------------------------|----------
-[204][] | Nothing                   | The request was successful
-[404][] | [JSON API error object][] | Policy set not found or user unauthorized to perform action
-[422][] | [JSON API error object][] | Malformed request body (wrong types, etc.)
-
-
-### Request Body
-
-This DELETE endpoint requires a JSON object with the following properties as a request payload.
-
-Properties without a default value are required.
-
-Key path | Type            | Default | Description
----------|-----------------|---------|------------
-`data[]` | array\[object\] |         | A list of resource identifier objects that defines which workspaces the policy set will be detached from. These objects must contain `id` and `type` properties, and the `type` property must be `workspaces` (e.g. `{ "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }`). Obtain workspace IDs from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.
-
-### Sample Payload
+### Sample Response
 
 ```json
 {
-  "data": [
-    { "id": "ws-u3S5p2Uwk21keu1s", "type": "workspaces" },
-    { "id": "ws-2HRvNs49EWPjDqT1", "type": "workspaces" }
-  ]
+  "data": {
+    "id": "task-tBXYu8GVAFBpcmPm",
+      "type": "tasks",
+      "attributes": {
+        "enforcement-level": "mandatory"
+      },
+      "relationships": {
+        "event-hook": {
+          "data": {
+            "id": "evhook-hu74ST39g566Q4m5",
+            "type": "event-hooks"
+          }
+        },
+        "workspace": {
+          "data": {
+            "id": "ws-kRsDRPtTmtcEme4t",
+            "type": "workspaces"
+          }
+        }
+      },
+      "links": {
+        "self": "/api/v2/tasks/task-tBXYu8GVAFBpcmPm"
+      }
+  }
 }
 ```
 
-### Sample Request
+## Delete a Task
 
-```shell
-curl \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/vnd.api+json" \
-  --request DELETE \
-  --data @payload.json \
-  https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1/relationships/workspaces
-```
-
-## Delete a Policy Set
-
-`DELETE /policy-sets/:id`
+`DELETE /tasks/:id`
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the policy set to delete. Use the "List Policy Sets" endpoint to find IDs.
+`:id`     | The ID of the Task to delete. Use the "List Tasks" endpoint to find IDs.
 
 Status  | Response                  | Reason
 --------|---------------------------|-------
-[204][] | Nothing                   | Successfully deleted the policy set
-[404][] | [JSON API error object][] | Policy set not found, or user unauthorized to perform action
+[204][] | Nothing                   | Successfully deleted the event hook
+[404][] | [JSON API error object][] | Task not found, or user unauthorized to perform action
 
 
 ### Sample Request
@@ -550,146 +703,5 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1
+  https://app.terraform.io/api/v2/tasks/task-tBXYu8GVAFBpcmPm
 ```
-
-## Create a Policy Set Version
-
-For versioned policy sets which have no VCS repository attached, versions of policy code may be uploaded directly to the API by creating a new policy set version and, in a subsequent request, uploading a tarball (tar.gz) of data to it.
-
-`POST /policy-sets/:id/versions`
-
-Parameter | Description
-----------|------------
-`:id`     | The ID of the policy set to create a new version for.
-
-Status  | Response                                              | Reason
---------|-------------------------------------------------------|-------
-[201][] | [JSON API document][] (`type: "policy-set-versions"`) | The request was successful.
-[404][] | [JSON API error object][]                             | Policy set not found or user unauthorized to perform action
-[422][] | [JSON API error object][]                             | The policy set does not support uploading versions.
-
-### Sample Request
-
-```shell
-curl \
-  --header "Authorization: Bearer $TOKEN" \
-  --header "Content-Type: application/vnd.api+json" \
-  --request POST \
-  https://app.terraform.io/api/v2/policy-sets/polset-3yVQZvHzf5j3WRJ1/versions
-```
-
-### Sample Response
-
-```json
-{
-  "data": {
-    "id": "polsetver-cXciu9nQwmk9Cfrn",
-    "type": "policy-set-versions",
-    "attributes": {
-      "source": "tfe-api",
-      "status": "pending",
-      "status-timestamps": {},
-      "error": null,
-      "created-at": "2019-06-28T23:53:15.875Z",
-      "updated-at": "2019-06-28T23:53:15.875Z"
-    },
-    "relationships": {
-      "policy-set": {
-        "data": {
-          "id": "polset-ws1CZBzm2h5K6ZT5",
-          "type": "policy-sets"
-        }
-      }
-    },
-    "links": {
-      "self": "/api/v2/policy-set-versions/polsetver-cXciu9nQwmk9Cfrn",
-      "upload": "https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox..."
-    }
-  }
-}
-```
-
-The `upload` link URL in the above response is valid for one hour after creation. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the [Show Policy Set](#show-a-policy-set) endpoint again to verify that the status has changed from `pending` to `ready`.
-
-## Upload Policy Set Versions
-
-`PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
-
-The URL is provided in the `upload` attribute in the `policy-set-versions` resource.
-
-### Sample Request
-
-In the example below, `policy-set.tar.gz` is the local filename of the policy set version file to upload.
-
-```shell
-curl \
-  --header "Content-Type: application/octet-stream" \
-  --request PUT \
-  --data-binary @policy-set.tar.gz \
-  https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox...
-```
-
-## Show a Policy Set Version
-
-`GET /policy-set-versions/:id`
-
-Parameter | Description
-----------|------------
-`:id`     | The ID of the policy set version to show.
-
-Status  | Response                                              | Reason
---------|-------------------------------------------------------|-------
-[200][] | [JSON API document][] (`type: "policy-set-versions"`) | The request was successful.
-[404][] | [JSON API error object][]                             | Policy set version not found or user unauthorized to perform action
-
-### Sample Request
-
-```shell
-curl \
-  --header "Authorization: Bearer $TOKEN" \
-  --request GET \
-  https://app.terraform.io/api/v2/policy-set-versions/polsetver-cXciu9nQwmk9Cfrn
-```
-
-### Sample Response
-
-```json
-{
-  "data": {
-    "id": "polsetver-cXciu9nQwmk9Cfrn",
-    "type": "policy-set-versions",
-    "attributes": {
-      "source": "tfe-api",
-      "status": "pending",
-      "status-timestamps": {},
-      "error": null,
-      "created-at": "2019-06-28T23:53:15.875Z",
-      "updated-at": "2019-06-28T23:53:15.875Z"
-    },
-    "relationships": {
-      "policy-set": {
-        "data": {
-          "id": "polset-ws1CZBzm2h5K6ZT5",
-          "type": "policy-sets"
-        }
-      }
-    },
-    "links": {
-      "self": "/api/v2/policy-set-versions/polsetver-cXciu9nQwmk9Cfrn",
-      "upload": "https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NWJPbHQ4QjV4R1ox..."
-    }
-  }
-}
-```
-
-The `upload` link URL in the above response is valid for one hour after the `created_at` timestamp of the policy set version. Make a `PUT` request to this URL directly, sending the policy set contents in `tar.gz` format as the request body. Once uploaded successfully, you can request the [Show Policy Set Version](#show-a-policy-set-version) endpoint again to verify that the status has changed from `pending` to `ready`.
-
-## Relationships
-
-The following relationships may be present in various responses:
-
-* `workspaces`: The workspaces to which the policy set applies.
-* `policies`: Individually managed policies which are associated with the policy set.
-* `newest-version`: The most recently created policy set version, regardless of status. Note that this relationship may include an errored and unusable version, and is intended to allow checking for VCS errors.
-* `current-version`: The most recent **successful** policy set version.
