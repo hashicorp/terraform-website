@@ -70,7 +70,7 @@ When you create a new workspace, a few things happen:
 
 - If you connected a VCS repository to the workspace, Terraform Cloud automatically registers a webhook with your VCS provider. The next time new commits appear in the selected branch of that repo or a PR is opened to that branch, Terraform Cloud will automatically queue a Terraform plan for the workspace. For more information, see [VCS Connections: Webhooks](../vcs/index.html#webhooks).
 
-    ~> **Important**: A workspace with no runs will not accept new runs via VCS webhook. You must manually queue at least one run to confirm that the workspace is ready for further runs.
+    ~> **Note:** A workspace with no runs will not accept new runs via VCS webhook. You must manually queue at least one run to confirm that the workspace is ready for further runs.
 
 Most of the time, you'll want to do one or more of the following after creating a workspace:
 
