@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Connecting VCS Providers - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn to connect a version control system (VCS) to gain additional features and better workflows in Terraform Cloud.
 ---
 
 # Connecting VCS Providers to Terraform Cloud
@@ -58,7 +60,7 @@ Terraform Cloud uses webhooks to monitor new commits and pull requests.
 
 For most supported VCS providers, Terraform Cloud does not need an SSH key — it can do everything it needs with the provider's API and an OAuth token. The exceptions are Azure DevOps Server and Bitbucket Server, which require an SSH key for downloading repository contents. The setup instructions for  [Azure DevOps Server](./azure-devops-server.html) and [Bitbucket Server](./bitbucket-server.html) include this step.
 
-For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials. 
+For other VCS providers, most organizations will not need to add an SSH private key. However, if the organization repositories include Git submodules that can only be accessed via SSH, an SSH key can be added along with the OAuth credentials.
 
 For VCS providers where adding an SSH private key is optional, SSH will only be used to clone Git submodules. All other Git operations will still use HTTPS.
 
