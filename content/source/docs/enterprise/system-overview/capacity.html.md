@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Capacity and Performance - System Overview - Terraform Enterprise"
+description: |-
+  Learn about maximum capacity and performance as well as how to adjust capacity and memory for your instance.
 ---
 
 # Capacity and Performance
