@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "SAML Login - Terraform Enterprise"
+description: |-
+  How to log in when SAML is configured and how admins can change the user API token session timeout.
 ---
 
 # Login with SAML
