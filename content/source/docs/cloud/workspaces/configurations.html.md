@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Terraform Configurations - Workspaces - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Workspaces organize infrastructure. Learn how to provide configuration versions for a workspace and organize multiple environments.
 ---
 
 
