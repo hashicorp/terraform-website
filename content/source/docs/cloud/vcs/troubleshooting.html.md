@@ -84,6 +84,10 @@ The domain name for Terraform Cloud's SaaS release changed on 02/22 at 9AM from 
 
 The fix is to update the OAuth Callback URL in your VCS provider to use app.terraform.io instead of atlas.hashicorp.com.
 
+### Can't trigger workspace runs from VCS webhook
+
+A workspace with no runs will not accept new runs from a VCS webhook. You must queue at least one run manually.
+
 ### Changing the URL for a VCS provider
 
 On rare occasions, you might need Terraform Cloud to change the URL it uses to reach your VCS provider. This usually only happens if you move your VCS server or the VCS vendor changes their supported API versions.
