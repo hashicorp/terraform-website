@@ -51,13 +51,8 @@ Our rule of thumb is 10 Terraform runs per CPU core, with 2 CPU cores allocated 
 So a 4-core instance with 16 GB of memory could comfortably run 20 Terraform runs, if the runs are allocated the default
 512 MB each.
 
-As of the `v202109-1` TFE release, the maximum number of CPU cores that can be
-allocated to a Terraform run can be adjusted via the `capacity_cpus` Replicated
-configuration option. The configuration will place a hard quota on the number of
-cores that a Terraform operation (and the underlying provider plugin logic) can
-consume. This can be an effective tool to prevent one expensive workspace from
+As of the `v202109-1` TFE release, you can use the `capacity_cpus` Replicated configuration option to set the maximum number of CPU cores that can be allocated to a Terraform run. When `capacity_cpus` is set, the configuration places a hard quota on the number of cores that a Terraform operation and underlying provider plugin logic can consume. This can be an effective tool to prevent one expensive workspace from
 monopolizing the CPU resources of the host.
-
 ## Disk
 
 The amount of disk storage available to a system plays a small role in the capacity of an instance.
