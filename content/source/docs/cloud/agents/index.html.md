@@ -54,7 +54,15 @@ Agents do not guarantee a clean working environment per Terraform execution. Eac
 
 ### Updating
 
-The agent will automatically receive application code updates for the agent only. Administrators are required to update the host operating system and all other installed software.
+By default, the agent will automatically update itself to the latest minor version. Administrators are required to update the host operating system and all other installed software.
+
+To customize this update behavior, pass the flag `-auto-update` or set the environment variable `TFC_AGENT_AUTO_UPDATE`. The valid options are presented in the table below.
+
+Update Setting | Behavior
+-- | --
+`minor` | Matches the default behavior, automatically update the agent to the latest minor version.
+`patch` | The agent will only be updated to the newest patch version, new minor versions will require a manual update.
+`disabled` | Disables automatic updates, all updates will be manual.
 
 ### Security Considerations
 
