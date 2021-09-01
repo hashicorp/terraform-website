@@ -84,7 +84,7 @@ or “Shared-core machine types” in GCP terms, such as f1-series and g1-series
 
 ### Object Storage (Cloud Storage)
 
-A [Regional Cloud Storage](https://cloud.google.com/storage/docs/storage-classes#regional) bucket must be
+A [Regional Cloud Storage](https://cloud.google.com/storage/docs/storage-classes) bucket must be
 specified during the Terraform Enterprise installation for application data to be stored
 securely and redundantly away from the Compute Engine VMs running the
 application. This Cloud Storage bucket must be in the same region as the Compute Engine and Cloud SQL
@@ -313,7 +313,7 @@ it along with some global services such as DNS.
 
   - GCP now offers a [Point-in-time recovery](https://cloud.google.com/sql/docs/postgres/backup-recovery/pitr) option for Cloud SQL databases which could be incorporated into a backup and recovery scheme with reduced downtime and higher reliability.\*
 
-- [Multi-Regional Cloud Storage replication](https://cloud.google.com/storage/docs/storage-classes#multi-regional) must be configured so the object storage component of the Storage Layer is available in multiple GCP Regions.
+- [Multi-Regional Cloud Storage replication](https://cloud.google.com/storage/docs/storage-classes) must be configured so the object storage component of the Storage Layer is available in multiple GCP Regions.
 
 - DNS must be redirected to the Forwarding Rule acting as the entry point for the infrastructure deployed in the secondary GCP Region.
 
@@ -356,7 +356,7 @@ The cluster is comprised of essentially independent nodes in a SaaS type model. 
 
 #### Memory Cache
 
-The GCP implementation of the memory cache is handled by [Google Cloud Memorystore services](https://https://cloud.google.com/memorystore). Specifically using [Memorystore for Redis](https://https://cloud.google.com/memorystore/docs/redis).
+The GCP implementation of the memory cache is handled by [Google Cloud Memorystore services](https://cloud.google.com/memorystore). Specifically using [Memorystore for Redis](https://cloud.google.com/memorystore/docs/redis).
 
 [Memorystore for Redis Overview](https://cloud.google.com/memorystore/docs/redis/redis-overview) provides a high level description of the implementation options for the memory cache. A primary differentiator is Basic Tier and Standard Tier. The primary difference is that the Standard Tier offers [high availability](https://cloud.google.com/memorystore/docs/redis/high-availability)] where instances are always replicated across zones and provides 99.9% availability SLAs (note that reading from a replica is not supported). A lower testing or sandbox environment could use the Basic Tier, however, a production level environment should always use Standard Tier to gain the HA features that coincide with the other external services in the Terraform Enterprise platform.
 
