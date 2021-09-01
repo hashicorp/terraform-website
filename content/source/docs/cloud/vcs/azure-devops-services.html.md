@@ -47,11 +47,18 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
     ~> **Important:** The Azure DevOps Services account you use for connecting Terraform Cloud must have Project Collection Administrator access to any projects containing repositories of Terraform configurations, since creating webhooks requires admin permissions. It is not possible to create custom access roles with lower levels of privilege, as Microsoft does not currently allow delegation of this capability. If you're unable to load the link above, you can create a new application for the next step at one of the following links: `https://aex.dev.azure.com/app/register?mkt=en-US` or `https://app.vsaex.visualstudio.com/app/register?mkt=en-US`.
 
-1. Go into your preferred organization, click your user icon in the top right, and then select "More options" > "User Settings" > "Profile". Your profile page appears.
+1. Go into your preferred organization.
 
-1. In the left sidebar, click "Authorizations" and then click the link to register a new app. A form appears asking for your company and application information.
+1. Click your user icon in the top right, and then click ". . ." > "User settings".
+    ![Azure DevOps Services Screenshot: Opening User settings Menu](./images/azure-devops-services-user-settings.png)
 
-1. Fill out the fields and checkboxes with the corresponding values currently displayed in your Terraform Cloud browser tab. Terraform Cloud lists the values in the order they appear, and includes controls for copying values to your clipboard. Here is an example:
+1. From the User settings menu, click "Profile". Your profile page appears.
+
+1. In the left sidebar, click "Authorizations". The Authorized OAuth Apps page appears.
+
+1. Click the link to register a new app. A form appears asking for your company and application information.
+
+1. Fill out the fields and checkboxes with the corresponding values currently displayed in your Terraform Cloud browser tab. Terraform Cloud lists the values in the order they appear and includes controls for copying values to your clipboard. Here is an example:
 
     Field name                               | Value
     -----------------------------------------|--------------------------------------------------
