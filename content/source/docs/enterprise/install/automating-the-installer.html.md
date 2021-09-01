@@ -149,6 +149,7 @@ The following settings apply to every installation:
 - `installation_type` — (Required) One of `poc` or `production`.
 - `enc_password` — (Required) The [password](./encryption-password.html) used to encrypt and decrypt the internally-managed Vault unseal key and root token. Not required only when opting out of internally-managed Vault.
 - `capacity_concurrency` — Number of concurrent plans and applies; defaults to `10`.
+- `capacity_cpus` - The maximum number of CPU cores that a Terraform plan or apply can use on the system; defaults to `0` (unlimited).
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `512`.
 - `enable_metrics_collection` — Whether Terraform Enterprise's [internal metrics collection](../admin/monitoring.html#internal-monitoring) should be enabled; defaults to `true`.
 - `iact_subnet_list` - A comma-separated list of CIDR masks that configure the ability to retrieve the [IACT](./automating-initial-user.html) from outside the host. For example: 10.0.0.0/24. If not set, no subnets can retrieve the IACT.
