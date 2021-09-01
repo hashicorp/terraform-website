@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Creating Workspaces - Workspaces - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Workspaces organize infrastructure into meaningful groups. Learn how to create and configure workspaces through the UI. 
 ---
 
 # Creating Workspaces
