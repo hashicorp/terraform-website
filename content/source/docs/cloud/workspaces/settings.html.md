@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Settings - Workspaces - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Workspaces organize infrastructure. Find documentation about workspace settings for notifications, permissions, and more.
 ---
 
 # Workspace Settings
@@ -124,9 +126,9 @@ By default, new workspaces in Terraform Cloud do not allow other workspaces to a
 
 ### User Interface
 
-Select the user experience for displaying plan and apply details. 
+Select the user experience for displaying plan and apply details.
 
-The default experience is *Structured Run Output*, which displays your plan and apply results in a human-readable format. This includes nodes that you can expand to view details about each resource and any configured output. 
+The default experience is *Structured Run Output*, which displays your plan and apply results in a human-readable format. This includes nodes that you can expand to view details about each resource and any configured output.
 
 The Console UI experience is the traditional Terraform experience, where live text logging is streamed in real time to the UI. This experience most closely emulates the CLI output.
 
