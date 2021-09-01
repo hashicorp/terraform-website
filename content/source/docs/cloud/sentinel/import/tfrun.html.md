@@ -32,8 +32,10 @@ tfrun
 ├── workspace
 │   ├── id (string)
 │   ├── name (string)
+│   ├── created_at (string)
 │   ├── description (string)
 │   ├── auto_apply (bool)
+│   ├── tags (array of strings)
 │   ├── working_directory (string)
 │   └── vcs_repo (map of keys)
 └── cost_estimate
@@ -72,7 +74,7 @@ Specifies the ID that is associated with the current Terraform run.
 
 The `created_at` value within the [root namespace](#namespace-root) specifies the time that the run was created. The timestamp returned follows the format outlined in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339).
 
-Users can use the `time` import to [load](https://docs.hashicorp.com/sentinel/imports/time#time-load-timeish) a run timestamp and create a new timespace from the specicied value. See the `time` import [documentation](https://docs.hashicorp.com/sentinel/imports/time#import-time) for available actions that can be performed on timespaces.
+Users can use the `time` import to [load](https://docs.hashicorp.com/sentinel/imports/time#time-load-timeish) a run timestamp and create a new timespace from the specified value. See the `time` import [documentation](https://docs.hashicorp.com/sentinel/imports/time#import-time) for available actions that can be performed on timespaces.
 
 ### Value: `message`
 
@@ -108,7 +110,7 @@ Specifies whether the plan is in refresh-only mode, which ignores configuration 
 
 ### Value: `replace_addrs`
 
-* **Value Type:** An array of strings representing [resource addresses](/docs/cli/state/resource-addressing.html). 
+* **Value Type:** An array of strings representing [resource addresses](/docs/cli/state/resource-addressing.html).
 
 Provides the targets specified using the [`-replace`](/docs/cli/commands/plan.html#resource-targeting) flag in the CLI or the `replace-addrs` attribute in the API. Will be undefined if no resource targets are specified.
 
@@ -187,6 +189,14 @@ main = rule when strings.has_suffix(tfrun.workspace.name, "-dev") is false {
 }
 ```
 
+### Value: `created_at`
+
+* **Value Type:** String.
+
+Specifies the time that the workspace was created. The timestamp returned follows the format outlined in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339).
+
+Users can use the `time` import to [load](https://docs.hashicorp.com/sentinel/imports/time#time-load-timeish) a workspace timestamp, and create a new timespace from the specicied value. See the `time` import [documentation](https://docs.hashicorp.com/sentinel/imports/time#import-time) for available actions that can be performed on timespaces.
+
 ### Value: `description`
 
 * **Value Type:** String.
@@ -200,6 +210,12 @@ This value can be `null`.
 * **Value Type:** Boolean.
 
 Contains the workspace's [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) setting.
+
+### Value: `tags`
+
+* **Value Type:** Array of strings.
+
+Contains the list of tag names for the workspace.
 
 ### Value: `working_directory`
 

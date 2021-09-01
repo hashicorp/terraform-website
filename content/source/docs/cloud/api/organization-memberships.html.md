@@ -75,7 +75,7 @@ Key path                                      | Type            | Default   | De
             "id": "team-GeLZkdnK6xAVjA5H"
           }
         ]
-      },
+      }
     },
     "type": "organization-memberships"
   }

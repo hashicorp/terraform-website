@@ -52,7 +52,7 @@ repositories and variable definitions provided by the Terraform Admin.
 | | Create a team that can manage workspaces in that organization. |
 | | Create a team API token so the integration can use that team's permissions. |
 | | Retrieve the OAuth token IDs and repository identifiers that Terraform Cloud uses to identify your VCS repositories. |
-| | Provide the API token, OAuth token ID, repository identifiers, variable definitions, and Terraform Cloud hostname to the Service Now Admin. |
+| | Provide the API token, OAuth token ID, repository identifiers, variable definitions, and Terraform Cloud hostname to the ServiceNow Admin. |
 | Install the Terraform integration application from the ServiceNow App Store. | |
 | Connect the integration application with Terraform Cloud. | |
 | Add the Terraform Service Catalog to ServiceNow. | |
@@ -156,14 +156,14 @@ OAuth Token ID (GitHub org: example-corp): `ot-DhjEXAMPLELVtFA`
   - Repository ID (Developer Environment): `example-corp/developer-repo`
     - Environment variables:
       - `AWS_ACCESS_KEY_ID=AKIAEXAMPLEKEY`
-      - `AWS_SECRET_ACCES_KEY=ZB0ExampleSecretAccessKeyGjUiJh`
+      - `AWS_SECRET_ACCESS_KEY=ZB0ExampleSecretAccessKeyGjUiJh`
       - `AWS_DEFAULT_REGION=us-west-2`
     - Terraform variables:
       - `instance_type=t2.medium`
   - Repository ID (Testing Environment): `example-corp/testing-repo`
     - Environment variables:
       - `AWS_ACCESS_KEY_ID=AKIAEXAMPLEKEY`
-      - `AWS_SECRET_ACCES_KEY=ZB0ExampleSecretAccessKeyGjUiJh`
+      - `AWS_SECRET_ACCESS_KEY=ZB0ExampleSecretAccessKeyGjUiJh`
       - `AWS_DEFAULT_REGION=us-west-2`
     - Terraform variables:
       - `instance_type=t2.large`
@@ -175,7 +175,7 @@ Before beginning setup, the ServiceNow Admin must install the Terraform
 ServiceNow Catalog integration software.
 
 This can be added to your ServiceNow instance from the [ServiceNow
-Store](https://store.servicenow.com/). Search for the "Terraform" integration,
+Store](https://store.servicenow.com/sn_appstore_store.do). Search for the "Terraform" integration,
 published by "HashiCorp Inc".
 
 ![Screenshot: ServiceNow Store Page](./images/service-now-store.png "Screenshot of the ServiceNow Store listing for the Terraform Integration")

@@ -48,7 +48,7 @@ State                  | Description
 `cost_estimating`      | The cost estimation phase of a run is in progress.
 `cost_estimated`       | The cost estimation phase of a run has completed.
 `policy_checking`      | The sentinel policy checking phase of a run is in progress.
-`policy_override`      | A sentinel policy has soft failed, and can be overriden.
+`policy_override`      | A sentinel policy has soft failed, and can be overridden.
 `policy_soft_failed`   | A sentinel policy has soft failed for a plan-only run.  This is a final state.
 `policy_checked`       | The sentinel policy checking phase of a run has completed.
 `confirmed`            | The plan produced by the run has been confirmed.
@@ -206,6 +206,8 @@ Parameter | Description
 `run_id`  | The run ID to apply
 
 Applies a run that is paused waiting for confirmation after a plan. This includes runs in the "needs confirmation" and "policy checked" states. This action is only required for runs that can't be auto-applied. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs for the workspace.
+
+-> **Note:** If the run has a soft failed sentinel policy, you will need to [override the policy check](./policy-checks.html#override-policy) before Terraform can apply the run. You can find policy check details in the `relationships` section of the [run details endpoint](#get-run-details) response.
 
 Applying a run requires permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 

@@ -48,7 +48,7 @@ When Terraform Cloud performs a Terraform run, it uses [the `remote` backend][re
 
 Instead of using existing user credentials, Terraform Cloud generates a unique per-run API token and provides it to the Terraform worker in the [CLI config file][]. This per-run token can read and write state data for the workspace associated with the run, can download modules from the [private module registry](../registry/index.html), and may be granted access to read state from other workspaces in the organization (view our documentation on [cross-workspace state access](../workspaces/state.html#accessing-state-from-other-workspaces) for more information). It cannot make any other calls to the Terraform Cloud API. Per-run tokens are not considered to be user, team, or organization tokens, and become invalid after the run is completed.
 
-When running Terraform on the commmand line against a workspace configured for remote operations, the CLI user must have [the `remote` backend][remote] configured in the Terraform configuration, and must have a user or team API token with the appropriate permissions specified in their [CLI config file][]. However, the run itself still occurs within one of Terraform Cloud's worker VMs, and still uses the per-run token for state access.
+When running Terraform on the command line against a workspace configured for remote operations, the CLI user must have [the `remote` backend][remote] configured in the Terraform configuration, and must have a user or team API token with the appropriate permissions specified in their [CLI config file][]. However, the run itself still occurs within one of Terraform Cloud's worker VMs, and still uses the per-run token for state access.
 
 When running Terraform on the command line against a workspace that is _not_ configured for remote operations, the CLI user's token is used for state access. This user must have permission to read and write state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
@@ -81,3 +81,9 @@ Terraform Cloud for each run:
 - `TFC_CONFIGURATION_VERSION_GIT_TAG` - This is the name of the tag
   that the associated Terraform configuration version was ingressed from
   (e.g. `"v0.1.0"`).
+
+They are also available as Terraform input variables by defining a variable with the same name. E.g.
+
+```terraform
+variable "TFC_RUN_ID" {}
+```

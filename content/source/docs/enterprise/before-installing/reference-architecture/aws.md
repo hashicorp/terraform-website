@@ -84,13 +84,15 @@ securely and redundantly away from the EC2 servers running the Terraform Enterpr
 application. This S3 bucket must be in the same region as the EC2 and RDS
 instances. It is recommended the VPC containing the Terraform Enterprise servers be configured
 with a [VPC endpoint for
-S3](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html).
+S3](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html).
 Within the Terraform Enterprise application, Vault is used to encrypt all application data stored in the S3 bucket.  This
 allows for further [server-side
-encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
+encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html)
 by S3 if required by your security policy.
 
--> **Note:** Terraform Enterprise does not require S3 Versioning feature.
+
+-> **Note:** Terraform Enterprise has routine jobs that delete expired objects from S3 storage and operations that destroy database records and the associated storage objects. We recommend enabling S3 Versioning so that you will have regular snapshots that you can use to restore your database if necessary.
+
 
 ### Other Considerations
 
@@ -339,17 +341,16 @@ single AWS Region. Using multiple AWS Regions will give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional AWS service. In this section, implementation patterns to support this are discussed.
 
-An identical infrastructure should be provisioned in a secondary AWS
+We recommend provisioning an identical infrastructure in a secondary AWS
 Region. Depending on recovery time objectives and tolerances for
 additional cost to support AWS Region failure, the infrastructure can be
-running (Warm Standby) or stopped (Cold Standby). In the event of the
-primary AWS Region hosting the Terraform Enterprise application failing, the secondary
-AWS Region will require some configuration before traffic is directed to
-it along with some global services such as DNS.
+running (Warm Standby) or stopped (Cold Standby). Please note that with _Standalone_ implementation mode, only one Terraform Enterprise instance can be running against the same database.
 
-- [RDS cross-region read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html#USER_ReadRepl.XRgn) can be used in a warm standby architecture or [RDS database backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html) can be used in a cold standby architecture.
+This deployment acts to minimize the Mean Time To Recovery (MTTR) in the event of a regional failure, avoiding the need to replicate and stand up the data plane infrastructure during an outage. If the primary AWS Region hosting the Terraform Enterprise application fails, you will need to perform some configuration before traffic is directed to the secondary AWS Region:
 
-- [S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) must be configured so the object storage component of the Storage Layer is available in the secondary AWS Region.
+- [RDS cross-region read replicas](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html) can be used in a warm standby architecture or [RDS database backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html) can be used in a cold standby architecture.
+
+- [S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html) must be configured so the object storage component of the Storage Layer is available in the secondary AWS Region.
 
 - DNS must be redirected to the Load Balancer acting as the entry point for the infrastructure deployed in the secondary AWS Region.
 
@@ -431,4 +432,3 @@ Similar to _Standalone_, _Active/Active_ Terraform Enterprise is currently archi
 single region. You cannot deploy additional nodes associated to the primary cluster in different regions. It is possible to deploy to multiple regions to give you greater
 control over your recovery time in the event of a hard dependency
 failure on a regional service. An identical infrastructure will still need to be instantiated separately with a failover scenario resulting in control of processing being transferred to the second implementation, as described in the earlier section on this topic. In addition, this identical infrastructure will require its own Memory Cache external service instance.
-

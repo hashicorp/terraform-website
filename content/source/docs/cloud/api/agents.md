@@ -341,7 +341,7 @@ curl \
 
 ## Create an Agent Pool
 
-`POST /organizations/:organization_name/agent-pool`
+`POST /organizations/:organization_name/agent-pools`
 
 Parameter            | Description
 ---------------------|------------

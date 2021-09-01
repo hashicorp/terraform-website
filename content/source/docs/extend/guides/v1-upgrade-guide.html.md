@@ -45,7 +45,7 @@ $ tf-sdk-migrator check
 
 If this command succeeds, proceed to Step 2.
 
-Otherwise, the tool will output the steps you need to take to ensure the provider can be migrated. Please see https://github.com/hashicorp/tf-sdk-migrator#check-eligibility-for-migration-tf-sdk-migrator-check for more information about the eligibility checks, and see the [Deprecations section](#deprecations) below for what to do if you are using deprecated packages or identifiers.
+Otherwise, the tool will output the steps you need to take to ensure the provider can be migrated. Please see https://github.com/hashicorp/tf-sdk-migrator for more information about the eligibility checks, and see the [Deprecations section](#deprecations) below for what to do if you are using deprecated packages or identifiers.
 
 Projects that are on an old version of the legacy Terraform plugin SDK, particularly < v0.12, should first [upgrade to v0.12](/docs/extend/terraform-0.12-compatibility.html).
 
@@ -105,7 +105,7 @@ or meet as many as possible.
 See the [list of deprecations](#deprecations) below and take actions to remove all occurrences
 of deprecated packages, functions or identifiers.
 
-You may find a full list of SDK packages in [`tf-sdk-migrator` source code](https://github.com/hashicorp/tf-sdk-migrator/blob/c7297e03e62319a4eb48f4bc2fd1d8ee91ecade0/cmd/check/sdk_imports.go#L8-L21). Any package which is not on the list is considered as deprecated
+You may find a full list of SDK packages in [`tf-sdk-migrator` source code](https://pkg.go.dev/github.com/hashicorp/tf-sdk-migrator@v1.4.0/cmd/check#CheckSDKPackageImports). Any package which is not on the list is considered as deprecated
 in the context of SDK and/or doesn't classify as SDK.
 
 You can use standard Go tooling, [jq](https://stedolan.github.io/jq/) and [grep](https://en.wikipedia.org/wiki/Grep)
@@ -154,12 +154,12 @@ Version 1.0.0 of the standalone plugin SDK is intended to differ as little as po
 
 The following packages, functions, and identifiers have been deprecated as of v0.12.7 of the legacy SDK in Core, and have removed altogether in the standalone SDK.
 
-* **`config.NewRawConfig()/terraform.NewResourceConfig()`** were sometimes used in tandem for testing provider block configuration. The config package has been removed entirely from the SDK as well as `terraform.NewResourceConfig`, you should now use `terraform.NewResourceConfigRaw()`. See [example](https://github.com/terraform-providers/terraform-provider-consul/pull/149/files)
+* **`config.NewRawConfig()/terraform.NewResourceConfig()`** were sometimes used in tandem for testing provider block configuration. The config package has been removed entirely from the SDK as well as `terraform.NewResourceConfig`, you should now use `terraform.NewResourceConfigRaw()`. See [example](https://github.com/hashicorp/terraform-provider-consul/pull/149/files)
 
 * Passing along a user agent header to backend APIs has been done a few ways. The new standalone SDK tries to standardize the creation of a user agent header, as well as provide an accurate version of Terraform calling the provider.
-  - **`terraform.VersionString()`** has been removed, it provided the version of terraform the dependency, which was not accurate. The version of terraform can now be accessed at runtime in a provider's `ConfigureFunc`. See [example](https://github.com/terraform-providers/terraform-provider-kubernetes/pull/620/files)
-  - **`httpclient.UserAgentString()/terraform.UserAgentString()`** have been removed. Please use [`httpclient.TerraformUserAgent()`](https://github.com/hashicorp/terraform-plugin-sdk/blob/e664f5b78081fde148c4ea55a0e068dc62fb2274/httpclient/useragent.go#L14) instead.
-  - **`httpclient.New()`** has been removed. Please use `github.com/hashicorp/go-cleanhttp.DefaultPooledClient()` directly with a custom transport. This is how [`httpclient.New()`](https://github.com/hashicorp/terraform/blob/39f61a07955b57c0a4afeb183259ca1697677148/httpclient/client.go#L12) was implemented in Core.
+  - **`terraform.VersionString()`** has been removed, it provided the version of terraform the dependency, which was not accurate. The version of terraform can now be accessed at runtime in a provider's `ConfigureFunc`. See [example](https://github.com/hashicorp/terraform-provider-kubernetes/pull/620/files)
+  - **`httpclient.UserAgentString()/terraform.UserAgentString()`** have been removed. Please use [`httpclient.TerraformUserAgent()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/httpclient#TerraformUserAgent) instead.
+  - **`httpclient.New()`** has been removed. Please use `github.com/hashicorp/go-cleanhttp.DefaultPooledClient()` directly with a custom transport. This is how [`httpclient.New()`](https://pkg.go.dev/github.com/hashicorp/terraform@v0.14.7/httpclient#New) was implemented in Core.
 
 * A small number of providers have used the [flatmap package](https://github.com/hashicorp/terraform/tree/e1d0acda0b19be25ea96748896d3cd7117df955a/flatmap). Unfortunately it will not be a part of the standalone SDK. It is recommended to just move away from using that altogether, but as a quick solution, copy paste whatever is needed over and strip away the parts that are Terraform Core specific. This package was never intended to be used outside of Terraform Core.
 

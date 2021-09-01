@@ -1,5 +1,5 @@
 ---
-layout: intro
+layout: terraform-glossary
 page_title: "Terraform Glossary"
 sidebar_current: "terraform-glossary"
 description: |-
@@ -7,7 +7,7 @@ description: |-
   documentation and throughout the Terraform community.
 ---
 
-# Terraform Glossary
+# Glossary
 
 This page collects brief definitions of some of the technical terms used in the documentation for Terraform, as well as some terms that come up frequently in conversations throughout the Terraform community.
 
@@ -101,7 +101,7 @@ This page collects brief definitions of some of the technical terms used in the 
 [api]: glossary.html#api
 [apis]: glossary.html#api
 
-"Application Programming Interface". Any interface designed to allow programatic manipulation of some kind of software system. For most software developers today, the most common kinds of APIs are based on HTTP requests.
+"Application Programming Interface". Any interface designed to allow programmatic manipulation of some kind of software system. For most software developers today, the most common kinds of APIs are based on HTTP requests.
 
 Terraform relies on cloud service provider APIs to manage resources; each service's Terraform provider is responsible for mapping Terraform's resource model to the series of actual API calls necessary to create, check, modify, or delete a real infrastructure resource in that cloud service.
 
@@ -633,7 +633,8 @@ Terraform providers are generally tied to a specific _infrastructure provider,_ 
 
 There are many existing providers available, but providers can also be custom-built to work with any API.
 
-- [Terraform docs: Providers](/docs/providers/index.html)
+- [Terraform docs: Provider Use](/docs/language/providers/index.html)
+- [Terraform docs: Plugin Development](/docs/extend/index.html)
 
 ## Pull Request (PR)
 

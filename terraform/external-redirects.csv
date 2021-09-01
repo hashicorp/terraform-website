@@ -312,3 +312,24 @@ azure classic - to azurerm,/docs/providers/azure/r/storage_container.html,https:
 azure classic - to azurerm,/docs/providers/azure/r/storage_queue.html,https://registry.terraform.io/providers/hashicorp/azurerm/latest
 azure classic - to azurerm,/docs/providers/azure/r/storage_service.html,https://registry.terraform.io/providers/hashicorp/azurerm/latest
 azure classic - to azurerm,/docs/providers/azure/r/virtual_network.html,https://registry.terraform.io/providers/hashicorp/azurerm/latest
+chef - to github,/docs/providers/chef/r/environment.html,https://github.com/hashicorp/terraform-provider-chef/blob/stable-website/website/docs/r/environment.html.markdown
+chef - to github,/docs/providers/chef/r/data_bag_item.html,https://github.com/hashicorp/terraform-provider-chef/blob/stable-website/website/docs/r/data_bag_item.html.markdown
+chef - to github,/docs/providers/chef/r/data_bag.html,https://github.com/hashicorp/terraform-provider-chef/blob/stable-website/website/docs/r/data_bag.html.markdown
+chef - to github,/docs/providers/chef/r/node.html,https://github.com/hashicorp/terraform-provider-chef/blob/stable-website/website/docs/r/node.html.markdown
+chef - to github,/docs/providers/chef/r/role.html,https://github.com/hashicorp/terraform-provider-chef/blob/stable-website/website/docs/r/role.html.markdown
+chef - to github,/docs/providers/chef/index.html,https://github.com/hashicorp/terraform-provider-chef/blob/stable-website/website/docs/index.html.markdown
+genymotion - to github,/docs/providers/genymotion/r/genymotion_cloud.html,https://github.com/hashicorp/terraform-provider-genymotion/blob/stable-website/website/docs/r/genymotion_cloud.html.markdown
+genymotion - to github,/docs/providers/genymotion/index.html,https://github.com/hashicorp/terraform-provider-genymotion/blob/stable-website/website/docs/index.html.markdown
+mysql - to github,/docs/providers/mysql/r/grant.html,https://github.com/hashicorp/terraform-provider-mysql/blob/stable-website/website/docs/r/grant.html.markdown
+mysql - to github,/docs/providers/mysql/r/user_password.html,https://github.com/hashicorp/terraform-provider-mysql/blob/stable-website/website/docs/r/user_password.html.markdown
+mysql - to github,/docs/providers/mysql/r/role.html,https://github.com/hashicorp/terraform-provider-mysql/blob/stable-website/website/docs/r/role.html.markdown
+mysql - to github,/docs/providers/mysql/r/user.html,https://github.com/hashicorp/terraform-provider-mysql/blob/stable-website/website/docs/r/user.html.markdown
+mysql - to github,/docs/providers/mysql/r/database.html,https://github.com/hashicorp/terraform-provider-mysql/blob/stable-website/website/docs/r/database.html.markdown
+mysql - to github,/docs/providers/mysql/index.html,https://github.com/hashicorp/terraform-provider-mysql/blob/stable-website/website/docs/index.html.markdown
+rubrik - to github,/docs/providers/rubrik/r/assign_sla.html,https://github.com/hashicorp/terraform-provider-rubrik/blob/stable-website/website/docs/r/assign_sla.html.markdown
+rubrik - to github,/docs/providers/rubrik/r/configure_timezone.html,https://github.com/hashicorp/terraform-provider-rubrik/blob/stable-website/website/docs/r/configure_timezone.html.markdown
+rubrik - to github,/docs/providers/rubrik/index.html,https://github.com/hashicorp/terraform-provider-rubrik/blob/stable-website/website/docs/index.html.markdown
+rubrik - to github,/docs/providers/rubrik/d/cluster_version.html,https://github.com/hashicorp/terraform-provider-rubrik/blob/stable-website/website/docs/d/cluster_version.html.markdown
+community - to hashicorp,/docs/extend/community/code-of-conduct.html,https://www.hashicorp.com/community-guidelines
+community - to hashicorp,/docs/extend/community/contributing.html,https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md
+community - to hashicorp,/docs/extend/community/maintainers.html,https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md#maintainers

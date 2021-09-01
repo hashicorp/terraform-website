@@ -24,7 +24,7 @@ page_title: "State Versions - API Docs - Terraform Cloud and Terraform Enterpris
 
 ## Create a State Version
 
-> **Hands-on:** Try the [Terraform API State Versioning](https://learn.hashicorp.com/tutorials/terraform/tfc-state-api?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+> **Hands-on:** Try the [Version Remote State with the Terraform Cloud API](https://learn.hashicorp.com/tutorials/terraform/cloud-state-api?in=terraform/cloud&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
 `POST /workspaces/:workspace_id/state-versions`
 
@@ -163,96 +163,180 @@ curl \
 {
     "data": [
         {
-            "id": "sv-SDboVZC8TCxXEneJ",
+            "id": "sv-g4rqST72reoHMM5a",
             "type": "state-versions",
             "attributes": {
-                "vcs-commit-sha": null,
-                "vcs-commit-url": null,
-                "created-at": "2018-08-27T14:49:47.902Z",
+                "created-at": "2021-06-08T01:22:03.794Z",
+                "size": 940,
                 "hosted-state-download-url": "https://archivist.terraform.io/v1/object/...",
-                "serial": 3
+                "modules": {
+                    "root": {
+                        "null-resource": 1,
+                        "data.terraform-remote-state": 1
+                    }
+                },
+                "providers": {
+                    "provider[\"terraform.io/builtin/terraform\"]": {
+                        "data.terraform-remote-state": 1
+                    },
+                    "provider[\"registry.terraform.io/hashicorp/null\"]": {
+                        "null-resource": 1
+                    }
+                },
+                "resources": [
+                    {
+                        "name": "other_username",
+                        "type": "data.terraform_remote_state",
+                        "count": 1,
+                        "module": "root",
+                        "provider": "provider[\"terraform.io/builtin/terraform\"]"
+                    },
+                    {
+                        "name": "random",
+                        "type": "null_resource",
+                        "count": 1,
+                        "module": "root",
+                        "provider": "provider[\"registry.terraform.io/hashicorp/null\"]"
+                    }
+                ],
+                "resources-processed": false,
+                "serial": 9,
+                "state-version": 4,
+                "terraform-version": "0.15.4",
+                "vcs-commit-url": "https://gitlab.com/my-organization/terraform-test/-/commit/abcdef12345",
+                "vcs-commit-sha": "abcdef12345"
             },
             "relationships": {
                 "run": {
                     "data": {
+                        "id": "run-YfmFLWpgTv31VZsP",
                         "type": "runs"
                     }
                 },
                 "created-by": {
                     "data": {
-                        "id": "api-org-my-organization",
+                        "id": "user-onZs69ThPZjBK2wo",
                         "type": "users"
                     },
                     "links": {
-                        "related": "/api/v2/runs/sv-SDboVZC8TCxXEneJ/created-by"
+                        "related": "/api/v2/runs/sv-g4rqST72reoHMM5a/created-by"
+                    }
+                },
+                "workspace": {
+                    "data": {
+                        "id": "ws-noZcaGXsac6aZSJR",
+                        "type": "workspaces"
                     }
                 },
                 "outputs": {
                     "data": [
                         {
-                            "id": "wsout-J2zM24JPFbfc7bE5",
+                            "id": "wsout-V22qbeM92xb5mw9n",
+                            "type": "state-version-outputs"
+                        },
+                        {
+                            "id": "wsout-ymkuRnrNFeU5wGpV",
+                            "type": "state-version-outputs"
+                        },
+                        {
+                            "id": "wsout-v82BjkZnFEcscipg",
                             "type": "state-version-outputs"
                         }
                     ]
                 }
             },
             "links": {
-                "self": "/api/v2/state-versions/sv-SDboVZC8TCxXEneJ"
+                "self": "/api/v2/state-versions/sv-g4rqST72reoHMM5a"
             }
         },
         {
-            "id": "sv-UdqGARTddt8SEJEi",
+            "id": "sv-QYKf6GvNv75ZPTBr",
             "type": "state-versions",
             "attributes": {
-                "vcs-commit-sha": null,
-                "vcs-commit-url": null,
-                "created-at": "2018-08-27T14:49:46.102Z",
+                "created-at": "2021-06-01T21:40:25.941Z",
+                "size": 819,
                 "hosted-state-download-url": "https://archivist.terraform.io/v1/object/...",
-                "serial": 2
+                "modules": {
+                    "root": {
+                        "data.terraform-remote-state": 1
+                    }
+                },
+                "providers": {
+                    "provider[\"terraform.io/builtin/terraform\"]": {
+                        "data.terraform-remote-state": 1
+                    }
+                },
+                "resources": [
+                    {
+                        "name": "other_username",
+                        "type": "data.terraform_remote_state",
+                        "count": 1,
+                        "module": "root",
+                        "provider": "provider[\"terraform.io/builtin/terraform\"]"
+                    }
+                ],
+                "resources-processed": false,
+                "serial": 8,
+                "state-version": 4,
+                "terraform-version": "0.15.4",
+                "vcs-commit-url": "https://gitlab.com/my-organization/terraform-test/-/commit/12345abcdef",
+                "vcs-commit-sha": "12345abcdef"
             },
             "relationships": {
                 "run": {
                     "data": {
+                        "id": "run-cVtxks6R8wsjCZMD",
                         "type": "runs"
                     }
                 },
                 "created-by": {
                     "data": {
-                        "id": "api-org-my-organization",
+                        "id": "user-onZs69ThPZjBK2wo",
                         "type": "users"
                     },
                     "links": {
-                        "related": "/api/v2/runs/sv-UdqGARTddt8SEJEi/created-by"
+                        "related": "/api/v2/runs/sv-QYKf6GvNv75ZPTBr/created-by"
+                    }
+                },
+                "workspace": {
+                    "data": {
+                        "id": "ws-noZcaGXsac6aZSJR",
+                        "type": "workspaces"
                     }
                 },
                 "outputs": {
                     "data": [
                         {
-                            "id": "wsout-J2zM24JPFbfc7bE5",
+                            "id": "wsout-MmqMhmht6jFmLRvh",
+                            "type": "state-version-outputs"
+                        },
+                        {
+                            "id": "wsout-Kuo9TCHg3oDLDQqa",
                             "type": "state-version-outputs"
                         }
                     ]
                 }
             },
             "links": {
-                "self": "/api/v2/state-versions/sv-UdqGARTddt8SEJEi"
+                "self": "/api/v2/state-versions/sv-QYKf6GvNv75ZPTBr"
             }
         }
     ],
     "links": {
-        "self": "https://app.terraform.io/api/v2/state-versions?filter%5Borganization%5D%5Bname%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace&page%5Bnumber%5D=1&page%5Bsize%5D=20",
-        "first": "https://app.terraform.io/api/v2/state-versions?filter%5Borganization%5D%5Bname%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace&page%5Bnumber%5D=1&page%5Bsize%5D=20",
+        "self": "https://app.terraform.io/api/v2/state-versions?filter%5Borganization%5D%5Bname%5D=hashicorp&filter%5Bworkspace%5D%5Bname%5D=my-workspace&page%5Bnumber%5D=1&page%5Bsize%5D=20",
+        "first": "https://app.terraform.io/api/v2/state-versions?filter%5Borganization%5D%5Bname%5D=hashicorp&filter%5Bworkspace%5D%5Bname%5D=my-workspace&page%5Bnumber%5D=1&page%5Bsize%5D=20",
         "prev": null,
         "next": null,
-        "last": "https://app.terraform.io/api/v2/state-versions?filter%5Borganization%5D%5Bname%5D=my-organization&filter%5Bworkspace%5D%5Bname%5D=my-workspace&page%5Bnumber%5D=1&page%5Bsize%5D=20"
+        "last": "https://app.terraform.io.io/api/v2/state-versions?filter%5Borganization%5D%5Bname%5D=hashicorp&filter%5Bworkspace%5D%5Bname%5D=my-workspace&page%5Bnumber%5D=1&page%5Bsize%5D=20"
     },
     "meta": {
         "pagination": {
             "current-page": 1,
+            "page-size": 20,
             "prev-page": null,
             "next-page": null,
             "total-pages": 1,
-            "total-count": 2
+            "total-count": 10
         }
     }
 }
@@ -295,41 +379,90 @@ curl \
 ```json
 {
     "data": {
-        "id": "sv-SDboVZC8TCxXEneJ",
+        "id": "sv-g4rqST72reoHMM5a",
         "type": "state-versions",
         "attributes": {
-            "vcs-commit-sha": null,
-            "vcs-commit-url": null,
-            "created-at": "2018-08-27T14:49:47.902Z",
+            "created-at": "2021-06-08T01:22:03.794Z",
+            "size": 940,
             "hosted-state-download-url": "https://archivist.terraform.io/v1/object/...",
-            "serial": 3
+            "modules": {
+                "root": {
+                    "null-resource": 1,
+                    "data.terraform-remote-state": 1
+                }
+            },
+            "providers": {
+                "provider[\"terraform.io/builtin/terraform\"]": {
+                    "data.terraform-remote-state": 1
+                },
+                "provider[\"registry.terraform.io/hashicorp/null\"]": {
+                    "null-resource": 1
+                }
+            },
+            "resources": [
+                {
+                    "name": "other_username",
+                    "type": "data.terraform_remote_state",
+                    "count": 1,
+                    "module": "root",
+                    "provider": "provider[\"terraform.io/builtin/terraform\"]"
+                },
+                {
+                    "name": "random",
+                    "type": "null_resource",
+                    "count": 1,
+                    "module": "root",
+                    "provider": "provider[\"registry.terraform.io/hashicorp/null\"]"
+                }
+            ],
+            "resources-processed": false,
+            "serial": 9,
+            "state-version": 4,
+            "terraform-version": "0.15.4",
+            "vcs-commit-url": "https://gitlab.com/my-organization/terraform-test/-/commit/abcdef12345",
+            "vcs-commit-sha": "abcdef12345"
         },
         "relationships": {
             "run": {
                 "data": {
+                    "id": "run-YfmFLWpgTv31VZsP",
                     "type": "runs"
                 }
             },
             "created-by": {
                 "data": {
-                    "id": "api-org-hashicorp",
+                    "id": "user-onZs69ThPZjBK2wo",
                     "type": "users"
                 },
                 "links": {
-                    "related": "/api/v2/runs/sv-SDboVZC8TCxXEneJ/created-by"
+                    "related": "/api/v2/runs/sv-g4rqST72reoHMM5a/created-by"
+                }
+            },
+            "workspace": {
+                "data": {
+                    "id": "ws-noZcaGXsac6aZSJR",
+                    "type": "workspaces"
                 }
             },
             "outputs": {
                 "data": [
                     {
-                        "id": "wsout-J2zM24JPFbfc7bE5",
+                        "id": "wsout-V22qbeM92xb5mw9n",
+                        "type": "state-version-outputs"
+                    },
+                    {
+                        "id": "wsout-ymkuRnrNFeU5wGpV",
+                        "type": "state-version-outputs"
+                    },
+                    {
+                        "id": "wsout-v82BjkZnFEcscipg",
                         "type": "state-version-outputs"
                     }
                 ]
             }
         },
         "links": {
-            "self": "/api/v2/state-versions/sv-SDboVZC8TCxXEneJ"
+            "self": "/api/v2/state-versions/sv-g4rqST72reoHMM5a"
         }
     }
 }
@@ -369,43 +502,179 @@ curl \
 ```json
 {
     "data": {
-        "id": "sv-SDboVZC8TCxXEneJ",
+        "id": "sv-g4rqST72reoHMM5a",
         "type": "state-versions",
         "attributes": {
-            "vcs-commit-sha": null,
-            "vcs-commit-url": null,
-            "created-at": "2018-08-27T14:49:47.902Z",
+            "created-at": "2021-06-08T01:22:03.794Z",
+            "size": 940,
             "hosted-state-download-url": "https://archivist.terraform.io/v1/object/...",
-            "serial": 3
+            "modules": {
+                "root": {
+                    "null-resource": 1,
+                    "data.terraform-remote-state": 1
+                }
+            },
+            "providers": {
+                "provider[\"terraform.io/builtin/terraform\"]": {
+                    "data.terraform-remote-state": 1
+                },
+                "provider[\"registry.terraform.io/hashicorp/null\"]": {
+                    "null-resource": 1
+                }
+            },
+            "resources": [
+                {
+                    "name": "other_username",
+                    "type": "data.terraform_remote_state",
+                    "count": 1,
+                    "module": "root",
+                    "provider": "provider[\"terraform.io/builtin/terraform\"]"
+                },
+                {
+                    "name": "random",
+                    "type": "null_resource",
+                    "count": 1,
+                    "module": "root",
+                    "provider": "provider[\"registry.terraform.io/hashicorp/null\"]"
+                }
+            ],
+            "resources-processed": false,
+            "serial": 9,
+            "state-version": 4,
+            "terraform-version": "0.15.4",
+            "vcs-commit-url": "https://gitlab.com/my-organization/terraform-test/-/commit/abcdef12345",
+            "vcs-commit-sha": "abcdef12345"
         },
         "relationships": {
             "run": {
                 "data": {
+                    "id": "run-YfmFLWpgTv31VZsP",
                     "type": "runs"
                 }
             },
             "created-by": {
                 "data": {
-                    "id": "api-org-hashicorp",
+                    "id": "user-onZs69ThPZjBK2wo",
                     "type": "users"
                 },
                 "links": {
-                    "related": "/api/v2/runs/sv-SDboVZC8TCxXEneJ/created-by"
+                    "related": "/api/v2/runs/sv-g4rqST72reoHMM5a/created-by"
+                }
+            },
+            "workspace": {
+                "data": {
+                    "id": "ws-noZcaGXsac6aZSJR",
+                    "type": "workspaces"
                 }
             },
             "outputs": {
                 "data": [
                     {
-                        "id": "wsout-J2zM24JPFbfc7bE5",
+                        "id": "wsout-V22qbeM92xb5mw9n",
+                        "type": "state-version-outputs"
+                    },
+                    {
+                        "id": "wsout-ymkuRnrNFeU5wGpV",
+                        "type": "state-version-outputs"
+                    },
+                    {
+                        "id": "wsout-v82BjkZnFEcscipg",
                         "type": "state-version-outputs"
                     }
                 ]
             }
         },
         "links": {
-            "self": "/api/v2/state-versions/sv-SDboVZC8TCxXEneJ"
+            "self": "/api/v2/state-versions/sv-g4rqST72reoHMM5a"
         }
     }
+}
+```
+
+## List State Version Outputs
+
+`GET /state-versions/:state_version_id/outputs`
+
+Listing state version outputs requires permission to read state outputs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+Parameter | Description
+----------|---------
+`:state_version_id` | The ID of the desired state version.
+
+Status  | Response                                     | Reason
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][]                        | Successfully returned a list of outputs for the given state version
+[404][] | [JSON API error object][]                    | State version not found, or user unauthorized to perform action
+
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/state-versions/sv-SDboVZC8TCxXEneJ/outputs
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "wsout-xFAmCR3VkBGepcee",
+      "type": "state-version-outputs",
+      "attributes": {
+        "name": "fruits",
+        "sensitive": false,
+        "type": "array",
+        "value": [
+          "apple",
+          "strawberry",
+          "blueberry",
+          "rasberry"
+        ]
+      },
+      "links": {
+        "self": "/api/v2/state-version-outputs/wsout-xFAmCR3VkBGepcee"
+      }
+    },
+    {
+      "id": "wsout-vspuB754AUNkfxwo",
+      "type": "state-version-outputs",
+      "attributes": {
+        "name": "vegetables",
+        "sensitive": false,
+        "type": "array",
+        "value": [
+          "carrots",
+          "potato",
+          "tomato",
+          "onions"
+        ]
+      },
+      "links": {
+        "self": "/api/v2/state-version-outputs/wsout-vspuB754AUNkfxwo"
+      }
+    }
+  ],
+  "links": {
+    "self": "https://app.terraform.io/api/v2/state-versions/sv-SVB5wMrDL1XUgJ4G/outputs?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://app.terraform.io/api/v2/state-versions/sv-SVB5wMrDL1XUgJ4G/outputs?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "https://app.terraform.io/api/v2/state-versions/sv-SVB5wMrDL1XUgJ4G/outputs?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "page-size": 20,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 1,
+      "total-count": 2
+    }
+  }
 }
 ```
 
@@ -413,4 +682,8 @@ curl \
 
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
 
+* `created_by` - The user that created the state version. For state versions created via a run executed by Terraform Cloud, this is an internal user account.
+* `run` - The run that created the state version, if applicable.
+* `run.created_by` - The user that manually triggered the run, if applicable.
+* `run.configuration_version` - The configuration version used in the run.
 * `outputs` - The parsed outputs for this state version.

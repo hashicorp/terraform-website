@@ -11,7 +11,7 @@ Administration functions can be managed via user interface (as described by the 
 
 The initial user account for a Terraform Enterprise instance is the first site admin. Site admins can grant admin permissions to other users in the "Users" section of the admin pages. See [Promoting a User to Administrator](./resources.html#promoting-a-user-to-administrator) for details.
 
-To navigate to the site admin section of the UI, click your user icon in the upper right, then click **Site Admin**:
+To navigate to the site admin section of the UI, click your user icon in the upper right, then click **Admin**:
 
 ![screenshot: the "Site Admin" link in the user menu](./images/admin-navigate.png)
 

@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Versioning Best Practices"
+page_title: "Plugin Development - Versioning Best Practices"
 sidebar_current: "docs-extend-best-practices-versioning"
 description: |-
   Recommendations for version numbering and documentation.
@@ -16,7 +16,7 @@ Observing that Terraform plugins are in many ways analogous to shared libraries 
 
 - Increasing only the patch number suggests that the release includes only bug fixes, and is intended to be functionally equivalent.
 - Increasing the minor number suggests that new features have been added but that existing functionality remains broadly compatible.
-- Increasing the major number indicates that significant breaking changes have been made, and thus extra care or attention is required during an upgrade.
+- Increasing the major number indicates that significant breaking changes have been made, and thus extra care or attention is required during an upgrade. To allow practitioners sufficient time and opportunity to upgrade to the latest version of the provider, we recommend releasing major versions no more than once per year. Releasing major versions more frequently could present a barrier to adoption due to the effort required to upgrade.
 
 Version numbers above `1.0.0` signify stronger compatibility guarantees, based on the rules above. Each increasing level can also contain changes of the lower level (e.g. `MINOR` can contain `PATCH` changes).
 

@@ -33,7 +33,7 @@ The command outputs the complete IACT with the carriage return character removed
 
 The option `iact_subnet_list` can be set to a CIDR mask that will allow clients in that address range to query the retrieval API directly. This allows installers the ability to create the installation and then immediately request the IACT token without running a command on the installation machine.
 
-~> NOTE: `iact_subnet_list` has no default value, so if unset, this no clients will be able to request the IACT token via the API.
+~> NOTE: `iact_subnet_list` has no default value. If unset, no clients will be able to request the IACT token via the API.
 
 The API will be relative to the installation, for example `https://tfe.mycompany.com/admin/retrieve-iact`, with `/admin/retrieve-iact` being the path that returns the token.
 

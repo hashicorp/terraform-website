@@ -112,6 +112,12 @@ Non-owners can view the list of teams (excluding [secret teams](./teams.html#tea
 
 See [Teams][] for more information.
 
+### Tags
+
+This page shows the list of tags used for all resources across the organization. Tags can be added directly to workspaces. Tags deleted here will be removed from all other resources, and can be deleted in bulk.
+
+![Screenshot: the tags list, showing a list of currently used tags.](./images/tag-management.png)
+
 ### VCS Providers
 
 The VCS providers page is used for configuring VCS providers for use within the organization. It is available to users with permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))

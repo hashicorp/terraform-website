@@ -216,7 +216,10 @@ curl \
 
 ## Publish a Private Module from a VCS
 
+~> **Deprecation warning**: the following endpoint `POST /registry-modules` is replaced by the below endpoint and will be removed from future versions of the API!
+
 `POST /organizations/:organization_name/registry-modules/vcs`
+
 
 Parameter            | Description
 ---------------------|------------
@@ -356,9 +359,9 @@ Properties without a default value are required.
 Key path                        | Type   | Default | Description
 --------------------------------|--------|---------|------------
 `data.type`                     | string |         | Must be `"registry-modules"`.
-`data.attributes.name`          | string |         | The name of this module. May contain alphanumeric characters and dashes.
-`data.attributes.provider`      | string |         | Specifies the Terraform provider that this module is used for.
-`data.attributes.namespace`     | string |         | The namespace of this module. The organization name for private modules. The namespace for public modules
+`data.attributes.name`          | string |         | The name of this module. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
+`data.attributes.provider`      | string |         | Specifies the Terraform provider that this module is used for. May contain alphanumeric characters. Maximum length is 64 characters.
+`data.attributes.namespace`     | string |         | The namespace of this module. The organization name for private modules. The namespace for public modules. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
 `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`.
 
 ### Sample Payload (private module)
@@ -479,6 +482,8 @@ curl \
 ```
 
 ## Create a Module Version
+
+~> **Deprecation warning**: the following endpoint `POST /registry-modules/:organization_name/:name/:provider/versions` is replaced by the below endpoint and will be removed from future versions of the API!
 
 `POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions`
 
@@ -616,7 +621,10 @@ After the registry module version is successfully parsed, its status will become
 
 ## GET a Module
 
+~> **Deprecation warning**: the following endpoint `GET /registry-modules/show/:organization_name/:name/:provider` is replaced by the below endpoint and will be removed from future versions of the API!
+
 `GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
+
 
 ### Parameters
 
@@ -743,9 +751,20 @@ curl \
 
 ## Delete a Module
 
+<div class="alert alert-warning" role="alert">
+  **Deprecation warning**: the following endpoints:
+
+  * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
+  * `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
+  * `POST /registry-modules/actions/delete/:organization_name/:name`
+
+  are replaced by the below endpoints and will be removed from future versions of the API!
+</div>
+
 * `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version`
 * `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
 * `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name`
+
 
 ### Parameters
 

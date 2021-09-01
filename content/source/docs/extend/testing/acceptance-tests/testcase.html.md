@@ -1,10 +1,10 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Acceptance Testing: TestCase"
+page_title: "Plugin Development - Acceptance Testing: TestCase"
 sidebar_current: "docs-extend-testing-acceptance-testcase"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Acceptance tests are expressed in terms of Test Cases. Each Test Case
+  creates a set of resources then verifies the new infrastructure.
 ---
 
 # Acceptance Tests: TestCases
@@ -15,7 +15,7 @@ and then verify the actual infrastructure created. Terraform’s `resource`
 package offers a method `Test()`, accepting two parameters and acting as the
 entry point to Terraform’s acceptance test framework. The first parameter is the
 standard [*testing.T struct from Golang’s Testing package][3], and the second is
-[TestCase][1], a Go struct that developers use to setup the acceptance tests. 
+[TestCase][1], a Go struct that developers use to setup the acceptance tests.
 
 Here’s an example acceptance test. Here the Provider is named `Example`, and the
 Resource under test is `Widget`. The parts of this test are explained below the
@@ -91,10 +91,10 @@ currently running.
 
 `TestCase` offers several fields for developers to add to customize and validate
 each test, defined below. The source for `TestCase` can be viewed [here on
-godoc.org](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCase)
+godoc.org](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCase)
 
-### IsUnitTest 
-**Type:** [bool](https://golang.org/pkg/builtin/#bool)  
+### IsUnitTest
+**Type:** [bool](https://pkg.go.dev/builtin#bool)  
 **Default:** `false`  
 **Required:** no  
 
@@ -104,7 +104,7 @@ variable. This should be used with care - only for fast tests on local resources
 in correct operation of Terraform without waiting for a full acceptance test
 run.
 
-### PreCheck 
+### PreCheck
 
 **Type:** `function`  
 **Default:** `nil`  
@@ -113,7 +113,7 @@ run.
 **PreCheck** if non-nil, will be called before any test steps are executed. It
 is commonly used to verify that required values exist for testing, such as
 environment variables containing test keys that are used to configure the
-Provider or Resource under test. 
+Provider or Resource under test.
 
 **Example usage:**
 
@@ -129,7 +129,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
 }
 
 
-// testAccPreCheck validates the necessary test API keys exist 
+// testAccPreCheck validates the necessary test API keys exist
 // in the testing environment
 func testAccPreCheck(t *testing.T) {
   if v := os.Getenv("EXAMPLE_KEY"); v == "" {
@@ -141,17 +141,17 @@ func testAccPreCheck(t *testing.T) {
 }
 ```
 
-### Providers 
+### Providers
 
 **Type:**
-`map[string]`[\*schema.Provider](https://github.com/hashicorp/terraform-plugin-sdk/blob/a8e5eaf628dcbd66869b9512e81c3495cfac5722/helper/schema/provider.go#L40-L96)  
+`map[string]`[\*schema.Provider](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Provider)  
 **Required:** Yes  
 
 **Providers** is a map of `*schema.Provider` values with `string`
 keys, representing the Providers that will be under test. Only the Providers
 included in this map will be loaded during the test, so any Provider included in
 a configuration file for testing must be represented in this map or the test
-will fail during initialization. 
+will fail during initialization.
 
 This map is most commonly constructed once in a common `init()` method of the
 Provider’s main test file, and includes an object of the current Provider type.
@@ -177,7 +177,7 @@ var testAccProviders map[string]*schema.Provider
 var testAccProvider *schema.Provider
 
 func init() {
-  testAccProvider = Provider().(*schema.Provider)
+  testAccProvider = Provider()
   testAccProviders = map[string]*schema.Provider{
     "example": testAccProvider,
   }
@@ -185,9 +185,9 @@ func init() {
 ```
 
 
-### CheckDestroy 
+### CheckDestroy
 
-**Type:** [TestCheckFunc](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L192-L196)  
+**Type:** [TestCheckFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckFunc)  
 **Default:** `nil`  
 **Required:** no  
 
@@ -213,13 +213,13 @@ func TestAccExampleWidget_basic(t *testing.T) {
   })
 }
 
-// testAccCheckExampleResourceDestroy verifies the Widget 
+// testAccCheckExampleResourceDestroy verifies the Widget
 // has been destroyed
 func testAccCheckExampleResourceDestroy(s *terraform.State) error {
   // retrieve the connection established in Provider configuration
   conn := testAccProvider.Meta().(*ExampleClient)
 
-  // loop through the resources in state, verifying each widget 
+  // loop through the resources in state, verifying each widget
   // is destroyed
   for _, rs := range s.RootModule().Resources {
     if rs.Type != "example_widget" {
@@ -230,7 +230,7 @@ func testAccCheckExampleResourceDestroy(s *terraform.State) error {
     request := &example.DescribeWidgets{
       IDs: []string{rs.Primary.ID},
     }
-    
+
     response, err := conn.DescribeWidgets(request)
     if err == nil {
       if len(response.Widgets) > 0 && *response.Widgets[0].ID == rs.Primary.ID {
@@ -251,9 +251,9 @@ func testAccCheckExampleResourceDestroy(s *terraform.State) error {
 }
 ```
 
-### Steps 
+### Steps
 
-**Type:** [`[]TestStep`](https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L259-L391)  
+**Type:** [`[]TestStep`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep)  
 **Required:** yes  
 
 **TestStep** is a single apply sequence of a test, done within the context of a
@@ -261,7 +261,7 @@ state. Multiple `TestStep`s can be sequenced in a Test to allow testing
 potentially complex update logic and usage. Basic tests typically contain one to
 two steps, to verify the resource can be created and subsequently updated,
 depending on the properties of the resource. In general, simply create/destroy
-tests will only need one step. 
+tests will only need one step.
 
 `TestStep`s are covered in detail in [the next section, `TestSteps`](/docs/extend/testing/acceptance-tests/teststep.html).
 
@@ -300,8 +300,8 @@ func TestAccExampleWidget_basic(t *testing.T) {
 case should represent a scenario of normal usage of the plugin, from simple
 creation to creating, adding, and removing specific properties. In the next
 Section [`TestSteps`][2], we’ll detail `Steps` portion of `TestCase` and see how
-to create these scenarios by iterating on Terraform configurations. 
+to create these scenarios by iterating on Terraform configurations.
 
-[1]: https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L205-L257
+[1]: https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase
 [2]: /docs/extend/testing/acceptance-tests/teststep.html
-[3]: https://golang.org/pkg/testing/#T
+[3]: https://pkg.go.dev/testing#T

@@ -30,7 +30,7 @@ The Runs Admin API contains endpoints to help site administrators manage runs.
 
 ## List all runs
 
-`GET /admin/runs`
+`GET /api/v2/admin/runs`
 
 This endpoint lists all runs in the Terraform Enterprise installation.
 

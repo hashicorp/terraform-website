@@ -45,8 +45,8 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 - This repository, under `content/source/docs/`:
     - Terraform Cloud docs
     - Terraform Enterprise docs
-    - Extending Terraform
-    - Publishing Providers and Modules
+    - Plugin Development
+    - Terraform Registry Publishing
 
     **Notable branches:** `master` is the "live" content that gets deployed to terraform.io. The site gets redeployed for new commits to master.
 - [hashicorp/terraform][tf-repo], under `website/docs`:
@@ -60,18 +60,26 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 
 ↥ [back to top](#table-of-contents)
 
-- **For changes in this repo:** Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
-- **For changes in hashicorp/terraform:** Merge the PR to master. Then, either:
-    - Wait for the next Terraform release. The changes will be deployed automatically.
-    - If you want your changes deployed sooner, cherry-pick them to the `stable-website` branch and push. They'll be included in the next site deploy.
+### For changes in this repo
 
-        New commits in hashicorp/terraform don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can do a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
+Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
 
-        - Log in to circleci.com, and  make sure you're viewing the HashiCorp organization.
-        - Go to the terraform-website project's list of workflows.
-        - Find the most recent "website-deploy" workflow, and click the "Rerun workflow from start" button (which looks like a refresh button with a numeral "1" inside).
+### For changes in `hashicorp/terraform`
+Merge the PR to main. The changes will appear in the next major Terraform release.
 
-The [terraform.io][] site gets deployed by a CI job, currently managed by CircleCI. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master. (Note that Terraform releases create sync commits to terraform-website, which will trigger a deploy.) In practice, the site gets deployed a few times a day.
+If you need your changes to be deployed sooner, cherry-pick them to:
+- the current release branch (e.g. `v1.0`) and push. They will be deployed in the next minor version release (once every two weeks).
+- the `stable-website` branch and push. They will be included in the next site deploy (see below). Note that the release process resets `stable-website` to match the release tag, removing any additional commits. So, we recommend always cherry-picking to the version branch first and then to `stable-website` when needed.
+
+### Deployment
+Currently, HashiCorp uses a CircleCI job to deploy the [terraform.io](terraform.io) site. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
+
+
+New commits in `hashicorp/terraform` don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can trigger a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
+- Log in to circleci.com, and  make sure you're viewing the HashiCorp organization.
+- Go to the terraform-website project's list of workflows.
+- Find the most recent "website-deploy" workflow, and click the "Rerun workflow from start" button (which looks like a refresh button with a numeral "1" inside).
+
 
 ## Running the Site Locally
 
@@ -92,16 +100,20 @@ While the preview is running, you can edit pages and Middleman will automaticall
 
 ↥ [back to top](#table-of-contents)
 
-To preview changes from a fork of Terraform core, you need to make sure the necessary submodule is active, then change the contents of the submodule to include your changes.
+We keep documentation pertaining to core Terraform functionality in the `website` folder of the [`terraform` repository](https://github.com/hashicorp/terraform). You can preview changes to those files from this repository or from inside the `terraform` repository itself.
 
-### Activating
+### From the `terraform-website` repository
+
+To preview changes from a fork of Terraform core, you need to first make sure the necessary submodule is active, and then change the contents of the submodule to include your changes.
+
+#### Activating
 
 1. **Init:** Run `git submodule init ext/terraform`.
 2. **Update:** Run `git submodule update`.
 
     The init command doesn't actually init things all the way, so if you forget to run update, you might have a bad afternoon. (For more information, see [Living With Submodules][inpage-submodules] below.)
 
-### Changing
+#### Changing
 
 Once the submodule is active, you can go into its directory to fetch and check out new commits. If you plan to routinely edit those docs, you can add an additional remote to make it easier to fetch from and push to your fork.
 
@@ -123,6 +135,10 @@ To find your fork's repo URL, use the "Clone or Download" button on the main pag
 Once you finish testing your changes, you can reset the submodule to its normal state by returning to the root of `terraform-website` and running `git submodule update`.
 
 **Note:** If you're updating a nav sidebar `.erb` file in a provider or in Terraform core, the Middleman preview server might not automatically refresh the affected pages. The easiest way to deal with it is to stop and restart the preview server.
+
+
+### From the `terraform` repository
+The build includes content from the `terraform` repository and the `terraform-website` repository, allowing you to preview the entire Terraform documentation site. You can find instructions in [terraform/website/README.md](https://github.com/hashicorp/terraform/tree/main/website).
 
 ## Writing Normal Docs Content
 

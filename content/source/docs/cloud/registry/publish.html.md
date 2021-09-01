@@ -23,7 +23,7 @@ Only members of the "owners" team can publish new modules. Once a module is publ
 
 The private module registry is designed to be as automatic as possible, so it defers to your VCS provider for most management tasks. The only manual tasks are adding a new module and deleting versions.
 
-After configuring at least one [connection to a VCS provider][vcs], you can publish a new module by specifying a properly formatted VCS repository (one module per repo, with an expected name and tag format; see below for details). The registry automatically detects the rest of the information it needs, including the module's name and its available versions.
+After configuring at least one [connection to a VCS provider][vcs], you can publish a new module by specifying a properly formatted VCS repository (see below for details). The registry automatically detects the rest of the information it needs, including the module's name and its available versions.
 
 To release a new version of an existing module, push a new tag to its repo. The registry updates automatically.
 
@@ -38,9 +38,6 @@ your configured [VCS providers][vcs], and Terraform Cloud's VCS user account mus
 access to the repository. (Since the registry uses webhooks to import new module
 versions, it needs admin access to create those webhooks.) For GitLab, the repository
 must be in the main organization or group, not in any subgroups.
-
-- **One module per repository.** The registry cannot use combined repositories
-with multiple modules.
 
 - **Named `terraform-<PROVIDER>-<NAME>`.** Module repositories must use this
 three-part name format, where `<NAME>` reflects the type of infrastructure the
@@ -71,7 +68,7 @@ This brings you to the "Add a New Module" page, which has a text field and at le
 
 If you have multiple VCS providers configured, use the buttons to select one. In the text field, enter the name of the repository for the module you're adding. Then click the "Publish Module" button.
 
-~> **Note:** The name you type into the repo field will usually be something like `hashicorp/terraform-aws-vpc` or `INFRA/terraform-azure-appserver`. Module repo names use a `terraform-<PROVIDER>-<NAME>` format, and VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. (For most providers the namespace is an organization name, but Bitbucket Server uses project keys, like `INFRA`.)
+~> **Note:** The name you type into the repo field will usually be something like `hashicorp/terraform-aws-vpc` or `INFRA/terraform-azure-appserver`. Module repo names use a `terraform-<PROVIDER>-<NAME>` format, and VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. (For most providers the namespace is an organization name, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.)
 
 Terraform Cloud will display a loading page while it imports the module versions from version control, and will then take you to the new module's details page. On the details page you can view available versions, read documentation, and copy a usage example.
 

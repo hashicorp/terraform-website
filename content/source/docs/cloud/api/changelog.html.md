@@ -13,6 +13,35 @@ page_id: "api-changelog"
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
+
+### 2021-08-18
+
+* Introduced the [State Version Outputs](./state-versions.html) endpoint to retrieve the Outputs for a
+  given State Version
+
+### 2021-08-11
+
+* ![breaking][] Security fix to [Configuration versions](./configuration-versions.html): upload-url attribute for [uploading configuration files](./configuration-versions.html#upload-configuration-files) is now only available on the create response.
+
+### 2021-07-30
+
+* Introduced Workspace Tagging
+    * Updated [Workspaces](./workspaces.html):
+        * added `tag-names` attribute.
+        * added `POST /workspaces/:workspace_id/relationships/tags`
+        * added `DELETE /workspaces/:workspace_id/relationships/tags`
+    * Added [Organization Tags](./organization-tags.html).
+    * Added `tags` attribute to [`tfrun`](../sentinel/import/tfrun.html)
+
+### 2021-07-19
+
+* [Notification configurations](./notification-configurations.html): Gave organization tokens permission to create and manage notification configurations.
+
+### 2021-07-09
+
+* [State versions](./state-versions.html): Fixed the ID format for the workspace relationship of a state version. Previously, the reported ID was unusable due to a bug.
+* [Workspaces](./workspaces.html): Added `locked_by` as an includable related resource.
+
 ### 2021-06-8
 
 * Updated [Registry Module APIs](./modules.html).
@@ -21,6 +50,14 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
     * added [Module List API](./modules.html#list-registry-modules-for-an-organization).
     * updated [Module Delete APIs](./modules.html#delete-a-module).
     * ![cloud][] added public registry module related APIs.
+* ![deprecation] [] The following [Registry Module APIs](./modules.html) have been replaced with newer apis and will be removed in the future.
+    * The following endpoints to delete modules are replaced with [Module Delete APIs](./modules.html#delete-a-module)
+        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
+        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
+        * `POST /registry-modules/actions/delete/:organization_name/:name`
+    * `POST /registry-modules` replaced with [Updated POST Endpoint](./modules.html#publish-a-private-module-from-a-vcs)
+    * `POST /registry-modules/:organization_name/:name/:provider/versions` replaced with new [endpoint](./modules.html#create-a-module-version)
+    * `GET /registry-modules/show/:organization_name/:name/:provider` replaced with new [GET Endpoint](./modules.html#get-a-module)
 
 ### 2021-05-27
 
@@ -65,3 +102,7 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 ### 2021-03-11
 
 * Added [VCS Events](./vcs-events.html), limited to GitLab.com connections.
+
+### 2021-03-08
+
+* [Workspaces](./workspaces.html): added `current_configuration_version` and `current_configuration_version.ingress_attributes` as includable related resources.

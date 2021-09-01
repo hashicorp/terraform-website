@@ -52,7 +52,8 @@ jobs:
       - run:
           name: check links in changed pages
           working_directory: content
-          command: git diff --name-only -z --diff-filter=AMRCT $(git merge-base HEAD origin/master)..HEAD | bundle exec ./scripts/check-pr-links.rb
+          command:
+            git diff --name-only -z --diff-filter=AMRCT $(git merge-base HEAD origin/master)..HEAD | bundle exec ./scripts/check-pr-links.rb
             # --name-only: Return a list of affected files but don't show the changes.
             # -z: Make that a null-separated list (instead of newline-separated), and
             #     DON'T mangle non-ASCII characters.
@@ -115,7 +116,7 @@ jobs:
 
       - run:
           name: Warm cache and check for broken links
-          command: /root/.pub-cache/bin/linkcheck https://www.terraform.io/
+          command: /root/.pub-cache/bin/linkcheck https://www.terraform.io/docs
 
       - slack/status:
           success_message: ":white_check_mark: Finished warming cache for terraform.io. :meow_yay: No broken links!"

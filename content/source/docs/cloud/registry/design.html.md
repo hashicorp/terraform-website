@@ -11,7 +11,7 @@ The configuration designer is sort of like interactive documentation for your pr
 
 ## Workflow Summary
 
-The configuration designer lets you outline a configuration for a new workspace by choosing any number of private modules. It then lists those modules' variables as a fillable HTML form, with a helper interface for finding interpolatable values.
+The configuration designer lets you outline a configuration for a new workspace by choosing any number of private modules. It then lists those modules' variables as a fillable HTML form, with a helper interface for finding values that you can interpolate.
 
 Once you finish, the designer returns the text of a `main.tf` configuration, which you must copy and paste to create a new VCS repo for workspaces. The designer does not automatically create any repos or workspaces; it's only a shortcut for writing Terraform code faster.
 
@@ -64,6 +64,6 @@ When you've finished setting variables, click the "Next" button to view the comp
 
 ![Terraform Cloud screenshot: configuration designer output](./images/design-verify.png)
 
-This page has a large textarea that contains a Terraform configuration. You must copy and paste this code into your text editor, save it as the `main.tf` file in a new directory, and commit it to version control to enable creating workspaces with the configuration. You can also make arbitrary changes to the code, like adding non-module resources or public Terraform Registry modules.
+This page has a large text area that contains a Terraform configuration. You must copy and paste this code into your text editor, save it as the `main.tf` file in a new directory, and commit it to version control to enable creating workspaces with the configuration. You can also make arbitrary changes to the code, like adding non-module resources or public Terraform Registry modules.
 
 After you click "Next" again and click "Done," Terraform Cloud will discard the configuration you've created. Text from previous configuration designer runs is not preserved within Terraform Cloud.
