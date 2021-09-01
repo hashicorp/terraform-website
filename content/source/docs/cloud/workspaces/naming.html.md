@@ -1,6 +1,7 @@
 ---
 layout: "cloud"
 page_title: "Naming - Workspaces - Terraform Cloud and Terraform Enterprise"
+  Workspaces organize infrastructure into meaningful groups. Learn our recommendations for consistent, informative names.
 ---
 
 # Workspace Naming
