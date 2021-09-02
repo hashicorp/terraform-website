@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Users - Terraform Cloud and Terraform Enterprise"
+description: |-
+  How to create an account, change user settings, set up two-factor authentication, create user API tokens, and more. 
 ---
 
 [organizations]: ./organizations.html
