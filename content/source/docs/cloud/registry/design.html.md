@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Using the Configuration Designer - Private Module Registry - Terraform Cloud and Terraform Enterprise"
+description: |-
+  The configuration designer lets you outline a configuration with private modules and helps you quickly define variables.
 ---
 
 # Using the Configuration Designer
