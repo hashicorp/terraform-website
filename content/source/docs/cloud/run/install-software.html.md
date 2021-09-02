@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Installing Software in the Run Environment - Runs - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn how to install Terraform providers and additional tools when necessary.
 ---
 
 # Installing Software in the Run Environment
@@ -30,7 +32,7 @@ If you have a custom provider that you'd rather not publish in the public Terraf
 - Add the provider binary to the VCS repo (or manually-uploaded configuration version). Place the compiled `linux_amd64` version of the plugin at `terraform.d/plugins/<SOURCE HOST>/<SOURCE NAMESPACE>/<PLUGIN NAME>/<VERSION>/linux_amd64`, relative to the root of the directory.
 
     The source host and namespace will need to match the source given in the  `required_providers` block within the configuration, but can otherwise be arbitrary identifiers. For instance, if your `required_providers` block looks like this:
-    
+
     ```
     terraform {
       required_providers {
@@ -41,7 +43,7 @@ If you have a custom provider that you'd rather not publish in the public Terraf
       }
     }
     ```
-    
+
     Terraform Cloud will be able to use your compiled provider if you place it at `terraform.d/plugins/my-host/my-namespace/custom/1.0.0/linux_amd64/terraform-provider-custom`.
 
 - Use a privately-owned provider registry service which implements the [provider registry protocol](/docs/internals/provider-registry-protocol.html) to distribute custom providers. Be sure to include the full [source address](/docs/language/providers/requirements.html#source-addresses), including the hostname, when referencing providers.
