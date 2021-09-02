@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Terraform Cloud Agents - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Cloud agents allow communication with isolated, private, or on-premises infrastructure. Learn to install, configure, and manage cloud agents.
 ---
 
 # Terraform Cloud Agents
@@ -25,9 +27,9 @@ Agents support Terraform versions 0.12 and above. Workspaces configured to use T
 
 ### Hardware Requirements
 
-The host running the agent will have varying resource requirements depending on the workspace. A host can be a dedicated or shared cloud instance, virtual machine, bare metal server, or a container. You should monitor and adjust memory, CPU, and disk space based on each workspace's usage and performance. The name of your instance type may vary depending on your deployment environment. 
+The host running the agent will have varying resource requirements depending on the workspace. A host can be a dedicated or shared cloud instance, virtual machine, bare metal server, or a container. You should monitor and adjust memory, CPU, and disk space based on each workspace's usage and performance. The name of your instance type may vary depending on your deployment environment.
 
-The specs below are provided as a reference. 
+The specs below are provided as a reference.
 
 * At least 4GB of free disk space
   * Each run requires the agent to temporarily store local copies of the tarred repository, extracted repository, state file, any providers or modules, and the Terraform binary itself.
@@ -233,7 +235,7 @@ Runs which are processed by an agent will have additional information about that
 
 You may choose to run multiple agents within your network, up to the organization's purchased agent limit. If there are multiple agents available within an organization, Terraform Cloud will select the first available agent within the target pool.
 
-Each agent process will run a single Terraform run at a time. Multiple agent processes can be concurrently run on a single instance, license limit permitting. 
+Each agent process will run a single Terraform run at a time. Multiple agent processes can be concurrently run on a single instance, license limit permitting.
 
 #### Resilience
 
