@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Permissions - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn the the difference between workspace-level and organization-level permissions and what permissions you can grant to users.
 ---
 
 # Permissions
@@ -76,7 +78,7 @@ The following workspace permissions can be granted to teams on a per-workspace b
     - **Read and write variables:** — _Implies permission to read variables._ Allows users to edit the values of variables in the workspace.
 - **State versions:**
     - **Read state outputs:** — Allows users to access values in the workspace's most recent Terraform state that have been explicitly marked as public outputs. Output values are often used as an interface between separate workspaces that manage loosely coupled collections of infrastructure, so their contents can be relevant to people who have no direct responsibility for the managed infrastructure but still indirectly use some of its functions. This permission is required to access the [State Version Outputs](https://www.terraform.io/docs/cloud/api/state-version-outputs.html) API endpoint.
- 
+
         -> **Note:** **Read state versions** permission is required to use the `terraform output` command or the `terraform_remote_state` data source against the workspace.
     - **Read state versions:** — _Implies permission to read state outputs._ Allows users to read complete state files from the workspace. State files are useful for identifying infrastructure changes over time, but often contain sensitive information.
     - **Read and write state versions:** — _Implies permission to read state versions._ Allows users to directly create new state versions in the workspace. Applying a remote Terraform run will create new state versions without this permission, but if the workspace's execution mode is set to "local", this permission is required for performing local runs. This permission is also required for using any of Terraform CLI's state manipulation and maintenance commands against this workspace, including `terraform import`, `terraform taint`, and the various `terraform state` subcommands.
