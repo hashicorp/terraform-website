@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Permissions - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Learn the the difference between workspace-level and organization-level permissions and what permissions you can grant to users.
+  Learn the difference between workspace-level and organization-level permissions and what permissions you can grant to users.
 ---
 
 # Permissions
