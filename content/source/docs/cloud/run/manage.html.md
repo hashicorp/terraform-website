@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Viewing and Managing Runs - Runs - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Workspaces list of current, pending, and historical runs. Learn to view run information and lock workspaces to prevent new runs.
+  Workspaces list current, pending, and historical runs. Learn to view run information and lock workspaces to prevent new runs.
 ---
 
 # Viewing and Managing Runs
