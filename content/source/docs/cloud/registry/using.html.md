@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Using Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn to find available modules, include modules in configurations, and run configurations with private modules. 
 ---
 
 # Using Modules from the Terraform Cloud Private Module Registry
