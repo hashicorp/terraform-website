@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Users, Teams, and Organizations - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Organizations contain one or more teams, and teams contain one or more users. Users are individual members of an organization. 
 ---
 
 # Users, Teams, and Organizations
