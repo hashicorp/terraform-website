@@ -55,6 +55,10 @@ description: |-
 
 * We expect this callback within X minutes, or SOMETHING happens.
 
+Here's what the data flow looks like
+
+![Screenshot: a diagram of the user and data flow for a Terraform Cloud run task](./images/terraform-cloud-run-tasks-diagram.png)
+
 # Run Tasks Technology Partners
 
 * Bridgecrew
