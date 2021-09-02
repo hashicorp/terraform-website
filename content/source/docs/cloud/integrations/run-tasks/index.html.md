@@ -54,3 +54,29 @@ description: |-
 ```
 
 * We expect this callback within X minutes, or SOMETHING happens.
+
+# Run Tasks Technology Partners
+
+* Bridgecrew
+
+Bridgecrew helps teams address security and compliance errors in Terraform as part of each and every code review. 
+
+* Infracost
+
+Infracost allows for cloud infrastructure costing, initiated right from a PR or Terraform run.
+
+* Snyk
+
+Snyk’s integration with Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
+
+* Refactr
+
+Refactr’s integration allows for users to build workflows for multiple use cases including but not limited to code scanning.
+
+* Lightlytics
+
+From security checks to any additional dependency changes, Lightlytics’s integration provides visual pending changes to your infrastructure.
+
+* CloudTamer
+
+Cloudtamer has two integration options.  Customers can choose to focus on cost savings or compliance findings on an active account when using CloudTamer.
