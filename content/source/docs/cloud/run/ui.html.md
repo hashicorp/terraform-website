@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "UI/VCS-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Every workspace is associated with a VCS repository branch, and Terraform Cloud automatically queues runs when new commits are merged.
+  Workspaces are associated with a VCS repository branch, and Terraform Cloud automatically queues runs when new commits are merged.
 ---
 
 # The UI- and VCS-driven Run Workflow
