@@ -7,9 +7,17 @@ description: |-
 
 # Run Tasks Integration
 
-* When creating and event hook, we send a test POST to the supplied URL, which must respond with a 200 in order for the event hook to be created.
+## Overview
 
-* When a run reaches the pre apply phase and an event hook is triggered, the supplied URL will receive the following payload:
+In addition to using existing technology partners integrations, HashiCorp Terraform Cloud customers can build their own custom Run Task integrations. Custom integrations have access to plan details in between the plan and apply phase, and can display custom messages within the run pipeline as well as prevent a run from continuing to the apply phase.
+
+## Prerequisites
+
+In order to build a custom integration, you must have a server capable of receiving requests from Terraform Cloud and responding with a status update to a supplied callback URL. When creating an event hook you supply an endpoint url to receive the hook. We send a test POST to the supplied URL, which must respond with a 200 in order for the event hook to be created.
+
+## Integration Details
+
+When a run reaches the pre apply phase and an event hook is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the event hook should respond `200 OK`, or the hook will be retried.
 
 ```json
 {
@@ -35,11 +43,7 @@ description: |-
 }
 ```
 
-* You should respond to this request with a 200, or we will retry?
-
-* Table of above attributes and descriptions goes here.
-
-* We expect you to callback to the supplied `task_result_callback_url` using the `access_token` as an Authorization Header (link-to our authorization docs) with a jsonapi (link to jsonapi) payload of the form:
+Once your server receives this payload, Terraform Cloud expects you to callback to the supplied `task_result_callback_url` using the `access_token` as an [Authentication Header](../../api/index.html#authentication) with a [jsonapi](../..api/index.html#json-api-formatting) payload of the form:
 
 ```json
 {
@@ -53,11 +57,15 @@ description: |-
 }
 ```
 
-* We expect this callback within X minutes, or SOMETHING happens.
+Terraform Cloud expects this callback within 10 minutes, or the task will be considered to have `errored`. The supplied message attribute will be displayed in Terraform Cloud on the run details page. The status can be `passed` or `failed`.
 
-Here's what the data flow looks like
+Here's what the data flow looks like:
 
 ![Screenshot: a diagram of the user and data flow for a Terraform Cloud run task](./images/terraform-cloud-run-tasks-diagram.png)
+
+## Securing your Event Hook
+
+When creating your Event Hook, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `x-tfc-event-hook-signature` header when calling your service.
 
 # Run Tasks Technology Partners
 
