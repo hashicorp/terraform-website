@@ -44,11 +44,11 @@ You can now see the list of configured event hooks. Return to your desired works
 
 ![Screenshot: a workspace's populated tasks configuration page](./images/run-tasks-workspace-tasks-populated.png)
 
-Here you can decide the enforcement level for the task. 
-- **Advisory** tasks can not block a run from completing. If the task fails, a warning will be displayed on the run but it will proceed
-- **Mandatory** tasks can block a run from completing. If the task fails (including a timeout or unexpected remote error condition), a warning will be displayed on the run and the run will transition to an Errored state.
+8. Choose an enforcement level and click "Create."
 
-Choose an enforcement level and click "Create"
+     - **Advisory** tasks can not block a run from completing. If the task fails, a warning will be displayed on the run but it will proceed.
+     - **Mandatory** tasks can block a run from completing. If the task fails (including a timeout or unexpected remote error condition), a warning will be displayed on the run and the run will transition to an Errored state.
+
 
 ![Screenshot: enforcement configuration for a specific task within a workspace](./images/run-tasks-add-to-workspace.png)
 
