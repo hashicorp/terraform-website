@@ -27,7 +27,7 @@ You must be an organization owner to create a new task event hook. You must be a
 
 ![Screenshot: a workspace's settings drop-down menu](./images/run-tasks-workspace-settings.png)
 
-Here you can either create a new event hook or select an existing one that isn't yet connected to the workspace. Click "Create a new event hook"
+2. Click "Create a new event hook." The "Task event hooks" page appears. 
 
 This will bring you to the "Task event hooks" page within your organization's settings. Click "Create hook"
 
