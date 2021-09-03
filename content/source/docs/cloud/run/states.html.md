@@ -92,7 +92,7 @@ This phase only occurs if there are [run tasks](./workspaces/run-tasks.html) ena
 _States in this stage:_
 
 - **Running tasks:** Terraform Cloud is currently waiting for a response from the configured external system(s).
-    - Exeternal systems being requested to execute a task must respond initially with a `200 OK` acknowledging the request is in progress. After that, they have 10 minutes to return a status of `passed` or `failed`, or the timeout will expire and the task will be assumed to be in the `failed` status.
+    - External systems must respond initially with a `200 OK` acknowledging the request is in progress. After that, they have 10 minutes to return a status of `passed` or `failed`, or the timeout will expire and the task will be assumed to be in the `failed` status.
 
 _Leaving this stage:_
 
