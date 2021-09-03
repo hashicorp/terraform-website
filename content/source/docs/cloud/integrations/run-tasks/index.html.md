@@ -2,7 +2,8 @@
 layout: "cloud"
 page_title: "Terraform Cloud Run Tasks Integrations Setup"
 description: |-
-  HashiCorp Terraform Cloud customers can create custom integrations using Run Tasks
+  Run tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. 
+
 ---
 
 # Run Tasks Integration
