@@ -53,7 +53,7 @@ Status  | Response                                      | Reason
 
 This POST endpoint requires a JSON object with the following properties as a request payload.
 
-Properties without a default value are required.
+Properties without a default value are required unless otherwise specified.
 
 Key path                                      | Type            | Default | Description
 ----------------------------------------------|-----------------|---------|------------
@@ -61,7 +61,7 @@ Key path                                      | Type            | Default | Desc
 `data.attributes.name`                        | string          |         | The name of the event hook. Can include letters, numbers, `-`, and `_`.
 `data.attributes.url`                         | string          |         | URL to send a run task payload.
 `data.attributes.category`                    | string          |         | Must be `"task"`.
-`data.attributes.hmac-key`                    | string          |         | Optional HMAC key to verify event hook.
+`data.attributes.hmac-key`                    | string          |         | (Optional) HMAC key to verify event hook.
 
 ### Sample Payload
 
