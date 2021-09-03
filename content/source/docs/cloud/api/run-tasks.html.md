@@ -26,7 +26,9 @@ page_title: "Run Tasks - API Docs - Terraform Cloud and Terraform Enterprise"
 
 [Run tasks](../workspaces/run-tasks.html) allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. Event hooks are reusable configurations that you can attach to any workspace in an organization as a run task. This page lists the API endpoints for event hooks in an organization and explains how to attach event hooks as run tasks to workspaces.
 
-Interacting with event hooks requires the organization owner permission.  Connecting event hooks to workspaces as run tasks requires the workspace administrator permission. ([More about permissions](../users-teams-organizations/permissions.html).)
+## Required Permissions 
+
+You need organization owner permissions to interact with event hooks and workspace administrator permissions to connect event hooks to workspaces. ([More about permissions](../users-teams-organizations/permissions.html).)
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
