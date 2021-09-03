@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Data Security - Architectural Details - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn which parts of the application contain sensitive data and what storage and encryption methods we use. 
 ---
 
 # Data Security
