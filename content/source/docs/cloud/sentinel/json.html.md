@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Working With JSON Result Data - Sentinel - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn how to view and filter Sentinel JSON data.
 ---
 
 # Working With Sentinel JSON Result Data
