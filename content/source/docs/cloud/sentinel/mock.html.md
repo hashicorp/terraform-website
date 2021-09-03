@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Mocking Terraform Sentinel Data - Sentinel - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn how to use the UI or API to generate mock Sentinel data and how to use it for testing.
 ---
 
 # Mocking Terraform Sentinel Data
@@ -28,7 +30,7 @@ scrub sensitive data from these mocks, but we do not guarantee 100% accuracy.
 Treat this data with care, and avoid generating mocks with live sensitive data
 when possible. Access to this information requires [permission to download
 Sentinel mocks](/docs/cloud/users-teams-organizations/permissions.html) for the
-workspace where the data was generated. 
+workspace where the data was generated.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
