@@ -91,6 +91,6 @@ Refactr’s integration allows for users to build workflows for multiple use cas
 
 From security checks to any additional dependency changes, Lightlytics’s integration provides visual pending changes to your infrastructure.
 
-* CloudTamer
+* cloudtamer.io
 
-Cloudtamer has two integration options.  Customers can choose to focus on cost savings or compliance findings on an active account when using CloudTamer.
+Cloudtamer.io has two integration options.  Customers can choose to focus on cost savings or compliance findings on an active account when using CloudTamer.
