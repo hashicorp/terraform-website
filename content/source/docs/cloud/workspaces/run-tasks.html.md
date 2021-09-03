@@ -75,6 +75,6 @@ And here is an example of a run that succeeded.
 
 ## Deleting a Task Event Hook
 
-Note that a task event hook cannot be deleted if it is still attached to any workspaces. A warning will be displayed in the UI if you attempt this, with a list of any workspaces that are consuming the event hook. Remove the task from the impacted workspaces before proceeding with the deletion.
+You can not delete task event hooks that are still attached to workspaces. If you attempt this, you will see a warning in the UI containing a list of any workspaces that are consuming the event hook. You must remove the task from the impacted workspaces before proceeding with the deletion.
 
 ![Screenshot: a warning when attempting to delete an in-use event hook](./images/run-tasks-delete-hook-warning.png)
