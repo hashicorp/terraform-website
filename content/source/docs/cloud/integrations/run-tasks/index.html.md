@@ -1,6 +1,6 @@
 ---
 layout: "cloud"
-page_title: "Terraform Cloud Run Tasks Integrations setup instructions"
+page_title: "Terraform Cloud Run Tasks Integrations Setup"
 description: |-
   HashiCorp Terraform Cloud customers can create custom integrations using Run Tasks
 ---
