@@ -81,7 +81,7 @@ _Leaving this stage:_
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-## 5. The Pre-Apply stage
+## 5. The Pre-Apply Stage
 
 -> Note: As of September 2021, Run Tasks are available only as a beta feature, and not all customers will see this functionality in their Terraform Cloud organization.
 
