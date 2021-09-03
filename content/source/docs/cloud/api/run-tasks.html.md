@@ -283,7 +283,7 @@ Status  | Response                                      | Reason
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
-Properties without a default value are required.
+Properties without a default value are required unless otherwise specified.
 
 Key path                                      | Type    | Default          | Description
 ----------------------------------------------|-------- |------------------|------------
