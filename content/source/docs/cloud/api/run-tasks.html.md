@@ -218,7 +218,7 @@ Status  | Response                                      | Reason
 
 Parameter | Description
 ----------|------------
-`include` | **Optional.** Allows including related resource data. Value must be a comma-separated list containing one or more of `tasks` or `tasks.workspace`. See the [relationships section](#relationships) for details.
+`include` | **Optional.** Allows including related resource data. Value must be a comma-separated list containing one or more of `tasks` or `tasks.workspace`. The [relationships section](#relationships) has more details.
 
 ### Sample Request
 
