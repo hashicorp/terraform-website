@@ -6,15 +6,17 @@ page_title: "Log Forwarding - Infrastructure Administration - Terraform Enterpri
 # Terraform Enterprise Log Forwarding
 
 Terraform Enterprise supports forwarding its logs to one or more external
-destinations, a process called log forwarding.
+destinations, a process called log forwarding. Log forwarding provides operators
+of Terraform Enterprise with increased observability, assistance complying with
+log retention requirements, and information availabilty during troubleshooting.
 
 ## Requirements
 
 Log forwarding requires:
 
-- Terraform Enterprise running on an instance with the `systemd-journald`
-service started and enabled. Execute `systemctl status systemd-journald` to
-check if the `systemd-journald` service is started and enabled.
+- Terraform Enterprise running on an instance using `systemd-journald`. Execute
+`systemctl status systemd-journald` to check if the `systemd-journald` service
+is started and enabled.
 - A version of Docker that supports the `journald` logging driver. Execute
 `docker info --format '{{.Plugins.Log}}'` to check if the `journald` plugin is
 listed.
@@ -118,8 +120,8 @@ Doing this creates a loop that continuously emits logs!
 
 ## Restart Terraform Enterprise
 
-Once log forwarding is enabled and configured, Terraform Enterprise will need to
-be restarted for the changes to take effect. Please refer to the
+Once log forwarding is enabled and configured, you need to restart Terraform
+Enterprise for the changes to take effect. Please refer to the
 [HashiCorp Help Center](https://support.hashicorp.com/hc/en-us/articles/360047602093-Restarting-Terraform-Enterprise)
 for details on how to restart Terraform Enterprise.
 
