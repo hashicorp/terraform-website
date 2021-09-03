@@ -291,7 +291,7 @@ Key path                                      | Type    | Default          | Des
 `data.attributes.name`                        | string  | (previous value) | The name of the event hook. Can include letters, numbers, `-`, and `_`.
 `data.attributes.url`                         | string  | (previous value) | URL to send a run task payload.
 `data.attributes.category`                    | string  | (previous value) | Must be `"task"`.
-`data.attributes.hmac-key`                    | string  | (previous value) | Optional HMAC key to verify event hook.
+`data.attributes.hmac-key`                    | string  | (previous value) | (Optional) HMAC key to verify event hook.
 
 ### Sample Payload
 
