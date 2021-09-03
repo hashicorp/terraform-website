@@ -9,7 +9,7 @@ description: |-
 # Run Tasks Integration
 
 
-In addition to using existing technology partners integrations, HashiCorp Terraform Cloud customers can build their own custom Run Task integrations. Custom integrations have access to plan details in between the plan and apply phase, and can display custom messages within the run pipeline as well as prevent a run from continuing to the apply phase.
+In addition to using existing technology partners integrations, HashiCorp Terraform Cloud customers can build their own custom run task integrations. Custom integrations have access to plan details in between the plan and apply phase, and can display custom messages within the run pipeline as well as prevent a run from continuing to the apply phase.
 
 ## Prerequisites
 
