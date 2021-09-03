@@ -159,7 +159,7 @@ The following settings apply to every installation:
 - `hairpin_addressing` - When set, TFE services will direct traffic destined for the installation's FQDN toward the instance's internal IP address. This is useful for cloud environments where HTTP clients running on instances behind a load balancer cannot send requests to the public hostname of that load balancer. Defaults to `false`.
 - `force_tls` - When set, TFE will require all application traffic to use HTTPS by sending a 'Strict-Transport-Security' header value in responses, and marking cookies as secure. A valid, trusted TLS certificate must be installed when this option is set, as browsers will refuse to serve webpages that have an HSTS header set that also serve self-signed or untrusted certificates.
 - `log_forwarding_enabled` - (Optional) Whether or not to enable [log forwarding](../admin/logging.html) for Terraform Enterprise. Set to `1` to enable log forwarding and `0` to disable log forwarding. Defaults to `0`.
-- `log_forwarding_config` - (Optional) Valid [log forwarding](../admin/logging.html) configuration specifying which external destination(s) to forward logs to.
+- `log_forwarding_config` - (Optional) Valid [log forwarding](../admin/logging.html) configuration specifying external destination(s) to forward logs.
 - `ca_certs` — (Optional) Custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
   in the data with `\n`. For instance:
 

@@ -6,8 +6,7 @@ page_title: "Log Forwarding - Infrastructure Administration - Terraform Enterpri
 # Terraform Enterprise Log Forwarding
 
 Terraform Enterprise supports forwarding its logs to one or more external
-destinations, aptly referred to as log forwarding. This page details how to
-configure log forwarding in Terraform Enterprise.
+destinations, a process called log forwarding.
 
 ## Requirements
 
@@ -19,34 +18,29 @@ check if the `systemd-journald` service is started and enabled.
 - A version of Docker that supports the `journald` logging driver. Execute
 `docker info --format '{{.Plugins.Log}}'` to check if the `journald` plugin is
 listed.
-- Network connectivity between Terraform Enterprise and the desired external
-destination(s) where logs should be forwarded to.
+- Network connectivity between Terraform Enterprise and the external
+destination(s) where logs should be forwarded.
 
-## Configuration
+## Enable Log Forwarding
 
-In order to use log forwarding, it must be enabled and configured. Once that is
-done, the Terraform Enterprise application will need to be restarted for the log
-forwarding configuration to take effect.
+Log forwarding is disabled by default. To enable log forwarding, set the
+`log_forwarding_enabled` Terraform Enterprise application setting to the value
+`1`.
 
-### Enable Log Forwarding
-
-To enable log forwarding, the `log_forwarding_enabled` Terraform Enterprise
-application setting must be set to the value `1`.
-
-Enable log forwarding for a Standalone installation of Terraform Enterprise:
+For a Standalone installation of Terraform Enterprise:
 
 ```
 replicatedctl app-config set log_forwarding_enabled --value 1
 ```
 
-Enable log forwarding for an Active/Active installation of Terraform Enterprise:
+For an Active/Active installation of Terraform Enterprise:
 
 ```
 tfe-admin app-config -k log_forwarding_enabled -v 1
 ```
 
-When enabled, the Terraform Enterprise application settings should show the
-following for the `log_forwarding_enabled` setting:
+When log forwarding is enabled, the Terraform Enterprise application settings
+show the following for `log_forwarding_enabled`:
 
 ```
     ...
@@ -56,36 +50,32 @@ following for the `log_forwarding_enabled` setting:
     ...
 ```
 
-Log forwarding is disabled by default.
-
 ### Configure External Destinations
 
-Once log forwarding is enabled, it must be configured to forward logs to one or
-more external destinations. To configure log forwarding, the
-`log_forwarding_config` Terraform Enterprise application setting must contain
-valid [Fluent Bit `[OUTPUT]` configuration](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit)
-specifying which external destination(s) to forward logs to. Since the Terraform
-Enterprise application settings are stored as JSON strings, it is recommended to
-create a `fluent-bit.conf` file with the valid Fluent Bit `[OUTPUT]`
-configuration and then configure the `log_forwarding_config` Terraform
-Enterprise application setting with the contents of that `fluent-bit.conf` file.
-That way, the configuration is stored in the Terraform Enterprise application
-settings exactly how it appears in the `fluent-bit.conf` file.
+The `log_forwarding_config` Terraform Enterprise application setting must
+contain valid
+[Fluent Bit `[OUTPUT]` configuration](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit)
+specifying external destination(s) where Terraform Enterprise should forward
+logs. Since the Terraform Enterprise application settings are stored as JSON
+strings, we recommend first creating a `fluent-bit.conf` file with the valid
+Fluent Bit `[OUTPUT]` configuration and then using that file to configure the
+`log_forwarding_config` application setting. This method ensures that the
+configuration is stored in the application settings exactly how it appears in
+the `fluent-bit.conf` file.
 
-Configure log forwarding for a Standalone installation of Terraform Enterprise:
+For a Standalone installation of Terraform Enterprise:
 
 ```
 replicatedctl app-config set log_forwarding_config --value "$(cat fluent-bit.conf)"
 ```
 
-Configure log forwarding for an Active/Active installation of Terraform
-Enterprise:
+For an Active/Active installation of Terraform Enterprise:
 
 ```
 tfe-admin app-config -k log_forwarding_config -v "$(cat fluent-bit.conf)"
 ```
 
-Once configured, the Terraform Enterprise application settings should show the
+Once configured, the Terraform Enterprise application settings show the
 `log_forwarding_config` setting in escaped JSON string format:
 
 ```
@@ -122,14 +112,21 @@ directives.
     ...
 ```
 
-~> **NOTE:** Do not use an `[OUTPUT]` directive with the
+-> **Note:** Do not use an `[OUTPUT]` directive with the
 [`stdout` Fluent Bit output plugin](https://docs.fluentbit.io/manual/pipeline/outputs/standard-output).
-Doing so will result in a loop that will continuously emit logs!
+Doing this creates a loop that continuously emits logs!
+
+## Restart Terraform Enterprise
+
+Once log forwarding is enabled and configured, Terraform Enterprise will need to
+be restarted for the changes to take effect. Please refer to the
+[HashiCorp Help Center](https://support.hashicorp.com/hc/en-us/articles/360047602093-Restarting-Terraform-Enterprise)
+for details on how to restart Terraform Enterprise.
 
 ## Supported External Destinations
 
-These are the supported external destinations one can forward logs to. Each
-supported external destination contains example configuration for convenience.
+You can only forward logs to one of the supported external destinations below.
+Each supported external destination contains example configuration for convenience.
 
 ### Amazon CloudWatch
 
@@ -150,7 +147,7 @@ for more information.
     auto_create_group  On
 ```
 
-~> **NOTE:** In Terraform Enterprise installations using AWS external services,
+-> **Note:** In Terraform Enterprise installations using AWS external services,
 Fluent Bit will have access to the same `AWS_ACCESS_KEY_ID` and
 `AWS_SECRET_ACCESS_KEY` environment variables that are used for object storage.
 
@@ -174,7 +171,7 @@ for more information.
     s3_key_format_tag_delimiters  .-
 ```
 
-~> **NOTE:** In Terraform Enterprise installations using AWS external services,
+-> **Note:** In Terraform Enterprise installations using AWS external services,
 Fluent Bit will have access to the same `AWS_ACCESS_KEY_ID` and
 `AWS_SECRET_ACCESS_KEY` environment variables that are used for object storage.
 
@@ -264,7 +261,7 @@ for more information.
     resource   generic_node
 ```
 
-~> **NOTE:** In Terraform Enterprise installations using GCP external services,
+-> **Note:** In Terraform Enterprise installations using GCP external services,
 Fluent Bit will have access to the `GOOGLE_SERVICE_CREDENTIALS` environment
 variable that points to a file containing the same GCP Service Account JSON
 credentials that are used for object storage.
@@ -308,7 +305,7 @@ Here's an example audit log entry formatted for readability:
 }
 ```
 
-If you have a requirement to split audit logs from application logs, it is
-recommended to forward all Terraform Enterprise logs to a log aggregation
-system, filter the audit logs based on the `[Audit Log]` string, and forward
-just the audit logs to the desired destination.
+If you have a requirement to split audit logs from application logs, we
+recommend forwarding all Terraform Enterprise logs to a log aggregation system,
+filtering the audit logs based on the `[Audit Log]` string, and forwarding just
+the audit logs to the desired destination.
