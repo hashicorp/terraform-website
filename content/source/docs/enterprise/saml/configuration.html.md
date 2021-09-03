@@ -2,7 +2,7 @@
 layout: "enterprise"
 page_title: "SAML Configuration - Terraform Enterprise"
 description: |-
-  Set up SAML and configure Terraform Enterprise as the Service Provider.
+  Learn to set up SAML and configure Terraform Enterprise as the Service Provider.
 ---
 
 # Configuration

@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Mocking Terraform Sentinel Data - Sentinel - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Learn how to use the UI or API to generate mock Sentinel data and how to use it for testing.
+  Learn how to use the UI or API to generate mock Sentinel data and how to use that data for testing.
 ---
 
 # Mocking Terraform Sentinel Data

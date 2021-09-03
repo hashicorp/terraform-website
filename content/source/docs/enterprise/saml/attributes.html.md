@@ -2,7 +2,7 @@
 layout: "enterprise"
 page_title: "SAML User Attributes - Terraform Enterprise"
 description: |-
-  When a new user logs in, Terraform Enterprise updates their account with data from these attributes.
+  When a new user logs in, Terraform Enterprise updates their account with data from SAML user attributes.
 ---
 
 # Attributes
