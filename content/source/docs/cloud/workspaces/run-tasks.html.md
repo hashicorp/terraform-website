@@ -43,7 +43,9 @@ You must be an organization owner to create a new task event hook. You must be a
 
 ![Screenshot: an organization's populated task event hooks state](./images/run-tasks-event-hooks-populated.png)
 
-You can now see the list of configured event hooks. Return to your desired workspace by clicking on "Workspaces" in the top nav bar, then selecting your workspace from the grid. Return to the "Tasks" item in the "Settings" menu. You can now see any event hooks you created in the prior step. In this example, two are available, one which will `always-pass`, and one which will `always fail`. Click the "+" sign next to the task(s) you wish to add to this workspace.
+6. Click "Workspaces" in the top navigation, select your workspace from the grid, and then click "Tasks" in the "Settings" menu. You can now see any event hooks you created in the prior step. 
+
+7. Click the "+" sign next to the task(s) you wish to add to this workspace.
 
 ![Screenshot: a workspace's populated tasks configuration page](./images/run-tasks-workspace-tasks-populated.png)
 
