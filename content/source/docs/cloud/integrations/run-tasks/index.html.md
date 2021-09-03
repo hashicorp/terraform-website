@@ -93,4 +93,4 @@ From security checks to any additional dependency changes, Lightlytics’s integ
 
 * cloudtamer.io
 
-Cloudtamer.io has two integration options.  Customers can choose to focus on cost savings or compliance findings on an active account when using CloudTamer.
+When using cloudtamer.io, customers can choose to focus on cost savings or compliance findings on an active account.
