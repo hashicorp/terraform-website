@@ -13,7 +13,7 @@ In addition to using existing technology partners integrations, HashiCorp Terraf
 
 ## Prerequisites
 
-In order to build a custom integration, you must have a server capable of receiving requests from Terraform Cloud and responding with a status update to a supplied callback URL. When creating an event hook you supply an endpoint url to receive the hook. We send a test POST to the supplied URL, which must respond with a 200 in order for the event hook to be created.
+To build a custom integration, you must have a server capable of receiving requests from Terraform Cloud and responding with a status update to a supplied callback URL. When creating an event hook, you supply an endpoint url to receive the hook. We send a test POST to the supplied URL, and it must respond with a 200 for the event hook to be created.
 
 This feature relies heavily on the proper parsing of [plan JSON output](../../../internals/json-format.html). When sending this output to an external system, be certain that system can properly interpret the information provided.
 
