@@ -15,6 +15,8 @@ In addition to using existing technology partners integrations, HashiCorp Terraf
 
 In order to build a custom integration, you must have a server capable of receiving requests from Terraform Cloud and responding with a status update to a supplied callback URL. When creating an event hook you supply an endpoint url to receive the hook. We send a test POST to the supplied URL, which must respond with a 200 in order for the event hook to be created.
 
+This feature relies heavily on the proper parsing of [plan JSON output](../../../internals/json-format.html). When sending this output to an external system, be certain that system can properly interpret the information provided.
+
 ## Integration Details
 
 When a run reaches the pre apply phase and an event hook is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the event hook should respond `200 OK`, or the hook will be retried.
@@ -43,7 +45,7 @@ When a run reaches the pre apply phase and an event hook is triggered, the suppl
 }
 ```
 
-Once your server receives this payload, Terraform Cloud expects you to callback to the supplied `task_result_callback_url` using the `access_token` as an [Authentication Header](../../api/index.html#authentication) with a [jsonapi](../..api/index.html#json-api-formatting) payload of the form:
+Once your server receives this payload, Terraform Cloud expects you to callback to the supplied `task_result_callback_url` using the `access_token` as an [Authentication Header](../../api/index.html#authentication) with a [jsonapi](../../api/index.html#json-api-formatting) payload of the form:
 
 ```json
 {
