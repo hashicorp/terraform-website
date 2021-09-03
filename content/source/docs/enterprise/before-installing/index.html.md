@@ -2,7 +2,7 @@
 layout: "enterprise"
 page_title: "Pre-Install Checklist - Before Installing - Terraform Enterprise"
 description: |-
-  You need to make key architecture decisions and prepare infrastructure and data files before installing Terraform Enterprise. 
+  You need to make key architecture decisions and prepare infrastructure and data files before installing Terraform Enterprise.
 ---
 
 # Terraform Enterprise Pre-Install Checklist
@@ -135,7 +135,7 @@ For other Linux distributions, check Docker compatibility:
     * Replicated 2.32.0 and above required when running Docker 18+.
     * In Online mode, the installer will install Docker automatically.
     * In Airgapped mode, Docker should be installed before you begin.
-* For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
+* For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/install/#server).
 
 ~> **Important:** We do not recommend running Docker under a 2.x kernel.
 
