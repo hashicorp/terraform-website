@@ -78,7 +78,20 @@ And here is an example of a run that succeeded.
 
 ![Screenshot: a run with failed tasks](./images/run-tasks-run-success.png)
 
+## Deleting a Task from a Workspace
+
+1. Navigate to the desired workspace, then select "Tasks" from the "Settings" menu.
+
+2. Click Remove next to the task you wish to delete
+
+
 ## Deleting a Task Event Hook
+
+1. Navigate to Settings and Task event hooks
+
+2. Click on Edit for the event hook you wish to modify
+
+3. Click on Delete event hook
 
 You can not delete task event hooks that are still attached to workspaces. If you attempt this, you will see a warning in the UI containing a list of any workspaces that are consuming the event hook. You must remove the task from the impacted workspaces before proceeding with the deletion.
 
