@@ -29,7 +29,7 @@ You must be an organization owner to create a new task event hook. You must be a
 
 2. Click "Create a new event hook." The "Task event hooks" page appears. 
 
-This will bring you to the "Task event hooks" page within your organization's settings. Click "Create hook"
+3. Click "Create hook."
 
 ![Screenshot: an organization's blank task event hooks state](./images/run-tasks-blank-event-hooks.png)
 
