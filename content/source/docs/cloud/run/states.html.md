@@ -97,7 +97,7 @@ _States in this stage:_
 _Leaving this stage:_
 
 - If any mandatory tasks failed, the run skips to completion (**Plan Errored** state).
-- If any advisory tasks failed, the run proceeds to the in the **Applying** state, with a visible warning regarding the failed task.
+- If any advisory tasks failed, the run proceeds to the **Applying** state, with a visible warning regarding the failed task.
 - If a combination of mandatory and advisory tasks are configured for a single run, the most restrictive action will win
     - This means that if there are two advisory tasks which succeed and one mandatory task which fails, the run will fail. If one mandatory task succeeds and two advisory tasks fail, the run will succeed with a warning.
 - If a user canceled the apply by pressing the "Cancel Run" button, the run ends in the **Canceled** state.
