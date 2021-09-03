@@ -52,7 +52,7 @@ You can now see the list of configured event hooks. Return to your desired works
 
 ![Screenshot: enforcement configuration for a specific task within a workspace](./images/run-tasks-add-to-workspace.png)
 
-Once you have added all of the task hooks desired for a workspace, you can configure or remove them from this view. Your run tasks are now configured.
+Your run tasks are now configured. You can return to this page to configure or remove tasks in your workspace.
 
 ![Screenshot: final configuration of tasks within a workspace](./images/run-tasks-final-workspace-configuration.png)
 
