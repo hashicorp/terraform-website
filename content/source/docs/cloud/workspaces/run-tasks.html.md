@@ -39,7 +39,7 @@ You must be an organization owner to create a new task event hook. You must be a
 - **Hook endpoint URL** (required): The URL where your external service is listening for a [run tasks payload](../api/run-tasks.html).
 - **HMAC key** (optional): A key that your remote endpoint can use to verify that requests are originating from Terraform Cloud.
 
-Once you have entered the necessary information, click "Create event hook"
+5. After you have entered the necessary information, click "Create event hook." A page with a list of configured event hooks appears.
 
 ![Screenshot: an organization's populated task event hooks state](./images/run-tasks-event-hooks-populated.png)
 
