@@ -164,7 +164,7 @@ Sentinel is an embedded policy-as-code framework that can enforce rules about Te
 
 Task event hooks are reusable [run tasks](../workspaces/run-tasks.html) configurations that can be attached to any workspace in an organization.
 
-A task event hook is made up of a friendly name, a complete endpoint URL which the hook will communicate with, and an optional HMAC key used to verify the authenticity of a request.
+A task event hook is made up of a human-readable name, a complete endpoint URL for the hook to communicate with, and an optional HMAC key used to verify the authenticity of a request.
 
 ## Trial Expired Organizations
 
