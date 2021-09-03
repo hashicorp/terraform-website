@@ -24,9 +24,7 @@ page_title: "Run Tasks - API Docs - Terraform Cloud and Terraform Enterprise"
 
 -> Note: As of September 2021, Run Tasks are available only as a beta feature, and not all customers will see this functionality in their Terraform Cloud organization.
 
-[Run Tasks](../workspaces/run-tasks.html) allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. Event Hooks are reusable configurations which can be attached to any workspace in an organization as a run task.
-
-This page documents the API endpoints to create, read, update, and delete task event hooks in an organization, as well as how to attach them as run tasks to workspaces.
+[Run tasks](../workspaces/run-tasks.html) allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. Event hooks are reusable configurations that you can attach to any workspace in an organization as a run task. This page lists the API endpoints for event hooks in an organization and explains how to attach event hooks as run tasks to workspaces.
 
 Interacting with event hooks requires the organization owner permission.  Connecting event hooks to workspaces as run tasks requires the workspace administrator permission. ([More about permissions](../users-teams-organizations/permissions.html).)
 
