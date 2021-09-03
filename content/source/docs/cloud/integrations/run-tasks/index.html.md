@@ -69,7 +69,7 @@ Here's what the data flow looks like:
 
 When creating your Event Hook, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `x-tfc-event-hook-signature` header when calling your service.
 
-# Run Tasks Technology Partners
+## Run Tasks Technology Partners
 
 * Bridgecrew
 
