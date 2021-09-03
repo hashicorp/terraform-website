@@ -15,11 +15,13 @@ The external system can then use this run information and respond back to Terraf
 
 -> **API:** See the [Run Tasks APIs](../api/run-tasks.html).
 
--> **Note:** Run tasks can only be created on workspaces using a Terraform version <0.12. Downgrading a workspace with existing run tasks to use a Terraform version >=0.12 will not result in an error, but the configured tasks will not execute.
+## Requirements
+
+Run tasks can only be created on workspaces using a Terraform version <0.12. Downgrading a workspace with existing run tasks to use a Terraform version >=0.12 will not result in an error, but the configured tasks will not execute.
+
+You must be an organization owner to create a new task event hook. You must be at least a workspace administrator in order to connect a task event hook to a given workspace.
 
 ## Configuring a Run Task
-
--> **Note:** You must be an organization owner to create a new task event hook. You must be at least a workspace administrator in order to connect a task event hook to a given workspace.
 
 1. Navigate to the desired workspace, then select "Tasks" from the "Settings" menu. A page appears where you can either create a new event hook or select an existing one that is not connected to the workspace.
 
