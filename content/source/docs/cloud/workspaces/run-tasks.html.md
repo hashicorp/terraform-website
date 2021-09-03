@@ -59,7 +59,7 @@ Your run tasks are now configured. You can return to this page to configure or r
 
 ## Understanding Run Tasks Within a Run
 
-In a workspace with run tasks configured, there will be a new run stage called [Pre-Apply](../run/states.html) visible. This stage is where your run tasks will execute during a run, after the plan stage (and, cost estimation and policy check stage if configured).
+Workspaces with run tasks configured have an additional run stage called [Pre-Apply](../run/states.html). This stage is where your run tasks will execute during a run, after the plan stage and also the cost estimation and policy check stages, if applicable.
 
 The Pre-Apply stage will always end with the most restrictive status of the tasks configured to run. For example, if a mandatory task fails and an advisory task succeeds, the stage will fail and the run will error. If an advisory task fails but a mandatory task succeeds, the stage will succeed and the run will proceed to the apply stage.
 
