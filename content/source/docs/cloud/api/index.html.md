@@ -1,6 +1,8 @@
 ---
 page_title: "API Docs - Terraform Cloud and Terraform Enterprise"
 layout: "cloud"
+description: |-
+  Authentication, available features at your pricing tier, JSON API formatting, rate limiting, and other important information.
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
