@@ -372,7 +372,6 @@ Key path                        | Type   | Default | Description
     "type": "registry-modules",
     "attributes": {
       "name": "my-module",
-      "namespace": "my-organization",
       "provider": "aws",
       "registry-name": "private"
     }
