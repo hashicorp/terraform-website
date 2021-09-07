@@ -6,9 +6,9 @@ page_title: "Log Forwarding - Infrastructure Administration - Terraform Enterpri
 # Terraform Enterprise Log Forwarding
 
 Terraform Enterprise supports forwarding its logs to one or more external
-destinations, a process called log forwarding. Log forwarding provides operators
-of Terraform Enterprise with increased observability, assistance complying with
-log retention requirements, and information availabilty during troubleshooting.
+destinations, a process called log forwarding. Log forwarding provides increased
+observability, assistance complying with log retention requirements, and
+information during troubleshooting.
 
 ## Requirements
 
@@ -54,11 +54,16 @@ show the following for `log_forwarding_enabled`:
 
 ### Configure External Destinations
 
+
 The `log_forwarding_config` Terraform Enterprise application setting must
 contain valid
 [Fluent Bit `[OUTPUT]` configuration](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit)
-specifying external destination(s) where Terraform Enterprise should forward
-logs. Since the Terraform Enterprise application settings are stored as JSON
+specifying
+[supported external destination(s)](#supported-external-destinations)
+where Terraform Enterprise should forward logs. The default configuration does
+not forward any logs.
+
+Since the Terraform Enterprise application settings are stored as JSON
 strings, we recommend first creating a `fluent-bit.conf` file with the valid
 Fluent Bit `[OUTPUT]` configuration and then using that file to configure the
 `log_forwarding_config` application setting. This method ensures that the
@@ -88,7 +93,6 @@ Once configured, the Terraform Enterprise application settings show the
     ...
 ```
 
-The default configuration does not forward any logs.
 
 ```
 # Match all logs and do not forward them anywhere.
