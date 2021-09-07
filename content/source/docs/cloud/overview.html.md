@@ -116,6 +116,16 @@ Terraform Cloud can send notifications about Terraform runs to other systems, in
 
 - More info: [Notifications](./workspaces/notifications.html)
 
+### Run Tasks
+
+-> **Note:** As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
+
+Run Tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. 
+
+There are several [partner integrations](https://www.hashicorp.com/integrations) already available, or you can create your own based on the [API](./api/run-tasks.html).
+
+- More info: [Run Tasks](./workspaces/run-tasks.html)
+
 ## Access Control and Governance
 
 Larger organizations are more complex, and tend to use access controls and explicit policies to help manage that complexity. Terraform Cloud's paid upgrade plans provide extra features to help meet the control and governance needs of large organizations.

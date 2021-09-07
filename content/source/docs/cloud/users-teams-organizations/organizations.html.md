@@ -158,6 +158,14 @@ The policy sets page is for creating groups of Sentinel policies from a connecte
 
 Sentinel is an embedded policy-as-code framework that can enforce rules about Terraform runs within an organization. See [Sentinel](../sentinel/index.html) for more information about Sentinel, or [Managing Sentinel Policies](../sentinel/manage-policies.html) for details about these two settings pages.
 
+### Task Event Hooks
+
+-> **Note:** As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
+
+Task event hooks are reusable [run tasks](../workspaces/run-tasks.html) configurations that can be attached to any workspace in an organization.
+
+A task event hook is made up of a human-readable name, a complete endpoint URL for the hook to communicate with, and an optional HMAC key used to verify the authenticity of a request.
+
 ## Trial Expired Organizations
 
 Terraform Cloud paid features are available as a free trial to organizations evaluating its features. If you are working with a HashiCorp Sales Representative, please ask them about how to get a free trial.
