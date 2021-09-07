@@ -83,7 +83,7 @@ _Leaving this stage:_
 
 ## 5. The Pre-Apply Stage
 
--> **Note:** As of September 2021, Run Tasks are available only as a beta feature, and not all customers will see this functionality in their Terraform Cloud organization.
+-> **Note:** As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
 
 This phase only occurs if there are [run tasks](../workspaces/run-tasks.html) enabled for the workspace, and it executes any configured run tasks after the Plan, optional Cost Estimation, and optional Policy Check phases have completed. During this phase, Terraform Cloud sends information about your run to the configured external system and waits for a pass or fail response to determine whether the plan can be applied. 
 
