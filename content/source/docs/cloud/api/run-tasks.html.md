@@ -28,7 +28,7 @@ page_title: "Run Tasks - API Docs - Terraform Cloud and Terraform Enterprise"
 
 ## Required Permissions 
 
-You need organization owner permissions to interact with event hooks and workspace administrator permissions to connect event hooks to workspaces. ([More about permissions](../users-teams-organizations/permissions.html).)
+You need organization owner [permissions](../users-teams-organizations/permissions.html) to interact with event hooks and workspace administrator permissions to connect event hooks to workspaces.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -38,7 +38,7 @@ You need organization owner permissions to interact with event hooks and workspa
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The organization to create event hook in. The organization must already exist in the system, and the token authenticating the API request must have owner permission. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+`:organization_name` | The organization to create an event hook in. The organization must already exist in Terraform Cloud, and the token authenticating the API request must have [owner permission](/docs/cloud/users-teams-organizations/permissions.html).
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -209,7 +209,7 @@ curl \
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the event hook to show. Use the "List Event Hooks" endpoint to find IDs.
+`:id`     | The ID of the event hook to show. Use the ["List Event Hooks"](#list-event-hooks) endpoint to find IDs.
 
 Status  | Response                                      | Reason
 --------|-----------------------------------------------|----------
@@ -271,12 +271,12 @@ curl --request GET \
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the event hook to update. Use the "List Event Hooks" endpoint to find IDs.
+`:id`     | The ID of the event hook to update. Use the ["List Event Hooks"](#list-event-hooks) endpoint to find IDs.
 
 Status  | Response                                      | Reason
 --------|-----------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "event-hooks"`) | The request was successful
-[404][] | [JSON API error object][]                     | Event Hook not found or user unauthorized to perform action
+[404][] | [JSON API error object][]                     | Event hook not found or user unauthorized to perform action
 [422][] | [JSON API error object][]                     | Malformed request body (missing attributes, wrong types, etc.)
 
 ### Request Body
@@ -362,7 +362,7 @@ curl \
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the event hook to delete. Use the "List Event Hooks" endpoint to find IDs.
+`:id`     | The ID of the event hook to delete. Use the ["List Event Hooks"](#list-event-hooks) endpoint to find IDs.
 
 Status  | Response                  | Reason
 --------|---------------------------|-------
@@ -382,11 +382,11 @@ curl \
 
 ## Attach an Event Hook to a Workspace as a Task
 
-`POST /workspaces/:workspace_id/tasks
+`POST /workspaces/:workspace_id/tasks`
 
 Parameter | Description
 ----------|------------
-`:workspace_id` | The ID of the workspaces.
+`:workspace_id` | The ID of the workspace.
 
 Status  | Response                  | Reason
 --------|---------------------------|----------
@@ -555,7 +555,7 @@ curl \
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the task to show. Use the "List Tasks" endpoint to find IDs.
+`:id`     | The ID of the task to show. Use the ["List Tasks"](#list-tasks) endpoint to find IDs.
 
 Status  | Response                                      | Reason
 --------|-----------------------------------------------|----------
@@ -608,7 +608,7 @@ curl --request GET \
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the task to update. Use the "List Tasks" endpoint to find IDs.
+`:id`     | The ID of the task to update. Use the ["List Tasks"](#list-tasks) endpoint to find IDs.
 
 Status  | Response                                      | Reason
 --------|-----------------------------------------------|----------
@@ -688,7 +688,7 @@ curl \
 
 Parameter | Description
 ----------|------------
-`:id`     | The ID of the Task to delete. Use the "List Tasks" endpoint to find IDs.
+`:id`     | The ID of the Task to delete. Use the ["List Tasks"](#list-tasks) endpoint to find IDs.
 
 Status  | Response                  | Reason
 --------|---------------------------|-------

@@ -7,7 +7,6 @@ page_title: "Run Tasks - Workspaces - Terraform Cloud and Terraform Enterprise"
 
 -> **Note:** As of September 2021, Run Tasks are available only as a beta feature, and not all customers will see this functionality in their Terraform Cloud organization.
 
-> **Hands-on:** Try the [Cost Estimation with Infracost and Run Tasks](https://learn.hashicorp.com/tutorials/terraform/INSERTURLHERELOLOLOL) tutorial on HashiCorp Learn.
 
 Run Tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. The beta release of this feature allows users to add and execute these tasks during the new pre-apply stage which exists in between the plan and apply stages. Tasks are executed by sending an API payload to the external system. This payload contains a collection of run-related information and a callback URL which the external system can use to send updates back to Terraform Cloud.
 
@@ -17,7 +16,7 @@ The external system can then use this run information and respond back to Terraf
 
 ## Requirements
 
-Run tasks can only be created on workspaces using a Terraform version <0.12. Downgrading a workspace with existing run tasks to use a Terraform version >=0.12 will not result in an error, but the configured tasks will not execute.
+Run tasks can only be created on workspaces using a Terraform version v0.12+. Downgrading a workspace with existing run tasks to use a Terraform version v0.12 or prior will not result in an error, but the configured tasks will not execute.
 
 You must be an organization owner to create a new task event hook. You must be at least a workspace administrator in order to connect a task event hook to a given workspace.
 
@@ -51,8 +50,8 @@ You must be an organization owner to create a new task event hook. You must be a
 
 8. Choose an enforcement level and click "Create."
 
-     - **Advisory** tasks can not block a run from completing. If the task fails, a warning will be displayed on the run but it will proceed.
-     - **Mandatory** tasks can block a run from completing. If the task fails (including a timeout or unexpected remote error condition), a warning will be displayed on the run and the run will transition to an Errored state.
+   - **Advisory** tasks can not block a run from completing. If the task fails, a warning will be displayed on the run but it will proceed.
+   - **Mandatory** tasks can block a run from completing. If the task fails (including a timeout or unexpected remote error condition), a warning will be displayed on the run and the run will transition to an Errored state.
 
 
 ![Screenshot: enforcement configuration for a specific task within a workspace](./images/run-tasks-add-to-workspace.png)

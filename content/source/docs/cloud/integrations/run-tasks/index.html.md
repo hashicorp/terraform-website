@@ -8,7 +8,6 @@ description: |-
 
 # Run Tasks Integration
 
-
 In addition to using existing technology partners integrations, HashiCorp Terraform Cloud customers can build their own custom run task integrations. Custom integrations have access to plan details in between the plan and apply phase, and can display custom messages within the run pipeline as well as prevent a run from continuing to the apply phase.
 
 ## Prerequisites
@@ -19,7 +18,7 @@ This feature relies heavily on the proper parsing of [plan JSON output](../../..
 
 ## Integration Details
 
-When a run reaches the pre apply phase and an event hook is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the event hook should respond `200 OK`, or the hook will be retried.
+When a run reaches the pre-apply phase and an event hook is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the event hook should respond `200 OK`, or Terraform will retry to trigger the hook.
 
 ```json
 {
@@ -67,7 +66,7 @@ Here's what the data flow looks like:
 
 ## Securing your Event Hook
 
-When creating your Event Hook, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `x-tfc-event-hook-signature` header when calling your service.
+When creating your event hook, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `x-tfc-event-hook-signature` header when calling your service.
 
 ## Run Tasks Technology Partners
 

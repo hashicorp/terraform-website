@@ -122,7 +122,7 @@ Terraform Cloud can send notifications about Terraform runs to other systems, in
 
 Run Tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. 
 
-There are several [partner integrations](https://www.hashicorp.com/integrations) already available, or you can create your own based on the [API](./api/run-tasks.html)
+There are several [partner integrations](https://www.hashicorp.com/integrations) already available, or you can create your own based on the [API](./api/run-tasks.html).
 
 - More info: [Run Tasks](./workspaces/run-tasks.html)
 
