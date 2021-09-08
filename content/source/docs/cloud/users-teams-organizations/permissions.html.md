@@ -137,6 +137,13 @@ The "write" permission set is for people who do most of the day-to-day work of p
 - Read and write variables
 - Read and write state versions
 
+---
+**NOTE:**
+
+The way locks work is that you (the resource; being a team, a user on that team, the workspace itself, etc.) must be the holder of that lock to unlock it. If a user (or a team) locks a workspace, only that entity can unlock it. `Force unlock` is available to admins/owners to ignore this and unlock the workspace. 
+
+---
+
 See [General Workspace Permissions][] above for details about specific permissions.
 
 ### Custom Workspace Permissions
