@@ -5,7 +5,7 @@ page_title: "Uninstall - Terraform Enterprise"
 
 # Uninstall Terraform Enterprise
 
-If you installed Terraform Enterprise on VMWare instances, you may not be able to easily request new virtual machines for a broken or corrupted installation. Instead, you can use the `uninstall` script to remove Terraform Enterprise and all of its services (excluding Docker) from a system. This includes the Replicated snapshot directory - `/var/lib/replicated/snapshots`. If you have Replicated snapshots you wish to keep, please back up this directory before running the uninstall script.
+If you installed Terraform Enterprise on VMWare instances, you may not be able to easily request new virtual machines for a broken or corrupted installation. Instead, you can use the `uninstall` script to remove Terraform Enterprise and all of its services (excluding Docker) from a system. This includes the default Replicated snapshot directory - `/var/lib/replicated/snapshots`. If you have Replicated snapshots you wish to keep, please back up this directory before running the uninstall script.
 
 ~> **Important**: This script does not touch the mounted disk path, so you will need to manually clean that up if necessary.
 
@@ -19,9 +19,27 @@ After you initiate `uninstall`:
 
 	```
 	$ sudo ./uninstall.sh 
-	This script will completely uninstall Terraform Enterprise and Replicated on this system, as well as remove associated files. This includes the Replicated snapshot directory. Please back up /var/lib/replicated/snapshots if you wish to save them.
+	This script will completely uninstall Terraform Enterprise and Replicated on this system, as well as remove associated files.
 	Do you wish to continue? (y/n)yes
 	Proceeding with uninstall...
+	```
+
+	If there are snapshots present on the system, you will be prompted to move them, proceed with deleting them, or abort.
+	
+	```
+	There appear to be Replicated snapshots stored in /var/lib/replicated/snapshots.
+	1) Move the snapshots to another directory
+	2) Continue uninstall and delete the snapshots
+	3) Cancel the uninstall
+	Select an option: 1
+	Enter the directory to move the snapshots to:/tmp
+	The snapshots will be moved to /tmp.
+	Press Y to continue or N to cancel.yMoving snapshots...
+	Files moved.
+	```
+	The uninstall will then continue...
+	
+	```
 	Stopping and disabling the replicated services...
 	Removed /etc/systemd/system/docker.service.wants/replicated-operator.service.
 	Removed /etc/systemd/system/docker.service.wants/replicated.service.
