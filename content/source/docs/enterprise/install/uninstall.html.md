@@ -20,7 +20,7 @@ After you initiate `uninstall`:
 1. Enter `yes` when asked if you want to continue with the installation.
 
 	```
-	$ sudo ./uninstall.sh 
+	$ sudo ./uninstall.sh
 	This script will completely uninstall Terraform Enterprise and Replicated on this system, as well as remove associated files.
 	Do you wish to continue? (y/n)yes
 	Proceeding with uninstall...
