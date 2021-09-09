@@ -26,7 +26,7 @@ After you initiate `uninstall`:
 	Proceeding with uninstall...
 	```
 
-	If there are snapshots present on the system, you will be prompted to move them, proceed with deleting them, or abort.
+	If there are snapshots present on the system, choose whether to move them to another directory, delete them, or cancel the uninstall. Here is an example of moving snapshots to another directory:
 	
 	```
 	There appear to be Replicated snapshots stored in /var/lib/replicated/snapshots.
@@ -40,7 +40,7 @@ After you initiate `uninstall`:
 	Moving snapshots...
 	Files moved.
 	```
-	The uninstall will then continue...
+	The script continues and stops the Replicated services, removes the Docker containers, and removes Replicated executables and configuration files from the system. 
 	
 	```
 	Stopping and disabling the replicated services...
