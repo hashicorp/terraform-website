@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Terraform Cloud Agents - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Cloud agents allow communication with isolated, private, or on-premises infrastructure. Learn to install, configure, and manage cloud agents.
+  Cloud agents let Terraform manage isolated, private, or on-premises infrastructure. Learn to install, configure, and manage cloud agents.
 ---
 
 # Terraform Cloud Agents
