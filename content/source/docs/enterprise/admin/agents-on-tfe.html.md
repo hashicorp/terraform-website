@@ -36,7 +36,7 @@ download the custom bundle based on the Terraform version information. See
 for more detail on custom bundles in TFE.
 
 * **Network Access Requirements**: Terraform Cloud Agents on TFE must be able to
-communcate with the TFE instance via HTTPS. Additionally, the agent must also be
+communicate with the TFE instance via HTTPS. Additionally, the agent must also be
 able to communicate with any services required by the Terraform code it is executing.
 This includes the Terraform releases distribution service, [releases.hashicorp.com](https://releases.hashicorp.com),
 as well as the [Terraform provider registry](https://registry.terraform.io). Agents
