@@ -2,7 +2,7 @@
 page_title: "API Docs - Terraform Cloud and Terraform Enterprise"
 layout: "cloud"
 description: |-
-  Learn about authentication, available features, JSON API formatting, rate limiting, and other important information.
+  Use the API to manage runs, workspaces, policies, and more. This introduction includes authentication, features, and formatting.
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200

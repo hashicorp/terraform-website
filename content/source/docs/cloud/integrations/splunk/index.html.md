@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Terraform Cloud for Splunk setup instructions"
 description: |-
-  Splunk integration helps you identify the most active policies, significant changes in resource operations, and more.
+  Splunk pulls in Terraform Cloud audit logs to help you identify the most active policies, significant operations changes, and more.
 ---
 
 # Terraform Cloud for Splunk setup instructions
