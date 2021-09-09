@@ -1,6 +1,9 @@
 ---
 layout: "enterprise"
 page_title: "Terraform Cloud Agents on TFE - Infrastructure Administration - Terraform Enterprise"
+description: |-
+    Cloud agents let Terraform manage isolated, private, or on-premises infrastructure.
+    Learn what's different when you use cloud agents in Terraform Enterprise vs. Terraform Cloud.
 ---
 
 # Terraform Cloud Agents on TFE
@@ -11,7 +14,8 @@ specific network segment, you can establish a simple connection between your
 environment and Terraform Enterprise which allows for provisioning operations and
 management.
 
-Terraform Cloud Agents on TFE behave very similarly to [Terraform Cloud Agents on TFC](https://www.terraform.io/docs/cloud/agents/index.html), with a few exceptions listed below. This page contains the steps to get started and operational requirements for Terraform Enterprise. 
+Terraform Cloud Agents on TFE behave very similarly to [Terraform Cloud Agents on TFC](https://www.terraform.io/docs/cloud/agents/index.html),
+with a few exceptions listed below.
 
 -> **Note:** Terraform Cloud Agents on TFE are available in TFE releases `v202109-1`
 and later.
@@ -24,9 +28,9 @@ or the number of Agents that may register themselves with a given pool.
 
 * **Hostname Registration**: Terraform Cloud Agents registering with a TFE instance
 must define the TFE hostname via the `-address` CLI flag or `TFC_ADDRESS` environment
-variable when running the `tfc-agent` binary. By default, the `tfc-agent` binary
-will attempt to connect to Terraform Cloud, so this value must be explicitly defined
-when registering with a TFE instance.
+variable when running `tfc-agent`. By default, `tfc-agent` will attempt to connect to
+Terraform Cloud, so this value must be explicitly defined when registering with a
+TFE instance.
 
 * **Custom Bundle Support**: Terraform Cloud Agents on TFE support
 [custom Terraform bundles](https://github.com/hashicorp/terraform/tree/main/tools/terraform-bundle).
