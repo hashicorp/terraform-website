@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "SAML - Terraform Enterprise"
+description: |-
+  Terraform Enterprise supports the SAML 2.0 standard and can act as a service provider with your internal SAML identity provider.
 ---
 
 # SAML Single Sign On

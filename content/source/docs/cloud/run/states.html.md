@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Run States and Stages - Runs - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn what happens during each stage of a run: pending, plan, cost estimation, policy check, apply, and complete.
 ---
 
 # Run States and Stages

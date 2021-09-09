@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Free and Paid Plans - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Paid plans include additional collaboration and governance features. Find information about plan options and billing.
 ---
 
 [owners]: ./users-teams-organizations/teams.html#the-owners-team

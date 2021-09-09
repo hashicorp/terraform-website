@@ -2,7 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Providers"
 description: |-
-  How to implement a provider in the provider development framework.
+  How to implement a provider in the provider development framework. Providers are plugins that allow Terraform to interact with APIs.
 ---
 
 # Providers

@@ -2,6 +2,8 @@
 layout: "cloud"
 page_title: "API Tokens - Terraform Cloud and Terraform Enterprise"
 sidebar_current: "docs-cloud-users-teams-organizations-api-tokens"
+description: |-
+  Learn about the level of access granted by user, team, and organization API tokens. 
 ---
 
 # API Tokens

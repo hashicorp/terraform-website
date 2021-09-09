@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Organizations - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Organizations allow teams to collaborate on workspaces. Learn about organization membership, organization settings, and more.
 ---
 
 [teams]: ./teams.html

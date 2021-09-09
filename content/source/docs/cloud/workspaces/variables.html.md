@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Variables - Workspaces - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Workspaces organize infrastructure. Learn how to manage Terraform input variables and shell environment variables in a workspace.
 ---
 
 [variables]: /docs/language/values/variables.html

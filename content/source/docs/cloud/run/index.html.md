@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Terraform Runs and Remote Operations - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Terraform Cloud allows you to run Terraform remotely through the UI, API, or CLI. Learn how Terraform Cloud manages runs.
 ---
 
 # Terraform Runs and Remote Operations

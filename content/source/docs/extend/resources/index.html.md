@@ -3,7 +3,7 @@ layout: "extend"
 page_title: "Resources - Guides"
 sidebar_current: "docs-extend-resources"
 description: |-
-  Resources are a key component to provider development. This guide covers using advanced resource APIs.
+  Resources are a key component to provider development. Learn to use advanced resource APIs.
 ---
 
 # Resources

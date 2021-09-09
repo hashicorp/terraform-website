@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "API-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
+description: |-
+  External tools communicate with Terraform Cloud to upload configurations and trigger runs.
 ---
 
 # The API-driven Run Workflow

@@ -2,7 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Writing State"
 description: |-
-  How to write update the statefile using the provider development framework.
+  How to write and update the Terraform statefile using the provider development framework.
 ---
 
 # Writing State
@@ -193,7 +193,7 @@ If a value is set on a Go type that implements the [`tftypes.ValueCreator`
 interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tftypes#ValueCreator),
 that interface will be delegated to to handle the conversion.
 
-#### Unknownable 
+#### Unknownable
 If a value is set on a Go type that fills the `Unknownable` interface:
 
 ```go

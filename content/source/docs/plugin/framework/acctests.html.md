@@ -2,7 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Acceptance Tests"
 description: |-
-  How to write acceptance tests for providers built on the framework.
+  How to write acceptance tests for providers built on the framework. Acceptance tests imitate applying configuration files.
 ---
 
 # Acceptance Tests

@@ -3,7 +3,7 @@ layout: "registry"
 page_title: "Recommended Provider Binary Operating Systems and Architectures - Terraform Registry"
 sidebar_current: "docs-registry-provider-os-arch"
 description: |-
-  Recommended Provider Binary Operating Systems and Architectures
+  Learn the recommended Terraform provider binary operating systems and architectures.
 ---
 
 # Recommended Provider Binary Operating Systems and Architectures

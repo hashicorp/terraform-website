@@ -3,7 +3,7 @@ layout: "extend"
 page_title: "Plugin Development - How Terraform Works With Plugins"
 sidebar_current: "docs-extend-how-terraform-works"
 description: |-
-  Learn the responsibilities of Terraform core and how Terraform interacts with plugins that expose the implementation of a specific service.
+  Learn how Terraform interacts with plugins that expose the implementation of a specific service.
 ---
 
 

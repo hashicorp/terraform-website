@@ -3,7 +3,7 @@ layout: "registry"
 page_title: "Terraform Registry - HTTP API"
 sidebar_current: "docs-registry-api"
 description: |-
-  The /api endpoints list modules according to some criteria.
+  Detailed documentation of all API endpoints for finding and managing modules on the Terraform Registry. 
 ---
 
 # HTTP API
