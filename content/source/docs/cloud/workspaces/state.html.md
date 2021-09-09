@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Terraform State - Workspaces - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Workspaces have their own separate state data. Learn how state is used and how to access state from other workspaces.
 ---
 
 # Terraform State in Terraform Cloud

@@ -3,9 +3,7 @@ layout: "extend"
 page_title: "Plugin Development - Acceptance Testing: Sweepers"
 sidebar_current: "docs-extend-testing-acceptance-sweepers"
 description: |-
-  Acceptance tests in provision and verify real infrastructure using
-  Terraform's testing framework. Terraform provides sweepers to cleanup
-  leftover infrastructure.
+  Acceptance tests provision and verify real infrastructure with Terraform's testing framework. Sweepers clean up leftover infrastructure.
 ---
 
 # Sweepers
@@ -101,7 +99,7 @@ package example
 
 import (
    "testing"
-  
+
     "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 

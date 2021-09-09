@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Administration - Terraform Enterprise"
+description: |-
+  Learn how to administer the Terraform Enterprise application itself, and the infrastructure that it runs on.   
 ---
 
 # Administering Terraform Enterprise

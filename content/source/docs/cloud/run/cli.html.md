@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "CLI-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Trigger runs from your terminal using the Terraform CLI. Learn the required configuration for remote CLI runs. 
 ---
 
 [sentinel]: ../sentinel/index.html

@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Uninstall - Terraform Enterprise"
+description: |-
+  Learn to run a script that removes Terraform Enterprise and all of its services (excluding Docker) from a system.
 ---
 
 # Uninstall Terraform Enterprise
@@ -104,7 +106,7 @@ After you initiate `uninstall`:
 	  - all volumes not used by at least one container
 	  - all images without at least one container associated to them
 	  - all build cache
-	
+
 	Are you sure you want to continue? [y/N] y
 	Deleted Containers:
 	a8dd38ebcc67ab878ba60fa740df494ff91922aba04f205d675b6a7e4c6d451e
@@ -148,7 +150,7 @@ The script removes dangling Docker volumes and the Docker networks that were cre
 	tfe_terraform_isolation
 	replicated_retraced
 	tfe_services
-	
+
 	Deleted Volumes:
 	rabbitmq
 	d8e5aa7b8454be6b2a1e3e230170eccd6b4e46e1a79af86bb2bcbfbc09665a04
@@ -176,7 +178,7 @@ The script removes dangling Docker volumes and the Docker networks that were cre
 	aux
 	c749451acfc48aa4b355248d90aaf667c7ab2bc1818fadfbd9fd91b7c9710b34
 	09a6d3e6ac704ac1e151ae925f0bb25ce24f5a330b9d2ffd69f2a9fa0db1abc9
-	
+
 	Deleted Images:
 	untagged: hashicorp/build-worker:now
 	deleted: sha256:378b3ecd0a947d834964ab4f690189923c884417d6c9a6fa58989b99330c570f
@@ -209,12 +211,12 @@ The script removes dangling Docker volumes and the Docker networks that were cre
 	Removing any dangling Docker volumes...
 	"docker volume rm" requires at least 1 argument.
 	See 'docker volume rm --help'.
-	
+
 	Usage:  docker volume rm [OPTIONS] VOLUME [VOLUME...]
-	
+
 	Remove one or more volumes
 	Unable to remove dangling Docker volumes, or none to be removed.
-	
+
 	Uninstall Complete
 	```
 

@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Two-factor Authentication - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn how to set up and require two-factor authentication. Also learn how to log in with two-factor authentication. 
 ---
 
 # Two-factor Authentication

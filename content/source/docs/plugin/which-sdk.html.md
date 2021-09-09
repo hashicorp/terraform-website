@@ -2,8 +2,7 @@
 layout: "extend"
 page_title: "Home - Plugin Development: Which SDK Should I Use?"
 description: |-
-  A guide on picking which Terraform plugin development SDK is most appropriate
-  for your provider.
+  A guide to help you pick the Terraform plugin development SDK that is appropriate for your provider.
 ---
 
 # Which SDK Should I Use?

@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Terraform Cloud Operator for Kubernetes setup instructions"
 description: |-
-  HashiCorp Terraform Cloud customers can integrate with Kubernetes using the official Terraform Cloud Operator for Kubernetes to provision infrastructure through Terraform Cloud using their Kubernetes control plane
+  Terraform Cloud Operator allows you to provision infrastructure directly from the Kubernetes control plane.
 ---
 
 # Terraform Cloud Operator for Kubernetes Setup Instructions

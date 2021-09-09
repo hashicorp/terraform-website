@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "SAML SSO Troubleshooting Guide - Terraform Enterprise"
+description: |-
+  How to disable SAML, debug and test SAML, create a non-SSO admin account for recovery, common configuration errors, and more.
 ---
 
 # Troubleshooting Guide

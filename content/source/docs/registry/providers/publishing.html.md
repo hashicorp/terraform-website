@@ -3,7 +3,7 @@ layout: "registry"
 page_title: "Terraform Registry - Publishing Providers"
 sidebar_current: "docs-registry-provider-publishing"
 description: |-
-  Publishing Providers to the Terraform Registry
+  Learn how to release a provider and publish it to the Terraform Registry.
 ---
 
 # Publishing Providers

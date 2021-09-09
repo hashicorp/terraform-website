@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Single Sign-on - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn how single sign-on (SSO) works in Terraform Cloud, how to sign in with SSO, and more.
 ---
 
 # Single Sign-on
@@ -68,7 +70,7 @@ If the SAML assertion includes a `MemberOf` attribute, users logging in via SSO 
 
 Any team names that don't match existing teams are ignored; Terraform Cloud will not automatically create new teams. Terraform Cloud expects the team names in the `MemberOf` SAML attribute to exactly match its own team names. This match is case sensitive. It is not possible to assign users to the `owners` team through this attribute.
 
-If the `MemberOf` attribute is not provided, users are assigned to a default team named `sso` and are not removed from any existing teams. 
+If the `MemberOf` attribute is not provided, users are assigned to a default team named `sso` and are not removed from any existing teams.
 
 ## NameID Format
 

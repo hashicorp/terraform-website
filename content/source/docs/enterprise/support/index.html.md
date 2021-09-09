@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Support - Terraform Enterprise"
+description: |-
+  Learn to how to run diagnostics and contact HashiCorp support.
 ---
 
 # Support for Terraform Enterprise
@@ -27,8 +29,8 @@ Terraform Enterprise can automatically generate a support bundle including logs 
 
 Diagnostic information is available via in the installer dashboard on port 8800 of your installation.
 
--> **Note**: For [Terraform Enterprise Active/Active](https://www.terraform.io/docs/enterprise/install/active-active.html) implementations the 
-installer dashboard is disabled. Support bundles can instead be generated and saved to the configured 
+-> **Note**: For [Terraform Enterprise Active/Active](https://www.terraform.io/docs/enterprise/install/active-active.html) implementations the
+installer dashboard is disabled. Support bundles can instead be generated and saved to the configured
 object storage location by executing this command from the command line on a node instance:
 ```
 tfe-admin support-bundle

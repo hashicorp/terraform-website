@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Enforce and Override Policies - Sentinel - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn when Terraform Cloud performs policy checks and what happens when different types of policy checks fail.
 ---
 
 # Enforce and Override Policies

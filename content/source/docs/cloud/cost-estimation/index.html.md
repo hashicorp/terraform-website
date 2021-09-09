@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Overview - Cost Estimation - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Terraform Cloud displays hourly and monthly cost estimates for each resource and the total cost and delta of all resources.
 ---
 
 # Cost Estimation in Terraform Cloud

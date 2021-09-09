@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Workspaces - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Workspaces enable Terraform Cloud to manage collections of infrastructure resources. Learn basics and recommended organization.
 ---
 
 # Workspaces

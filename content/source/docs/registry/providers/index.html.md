@@ -2,7 +2,7 @@
 layout: "registry"
 page_title: "Terraform Registry - Providers Overview"
 description: |-
-  Overview of providers in the Terraform Registry
+  The Terraform Registry is the main source for publicly available providers, plugins that allow Terraform to interact with APIs.
 ---
 
 # Overview

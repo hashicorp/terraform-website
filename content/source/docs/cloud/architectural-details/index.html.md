@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Architectural Details - Terraform Cloud and Terraform Enterprise"
+description: |-
+  A collection of information about Terraform Cloud architecture and operational characteristics.
 ---
 
 # Architectural Details
