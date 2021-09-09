@@ -36,7 +36,8 @@ After you initiate `uninstall`:
 	Select an option: 1
 	Enter the directory to move the snapshots to: /tmp
 	The snapshots will be moved to /tmp.
-	Press Y to continue or N to cancel.yMoving snapshots...
+	Press Y to continue or N to cancel. y
+	Moving snapshots...
 	Files moved.
 	```
 	The uninstall will then continue...
