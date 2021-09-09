@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Installing Software in the Run Environment - Runs - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Learn how to install Terraform providers and additional tools when necessary.
+  Learn how to install Terraform providers and additional software on Terraform Cloud workers, including cloud CLIs or configuration management tools.
 ---
 
 # Installing Software in the Run Environment
