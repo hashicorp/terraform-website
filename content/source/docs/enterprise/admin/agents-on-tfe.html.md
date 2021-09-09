@@ -11,9 +11,7 @@ specific network segment, you can establish a simple connection between your
 environment and Terraform Enterprise which allows for provisioning operations and
 management.
 
-Terraform Cloud Agents on TFE behave identically to [Terraform Cloud Agents on TFC](https://www.terraform.io/docs/cloud/agents/index.html). Please reference this
-document for getting started steps and operational requirements. Exceptions and
-additional requirements are listed below.
+Terraform Cloud Agents on TFE behave very similarly to [Terraform Cloud Agents on TFC](https://www.terraform.io/docs/cloud/agents/index.html), with a few exceptions listed below. This page contains the steps to get started and operational requirements for Terraform Enterprise. 
 
 -> **Note:** Terraform Cloud Agents on TFE are available in TFE releases `v202109-1`
 and later.
