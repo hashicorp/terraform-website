@@ -71,6 +71,12 @@ For these use cases, we recommend you leverage the information provided by the [
 
 Organizations are limited to 20 pools each.
 
+### Terraform Enterprise
+
+Terraform Enterprise supports Terraform Cloud Agents; see
+[Terraform Cloud Agents on TFE](https://www.terraform.io/docs/enterprise/admin/agents-on-tfe.html) for
+TFE-specific documentation and requirements.
+
 ## Managing Agent Pools
 
 Agents are organized into pools, which can be managed in Terraform Cloud's UI. Each workspace can specify which agent pool should run its workloads.
