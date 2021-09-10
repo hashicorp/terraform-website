@@ -62,8 +62,6 @@ should consider using the framework if you would benefit from the ability to:
 The framework is still under development, and so it may not yet support some
 features that are available in SDKv2. These include the ability to:
 
-* Validate configurations.
-* Modify plans and force resource recreation.
 * Use sets.
 * Import resources.
 * Use timeouts.
