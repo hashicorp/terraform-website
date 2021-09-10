@@ -24,9 +24,6 @@ practitioners to fix their configuration or environment more quickly. You
 should only append to Diagnostics slices and never replace or remove
 information from them.
 
-~> **Important:** The design of diagnostics is expected to change to something
-less verbose in the near future.
-
 ## Diagnostic Properties
 
 ### Severity
