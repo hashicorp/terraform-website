@@ -13,8 +13,8 @@ about those fields. You can think of the schema as the "type information" or
 the "shape" of a resource, data source, or provider.
 
 [The
-`schema.Schema`
-struct](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/schema#Schema)
+`tfsdk.Schema`
+struct](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Schema)
 defines schemas that are returned from methods on the
 [provider](/docs/plugin/framework/providers.html),
 [resources](/docs/plugin/framework/resources.html), and [data
@@ -70,7 +70,7 @@ used instead of the `Description` property. It is possible that a different stra
 
 Attributes are the main point of a schema. They are used to describe the fields
 of a provider, resource, or data source. Attributes are defined as a map of
-[`schema.Attribute`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/schema#Attribute)s,
+[`tfsdk.Attribute`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Attribute)s,
 with string keys.
 
 The keys are the names of the fields, and should only contain lowercase
@@ -79,11 +79,11 @@ the configuration block of the provider, resource, or data source to set a
 value for that field.
 
 The values are descriptions of the constraints on that field and the metadata
-about it, expressed as a `schema.Attribute` struct value.
+about it, expressed as a `tfsdk.Attribute` struct value.
 
 ### Type
 
-The `Type` property of a `schema.Attribute` is used to specify the [attribute
+The `Type` property of a `tfsdk.Attribute` is used to specify the [attribute
 type](/docs/plugin/framework/types.html) of the attribute. If the practitioner
 enters data of the wrong type, Terraform will automatically return a validation
 error to the practitioner, and this type determines what kind of attribute
@@ -91,11 +91,11 @@ value is used when [accessing state, config, and plan
 values](/docs/plugin/framework/accessing-values.html).
 
 You must specify one of the `Type` and `Attributes` properties of
-`schema.Attribute`. You cannot specify both.
+`tfsdk.Attribute`. You cannot specify both.
 
 ### Attributes
 
-The `Attributes` property of a `schema.Attribute` is used to specify the
+The `Attributes` property of a `tfsdk.Attribute` is used to specify the
 attribute's nested attributes. Nested attributes are attributes that are
 grouped beneath another attribute:
 
@@ -124,13 +124,13 @@ as well. Likewise, if an attribute is considered sensitive or deprecated, all
 its nested attributes are considered sensitive or deprecated.
 
 You must specify one of the `Type` and `Attributes` properties of
-`schema.Attribute`. You cannot specify both.
+`tfsdk.Attribute`. You cannot specify both.
 
 -> **Note**: We recommend using an attribute with nested attributes when any of the inner fields should have their own flags or metadata (required, optional, computed, deprecated, sensitive, descriptions, etc.).  If the attribute is an atomic unit, we recommend using an object or list of objects instead.
 
 #### SingleNestedAttributes
 
-When the `Attributes` property of a `schema.Attribute` is set to the
+When the `Attributes` property of a `tfsdk.Attribute` is set to the
 [`schema.SingleNestedAttributes`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/schema#SingleNestedAttributes)
 type, the nested attributes behave like an object. There can only be one group
 of the nested attributes.
@@ -146,7 +146,7 @@ resource "example_foo" "bar" {
 
 #### ListNestedAttributes
 
-When the `Attributes` property of a `schema.Attribute` is set to the
+When the `Attributes` property of a `tfsdk.Attribute` is set to the
 [`schema.ListNestedAttributes`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/schema#ListNestedAttributes)
 type, the nested attributes behave like a list of objects. The practitioner can
 specify any number of groups of these attributes.
@@ -174,7 +174,7 @@ of groups, Terraform will automatically return a validation error.
 
 #### MapNestedAttributes
 
-When the `Attributes` property of a `schema.Attribute` is set to the
+When the `Attributes` property of a `tfsdk.Attribute` is set to the
 [`schema.MapNestedAttributes`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/schema#MapNestedAttributes)
 type, the nested attributes behave like a map of objects. The practitioner can
 specify any number of groups of these attributes, with string keys associated

@@ -79,7 +79,7 @@ hello = "world"
 ```
 
 They are used by specifying the `types.StringType` constant in your
-`schema.Attribute`'s `Type` property, and are represented by a `types.String`
+`tfsdk.Attribute`'s `Type` property, and are represented by a `types.String`
 struct in config, state, and plan. The `types.String` struct has the following
 properties:
 
@@ -97,7 +97,7 @@ hello = 123
 ```
 
 They are used by specifying the `types.NumberType` constant in your
-`schema.Attribute`'s `Type` property, and are represented by a `types.Number`
+`tfsdk.Attribute`'s `Type` property, and are represented by a `types.Number`
 struct in config, state, and plan. The `types.Number` struct has the following
 properties:
 
@@ -115,7 +115,7 @@ hello = true
 ```
 
 They are used by specifying the `types.BoolType` constant in your
-`schema.Attribute`'s `Type` property, and are represented by a `types.Bool`
+`tfsdk.Attribute`'s `Type` property, and are represented by a `types.Bool`
 struct in config, state, and plan. The `types.Bool` struct has the following
 properties:
 
@@ -133,7 +133,7 @@ hello = ["red", "blue", "green"]
 ```
 
 They are used by specifying a `types.ListType` value in your
-`schema.Attribute`'s `Type` property. You must specify an `ElemType` property
+`tfsdk.Attribute`'s `Type` property. You must specify an `ElemType` property
 for your list, indicating what type the elements should be. Lists are
 represented by a `types.List` struct in config, state, and plan. The
 `types.List` struct has the following properties:
@@ -169,7 +169,7 @@ hello = {
 ```
 
 They are used by specifying a `types.MapType` value in your
-`schema.Attribute`'s `Type` property. You must specify an `ElemType` property
+`tfsdk.Attribute`'s `Type` property. You must specify an `ElemType` property
 for your map, indicating what type the elements should be. Maps are
 represented by a `types.Map` struct in config, state, and plan. The
 `types.Map` struct has the following properties:
@@ -209,7 +209,7 @@ hello = {
 ```
 
 They are used by specifying a `types.ObjectType` value in your
-`schema.Attribute`'s `Type` property. You must specify an `AttrTypes` property
+`tfsdk.Attribute`'s `Type` property. You must specify an `AttrTypes` property
 for your object, indicating a map of the attribute names and the types of those
 attributes. Objects are represented by a `types.Object` struct in config,
 state, and plan. The `types.Object` struct has the following properties:

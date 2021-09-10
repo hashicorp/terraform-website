@@ -43,9 +43,9 @@ configuration data.
 ```go
 type computeInstanceResourceType struct{}
 
-func (c computeInstanceResourceType) GetSchema(_ context.Context) (schema.Schema,
+func (c computeInstanceResourceType) GetSchema(_ context.Context) (tfsdk.Schema,
 	diag.Diagnostics) {
-	return schema.Schema{
+	return tfsdk.Schema{
 		Attributes: map[string]tfsdk.Attribute{
 			"name": {
 				Type: types.StringType,
