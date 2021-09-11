@@ -361,6 +361,7 @@ Key path                        | Type   | Default | Description
 `data.type`                     | string |         | Must be `"registry-modules"`.
 `data.attributes.name`          | string |         | The name of this module. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
 `data.attributes.provider`      | string |         | Specifies the Terraform provider that this module is used for. May contain alphanumeric characters. Maximum length is 64 characters.
+`data.attributes.namespace`     | string |         | The namespace of this module.  Cannot be set for private modules. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
 `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`.
 
 ### Sample Payload (private module)
@@ -371,6 +372,7 @@ Key path                        | Type   | Default | Description
     "type": "registry-modules",
     "attributes": {
       "name": "my-module",
+      "namespace": "my-organization",
       "provider": "aws",
       "registry-name": "private"
     }
