@@ -2,7 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Data Sources"
 description: |-
-  How to build data sources in the provider development framework.
+  How to build data sources in the provider development framework. Data sources allow Terraform to reference external data.
 ---
 
 # Data Sources

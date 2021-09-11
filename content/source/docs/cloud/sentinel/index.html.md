@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Sentinel - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Sentinel is a policy-as-code framework that enables logic-based policy decisions. Learn how you can use Sentinel with Terraform Cloud.
 ---
 
 # Sentinel Overview

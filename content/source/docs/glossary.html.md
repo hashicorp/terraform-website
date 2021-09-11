@@ -3,8 +3,7 @@ layout: terraform-glossary
 page_title: "Terraform Glossary"
 sidebar_current: "terraform-glossary"
 description: |-
-  Brief definitions of technical terms and jargon used in Terraform's
-  documentation and throughout the Terraform community.
+  Definitions for technical terms related to Terraform core, Terraform CLI, Terraform Cloud, and Terraform Enterprise. 
 ---
 
 # Glossary

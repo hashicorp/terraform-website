@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Example Policies - Policies - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Review policy examples that demonstrate some of the most common use cases within Terraform Cloud.
 ---
 
 # Example Policies

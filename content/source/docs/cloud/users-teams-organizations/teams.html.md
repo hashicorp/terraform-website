@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Teams - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Teams are a group of users within an organization. Learn about managing teams, team membership, team permissions, and more.
 ---
 
 [organizations]: ./organizations.html

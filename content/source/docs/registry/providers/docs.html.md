@@ -3,7 +3,7 @@ layout: "registry"
 page_title: "Terraform Registry - Provider Documentation"
 sidebar_current: "docs-registry-provider-docs"
 description: |-
-  Expected document structure for publishing providers to the Terraform Registry.
+  Learn the documentation format for providers published to the Terraform Registry.
 ---
 
 # Provider Documentation
@@ -28,7 +28,7 @@ Each document can contain no more than 500KB of data. Documents which exceed thi
 
 The [tfplugindocs](https://github.com/hashicorp/terraform-plugin-docs) command can be used to automatically generate documentation for your provider in the format necessary for the Terraform Registry. It will read descriptions and schema from each resource and data source in your provider and generate the relevant markdown files for you.
 
-The [terraform-provider-scaffolding](https://github.com/hashicorp/terraform-provider-scaffolding) template repository includes example usage of the `tfplugindocs` command via `go generate`: 
+The [terraform-provider-scaffolding](https://github.com/hashicorp/terraform-provider-scaffolding) template repository includes example usage of the `tfplugindocs` command via `go generate`:
 
 ```go
 //go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs

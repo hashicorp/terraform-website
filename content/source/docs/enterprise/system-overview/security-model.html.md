@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Security Model- System Overview - Terraform Enterprise"
+description: |-
+  Learn the organizational roles required for security and our recommendations for securely operating Terraform Enterprise.
 ---
 
 # Terraform Enterprise Security Model
@@ -80,7 +82,7 @@ By default, Terraform Enterprise does not prevent Terraform operations from acce
 
 Terraform Enterprise allows you to restrict access to the metadata endpoint from Terraform operations, preventing workspaces from reading any data from the metadata service. You can do this by:
 
-* Visiting the installer dashboard "Settings" page and enabling “Restrict Terraform Build Worker Instance Metadata Access” under the “Advanced Configuration” section. 
+* Visiting the installer dashboard "Settings" page and enabling “Restrict Terraform Build Worker Instance Metadata Access” under the “Advanced Configuration” section.
 * Setting [restrict_worker_metadata_access](../install/automating-the-installer.html#restrict_worker_metadata_access) in the application settings file.
 
 We recommend enabling this setting to prevent Terraform operations from accessing the instance metadata endpoint, unless you are relying on the [instance profile to provide default credentials to workspaces](../before-installing/index.html#instance-profile-as-default-credentials).

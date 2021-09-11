@@ -2,8 +2,7 @@
 layout: "extend"
 page_title: "Plugin Development - Framework: Attribute Types"
 description: |-
-  A guide to the different attribute types available in the provider
-  development framework, and how to make your own.
+  Learn the attributes in the provider development framework and how to make your own. Attributes are fields in a resource, data source, or provider.
 ---
 
 # Attribute Types

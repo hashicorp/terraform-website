@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Publishing Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn to prepare modules for publishing, add them to the registry, and release new versions.  
 ---
 
 [vcs]: ../vcs/index.html

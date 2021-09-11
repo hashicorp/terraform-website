@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Reliability and Availability - System Overview - Terraform Enterprise"
+description: |-
+  Learn about the components that determine reliability and how to recover from failures in each operation mode.
 ---
 
 # Reliability and Availability

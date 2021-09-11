@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Managing Sentinel Policies - Sentinel - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Policies are rules that are enforced on Terraform runs. Learn how to create and manage versioned policy sets. 
 ---
 
 # Managing Sentinel Policies

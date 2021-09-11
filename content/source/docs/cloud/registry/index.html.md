@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Private Module Registry - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Use the Terraform Cloud private module registry to share Terraform modules across your organization. 
 ---
 
 # Private Module Registry

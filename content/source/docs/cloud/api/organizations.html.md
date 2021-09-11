@@ -50,12 +50,11 @@ curl \
 {
   "data": [
     {
-      "id": "hashicorp",
+      "id": "hashicorp-one",
       "type": "organizations",
       "attributes": {
-        "name": "hashicorp",
-        "cost-estimation-enabled": true,
-        "created-at": "2017-09-07T14:34:40.492Z",
+        "external-id": "org-WV6DfwfxxXvLfvfs",
+        "created-at": "2020-03-26T22:13:38.456Z",
         "email": "user@example.com",
         "session-timeout": null,
         "session-remember": null,
@@ -64,6 +63,81 @@ curl \
         "plan-expires-at": null,
         "plan-is-trial": false,
         "plan-is-enterprise": false,
+        "cost-estimation-enabled": false,
+        "name": "hashicorp-one",
+        "permissions": {
+          "can-update": true,
+          "can-destroy": true,
+          "can-access-via-teams": true,
+          "can-create-module": true,
+          "can-create-team": false,
+          "can-create-workspace": true,
+          "can-manage-users": true,
+          "can-manage-subscription": true,
+          "can-manage-sso": false,
+          "can-update-oauth": true,
+          "can-update-sentinel": false,
+          "can-update-ssh-keys": true,
+          "can-update-api-token": true,
+          "can-traverse": true,
+          "can-start-trial": true,
+          "can-update-agent-pools": false,
+          "can-manage-tags": true,
+          "can-manage-public-modules": true,
+          "can-manage-public-providers": false,
+          "can-create-provider": false
+        },
+        "fair-run-queuing-enabled": true,
+        "saml-enabled": false,
+        "owners-team-saml-role-id": null,
+        "two-factor-conformant": false
+      },
+      "relationships": {
+        "oauth-tokens": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp-one/oauth-tokens"
+          }
+        },
+        "authentication-token": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp-one/authentication-token"
+          }
+        },
+        "entitlement-set": {
+          "data": {
+            "id": "org-WV6DfwfxxXvLfvfs",
+            "type": "entitlement-sets"
+          },
+          "links": {
+            "related": "/api/v2/organizations/hashicorp-one/entitlement-set"
+          }
+        },
+        "subscription": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp-one/subscription"
+          }
+        }
+      },
+      "links": {
+        "self": "/api/v2/organizations/hashicorp-one"
+      }
+    },
+    {
+      "id": "hashicorp-two",
+      "type": "organizations",
+      "attributes": {
+        "external-id": "org-bEoHEeaxjLJYARWf",
+        "created-at": "2018-03-19T23:16:13.137Z",
+        "email": "user2@example.com",
+        "session-timeout": null,
+        "session-remember": null,
+        "collaborator-auth-policy": "password",
+        "plan-expired": false,
+        "plan-expires-at": null,
+        "plan-is-trial": false,
+        "plan-is-enterprise": false,
+        "cost-estimation-enabled": true,
+        "name": "hashicorp-two",
         "permissions": {
           "can-update": true,
           "can-destroy": true,
@@ -73,48 +147,52 @@ curl \
           "can-create-workspace": true,
           "can-manage-users": true,
           "can-manage-subscription": true,
-          "can-manage-sso": false,
+          "can-manage-sso": true,
           "can-update-oauth": true,
           "can-update-sentinel": true,
           "can-update-ssh-keys": true,
           "can-update-api-token": true,
           "can-traverse": true,
           "can-start-trial": false,
-          "can-update-agent-pools": false
+          "can-update-agent-pools": true,
+          "can-manage-tags": true,
+          "can-manage-public-modules": true,
+          "can-manage-public-providers": false,
+          "can-create-provider": false
         },
         "fair-run-queuing-enabled": true,
         "saml-enabled": false,
         "owners-team-saml-role-id": null,
-        "two-factor-conformant": true
+        "two-factor-conformant": false
       },
       "relationships": {
         "oauth-tokens": {
           "links": {
-            "related": "/api/v2/organizations/hashicorp/oauth-tokens"
+            "related": "/api/v2/organizations/hashicorp-two/oauth-tokens"
           }
         },
         "authentication-token": {
           "links": {
-            "related": "/api/v2/organizations/hashicorp/authentication-token"
+            "related": "/api/v2/organizations/hashicorp-two/authentication-token"
           }
         },
         "entitlement-set": {
           "data": {
-            "id": "org-MxtxBC6ihhU6u8AG",
+            "id": "org-bEoHEeaxjLJYARWf",
             "type": "entitlement-sets"
           },
           "links": {
-            "related": "/api/v2/organizations/hashicorp/entitlement-set"
+            "related": "/api/v2/organizations/hashicorp-two/entitlement-set"
           }
         },
         "subscription": {
           "links": {
-            "related": "/api/v2/organizations/hashicorp/subscription"
+            "related": "/api/v2/organizations/hashicorp-two/subscription"
           }
         }
       },
       "links": {
-        "self": "/api/v2/organizations/hashicorp"
+        "self": "/api/v2/organizations/hashicorp-two"
       }
     }
   ]
@@ -149,71 +227,78 @@ curl \
 
 ```json
 {
-  "id": "hashicorp",
-  "type": "organizations",
-  "attributes": {
-    "name": "hashicorp",
-    "cost-estimation-enabled": true,
-    "created-at": "2017-09-07T14:34:40.492Z",
-    "email": "user@example.com",
-    "session-timeout": null,
-    "session-remember": null,
-    "collaborator-auth-policy": "password",
-    "plan-expired": false,
-    "plan-expires-at": null,
-    "plan-is-trial": false,
-    "plan-is-enterprise": false,
-    "permissions": {
-      "can-update": true,
-      "can-destroy": true,
-      "can-access-via-teams": true,
-      "can-create-module": true,
-      "can-create-team": true,
-      "can-create-workspace": true,
-      "can-manage-users": true,
-      "can-manage-subscription": true,
-      "can-manage-sso": false,
-      "can-update-oauth": true,
-      "can-update-sentinel": true,
-      "can-update-ssh-keys": true,
-      "can-update-api-token": true,
-      "can-traverse": true,
-      "can-start-trial": false,
-      "can-update-agent-pools": false
-    },
-    "fair-run-queuing-enabled": true,
-    "saml-enabled": false,
-    "owners-team-saml-role-id": null,
-    "two-factor-conformant": true
-  },
-  "relationships": {
-    "oauth-tokens": {
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/oauth-tokens"
-      }
-    },
-    "authentication-token": {
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/authentication-token"
-      }
-    },
-    "entitlement-set": {
-      "data": {
-        "id": "org-MxtxBC6ihhU6u8AG",
-        "type": "entitlement-sets"
+  "data": {
+    "id": "hashicorp",
+    "type": "organizations",
+    "attributes": {
+      "external-id": "org-WV6DfwfxxXvLfvfs",
+      "created-at": "2020-03-26T22:13:38.456Z",
+      "email": "user@example.com",
+      "session-timeout": null,
+      "session-remember": null,
+      "collaborator-auth-policy": "password",
+      "plan-expired": false,
+      "plan-expires-at": null,
+      "plan-is-trial": false,
+      "plan-is-enterprise": false,
+      "cost-estimation-enabled": false,
+      "name": "hashicorp",
+      "permissions": {
+        "can-update": true,
+        "can-destroy": true,
+        "can-access-via-teams": true,
+        "can-create-module": true,
+        "can-create-team": false,
+        "can-create-workspace": true,
+        "can-manage-users": true,
+        "can-manage-subscription": true,
+        "can-manage-sso": false,
+        "can-update-oauth": true,
+        "can-update-sentinel": false,
+        "can-update-ssh-keys": true,
+        "can-update-api-token": true,
+        "can-traverse": true,
+        "can-start-trial": true,
+        "can-update-agent-pools": false,
+        "can-manage-tags": true,
+        "can-manage-public-modules": true,
+        "can-manage-public-providers": false,
+        "can-create-provider": false
       },
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/entitlement-set"
+      "fair-run-queuing-enabled": true,
+      "saml-enabled": false,
+      "owners-team-saml-role-id": null,
+      "two-factor-conformant": false
+    },
+    "relationships": {
+      "oauth-tokens": {
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/oauth-tokens"
+        }
+      },
+      "authentication-token": {
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/authentication-token"
+        }
+      },
+      "entitlement-set": {
+        "data": {
+          "id": "org-WV6DfwfxxXvLfvfs",
+          "type": "entitlement-sets"
+        },
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/entitlement-set"
+        }
+      },
+      "subscription": {
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/subscription"
+        }
       }
     },
-    "subscription": {
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/subscription"
-      }
+    "links": {
+      "self": "/api/v2/organizations/hashicorp"
     }
-  },
-  "links": {
-    "self": "/api/v2/organizations/hashicorp"
   }
 }
 ```
@@ -275,72 +360,104 @@ curl \
 
 ```json
 {
-  "id": "hashicorp",
-  "type": "organizations",
-  "attributes": {
-    "name": "hashicorp",
-    "cost-estimation-enabled": true,
-    "created-at": "2017-09-07T14:34:40.492Z",
-    "email": "user@example.com",
-    "session-timeout": null,
-    "session-remember": null,
-    "collaborator-auth-policy": "password",
-    "plan-expired": false,
-    "plan-expires-at": null,
-    "plan-is-trial": false,
-    "plan-is-enterprise": false,
-    "permissions": {
-      "can-update": true,
-      "can-destroy": true,
-      "can-access-via-teams": true,
-      "can-create-module": true,
-      "can-create-team": true,
-      "can-create-workspace": true,
-      "can-manage-users": true,
-      "can-manage-subscription": true,
-      "can-manage-sso": false,
-      "can-update-oauth": true,
-      "can-update-sentinel": true,
-      "can-update-ssh-keys": true,
-      "can-update-api-token": true,
-      "can-traverse": true,
-      "can-start-trial": false,
-      "can-update-agent-pools": false
-    },
-    "fair-run-queuing-enabled": true,
-    "saml-enabled": false,
-    "owners-team-saml-role-id": null,
-    "two-factor-conformant": true
-  },
-  "relationships": {
-    "oauth-tokens": {
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/oauth-tokens"
-      }
-    },
-    "authentication-token": {
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/authentication-token"
-      }
-    },
-    "entitlement-set": {
-      "data": {
-        "id": "org-MxtxBC6ihhU6u8AG",
-        "type": "entitlement-sets"
+  "data": {
+    "id": "hashicorp",
+    "type": "organizations",
+    "attributes": {
+      "external-id": "org-Bzyc2JuegvVLAibn",
+      "created-at": "2021-08-30T18:09:57.561Z",
+      "email": "user@example.com",
+      "session-timeout": null,
+      "session-remember": null,
+      "collaborator-auth-policy": "password",
+      "plan-expired": false,
+      "plan-expires-at": null,
+      "plan-is-trial": false,
+      "plan-is-enterprise": false,
+      "cost-estimation-enabled": false,
+      "name": "hashicorp",
+      "permissions": {
+        "can-update": true,
+        "can-destroy": true,
+        "can-access-via-teams": true,
+        "can-create-module": true,
+        "can-create-team": false,
+        "can-create-workspace": true,
+        "can-manage-users": true,
+        "can-manage-subscription": true,
+        "can-manage-sso": false,
+        "can-update-oauth": true,
+        "can-update-sentinel": false,
+        "can-update-ssh-keys": true,
+        "can-update-api-token": true,
+        "can-traverse": true,
+        "can-start-trial": true,
+        "can-update-agent-pools": false,
+        "can-manage-tags": true,
+        "can-manage-public-modules": true,
+        "can-manage-public-providers": false,
+        "can-create-provider": false
       },
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/entitlement-set"
+      "fair-run-queuing-enabled": true,
+      "saml-enabled": false,
+      "owners-team-saml-role-id": null,
+      "two-factor-conformant": false
+    },
+    "relationships": {
+      "oauth-tokens": {
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/oauth-tokens"
+        }
+      },
+      "authentication-token": {
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/authentication-token"
+        }
+      },
+      "entitlement-set": {
+        "data": {
+          "id": "org-Bzyc2JuegvVLAibn",
+          "type": "entitlement-sets"
+        },
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/entitlement-set"
+        }
+      },
+      "subscription": {
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/subscription"
+        }
       }
     },
-    "subscription": {
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/subscription"
-      }
+    "links": {
+      "self": "/api/v2/organizations/hashicorp"
     }
   },
-  "links": {
-    "self": "/api/v2/organizations/hashicorp"
-  }
+  "included": [
+    {
+      "id": "org-Bzyc2JuegvVLAibn",
+      "type": "entitlement-sets",
+      "attributes": {
+        "cost-estimation": false,
+        "configuration-designer": true,
+        "operations": true,
+        "private-module-registry": true,
+        "sentinel": false,
+        "state-storage": true,
+        "teams": false,
+        "vcs-integrations": true,
+        "usage-reporting": false,
+        "user-limit": 5,
+        "self-serve-billing": true,
+        "audit-logging": false,
+        "agents": false,
+        "sso": false
+      },
+      "links": {
+        "self": "/api/v2/entitlement-sets/org-Bzyc2JuegvVLAibn"
+      }
+    }
+  ]
 }
 ```
 
@@ -402,71 +519,78 @@ curl \
 
 ```json
 {
-  "id": "hashicorp",
-  "type": "organizations",
-  "attributes": {
-    "name": "hashicorp",
-    "cost-estimation-enabled": true,
-    "created-at": "2017-09-07T14:34:40.492Z",
-    "email": "admin@example.com",
-    "session-timeout": null,
-    "session-remember": null,
-    "collaborator-auth-policy": "password",
-    "plan-expired": false,
-    "plan-expires-at": null,
-    "plan-is-trial": false,
-    "plan-is-enterprise": false,
-    "permissions": {
-      "can-update": true,
-      "can-destroy": true,
-      "can-access-via-teams": true,
-      "can-create-module": true,
-      "can-create-team": true,
-      "can-create-workspace": true,
-      "can-manage-users": true,
-      "can-manage-subscription": true,
-      "can-manage-sso": false,
-      "can-update-oauth": true,
-      "can-update-sentinel": true,
-      "can-update-ssh-keys": true,
-      "can-update-api-token": true,
-      "can-traverse": true,
-      "can-start-trial": false,
-      "can-update-agent-pools": false
-    },
-    "fair-run-queuing-enabled": true,
-    "saml-enabled": false,
-    "owners-team-saml-role-id": null,
-    "two-factor-conformant": true
-  },
-  "relationships": {
-    "oauth-tokens": {
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/oauth-tokens"
-      }
-    },
-    "authentication-token": {
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/authentication-token"
-      }
-    },
-    "entitlement-set": {
-      "data": {
-        "id": "org-MxtxBC6ihhU6u8AG",
-        "type": "entitlement-sets"
+  "data": {
+    "id": "hashicorp",
+    "type": "organizations",
+    "attributes": {
+      "external-id": "org-Bzyc2JuegvVLAibn",
+      "created-at": "2021-08-30T18:09:57.561Z",
+      "email": "admin@example.com",
+      "session-timeout": null,
+      "session-remember": null,
+      "collaborator-auth-policy": "password",
+      "plan-expired": false,
+      "plan-expires-at": null,
+      "plan-is-trial": false,
+      "plan-is-enterprise": false,
+      "cost-estimation-enabled": false,
+      "name": "hashicorp",
+      "permissions": {
+        "can-update": true,
+        "can-destroy": true,
+        "can-access-via-teams": true,
+        "can-create-module": true,
+        "can-create-team": false,
+        "can-create-workspace": true,
+        "can-manage-users": true,
+        "can-manage-subscription": true,
+        "can-manage-sso": false,
+        "can-update-oauth": true,
+        "can-update-sentinel": false,
+        "can-update-ssh-keys": true,
+        "can-update-api-token": true,
+        "can-traverse": true,
+        "can-start-trial": true,
+        "can-update-agent-pools": false,
+        "can-manage-tags": true,
+        "can-manage-public-modules": true,
+        "can-manage-public-providers": false,
+        "can-create-provider": false
       },
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/entitlement-set"
+      "fair-run-queuing-enabled": true,
+      "saml-enabled": false,
+      "owners-team-saml-role-id": null,
+      "two-factor-conformant": false
+    },
+    "relationships": {
+      "oauth-tokens": {
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/oauth-tokens"
+        }
+      },
+      "authentication-token": {
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/authentication-token"
+        }
+      },
+      "entitlement-set": {
+        "data": {
+          "id": "org-Bzyc2JuegvVLAibn",
+          "type": "entitlement-sets"
+        },
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/entitlement-set"
+        }
+      },
+      "subscription": {
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/subscription"
+        }
       }
     },
-    "subscription": {
-      "links": {
-        "related": "/api/v2/organizations/hashicorp/subscription"
-      }
+    "links": {
+      "self": "/api/v2/organizations/hashicorp"
     }
-  },
-  "links": {
-    "self": "/api/v2/organizations/hashicorp"
   }
 }
 ```
@@ -529,26 +653,26 @@ curl \
 ```json
 {
   "data": {
-    "id": "hashicorp",
+    "id": "org-Bzyc2JuegvVLAibn",
     "type": "entitlement-sets",
     "attributes": {
-      "cost-estimation": true,
+      "cost-estimation": false,
       "configuration-designer": true,
       "operations": true,
       "private-module-registry": true,
-      "sentinel": true,
+      "sentinel": false,
       "state-storage": true,
-      "teams": true,
+      "teams": false,
       "vcs-integrations": true,
       "usage-reporting": false,
-      "user-limit": null,
+      "user-limit": 5,
       "self-serve-billing": true,
       "audit-logging": false,
       "agents": false,
       "sso": false
     },
-    "links":{
-      "self": "api/v2/entitlement-sets/hashicorp"
+    "links": {
+      "self": "/api/v2/entitlement-sets/org-Bzyc2JuegvVLAibn"
     }
   }
 }
