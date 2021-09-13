@@ -81,6 +81,7 @@ Properties without a default value are required.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
+`data.attributes.auto-apply` | bool | (The current Auto Apply option of the workspace) | Whether to automatically apply changes when a Terraform plan is successful. Defaults to the [workspace Auto Apply](https://www.terraform.io/docs/cloud/workspaces/settings.html#auto-apply-and-manual-apply) setting.
 `data.attributes.is-destroy` | bool | false | Specifies if this plan is a destroy plan, which will destroy all provisioned resources. Mutually exclusive with `refresh-only`.
 `data.attributes.message` | string | "Queued manually via the Terraform Enterprise API" | Specifies the message to be associated with this run.
 `data.attributes.refresh` | bool | true | Specifies whether or not to refresh the state before a plan.
@@ -153,6 +154,7 @@ curl \
       "canceled-at": null,
       "created-at": "2021-05-24T07:38:04.171Z",
       "has-changes": false,
+      "auto-apply": false,
       "is-destroy": false,
       "message": "Custom message",
       "plan-only": false,
@@ -306,6 +308,7 @@ curl \
         "canceled-at": null,
         "created-at": "2021-05-24T07:38:04.171Z",
         "has-changes": false,
+        "auto-apply": false,
         "is-destroy": false,
         "message": "Custom message",
         "plan-only": false,
@@ -392,6 +395,7 @@ curl \
       "canceled-at": null,
       "created-at": "2021-05-24T07:38:04.171Z",
       "has-changes": false,
+      "auto-apply": false,
       "is-destroy": false,
       "message": "Custom message",
       "plan-only": false,
