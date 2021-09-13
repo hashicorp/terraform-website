@@ -40,18 +40,16 @@ practitioners to fix their configuration or environment more quickly. You
 should only append to Diagnostics slices and never replace or remove
 information from them.
 
-The next section will detail the properties and typical behaviors of
+The next section will detail the concepts and typical behaviors of
 diagnostics, while the final section will outline the typical methods for
 working with diagnostics, using functionality from the available
 [`diag` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/diag).
 
-## Diagnostic Properties
+## Diagnostic Concepts
 
 ### Severity
 
-Required
-
-`Severity` specifies whether the diagnostic is an error or a warning.  
+`Severity` specifies whether the diagnostic is an error or a warning.
 
 - An **error** will be displayed to the practitioner and halt Terraform's
   execution, not continuing to apply changes to later resources in the graph.
@@ -65,16 +63,12 @@ Required
 
 ### Summary
 
-Required
-
 `Summary` is a short, practitioner-oriented description of the problem. Good
 summaries are general&mdash;they don't contain specific details about
 values&mdash;and concise. For example, "Error creating resource", "Invalid
 value for foo", or "Field foo is deprecated".
 
 ### Detail
-
-Required
 
 `Detail` is a longer, more specific practitioner-oriented description of
 precisely what went wrong. Good details are specific&mdash;they tell the
@@ -86,14 +80,9 @@ future release.".
 
 ### Attribute
 
-Optional
-
 `Attribute` identifies the specific part of a configuration that caused the
-error or warning. If no specific part is the cause, don't set an `Attribute`.
-
-~> **Important:** Specifying attribute paths is currently a rather verbose
-process. The design for specifying attribute paths is evolving, and a revamped
-interface is expected in the near future.
+error or warning. Only diagnostics that pertain to a whole attribute or a
+specific attribute value will include this information.
 
 ## How Errors Affect State
 
