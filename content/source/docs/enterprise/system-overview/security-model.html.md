@@ -49,7 +49,7 @@ Infrastructure admins are responsible for all aspects of reliability and availab
 Unlike Terraform Cloud, Terraform Enterprise performs all Terraform operations in Docker containers on the Terraform Enterprise host. The containers are assigned to an isolated Docker network to prevent them from communicating with Terraform Enterprise backend services. However, Terraform Enterprise does not perform any egress filtering, so Terraform runs can still access available network resources.
 
 ### Terraform Enterprise Relies on Third Party Software for Licensing, Delivery, Installation, and Management
-Terraform Enterprise is built on top of a software platform developed by [Replicated](https://www.replicated.com/). The components neccesary for installing Terraform Enterprise are hosted by Replicated, and software developed by Replicated is used for bootstrapping, configuring, and managing every Terraform Enterprise deployment.
+Terraform Enterprise is built on top of a software platform developed by [Replicated](https://www.replicated.com/). The components neccesary for installing Terraform Enterprise are hosted by Replicated, and software developed by Replicated is used for bootstrapping, configuring, and managing every Terraform Enterprise deployment. For more information, see [Security at Replicated](https://www.replicated.com/security/).
 
 ## Recommendations for Securely Operating Terraform Enterprise
 
