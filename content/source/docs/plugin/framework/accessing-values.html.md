@@ -46,7 +46,7 @@ func (m myResource) Create(ctx context.Context,
 	diags := req.Plan.Get(ctx, &plan)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
-		// TODO: handle error
+		return
 	}
 	// values can now be accessed like plan.Name.Value
 	// check if things are null with plan.Name.Null
@@ -98,7 +98,7 @@ func (m myResource) Create(ctx context.Context,
 	attr, diags := req.Config.GetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"))
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
-		// TODO: handle error
+		return
 	}
 	age := attr.(types.Number)
 }

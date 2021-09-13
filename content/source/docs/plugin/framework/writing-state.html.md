@@ -47,7 +47,7 @@ func (m myResource) Create(ctx context.Context,
 	diags := resp.State.Set(ctx, &newState)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
-		// TODO: handle error
+		return
 	}
 }
 ```
@@ -98,7 +98,7 @@ func (m myResource) Create(ctx context.Context,
 	diags := resp.State.SetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
-		// TODO: handle error
+		return
 	}
 }
 ```
@@ -113,7 +113,7 @@ func (m myResource) Create(ctx context.Context,
 	diags := resp.State.SetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
-		// TODO: handle error
+		return
 	}
 }
 ```
