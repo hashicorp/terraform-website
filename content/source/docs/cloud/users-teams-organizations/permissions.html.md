@@ -69,7 +69,7 @@ The following workspace permissions can be granted to teams on a per-workspace b
     - **Read runs:** — Allows users to view information about remote Terraform runs, including the run history, the status of runs, the log output of each stage of a run (plan, apply, cost estimation, policy check), and configuration versions associated with a run.
     - **Queue plans:** — _Implies permission to read runs._ Allows users to queue Terraform plans in a workspace, including both speculative plans and normal plans. Normal plans must be approved by a user with permission to apply runs.
     - **Apply runs:** — _Implies permission to queue plans._ Allows users to approve and apply Terraform plans, causing changes to real infrastructure.
-- **Lock and unlock workspace:** — Allows users to manually lock the workspace to temporarily prevent runs. When a workspace's execution mode is set to "local", this permission is required for performing local CLI runs using this workspace's state.
+- **Lock and unlock workspace:** — Allows users to manually lock the workspace to temporarily prevent runs. When a workspace's execution mode is set to "local", this permission is required for performing local CLI runs using this workspace's state. Once a user sets a lock on a workspace, only that user can unlock it. Another member of the same team will not be able to unlock the workspace.
 - **Download Sentinel mocks:** — Allows users to download data from runs in the workspace in a format that can be used for developing Sentinel policies. This run data is very detailed, and often contains unredacted sensitive information.
 - **Variables:**
     - **Read variables:** — Allows users to view the values of Terraform variables and environment variables for the workspace. Note that variables marked as sensitive are write-only, and can't be viewed by any user.
@@ -133,16 +133,11 @@ The "write" permission set is for people who do most of the day-to-day work of p
 
 - Apply runs
 - Lock and unlock workspace
+
+    -> **Note**: Typically, only the user who created the lock can unlock a workspace. Administrators and members of the "Owners" team can use [Force unlock] (/docs/cloud/workspaces/settings.html#locking) to override this an unlock a workspace.
 - Download Sentinel mocks
 - Read and write variables
 - Read and write state versions
-
----
-**NOTE:**
-
-The way locks work is that you (the resource; being a team, a user on that team, the workspace itself, etc.) must be the holder of that lock to unlock it. If a user (or a team) locks a workspace, only that entity can unlock it. `Force unlock` is available to admins/owners to ignore this and unlock the workspace. 
-
----
 
 See [General Workspace Permissions][] above for details about specific permissions.
 
