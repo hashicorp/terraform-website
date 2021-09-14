@@ -236,6 +236,9 @@ State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
 
 You may want to build your own attribute value and type implementations to allow your provider to combine validation, description, and plan customization behaviors into a reusable bundle. This helps avoid duplication or reimplementation and ensures consistency.
 
+~> **Important:** Specifying plan customization for attribute types is not yet
+supported, limiting their utility. Support is expected in the near future.
+
 ### `attr.Type` Interface
 
 Use the [`attr.Type`
