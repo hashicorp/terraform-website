@@ -8,9 +8,25 @@ description: |-
 
 # Returning Errors and Warnings
 
-Providers use `Diagnostics` to surface errors and warnings to practitioners.
-You may encounter them in response structs or as returns from functions or
-methods:
+Providers use `Diagnostics` to surface errors and warnings to practitioners,
+such as contextual messages returned from Terraform CLI at the end of
+command output:
+
+```console
+$ terraform plan
+# ... other plan output ...
+╷
+│ Error: Summary
+│ 
+│   on example.tf line #:
+│    #: source configuration line
+│ 
+│ Details
+╵
+```
+
+In the framework, you may encounter them in response structs or as returns from
+functions or methods:
 
 ```go
 func (m myResource) Create(ctx context.Context,
@@ -24,16 +40,16 @@ practitioners to fix their configuration or environment more quickly. You
 should only append to Diagnostics slices and never replace or remove
 information from them.
 
-~> **Important:** The design of diagnostics is expected to change to something
-less verbose in the near future.
+The next section will detail the concepts and typical behaviors of
+diagnostics, while the final section will outline the typical methods for
+working with diagnostics, using functionality from the available
+[`diag` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/diag).
 
-## Diagnostic Properties
+## Diagnostic Concepts
 
 ### Severity
 
-Required
-
-`Severity` specifies whether the diagnostic is an error or a warning.  
+`Severity` specifies whether the diagnostic is an error or a warning.
 
 - An **error** will be displayed to the practitioner and halt Terraform's
   execution, not continuing to apply changes to later resources in the graph.
@@ -47,16 +63,12 @@ Required
 
 ### Summary
 
-Required
-
 `Summary` is a short, practitioner-oriented description of the problem. Good
 summaries are general&mdash;they don't contain specific details about
 values&mdash;and concise. For example, "Error creating resource", "Invalid
 value for foo", or "Field foo is deprecated".
 
 ### Detail
-
-Required
 
 `Detail` is a longer, more specific practitioner-oriented description of
 precisely what went wrong. Good details are specific&mdash;they tell the
@@ -68,14 +80,9 @@ future release.".
 
 ### Attribute
 
-Optional
-
 `Attribute` identifies the specific part of a configuration that caused the
-error or warning. If no specific part is the cause, don't set an `Attribute`.
-
-~> **Important:** Specifying attribute paths is currently a rather verbose
-process. The design for specifying attribute paths is evolving, and a revamped
-interface is expected in the near future.
+error or warning. Only diagnostics that pertain to a whole attribute or a
+specific attribute value will include this information.
 
 ## How Errors Affect State
 
@@ -87,3 +94,181 @@ requests or an API request fails after an earlier one succeeded.
 
 When returning error diagnostics, we recommend resetting the state in the
 response to the prior state available in the configuration.
+
+## diag Package
+
+The framework provides the `diag` package for interacting with diagnostics.
+While the [Go documentation](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/diag)
+contains the complete functionality, this section will highlight the most
+common methods.
+
+### Working With Existing Diagnostics
+
+#### Append
+
+When receiving `diag.Diagnostics` from a function or method, such as
+`Config.Get()` or `State.Set()`, these should typically be appended to the
+response diagnostics for the method. This can be accomplished with the
+[`Append(in ...diag.Diagnostics)` method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/diag#Diagnostics.Append).
+
+For example:
+
+```go
+func (m myResource) Create(ctx context.Context,
+    req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
+    // ... prior logic ...
+    diags := req.Config.Get(ctx, &resourceData)
+    resp.Diagnostics.Append(diags...)
+    // ... further logic ...
+}
+```
+
+This method automatically ignores `nil` or empty slice diagnostics and
+deduplicates where possible.
+
+#### HasError
+
+The most typical form of diagnostics checking is ensuring that execution should
+not stop due to encountering an error, potentially causing further confusing
+errors or crashes. The [`HasError()` method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/diag#Diagnostics.HasError)
+will check each of the diagnostics for error severity and return true if found.
+
+For example:
+
+```go
+func (m myResource) Create(ctx context.Context,
+    req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
+    // ... prior logic ...
+    diags := req.Config.Get(ctx, &resourceData)
+    resp.Diagnostics.Append(diags...)
+
+    if resp.Diagnostics.HasError() {
+      return
+    }
+    // ... further logic ...
+}
+```
+
+In this example, you will note that we opted to check `resp.Diagnostics`
+instead of `diags`. Technically checking either is correct, however, checking
+the response diagnostics can help ensure that any response will include the
+expected diagnostics.
+
+### Creating Diagnostics
+
+When working with logic outside the framework, such as interacting with the
+vendor or `net/http` library to make the actual calls to manage infrastructure
+or creating custom plan modifiers and validators, it will be necessary to
+create diagnostics. The `diag` package provides helper methods and allows
+custom abstractions as described below.
+
+To craft the summary of a diagnostic, it is recommended to use a concise title
+or single sentence that immediately can allow the practitioner to determine
+the error cause and when it occurred.
+
+To craft the details portion of diagnostics, it is recommended to provide
+practitioners (and potentially you as the maintainer) as much contextual,
+troubleshooting, and next action information as possible. These details can
+use newlines for easier readability where necessary.
+
+For example, with the top line as a summary and below as details:
+
+```text
+API Error Reading Resource
+```
+
+```text
+An unexpected error was encountered while reading the resource.
+
+Please check that the credentials being used are active and have sufficient
+permissions to perform the Example API call against the resource.
+
+Region: example
+ID: example123
+API Response: 403 Access Denied
+```
+
+#### AddError and AddWarning
+
+When creating diagnostics that affect an entire data source, provider, or
+resource, and where a `diag.Diagnostics` is already available such as within
+a response type, the [`AddError(summary string, detail string)` method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/diag#Diagnostics.AddError)
+and [`AddWarning(summary string, detail string)` method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/diag#Diagnostics.AddWarning)
+can append a new error or warning diagnostic.
+
+For example:
+
+```go
+func (m myResource) Create(ctx context.Context,
+    req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
+    // ... prior logic ...
+    resp, err := http.Post("https://example.com")
+
+    if err != nil {
+      resp.Diagnostics.AddError(
+        "API Error Creating Resource",
+        fmt.Sprintf("... details ... %s", err)
+      )
+      return
+    }
+    // ... further logic ...
+}
+```
+
+#### AddAttributeError and AddAttributeWarning
+
+When creating diagnostics that affect only a single attribute, which is
+typical of attribute-level plan modifiers and validators, the
+[`AddAttributeError(path *tftypes.AttributePath, summary string, detail string)` method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/diag#Diagnostics.AddAttributeError)
+and [`AddAttributeWarning(path *tftypes.AttributePath, summary string, detail string)` method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/diag#Diagnostics.AddAttributeWarning)
+can append a new error or warning diagnostic pointing specifically at the
+attribute path. This provides additional context to practitioners, such as
+showing the specific line(s) and value(s) of configuration where possible.
+
+For example:
+
+```go
+func (s exampleType) Validate(ctx context.Context, in tftypes.Value, path *tftypes.AttributePath) diag.Diagnostics {
+    var diags diag.Diagnostics
+
+    if !in.Type().Is(tftypes.Set{}) {
+        err := fmt.Errorf()
+        diags.AddAttributeError(
+            path,
+            "Example Type Validation Error",
+            "An unexpected error was encountered trying to validate an attribute value. "+
+                "This is always an error in the provider. "+
+                "Please report the following to the provider developer:\n\n"+
+                fmt.Sprintf("Expected Set value, received %T with value: %v", in, in),
+        )
+        return diags
+    }
+    // ... further logic ...
+```
+
+#### Custom Diagnostics Types
+
+Advanced provider developers may need to further differentiate or store
+additional data in error and warning types. The
+[`diag.Diagnostic` type](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework@v0.3.0/diag#Diagnostic)
+is an interface type that can be implemented with these methods:
+
+```go
+type Diagnostic interface {
+    Severity()        Severity
+    Summary()         string
+    Detail()          string
+    Equal(Diagnostic) bool
+}
+```
+
+To also include attribute path information, the
+[`diag.DiagnosticWithPath` type](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework@v0.3.0/diag#DiagnosticWithPath)
+can be implemented with the additional `Path()` method:
+
+```go
+type DiagnosticWithPath interface {
+    Diagnostic
+    Path() *tftypes.AttributePath
+}
+```
