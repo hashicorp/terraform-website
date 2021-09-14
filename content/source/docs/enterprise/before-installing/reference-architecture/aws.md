@@ -211,7 +211,7 @@ highly available infrastructure supporting S3.
 
 There is not currently a full monitoring guide for Terraform Enterprise. The following pages include information relevant to monitoring:
 
-- [Logging](../../admin/logging.html)
+- [Log Forwarding](../../admin/logging.html)
 - [Diagnostics](../../support/index.html)
 - [Reliability and Availability](../../system-overview/reliability-availability.html)
 
