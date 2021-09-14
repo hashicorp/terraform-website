@@ -46,9 +46,9 @@ configuration data.
 ```go
 type computeImageDataSourceType struct{}
 
-func (c computeImageDataSourceType) GetSchema(_ context.Context) (schema.Schema,
-	[]*tfprotov6.Diagnostic) {
-	return schema.Schema{
+func (c computeImageDataSourceType) GetSchema(_ context.Context) (tfsdk.Schema,
+	diag.Diagnostics) {
+	return tfsdk.Schema{
 		Attributes: map[string]tfsdk.Attribute{
 			"name": {
 				Type: types.StringType,
@@ -59,7 +59,7 @@ func (c computeImageDataSourceType) GetSchema(_ context.Context) (schema.Schema,
 }
 
 func (c computeImageDataSourceType) NewDataSource(_ context.Context,
-	p tfsdk.Provider) (tfsdk.DataSource, []*tfprotov6.Diagnostic) {
+	p tfsdk.Provider) (tfsdk.DataSource, diag.Diagnostics) {
 	return computeImageDataSource{
 		client: p.(*provider).client,
 	}, nil
@@ -89,7 +89,7 @@ instance of the data source type.
 
 ```go
 func (p *provider) GetDataSources(_ context.Context) (map[string]tfsdk.DataSourceType,
-	[]*tfprotov6.Diagnostic) {
+	diag.Diagnostics) {
 	return map[string]tfsdk.DataSourceType{
 		"example_compute_image": computeImageDataSourceType{},
 	}, nil

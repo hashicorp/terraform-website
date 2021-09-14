@@ -44,9 +44,10 @@ func (m myResource) Create(ctx context.Context,
 	newState.Name.Value = "J. Doe"
 
 	// persist the values to state
-	err := resp.State.Set(ctx, &newState)
-	if err != nil {
-		// TODO: handle error
+	diags := resp.State.Set(ctx, &newState)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
 	}
 }
 ```
@@ -94,9 +95,10 @@ runtime.
 func (m myResource) Create(ctx context.Context,
 	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
 	age := types.Number{Value: big.NewFloat(7)}
-	err := resp.State.SetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
-	if err != nil {
-		// TODO: handle error
+	diags := resp.State.SetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
 	}
 }
 ```
@@ -108,9 +110,10 @@ func (m myResource) Create(ctx context.Context,
 	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
 	var age int64
 	age = 7
-	err := resp.State.SetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
-	if err != nil {
-		// TODO: handle error
+	diags := resp.State.SetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"), &age)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
 	}
 }
 ```

@@ -43,9 +43,10 @@ type resourceData struct {
 func (m myResource) Create(ctx context.Context,
 	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
 	var plan resourceData
-	err := req.Plan.Get(ctx, &plan)
-	if err != nil {
-		// TODO: handle error
+	diags := req.Plan.Get(ctx, &plan)
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
 	}
 	// values can now be accessed like plan.Name.Value
 	// check if things are null with plan.Name.Null
@@ -94,9 +95,10 @@ type will always be the type produced by that attribute's `attr.Type`.
 ```go
 func (m myResource) Create(ctx context.Context,
 	req tfsdk.CreateResourceRequest, resp *tfsdk.CreateResourceResponse) {
-	attr, err := req.Config.GetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"))
-	if err != nil {
-		// TODO: handle error
+	attr, diags := req.Config.GetAttribute(ctx, tftypes.NewAttributePath().WithAttributeName("age"))
+	resp.Diagnostics.Append(diags...)
+	if resp.Diagnostics.HasError() {
+		return
 	}
 	age := attr.(types.Number)
 }
