@@ -133,7 +133,8 @@ The "write" permission set is for people who do most of the day-to-day work of p
 
 - Apply runs
 - Lock and unlock workspace
-   -> **Note**: Typically, only the user who created the lock can unlock a workspace. Administrators and members of the "Owners" team can use [Force unlock] (/docs/cloud/workspaces/settings.html#locking) to override this an unlock a workspace.
+
+    -> **Note**: Typically, only the user who created the lock can unlock a workspace. Administrators and members of the "Owners" team can use [Force unlock] (/docs/cloud/workspaces/settings.html#locking) to override this an unlock a workspace.
 - Download Sentinel mocks
 - Read and write variables
 - Read and write state versions
