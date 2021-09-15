@@ -2,7 +2,6 @@
 layout: "enterprise"
 page_title: "Updating Terraform Enterprise License - Application Administration - Terraform Enterprise"
 ---
-## Introduction
 
 Terraform Enterprise requires an up-to-date license to maintain normal operations. These licenses have an expiration date, and must be updated once expired. This article provides the guidelines for updating licenses in Terraform Enterprise.
 
