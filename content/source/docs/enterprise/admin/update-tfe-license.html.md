@@ -24,6 +24,7 @@ You can find the expiration date through either the Replicated console UI or the
 1.  Connect to the Terraform Enterprise host machine using SSH.
 
 2.  Use the `replicatedctl license inspect` command to inspect the license information. The `ExpirationTime` value in the output indicates the expiration date/time in UTC.
+
     ```shell
         $ replicatedctl license inspect
         [
