@@ -154,6 +154,9 @@ method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types
 which uses the same conversion rules as the `Get` methods described in [Access
 State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
 
+For an unordered collection with uniqueness constraints, see [`SetType` and
+`Set`](#settype-and-set).
+
 ### MapType and Map
 
 Maps are unordered collections of other types with unique string indexes.
@@ -231,6 +234,41 @@ without using type assertions by using the `types.Object`'s [`As`
 method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types#Object.As),
 which uses the same conversion rules as the `Get` methods described in [Access
 State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
+
+### SetType and Set
+
+Sets are unordered collections of other types. Their elements, the values inside
+the set, must all be of the same type and must be unique.
+
+```tf
+hello = ["red", "blue", "green"]
+```
+
+They are used by specifying a `types.SetType` value in your
+`tfsdk.Attribute`'s `Type` property. You must specify an `ElemType` property
+for your set, indicating what type the elements should be. Sets are
+represented by a `types.Set` struct in config, state, and plan. The
+`types.Set` struct has the following properties:
+
+* `ElemType` will always contain the same type as the `ElemType` property of
+  the `types.SetType` that created the `types.Set`.
+* `Elem` contains a list of values, one for each element in the set. The
+  values will all be of the value type produced by the `ElemType` for the list.
+  Each element must be unique.
+* `Null` is set to `true` when the entire set's value is null. Individual
+  elements may still be null even if the set's `Null` property is `false`.
+* `Unknown` is set to `true` when the entire set's value is unknown.
+  Individual elements may still be unknown even if the set's `Unknown`
+  property is `false`.
+
+Elements of a `types.Set` with a non-null, non-unknown value can be accessed
+without using type assertions by using the `types.Set`'s [`ElementsAs`
+method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types#List.ElementsAs),
+which uses the same conversion rules as the `Get` methods described in [Access
+State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
+
+For an ordered collection without uniqueness constraints, see [`ListType` and
+`List`](#listtype-and-list).
 
 ## Create Provider-Defined Types and Values
 
