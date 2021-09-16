@@ -804,7 +804,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/organization/my-organization/registry-modules/public/terraform-aws-modules/vpc/aws
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/public/terraform-aws-modules/vpc/aws
 ```
 
 ### Sample Request (private module)
@@ -814,5 +814,5 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/organization/my-organization/registry-modules/private/my-organization/my-module/aws/2.0.0
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/private/my-organization/my-module/aws/2.0.0
 ```
