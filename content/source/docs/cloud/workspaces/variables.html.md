@@ -22,7 +22,7 @@ You can set both Terraform variables and environment variables in Terraform Clou
 
 **Environment variables** can store provider credentials and other data. Refer to your provider's Terraform Registry documentation for a full list of supported shell environment variables (e.g., authentication variables for [AWS](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#environment-variables), [Google Cloud Platform](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started#adding-credentials), and [Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#argument-reference)). Environment variables can also [customize Terraform's behavior](/docs/cli/config/environment-variables.html). For example, `TF_LOG` enables detailed logs for debugging.
 
-> **Hands-on:** This [Create Infrastructure](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure?in=terraform/cloud-get-started) tutorial on HashiCorp Learn shows how to set AWS provider credentials as environment variables.
+> **Hands-on:** This [Create Infrastructure](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure?in=terraform/cloud-get-started) tutorial on HashiCorp Learn shows how to set both Terraform variables and provider credential environment variables.
 
 
 
