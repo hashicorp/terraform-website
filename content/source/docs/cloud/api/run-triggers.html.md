@@ -135,6 +135,7 @@ This endpoint supports pagination [with standard URL query parameters](./index.h
 Parameter                   | Description
 ----------------------------|------------
 `filter[run-trigger][type]` | **Required** Which type of run triggers to list; valid values are `inbound` or `outbound`. `inbound` run triggers create runs in the specified workspace, and `outbound` run triggers create runs in other workspaces.
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`                | **Optional.** If omitted, the endpoint will return 20 run triggers per page.
 
 ### Permissions
