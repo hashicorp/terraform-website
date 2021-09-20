@@ -315,3 +315,5 @@ If you have a requirement to split audit logs from application logs, we
 recommend forwarding all Terraform Enterprise logs to a log aggregation system,
 filtering the audit logs based on the `[Audit Log]` string, and forwarding just
 the audit logs to the desired destination.
+
+-> **Note:** You can find the previous version of this webpage with logspout information (for releases prior to v202109-1), [here](/docs/enterprise/install/logging-old.html). 
