@@ -5,7 +5,7 @@ page_title: "Logging (Pre-v202109-1) - Infrastructure Administration - Terraform
 
 # Terraform Enterprise Logs
 
-This document contains information about interacting with Terraform Enterprise logs previous to release v202109-1. If you have updated to v202109-1 or later, please refer to the [latest version of this page[(/docs/enterprise/install/logging.html).
+This document contains information about interacting with Terraform Enterprise logs previous to release v202109-1. If you have updated to v202109-1 or later, please refer to the [latest version of this page[(/docs/enterprise/admin/logging.html).
 
 There are two types of logs, application logs and audit logs. Application logs emit information about the services that comprise Terraform Enterprise. Audit logs emit information whenever any resource managed by Terraform Enterprise is changed.
 
