@@ -69,6 +69,7 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 * `registry-1.docker.io`
 * `download.docker.com`
 * `production.cloudflare.docker.com`
+* `install.terraform.io`
 
 Additionally, the following hostnames are accessed unless a
 [custom Terraform bundle](/docs/cloud/run/install-software.html#custom-and-community-providers)
