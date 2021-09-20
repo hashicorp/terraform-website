@@ -7,7 +7,7 @@ description: |-
 
 # Variables
 
-Workspace variables let you customize configurations, customize Terraform's behavior, and store information like provider credentials. Variables apply to all workspace runs, and you must have [read variables permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace.
+Terraform Cloud workspace variables let you customize configurations, customize Terraform's behavior, and store information like provider credentials. Variables apply to all workspace runs, and you must have [`read variables` permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace.
 
 Once you have the proper [read and write variables permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions), you can create and edit workspace variables [in the UI](#managing-variables-in-the-ui) as shown below or with the [Variables API](/docs/cloud/api/workspace-variables.html). In Terraform Enterprise, you can also use the `tfe` provider [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) resource.
 
