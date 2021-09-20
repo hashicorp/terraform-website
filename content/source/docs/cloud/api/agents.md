@@ -45,9 +45,13 @@ Status  | Response                                     | Reason
 
 ### Query Parameters
 
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
 Parameter                   | Description
 ----------------------------|------------
 `sort`                        | **Optional.** Allows sorting the returned agents pools. Valid values are `"name"` and `"created-at"`. Prepending a hyphen to the sort parameter will reverse the order (e.g. `"-name"`).
+`page[number]`   | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`     | **Optional.** If omitted, the endpoint will return 20 agent pools per page.
 
 
 ### Sample Request
