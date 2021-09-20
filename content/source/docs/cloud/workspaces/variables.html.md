@@ -5,23 +5,23 @@ description: |-
   Workspaces organize infrastructure. Learn how to manage Terraform input variables and shell environment variables in a workspace.
 ---
 
-[variables]: /docs/language/values/variables.html
-
 # Variables
 
-Terraform Cloud workspaces can set values for two kinds of variables:
+Workspace variables let you customize configurations, customize Terraform's behavior, and store information like provider credentials. Variables apply to all workspace runs, and you must have [read variables permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace.
 
-- [Terraform input variables][variables], which define the parameters of a Terraform configuration.
-- Shell environment variables, which many providers can use for credentials and other data. You can also set [environment variables that affect Terraform's behavior](/docs/cli/config/environment-variables.html), like `TF_LOG`.
-
-You can edit a workspace's variables via the UI or the API. All runs in a workspace use its variables.
-
-Viewing variables requires permission to read variables for the workspace, and setting values requires permission to read and write variables. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+Once you have the proper [read and write variables permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions), you can create and edit workspace variables [in the UI](#managing-variables-in-the-ui) as shown below or with the [Variables API](/docs/cloud/api/workspace-variables.html). In Terraform Enterprise, you can also use the `tfe` provider [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) resource.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
--> **API:** See the [Variables API](../api/variables.html). <br/>
-**Terraform:** See the `tfe` provider's [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) resource.
+
+## Variable Types
+
+You can set both Terraform variables and environment variables:
+
+- **Terraform variables** refer to [input variables](/docs/language/values/variables.html) that define parameters without hardcoding them into the configuration. For example, you could create a variable that lets users specify the number and type of AWS EC2 instances they want to provision with a Terraform module.
+- **Environment variables** can store provider credentials and other data. Refer to your provider's Terraform Registry documentation for a full list of supported shell environment variables (e.g., authentication variables for [AWS](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#environment-variables), [Google Cloud Platform](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started#adding-credentials), and [Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#argument-reference)). Environment variables can also [customize Terraform's behavior](/docs/cli/config/environment-variables.html). For example, `TF_LOG` enables detailed logs for debugging.
+
+
 
 ## Loading Variables from Files
 
