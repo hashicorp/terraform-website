@@ -241,6 +241,6 @@ If the system cannot reach [install.terraform.io][install]:
 
 
 
-[install]: https://install.terraform.io
+[install]: https://install.terraform.io/tfe/uninstall
 [uninstall link]: https://install.terraform.io/tfe/uninstall
 [support]: https://support.hashicorp.com
