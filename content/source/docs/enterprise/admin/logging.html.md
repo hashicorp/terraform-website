@@ -316,4 +316,4 @@ recommend forwarding all Terraform Enterprise logs to a log aggregation system,
 filtering the audit logs based on the `[Audit Log]` string, and forwarding just
 the audit logs to the desired destination.
 
--> **Note:** You can find the previous version of this webpage with logspout information (for releases prior to v202109-1), [here](/docs/enterprise/admin/logging-old.html). 
+-> **Note:** You can find documentation for versions of Terraform Enterprise prior to v202109-1 on the [previous version of this webpage](/docs/enterprise/admin/logging-old.html). 
