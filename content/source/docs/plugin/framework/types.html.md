@@ -87,6 +87,48 @@ properties:
 * `Null` is set to `true` when the string's value is null.
 * `Unknown` is set to `true` when the string's value is unknown.
 
+### Int64Type and Int64
+
+Int64 are 64-bit integer values, such as `1234`.
+
+```tf
+hello = 1234
+```
+
+They are used by specifying the `types.Int64Type` constant in your
+`tfsdk.Attribute`'s `Type` property, and are represented by a `types.Int64`
+struct in config, state, and plan. The `types.Int64` struct has the following
+properties:
+
+* `Value` contains the number's value as a Go `int64` type.
+* `Null` is set to `true` when the number's value is null.
+* `Unknown` is set to `true` when the number's value is unknown.
+
+For 64-bit floating point numbers, see [`Float64Type` and
+`Float64`](#float64type-and-float64). For generic number handling, see
+[`NumberType` and `Number64`](#numbertype-and-number).
+
+### Float64Type and Float64
+
+Float64 are 64-bit floating point values, such as `1234.5`.
+
+```tf
+hello = 1234.5
+```
+
+They are used by specifying the `types.Float64Type` constant in your
+`tfsdk.Attribute`'s `Type` property, and are represented by a `types.Float64`
+struct in config, state, and plan. The `types.Float64` struct has the following
+properties:
+
+* `Value` contains the number's value as a Go `float64` type.
+* `Null` is set to `true` when the number's value is null.
+* `Unknown` is set to `true` when the number's value is unknown.
+
+For 64-bit integer numbers, see [`Int64Type` and
+`Int64`](#int64type-and-int64). For generic number handling, see
+[`NumberType` and `Number64`](#numbertype-and-number).
+
 ### NumberType and Number
 
 Numbers are numeric values, both whole values like `12` or fractional values
@@ -105,6 +147,10 @@ properties:
   [`*big.Float`](https://pkg.go.dev/math/big#Float) type.
 * `Null` is set to `true` when the number's value is null.
 * `Unknown` is set to `true` when the number's value is unknown.
+
+For 64-bit integer numbers, see [`Int64Type` and
+`Int64`](#int64type-and-int64). For 64-bit floating point numbers, see
+[`Float64Type` and `Float64`](#float64type-and-float64).
 
 ### BoolType and Bool
 
