@@ -1,0 +1,58 @@
+---
+layout: "cloud"
+page_title: "Adding Public Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn to add public modules from the public Terraform Registry to your organization's private module registry.  
+---
+
+[vcs]: ../vcs/index.html
+
+# Adding Public Modules to the Terraform Cloud Private Module Registry
+
+> **Hands-on:** Try the [Add Public Modules to your Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-add?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+
+Terraform Cloud's private module registry lets you add Terraform modules from the public [Terraform Registry](/docs/registry/index.html) to be consumed by users across your organization. These publicly curated modules live in the public Terraform Registry and are synchronized from it into your Terraform Cloud organization's private module registry.
+
+-> **Note:** Publicly curated modules are not supported in Terraform Enterprise.
+
+All members of an organization can view modules.
+
+Only members of the "owners" team of an organization can add public modules to its module registry.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+-> **API:** See the [Registry Modules API](../api/modules.html#create-a-module-with-no-vcs-connection-). If you use the API to add a public module, be sure to create a module with no VCS connection and to set the `registry_name` property to `public`.
+
+## Workflow Summary
+
+The private module registry is designed to be as automatic as possible. The only manual tasks associated with public modules are adding and deleting them.
+
+Consumers of a module don't need access to its source repository, even when running Terraform from the command line; the registry handles downloads and controls access with Terraform Cloud API tokens.
+
+## Adding a Public Module
+
+To add a public module, navigate to your organization's module registry with the "Registry" button and click the "Find public modules" button in the upper right.
+
+![Terraform Cloud screenshot: the "registry" button and the "find public modules" button](./images/add-find-button.png)
+
+This brings you to the "Search Public Modules" page, which has a text field that you can use to search for public modules in the public Terraform registry.
+
+![Terraform Cloud screenshot: the "search public modules" page, with a provider and module name entered](./images/add-search-public-modules.png)
+
+Simply type names of namespaces, modules or providers (or all three) to find public modules. Then hover over a module and click the "+ Add" button or select a module and then click the "Add to Terraform Cloud" button to add the public module to your module registry.
+
+![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-button.png)
+
+![Terraform Cloud screenshot: the "Add to Terraform Cloud" button](./images/add-add-to-terraform-cloud-button.png)
+
+## Deleting a Public Module
+
+Each public module's details page includes a "Mange Modules for Organization" drop-down with a "Delete module" button, which can remove the module from the organization's module registry.
+
+![Terraform Cloud screenshot: the delete module button](./images/add-delete-module-button.png)
+
+To delete a public module from your organization's module registry, click the "Delete module" button under the "Manage Module for Organization" drop-down, type the name of the module in the displayed dialog, and click the red "Delete" button.
+
+![Terraform Cloud screenshot: the deletion dialog](./images/add-delete-module-dialog.png)
+
+-> **Note:** Deleting a public module from a private module registry does not delete it from the public Terraform registry where it really lives.

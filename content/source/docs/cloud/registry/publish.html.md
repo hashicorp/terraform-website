@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Publishing Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Learn to prepare modules for publishing, add them to the registry, and release new versions.  
+  Learn to prepare private modules for publishing, add them to the registry, and release new versions.  
 ---
 
 [vcs]: ../vcs/index.html
@@ -11,11 +11,11 @@ description: |-
 
 > **Hands-on:** Try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
-Terraform Cloud's private module registry lets you publish Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
+Terraform Cloud's private module registry lets you publish private Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
 
 All members of an organization can view modules.
 
-Only members of the "owners" team can publish new modules. Once a module is published, the ability to release new versions is managed by your VCS provider.
+Only members of the "owners" team of an organization can publish new modules to its module registry. Once a module is published, the ability to release new versions is managed by your VCS provider.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -60,15 +60,15 @@ that don't look like version numbers are ignored.
 
 ## Publishing a New Module
 
-To publish a module, navigate to the modules list with the "Modules" button and click the "+ Add Module" button in the upper right.
+To publish a module, navigate to the modules list with the "Registry" button and click the "Publish" button in the upper right and then the "Module" button that appears under it.
 
-![Terraform Cloud screenshot: the "modules" button and the "+Add Module" button](./images/publish-add-button.png)
+![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
 
-This brings you to the "Add a New Module" page, which has a text field and at least one VCS provider button.
+This brings you to the "Add Module" page, which has at least one VCS provider button.
 
-![Terraform Cloud screenshot: the "add a new module" page, with a repository name entered](./images/publish-add-module.png)
+![Terraform Cloud screenshot: the "add module" page, with a repository name entered](./images/publish-add-module.png)
 
-If you have multiple VCS providers configured, use the buttons to select one. In the text field, enter the name of the repository for the module you're adding. Then click the "Publish Module" button.
+If you have multiple VCS providers configured, use the buttons to select one. In the filter field, type part or all of the name of the repository for the module you're adding to filter the list of available modules. Select the one you wish to publish. Then click the "Publish module" button.
 
 ~> **Note:** The name you type into the repo field will usually be something like `hashicorp/terraform-aws-vpc` or `INFRA/terraform-azure-appserver`. Module repo names use a `terraform-<PROVIDER>-<NAME>` format, and VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. (For most providers the namespace is an organization name, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.)
 
