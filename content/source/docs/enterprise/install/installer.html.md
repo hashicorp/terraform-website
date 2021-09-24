@@ -173,7 +173,7 @@ Below are several example `Dockerfile` definitions you can use to start building
 # This Dockerfile builds the image used for the worker containers.
 FROM ubuntu:bionic
 
-# Install software used by Terraform Enterprise.
+# Install required software for Terraform Enterprise.
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     sudo unzip daemontools git-core awscli ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd ca-certificates
 
@@ -204,7 +204,7 @@ ADD example-intermediate-ca.crt /usr/share/pki/ca-trust-source/anchors
 # Update the CA certificates bundle to include newly added CA certificates.
 RUN update-ca-trust
 
-# Install software used by Terraform Enterprise.
+# Install required software for Terraform Enterprise.
 RUN yum -y install unzip sudo git openssh wget curl psmisc iproute nmap-ncat openssl rpm-build redhat-rpm-config make gcc && \
   yum clean all && \
   cd /tmp && git clone https://github.com/jacobm3/daemontools-rpm.git && \
