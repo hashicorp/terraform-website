@@ -187,6 +187,9 @@ RUN update-ca-certificates
 
 #### RHEL 7
 
+Note that in addition to the packages installed by yum, the `daemontools` packaged is required as it provides the `envdir` binary,
+which is used by TFE. If this package is not installed on the alternative worker image, Terraform plan and apply operations will fail.
+
 ```
 FROM registry.access.redhat.com/rhel7
 
@@ -208,9 +211,6 @@ RUN yum -y install unzip sudo git openssh wget curl psmisc iproute nmap-ncat ope
   cd /tmp/daemontools-rpm && wget https://cr.yp.to/daemontools/daemontools-0.76.tar.gz && ./buildrpm.sh && \
   rpm -ivh /root/rpmbuild/RPMS/x86_64/daemontools-0.76-1.el7.x86_64.rpm
 ```
-
-Note that the `daemontools` package is required, as it provides the `envdir` binary, which is used by TFE. If this package is not
-installed on the alternative worker image, Terraform plan and apply operations will fail.
 
 ### Executing Custom Scripts
 
