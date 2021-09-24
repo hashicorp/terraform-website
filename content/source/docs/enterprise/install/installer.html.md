@@ -159,12 +159,15 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
 ![Terraform Enterprise docker image](./assets/tfe-docker-image.png)
 
 ### Requirements
- - The base image must be `ubuntu:bionic`.
+ - The base image must be `ubuntu:bionic` or an [offical RHEL7 image](https://catalog.redhat.com/software/containers/rhel7/57ea8cee9c624c035f96f3af) (e.g., `registry.access.redhat.com/rhel7`).
  - The image must exist on the Terraform Enterprise host. It can be added by running `docker pull` from a local registry or any other similar method.
+ - The software packages defined in the below exampes must be installed on the image.
  - All necessary PEM-encoded CA certificates must be placed within the `/usr/local/share/ca-certificates` directory. Each file added to this directory must end with the `.crt` extension. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
  - Terraform must not be installed on the image. Terraform Enterprise will take care of that at runtime.
 
-This is a sample `Dockerfile` you can use to start building your own image:
+Below are several example `Dockerfile` definitions you can use to start building your own image:
+
+#### Ubuntu
 
 ```
 # This Dockerfile builds the image used for the worker containers.
@@ -181,6 +184,33 @@ ADD example-intermediate-ca.crt /usr/local/share/ca-certificates/
 # Update the CA certificates bundle to include newly added CA certificates.
 RUN update-ca-certificates
 ```
+
+#### RHEL 7
+
+```
+FROM registry.access.redhat.com/rhel7
+
+# running 'subscription-manager' is necessary to be able to install additional packages via yum
+# substitute your redhat account credentials in this command
+RUN subscription-manager register --username ${RH_username} --password "${RH_password}" --auto-attach
+
+# Include all necessary CA certificates.
+ADD example-root-ca.crt /usr/share/pki/ca-trust-source/anchors
+ADD example-intermediate-ca.crt /usr/share/pki/ca-trust-source/anchors
+
+# Update the CA certificates bundle to include newly added CA certificates.
+RUN update-ca-trust
+
+# Install software used by Terraform Enterprise.
+RUN yum -y install unzip sudo git openssh wget curl psmisc iproute nmap-ncat openssl rpm-build redhat-rpm-config make gcc && \
+  yum clean all && \
+  cd /tmp && git clone https://github.com/jacobm3/daemontools-rpm.git && \
+  cd /tmp/daemontools-rpm && wget https://cr.yp.to/daemontools/daemontools-0.76.tar.gz && ./buildrpm.sh && \
+  rpm -ivh /root/rpmbuild/RPMS/x86_64/daemontools-0.76-1.el7.x86_64.rpm
+```
+
+Note that the `daemontools` package is required, as it provides the `envdir` binary, which is used by TFE. If this package is not
+installed on the alternative worker image, Terraform plan and apply operations will fail.
 
 ### Executing Custom Scripts
 
