@@ -33,7 +33,6 @@ All members of an organization can view and use public modules, but you need [ow
 
 ![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-button.png)
 
-![Terraform Cloud screenshot: the "Add to Terraform Cloud" button](./images/add-add-to-terraform-cloud-button.png)
 
 ## Deleting a Public Module
 
