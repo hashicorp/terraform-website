@@ -20,11 +20,6 @@ All members of an organization can view and use public modules, but you need [ow
 
 -> **API:** See the [Registry Modules API](../api/modules.html#create-a-module-with-no-vcs-connection-). If you use the API to add a public module, be sure to create a module with no VCS connection and to set the `registry_name` property to `public`.
 
-## Workflow Summary
-
-The private module registry is designed to be as automatic as possible. The only manual tasks associated with public modules are adding and deleting them.
-
-Consumers of a module don't need access to its source repository, even when running Terraform from the command line; the registry handles downloads and controls access with Terraform Cloud API tokens.
 
 ## Adding a Public Module
 
