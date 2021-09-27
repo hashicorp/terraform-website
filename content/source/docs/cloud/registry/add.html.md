@@ -33,7 +33,7 @@ All members of an organization can view and use public modules, but you need [ow
 
 ![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-button.png)
 
-
+4. Click "Add to organization" in the dialog box. The module is now included in the private module registry's list of available public modules, and members of your organization can begin using it.
 ## Deleting a Public Module
 
 Deleting a public module from a private module registry does not remove it from the Terraform Registry. To delete a public module from your organization's module registry:
