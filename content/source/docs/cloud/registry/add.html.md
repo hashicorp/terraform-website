@@ -23,7 +23,7 @@ All members of an organization can view and use public modules, but you need [ow
 
 ## Adding a Public Module
 
-To add a public module, navigate to your organization's module registry with the "Registry" button and click the "Find public modules" button in the upper right.
+1. Click "Registry" in the main navigation bar to go to your organization's module registry and then click "Find public modules". The Search Public Modules page appears, with a text field that you can use to search for public modules.
 
 ![Terraform Cloud screenshot: the "registry" button and the "find public modules" button](./images/add-find-button.png)
 
