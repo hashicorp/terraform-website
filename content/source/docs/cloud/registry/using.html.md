@@ -70,6 +70,13 @@ Use the "Examples" dropdown to navigate to example modules and use the  Readme/I
 
 The syntax for referencing publicly curated modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<NAMESPACE>/<MODULE NAME>/<PROVIDER>`.
 
+```hcl
+module "subnets" {
+  source  = "hashicorp/subnets/cidr"
+  version = "1.0.0"
+}
+```
+
 The syntax for referencing private modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
 
 - **Hostname:** For the SaaS version of Terraform Cloud, use `app.terraform.io`. In Terraform Enterprise, use the hostname for your instance or the [generic hostname](/docs/cloud/registry/using.html#generic-hostname-terraform-enterprise).
