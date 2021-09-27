@@ -18,9 +18,6 @@ All members of an organization can view and use public modules, but you need [ow
 -> **Note:** Public modules are not supported in Terraform Enterprise.
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
--> **API:** See the [Registry Modules API](../api/modules.html#create-a-module-with-no-vcs-connection-). If you use the API to add a public module, be sure to create a module with no VCS connection and to set the `registry_name` property to `public`.
-
-
 ## Adding a Public Module
 
 1. Click "Registry" in the main navigation bar to go to your organization's module registry and then click "Find public modules". The Search Public Modules page appears, with a text field that you can use to search for public modules.
