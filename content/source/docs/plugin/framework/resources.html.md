@@ -134,6 +134,15 @@ method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk
 on the state in the
 [`tfsdk.DeleteResourceResponse`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DeleteResourceResponse).
 
+### ImportState
+
+`ImportState` creates an initial Terraform state to bring the resource under management via the [`terraform import` command](https://www.terraform.io/docs/cli/commands/import.html). This method must provide enough state for the resource to be successfully refreshed via the `Read` method. This is usually accomplished by:
+
+1. Using the import identifier from the [`tfsdk.ImportResourceStateRequest`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ImportResourceStateRequest) to [set state data](/docs/plugin/framework/writing-state.html) in the
+[`tfsdk.ImportResourceStateResponse`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ImportResourceStateResponse).
+
+The [`tfsdk.ResourceImportStatePassthroughID` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStatePassthroughID) is available to simplify writing the import identifier to an attribute. The [`tfsdk.ResourceImportStateNotImplemented` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStateNotImplemented) can be used if this resource does not support import.
+
 ## Add Resource to Provider
 
 To make new resources available to practitioners, add them to the `GetResources` method on the [provider](/docs/plugin/framework/providers.html).

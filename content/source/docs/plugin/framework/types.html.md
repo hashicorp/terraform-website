@@ -87,6 +87,48 @@ properties:
 * `Null` is set to `true` when the string's value is null.
 * `Unknown` is set to `true` when the string's value is unknown.
 
+### Int64Type and Int64
+
+Int64 are 64-bit integer values, such as `1234`.
+
+```tf
+hello = 1234
+```
+
+They are used by specifying the `types.Int64Type` constant in your
+`tfsdk.Attribute`'s `Type` property, and are represented by a `types.Int64`
+struct in config, state, and plan. The `types.Int64` struct has the following
+properties:
+
+* `Value` contains the number's value as a Go `int64` type.
+* `Null` is set to `true` when the number's value is null.
+* `Unknown` is set to `true` when the number's value is unknown.
+
+For 64-bit floating point numbers, see [`Float64Type` and
+`Float64`](#float64type-and-float64). For generic number handling, see
+[`NumberType` and `Number64`](#numbertype-and-number).
+
+### Float64Type and Float64
+
+Float64 are 64-bit floating point values, such as `1234.5`.
+
+```tf
+hello = 1234.5
+```
+
+They are used by specifying the `types.Float64Type` constant in your
+`tfsdk.Attribute`'s `Type` property, and are represented by a `types.Float64`
+struct in config, state, and plan. The `types.Float64` struct has the following
+properties:
+
+* `Value` contains the number's value as a Go `float64` type.
+* `Null` is set to `true` when the number's value is null.
+* `Unknown` is set to `true` when the number's value is unknown.
+
+For 64-bit integer numbers, see [`Int64Type` and
+`Int64`](#int64type-and-int64). For generic number handling, see
+[`NumberType` and `Number64`](#numbertype-and-number).
+
 ### NumberType and Number
 
 Numbers are numeric values, both whole values like `12` or fractional values
@@ -105,6 +147,10 @@ properties:
   [`*big.Float`](https://pkg.go.dev/math/big#Float) type.
 * `Null` is set to `true` when the number's value is null.
 * `Unknown` is set to `true` when the number's value is unknown.
+
+For 64-bit integer numbers, see [`Int64Type` and
+`Int64`](#int64type-and-int64). For 64-bit floating point numbers, see
+[`Float64Type` and `Float64`](#float64type-and-float64).
 
 ### BoolType and Bool
 
@@ -153,6 +199,9 @@ without using type assertions by using the `types.List`'s [`ElementsAs`
 method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types#List.ElementsAs),
 which uses the same conversion rules as the `Get` methods described in [Access
 State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
+
+For an unordered collection with uniqueness constraints, see [`SetType` and
+`Set`](#settype-and-set).
 
 ### MapType and Map
 
@@ -231,6 +280,41 @@ without using type assertions by using the `types.Object`'s [`As`
 method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types#Object.As),
 which uses the same conversion rules as the `Get` methods described in [Access
 State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
+
+### SetType and Set
+
+Sets are unordered collections of other types. Their elements, the values inside
+the set, must all be of the same type and must be unique.
+
+```tf
+hello = ["red", "blue", "green"]
+```
+
+They are used by specifying a `types.SetType` value in your
+`tfsdk.Attribute`'s `Type` property. You must specify an `ElemType` property
+for your set, indicating what type the elements should be. Sets are
+represented by a `types.Set` struct in config, state, and plan. The
+`types.Set` struct has the following properties:
+
+* `ElemType` will always contain the same type as the `ElemType` property of
+  the `types.SetType` that created the `types.Set`.
+* `Elem` contains a list of values, one for each element in the set. The
+  values will all be of the value type produced by the `ElemType` for the list.
+  Each element must be unique.
+* `Null` is set to `true` when the entire set's value is null. Individual
+  elements may still be null even if the set's `Null` property is `false`.
+* `Unknown` is set to `true` when the entire set's value is unknown.
+  Individual elements may still be unknown even if the set's `Unknown`
+  property is `false`.
+
+Elements of a `types.Set` with a non-null, non-unknown value can be accessed
+without using type assertions by using the `types.Set`'s [`ElementsAs`
+method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types#List.ElementsAs),
+which uses the same conversion rules as the `Get` methods described in [Access
+State, Config, and Plan](/docs/plugin/framework/accessing-values.html).
+
+For an ordered collection without uniqueness constraints, see [`ListType` and
+`List`](#listtype-and-list).
 
 ## Create Provider-Defined Types and Values
 
