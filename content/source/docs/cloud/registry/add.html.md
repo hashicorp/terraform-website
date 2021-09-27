@@ -11,14 +11,11 @@ description: |-
 
 > **Hands-on:** Try the [Add Public Modules to your Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-add?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
-Terraform Cloud's private module registry lets you add Terraform modules from the public [Terraform Registry](/docs/registry/index.html) to be consumed by users across your organization. These publicly curated modules live in the public Terraform Registry and are synchronized from it into your Terraform Cloud organization's private module registry.
+You can add modules from the public [Terraform Registry](/docs/registry/index.html) to your Terraform Cloud private module registry. Once added, Terraform Cloud automatically synchronizes public modules with their source on the Terraform Registry. The private module registry handles downloads and controls access with Terraform Cloud API tokens, so consumers don't need access to the module's source repository, even when they run Terraform from the command line.
 
--> **Note:** Publicly curated modules are not supported in Terraform Enterprise.
+All members of an organization can view and use public modules, but you need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to add them to the private module registry. Owners can add modules through the UI as shown below or through the [Registry Modules API](../api/modules.html#create-a-module-with-no-vcs-connection-).
 
-All members of an organization can view modules.
-
-Only members of the "owners" team of an organization can add public modules to its module registry.
-
+-> **Note:** Public modules are not supported in Terraform Enterprise.
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **API:** See the [Registry Modules API](../api/modules.html#create-a-module-with-no-vcs-connection-). If you use the API to add a public module, be sure to create a module with no VCS connection and to set the `registry_name` property to `public`.
