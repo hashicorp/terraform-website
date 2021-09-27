@@ -39,12 +39,9 @@ Simply type names of namespaces, modules or providers (or all three) to find pub
 
 ## Deleting a Public Module
 
-Each public module's details page includes a "Mange Modules for Organization" drop-down with a "Delete module" button, which can remove the module from the organization's module registry.
+Deleting a public module from a private module registry does not remove it from the Terraform Registry. To delete a public module from your organization's module registry:
 
-![Terraform Cloud screenshot: the delete module button](./images/add-delete-module-button.png)
+1. Select the module to view its details, open the "Manage Module for Organization" dropdown menu, and click  "Delete module".
 
-To delete a public module from your organization's module registry, click the "Delete module" button under the "Manage Module for Organization" drop-down, type the name of the module in the displayed dialog, and click the red "Delete" button.
-
-![Terraform Cloud screenshot: the deletion dialog](./images/add-delete-module-dialog.png)
-
--> **Note:** Deleting a public module from a private module registry does not delete it from the public Terraform registry where it really lives.
+2. Enter the module name in the dialog box to confirm and then click "Delete."
+     ![Terraform Cloud screenshot: the delete module button](./images/add-delete-module-button.png)
