@@ -36,35 +36,23 @@ The module page appears, containing a list of all available modules. You can fil
 
 ### Shared Modules - Terraform Enterprise
 
-On Terraform Enterprise, your [module sharing](/docs/enterprise/admin/module-sharing.html) configuration may grant you access to modules outside your organization. Modules that are shared with your current organization have a "Shared" badge.
+On Terraform Enterprise, your [module sharing](/docs/enterprise/admin/module-sharing.html) configuration may grant you access to modules outside your organization. Modules that are shared with your current organization have a "Shared" badge (below). Modules in your current organization that are shared with other organizations have a badge that says "Sharing".
 
 ![Terraform Enterprise screenshot: shared module](./images/using-modules-list-shared.png)
 
-Modules in your current organization that are shared with other organizations have a badge that says "Sharing".
-
-![Terraform Enterprise screenshot: sharing module](./images/using-modules-list-sharing.png)
 
 ### Viewing Module Details and Versions
 
-Click a module's "Details" button to view its details page. Use the "Versions" dropdown in the upper right to switch between the available versions, and use the Readme/Inputs/Outputs/Dependencies/Resources tabs to view detailed documentation and information about a version.
+Click a module to view its details page. Use the "Versions" dropdown in the upper right to switch between the available versions, and use the Readme/Inputs/Outputs/Dependencies/Resources tabs to view detailed documentation and information about the selected version.
 
 ![Terraform Cloud screenshot: a module details page](./images/publish-module-details.png)
 
 ### Viewing Nested Modules and Examples
 
-If a module contains nested modules following the [standard module structure](/docs/language/modules/develop/structure.html), then a "Submodules" dropdown appears below the module source information. An "Examples" dropdown also appears if there are examples.
+If a module contains nested modules following the [standard module structure](/docs/language/modules/develop/structure.html), then you can use the "Submodules" dropdown to navigate to the detail pages for nested modules. If there are examples, you can use the "Examples" dropdown to navigate to the detail pages for example modules.
 
 ![Terraform Cloud screenshot: a module submodules button](./images/using-submodules-dropdown.png)
 
-Use the "Submodules" dropdown to navigate to nested modules and use the  Readme/Inputs/Outputs/Dependencies/Resources tabs to view detailed documentation and information about the nested module.
-
-
-![Terraform Cloud screenshot: a module submodules detail page](./images/using-module-submodules.png)
-
-Use the "Examples" dropdown to navigate to example modules and use the  Readme/Inputs/Outputs tabs to view detailed documentation and information about the example module.
-
-
-![Terraform Cloud screenshot: a module submodules detail page](./images/using-module-examples.png)
 
 ## Using Modules in Configurations
 
