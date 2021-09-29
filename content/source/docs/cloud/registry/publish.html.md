@@ -82,8 +82,6 @@ that don't look like version numbers are ignored.
 
 Terraform Cloud will display a loading page while it imports the module versions from version control, and will then take you to the new module's details page. On the details page you can view available versions, read documentation, and copy a usage example.
 
-![Terraform Cloud screenshot: the module loading page](./images/publish-loading.png)
-
 ![Terraform Cloud screenshot: a module details page](./images/publish-module-details.png)
 
 ## Releasing New Versions of a Module
