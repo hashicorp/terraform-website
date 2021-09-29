@@ -28,7 +28,7 @@ All members of an organization can view and use public modules, but you need [ow
 2. Enter any combination of namespaces (e.g. hashicorp), module names, and provider names to find public modules.
 
 
-3. Do one of the following to add the module to your private module registry:
+3. Do one of the following to add a module to your private module registry:
      - Hover over the module and click "+ Add" (shown below). 
      - Click the module to view its details and then click "Add to Terraform Cloud".
 
