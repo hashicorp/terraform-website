@@ -1,8 +1,8 @@
 ---
 layout: "cloud"
-page_title: "Using Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
+page_title: "Using Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Learn to find available modules, include modules in configurations, and run configurations with private modules. 
+  Learn to find available modules, include modules in configurations, and run configurations with private and public modules.
 ---
 
 # Using Modules from the Terraform Cloud Private Module Registry
@@ -17,16 +17,17 @@ A Terraform Cloud private module registry has a few key differences from the [pu
 - **Authentication:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs. But when you run Terraform on the command line, you must [authenticate](/docs/cloud/registry/using.html#authentication) to Terraform Cloud or your Terraform enterprise instance.
 
 
-## Finding Private Modules
+## Finding Modules
 
-All users in your organization can view your private module registry. To find available modules, click the "Modules" button in the Terraform Cloud main navigation bar.
+All users in your organization can view your private module registry. To find available modules, click the "Registry" button in the Terraform Cloud main navigation bar.
 
-![Terraform Cloud screenshot: Navigation bar with modules button highlighted](./images/using-modules-button.png)
+![Terraform Cloud screenshot: Navigation bar with registry button highlighted](./images/using-modules-button.png)
 
-The module page appears, containing a list of all available modules. You can filter with the:
+The module page appears, containing a list of all available modules. You can filter with:
 
-- **Search field**: Shows modules with titles that contain the specified keyword. Note that it does not search READMEs or resource details.
-- **"Providers" dropdown**: Shows only modules for the selected provider.
+- **Search**: Show modules with titles that contain the specified keyword. Note that it does not search READMEs or resource details.
+- **Providers**: Show only modules for the selected provider.
+- **Registries**: Show only public or private modules.
 
 ![Terraform Cloud screenshot: the list of available modules](./images/using-modules-list.png)
 
@@ -65,7 +66,16 @@ Use the "Examples" dropdown to navigate to example modules and use the  Readme/I
 
 ![Terraform Cloud screenshot: a module submodules detail page](./images/using-module-examples.png)
 
-## Using Private Modules in Configurations
+## Using Modules in Configurations
+
+The syntax for referencing publicly curated modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<NAMESPACE>/<MODULE NAME>/<PROVIDER>`.
+
+```hcl
+module "subnets" {
+  source  = "hashicorp/subnets/cidr"
+  version = "1.0.0"
+}
+```
 
 The syntax for referencing private modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
 

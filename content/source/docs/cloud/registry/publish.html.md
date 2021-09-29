@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Publishing Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Learn to prepare modules for publishing, add them to the registry, and release new versions.  
+  Learn to prepare private modules for publishing, add them to the registry, and release new versions.  
 ---
 
 [vcs]: ../vcs/index.html
@@ -11,11 +11,13 @@ description: |-
 
 > **Hands-on:** Try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
-Terraform Cloud's private module registry lets you publish Terraform modules to be consumed by users across your organization. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
+You can publish private modules to your Terraform Cloud private module registry. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
+
+Modules are only available to members of that organization. In Terraform Enterprise, they are also available to organizations that are configured to [share modules](/docs/enterprise/admin/module-sharing.html) with that organization. All members of an organization can view and use private modules, but you need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to publish them to the private module registry. Once a module is published, your VCS provider manages new version releases.
 
 All members of an organization can view modules.
 
-Only members of the "owners" team can publish new modules. Once a module is published, the ability to release new versions is managed by your VCS provider.
+Only members of the "owners" team of an organization can publish new modules to its module registry. Once a module is published, the ability to release new versions is managed by your VCS provider.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -60,17 +62,23 @@ that don't look like version numbers are ignored.
 
 ## Publishing a New Module
 
-To publish a module, navigate to the modules list with the "Modules" button and click the "+ Add Module" button in the upper right.
+1. Click the "Registry" button in the main navigation bar. Then click the "Publish" button and select "Module" in the dropdown.
 
-![Terraform Cloud screenshot: the "modules" button and the "+Add Module" button](./images/publish-add-button.png)
+     ![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
 
-This brings you to the "Add a New Module" page, which has a text field and at least one VCS provider button.
+    The Add Modules page appears with a list of available repositories.
 
-![Terraform Cloud screenshot: the "add a new module" page, with a repository name entered](./images/publish-add-module.png)
+    ![Terraform Cloud screenshot: the "add module" page, with a repository name entered](./images/publish-add-module.png)
 
-If you have multiple VCS providers configured, use the buttons to select one. In the text field, enter the name of the repository for the module you're adding. Then click the "Publish Module" button.
 
-~> **Note:** The name you type into the repo field will usually be something like `hashicorp/terraform-aws-vpc` or `INFRA/terraform-azure-appserver`. Module repo names use a `terraform-<PROVIDER>-<NAME>` format, and VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. (For most providers the namespace is an organization name, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.)
+
+2. Select the repository containing the module you want to publish.
+
+    You can search the list by typing all part or all of a repository name into the filter field. Remember that VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. The namespace is an organization name for most providers, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.
+
+3. Click the "Publish module" button.
+
+    Terraform Cloud displays a loading page while it imports the module versions from version control, and then takes you to the new module's details page. On the details page, you can view available versions, read documentation, and copy a usage example.
 
 Terraform Cloud will display a loading page while it imports the module versions from version control, and will then take you to the new module's details page. On the details page you can view available versions, read documentation, and copy a usage example.
 
