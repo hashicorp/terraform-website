@@ -62,7 +62,7 @@ that don't look like version numbers are ignored.
 
 ## Publishing a New Module
 
-To publish a module, navigate to the modules list with the "Registry" button and click the "Publish" button in the upper right and then the "Module" button that appears under it.
+1. Click the "Registry" button in the main navigation bar. Then click the "Publish" button and select "Module" in the dropdown.
 
 ![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
 
