@@ -64,7 +64,11 @@ that don't look like version numbers are ignored.
 
 1. Click the "Registry" button in the main navigation bar. Then click the "Publish" button and select "Module" in the dropdown.
 
-![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
+     ![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
+
+    The Add Modules page appears with a list of available repositories.
+
+    ![Terraform Cloud screenshot: the "add module" page, with a repository name entered](./images/publish-add-module.png)
 
 
 
