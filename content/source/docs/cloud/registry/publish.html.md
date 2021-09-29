@@ -70,7 +70,9 @@ To publish a module, navigate to the modules list with the "Registry" button and
 
     You can search the list by typing all part or all of a repository name into the filter field. Remember that VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. The namespace is an organization name for most providers, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.
 
-~> **Note:** The name you type into the repo field will usually be something like `hashicorp/terraform-aws-vpc` or `INFRA/terraform-azure-appserver`. Module repo names use a `terraform-<PROVIDER>-<NAME>` format, and VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. (For most providers the namespace is an organization name, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.)
+3. Click the "Publish module" button.
+
+    Terraform Cloud displays a loading page while it imports the module versions from version control, and then takes you to the new module's details page. On the details page, you can view available versions, read documentation, and copy a usage example.
 
 Terraform Cloud will display a loading page while it imports the module versions from version control, and will then take you to the new module's details page. On the details page you can view available versions, read documentation, and copy a usage example.
 
