@@ -32,7 +32,7 @@ All members of an organization can view and use public modules, but you need [ow
      - Hover over the module and click "+ Add" (shown below). 
      - Click the module to view its details and then click "Add to Terraform Cloud".
 
-![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-button.png)
+     ![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-button.png)
 
 4. Click "Add to organization" in the dialog box. The module is now included in the private module registry's list of available public modules, and members of your organization can begin using it.
 ## Deleting a Public Module
