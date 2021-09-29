@@ -64,7 +64,6 @@ To publish a module, navigate to the modules list with the "Registry" button and
 
 ![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
 
-This brings you to the "Add Module" page, which has at least one VCS provider button.
 
 ![Terraform Cloud screenshot: the "add module" page, with a repository name entered](./images/publish-add-module.png)
 
