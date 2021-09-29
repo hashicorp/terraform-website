@@ -66,7 +66,9 @@ To publish a module, navigate to the modules list with the "Registry" button and
 
 
 
-If you have multiple VCS providers configured, use the buttons to select one. In the filter field, type part or all of the name of the repository for the module you're adding to filter the list of available modules. Select the one you wish to publish. Then click the "Publish module" button.
+2. Select the repository containing the module you want to publish.
+
+    You can search the list by typing all part or all of a repository name into the filter field. Remember that VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. The namespace is an organization name for most providers, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.
 
 ~> **Note:** The name you type into the repo field will usually be something like `hashicorp/terraform-aws-vpc` or `INFRA/terraform-azure-appserver`. Module repo names use a `terraform-<PROVIDER>-<NAME>` format, and VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. (For most providers the namespace is an organization name, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.)
 
