@@ -25,6 +25,9 @@ Navigate to the modules list with the top-level "Modules" button, then click the
 
 The Select Modules page appears.
 
+![Terraform Cloud screenshot: the select modules page](./images/design-select-modules.png)
+
+
 ## Adding Modules
 
 The left side of the Select Modules page has a filterable and searchable list of your organization's private modules. Choose any number of modules you want to add to your configuration.
