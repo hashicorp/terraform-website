@@ -7,21 +7,6 @@ description: |-
   to extend Terraform's core offering.
 ---
 
-# Testing Patterns (H1)
+# Testing Patterns
 
-This is some text.
-
-## Heading 2
-
-Here is some text.
-
-### Heading 3
-
-Here is some text.
-
-#### Heading 4
-
-Here is some text.
-
-## Back to an H2
 
