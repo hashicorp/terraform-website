@@ -9,7 +9,7 @@ description: |-
 
 # Publishing Modules to the Terraform Cloud Private Module Registry
 
-> **Hands-on:** Try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+> **Hands-on:** Try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-share) tutorial on HashiCorp Learn.
 
 You can publish private modules to your Terraform Cloud private module registry. It works much like the public [Terraform Registry](/docs/registry/index.html), except that it uses your configured [VCS integrations][vcs] instead of requiring public GitHub repositories.
 
@@ -81,8 +81,6 @@ that don't look like version numbers are ignored.
     Terraform Cloud displays a loading page while it imports the module versions from version control, and then takes you to the new module's details page. On the details page, you can view available versions, read documentation, and copy a usage example.
 
 Terraform Cloud will display a loading page while it imports the module versions from version control, and will then take you to the new module's details page. On the details page you can view available versions, read documentation, and copy a usage example.
-
-![Terraform Cloud screenshot: the module loading page](./images/publish-loading.png)
 
 ![Terraform Cloud screenshot: a module details page](./images/publish-module-details.png)
 
