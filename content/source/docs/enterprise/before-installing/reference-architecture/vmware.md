@@ -35,7 +35,7 @@ a stateless production installation.
 
 This operational mode requires additional external services, and in turn, provides a higher level of availability and failover as well as horizontal scaling. The requirements and instructions are outlined on the [Terraform Enterprise Active/Active page](../../../install/active-active.html). 
 
-Active/Active on VMWare has been tested internally on ESX version <> and vCenter Server Appliance version <>. 
+Active/Active on VMWare has been tested internally on ESX version 7.0.1 and vCenter Server Appliance version 7.0.2.00200. An example terraform configuration is available [on a website somewhere tbd](link)
 
 An example of a recommended setup:
 
