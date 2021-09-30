@@ -25,6 +25,8 @@ As mentioned above, the Active/Active architecture requires an existing [automat
 
 The primary requirement is an auto scaling group (or equivalent) with a single instance running Terraform Enterprise. This ASG should be behind a load balancer and can be exposed to the public Internet or not depending on your requirements. As mentioned earlier, the installation of the Terraform Enterprise application should be automated completely so that the auto scaling group can be scaled to zero and back to one without human intervention. 
 
+-> **Note**: Active/Active installations on VMWare infrastructure also require a Load Balancer be configured to route traffic across the Terraform Enterprise servers. This documentation does not cover that setup. While auto-scaling groups are not available via native VCenter options, a fully automated deployment is still required. Reducing the available servers to one for upgrades, maintenance and support is required.
+
 The application itself must be using [External Services](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision) mode to connect to an external PostgreSQL database and object storage. 
 
 All admin and application configuration must be automated via your settings files and current with running configuration, i.e. it cannot have been altered via the Replicated Admin Console and not synced to the file. Specifically, you should be using the following configuration files:

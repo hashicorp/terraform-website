@@ -27,12 +27,24 @@ Depending on the chosen [operational
 mode](../index.html#operational-mode-decision),
 the infrastructure requirements for Terraform Enterprise range from a single virtual machine
 for demo or proof of concept installations, to multiple virtual machines
-hosting the Terraform Cloud application, PostgreSQL, and external Vault servers for
+hosting the Terraform Cloud application, PostgreSQL, Redis, and external Vault servers for
 a stateless production installation.
 
-This reference architecture **recommends and focuses on** the *Mounted Disk* operational mode. This mode will require you to specify the local path for data storage. The assumption is this
-local path is a mounted disk from either a SAN or NAS device (or some other
-replicated storage), allowing for rapid recovery or failover.
+
+## Active/Active
+
+This operational mode requires additional external services, and in turn, provides a higher level of availability and failover as well as horizontal scaling. The requirements and instructions are outlined on the [Terraform Enterprise Active/Active page](../../../install/active-active.html). 
+
+Active/Active on VMWare has been tested internally on ESX version <> and vCenter Server Appliance version <>. 
+
+An example of a recommended setup:
+
+<- insert a diagram of everything here -> 
+
+
+## Mounted Disk
+
+This mode will require you to specify the local path for data storage. The assumption is this local path is a mounted disk from either a SAN or NAS device (or some other replicated storage), allowing for rapid recovery or failover.
 
 If you need or want to define storage externally and independently, you can choose the *External Services*
 operational mode. This is a more complicated implementation in VMware that requires you to independently manage other services which will not be detailed in this document. You will need to deploy S3-compatible storage either by connecting to a true AWS S3 bucket or by using a compatible alternative on-prem solution, such as [Ceph](https://ceph.com/). You will also need to deploy and separately manage an external PostgreSQL database on an additional server or servers.
