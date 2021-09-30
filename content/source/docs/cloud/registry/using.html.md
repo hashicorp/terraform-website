@@ -7,7 +7,7 @@ description: |-
 
 # Using Modules from the Terraform Cloud Private Module Registry
 
-> **Hands-on:** Try the [Use Modules from the Registry](https://learn.hashicorp.com/tutorials/terraform/module-use?in=terraform/modules&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+> **Hands-on:** Try the [Use Modules from the Registry](https://learn.hashicorp.com/tutorials/terraform/module-use?in=terraform/modules) tutorial on HashiCorp Learn.
 <br>
 
 A Terraform Cloud private module registry has a few key differences from the [public Terraform Registry](/docs/registry/index.html):
