@@ -24,7 +24,7 @@ The Select Modules page appears.
 
 ## Adding Modules
 
-The left side of the Select Modules page has a filterable and searchable list of your organization's private modules that you can add to your configuration.
+The left side of the "Select Modules" page has a filterable and searchable list of your organization's private modules that you can add to your configuration.
 
 Click "Add Module" for all of the modules you want to use in your configuration. These modules appear in the Selected Modules list on the right side of the page.
 
