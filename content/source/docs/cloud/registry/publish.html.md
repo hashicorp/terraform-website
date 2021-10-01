@@ -82,7 +82,7 @@ You can delete individual versions of a module or the entire module. If deleting
 1. Navigate to the module's details page.
 2. If you want to delete a single version, use the "Versions" dropdown to select it.
 3. Click "Delete module".
-4. Select the desired action from the dropdown:
+4. Select an action from the dropdown:
    - **Delete only this module version:** Deletes only the version of the module you were viewing when you clicked "Delete module".
    - **Delete all versions for this provider for this module:** Deletes the entire module for a single provider. This is important if you have modules with the same name but with different providers. For example, if you have module repos named `terraform-aws-appserver` and `terraform-azure-appserver`, the registry treats them as alternate providers of the same `appserver` module.
    - **Delete all providers and versions for this module:** Deletes all modules with this name, even if they are from different providers. For example, both `terraform-aws-appserver` and `terraform-azure-appserver` would be deleted.

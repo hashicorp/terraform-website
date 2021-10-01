@@ -17,7 +17,7 @@ Click the "Registry" button in the main navigation bar and then click "<> Design
 
 ![Terraform Cloud screenshot: the design configuration button](./images/design-start.png)
 
-The Select Modules page appears.
+The "Select Modules" page appears.
 
 ![Terraform Cloud screenshot: the select modules page](./images/design-select-modules.png)
 
@@ -26,7 +26,7 @@ The Select Modules page appears.
 
 The left side of the "Select Modules" page has a filterable and searchable list of your organization's private modules that you can add to your configuration.
 
-Click "Add Module" for all of the modules you want to use in your configuration. These modules appear in the Selected Modules list on the right side of the page.
+Click "Add Module" for all of the modules you want to use in your configuration. These modules appear in the "Selected Modules" list on the right side of the page.
 
 ### Setting Versions
 
@@ -39,7 +39,7 @@ Selecting a module adds its most recent version to the configuration. To specify
 
 ## Setting Variables
 
-When you finish selecting modules, click "Next »" to go to the Set Variables page.
+When you finish selecting modules, click "Next »" to go to the "Set Variables" page.
 
 ![Terraform Cloud screenshot: the set variables page](./images/design-variables-finished.png)
 
@@ -66,7 +66,7 @@ Select the "Deferred" checkbox to delegate a variable to configuration users. Th
 
 When all modules are configured, click "Next »".
 
-The "Publish to VCS" page appears. Use the "Preview configuration" dropdown to review the generated code.
+The "Publish" page appears. Use the "Preview configuration" dropdown to review the generated code.
 
 ![Terraform Cloud screenshot: configuration designer output](./images/design-verify.png)
 
