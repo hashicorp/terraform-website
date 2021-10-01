@@ -55,7 +55,7 @@ To publish a new module:
 
     ![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
 
-      The Add Module page appears with a list of available repositories.
+      The "Add Module" page appears with a list of available repositories.
 
       ![Terraform Cloud screenshot: the "add module" page, with a repository name entered](./images/publish-add-module.png)
 
