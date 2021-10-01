@@ -32,7 +32,7 @@ Click "Add Module" for all of the modules you want to use in your configuration.
 
 Selecting a module adds its most recent version to the configuration. To specify a different version:
 
-1. Click the module's version number in the Selected Modules list on the right.
+1. Click the module's version number from the "Selected Modules" list on the right.
 2. Select an alternate version from the dropdown.
 
 ![Terraform Cloud screenshot: setting a module version with the drop-down](./images/design-set-version.png)
