@@ -33,7 +33,7 @@ Reference API](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/help
 
 ## Steps
 
-`Steps` is slice property of
+`Steps` is a slice property of
 [TestCase](/docs/extend/testing/acceptance-tests/testcase.html), the object used
 to construct acceptance tests. Each step represents a full `terraform apply` of
 a given configuration language, followed by zero or more checks (defined later)
@@ -42,7 +42,7 @@ configuration and optional check functions.
 
 Below is a code example of a lifecycle test that provides two `TestStep` objects: 
 
-```golang
+```go
 package example
 
 // example.Widget represents a concrete Go type that represents an API resource
@@ -80,7 +80,6 @@ applying and checking a basic configuration, followed by applying a modified
 configuration with updated or additional checks is a common pattern used to test
 update functionality.
 
-
 ## Check Functions
 
 After the configuration for a `TestStep` is applied, Terraform’s testing
@@ -104,17 +103,17 @@ created.
 
 Example:
 
-```go 
+```go
 Steps: []resource.TestStep{
-  {
-    Config: testAccExampleResource(rName),
-    Check: resource.ComposeTestCheckFunc(
-		// if testAccCheckExampleResourceExists fails to find the resource, 
-		// the parent TestStep and TestCase fail
-      testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore), 
-      resource.TestCheckResourceAttr("example_widget.foo", "size", "expected size"),
-    ),
-  },
+	{
+		Config: testAccExampleResource(rName),
+		Check: resource.ComposeTestCheckFunc(
+			// if testAccCheckExampleResourceExists fails to find the resource, 
+			// the parent TestStep and TestCase fail
+			testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore), 
+			resource.TestCheckResourceAttr("example_widget.foo", "size", "expected size"),
+		),
+	},
 },
 ```
 
@@ -129,15 +128,17 @@ attempts to destroy any resources created.
 
 Example:
 
-```
+```go
 Steps: []resource.TestStep{
-  {
-    Config: testAccExampleResource(rName),
-    Check: resource.ComposeAggregateTestCheckFunc(
-      testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore), // if testAccCheckExampleResourceExists fails to find the resource, the following TestCheckResourceAttr is still ran, with any errors aggregated
-      resource.TestCheckResourceAttr("example_widget.foo", "active", "true"),
-    ),
-  },
+	{
+		Config: testAccExampleResource(rName),
+		Check: resource.ComposeAggregateTestCheckFunc(
+			// if testAccCheckExampleResourceExists fails to find the resource, 
+			// the following TestCheckResourceAttr is still run, with any errors aggregated
+			testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
+			resource.TestCheckResourceAttr("example_widget.foo", "active", "true"),
+		),
+	},
 },
 ```
 
@@ -218,7 +219,7 @@ test function. The next check function `testAccCheckExampleWidgetAttributes`
 receives the updated `widget` and checks its attributes. The final check
 `TestCheckResourceAttr` verifies that the same value is stored in state.
  
-```go  
+```go
 func TestAccExampleWidget_basic(t *testing.T) {
 	var widget example.WidgetDescription
 
