@@ -77,7 +77,7 @@ Refer to [Preparing a Module Repository](#preparing-a-module-repository) for det
 
 ## Deleting Versions and Modules
 
-You can delete individual versions of a module or entire modules. If a deletion would leave a module with no versions, Terraform Cloud will remove the entire module. To delete a module or version:
+You can delete individual versions of a module or the entire module. If deleting a module version would leave a module with no versions, Terraform Cloud will remove the entire module. To delete a module or version:
 
 1. Navigate to the module's details page.
 2. If you want to delete a single version, use the "Versions" dropdown to select it.
