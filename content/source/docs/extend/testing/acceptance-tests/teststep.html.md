@@ -33,14 +33,14 @@ Reference API](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/help
 
 ## Steps
 
-`Steps` is a slice property of
-[TestCase](/docs/extend/testing/acceptance-tests/testcase.html), the object used
+`Steps` is a field within
+[TestCase](/docs/extend/testing/acceptance-tests/testcase.html), the struct used
 to construct acceptance tests. Each step represents a full `terraform apply` of
 a given configuration language, followed by zero or more checks (defined later)
 to verify the application. Each `Step` is applied in order, and require its own
 configuration and optional check functions. 
 
-Below is a code example of a lifecycle test that provides two `TestStep` objects: 
+Below is a code example of a lifecycle test that provides two `TestStep` structs: 
 
 ```go
 package example
