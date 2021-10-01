@@ -91,10 +91,8 @@ You can delete individual versions of a module or the entire module. If deleting
 
 5. Type the module name and click "Delete".
 
-
-
-
 ### Restoring a Deleted Module or Version
+
 Deletion is permanent, but there are ways to restore deleted modules and module versions.
 
 - To restore a deleted module, re-add it as a new module.
