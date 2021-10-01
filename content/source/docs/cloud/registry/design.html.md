@@ -66,7 +66,7 @@ Select the "Deferred" checkbox to delegate a variable to configuration users. Th
 
 When all modules are configured, click "Next »".
 
-The Publish to VCS page appears. Use the "Preview configuration" dropdown to review the generated code.
+The "Publish to VCS" page appears. Use the "Preview configuration" dropdown to review the generated code.
 
 ![Terraform Cloud screenshot: configuration designer output](./images/design-verify.png)
 
