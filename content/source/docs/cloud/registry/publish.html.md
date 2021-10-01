@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Publishing Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Learn to prepare private modules for publishing, add them to the registry, and release new versions.  
+  Learn to prepare private modules for publishing, add them to the registry, and release new versions.
 ---
 
 [vcs]: ../vcs/index.html
@@ -38,49 +38,45 @@ Consumers of a module don't need access to its source repository, even when runn
 Since the registry relies on VCS repositories for most of its data, you must ensure your module repositories are in a format it can understand. A module repository must meet all of the following requirements before you can add it to the registry:
 
 - **Available in a connected VCS provider.** The repository must be in one of
-your configured [VCS providers][vcs], and Terraform Cloud's VCS user account must have admin
-access to the repository. (Since the registry uses webhooks to import new module
-versions, it needs admin access to create those webhooks.) For GitLab, the repository
-must be in the main organization or group, not in any subgroups.
+  your configured [VCS providers][vcs], and Terraform Cloud's VCS user account must have admin
+  access to the repository. (Since the registry uses webhooks to import new module
+  versions, it needs admin access to create those webhooks.) For GitLab, the repository
+  must be in the main organization or group, not in any subgroups.
 
 - **Named `terraform-<PROVIDER>-<NAME>`.** Module repositories must use this
-three-part name format, where `<NAME>` reflects the type of infrastructure the
-module manages and `<PROVIDER>` is the main provider where it creates that
-infrastructure. The `<NAME>` segment can contain additional hyphens. Examples:
-`terraform-google-vault` or `terraform-aws-ec2-instance`.
+  three-part name format, where `<NAME>` reflects the type of infrastructure the
+  module manages and `<PROVIDER>` is the main provider where it creates that
+  infrastructure. The `<NAME>` segment can contain additional hyphens. Examples:
+  `terraform-google-vault` or `terraform-aws-ec2-instance`.
 
 - **Standard module structure.** The module must adhere to the
-[standard module structure](/docs/language/modules/develop/structure.html).
-This allows the registry to inspect your module and generate documentation,
-track resource usage, and more.
+  [standard module structure](/docs/language/modules/develop/structure.html).
+  This allows the registry to inspect your module and generate documentation,
+  track resource usage, and more.
 
 - **`x.y.z` tags for releases.** The registry uses tags to identify module
-versions. Release tag names must be a [semantic version](http://semver.org),
-which can optionally be prefixed with a `v`. For example, `v1.0.4` and `0.9.2`.
-To publish a module initially, at least one release tag must be present. Tags
-that don't look like version numbers are ignored.
+  versions. Release tag names must be a [semantic version](http://semver.org),
+  which can optionally be prefixed with a `v`. For example, `v1.0.4` and `0.9.2`.
+  To publish a module initially, at least one release tag must be present. Tags
+  that don't look like version numbers are ignored.
 
 ## Publishing a New Module
 
 1. Click the "Registry" button in the main navigation bar. Then click the "Publish" button and select "Module" in the dropdown.
 
-     ![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
+   ![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
 
-    The Add Modules page appears with a list of available repositories.
+   The Add Module page appears with a list of available repositories.
 
-    ![Terraform Cloud screenshot: the "add module" page, with a repository name entered](./images/publish-add-module.png)
+   ![Terraform Cloud screenshot: the "add module" page, with a repository name entered](./images/publish-add-module.png)
 
+2) Select the repository containing the module you want to publish.
 
+You can search the list by typing all part or all of a repository name into the filter field. Remember that VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. The namespace is an organization name for most providers, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.
 
-2. Select the repository containing the module you want to publish.
+3) Click the "Publish module" button.
 
-    You can search the list by typing all part or all of a repository name into the filter field. Remember that VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. The namespace is an organization name for most providers, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.
-
-3. Click the "Publish module" button.
-
-    Terraform Cloud displays a loading page while it imports the module versions from version control, and then takes you to the new module's details page. On the details page, you can view available versions, read documentation, and copy a usage example.
-
-Terraform Cloud will display a loading page while it imports the module versions from version control, and will then take you to the new module's details page. On the details page you can view available versions, read documentation, and copy a usage example.
+   Terraform Cloud displays a loading page while it imports the module versions from version control, and then takes you to the new module's details page. On the details page, you can view available versions, read documentation, and copy a usage example.
 
 ![Terraform Cloud screenshot: a module details page](./images/publish-module-details.png)
 
@@ -92,7 +88,7 @@ Version tags must be a [semantic version](http://semver.org), which can optional
 
 ## Deleting Versions and Modules
 
-Each module's details page includes a "Delete Module 🗑" button, which can delete individual versions of a module or entire modules.
+Each module's details page includes a "Delete module" button, which can delete individual versions of a module or entire modules.
 
 ~> **Important:** Use caution; deletion can't be undone. However, you can restore a deleted module by re-adding it as a new module. You can also restore a deleted version by deleting the corresponding tag from VCS and pushing a new tag with the same name, or by deleting the whole module from the registry and re-adding it.
 
@@ -100,10 +96,10 @@ To delete a module or version:
 
 1. Navigate to the module's details page.
 2. If you only want to delete a single version, use the "Versions" drop-down to select it.
-3. Click the "Delete Module 🗑" button.
+3. Click the "Delete module" button.
 4. Select the desired action from the drop-down and confirm with the "Delete" button.
-    - "Delete only this module version" affects the version of the module you were viewing when you clicked delete.
-    - The other two options are only different if you have modules with the same name but different providers. (For example, if you have module repos named `terraform-aws-appserver` and `terraform-azure-appserver`, the registry treats them as alternate providers of the same `appserver` module.) If you use multi-provider modules like this, the "Delete all providers and versions for this module" option can delete multiple modules.
+   - "Delete only this module version" affects the version of the module you were viewing when you clicked delete.
+   - The other two options are only different if you have modules with the same name but different providers. (For example, if you have module repos named `terraform-aws-appserver` and `terraform-azure-appserver`, the registry treats them as alternate providers of the same `appserver` module.) If you use multi-provider modules like this, the "Delete all providers and versions for this module" option can delete multiple modules.
 5. Type the module's name to confirm the deletion.
 
 ~> **Note:** If a deletion would leave a module with no versions, the module will be automatically deleted.
