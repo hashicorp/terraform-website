@@ -13,7 +13,7 @@ Terraform Cloud's private module registry works similarly to the [public Terrafo
 
 You can add both private and public modules to the registry:
 
-- [Private modules](/docs/cloud/registry/publish.html) are added directly to the registry, hosted on it, and are only available to members of that organization. In Terraform Enterprise, they are also available to organizations that are configured to [share modules](/docs/enterprise/admin/module-sharing.html) with that organization.
+- [Private modules](/docs/cloud/registry/publish.html) are hosted on the registry and are only available to members of that organization. In Terraform Enterprise, they are also available to other organizations that are configured to [share modules](/docs/enterprise/admin/module-sharing.html) with that organization.
 - [Public modules](/docs/cloud/registry/add.html) are automatically synchronized from the Terraform Registry where they are hosted. Public modules are not supported in Terraform Enterprise.
 
 You can use [Sentinel Policies](/docs/cloud/sentinel/index.html) to enforce rules about how members of your organization can use these modules. For example, you can mandate that all non-root modules in Terraform configurations must be private or public modules from your own private module registry. You can even require that all of those modules use recent versions with a policy like [use-recent-versions-from-pmr.sentinel](https://github.com/hashicorp/terraform-guides/blob/master/governance/third-generation/cloud-agnostic/http-examples/use-recent-versions-from-pmr.sentinel).
