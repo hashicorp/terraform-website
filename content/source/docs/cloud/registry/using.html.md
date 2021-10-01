@@ -19,7 +19,7 @@ A Terraform Cloud private module registry has a few key differences from the [pu
 
 ## Finding Modules
 
-All users in your organization can view your private module registry. To find available modules, click the "Registry" button in the Terraform Cloud main navigation bar.
+All users in your organization can view your private module registry. To find available modules, click the "Registry" button in the main navigation bar.
 
 ![Terraform Cloud screenshot: Navigation bar with registry button highlighted](./images/using-modules-button.png)
 
