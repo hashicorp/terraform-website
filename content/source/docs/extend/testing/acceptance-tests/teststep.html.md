@@ -47,28 +47,28 @@ package example
 
 // example.Widget represents a concrete Go type that represents an API resource
 func TestAccExampleWidget_basic(t *testing.T) {
-	var widgetBefore, widgetAfter example.Widget
-	rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
+  var widgetBefore, widgetAfter example.Widget
+  rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
 
-	resource.Test(t, resource.TestCase{
-		PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckExampleResourceDestroy,
-		Steps: []resource.TestStep{
-			{
-				Config: testAccExampleResource(rName),
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
-				),
-			},
-			{
-				Config: testAccExampleResource_removedPolicy(rName),
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckExampleResourceExists("example_widget.foo", &widgetAfter),
-				),
-			},
-		},
-	})
+  resource.Test(t, resource.TestCase{
+    PreCheck:     func() { testAccPreCheck(t) },
+    Providers:    testAccProviders,
+    CheckDestroy: testAccCheckExampleResourceDestroy,
+    Steps: []resource.TestStep{
+      {
+        Config: testAccExampleResource(rName),
+        Check: resource.ComposeTestCheckFunc(
+          testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
+        ),
+      },
+      {
+        Config: testAccExampleResource_removedPolicy(rName),
+        Check: resource.ComposeTestCheckFunc(
+          testAccCheckExampleResourceExists("example_widget.foo", &widgetAfter),
+        ),
+      },
+    },
+  })
 }
 ```
 
@@ -105,15 +105,15 @@ Example:
 
 ```go
 Steps: []resource.TestStep{
-	{
-		Config: testAccExampleResource(rName),
-		Check: resource.ComposeTestCheckFunc(
-			// if testAccCheckExampleResourceExists fails to find the resource, 
-			// the parent TestStep and TestCase fail
-			testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore), 
-			resource.TestCheckResourceAttr("example_widget.foo", "size", "expected size"),
-		),
-	},
+  {
+    Config: testAccExampleResource(rName),
+    Check: resource.ComposeTestCheckFunc(
+      // if testAccCheckExampleResourceExists fails to find the resource, 
+      // the parent TestStep and TestCase fail
+      testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore), 
+      resource.TestCheckResourceAttr("example_widget.foo", "size", "expected size"),
+    ),
+  },
 },
 ```
 
@@ -130,15 +130,15 @@ Example:
 
 ```go
 Steps: []resource.TestStep{
-	{
-		Config: testAccExampleResource(rName),
-		Check: resource.ComposeAggregateTestCheckFunc(
-			// if testAccCheckExampleResourceExists fails to find the resource, 
-			// the following TestCheckResourceAttr is still run, with any errors aggregated
-			testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
-			resource.TestCheckResourceAttr("example_widget.foo", "active", "true"),
-		),
-	},
+  {
+    Config: testAccExampleResource(rName),
+    Check: resource.ComposeAggregateTestCheckFunc(
+      // if testAccCheckExampleResourceExists fails to find the resource, 
+      // the following TestCheckResourceAttr is still run, with any errors aggregated
+      testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
+      resource.TestCheckResourceAttr("example_widget.foo", "active", "true"),
+    ),
+  },
 },
 ```
 
@@ -221,74 +221,74 @@ receives the updated `widget` and checks its attributes. The final check
  
 ```go
 func TestAccExampleWidget_basic(t *testing.T) {
-	var widget example.WidgetDescription
+  var widget example.WidgetDescription
 
-	resource.Test(t, resource.TestCase{
-		PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckExampleWidgetDestroy,
-		Steps: []resource.TestStep{
+  resource.Test(t, resource.TestCase{
+    PreCheck:     func() { testAccPreCheck(t) },
+    Providers:    testAccProviders,
+    CheckDestroy: testAccCheckExampleWidgetDestroy,
+    Steps: []resource.TestStep{
 			{
-				Config: testAccExampleWidgetConfig,
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckExampleWidgetExists("example_widget.bar", &widget),
-					testAccCheckExampleWidgetAttributes(&widget),
-					resource.TestCheckResourceAttr("example_widget.bar", "active", "true"),
-				),
-			},
-		},
-	})
+        Config: testAccExampleWidgetConfig,
+        Check: resource.ComposeTestCheckFunc(
+          testAccCheckExampleWidgetExists("example_widget.bar", &widget),
+          testAccCheckExampleWidgetAttributes(&widget),
+          resource.TestCheckResourceAttr("example_widget.bar", "active", "true"),
+        ),
+      },
+    },
+  })
 }
 
 // testAccCheckExampleWidgetAttributes verifies attributes are set correctly by 
 // Terraform
 func testAccCheckExampleWidgetAttributes(widget *example.WidgetDescription) resource.TestCheckFunc {
-	return func(s *terraform.State) error {
-		if *widget.active != true {
-			return fmt.Errorf("widget is not active")
-		}
+  return func(s *terraform.State) error {
+    if *widget.active != true {
+      return fmt.Errorf("widget is not active")
+    }
 
-		return nil
-	}
+    return nil
+  }
 }
 
 // testAccCheckExampleWidgetExists uses the Example SDK directly to retrieve 
 // the Widget description, and stores it in the provided 
 // *example.WidgetDescription
 func testAccCheckExampleWidgetExists(resourceName string, widget *example.WidgetDescription) resource.TestCheckFunc {
-	return func(s *terraform.State) error {
-		// retrieve the resource by name from state
-		rs, ok := s.RootModule().Resources[resourceName]
-		if !ok {
-			return fmt.Errorf("Not found: %s", resourceName)
-		}
+  return func(s *terraform.State) error {
+    // retrieve the resource by name from state
+    rs, ok := s.RootModule().Resources[resourceName]
+    if !ok {
+      return fmt.Errorf("Not found: %s", resourceName)
+    }
 
-		if rs.Primary.ID == "" {
-			return fmt.Errorf("Widget ID is not set")
-		}
+    if rs.Primary.ID == "" {
+      return fmt.Errorf("Widget ID is not set")
+    }
 
-		// retrieve the client from the test provider
-		client := testAccProvider.Meta().(*ExampleClient)
+    // retrieve the client from the test provider
+    client := testAccProvider.Meta().(*ExampleClient)
 
-		response, err := client.DescribeWidgets(&example.DescribeWidgetsInput{
-			WidgetIDs: []string{rs.Primary.ID},
-		})
+    response, err := client.DescribeWidgets(&example.DescribeWidgetsInput{
+      WidgetIDs: []string{rs.Primary.ID},
+    })
 
-		if err != nil {
-			return err
-		}
+    if err != nil {
+      return err
+    }
 
-		// we expect only a single widget by this ID. If we find zero, or many, 
-		// then we consider this an error
-		if len(response.WidgetDescriptions) != 1 ||
-			*response.WidgetDescriptions[0].WidgetID != rs.Primary.ID {
-			return fmt.Errorf("Widget not found")
-		}
+    // we expect only a single widget by this ID. If we find zero, or many, 
+    // then we consider this an error
+    if len(response.WidgetDescriptions) != 1 ||
+      *response.WidgetDescriptions[0].WidgetID != rs.Primary.ID {
+      return fmt.Errorf("Widget not found")
+    }
 
-		// store the resulting widget in the *example.WidgetDescription pointer
-		*widget = *response.WidgetDescriptions[0]
-		return nil
-	}
+    // store the resulting widget in the *example.WidgetDescription pointer
+    *widget = *response.WidgetDescriptions[0]
+    return nil
+  }
 }
 ```
 
