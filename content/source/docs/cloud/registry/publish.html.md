@@ -61,7 +61,7 @@ To publish a new module:
 
 2. Select the repository containing the module you want to publish.
 
-    You can search the list by typing all part or all of a repository name into the filter field. Remember that VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. The namespace is an organization name for most providers, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.
+    You can search the list by typing part or all of a repository name into the filter field. Remember that VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. The namespace is an organization name for most providers, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.
 
 3. Click "Publish module".
 
