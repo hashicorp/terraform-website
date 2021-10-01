@@ -410,8 +410,6 @@ These PATCH endpoints require a JSON object with the following properties as a r
 
 Properties without a default value are required.
 
-Note that workspaces without an associated VCS repository only use the `auto-apply`, `terraform-version`, and `working-directory`.
-
 Key path                                      | Type           | Default          | Description
 ----------------------------------------------|----------------|------------------|------------
 `data.type`                                   | string         |                  | Must be `"workspaces"`.
