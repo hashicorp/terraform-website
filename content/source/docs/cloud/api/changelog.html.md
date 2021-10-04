@@ -48,16 +48,16 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
     * added `registry_name` scoped APIs.
     * added `organization_name` scoped APIs.
     * added [Module List API](./modules.html#list-registry-modules-for-an-organization).
-    * updated [Module Delete APIs](./modules.html#delete-a-module).
+    * updated [Module Delete APIs](./modules.html#delete-a-module) (see deprecation note below).
     * ![cloud][] added public registry module related APIs.
 * ![deprecation] [] The following [Registry Module APIs](./modules.html) have been replaced with newer apis and will be removed in the future.
     * The following endpoints to delete modules are replaced with [Module Delete APIs](./modules.html#delete-a-module)
-        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
-        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
-        * `POST /registry-modules/actions/delete/:organization_name/:name`
-    * `POST /registry-modules` replaced with [Updated POST Endpoint](./modules.html#publish-a-private-module-from-a-vcs)
-    * `POST /registry-modules/:organization_name/:name/:provider/versions` replaced with new [endpoint](./modules.html#create-a-module-version)
-    * `GET /registry-modules/show/:organization_name/:name/:provider` replaced with new [GET Endpoint](./modules.html#get-a-module)
+        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version` replaced with `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version`
+        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider` replaced with `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
+        * `POST /registry-modules/actions/delete/:organization_name/:name` replaced with `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name`
+    * `POST /registry-modules` replaced with [`POST /organizations/:organization_name/registry-modules/vcs`](./modules.html#publish-a-private-module-from-a-vcs)
+    * `POST /registry-modules/:organization_name/:name/:provider/versions` replaced with [`POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions`](./modules.html#create-a-module-version)
+    * `GET /registry-modules/show/:organization_name/:name/:provider` replaced with [`GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`](./modules.html#get-a-module)
 
 ### 2021-05-27
 
