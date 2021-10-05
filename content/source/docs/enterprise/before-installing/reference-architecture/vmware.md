@@ -39,8 +39,7 @@ Active/Active on VMWare has been tested internally on ESX version 7.0.1 and vCen
 
 An example of a recommended setup:
 
-<- insert a diagram of everything here -> 
-
+![TFE Active/Active on VMware](./assets/BW_TFE_AA_DIAGRAM.png)
 
 ## Mounted Disk
 
