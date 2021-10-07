@@ -44,6 +44,10 @@ An example of a recommended setup:
 
 A load balancer is require to route traffic to both Terraform Enterprise virtual machines. Both virtual machines should reside in the same physical datacenter and on the same network. High amounts of network latency between the Terraform Enterprise virtual machines and the external services may result in plan and apply slowness and errors. As documented on the [Capacity and Performance](../../system-overview/capacity.html) page, high speed disks are critical for good performance. Both Terraform Enterprise virtual machines will require access to an external Redis server, a PostgreSQL database, and an S3-compatible blob storage bucket. By default Terraform Enterprise will use an internal Vault server. Optionally, you can configure Terraform Enterprise to utilize an [existing Vault cluster](../vault.html). 
 
+### Active/Active Disaster Recovery
+
+In order to enable a disaster recovery, or datacenter failover, the stateful external service - PostgreSQL and Blob Storage - should be backed up and replicated to an offsite location. The Redis instance is not used for stateful data and the data stored there does not need to be backed up. The Terraform Enterprise virtual machines should be redeployed in the restore location using the same automation as in primary datacenter, but with updated (if appropriate) names and IP addresses for the external services. Backups of the external services data can be done via the [Backup/Restore API](../../admin/backup-restore.html) or via service-native tools. 
+
 ## Mounted Disk
 
 This mode will require you to specify the local path for data storage. The assumption is this local path is a mounted disk from either a SAN or NAS device (or some other replicated storage), allowing for rapid recovery or failover.
