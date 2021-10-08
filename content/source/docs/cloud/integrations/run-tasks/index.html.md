@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Terraform Cloud Run Tasks Integrations Setup"
 description: |-
-  Run tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. 
+  Run tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle.
 
 ---
 -> Note: As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
@@ -71,6 +71,12 @@ When creating your event hook, you can supply an HMAC key which Terraform Cloud 
 
 ## Run Tasks Technology Partners
 
+### Snyk
+
+Snyk’s integration with Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
+
+To get started, [create a free Snyk account](https://snyk.io/) and follow the instructions in the [Integrating Snyk with Terraform Cloud](https://docs.snyk.io/features/integrations/ci-cd-integrations/integrating-snyk-with-terraform-cloud) user documentation.
+
 ### Bridgecrew
 
 Bridgecrew helps teams address security and compliance errors in Terraform as part of each and every code review. *coming soon
@@ -90,7 +96,3 @@ From security checks to any additional dependency changes, Lightlytics’s integ
 ### Refactr
 
 Refactr’s integration allows for users to build workflows for multiple use cases including but not limited to code scanning.
-
-### Snyk
-
-Snyk’s integration with Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
