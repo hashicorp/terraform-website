@@ -7,7 +7,7 @@ description: |-
 
 [sentinel]: ../sentinel/index.html
 [private]: ../registry/index.html
-[remote]: /docs/language/settings/backends/remote.html
+[remote]: /docs/language/settings/backends/remote.html#excluding-files-from-upload-with-terraformignore 
 [speculative plan]: ./index.html#speculative-plans
 [tfe-provider]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs
 
