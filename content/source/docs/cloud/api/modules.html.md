@@ -82,7 +82,7 @@ $ curl \
   https://app.terraform.io/api/registry/public/v1/modules/my-gh-repo-org/consul/aws/versions
 ```
 
-## List Registry Modules for an organization
+## List Registry Modules for an Organization
 
 `GET /organizations/:organization_name/registry-modules`
 
@@ -97,16 +97,16 @@ Status  | Response                                           | Reason
 [200][] | [JSON API document][] (`type: "registry-modules"`) | The request was successful
 [404][] | [JSON API error object][]                          | Modules not found or user unauthorized to perform action
 
-### Filtering / Pagination
+### Query Parameters
 
-This endpoint supports Filtering and Pagination via the following attributes:
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
-Query Parameter                     | Description
+Parameter                           | Description
 ------------------------------------|---------------------
-`q=<wild card filter>`              | a wild card filter that will match full words for the name, namespace, provider fields for modules
-`filter[<field name>]=<field name>` | an exact filter that will match a given field. The available fields to filter on are `registry_name`, `provider`, and `organization_name`.
-`page[number]=<page>`               | which page to return from the paginated results
-`page[size]=<size>`                 | size of pages to return with the paginated results. The default is `20` with a max of `100`
+`q`                                 | **Optional.** A search query string.  Modules are searchable by name, namespace, provider fields.
+`filter[field name]`                | **Optional.** If specified, restricts results to those with the matching field name value.  Valid values are `registry_name`, `provider`, and `organization_name`.
+`page[number]`                      | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                        | **Optional.** If omitted, the endpoint will return 20 registry modules per page.
 
 ### Sample Request
 

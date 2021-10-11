@@ -135,11 +135,13 @@ Status  | Response                                     | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter                   | Description
 ----------------------------|------------
-`filter[last-ping-since]` | **Optional.** Accepts a date in ISO8601 format (ex. `2020-08-11T10:41:23Z`).
+`filter[last-ping-since]`   | **Optional.** Accepts a date in ISO8601 format (ex. `2020-08-11T10:41:23Z`).
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                | **Optional.** If omitted, the endpoint will return 20 agents per page.
 
 ### Sample Request
 
