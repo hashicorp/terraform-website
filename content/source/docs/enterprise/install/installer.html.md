@@ -152,6 +152,20 @@ As of version 201902-01, TLS versions 1.0 and 1.1 are no longer supported in Ter
 
 ![Terraform Enterprise TLS Versions User Interface](./assets/tls-versions.png)
 
+#### TLS Ciphersuites
+
+Terraform Enterprise defines a set of supported ciphersuites by default but, if necessary, a custom ciphersuite string may be defined:
+
+![Terraform Enterprise TLS Ciphersuite User Interface](./assets/tls-ciphers.png)
+
+(This value must be defined in the OpenSSL format.)
+
+#### Force TLS with HSTS
+
+Terraform Enterpise may be configured to force TLS via the enabling of HTTP Strict Transport Security:
+
+![Terraform Enterprise TLS HSTS User Interface](./assets/tls-hsts.png)
+
 ## Alternative Terraform worker image
 
 TFE runs `terraform plan` and `terraform apply` operations in a disposable Docker containers. There are cases where runs may make frequent use of additional tools that are not available in the default Docker image. To allow use of these tools for any plan or apply, users can build their own image and configure TFE to use that instead. In order for this to happen the name of the alternative docker image must be set in the config by using the `Custom image tag` field as shown below:
