@@ -158,7 +158,7 @@ Terraform Enterprise defines a set of supported ciphersuites by default but, if 
 
 ![Terraform Enterprise TLS Ciphersuite User Interface](./assets/tls-ciphers.png)
 
-(This value must be defined in the OpenSSL format.)
+(This value must be defined in the OpenSSL [cipher list format](https://www.openssl.org/docs/man1.0.2/man1/ciphers.html).)
 
 #### Force TLS with HSTS
 
