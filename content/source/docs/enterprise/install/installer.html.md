@@ -154,7 +154,7 @@ As of version 201902-01, TLS versions 1.0 and 1.1 are no longer supported in Ter
 
 #### TLS Ciphersuites
 
-Terraform Enterprise defines a set of supported ciphersuites by default but, if necessary, a custom ciphersuite string may be defined:
+Terraform Enterprise uses a standard set of ciphersuites by default. If necessary, a custom ciphersuite can be provided:
 
 ![Terraform Enterprise TLS Ciphersuite User Interface](./assets/tls-ciphers.png)
 
