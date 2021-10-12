@@ -23,7 +23,7 @@ A good strategy to start with is `<COMPONENT>-<ENVIRONMENT>-<REGION>`. For examp
 - networking-staging-eu-central
 - monitoring-prod-us-east
 - monitoring-staging-us-east
-- monitoring-prod-us-eu-central
+- monitoring-prod-eu-central
 - monitoring-staging-eu-central
 
 If those three attributes can't uniquely distinguish all of your workspaces, you might need to add another attribute; for example, the infrastructure provider (AWS, GCP, Azure), datacenter, or line of business.
