@@ -69,6 +69,12 @@ Here's what the data flow looks like:
 
 When creating your event hook, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `x-tfc-event-hook-signature` header when calling your service.
 
+The signature is a sha512 sum of the webhook body using the provided HMAC key. The generation of the signature depends on your implementation, however an example of how to generate a signature in bash is provided below.
+
+```bash
+$ echo -n $WEBHOOK_BODY | openssl dgst -sha512 -hmac "$HMAC_KEY"
+```
+
 ## Run Tasks Technology Partners
 
 ### Snyk
@@ -79,7 +85,9 @@ To get started, [create a free Snyk account](https://snyk.io/) and follow the in
 
 ### Bridgecrew
 
-Bridgecrew helps teams address security and compliance errors in Terraform as part of each and every code review. *coming soon
+Bridgecrew helps teams address security and compliance errors in Terraform as part of each and every code review.
+
+To get started, [sign up](https://www.bridgecrew.cloud/login/signUp?return_to=%2F) for an eligible [pricing](https://bridgecrew.io/pricing/) plan, and follow the instructions in the [Integration via Run Tasks](https://docs.bridgecrew.io/docs/integrate-with-terraform-cloud#integration-via-run-tasks) user documentation.
 
 ### cloudtamer.io
 
