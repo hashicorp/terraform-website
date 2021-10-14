@@ -87,7 +87,7 @@ To get started, [create a free Snyk account](https://snyk.io/) and follow the in
 
 Bridgecrew helps teams address security and compliance errors in Terraform as part of each and every code review.
 
-To get started, [sign up](https://www.bridgecrew.cloud/login/signUp) for an eligible [pricing](https://bridgecrew.io/pricing/) plan, and follow the instructions in the [Integration via Run Tasks](https://docs.bridgecrew.io/docs/integrate-with-terraform-cloud#integration-via-run-tasks) user documentation.
+To get started, sign up for an eligible [pricing](https://bridgecrew.io/pricing/) plan, and follow the instructions in the [Integration via Run Tasks](https://docs.bridgecrew.io/docs/integrate-with-terraform-cloud#integration-via-run-tasks) user documentation.
 
 ### cloudtamer.io
 
