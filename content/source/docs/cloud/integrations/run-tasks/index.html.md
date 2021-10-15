@@ -89,13 +89,15 @@ Bridgecrew helps teams address security and compliance errors in Terraform as pa
 
 To get started, sign up for an eligible [pricing](https://bridgecrew.io/pricing/) plan, and follow the instructions in the [Integration via Run Tasks](https://docs.bridgecrew.io/docs/integrate-with-terraform-cloud#integration-via-run-tasks) user documentation.
 
-### cloudtamer.io
-
-When using cloudtamer.io, customers can choose to focus on cost savings or compliance findings on an active account.
-
 ### Infracost
 
 Infracost allows for cloud infrastructure costing, initiated right from a PR or Terraform run.
+
+To get started, [sign up](https://dashboard.infracost.io/tfc-sign-up) for the Infracost Terraform Cloud integration, and follow the instructions in the [Terraform Cloud Run Tasks](https://www.infracost.io/docs/iac_tools/terraform_cloud_enterprise#terraform-cloud-run-tasks) user documentation.
+
+### cloudtamer.io
+
+When using cloudtamer.io, customers can choose to focus on cost savings or compliance findings on an active account.
 
 ### Lightlytics
 
