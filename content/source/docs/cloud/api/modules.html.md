@@ -360,7 +360,7 @@ Key path                        | Type   | Default | Description
 --------------------------------|--------|---------|------------
 `data.type`                     | string |         | Must be `"registry-modules"`.
 `data.attributes.name`          | string |         | The name of this module. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
-`data.attributes.provider`      | string |         | Specifies the Terraform provider that this module is used for. May contain alphanumeric characters. Maximum length is 64 characters.
+`data.attributes.provider`      | string |         | Specifies the Terraform provider that this module is used for. May contain lowercase alphanumeric characters. Maximum length is 64 characters.
 `data.attributes.namespace`     | string |         | The namespace of this module. Cannot be set for private modules. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
 `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`.
 
@@ -372,7 +372,6 @@ Key path                        | Type   | Default | Description
     "type": "registry-modules",
     "attributes": {
       "name": "my-module",
-      "namespace": "my-organization",
       "provider": "aws",
       "registry-name": "private"
     }
@@ -619,7 +618,7 @@ curl \
 
 After the registry module version is successfully parsed, its status will become `"ok"`.
 
-## GET a Module
+## Get a Module
 
 ~> **Deprecation warning**: the following endpoint `GET /registry-modules/show/:organization_name/:name/:provider` is replaced by the below endpoint and will be removed from future versions of the API!
 
@@ -633,7 +632,7 @@ Parameter            | Description
 `:organization_name` | The name of the organization the module belongs to.
 `:namespace`         | The namespace of the module. For private modules this is the name of the organization that owns the module.
 `:name`              | The module name.
-`:provider`          | The module provider.
+`:provider`          | The module provider. Must be lowercase alphanumeric.
 `:registry-name`     | Either `public` or `private`.
 
 Status  | Response                                           | Reason

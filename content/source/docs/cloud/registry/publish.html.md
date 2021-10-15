@@ -31,10 +31,11 @@ A module repository must meet all of the following requirements before you can a
   your configured [VCS providers][vcs], and Terraform Cloud's VCS user account must have admin access to the repository. The registry needs admin access to create the webhooks to import new module versions. GitLab repositories must be in the main organization or group, and not in any subgroups.
 
 - **Named `terraform-<PROVIDER>-<NAME>`:** Module repositories must use this
-  three-part name format, where `<NAME>` reflects the type of infrastructure the
-  module manages and `<PROVIDER>` is the main provider where it creates that
-  infrastructure. The `<NAME>` segment can contain additional hyphens. Examples:
-  `terraform-google-vault` or `terraform-aws-ec2-instance`.
+  three-part name format, where `<NAME>` reflects the type of infrastructure
+  the module manages and `<PROVIDER>` is the main provider where it creates that
+  infrastructure. The `<PROVIDER>` segment must be all lowercase. The `<NAME>`
+  segment can contain additional hyphens. Examples: `terraform-google-vault` or
+  `terraform-aws-ec2-instance`.
 
 - **Standard module structure:** The module must adhere to the
   [standard module structure](/docs/language/modules/develop/structure.html).
