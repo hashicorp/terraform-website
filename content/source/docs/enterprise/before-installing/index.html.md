@@ -196,14 +196,20 @@ You can use Terraform Enterprise's instance profile to provide default credentia
 
 ### SELinux
 
-SELinux is supported when Terraform Enterprise runs in _External Services_ mode and only the default SELinux policies provided by RedHat are used. Terraform Enterprise v201812-1 or later is required for this support.
+Terraform Enterprise supports running SELinux in enforcing mode when running on Red Hat Enterprise Linux using the latest `container-selinux` package. Depending on the Terraform Enterprise installation, additional configuration may be necessary before Terraform Enterprise can work with SELinux in enforcing mode.
 
-SELinux is not supported when Terraform Enterprise runs in in *Demo* and *Mounted Disk* modes. When running in these modes the host running the installer must have SELinux configured in permissive mode.
+For _External Services_ and _Demo_ installations, Terraform Enterprise should just work with SELinux with no additional configuration.
 
-To configure SELinux in permissive mode for the runtime only, run `setenforce 0` as root.
+For _Mounted Disk_ installations, the mounted disk path and its subdirectories must contain the `container_file_t` type in the SELinux context.
 
-To configure SELinux in permissive mode persistently on boot, ensure the `/etc/selinux/config` file contains the following content:
+If necessary, a new SELinux file context can be added to the mounted disk path and its subdirectories:
 
 ```
-SELINUX=permissive
+semanage fcontext -a -t container_file_t "${MOUNTED_DISK_PATH}(/.*)?"
+```
+
+Once added, the mounted disk path must be relabeled to receive its new SELinux context:
+
+```
+restorecon -R ${MOUNTED_DISK_PATH}
 ```
