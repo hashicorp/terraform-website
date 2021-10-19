@@ -299,9 +299,9 @@ for more information.
 [OUTPUT]
     Name                 syslog
     Match                *
-    Host                 example-syslog-host
-    Port                 514
-    Mode                 tcp
+    host                 example-syslog-host
+    port                 514
+    mode                 tcp
     syslog_message_key   message
     syslog_severity_key  PRIORITY
     syslog_hostname_key  _HOSTNAME
