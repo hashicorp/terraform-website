@@ -288,6 +288,27 @@ for more information.
     Splunk_Token  example-splunk-token
 ```
 
+### Syslog
+
+This example configuration forwards all logs to a Syslog-compatible endpoint.
+Refer to the
+[`syslog` Fluent Bit output plugin documentation](https://docs.fluentbit.io/manual/pipeline/outputs/syslog)
+for more information.
+
+```
+[OUTPUT]
+    Name                 syslog
+    Match                *
+    host                 example-syslog-host
+    port                 514
+    mode                 tcp
+    syslog_message_key   message
+    syslog_severity_key  PRIORITY
+    syslog_hostname_key  _HOSTNAME
+    syslog_appname_key   SYSLOG_IDENTIFIER
+    syslog_procid_key    _PID
+```
+
 ## Audit Logs
 
 Terraform Enterprise emits its audit logs along with its application logs.
