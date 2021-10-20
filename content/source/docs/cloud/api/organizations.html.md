@@ -64,6 +64,7 @@ curl \
         "plan-is-trial": false,
         "plan-is-enterprise": false,
         "cost-estimation-enabled": false,
+        "send-passing-statuses-for-untriggered-speculative-plans": true,
         "name": "hashicorp-one",
         "permissions": {
           "can-update": true,
@@ -137,6 +138,7 @@ curl \
         "plan-is-trial": false,
         "plan-is-enterprise": false,
         "cost-estimation-enabled": true,
+        "send-passing-statuses-for-untriggered-speculative-plans": true,
         "name": "hashicorp-two",
         "permissions": {
           "can-update": true,
@@ -242,6 +244,7 @@ curl \
       "plan-is-trial": false,
       "plan-is-enterprise": false,
       "cost-estimation-enabled": false,
+      "send-passing-statuses-for-untriggered-speculative-plans": true,
       "name": "hashicorp",
       "permissions": {
         "can-update": true,
@@ -320,16 +323,17 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-Key path                                   | Type    | Default   | Description
--------------------------------------------|---------|-----------|------------
-`data.type`                                | string  |           | Must be `"organizations"`
-`data.attributes.name`                     | string  |           | Name of the organization
-`data.attributes.email`                    | string  |           | Admin email address
-`data.attributes.session-timeout`          | integer |    20160  | Session timeout after inactivity (minutes)
-`data.attributes.session-remember`         | integer |    20160  | Session expiration (minutes)
-`data.attributes.collaborator-auth-policy` | string  | password  | Authentication policy (`password` or `two_factor_mandatory`)
-`data.attributes.cost-estimation-enabled`  | boolean | true      | Whether or not the cost estimation feature is enabled for all workspaces in the organization. Defaults to true. In a Terraform Cloud organization which does not have Teams & Governance features, this value is always false and cannot be changed. In Terraform Enterprise, Cost Estimation must also be enabled in Site Administration.
-`data.attributes.owners-team-saml-role-id` | string  | (nothing) | **Optional.** **SAML only** The name of the ["owners" team](/docs/enterprise/saml/team-membership.html#managing-membership-of-the-owners-team)
+Key path                                                                  | Type    | Default   | Description
+--------------------------------------------------------------------------|---------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`data.type`                                                               | string  |           | Must be `"organizations"`
+`data.attributes.name`                                                    | string  |           | Name of the organization
+`data.attributes.email`                                                   | string  |           | Admin email address
+`data.attributes.session-timeout`                                         | integer | 20160     | Session timeout after inactivity (minutes)
+`data.attributes.session-remember`                                        | integer | 20160     | Session expiration (minutes)
+`data.attributes.collaborator-auth-policy`                                | string  | password  | Authentication policy (`password` or `two_factor_mandatory`)
+`data.attributes.cost-estimation-enabled`                                 | boolean | true      | Whether or not the cost estimation feature is enabled for all workspaces in the organization. Defaults to true. In a Terraform Cloud organization which does not have Teams & Governance features, this value is always false and cannot be changed. In Terraform Enterprise, Cost Estimation must also be enabled in Site Administration.
+`data.attributes.send-passing-statuses-for-untriggered-speculative-plans` | boolean | true      | Whether or not to send VCS status updates for untriggered speculative plans which can be useful if large numbers of untriggered workspaces are exhausting request limits for connected version control service providers like GitHub. Defaults to true. In Terraform Enterprise, this setting is always true and cannot be changed but is also available in Site Administration.
+`data.attributes.owners-team-saml-role-id`                                | string  | (nothing) | **Optional.** **SAML only** The name of the ["owners" team](/docs/enterprise/saml/team-membership.html#managing-membership-of-the-owners-team)
 
 ### Sample Payload
 
@@ -375,6 +379,7 @@ curl \
       "plan-is-trial": false,
       "plan-is-enterprise": false,
       "cost-estimation-enabled": false,
+      "send-passing-statuses-for-untriggered-speculative-plans": true,
       "name": "hashicorp",
       "permissions": {
         "can-update": true,
@@ -480,16 +485,17 @@ Status  | Response                                        | Reason
 
 This PATCH endpoint requires a JSON object with the following properties as a request payload.
 
-Key path                                   | Type    | Default   | Description
--------------------------------------------|---------|-----------|------------
-`data.type`                                | string  |           | Must be `"organizations"`
-`data.attributes.name`                     | string  |           | Name of the organization
-`data.attributes.email`                    | string  |           | Admin email address
-`data.attributes.session-timeout`          | integer |    20160  | Session timeout after inactivity (minutes)
-`data.attributes.session-remember`         | integer |    20160  | Session expiration (minutes)
-`data.attributes.collaborator-auth-policy` | string  | password  | Authentication policy (`password` or `two_factor_mandatory`)
-`data.attributes.cost-estimation-enabled`  | boolean | true      | Whether or not the cost estimation feature is enabled for all workspaces in the organization. Defaults to true. In a Terraform Cloud organization which does not have Teams & Governance features, this value is always false and cannot be changed. In Terraform Enterprise, Cost Estimation must also be enabled in Site Administration.
-`data.attributes.owners-team-saml-role-id` | string  | (nothing) | **Optional.** **SAML only** The name of the ["owners" team](/docs/enterprise/saml/team-membership.html#managing-membership-of-the-owners-team)
+Key path                                                                  | Type    | Default   | Description
+--------------------------------------------------------------------------|---------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`data.type`                                                               | string  |           | Must be `"organizations"`
+`data.attributes.name`                                                    | string  |           | Name of the organization
+`data.attributes.email`                                                   | string  |           | Admin email address
+`data.attributes.session-timeout`                                         | integer | 20160     | Session timeout after inactivity (minutes)
+`data.attributes.session-remember`                                        | integer | 20160     | Session expiration (minutes)
+`data.attributes.collaborator-auth-policy`                                | string  | password  | Authentication policy (`password` or `two_factor_mandatory`)
+`data.attributes.cost-estimation-enabled`                                 | boolean | true      | Whether or not the cost estimation feature is enabled for all workspaces in the organization. Defaults to true. In a Terraform Cloud organization which does not have Teams & Governance features, this value is always false and cannot be changed. In Terraform Enterprise, Cost Estimation must also be enabled in Site Administration.
+`data.attributes.send-passing-statuses-for-untriggered-speculative-plans` | boolean | true      | Whether or not to send VCS status updates for untriggered speculative plans which can be useful if large numbers of untriggered workspaces are exhausting request limits for connected version control service providers like GitHub. Defaults to true. In Terraform Enterprise, this setting is always true and cannot be changed but is also available in Site Administration.
+`data.attributes.owners-team-saml-role-id`                                | string  | (nothing) | **Optional.** **SAML only** The name of the ["owners" team](/docs/enterprise/saml/team-membership.html#managing-membership-of-the-owners-team)
 
 ### Sample Payload
 
@@ -534,6 +540,7 @@ curl \
       "plan-is-trial": false,
       "plan-is-enterprise": false,
       "cost-estimation-enabled": false,
+      "send-passing-statuses-for-untriggered-speculative-plans": true,
       "name": "hashicorp",
       "permissions": {
         "can-update": true,
