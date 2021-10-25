@@ -29,7 +29,7 @@ The most significant difference in this workflow is that Terraform Cloud _does n
 
 Pushing a new configuration to an existing workspace is a multi-step process. This section walks through each step in detail, using an example bash script to illustrate.
 
-Creating new configuration versions requires permission to queue plans for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+Creating new configuration versions requires permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
