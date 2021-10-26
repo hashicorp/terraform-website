@@ -27,7 +27,6 @@ Also, make sure to write down your organization’s expectations and socialize t
 
 Make sure you've picked a VCS system that Terraform Cloud will be able to access. Currently, Terraform Cloud supports integrations with GitHub, GitLab and Atlassian Bitbucket (both Server and Cloud).
 
-
 ## 2. Put Terraform Code in VCS Repos
 
 Start moving infrastructure code into version control. New Terraform code should all be going into version control; if you have existing Terraform code that’s outside version control, start moving it in so that everyone in your organization knows where to look for things and can track the history and purpose of changes.
@@ -66,7 +65,7 @@ If your organization already has a configuration management tool, then it’s ti
 
 If your organization doesn't use a configuration management tool yet, and the configuration of the infrastructure being managed is mutable, you should consider adopting a configuration management tool. This might be a large task, but it supports the same goals that drove you to infrastructure as code, by making application configuration more controllable, understandable, and repeatable across teams.
 
-If you’re just getting started, try this tutorial on how to [create a Chef cookbook](https://www.vagrantup.com/docs/provisioning/chef_solo.html) and test it locally with Vagrant. We also recommend this article about how to decide what [configuration management tool](http://www.intigua.com/blog/puppet-vs.-chef-vs.-ansible-vs.-saltstack) is best suited for your organization.
+If you’re just getting started, try this tutorial on how to [create a Chef cookbook](https://www.vagrantup.com/docs/provisioning/chef_solo.html) and test it locally with Vagrant.
 
 ## 7. Manage Secrets
 
