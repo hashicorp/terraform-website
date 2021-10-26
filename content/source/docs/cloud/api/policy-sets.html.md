@@ -925,9 +925,15 @@ The `upload` link URL in the above response is valid for one hour after the `cre
 
 ## Relationships
 
-The following relationships may be present in various responses:
+The following relationships may be present in various responses for policy sets:
 
-* `workspaces`: The workspaces to which the policy set applies.
-* `policies`: Individually managed policies which are associated with the policy set.
-* `newest-version`: The most recently created policy set version, regardless of status. Note that this relationship may include an errored and unusable version, and is intended to allow checking for VCS errors.
 * `current-version`: The most recent **successful** policy set version.
+* `newest-version`: The most recently created policy set version, regardless of status. Note that this relationship may include an errored and unusable version, and is intended to allow checking for VCS errors.
+* `organization`: The organization associated with the specified policy set.
+* `policies`: Individually managed policies which are associated with the policy set.
+* `workspaces`: The workspaces to which the policy set applies.
+
+
+The following relationships may be present in various responses for policy set versions:
+
+* `policy-set`: The policy set associated with the specified policy set version.
