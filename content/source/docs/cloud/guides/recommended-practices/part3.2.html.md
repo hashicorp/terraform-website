@@ -65,7 +65,7 @@ If your organization already has a configuration management tool, then it’s ti
 
 If your organization doesn't use a configuration management tool yet, and the configuration of the infrastructure being managed is mutable, you should consider adopting a configuration management tool. This might be a large task, but it supports the same goals that drove you to infrastructure as code, by making application configuration more controllable, understandable, and repeatable across teams.
 
-If you’re just getting started, try this tutorial on how to [create a Chef cookbook](https://www.vagrantup.com/docs/provisioning/chef_solo.html) and test it locally with Vagrant.
+If you’re just getting started, try this tutorial on how to [create a Chef cookbook](https://www.vagrantup.com/docs/provisioning/chef_solo.html) and test it locally with Vagrant. We also recommend this article about how to decide what [configuration management tool](https://www.edureka.co/blog/chef-vs-puppet-vs-ansible-vs-saltstack/) is best suited for your organization.
 
 ## 7. Manage Secrets
 
