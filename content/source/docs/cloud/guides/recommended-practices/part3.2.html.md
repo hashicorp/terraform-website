@@ -57,7 +57,7 @@ Here are a few examples of good build patterns from several cloud providers:
 - AWS: [Well Architected Frameworks](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf) and the [Architecture Center](https://aws.amazon.com/architecture/).
 - Azure: [deploying Azure Reference Architectures](https://github.com/mspnp/reference-architectures) and [Azure Architecture Center](https://docs.microsoft.com/en-us/azure/architecture/).
 - GCP: [Building scalable and resilient web applications.](https://cloud.google.com/solutions/scalable-and-resilient-apps)
-- Oracle Public Cloud: [Best Practices for Using Oracle Cloud.](https://docs.oracle.com/cloud/latest/stcomputecs/STCSG/GUID-C37FDFF1-7C48-4DA8-B31F-D7D7B35674A8.htm#STCSG-GUID-C37FDFF1-7C48-4DA8-B31F-D7D7B35674A8)
+- Oracle Public Cloud: [Best Practices for Using Oracle Cloud.](https://docs.oracle.com/en/cloud/iaas-classic/compute-iaas-cloud/stcsg/best-practices.html#GUID-C37FDFF1-7C48-4DA8-B31F-D7D7B35674A8)
 
 ## 6. Integrate Terraform With Configuration Management
 
