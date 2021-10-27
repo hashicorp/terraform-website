@@ -84,9 +84,7 @@ Auto-apply has the following exception:
 
 The Terraform version to use for all operations in the workspace. The default value is whichever release was current when the workspace was created.
 
-You can choose "latest" to automatically update a workspace to new versions, or you can choose a specific version.
-
--> **API:** You can specify a Terraform version when [creating a workspace](../api/workspaces.html#create-a-workspace) via the API.
+-> **API:** You can specify a Terraform version when [creating a workspace](../api/workspaces.html#create-a-workspace) via the API. The API also supports setting a valid [version constraint](/docs/language/expressions/version-constraints.html) as the Terraform version.
 
 ### Terraform Working Directory
 
