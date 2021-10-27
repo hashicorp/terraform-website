@@ -198,15 +198,12 @@ You can use Terraform Enterprise's instance profile to provide default credentia
 
 Terraform Enterprise supports SELinux running in enforcing mode when certain requirements are met. These requirements vary depending on the type of Terraform Enterprise installation.
 
-For _External Services_ and _Demo_ installations:
+For _External Services_ and _Demo_ installations, you must install the latest version of the `container-selinux` package.
 
-- The latest version of the `container-selinux` package must be installed.
+For _Mounted Disk_ installations, you must:
 
-For _Mounted Disk_ installations:
-
-- The latest version of the `container-selinux` package must be installed.
-- The mounted disk path and its subdirectories must contain the `container_file_t` type in their SELinux context.
-  - Assuming a mounted disk path of `/opt/tfe`, the mounted disk path and its subdirectories can be updated to use the correct SELinux context with the following commands:
+- Install the latest version of the `container-selinux` package.
+- Add the `container_file_t` type to the SELinux context for the mounted disk path and its subdirectories. The commands below update the mounted disk path `/opt/tfe` and its subdirectories to use the correct SELinux context.
 
     ```
     semanage fcontext -a -t container_file_t "/opt/tfe(/.*)?"
