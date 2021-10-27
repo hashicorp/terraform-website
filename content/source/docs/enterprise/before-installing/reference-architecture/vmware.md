@@ -40,7 +40,7 @@ Active/Active on VMWare has been tested internally on ESX version 7.0.1 and vCen
 
 An example of a recommended setup:
 
-![TFE Active/Active on VMware](./assets/BW_TFE_AA_DIAGRAM.png)
+![TFE Active/Active on VMware](./assets/RA-TFE-AA-VMware-SingleRegion.png)
 
 A load balancer is require to route traffic to both Terraform Enterprise virtual machines. Both virtual machines should reside in the same physical datacenter and on the same network. High amounts of network latency between the Terraform Enterprise virtual machines and the external services may result in plan and apply slowness and errors. As documented on the [Capacity and Performance](../../system-overview/capacity.html) page, high speed disks are critical for good performance. Both Terraform Enterprise virtual machines will require access to an external Redis server, a PostgreSQL database, and an S3-compatible blob storage bucket. By default Terraform Enterprise will use an internal Vault server. Optionally, you can configure Terraform Enterprise to utilize an [existing Vault cluster](../vault.html). 
 
