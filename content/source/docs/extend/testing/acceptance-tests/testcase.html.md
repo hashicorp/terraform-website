@@ -26,28 +26,28 @@ package example
 
 // example.Widget represents a concrete Go type that represents an API resource
 func TestAccExampleWidget_basic(t *testing.T) {
-	var widgetBefore, widgetAfter example.Widget
-	rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
+  var widgetBefore, widgetAfter example.Widget
+  rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
 
 	resource.Test(t, resource.TestCase{
-		PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckExampleResourceDestroy,
-		Steps: []resource.TestStep{
-			{
-				Config: testAccExampleResource(rName),
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
-				),
-			},
-			{
-				Config: testAccExampleResource_removedPolicy(rName),
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckExampleResourceExists("example_widget.foo", &widgetAfter),
-				),
-			},
-		},
-	})
+    PreCheck:     func() { testAccPreCheck(t) },
+    Providers:    testAccProviders,
+    CheckDestroy: testAccCheckExampleResourceDestroy,
+    Steps: []resource.TestStep{
+      {
+        Config: testAccExampleResource(rName),
+        Check: resource.ComposeTestCheckFunc(
+          testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
+        ),
+      },
+      {
+        Config: testAccExampleResource_removedPolicy(rName),
+        Check: resource.ComposeTestCheckFunc(
+          testAccCheckExampleResourceExists("example_widget.foo", &widgetAfter),
+        ),
+      },
+    },
+  })
 }
 ```
 
@@ -75,7 +75,7 @@ package example
 
 func TestAccExampleWidget_basic(t *testing.T) {
   resource.Test(t, resource.TestCase{
-  	// ...
+    // ...
   })
 }
 ```
@@ -124,7 +124,7 @@ package example
 func TestAccExampleWidget_basic(t *testing.T) {
   resource.Test(t, resource.TestCase{
     PreCheck:     func() { testAccPreCheck(t) },
-  	// ...
+    // ...
   })
 }
 
@@ -166,7 +166,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
   resource.Test(t, resource.TestCase{
     PreCheck:     func() { testAccPreCheck(t) },
     Providers:    testAccProviders,
-  	// ...
+    // ...
   })
 }
 

@@ -28,19 +28,19 @@ __`example_sweeper_test.go`__
 package example
 
 import (
-    "testing"
+  "testing"
 
-    "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
+  "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
 func TestMain(m *testing.M) {
-    resource.TestMain(m)
+  resource.TestMain(m)
 }
 
 // sharedClientForRegion returns a common provider client configured for the specified region
 func sharedClientForRegion(region string) (interface{}, error) {
-    ...
-    return client, nil
+  ...
+  return client, nil
 }
 ```
 
@@ -52,39 +52,39 @@ __`resource_example_compute_test.go`__
 package example
 
 import (
-    "log"
-    "strings"
-    "testing"
+  "log"
+  "strings"
+  "testing"
 
-    "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
+  "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
 func init() {
-    resource.AddTestSweepers("example_compute", &resource.Sweeper{
-        Name: "example_compute",
-        F: func (region string) error {
-            client, err := sharedClientForRegion(region)
-            if err != nil {
-                return fmt.Errorf("Error getting client: %s", err)
-            }
- 	          conn := client.(*ExampleClient)
+  resource.AddTestSweepers("example_compute", &resource.Sweeper{
+    Name: "example_compute",
+    F: func (region string) error {
+      client, err := sharedClientForRegion(region)
+      if err != nil {
+        return fmt.Errorf("Error getting client: %s", err)
+      }
+      conn := client.(*ExampleClient)
 
-            instances, err := conn.DescribeComputeInstances()
-            if err != nil {
-                return fmt.Errorf("Error getting instances: %s", err)
-            }
-            for _, instance := range instances {
-                if strings.HasPrefix(instance.Name, "test-acc") {
-                    err := conn.DestroyInstance(instance.ID)
+      instances, err := conn.DescribeComputeInstances()
+      if err != nil {
+        return fmt.Errorf("Error getting instances: %s", err)
+      }
+      for _, instance := range instances {
+        if strings.HasPrefix(instance.Name, "test-acc") {
+          err := conn.DestroyInstance(instance.ID)
 
-                    if err != nil {
-                        log.Printf("Error destroying %s during sweep: %s", instance.Name, err)
-                    }
-                }
-            }
-            return nil
-        },
-    })
+          if err != nil {
+            log.Printf("Error destroying %s during sweep: %s", instance.Name, err)
+          }
+        }
+      }
+      return nil
+    },
+  })
 }
 ```
 
@@ -98,17 +98,17 @@ __`resource_example_compute_disk_test.go`__
 package example
 
 import (
-   "testing"
+  "testing"
 
-    "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
+  "github.com/hashicorp/terraform-plugin-sdk/helper/resource"
 )
 
 func init() {
-    resource.AddTestSweepers("example_compute_disk", &resource.Sweeper{
-       Name: "example_compute_disk",
-       Dependencies: []string{"example_compute"}
-        ...
-    })
+  resource.AddTestSweepers("example_compute_disk", &resource.Sweeper{
+    Name: "example_compute_disk",
+    Dependencies: []string{"example_compute"}
+    ...
+  })
 }
 ```
 
