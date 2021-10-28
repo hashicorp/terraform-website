@@ -212,7 +212,7 @@ and apply operations will fail.
 FROM registry.access.redhat.com/ubi7/ubi-minimal:7.9-503
 
 # Update installed packages and clear cache
-RUN microdnf --assumeyes  update && rm --recursive --force /var/cache/yum
+RUN microdnf --assumeyes update && rm --recursive --force /var/cache/yum
 
 # Include all necessary CA certificates.
 ADD example-root-ca.crt /usr/share/pki/ca-trust-source/anchors
