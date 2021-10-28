@@ -173,11 +173,13 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
 ![Terraform Enterprise docker image](./assets/tfe-docker-image.png)
 
 ### Requirements
- - The base image must be `ubuntu:bionic` or an [offical RHEL7 image](https://catalog.redhat.com/software/containers/rhel7/57ea8cee9c624c035f96f3af) (e.g., `registry.access.redhat.com/rhel7`).
- - The image must exist on the Terraform Enterprise host. It can be added by running `docker pull` from a local registry or any other similar method.
- - The software packages defined in the examples below must be installed on the image.
- - All necessary PEM-encoded CA certificates must be placed within the `/usr/local/share/ca-certificates` directory. Each file added to this directory must end with the `.crt` extension. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
- - Terraform must not be installed on the image. Terraform Enterprise will take care of that at runtime.
+
+- The base image must be `ubuntu:bionic` or an [offical RHEL7 image](https://catalog.redhat.com/software/containers/search?p=1&vendor_name=Red%20Hat%2C%20Inc.&rows=60&product_listings_names=Red%20Hat%20Universal%20Base%20Image%207|Red%20Hat%20Enterprise%20Linux%207&build_categories_list=Base%20Image)
+  (e.g., `registry.access.redhat.com/ubi7/ubi-minimal`).
+- The image must exist on the Terraform Enterprise host. It can be added by running `docker pull` from a local registry or any other similar method.
+- The software packages defined in the examples below must be installed on the image.
+- All necessary PEM-encoded CA certificates must be placed within the `/usr/local/share/ca-certificates` directory. Each file added to this directory must end with the `.crt` extension. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
+- Terraform must not be installed on the image. Terraform Enterprise will take care of that at runtime.
 
 Below are several example `Dockerfile` definitions you can use to start building your own image:
 
@@ -201,15 +203,16 @@ RUN update-ca-certificates
 
 #### RHEL 7
 
-Note that in addition to the packages installed by yum, the `daemontools` packaged is required as it provides the `envdir` binary,
-which is used by TFE. If this package is not installed on the alternative worker image, Terraform plan and apply operations will fail.
+Note that in addition to the packages installed by yum, the Python port
+of the `envdir` tool is also installed as it is used by TFE. If this
+tool is not installed on the alternative worker image, Terraform plan
+and apply operations will fail.
 
-```
-FROM registry.access.redhat.com/rhel7
+```docker
+FROM registry.access.redhat.com/ubi7/ubi-minimal:7.9-503
 
-# running 'subscription-manager' is necessary to be able to install additional packages via yum
-# substitute your redhat account credentials in this command
-RUN subscription-manager register --username ${RH_username} --password "${RH_password}" --auto-attach
+# Update installed packages and clear cache
+RUN microdnf --assumeyes  update && rm --recursive --force /var/cache/yum
 
 # Include all necessary CA certificates.
 ADD example-root-ca.crt /usr/share/pki/ca-trust-source/anchors
@@ -219,11 +222,12 @@ ADD example-intermediate-ca.crt /usr/share/pki/ca-trust-source/anchors
 RUN update-ca-trust
 
 # Install required software for Terraform Enterprise.
-RUN yum -y install unzip sudo git openssh wget curl psmisc iproute nmap-ncat openssl rpm-build redhat-rpm-config make gcc && \
-  yum clean all && \
-  cd /tmp && git clone https://github.com/jacobm3/daemontools-rpm.git && \
-  cd /tmp/daemontools-rpm && wget https://cr.yp.to/daemontools/daemontools-0.76.tar.gz && ./buildrpm.sh && \
-  rpm -ivh /root/rpmbuild/RPMS/x86_64/daemontools-0.76-1.el7.x86_64.rpm
+RUN microdnf --assumeyes install \
+  unzip sudo git openssh wget curl psmisc iproute nmap-ncat openssl && \
+  microdnf clean all && \
+  curl --location --output /usr/local/bin/envdir \
+  https://github.com/jezdez/envdir/releases/download/0.7/envdir-0.7.pyz && \
+  chmod +x /usr/local/bin/envdir
 ```
 
 ### Executing Custom Scripts
