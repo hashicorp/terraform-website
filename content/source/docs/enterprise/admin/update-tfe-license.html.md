@@ -91,7 +91,7 @@ With the online installation type, you can use the following steps to configure 
 
 2.  Connect to the Terraform Enterprise host machine using SSH.
 
-3.  Use the following command to load the new license.
+3.  Load the new license.
 
         $ replicatedctl license-load < /path/to/license.rli
 
