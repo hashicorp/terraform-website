@@ -69,7 +69,7 @@ With the online installation type, you can use the following steps to configure 
 
     ![Console Settings](./images/console-settings.png)
 
-3.  Scroll down to the **License Sync** section and choose the frequency with which the license should be checked.
+3.  Scroll down to the **License Sync** section and select how often Terraform Enterprise should check the license.
 
     ![License Sync](./images/license-sync.png)
 
