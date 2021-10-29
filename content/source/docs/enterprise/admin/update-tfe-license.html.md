@@ -105,7 +105,7 @@ With the online installation type, you can use the following steps to configure 
 
     ![Console Settings](./images/console-settings.png)
 
-3.  Select **Airgapped Settings** from the left-hand menu and upload the license.
+3.  Select **Airgapped Settings** from the left menu and upload the license.
 
     ![Upload license](./images/upload-license.png)
 
@@ -122,7 +122,7 @@ With the online installation type, you can use the following steps to configure 
             --airgap-package /path/to/bundle.airgap < /path/to/license.rli
         ```
 
-## Troubleshooting Guides
+## Troubleshooting
 
 ### No error but the license is not updated
 
@@ -136,11 +136,11 @@ In the Airgap installation, the license update operation may finish without any 
          WARN 2021-02-22T01:40:00+00:00 tasks/app_tasksteps.go:113 Airgap license on disk does not match installed license
          ```
 
-3.  If this warning message occurs, it indicates that the incorrect license file is being used. Please contact your Customer Success Manager if you have one assigned to your account, or contact [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) for further assistance. When contacting support, please include the output from the `replicatedctl license inspect` command after running it on the existing Terraform Enterprise host machine.
+3.  Please contact your assigned Customer Success Manager or [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) for further assistance. When contacting support, please include the output from running `replicatedctl license inspect` on the Terraform Enterprise host machine.
 
 ### Unable to sync license: Error: Unsuccessful HTTP response
 
-The error message below may occur due to several possible issues.
+Terraform can produce this error message for several different issues.
 
     ```plaintext
     Unable to sync license: Error: Unsuccessful HTTP response
@@ -148,11 +148,11 @@ The error message below may occur due to several possible issues.
 
 *   Network communication to the Replicated servers
 
-    This symptom can happen with the online installation type when the current network infrastructure has changed since the installation of Terraform Enterprise. Terraform Enterprise requires network communication to the Replicated endpoints, as noted in the [network requirements](https://www.terraform.io/docs/enterprise/before-installing/network-requirements.html) guideline. With the license sync operation, the Replicated installer will attempt to contact `api.replicated.com` in order to retrieve the license information. The specific IP addresses of Replicated services for the Terraform Enterprise can be found in [Replicated’s GitHub repository](https://github.com/replicatedhq/ips/blob/master/ip_addresses.json).
+    Terraform Enterprise requires network communication to the Replicated endpoints, as noted in the [network requirements](https://www.terraform.io/docs/enterprise/before-installing/network-requirements.html) guideline. During the license sync operation, the Replicated installer attempts to contact `api.replicated.com` to retrieve the license information. In the online installation type, you might see the above error if the network infrastructure changed after you installed Terraform Enterprise. The specific IP addresses of Replicated services for the Terraform Enterprise can be found in [Replicated’s GitHub repository](https://github.com/replicatedhq/ips/blob/master/ip_addresses.json).
 
-*   Mismatched customer name between the installed license and the new license.
+*   Customer name on new license does not match existing license
 
-    This symptom can happen with the Airgap installation type in some conditions, for example, when a trial license was issued with a customer name and the new paid license was issued on a different customer name. If you are on the Airgap installation and encountered this error, please contact [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) together with the output from the command `replicatedctl license inspect` from the existing Terraform Enterprise host machine to request for further assistance.
+    This may happen with the Airgap installation type for a variety of reasons. For example, when a trial license was issued with a customer name and the new paid license was issued on a different customer name.  Please contact [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) for assistance. In your request, include the output from running`replicatedctl license inspect` on the Terraform Enterprise host machine.
 
 ### Incorrect version of airgap file
 
