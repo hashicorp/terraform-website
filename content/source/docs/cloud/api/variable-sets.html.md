@@ -13,9 +13,16 @@ Viewing Variable Sets requires access to the owning organization. Destructive ac
 ## Create a Variable Set
 `POST organizations/:organization_name/varsets`
 
+`data.name`                              | string         |         | The name of the Variable set
+`data.description`                       | string         |         | A helpful blurb to contextualize the variable set
+`data.is_global`                         | boolean        |         | When true, the variable set applies to all workspaces in the organization.
+
+`data.relationships.workspaces`          | array          |         | Array of references to workspaces that the variable set should be assigned to
+`data.relationships.vars`                | array          |         | Array of complete variable definitions that comprise the variable set.
+
 Example Payload:
 ```json
-{:data=>
+:data=>
   {
     :type=>"varsets",
     :attributes=>{
