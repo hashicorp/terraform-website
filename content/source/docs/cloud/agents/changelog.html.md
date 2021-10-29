@@ -15,7 +15,7 @@ within each release are categorized into one or more of the following labels:
 * `BREAKING CHANGES` - Reserved for changes which break previous functionality.
 
 Each version below corresponds to a release artifact available for download on
-the official [releases website](https://releases.hashicorp.com/tfc-agent).
+the official [releases website](https://releases.hashicorp.com/tfc-agent/).
 
 ## 1.0.0 (10/29/2021)
 
