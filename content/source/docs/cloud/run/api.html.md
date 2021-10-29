@@ -57,7 +57,7 @@ WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
 
 ### 2. Create the File for Upload
 
-The [configuration version API](../api/configuration-versions.html) requires a `tar.gz` file to be uploaded in order for the configuration version to be used for a run, so the content directory (the directory containing the Terraform configuration) must be packaged into a `tar.gz` file.
+The [configuration version API](../api/configuration-versions.html) requires an uploaded `tar.gz` file to use the configuration version for a run, so you must package the directory containing the Terraform configuration into a `tar.gz` file.
 
 ~> **Important:** The configuration directory must be the root of the tar file, with no intermediate directories. In other words, when the tar file is extracted the result must be paths like `./main.tf` rather than `./terraform-appserver/main.tf`.
 
