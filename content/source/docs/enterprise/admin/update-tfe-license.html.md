@@ -77,7 +77,7 @@ With the online installation type, you can use the following steps to configure 
 
 #### Replicated Console
 
-1.  Navigate to the Replicated console, which is located at `https://<<TFE_HOSTNAME>>:8800`, click on the gear icon on the top-right corner, and select the **View License** menu.
+1.  Navigate to the Replicated console at `https://<<TFE_HOSTNAME>>:8800`, click on the gear icon on the top-right corner, and select the **View License** menu.
 
     ![View License](./images/view-license.png)
 
