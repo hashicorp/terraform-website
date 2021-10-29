@@ -130,7 +130,7 @@ In the Airgap installation, the license update operation may finish without any 
 
 1.  Connect to the Terraform Enterprise host machine using SSH.
 
-2.  Examine the output of the command `docker logs replicated` and look for the warning message below.
+2.  Run `docker logs replicated` and look for the warning message below.
 
          ```plaintext
          WARN 2021-02-22T01:40:00+00:00 tasks/app_tasksteps.go:113 Airgap license on disk does not match installed license
