@@ -99,7 +99,7 @@ With the online installation type, you can use the following steps to configure 
 
 ### Replicated Console
 
-1.  Navigate to the Replicated console, which is located at `https://<<TFE_HOSTNAME>>:8800`.
+1.  Navigate to the Replicated console at `https://<<TFE_HOSTNAME>>:8800`.
 
 2.  Click on the gear icon on the top-right corner and select the **Console Settings** menu.
 
