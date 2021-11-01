@@ -321,7 +321,7 @@ curl \
 
 Parameter       | Description
 --------------- | ----------------------------------------------------
-`:workspace_id` | The ID of the workspace to list configurations from. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.
+`:workspace_id` | The ID of the workspace to list configurations from. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
 
 ### Query Parameters
 
