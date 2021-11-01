@@ -17,7 +17,7 @@ Viewing Variable Sets requires access to the owning organization. Destructive ac
 `data.description`                       | string         |         | Text shown in the UI to describe the variable set and its purpose.
 `data.is_global`                         | boolean        |         | When true, the variable set applies to all workspaces in the organization.
 
-`data.relationships.workspaces`          | array          |         | Array of references to workspaces that the variable set should be assigned to
+`data.relationships.workspaces`          | array          |         | Array of references to workspaces where Terraform Cloud should apply the variable set.
 `data.relationships.vars`                | array          |         | Array of complete variable definitions that comprise the variable set.
 
 Example Payload:
