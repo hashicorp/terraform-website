@@ -244,4 +244,4 @@ payload
 }
 ```
 
-on success, responds with no content
+On success, this endpoint responds with no content.
