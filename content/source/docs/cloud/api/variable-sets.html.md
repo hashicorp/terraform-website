@@ -14,7 +14,7 @@ Viewing Variable Sets requires access to the owning organization. Destructive ac
 `POST organizations/:organization_name/varsets`
 
 `data.name`                              | string         |         | The name of the Variable set
-`data.description`                       | string         |         | A helpful blurb to contextualize the variable set
+`data.description`                       | string         |         | Text shown in the UI to describe the variable set and its purpose.
 `data.is_global`                         | boolean        |         | When true, the variable set applies to all workspaces in the organization.
 
 `data.relationships.workspaces`          | array          |         | Array of references to workspaces that the variable set should be assigned to
