@@ -20,7 +20,7 @@ Viewing Variable Sets requires access to the owning organization. Destructive ac
 `data.relationships.workspaces`          | array          |         | Array of references to workspaces where Terraform Cloud should apply the variable set.
 `data.relationships.vars`                | array          |         | Array of complete variable definitions that comprise the variable set.
 
-Example Payload:
+### Sample Payload
 ```json
 {
   data: {
