@@ -167,7 +167,7 @@ On success responds with data for saved variable
 
 on success, responds with deleted variable content
 
-# List Variables
+## List Variables in a Variable Set
 `GET varsets/:varset_external_id/relationships/vars`
 
 example response
