@@ -7,7 +7,7 @@ page_title: "Variable Sets - API Docs - Terraform Cloud and Terraform Enterprise
 
 This set of APIs covers create, update, list, delete, and some specialized operations.
 
-Viewing Variable Sets requires access to the owning organization. Destructive actions require org admin status or workspace management permissions.
+Viewing Variable Sets requires access to the owning organization. Destructive actions require organization admin status or workspace management permissions.
 
 
 ## Create a Variable Set
