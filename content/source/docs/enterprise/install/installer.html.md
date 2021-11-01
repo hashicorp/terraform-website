@@ -176,7 +176,7 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
 
 - The base image must be `ubuntu:bionic` or an [offical RHEL7 image](https://catalog.redhat.com/software/containers/search?p=1&vendor_name=Red%20Hat%2C%20Inc.&rows=60&product_listings_names=Red%20Hat%20Universal%20Base%20Image%207|Red%20Hat%20Enterprise%20Linux%207&build_categories_list=Base%20Image)
   (e.g., `registry.access.redhat.com/ubi7/ubi-minimal`).
-- The image must exist on the Terraform Enterprise host. It can be added by running `docker pull` from a local registry or any other similar method.
+- The image must exist on the Terraform Enterprise host. You can add it by running `docker pull` from a local registry or any other similar method.
 - The software packages defined in the examples below must be installed on the image.
 - All necessary PEM-encoded CA certificates must be placed within the `/usr/local/share/ca-certificates` directory. Each file added to this directory must end with the `.crt` extension. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
 - Terraform must not be installed on the image. Terraform Enterprise will take care of that at runtime.
