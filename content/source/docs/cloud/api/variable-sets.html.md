@@ -82,7 +82,7 @@ or
 
 `GET varsets/:external_id` #same response sans pagination and listing
 
-example payload
+### Sample Payload
 ```json
 {
   data: [
