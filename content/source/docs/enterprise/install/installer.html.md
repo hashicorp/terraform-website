@@ -203,10 +203,7 @@ RUN update-ca-certificates
 
 #### RHEL 7
 
-Note that in addition to the packages installed by yum, the Python port
-of the `envdir` tool is also installed as it is used by TFE. If this
-tool is not installed on the alternative worker image, Terraform plan
-and apply operations will fail.
+In addition to the packages that yum installs, curl installs the envdir tool Python port because it is a dependency of the Terraform Build Worker service. If the envdir tool is not installed on the alternative worker image, Terraform runs will fail within Terraform Enterprise.
 
 ```docker
 FROM registry.access.redhat.com/ubi7/ubi-minimal:7.9-503
