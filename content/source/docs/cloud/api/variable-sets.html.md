@@ -170,7 +170,7 @@ on success, responds with deleted variable content
 ## List Variables in a Variable Set
 `GET varsets/:varset_external_id/relationships/vars`
 
-example response
+### Sample Response
 ```json
 {
   data: [
