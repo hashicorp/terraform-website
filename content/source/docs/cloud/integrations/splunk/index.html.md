@@ -24,6 +24,8 @@ There are no special prerequisites for Splunk Cloud users.
 
 ### Splunk Enterprise
 
+-> **Note:** This app is currently not supported on a clustered deployment of Splunk Enterprise.
+
 #### Networking Requirements
 
 In order for the Terraform Cloud for Splunk app to function properly, it must be able to make outbound requests over HTTPS (TCP port 443) to the Terraform Cloud application APIs. This may require perimeter networking as well as container host networking changes, depending on your environment. The IP ranges are documented in the [Terraform Cloud IP Ranges documentation](/docs/cloud/architectural-details/ip-ranges.html). The services which run on these IP ranges are described in the table below.
