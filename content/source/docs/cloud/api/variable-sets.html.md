@@ -52,7 +52,7 @@ Example Payload:
 }
 ```
 
-rsponds with JSON representation of the save Variable Set (see list Variable Set section for example)
+responds with JSON representation of the save Variable Set (see list Variable Set section for example)
 
 ## Update a Variable Set
 `PATCH varsets/:external_id`
