@@ -33,10 +33,16 @@ a stateless production installation.
 
 ## Active/Active
 
-This operational mode requires additional external services, and in turn, provides a higher level of availability and failover as well as horizontal scaling. The requirements and instructions are outlined on the [Terraform Enterprise Active/Active page](../../install/active-active.html). 
+The Active/Active mode provides a higher level of availability and failover as well as horizontal scaling. It requires additional external services, and all of the requirements and instructions are available on the [Terraform Enterprise Active/Active page](../../install/active-active.html). 
 
-Active/Active on VMWare has been tested internally on ESX version 7.0.1 and vCenter Server Appliance version 7.0.2.00200. 
-[comment]: # (An example terraform configuration is available [on a website somewhere tbd](link))
+We have tested Active/Active on VMWare internally on ESX version 7.0.1 and vCenter Server Appliance version 7.0.2.00200. 
+
+We recommend a setup with the following:
+
+- A load balancer to route traffic to both Terraform Enterprise virtual machines. 
+- Both virtual machines located in the same physical datacenter and on the same network. High amounts of network latency between the Terraform Enterprise virtual machines and the external services may result in plan and apply slowness and errors. 
+- High-speed disks, as they are are [critical for good performance](../../system-overview/capacity.html). 
+- Both Terraform Enterprise virtual machines have access to an external Redis server, a PostgreSQL database, and an S3-compatible blob storage bucket. Terraform Enterprise will use an internal Vault server by default. Optionally, you can configure Terraform Enterprise to utilize an [existing Vault cluster](../vault.html).  
 
 An example of a recommended setup:
 
