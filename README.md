@@ -29,11 +29,13 @@ This repository contains the build infrastructure and some of the content for [t
 
 - Fastly handles all the traffic.
 - The following paths (all marketing content, at the moment) are proxied to a Next.js app running on Vercel:
-    - `/` (the front page)
-    - `/community`
-    - `/cloud` (and all sub-paths under `/cloud`)
 
-    For help with these pages, talk to the Web Platform team!
+  - `/` (the front page)
+  - `/community`
+  - `/cloud` (and all sub-paths under `/cloud`)
+
+  For help with these pages, talk to the Web Platform team!
+
 - The rest of the site falls through to static pages built with [Middleman][]. That's what this repository manages!
 
 ## Where the Docs Live
@@ -43,17 +45,21 @@ This repository contains the build infrastructure and some of the content for [t
 Docs live in a couple different repos. (**To find a page the easy way:** view it on [terraform.io][] and click the "Edit this page" link at the bottom.)
 
 - This repository, under `content/source/docs/`:
-    - Terraform Cloud docs
-    - Terraform Enterprise docs
-    - Plugin Development
-    - Terraform Registry Publishing
 
-    **Notable branches:** `master` is the "live" content that gets deployed to terraform.io. The site gets redeployed for new commits to master.
+  - Terraform Cloud docs
+  - Terraform Enterprise docs
+  - Plugin Development
+  - Terraform Registry Publishing
+
+  **Notable branches:** `master` is the "live" content that gets deployed to terraform.io. The site gets redeployed for new commits to master.
+
 - [hashicorp/terraform][tf-repo], under `website/docs`:
-    - Terraform CLI docs
-    - Terraform Language docs
 
-    **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to master (and/or one of the long-lived version branches) first. See [More About `stable-website`][inpage-stable] below for more details.
+  - Terraform CLI docs
+  - Terraform Language docs
+
+  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to master (and/or one of the long-lived version branches) first. See [More About `stable-website`][inpage-stable] below for more details.
+
 - A few remaining provider repos... but those won't be here for long! All but a few have migrated to [the Registry](https://registry.terraform.io), and the rest are leaving soon.
 
 ## Deploying Changes to [terraform.io][]
@@ -65,21 +71,27 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
 
 ### For changes in `hashicorp/terraform`
+
 Merge the PR to main. The changes will appear in the next major Terraform release.
 
 If you need your changes to be deployed sooner, cherry-pick them to:
+
 - the current release branch (e.g. `v1.0`) and push. They will be deployed in the next minor version release (once every two weeks).
 - the `stable-website` branch and push. They will be included in the next site deploy (see below). Note that the release process resets `stable-website` to match the release tag, removing any additional commits. So, we recommend always cherry-picking to the version branch first and then to `stable-website` when needed.
 
+#### Backport Tags
+
+Instead of cherry-picking your commits to a specific version branch, you can add the associated backport tag (e.g., "1.1-backport") to your pull request before merging. After you merge, a bot automatically creates a pull request to add your commits to the version branch (linked in your original PR). You must manually merge the auto-generated PR into the version branch.
+
 ### Deployment
+
 Currently, HashiCorp uses a CircleCI job to deploy the [terraform.io](terraform.io) site. This job can be run manually by many people within HashiCorp, and also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
 
-
 New commits in `hashicorp/terraform` don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can trigger a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
-- Log in to circleci.com, and  make sure you're viewing the HashiCorp organization.
+
+- Log in to circleci.com, and make sure you're viewing the HashiCorp organization.
 - Go to the terraform-website project's list of workflows.
 - Find the most recent "website-deploy" workflow, and click the "Rerun workflow from start" button (which looks like a refresh button with a numeral "1" inside).
-
 
 ## Running the Site Locally
 
@@ -111,7 +123,7 @@ To preview changes from a fork of Terraform core, you need to first make sure th
 1. **Init:** Run `git submodule init ext/terraform`.
 2. **Update:** Run `git submodule update`.
 
-    The init command doesn't actually init things all the way, so if you forget to run update, you might have a bad afternoon. (For more information, see [Living With Submodules][inpage-submodules] below.)
+   The init command doesn't actually init things all the way, so if you forget to run update, you might have a bad afternoon. (For more information, see [Living With Submodules][inpage-submodules] below.)
 
 #### Changing
 
@@ -136,8 +148,8 @@ Once you finish testing your changes, you can reset the submodule to its normal 
 
 **Note:** If you're updating a nav sidebar `.erb` file in a provider or in Terraform core, the Middleman preview server might not automatically refresh the affected pages. The easiest way to deal with it is to stop and restart the preview server.
 
-
 ### From the `terraform` repository
+
 The build includes content from the `terraform` repository and the `terraform-website` repository, allowing you to preview the entire Terraform documentation site. You can find instructions in [terraform/website/README.md](https://github.com/hashicorp/terraform/tree/main/website).
 
 ## Writing Normal Docs Content
@@ -189,11 +201,11 @@ Content is in Markdown, with a few local syntax additions described below. Try t
 
 If you start a paragraph with a special arrow-like sigil, it will become a colored callout box. You can't make multi-paragraph callouts. For colorblind users (and for clarity in general), we try to start callouts with a strong-emphasized word to indicate their function.
 
-Sigil | Start text with  | Color
-------|------------------|-------
-`->`  | `**Note:**`      | blue
-`~>`  | `**Important:**` | yellow
-`!>`  | `**Warning:**`   | red
+| Sigil | Start text with  | Color  |
+| ----- | ---------------- | ------ |
+| `->`  | `**Note:**`      | blue   |
+| `~>`  | `**Important:**` | yellow |
+| `!>`  | `**Warning:**`   | red    |
 
 #### Learn Tutorial Crosslink Callouts
 
