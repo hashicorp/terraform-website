@@ -50,7 +50,7 @@ In order to enable a disaster recovery, or datacenter failover, the stateful ext
 
 ## Mounted Disk
 
-This mode will require you to specify the local path for data storage. The assumption is this local path is a mounted disk from either a SAN or NAS device (or some other replicated storage), allowing for rapid recovery or failover.
+This mode requires that you specify the local path for data storage. The local path should be a mounted disk from either a SAN or NAS device (or some other replicated storage), allowing for rapid recovery or failover.
 
 If you need or want to define storage externally and independently, you can choose the *External Services*
 operational mode. This is a more complicated implementation in VMware that requires you to independently manage other services which will not be detailed in this document. You will need to deploy S3-compatible storage either by connecting to a true AWS S3 bucket or by using a compatible alternative on-prem solution, such as [Ceph](https://ceph.com/). You will also need to deploy and separately manage an external PostgreSQL database on an additional server or servers.
