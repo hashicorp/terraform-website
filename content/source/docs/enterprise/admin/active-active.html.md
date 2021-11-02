@@ -75,9 +75,7 @@ tfe-app-config ()
 tfe-admin list-nodes
 ```
 
-This command will list the IP addresses of all active nodes in the active/active installation. Nodes send a heartbeat
-every 5 seconds to signal that they are active. If a heartbeat is not received within 30 seconds, the node is considered
-inactive and removed from this list.
+This command lists the IP addresses of all active nodes in the active/active installation. Nodes send a heartbeat every 5 seconds to signal that they are active. If Terraform Enterprise does not receive a heartbeat from a node within 30 seconds, it considers the node inactive and removes the node from the list.
 
 ## Other Supporting Commands
 
