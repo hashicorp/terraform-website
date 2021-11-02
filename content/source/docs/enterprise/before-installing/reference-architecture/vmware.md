@@ -53,23 +53,22 @@ We recommend a setup with the following:
 - A load balancer to route traffic to both Terraform Enterprise virtual machines. 
 - Both virtual machines located in the same physical datacenter and on the same network. High amounts of network latency between the Terraform Enterprise virtual machines and the external services may result in plan and apply slowness and errors. 
 - High-speed disks, as they are are [critical for good performance](../../system-overview/capacity.html). 
-- Both Terraform Enterprise virtual machines have access to an external Redis server, a PostgreSQL database, and an S3-compatible blob storage bucket. Terraform Enterprise will use an internal Vault server by default. Optionally, you can configure Terraform Enterprise to utilize an [existing Vault cluster](../vault.html).  
+- Both Terraform Enterprise virtual machines can access an external Redis server, a PostgreSQL database, and an S3-compatible blob storage bucket. Terraform Enterprise will use an internal Vault server by default. Optionally, you can configure Terraform Enterprise to use an [existing Vault cluster](../vault.html).  
 
 An example of a recommended setup:
 
 ![TFE Active/Active on VMware](./assets/RA-TFE-AA-VMware-SingleRegion.png)
 
-A load balancer is require to route traffic to both Terraform Enterprise virtual machines. Both virtual machines should reside in the same physical datacenter and on the same network. High amounts of network latency between the Terraform Enterprise virtual machines and the external services may result in plan and apply slowness and errors. As documented on the [Capacity and Performance](../../system-overview/capacity.html) page, high speed disks are critical for good performance. Both Terraform Enterprise virtual machines will require access to an external Redis server, a PostgreSQL database, and an S3-compatible blob storage bucket. By default Terraform Enterprise will use an internal Vault server. Optionally, you can configure Terraform Enterprise to utilize an [existing Vault cluster](../vault.html). 
 
 ### Active/Active Disaster Recovery
 
-You should back up and replicate the stateful external service (PostgreSQL and Blob Storage) to an offsite location to enable a disaster recovery or datacenter failover. You can use either the [Backup/Restore API](../../admin/backup-restore.html) or service-native tools for backups. You do not need to back up the the Redis instance because it is does not store stateful data. 
+You should back up and replicate the stateful external service (PostgreSQL and Blob Storage) to an offsite location to enable a disaster recovery or datacenter failover. You can use either the [Backup/Restore API](../../admin/backup-restore.html) or service-native tools for backups. You do not need to back up the the Redis instance because it does not store stateful data. 
 
 Redeploy the Terraform Enterprise virtual machines in the restore location using the same automation as in the primary datacenter, and update names and IP addresses for the external services as is necessary. 
 
 ## Standalone/Mounted Disk
 
-This mode requires that you specify the local path for data storage. The local path should be a mounted disk from either a SAN or NAS device (or some other replicated storage), allowing for rapid recovery or failover.
+This mode requires that you specify the local path for data storage. The local path should be a mounted disk from a SAN or NAS device, or some other replicated storage. This allows for rapid recovery or failover.
 
 If you need or want to define storage externally and independently, you can choose the *External Services*
 operational mode. This is a more complicated implementation in VMware that requires you to independently manage other services which will not be detailed in this document. You will need to deploy S3-compatible storage either by connecting to a true AWS S3 bucket or by using a compatible alternative on-prem solution, such as [Ceph](https://ceph.com/). You will also need to deploy and separately manage an external PostgreSQL database on an additional server or servers.
