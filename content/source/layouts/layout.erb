@@ -46,15 +46,20 @@
     <%= javascript_include_tag "terraform-overview/home-hero", defer: true %>
 
     <!-- Analytics scrpts -->
+
+    <!-- Segment -->
     <script defer>
       !function(){var e=window.analytics=window.analytics||[];if(!e.initialize)if(e.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{e.invoked=!0,e.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"],e.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),e.push(a),e}};for(var t=0;t<e.methods.length;t++){var a=e.methods[t];e[a]=e.factory(a)}e.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+e+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(t,a)},e.SNIPPET_VERSION="4.0.0",e.load("<%= segmentId %>")}}();var om597a24292a958,om597a24292a958_poll=function(){var e=0;return function(t,a){clearInterval(e),e=setInterval(t,a)}}();!function(e,t,a){if(e.getElementById(a))om597a24292a958_poll(function(){if(window.om_loaded&&!om597a24292a958)return(om597a24292a958=new OptinMonsterApp).init({s:"35109.597a24292a958",staging:0,dev:0,beta:0})},25);else{var n=!1,o=e.createElement("script");o.id=a,o.src="//a.optnmstr.com/app/js/api.min.js",o.async=!0,o.onload=o.onreadystatechange=function(){if(!(n||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState))try{n=om_loaded=!0,(om597a24292a958=new OptinMonsterApp).init({s:"35109.597a24292a958",staging:0,dev:0,beta:0}),o.onload=o.onreadystatechange=null}catch(e){}},(document.getElementsByTagName("head")[0]||document.documentElement).appendChild(o)}}(document,0,"omapi-script");
     </script>
+
+    <!-- Fathom -->
+    <script src="https://tarantula.hashicorp.com/script.js" data-site="UHBDQDQX" defer></script>
 
     <%= yield_content :head %>
   </head>
 
   <body id="<%= body_id_for(current_page) %>" class="<%= body_classes_for(current_page) %>">
-    <%= partial("layouts/alert_banner", locals: {show: true, theme: 'terraform', url:"https://hashiconf.com/global/?utm_campaign=22Q3_WW_HASHICONFGLOBAL_EVENT-USER&utm_source=CorpBanner&utm_medium=EVT&utm_offer=EVENT-USER", tag:"Oct 19-21", text:"The countdown to HashiConf Global is on. View the full schedule now.", cta:"View Schedule"}) %>
+    <%= partial("layouts/alert_banner", locals: {show: false, theme: 'terraform', url:"https://hashiconf.com/global/?utm_source=DocsBanner", tag:"Oct 19-21", text:"HashiConf Global is live.", cta:"Join Now"}) %>
 
     <header class="hashiStackMenuRoot hashiStackMenu">
             <nav class="nav g-container">
@@ -255,6 +260,8 @@
                 <li><a data-track='docs-providers' href="/docs/language/providers/index.html">Provider Use</a></li>
                 <li><a data-track='docs-extending' href="/docs/extend/index.html">Plugin Development</a></li>
                 <li><a data-track='docs-registry' href="/docs/registry/index.html">Terraform Registry Publishing</a></li>
+                <li><a data-track='docs-registry' href="/guides/terraform-integration-program.html">Terraform Integration Program</a></li>
+                <li><a data-track='docs-cdktf' href="/docs/cdktf/index.html">CDK for Terraform</a></li>
                 <li><a data-track='docs-glossary' href="/docs/glossary.html">Glossary</a></li>
               EOT
             %>

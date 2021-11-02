@@ -281,15 +281,17 @@ You don't need to add anything special to a sidebar to get the dynamic JavaScrip
 
 [inpage-submodules]: #using-submodules
 
-Right now, the only submodule that matters much is the one for hashicorp/terraform. (We used to have a lot more, back when we hosted the documentation for most providers on terraform.io.)
+Submodules are used in this project to allow teams that work on different parts of terraform that are housed in different repos to all be able to contribute docs to the docs website at their own pace and in the way they prefer, while keeping the documentation content alongside the core code.
 
-In your local checkout of this repo, Git submodules can be active or sleeping. The `git submodule init <PATH>` and `git submodule deinit <PATH>` commands switch them between the two states.
+Right now, there are two submodules included in this project: `hashicorp/terraform` and `hashicorp/terraform-cdk`. (We used to have a lot more, back when we hosted the documentation for most providers on terraform.io.)
 
-Once you `init` a submodule, you usually need to run `git submodule update`, which will either do the initial checkout or update the working copy to the commit that `terraform-website` currently expects.
+In your local checkout of this repo, Git submodules can be active or inactive. The first time you clone the repo, unless you have modified your git command defaults, the submodules will all default to being inactive, and their folders will be empty. To activate all submodules, run `git init submodule`. To activate only certain submodules, a path can be passed to the command as such: `git submodule init <PATH>`. To switch a submodule back to bring inactive `git submodule deinit <PATH>` can be used, though this is not typically necessary.
 
-If a submodule shows up as "changed" in `git status` but you haven't done anything with it, it probably just means you updated your `terraform-website` branch and it now says the submodule should be at a newer commit. Run `git submodule update` to resolve it. Inactive submodules don't show up in `git status`.
+Once you `init` a submodule, you usually need to run `git submodule update`, which will either do the initial checkout or update the working copy to the commit that `terraform-website` currently expects. Every time that changes are made to the upstream repo that the submodule represents, it will need to be updated as well.
 
-In general, you should never need to commit a submodule update to `terraform-website`; they're updated automatically during releases, and deploys use fresh content from the upstream stable-website branch anyway.
+If a submodule shows up as "changed" in `git status` but you haven't done anything with it, it probably means that the upstream repo of a submodule was updated and you need to "pull" that update to point to the most recent commit. Run `git submodule update` to resolve this and you should see a clean `git status` return. Inactive submodules don't show up in `git status`.
+
+In general, you should never need to commit a submodule update to `terraform-website`; they're updated automatically during releases, and deploys use fresh content from the upstream stable-website branch anyway. If you are going to commit and see a submodule as "changed" in `git status`, you probably need to update the submodule to the most recent commit in the upstream repo using `git submodule update`. If that doesn't work, please reach out to a team member for support -- committing changes to a submodule can cause serious issues.
 
 Avoid running `git rm` on a submodule unless you know what you're doing. You usually want `git submodule deinit` instead.
 

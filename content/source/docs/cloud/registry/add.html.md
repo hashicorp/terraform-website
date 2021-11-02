@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Adding Public Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Learn to add public modules from the public Terraform Registry to your organization's private module registry.  
+  Learn to add public modules from the public Terraform Registry to your organization's private module registry.
 ---
 
 [vcs]: ../vcs/index.html
@@ -24,22 +24,27 @@ All members of an organization can view and use public modules, but you need [ow
 
     ![Terraform Cloud screenshot: the "registry" button and the "find public modules" button](./images/add-find-button.png)
 
-    The Search Public Modules page appears.
+    The "Search Public Modules" page appears.
+
+    ![Terraform Cloud screenshot: the Search Public Modules page](./images/add-search-public-modules.png)
+
+
 2. Enter any combination of namespaces (e.g. hashicorp), module names, and provider names to find public modules.
 
-
 3. Do one of the following to add a module to your private module registry:
-     - Hover over the module and click "+ Add" (shown below). 
-     - Click the module to view its details and then click "Add to Terraform Cloud".
+   - Hover over the module and click "+ Add".
+      ![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-button.png)
+   - Click the module to view its details and then click "Add to Terraform Cloud".
+      ![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-to-terraform-cloud-button.png)
 
-     ![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-button.png)
 
 4. Click "Add to organization" in the dialog box. The module is now included in the private module registry's list of available public modules, and members of your organization can begin using it.
+
 ## Deleting a Public Module
 
 Deleting a public module from a private module registry does not remove it from the Terraform Registry. To delete a public module from your organization's module registry:
 
-1. Select the module to view its details, open the "Manage Module for Organization" dropdown menu, and click  "Delete module".
+1. Select the module to view its details, open the "Manage Module for Organization" dropdown menu, and click "Delete module".
+   ![Terraform Cloud screenshot: the delete module button](./images/add-delete-module-button.png)
 
 2. Enter the module name in the dialog box to confirm and then click "Delete."
-     ![Terraform Cloud screenshot: the delete module button](./images/add-delete-module-button.png)

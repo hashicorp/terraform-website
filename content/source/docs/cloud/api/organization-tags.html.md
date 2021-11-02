@@ -24,13 +24,25 @@ page_title: "Organization Tags - API Docs - Terraform Cloud and Terraform Enterp
 
 This API returns the list of tags used with all resources across the organization. Tags can be added to this pool directly or via those resources. Tags deleted here will be removed from all other resources. Tags can be added, applied, removed and deleted in bulk.
 
-## Get Tags
+## List Tags
 
 `GET /organizations/:organization_name/tags`
 
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to list tags from
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter                      | Description
+-------------------------------|------------
+`q`                            | **Optional.** A search query string.  Organization tags are searchable by name likeness.
+`filter[exclude][taggable][id]`| **Optional.** If specified, omits organization's related workspace's tags.
+`page[number]`                 | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                   | **Optional.** If omitted, the endpoint will return 20 organization tags per page.
+
 
 ### Sample Request
 

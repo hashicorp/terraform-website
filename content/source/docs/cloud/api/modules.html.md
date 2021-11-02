@@ -82,7 +82,7 @@ $ curl \
   https://app.terraform.io/api/registry/public/v1/modules/my-gh-repo-org/consul/aws/versions
 ```
 
-## List Registry Modules for an organization
+## List Registry Modules for an Organization
 
 `GET /organizations/:organization_name/registry-modules`
 
@@ -97,16 +97,16 @@ Status  | Response                                           | Reason
 [200][] | [JSON API document][] (`type: "registry-modules"`) | The request was successful
 [404][] | [JSON API error object][]                          | Modules not found or user unauthorized to perform action
 
-### Filtering / Pagination
+### Query Parameters
 
-This endpoint supports Filtering and Pagination via the following attributes:
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
-Query Parameter                     | Description
+Parameter                           | Description
 ------------------------------------|---------------------
-`q=<wild card filter>`              | a wild card filter that will match full words for the name, namespace, provider fields for modules
-`filter[<field name>]=<field name>` | an exact filter that will match a given field. The available fields to filter on are `registry_name`, `provider`, and `organization_name`.
-`page[number]=<page>`               | which page to return from the paginated results
-`page[size]=<size>`                 | size of pages to return with the paginated results. The default is `20` with a max of `100`
+`q`                                 | **Optional.** A search query string.  Modules are searchable by name, namespace, provider fields.
+`filter[field name]`                | **Optional.** If specified, restricts results to those with the matching field name value.  Valid values are `registry_name`, `provider`, and `organization_name`.
+`page[number]`                      | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                        | **Optional.** If omitted, the endpoint will return 20 registry modules per page.
 
 ### Sample Request
 
@@ -360,7 +360,7 @@ Key path                        | Type   | Default | Description
 --------------------------------|--------|---------|------------
 `data.type`                     | string |         | Must be `"registry-modules"`.
 `data.attributes.name`          | string |         | The name of this module. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
-`data.attributes.provider`      | string |         | Specifies the Terraform provider that this module is used for. May contain alphanumeric characters. Maximum length is 64 characters.
+`data.attributes.provider`      | string |         | Specifies the Terraform provider that this module is used for. May contain lowercase alphanumeric characters. Maximum length is 64 characters.
 `data.attributes.namespace`     | string |         | The namespace of this module. Cannot be set for private modules. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
 `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`.
 
@@ -372,7 +372,6 @@ Key path                        | Type   | Default | Description
     "type": "registry-modules",
     "attributes": {
       "name": "my-module",
-      "namespace": "my-organization",
       "provider": "aws",
       "registry-name": "private"
     }
@@ -619,7 +618,7 @@ curl \
 
 After the registry module version is successfully parsed, its status will become `"ok"`.
 
-## GET a Module
+## Get a Module
 
 ~> **Deprecation warning**: the following endpoint `GET /registry-modules/show/:organization_name/:name/:provider` is replaced by the below endpoint and will be removed from future versions of the API!
 
@@ -633,7 +632,7 @@ Parameter            | Description
 `:organization_name` | The name of the organization the module belongs to.
 `:namespace`         | The namespace of the module. For private modules this is the name of the organization that owns the module.
 `:name`              | The module name.
-`:provider`          | The module provider.
+`:provider`          | The module provider. Must be lowercase alphanumeric.
 `:registry-name`     | Either `public` or `private`.
 
 Status  | Response                                           | Reason

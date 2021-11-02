@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Terraform Cloud Run Tasks Integrations Setup"
 description: |-
-  Run tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. 
+  Run tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle.
 
 ---
 -> Note: As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
@@ -69,19 +69,35 @@ Here's what the data flow looks like:
 
 When creating your event hook, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `x-tfc-event-hook-signature` header when calling your service.
 
+The signature is a sha512 sum of the webhook body using the provided HMAC key. The generation of the signature depends on your implementation, however an example of how to generate a signature in bash is provided below.
+
+```bash
+$ echo -n $WEBHOOK_BODY | openssl dgst -sha512 -hmac "$HMAC_KEY"
+```
+
 ## Run Tasks Technology Partners
+
+### Snyk
+
+Snyk’s integration with Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
+
+To get started, [create a free Snyk account](https://snyk.io/) and follow the instructions in the [Integrating Snyk with Terraform Cloud](https://docs.snyk.io/features/integrations/ci-cd-integrations/integrating-snyk-with-terraform-cloud) user documentation.
 
 ### Bridgecrew
 
-Bridgecrew helps teams address security and compliance errors in Terraform as part of each and every code review. *coming soon
+Bridgecrew helps teams address security and compliance errors in Terraform as part of each and every code review.
 
-### cloudtamer.io
-
-When using cloudtamer.io, customers can choose to focus on cost savings or compliance findings on an active account.
+To get started, sign up for an eligible [pricing](https://bridgecrew.io/pricing/) plan, and follow the instructions in the [Integration via Run Tasks](https://docs.bridgecrew.io/docs/integrate-with-terraform-cloud#integration-via-run-tasks) user documentation.
 
 ### Infracost
 
 Infracost allows for cloud infrastructure costing, initiated right from a PR or Terraform run.
+
+To get started, [sign up](https://dashboard.infracost.io/tfc-sign-up) for the Infracost Terraform Cloud integration, and follow the instructions in the [Terraform Cloud Run Tasks](https://www.infracost.io/docs/iac_tools/terraform_cloud_enterprise#terraform-cloud-run-tasks) user documentation.
+
+### cloudtamer.io
+
+When using cloudtamer.io, customers can choose to focus on cost savings or compliance findings on an active account.
 
 ### Lightlytics
 
@@ -90,7 +106,3 @@ From security checks to any additional dependency changes, Lightlytics’s integ
 ### Refactr
 
 Refactr’s integration allows for users to build workflows for multiple use cases including but not limited to code scanning.
-
-### Snyk
-
-Snyk’s integration with Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.

@@ -606,6 +606,14 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][]                        | Successfully returned a list of outputs for the given state version
 [404][] | [JSON API error object][]                    | State version not found, or user unauthorized to perform action
 
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter                   | Description
+----------------------------|------------
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                | **Optional.** If omitted, the endpoint will return 20 state version outputs per page.
 
 ### Sample Request
 
