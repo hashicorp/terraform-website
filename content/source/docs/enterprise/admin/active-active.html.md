@@ -38,7 +38,7 @@ support-bundles
 #### node-drain
 
 ```bash
-tfe-admin node-drain 
+tfe-admin node-drain
 ```
 
 This command will quiesce the current node and remove it from service. It will allow current work to complete and safely stop the node from picking up any new jobs from the Redis queue, allowing the application to be safely stopped. Currently, it only affects `localhost` (it does not support running on one node to drain other nodes). Currently, there is no reverse drain command - a restart is needed to restore the node.
@@ -50,11 +50,11 @@ This command will quiesce the current node and remove it from service. It will a
 tfe-admin app-config -k <KEY> -v <VALUE>
 ```
 
-This command allows you to use the CLI to make real-time application changes, such as `capacity_concurrency`. You must provide both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value). Run `replicatedctl app-config export` for a complete list of the current `app-config` settings. 
+This command allows you to use the CLI to make real-time application changes, such as `capacity_concurrency`. You must provide both an allowable `<KEY>` (setting name) and `<VALUE>` (new setting value). Run `replicatedctl app-config export` for a complete list of the current `app-config` settings.
 
 For the configuration changes to take effect, you must restart the Terraform Enterprise application **on each node instance**. To restart Terraform Enterprise:
-1. Run `replicatedctl app stop` to stop the application. 
-2. Run `replicatedctl app status` to confirm the application is stopped. 
+1. Run `replicatedctl app stop` to stop the application.
+2. Run `replicatedctl app status` to confirm the application is stopped.
 3. Run `replicatedctl app start` to start the application.
 
 -> **Note:** You should ensure that any ad hoc changes made in this fashion are captured in the standard node build configuration, as the next time you build/rebuild a node only the configuration stored for that purpose will be in effect and ad hoc changes could be lost.
@@ -68,6 +68,14 @@ tfe-app-config ()
         tfe-admin app-config -k "$1" -v "$2"
 }
 ```
+
+#### list-nodes
+
+```bash
+tfe-admin list-nodes
+```
+
+This command lists the IP addresses of all active nodes in the active/active installation. Nodes send a heartbeat every 5 seconds to signal that they are active. If Terraform Enterprise does not receive a heartbeat from a node within 30 seconds, it considers the node inactive and removes the node from the list.
 
 ## Other Supporting Commands
 
