@@ -6,7 +6,7 @@ orbs:
 
 references:
   images:
-    middleman: &MIDDLEMAN_IMAGE docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:0.3.44
+    middleman: &MIDDLEMAN_IMAGE docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:0.3.47
     ubuntu: &UBUNTU_IMAGE ubuntu-1604:201903-01
     # We rely on dart-lang/sdk commit 7e7c01e804179782f884b174706ed0c80fb2ef71
     # -- earliest viable container version is 2.11.0-182.0.dev
