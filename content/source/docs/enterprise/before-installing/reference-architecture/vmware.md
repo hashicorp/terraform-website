@@ -46,7 +46,9 @@ A load balancer is require to route traffic to both Terraform Enterprise virtual
 
 ### Active/Active Disaster Recovery
 
-In order to enable a disaster recovery, or datacenter failover, the stateful external service - PostgreSQL and Blob Storage - should be backed up and replicated to an offsite location. The Redis instance is not used for stateful data and the data stored there does not need to be backed up. The Terraform Enterprise virtual machines should be redeployed in the restore location using the same automation as in primary datacenter, but with updated (if appropriate) names and IP addresses for the external services. Backups of the external services data can be done via the [Backup/Restore API](../../admin/backup-restore.html) or via service-native tools. 
+You should back up and replicate the stateful external service (PostgreSQL and Blob Storage) to an offsite location to enable a disaster recovery or datacenter failover. You can use either the [Backup/Restore API](../../admin/backup-restore.html) or service-native tools for backups. You do not need to back up the the Redis instance because it is does not store stateful data. 
+
+Redeploy the Terraform Enterprise virtual machines in the restore location using the same automation as in the primary datacenter, and update names and IP addresses for the external services as is necessary. 
 
 ## Mounted Disk
 
