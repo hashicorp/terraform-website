@@ -8,6 +8,8 @@ description: |-
 
 # Terraform Enterprise VMware Reference Architecture
 
+## Introduction
+
 This document provides recommended practices and a reference architecture for
 HashiCorp Terraform Enterprise implementations on VMware.
 
