@@ -11,6 +11,15 @@ description: |-
 This document provides recommended practices and a reference architecture for
 HashiCorp Terraform Enterprise implementations on VMware.
 
+## Implementation Modes
+
+Terraform Enterprise can be installed and function in different implementation modes with increasing capability and complexity:
+
+- _Standalone/Mounted Disk:_ The base architecture with a single application node that supports the standard implementation requirements for the platform.
+- _Active/Active:_ This is an extension of _Standalone_ mode that adds multiple active node capability that can expand horizontally to support larger and increasing execution loads.
+
+This guide will present the base _Active/Active_ mode first and then discuss the differences that alter the implementation into the _Standalone/Mounted Disk_ mode.
+
 ## Required Reading
 
 Prior to making hardware sizing and architectural decisions, read through the
@@ -56,7 +65,7 @@ You should back up and replicate the stateful external service (PostgreSQL and B
 
 Redeploy the Terraform Enterprise virtual machines in the restore location using the same automation as in the primary datacenter, and update names and IP addresses for the external services as is necessary. 
 
-## Mounted Disk
+## Standalone/Mounted Disk
 
 This mode requires that you specify the local path for data storage. The local path should be a mounted disk from either a SAN or NAS device (or some other replicated storage), allowing for rapid recovery or failover.
 

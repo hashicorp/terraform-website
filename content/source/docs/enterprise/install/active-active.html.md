@@ -483,3 +483,12 @@ The minimum instance size for Redis to be used with TFE is 6 GiB. For Azure, thi
 Make sure you configure the minimum TLS version to the TFE supported version of 1.2 as the Azure resource defaults to 1.0. The default port for Azure Cache for Redis is 6380 and will need to be modified in the Application Settings `ptfe-replicated.conf` in order for TFE to connect to Azure Cache for Redis.
 
 The default example provided on the provider page can be used to deploy Azure Cache for Redis [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache). The outputs of the resource can then be provided to the Terraform module in order to configure connectivity
+
+
+##
+
+## Appendix 4: Redis on VMware
+
+Redis on VMware was tested with a virtual machine with 2 CPUs and 8 Gb of memory running Ubuntu 20.04. Both Redis v5 and v6 are supported. 
+
+The sizing of your Redis server will depend on your company or organization's workload. Monitoring of the virtual machine and resizing based on utilization is recommended. More details on memory utilization can be found on [Redis' website](https://redis.io/topics/memory-optimization). 
