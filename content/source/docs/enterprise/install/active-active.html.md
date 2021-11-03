@@ -489,6 +489,6 @@ The default example provided on the provider page can be used to deploy Azure Ca
 
 ## Appendix 4: Redis on VMware
 
-Redis on VMware was tested with a virtual machine with 2 CPUs and 8 Gb of memory running Ubuntu 20.04. Both Redis v5 and v6 are supported. 
+Redis on VMware was tested with a virtual machine with 2 CPUs and 8 Gb of memory running Ubuntu 20.04. Both Redis v5 and v6 are supported. A full list of supported Operating Systems can be found on the [Pre-Install Checklist](https://www.terraform.io/docs/enterprise/before-installing/index.html#operating-system-requirements).
 
 The sizing of your Redis server will depend on your company or organization's workload. Monitoring of the virtual machine and resizing based on utilization is recommended. More details on memory utilization can be found on [Redis' website](https://redis.io/topics/memory-optimization). 
