@@ -44,7 +44,7 @@ Click a provider or module to view its details page. Use the **Versions** dropdo
 
 ### Viewing Nested Modules and Examples
 
-If a module contains nested modules following the [standard module structure](/docs/language/modules/develop/structure.html), then you can use the **Submodules** dropdown to navigate to the detail pages for nested modules. If there are examples, you can use the **Examples** dropdown to navigate to the detail pages for example modules.
+Use the **Submodules** dropdown to navigate to the detail pages for any nested modules. Use the **Examples** dropdown to navigate to the detail pages for any available example modules.
 
 ![Terraform Cloud screenshot: a module submodules button](./images/using-submodules-dropdown.png)
 
