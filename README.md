@@ -58,7 +58,7 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
   - Terraform CLI docs
   - Terraform Language docs
 
-  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to master (and/or one of the long-lived version branches) first. See [More About `stable-website`][inpage-stable] below for more details.
+  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to `master` (and/or one of the long-lived version branches) first. See [More About `stable-website`][inpage-stable] below for more details.
 
 - A few remaining provider repos... but those won't be here for long! All but a few have migrated to [the Registry](https://registry.terraform.io), and the rest are leaving soon.
 
