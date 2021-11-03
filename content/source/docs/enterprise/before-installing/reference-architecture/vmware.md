@@ -127,7 +127,7 @@ For more information about Terraform Enterprise's disk requirements, see [Before
 
 The Active/Active mode provides a higher level of availability and failover as well as horizontal scaling. It requires additional external services, and all of the requirements and instructions are available on the [Terraform Enterprise Active/Active page](../../install/active-active.html). 
 
-We have tested Active/Active on VMWare internally on ESX version 7.0.1 and vCenter Server Appliance version 7.0.2.00200. 
+We have tested Active/Active on VMWare internally on ESX version 7.0.1 and vCenter Server Appliance version 7.0.2.00200, but should work on any version supported by the [vSphere Provider for Terraform](https://github.com/hashicorp/terraform-provider-vsphere).
 
 We recommend a setup with the following:
 
