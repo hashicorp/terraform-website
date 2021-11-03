@@ -85,7 +85,7 @@ Instead of cherry-picking your commits to a specific version branch, you can add
 
 ### Deployment
 
-Currently, HashiCorp uses a CircleCI job to deploy the [terraform.io](terraform.io) site. Many people within HashiCorp can run this job manually, and it also runs automatically whenever a user in the HashiCorp GitHub org merges changes to master in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
+Currently, HashiCorp uses a CircleCI job to deploy the [terraform.io](terraform.io) site. Many people within HashiCorp can run this job manually, and it also runs automatically whenever a user in the HashiCorp GitHub org merges changes to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
 
 New commits in `hashicorp/terraform` don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can trigger a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
 
