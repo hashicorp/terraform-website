@@ -31,7 +31,7 @@ You can also use the search field to filter for titles that contain the specifie
 
 ### Shared Modules - Terraform Enterprise
 
-On Terraform Enterprise, your [module sharing](/docs/enterprise/admin/module-sharing.html) configuration may grant you access to modules outside your organization. Modules that are shared with your current organization have a "Shared" badge (below). Modules in your current organization that are shared with other organizations have a badge that says "Sharing".
+On Terraform Enterprise, your [module sharing](/docs/enterprise/admin/module-sharing.html) configuration may grant you access to modules outside your organization. Modules that are shared with your current organization have a **Shared** badge (below). Modules in your current organization that are shared with other organizations have a badge that says **Sharing**.
 
 ![Terraform Enterprise screenshot: shared module](./images/using-modules-list-shared.png)
 
@@ -44,13 +44,13 @@ Click a provider or module to view its details page. Use the **Versions** dropdo
 
 ### Viewing Nested Modules and Examples
 
-If a module contains nested modules following the [standard module structure](/docs/language/modules/develop/structure.html), then you can use the "Submodules" dropdown to navigate to the detail pages for nested modules. If there are examples, you can use the "Examples" dropdown to navigate to the detail pages for example modules.
+If a module contains nested modules following the [standard module structure](/docs/language/modules/develop/structure.html), then you can use the **Submodules** dropdown to navigate to the detail pages for nested modules. If there are examples, you can use the **Examples** dropdown to navigate to the detail pages for example modules.
 
 ![Terraform Cloud screenshot: a module submodules button](./images/using-submodules-dropdown.png)
 
 ## Using Providers in Configurations
 
-The syntax for public providers in your private registry is the same as for providers that you use directly from the public Terraform Registry. The syntax for the [provider block](/docs/language/providers/configuration.html) `source` argument is `<NAMESPACE>/<PROVIDER>`. 
+The syntax for public providers in your private registry is the same as for providers that you use directly from the public Terraform Registry. The syntax for the [provider block](/docs/language/providers/configuration.html) `source` argument is `<NAMESPACE>/<PROVIDER>`.
 
 ``` hcl
 terraform {
