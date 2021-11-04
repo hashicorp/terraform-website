@@ -40,7 +40,9 @@ All members of an organization can view and use public providers and modules, bu
 
 ## Deleting a Public Provider or Module
 
-Deleting a public provider or module from a private registry does not remove it from the Terraform Registry. To delete a public provider or module from your organization's module registry:
+Deleting a public provider or module from a private registry does not remove it from the Terraform Registry. 
+
+To delete a public provider or module from your organization's module registry:
 
 1. Click **Registry** in the main navigation bar to go to your organization's private registry.
 
