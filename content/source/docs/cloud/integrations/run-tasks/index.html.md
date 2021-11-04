@@ -13,13 +13,13 @@ In addition to using existing technology partners integrations, HashiCorp Terraf
 
 ## Prerequisites
 
-To build a custom integration, you must have a server capable of receiving requests from Terraform Cloud and responding with a status update to a supplied callback URL. When creating an event hook, you supply an endpoint url to receive the hook. We send a test POST to the supplied URL, and it must respond with a 200 for the event hook to be created.
+To build a custom integration, you must have a server capable of receiving requests from Terraform Cloud and responding with a status update to a supplied callback URL. When creating a run task, you supply an endpoint url to receive the hook. We send a test POST to the supplied URL, and it must respond with a 200 for the run task to be created.
 
 This feature relies heavily on the proper parsing of [plan JSON output](../../../internals/json-format.html). When sending this output to an external system, be certain that system can properly interpret the information provided.
 
 ## Integration Details
 
-When a run reaches the pre-apply phase and an event hook is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the event hook should respond `200 OK`, or Terraform will retry to trigger the hook.
+When a run reaches the pre-apply phase and a run task is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the run task should respond `200 OK`, or Terraform will retry to trigger the run task.
 
 ```json
 {
@@ -65,9 +65,9 @@ Here's what the data flow looks like:
 
 ![Screenshot: a diagram of the user and data flow for a Terraform Cloud run task](./images/terraform-cloud-run-tasks-diagram.png)
 
-## Securing your Event Hook
+## Securing your Run Task
 
-When creating your event hook, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `x-tfc-event-hook-signature` header when calling your service.
+When creating your run task, you can supply an HMAC key which Terraform Cloud will use to create a signature of the payload in the `x-tfc-run-task-signature` header when calling your service.
 
 The signature is a sha512 sum of the webhook body using the provided HMAC key. The generation of the signature depends on your implementation, however an example of how to generate a signature in bash is provided below.
 
