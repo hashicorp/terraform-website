@@ -140,7 +140,7 @@ This endpoint supports pagination [with standard URL query parameters](./index.h
 
 Parameter           | Description
 --------------------|------------
-`include`           | **Optional.** Allows including related resource data. Value must be a comma-separated list containing one or more of `workspace-tasks` or `workspace-tasks.workspace`.
+`include`           | **Optional.** Allows including related resource data. Value must be a comma-separated list containing one or more of `workspace_tasks` or `workspace_tasks.workspace`.
 `page[number]`      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`        | **Optional.** If omitted, the endpoint will return 20 policy sets per page.
 
@@ -218,7 +218,7 @@ Status  | Response                                      | Reason
 
 Parameter | Description
 ----------|------------
-`include` | **Optional.** Allows including related resource data. Value must be a comma-separated list containing one or more of `workspace-tasks` or `workspace-tasks.workspace`.
+`include` | **Optional.** Allows including related resource data. Value must be a comma-separated list containing one or more of `workspace_tasks` or `workspace_tasks.workspace`.
 
 ### Sample Request
 
