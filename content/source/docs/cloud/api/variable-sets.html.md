@@ -5,9 +5,9 @@ page_title: "Variable Sets - API Docs - Terraform Cloud and Terraform Enterprise
 
 # Variable Sets API
 
-This set of APIs covers create, update, list, delete, and some specialized operations.
+A[variable set](/docs/cloud/workspaces/variables.html#variable-sets) is a resource that allows you to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to one or all workspaces.
 
-Viewing Variable Sets requires access to the owning organization. Destructive actions require organization admin status or workspace management permissions.
+You need [`read variables` permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace and to view the variable sets in the owning organization. You need [read and write variables permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to create and edit variable sets. 
 
 
 ## Create a Variable Set
