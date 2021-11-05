@@ -20,7 +20,7 @@ Terraform Enterprise can be installed and function in different implementation m
 - _Standalone/Mounted Disk:_ The base architecture with a single application node that supports the standard implementation requirements for the platform.
 - _Active/Active:_ This is an extension of _Standalone_ mode that adds multiple active node capability that can expand horizontally to support larger and increasing execution loads.
 
-This guide will present the base _Active/Active_ mode first and then discuss the differences that alter the implementation into the _Standalone/Mounted Disk_ mode.
+This guide will present the base _Standalone/Mounted Disk_ mode first and then discuss the differences that alter the implementation into the _Active/Active_ mode.
 
 ## Required Reading
 
