@@ -25,6 +25,8 @@ As mentioned above, the Active/Active architecture requires an existing [automat
 
 The primary requirement is an auto scaling group (or equivalent) with a single instance running Terraform Enterprise. This ASG should be behind a load balancer and can be exposed to the public Internet or not depending on your requirements. As mentioned earlier, the installation of the Terraform Enterprise application should be automated completely so that the auto scaling group can be scaled to zero and back to one without human intervention. 
 
+-> **Note**: Active/Active installations on VMWare infrastructure also require you to configure a Load Balancer to route traffic across the Terraform Enterprise servers. This documentation does not cover that setup. While auto-scaling groups are not available via native VCenter options, you must still configure a fully automated deployment. You must also reduce the available servers to one server for upgrades, maintenance, and support.
+
 The application itself must be using [External Services](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision) mode to connect to an external PostgreSQL database and object storage. 
 
 All admin and application configuration must be automated via your settings files and current with running configuration, i.e. it cannot have been altered via the Replicated Admin Console and not synced to the file. Specifically, you should be using the following configuration files:
@@ -481,3 +483,12 @@ The minimum instance size for Redis to be used with TFE is 6 GiB. For Azure, thi
 Make sure you configure the minimum TLS version to the TFE supported version of 1.2 as the Azure resource defaults to 1.0. The default port for Azure Cache for Redis is 6380 and will need to be modified in the Application Settings `ptfe-replicated.conf` in order for TFE to connect to Azure Cache for Redis.
 
 The default example provided on the provider page can be used to deploy Azure Cache for Redis [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache). The outputs of the resource can then be provided to the Terraform module in order to configure connectivity
+
+
+##
+
+## Appendix 4: Redis on VMware
+
+Redis on VMware was tested with a virtual machine with 2 CPUs and 8 Gb of memory running Ubuntu 20.04. Both Redis v5 and v6 are supported. A full list of supported Operating Systems can be found on the [Pre-Install Checklist](https://www.terraform.io/docs/enterprise/before-installing/index.html#operating-system-requirements).
+
+The sizing of your Redis server will depend on your company or organization's workload. Monitoring of the virtual machine and resizing based on utilization is recommended. More details on memory utilization can be found on [Redis' website](https://redis.io/topics/memory-optimization). 

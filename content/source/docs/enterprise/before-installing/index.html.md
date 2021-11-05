@@ -37,6 +37,8 @@ The operational mode is selected at install time and cannot be changed once Terr
    for users with expertise managing PostgreSQL or users that have access
    to managed PostgreSQL offerings like the offers from [Amazon](https://aws.amazon.com/rds/), [Azure](https://azure.microsoft.com/en-us/services/postgresql/), or [Google Cloud](https://cloud.google.com/sql/docs/postgres/).
 
+1. *Active/Active* - This mode has the same requirements as External Services, with the additions of an external Redis server, and a fully automated install method. Information about how to perform this type of install can be found on the [Active/Active](../../install/active-active.html) page.
+
 1. *Mounted Disk* - This mode stores data in a separate
    directory on the host, with the intention that the directory is
    configured to store its data on an external disk, such as EBS, iSCSI,
@@ -82,6 +84,10 @@ Make sure your data storage services or device meet Terraform Enterprise's requi
         - In environments without their own storage service, it may be possible to use [Minio](https://minio.io) for object storage. See the [Minio Setup Guide](./minio-setup-guide.html) for details.
     - Optionally: if you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](./vault.html).
 
+- *Active/Active*
+    - Redis server v5 or v6
+    - Redis Cluster is *not* supported.
+
 - *Mounted Disk*
     - [Mounted Disk Requirements](./disk-requirements.html)
 
@@ -97,12 +103,12 @@ Terraform Enterprise currently supports running under the following operating sy
 
 - **Standalone deployment:**
 
-    - Debian 7.7+
+    - Debian 9 - 10
     - Ubuntu 14.04.5 / 16.04 / 18.04 / 20.04
-    - Red Hat Enterprise Linux 7.4 - 7.9
-    - CentOS 7.4 - 7.9
+    - Red Hat Enterprise Linux 7.4 - 7.9 / 8.4
+    - CentOS 7.4 - 7.9 / 8.4
     - Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
-    - Oracle Linux 7.4 - 7.9
+    - Oracle Linux 7.4 - 7.9 / 8.4
 
 ### Hardware Requirements
 

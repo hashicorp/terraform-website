@@ -8,8 +8,19 @@ description: |-
 
 # Terraform Enterprise VMware Reference Architecture
 
+## Introduction
+
 This document provides recommended practices and a reference architecture for
 HashiCorp Terraform Enterprise implementations on VMware.
+
+## Implementation Modes
+
+Terraform Enterprise can be installed and function in different implementation modes with increasing capability and complexity:
+
+- _Standalone/Mounted Disk:_ The base architecture with a single application node that supports the standard implementation requirements for the platform.
+- _Active/Active:_ This is an extension of _Standalone_ mode that adds multiple active node capability that can expand horizontally to support larger and increasing execution loads.
+
+This guide will present the base _Standalone/Mounted Disk_ mode first and then discuss the differences that alter the implementation into the _Active/Active_ mode.
 
 ## Required Reading
 
@@ -27,12 +38,12 @@ Depending on the chosen [operational
 mode](../index.html#operational-mode-decision),
 the infrastructure requirements for Terraform Enterprise range from a single virtual machine
 for demo or proof of concept installations, to multiple virtual machines
-hosting the Terraform Cloud application, PostgreSQL, and external Vault servers for
+hosting the Terraform Cloud application, PostgreSQL, Redis, and external Vault servers for
 a stateless production installation.
 
-This reference architecture **recommends and focuses on** the *Mounted Disk* operational mode. This mode will require you to specify the local path for data storage. The assumption is this
-local path is a mounted disk from either a SAN or NAS device (or some other
-replicated storage), allowing for rapid recovery or failover.
+## Standalone/Mounted Disk
+
+This mode requires that you specify the local path for data storage. The local path should be a mounted disk from a SAN or NAS device, or some other replicated storage. This allows for rapid recovery or failover.
 
 If you need or want to define storage externally and independently, you can choose the *External Services*
 operational mode. This is a more complicated implementation in VMware that requires you to independently manage other services which will not be detailed in this document. You will need to deploy S3-compatible storage either by connecting to a true AWS S3 bucket or by using a compatible alternative on-prem solution, such as [Ceph](https://ceph.com/). You will also need to deploy and separately manage an external PostgreSQL database on an additional server or servers.
@@ -112,6 +123,23 @@ We recommend that each of these VMs be deployed as immutable architecture to ena
 
 For more information about Terraform Enterprise's disk requirements, see [Before Installing: Disk Requirements](../disk-requirements.html).
 
+## Active/Active
+
+The Active/Active mode provides a higher level of availability and failover as well as horizontal scaling. It requires additional external services, and all of the requirements and instructions are available on the [Terraform Enterprise Active/Active page](../../install/active-active.html). 
+
+We have tested Active/Active on VMWare internally on ESX version 7.0.1 and vCenter Server Appliance version 7.0.2.00200, but should work on any version supported by the [vSphere Provider for Terraform](https://github.com/hashicorp/terraform-provider-vsphere).
+
+We recommend a setup with the following:
+
+- A load balancer to route traffic to both Terraform Enterprise virtual machines. 
+- Both virtual machines located in the same physical datacenter and on the same network. High amounts of network latency between the Terraform Enterprise virtual machines and the external services may result in plan and apply slowness and errors. 
+- High-speed disks, as they are are [critical for good performance](../../system-overview/capacity.html). 
+- Both Terraform Enterprise virtual machines can access an external Redis server, a PostgreSQL database, and an S3-compatible blob storage bucket. Terraform Enterprise will use an internal Vault server by default. Optionally, you can configure Terraform Enterprise to use an [existing Vault cluster](../vault.html).  
+
+An example of a recommended setup:
+
+![TFE Active/Active on VMware](./assets/RA-TFE-AA-VMware-SingleRegion.png)
+
 ## Infrastructure Provisioning
 
 The recommended way to deploy Terraform Enterprise for production is through use of a Terraform configuration
@@ -122,13 +150,15 @@ dependencies.
 
 ### Component Interaction
 
-The PostgreSQL database will be run in a local container and data will be
+In Mounted Disk Mode the PostgreSQL database will be run in a local container and data will be
 written to the specified path (which should be a mounted storage device,
-replicated and/or backed up frequently.)
+replicated and/or backed up frequently.) In Active/Active or External Services Mod the external PostgreSQL server will be used.
 
 State and other data will be
 written to the specified local path (which should be a mounted storage
-device, replicated and/or backed up frequently.)
+device, replicated and/or backed up frequently) in Mounted Disk, and the S3-compatible storage in Active/Active or External Service Mode.
+
+Redis is used to managed job flow and does not contain stateful data. In Mounted Disk Mode and External Services this service will be started locally as a container. In Active/Active this will be an external server.
 
 Vault will be run in a local container and used only for transit data encryption and decryption. This stateless use of Vault provides easy recovery in the event of a Vault service failure.
 
@@ -143,7 +173,7 @@ can be found on our website.
 
 ### Upgrades
 
-See [the Upgrades section](../../admin/upgrades.html) of the documentation.
+See [the Upgrades section](../../admin/upgrades.html) of the documentation. For Active/Active you'll need to scale down to a single virtual machine before proceeding with an upgrade. 
 
 ## High Availability
 
@@ -153,6 +183,8 @@ VMWare hypervisor provides a high level of resilience in various cases
 of failure (at the server hardware layer through vMotion and at the network layer through virtual distributed
 networking.) In addition, having ESXi failover to a DR datacenter
 provides recovery in the case of a total data center outage See the Disaster Recovery section.
+
+Additional failover can be provide by the Active/Active installation mode.
 
 #### Terraform Enterprise Servers (VMware Virtual Machine)
 
@@ -182,6 +214,10 @@ The object storage will be stored on the mounted disk and the
 expectation is that the NAS or SAN or other highly available mounted
 storage is fault tolerant and replicated or has fast recovery available.
 
+#### Redis (Active/Active Only)
+
+The Redis service does not contain stateful data and does not require backups or data sync. While Redis Cluster is not supported, Redis Sentinel or Replication can be utilized for high availability and/or failover.
+
 
 ## Disaster Recovery
 
@@ -208,6 +244,12 @@ offsite and will be made available to the server in the event of a DR.
 Object storage will be written to the mounted disk. The expectation
 is that the storage server is replicated or backed up offsite and will
 be made available to the server in the event of a DR.
+
+#### Active/Active Disaster Recovery
+
+You should back up and replicate the stateful external services (PostgreSQL and Blob Storage) to an offsite location to enable a disaster recovery or datacenter failover. You can use either the [Backup/Restore API](../../admin/backup-restore.html) or service-native tools for backups. You do not need to back up the Redis instance because it does not store stateful data. 
+
+Redeploy the Terraform Enterprise virtual machines in the restore location using the same automation as in the primary datacenter, and update names and IP addresses for the external services as is necessary. 
 
 #### ESXi Cluster
 
@@ -247,3 +289,13 @@ and is not covered in this document. We do recommend regular database snapshots.
 | ----------- | ----------- | ----------- | ------------ | ------- |
 | Demo        | 2           | 2 core      | 8 GB RAM     | 50GB    |
 | Production  | 2           | 4-8 core    | 16-32 GB RAM | 50GB    |
+
+### Active/Active - Redis Server
+
+Redis server v5 and v6 are both supported and have been tested thoroughly with Terraform Enterprise. Redis Cluster is *not* currently supported. Options are provided for the following:
+
+- redis_port: Allows for connecting to a Redis server running on a nonstandard port
+- redis_use_password_auth: This can be set to 1 if you are using password authentication, or 0 if not. 
+- redis_use_tls: Allows to enabling(1) or disabling(0) the TLS requirement
+
+Additional details can be found on the [Active/Active Installation page](../../install/active-active.html). 
