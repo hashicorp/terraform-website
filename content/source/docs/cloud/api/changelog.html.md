@@ -14,7 +14,7 @@ page_id: "api-changelog"
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 
-### 2021-10-29
+### 2021-11-11
 
 * Introduced the [Variable Sets](./variable-sets.html) endpoints for viewing and administering Variable Sets
 

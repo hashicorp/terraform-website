@@ -117,14 +117,42 @@ curl \
 }
 ```
 
-Responds with JSON representation of the saved [Variable Set](#show-workspace)
-
 ## Update a Variable Set
+
 `PUT/PATCH varsets/:varset_id`
 
 | Parameter            | Description         |
 | -------------------- | --------------------|
 | `:varset_id`         | The variable set ID |
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "type": "varsets",
+    "attributes": {
+      "name": "MyVarset",
+      "description": "Full of vars and such for mass reuse. Now global!",
+      "is-global": true
+    },
+    "relationships": {
+      "vars": {
+        "data": [
+          {
+            "type": "vars",
+            "attributes": {
+              "key": "c2e4612d993c18e42ef30405ea7d0e9ae",
+              "value": "8676328808c5bf56ac5c8c0def3b7071",
+              "category": "terraform"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
 
 ### Sample Request
 
@@ -136,7 +164,36 @@ curl \
   https://app.terraform.io/api/v2/varsets/varset-kjkN545LH2Sfercv
 ```
 
-Responds with JSON representation of the saved [Variable Set](#show-workspace)
+### Sample Response
+
+```json
+{
+  "data": {
+    "id": "varset-kjkN545LH2Sfercv"
+    "type": "varsets",
+    "attributes": {
+      "name": "MyVarset",
+      "description": "Full of vars and such for mass reuse. Now global!",
+      "is-global": true
+    },
+    "relationships": {
+      "vars": {
+        "data": [
+          {
+            "id": "var-Nh0doz0hzj9hrm34qq"
+            "type": "vars",
+            "attributes": {
+              "key": "c2e4612d993c18e42ef30405ea7d0e9ae",
+              "value": "8676328808c5bf56ac5c8c0def3b7071",
+              "category": "terraform"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
 
 ## Delete a Variable Set
 `DELETE varsets/:varset_id`
@@ -215,6 +272,7 @@ curl \
   }
 }
 ```
+
 ## List Variable Set
 
 List all variable sets for an organization.
@@ -235,8 +293,6 @@ List all variable sets for a workspace.
 
 
 ### Sample Response
-
-### Sample Payload
 
 ```json
 {
