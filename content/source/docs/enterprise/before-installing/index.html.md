@@ -37,7 +37,7 @@ The operational mode is selected at install time and cannot be changed once Terr
    for users with expertise managing PostgreSQL or users that have access
    to managed PostgreSQL offerings like the offers from [Amazon](https://aws.amazon.com/rds/), [Azure](https://azure.microsoft.com/en-us/services/postgresql/), or [Google Cloud](https://cloud.google.com/sql/docs/postgres/).
 
-1. *Active/Active* - This mode has the same requirements as External Services, with the additions of an external Redis server, and a fully automated install method. Information about how to perform this type of install can be found on the [Active/Active](../../install/active-active.html) page.
+1. *Active/Active* - This mode has the same requirements as External Services, with the additions of an external Redis server, and a fully automated install method. Refer to the [Active/Active](/docs/enterprise/install/active-active.html) page for more information about how to perform this type of install.
 
 1. *Mounted Disk* - This mode stores data in a separate
    directory on the host, with the intention that the directory is
