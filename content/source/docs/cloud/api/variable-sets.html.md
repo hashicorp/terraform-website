@@ -27,7 +27,6 @@ Properties without a default value are required.
 `data.name`                              | string         |         | The name of the Variable set
 `data.description`                       | string         | `""`      | A helpful blurb to contextualize the variable set
 `data.is_global`                         | boolean        | `false` | When true, the variable set applies to all workspaces in the organization.
-
 `data.relationships.workspaces`          | array          | []      | Array of references to workspaces that the variable set should be assigned to. Sending an empty array clears all workspace assignments.
 `data.relationships.vars`                | array          | []      | Array of complete variable definitions that comprise the variable set.
 
@@ -237,6 +236,8 @@ List all variable sets for a workspace.
 
 ### Sample Response
 
+### Sample Payload
+
 ```json
 {
   "data": [
@@ -440,7 +441,7 @@ curl \
 
 on success, responds with no content
 
-# List Variables
+## List Variables in a Variable Set
 
 `GET varsets/:varset_id/relationships/vars`
 
