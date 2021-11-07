@@ -267,9 +267,7 @@ The following factors can prevent you from generating mock data:
   produced via mock generation.
 * The run has not progressed past the planning stage, or did not create a plan
   successfully.
-* The run has been in a terminal state, such as applied or discarded, longer
-  than seven days. At this point, the data necessary to generate the mocks is no
-  longer available.
+* The run had progressed past the planning stage prior to July 23, 2021. Prior to this date, JSON plans were only kept for 7 days.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -279,4 +277,4 @@ not be visible.
 
 -> **Note:** Only the plan needs to be successful for a run to be eligible for
 mock generation - if the apply or the policy checks fail, the data can still be
-generated, as long as it's within the 7 day expiration period.
+generated.
