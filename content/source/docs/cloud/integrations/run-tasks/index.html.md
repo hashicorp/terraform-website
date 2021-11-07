@@ -53,7 +53,8 @@ Once your server receives this payload, Terraform Cloud expects you to callback 
     "type": "task-results",
       "attributes": {
         "status": "passed",
-        "message": "Hello task"
+        "message": "Hello task",
+        "url": "https://example.com"
       }
   }
 }
