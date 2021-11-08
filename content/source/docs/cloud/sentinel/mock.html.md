@@ -267,7 +267,7 @@ The following factors can prevent you from generating mock data:
   produced via mock generation.
 * The run has not progressed past the planning stage, or did not create a plan
   successfully.
-* The run had progressed past the planning stage prior to July 23, 2021. Prior to this date, JSON plans were only kept for 7 days.
+* The run progressed past the planning stage prior to July 23, 2021. Prior to this date, Terraform Cloud only kept JSON plans for 7 days.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
