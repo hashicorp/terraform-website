@@ -547,7 +547,7 @@ on success, responds with no content
 
 ### Workspaces
 
-## Assign Variable Set to Workspaces
+## Apply Variable Set to Workspaces
 
 `POST varsets/:varset_id/relationships/workspaces`
 
