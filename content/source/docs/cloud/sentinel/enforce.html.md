@@ -11,7 +11,7 @@ description: |-
 
 > **Hands-on:** Try the [Enforce Policy with Sentinel](https://learn.hashicorp.com/collections/terraform/policy?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
 
-Policies are defined within policy sets which can be applied to selected or to all workspaces in an organization. Once a policy set is added to an organization, all of its policies are enforced on all runs in those workspaces to which the policy set is applied.
+You can define individual policies within larger policy sets and apply those policy sets to all or a subset of workspaces in an organization. Terraform Cloud then enforces all of those policies on every workspace run.  
 
 The policy checks will occur after a plan is successfully executed in the run. However, if cost estimates are enabled on the workspace, then the policy checks occur after the cost estimates are executed. This allows the policies to restrict costs based on the data in the cost estimates. If the plan fails, the policy checks will not be performed. The policy checks use data provided to Sentinel from the plan, state, configuration, workspace, and run to verify the rules in each of the policies.
 
