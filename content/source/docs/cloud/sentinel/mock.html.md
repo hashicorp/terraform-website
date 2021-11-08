@@ -275,6 +275,6 @@ If a plan cannot have its mock data exported due to any of these reasons, the
 **Download Sentinel mocks** button within the plan status section of the UI will
 not be visible.
 
--> **Note:** Only the plan needs to be successful for a run to be eligible for
+-> **Note:** Only a successful plan is required for mock generation. Sentinel can still generate the data if apply or policy checks fail.
 mock generation - if the apply or the policy checks fail, the data can still be
 generated.
