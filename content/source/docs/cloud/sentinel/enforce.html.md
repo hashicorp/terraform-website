@@ -17,7 +17,7 @@ The policy checks will occur after a plan is successfully executed in the run. H
 
 Enforcement level details can be found in the [Managing Policies](./manage-policies.html) documentation.
 
-All `hard-mandatory` must pass in order for the run to continue to the "Confirm & Apply" state. All `soft-mandatory` policies must pass or be overridden for the run to contineu to the "Confirm & Apply" state.
+All `hard-mandatory` must pass in order for the run to continue to the "Confirm & Apply" state. All `soft-mandatory` policies must pass or be overridden for the run to continue to the "Confirm & Apply" state.
 
 If any `soft-mandatory` policies fail and no `hard-mandatory` policies fail, users with permission to override policies will be presented with an "Override & Continue" button in the run in the Terraform Cloud workspace. They have the ability to override the failed `soft-mandatory` policy checks and continue the execution of the run. This will not have any impact on future runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) Those same users can also override `soft-mandatory` policies when running the `terrform apply` command with the Terraform CLI by typing "override" when promoted to override failed `soft-mandatory` policies for the run.
 
