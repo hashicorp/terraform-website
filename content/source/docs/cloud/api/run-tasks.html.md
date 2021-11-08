@@ -24,7 +24,7 @@ page_title: "Run Tasks - API Docs - Terraform Cloud and Terraform Enterprise"
 
 -> Note: As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
 
-[Run tasks](../workspaces/run-tasks.html) allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. Run tasks are reusable configurations that you can attach to any workspace in an organization. This page lists the API endpoints for run tasks in an organization and explains how to attach run tasks to workspaces.
+[Run tasks](../workspaces/run-tasks.html) allow Terraform Cloud to interact with external systems at specific points in the Terraform Cloud run lifecycle. Run tasks are reusable configurations that you can attach to any workspace in an organization. This page lists the API endpoints for run tasks in an organization and explains how to attach run tasks to workspaces.
 
 ## Required Permissions
 
