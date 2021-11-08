@@ -25,7 +25,7 @@ Properties without a default value are required.
 
 | Key path                               | Type           | Default | Description
 -----------------------------------------|----------------|---------|------------
-`data.name`                              | string         |         | The name of the Variable set
+`data.name`                              | string         |         | The name of the variable set
 `data.description`                       | string         | `""`      | A helpful blurb to contextualize the variable set
 `data.is_global`                         | boolean        | `false` | When true, the variable set applies to all workspaces in the organization.
 `data.relationships.workspaces`          | array          | []      | Array of references to workspaces that the variable set should be assigned to. Sending an empty array clears all workspace assignments.
