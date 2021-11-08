@@ -457,7 +457,7 @@ curl \
   https://app.terraform.io/api/v2/varsets/varset-4q8f7H0NHG733bBH/relationships/vars/var-EavQ1LztoRTQHSNT
 ```
 
-### Sample Respone
+### Sample Response
 
 ```json
 {
