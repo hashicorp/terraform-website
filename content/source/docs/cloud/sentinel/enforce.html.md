@@ -19,7 +19,9 @@ Refer to the [Managing Policies](./manage-policies.html) documentation for more 
 
 All `hard-mandatory` must pass in order for the run to continue to the "Confirm & Apply" state. All `soft-mandatory` policies must pass or be overridden for the run to continue to the "Confirm & Apply" state.
 
-If any `soft-mandatory` policies fail and no `hard-mandatory` policies fail, users with permission to override policies will be presented with an "Override & Continue" button in the run in the Terraform Cloud workspace. They have the ability to override the failed `soft-mandatory` policy checks and continue the execution of the run. This will not have any impact on future runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html)) Those same users can also override `soft-mandatory` policies when running the `terrform apply` command with the Terraform CLI by typing "override" when promoted to override failed `soft-mandatory` policies for the run.
+If any `soft-mandatory` policies fail and no `hard-mandatory` policies fail, users with [permission to override policies](/docs/cloud/users-teams-organizations/permissions.html#manage-policy-overrides) will be presented with an **Override & Continue** button in the run in the Terraform Cloud workspace. This allows them to override the failed `soft-mandatory` policy checks and continue the execution of the run. This will not have any impact on future runs. 
+
+These users can also override `soft-mandatory` policies by running the `terraform apply` command and then entering "override" when prompted to override failed `soft-mandatory` policies for the run.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
