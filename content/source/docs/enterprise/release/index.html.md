@@ -9,7 +9,7 @@ description: |-
 
 We ship a new Terraform Enterprise release each month. The releases from the current calendar year are listed in the table below, and the complete list is on [github](https://github.com/hashicorp/terraform-enterprise-release-notes).
 
-~> The next release `v202110-1` is scheduled for October 12th, 2021.
+~> The next release `v202111-1` is scheduled for November 11th, 2021.
 
 | Version                         | Release Sequence | Recommended<br> Replicated CLI                                       | Latest <br>Terraform CLI                                              | Sentinel                                                                       |
 | ------------------------------- | ---------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
