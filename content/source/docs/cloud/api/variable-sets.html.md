@@ -217,7 +217,7 @@ on success, responds with no content
 
 ## Show Variable Set
 
-Fetches details on a specific variable set
+Fetch details about the specified variable set.
 
 `GET varsets/:varset_id` #same response sans pagination and listing
 
