@@ -27,7 +27,7 @@ Properties without a default value are required.
 -----------------------------------------|----------------|---------|------------
 `data.name`                              | string         |         | The name of the variable set
 `data.description`                       | string         | `""`      | Text displayed in the UI to contextualize the variable set and its purpose.
-`data.is_global`                         | boolean        | `false` | When true, the variable set applies to all workspaces in the organization.
+`data.is_global`                         | boolean        | `false` | When true, Terraform Cloud automatically applies the variable set to all current and future workspaces in the organization.
 `data.relationships.workspaces`          | array          | []      | Array of references to workspaces that the variable set should be assigned to. Sending an empty array clears all workspace assignments.
 `data.relationships.vars`                | array          | []      | Array of complete variable definitions that comprise the variable set.
 
