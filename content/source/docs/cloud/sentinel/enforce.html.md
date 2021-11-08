@@ -25,4 +25,4 @@ These users can also override `soft-mandatory` policies by running the `terrafor
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-If an `advisory` policy check fails, it will show the warning state in the run; however, the execution of the run will continue to the "Confirm & Apply" state. No user action is required to override or continue the run execution.
+If an `advisory` policy check fails, it will show the warning state in the run, and the execution of the run will continue to the "Confirm & Apply" state. No user action is required to override or continue the run execution.
