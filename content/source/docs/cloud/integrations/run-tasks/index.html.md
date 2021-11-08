@@ -19,7 +19,7 @@ This feature relies heavily on the proper parsing of [plan JSON output](../../..
 
 ## Integration Details
 
-When a run reaches the pre-apply phase and a run task is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the run task should respond `200 OK`, or Terraform will retry to trigger the run task.
+When a run reaches the appropriate phase and a run task is triggered, the supplied URL will receive details about the run in a payload similar to the one below. The server receiving the run task should respond `200 OK`, or Terraform will retry to trigger the run task.
 
 ```json
 {
