@@ -1,6 +1,7 @@
 ---
 layout: "cloud"
 page_title: "Variable Sets - API Docs - Terraform Cloud and Terraform Enterprise"
+description: "Variable sets allow you to reuse variables across multiple workspaces. Create, read, update, and delete variable sets with the Terraform Cloud API."
 ---
 
 # Variable Sets API
