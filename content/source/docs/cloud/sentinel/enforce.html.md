@@ -15,7 +15,7 @@ You can define individual policies within larger policy sets and apply those pol
 
 Policy checks occur after a plan and any enabled cost estimates are successfully executed in the run. This allows policies to restrict costs based on the data in the cost estimates. If the plan fails, Sentinel does not perform policy checks. The policy checks use data from the plan, state, configuration, workspace, and run to verify and enforce the rules in each policy.
 
-Enforcement level details can be found in the [Managing Policies](./manage-policies.html) documentation.
+Refer to the [Managing Policies](./manage-policies.html) documentation for more detail about enforcement.
 
 All `hard-mandatory` must pass in order for the run to continue to the "Confirm & Apply" state. All `soft-mandatory` policies must pass or be overridden for the run to continue to the "Confirm & Apply" state.
 
