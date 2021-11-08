@@ -13,7 +13,7 @@ description: |-
 
 You can define individual policies within larger policy sets and apply those policy sets to all or a subset of workspaces in an organization. Terraform Cloud then enforces all of those policies on every workspace run.  
 
-The policy checks will occur after a plan is successfully executed in the run. However, if cost estimates are enabled on the workspace, then the policy checks occur after the cost estimates are executed. This allows the policies to restrict costs based on the data in the cost estimates. If the plan fails, the policy checks will not be performed. The policy checks use data provided to Sentinel from the plan, state, configuration, workspace, and run to verify the rules in each of the policies.
+Policy checks occur after a plan and any enabled cost estimates are successfully executed in the run. This allows policies to restrict costs based on the data in the cost estimates. If the plan fails, Sentinel does not perform policy checks. The policy checks use data from the plan, state, configuration, workspace, and run to verify and enforce the rules in each policy.
 
 Enforcement level details can be found in the [Managing Policies](./manage-policies.html) documentation.
 
