@@ -276,5 +276,3 @@ If a plan cannot have its mock data exported due to any of these reasons, the
 not be visible.
 
 -> **Note:** Only a successful plan is required for mock generation. Sentinel can still generate the data if apply or policy checks fail.
-mock generation - if the apply or the policy checks fail, the data can still be
-generated.
