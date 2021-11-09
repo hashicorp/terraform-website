@@ -351,11 +351,11 @@ List all variable sets for a workspace.
     ...
   ],
   "links": {
-    "self": "<page URL>",
-    "first": "<page URL>",
-    "prev": nil,
-    "next": nil,
-    "last": "<page URL>"
+    "self": "app.terrafor.io/app/my_organization/varsets",
+    "first": "app.terrafor.io/app/my_organization/varsets?page=1",
+    "prev": null,
+    "next": null,
+    "last": "app.terrafor.io/app/my_organization/varsets?page=1"
   }
 }
 ```
@@ -553,7 +553,7 @@ on success, responds with no content
         "category": "terraform",
         "hcl": false,
         "created-at": "2021-10-29T18:54:29.379Z",
-        "description": nil
+        "description": ""
       },
       "relationships": {
         "varset": {
@@ -568,11 +568,11 @@ on success, responds with no content
     },
   ],
   "links": {
-    "self": "<page URL>",
-    "first": "<page URL>",
-    "prev": nil,
-    "next": nil,
-    "last": "<page URL>"
+    "self": "app.terrafor.io/app/varsets/varset-992UMULdeDuebi1x/vars",
+    "first": "app.terrafor.io/app/varsets/varset-992UMULdeDuebi1x/vars?page=1",
+    "prev": null,
+    "next": null,
+    "last": "app.terrafor.io/app/varsets/varset-992UMULdeDuebi1x/vars?page=1"
   }
 }
 ```
