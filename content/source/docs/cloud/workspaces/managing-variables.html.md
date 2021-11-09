@@ -9,10 +9,11 @@ description: "Configure Terraform input variables and environment variables and 
 
 -> **Note:** Variable sets are in beta.
 
-You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to one or all workspaces, rather than manually defining credential variables in each.
+You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. Refer to the [variables overview](/docs/cloud/workspaces/variables.html) documentation for more information about variable types, scope, and precedence.
 
-You need [read and write variables permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to create and edit both workspace-specific variables. This page explains how to manage variables through the Terraform Cloud UI, but you can also use:
+You need [read and write variables permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to create and edit both workspace-specific variables and variable sets through:
 
+- The Terraform Cloud UI, as detailed below.
 - The Variables API for [workspace-specific variables](/docs/cloud/api/workspace-variables.html) and [variable sets](/docs/cloud/api/variable-sets.html).
 - The `tfe` provider [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) resource, which can be more convenient for large numbers of complex variables.
 
@@ -29,11 +30,11 @@ The **Variables** page appears, showing all workspace-specific variables and var
 
 1. Go to the workspace **Variables** page and click **+ Add variable**.
 
-2. Choose a variable category (Terraform or environment), optionally mark the variable as [sensitive](#variable-values-and-format), enter a variable name, value, and optional description.
+2. Choose a variable category (Terraform or Environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable name, value, and optional description.
 
-    Refer to [variable values and format](#variable-values-and-format) for details about variable limits, allowable values, and required formatting.
+    Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
-3. Click **Save variable**.
+3. Click **Save variable**. The variable appears in the list of variables for the workspace and Terraform Cloud will begin applying it to runs.
 
   ![Screenshot: A variable being edited](./images/vars-edit.png)
 
@@ -74,15 +75,15 @@ To create a variable set:
 3. Write an optional **Description** that tells other users about the purpose of the variable set and what it contains.
 
 4. Choose a variable set scope:
-   - **Apply to all workspaces in this organization:** Terraform Cloud will automatically apply this variable set to all existing and future workspaces.
+   - **Apply to all workspaces in this organization:** Terraform Cloud will automatically apply this global variable set to all existing and future workspaces.
    - **Apply to specific workspaces:** Use the text field to search for and select one or more workspaces where Terraform Cloud should apply this variable set.
 
 
-5. Add one or more variables: Click **"+ Add variable**, choose a variable category (Terraform or environment), optionally mark the variable as [sensitive](#variable-values-and-format), enter a variable name, value, and optional description, and click **Save variable**.
+5. Add one or more variables: Click **+ Add variable**, choose a variable category (Terraform or Environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable name, value, and optional description, and click **Save variable**.
 
-    Refer to [setting variables](#variable-values-and-format) for details about variable limits, allowable values, and formatting.
+    Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
-    ~> **Warning:** Be careful when duplicating existing variables. Terraform Cloud will not create this variable set if you selected **Apply to all workspaces in this organization** and you add one or more variables with the same key as other organization-wide variable sets.
+    ~> **Warning:** Be careful when duplicating existing variables. Terraform Cloud will not create this variable set if you selected **Apply to all workspaces in this organization** and you add one or more variables with the same key as other global variable sets.
 
 6. Click **Create variable set.** Terraform Cloud adds the new variable set to any specified workspaces and displays it on the **Variable Sets** page.
 
@@ -96,14 +97,16 @@ To edit or remove variable sets:
 ### Delete Variable Sets
 
 To delete the variable set:
+
 1. Click **Settings** in the top menu bar and then click **Variable Sets** in the left sidebar. The **Create a new Variable set** page appears.
-2. Select **Delete variable set**. The variable set will be removed from all workspaces.
+2. Select **Delete variable set**. Terraform Cloud removes the variable set from all workspaces.
 
 ### Apply or Remove Variable Sets From Inside a Workspace
 
 To apply a variable set to a specific workspace:
 
 1. Go to the workspace and click the **Variables** tab. The **Variables** page appears, showing all workspace-specific variables and variable sets applied to the workspace.
+
 2. Click **Apply Variable Set**, select the variable set you want to apply to your workspace, and click **Apply variable set**. The new variable set appears in the list and the Terraform will use the variables in the set during the next workspace run.
 
 To remove a variable set from within a workspace:
@@ -114,16 +117,17 @@ To remove a variable set from within a workspace:
 
 ## Overwrite Variable Sets
 
-You can overwrite variables defined in variable sets within a workspace. For example, you may want to use a different set of credentials in a specific workspace.
+You can overwrite variables defined in variable sets within a workspace. For example, you may want to use a different set of provider credentials in a specific workspace.
 
 To overwrite a variable from a variable set, [create a new workspace-specific variable](#workspace-specific-variables) of the same type with the same key. Terraform Cloud marks any variables that you overwrite with a yellow exclamation point and provides a link to the variable that will take precedence during runs.
 
 ![An overwritten variable marked with a yellow exclamation point](link)
 
-Variables within a variable set also automatically overwrite, or are overwritten by, variables with the same key in other variable sets applied to the workspace. Refer to [variable precedence](/docs/cloud/workspaces/variables.html#precedence) for more details.
+Variables within a variable set can also automatically overwrite, or are overwritten by, variables with the same key in other variable sets applied to the workspace. Refer to [variable precedence](/docs/cloud/workspaces/variables.html#precedence) for more details.
 
 ## Variable Values and Format
-The limits, allowable values, and formatting for variables are the same for both workspace-specific variables and variable sets.
+
+The limits, allowable values, and required format are the same for both workspace-specific variables and variable sets.
 
 ### Security
 
@@ -173,4 +177,4 @@ Users with permission to read and write variables can set new values for sensiti
 
 ~> **Warning:** Variable descriptions are not encrypted, so do not include any sensitive information.
 
-Variable descriptions help distinguish between similarly named variables. These optional fields are only shown on the **Variables** page and are completely independent from any variable descriptions declared in Terraform CLI.
+Optional variable descriptions help distinguish between similarly named variables. They are only shown on the **Variables** page and are completely independent from any variable descriptions declared in Terraform CLI.
