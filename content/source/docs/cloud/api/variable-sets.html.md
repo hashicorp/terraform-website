@@ -31,6 +31,15 @@ Properties without a default value are required.
 `data.relationships.workspaces`          | array          | []      | Array of references to workspaces that the variable set should be assigned to. Sending an empty array clears all workspace assignments.
 `data.relationships.vars`                | array          | []      | Array of complete variable definitions that comprise the variable set.
 
+Trying to save 2 variables of the same name and category among any global variable sets will result in a 422 response.
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][]                        | Successfully added variable set
+[404][] | [JSON API error object][]                    | Organization not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]                    | Problem with payload or request; details provided in the error object
+
+
 ### Sample Payload
 
 ```json
@@ -125,6 +134,15 @@ curl \
 | Parameter            | Description         |
 | -------------------- | --------------------|
 | `:varset_id`         | The variable set ID |
+
+Trying to save 2 variables of the same name and category among any global variable sets will result in a 422 response.
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][]                        | Successfully updated variable set
+[404][] | [JSON API error object][]                    | Organization or variable set not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]                    | Problem with payload or request; details provided in the error object
+
 
 ### Sample Payload
 
@@ -342,9 +360,7 @@ List all variable sets for a workspace.
 }
 ```
 
-## Relationships
-
-### Variables
+### Variable Relationships
 
 ## Add Variable
 
@@ -370,6 +386,14 @@ Key path                                 | Type   | Default | Description
 `data.attributes.category`               | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
 `data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
 `data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
+
+Trying to save 2 variables of the same name and category among any global variable sets will result in a 422 response.
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][]                        | Successfully added variable to variable set
+[404][] | [JSON API error object][]                    | Variable set not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]                    | Problem with payload or request; details provided in the error object
 
 ### Sample Payload
 
@@ -427,6 +451,14 @@ curl \
 | -------------------- | ---------------------------------|
 | `:varset_id`         | The variable set ID              |
 | `:var_id`            | The ID of the variable to delete |
+
+Trying to save 2 variables of the same name and category among any global variable sets will result in a 422 response.
+
+Status  | Response                                     | Reason(s)
+--------|----------------------------------------------|----------
+[200][] | [JSON API document][]                        | Successfully updated variabel for variable set
+[404][] | [JSON API error object][]                    | Variable set not found, or user unauthorized to perform action
+[422][] | [JSON API error object][]                    | Problem with payload or request; details provided in the error object
 
 ### Sample Payload
 
@@ -545,7 +577,7 @@ on success, responds with no content
 }
 ```
 
-### Workspaces
+### Workspaces Relationships
 
 ## Apply Variable Set to Workspaces
 
