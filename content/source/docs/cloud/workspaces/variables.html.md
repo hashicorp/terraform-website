@@ -19,7 +19,7 @@ You must have [`read variables` permission](/docs/cloud/users-teams-organization
 
 
 
-## Variable Types
+## Types
 
 You can create both Terraform variables and environment variables in Terraform Cloud.
 
@@ -45,14 +45,14 @@ You can use the `TFE_PARALLELISM` environment variable when your infrastructure 
 
 ~> **Warning:** We recommend talking to HashiCorp support before setting `TFE_PARALLELISM`.
 
-## Variable Sets
+## Scope
 
 -> **Note:** Variable sets are in beta.
 
 You can [set workspace-specific variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables) for each workspace or you can [create variable sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to one or all workspaces, rather than manually defining credential variables in each. Changes to variable sets instantly apply to all appropriate workspaces, saving time and reducing errors from manual updates.
 
 
-## Variable Precedence
+## Precedence
 
 > **Hands On:** The [Manage Multiple Variable Sets in Terraform Cloud](link) tutorial on HashiCorp Learn shows how to manage multiple variable sets and demonstrates variable precedence.
 
