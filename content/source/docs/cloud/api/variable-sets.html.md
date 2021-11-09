@@ -347,8 +347,7 @@ List all variable sets for a workspace.
           ]
         }
       }
-    },
-    ...
+    }
   ],
   "links": {
     "self": "app.terrafor.io/app/my_organization/varsets",
