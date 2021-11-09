@@ -610,7 +610,7 @@ curl \
   https://app.terraform.io/api/v2/varsets/varset-kjkN545LH2Sfercv/relationships/workspaces
 ```
 
-on success, responds with no content
+On success, this endpoint responds with no content.
 
 ## Unassign Variable Set from Workspaces
 
