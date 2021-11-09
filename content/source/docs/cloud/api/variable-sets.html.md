@@ -612,7 +612,7 @@ curl \
 
 On success, this endpoint responds with no content.
 
-## Unassign Variable Set from Workspaces
+## Remove a Variable Set from Workspaces
 
 `DELETE varsets/:varset_id/relationships/workspaces`
 
