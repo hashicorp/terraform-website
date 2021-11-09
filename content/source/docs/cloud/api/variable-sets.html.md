@@ -231,7 +231,7 @@ curl \
   https://app.terraform.io/api/v2/varsets/varset-kjkN545LH2Sfercv
 ```
 
-on success, responds with no content
+On success, this endpoint responds with no content.
 
 ## Show Variable Set
 
