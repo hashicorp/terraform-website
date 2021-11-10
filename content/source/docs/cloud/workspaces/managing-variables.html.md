@@ -174,7 +174,7 @@ Terraform often needs cloud provider credentials and other sensitive information
 
 Marking a variable as sensitive prevents all users (including you) from viewing its value in the variables section of the workspace in Terraform Cloud's UI or through the Variables API endpoint.
 
-Users with permission to read and write variables can set new values for sensitive variables, but no other attribute of a sensitive variable can be modified. To update other attributes, delete the variable and create a new variable to replace it.
+Users with permission to read and write variables can set new values for sensitive variables, but other attributes of a sensitive variable cannot be modified. To update other attributes, delete the variable and create a new variable to replace it.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
