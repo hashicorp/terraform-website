@@ -34,7 +34,7 @@ The **Variables** page appears, showing all workspace-specific variables and var
 
     Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
-3. Click **Save variable**. The variable appears in the list of variables for the workspace and Terraform Cloud will begin applying it to runs.
+3. Click **Save variable**. The variable now appears in the list of the workspace's variables and Terraform Cloud will apply it to runs.
 
   ![Screenshot: A variable being edited](./images/vars-edit.png)
 
