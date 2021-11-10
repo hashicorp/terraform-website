@@ -33,7 +33,7 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 ### 2021-11-18
 
-* Introuced the [Registry Providers](./registry-providers.html) endpoint to manage public providers for a
+* Introuced the [Registry Providers](./providers.html) endpoint to manage public providers for a
   private registry. These endpoints will be available in the folowing TFE Release: `v202112-1`
 
 ### 2021-08-18

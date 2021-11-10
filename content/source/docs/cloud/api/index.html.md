@@ -76,7 +76,7 @@ The following entitlements are available:
 - `sentinel` — Allows an organization to use [Sentinel][]. Affects the [policies][], [policy sets][], and [policy checks][] endpoints.
 - `sso` — Allows an organization to manage and authenticate users via [single sign on][].
 - `teams` — Allows an organization to manage access to its workspaces with [teams](../users-teams-organizations/teams.html). Without this entitlement, an organization only has an owners team. Affects the [teams][], [team members][], [team access][], and [team tokens][] endpoints.
-- `user-limit` — An integer value representing the maximum number of users allowed for the organization. If blank, there is no limit.  
+- `user-limit` — An integer value representing the maximum number of users allowed for the organization. If blank, there is no limit.
 - `vcs-integrations` — Allows an organization to [connect with a VCS provider][vcs integrations] and link VCS repositories to workspaces. Affects the [OAuth Clients][o-clients], and [OAuth Tokens][o-tokens] endpoints, and determines whether the `data.attributes.vcs-repo` property can be set for [workspaces][].
 
 [agents]: ./agents.html
@@ -94,6 +94,7 @@ The following entitlements are available:
 [policy sets]: ./policy-sets.html
 [private module registry]: ../registry/index.html
 [registry modules]: ./modules.html
+[registry providers]: ./providers.html
 [runs]: ./run.html
 [Sentinel]: ../sentinel/index.html
 [single sign on]: ../users-teams-organizations/single-sign-on.html
