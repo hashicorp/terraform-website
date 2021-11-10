@@ -7,9 +7,9 @@ description: "Configure Terraform input variables and environment variables and 
 
 # Managing Variables
 
--> **Note:** Variable sets are in beta.
-
 You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. Refer to the [variables overview](/docs/cloud/workspaces/variables.html) documentation for more information about variable types, scope, and precedence.
+
+-> **Note:** Variable sets are in beta.
 
 You need [`read and write variables` permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to create and edit both workspace-specific variables and variable sets. You can manage variables and variable sets through:
 
@@ -28,6 +28,8 @@ The **Variables** page appears, showing all workspace-specific variables and var
 
 ### Add a Variable
 
+To add a variable:
+
 1. Go to the workspace **Variables** page and click **+ Add variable** in the **Workspace Variables** section.
 
 2. Choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable key, value, and optional description.
@@ -40,11 +42,15 @@ The **Variables** page appears, showing all workspace-specific variables and var
 
 ### Edit a Variable
 
+To edit a variable:
+
 1. Click the ellipses next to the variable you want to edit and select **Edit**.
 2. Make any desired changes and click **Save variable**.
 
 
 ### Delete a Variable
+
+To delete a variable:
 
 1. Click the ellipses next to the variable you want to delete and select **Delete**.
 2. Type the variable name into the dialog box to confirm and click **Delete**.
