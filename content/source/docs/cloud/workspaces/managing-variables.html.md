@@ -183,4 +183,4 @@ Users with permission to read and write variables can set new values for sensiti
 
 !> **Warning:** Variable descriptions are not encrypted, so do not include any sensitive information.
 
-Optional variable descriptions help distinguish between similarly named variables. They are only shown on the **Variables** page and are completely independent from any variable descriptions declared in Terraform CLI.
+Variable descriptions are optional, and help distinguish between similarly named variables. They are only shown on the **Variables** page and are completely independent from any variable descriptions declared in Terraform CLI.
