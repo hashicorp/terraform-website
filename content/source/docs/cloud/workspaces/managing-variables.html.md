@@ -131,7 +131,7 @@ To overwrite a variable from a variable set, [create a new workspace-specific va
 
 ![An overwritten variable marked with a yellow exclamation point](link)
 
-Variables within a variable set can also automatically overwrite, or are overwritten by, variables with the same key in other variable sets applied to the workspace. Refer to [variable precedence](/docs/cloud/workspaces/variables.html#precedence) for more details.
+Variables within a variable set can also automatically overwrite variables with the same key in other variable sets applied to the same workspace. Refer to [variable precedence](/docs/cloud/workspaces/variables.html#precedence) for more details.
 
 ## Variable Values and Format
 
