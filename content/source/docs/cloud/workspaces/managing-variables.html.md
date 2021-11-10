@@ -152,7 +152,7 @@ value       |  256 kilobytes
 
 ### Multi-Line Text
 
-You can type or past multi-line text into variable value text fields.
+You can type or paste multi-line text into variable value text fields.
 
 ### HashiCorp Configuration Language (HCL)
 
