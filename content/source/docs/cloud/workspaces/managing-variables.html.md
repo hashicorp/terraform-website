@@ -21,7 +21,7 @@ You need [`read and write variables` permissions](/docs/cloud/users-teams-organi
 
 To view and manage a workspace's variables, go to the workspace and click the **Variables** tab.
 
-The **Variables** page appears, showing all workspace-specific variables and variable sets applied to the workspace. This is where you can add, edit, and delete workspace-specific variables. You can also add and remove variable sets from this workspace.
+The **Variables** page appears, showing all workspace-specific variables and variable sets applied to the workspace. This is where you can add, edit, and delete workspace-specific variables. You can also apply and remove variable sets from the workspace.
 
 ![Screenshot: The initial appearance of a workspace's variables page](./images/vars.png)
 
