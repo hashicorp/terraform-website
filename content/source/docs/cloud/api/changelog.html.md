@@ -31,6 +31,11 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
 * Introduced the [Variable Sets](./variable-sets.html) endpoints for viewing and administering Variable Sets
 
+### 2021-11-18
+
+* Introuced the [Registry Providers](./registry-providers.html) endpoint to manage public providers for a
+  private registry. These endpoints will be available in the folowing TFE Release: `v202112-1`
+
 ### 2021-08-18
 
 * Introduced the [State Version Outputs](./state-versions.html) endpoint to retrieve the Outputs for a
