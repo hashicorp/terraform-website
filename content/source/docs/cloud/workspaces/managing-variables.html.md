@@ -104,7 +104,7 @@ To edit or remove a variable set:
 
 To delete the variable set:
 
-1. Click **Settings** in the top menu bar and then click **Variable Sets** in the left sidebar. The **Create a new Variable set** page appears.
+1. Click **Settings** in the top menu bar, then click **Variable Sets** in the left sidebar. The **Create a new Variable set** page appears.
 2. Select **Delete variable set**. Terraform Cloud removes the variable set from all workspaces.
 
 ### Apply or Remove Variable Sets From Inside a Workspace
