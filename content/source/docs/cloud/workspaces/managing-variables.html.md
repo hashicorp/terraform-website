@@ -32,7 +32,7 @@ To add a variable:
 
 1. Go to the workspace **Variables** page and click **+ Add variable** in the **Workspace Variables** section.
 
-1. Choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable key, value, and optional description.
+1. Choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable key, value, and optional description. Check the **HCL** checkbox to enter a value in HashiCorp Configuration Language.
 
     Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
