@@ -56,7 +56,7 @@ You can create a global variable set by applying it to all current and future wo
 
 ## Precedence
 
-> **Hands On:** The [Manage Multiple Variable Sets in Terraform Cloud](link) tutorial on HashiCorp Learn shows how to manage multiple variable sets and demonstrates variable precedence.
+> **Hands On:** The [Manage Multiple Variable Sets in Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/manage-variable-sets) tutorial on HashiCorp Learn shows how to manage multiple variable sets and demonstrates variable precedence.
 
 If variables from `.auto.tfvars` files have the same key as existing variables in the Terraform Cloud workspace, the variables applied to the workspace overwrite variables from the files.
 
