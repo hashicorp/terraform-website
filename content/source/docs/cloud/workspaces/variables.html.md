@@ -7,9 +7,9 @@ description: "Terraform Cloud workspace variables let you customize configuratio
 
 # Variables
 
--> **Note:** Variable sets are in beta.
-
 Terraform Cloud workspace variables let you customize configurations, modify Terraform's behavior, and store information like provider credentials. You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. Terraform Cloud applies workspace variables to all runs within that workspace.
+
+~> **Note:** Variable sets are in beta.
 
 You must have [`read variables` permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace and to view the variable sets in your organization. Once you have the proper [read and write variables permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions), you can create and edit both workspace-specific variables and variable sets through:
 
@@ -25,7 +25,7 @@ You must have [`read variables` permission](/docs/cloud/users-teams-organization
 
 You can create both  environment variables and Terraform variables in Terraform Cloud.
 
-> **Hands-on:** The [Create Infrastructure tutorial](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure?in=terraform/cloud-get-started) on HashiCorp Learn shows how to set both Terraform variables and provider credential environment variables.
+> **Hands-on:** The [Create Infrastructure tutorial](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure?in=terraform/cloud-get-started) on HashiCorp Learn shows how to set Terraform variables and and the [Create and Use a Variable Set](https://learn.hashicorp.com/tutorials/terraform/cloud-create-variable-set?in=terraform/cloud-get-started) tutorial shows how to set provider credential environment variables.
 
 ### Environment Variables
 
@@ -62,21 +62,28 @@ You can create a global variable set by selecting the `Apply to all workspaces i
 
 > **Hands On:** The [Manage Multiple Variable Sets in Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/manage-variable-sets) tutorial on HashiCorp Learn shows how to manage multiple variable sets and demonstrates variable precedence.
 
-If variables from `.auto.tfvars` files have the same key as existing variables in the Terraform Cloud workspace, the variables applied to the workspace overwrite variables from the files.
 
-There are two additional cases when a workspace may have conflicting variables with the same key. You may use workspace-specific variables to [overwrite variables from variable sets](/docs/cloud/workspaces/managing-variables.html#overwrite-variable-sets) or there may be two variables from different variable sets with the same key.
-
-Workspace-specific variables always overwrite variables from variable sets that have the same key.
-
-If different variable sets contain variables of the same type with the same key, Terraform Cloud prioritizes them first based on the variable set scope and then by the date that each variable set was applied to the workspace.
-
-- **Scope:** Variable sets that apply to only a subset of workspaces take precedence over global variable sets that are applied to all workspaces within an organization.
-
-- **Date Applied:** If non-global variable sets have conflicting variables, Terraform Cloud uses values from the variable set that was applied most recently. For example, if you apply Variable Set A and then apply Variable Set B to the same workspace a week later, Terraform Cloud will use any conflicting variables from Variable Set B. This will be the case regardless of which variable set has been edited most recently; Terraform Cloud only considers the date that each variable set is applied to the workspace when determining precedence.
-
-Terraform Cloud displays a message in the UI when it overwrites conflicting variables.
+There may be cases when a workspace contains conflicting variables of the same type with the same key. Terraform Cloud displays a message in the UI when it overwrites conflicting variables.
 
 ![A Terraform Cloud UI message explaining which variables are overwritten](link)
+
+Terraform Cloud prioritizes and overwrites conflicting variables according to the following precedence:
+
+### Workspace-Specific Variables Set Within the Workspace
+
+Workspace-specific variables always overwrite variables from variable sets that have the same key. Refer to [overwrite variables from variable sets](/docs/cloud/workspaces/managing-variables.html#overwrite-variable-sets) for details.
+
+## Non-Global Variable Sets
+
+Variable sets that apply to only a subset of workspaces take precedence over global variable sets that are applied to all workspaces within an organization.
+
+If non-global variable sets have conflicting variables, Terraform Cloud uses values from the variable set that was applied most recently. For example, if you apply Variable Set A and then apply Variable Set B to the same workspace a week later, Terraform Cloud will use any conflicting variables from Variable Set B. This will be the case regardless of which variable set has been edited most recently; Terraform Cloud only considers the date that each variable set is applied to the workspace when determining precedence.
+
+## Variable Files
+
+If variables from [committed `.auto.tfvars` files](#loading-variables-from-files) have the same key as existing variables in the Terraform Cloud workspace, the variables applied to the workspace overwrite variables from the files.
+
+
 
 ### Precedence Example
 
