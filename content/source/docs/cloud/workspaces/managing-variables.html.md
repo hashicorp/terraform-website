@@ -28,7 +28,7 @@ The **Variables** page appears, showing all workspace-specific variables and var
 
 ### Add a Variable
 
-1. Go to the workspace **Variables** page and click **+ Add variable**.
+1. Go to the workspace **Variables** page and click **+ Add variable** in the **Workspace Variables** section.
 
 2. Choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable key, value, and optional description.
 
