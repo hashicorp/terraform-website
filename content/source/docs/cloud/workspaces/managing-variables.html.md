@@ -53,7 +53,7 @@ To edit a variable:
 To delete a variable:
 
 1. Click the ellipses next to the variable you want to delete and select **Delete**.
-2. Type the variable name into the dialog box to confirm and click **Delete**.
+1. Click **Yes, delete variable** to confirm your action.
 
 ## Variable Sets
 
