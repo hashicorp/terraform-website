@@ -6,7 +6,7 @@ description: "Variable sets allow you to reuse variables across multiple workspa
 
 # Variable Sets API
 
-A[variable set](/docs/cloud/workspaces/variables.html#variable-sets) is a resource that allows you to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to one or all workspaces.
+A [variable set](/docs/cloud/workspaces/variables.html#variable-sets) is a resource that allows you to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to one or all workspaces.
 
 You need [`read variables` permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace and to view the variable sets in the owning organization. You need [read and write variables permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to create and edit variable sets. 
 
