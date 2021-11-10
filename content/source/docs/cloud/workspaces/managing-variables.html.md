@@ -141,7 +141,9 @@ The limits, allowable values, and required format are the same for both workspac
 
 Terraform Cloud encrypts all variable values securely using [Vault's transit backend](https://www.vaultproject.io/docs/secrets/transit/index.html) prior to saving them. This ensures that no out-of-band party can read these values without proper authorization. However, Terraform Cloud stores variable [descriptions](#variable-description) in plain text, so be careful with the information you save in a variable description.
 
-We also recommend using environment variables when possible to avoid unnecessary credential disclosure. Terraform runs receive the full text of [sensitive](#sensitive-values) Terraform variables and may print the value in logs and state files if the configuration sends the value to an output or a resource parameter. Sentinel mocks downloaded from runs will also contain the sensitive values of Terraform variables. Environment variables can also be included in log files if `TF_LOG` is set to `TRACE`.
+We also recommend passing credentials to Terraform as environment variables instead of Terraform variables when possible, since Terraform runs receive the full text of all Terraform variable values, including [sensitive](#sensitive-values) ones. It may print the values in logs and state files if the configuration sends the value to an output or a resource parameter. Sentinel mocks downloaded from runs will also contain the sensitive values of Terraform variables. 
+
+Although Terraform cloud does not store environment variables in state, it can include them in log files if `TF_LOG` is set to `TRACE`.
 
 ### Character Limits
 
