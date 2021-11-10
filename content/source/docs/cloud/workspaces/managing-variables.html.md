@@ -97,8 +97,8 @@ To create a variable set:
 
 To edit or remove a variable set:
 
-1. Click **Settings** in the top menu bar and then click **Variable Sets** in the left sidebar. The **Create a new Variable set** page appears.
-2. Click the variable set you want to edit. The **Edit Variables** page appears, where you can change the variable set settings. Refer to [create variable sets](#create-variable-sets) for details.
+1. Click **Settings** in the top menu bar and then click **Variable Sets** in the left sidebar. The **Variable sets** page appears.
+2. Click the variable set you want to edit. That specific variable set page appears, where you can change the variable set settings. Refer to [create variable sets](#create-variable-sets) for details.
 
 ### Delete Variable Sets
 
