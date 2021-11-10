@@ -125,7 +125,7 @@ To remove a variable set from within a workspace:
 
 You can overwrite variables defined in variable sets within a workspace. For example, you may want to use a different set of provider credentials in a specific workspace.
 
-To overwrite a variable from a variable set, [create a new workspace-specific variable](#workspace-specific-variables) of the same type with the same key. Terraform Cloud marks any variables that you overwrite with a yellow exclamation point and provides a link to the variable that will take precedence during runs.
+To overwrite a variable from a variable set, [create a new workspace-specific variable](#workspace-specific-variables) of the same type with the same key. Terraform Cloud marks any variables that you overwrite with a yellow exclamation point and provides a link to the variable it will use during runs.
 
 ![An overwritten variable marked with a yellow exclamation point](link)
 
