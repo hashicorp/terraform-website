@@ -30,7 +30,7 @@ For publicly curated providers, the Terraform Cloud Registry acts as a proxy to 
 - Get a specific provider
 - Get the latest version for a specific provider
 
-- The public module registry discovery endpoints have the path prefix provided in the [discovery document](../../registry/api.html#service-discovery) which is currently `/api/registry/public/v1`.
+- The public registry discovery endpoints have the path prefix provided in the [discovery document](../../registry/api.html#service-discovery) which is currently `/api/registry/public/v1`.
 - [Authentication](./index.html#authentication) is handled the same as all other Terraform Cloud endpoints.
 
 ### Sample Proxy Request (public provider)
@@ -41,7 +41,7 @@ List available versions for the `aws` provider on the namespace `hashicorp`:
 $ curl https://registry.terraform.io/v2/providers/hashicorp/aws/versions
 ```
 
-The same request for the same module and provider on the Terraform Cloud module registry:
+The same request for the same provider on the Terraform Cloud private registry:
 
 ```shell
 $ curl \
@@ -55,14 +55,14 @@ $ curl \
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to list available modules from.
+`:organization_name` | The name of the organization to list available providers from.
 
-Lists the modules that are available to a given organization. This includes the full list of publicly curated and private modules and is filterable.
+Lists the providers that are available to a given organization.
 
 Status  | Response                                           | Reason
 --------|----------------------------------------------------|----------
 [200][] | [JSON API document][] (`type: "registry-providers"`) | The request was successful
-[404][] | [JSON API error object][]                          | Modules not found or user unauthorized to perform action
+[404][] | [JSON API error object][]                          | Providers not found or user unauthorized to perform action
 
 ### Query Parameters
 
@@ -73,7 +73,7 @@ Parameter                           | Description
 `q`                                 | **Optional.** A search query string.  Providers are searchable by name, namespace fields.
 `filter[field name]`                | **Optional.** If specified, restricts results to those with the matching field name value.  Valid values are `registry_name`, and `organization_name`.
 `page[number]`                      | **Optional.** If omitted, the endpoint will return the first page.
-`page[size]`                        | **Optional.** If omitted, the endpoint will return 20 registry modules per page.
+`page[size]`                        | **Optional.** If omitted, the endpoint will return 20 registry providers per page.
 
 ### Sample Request
 
@@ -90,7 +90,7 @@ curl \
 {
   "data": [
     {
-      "id": "mod-kwt1cBiX2SdDz38w",
+      "id": "prov-kwt1cBiX2SdDz38w",
       "type": "registry-providers",
       "attributes": {
         "name": "aws",
@@ -115,7 +115,7 @@ curl \
       }
     },
     {
-      "id": "mod-PopQnMtYDCcd3PRX",
+      "id": "prov-PopQnMtYDCcd3PRX",
       "type": "registry-providers",
       "attributes": {
         "name": "aurora",
@@ -161,14 +161,13 @@ curl \
 }
 ```
 
-#TODO Bethany stopped here
 ## Create a Provider
 
  `POST /organizations/:organization_name/registry-providers`
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:organization_name` | The name of the organization to create a provider in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -193,10 +192,9 @@ Properties without a default value are required.
 Key path                        | Type   | Default | Description
 --------------------------------|--------|---------|------------
 `data.type`                     | string |         | Must be `"registry-providers"`.
-`data.attributes.name`          | string |         | The name of this module. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
-`data.attributes.provider`      | string |         | Specifies the Terraform provider that this module is used for. May contain lowercase alphanumeric characters. Maximum length is 64 characters.
-`data.attributes.namespace`     | string |         | The namespace of this module. Cannot be set for private modules. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.
-`data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`.
+`data.attributes.name`          | string |         | The name of the provider.
+`data.attributes.namespace`     | string |         | The namespace of the provider.
+`data.attributes.registry-name` | string |         | Must be `public`.
 
 
 ### Sample Payload (public provider)
@@ -204,11 +202,10 @@ Key path                        | Type   | Default | Description
 ```json
 {
   "data": {
-    "type": "registry-modules",
+    "type": "registry-providers",
     "attributes": {
-      "name": "vpc",
-      "namespace": "terraform-aws-modules",
-      "provider": "aws",
+      "name": "aws",
+      "namespace": "hashicorp",
       "registry-name": "public"
     }
   }
@@ -227,26 +224,21 @@ curl \
 ```
 
 
-### Sample Response (public module)
+### Sample Response (public provider)
 
 ```json
 {
   "data": {
-    "id": "mod-fZn7uHu99ZCpAKZJ",
-    "type": "registry-modules",
+    "id": "prov-fZn7uHu99ZCpAKZJ",
+    "type": "registry-providers",
     "attributes": {
-      "name": "vpc",
-      "namespace": "terraform-aws-modules",
+      "name": "aws",
+      "namespace": "hashicorp",
       "registry-name": "public",
-      "provider": "aws",
-      "status": "pending",
-      "version-statuses": [],
       "created-at": "2020-07-09T19:36:56.288Z",
       "updated-at": "2020-07-09T19:36:56.288Z",
       "permissions": {
-        "can-delete": true,
-        "can-resync": true,
-        "can-retry": true
+        "can-delete": true
       }
     },
     "relationships": {
@@ -258,7 +250,7 @@ curl \
       }
     },
     "links": {
-      "self": "/api/v2/organizations/my-organization/registry-modules/public/terraform-aws-modules/vpc/aws"
+      "self": "/api/v2/organizations/my-organization/registry-providers/public/hashicorp/aws"
     }
   }
 }
@@ -267,57 +259,51 @@ curl \
 
 ## Get a Provider
 
-`GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
+`GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name`
 
 
 ### Parameters
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization the module belongs to.
-`:namespace`         | The namespace of the module. For private modules this is the name of the organization that owns the module.
-`:name`              | The module name.
-`:provider`          | The module provider. Must be lowercase alphanumeric.
-`:registry-name`     | Either `public` or `private`.
+`:organization_name` | The name of the organization the provider belongs to.
+`:namespace`         | The namespace of the provider.
+`:name`              | The provider name.
+`:registry-name`     | `public`.
 
 Status  | Response                                           | Reason
 --------|----------------------------------------------------|----------
-[200][] | [JSON API document][] (`type: "registry-modules"`) | The request was successful
-[403][] | [JSON API error object][]                          | Forbidden - public module curation disabled
-[404][] | [JSON API error object][]                          | Module not found or user unauthorized to perform action
+[200][] | [JSON API document][] (`type: "registry-providers"`) | The request was successful
+[403][] | [JSON API error object][]                          | Forbidden - public provider curation disabled
+[404][] | [JSON API error object][]                          | Provider not found or user unauthorized to perform action
 
 
-### Sample Request (public module)
+### Sample Request (public provider)
 
 ```shell
 curl \
   --request GET \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/public/terraform-aws-modules/vpc/aws
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/public/hashicorp/aws
 ```
 
 
-### Sample Response (public module)
+### Sample Response (public provider)
 
 ```json
 {
   "data": {
-    "id": "mod-fZn7uHu99ZCpAKZJ",
-    "type": "registry-modules",
+    "id": "prov-fZn7uHu99ZCpAKZJ",
+    "type": "registry-providers",
     "attributes": {
-      "name": "vpc",
-      "provider": "aws",
-      "namespace": "terraform-aws-modules",
+      "name": "aws",
+      "namespace": "hashicorp",
       "registry-name": "public",
-      "status": "setup_complete",
-      "version-statuses": [],
       "created-at": "2020-07-09T19:36:56.288Z",
       "updated-at": "2020-07-09T20:16:20.538Z",
       "permissions": {
-        "can-delete": true,
-        "can-resync": true,
-        "can-retry": true
+        "can-delete": true
       }
     },
     "relationships": {
@@ -329,56 +315,41 @@ curl \
       }
     },
     "links": {
-      "self": "/api/v2/organizations/my-organization/registry-modules/public/terraform-aws-modules/vpc/aws"
+      "self": "/api/v2/organizations/my-organization/registry-providers/public/hashicorp/aws"
     }
   }
 }
 ```
 
-## Delete a Module
-
-* `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version`
-* `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
-* `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name`
+## Delete a Provider
+* `DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name`
 
 
 ### Parameters
 
 Parameter            | Description
 ---------------------|------------
-`:organization_name` | The name of the organization to delete a module from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
-`:namespace`         | The module namespace that the deletion will affect. For private modules this is the name of the organization that owns the module.
-`:name`              | The module name that the deletion will affect.
-`:provider`          | If specified, the provider for the module that the deletion will affect.
-`:version`           | If specified, the version for the module and provider that will be deleted.
-`:registry_name`     | Either `public` or `private`
+`:organization_name` | The name of the organization to delete a provider from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
+`:namespace`         | The provider namespace that the deletion will affect.
+`:name`              | The provider name that the deletion will affect.
+`:registry_name`     | `public`
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-When removing modules, there are three versions of the endpoint, depending on how many parameters are specified.
-
-* If all parameters (module namespace, name, provider, and version) are specified, the specified version for the given provider of the module is deleted.
-* If module namespace, name, and provider are specified, the specified provider for the given module is deleted along with all its versions.
-* If only module namespace and name are specified, the entire module is deleted.
-
-For public modules, only the the endpoint specifying the module namespace and name is valid. The other DELETE endpoints will 404.
-For public modules, this only removes the record from the organization's Terraform Cloud Registry and does not remove the public module from registry.terraform.io.
-
-If a version deletion would leave a provider with no versions, the provider will be deleted. If a provider deletion would leave a module with no providers, the module will be deleted.
 
 Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
 [204][] | Nothing                                              | Success
-[403][] | [JSON API error object][]                            | Forbidden - public module curation disabled
-[404][] | [JSON API error object][]                            | Module, provider, or version not found or user not authorized
+[403][] | [JSON API error object][]                            | Forbidden - public provider curation disabled
+[404][] | [JSON API error object][]                            | Provider not found or user not authorized
 
 
-### Sample Request (public module)
+### Sample Request (public provider)
 
 ```shell
 curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/public/terraform-aws-modules/vpc/aws
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/public/hashicorp/aws
 ```
