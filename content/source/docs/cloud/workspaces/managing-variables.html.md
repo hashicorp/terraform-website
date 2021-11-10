@@ -89,7 +89,7 @@ To create a variable set:
 
     Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
-    ~> **Warning:** Be careful when duplicating existing variables. Terraform Cloud will not create a variable set if you select the **Apply to all workspaces in this organization** scope and declare one or more variables with the same key as variables in other global variable sets.
+    ~> **Note:** Terraform Cloud will error if you try to declare variables with the same key in multiple global variable sets.
 
 1. Click **Create variable set.** Terraform Cloud adds the new variable set to any specified workspaces and displays it on the **Variable Sets** page.
 
@@ -137,11 +137,11 @@ The limits, allowable values, and required format are the same for both workspac
 
 ### Security
 
-Terraform Cloud encrypts all variable values securely using [Vault's transit backend](https://www.vaultproject.io/docs/secrets/transit/index.html) prior to saving them. This ensures that no out-of-band party can read these values without proper authorization. However, [descriptions](#variable-description) are not encrypted, so be careful with the information you save in a variable description.
+Terraform Cloud encrypts all variable values securely using [Vault's transit backend](https://www.vaultproject.io/docs/secrets/transit/index.html) prior to saving them. This ensures that no out-of-band party can read these values without proper authorization. However, Terraform Cloud stores variable [descriptions](#variable-description) in plain text, so be careful with the information you save in a variable description.
 
 We also recommend using environment variables when possible to avoid unnecessary credential disclosure. Terraform runs receive the full text of [sensitive](#sensitive-values) Terraform variables and may print the value in logs and state files if the configuration sends the value to an output or a resource parameter. Sentinel mocks downloaded from runs will also contain the sensitive values of Terraform variables. Environment variables can also be included in log files if `TF_LOG` is set to `TRACE`.
 
-### Variable Limits
+### Character Limits
 The following limits apply to variables:
 
 Component   |  Limit
@@ -183,4 +183,4 @@ Users with permission to read and write variables can set new values for sensiti
 
 !> **Warning:** Variable descriptions are not encrypted, so do not include any sensitive information.
 
-Optional variable descriptions help distinguish between similarly named variables. They are only shown on the **Variables** page and are completely independent from any variable descriptions declared in Terraform CLI.
+Variable descriptions are optional, and help distinguish between similarly named variables. They are only shown on the **Variables** page and are completely independent from any variable descriptions declared in Terraform CLI.

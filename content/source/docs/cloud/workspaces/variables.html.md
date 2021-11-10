@@ -37,7 +37,7 @@ Environment variables can store provider credentials and other data. Refer to yo
 
 You can use the `TFE_PARALLELISM` environment variable when your infrastructure providers produce errors on concurrent operations or use non-standard rate limiting. The `TFE_PARALLELISM` variable sets the  `-parallelism=<N>` flag for  `terraform plan` and `terraform apply`  ([more about `parallelism`](/docs/internals/graph.html#walking-the-graph)). Valid values are between 1 and 256, inclusive, and the default is `10`. Terraform Cloud Agents do not support `TFE_PARALLELISM`, but you can specify flags as environment variables directly via [TF_CLI_ARGS](/docs/cli/config/environment-variables.html#tf-cli-args). In these cases, use `TF_CLI_ARGS="parallelism=<N>"` instead.
 
-~> **Warning:** We recommend talking to HashiCorp support before setting `TFE_PARALLELISM`.
+!> **Warning:** We recommend talking to HashiCorp support before setting `TFE_PARALLELISM`.
 
 ### Terraform Variables
 
@@ -101,7 +101,7 @@ Consider an example workspace that has:
 
 When you trigger a run, Terraform Cloud applies the following variables:
 
-- **Workspace-Specific:** ACCESS_KEY, ACCESS_ID, and VAR1. That means VAR1 equals h for this run, overwriting the value in Variable Set A.
+- **Workspace-Specific:** `ACCESS_KEY`, `ACCESS_ID`, and `VAR1`. That means `VAR1` equals `h` for this run, overwriting the value in Variable Set A.
 
 - **Variable Set A:** KEY1. That means KEY1 equals x for this run, overwriting the value in Variable Set B.
 
