@@ -89,7 +89,7 @@ To create a variable set:
 
     Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
-    ~> **Warning:** Be careful when duplicating existing variables. Terraform Cloud will not create this variable set if you selected **Apply to all workspaces in this organization** and you add one or more variables with the same key as other global variable sets.
+    ~> **Warning:** Be careful when duplicating existing variables. Terraform Cloud will not create a variable set if you select the **Apply to all workspaces in this organization** scope and declare one or more variables with the same key as variables in other global variable sets.
 
 6. Click **Create variable set.** Terraform Cloud adds the new variable set to any specified workspaces and displays it on the **Variable Sets** page.
 
