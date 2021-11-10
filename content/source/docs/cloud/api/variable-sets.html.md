@@ -452,7 +452,7 @@ curl \
 | `:varset_id`         | The variable set ID              |
 | `:var_id`            | The ID of the variable to delete |
 
-Trying to save 2 variables of the same name and category among any global variable sets will result in a 422 response.
+Terraform Cloud does not allow different global variable sets to contain conflicting variables with the same name and type. You will receive a 422 response if you try to add a conflicting variable to a global variable set.
 
 Status  | Response                                     | Reason(s)
 --------|----------------------------------------------|----------
