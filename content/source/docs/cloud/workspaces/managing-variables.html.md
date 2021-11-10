@@ -32,11 +32,11 @@ To add a variable:
 
 1. Go to the workspace **Variables** page and click **+ Add variable** in the **Workspace Variables** section.
 
-2. Choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable key, value, and optional description.
+1. Choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable key, value, and optional description.
 
     Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
-3. Click **Save variable**. The variable now appears in the list of the workspace's variables and Terraform Cloud will apply it to runs.
+1. Click **Save variable**. The variable now appears in the list of the workspace's variables and Terraform Cloud will apply it to runs.
 
   ![Screenshot: A variable being edited](./images/vars-edit.png)
 
@@ -45,7 +45,7 @@ To add a variable:
 To edit a variable:
 
 1. Click the ellipses next to the variable you want to edit and select **Edit**.
-2. Make any desired changes and click **Save variable**.
+1. Make any desired changes and click **Save variable**.
 
 
 ### Delete a Variable
@@ -76,36 +76,36 @@ To create a variable set:
   ![The create a new Variable set page in the Terraform Cloud UI](link)
 
 
-2. Choose a descriptive **Name** for the variable set. You can use any combination of numbers, letters, and characters.
+1. Choose a descriptive **Name** for the variable set. You can use any combination of numbers, letters, and characters.
 
-3. Write an optional **Description** that tells other users about the purpose of the variable set and what it contains.
+1. Write an optional **Description** that tells other users about the purpose of the variable set and what it contains.
 
-4. Choose a variable set scope:
+1. Choose a variable set scope:
    - **Apply to all workspaces in this organization:** Terraform Cloud will automatically apply this global variable set to all existing and future workspaces.
    - **Apply to specific workspaces:** Use the text field to search for and select one or more workspaces to apply this variable set to.
 
 
-5. Add one or more variables: Click **+ Add variable**, choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable name, value, and optional description. Then, click **Save variable**.
+1. Add one or more variables: Click **+ Add variable**, choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable name, value, and optional description. Then, click **Save variable**.
 
     Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
     ~> **Warning:** Be careful when duplicating existing variables. Terraform Cloud will not create a variable set if you select the **Apply to all workspaces in this organization** scope and declare one or more variables with the same key as variables in other global variable sets.
 
-6. Click **Create variable set.** Terraform Cloud adds the new variable set to any specified workspaces and displays it on the **Variable Sets** page.
+1. Click **Create variable set.** Terraform Cloud adds the new variable set to any specified workspaces and displays it on the **Variable Sets** page.
 
 ### Edit Variable Sets
 
 To edit or remove a variable set:
 
 1. Click **Settings** in the top menu bar and then click **Variable Sets** in the left sidebar. The **Variable sets** page appears.
-2. Click the variable set you want to edit. That specific variable set page appears, where you can change the variable set settings. Refer to [create variable sets](#create-variable-sets) for details.
+1. Click the variable set you want to edit. That specific variable set page appears, where you can change the variable set settings. Refer to [create variable sets](#create-variable-sets) for details.
 
 ### Delete Variable Sets
 
 To delete a variable set:
 
 1. Click **Settings** in the top menu bar, then click **Variable Sets** in the left sidebar. The **Create a new Variable set** page appears.
-2. Select **Delete variable set**. Enter the variable set name and click **Delete variable set** to confirm this action. Terraform Cloud deletes the variable set and removes it from all workspaces.
+1. Select **Delete variable set**. Enter the variable set name and click **Delete variable set** to confirm this action. Terraform Cloud deletes the variable set and removes it from all workspaces.
 
 ### Apply or Remove Variable Sets From Inside a Workspace
 
@@ -118,8 +118,8 @@ To apply a variable set to a specific workspace:
 To remove a variable set from within a workspace:
 
 1. Navigate to the workspace and click the **Variables** tab. The **Variables** page appears, showing all workspace-specific variables and variable sets applied to the workspace.
-2. Click the ellipses button next to the variable set and select **Remove variable set**.
-3. Click **Remove variable set** in the dialog box. Terraform Cloud removes the variable set from this workspace, but it remains available to other workspaces in the organization.
+1. Click the ellipses button next to the variable set and select **Remove variable set**.
+1. Click **Remove variable set** in the dialog box. Terraform Cloud removes the variable set from this workspace, but it remains available to other workspaces in the organization.
 
 ## Overwrite Variable Sets
 

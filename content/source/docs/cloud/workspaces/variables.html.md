@@ -23,17 +23,9 @@ You must have [`read variables` permission](/docs/cloud/users-teams-organization
 
 ## Types
 
-You can create both Terraform variables and environment variables in Terraform Cloud.
+You can create both  environment variables and Terraform variables in Terraform Cloud.
 
 > **Hands-on:** The [Create Infrastructure tutorial](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure?in=terraform/cloud-get-started) on HashiCorp Learn shows how to set both Terraform variables and provider credential environment variables.
-
-### Terraform Variables
-
-Terraform variables refer to [input variables](/docs/language/values/variables.html) that define parameters without hardcoding them into the configuration. For example, you could create variables that let users specify the number and type of Amazon Web Services EC2 instances they want to provision with a Terraform module. If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
-
-Terraform Cloud passes input variables to Terraform by writing a `terraform.tfvars` file, meaning that Terraform Cloud overwrites any `terraform.tfvars` file you check into version control. You should not check in `terraform.tfvars` files even when running Terraform solely on the command line.
-
-You must define input variables manually; Terraform Cloud does not automatically discover variable names from Terraform code. However, workspaces that use Terraform 0.10.0 or later allow you to commit any number of [`*.auto.tfvars` files](/docs/language/values/variables.html#variable-files) to provide default Terraform input variables. If any variables from these files have the same key as existing variables in the Terraform Cloud workspace, the variables applied to the workspace overwrite variables from the files.
 
 ### Environment Variables
 
@@ -46,6 +38,18 @@ Environment variables can store provider credentials and other data. Refer to yo
 You can use the `TFE_PARALLELISM` environment variable when your infrastructure providers produce errors on concurrent operations or use non-standard rate limiting. The `TFE_PARALLELISM` variable sets the  `-parallelism=<N>` flag for  `terraform plan` and `terraform apply`  ([more about `parallelism`](/docs/internals/graph.html#walking-the-graph)). Valid values are between 1 and 256, inclusive, and the default is `10`. Terraform Cloud Agents do not support `TFE_PARALLELISM`, but you can specify flags as environment variables directly via [TF_CLI_ARGS](/docs/cli/config/environment-variables.html#tf-cli-args). In these cases, use `TF_CLI_ARGS="parallelism=<N>"` instead.
 
 ~> **Warning:** We recommend talking to HashiCorp support before setting `TFE_PARALLELISM`.
+
+### Terraform Variables
+
+Terraform variables refer to [input variables](/docs/language/values/variables.html) that define parameters without hardcoding them into the configuration. For example, you could create variables that let users specify the number and type of Amazon Web Services EC2 instances they want to provision with a Terraform module.
+
+You must declare Terraform variables manually; Terraform Cloud does not automatically discover variable names from Terraform code. If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
+
+Terraform Cloud passes input variables to Terraform by writing a `terraform.tfvars` file, meaning that Terraform Cloud overwrites any `terraform.tfvars` file you check into version control. You should not check in `terraform.tfvars` files even when running Terraform solely on the command line.
+
+#### Loading Variables from Files
+
+In addition to creating input variables through the Terraform Cloud UI, the Terraform Cloud API, and the  `tfe provider` you can provide default Terraform input variables by committing any number of [`*.auto.tfvars` files](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. If any variables from these files have the same key as existing variables in the Terraform Cloud workspace, the variables applied to the workspace overwrite variables from the files.
 
 ## Scope
 

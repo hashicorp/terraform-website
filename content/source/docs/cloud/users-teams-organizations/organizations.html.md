@@ -82,6 +82,28 @@ To rename an organization that is already managing significant infrastructure, y
 
 The plan and billing page allows organization owners to upgrade to one of Terraform Cloud's paid plans, downgrade to a free plan, or begin a free trial of paid features. It also displays any invoices for previous plan payments.
 
+### Tags
+
+This page shows the list of tags used for all resources across the organization. Tags can be added directly to workspaces. Tags deleted here will be removed from all other resources, and can be deleted in bulk.
+
+![Screenshot: the tags list, showing a list of currently used tags.](./images/tag-management.png)
+
+
+### Teams
+
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+
+The teams page is shown to all users in an organization.
+
+Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
+
+Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+See [Teams][] for more information.
+
+
 ### Users
 
 The users page allows organization owners to invite new Terraform Cloud users into the organization, cancel invitations, and remove existing members.
@@ -100,25 +122,9 @@ User invitations are always sent by email; you cannot invite someone using their
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-### Teams
+### Variable Sets
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
-The teams page is shown to all users in an organization.
-
-Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
-
-Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships.
-
-[permissions-citation]: #intentionally-unused---keep-for-maintainers
-
-See [Teams][] for more information.
-
-### Tags
-
-This page shows the list of tags used for all resources across the organization. Tags can be added directly to workspaces. Tags deleted here will be removed from all other resources, and can be deleted in bulk.
-
-![Screenshot: the tags list, showing a list of currently used tags.](./images/tag-management.png)
 
 ### VCS Providers
 
