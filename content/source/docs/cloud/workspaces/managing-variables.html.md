@@ -168,7 +168,7 @@ Variable values are strings by default. To enter list or map values, click the v
 ```
 ### Sensitive Values
 
-~> **Warning:** There are some cases when even sensitive variables are included in logs and state files. Refer to [security](#security) for more information.
+!> **Warning:** There are some cases when even sensitive variables are included in logs and state files. Refer to [security](#security) for more information.
 
 Terraform often needs cloud provider credentials and other sensitive information that should not be widely available within your organization. To protect these secrets, you can mark any Terraform or environment variable as sensitive data by clicking its **Sensitive** checkbox that is visible during editing.
 
