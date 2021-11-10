@@ -97,7 +97,7 @@ Consider an example workspace that has:
 
 When you trigger a run, Terraform Cloud applies the following variables:
 
-- **Workspace-Specific:** ACCESS_KEY, ACCESS_ID, and VAR1. That means VAR1 equals h for this run, overwriting the value in Variable Set A.
+- **Workspace-Specific:** `ACCESS_KEY`, `ACCESS_ID`, and `VAR1`. That means `VAR1` equals `h` for this run, overwriting the value in Variable Set A.
 
 - **Variable Set A:** KEY1. That means KEY1 equals x for this run, overwriting the value in Variable Set B.
 
