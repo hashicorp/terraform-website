@@ -79,7 +79,7 @@ To create a variable set:
    - **Apply to specific workspaces:** Use the text field to search for and select one or more workspaces where Terraform Cloud should apply this variable set.
 
 
-5. Add one or more variables: Click **+ Add variable**, choose a variable category (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable name, value, and optional description, and click **Save variable**.
+5. Add one or more variables: Click **+ Add variable**, choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable name, value, and optional description. Then, click **Save variable**.
 
     Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
