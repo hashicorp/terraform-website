@@ -117,7 +117,7 @@ To apply a variable set to a specific workspace:
 
 To remove a variable set from within a workspace:
 
-1. Go to the workspace and click the **Variables** tab. The **Variables** page appears, showing all workspace-specific variables and variable sets applied to the workspace.
+1. Navigate to the workspace and click the **Variables** tab. The **Variables** page appears, showing all workspace-specific variables and variable sets applied to the workspace.
 2. Click the ellipses button next to the variable set and select **Remove variable set**.
 3. Click **Remove variable set** in the dialog box. Terraform Cloud removes the variable set from this workspace, but it remains available to other workspaces in the organization.
 
