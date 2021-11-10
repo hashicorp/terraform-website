@@ -111,7 +111,7 @@ To delete a variable set:
 
 To apply a variable set to a specific workspace:
 
-1. Go to the workspace and click the **Variables** tab. The **Variables** page appears, showing all workspace-specific variables and variable sets applied to the workspace.
+1. Navigate to the workspace and click the **Variables** tab. The **Variables** page appears, showing all workspace-specific variables and variable sets applied to the workspace.
 
 2. In the **Variable sets** section, click **Apply Variable Set**. Select the variable set you want to apply to your workspace, and click **Apply variable set**. The variable set appears in the workspace's variable sets list and Terraform Cloud will now apply the variables to runs.
 
