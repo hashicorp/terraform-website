@@ -172,7 +172,7 @@ Variable values are strings by default. To enter list or map values, click the v
 
 Terraform often needs cloud provider credentials and other sensitive information that shouldn't be widely available within your organization. To protect these secrets, you can mark any Terraform or environment variable as sensitive data by clicking its **Sensitive** checkbox that is visible during editing.
 
-Marking a variable as sensitive prevents all users (including you) from viewing its value in the variables section of the workspace in Terraform Cloud's UI or through the Variables API endpoint.
+Marking a variable as sensitive makes it write-only and prevents all users (including you) from viewing its value in the Terraform Cloud UI or reading it through the Variables API endpoint.
 
 Users with permission to read and write variables can set new values for sensitive variables, but other attributes of a sensitive variable cannot be modified. To update other attributes, delete the variable and create a new variable to replace it.
 
