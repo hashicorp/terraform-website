@@ -31,7 +31,7 @@ Properties without a default value are required.
 `data.relationships.workspaces`          | array          | []      | Array of references to workspaces that the variable set should be assigned to. Sending an empty array clears all workspace assignments.
 `data.relationships.vars`                | array          | []      | Array of complete variable definitions that comprise the variable set.
 
-Trying to save 2 variables of the same name and category among any global variable sets will result in a 422 response.
+Terraform Cloud does not allow different global variable sets to contain conflicting variables with the same name and type. You will receive a 422 response if you try to create a global variable set that contains conflicting variables.
 
 Status  | Response                                     | Reason(s)
 --------|----------------------------------------------|----------
