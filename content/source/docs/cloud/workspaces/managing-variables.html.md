@@ -71,7 +71,7 @@ The **Variable sets** page appears, listing all of the organization's variable s
 
 To create a variable set:
 
-1. Go to the **Variable Sets** page for your organization and click **Create variable set**. The **Create a new Variable set** page appears.
+1. Go to the **Variable Sets** page for your organization and click **Create variable set**. The **Create a new variable set** page appears.
 
   ![The create a new Variable set page in the Terraform Cloud UI](link)
 
