@@ -215,6 +215,7 @@ curl \
 ```
 
 ## Delete a Variable Set
+
 `DELETE varsets/:varset_id`
 
 | Parameter            | Description         |
@@ -237,7 +238,7 @@ On success, this endpoint responds with no content.
 
 Fetch details about the specified variable set.
 
-`GET varsets/:varset_id` #same response sans pagination and listing
+`GET varsets/:varset_id`
 
 | Parameter            | Description         |
 | -------------------- | --------------------|
@@ -384,7 +385,7 @@ Key path                                 | Type   | Default | Description
 `data.attributes.description`            | string |         | The description of the variable.
 `data.attributes.category`               | string |         | Whether this is a Terraform or environment variable. Valid values are `"terraform"` or `"env"`.
 `data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
-`data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true then the variable is written once and not visible thereafter.
+`data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true, variable is not visible in the UI.
 
 Trying to save 2 variables of the same name and category among any global variable sets will result in a 422 response.
 
@@ -580,11 +581,26 @@ on success, responds with no content
 
 ## Apply Variable Set to Workspaces
 
+Accepts a list of workspaces to add the variable set to.
+
 `POST varsets/:varset_id/relationships/workspaces`
 
 | Parameter            | Description         |
 | -------------------- | --------------------|
 | `:varset_id`         | The variable set ID |
+
+Properties without a default value are required.
+
+| Key path                               | Type           | Default | Description
+-----------------------------------------|----------------|---------|------------ 
+`data[].type`                            | string         |         | Must be `"workspaces"`
+`data[].id`                              | string         |         | The id of the workspace to add the variable set to
+
+Status  | Response                     | Reason(s)
+--------|------------------------------|----------
+[204][] |                              | Successfully added variable set to the requested workspaces
+[404][] | [JSON API error object][]    | Variable set not found or user unauthorized to perform action
+[422][] | [JSON API error object][]    | Problem with payload or request; details provided in the error object
 
 ### Sample Payload
 
@@ -609,9 +625,9 @@ curl \
   https://app.terraform.io/api/v2/varsets/varset-kjkN545LH2Sfercv/relationships/workspaces
 ```
 
-On success, this endpoint responds with no content.
-
 ## Remove a Variable Set from Workspaces
+
+Accepts a list of workspaces to remove the variable set from.
 
 `DELETE varsets/:varset_id/relationships/workspaces`
 
@@ -619,11 +635,28 @@ On success, this endpoint responds with no content.
 | -------------------- | --------------------|
 | `:varset_id`         | The variable set ID |
 
+Properties without a default value are required.
+
+| Key path                               | Type           | Default | Description
+-----------------------------------------|----------------|---------|------------ 
+`data[].type`                            | string         |         | Must be `"workspaces"`
+`data[].id`                              | string         |         | The id of the workspace to add the variable set to
+
+Status  | Response                     | Reason(s)
+--------|------------------------------|----------
+[204][] |                              | Successfully removed variable set from the requested workspaces
+[404][] | [JSON API error object][]    | Variable set not found or user unauthorized to perform action
+[422][] | [JSON API error object][]    | Problem with payload or request; details provided in the error object
+
 ### Sample Payload
 
 ```json
 {
   "data": [
+    {
+      "type": "workspaces",
+      "id": "ws-YwfuBJZkdai4xj9w"
+    },
     {
       "type": "workspaces",
       "id": "ws-YwfuBJZkdai4xj9w"
@@ -642,4 +675,3 @@ curl \
   https://app.terraform.io/api/v2/varsets/varset-kjkN545LH2Sfercv/relationships/workspaces
 ```
 
-on success, responds with no content
