@@ -131,7 +131,7 @@ To overwrite a variable from a variable set, [create a new workspace-specific va
 
 ![An overwritten variable marked with a yellow exclamation point](link)
 
-Variables within a variable set can also automatically overwrite, or are overwritten by, variables with the same key in other variable sets applied to the workspace. Refer to [variable precedence](/docs/cloud/workspaces/variables.html#precedence) for more details.
+Variables within a variable set can also automatically overwrite variables with the same key in other variable sets applied to the same workspace. Though variable sets are created for the organization, these overwrites occur within each workspace. Refer to [variable precedence](/docs/cloud/workspaces/variables.html#precedence) for more details.
 
 ## Variable Values and Format
 
@@ -144,6 +144,7 @@ Terraform Cloud encrypts all variable values securely using [Vault's transit bac
 We also recommend using environment variables when possible to avoid unnecessary credential disclosure. Terraform runs receive the full text of [sensitive](#sensitive-values) Terraform variables and may print the value in logs and state files if the configuration sends the value to an output or a resource parameter. Sentinel mocks downloaded from runs will also contain the sensitive values of Terraform variables. Environment variables can also be included in log files if `TF_LOG` is set to `TRACE`.
 
 ### Character Limits
+
 The following limits apply to variables:
 
 Component   |  Limit
