@@ -51,7 +51,7 @@ You can use the `TFE_PARALLELISM` environment variable when your infrastructure 
 
 You can [set workspace-specific variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables) inside each workspace or [create variable sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to several workspaces, rather than manually defining credential variables in each. Changes to variable sets instantly apply to all appropriate workspaces, saving time and reducing errors from manual updates.
 
-You can create a global variable set by applying it to all current and future workspaces. Terraform Cloud does not allow global variable sets to contain conflicting variables with same type and the same key. When non-global variable sets contain conflicting variables and you apply them to the same workspace, the variable set applied most recently takes precedence. Refer to the [precedence documentation](#precedence) for more details.
+You can create a global variable set by selecting the `Apply to all workspaces in this organization` scope in the variable set's settings. Terraform Cloud does not allow global variable sets to contain conflicting variables with same type and the same key. When non-global variable sets contain conflicting variables and you apply them to the same workspace, the variable set applied most recently takes precedence. Refer to the [precedence documentation](#precedence) for more details.
 
 
 ## Precedence
