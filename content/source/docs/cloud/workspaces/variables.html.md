@@ -68,7 +68,7 @@ If different variable sets contain variables of the same type with the same key,
 
 - **Scope:** Variable sets that apply to only a subset of workspaces take precedence over global variable sets that are applied to all workspaces within an organization.
 
-- **Date Applied:** If non-global variable sets have conflicting variables, Terraform cloud prioritizes the variable set that was applied most recently. For example, if you apply Variable Set A and then apply Variable Set B to the same workspace a week later, Terraform Cloud will use any conflicting variables from Variable Set B. This will be the case regardless of which variable set has been edited most recently; Terraform Cloud only considers the date that each variable set is applied to the workspace when determining precedence.
+- **Date Applied:** If non-global variable sets have conflicting variables, Terraform Cloud uses values from the variable set that was applied most recently. For example, if you apply Variable Set A and then apply Variable Set B to the same workspace a week later, Terraform Cloud will use any conflicting variables from Variable Set B. This will be the case regardless of which variable set has been edited most recently; Terraform Cloud only considers the date that each variable set is applied to the workspace when determining precedence.
 
 Terraform Cloud displays a message in the UI when it overwrites conflicting variables.
 
