@@ -61,7 +61,7 @@ To delete a variable:
 
 To view variable sets for your organization, click **Settings** in the top menu bar, then click **Variable sets** in the left sidebar.
 
-The **Variable sets** page appears, showing a list of all of the variable sets within the organization. Click each variable set to open it and review details about its variables.
+The **Variable sets** page appears, listing all of the organization's variable sets. Click on a variable set to open it and review details about its variables and scoping.
 
 ![The variable sets page in the Terraform Cloud UI](link)
 
