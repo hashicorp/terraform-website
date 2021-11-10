@@ -82,7 +82,7 @@ To create a variable set:
 
 1. Choose a variable set scope:
    - **Apply to all workspaces in this organization:** Terraform Cloud will automatically apply this global variable set to all existing and future workspaces.
-   - **Apply to specific workspaces:** Use the text field to search for and select one or more workspaces to apply this variable set to.
+   - **Apply to specific workspaces:** Use the text field to search for and select one or more workspaces to apply this variable set to. Users will also be able to [add this variable set to their workspaces](#apply-or-remove-variable-sets-from-inside-a-workspace) after creation.
 
 
 1. Add one or more variables: Click **+ Add variable**, choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable name, value, and optional description. Then, click **Save variable**.

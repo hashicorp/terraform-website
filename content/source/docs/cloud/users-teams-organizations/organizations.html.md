@@ -84,7 +84,7 @@ The plan and billing page allows organization owners to upgrade to one of Terraf
 
 ### Tags
 
-This page shows the list of tags used for all resources across the organization. Tags can be added directly to workspaces. Tags deleted here will be removed from all other resources, and can be deleted in bulk.
+This page shows all of the tags applied to workspaces in the organization. Deleting a tag from this page removes it from all workspaces.  
 
 ![Screenshot: the tags list, showing a list of currently used tags.](./images/tag-management.png)
 
@@ -93,11 +93,11 @@ This page shows the list of tags used for all resources across the organization.
 
 -> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
-The teams page is shown to all users in an organization.
+All users in an organization can view the teams page.
 
-Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
+Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that you can only add users to teams after they have received and accepted an invitation to the organization.
 
-Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships.
+Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They cannot edit team memberships.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -124,15 +124,14 @@ User invitations are always sent by email; you cannot invite someone using their
 
 ### Variable Sets
 
+~> **Note:** Variable sets are in beta.
 
+Variable sets allow you to reuse the same variables across multiple workspaces in the organization. For example, you could define a variable set of provider credentials and automatically apply it to several workspaces, rather than manually defining credential variables in each. Changes to variable sets instantly apply to all appropriate workspaces, saving time and reducing errors from manual updates.
 
-### VCS Providers
+The **Variable Sets** page allows everyone in an organization to view all of the available variable sets and their variables. Users with [`read and write variables` permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) can also create variable sets and assign them to one or more workspaces.
 
-The VCS providers page is used for configuring VCS providers for use within the organization. It is available to users with permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+Refer to the [variables overview](/docs/cloud/workspaces/variables.html) documentation for more information about variable types, scope, and precedence. Refer to [managing variables](/docs/cloud/workspaces/managing-variables.html) for details about how to create and manage variable sets.
 
-[permissions-citation]: #intentionally-unused---keep-for-maintainers
-
-See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 ### API Tokens
 
@@ -173,6 +172,14 @@ Sentinel is an embedded policy-as-code framework that can enforce rules about Te
 Task event hooks are reusable [run tasks](../workspaces/run-tasks.html) configurations that can be attached to any workspace in an organization.
 
 A task event hook is made up of a human-readable name, a complete endpoint URL for the hook to communicate with, and an optional HMAC key used to verify the authenticity of a request.
+
+### VCS Providers
+
+The VCS providers page is used for configuring VCS providers for use within the organization. It is available to users with permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 ## Trial Expired Organizations
 
