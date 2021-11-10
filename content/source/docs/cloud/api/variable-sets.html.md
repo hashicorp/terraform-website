@@ -387,7 +387,7 @@ Key path                                 | Type   | Default | Description
 `data.attributes.hcl`                    | bool   | `false` | Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables.
 `data.attributes.sensitive`              | bool   | `false` | Whether the value is sensitive. If true, variable is not visible in the UI.
 
-Trying to save 2 variables of the same name and category among any global variable sets will result in a 422 response.
+Terraform Cloud does not allow different global variable sets to contain conflicting variables with the same name and type. You will receive a 422 response if you try to add a conflicting variable to a global variable set.
 
 Status  | Response                                     | Reason(s)
 --------|----------------------------------------------|----------
