@@ -7,7 +7,7 @@ description: "Terraform Cloud workspace variables let you customize configuratio
 
 # Variables
 
-Terraform Cloud workspace variables let you customize configurations, modify Terraform's behavior, and store information like provider credentials. You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. Terraform Cloud applies workspace variables to all runs within that workspace.
+Terraform Cloud workspace variables let you customize configurations, modify Terraform's behavior, and store information like provider credentials. You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to all of the workspaces using that provider. Terraform Cloud applies workspace variables to all runs within that workspace.
 
 ~> **Note:** Variable sets are in beta.
 
@@ -71,13 +71,18 @@ You can provide default variable values by committing any number of [files endin
 
 One exception is `terraform.tfvars` files. Terraform Cloud creates a `terraform.tfvars` file to pass a workspace's input variables to Terraform during runs. This means that Terraform Cloud will overwrite any `terraform.tfvars` file you check into version control. You can check in other types of `.tfvars` files, but do not check in `terraform.tfvars` files even when running Terraform solely on the command line.
 
-~> **Note:** Terraform Cloud can infer default variable values, but it does not automatically display those variable names in the **Variables** page within the workspace UI.
+~> **Note:** Terraform Cloud can infer default variable values, but it does not automatically display those variable names in the workspace UI.
 
 ## Scope
 
-You can [set workspace-specific variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables) in a workspace or [create variable sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to several workspaces, rather than manually defining credential variables in each. Changes to variable sets instantly apply to all appropriate workspaces, saving time and reducing errors from manual updates.
+Each environment and Terraform variable can have one of the following scopes:
 
-You can create a global variable set by selecting the `Apply to all workspaces in this organization` scope in the variable set's settings. Terraform Cloud does not allow global variable sets to contain conflicting variables with same type and the same key. When non-global variable sets contain conflicting variables and you apply them to the same workspace, the variable set applied most recently takes precedence. Refer to the [precedence documentation](#precedence) for more details.
+| Scope | Description| Resources |
+|-------|------------|-----------|
+|Workspace-Specific | Apply to a single workspace | [Create Workspace-Specific Variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables), [Loading Variables from Files](#loading-variables-from-files), [Workspace-Specific Variables API](/docs/cloud/api/workspace-variables.html).|
+|Variable Set | Apply to multiple workspaces within the same organization. | You can [create variable sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) |
+|Global Variable Set | Automatically applied to all current and future workspaces within an organization. | TBD |
+
 
 
 ## Precedence
