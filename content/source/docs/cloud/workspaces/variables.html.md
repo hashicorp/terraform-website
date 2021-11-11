@@ -71,7 +71,7 @@ You can provide default variable values by committing any number of [files endin
 
 One exception is `terraform.tfvars` files. Terraform Cloud creates a `terraform.tfvars` file to pass a workspace's input variables to Terraform during runs. This means that Terraform Cloud will overwrite any `terraform.tfvars` file you check into version control. You can check in other types of `.tfvars` files, but do not check in `terraform.tfvars` files even when running Terraform solely on the command line.
 
-~> **Note:** Terraform Cloud can infer default variable values, but it does not automatically display those variable names in the workspace UI.
+~> **Note:** When Terraform Cloud loads variable values from files it does not automatically display those variable names in the workspace UI.
 
 ## Scope
 
