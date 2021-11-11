@@ -59,7 +59,7 @@ To delete a variable:
 
 ## Variable Sets
 
-> **Hands On:** Try the [Manage Variable Sets in Terraform Cloud tutorial](https://learn.hashicorp.com//tutorials/terraform/manage-variable-sets) on HashiCorp Learn.
+> **Hands On:** Try the [Manage Variable Sets in Terraform Cloud tutorial](https://learn.hashicorp.com/tutorials/terraform/cloud-multiple-variable-sets) on HashiCorp Learn.
 
 To view variable sets for your organization, click **Settings** in the top menu bar, then click **Variable sets** in the left sidebar.
 
