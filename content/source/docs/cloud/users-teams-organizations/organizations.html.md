@@ -82,6 +82,28 @@ To rename an organization that is already managing significant infrastructure, y
 
 The plan and billing page allows organization owners to upgrade to one of Terraform Cloud's paid plans, downgrade to a free plan, or begin a free trial of paid features. It also displays any invoices for previous plan payments.
 
+### Tags
+
+This page shows the list of tags used for all resources across the organization. Tags can be added directly to workspaces. Tags deleted here will be removed from all other resources, and can be deleted in bulk.  
+
+![Screenshot: the tags list, showing a list of currently used tags.](./images/tag-management.png)
+
+
+### Teams
+
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+
+The teams page is shown to all users in an organization.
+
+Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
+
+Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+See [Teams][] for more information.
+
+
 ### Users
 
 The users page allows organization owners to invite new Terraform Cloud users into the organization, cancel invitations, and remove existing members.
@@ -100,33 +122,16 @@ User invitations are always sent by email; you cannot invite someone using their
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-### Teams
+### Variable Sets
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+~> **Note:** Variable sets are in beta.
 
-The teams page is shown to all users in an organization.
+Variable sets allow you to reuse the same variables across multiple workspaces in the organization. For example, you could define a variable set of provider credentials and automatically apply it to several workspaces, rather than manually defining credential variables in each. Changes to variable sets instantly apply to all appropriate workspaces, saving time and reducing errors from manual updates.
 
-Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
+The **Variable Sets** page allows everyone in an organization to view all of the available variable sets and their variables. Users with [`read and write variables` permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) can also create variable sets and assign them to one or more workspaces.
 
-Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships.
+Refer to the [variables overview](/docs/cloud/workspaces/variables.html) documentation for more information about variable types, scope, and precedence. Refer to [managing variables](/docs/cloud/workspaces/managing-variables.html) for details about how to create and manage variable sets.
 
-[permissions-citation]: #intentionally-unused---keep-for-maintainers
-
-See [Teams][] for more information.
-
-### Tags
-
-This page shows the list of tags used for all resources across the organization. Tags can be added directly to workspaces. Tags deleted here will be removed from all other resources, and can be deleted in bulk.
-
-![Screenshot: the tags list, showing a list of currently used tags.](./images/tag-management.png)
-
-### VCS Providers
-
-The VCS providers page is used for configuring VCS providers for use within the organization. It is available to users with permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
-
-[permissions-citation]: #intentionally-unused---keep-for-maintainers
-
-See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 ### API Tokens
 
@@ -167,6 +172,14 @@ Sentinel is an embedded policy-as-code framework that can enforce rules about Te
 Task event hooks are reusable [run tasks](../workspaces/run-tasks.html) configurations that can be attached to any workspace in an organization.
 
 A task event hook is made up of a human-readable name, a complete endpoint URL for the hook to communicate with, and an optional HMAC key used to verify the authenticity of a request.
+
+### VCS Providers
+
+The VCS providers page is used for configuring VCS providers for use within the organization. It is available to users with permission to manage VCS settings. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+See [Connecting VCS Providers](../vcs/index.html) for more information.
 
 ## Trial Expired Organizations
 
