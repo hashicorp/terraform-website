@@ -118,15 +118,13 @@ When variables from [committed `.auto.tfvars` files](#loading-variables-from-fil
 
 ### Precedence Example
 
-Consider an example workspace that has:
+Consider an example workspace that has the following variables applied:
 
-| Workspace-Specific Variables | Variable Set A | Variable Set B (Global)|
-| -----------------------------|----------------|----------------|
-|   | Applied 10/4 | Applied 10/20 |
-| `ACCESS_KEY` = `g`, `ACCESS_ID` = `q`, `VAR1` = `h` | `KEY1` = `x`, `VAR1` = `y` | `KEY1` = `z`, `VAR2` = `a` |
-
-
-
+| Name | Scope | Date Applied | ACCESS_KEY | ACCESS_ID | VAR1 | KEY1 | VAR2|
+|-----|-------|-------|-----|-------|-------|--------|--------|------|
+| Variables | Workspace-Specific | 10/1 | `g47fh474` | `874hf7u4` | `h` |     |     |
+| Variable Set A | Non-Global | 10/4 |   |   | `y` | `x` |   |   |
+| Variable Set B | Global | 10/20 |   |     |   |  `z` | `a` |
 
 When you trigger a run, Terraform Cloud applies the following variables:
 
