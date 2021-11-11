@@ -25,7 +25,7 @@ You must have [`read variables` permission](/docs/cloud/users-teams-organization
 
 You can create both  environment variables and Terraform variables in Terraform Cloud.
 
-> **Hands-on:** The [Create Infrastructure tutorial](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure?in=terraform/cloud-get-started) on HashiCorp Learn shows how to set Terraform variables and and the [Create and Use a Variable Set](https://learn.hashicorp.com/tutorials/terraform/cloud-create-variable-set?in=terraform/cloud-get-started) tutorial shows how to set provider credential environment variables.
+> **Hands-on:** Try the [Create and Use a Variable Sets](https://learn.hashicorp.com/tutorials/terraform/cloud-create-variable-set?in=terraform/cloud-get-started) and [Create Infrastructure] (https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-configure?in=terraform/cloud-get-started) tutorials on HashiCorp Learn to set environment and Terraform variables in Terraform Cloud.
 
 ### Environment Variables
 
