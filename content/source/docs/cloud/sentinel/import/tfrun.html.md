@@ -138,7 +138,7 @@ main = (length(tfrun.target_addrs) else 0) == 0
 
 * **Value Type:** A string-keyed map of values.
 
-Provides the names of the variables that are configured within the run and the [sensitivity](../../workspaces/variables.html#sensitive-values) state of the value.
+Provides the names of the variables that are configured within the run and the [sensitivity](../../workspaces/managing-variables.html#sensitive-values) state of the value.
 
 ```
 variables (map of keys)
