@@ -66,11 +66,9 @@ If a required input variable is missing, Terraform plans in the workspace will f
 
 #### Loading Variables from Files
 
-You can provide variable values by committing any number of [files ending in `.auto.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. If any variable from the workspace has the same key as a variable in the file, the workspace variable overwrites variable from the file.
+You can set variable values by providing any number of [files ending in `.auto.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. When you trigger a run, Terraform automatically loads and uses the variables defined in these files. You can only do this with files ending in `auto.tfvars`; Terraform Cloud does not recognize other types of `.tfvars` files. If any variable from the workspace has the same key as a variable in the file, the workspace variable overwrites variable from the file.
 
-One exception is `terraform.tfvars` files. Terraform Cloud creates a `terraform.tfvars` file to pass a workspace's input variables to Terraform during runs. This means that Terraform Cloud will overwrite any `terraform.tfvars` file you check into version control. You can check in other types of `.tfvars` files, but do not check in `terraform.tfvars` files even when running Terraform solely on the command line.
-
-~> **Note:** When Terraform Cloud loads variable values from files it does not automatically display those variable names in the workspace UI.
+~> **Note:** Terraform Cloud loads variables from files for each Terraform run, but does not automatically persist those variables to the Terraform Cloud workspace or display them in the **Variables** section of the workspace UI.
 
 ## Scope
 
