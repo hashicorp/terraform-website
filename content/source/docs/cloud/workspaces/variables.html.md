@@ -41,15 +41,37 @@ You can use the `TFE_PARALLELISM` environment variable when your infrastructure 
 
 ### Terraform Variables
 
-Terraform variables refer to [input variables](/docs/language/values/variables.html) that define parameters without hardcoding them into the configuration. For example, you could create variables that let users specify the number and type of Amazon Web Services EC2 instances they want to provision with a Terraform module. If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
+Terraform variables refer to [input variables](/docs/language/values/variables.html) that define parameters without hardcoding them into the configuration. For example, you could create variables that let users specify the number and type of Amazon Web Services EC2 instances they want to provision with a Terraform module.
 
-Terraform Cloud can infer default variable values from your configuration, but it does not automatically display those variable names in the UI.
+``` hcl
+variable "instance_count" {
+  description = "Number of instances to provision."
+  type        = number
+  default     = 2
+}
+```
+
+You can then reference this variable in your configuration.
+
+``` hcl
+module "ec2_instances" {
+  source = "./modules/aws-instance"
+
+-  instance_count = 2
++  instance_count = var.instance_count
+  ## ...
+}
+```
+
+If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
 
 #### Loading Variables from Files
 
 You can provide default variable values by committing any number of [files ending in `.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. If any variables from these files have the same key as existing variables in the Terraform Cloud workspace, the variables applied to the workspace overwrite variables from the files.
 
 One exception is `terraform.tfvars` files. Terraform Cloud creates a `terraform.tfvars` file to pass a workspace's input variables to Terraform during runs. This means that Terraform Cloud will overwrite any `terraform.tfvars` file you check into version control. You can check in other types of `.tfvars` files, but do not check in `terraform.tfvars` files even when running Terraform solely on the command line.
+
+~> **Note:** Terraform Cloud can infer default variable values, but it does not automatically display those variable names in the **Variables** page within the workspace UI.
 
 ## Scope
 
