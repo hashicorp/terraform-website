@@ -69,7 +69,7 @@ The **Variable sets** page appears, listing all of the organization's variable s
 
 ### Create Variable Sets
 
--> **Note:** Variable sets are currently in beta.
+~> **Note:** Variable sets are currently in beta.
 
 To create a variable set:
 
