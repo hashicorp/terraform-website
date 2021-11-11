@@ -9,7 +9,7 @@ description: "Configure Terraform input variables and environment variables and 
 
 You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. Refer to the [variables overview](/docs/cloud/workspaces/variables.html) documentation for more information about variable types, scope, and precedence.
 
--> **Note:** Variable sets are in beta.
+~> **Note:** Variable sets are in beta.
 
 You need [`read and write variables` permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to create and edit both workspace-specific variables and variable sets. You can manage variables and variable sets through:
 
@@ -23,7 +23,7 @@ To view and manage a workspace's variables, go to the workspace and click the **
 
 The **Variables** page appears, showing all workspace-specific variables and variable sets applied to the workspace. This is where you can add, edit, and delete workspace-specific variables. You can also apply and remove variable sets from the workspace.
 
-![Screenshot: The initial appearance of a workspace's variables page](./images/vars.png)
+![Screenshot: The variables page for a workspace](./images/vars.png)
 
 
 ### Add a Variable
@@ -32,13 +32,15 @@ To add a variable:
 
 1. Go to the workspace **Variables** page and click **+ Add variable** in the **Workspace Variables** section.
 
-1. Choose a variable type (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable key, value, and optional description. Check the **HCL** checkbox to enter a value in HashiCorp Configuration Language.
+1. Choose a variable category (Terraform or environment), optionally mark the variable as [sensitive](#sensitive-values), and enter a variable key, value, and optional description. Check the **HCL** checkbox to enter a value in HashiCorp Configuration Language.
 
     Refer to [variable values and format](#variable-values-and-format) for variable limits, allowable values, and formatting.
 
+    ![Screenshot: A variable being edited](./images/vars-edit.png)
+
 1. Click **Save variable**. The variable now appears in the list of the workspace's variables and Terraform Cloud will apply it to runs.
 
-  ![Screenshot: A variable being edited](./images/vars-edit.png)
+
 
 ### Edit a Variable
 
@@ -63,7 +65,7 @@ To view variable sets for your organization, click **Settings** in the top menu 
 
 The **Variable sets** page appears, listing all of the organization's variable sets. Click on a variable set to open it and review details about its variables and scoping.
 
-![The variable sets page in the Terraform Cloud UI](link)
+![Screenshot: The variable sets page in the Terraform Cloud UI](/docs/cloud/workspaces/images/var-sets-page.png)
 
 ### Create Variable Sets
 
@@ -73,7 +75,7 @@ To create a variable set:
 
 1. Go to the **Variable Sets** page for your organization and click **Create variable set**. The **Create a new variable set** page appears.
 
-  ![The create a new Variable set page in the Terraform Cloud UI](link)
+  ![The create a new Variable set page in the Terraform Cloud UI](/docs/cloud/workspaces/images/create-var-set.png)
 
 
 1. Choose a descriptive **Name** for the variable set. You can use any combination of numbers, letters, and characters.
@@ -127,9 +129,9 @@ To remove a variable set from within a workspace:
 
 You can overwrite variables defined in variable sets within a workspace. For example, you may want to use a different set of provider credentials in a specific workspace.
 
-To overwrite a variable from a variable set, [create a new workspace-specific variable](#workspace-specific-variables) of the same type with the same key. Terraform Cloud marks any variables that you overwrite with a yellow exclamation point and provides a link to the variable it will use during runs.
+To overwrite a variable from a variable set, [create a new workspace-specific variable](#workspace-specific-variables) of the same type with the same key. Terraform Cloud marks any variables that you overwrite with a yellow **OVERWRITTEN** flag. When you click the overwritten variable, Terraform Cloud highlights the variable it will use during runs.
 
-![An overwritten variable marked with a yellow exclamation point](link)
+![The Terraform Cloud UI indicates which variables are overwritten](/docs/cloud/workspaces/images/ui-overwritten-variables.png)
 
 Variables within a variable set can also automatically overwrite variables with the same key in other variable sets applied to the same workspace. Though variable sets are created for the organization, these overwrites occur within each workspace. Refer to [variable precedence](/docs/cloud/workspaces/variables.html#precedence) for more details.
 
@@ -141,7 +143,7 @@ The limits, allowable values, and required format are the same for both workspac
 
 Terraform Cloud encrypts all variable values securely using [Vault's transit backend](https://www.vaultproject.io/docs/secrets/transit/index.html) prior to saving them. This ensures that no out-of-band party can read these values without proper authorization. However, Terraform Cloud stores variable [descriptions](#variable-description) in plain text, so be careful with the information you save in a variable description.
 
-We also recommend passing credentials to Terraform as environment variables instead of Terraform variables when possible, since Terraform runs receive the full text of all Terraform variable values, including [sensitive](#sensitive-values) ones. It may print the values in logs and state files if the configuration sends the value to an output or a resource parameter. Sentinel mocks downloaded from runs will also contain the sensitive values of Terraform variables. 
+We also recommend passing credentials to Terraform as environment variables instead of Terraform variables when possible, since Terraform runs receive the full text of all Terraform variable values, including [sensitive](#sensitive-values) ones. It may print the values in logs and state files if the configuration sends the value to an output or a resource parameter. Sentinel mocks downloaded from runs will also contain the sensitive values of Terraform variables.
 
 Although Terraform cloud does not store environment variables in state, it can include them in log files if `TF_LOG` is set to `TRACE`.
 
