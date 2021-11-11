@@ -84,7 +84,7 @@ The plan and billing page allows organization owners to upgrade to one of Terraf
 
 ### Tags
 
-This page shows all of the tags applied to workspaces in the organization. Deleting a tag from this page removes it from all workspaces.  
+This page shows the list of tags used for all resources across the organization. Tags can be added directly to workspaces. Tags deleted here will be removed from all other resources, and can be deleted in bulk.  
 
 ![Screenshot: the tags list, showing a list of currently used tags.](./images/tag-management.png)
 
@@ -93,11 +93,11 @@ This page shows all of the tags applied to workspaces in the organization. Delet
 
 -> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Free organizations only include an owners team, which can include up to five members. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
-All users in an organization can view the teams page.
+The teams page is shown to all users in an organization.
 
-Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that you can only add users to teams after they have received and accepted an invitation to the organization.
+Organization owners can use this page to create and delete teams, manage team membership, and manage team API tokens. Note that users can only be added to teams after they have received and accepted an invitation to the organization.
 
-Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They cannot edit team memberships.
+Non-owners can view the list of teams (excluding [secret teams](./teams.html#team-visibility) they aren't members of), view the membership of those teams, and manage team API tokens for those teams. They can't edit team memberships.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
