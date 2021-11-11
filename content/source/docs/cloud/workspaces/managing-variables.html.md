@@ -75,7 +75,7 @@ To create a variable set:
 
 1. Go to the **Variable Sets** page for your organization and click **Create variable set**. The **Create a new variable set** page appears.
 
-  ![The create a new Variable set page in the Terraform Cloud UI](/docs/cloud/workspaces/images/create-var-set.png)
+    ![The create a new Variable set page in the Terraform Cloud UI](/docs/cloud/workspaces/images/create-var-set.png)
 
 
 1. Choose a descriptive **Name** for the variable set. You can use any combination of numbers, letters, and characters.
