@@ -87,7 +87,7 @@ Each environment and Terraform variable can have one of the following scopes:
 
 ## Precedence
 
-> **Hands On:** The [Manage Multiple Variable Sets in Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/manage-variable-sets) tutorial on HashiCorp Learn shows how to manage multiple variable sets and demonstrates variable precedence.
+> **Hands On:** The [Manage Multiple Variable Sets in Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-multiple-variable-sets) tutorial on HashiCorp Learn shows how to manage multiple variable sets and demonstrates variable precedence.
 
 
 There may be cases when a workspace contains conflicting variables of the same type with the same key. Terraform Cloud marks overwritten variables in the UI.
