@@ -103,15 +103,6 @@ curl \
     "next": null,
     "last": "https://app.terraform.io/api/v2/workspaces/ws-DiTzUDRpjrArAfSS/resources?page%5Bnumber%5D=1&page%5Bsize%5D=20"
   },
-  "meta": {
-    "pagination": {
-      "current-page": 1,
-      "page-size": 20,
-      "prev-page": null,
-      "next-page": null,
-      "total-pages": 1,
-      "total-count": 2
-    }
-  }
+  ...
 }
 ```
