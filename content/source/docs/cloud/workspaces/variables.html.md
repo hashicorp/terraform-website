@@ -57,9 +57,8 @@ You can then reference this variable in your configuration.
 module "ec2_instances" {
   source = "./modules/aws-instance"
 
--  instance_count = 2
-+  instance_count = var.instance_count
-  ## ...
+ instance_count = var.instance_count
+ ## ...
 }
 ```
 
