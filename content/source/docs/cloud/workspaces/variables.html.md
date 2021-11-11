@@ -80,8 +80,8 @@ Each environment and Terraform variable can have one of the following scopes:
 | Scope | Description| Resources |
 |-------|------------|-----------|
 |Workspace-Specific | Apply to a single workspace | [Create Workspace-Specific Variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables), [Loading Variables from Files](#loading-variables-from-files), [Workspace-Specific Variables API](/docs/cloud/api/workspace-variables.html).|
-|Variable Set | Apply to multiple workspaces within the same organization. | You can [create variable sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) |
-|Global Variable Set | Automatically applied to all current and future workspaces within an organization. | TBD |
+|Variable Set | Apply to multiple workspaces within the same organization. | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)|
+|Global Variable Set | Automatically applied to all current and future workspaces within an organization. | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)|
 
 
 
