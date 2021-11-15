@@ -326,7 +326,7 @@ List all variable sets for a workspace.
       },
       "relationships": {
         "organization": {
-          "data: {"id": "organization_1", "type": "organizations"}
+          "data": {"id": "organization_1", "type": "organizations"}
         },
         "vars": {
           "data": [
