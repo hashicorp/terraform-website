@@ -7,13 +7,14 @@ description: |-
 
 # Private Registry
 
-> **Hands-on:** Try the [Add Public Modules to your Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-add?in=terraform/modules) tutorial and [Share Modules in the Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules) tutorials on HashiCorp Learn.
 
 Terraform Cloud's private registry works similarly to the [public Terraform Registry](/docs/registry/index.html) and helps you share [Terraform providers](/docs/language/providers/index.html) and [Terraform modules](/docs/language/modules/index.html) across your organization. It includes support for versioning, a searchable list of available providers and modules, and a [configuration designer](/docs/cloud/registry/design.html) to help you build new workspaces faster.
 
+> **Hands-on:** Try the [Add Public Modules to your Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-add?in=terraform/modules) tutorial and [Share Modules in the Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules) tutorials on HashiCorp Learn.
+
 ## Public Providers and Modules
 
-[Public modules and providers](/docs/cloud/registry/add.html) are hosted on the public Terraform Registry and Terraform Cloud automatically synchronizes them to an organization's private registry. This lets you clearly designate which public providers and modules are recommended or approved for use within that organization.
+[Public modules and providers](/docs/cloud/registry/add.html) are hosted on the public Terraform Registry and Terraform Cloud automatically synchronizes them to an organization's private registry. This lets you clearly designate which public providers and modules are recommended for the organization and makes their supporting documentation and examples centrally accessible.
 
 ~> **Note:** Terraform Enterprise does not support public modules and providers.
 
