@@ -52,19 +52,21 @@ You need [owners team](/docs/cloud/users-teams-organizations/permissions.html#or
 
 To publish a new module:
 
-1. Click "Registry" in the main navigation bar. Then click "Publish" and select "Module" in the dropdown.
+1. Click **Registry** in the main navigation bar. The **Registry** page appears.
+
+1. Click **Publish** and select **Module**.
 
     ![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
 
-      The "Add Module" page appears with a list of available repositories.
+      The **Add Module** page appears with a list of available repositories.
 
       ![Terraform Cloud screenshot: the "add module" page, with a repository name entered](./images/publish-add-module.png)
 
-2. Select the repository containing the module you want to publish.
+1. Select the repository containing the module you want to publish.
 
     You can search the list by typing part or all of a repository name into the filter field. Remember that VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. The namespace is an organization name for most providers, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.
 
-3. Click "Publish module".
+1. Click **Publish module**.
 
     Terraform Cloud displays a loading page while it imports the module versions and then takes you to the new module's details page. On the details page, you can view available versions, read documentation, and copy a usage example.
 
@@ -81,16 +83,16 @@ Refer to [Preparing a Module Repository](#preparing-a-module-repository) for det
 You can delete individual versions of a module or the entire module. If deleting a module version would leave a module with no versions, Terraform Cloud will remove the entire module. To delete a module or version:
 
 1. Navigate to the module's details page.
-2. If you want to delete a single version, use the "Versions" dropdown to select it.
-3. Click "Delete module".
-4. Select an action from the dropdown:
-   - **Delete only this module version:** Deletes only the version of the module you were viewing when you clicked "Delete module".
+1. If you want to delete a single version, use the **Versions** menu to select it.
+1. Click **Delete module**.
+1. Select an action from the menu:
+   - **Delete only this module version:** Deletes only the version of the module you were viewing when you clicked **Delete module**.
    - **Delete all versions for this provider for this module:** Deletes the entire module for a single provider. This is important if you have modules with the same name but with different providers. For example, if you have module repos named `terraform-aws-appserver` and `terraform-azure-appserver`, the registry treats them as alternate providers of the same `appserver` module.
    - **Delete all providers and versions for this module:** Deletes all modules with this name, even if they are from different providers. For example, both `terraform-aws-appserver` and `terraform-azure-appserver` would be deleted.
 
     ![Terraform Cloud screenshot: the deletion dialog](./images/publish-delete.png)
 
-5. Type the module name and click "Delete".
+1. Type the module name and click **Delete**.
 
 ### Restoring a Deleted Module or Version
 
