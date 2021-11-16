@@ -92,15 +92,15 @@ The remote backend also supports state manipulation commands like `terraform imp
 
 - More info: [CLI-driven Runs](./run/cli.html)
 
-### Private Module Registry
+### Private Registry
 
 Even small teams can benefit greatly by codifying commonly used infrastructure patterns into reusable [modules][].
 
-Terraform CLI can already fetch modules from arbitrary VCS sources, but Terraform Cloud improves this with a private module registry. Users throughout your organization can browse a directory of internal modules, and can specify flexible version constraints for the modules they use in their configurations. Easy versioning lets downstream teams use modules with confidence, and frees upstream teams to iterate faster.
+Terraform CLI can already fetch modules from arbitrary VCS sources, but Terraform Cloud improves this with a private registry. Users throughout your organization can browse a directory of internal providers and modules, and can specify flexible version constraints for the modules they use in their configurations. Easy versioning lets downstream teams use private modules with confidence, and frees upstream teams to iterate faster.
 
 The private registry uses your VCS as the source of truth, relying on Git tags to manage module versions. Tell Terraform Cloud which repositories contain modules, and the registry handles the rest.
 
-- More info: [Private Module Registry](./registry/index.html)
+- More info: [Private Registry](./registry/index.html)
 
 ## Integrations
 
@@ -122,7 +122,7 @@ Terraform Cloud can send notifications about Terraform runs to other systems, in
 
 -> **Note:** As of September 2021, Run Tasks are available only as a beta feature, are subject to change, and not all customers will see this functionality in their Terraform Cloud organization.
 
-Run Tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle. 
+Run Tasks allow Terraform Cloud to execute tasks in external systems at specific points in the Terraform Cloud run lifecycle.
 
 There are several [partner integrations](https://www.hashicorp.com/integrations) already available, or you can create your own based on the [API](./api/run-tasks.html).
 
