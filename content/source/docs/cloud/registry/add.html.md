@@ -48,7 +48,7 @@ Deleting a public provider or module from a private registry does not remove it 
 
 1. Click **Registry** in the main navigation bar to go to the organization's private registry.
 
-2. Select the provider or module to view its details, open the **Manage for Organization** menu, and click **Delete provider** or **Delete module**. 
+1. Select the provider or module to view its details, open the **Manage for Organization** menu, and click **Delete provider** or **Delete module**.
    ![Terraform Cloud screenshot: the delete module button](./images/add-delete-module-button.png)
 
-3. Enter the provider or module name in the dialog box to confirm and then click **Delete**.
+1. Enter the provider or module name in the dialog box to confirm and then click **Delete**.
