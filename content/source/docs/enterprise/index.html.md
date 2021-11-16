@@ -9,9 +9,7 @@ description: |-
 
 Terraform Enterprise is our self-hosted distribution of Terraform Cloud. It offers enterprises a private instance of the Terraform Cloud application, with no resource limits and with additional enterprise-grade architectural features like audit logging and SAML single sign-on.
 
-[Terraform Cloud](https://www.hashicorp.com/products/terraform/) is an application that helps teams use Terraform together. It manages Terraform runs in a consistent and reliable environment, and includes easy access to shared state and secret data, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more.
-
-For independent teams and small to medium-sized businesses, Terraform Cloud is also available as a hosted service at [https://app.terraform.io](https://app.terraform.io).
+[Terraform Cloud](https://www.terraform.io/cloud) is an application that helps teams use Terraform together. It manages Terraform runs in a consistent and reliable environment, and includes easy access to shared state and secret data, access controls for approving changes to infrastructure, a private registry for sharing Terraform modules, detailed policy controls for governing the contents of Terraform configurations, and more.
 
 ### Note About Product Names
 

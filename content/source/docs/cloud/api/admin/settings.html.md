@@ -58,7 +58,7 @@ curl \
       "limit-user-organization-creation": true,
       "api-rate-limiting-enabled": true,
       "api-rate-limit": 30,
-      "send-passing-statuses-for-untriggered-speculative-plans": true,
+      "send-passing-statuses-for-untriggered-speculative-plans": false,
       "allow-speculative-plans-on-pull-requests-from-forks": false,
       "default-remote-state-access": true
     }
@@ -87,7 +87,7 @@ Key path                                                                 | Type 
 `data.attributes.api-rate-limiting-enabled`                              | bool     | `true`                    | Whether or not rate limiting is enabled for API requests. To learn more about API Rate Limiting, refer to the [rate limiting documentation][]
 `data.attributes.default-remote-state-access`                            | bool     | `true`                    | Determines the default value for the `global-remote-state` attribute on new workspaces. For more details, refer to [Administration: General Settings](/docs/enterprise/admin/general.html#remote-state-sharing) and [Workspaces API: Create a Workspace](/docs/cloud/api/workspaces.html#create-a-workspace).
 `data.attributes.limit-user-organization-creation`                       | bool     | `true`                    | When set to `true`, limits the ability to create organizations to users with the `site-admin` permission only.
-`data.attributes.send-passing-statuses-for-untriggered-speculative-plans`| bool     | `true`                    | When set to `true`, workspaces automatically send passing commit statuses for any pull requests that don't affect their tracked files.
+`data.attributes.send-passing-statuses-for-untriggered-speculative-plans`| bool     | `false`                    | When set to `true`, workspaces automatically send passing commit statuses for any pull requests that don't affect their tracked files.
 
 [rate limiting documentation]: ../index.html#rate-limiting
 
@@ -127,7 +127,7 @@ curl \
       "limit-user-organization-creation": true,
       "api-rate-limiting-enabled": true,
       "api-rate-limit": 50,
-      "send-passing-statuses-for-untriggered-speculative-plans": true,
+      "send-passing-statuses-for-untriggered-speculative-plans": false,
       "allow-speculative-plans-on-pull-requests-from-forks": false,
       "default-remote-state-access": true
     }
