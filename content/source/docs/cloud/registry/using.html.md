@@ -7,50 +7,44 @@ description: |-
 
 # Using Providers and Modules from the Private Registry
 
-> **Hands-on:** Try the [Use Modules from the Registry](https://learn.hashicorp.com/tutorials/terraform/module-use?in=terraform/modules) tutorial on HashiCorp Learn.
-<br>
-
-A Terraform Cloud private registry has a few key differences from the [public Terraform Registry](/docs/registry/index.html):
+All users in an organization can view the Terraform Cloud private registry and use the available providers and modules. A private registry has a few key differences from the [public Terraform Registry](/docs/registry/index.html):
 
 - **Location:** You must use Terraform Cloud's web UI to search for providers, modules, and usage examples.
 - **Module `source` strings:** Private modules use a [four-part format](/docs/cloud/registry/using.html#using-modules-in-configurations): `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
-- **Authentication:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs. But when you run Terraform on the command line, you must [authenticate](/docs/cloud/registry/using.html#authentication) to Terraform Cloud or your Terraform enterprise instance.
+- **Authentication:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs. But when you run Terraform on the command line, you must [authenticate](/docs/cloud/registry/using.html#authentication) to Terraform Cloud or your Terraform Enterprise instance.
 
 
 ## Finding Providers and Modules
 
-All users in your organization can view your private registry. To find available providers and modules, click the **Registry** button in the main navigation bar.
-
-![Terraform Cloud screenshot: Navigation bar with registry button highlighted](./images/using-modules-button.png)
-
-The **Registry** page appears. Click **Providers** and **Modules** to toggle back and forth between lists of available providers and available modules in your organization's registry.
-
-You can also use the search field to filter for titles that contain the specified keyword. Note that it does not search READMEs or resource details.
+To find available providers and modules, click the **Registry** button in the main navigation bar. The **Registry** page appears.
 
 ![Terraform Cloud screenshot: a filtered list of available providers](./images/registry-page-filtered.png)
 
+Click **Providers** and **Modules** to toggle back and forth between lists of available providers and modules in the private registry. You can also use the search field to filter for titles that contain a specific keyword. The search does not include READMEs or resource details.
+
+
 ### Shared Modules - Terraform Enterprise
 
-On Terraform Enterprise, your [module sharing](/docs/enterprise/admin/module-sharing.html) configuration may grant you access to modules outside your organization. Modules that are shared with your current organization have a **Shared** badge (below). Modules in your current organization that are shared with other organizations have a badge that says **Sharing**.
+On Terraform Enterprise, your [module sharing](/docs/enterprise/admin/module-sharing.html) configuration may grant you access to modules outside your organization. Modules that are shared with your current organization have a **Shared** badge in the private registry (below). Modules in your current organization that are shared with other organizations have a badge that says **Sharing**.
 
 ![Terraform Enterprise screenshot: shared module](./images/using-modules-list-shared.png)
 
 
 ### Viewing Provider and Module Details and Versions
 
-Click a provider or module to view its details page. Use the **Versions** dropdown in the upper right to switch between the available versions, and use the **Readme**, **Inputs**, **Outputs**, **Dependencies**, and **Resources** tabs to view detailed documentation and information about the selected version.
+Click a provider or module to view its details page. Use the **Versions** menu in the upper right to switch between the available versions, and use the **Readme**, **Inputs**, **Outputs**, **Dependencies**, and **Resources** tabs to view more information about the selected version.
 
 ![Terraform Cloud screenshot: a module details page](./images/publish-module-details.png)
 
 ### Viewing Nested Modules and Examples
 
-Use the **Submodules** dropdown to navigate to the detail pages for any nested modules. Use the **Examples** dropdown to navigate to the detail pages for any available example modules.
+Use the **Submodules** menu to navigate to the detail pages for any nested modules. Use the **Examples** menu to navigate to the detail pages for any available example modules.
 
 ![Terraform Cloud screenshot: a module submodules button](./images/using-submodules-dropdown.png)
 
 ## Using Providers in Configurations
 
-The syntax for public providers in your private registry is the same as for providers that you use directly from the public Terraform Registry. The syntax for the [provider block](/docs/language/providers/configuration.html) `source` argument is `<NAMESPACE>/<PROVIDER>`.
+The syntax for public providers in a private registry is the same as for providers that you use directly from the public Terraform Registry. The syntax for the [provider block](/docs/language/providers/configuration.html#provider-configuration-1) `source` argument is `<NAMESPACE>/<PROVIDER>`.
 
 ``` hcl
 terraform {
@@ -63,6 +57,9 @@ terraform {
 ```
 
 ## Using Modules in Configurations
+
+> **Hands-on:** Try the [Use Modules from the Registry](https://learn.hashicorp.com/tutorials/terraform/module-use?in=terraform/modules) tutorial on HashiCorp Learn.
+<br>
 
 The syntax for referencing publicly curated modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<NAMESPACE>/<MODULE NAME>/<PROVIDER>`.
 
@@ -85,7 +82,7 @@ module "vpc" {
 }
 ```
 
-To get started, you can copy and paste the usage example on the module's registry page or use the [configuration designer](./design.html) to select multiple modules and fill in their variables.
+To get started, you can copy and paste the usage example on the module's details page or use the [configuration designer](./design.html) to select multiple modules and fill in their variables.
 
 ### Generic Hostname - Terraform Enterprise
 
