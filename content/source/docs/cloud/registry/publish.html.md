@@ -1,22 +1,22 @@
 ---
 layout: "cloud"
-page_title: "Publishing Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
+page_title: "Publishing Private Modules - Private Registry - Terraform Cloud and Terraform Enterprise"
 description: |-
   Learn to prepare private modules for publishing, add them to the registry, and release new versions.
 ---
 
 [vcs]: ../vcs/index.html
 
-# Publishing Modules to the Terraform Cloud Private Module Registry
+# Publishing Modules to the Terraform Cloud Private Registry
 
 > **Hands-on:** Try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-share) tutorial on HashiCorp Learn.
 
-In addition to [adding modules from the Terraform Registry](./add.html), you can publish private modules to your Terraform Cloud private module registry.
+In addition to [adding modules from the Terraform Registry](./add.html), you can publish private modules to a Terraform Cloud private registry.
 
-Each organization has its own private module registry, and private modules are only available to members of the organization where you add them. In Terraform Enterprise, they are also available to organizations that are configured to [share modules](/docs/enterprise/admin/module-sharing.html) with that organization. The registry handles downloads and controls access with Terraform Cloud API tokens, so consumers don't need access to the module's source repository, even when running Terraform from the command line.
+Each organization has its own private registry, and private modules are only available to members of the organization where you add them. In Terraform Enterprise, they are also available to organizations that are configured to [share modules](/docs/enterprise/admin/module-sharing.html) with that organization. The registry handles downloads and controls access with Terraform Cloud API tokens, so consumers don't need access to the module's source repository, even when running Terraform from the command line.
 
 
-The private module registry uses your configured [Version Control System (VCS) integrations][vcs] and defers to your VCS provider for most management tasks. For example, your VCS provider handles new version releases. The only manual tasks are adding a new module and deleting module versions.
+The private registry uses your configured [Version Control System (VCS) integrations][vcs] and defers to your VCS provider for most management tasks. For example, your VCS provider handles new version releases. The only manual tasks are adding a new module and deleting module versions.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -48,7 +48,7 @@ A module repository must meet all of the following requirements before you can a
 
 ## Publishing a New Module
 
-You need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to publish private modules to the private module registry. You can publish modules through the UI as shown below or with the [Registry Modules API](../api/modules.html). The API also supports publishing modules without a VCS repo as the source, which is not possible via the UI.
+You need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to publish private modules to the private registry. You can publish modules through the UI as shown below or with the [Registry Modules API](../api/modules.html). The API also supports publishing modules without a VCS repo as the source, which is not possible via the UI.
 
 To publish a new module:
 
