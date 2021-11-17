@@ -177,7 +177,7 @@ Parameter            | Description
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 #### Public providers
-When created, the public provider record will be available in the organization's registry provider list. You cannot create versions for public providers as they are maintained in the public registry.
+When created, the public provider record will be available in the organization's registry provider list. You cannot create versions for public providers; you must use the versions available on the Terraform Registry.
 
 Status  | Response                                           | Reason
 --------|----------------------------------------------------|----------
