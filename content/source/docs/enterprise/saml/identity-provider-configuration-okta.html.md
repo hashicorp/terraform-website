@@ -36,7 +36,7 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
     | --------------------------- | ---------- | -------------- |
     | **Name**                    | `SiteAdmin` | This is the default name for TFE's site admin [attribute][]; the name of this attribute can be changed in [TFE's SAML settings](./configuration.html) if necessary. |
     | **Name Format** (drop-down) | Basic      |                |
-    | **Value**                   |            | An [Okta expression](https://developer.okta.com/reference/okta_expression_language/) that will evaluate to a boolean: `true` for every user who should have site admin permissions, but `false` for any users who should **not** have site admin permissions. The exact expression depends on the user properties you use to manage admin permissions. |
+    | **Value**                   |            | An [Okta expression](https://developer.okta.com/docs/reference/okta-expression-language/) that will evaluate to a boolean: `true` for every user who should have site admin permissions, but `false` for any users who should **not** have site admin permissions. The exact expression depends on the user properties you use to manage admin permissions. |
 
 
 1. Still in the **Configure SAML** page, configure a group attribute statement to report which teams a user belongs to. Under the **Group Attribute Statements (Optional)** header, configure the statement as follows:
