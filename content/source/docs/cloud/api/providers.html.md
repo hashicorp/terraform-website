@@ -346,7 +346,7 @@ Status  | Response                                             | Reason
 --------|------------------------------------------------------|-------
 [204][] | Nothing                                              | Success
 [403][] | [JSON API error object][]                            | Forbidden - public provider curation disabled
-[404][] | [JSON API error object][]                            | Provider not found or user not authorized
+[404][] | [JSON API error object][]                            | Provider not found or user not authorized to perform action
 
 
 ### Sample Request (public provider)
