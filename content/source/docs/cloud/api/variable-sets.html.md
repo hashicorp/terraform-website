@@ -83,7 +83,7 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/organziations/my-organization/varsets
+  https://app.terraform.io/api/v2/organizations/my-organization/varsets
 ```
 
 ### Sample Response
