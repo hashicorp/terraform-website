@@ -32,7 +32,7 @@ To add a public provider or module:
 
     ![Terraform Cloud screenshot: the Search Public Modules page](./images/add-search-public-modules-providers.png)
 
-1. Enter any combination of namespaces (e.g. hashicorp) and module/provider names into the search field. You can click **Providers** and **Modules** to toggle between lists of providers and modules that meet the search criteria.
+1. Enter any combination of namespaces (e.g. hashicorp), and module or provider names into the search field. You can click **Providers** and **Modules** to toggle between lists of providers and modules that meet the search criteria.
 
 1. Do one of the following to add a provider or module to your private registry:
     - Hover over the provider or module and click **+ Add**.
@@ -40,11 +40,11 @@ To add a public provider or module:
     - Click the provider or module to view its details and then click **Add to Terraform Cloud**.
      ![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-to-terraform-cloud-button.png)
 
-1. Click **Add to organization** in the dialog box. The provider or module is now included in the private registry, and members of your organization can begin using it.
+1. Click **Add to organization** in the dialog box. The provider or module is now included in the private registry, and members of your organization can begin using it from the private registry.
 
 ## Deleting a Public Provider or Module
 
-Deleting a public provider or module from a private registry does not remove it from the Terraform Registry. To delete a public provider or module from an organization's private registry:
+Deleting a public provider or module from a private registry does not remove it from the public Terraform Registry. To delete a public provider or module from an organization's private registry:
 
 1. Click **Registry** in the main navigation bar to go to the organization's private registry.
 
