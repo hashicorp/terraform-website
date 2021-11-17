@@ -14,9 +14,9 @@ Terraform Cloud's private registry works similarly to the [public Terraform Regi
 
 ## Public Providers and Modules
 
-[Public modules and providers](/docs/cloud/registry/add.html) are hosted on the public Terraform Registry and Terraform Cloud automatically synchronizes them to an organization's private registry. This lets you clearly designate which public providers and modules are recommended for the organization and makes their supporting documentation and examples centrally accessible.
+[Public modules and providers](/docs/cloud/registry/add.html) are hosted on the public Terraform Registry and Terraform Cloud can automatically synchronize them to an organization's private registry. This lets you clearly designate which public providers and modules are recommended for the organization and makes their supporting documentation and examples centrally accessible.
 
-~> **Note:** Terraform Enterprise does not support public modules and providers.
+~> **Note:** Public providers and modules are not supported in Terraform Enterprise.
 
 ## Private Modules
 
