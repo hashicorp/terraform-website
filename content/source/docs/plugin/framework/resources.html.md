@@ -159,3 +159,7 @@ func (p *provider) GetResources(_ context.Context) (map[string]tfsdk.ResourceTyp
 	}, nil
 }
 ```
+
+## Further Resource Capabilities
+
+- [Validation](./validation.html)
