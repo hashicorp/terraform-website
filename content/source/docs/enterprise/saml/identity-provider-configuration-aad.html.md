@@ -7,8 +7,7 @@ page_title: "SAML Azure Active Directory Identity Provider Configuration - Terra
 
 Follow these steps to configure Azure Active Directory (AAD) as the identity provider (IdP) for Terraform Enterprise.
 
-> [!Note]
-> This guide assumes you have an appropriate licensing agreement for Azure Active Directory that supports non-gallery application single sign-on.
+~> **Note:** This guide assumes you have an appropriate licensing agreement for Azure Active Directory that supports non-gallery application single sign-on.
 
 ## Configure a New AAD Non-Gallery Application
 
@@ -26,29 +25,28 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
 
 1. On the **Basic SAML Configuration** section, enter the values for the following fields:
 
-    a. In the **Identifier (Entity ID)** text box, type a URL using the following pattern:
+    - In the **Identifier (Entity ID)** text box, type a URL using the following pattern:
     `https://<TFE HOSTNAME>/users/saml/metadata`
 
-    b. In the **Reply URL** text box, type a URL using the following pattern:
+    - In the **Reply URL** text box, type a URL using the following pattern:
     `https://<TFE HOSTNAME>/users/saml/auth`
 
-	c. In the **Sign on URL** text box, type a URL using the following pattern:
+	- In the **Sign on URL** text box, type a URL using the following pattern:
     `https://<TFE HOSTNAME>/`
+
+    ~> **Note:** Update these values with the actual Identifier and Sign on URL. Contact [Terraform Enterprise Client support team](https://support.hashicorp.com) to get these values. You can also refer to the patterns shown in the **Basic SAML Configuration** section in the Azure portal.
 
     ![Screenshot: The "Configure SAML" page of ADD's new app workflow, with the specified settings entered.](./images/sso-aad-saml-configuration.png)
 
-	> [!NOTE]
-	> These values are not real. Update these values with the actual Identifier and Sign on URL. Contact [Terraform Enterprise Client support team](https://support.hashicorp.com) to get these values. You can also refer to the patterns shown in the **Basic SAML Configuration** section in the Azure portal.
-
-1. Your Terraform Enterprise application expects the SAML assertions in a specific format, which requires you to add custom attribute mappings to your SAML token attributes configuration. The default value of **Unique User Identifier** is **user.userprincipalname** but Terraform Enterprise expects this to be mapped with the user's email address. For that you can use **user.mail** attribute from the list or use the appropriate attribute value based on your organization configuration.
+1. Your Terraform Enterprise application expects the SAML assertions in a specific format, which requires you to add custom attribute mappings to your SAML token attributes configuration. The default value of **Unique User Identifier** is `user.userprincipalname` but Terraform Enterprise expects this to be mapped with the user's email address. For that, you can use `user.mail` attribute from the list or use the appropriate attribute value based on your organization configuration.
 
     ![Screenshot: Modifying the name identifier value.](./images/sso-aad-saml-user-claims-name-identifier.png)
 
 6. Still in the **User Attributes & Claims** page, under **Manage user claims**, configure a user claim to map the team a user belongs to:
     
-    a. **Name:** `MemberOf`. This is the default name for TFE's group [attribute](./attributes.html); the name of this attribute can be changed in [TFE's SAML settings](./configuration.html) if necessary.
+     - **Name:** `MemberOf`. This is the default name for TFE's group [attribute](./attributes.html); you can change this attribute's name in [TFE's SAML settings](./configuration.html).
     
-    b. **Source attribute:** (drop-down): `user.assignedroles`. Custom roles will be created in Azure Active Directory that will be used to map users and groups to TFE teams.
+     - **Source attribute** (drop-down): `user.assignedroles`. Azure Active Directory will create custom roles that will be used to map users and groups to TFE teams.
 
     ![Screenshot: Add MemberOf claim](./images/sso-aad-saml-user-claims-memberof.png)
 
@@ -56,9 +54,7 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
 
     ![Screenshot: Download the SAML signing certificate](./images/sso-aad-saml-signing-certificate.png)
 
-8. Under the **Set up Terraform Enterprise** header, copy the following urls that we will enter in our TFE configuration to link TFE to AAD:
-    * **Login URL:**
-    * **Logout URL:**
+8. Under the **Set up Terraform Enterprise** header, copy the **Login URL** and **Logout URL** that you will enter in your TFE configuration to link TFE to AAD.
 
     ![Screenshot: Azure Login/Logout URLs](./images/sso-aad-saml-urls.png)
 
@@ -66,29 +62,26 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
 
     ![Screenshot: Terraform Enterprise SAML Settings](./images/sso-aad-saml-tfe-saml-settings.png)
 
-    a. Enable the **Enable SAML single sign-on** check box.
-
-    b. In the **Single Sign-On URL** textbox, paste the **Login URL** value which you have copied from the Azure portal.
-
-    c. In the **Single Log-out URL** textbox, paste the **Login URL** value which you have copied from the Azure portal.
-    
-    d. Open the downloaded **Certificate** from the Azure portal into Notepad and paste the content into the **IDP CERTIFICATE** textbox. 
+    - Enable the **Enable SAML single sign-on** check box.
+    - In the **Single Sign-On URL** textbox, paste the **Login URL** value which you copied from the Azure portal.
+    - In the **Single Log-out URL** textbox, paste the **Login URL** value which you copied from the Azure portal.
+    - Open the downloaded **Certificate** from the Azure portal into Notepad and paste the content into the **IDP CERTIFICATE** textbox. 
 
 ### Create an Azure AD test user
 
-In this section, you'll create a test user in the Azure portal called B.Simon.
+In this section, you'll create a test user in the Azure portal named B. Simon
 
 1. From the left pane in the Azure portal, select **Azure Active Directory**, select **Users**, and then select **All users**.
 1. Select **New user** at the top of the screen.
 1. In the **User** properties, follow these steps:
-   1. In the **Name** field, enter `B.Simon`.  
-   1. In the **User name** field, enter the username@companydomain.extension. For example, `B.Simon@contoso.com`.
+   1. In the **Name** field, enter `B. Simon`.  
+   1. In the **User name** field, enter the `B.Simon@companydomain.extension`, replacing `companydomain.extension` with your company's domain name. For example, `B.Simon@contoso.com`.
    1. Select the **Show password** check box, and then write down the value that's displayed in the **Password** box.
    1. Click **Create**.
 
 ### Assign the Azure AD test user
 
-In this section, you'll enable B.Simon to use Azure single sign-on by granting access to Terraform Enterprise.
+In this section, you'll enable B. Simon to use Azure single sign-on by granting access to Terraform Enterprise.
 
 1. In the Azure portal, select **Enterprise Applications**, and then select **All applications**.
 1. In the applications list, select **Terraform Enterprise**.
@@ -96,7 +89,7 @@ In this section, you'll enable B.Simon to use Azure single sign-on by granting a
 
 1. Select **Add user**, then select **Users and groups** in the **Add Assignment** dialog.
 
-1. In the **Users and groups** dialog, select **B.Simon** from the Users list, then click the **Select** button at the bottom of the screen.
+1. In the **Users and groups** dialog, select **B. Simon** from the Users list, then click the **Select** button at the bottom of the screen.
 1. If you are expecting a role to be assigned to the users, you can select it from the **Select a role** dropdown. If no role has been set up for this app, you see "Default Access" role selected.
 1. In the **Add Assignment** dialog, click the **Assign** button.
 
@@ -114,10 +107,9 @@ In this section, you'll enable B.Simon to use Azure single sign-on by granting a
 
 4. The **appRoles** block may contain roles automatically generated by AAD. Leave the automatically generated role GUIDs with their default values.  New roles should be added after the system roles and must contain a unique GUID value for the ID value of the new role. You can use a tool such as [GUID Generator](https://www.guidgenerator.com) to create the GUIDs for these new roles. Click **Save** to add the roles.
 
-    > [!Note]
-    > You can add as many roles as your organization needs, such as the `site-admins` role. Azure AD will send the value of these roles as the claim value in the SAML response.
+    -> **Tip:** You can add as many roles as your organization needs, such as the `site-admins` role. Azure AD will send the value of these roles as the claim value in the SAML response.
 
-    Example role configuration that creates a new role named **Dev**:
+    The following role configuration example creates a new role named **Dev**:
 
     ```json
     {
@@ -138,19 +130,19 @@ In this section, you'll enable B.Simon to use Azure single sign-on by granting a
 
     ![Screenshot: Role Assignment](./images/sso-aad-saml-role-assignment.png)
 
-Once users have been added, the initial configuration is complete, and they can begin logging into TFE with their AAD username and password.
+Once you have added users, the initial configuration is complete, and they can begin logging into TFE with their AAD username and password.
 
 
 ## Test SSO
 
 In this section, you test your Azure AD single sign-on configuration with following options. 
 
-* Click on **Test this application** in Azure portal. This will redirect to Terraform Enterprise Sign-on URL where you can initiate the login flow. 
+- Click on **Test this application** in Azure portal. This will redirect to Terraform Enterprise Sign-on URL where you can initiate the login flow. 
 
-* Go to Terraform Enterprise Sign-on URL directly and initiate the login flow from there.
+- Go to Terraform Enterprise Sign-on URL directly and initiate the login flow from there.
 
-* You can use Microsoft My Apps. When you click the Terraform Enterprise tile in the My Apps, this will redirect to Terraform Enterprise Sign-on URL. For more information about the My Apps, see [Introduction to the My Apps](https://support.microsoft.com/account-billing/sign-in-and-start-apps-from-the-my-apps-portal-2f3b1bae-0e5a-4a86-a33e-876fbd2a4510).
+- Go to Microsoft My Apps, then click the Terraform Enterprise tile. This will redirect to Terraform Enterprise Sign-on URL. For more information about the My Apps, see [Introduction to the My Apps](https://support.microsoft.com/account-billing/sign-in-and-start-apps-from-the-my-apps-portal-2f3b1bae-0e5a-4a86-a33e-876fbd2a4510).
 
 ## Next steps
 
-Once you configure Terraform Enterprise you can enforce session control, which protects exfiltration and infiltration of your organization’s sensitive data in real time. Session control extends from Conditional Access. [Learn how to enforce session control with Microsoft Cloud App Security](/cloud-app-security/proxy-deployment-any-app).
+Once you configure Terraform Enterprise, you can enforce session control, which protects exfiltration and infiltration of your organization’s sensitive data in real time. Session control extends from Conditional Access. Learn how to [enforce session control with Microsoft Cloud App Security](/cloud-app-security/proxy-deployment-any-app).
