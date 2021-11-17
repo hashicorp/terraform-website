@@ -13,6 +13,19 @@ page_id: "api-changelog"
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
+### 2021-11-17
+
+* Added pagination support to the following endpoints:
+    * [Feature Sets](./feature-sets.html#list-feature-sets) - `GET /feature-sets`
+    * [Notification Configurations](./notification-configurations.html#list-notification-configurations) - `GET /workspaces/:workspace_id/notification-configurations`
+    * [Oauth Clients](./oauth-clients.html#list-oauth-clients) - `GET /organizations/:organization_name/oauth-clients`
+    * [Oauth Tokens](./oauth-tokens.html#list-oauth-tokens) - `GET /oauth-clients/:oauth_client_id/oauth-tokens`
+    * [Organization Feature Sets](./feature-sets.html#list-organization-feature-sets) - `GET /organizations/:organization_name/feature-sets` 
+    * [Organizations](./organizations.html#list-organizations) - `GET /organizations`
+    * [Policy Checks](./policy-checks.html#list-policy-checks) - `GET /runs/:run_id/policy-checks`
+    * [Policy Set Parameters](./policy-set-params.html#list-parameters) - `GET /policy-sets/:policy_set_id/parameters`
+    * [SSH Keys](./ssh-keys.html#list-ssh-keys) - `GET /organizations/:organization_name/ssh-keys`
+    * [User Tokens](./user-tokens.html#list-user-tokens) - `GET /users/:user_id/authentication-tokens`
 
 ### 2021-11-11
 

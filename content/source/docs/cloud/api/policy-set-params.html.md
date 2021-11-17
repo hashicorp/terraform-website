@@ -117,6 +117,15 @@ Parameter       | Description
 ----------------|------------
 `:policy_set_id` | The ID of the policy set to list parameters for.
 
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
+
+Parameter                   | Description
+----------------------------|------------
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                | **Optional.** If omitted, the endpoint will return 20 parameters per page.
+
 ### Sample Request
 
 ```shell

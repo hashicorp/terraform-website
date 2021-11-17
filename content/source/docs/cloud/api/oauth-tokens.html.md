@@ -39,6 +39,15 @@ Status  | Response                                     | Reason
 [200][] | [JSON API document][] (`type: "oauth-tokens"`) | Success
 [404][] | [JSON API error object][]                    | OAuth Client not found, or user unauthorized to perform action
 
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
+
+Parameter                   | Description
+----------------------------|------------
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                | **Optional.** If omitted, the endpoint will return 20 oauth tokens per page.
+
 ### Sample Request
 
 ```shell

@@ -321,7 +321,16 @@ curl \
 
 Parameter       | Description
 --------------- | ----------------------------------------------------
-`:workspace_id` | The ID of the workspace to list configurations from. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.
+`:workspace_id` | The ID of the workspace to list configurations from. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Parameter                   | Description
+----------------------------|------------
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                | **Optional.** If omitted, the endpoint will return 20 notification configurations per page.
 
 ### Sample Request
 

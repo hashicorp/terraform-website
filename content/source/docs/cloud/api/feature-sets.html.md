@@ -32,6 +32,15 @@ This endpoint lists the feature sets available in Terraform Cloud.
 
 `GET /feature-sets`
 
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
+
+Parameter                   | Description
+----------------------------|------------
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                | **Optional.** If omitted, the endpoint will return 20 feature sets per page.
+
 ### Sample Request
 
 ```shell
@@ -169,6 +178,15 @@ This endpoint lists the feature sets a particular organization is eligible to ac
 Parameter           | Description
 --------------------|-----------------------------
 `organization_name` | The name of the organization
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
+
+Parameter                   | Description
+----------------------------|------------
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                | **Optional.** If omitted, the endpoint will return 20 organization feature sets per page.
 
 ### Sample Request
 
