@@ -23,6 +23,10 @@ description: "You can add public providers to your organization's private regist
 
 # Registry Providers API
 
+You can add providers from the public [Terraform Registry](https://registry.terraform.io/) to your Terraform Cloud private registry. Once added, Terraform Cloud automatically synchronizes public providers with their source on the Terraform Registry.
+
+All members of an organization can view and use public providers and modules, but you need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to add them to the private registry. 
+
 ## Terraform Cloud Registry Implementation
 
 For publicly curated providers, the Terraform Cloud Registry acts as a proxy to the [Terraform Registry](https://registry.terraform.io) for the following:
