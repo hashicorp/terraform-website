@@ -14,9 +14,9 @@ You can add providers and modules from the public [Terraform Registry](/docs/reg
 ~> **Note:** Terraform Enterprise does not support public providers or modules.
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-Once added, the private registry automatically synchronizes public providers and modules with their source on the Terraform Registry. The private registry handles downloads and controls access with Terraform Cloud API tokens, so consumers do not need access to the provider and module source repositories, even when they run Terraform from the command line.
+The private registry automatically synchronizes public providers and modules with their source on the Terraform Registry. The private registry handles downloads and controls access with Terraform Cloud API tokens, so consumers do not need access to the provider and module source repositories, even when they run Terraform from the command line.
 
-All members of an organization can view and use public providers and modules, but you need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to add them to the private registry. Owners can add providers and modules through the UI as detailed below or through the [Registry Providers API](/docs/cloud/api/providers.html) and the [Registry Modules API](../api/modules.html#create-a-module-with-no-vcs-connection-).
+All members of an organization can view and use public providers and modules, but only members of the [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) can add them to the private registry. Owners can add providers and modules through the UI as detailed below or through the [Registry Providers API](/docs/cloud/api/providers.html) and the [Registry Modules API](../api/modules.html#create-a-module-with-no-vcs-connection-).
 
 ## Adding a Public Provider or Module
 
