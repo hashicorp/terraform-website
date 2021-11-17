@@ -13,7 +13,7 @@ page_id: "api-changelog"
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
-### 2021-MM-DD TBD
+### 2021-11-17
 
 * Added pagination support to the following endpoints:
     * [Feature Sets](./feature-sets.html#list-feature-sets) - `GET /feature-sets`
