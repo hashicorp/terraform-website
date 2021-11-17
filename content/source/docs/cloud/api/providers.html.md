@@ -1,6 +1,7 @@
 ---
 layout: "cloud"
 page_title: "Providers - API Docs - Terraform Cloud and Terraform Enterprise"
+description: "You can add public providers to your organization's private registry. Create, read, update, and delete public providers with the Terraform Cloud API."
 ---
 
 [200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
