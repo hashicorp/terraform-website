@@ -54,7 +54,7 @@ $ curl \
   https://app.terraform.io/api/registry/public/v2/providers/hashicorp/aws/versions
 ```
 
-## List Registry Providers for an Organization
+## List public Terraform Registry Providers for an Organization
 
 `GET /organizations/:organization_name/registry-providers`
 
