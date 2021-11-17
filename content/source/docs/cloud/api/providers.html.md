@@ -335,8 +335,8 @@ curl \
 Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to delete a provider from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.
-`:namespace`         | The provider namespace that the deletion will affect.
-`:name`              | The provider name that the deletion will affect.
+`:namespace`         | The namespace of the provider that will be deleted.
+`:name`              | The name of the provider that will be deleted.
 `:registry_name`     | `public`
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
