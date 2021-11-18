@@ -13,7 +13,11 @@ You can set variables specifically for each workspace or you can create variable
 
 ~> **Note:** Variable sets are in beta.
 
-You must have [`read variables` permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace and to view the variable sets in your organization. Once you have the proper [read and write variables permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions), you can create and edit both workspace-specific variables and variable sets through:
+You must have [`read variables` permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace and to view the variable sets in your organization. 
+
+To create and apply a variable set, you need to have either **organization owner** or **workspace manager** permission. 
+
+Once you have the proper [read and write variables permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions), you can create and edit both workspace-specific variables and variable sets through:
 
 - The [Terraform Cloud UI](/docs/cloud/workspaces/managing-variables.html).
 - The Variables API for [workspace-specific variables](/docs/cloud/api/workspace-variables.html) and [variable sets](/docs/cloud/api/variable-sets.html).
