@@ -20,7 +20,7 @@ All members of an organization can view and use public providers and modules, bu
 
 ## Adding a Public Provider or Module
 
-> **Hands-on:** Try the [Add Public Modules to your Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-add?in=terraform/modules) tutorial and [Share Modules in the Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules) tutorials on HashiCorp Learn.
+> **Hands-on:** Try the [Add Public Providers and Modules to your Private Registry](https://learn.hashicorp.com/tutorials/terraform/private-registry-add) tutorial and [Share Modules in the Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules) tutorials on HashiCorp Learn.
 
 To add a public provider or module:
 
