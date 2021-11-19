@@ -152,7 +152,7 @@ Terraform can produce this error message for several different issues.
 
 *   Customer name on new license does not match existing license
 
-    This may happen with the Airgap installation type for a variety of reasons. For example, when a trial license was issued with a customer name and the new paid license was issued on a different customer name.  Please contact [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) for assistance. In your request, include the output from running`replicatedctl license inspect` on the Terraform Enterprise host machine.
+    This may occur with an Airgap installation for a variety of reasons. One example is when a trial license is associated with a different customer name from the subsequent paid license.  Please contact [HashiCorp Support](https://www.hashicorp.com/technical-support-services-and-policies) for assistance. In your request, include the output from running`replicatedctl license inspect` on the Terraform Enterprise host machine.
 
 ### Incorrect version of airgap file
 
