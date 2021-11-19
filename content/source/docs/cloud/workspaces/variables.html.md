@@ -21,8 +21,6 @@ You must have [`read variables` permission](/docs/cloud/users-teams-organization
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-
-
 ## Types
 
 You can create both  environment variables and Terraform variables in Terraform Cloud.
@@ -76,11 +74,11 @@ You can set variable values by providing any number of [files ending in `.auto.t
 
 Each environment and Terraform variable can have one of the following scopes:
 
-| Scope | Description| Resources |
-|-------|------------|-----------|
-|Workspace-Specific | Apply to a single workspace | [Create Workspace-Specific Variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables), [Loading Variables from Files](#loading-variables-from-files), [Workspace-Specific Variables API](/docs/cloud/api/workspace-variables.html).|
-|Variable Set | Apply to multiple workspaces within the same organization. | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)|
-|Global Variable Set | Automatically applied to all current and future workspaces within an organization. | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)|
+| Scope               | Description                                                                        | Resources                                                                                                                                                                                                                                                        |
+|---------------------|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Workspace-Specific  | Apply to a single workspace                                                        | [Create Workspace-Specific Variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables), [Loading Variables from Files](#loading-variables-from-files), [Workspace-Specific Variables API](/docs/cloud/api/workspace-variables.html). |
+| Variable Set        | Apply to multiple workspaces within the same organization.                         | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                 |
+| Global Variable Set | Automatically applied to all current and future workspaces within an organization. | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                 |
 
 
 
@@ -119,11 +117,11 @@ When variables from [committed `.auto.tfvars` files](#loading-variables-from-fil
 
 Consider an example workspace that has the following variables applied:
 
-| Name | Scope | Date Applied | ACCESS_KEY | ACCESS_ID | VAR1 | KEY1 | VAR2|
-|-----|-------|-------|-----|-------|-------|--------|--------|------|
-| Variables | Workspace-Specific | 10/1 | `g47fh474` | `874hf7u4` | `h` |     |     |
-| Variable Set A | Non-Global | 10/4 |   |   | `y` | `x` |   |   |
-| Variable Set B | Global | 10/20 |   |     |   |  `z` | `a` |
+| Name           | Scope              | Date Applied | ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 |
+|----------------|--------------------|--------------|------------|------------|------|------|------|
+| Variables      | Workspace-Specific | 10/1         | `g47fh474` | `874hf7u4` | `h`  |      |      |
+| Variable Set A | Non-Global         | 10/4         |            |            | `y`  | `x`  |      |
+| Variable Set B | Global             | 10/20        |            |            |      | `z`  | `a`  |
 
 When you trigger a run, Terraform Cloud applies the following variables:
 
