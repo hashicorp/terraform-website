@@ -307,7 +307,8 @@ curl \
 ```
 
 ## Delete a Provider
-* `DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name`
+
+`DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name`
 
 
 ### Parameters
