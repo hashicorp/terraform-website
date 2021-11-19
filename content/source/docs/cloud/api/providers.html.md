@@ -25,34 +25,14 @@ description: "You can add public providers to your organization's private regist
 
 You can add providers from the public [Terraform Registry](https://registry.terraform.io/) to your Terraform Cloud private registry. Once added, Terraform Cloud automatically synchronizes public providers with their source on the Terraform Registry.
 
-All members of an organization can view and use public providers and modules, but you need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to add them to the private registry. 
+All members of an organization can view and use public providers and modules, but you need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to add them to the private registry.
 
 ## Terraform Cloud Registry Implementation
 
 For publicly curated providers, the Terraform Cloud Registry acts as a proxy to the [Terraform Registry](https://registry.terraform.io) for the following:
 
-- List available versions for a specific provider
-- Get a specific provider
-- Get the latest version for a specific provider
-
 - The public registry discovery endpoints have the path prefix provided in the [discovery document](../../registry/api.html#service-discovery) which is currently `/api/registry/public/v1`.
 - [Authentication](./index.html#authentication) is handled the same as all other Terraform Cloud endpoints.
-
-### Sample Proxy Request (public provider)
-
-List available versions for the `aws` provider on the namespace `hashicorp`:
-
-```shell
-$ curl https://registry.terraform.io/v2/providers/hashicorp/aws/versions
-```
-
-The same request for the same provider on the Terraform Cloud private registry:
-
-```shell
-$ curl \
-  --header "Authorization: Bearer $TOKEN" \
-  https://app.terraform.io/api/registry/public/v2/providers/hashicorp/aws/versions
-```
 
 ## List public Terraform Registry Providers for an Organization
 
@@ -62,7 +42,7 @@ Parameter            | Description
 ---------------------|------------
 `:organization_name` | The name of the organization to list available providers from.
 
-Lists the providers that are available to a given organization.
+Lists the providers from the public Terraform Registry that included in the private registry for the specified organization.
 
 Status  | Response                                           | Reason
 --------|----------------------------------------------------|----------
@@ -75,7 +55,7 @@ This endpoint supports pagination [with standard URL query parameters](./index.h
 
 Parameter                           | Description
 ------------------------------------|---------------------
-`q`                                 | **Optional.** A search query string.  Providers are searchable by name, namespace fields.
+`q`                                 | **Optional.** A search query string.  Providers are searchable by both their name and their namespace fields.
 `filter[field name]`                | **Optional.** If specified, restricts results to those with the matching field name value.  Valid values are `registry_name`, and `organization_name`.
 `page[number]`                      | **Optional.** If omitted, the endpoint will return the first page.
 `page[size]`                        | **Optional.** If omitted, the endpoint will return 20 registry providers per page.
