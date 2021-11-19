@@ -96,7 +96,7 @@ The remote backend also supports state manipulation commands like `terraform imp
 
 Even small teams can benefit greatly by codifying commonly used infrastructure patterns into reusable [modules][].
 
-Terraform CLI can already fetch modules from arbitrary VCS sources, but Terraform Cloud improves this with a private registry. Users throughout your organization can browse a directory of internal providers and modules, and can specify flexible version constraints for the modules they use in their configurations. Easy versioning lets downstream teams use private modules with confidence, and frees upstream teams to iterate faster.
+Terraform can fetch providers and modules from many sources. Terraform Cloud makes it easier to find providers and modules to use with a private registry. Users throughout your organization can browse a directory of internal providers and modules, and can specify flexible version constraints for the modules they use in their configurations. Easy versioning lets downstream teams use private modules with confidence, and frees upstream teams to iterate faster.
 
 The private registry uses your VCS as the source of truth, relying on Git tags to manage module versions. Tell Terraform Cloud which repositories contain modules, and the registry handles the rest.
 
