@@ -28,7 +28,7 @@ Follow these steps to configure Okta as the identity provider (IdP) for Terrafor
 
     The full name for the **Name ID format** in the SAML specification is `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`.
 
-    If you are using Terraform Enterprise version v201912-1 or later, you can also choose Email Prefix for the application username (this was unreliable in older versions due to a bug that required usernames to be at least 3 characters).
+    If you are using Terraform Enterprise version v201912-1 or later, you can also choose `Email Prefix` for the application username (this was unreliable in older versions due to a bug that required usernames to be at least 3 characters).
 
 1. In the **SAML Settings** section, optionally configure a site admin permissions attribute statement. This statement determines which users can administer the entire Terraform Enterprise instance. Refer to [Administering Terraform Enterprise](../admin/index.html) for more information about site admin permissions. Under the **Attribute Statements (Optional)** header, configure a statement as follows:
 
