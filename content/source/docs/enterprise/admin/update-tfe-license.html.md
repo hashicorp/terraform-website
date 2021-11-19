@@ -148,7 +148,7 @@ Terraform can produce this error message for several different issues.
 
 *   Network communication to the Replicated servers
 
-    Terraform Enterprise requires network communication to the Replicated endpoints, as noted in the [network requirements](https://www.terraform.io/docs/enterprise/before-installing/network-requirements.html) guideline. During the license sync operation, the Replicated installer attempts to contact `api.replicated.com` to retrieve the license information. In the online installation type, you might see the above error if the network infrastructure changed after you installed Terraform Enterprise. The specific IP addresses of Replicated services for the Terraform Enterprise can be found in [Replicated’s GitHub repository](https://github.com/replicatedhq/ips/blob/master/ip_addresses.json).
+    Terraform Enterprise requires network communication to the Replicated endpoints, as noted in the [network requirements](https://www.terraform.io/docs/enterprise/before-installing/network-requirements.html) guideline. During the license sync operation, the Replicated installer attempts to contact `api.replicated.com` to retrieve the license information. In the online installation type, you might see the above error if the network infrastructure changed after you installed Terraform Enterprise. The specific IP addresses of Replicated services for the Terraform Enterprise are available in [Replicated’s GitHub repository](https://github.com/replicatedhq/ips/blob/master/ip_addresses.json).
 
 *   Customer name on new license does not match existing license
 
