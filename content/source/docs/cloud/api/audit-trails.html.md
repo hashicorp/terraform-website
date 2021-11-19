@@ -21,6 +21,7 @@ page_title: "Audit Trails - API Docs - Terraform Cloud"
 [JSON API error object]: https://jsonapi.org/format/#error-objects
 
 # Audit Trails API
+-> **Note:** Audit Trails API is currently not available for Terraform Enterprise.
 
 -> **Note:** Audit trails are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
