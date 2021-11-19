@@ -40,15 +40,17 @@ To add a public provider or module:
     - Click the provider or module to view its details and then click **Add to Terraform Cloud**.
      ![Terraform Cloud screenshot: the "+ Add" button](./images/add-add-to-terraform-cloud-button.png)
 
-1. Click **Add to organization** in the dialog box. The provider or module is now included in the private registry, and members of your organization can begin using it from the private registry.
+1. Click **Add to organization** in the dialog box. Members of your organization can now  begin using it from the private registry.
 
-## Deleting a Public Provider or Module
+## Removing a Public Provider or Module
 
-Deleting a public provider or module from a private registry does not remove it from the public Terraform Registry. To delete a public provider or module from an organization's private registry:
+Removing a public provider or module from a private registry does not remove it from the public Terraform Registry. Users in the organization will still be able to use the removed provider or module without changing their configurations.
 
-1. Click **Registry** in the main navigation bar to go to the organization's private registry.
+To remove a public provider or module from an organization's private registry:
 
-1. Select the provider or module to view its details, open the **Manage for Organization** menu, and click **Delete provider** or **Delete module**.
+1. Click **Registry** in the main navigation bar. The organization's private registry appears with a list of available providers and modules.
+
+1. Select the provider or module to view its details, open the **Manage for Organization** menu, and click **Remove from organization** (providers) or **Delete module** (modules).
    ![Terraform Cloud screenshot: the delete module button](./images/add-delete-module-button.png)
 
-1. Enter the provider or module name in the dialog box to confirm and then click **Delete**.
+1. Enter the provider or module name in the dialog box to confirm and then click **Remove** (providers) or **Delete** (modules). The provider or module is removed from the organization's private registry.
