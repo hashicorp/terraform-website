@@ -10,7 +10,7 @@ description: |-
 
 Terraform Cloud's private registry works similarly to the [public Terraform Registry](/docs/registry/index.html) and helps you share [Terraform providers](/docs/language/providers/index.html) and [Terraform modules](/docs/language/modules/index.html) across your organization. It includes support for versioning, a searchable list of available providers and modules, and a [configuration designer](/docs/cloud/registry/design.html) to help you build new workspaces faster.
 
-> **Hands-on:** Try the [Add Public Modules to your Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-add?in=terraform/modules) tutorial and [Share Modules in the Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules) tutorials on HashiCorp Learn.
+> **Hands-on:** Try the [Add Public Providers and Modules to your Private Registry](https://learn.hashicorp.com/tutorials/terraform/private-registry-add) tutorial and [Share Modules in the Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules) tutorials on HashiCorp Learn.
 
 ## Public Providers and Modules
 
