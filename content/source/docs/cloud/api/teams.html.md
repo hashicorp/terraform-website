@@ -380,3 +380,4 @@ $ curl \
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
 
 - `users` (`string`) - Returns the full user record for every member of a team.
+- `organization-memberships` (`string`) - Returns the full organization membership record for every member of a team.
