@@ -13,13 +13,13 @@ Practitioners implementing Terraform configurations desire feedback surrounding 
 
 ## Syntax and Basic Schema Validation
 
-The [Terraform configuration language](https://www.terraform.io/docs/language/) is declarative and an implementation of [HashiCorp Configuration Language](https://github.com/hashicorp/hcl) (HCL). Terraform CLI is responsible for reading and parsing configurations for validity, based on Terraform's concepts such as `resource` blocks and associated syntax. Basic validation of value type and behavior information, for example returning an error when a string value is given where a list value is expected or returning an error when a required attribute is missing from a configuration, is automatically handled by Terraform CLI based on the provider, resource, or data source schema.
+The [Terraform configuration language](https://www.terraform.io/docs/language/) is declarative and an implementation of [HashiCorp Configuration Language](https://github.com/hashicorp/hcl) (HCL). The Terraform CLI is responsible for reading and parsing configurations for validity, based on Terraform's concepts such as `resource` blocks and associated syntax. Basic validation of value type and behavior information, for example returning an error when a string value is given where a list value is expected or returning an error when a required attribute is missing from a configuration, is automatically handled by the Terraform CLI based on the provider, resource, or data source schema.
 
 Any further validation provided by the framework occurs after these checks.
 
 ## Attribute Validation
 
-It is common for provider implementations to introduce validation on attributes using the generic framework-defined types such as `types.String`. The [`tfsdk.Attribute` type `Validators` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Attribute.Validators) can be supplied with a list of validations and diagnostics will be returned from all validators. For example:
+It is common for provider implementations to introduce validation on attributes using the generic framework-defined types such as [`types.String`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types#String). The [`tfsdk.Attribute` type `Validators` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Attribute.Validators) can be supplied with a list of validations and diagnostics will be returned from all validators. For example:
 
 ```go
 // Typically within the tfsdk.Schema returned by GetSchema() for a provider,
@@ -35,6 +35,8 @@ tfsdk.Attribute{
 }
 ```
 
+All validators will always be run, regardless of whether previous validators returned an error or not.
+
 -> The framework will implement or reference common use case attribute validations, such as string length, in the future.
 
 ### Creating Attribute Validators
@@ -47,24 +49,26 @@ type stringLengthBetweenValidator struct {
     Min int
 }
 
+// Description returns a plain text description of the validator's behavior, suitable for a practitioner to understand its impact.
 func (v stringLengthBetweenValidator) Description(ctx context.Context) string {
     return fmt.Sprintf("string length must be between %d and %d", v.Min, v.Max)
 }
 
+// MarkdownDescription returns a markdown formatted description of the validator's behavior, suitable for a practitioner to understand its impact.
 func (v stringLengthBetweenValidator) MarkdownDescription(ctx context.Context) string {
     return fmt.Sprintf("string length must be between `%d` and `%d`", v.Min, v.Max)
 }
 
+// Validate runs the main validation logic of the validator, reading configuration data out of `req` and updating `resp` with diagnostics.
 func (v stringLengthBetweenValidator) Validate(ctx context.Context, req tfsdk.ValidateAttributeRequest, resp *tfsdk.ValidateAttributeResponse) {
-    str, ok := request.AttributeConfig.(types.String)
-
-    if !ok {
-        response.Diagnostics.AddAttributeError(
-            request.AttributePath,
-            "Invalid Attribute Value Type",
-            fmt.Sprintf("Expected types.String value, got: %T", request.AttributeConfig),
-        )
-
+    // types.String must be the attr.Value produced by the attr.Type in the schema for this attribute
+    // for generic validators, use
+    // https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ConvertValue
+    // to convert into a known type.
+    var str types.String
+    diags := tfsdk.ValueAs(ctx, req.AttributeConfig, &str)
+    resp.Diagnostics.Append(diags...)
+    if diags.HasError() {
         return
     }
 
@@ -77,7 +81,7 @@ func (v stringLengthBetweenValidator) Validate(ctx context.Context, req tfsdk.Va
     if strLen < v.Min || strLen > v.Max {
         response.Diagnostics.AddAttributeError(
             request.AttributePath,
-            "Attribute Validation Error",
+            "Invalid String Length",
             fmt.Sprintf("%s, got: %d", v.Description(ctx), strLen),
         )
 
