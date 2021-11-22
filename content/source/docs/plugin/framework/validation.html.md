@@ -15,7 +15,7 @@ Practitioners implementing Terraform configurations desire feedback surrounding 
 
 The [Terraform configuration language](https://www.terraform.io/docs/language/) is declarative and an implementation of [HashiCorp Configuration Language](https://github.com/hashicorp/hcl) (HCL). The Terraform CLI is responsible for reading and parsing configurations for validity, based on Terraform's concepts such as `resource` blocks and associated syntax. Basic validation of value type and behavior information, for example returning an error when a string value is given where a list value is expected or returning an error when a required attribute is missing from a configuration, is automatically handled by the Terraform CLI based on the provider, resource, or data source schema.
 
-Any further validation provided by the framework occurs after these checks.
+These syntax and basic schema checks are performed during the [`terraform apply`](https://www.terraform.io/docs/cli/commands/apply.html), [`terraform destroy`](https://www.terraform.io/docs/cli/commands/destroy.html), [`terraform plan`](https://www.terraform.io/docs/cli/commands/plan.html), and [`terraform validate`](https://www.terraform.io/docs/cli/commands/validate.html) commands. Any further validation provided by the framework occurs after these checks.
 
 ## Attribute Validation
 

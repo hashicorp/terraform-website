@@ -113,4 +113,4 @@ runtime, and should consistently return the same values.
 
 ## Further Provider Capabilities
 
-- [Validation](./validation.html)
+- [Validation](./validation.html) helps practitioners understand the required syntax, types, and acceptable values for your provider.

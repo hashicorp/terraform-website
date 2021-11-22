@@ -162,4 +162,4 @@ func (p *provider) GetResources(_ context.Context) (map[string]tfsdk.ResourceTyp
 
 ## Further Resource Capabilities
 
-- [Validation](./validation.html)
+- [Validation](./validation.html) helps practitioners understand the required syntax, types, and acceptable values for your resource.
