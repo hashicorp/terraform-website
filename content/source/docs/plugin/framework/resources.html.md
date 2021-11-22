@@ -162,4 +162,5 @@ func (p *provider) GetResources(_ context.Context) (map[string]tfsdk.ResourceTyp
 
 ## Further Resource Capabilities
 
+- [Plan modification](./plan-modification.html) helps practitioners understand expected behaviors for your resource during changes, such as default values for missing configurations or requiring replacement.
 - [Validation](./validation.html) helps practitioners understand the required syntax, types, and acceptable values for your resource.
