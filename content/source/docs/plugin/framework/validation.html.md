@@ -82,7 +82,7 @@ func (v stringLengthBetweenValidator) Validate(ctx context.Context, req tfsdk.Va
         resp.Diagnostics.AddAttributeError(
             req.AttributePath,
             "Invalid String Length",
-            fmt.Sprintf("%s, got: %d", v.Description(ctx), strLen),
+            fmt.Sprintf("String length must be between %d and %d, got: %d.", v.Min, v.Max, strLen),
         )
 
         return
