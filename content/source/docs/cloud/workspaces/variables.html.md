@@ -64,6 +64,15 @@ module "ec2_instances" {
 
 If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
 
+#### Loading Variables from the Command Line
+
+When using Terraform 1.1 or later, you can set input variable values for a particular plan/apply run on the command line using either of the following mechanisms:
+
+* Specifying `-var` and `-var-file` arguments
+* Local environment variables named `TF_VAR_` followed by the name of a declared variable
+
+Variable values set in either of these ways will take precedence over Workspace-Specific values. See the [Precedence](#precedence) section for more details. For more information about specifying CLI input variable values, see the Terraform documentation for [Variables on the Command Line](/docs/language/values/variables.html#variables-on-the-command-line) or for the [Input Variables on the Command Line](/docs/cli/commands/plan.html#input-variables-on-the-command-line) for the plan command.
+
 #### Loading Variables from Files
 
 You can set variable values by providing any number of [files ending in `.auto.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. When you trigger a run, Terraform automatically loads and uses the variables defined in these files. You can only do this with files ending in `auto.tfvars`; Terraform Cloud does not recognize other types of `.tfvars` files. If any variable from the workspace has the same key as a variable in the file, the workspace variable overwrites variable from the file.
@@ -76,11 +85,10 @@ Each environment and Terraform variable can have one of the following scopes:
 
 | Scope               | Description                                                                        | Resources                                                                                                                                                                                                                                                        |
 |---------------------|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Run-Specific        | Apply to a specific run within a single workspace                                  | [Loading Variables from the Command Line](#loading-variables-from-the-command-line)                                                                                                                                                                              |
 | Workspace-Specific  | Apply to a single workspace                                                        | [Create Workspace-Specific Variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables), [Loading Variables from Files](#loading-variables-from-files), [Workspace-Specific Variables API](/docs/cloud/api/workspace-variables.html). |
 | Variable Set        | Apply to multiple workspaces within the same organization.                         | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                 |
 | Global Variable Set | Automatically applied to all current and future workspaces within an organization. | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                 |
-
-
 
 ## Precedence
 
@@ -93,37 +101,47 @@ There may be cases when a workspace contains conflicting variables of the same t
 
 Terraform Cloud prioritizes and overwrites conflicting variables according to the following precedence:
 
-### 1. Workspace-Specific Variables
+### 1. Command line Argument Variables
+
+Variables applied from the command line with either `-var` or `-var-file` overwrite workspace-specific and variable set variables that have the same key.
+
+### 2. TF_VAR_ Prefixed Environment Variables
+
+When using a CLI workflow, variables found in the local environment that are prefixed TF_VAR_ followed by the name of a declared variable overwrite workspace-specific, variable set values, and `.auto.tfvars` file values.
+
+### 3. Workspace-Specific Variables
 
 Workspace-specific variables always overwrite variables from variable sets that have the same key. Refer to [overwrite variables from variable sets](/docs/cloud/workspaces/managing-variables.html#overwrite-variable-sets) for details.
 
-### 2. Non-Global Variable Sets
+### 4. Non-Global Variable Sets
 
 Non-global variables are only applied to a subset of workspaces in an organization.
 
 When non-global variable sets have conflicting variables, Terraform Cloud uses values from the variable set that was applied most recently. For example, if you apply Variable Set A and then apply Variable Set B to the same workspace a week later, Terraform Cloud will use any conflicting variables from Variable Set B. This will be the case regardless of which variable set has been edited most recently; Terraform Cloud only considers the date that each variable set is applied to the workspace when determining precedence.
 
-### 3. Global Variable Sets
+### 5. Global Variable Sets
 
 Non-global variable sets always take precedence over global variable sets that are applied to all workspaces within an organization. This is true regardless of when the global variable set was applied.
 
-### 4. Variable Files
+### 6. `auto.tfvars` Variable Files
 
-When variables from [committed `.auto.tfvars` files](#loading-variables-from-files) have the same key as existing variables in the Terraform Cloud workspace, the variables applied to the workspace overwrite variables from the files.
-
-
+Variables in the Terraform Cloud workspace and variables provided through the command line always overwrite variables from files ending in `auto.tfvars` with the same key.
 
 ### Precedence Example
 
 Consider an example workspace that has the following variables applied:
 
-| Name           | Scope              | Date Applied | ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 |
-|----------------|--------------------|--------------|------------|------------|------|------|------|
-| Variables      | Workspace-Specific | 10/1         | `g47fh474` | `874hf7u4` | `h`  |      |      |
-| Variable Set A | Non-Global         | 10/4         |            |            | `y`  | `x`  |      |
-| Variable Set B | Global             | 10/20        |            |            |      | `z`  | `a`  |
+| Name           | Scope              | Date Applied | ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 | foo |
+|----------------|--------------------|--------------|------------|------------|------|------|------|-----|
+| TF_VAR_foo=8   | Run-Specific       |              |            |            |      |      |      | `8` |
+| -var="foo=9"   | Run-Specific       |              |            |            |      |      |      | `9` |
+| Variables      | Workspace-Specific | 10/1         | `g47fh474` | `874hf7u4` | `h`  |      |      | `1` |
+| Variable Set A | Non-Global         | 10/4         |            |            | `y`  | `x`  |      | `2` |
+| Variable Set B | Global             | 10/20        |            |            |      | `z`  | `a`  | `3` |
 
 When you trigger a run, Terraform Cloud applies the following variables:
+
+- **Run-Specific:** `foo` is specified in all scopes. The -var value takes precedence over all other values, including the run-specific TF_VAR_foo values.
 
 - **Workspace-Specific:** `ACCESS_KEY`, `ACCESS_ID`, and `VAR1`. That means `VAR1` equals `h` for this run, overwriting the value in Variable Set A.
 
