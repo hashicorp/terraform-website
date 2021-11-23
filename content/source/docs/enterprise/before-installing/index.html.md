@@ -130,24 +130,26 @@ See [Network Requirements](./network-requirements.html) for details.
 
 ### Software Requirements (Standalone Deployment)
 
-Some operating systems have specific configuration requirements:
+The following list provides the general requirements of Terraform
+Enterprise:
+
+- A 64-bit architecture Linux-based operating system
+- Linux Kernel 3.10 or greater
+- Docker Engine 17.06.2-ce to 20.10:
+  - Docker Engine 18.01.0-ce or greater requires Replicated 2.32.0
+    or greater
+  - In Online mode, the installer will install Docker Engine
+    automatically
+  - In Airgapped mode, Docker Engine must be installed before running
+    the installer
+- The faccessat2 syscall:
+  - Docker Engine 17.06.2-ce to 20.09 requires runc v1.0.0-rc93
+  - Docker Engine 20.10 or greater requires libseccomp 2.4.4
+
+The use of some operating systems comes with additional requirements:
 
 - [RedHat Enterprise Linux (RHEL) Requirements](./rhel-requirements.html)
 - [CentOS Requirements](./centos-requirements.html)
-
-Other Linux distributions require:
-
-- A 64-bit architecture
-- Linux Kernel 3.10 or greater
-- Docker engine 17.06.2-ce to 20.10:
-  - Docker engine 18.01.0-ce or greater requires Replicated 2.32.0
-    or greater.
-- The faccessat2 syscall:
-  - Docker engine 17.06.2-ce to 20.09 requires runc v1.0.0-rc93
-  - Docker engine 20.10 or greater requires libseccomp 2.4.4
-
-In Online mode, the installer will install Docker automatically. In
-Airgapped mode, Docker must be installed before running the installer.
 
 ### IAM Policies
 
