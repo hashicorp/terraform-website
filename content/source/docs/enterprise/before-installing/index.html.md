@@ -135,15 +135,19 @@ Some operating systems have specific configuration requirements:
 - [RedHat Enterprise Linux (RHEL) Requirements](./rhel-requirements.html)
 - [CentOS Requirements](./centos-requirements.html)
 
-For other Linux distributions, check Docker compatibility:
+For other Linux distributions, check Docker requirements:
 
-* The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 19.03.11). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
-    * Replicated 2.32.0 and above required when running Docker 18+.
-    * In Online mode, the installer will install Docker automatically.
-    * In Airgapped mode, Docker should be installed before you begin.
-* For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/install/#server).
+- A 64-bit architecture
+- Linux Kernel 3.10 or greater
+- Docker engine 17.06.2-ce to 20.10:
+  - Docker engine 18.01.0-ce or greater requires Replicated 2.32.0
+    or greater.
+- The faccessat2 syscall:
+  - Docker engine 17.06.2-ce to 20.09 requires runc v1.0.0-rc93
+  - Docker engine 20.10 or greater requires libseccomp 2.4.4
 
-~> **Important:** We do not recommend running Docker under a 2.x kernel.
+In Online mode, the installer will install Docker automatically. In
+Airgapped mode, Docker must be installed before running the installer.
 
 ### IAM Policies
 
