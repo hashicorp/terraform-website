@@ -135,7 +135,7 @@ Some operating systems have specific configuration requirements:
 - [RedHat Enterprise Linux (RHEL) Requirements](./rhel-requirements.html)
 - [CentOS Requirements](./centos-requirements.html)
 
-For other Linux distributions, check Docker requirements:
+Other Linux distributions require:
 
 - A 64-bit architecture
 - Linux Kernel 3.10 or greater
