@@ -138,13 +138,14 @@ Enterprise:
 - Docker Engine 17.06.2-ce to 20.10:
   - Docker Engine 18.01.0-ce or greater requires Replicated 2.32.0
     or greater
+  - Support for [Alpine 3.14](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0#faccessat2)
+    Docker images:
+    - Docker Engine 17.06.2-ce to 20.09 requires runc v1.0.0-rc93
+    - Docker Engine 20.10 or greater requires libseccomp 2.4.4
   - In Online mode, the installer will install Docker Engine
     automatically
   - In Airgapped mode, Docker Engine must be installed before running
     the installer
-- The faccessat2 syscall:
-  - Docker Engine 17.06.2-ce to 20.09 requires runc v1.0.0-rc93
-  - Docker Engine 20.10 or greater requires libseccomp 2.4.4
 
 The use of some operating systems comes with additional requirements:
 
