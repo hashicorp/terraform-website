@@ -9,7 +9,7 @@ description: "Terraform Cloud workspace variables let you customize configuratio
 
 Terraform Cloud workspace variables let you customize configurations, modify Terraform's behavior, and store information like provider credentials.
 
-You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to all of the workspaces using that provider. Terraform Cloud applies workspace variables to all runs within that workspace.
+You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to all of the workspaces using that provider. Terraform Cloud applies workspace variables to all runs within that workspace. Additionally, you can set variable values for a particular run on the command line [using run-specific variables](/docs/cloud/workspaces/managing-variables.html#run-specific-variables).
 
 ~> **Note:** Variable sets are in beta.
 
@@ -64,31 +64,16 @@ module "ec2_instances" {
 
 If a required input variable is missing, Terraform plans in the workspace will fail and print an explanation in the log.
 
-#### Loading Variables from the Command Line
-
-When using Terraform 1.1 or later, you can set input variable values for a particular plan/apply run on the command line using either of the following mechanisms:
-
-* Specifying `-var` and `-var-file` arguments
-* Local environment variables named `TF_VAR_` followed by the name of a declared variable
-
-Variable values set in either of these ways will take precedence over Workspace-Specific values. See the [Precedence](#precedence) section for more details. For more information about specifying CLI input variable values, see the Terraform documentation for [Variables on the Command Line](/docs/language/values/variables.html#variables-on-the-command-line) or for the [Input Variables on the Command Line](/docs/cli/commands/plan.html#input-variables-on-the-command-line) for the plan command.
-
-#### Loading Variables from Files
-
-You can set variable values by providing any number of [files ending in `.auto.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. When you trigger a run, Terraform automatically loads and uses the variables defined in these files. You can only do this with files ending in `auto.tfvars`; Terraform Cloud does not recognize other types of `.tfvars` files. If any variable from the workspace has the same key as a variable in the file, the workspace variable overwrites variable from the file.
-
-~> **Note:** Terraform Cloud loads variables from files for each Terraform run, but does not automatically persist those variables to the Terraform Cloud workspace or display them in the **Variables** section of the workspace UI.
-
 ## Scope
 
 Each environment and Terraform variable can have one of the following scopes:
 
-| Scope               | Description                                                                        | Resources                                                                                                                                                                                                                                                        |
-|---------------------|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Run-Specific        | Apply to a specific run within a single workspace                                  | [Loading Variables from the Command Line](#loading-variables-from-the-command-line)                                                                                                                                                                              |
-| Workspace-Specific  | Apply to a single workspace                                                        | [Create Workspace-Specific Variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables), [Loading Variables from Files](#loading-variables-from-files), [Workspace-Specific Variables API](/docs/cloud/api/workspace-variables.html). |
-| Variable Set        | Apply to multiple workspaces within the same organization.                         | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                 |
-| Global Variable Set | Automatically applied to all current and future workspaces within an organization. | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                 |
+| Scope               | Description                                                                        | Resources                                                                                                                                                                                                                                                                                                      |
+|---------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Run-Specific        | Apply to a specific run within a single workspace                                  | [Run-Specific Variables](/docs/cloud/workspaces/managing-variables.html#run-specific-variables)                                                                                                                                                                                                                |
+| Workspace-Specific  | Apply to a single workspace                                                        | [Create Workspace-Specific Variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables), [Loading Variables from Files](/docs/cloud/workspaces/managing-variables.html#loading-variables-from-files), [Workspace-Specific Variables API](/docs/cloud/api/workspace-variables.html). |
+| Variable Set        | Apply to multiple workspaces within the same organization.                         | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                                                               |
+| Global Variable Set | Automatically applied to all current and future workspaces within an organization. | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                                                               |
 
 ## Precedence
 

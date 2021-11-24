@@ -17,6 +17,15 @@ You need [`read and write variables` permissions](/docs/cloud/users-teams-organi
 - The Variables API for [workspace-specific variables](/docs/cloud/api/workspace-variables.html) and [variable sets](/docs/cloud/api/variable-sets.html).
 - The `tfe` provider's [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) resource, which can be more convenient for bulk management.
 
+## Run-Specific Variables
+
+When using Terraform 1.1 or later, you can set input variable values for a particular plan/apply run on the command line using either of the following mechanisms:
+
+* Specifying `-var` and `-var-file` arguments
+* Local environment variables named `TF_VAR_` followed by the name of a declared variable
+
+Variable values set in either of these ways will take precedence over Workspace-Specific and Variable Set values. See the [Precedence](/docs/cloud/workspaces/variables.html#precedence) section for more details. For more information about specifying CLI input variable values, see the Terraform documentation for [Variables on the Command Line](https://www.terraform.io/docs/language/values/variables.html#variables-on-the-command-line) or the plan command [Input Variables on the Command Line](https://www.terraform.io/docs/cli/commands/plan.html#input-variables-on-the-command-line).
+
 ## Workspace-Specific Variables
 
 To view and manage a workspace's variables, go to the workspace and click the **Variables** tab.
@@ -56,6 +65,15 @@ To delete a variable:
 
 1. Click the ellipses next to the variable you want to delete and select **Delete**.
 1. Click **Yes, delete variable** to confirm your action.
+
+## Loading Variables from Files
+
+You can set variable values by providing any number of [files ending in `.auto.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. When you trigger a run, Terraform automatically loads and uses the variables defined in these files. You can only do this with files ending in `auto.tfvars`; Terraform Cloud does not recognize other types of `.tfvars` files. If any variable from the workspace has the same key as a variable in the file, the workspace variable overwrites variable from the file.
+
+~> **Note:** Terraform Cloud loads variables from files for each Terraform run, but does not automatically persist those variables to the Terraform Cloud workspace or display them in the **Variables** section of the workspace UI.
+
+~> **Note:** Variable values applied using `terraform.tfvars` are ignored by Terraform Cloud
+
 
 ## Variable Sets
 
@@ -104,7 +122,7 @@ To edit or remove a variable set:
 
 ### Delete Variable Sets
 
-Deleting a variable set can be a disruptive action, especially if the variables are required to execute runs. We recommend informing organization and workspace owners before removing a variable set.  
+Deleting a variable set can be a disruptive action, especially if the variables are required to execute runs. We recommend informing organization and workspace owners before removing a variable set.
 
 To delete a variable set:
 
