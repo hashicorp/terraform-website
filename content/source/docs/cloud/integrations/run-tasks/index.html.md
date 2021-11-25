@@ -80,7 +80,7 @@ $ echo -n $WEBHOOK_BODY | openssl dgst -sha512 -hmac "$HMAC_KEY"
 
 ### Snyk
 
-The [Snyk](snyk.io) integration for Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
+The [Snyk](https://snyk.io/) integration for Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
 
 To get started, [create a free Snyk account](https://snyk.io/) and follow the instructions in the [Integrating Snyk with Terraform Cloud](https://docs.snyk.io/features/integrations/ci-cd-integrations/integrating-snyk-with-terraform-cloud) user documentation.
 
@@ -94,7 +94,7 @@ To get started, sign up for an eligible [pricing](https://bridgecrew.io/pricing/
 
 [Infracost](https://www.infracost.io/) allows for cloud infrastructure costing, initiated right from a PR or Terraform run.
 
-To get started, [sign up](https://dashboard.infracost.io/tfc-sign-up) for the Infracost Terraform Cloud integration, and follow the instructions in the [Terraform Cloud Run Tasks](https://www.infracost.io/docs/iac_tools/terraform_cloud_enterprise#terraform-cloud-run-tasks) user documentation.
+To get started, [sign up](https://dashboard.infracost.io/tfc-sign-up) for the Infracost Terraform Cloud integration, and follow the instructions in the [Terraform Cloud Run Tasks](https://www.infracost.io/docs/iac_tools/terraform_cloud_enterprise) user documentation.
 
 ### Kion
 
@@ -104,7 +104,7 @@ To get started, sign up for a [30-Day free trial](https://kion.io/product/try-fr
 
 ### Lightlytics
 
-From security checks to any additional dependency changes, the [Lightlytics](https://lightlytics.com/) run task integration provides visual pending changes to your infrastructure.
+From security checks to any additional dependency changes, the [Lightlytics](https://www.lightlytics.com/) run task integration provides visual pending changes to your infrastructure.
 
 To get started, [sign up](https://www.lightlytics.com/signup) for a free trial, and follow the instructions in the [Terraform Cloud Run Tasks Integration](https://docs.lightlytics.com/docs/terraform-cloud-run-tasks-beta) user documentation.
 
