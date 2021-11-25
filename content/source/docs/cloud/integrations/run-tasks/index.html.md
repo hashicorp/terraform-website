@@ -94,11 +94,15 @@ To get started, sign up for an eligible [pricing](https://bridgecrew.io/pricing/
 
 [Infracost](https://www.infracost.io/) allows for cloud infrastructure costing, initiated right from a PR or Terraform run.
 
-To get started, [sign up](https://dashboard.infracost.io/tfc-sign-up) for the Infracost Terraform Cloud integration, and follow the instructions in the [Terraform Cloud Run Tasks](https://www.infracost.io/docs/iac_tools/terraform_cloud_enterprise) user documentation.
+To get started, [sign up](https://dashboard.infracost.io/tfc-sign-up) for the Infracost Terraform Cloud integration, and follow the instructions in the [Terraform Cloud Run Tasks](https://www.infracost.io/docs/iac_tools/terraform_cloud_enterprise/) user documentation.
 
 ### Kion
 
 When using [Kion](https://kion.io/), customers can choose to focus on cost savings or compliance findings on an active account.
+
+<!--
+The link below to the Kion partner user documentation is causing the tests to fail for some unknown reason. Running the website locally has show the links to be fine so it must be something on the partner end.
+ -->
 
 To get started, sign up for a [30-Day free trial](https://kion.io/product/try-free-trial), and follow the instructions in the [Terraform Cloud Run Task Integration](https://support.kion.io/hc/en-us/articles/4408728893325-Terraform-Cloud-Run-Task-Integration) user documentation.
 
