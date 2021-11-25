@@ -80,30 +80,40 @@ $ echo -n $WEBHOOK_BODY | openssl dgst -sha512 -hmac "$HMAC_KEY"
 
 ### Snyk
 
-Snyk’s integration with Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
+The [Snyk](https://snyk.io/) integration for Terraform Cloud allows teams using Terraform to find, track, and fix security misconfigurations in their cloud infrastructure as part of their SDLC before they ever reach production.
 
 To get started, [create a free Snyk account](https://snyk.io/) and follow the instructions in the [Integrating Snyk with Terraform Cloud](https://docs.snyk.io/features/integrations/ci-cd-integrations/integrating-snyk-with-terraform-cloud) user documentation.
 
 ### Bridgecrew
 
-Bridgecrew helps teams address security and compliance errors in Terraform as part of each and every code review.
+[Bridgecrew](https://bridgecrew.io/) helps teams address security and compliance errors in Terraform as part of each and every code review.
 
 To get started, sign up for an eligible [pricing](https://bridgecrew.io/pricing/) plan, and follow the instructions in the [Integration via Run Tasks](https://docs.bridgecrew.io/docs/integrate-with-terraform-cloud#integration-via-run-tasks) user documentation.
 
 ### Infracost
 
-Infracost allows for cloud infrastructure costing, initiated right from a PR or Terraform run.
+[Infracost](https://www.infracost.io/) allows for cloud infrastructure costing, initiated right from a PR or Terraform run.
 
-To get started, [sign up](https://dashboard.infracost.io/tfc-sign-up) for the Infracost Terraform Cloud integration, and follow the instructions in the [Terraform Cloud Run Tasks](https://www.infracost.io/docs/iac_tools/terraform_cloud_enterprise#terraform-cloud-run-tasks) user documentation.
+To get started, [sign up](https://dashboard.infracost.io/tfc-sign-up) for the Infracost Terraform Cloud integration, and follow the instructions in the [Terraform Cloud Run Tasks](https://www.infracost.io/docs/iac_tools/terraform_cloud_enterprise/) user documentation.
 
-### cloudtamer.io
+### Kion
 
-When using cloudtamer.io, customers can choose to focus on cost savings or compliance findings on an active account.
+When using [Kion](https://kion.io/), customers can choose to focus on cost savings or compliance findings on an active account.
+
+<!--
+The link below to the Kion partner user documentation is causing the tests to fail for some unknown reason. Running the website locally has show the links to be fine so it must be something on the partner end.
+ -->
+
+To get started, sign up for a [30-Day free trial](https://kion.io/product/try-free-trial), and follow the instructions in the [Terraform Cloud Run Task Integration](https://support.kion.io/hc/en-us/articles/4408728893325-Terraform-Cloud-Run-Task-Integration) user documentation.
 
 ### Lightlytics
 
-From security checks to any additional dependency changes, Lightlytics’s integration provides visual pending changes to your infrastructure.
+From security checks to any additional dependency changes, the [Lightlytics](https://www.lightlytics.com/) run task integration provides visual pending changes to your infrastructure.
 
-### Refactr
+To get started, [sign up](https://www.lightlytics.com/signup) for a free trial, and follow the instructions in the [Terraform Cloud Run Tasks Integration](https://docs.lightlytics.com/docs/terraform-cloud-run-tasks-beta) user documentation.
 
-Refactr’s integration allows for users to build workflows for multiple use cases including but not limited to code scanning.
+### Moderne
+
+[Moderne.io](https://moderne.io/) provides customers with an intuitive view for searching, analyzing, and transforming code across their entire organization.
+
+To get started, request early access at [Moderne.io](https://moderne.io/), and follow the instructions in the [Terraform Cloud integration](https://docs.moderne.io/how-to/terraform-cloud-integration) user documentation.
