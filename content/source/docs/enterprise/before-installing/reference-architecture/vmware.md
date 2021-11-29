@@ -184,7 +184,7 @@ of failure (at the server hardware layer through vSphere High Availablilty (HA) 
 switching.) In addition, having workloads failover to a DR datacenter with tools like VMware Site Recovery Manager or utilizing stretched clusters
 provides recovery in the case of a total data center outage. See the Disaster Recovery section.
 
-Additional failover can be provide by the Active/Active installation mode.
+Additional failover can be provided by the Active/Active installation mode.
 
 #### Terraform Enterprise Servers (VMware Virtual Machine)
 
