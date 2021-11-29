@@ -15,7 +15,7 @@ You can set variables specifically for each workspace or you can create variable
 
 You must have [`read variables` permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace and to view the variable sets in your organization. 
 
-To create new variable sets and apply them to workspaces, you must be part of a team with [manage workspaces](https://www.terraform.io/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions. To create and edit variables within a specific workspace, you must have [read and write variables](https://www.terraform.io/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) for that workspace.
+To create new variable sets and apply them to workspaces, you must be part of a team with [manage workspaces](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions. To create and edit workspace-specific variables within a workspace, you must have [read and write variables](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) for that workspace.
 
 Once you have the proper [read and write variables permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions), you can create and edit workspace-specific variables through:
 
