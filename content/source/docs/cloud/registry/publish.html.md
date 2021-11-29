@@ -1,22 +1,22 @@
 ---
 layout: "cloud"
-page_title: "Publishing Private Modules - Private Module Registry - Terraform Cloud and Terraform Enterprise"
+page_title: "Publishing Private Modules - Private Registry - Terraform Cloud and Terraform Enterprise"
 description: |-
   Learn to prepare private modules for publishing, add them to the registry, and release new versions.
 ---
 
 [vcs]: ../vcs/index.html
 
-# Publishing Modules to the Terraform Cloud Private Module Registry
+# Publishing Modules to the Terraform Cloud Private Registry
 
 > **Hands-on:** Try the [Share Modules in the Private Module Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry-share) tutorial on HashiCorp Learn.
 
-In addition to [adding modules from the Terraform Registry](./add.html), you can publish private modules to your Terraform Cloud private module registry.
+In addition to [adding modules from the Terraform Registry](./add.html), you can publish private modules to a Terraform Cloud private registry.
 
-Each organization has its own private module registry, and private modules are only available to members of the organization where you add them. In Terraform Enterprise, they are also available to organizations that are configured to [share modules](/docs/enterprise/admin/module-sharing.html) with that organization. The registry handles downloads and controls access with Terraform Cloud API tokens, so consumers don't need access to the module's source repository, even when running Terraform from the command line.
+Each organization has its own private registry, and private modules are only available to members of the organization where you add them. In Terraform Enterprise, they are also available to organizations that are configured to [share modules](/docs/enterprise/admin/module-sharing.html) with that organization. The registry handles downloads and controls access with Terraform Cloud API tokens, so consumers don't need access to the module's source repository, even when running Terraform from the command line.
 
 
-The private module registry uses your configured [Version Control System (VCS) integrations][vcs] and defers to your VCS provider for most management tasks. For example, your VCS provider handles new version releases. The only manual tasks are adding a new module and deleting module versions.
+The private registry uses your configured [Version Control System (VCS) integrations][vcs] and defers to your VCS provider for most management tasks. For example, your VCS provider handles new version releases. The only manual tasks are adding a new module and deleting module versions.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -48,23 +48,25 @@ A module repository must meet all of the following requirements before you can a
 
 ## Publishing a New Module
 
-You need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to publish private modules to the private module registry. You can publish modules through the UI as shown below or with the [Registry Modules API](../api/modules.html). The API also supports publishing modules without a VCS repo as the source, which is not possible via the UI.
+You need [owners team](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions to publish private modules to the private registry. You can publish modules through the UI as shown below or with the [Registry Modules API](../api/modules.html). The API also supports publishing modules without a VCS repo as the source, which is not possible via the UI.
 
 To publish a new module:
 
-1. Click "Registry" in the main navigation bar. Then click "Publish" and select "Module" in the dropdown.
+1. Click **Registry** in the main navigation bar. The **Registry** page appears.
+
+1. Click **Publish** and select **Module**.
 
     ![Terraform Cloud screenshot: the "registry" button and the "+Add Module" button](./images/publish-add-button.png)
 
-      The "Add Module" page appears with a list of available repositories.
+      The **Add Module** page appears with a list of available repositories.
 
       ![Terraform Cloud screenshot: the "add module" page, with a repository name entered](./images/publish-add-module.png)
 
-2. Select the repository containing the module you want to publish.
+1. Select the repository containing the module you want to publish.
 
     You can search the list by typing part or all of a repository name into the filter field. Remember that VCS providers use `<NAMESPACE>/<REPO NAME>` strings to locate repositories. The namespace is an organization name for most providers, but Bitbucket Server (not Bitbucket Cloud) uses project keys, like `INFRA`.
 
-3. Click "Publish module".
+1. Click **Publish module**.
 
     Terraform Cloud displays a loading page while it imports the module versions and then takes you to the new module's details page. On the details page, you can view available versions, read documentation, and copy a usage example.
 
@@ -81,16 +83,16 @@ Refer to [Preparing a Module Repository](#preparing-a-module-repository) for det
 You can delete individual versions of a module or the entire module. If deleting a module version would leave a module with no versions, Terraform Cloud will remove the entire module. To delete a module or version:
 
 1. Navigate to the module's details page.
-2. If you want to delete a single version, use the "Versions" dropdown to select it.
-3. Click "Delete module".
-4. Select an action from the dropdown:
-   - **Delete only this module version:** Deletes only the version of the module you were viewing when you clicked "Delete module".
+1. If you want to delete a single version, use the **Versions** menu to select it.
+1. Click **Delete module**.
+1. Select an action from the menu:
+   - **Delete only this module version:** Deletes only the version of the module you were viewing when you clicked **Delete module**.
    - **Delete all versions for this provider for this module:** Deletes the entire module for a single provider. This is important if you have modules with the same name but with different providers. For example, if you have module repos named `terraform-aws-appserver` and `terraform-azure-appserver`, the registry treats them as alternate providers of the same `appserver` module.
    - **Delete all providers and versions for this module:** Deletes all modules with this name, even if they are from different providers. For example, both `terraform-aws-appserver` and `terraform-azure-appserver` would be deleted.
 
     ![Terraform Cloud screenshot: the deletion dialog](./images/publish-delete.png)
 
-5. Type the module name and click "Delete".
+1. Type the module name and click **Delete**.
 
 ### Restoring a Deleted Module or Version
 
