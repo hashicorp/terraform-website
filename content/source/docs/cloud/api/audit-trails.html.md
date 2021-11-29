@@ -38,7 +38,7 @@ The audit trails API exposes a stream of audit events, which describe changes to
 
 ### Query Parameters
 
-[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](./index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 | Parameter | Description                                                                                                                                                                      |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

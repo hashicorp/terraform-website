@@ -137,7 +137,7 @@ Listing state versions requires permission to read state versions for the worksp
 
 ### Query Parameters
 
-This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter                    | Description
 -----------------------------|------------
@@ -608,7 +608,7 @@ Status  | Response                                     | Reason
 
 ### Query Parameters
 
-This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter                   | Description
 ----------------------------|------------
