@@ -33,7 +33,7 @@ When you upload your new provider version to GitHub:
 
 The Terraform Registry will detect this file and understand that this version of your provider only supports version 6 of the Terraform protocol. It will correctly advertise that fact to Terraform, so that Terraform versions that don't support protocol 6 will not download it.
 
-If you're using `goreleaser` 1.1.0 and later, the manifest file handling can be accomplished with the below `extra_files` configuration under the `checksum` and `release` sections. The `glob` pattern must match the manifest file name.
+[GoReleaser](https://goreleaser.com/) is a release automation tool for Go projects. You can use GoReleaser 1.1.0 and later to automatically checksum and upload your manifest file name to reflect the versioned file name for the release. Add the `extra_files` configuration below to the `checksum` and `release` sections of the `.goreleaser.yml` file. The `glob` pattern must match the manifest file name.
 
 ```yaml
 checksum:
