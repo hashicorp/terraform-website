@@ -144,7 +144,7 @@ Enterprise:
     - Docker Engine 20.10 or greater requires libseccomp 2.4.4
   - In Online mode, the installer will install Docker Engine
     automatically
-  - In Airgapped mode, Docker Engine must be installed before running
+  - In Airgapped mode, you must install Docker Engine before running
     the installer
 
 The use of some operating systems comes with additional requirements:
