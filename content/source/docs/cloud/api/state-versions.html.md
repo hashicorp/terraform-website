@@ -46,11 +46,11 @@ Creating state versions requires permission to read and write state versions for
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
-[201][] | [JSON API document][]                        | Successfully created a state version
-[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
-[409][] | [JSON API error object][]                    | Conflict; check the error object for more information
-[412][] | [JSON API error object][]                    | Precondition failed; check the error object for more information
-[422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
+[201][] | [JSON API document][]                        | Successfully created a state version.
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action.
+[409][] | [JSON API error object][]                    | Conflict; check the error object for more information.
+[412][] | [JSON API error object][]                    | Precondition failed; check the error object for more information.
+[422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.).
 
 
 ### Request Body
@@ -359,8 +359,8 @@ Viewing state versions requires permission to read state versions for the worksp
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
-[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace
-[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action
+[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace.
+[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action.
 
 
 ### Sample Request
@@ -482,8 +482,8 @@ Parameter | Description
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
-[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace
-[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action
+[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace.
+[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action.
 
 
 ### Sample Request
@@ -593,98 +593,7 @@ curl \
 
 ## List State Version Outputs
 
-`GET /state-versions/:state_version_id/outputs`
-
-Listing state version outputs requires permission to read state outputs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
-
-Parameter | Description
-----------|---------
-`:state_version_id` | The ID of the desired state version.
-
-Status  | Response                                     | Reason
---------|----------------------------------------------|----------
-[200][] | [JSON API document][]                        | Successfully returned a list of outputs for the given state version
-[404][] | [JSON API error object][]                    | State version not found, or user unauthorized to perform action
-
-### Query Parameters
-
-This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
-
-Parameter                   | Description
-----------------------------|------------
-`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
-`page[size]`                | **Optional.** If omitted, the endpoint will return 20 state version outputs per page.
-
-### Sample Request
-
-```shell
-curl \
-  --header "Authorization: Bearer $TOKEN" \
-  --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/state-versions/sv-SDboVZC8TCxXEneJ/outputs
-```
-
-### Sample Response
-
-```json
-{
-  "data": [
-    {
-      "id": "wsout-xFAmCR3VkBGepcee",
-      "type": "state-version-outputs",
-      "attributes": {
-        "name": "fruits",
-        "sensitive": false,
-        "type": "array",
-        "value": [
-          "apple",
-          "strawberry",
-          "blueberry",
-          "rasberry"
-        ]
-      },
-      "links": {
-        "self": "/api/v2/state-version-outputs/wsout-xFAmCR3VkBGepcee"
-      }
-    },
-    {
-      "id": "wsout-vspuB754AUNkfxwo",
-      "type": "state-version-outputs",
-      "attributes": {
-        "name": "vegetables",
-        "sensitive": false,
-        "type": "array",
-        "value": [
-          "carrots",
-          "potato",
-          "tomato",
-          "onions"
-        ]
-      },
-      "links": {
-        "self": "/api/v2/state-version-outputs/wsout-vspuB754AUNkfxwo"
-      }
-    }
-  ],
-  "links": {
-    "self": "https://app.terraform.io/api/v2/state-versions/sv-SVB5wMrDL1XUgJ4G/outputs?page%5Bnumber%5D=1&page%5Bsize%5D=20",
-    "first": "https://app.terraform.io/api/v2/state-versions/sv-SVB5wMrDL1XUgJ4G/outputs?page%5Bnumber%5D=1&page%5Bsize%5D=20",
-    "prev": null,
-    "next": null,
-    "last": "https://app.terraform.io/api/v2/state-versions/sv-SVB5wMrDL1XUgJ4G/outputs?page%5Bnumber%5D=1&page%5Bsize%5D=20"
-  },
-  "meta": {
-    "pagination": {
-      "current-page": 1,
-      "page-size": 20,
-      "prev-page": null,
-      "next-page": null,
-      "total-pages": 1,
-      "total-count": 2
-    }
-  }
-}
-```
+The output values from a state version are also available via the API. For details, see the [state version outputs documentation.](/docs/cloud/api/state-version-outputs.html#list-state-version-outputs)
 
 ### Available Related Resources
 
