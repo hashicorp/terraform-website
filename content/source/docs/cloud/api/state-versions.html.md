@@ -46,11 +46,11 @@ Creating state versions requires permission to read and write state versions for
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
-[201][] | [JSON API document][]                        | Successfully created a state version
-[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action
-[409][] | [JSON API error object][]                    | Conflict; check the error object for more information
-[412][] | [JSON API error object][]                    | Precondition failed; check the error object for more information
-[422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.)
+[201][] | [JSON API document][]                        | Successfully created a state version.
+[404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action.
+[409][] | [JSON API error object][]                    | Conflict; check the error object for more information.
+[412][] | [JSON API error object][]                    | Precondition failed; check the error object for more information.
+[422][] | [JSON API error object][]                    | Malformed request body (missing attributes, wrong types, etc.).
 
 
 ### Request Body
@@ -359,8 +359,8 @@ Viewing state versions requires permission to read state versions for the worksp
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
-[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace
-[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action
+[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace.
+[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action.
 
 
 ### Sample Request
@@ -482,8 +482,8 @@ Parameter | Description
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
-[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace
-[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action
+[200][] | [JSON API document][]                        | Successfully returned current state version for the given workspace.
+[404][] | [JSON API error object][]                    | Workspace not found, workspace does not have a current state version, or user unauthorized to perform action.
 
 
 ### Sample Request

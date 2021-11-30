@@ -26,8 +26,8 @@ Parameter | Description
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------
-[200][] | [JSON API document][]                        | Successfully returned a list of outputs for the given state version
-[404][] | [JSON API error object][]                    | State version not found, or user unauthorized to perform action
+[200][] | [JSON API document][]                        | Successfully returned a list of outputs for the given state version.
+[404][] | [JSON API error object][]                    | State version not found, or user unauthorized to perform action.
 
 ### Query Parameters
 
@@ -121,8 +121,8 @@ State version output IDs must be obtained from a [state version object](./state-
 
 Status  | Response                                                | Reason
 --------|---------------------------------------------------------|----------
-[200][] | [JSON API document][] (`type: "state-version-outputs"`) | Success
-[404][] | [JSON API error object][]                               | State version output not found or user not authorized
+[200][] | [JSON API document][] (`type: "state-version-outputs"`) | Success.
+[404][] | [JSON API error object][]                               | State version output not found or user not authorized.
 
 ### Sample Request
 
