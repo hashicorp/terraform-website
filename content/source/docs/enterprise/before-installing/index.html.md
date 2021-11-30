@@ -147,7 +147,7 @@ Enterprise:
   - In Airgapped mode, you must install Docker Engine before running
     the installer
 
-The use of some operating systems comes with additional requirements:
+Some operating systems also have additional requirements:
 
 - [RedHat Enterprise Linux (RHEL) Requirements](./rhel-requirements.html)
 - [CentOS Requirements](./centos-requirements.html)
