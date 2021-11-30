@@ -177,7 +177,7 @@ This endpoint allows you to create a VCS connection between an organization and 
 
 To learn how to generate one of these token strings for your VCS provider, you can read the following documentation:
 
-* [GitHub and GitHub Enterprise](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+* [GitHub and GitHub Enterprise](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 * [GitLab, GitLab Community Edition, and GitLab Enterprise Edition](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#creating-a-personal-access-token)
 * [Azure DevOps Server](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops-2019&tabs=preview-page)
 
