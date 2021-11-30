@@ -130,7 +130,7 @@ See [Network Requirements](./network-requirements.html) for details.
 
 ### Software Requirements (Standalone Deployment)
 
-The following list provides the general requirements of Terraform
+Every Terraform Enterprise installation requires the following:
 Enterprise:
 
 - A 64-bit architecture Linux-based operating system
