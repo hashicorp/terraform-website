@@ -130,20 +130,27 @@ See [Network Requirements](./network-requirements.html) for details.
 
 ### Software Requirements (Standalone Deployment)
 
-Some operating systems have specific configuration requirements:
+Every Terraform Enterprise installation requires the following:
+Enterprise:
+
+- A 64-bit architecture Linux-based operating system
+- Linux Kernel 3.10 or greater
+- Docker Engine 17.06.2-ce to 20.10:
+  - Docker Engine 18.01.0-ce or greater requires Replicated 2.32.0
+    or greater
+  - Support for [Alpine 3.14](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0#faccessat2)
+    Docker images:
+    - Docker Engine 17.06.2-ce to 20.09 requires runc v1.0.0-rc93
+    - Docker Engine 20.10 or greater requires libseccomp 2.4.4
+  - In Online mode, the installer will install Docker Engine
+    automatically
+  - In Airgapped mode, you must install Docker Engine before running
+    the installer
+
+Some operating systems also have additional requirements:
 
 - [RedHat Enterprise Linux (RHEL) Requirements](./rhel-requirements.html)
 - [CentOS Requirements](./centos-requirements.html)
-
-For other Linux distributions, check Docker compatibility:
-
-* The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 19.03.11). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
-    * Replicated 2.32.0 and above required when running Docker 18+.
-    * In Online mode, the installer will install Docker automatically.
-    * In Airgapped mode, Docker should be installed before you begin.
-* For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/install/#server).
-
-~> **Important:** We do not recommend running Docker under a 2.x kernel.
 
 ### IAM Policies
 
