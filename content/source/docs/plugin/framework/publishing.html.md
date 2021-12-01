@@ -15,21 +15,35 @@ version 5 of the Terraform protocol, but providers built using the framework are
 
 ## Add a Version Manifest
 
+Add the following contents to a file (e.g. `terraform-registry-manifest.json`). The version number in the file is the version of the manifest format, not the version of your provider.
+
+```json
+{
+  "version": 1,
+  "metadata": {
+    "protocol_versions": ["6.0"],
+  },
+}
+```
+
 When you upload your new provider version to GitHub:
 
-1. Next to the zip files containing your binaries for each platform, include a file named `terraform-provider-$NAME_$VERSION_manifest.json` where `$NAME` is your provider's name (e.g. `random`) and `$VERSION` is your provider's version (e.g. `1.2.3`).
-
-2. Add the following contents. The version number in the file is the version of the manifest format, not the version of your provider.
-
-    ```json
-    {	
-      "version": 1,
-      "metadata": {
-        "protocol_versions": ["6.0"],
-      },
-    }
-    ```
-
-3. Include the SHA-256 checksum of this JSON file in your `SHA256SUMS` file.
+1. Add the manifest file next to the zip files containing your binaries for each platform.
+2. Include the SHA-256 checksum of this JSON file in your `SHA256SUMS` file.
 
 The Terraform Registry will detect this file and understand that this version of your provider only supports version 6 of the Terraform protocol. It will correctly advertise that fact to Terraform, so that Terraform versions that don't support protocol 6 will not download it.
+
+[GoReleaser](https://goreleaser.com/) is a release automation tool for Go projects. You can use GoReleaser 1.1.0 and later to automatically checksum and upload your manifest file name to reflect the versioned file name for the release. Add the `extra_files` configuration below to the `checksum` and `release` sections of the `.goreleaser.yml` file. The `glob` pattern must match the manifest file name.
+
+```yaml
+checksum:
+  # ... other configuration ...
+  extra_files:
+    - glob: 'terraform-registry-manifest.json'
+      name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
+release:
+  # ... potentially other configuration ...
+  extra_files:
+    - glob: 'terraform-registry-manifest.json'
+      name_template: '{{ .ProjectName }}_{{ .Version }}_manifest.json'
+```
