@@ -98,4 +98,4 @@ Speculative plans for pull requests use the contents of the head branch (the bra
 
 ## Speculative Plans During Development
 
-You can also run speculative plans on demand before making a pull request, using the remote backend and the `terraform plan` command. For more information, see [the CLI-driven run workflow](./cli.html).
+You can also use the CLI to run speculative plans on demand before making a pull request. For more information, see [the CLI-driven run workflow](./cli.html).
