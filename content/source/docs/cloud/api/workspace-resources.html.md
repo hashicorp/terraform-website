@@ -46,7 +46,7 @@ Parameter                   | Description
 
 ### Permissions
 
-To list resources, the user must have permission to read resources for the specified workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+To list resources the user must have permission to read resources for the specified workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
