@@ -28,7 +28,7 @@ Add the following contents to a file (e.g. `terraform-registry-manifest.json`). 
 
 When you upload your new provider version to GitHub:
 
-1. Next to the zip files containing your binaries for each platform, include a file named `terraform-provider-$NAME_$VERSION_manifest.json` where `$NAME` is your provider's name (e.g. `random`) and `$VERSION` is your provider's version (e.g. `1.2.3`).
+1. Add the manifest file next to the zip files containing your binaries for each platform.
 2. Include the SHA-256 checksum of this JSON file in your `SHA256SUMS` file.
 
 The Terraform Registry will detect this file and understand that this version of your provider only supports version 6 of the Terraform protocol. It will correctly advertise that fact to Terraform, so that Terraform versions that don't support protocol 6 will not download it.
