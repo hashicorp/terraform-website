@@ -9,7 +9,6 @@ description: |-
 
 Workspaces are how Terraform Cloud organizes infrastructure.
 
-
 ## Workspaces are Collections of Infrastructure
 
 Working with Terraform involves managing collections of infrastructure resources, and most organizations manage many different collections.
