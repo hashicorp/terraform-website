@@ -9,7 +9,9 @@ description: "Terraform Cloud workspace variables let you customize configuratio
 
 Terraform Cloud workspace variables let you customize configurations, modify Terraform's behavior, and store information like provider credentials.
 
-You can find more information about managing variables and variable sets in [Managing Variables](/docs/cloud/workspaces/managing-variables.html)
+You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to all of the workspaces using that provider. Terraform Cloud applies workspace variables to all runs within that workspace.
+
+~> **Note:** Variable sets are in beta.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
