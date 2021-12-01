@@ -572,8 +572,6 @@ on success, responds with no content
 }
 ```
 
-### Workspaces Relationships
-
 ## Apply Variable Set to Workspaces
 
 Accepts a list of workspaces to add the variable set to.
