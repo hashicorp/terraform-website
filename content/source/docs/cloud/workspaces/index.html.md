@@ -7,9 +7,8 @@ description: |-
 
 # Workspaces
 
-> **Hands-on:** Try the [Get Started - Terraform Cloud](https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
-
 Workspaces are how Terraform Cloud organizes infrastructure.
+
 
 ## Workspaces are Collections of Infrastructure
 
@@ -19,9 +18,6 @@ When run locally, Terraform manages each collection of infrastructure with a per
 
 Terraform Cloud manages infrastructure collections with _workspaces_ instead of directories. A workspace contains everything Terraform needs to manage a given collection of infrastructure, and separate workspaces function like completely separate working directories.
 
--> **Note:** Terraform Cloud and Terraform CLI both have features called "workspaces," but they're slightly different. CLI workspaces are alternate state files in the same working directory; they're a convenience feature for using one configuration to manage multiple similar groups of resources.
-
--> **API:** See the [Workspaces API](../api/workspaces.html).
 
 ### Workspace Contents
 
@@ -36,14 +32,23 @@ Credentials and secrets | In shell environment or entered at prompts | In worksp
 
 In addition to the basic Terraform content, Terraform Cloud keeps some additional data for each workspace:
 
-- **State versions:** Each workspace retains backups of its previous state files. Although only the current state is necessary for managing resources, the state history can be useful for tracking changes over time or recovering from problems. (See also: [State](./state.html).)
-- **Run history:** When Terraform Cloud manages a workspace's Terraform runs, it retains a record of all run activity, including summaries, logs, a reference to the changes that caused the run, and user comments. (See also: [Viewing and Managing Runs](../run/manage.html).)
+- **State versions:** Each workspace retains backups of its previous state files. Although only the current state is necessary for managing resources, the state history can be useful for tracking changes over time or recovering from problems. Refer to [Terraform State in Terraform Cloud](./state.html) for more details.
+
+- **Run history:** When Terraform Cloud manages a workspace's Terraform runs, it retains a record of all run activity, including summaries, logs, a reference to the changes that caused the run, and user comments. Refer to the [Viewing and Managing Runs](../run/manage.html) for more details.
 
 ### Terraform Runs
 
-For workspaces with [remote operations](../run/index.html) enabled (the default), Terraform Cloud performs Terraform runs on its own disposable virtual machines, using that workspace's configuration, variables, and state.
+For workspaces with remote operations enabled (the default), Terraform Cloud performs Terraform runs on its own disposable virtual machines, using that workspace's configuration, variables, and state.
 
-For more information, see [Terraform Runs and Remote Operations](../run/index.html).
+Refer to [Terraform Runs and Remote Operations](../run/index.html) for more details.
+
+### Terraform Cloud vs. Terraform CLI Workspaces
+
+Both Terraform Cloud and Terraform CLI have features called workspaces, but they function differently.
+
+- Terraform CLI workspaces are a convenience feature. They isolate multiple state files in the same working directory, letting you manage multiple groups of resources with a single configuration. You could run Terraform locally with the CLI without ever creating workspaces. Refer to [Workspaces](/docs/language/state/workspaces.html) in the Terraform Language documentation for more details.
+
+- Terraform Cloud workspaces are fundamental. They act as independent containers for collections of infrastructure and are a major component of role-based access in Terraform Cloud. You can grant individual users and user groups permissions for one or more workspaces that dictate whether they can manage variables, perform runs, etc.
 
 ## Listing and Filtering Workspaces
 
@@ -75,3 +80,10 @@ We recommend that organizations break down large monolithic Terraform configurat
 For example, the code that manages your production environment's infrastructure could be split into a networking configuration, the main application's configuration, and a monitoring configuration. After splitting the code, you would create "networking-prod", "app1-prod", "monitoring-prod" workspaces, and assign separate teams to manage them.
 
 Much like splitting monolithic applications into smaller microservices, this enables teams to make changes in parallel. In addition, it makes it easier to re-use configurations to manage other environments of infrastructure ("app1-dev," etc.).
+
+## Creating Workspaces
+
+> **Hands-on:** Try the [Create a Workspace](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-create?in=terraform/cloud-get-started) tutorial on HashiCorp Learn.
+
+You can create workspaces through the [Terraform Cloud UI](/docs/cloud/workspaces/creating.html) or the [Workspaces API](../api/workspaces.html).
+
