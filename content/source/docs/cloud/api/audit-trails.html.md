@@ -22,11 +22,9 @@ page_title: "Audit Trails - API Docs - Terraform Cloud"
 
 # Audit Trails API
 
-Terraform Cloud retains 14 days of audit log information. The audit trails API exposes a stream of audit events, which describe changes to the application entities (workspaces, runs, etc.) that belong to a Terraform Cloud organization. Audit trails are a paid feature that is available as part of the **Terraform Cloud for Business** upgrade package. Refer to the [Terraform Cloud pricing page](https://www.hashicorp.com/products/terraform/pricing) for more details.
+Terraform Cloud retains 14 days of audit log information. The audit trails API exposes a stream of audit events, which describe changes to the application entities (workspaces, runs, etc.) that belong to a Terraform Cloud organization. Audit trails are a paid feature that is available as part of the **Terraform Cloud for Business** upgrade package. Refer to the [Terraform Cloud pricing page](https://www.hashicorp.com/products/terraform/pricing) for more details. Unlike other APIs, the Audit Trails API does not use the [JSON API specification](./index.html#json-api-formatting).
 
 -> **Note:** The Audit Trails API is not available for Terraform Enterprise.
-
--> **Note:** Unlike other APIs, the Audit Trails API does not use the [JSON API specification](./index.html#json-api-formatting).
 
 ## List an organization's audit events
 
