@@ -32,8 +32,8 @@ Parameter            | Description
 
 Status  | Response                                       | Reason
 --------|------------------------------------------------|----------
-[200][] | [JSON API document][] (`type: "resources"`)    | Request was successful
-[404][] | [JSON API error object][]                      | Workspace not found or user unauthorized to perform action
+[200][] | [JSON API document][] (`type: "resources"`)    | Request was successful.
+[404][] | [JSON API error object][]                      | Workspace not found or user unauthorized to perform action.
 
 ### Query Parameters
 
