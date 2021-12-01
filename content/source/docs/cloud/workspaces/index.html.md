@@ -52,7 +52,7 @@ Both Terraform Cloud and Terraform CLI have features called workspaces, but they
 
 ## Listing and Filtering Workspaces
 
-Terraform Cloud's top navigation bar includes a "Workspaces" link, which takes you to the list of workspaces in the current organization.
+Click **Workspaces** in the top navigation bar. Terraform Cloud shows a list of all workspaces in the current organization.
 
 ![Screenshot: the list of workspaces](./images/index-list.png)
 
