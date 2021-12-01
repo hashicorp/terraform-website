@@ -9,19 +9,7 @@ description: "Terraform Cloud workspace variables let you customize configuratio
 
 Terraform Cloud workspace variables let you customize configurations, modify Terraform's behavior, and store information like provider credentials.
 
-You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to all of the workspaces using that provider. Terraform Cloud applies workspace variables to all runs within that workspace.
-
-~> **Note:** Variable sets are in beta.
-
-You must have [`read variables` permission](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) to view the variables for a particular workspace and to view the variable sets in your organization. 
-
-To create new variable sets and apply them to workspaces, you must be part of a team with [manage workspaces](/docs/cloud/users-teams-organizations/permissions.html#organization-owners) permissions. To create and edit workspace-specific variables within a workspace, you must have [read and write variables](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions) for that workspace.
-
-Once you have the proper [read and write variables permissions](/docs/cloud/users-teams-organizations/permissions.html#general-workspace-permissions), you can create and edit workspace-specific variables through:
-
-- The [Terraform Cloud UI](/docs/cloud/workspaces/managing-variables.html).
-- The Variables API for [workspace-specific variables](/docs/cloud/api/workspace-variables.html) and [variable sets](/docs/cloud/api/variable-sets.html).
-- The `tfe` provider [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) resource, which can be more convenient for large numbers of complex variables.
+You can find more information about managing variables and variable sets in [Managing Variables](/docs/cloud/workspaces/managing-variables.html)
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
