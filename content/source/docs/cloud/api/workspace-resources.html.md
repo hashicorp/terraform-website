@@ -28,7 +28,7 @@ page_title: "Workspace Resources - API Docs - Terraform Cloud and Terraform Ente
 
 Parameter            | Description
 ---------------------|------------
-`:workspace_id`      | The ID of the workspace to retrieve resources from. Obtain this from the [workspace settings](../workspaces/settings.html) or the [Show Workspace](./workspaces.html#show-workspace) endpoint.
+`:workspace_id`      | The ID of the workspace to retrieve resources from. Obtain this from the [workspace settings](../workspaces/settings.html) or the [show workspace](./workspaces.html#show-workspace) endpoint.
 
 Status  | Response                                       | Reason
 --------|------------------------------------------------|----------
