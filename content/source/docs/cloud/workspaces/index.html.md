@@ -34,7 +34,7 @@ In addition to the basic Terraform content, Terraform Cloud keeps some additiona
 
 - **State versions:** Each workspace retains backups of its previous state files. Although only the current state is necessary for managing resources, the state history can be useful for tracking changes over time or recovering from problems. Refer to [Terraform State in Terraform Cloud](./state.html) for more details.
 
-- **Run history:** When Terraform Cloud manages a workspace's Terraform runs, it retains a record of all run activity, including summaries, logs, a reference to the changes that caused the run, and user comments. Refer to the [Viewing and Managing Runs](../run/manage.html) for more details.
+- **Run history:** When Terraform Cloud manages a workspace's Terraform runs, it retains a record of all run activity, including summaries, logs, a reference to the changes that caused the run, and user comments. Refer to [Viewing and Managing Runs](../run/manage.html) for more details.
 
 ### Terraform Runs
 
