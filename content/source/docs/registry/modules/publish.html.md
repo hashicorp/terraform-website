@@ -31,10 +31,11 @@ The list below contains all the requirements for publishing a module:
 This is only a requirement for the [public registry](https://registry.terraform.io).
 If you're using a private registry, you may ignore this requirement.
 
-- **Named `terraform-<PROVIDER>-<NAME>`.** Module repositories must use this
+- **Named `terraform-<SYSTEM>-<NAME>`.** Module repositories must use this
 three-part name format, where `<NAME>` reflects the type of infrastructure the
-module manages and `<PROVIDER>` is the main provider where it creates that
-infrastructure. The `<NAME>` segment can contain additional hyphens. Examples:
+module manages and `<SYSTEM>` is the target system which is usually the main provider
+where it creates that infrastructure. The `<TARGET SYSTEM>` segment must be lowercase
+letters or digits and the `<NAME>` segment can contain additional hyphens. Examples:
 `terraform-google-vault` or `terraform-aws-ec2-instance`.
 
 - **Repository description.** The GitHub repository description is used

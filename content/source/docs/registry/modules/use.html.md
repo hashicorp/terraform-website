@@ -28,7 +28,7 @@ modules as well.
 
 The Terraform Registry is integrated directly into Terraform, so a Terraform
 configuration can refer to any module published in the registry. The syntax for
-specifying a registry module is `<NAMESPACE>/<NAME>/<PROVIDER>`. For example:
+specifying a registry module is `<NAMESPACE>/<MODULE NAME>/<TARGET SYSTEM>`. For example:
 `hashicorp/consul/aws`.
 
 ~> **Note:** Module registry integration was added in Terraform v0.10.6, and full versioning support in v0.11.0.
@@ -52,7 +52,7 @@ a configuration.
 
 You can also use modules from a private registry, like the one provided by
 Terraform Cloud. Private registry modules have source strings of the form
-`<HOSTNAME>/<NAMESPACE>/<NAME>/<PROVIDER>`. This is the same format as the
+`<HOSTNAME>/<NAMESPACE>/<MODULE NAME>/<TARGET SYSTEM>`. This is the same format as the
 public registry, but with an added hostname prefix.
 
 ```hcl

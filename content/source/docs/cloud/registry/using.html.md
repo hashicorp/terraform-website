@@ -10,7 +10,7 @@ description: |-
 All users in an organization can view the Terraform Cloud private registry and use the available providers and modules. A private registry has a few key differences from the [public Terraform Registry](/docs/registry/index.html):
 
 - **Location:** You must use Terraform Cloud's web UI to search for providers, modules, and usage examples.
-- **Module `source` strings:** Private modules use a [four-part format](/docs/cloud/registry/using.html#using-modules-in-configurations): `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
+- **Module `source` strings:** Private modules use a [four-part format](/docs/cloud/registry/using.html#using-modules-in-configurations): `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<TARGET SYSTEM>`.
 - **Authentication:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs. But when you run Terraform on the command line, you must [authenticate](/docs/cloud/registry/using.html#authentication) to Terraform Cloud or your Terraform Enterprise instance.
 
 
@@ -61,7 +61,7 @@ terraform {
 > **Hands-on:** Try the [Use Modules from the Registry](https://learn.hashicorp.com/tutorials/terraform/module-use?in=terraform/modules) tutorial on HashiCorp Learn.
 <br>
 
-The syntax for referencing publicly curated modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<NAMESPACE>/<MODULE NAME>/<PROVIDER>`.
+The syntax for referencing publicly curated modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<NAMESPACE>/<MODULE NAME>/<TARGET SYSTEM>`.
 
 ```hcl
 module "subnets" {
@@ -70,7 +70,7 @@ module "subnets" {
 }
 ```
 
-The syntax for referencing private modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
+The syntax for referencing private modules in the [module block](/docs/language/modules/syntax.html) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<TARGET SYSTEM>`.
 
 - **Hostname:** For the SaaS version of Terraform Cloud, use `app.terraform.io`. In Terraform Enterprise, use the hostname for your instance or the [generic hostname](/docs/cloud/registry/using.html#generic-hostname-terraform-enterprise).
 - **Organization:** If you are using a shared module with Terraform Enterprise, the module's organization name may be different than your organization's name. Check the source string at the top of the module's registry page to find the proper organization name.
