@@ -71,7 +71,7 @@ The SDK imposes the following default timeout behaviors for CRUD functions:
 | `UpdateContext`        | 20 minutes      |
 | `UpdateWithoutTimeout` | N/A             |
 
-The [`*schema/Resource.Timeouts field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Resource.Timeouts) can customize the default timeout on CRUD functions with default timeouts.
+The [`*schema/Resource.Timeouts` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Resource.Timeouts) can customize the default timeout on CRUD functions with default timeouts.
 
 If a CRUD function timeout is exceeded, the SDK will automatically return a `context.DeadlineExceeded` error. To practitioners, this is shown in the Terraform CLI output as a `context: deadline exceeded` error. Since the context timeout and associated error handling occur outside CRUD logic in the SDK, it is not possible to capture or change this error behavior. If it is unclear how long CRUD operations may take, it is recommended to either increase the default timeout using the `Timeouts` field, or switch to using the `WithoutTimeout` CRUD functions.
 
