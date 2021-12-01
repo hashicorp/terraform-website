@@ -152,6 +152,7 @@
 /docs/plugin                                             /docs/extend/index.html
 /docs/plugin/                                            /docs/extend/index.html
 /docs/plugin/index.html                                  /docs/extend/index.html
+/docs/plugin/framework/publishing.html                   /docs/registry/providers/publishing.html
 /guides/terraform-provider-development-program.html       /guides/terraform-integration-program.html
 
 # Move the docs about TFE runs
