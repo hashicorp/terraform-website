@@ -17,13 +17,15 @@ In [remote runs](../run/index.html), Terraform Cloud automatically configures Te
 
 In local runs (available for workspaces whose execution mode setting is set to "local"), you can use a workspace's state by configuring [the `cloud` block](/docs/cli/configuring-terraform-cloud/initialization.html) and authenticating with a user token that has permission to read and write state versions for the relevant workspace. When using a Terraform configuration that references outputs from another workspace, the authentication token must also have permission to read state outputs for that workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
+~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise 2022_01 and later. Previous versions can use the [`remote` backend block](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
+
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 ## State Versions
 
 In addition to the current state, Terraform Cloud retains historical state versions, which can be used to analyze infrastructure changes over time.
 
-You can view a workspace's state versions from its "States" tab. Each state in the list indicates which run and which VCS commit (if applicable) it was associated with. Click a state in the list for more details, including a diff against the previous state and a link to the raw state file.
+You can view a workspace's state versions from its **States** tab. Each state in the list indicates which run and which VCS commit (if applicable) it was associated with. Click a state in the list for more details, including a diff against the previous state and a link to the raw state file.
 
 ## State Manipulation
 
