@@ -48,13 +48,11 @@ The display name of the workspace.
 
 ### Execution Mode
 
-[remote backend]: /docs/language/settings/backends/remote.html
-
 Whether to use Terraform Cloud as the Terraform execution platform for this workspace.
 
 The default value is "Remote", which instructs Terraform Cloud to perform Terraform runs on its own disposable virtual machines. This provides a consistent and reliable run environment, and enables advanced features like Sentinel policy enforcement, cost estimation, notifications, version control integration, and more.
 
-To disable remote execution for a workspace, change its execution mode to "Local". The workspace will store state, which Terraform can access using the [remote backend][].
+To disable remote execution for a workspace, change its execution mode to "Local". The workspace will store state, which Terraform can access using the [CLI integration](/docs/cli/configuring-terraform-cloud/index.html).
 
 If you instead need to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure, consider using [Terraform Cloud Agents](../agents/index.html). By deploying a lightweight agent, you can establish a simple connection between your environment and Terraform Cloud.
 

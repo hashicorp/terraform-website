@@ -9,7 +9,6 @@ description: |-
 # Terraform Configurations in Terraform Cloud Workspaces
 
 [remote operations]: ../run/index.html
-[remote backend]: /docs/language/settings/backends/remote.html
 [execution mode]: ./settings.html#execution-mode
 [Terraform configuration]: /docs/language/index.html
 
@@ -32,7 +31,7 @@ There are two ways to provide configuration versions for a workspace:
     -> **Note:** When a workspace is connected to a VCS repository, directly uploaded configuration versions can only be used for [speculative plans](../run/index.html#speculative-plans). This helps ensure your VCS remains the source of truth for all real infrastructure changes.
 
 - **With direct uploads.** You can use a variety of tools to directly upload configuration content to Terraform Cloud:
-    - **Terraform CLI:** With [the `remote` backend][remote backend] configured, the `terraform plan` and `terraform apply` commands will perform remote runs by uploading a configuration from a local working directory. See [The CLI-driven Run Workflow](../run/cli.html) for more information.
+    - **Terraform CLI:** With [CLI integration][/docs/cli/configuring-terraform-cloud/index.html] configured, the `terraform plan` and `terraform apply` commands will perform remote runs by uploading a configuration from a local working directory. See [The CLI-driven Run Workflow](../run/cli.html) for more information.
     - **API:** Terraform Cloud's API can accept configurations as `.tar.gz` files, which can be uploaded by a CI system or other workflow tools. See [The API-driven Run Workflow](../run/api.html) for more information.
 
     When configuration versions are provided via the CLI or API, Terraform Cloud can't automatically react to code changes in the underlying VCS repository.

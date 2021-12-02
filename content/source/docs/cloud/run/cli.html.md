@@ -110,28 +110,6 @@ To run a [speculative plan][] on your configuration, use the `terraform plan` co
 
 Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
-```
-$ terraform plan
-
-Running plan in the remote backend. Output will stream here. Pressing Ctrl-C
-will stop streaming the logs, but will not stop the plan running remotely.
-To view this plan in a browser, visit:
-https://app.terraform.io/app/my-org/my-app-dev/runs/run-LU3uk79BE5Uj77io
-
-Waiting for the plan to start...
-
-Terraform v0.11.9
-
-Configuring remote state backend...
-Initializing Terraform configuration...
-Refreshing Terraform state in-memory prior to plan...
-The refreshed state will be used to calculate this plan, but will not be
-persisted to local or remote state storage.
-
-[...]
-
-Plan: 1 to add, 0 to change, 0 to destroy.
-```
 
 ## Remote Applies
 
@@ -145,31 +123,6 @@ Remote applies use the configuration code from the local working directory, but 
 
 ~> **Important:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
 
-```
-$ terraform apply
-
-Running apply in the remote backend. Output will stream here. Pressing Ctrl-C
-will cancel the remote apply if it's still pending. If the apply started it
-will stop streaming the logs, but will not stop the apply running remotely.
-To view this run in a browser, visit:
-https://app.terraform.io/app/my-org/my-app-dev/runs/run-PEekqv44Fs8NkiFx
-
-Waiting for the plan to start...
-
-[...]
-
-Plan: 1 to add, 0 to change, 0 to destroy.
-
-Do you want to perform these actions in workspace "my-app-dev"?
-  Terraform will perform the actions described above.
-  Only 'yes' will be accepted to approve.
-
-  Enter a value: yes
-
-[...]
-
-Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
-```
 
 ## Sentinel Policies
 
