@@ -44,17 +44,19 @@ Terraform Cloud can also delay some runs in order to make performance more consi
 [CLI config file]: /docs/cli/config/config-file.html
 [cloud]: /docs/cli/configuring-terraform-cloud/initialization.html
 
-Terraform Cloud stores state for its workspaces. During a run, Terraform CLI reads from and writes to Terraform Cloud's stored state.
+Terraform Cloud stores state for its workspaces.
 
-When Terraform Cloud performs a Terraform run, it uses [the `cloud` block][cloud], overriding any existing [backend](/docs/language/settings/backends/index.html) in the configuration.
+When you trigger runs via the [CLI Workflow](/docs/cloud/run/cli.html), Terraform CLI reads from and writes to Terraform Cloud's stored state and Terraform Cloud uses [the `cloud` block][cloud], overriding any existing [backend](/docs/language/settings/backends/index.html) in the configuration.
+
+~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise 2022_01 and later. Previous versions can use the [`remote` backend block](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
 
 Instead of using existing user credentials, Terraform Cloud generates a unique per-run API token and provides it to the Terraform worker in the [CLI config file][]. This per-run token can read and write state data for the workspace associated with the run, can download modules from the [private registry](../registry/index.html), and may be granted access to read state from other workspaces in the organization (view our documentation on [cross-workspace state access](../workspaces/state.html#accessing-state-from-other-workspaces) for more information). It cannot make any other calls to the Terraform Cloud API. Per-run tokens are not considered to be user, team, or organization tokens, and become invalid after the run is completed.
 
-When running Terraform on the command line against a workspace configured for remote operations, you must have [the `cloud` block][cloud] configured in the Terraform configuration, and must have a user or team API token with the appropriate permissions specified in their [CLI config file][]. However, the run itself still occurs within one of Terraform Cloud's worker VMs, and still uses the per-run token for state access.
+When running Terraform on the command line against a workspace configured for remote operations, you must have [the `cloud` block][cloud] in your configuration and have a user or team API token with the appropriate permissions specified in your [CLI config file][]. However, the run itself still occurs within one of Terraform Cloud's worker VMs, and still uses the per-run token for state access.
 
-When running Terraform on the command line against a workspace that is _not_ configured for remote operations, the CLI user's token is used for state access. This user must have permission to read and write state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+When running Terraform on the command line against a workspace that is _not_ configured for remote operations, Terraform Cloud uses the user token for state access. The user must have permission to read and write state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
-The CLI user's token is also used when running Terraform's state manipulation commands against a Terraform Cloud workspace. This user must have permission to read and write state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+When running Terraform's state manipulation commands against a Terraform Cloud workspace, Terraform Cloud also uses the user token. The user must have permission to read and write state versions for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 

@@ -62,6 +62,8 @@ To enable the CLI-driven workflow, you must:
 
 Refer to [Using Terraform Cloud](cloud) for more details about how to initialize and configure the integration.
 
+~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise 2022_01 and later. Previous versions can use the [`remote` backend block](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
+
 ### Implicit Workspace Creation
 
 If you configure the integration to use a workspace that doesn't yet exist in your organization, Terraform Cloud will create a new workspace with that name when you run `terraform init`. The output of `terraform init` will inform you when this happens.
