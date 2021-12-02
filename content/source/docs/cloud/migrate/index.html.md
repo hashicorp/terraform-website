@@ -7,12 +7,26 @@ description: |-
 
 # Migrating to Terraform Cloud
 
-If you already use Terraform to manage infrastructure, you're probably managing some resources that you want to transfer to Terraform Cloud. By migrating your Terraform [state](/docs/language/state/index.html) to Terraform Cloud, you can continue managing that infrastructure without de-provisioning anything.
+You can begin using Terraform Cloud to manage existing resources without de-provisioning them. This requires migrating the Terraform [state files](/docs/language/state/index.html) for those resources to one or more Terraform Cloud workspaces . You can perform this migration with either the Terraform CLI or the Terraform Cloud API.
 
--> **API:** See the [State Versions API](../api/state-versions.html). Be sure to stop Terraform runs before migrating state to Terraform Cloud, and only import state into Terraform Cloud workspaces that have never performed a run.
+## Requirements
 
-## CLI Workflow
+Stop all Terraform runs before migrating state files. You should also only migrate state files into Terraform Cloud workspaces that have never performed a run.
+
+
+## CLI Migration
 
 > **Hands-on:** Try the [Migrate State to Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-migrate?in=terraform/state&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
-## VCS Workflow
+To migrate via the Terraform CLI, you can add the `cloud` block to your configuration, specify one or more Terraform Cloud workspaces for the state files, and run `terraform init`. If the workspaces you choose do not yet exist, Terraform Cloud creates them automatically in the specified organization.
+
+Refer to [Using Terraform Cloud](/docs/cli/configuring-terraform-cloud/index.html) in the Terraform CLI documentation for details about how to configure the `cloud` block and migrate state to one or more Terraform Cloud workspaces.
+
+~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise 2022_01 and later. Previous versions can use the [`remote` backend block](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
+
+
+## API Migration
+
+You can use the Terraform Cloud API to automate migrating many state files at once.
+
+This blog post contains an example of how to automate state migration with the API: [Migrating A Lot of State with Python and the Terraform Cloud API](https://medium.com/hashicorp-engineering/migrating-a-lot-of-state-with-python-and-the-terraform-cloud-api-997ec798cd11). The example uses the [Workspaces API](/docs/cloud/api/workspaces.html#create-a-workspace) to create the necessary workspaces in Terraform Cloud and the [State Versions API](../api/state-versions.html) to migrate the state files to those workspaces.
