@@ -62,15 +62,15 @@ To enable the CLI-driven workflow, you must:
 
 Refer to [Using Terraform Cloud](cloud) for more details about how to initialize and configure the integration.
 
-~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise 2022_01 and later. Previous versions can use the [`remote` backend block](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
+~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise v202201 and later. Previous versions can use the [`remote` backend](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
 
 ### Implicit Workspace Creation
 
-If you configure the integration to use a workspace that doesn't yet exist in your organization, Terraform Cloud will create a new workspace with that name when you run `terraform init`. The output of `terraform init` will inform you when this happens.
+If you configure the `cloud` block to use a workspace that doesn't yet exist in your organization, Terraform Cloud will create a new workspace with that name when you run `terraform init`. The output of `terraform init` will inform you when this happens.
 
 Automatically created workspaces might not be immediately ready to use, so use Terraform Cloud's UI to check a workspace's settings and data before performing any runs. In particular, note that:
 
-- No Terraform variables or environment variables are created by default. Terraform Cloud will use `*.auto.tfvars` files if they are present, but you will usually still need to set some workspace-specific variables.
+- No Terraform variables or environment variables are created by default, unless your organization has configured one or more [global variable sets](/docs/cloud/workspaces/variables.html#scope). Terraform Cloud will use `*.auto.tfvars` files if they are present, but you will usually still need to set some workspace-specific variables.
 - The execution mode defaults to "Remote," so that runs occur within Terraform Cloud's infrastructure instead of on your workstation.
 - New workspaces are not automatically connected to a VCS repository and do not have a working directory specified.
 - A new workspace's Terraform version defaults to the most recent release of Terraform at the time the workspace was created.
@@ -79,12 +79,12 @@ Automatically created workspaces might not be immediately ready to use, so use T
 
 Remote runs in Terraform Cloud use:
 
-- Run-Specific variables set via the command line or in your local environment (require a `TF_VAR` prefix).
+- Run-Specific variables set via the command line or in your local environment. Terraform only uses the environment variables from your shell environment that are prefixed with `TF_VAR`.
 - Workspace-Specific Terraform and environment variables set in the workspace.
 - Variable sets applied to the workspace.
 - Terraform variables from any `*.auto.tfvars` files included in the configuration.
 
-Refer to [Variables](/docs/cloud/workspaces/variables.html) for more details about variable types, variable scopes, and how to set run-specific variables through the command line.
+Refer to [Variables](/docs/cloud/workspaces/variables.html) for more details about variable types, variable scopes, variable precedence, and how to set run-specific variables through the command line.
 
 ## Remote Working Directories
 
@@ -113,13 +113,13 @@ Speculative plans use the configuration code from the local working directory, b
 
 ## Remote Applies
 
-Remote applies require permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+You can trigger remote applies in any workspaces where you have permission to apply runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
-When you are ready to apply configuration changes, use the `terraform apply` command. The apply will start in Terraform Cloud, and the command line will prompt for approval before applying the changes.
+When you are ready to apply configuration changes, use the `terraform apply` command. The apply will start in Terraform Cloud, and the command line will prompt you for approval before applying the changes.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-Remote applies use the configuration code from the local working directory, but will use variable values from the specified workspace.
+Remote applies use the configuration code from the local working directory, but use the variable values from the specified workspace.
 
 ~> **Important:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
 

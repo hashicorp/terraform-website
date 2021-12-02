@@ -7,7 +7,7 @@ description: |-
 
 # Migrating to Terraform Cloud
 
-You can begin using Terraform Cloud to manage existing resources without de-provisioning them. This requires migrating the Terraform [state files](/docs/language/state/index.html) for those resources to one or more Terraform Cloud workspaces . You can perform this migration with either the Terraform CLI or the Terraform Cloud API.
+You can begin using Terraform Cloud to manage existing resources without de-provisioning them. This requires migrating the Terraform [state files](/docs/language/state/index.html) for those resources to one or more Terraform Cloud workspaces. You can perform this migration with either the Terraform CLI or the Terraform Cloud API.
 
 ## Requirements
 
@@ -22,7 +22,7 @@ To migrate via the Terraform CLI, you can add the `cloud` block to your configur
 
 Refer to [Using Terraform Cloud](/docs/cli/configuring-terraform-cloud/index.html) in the Terraform CLI documentation for details about how to configure the `cloud` block and migrate state to one or more Terraform Cloud workspaces.
 
-~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise 2022_01 and later. Previous versions can use the [`remote` backend block](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
+~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise v202201 and later. Previous versions can use the [`remote` backend](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
 
 
 ## API Migration
