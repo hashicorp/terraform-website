@@ -116,13 +116,13 @@ Variables in the Terraform Cloud workspace and variables provided through the co
 
 Consider an example workspace that has the following variables applied:
 
-| Name           | Scope              | Date Applied | ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 | foo |
-|----------------|--------------------|--------------|------------|------------|------|------|------|-----|
-| TF_VAR_foo=8   | Run-Specific       |              |            |            |      |      |      | `8` |
-| -var="foo=9"   | Run-Specific       |              |            |            |      |      |      | `9` |
-| Variables      | Workspace-Specific | 10/1         | `g47fh474` | `874hf7u4` | `h`  |      |      | `1` |
-| Variable Set A | Non-Global         | 10/4         |            |            | `y`  | `x`  |      | `2` |
-| Variable Set B | Global             | 10/20        |            |            |      | `z`  | `a`  | `3` |
+| Name           | Scope              | Date Applied | ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 | REPLICAS |
+|----------------|--------------------|--------------|------------|------------|------|------|------|----------|
+| TF_VAR_foo=8   | Run-Specific       |              |            |            |      |      |      | `8`      |
+| -var="foo=9"   | Run-Specific       |              |            |            |      |      |      | `9`      |
+| Variables      | Workspace-Specific | 10/1         | `g47fh474` | `874hf7u4` | `h`  |      |      | `1`      |
+| Variable Set A | Non-Global         | 10/4         |            |            | `y`  | `x`  |      | `2`      |
+| Variable Set B | Global             | 10/20        |            |            |      | `z`  | `a`  | `3`      |
 
 When you trigger a run, Terraform Cloud applies the following variables:
 
