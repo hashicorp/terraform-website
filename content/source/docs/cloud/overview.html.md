@@ -43,7 +43,7 @@ Remote execution helps provide consistency and visibility for critical provision
 
 [execution_mode]: ./workspaces/settings.html#execution-mode
 
-Remote execution can be disabled on specific workspaces with the ["Execution Mode" setting][execution_mode]. The workspace will still host remote state, and Terraform CLI can use that state for local runs via the [CLI integration](/docs/cli/configuring-terraform-cloud/index.html).
+Remote execution can be disabled on specific workspaces with the ["Execution Mode" setting][execution_mode]. The workspace will still host remote state, and Terraform CLI can use that state for local runs via the [Terraform Cloud CLI integration](/docs/cli/configuring-terraform-cloud/index.html).
 
 ### Workspaces for Organizing Infrastructure
 
@@ -81,7 +81,7 @@ VCS integration is powerful, but optional; if you use an unsupported VCS or want
 
 Remote execution offers major benefits to a team, but local execution offers major benefits to individual developers; for example, most Terraform users run `terraform plan` to interactively check their work while editing configurations.
 
-Terraform Cloud offers the best of both worlds, allowing you to run remote plans from your local command line. Configure the [CLI integration](/docs/cli/configuring-terraform-cloud/index.html), and the `terraform plan` command will start a remote run in the configured Terraform Cloud workspace. The output of the run streams directly to your terminal, and you can also share a link to the remote run with your teammates.
+Terraform Cloud offers the best of both worlds, allowing you to run remote plans from your local command line. Configure the [Terraform Cloud CLI integration](/docs/cli/configuring-terraform-cloud/index.html), and the `terraform plan` command will start a remote run in the configured Terraform Cloud workspace. The output of the run streams directly to your terminal, and you can also share a link to the remote run with your teammates.
 
 Remote CLI-driven runs use the current working directory's Terraform configuration and the remote workspace's variables, so you don't need to obtain production cloud credentials just to preview a configuration change.
 

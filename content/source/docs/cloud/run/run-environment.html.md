@@ -42,7 +42,7 @@ Terraform Cloud can also delay some runs in order to make performance more consi
 ## State Access and Authentication
 
 [CLI config file]: /docs/cli/config/config-file.html
-[cloud]: /docs/cli/configuring-terraform-cloud/initialization.html
+[cloud]: /docs/cli/cloud/index.html
 
 Terraform Cloud stores state for its workspaces.
 
@@ -81,7 +81,7 @@ Terraform Cloud automatically injects the following environment variables for ea
 | `TFC_CONFIGURATION_VERSION_GIT_COMMIT_SHA` | The full commit hash of the commit that the associated Terraform configuration version was ingressed from (e.g. `"abcd1234..."`). |
 |`TFC_CONFIGURATION_VERSION_GIT_TAG` | The name of the tag that the associated Terraform configuration version was ingressed from (e.g. `"v0.1.0"`). |
 
-They are also available as Terraform input variables by defining a variable with the same name. For example: 
+They are also available as Terraform input variables by defining a variable with the same name. For example:
 
 ```terraform
 variable "TFC_RUN_ID" {}
