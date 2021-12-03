@@ -20,6 +20,17 @@ Stop all Terraform runs before migrating state files. You should also only migra
 
 To migrate with the Terraform CLI, add the `cloud` block to your configuration, specify one or more Terraform Cloud workspaces for the state files, and run `terraform init`. If the workspaces you choose do not yet exist, Terraform Cloud creates them automatically in the specified organization.
 
+```
+terraform {
+  cloud {
+    organization = "my-org"
+    workspaces {
+      tags = ["networking"]
+    }
+  }
+}
+```
+
 Refer to [Using Terraform Cloud](/docs/cli/cloud/index.html) in the Terraform CLI documentation for details about how to configure the `cloud` block and migrate state to one or more Terraform Cloud workspaces.
 
 ~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise v202201 and later. Previous versions can use the [`remote` backend](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
