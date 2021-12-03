@@ -9,7 +9,7 @@ description: "Terraform Cloud workspace variables let you customize configuratio
 
 Terraform Cloud workspace variables let you customize configurations, modify Terraform's behavior, and store information like provider credentials.
 
-You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to all of the workspaces using that provider. Terraform Cloud applies workspace variables to all runs within that workspace. Additionally, you can set variable values for a particular run on the command line [using run-specific variables](/docs/cloud/workspaces/managing-variables.html#run-specific-variables).
+You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to all of the workspaces using that provider. You can use the command line to specify variable values for each plan or apply. Otherwise, Terraform Cloud applies workspace variables to all runs within that workspace.
 
 ~> **Note:** Variable sets are in beta.
 
@@ -70,7 +70,7 @@ Each environment and Terraform variable can have one of the following scopes:
 
 | Scope               | Description                                                                        | Resources                                                                                                                                                                                                                                                                                                      |
 |---------------------|------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Run-Specific        | Apply to a specific run within a single workspace                                  | [Run-Specific Variables](/docs/cloud/workspaces/managing-variables.html#run-specific-variables)                                                                                                                                                                                                                |
+| Run-Specific        | Apply to a specific run within a single workspace                                  | [Specify Run-Specific Variables](/docs/cloud/workspaces/managing-variables.html#run-specific-variables)                                                                                                                                                                                                        |
 | Workspace-Specific  | Apply to a single workspace                                                        | [Create Workspace-Specific Variables](/docs/cloud/workspaces/managing-variables.html#workspace-specific-variables), [Loading Variables from Files](/docs/cloud/workspaces/managing-variables.html#loading-variables-from-files), [Workspace-Specific Variables API](/docs/cloud/api/workspace-variables.html). |
 | Variable Set        | Apply to multiple workspaces within the same organization.                         | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                                                               |
 | Global Variable Set | Automatically applied to all current and future workspaces within an organization. | [Create Variable Sets](/docs/cloud/workspaces/managing-variables.html#variable-sets) and [Variable Sets API](/docs/cloud/api/variable-sets.html)                                                                                                                                                               |
@@ -88,11 +88,11 @@ Terraform Cloud prioritizes and overwrites conflicting variables according to th
 
 ### 1. Command line Argument Variables
 
-Variables applied from the command line with either `-var` or `-var-file` overwrite workspace-specific and variable set variables that have the same key.
+When using a CLI workflow, variables applied to a run with either `-var` or `-var-file` overwrite workspace-specific and variable set variables that have the same key.
 
-### 2. TF_VAR_ Prefixed Environment Variables
+### 2. Local Environment Variables Prefixed with `TF_VAR_`
 
-When using a CLI workflow, variables found in the local environment that are prefixed TF_VAR_ followed by the name of a declared variable overwrite workspace-specific, variable set values, and `.auto.tfvars` file values.
+When using a CLI workflow, local environment variables prefixed with `TF_VAR_` (e.g., `TF_VAR_key`) overwrite workspace-specific, variable set, and `.auto.tfvars` file variables that have the same key.
 
 ### 3. Workspace-Specific Variables
 
@@ -110,23 +110,23 @@ Non-global variable sets always take precedence over global variable sets that a
 
 ### 6. `auto.tfvars` Variable Files
 
-Variables in the Terraform Cloud workspace and variables provided through the command line always overwrite variables from files ending in `auto.tfvars` with the same key.
+Variables in the Terraform Cloud workspace and variables provided through the command line always overwrite variables with the same key from files ending in `auto.tfvars`.
 
 ### Precedence Example
 
 Consider an example workspace that has the following variables applied:
 
-| Name           | Scope              | Date Applied | ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 | REPLICAS |
-|----------------|--------------------|--------------|------------|------------|------|------|------|----------|
-| TF_VAR_foo=8   | Run-Specific       |              |            |            |      |      |      | `8`      |
-| -var="foo=9"   | Run-Specific       |              |            |            |      |      |      | `9`      |
-| Variables      | Workspace-Specific | 10/1         | `g47fh474` | `874hf7u4` | `h`  |      |      | `1`      |
-| Variable Set A | Non-Global         | 10/4         |            |            | `y`  | `x`  |      | `2`      |
-| Variable Set B | Global             | 10/20        |            |            |      | `z`  | `a`  | `3`      |
+| Source                | Scope              | Date Applied | ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 | replicas |
+|-----------------------|--------------------|--------------|------------|------------|------|------|------|----------|
+| Command line argument | Run-Specific       |              |            |            |      |      |      | `9`      |
+| Local Environment     | Run-Specific       |              |            |            |      |      |      | `8`      |
+| Variables             | Workspace-Specific | 10/1         | `g47fh474` | `874hf7u4` | `h`  |      |      | `1`      |
+| Variable Set A        | Non-Global         | 10/4         |            |            | `y`  | `x`  |      | `2`      |
+| Variable Set B        | Global             | 10/20        |            |            |      | `z`  | `a`  | `3`      |
 
-When you trigger a run, Terraform Cloud applies the following variables:
+When you trigger a run through the command line, Terraform Cloud applies the following variables:
 
-- **Run-Specific:** `foo` is specified in all scopes. The -var value takes precedence over all other values, including the run-specific TF_VAR_foo values.
+- **Run-Specific:** `replicas` from the command line. That means `replicas` equals `9` for this run. Variables set via the command line take precedence over all other values, including the run-specific `TF_VAR_replicas` value set in your local environment.
 
 - **Workspace-Specific:** `ACCESS_KEY`, `ACCESS_ID`, and `VAR1`. That means `VAR1` equals `h` for this run, overwriting the value in Variable Set A.
 

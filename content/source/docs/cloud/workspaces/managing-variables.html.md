@@ -7,7 +7,7 @@ description: "Configure Terraform input variables and environment variables and 
 
 # Managing Variables
 
-You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. Refer to the [variables overview](/docs/cloud/workspaces/variables.html) documentation for more information about variable types, scope, and precedence.
+You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. Refer to the [variables overview](/docs/cloud/workspaces/variables.html) documentation for more information about variable types, scope, and precedence. You can also set variable values specifically for each run on the command line.
 
 ~> **Note:** Variable sets are in beta.
 
@@ -19,12 +19,18 @@ You need [`read and write variables` permissions](/docs/cloud/users-teams-organi
 
 ## Run-Specific Variables
 
-When using Terraform 1.1 or later, you can set input variable values for a particular plan/apply run on the command line using either of the following mechanisms:
+Terraform 1.1 and later lets you set [Terraform variable](/docs/cloud/workspaces/variables.html#terraform-variables) values for a particular plan or apply on the command line. These variable values will overwrite workspace-specific and variable set variables with the same key. Refer to the [variable precedence](/docs/cloud/workspaces/variables.html#precedence) documentation for more details.
 
-* Specifying `-var` and `-var-file` arguments
-* Local environment variables named `TF_VAR_` followed by the name of a declared variable
+You can set run-specific Terraform variable values by:
 
-Variable values set in either of these ways will take precedence over Workspace-Specific and Variable Set values. See the [Precedence](/docs/cloud/workspaces/variables.html#precedence) section for more details. For more information about specifying CLI input variable values, see the Terraform documentation for [Variables on the Command Line](https://www.terraform.io/docs/language/values/variables.html#variables-on-the-command-line) or the plan command [Input Variables on the Command Line](https://www.terraform.io/docs/cli/commands/plan.html#input-variables-on-the-command-line).
+- Specifying `-var` and `-var-file` arguments. For example:
+
+    ```
+    terraform apply -var="key=value" -var-file="testing.tfvars"
+    ```
+- Creating local environment variables prefixed with `TF_VAR_`. For example, if you declare a variable called `replicas` in your configuration, you could create a local environment variable called `TF_VAR_replicas` and set it to a particular value. When you use the [CLI Workflow](/docs/cloud/run/cli.html), Terraform automatically identifies these environment variables and applies their values to the run.
+
+Refer to the [variables on the command line](https://www.terraform.io/docs/language/values/variables.html#variables-on-the-command-line) documentation for more details and examples.
 
 ## Workspace-Specific Variables
 
@@ -68,7 +74,9 @@ To delete a variable:
 
 ## Loading Variables from Files
 
-You can set variable values by providing any number of [files ending in `.auto.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. When you trigger a run, Terraform automatically loads and uses the variables defined in these files. You can only do this with files ending in `auto.tfvars`; Terraform Cloud does not recognize other types of `.tfvars` files. If any variable from the workspace has the same key as a variable in the file, the workspace variable overwrites variable from the file.
+You can set [Terraform variable](/docs/cloud/workspaces/variables.html#terraform-variables) values by providing any number of [files ending in `.auto.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. When you trigger a run, Terraform automatically loads and uses the variables defined in these files. If any variable from the workspace has the same key as a variable in the file, the workspace variable overwrites variable from the file.
+
+You can only do this with files ending in `auto.tfvars`; Terraform Cloud does not automatically recognize other types of `.tfvars` files. You can only apply other types of `.tfvars` files [on the command line](#run-specific-variables) for each run.
 
 ~> **Note:** Terraform Cloud loads variables from files for each Terraform run, but does not automatically persist those variables to the Terraform Cloud workspace or display them in the **Variables** section of the workspace UI.
 
