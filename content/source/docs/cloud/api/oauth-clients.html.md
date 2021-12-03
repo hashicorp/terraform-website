@@ -200,7 +200,7 @@ Key path                             | Type   | Default | Description
 `data.type`                          | string |         | Must be `"oauth-clients"`.
 `data.attributes.service-provider`   | string |         | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, `"gitlab_enterprise_edition"`, or `"ado_server"`.
 `data.attributes.name`               | string | `null`  | An optional display name for the OAuth Client. If left `null`, the UI will default to the display name of the VCS provider.
-`data.attributes.key`                | string |         | The OAuth Client key. It sometimes refers to a Consumer Key or Application Key or some other client key for the VCS provider.
+`data.attributes.key`                | string |         | The OAuth Client key. It can refer to a Consumer Key, Application Key, or another type of client key for the VCS provider.
 `data.attributes.http-url`           | string |         | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
 `data.attributes.api-url`            | string |         | The base URL of your VCS provider's API (e.g. `"https://api.github.com"` or `"https://ghe.example.com/api/v3"`)
 `data.attributes.oauth-token-string` | string |         | The token string you were given by your VCS provider
