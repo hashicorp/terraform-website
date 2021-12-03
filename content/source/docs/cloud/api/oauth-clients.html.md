@@ -301,7 +301,7 @@ Key path                             | Type   | Default | Description
 `data.attributes.name`               | string | (previous value)  | An optional display name for the OAuth Client. If set to `null`, the UI will default to the display name of the VCS provider.
 `data.attributes.key`                | string | (previous value) | The OAuth Client key. It can refer to a Consumer Key, Application Key, or another type of client key for the VCS provider.
 `data.attributes.secret`             | string | (previous value) | The OAuth Client secret. For BitBucket Server, this secret is the the text of the SSH private key associated with your BitBucket Server Application Link.
-`data.attributes.rsa-public-key`     | string | (previous value) | **Required BitBucket Server in conjunction with the `secret`. Not used for any other providers.** The text of the SSH public key associated with your BitBucket Server Application Link.
+`data.attributes.rsa-public-key`     | string | (previous value) | **Required for BitBucket Server in conjunction with the `secret`. Not used for any other providers.** The text of the SSH public key associated with your BitBucket Server Application Link.
 
 
 ### Sample Payload
