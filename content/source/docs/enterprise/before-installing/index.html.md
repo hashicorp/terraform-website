@@ -101,14 +101,12 @@ Terraform Enterprise runs on Linux instances, and you must prepare a running Lin
 
 Terraform Enterprise currently supports running under the following operating systems:
 
-- **Standalone deployment:**
-
-    - Debian 9 - 10
-    - Ubuntu 14.04.5 / 16.04 / 18.04 / 20.04
-    - Red Hat Enterprise Linux 7.4 - 7.9 / 8.4
-    - CentOS 7.4 - 7.9 / 8.4
-    - Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
-    - Oracle Linux 7.4 - 7.9 / 8.4
+	- Debian 9 - 10
+	- Ubuntu 14.04.5 / 16.04 / 18.04 / 20.04
+	- Red Hat Enterprise Linux 7.4 - 7.9 / 8.4
+	- CentOS 7.4 - 7.9 / 8.4
+	- Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
+	- Oracle Linux 7.4 - 7.9 / 8.4
 
 ### Hardware Requirements
 
@@ -128,29 +126,64 @@ See [Network Requirements](./network-requirements.html) for details.
 
 <a id="software-requirements"></a>
 
-### Software Requirements (Standalone Deployment)
+### Docker Engine Requirements
 
-Every Terraform Enterprise installation requires the following:
-Enterprise:
+Terraform Enterprise requires **at least one** of the following in order of preference:
 
-- A 64-bit architecture Linux-based operating system
-- Linux Kernel 3.10 or greater
-- Docker Engine 17.06.2-ce to 20.10:
-  - Docker Engine 18.01.0-ce or greater requires Replicated 2.32.0
-    or greater
-  - Support for [Alpine 3.14](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0#faccessat2)
-    Docker images:
-    - Docker Engine 17.06.2-ce to 20.09 requires runc v1.0.0-rc93
-    - Docker Engine 20.10 or greater requires libseccomp 2.4.4
-  - In Online mode, the installer will install Docker Engine
-    automatically
-  - In Airgapped mode, you must install Docker Engine before running
-    the installer
+  1. Compatible Docker Engine and `runc` versions:
+    - Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x.
+    - `runc` v1.0.0-rc93 or greater.
+  2. Compatible Docker Engine and `libseccomp` versions:
+    - Docker Engine 20.10.x.
+    - `libseccomp` 2.4.4 or greater.
 
-Some operating systems also have additional requirements:
+#### Installing Compatible Docker Engine and `runc` Versions
 
-- [RedHat Enterprise Linux (RHEL) Requirements](./rhel-requirements.html)
-- [CentOS Requirements](./centos-requirements.html)
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+1. Install the latest version of `containerd` for your operating system.
+  - On Debian/Ubuntu:
+
+        ```
+        sudo apt install containerd
+        ```
+  - On RHEL/CentOS:
+
+        ```
+        sudo yum install containerd.io
+        ```
+1. Confirm that the installed `containerd` version is 1.4.9, 1.5.5, or greater.
+
+    ```
+    containerd --version
+    ```
+1. Confirm that the installed `runc` version is v1.0.0-rc93 or greater:
+
+    ```
+    runc --version
+    ```
+
+
+#### Installing Compatible Docker Engine and `libseccomp` Versions
+
+-> **Note:** These instructions should only be used if you cannot meet the [Docker Engine and `runc`](#installing-compatible-docker-engine-and-runc-versions) requirements above.
+
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 20.10.x for your operating system.
+1. Install the latest version of `libseccomp` for your operating system.
+  - On Debian/Ubuntu:
+
+        ```
+        sudo apt install libseccomp2
+        ```
+  - On RHEL/CentOS:
+
+        ```
+        sudo yum install libseccomp
+        ```
+1. Confirm that the installed `libseccomp` version is 2.4.4 or greater.
+
+    ```
+    runc --version
+    ```
 
 ### IAM Policies
 
