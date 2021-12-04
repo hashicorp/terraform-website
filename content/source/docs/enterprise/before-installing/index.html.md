@@ -128,16 +128,13 @@ See [Network Requirements](./network-requirements.html) for details.
 
 ### Docker Engine Requirements
 
-Terraform Enterprise requires **at least one** of the following in order of preference:
+Terraform Enterprise requires **at least one** of the following Docker Engine configurations, in order of preference:
 
-  1. Compatible Docker Engine and `runc` versions:
-    - Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x.
-    - `runc` v1.0.0-rc93 or greater.
-  2. Compatible Docker Engine and `libseccomp` versions:
-    - Docker Engine 20.10.x.
-    - `libseccomp` 2.4.4 or greater.
+  1. Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x with `runc` v1.0.0-rc93 or greater.
+  2. Docker Engine 20.10.x with `libseccomp` 2.4.4 or greater.
+  3. Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a modified `libseccomp` profile.
 
-#### Installing Compatible Docker Engine and `runc` Versions
+#### Option 1: Docker Engine With a Compatible `runc` Version
 
 1. [Install](https://docs.docker.com/engine/install/) Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
 1. Install the latest version of `containerd` for your operating system.
@@ -162,10 +159,12 @@ Terraform Enterprise requires **at least one** of the following in order of pref
     runc --version
     ```
 
+1. If your Docker Engine and `runc` versions meet the requirements from previous steps, you're all set! Otherwise, proceed to [option 2](#).
 
-#### Installing Compatible Docker Engine and `libseccomp` Versions
 
--> **Note:** These instructions should only be used if you cannot meet the [Docker Engine and `runc`](#installing-compatible-docker-engine-and-runc-versions) requirements above.
+#### Option 2: Docker Engine With a Compatbile `libseccomp` Version
+
+-> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in [option 1](#option-1-docker-engine-with-a-compatible-runc-version).
 
 1. [Install](https://docs.docker.com/engine/install/) Docker Engine 20.10.x for your operating system.
 1. Install the latest version of `libseccomp` for your operating system.
@@ -183,6 +182,57 @@ Terraform Enterprise requires **at least one** of the following in order of pref
 
     ```
     runc --version
+    ```
+
+1. If your Docker Engine and `libseccomp` versions meet the requirements from previous steps, you're all set! Otherwise, proceed to [option 3](#).
+
+#### Option 3: Docker Engine Using a Modified `libseccomp` Profile
+
+-> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in either [option 1](#option-1-docker-engine-with-a-compatible-runc-version) or [option 2](#option-2-docker-engine-with-a-compatbile-libseccomp-version).
+
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+
+1. Download the [default moby `libseccomp` profile](https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json) and save it to the file `/etc/docker/seccomp.json`.
+
+    ```
+    sudo curl -L -o /etc/docker/seccomp.json \
+      https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json
+    ```
+
+1. Edit the `/etc/docker/seccomp.json` file and modify the line `"defaultAction": "SCMP_ACT_ERRNO",` to be `"defaultAction": "SCMP_ACT_TRACE",`. A `sed` command is included below for your convenience.
+
+    ```
+    sudo sed -i 's/\(\"defaultAction\"\:\s*\)\"SCMP_ACT_ERRNO\"/\1\"SCMP_ACT_TRACE\"/' /etc/docker/seccomp.json
+    ```
+
+1. Create a drop-in systemd unit file for the `docker` systemd service.
+
+    ```
+    sudo cp /lib/systemd/system/docker.service /etc/systemd/system/docker.service
+    ```
+
+1. Edit the drop-in `/etc/systemd/system/docker.service` systemd unit file and modify the line starting with `ExecStart=` to include the option `--seccomp-profile=/etc/docker/seccomp.json`.
+  - For example, the following line:
+
+        ```
+        ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock $OPTIONS $DOCKER_STORAGE_OPTIONS $DOCKER_ADD_RUNTIMES
+        ```
+  - Would become:
+
+        ```
+        ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --seccomp-profile=/etc/docker/seccomp.json $OPTIONS $DOCKER_STORAGE_OPTIONS $DOCKER_ADD_RUNTIMES
+        ```
+
+1. Reload the systemd daemon.
+
+    ```
+    sudo systemctl daemon-reload
+    ```
+
+1. Restart Docker Engine.
+
+    ```
+    sudo systemctl restart docker 
     ```
 
 ### IAM Policies
