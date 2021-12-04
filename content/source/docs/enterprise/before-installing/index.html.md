@@ -148,11 +148,13 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
         ```
         sudo yum install containerd.io
         ```
+
 1. Confirm that the installed `containerd` version is 1.4.9, 1.5.5, or greater.
 
     ```
     containerd --version
     ```
+
 1. Confirm that the installed `runc` version is v1.0.0-rc93 or greater:
 
     ```
@@ -178,6 +180,7 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
         ```
         sudo yum install libseccomp
         ```
+
 1. Confirm that the installed `libseccomp` version is 2.4.4 or greater.
 
     ```
