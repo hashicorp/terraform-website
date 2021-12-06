@@ -22,10 +22,10 @@ import (
 
 func resourceExampleInstance() *schema.Resource {
     return &schema.Resource{
-        Create: resourceExampleInstanceCreate,
-        Read:   resourceExampleInstanceRead,
-        Update: resourceExampleInstanceUpdate,
-        Delete: resourceExampleInstanceDelete,
+        CreateContext: resourceExampleInstanceCreate,
+        ReadContext:   resourceExampleInstanceRead,
+        UpdateContext: resourceExampleInstanceUpdate,
+        DeleteContext: resourceExampleInstanceDelete,
 
         Schema: map[string]*schema.Schema{
             "name": {
@@ -40,7 +40,40 @@ func resourceExampleInstance() *schema.Resource {
 }
 ```
 
-In the above example we see the usage of the timeouts in the schema being configured for what is deemed the appropriate amount of time for the `Create` function. `Read`, `Update`, and `Delete` are also configurable as well as a `Default`. These configured timeouts can be fetched later in the CRUD functions from the passed in `*schema.ResourceData`.
+In the above example we see the usage of the timeouts in the schema being configured for what is deemed the appropriate amount of time for the `Create` function. `Read`, `Update`, and `Delete` are also configurable as well as a `Default`. These configured timeouts can be fetched in the CRUD function logic using the [`(*schema.ResourceData).Timeout()` method](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.Timeout), such as `d.Timeout(schema.TimeoutCreate)`. Practitioners can override these timeout values with [resource timeouts configuration](/docs/language/resources/syntax.html#operation-timeouts), such as:
+
+```terraform
+resource "example_thing" "example" {
+  # ...
+
+  timeouts {
+    create = "60m"
+  }
+}
+```
+
+## Default Timeouts and Deadline Exceeded Errors
+
+The SDK imposes the following default timeout behaviors for CRUD functions:
+
+| CRUD Function          | Default Timeout |
+|------------------------|-----------------|
+| `Create`               | 20 minutes      |
+| `CreateContext`        | 20 minutes      |
+| `CreateWithoutTimeout` | N/A             |
+| `Delete`               | 20 minutes      |
+| `DeleteContext`        | 20 minutes      |
+| `DeleteWithoutTimeout` | N/A             |
+| `Read`                 | 20 minutes      |
+| `ReadContext`          | 20 minutes      |
+| `ReadWithoutTimeout`   | N/A             |
+| `Update`               | 20 minutes      |
+| `UpdateContext`        | 20 minutes      |
+| `UpdateWithoutTimeout` | N/A             |
+
+The [`*schema/Resource.Timeouts` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Resource.Timeouts) can customize the default timeout on CRUD functions with default timeouts.
+
+If a CRUD function timeout is exceeded, the SDK will automatically return a `context.DeadlineExceeded` error. To practitioners, this is shown in the Terraform CLI output as a `context: deadline exceeded` error. Since the context timeout and associated error handling occur outside CRUD logic in the SDK, it is not possible to capture or change this error behavior. If it is unclear how long CRUD operations may take, it is recommended to either increase the default timeout using the `Timeouts` field, or switch to using the `WithoutTimeout` CRUD functions.
 
 ## Retry
 
@@ -61,7 +94,7 @@ func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) err
         return fmt.Errorf("Error creating instance: %s", err)
     }
 
-    return resource.Retry(d.Timeout(schema.TimeoutCreate), func() *resource.RetryError {
+    return resource.Retry(d.Timeout(schema.TimeoutCreate) - time.Minute, func() *resource.RetryError {
         resp, err := client.DescribeInstance(name)
 
         if err != nil {
@@ -81,6 +114,8 @@ func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) err
     })
 }
 ```
+
+~> **Important** If using a CRUD function with a timeout, any `Retry()` or `RetryContext()` function timeouts should be configured below that duration to avoid returning the SDK `context: deadline exceeded` error instead of the retry logic error.
 
 ## StateChangeConf
 
@@ -111,7 +146,7 @@ func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) err
             }
             return resp, resp.Status, nil
         },
-        Timeout:    d.Timeout(schema.TimeoutCreate),
+        Timeout:    d.Timeout(schema.TimeoutCreate) - time.Minute,
         Delay:      10 * time.Second,
         MinTimeout: 5 * time.Second,
         ContinuousTargetOccurence: 5,
@@ -124,3 +159,5 @@ func resourceExampleInstanceCreate(d *schema.ResourceData, meta interface{}) err
     return resourceExampleInstanceRead(d, meta)
 }
 ```
+
+~> **Important** If using a CRUD function with a timeout, any `StateChangeConf` timeouts should be configured below that duration to avoid returning the SDK `context: deadline exceeded` error instead of the retry logic error.
