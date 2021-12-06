@@ -13,6 +13,10 @@ page_id: "api-changelog"
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
+### 2021-12-03
+
+* OAuth API updated to handle `secret` and `rsa_public_key` fields for POST/PUT.
+
 ### 2021-11-17
 
 * Added pagination support to the following endpoints:

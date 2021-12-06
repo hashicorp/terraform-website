@@ -178,7 +178,7 @@ This endpoint allows you to create a VCS connection between an organization and 
 To learn how to generate one of these token strings for your VCS provider, you can read the following documentation:
 
 * [GitHub and GitHub Enterprise](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-* [GitLab, GitLab Community Edition, and GitLab Enterprise Edition](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#creating-a-personal-access-token)
+* [GitLab, GitLab Community Edition, and GitLab Enterprise Edition](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token)
 * [Azure DevOps Server](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops-2019&tabs=preview-page)
 
 ~> **Note:** This endpoint does not currently support creation of a Bitbucket Cloud, Bitbucket Server, or Azure DevOps Services OAuth Client.
@@ -200,10 +200,13 @@ Key path                             | Type   | Default | Description
 `data.type`                          | string |         | Must be `"oauth-clients"`.
 `data.attributes.service-provider`   | string |         | The VCS provider being connected with. Valid options are `"github"`, `"github_enterprise"`, `"gitlab_hosted"`, `"gitlab_community_edition"`, `"gitlab_enterprise_edition"`, or `"ado_server"`.
 `data.attributes.name`               | string | `null`  | An optional display name for the OAuth Client. If left `null`, the UI will default to the display name of the VCS provider.
+`data.attributes.key`                | string |         | The OAuth Client key. It can refer to a Consumer Key, Application Key, or another type of client key for the VCS provider.
 `data.attributes.http-url`           | string |         | The homepage of your VCS provider (e.g. `"https://github.com"` or `"https://ghe.example.com"`)
 `data.attributes.api-url`            | string |         | The base URL of your VCS provider's API (e.g. `"https://api.github.com"` or `"https://ghe.example.com/api/v3"`)
 `data.attributes.oauth-token-string` | string |         | The token string you were given by your VCS provider
 `data.attributes.private-key`        | string |         | **Required for Azure DevOps Server. Not used for any other providers.** The text of the SSH private key associated with your Azure DevOps Server account.
+`data.attributes.secret`             | string |         | The OAuth Client secret. For BitBucket Server, this secret is the the text of the SSH private key associated with your BitBucket Server Application Link.
+`data.attributes.rsa-public-key`     | string |         | **Required for BitBucket Server in conjunction with the `secret`. Not used for any other providers.** The text of the SSH public key associated with your BitBucket Server Application Link.
 
 ### Sample Payload
 
@@ -296,8 +299,10 @@ Key path                             | Type   | Default | Description
 -------------------------------------|--------|---------|------------
 `data.type`                          | string |         | Must be `"oauth-clients"`.
 `data.attributes.name`               | string | (previous value)  | An optional display name for the OAuth Client. If set to `null`, the UI will default to the display name of the VCS provider.
-`data.attributes.key`                | string | (previous value) | The OAuth client key.
-`data.attributes.secret`             | string | (previous value) | The OAuth client secret.
+`data.attributes.key`                | string | (previous value) | The OAuth Client key. It can refer to a Consumer Key, Application Key, or another type of client key for the VCS provider.
+`data.attributes.secret`             | string | (previous value) | The OAuth Client secret. For BitBucket Server, this secret is the the text of the SSH private key associated with your BitBucket Server Application Link.
+`data.attributes.rsa-public-key`     | string | (previous value) | **Required for BitBucket Server in conjunction with the `secret`. Not used for any other providers.** The text of the SSH public key associated with your BitBucket Server Application Link.
+
 
 ### Sample Payload
 
