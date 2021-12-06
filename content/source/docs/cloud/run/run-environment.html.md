@@ -78,8 +78,8 @@ Terraform Cloud automatically injects the following environment variables for ea
 |`TFC_WORKSPACE_NAME` | The name of the workspace used in this run, e.g. `"prod-load-balancers"`. |
 |`TFC_WORKSPACE_SLUG` | The full slug of the configuration used in this run. This consists of the organization name and workspace name, joined with a slash, e.g. `"acme-corp/prod-load-balancers"`. |
 |`TFC_CONFIGURATION_VERSION_GIT_BRANCH` | The name of the branch that the associated Terraform configuration version was ingressed from, e.g. `main`. |
-| `TFC_CONFIGURATION_VERSION_GIT_COMMIT_SHA` | The full commit hash of the commit that the associated Terraform configuration version was ingressed from (e.g. `"abcd1234..."`). |
-|`TFC_CONFIGURATION_VERSION_GIT_TAG` | The name of the tag that the associated Terraform configuration version was ingressed from (e.g. `"v0.1.0"`). |
+| `TFC_CONFIGURATION_VERSION_GIT_COMMIT_SHA` | The full commit hash of the commit that the associated Terraform configuration version was ingressed from, e.g. `"abcd1234..."`. |
+|`TFC_CONFIGURATION_VERSION_GIT_TAG` | The name of the tag that the associated Terraform configuration version was ingressed from, e.g. `"v0.1.0"`. |
 
 They are also available as Terraform input variables by defining a variable with the same name. For example:
 
