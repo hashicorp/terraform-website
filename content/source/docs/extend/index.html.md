@@ -23,7 +23,7 @@ or the [cloud-init provider](https://registry.terraform.io/providers/hashicorp/c
 ## Develop and Share Providers
 - Learn more about **how to use [SDKv2](/docs/extend/sdkv2-intro.html)** to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/extend/schemas/index.html), [develop resources](/docs/extend/resources/index.html), [debug providers](/docs/extend/debugging.html), and [test plugins](/docs/extend/testing/index.html).
 - Learn more about **how to use the [plugin framework](/docs/plugin/framework/index.html)** to develop providers. This includes details about how to define attributes and behaviors using [schemas](/docs/plugin/framework/schemas.html), develop [resources](/docs/plugin/framework/resources.html) and [data sources](/docs/plugin/framework/data-sources.html), and [write tests](/docs/plugin/framework/acctests.html).
-- [Publish your provider on the Terraform Registry](/docs/registry/index.html) to make it publicly available.   
+- [Publish your provider on the Terraform Registry](/docs/registry/providers/publishing.html) to make it publicly available.
 - Get HashiCorp to [officially approve and verify](/guides/terraform-provider-development-program.html) your provider. Verified providers get a special badge on the Terraform Registry.
 
 

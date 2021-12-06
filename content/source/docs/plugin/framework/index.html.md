@@ -29,4 +29,4 @@ Try the [Implement Create and Read with the Terraform Plugin Framework](https://
 ## Test and Publish
 
 - Learn to write [acceptance tests](/docs/plugin/framework/acctests.html) for your provider.
-- Learn to [publish your provider](/docs/plugin/framework/publishing.html) to the Terraform Registry.
+- Learn to [publish your provider](/docs/registry/providers/publishing.html) to the Terraform Registry.
