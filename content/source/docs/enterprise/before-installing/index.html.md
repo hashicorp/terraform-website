@@ -81,7 +81,7 @@ Make sure your data storage services or device meet Terraform Enterprise's requi
 - _External Services_
     - [PostgreSQL Requirements](./postgres-requirements.html)
     - Any S3-compatible object storage service, GCP Cloud Storage or Azure blob storage meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
-        - In environments without their own storage service, it may be possible to use [Minio](https://min.io/) for object storage. See the [Minio Setup Guide](./minio-setup-guide.html) for details.
+        - In environments without their own storage service, it may be possible to use [Minio](https://min.io/) for object storage. Refer to the [Minio Setup Guide](./minio-setup-guide.html) for details.
     - Optionally: if you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](./vault.html).
 
 - *Active/Active*
@@ -161,7 +161,7 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
     runc --version
     ```
 
-1. If your Docker Engine and `runc` versions meet the requirements from previous steps, you're all set! Otherwise, proceed to [option 2](#option-2-docker-engine-with-a-compatbile-libseccomp-version).
+1. If your Docker Engine and `runc` versions meet the requirements from previous steps, your system is properly configured. Otherwise, proceed to [option 2](#option-2-docker-engine-with-a-compatbile-libseccomp-version).
 
 
 #### Option 2: Docker Engine With a Compatbile `libseccomp` Version
@@ -187,7 +187,7 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
     runc --version
     ```
 
-1. If your Docker Engine and `libseccomp` versions meet the requirements from previous steps, you're all set! Otherwise, proceed to [option 3](#option-3-docker-engine-using-a-modified-libseccomp-profile).
+1. If your Docker Engine and `libseccomp` versions meet the requirements from previous steps, your system is properly configured. Otherwise, proceed to [option 3](#option-3-docker-engine-using-a-modified-libseccomp-profile).
 
 #### Option 3: Docker Engine Using a Modified `libseccomp` Profile
 
@@ -205,7 +205,7 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
 1. Edit the `/etc/docker/seccomp.json` file and modify the line `"defaultAction": "SCMP_ACT_ERRNO",` to be `"defaultAction": "SCMP_ACT_TRACE",`. A `sed` command is included below for your convenience.
 
     ```
-    sudo sed -i 's/\(\"defaultAction\"\:\s*\)\"SCMP_ACT_ERRNO\"/\1\"SCMP_ACT_TRACE\"/' /etc/docker/seccomp.json
+    sudo sed -i 's/"defaultAction":\s*"SCMP_ACT_ERRNO"/"defaultAction": "SCMP_ACT_TRACE"/1' /etc/docker/seccomp.json
     ```
 
 1. Create a drop-in systemd unit file for the `docker` systemd service.
