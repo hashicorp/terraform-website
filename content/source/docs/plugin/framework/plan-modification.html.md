@@ -18,7 +18,7 @@ Terraform and the framework support two types of plan modification on resources:
 
 When the provider receives a request to generate the plan for a resource change via the framework, the following occurs:
 
-1. If the plan differs from the current resource state, any computed attributes that are null in the configuration are marked as unknown in the plan. This is intended to prevent unexpected Terraform errors, however as an enhancement providers can later fill in any values that may be known.
+1. If the plan differs from the current resource state, the framework marks computed attributes that are null in the configuration as unknown in the plan. This is intended to prevent unexpected Terraform errors. Providers can later enter any values that may be known.
 2. Apply attribute plan modifiers.
 3. Apply resource plan modifiers.
 
