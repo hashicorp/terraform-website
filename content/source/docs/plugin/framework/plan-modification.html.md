@@ -7,22 +7,22 @@ description: |-
 
 # Plan Modification
 
-After [validation](./validation.html), but prior to applying configuration changes, Terraform generates a plan which describes the expected values and behaviors of those changes. An accurate plan helps practitioners decide on whether the configuration changes match against intended expectations. Providers are given an opportunity to tailor the plan to match the expected end state of applying the changes, such as filling in unknown values with expected known values or marking that a resource must be replaced to perform the changes. The framework refers to this support as plan modification, which can be performed against an attribute or for an entire resource.
+After [validation](./validation.html) and before applying configuration changes, Terraform generates a plan that describes the expected values and behaviors of those changes. Providers can then tailor the plan to match the expected end state. For example, they may replace unknown values with expected known values or mark a resource that must be replaced. Users can perform this plan modification for an attribute or an entire resource.
 
-## Concepts and Implicit Behaviors
+## Plan Modification Process
 
 Terraform and the framework support two types of plan modification on resources:
 
-- Adjusting attribute values, such as filling in a known remote default value when a configuration is not present.
-- Marking a resource as needing replacement, such as when an in-place update is not supported for a change.
+- Adjusting attribute values, such as providing a known remote default value when a configuration is not present.
+- Marking resources that should be replaced, such as when an in-place update is not supported for a change.
 
 When the provider receives a request to generate the plan for a resource change via the framework, the following occurs:
 
 1. If the plan differs from the current resource state, any computed attributes that are null in the configuration are marked as unknown in the plan. This is intended to prevent unexpected Terraform errors, however as an enhancement providers can later fill in any values that may be known.
-2. Attribute plan modifiers are executed.
-3. Resource plan modifiers are executed.
+2. Apply attribute plan modifiers.
+3. Apply resource plan modifiers.
 
-More information about the underlying concepts and process that Terraform performs during plan and apply workflows can be found in the [Resource Instance Change Lifecycle document](https://github.com/hashicorp/terraform/blob/main/docs/resource-instance-change-lifecycle.md).
+Refer to the [Resource Instance Change Lifecycle document](https://github.com/hashicorp/terraform/blob/main/docs/resource-instance-change-lifecycle.md) for more details about the concepts and processes relevant to the plan and apply workflows.
 
 ~> **NOTE:** Providers and data sources do not use the same planning mechanism as resources within Terraform. Neither support the concept of plan modification. Data sources should set any planned values in the `Read` method.
 
@@ -30,7 +30,7 @@ More information about the underlying concepts and process that Terraform perfor
 
 ## Attribute Plan Modification
 
-The [`tfsdk.Attribute` type `PlanModifiers` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Attribute.PlanModifiers) can be supplied with a list of plan modifiers for that particular attribute. For example:
+You can supply the [`tfsdk.Attribute` type `PlanModifiers` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Attribute.PlanModifiers) with a list of plan modifiers for that attribute. For example:
 
 ```go
 // Typically within the tfsdk.Schema returned by GetSchema() for a resource.
@@ -43,19 +43,19 @@ tfsdk.Attribute{
 }
 ```
 
-If defined, plan modifiers are executed against the current attribute. If any nested attributes define plan modifiers, then those are executed afterwards. Any plan modifiers that return an error will prevent further modifiers of that attribute from executing, along with preventing the execution of any nested attribute plan modifiers.
+If defined, plan modifiers are applied to the current attribute. If any nested attributes define plan modifiers, then those are applied afterwards. Any plan modifiers that return an error will prevent Terraform from applying further modifiers of that attribute as well as any nested attribute plan modifiers.
 
 ### Common Use Case Attribute Plan Modifiers
 
 The framework implements some common use case modifiers:
 
-- [`tfsdk.RequiresReplace()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#RequiresReplace): If the value of the attribute changes, in-place update is not possible and instead the resource should be replaced for the change to occur. See the Go documentation for full details on its behavior.
-- [`tfsdk.RequiresReplaceIf()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#RequiresReplaceIf): Similar to `tfsdk.RequiresReplace()`, however it also accepts provider-defined conditional logic. See the Go documentation for full details on its behavior.
+- [`tfsdk.RequiresReplace()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#RequiresReplace): If the value of the attribute changes, in-place update is not possible and instead the resource should be replaced for the change to occur. Refer to the Go documentation for full details on its behavior.
+- [`tfsdk.RequiresReplaceIf()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#RequiresReplaceIf): Similar to `tfsdk.RequiresReplace()`, however it also accepts provider-defined conditional logic. Refer to the Go documentation for full details on its behavior.
 - [`tfsdk.UseStateForUnknown()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#UseStateForUnknown): Copies the prior state value, if not null. This is useful for reducing `(known after apply)` plan outputs for computed attributes which are known to not change over time.
 
 ### Creating Attribute Plan Modifiers
 
-To create an attribute plan modifier, the [`tfsdk.AttributePlanModifier` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#AttributePlanModifier) must be satisfied. For example:
+To create an attribute plan modifier, you must implement the [`tfsdk.AttributePlanModifier` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#AttributePlanModifier). For example:
 
 ```go
 // stringDefaultModifier is a plan modifier that sets a default value for a
@@ -101,7 +101,7 @@ func (m stringDefaultModifier) Modify(ctx context.Context, req tfsdk.ModifyAttri
 }
 ```
 
-Optionally and depending on the complexity, it may be desirable to also create a helper function to instantiate the plan modifier. For example:
+Optionally, you may also want to create a helper function to instantiate the plan modifier. For example:
 
 ```go
 func stringDefault(defaultValue string) stringDefaultModifier {
@@ -113,7 +113,7 @@ func stringDefault(defaultValue string) stringDefaultModifier {
 
 ## Resource Plan Modification
 
-Resource schemas also support plan modification across all attributes. This is helpful when working with logic that applies to the resource as a whole. The [`tfsdk.ResourceWithModifyPlan` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceWithModifyPlan) must be satisfied. For example:
+Resource schemas also support plan modification across all attributes. This is helpful when working with logic that applies to the resource as a whole. To create a resource schema plan modification, you must implement the [`tfsdk.ResourceWithModifyPlan` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceWithModifyPlan). For example:
 
 ```go
 // Other methods to implement the tfsdk.Resource interface are omitted for brevity
