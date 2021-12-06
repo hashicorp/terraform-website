@@ -37,8 +37,6 @@ tfsdk.Attribute{
 
 All validators will always be run, regardless of whether previous validators returned an error or not.
 
--> The framework will implement or reference common use case attribute validations, such as string length, in the future.
-
 ### Creating Attribute Validators
 
 To create an attribute validator, you must implement the [`tfsdk.AttributeValidator` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#AttributeValidator). For example:
@@ -103,7 +101,7 @@ func stringLengthBetween(minLength int, maxLength int) stringLengthBetweenValida
 
 ## Type Validation
 
-Providers that contain common attribute values with consistent validation rules may wish to create a custom type to simplify schemas. When validation is implemented on a type, it is not necessary to declare the same validation on the attribute, although additional validations can be supplied in that manner. For example:
+You may want to create a custom type to simplify schemas if your provider contains common attribute values with consistent validation rules. When you implement validation on a type, you do not need to declare the same validation on the attribute, but you can supply additional validations in that manner. For example:
 
 ```go
 // Typically within the tfsdk.Schema returned by GetSchema() for a provider,
