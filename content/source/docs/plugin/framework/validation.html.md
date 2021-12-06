@@ -7,7 +7,7 @@ description: |-
 
 # Validation
 
-Practitioners implementing Terraform configurations desire feedback surrounding the syntax, types, and acceptable values. This feedback, typically referred to as validation, is preferably given as early as possible before a configuration is applied. Terraform supports validation for values in provider, resource, and data source configurations. The framework supports returning [diagnostics](./diagnostics.html) feedback on all of these, offering the ability to specify validations on an attribute, provider-defined type, and the entire provider, resource, or data source schema.
+The framework can return [diagnostics](./diagnostics.html) feedback for values in provider, resource, and data source configurations. This allows you to write validations that give users feedback about required syntax, types, and acceptable values.
 
 ~> **NOTE:** When implementing validation logic, configuration values may be [unknown](./types.html#unknown) based on the source of the value. Implementations must account for this case, typically by returning early without returning new diagnostics.
 
@@ -15,11 +15,11 @@ Practitioners implementing Terraform configurations desire feedback surrounding 
 
 The [Terraform configuration language](https://www.terraform.io/docs/language/) is declarative and an implementation of [HashiCorp Configuration Language](https://github.com/hashicorp/hcl) (HCL). The Terraform CLI is responsible for reading and parsing configurations for validity, based on Terraform's concepts such as `resource` blocks and associated syntax. Basic validation of value type and behavior information, for example returning an error when a string value is given where a list value is expected or returning an error when a required attribute is missing from a configuration, is automatically handled by the Terraform CLI based on the provider, resource, or data source schema.
 
-These syntax and basic schema checks are performed during the [`terraform apply`](https://www.terraform.io/docs/cli/commands/apply.html), [`terraform destroy`](https://www.terraform.io/docs/cli/commands/destroy.html), [`terraform plan`](https://www.terraform.io/docs/cli/commands/plan.html), and [`terraform validate`](https://www.terraform.io/docs/cli/commands/validate.html) commands. Any further validation provided by the framework occurs after these checks.
+Terraform CLI syntax and basic schema checks occur during the [`terraform apply`](https://www.terraform.io/docs/cli/commands/apply.html), [`terraform destroy`](https://www.terraform.io/docs/cli/commands/destroy.html), [`terraform plan`](https://www.terraform.io/docs/cli/commands/plan.html), and [`terraform validate`](https://www.terraform.io/docs/cli/commands/validate.html) commands. Any additional validation you define with the framework occurs directly after these checks are complete.
 
 ## Attribute Validation
 
-It is common for provider implementations to introduce validation on attributes using the generic framework-defined types such as [`types.String`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types#String). The [`tfsdk.Attribute` type `Validators` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Attribute.Validators) can be supplied with a list of validations and diagnostics will be returned from all validators. For example:
+You can introduce validation on attributes using the generic framework-defined types such as [`types.String`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/types#String). To do this, supply the [`tfsdk.Attribute` type `Validators` field](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#Attribute.Validators) with a list of validations, and the framework will return diagnostics from all validators. For example:
 
 ```go
 // Typically within the tfsdk.Schema returned by GetSchema() for a provider,
@@ -41,7 +41,7 @@ All validators will always be run, regardless of whether previous validators ret
 
 ### Creating Attribute Validators
 
-To create an attribute validator, the [`tfsdk.AttributeValidator` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#AttributeValidator) must be satisfied. For example:
+To create an attribute validator, you must implement the [`tfsdk.AttributeValidator` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#AttributeValidator). For example:
 
 ```go
 type stringLengthBetweenValidator struct {
@@ -124,7 +124,7 @@ tfsdk.Attribute{
 
 ### Defining Type Validation
 
-To support validation within a type, the [`attr.TypeWithValidate` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#TypeWithValidate) must be satisfied. For example:
+To support validation within a type, you must implement the [`attr.TypeWithValidate` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/attr#TypeWithValidate). For example:
 
 ```go
 // Other methods to implement the attr.Type interface are omitted for brevity
@@ -175,9 +175,9 @@ Provider, resource, and data source schemas also support validation across all a
 
 ### Creating Provider Schema Validation
 
-There are two possible interface implementations that can be used for provider validation. Either or both can be implemented. This validation is performed in addition to any attribute and type validation within the provider schema.
+The framework performs provider validation in addition to attribute and type validation. You can implement either or both of the following interfaces.
 
-The [`tfsdk.ProviderWithConfigValidators` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ProviderWithConfigValidators) follows a similar pattern to attribute validation and allows for a more declarative approach, which is helpful for consistent validators across multiple providers. Each of the validators must satify the [`tfsdk.ProviderConfigValidator` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ProviderConfigValidator). For example:
+The [`tfsdk.ProviderWithConfigValidators` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ProviderWithConfigValidators) follows a similar pattern to attribute validation and allows for a more declarative approach. This lets you write consistent validators across multiple providers. You must implement the [`tfsdk.ProviderConfigValidator` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ProviderConfigValidator) for each validator. For example:
 
 ```go
 // Other methods to implement the tfsdk.Provider interface are omitted for brevity
@@ -190,7 +190,7 @@ func (p exampleProvider) ConfigValidators(ctx context.Context) []tfsdk.ProviderC
 }
 ```
 
-The [`tfsdk.ProviderWithValidateConfig` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ProviderWithValidateConfig) is more imperative in design and simplifies one-off functionality that typically applies to a single provider. For example:
+The [`tfsdk.ProviderWithValidateConfig` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ProviderWithValidateConfig) is more imperative in design and is useful for validating unique functionality that typically applies to a single provider. For example:
 
 ```go
 // Other methods to implement the tfsdk.Provider interface are omitted for brevity
@@ -204,9 +204,9 @@ func (p exampleProvider) ValidateConfig(ctx context.Context, req ValidateProvide
 
 ### Creating Resource Schema Validation
 
-There are two possible interface implementations that can be used for resource validation. Either or both can be implemented. This validation is performed in addition to any attribute and type validation within the resource schema.
+The framework performs resource schema validation in addition to any attribute and type validation. You can implement either or both of the following interfaces.
 
-The [`tfsdk.ResourceWithConfigValidators` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceWithConfigValidators) follows a similar pattern to attribute validation and allows for a more declarative approach, which is helpful for consistent validators across multiple resources. Each of the validators must satify the [`tfsdk.ResourceConfigValidator` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceConfigValidator). For example:
+The [`tfsdk.ResourceWithConfigValidators` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceWithConfigValidators) follows a similar pattern to attribute validation and allows for a more declarative approach. This lets you create consistent validators across multiple resources. You must implement the [`tfsdk.ResourceConfigValidator` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceConfigValidator) for each validator. For example:
 
 ```go
 // Other methods to implement the tfsdk.Resource interface are omitted for brevity
@@ -219,7 +219,7 @@ func (r exampleResource) ConfigValidators(ctx context.Context) []tfsdk.ResourceC
 }
 ```
 
-The [`tfsdk.ResourceWithValidateConfig` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceWithValidateConfig) is more imperative in design and simplifies one-off functionality that typically applies to a single resource. For example:
+The [`tfsdk.ResourceWithValidateConfig` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceWithValidateConfig) is more imperative in design and is useful for validating unique functionality that typically applies to a single resource. For example:
 
 ```go
 // Other methods to implement the tfsdk.Resource interface are omitted for brevity
@@ -233,9 +233,9 @@ func (r exampleResource) ValidateConfig(ctx context.Context, req ValidateResourc
 
 ### Creating Data Source Schema Validation
 
-There are two possible interface implementations that can be used for data source validation. Either or both can be implemented. This validation is performed in addition to any attribute and type validation within the data source schema.
+The framework performs data source schema validation in addition to any attribute and type validation. You can implement either or both of the following interfaces.
 
-The [`tfsdk.DataSourceWithConfigValidators` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DataSourceWithConfigValidators) follows a similar pattern to attribute validation and allows for a more declarative approach, which is helpful for consistent validators across multiple data sources. Each of the validators must satify the [`tfsdk.DataSourceConfigValidator` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DataSourceConfigValidator). For example:
+The [`tfsdk.DataSourceWithConfigValidators` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DataSourceWithConfigValidators) follows a similar pattern to attribute validation and allows for a more declarative approach. This lets you write consistent validators across multiple data sources. You must implement the [`tfsdk.DataSourceConfigValidator` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DataSourceConfigValidator) for each validator. For example:
 
 ```go
 // Other methods to implement the tfsdk.DataSource interface are omitted for brevity
@@ -248,7 +248,7 @@ func (d exampleDataSource) ConfigValidators(ctx context.Context) []tfsdk.DataSou
 }
 ```
 
-The [`tfsdk.DataSourceWithValidateConfig` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DataSourceWithValidateConfig) is more imperative in design and simplifies one-off functionality that typically applies to a single data source. For example:
+The [`tfsdk.DataSourceWithValidateConfig` interface](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DataSourceWithValidateConfig) is more imperative in design and is useful for validating unique functionality that typically applies to a single data source. For example:
 
 ```go
 // Other methods to implement the tfsdk.DataSource interface are omitted for brevity
