@@ -115,7 +115,7 @@ Speculative plans use the configuration code from the local working directory, b
 
 In workspaces that aren't connected to a VCS repository, users with permission to apply runs can trigger remote applies with the CLI. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
-When you are ready to apply configuration changes, use the `terraform apply` command. The apply will start in Terraform Cloud, and the command line will prompt you for approval before applying the changes.
+When you are ready to apply configuration changes, use the `terraform apply` command. Terraform Cloud will plan your changes, and the command line will prompt you for approval before applying them.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
