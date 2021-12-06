@@ -11,7 +11,7 @@ You can begin using Terraform Cloud to manage existing resources without de-prov
 
 ## Requirements
 
-Stop all Terraform runs before migrating state files. You should also only migrate state files into Terraform Cloud workspaces that have never performed a run.
+Stop all Terraform runs involving the state files before migrating them. You should also only migrate state files into Terraform Cloud workspaces that have never performed a run.
 
 
 ## CLI Migration
