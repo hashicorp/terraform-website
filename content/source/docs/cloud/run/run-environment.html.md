@@ -58,7 +58,7 @@ The per-run token can read and write state data for the workspace associated wit
 
 ### User Token
 
-Terraform Cloud does use the user token for state access when you:
+Terraform Cloud uses the user token to access a workspace's state when you:
 
 - Run Terraform on the command line against a workspace that is _not_ configured for remote operations. The user must have permission to read and write state versions for the workspace.
 
