@@ -79,8 +79,8 @@ Automatically created workspaces might not be immediately ready to use, so use T
 
 Remote runs in Terraform Cloud use:
 
-- Run-Specific variables set via the command line or in your local environment. Terraform only uses the environment variables from your shell environment that are prefixed with `TF_VAR`.
-- Workspace-Specific Terraform and environment variables set in the workspace.
+- Run-specific variables set via the command line or in your local environment. Terraform only uses the environment variables from your shell environment that are prefixed with `TF_VAR`.
+- Workspace-specific Terraform and environment variables set in the workspace.
 - Variable sets applied to the workspace.
 - Terraform variables from any `*.auto.tfvars` files included in the configuration.
 
