@@ -47,7 +47,7 @@ Both Terraform Cloud and Terraform CLI have features called workspaces, but they
 
 - Terraform CLI workspaces are a convenience feature. They isolate multiple state files in the same working directory, letting you manage multiple groups of resources with a single configuration. You could run Terraform locally with the CLI without ever creating workspaces. Refer to [Workspaces](/docs/language/state/workspaces.html) in the Terraform Language documentation for more details.
 
-- Terraform Cloud workspaces are fundamental. They act as independent containers for collections of infrastructure and are a major component of role-based access in Terraform Cloud. You can grant individual users and user groups permissions for one or more workspaces that dictate whether they can manage variables, perform runs, etc. You cannot manage resources in Terraform Cloud without creating at least one workspace.
+- Terraform Cloud workspaces are required. They manage collections of infrastructure and are a major component of role-based access in Terraform Cloud. You can grant individual users and user groups permissions for one or more workspaces that dictate whether they can manage variables, perform runs, etc. You cannot manage resources in Terraform Cloud without creating at least one workspace.
 
 ## Listing and Filtering Workspaces
 
