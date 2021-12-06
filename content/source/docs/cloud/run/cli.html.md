@@ -23,7 +23,7 @@ Terraform Cloud has three workflows for managing Terraform runs.
 
 ## Summary
 
-The [Terraform Cloud CLI integration][cloud] brings Terraform Cloud's collaboration features into the familiar Terraform CLI workflow. It offers the best of both worlds to developers who are already comfortable with using Terraform, and it can work with existing CI/CD pipelines.
+The [Terraform Cloud CLI integration][cloud] brings Terraform Cloud's collaboration features into the familiar Terraform CLI workflow. It offers the best of both worlds to developers who are already comfortable with using the Terraform CLI, and it can work with existing CI/CD pipelines.
 
 You can start runs with the standard `terraform plan` and `terraform apply` commands and then watch the progress of the run from your terminal. These runs execute remotely in Terraform Cloud; they use variables from the appropriate workspace, enforce any applicable [Sentinel policies][sentinel], and can access Terraform Cloud's [private registry][private] and remote state inputs.
 
