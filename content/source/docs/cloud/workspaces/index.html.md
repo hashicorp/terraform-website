@@ -7,18 +7,16 @@ description: |-
 
 # Workspaces
 
-Workspaces are how Terraform Cloud organizes infrastructure.
-
-## Workspaces are Collections of Infrastructure
-
 Working with Terraform involves managing collections of infrastructure resources, and most organizations manage many different collections.
 
 When run locally, Terraform manages each collection of infrastructure with a persistent working directory, which contains a configuration, state data, and variables. Since Terraform CLI uses content from the directory it runs in, you can organize infrastructure resources into meaningful groups by keeping their configurations in separate directories.
 
 Terraform Cloud manages infrastructure collections with _workspaces_ instead of directories. A workspace contains everything Terraform needs to manage a given collection of infrastructure, and separate workspaces function like completely separate working directories.
 
+> **Hands-on:** Try the [Create a Workspace](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-create?in=terraform/cloud-get-started) tutorial on HashiCorp Learn.
 
-### Workspace Contents
+
+## Workspace Contents
 
 Terraform Cloud workspaces and local working directories serve the same purpose, but they store their data differently:
 
@@ -35,13 +33,13 @@ In addition to the basic Terraform content, Terraform Cloud keeps some additiona
 
 - **Run history:** When Terraform Cloud manages a workspace's Terraform runs, it retains a record of all run activity, including summaries, logs, a reference to the changes that caused the run, and user comments. Refer to [Viewing and Managing Runs](../run/manage.html) for more details.
 
-### Terraform Runs
+## Terraform Runs
 
 For workspaces with remote operations enabled (the default), Terraform Cloud performs Terraform runs on its own disposable virtual machines, using that workspace's configuration, variables, and state.
 
 Refer to [Terraform Runs and Remote Operations](../run/index.html) for more details.
 
-### Terraform Cloud vs. Terraform CLI Workspaces
+## Terraform Cloud vs. Terraform CLI Workspaces
 
 Both Terraform Cloud and Terraform CLI have features called workspaces, but they function differently.
 
@@ -81,8 +79,6 @@ For example, the code that manages your production environment's infrastructure 
 Much like splitting monolithic applications into smaller microservices, this enables teams to make changes in parallel. In addition, it makes it easier to re-use configurations to manage other environments of infrastructure ("app1-dev," etc.).
 
 ## Creating Workspaces
-
-> **Hands-on:** Try the [Create a Workspace](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-create?in=terraform/cloud-get-started) tutorial on HashiCorp Learn.
 
 You can create workspaces through the [Terraform Cloud UI](/docs/cloud/workspaces/creating.html) or the [Workspaces API](../api/workspaces.html).
 
