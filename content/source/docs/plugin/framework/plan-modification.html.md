@@ -22,11 +22,11 @@ When the provider receives a request to generate the plan for a resource change 
 2. Apply attribute plan modifiers.
 3. Apply resource plan modifiers.
 
+When the `Resource` interface `Update` method runs to apply a change, all attribute state values must match their associated planned values or Terraform will generate a `Provider produced inconsistent result` error. You can mark values as [unknown](./types.html#unknown) in the plan if the full expected value is not known.
+
 Refer to the [Resource Instance Change Lifecycle document](https://github.com/hashicorp/terraform/blob/main/docs/resource-instance-change-lifecycle.md) for more details about the concepts and processes relevant to the plan and apply workflows.
 
 ~> **NOTE:** Providers and data sources do not use the same planning mechanism as resources within Terraform. Neither support the concept of plan modification. Data sources should set any planned values in the `Read` method.
-
-~> **NOTE:** When a change is applied (e.g. the `Resource` interface `Update` method is executed), all attribute state values must match their associated planned values or Terraform will generate a `Provider produced inconsistent result` error. Values can be marked as [unknown](./types.html#unknown) in the plan if the full expected value is not known upfront.
 
 ## Attribute Plan Modification
 
