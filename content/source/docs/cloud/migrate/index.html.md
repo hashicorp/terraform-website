@@ -11,7 +11,7 @@ You can begin using Terraform Cloud to manage existing resources without de-prov
 
 ## Requirements
 
-Stop all Terraform runs involving the state files before migrating them. You should also only migrate state files into Terraform Cloud workspaces that have never performed a run.
+Stop all Terraform operations involving the state files before migrating them. You should also only migrate state files into Terraform Cloud workspaces that have never performed a run.
 
 
 ## CLI Migration
@@ -19,6 +19,8 @@ Stop all Terraform runs involving the state files before migrating them. You sho
 > **Hands-on:** Try the [Migrate State to Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-migrate?in=terraform/state) tutorial on HashiCorp Learn.
 
 To migrate with the Terraform CLI, add the `cloud` block to your configuration, specify one or more Terraform Cloud workspaces for the state files, and run `terraform init`. If the workspaces you choose do not yet exist, Terraform Cloud creates them automatically in the specified organization.
+
+The example below shows how you can map your CLI workspaces to Terraform Cloud workspaces that have a specific tag.
 
 ```
 terraform {

@@ -46,14 +46,14 @@ To supplement these remote operations, you can also use the optional [Terraform 
 To enable the CLI-driven workflow, you must:
 
 1. Run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/cli/config/config-file.html#credentials).
-1. Add the `cloud` block to your Terraform configuration. For example:
+1. Add the `cloud` block to your Terraform configuration. The example below shows how you can map your CLI workspaces to Terraform Cloud workspaces that have a specific tag.
 
     ```
     terraform {
       cloud {
         organization = "my-org"
         workspaces {
-          name = "docs-workspace"
+          tags = ["networking"]
         }
       }
     }
