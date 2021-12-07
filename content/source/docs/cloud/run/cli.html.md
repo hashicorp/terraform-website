@@ -124,6 +124,27 @@ You can run speculative plans in any workspace where you have permission to queu
 
 To run a [speculative plan][] on your configuration, use the `terraform plan` command. The plan will run in Terraform Cloud, and the logs will stream back to the command line along with a URL to view the plan in the Terraform Cloud UI.
 
+```
+$ terraform plan
+
+Running plan in Terraform Cloud. Output will stream here. Pressing Ctrl-C
+will stop streaming the logs, but will not stop the plan running remotely.
+
+Preparing the remote plan...
+
+To view this run in a browser, visit:
+https://app.terraform.io/app/hashicorp-learn/docs-workspace/runs/run-cfh2trDbvMU2Rkf1
+
+Waiting for the plan to start...
+
+[...]
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + pet_name = (known after apply)
+  ```
+
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
@@ -134,6 +155,38 @@ Speculative plans use the configuration code from the local working directory, b
 In workspaces that aren't connected to a VCS repository, users with permission to apply runs can trigger remote applies with the CLI. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 When you are ready to apply configuration changes, use the `terraform apply` command. Terraform Cloud will plan your changes, and the command line will prompt you for approval before applying them.
+
+```
+$ terraform apply
+
+Running apply in Terraform Cloud. Output will stream here. Pressing Ctrl-C
+will cancel the remote apply if it's still pending. If the apply started it
+will stop streaming the logs, but will not stop the apply running remotely.
+
+Preparing the remote apply...
+
+To view this run in a browser, visit:
+https://app.terraform.io/app/hashicorp-learn/docs-workspace/runs/run-Rcc12TkNW1PDa7GH
+
+Waiting for the plan to start...
+
+[...]
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + pet_name = (known after apply)
+
+Do you want to perform these actions in workspace "docs-workspace"?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+[...]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+```
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
