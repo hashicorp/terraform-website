@@ -9,10 +9,11 @@ description: |-
 
 We ship a new Terraform Enterprise release each month. The releases from the current calendar year are listed in the table below, and the complete list is on [github](https://github.com/hashicorp/terraform-enterprise-release-notes).
 
-~> The next release `v202112-1` is scheduled for December 9th, 2021.
+~> The next release `v202201-1` is scheduled for January 25th, 2022.
 
 | Version                         | Release Sequence | Recommended<br> Replicated CLI                                       | Latest <br>Terraform CLI                                              | Sentinel                                                                       |
 | ------------------------------- | ---------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [v202112-1](./v202112-1.html)   | 588              | [2.53.2](https://release-notes.replicated.com/release-notes/2.53.2/) | [1.0.11](https://github.com/hashicorp/terraform/releases/tag/v1.0.11) | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
 | [v202111-1](./v202111-1.html)   | 582              | [2.53.0](https://release-notes.replicated.com/release-notes/2.53.0/) | [1.0.9](https://github.com/hashicorp/terraform/releases/tag/v1.0.9)   | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
 | [v202110-1](./v202110-1.html)   | 576              | [2.52.0](https://release-notes.replicated.com/release-notes/2.52.0/) | [1.0.7](https://github.com/hashicorp/terraform/releases/tag/v1.0.7)   | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
 | [v202109-2](./v202109-2.html)   | 568              | [2.52.0](https://release-notes.replicated.com/release-notes/2.52.0/) | [1.0.5](https://github.com/hashicorp/terraform/releases/tag/v1.0.5)   | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
