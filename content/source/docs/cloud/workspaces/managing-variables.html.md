@@ -30,7 +30,7 @@ You can set run-specific Terraform variable values by:
     ```
 - Creating local environment variables prefixed with `TF_VAR_`. For example, if you declare a variable called `replicas` in your configuration, you could create a local environment variable called `TF_VAR_replicas` and set it to a particular value. When you use the [CLI Workflow](/docs/cloud/run/cli.html), Terraform automatically identifies these environment variables and applies their values to the run.
 
-Refer to the [variables on the command line](https://www.terraform.io/docs/language/values/variables.html#variables-on-the-command-line) documentation for more details and examples.
+Refer to the [variables on the command line](/docs/language/values/variables.html#variables-on-the-command-line) documentation for more details and examples.
 
 ## Workspace-Specific Variables
 
@@ -76,11 +76,9 @@ To delete a variable:
 
 You can set [Terraform variable](/docs/cloud/workspaces/variables.html#terraform-variables) values by providing any number of [files ending in `.auto.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. When you trigger a run, Terraform automatically loads and uses the variables defined in these files. If any variable from the workspace has the same key as a variable in the file, the workspace variable overwrites variable from the file.
 
-You can only do this with files ending in `auto.tfvars`; Terraform Cloud does not automatically recognize other types of `.tfvars` files. You can only apply other types of `.tfvars` files [on the command line](#run-specific-variables) for each run.
+You can only do this with files ending in `auto.tfvars`; Terraform Cloud does not automatically load variables from `terraform.tfvars`. You can only apply other types of `.tfvars` files [on the command line](#run-specific-variables) for each run.
 
-~> **Note:** Terraform Cloud loads variables from files for each Terraform run, but does not automatically persist those variables to the Terraform Cloud workspace or display them in the **Variables** section of the workspace UI.
-
-~> **Note:** Variable values applied using `terraform.tfvars` are ignored by Terraform Cloud
+~> **Note:** Terraform Cloud loads variables from files ending in `auto.tfvars` for each Terraform run, but does not automatically persist those variables to the Terraform Cloud workspace or display them in the **Variables** section of the workspace UI.
 
 
 ## Variable Sets

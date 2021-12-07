@@ -86,13 +86,13 @@ There may be cases when a workspace contains conflicting variables of the same t
 
 Terraform Cloud prioritizes and overwrites conflicting variables according to the following precedence:
 
-### 1. Command line Argument Variables
+### 1. Command Line Argument Variables
 
 When using a CLI workflow, variables applied to a run with either `-var` or `-var-file` overwrite workspace-specific and variable set variables that have the same key.
 
 ### 2. Local Environment Variables Prefixed with `TF_VAR_`
 
-When using a CLI workflow, local environment variables prefixed with `TF_VAR_` (e.g., `TF_VAR_key`) overwrite workspace-specific, variable set, and `.auto.tfvars` file variables that have the same key.
+When using a CLI workflow, local environment variables prefixed with `TF_VAR_` (e.g., `TF_VAR_replicas`) overwrite workspace-specific, variable set, and `.auto.tfvars` file variables that have the same key.
 
 ### 3. Workspace-Specific Variables
 
@@ -118,7 +118,7 @@ Consider an example workspace that has the following variables applied:
 
 | Source                | Scope              | Date Applied | ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 | replicas |
 |-----------------------|--------------------|--------------|------------|------------|------|------|------|----------|
-| Command line argument | Run-Specific       |              |            |            |      |      |      | `9`      |
+| Command Line Argument | Run-Specific       |              |            |            |      |      |      | `9`      |
 | Local Environment     | Run-Specific       |              |            |            |      |      |      | `8`      |
 | Variables             | Workspace-Specific | 10/1         | `g47fh474` | `874hf7u4` | `h`  |      |      | `1`      |
 | Variable Set A        | Non-Global         | 10/4         |            |            | `y`  | `x`  |      | `2`      |
@@ -126,7 +126,7 @@ Consider an example workspace that has the following variables applied:
 
 When you trigger a run through the command line, Terraform Cloud applies the following variables:
 
-- **Run-Specific:** `replicas` from the command line. That means `replicas` equals `9` for this run. Variables set via the command line take precedence over all other values, including the run-specific `TF_VAR_replicas` value set in your local environment.
+- **Run-Specific:** `replicas` from the command line. That means `replicas` equals `9` for this run. Variables set from the command line take precedence over all other values, including the run-specific `TF_VAR_replicas` value set in your local environment.
 
 - **Workspace-Specific:** `ACCESS_KEY`, `ACCESS_ID`, and `VAR1`. That means `VAR1` equals `h` for this run, overwriting the value in Variable Set A.
 
