@@ -52,7 +52,7 @@ Whether to use Terraform Cloud as the Terraform execution platform for this work
 
 The default value is "Remote", which instructs Terraform Cloud to perform Terraform runs on its own disposable virtual machines. This provides a consistent and reliable run environment, and enables advanced features like Sentinel policy enforcement, cost estimation, notifications, version control integration, and more.
 
-To disable remote execution for a workspace, change its execution mode to "Local". The workspace will store state, which Terraform can access using the [Terraform Cloud CLI integration](/docs/cli/cloud/index.html).
+To disable remote execution for a workspace, change its execution mode to "Local". The workspace will store state, which Terraform can access using the [CLI integration](/docs/cli/cloud/index.html).
 
 If you instead need to allow Terraform Cloud to communicate with isolated, private, or on-premises infrastructure, consider using [Terraform Cloud Agents](../agents/index.html). By deploying a lightweight agent, you can establish a simple connection between your environment and Terraform Cloud.
 
