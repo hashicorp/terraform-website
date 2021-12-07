@@ -45,6 +45,7 @@ To supplement these remote operations, you can also use the optional [Terraform 
 
 To enable the CLI-driven workflow, you must:
 
+1. Run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/cli/config/config-file.html#credentials).
 1. Add the `cloud` block to your Terraform configuration. For example:
 
     ```
@@ -52,17 +53,34 @@ To enable the CLI-driven workflow, you must:
       cloud {
         organization = "my-org"
         workspaces {
-          tags = ["networking"]
+          name = "docs-workspace"
         }
       }
     }
     ```
+    ~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise v202201 and later. Previous versions can use the [`remote` backend](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
 
 1. Run `terraform init`.
 
-Refer to [Using Terraform Cloud](cloud) for more details about how to initialize and configure the integration.
+    ```
+    $ terraform init
 
-~> **Note**: The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise v202201 and later. Previous versions can use the [`remote` backend](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
+    Initializing Terraform Cloud...
+
+    Initializing provider plugins...
+    - Reusing previous version of hashicorp/random from the dependency lock file
+    - Using previously-installed hashicorp/random v3.0.1
+
+    Terraform Cloud has been successfully initialized!
+
+    You may now begin working with Terraform Cloud. Try running "terraform plan"
+    to see any changes that are required for your infrastructure.
+
+    If you ever set or change modules or Terraform Settings,
+    run "terraform init" again to reinitialize your working directory.
+    ```
+
+Refer to [Using Terraform Cloud](cloud) for more details about how to initialize and configure the integration.
 
 ### Implicit Workspace Creation
 
@@ -98,7 +116,7 @@ If you use a combined repository and [specify a working directory on workspaces]
 
 CLI-driven runs upload an archive of your configuration directory
 to Terraform Cloud. If the directory contains files you want to exclude from upload,
-you can do so by defining a [`.terraformignore` file in your configuration directory](/docs/cli/using-terraform-cloud/initialization.html).
+you can do so by defining a [`.terraformignore` file in your configuration directory](/docs/cli/cloud/settings.html).
 
 ## Remote Speculative Plans
 
