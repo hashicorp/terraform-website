@@ -18,7 +18,7 @@ Stop all Terraform runs involving the state files before migrating them. You sho
 
 > **Hands-on:** Try the [Migrate State to Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-migrate?in=terraform/state) tutorial on HashiCorp Learn.
 
-To migrate with the Terraform CLI, you can add the `cloud` block to your configuration, specify one or more Terraform Cloud workspaces for the state files, and run `terraform init`. If the workspaces you choose do not yet exist, Terraform Cloud creates them automatically in the specified organization.
+To migrate with the Terraform CLI, add the `cloud` block to your configuration, specify one or more Terraform Cloud workspaces for the state files, and run `terraform init`. If the workspaces you choose do not yet exist, Terraform Cloud creates them automatically in the specified organization.
 
 ```
 terraform {
