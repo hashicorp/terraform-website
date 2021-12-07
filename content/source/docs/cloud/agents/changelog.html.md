@@ -17,6 +17,13 @@ within each release are categorized into one or more of the following labels:
 Each version below corresponds to a release artifact available for download on
 the official [releases website](https://releases.hashicorp.com/tfc-agent/).
 
+## 1.0.2 (12/07/2021)
+
+BUG FIXES:
+
+* Fixed key collision in log attributes when performaing status updates (#105)
+* Fixed race condition during status updates at the end of a job (#106)
+
 ## 1.0.1 (11/11/2021)
 
 IMPROVEMENTS:
