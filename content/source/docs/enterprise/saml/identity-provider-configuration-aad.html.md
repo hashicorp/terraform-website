@@ -88,9 +88,7 @@ In this section, you'll enable B. Simon to use Azure single sign-on by granting 
 1. In the Azure portal, select **Enterprise Applications**, and then select **All applications**.
 1. In the applications list, select **Terraform Enterprise**.
 1. In the app's overview page, find the **Manage** section and select **Users and groups**.
-
 1. Select **Add user**, then select **Users and groups** in the **Add Assignment** dialog.
-
 1. In the **Users and groups** dialog, select **B. Simon** from the Users list, then click the **Select** button at the bottom of the screen.
 1. If you are expecting a role to be assigned to the users, you can select it from the **Select a role** dropdown. If no role has been set up for this app, you see "Default Access" role selected.
 1. In the **Add Assignment** dialog, click the **Assign** button.
