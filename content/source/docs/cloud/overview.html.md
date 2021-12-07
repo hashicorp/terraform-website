@@ -85,7 +85,7 @@ Terraform Cloud offers the best of both worlds, allowing you to run remote plans
 
 Remote CLI-driven runs use the current working directory's Terraform configuration and the remote workspace's variables, so you don't need to obtain production cloud credentials just to preview a configuration change.
 
-The CLI integration also supports state manipulation commands like `terraform import` or `terraform taint`.
+The Terraform Cloud CLI integration also supports state manipulation commands like `terraform import` or `terraform taint`.
 
 -> **Note:** When used with Terraform Cloud, the `terraform plan` command runs [speculative plans][], which preview changes without modifying real infrastructure. You can also use `terraform apply` to perform full remote runs, but only with workspaces that are _not_ connected to a VCS repository. This helps ensure that your VCS remains the source of record for all real infrastructure changes.
 
