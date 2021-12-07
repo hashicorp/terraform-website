@@ -29,7 +29,7 @@ You can view a workspace's state versions from its **States** tab. Each state in
 
 Certain tasks (including importing resources, tainting resources, moving or renaming existing resources to match a changed configuration, and more) require modifying Terraform state outside the context of a run.
 
-Manual state manipulation in Terraform Cloud workspaces requires the use of Terraform CLI, using the same commands as would be used in a local workflow (`terraform import`, `terraform taint`, etc.). To manipulate state, you must configure the [Terraform Cloud CLI integration](/docs/cli/configuring-terraform-cloud/index.html) and authenticate with a user token that has permission to read and write state versions for the relevant workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+Manual state manipulation in Terraform Cloud workspaces requires the use of Terraform CLI, using the same commands as would be used in a local workflow (`terraform import`, `terraform taint`, etc.). To manipulate state, you must configure the [Terraform Cloud CLI integration](/docs/cli/cloud/index.html) and authenticate with a user token that has permission to read and write state versions for the relevant workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
