@@ -43,7 +43,7 @@ Remote execution helps provide consistency and visibility for critical provision
 
 [execution_mode]: ./workspaces/settings.html#execution-mode
 
-Remote execution can be disabled on specific workspaces with the ["Execution Mode" setting][execution_mode]. The workspace will still host remote state, and Terraform CLI can use that state for local runs via the [Terraform Cloud CLI integration](/docs/cli/configuring-terraform-cloud/index.html).
+Remote execution can be disabled on specific workspaces with the ["Execution Mode" setting][execution_mode]. The workspace will still host remote state, and Terraform CLI can use that state for local runs via the [Terraform Cloud CLI integration](/docs/cli/cloud/index.html).
 
 ### Workspaces for Organizing Infrastructure
 
