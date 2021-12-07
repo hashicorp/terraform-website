@@ -180,9 +180,9 @@ See [the Upgrades section](../../admin/upgrades.html) of the documentation. For 
 ### Failure Scenarios
 
 VMware vSphere provides a high level of resilience in various cases
-of failure (at the server hardware layer through vSphere High Availablilty (HA) and at the network layer through virtual distributed
-switching.) In addition, having workloads failover to a DR datacenter with tools like VMware Site Recovery Manager or utilizing stretched clusters
-provides recovery in the case of a total data center outage. See the Disaster Recovery section.
+of failure, such as at the server hardware layer through vSphere High Availability (HA) and at the network layer through virtual distributed
+switching. In addition, employing tools such as VMware Site Recovery Manager or utilizing stretched clusters
+can assist in recovery in the case of a total data center to support failover to a DR datacenter. See the Disaster Recovery section.
 
 The Active/Active deployment method can provide additional failover.
 
