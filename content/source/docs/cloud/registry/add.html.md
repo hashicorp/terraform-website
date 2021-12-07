@@ -11,7 +11,7 @@ description: |-
 
 You can add providers and modules from the public [Terraform Registry](/docs/registry/index.html) to your Terraform Cloud private registry. This lets you clearly designate which public providers and modules are recommended for the organization and makes their supporting documentation and examples centrally accessible.
 
--> **Note:** Public providers and modules are available in Terraform Enterprise version 202012-1 and later.
+-> **Note:** Public providers and modules are available in Terraform Enterprise v202012-1 and later.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
