@@ -7,13 +7,12 @@ description: |-
 
 [sentinel]: ../sentinel/index.html
 [private]: ../registry/index.html
-[cloud]: /docs/cli/cloud/index.html
 [speculative plan]: ./index.html#speculative-plans
 [tfe-provider]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs
 
 # The CLI-driven Run Workflow
 
-> **Hands-on:** Try the [Authenticate the CLI with Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-login?in=terraform/0-13&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
+> **Hands-on:** Try the [Log in to Terraform Cloud from the CLI](https://learn.hashicorp.com/tutorials/terraform/cloud-login?in=terraform/0-13) tutorial on HashiCorp Learn.
 
 Terraform Cloud has three workflows for managing Terraform runs.
 
@@ -23,7 +22,7 @@ Terraform Cloud has three workflows for managing Terraform runs.
 
 ## Summary
 
-The [CLI integration][cloud] brings Terraform Cloud's collaboration features into the familiar Terraform CLI workflow. It offers the best of both worlds to developers who are already comfortable with using the Terraform CLI, and it can work with existing CI/CD pipelines.
+The [CLI integration](/docs/cli/cloud/index.html) brings Terraform Cloud's collaboration features into the familiar Terraform CLI workflow. It offers the best of both worlds to developers who are already comfortable with using the Terraform CLI, and it can work with existing CI/CD pipelines.
 
 You can start runs with the standard `terraform plan` and `terraform apply` commands and then watch the progress of the run from your terminal. These runs execute remotely in Terraform Cloud; they use variables from the appropriate workspace, enforce any applicable [Sentinel policies][sentinel], and can access Terraform Cloud's [private registry][private] and remote state inputs.
 
@@ -80,7 +79,7 @@ To enable the CLI-driven workflow, you must:
     run "terraform init" again to reinitialize your working directory.
     ```
 
-Refer to [Using Terraform Cloud](cloud) for more details about how to initialize and configure the integration.
+Refer to [Using Terraform Cloud](/docs/cli/cloud/index.html) for more details about how to initialize and configure the integration.
 
 ### Implicit Workspace Creation
 
