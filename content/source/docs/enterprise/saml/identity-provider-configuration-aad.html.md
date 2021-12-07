@@ -34,6 +34,8 @@ Follow these steps to configure Azure Active Directory (AAD) as the identity pro
 	- In the **Sign on URL** text box, type a URL using the following pattern:
     `https://<TFE HOSTNAME>/`
 
+	~> **Note:** Update these values with the actual Identifier and Sign on URL. Contact [Terraform Enterprise Client support team](https://support.hashicorp.com) to get these values. You can also refer to the patterns shown in the **Basic SAML Configuration** section in the Azure portal.
+	
     ~> **Note:** Update these values with the actual Identifier and Sign on URL. Contact [Terraform Enterprise Client support team](https://support.hashicorp.com) to get these values. You can also refer to the patterns shown in the **Basic SAML Configuration** section in the Azure portal.
 
     ![Screenshot: The "Configure SAML" page of ADD's new app workflow, with the specified settings entered.](./images/sso-aad-saml-configuration.png)
