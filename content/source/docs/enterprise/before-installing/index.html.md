@@ -81,7 +81,7 @@ Make sure your data storage services or device meet Terraform Enterprise's requi
 - _External Services_
     - [PostgreSQL Requirements](./postgres-requirements.html)
     - Any S3-compatible object storage service, GCP Cloud Storage or Azure blob storage meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
-        - In environments without their own storage service, it may be possible to use [Minio](https://minio.io) for object storage. See the [Minio Setup Guide](./minio-setup-guide.html) for details.
+        - In environments without their own storage service, it may be possible to use [Minio](https://min.io/) for object storage. Refer to the [Minio Setup Guide](./minio-setup-guide.html) for details.
     - Optionally: if you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](./vault.html).
 
 - *Active/Active*
@@ -101,14 +101,12 @@ Terraform Enterprise runs on Linux instances, and you must prepare a running Lin
 
 Terraform Enterprise currently supports running under the following operating systems:
 
-- **Standalone deployment:**
-
-    - Debian 9 - 10
-    - Ubuntu 14.04.5 / 16.04 / 18.04 / 20.04
-    - Red Hat Enterprise Linux 7.4 - 7.9 / 8.4
-    - CentOS 7.4 - 7.9 / 8.4
-    - Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
-    - Oracle Linux 7.4 - 7.9 / 8.4
+  - Debian 9 - 10
+  - Ubuntu 14.04.5 / 16.04 / 18.04 / 20.04
+  - Red Hat Enterprise Linux 7.4 - 7.9 / 8.4
+  - CentOS 7.4 - 7.9 / 8.4
+  - Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
+  - Oracle Linux 7.4 - 7.9 / 8.4
 
 ### Hardware Requirements
 
@@ -128,29 +126,123 @@ See [Network Requirements](./network-requirements.html) for details.
 
 <a id="software-requirements"></a>
 
-### Software Requirements (Standalone Deployment)
+### Docker Engine Requirements
 
-Every Terraform Enterprise installation requires the following:
-Enterprise:
+Terraform Enterprise requires **at least one** of the following Docker Engine configurations, in order of preference:
 
-- A 64-bit architecture Linux-based operating system
-- Linux Kernel 3.10 or greater
-- Docker Engine 17.06.2-ce to 20.10:
-  - Docker Engine 18.01.0-ce or greater requires Replicated 2.32.0
-    or greater
-  - Support for [Alpine 3.14](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0#faccessat2)
-    Docker images:
-    - Docker Engine 17.06.2-ce to 20.09 requires runc v1.0.0-rc93
-    - Docker Engine 20.10 or greater requires libseccomp 2.4.4
-  - In Online mode, the installer will install Docker Engine
-    automatically
-  - In Airgapped mode, you must install Docker Engine before running
-    the installer
+  1. Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x with `runc` v1.0.0-rc93 or greater.
+  2. Docker Engine 20.10.x with `libseccomp` 2.4.4 or greater.
+  3. Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a modified `libseccomp` profile.
 
-Some operating systems also have additional requirements:
+Refer to the sections below for instructions on how to verify your Docker Engine configuration.
 
-- [RedHat Enterprise Linux (RHEL) Requirements](./rhel-requirements.html)
-- [CentOS Requirements](./centos-requirements.html)
+-> **Note:** Both the online and airgap installers for Terraform Enterprise are not capable of verifying the Docker Engine configuration automatically.
+
+#### Option 1: Docker Engine With a Compatible `runc` Version
+
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+1. Install the latest version of `containerd` for your operating system.
+  - On Debian/Ubuntu:
+
+        ```
+        sudo apt install containerd
+        ```
+  - On RHEL/CentOS:
+
+        ```
+        sudo yum install containerd.io
+        ```
+
+1. Confirm that the installed `containerd` version is 1.4.9, 1.5.5, or greater.
+
+    ```
+    containerd --version
+    ```
+
+1. Confirm that the installed `runc` version is v1.0.0-rc93 or greater:
+
+    ```
+    runc --version
+    ```
+
+1. If your Docker Engine and `runc` versions meet the requirements from previous steps, your system is properly configured. Otherwise, proceed to [option 2](#option-2-docker-engine-with-a-compatible-libseccomp-version).
+
+
+#### Option 2: Docker Engine With a Compatible `libseccomp` Version
+
+-> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in [option 1](#option-1-docker-engine-with-a-compatible-runc-version).
+
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 20.10.x for your operating system.
+1. Install the latest version of `libseccomp` for your operating system.
+  - On Debian/Ubuntu:
+
+        ```
+        sudo apt install libseccomp2
+        ```
+  - On RHEL/CentOS:
+
+        ```
+        sudo yum install libseccomp
+        ```
+
+1. Confirm that the installed `libseccomp` version is 2.4.4 or greater.
+
+    ```
+    runc --version
+    ```
+
+1. If your Docker Engine and `libseccomp` versions meet the requirements from previous steps, your system is properly configured. Otherwise, proceed to [option 3](#option-3-docker-engine-using-a-modified-libseccomp-profile).
+
+#### Option 3: Docker Engine Using a Modified `libseccomp` Profile
+
+-> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in either [option 1](#option-1-docker-engine-with-a-compatible-runc-version) or [option 2](#option-2-docker-engine-with-a-compatible-libseccomp-version).
+
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+
+1. Check if the file `/etc/docker/seccomp.json` exists. If it does, proceed to step 4.
+
+1. Download the [default moby `libseccomp` profile](https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json) and save it to the file `/etc/docker/seccomp.json`.
+
+    ```
+    sudo curl -L -o /etc/docker/seccomp.json \
+      https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json
+    ```
+
+1. Edit the `/etc/docker/seccomp.json` file and modify the line `"defaultAction": "SCMP_ACT_ERRNO",` to be `"defaultAction": "SCMP_ACT_TRACE",`. A `sed` command is included below for your convenience.
+
+    ```
+    sudo sed -i 's/"defaultAction":\s*"SCMP_ACT_ERRNO"/"defaultAction": "SCMP_ACT_TRACE"/1' /etc/docker/seccomp.json
+    ```
+
+1. Create a drop-in systemd unit file for the `docker` systemd service.
+
+    ```
+    sudo cp /lib/systemd/system/docker.service /etc/systemd/system/docker.service
+    ```
+
+1. Edit the drop-in `/etc/systemd/system/docker.service` systemd unit file and modify the line starting with `ExecStart=` to include the option `--seccomp-profile=/etc/docker/seccomp.json`.
+  - For example, the following line:
+
+        ```
+        ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock $OPTIONS $DOCKER_STORAGE_OPTIONS $DOCKER_ADD_RUNTIMES
+        ```
+  - Would become:
+
+        ```
+        ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --seccomp-profile=/etc/docker/seccomp.json $OPTIONS $DOCKER_STORAGE_OPTIONS $DOCKER_ADD_RUNTIMES
+        ```
+
+1. Reload the systemd daemon.
+
+    ```
+    sudo systemctl daemon-reload
+    ```
+
+1. Restart Docker Engine.
+
+    ```
+    sudo systemctl restart docker 
+    ```
 
 ### IAM Policies
 
