@@ -7,16 +7,23 @@ description: |-
 
 # Workspaces
 
+> **Hands-on:** Try the [Get Started - Terraform Cloud](https://learn.hashicorp.com/collections/terraform/cloud-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
+
+Workspaces are how Terraform Cloud organizes infrastructure.
+
+## Workspaces are Collections of Infrastructure
+
 Working with Terraform involves managing collections of infrastructure resources, and most organizations manage many different collections.
 
 When run locally, Terraform manages each collection of infrastructure with a persistent working directory, which contains a configuration, state data, and variables. Since Terraform CLI uses content from the directory it runs in, you can organize infrastructure resources into meaningful groups by keeping their configurations in separate directories.
 
 Terraform Cloud manages infrastructure collections with _workspaces_ instead of directories. A workspace contains everything Terraform needs to manage a given collection of infrastructure, and separate workspaces function like completely separate working directories.
 
-> **Hands-on:** Try the [Create a Workspace](https://learn.hashicorp.com/tutorials/terraform/cloud-workspace-create?in=terraform/cloud-get-started) tutorial on HashiCorp Learn.
+-> **Note:** Terraform Cloud and Terraform CLI both have features called "workspaces," but they're slightly different. CLI workspaces are alternate state files in the same working directory; they're a convenience feature for using one configuration to manage multiple similar groups of resources.
 
+-> **API:** See the [Workspaces API](../api/workspaces.html).
 
-## Workspace Contents
+### Workspace Contents
 
 Terraform Cloud workspaces and local working directories serve the same purpose, but they store their data differently:
 
@@ -29,27 +36,18 @@ Credentials and secrets | In shell environment or entered at prompts | In worksp
 
 In addition to the basic Terraform content, Terraform Cloud keeps some additional data for each workspace:
 
-- **State versions:** Each workspace retains backups of its previous state files. Although only the current state is necessary for managing resources, the state history can be useful for tracking changes over time or recovering from problems. Refer to [Terraform State in Terraform Cloud](./state.html) for more details.
+- **State versions:** Each workspace retains backups of its previous state files. Although only the current state is necessary for managing resources, the state history can be useful for tracking changes over time or recovering from problems. (See also: [State](./state.html).)
+- **Run history:** When Terraform Cloud manages a workspace's Terraform runs, it retains a record of all run activity, including summaries, logs, a reference to the changes that caused the run, and user comments. (See also: [Viewing and Managing Runs](../run/manage.html).)
 
-- **Run history:** When Terraform Cloud manages a workspace's Terraform runs, it retains a record of all run activity, including summaries, logs, a reference to the changes that caused the run, and user comments. Refer to [Viewing and Managing Runs](../run/manage.html) for more details.
+### Terraform Runs
 
-## Terraform Runs
+For workspaces with [remote operations](../run/index.html) enabled (the default), Terraform Cloud performs Terraform runs on its own disposable virtual machines, using that workspace's configuration, variables, and state.
 
-For workspaces with remote operations enabled (the default), Terraform Cloud performs Terraform runs on its own disposable virtual machines, using that workspace's configuration, variables, and state.
-
-Refer to [Terraform Runs and Remote Operations](../run/index.html) for more details.
-
-## Terraform Cloud vs. Terraform CLI Workspaces
-
-Both Terraform Cloud and Terraform CLI have features called workspaces, but they function differently.
-
-- Terraform Cloud workspaces are required. They represent all of the collections of infrastructure in an organization. They are also a major component of role-based access in Terraform Cloud. You can grant individual users and user groups permissions for one or more workspaces that dictate whether they can manage variables, perform runs, etc. You cannot manage resources in Terraform Cloud without creating at least one workspace.
-
-- Terraform CLI workspaces are associated with a specific working directory and isolate multiple state files in the same working directory, letting you manage multiple groups of resources with a single configuration. The Terraform CLI does not require you to create CLI workspaces. Refer to [Workspaces](/docs/language/state/workspaces.html) in the Terraform Language documentation for more details.
+For more information, see [Terraform Runs and Remote Operations](../run/index.html).
 
 ## Listing and Filtering Workspaces
 
-Click **Workspaces** in the top navigation bar. Terraform Cloud shows a list of all workspaces in the current organization.
+Terraform Cloud's top navigation bar includes a "Workspaces" link, which takes you to the list of workspaces in the current organization.
 
 ![Screenshot: the list of workspaces](./images/index-list.png)
 
@@ -77,8 +75,3 @@ We recommend that organizations break down large monolithic Terraform configurat
 For example, the code that manages your production environment's infrastructure could be split into a networking configuration, the main application's configuration, and a monitoring configuration. After splitting the code, you would create "networking-prod", "app1-prod", "monitoring-prod" workspaces, and assign separate teams to manage them.
 
 Much like splitting monolithic applications into smaller microservices, this enables teams to make changes in parallel. In addition, it makes it easier to re-use configurations to manage other environments of infrastructure ("app1-dev," etc.).
-
-## Creating Workspaces
-
-You can create workspaces through the [Terraform Cloud UI](/docs/cloud/workspaces/creating.html), the [Workspaces API](../api/workspaces.html), or the [Terraform Cloud CLI integration](/docs/cli/cloud/index.html).
-

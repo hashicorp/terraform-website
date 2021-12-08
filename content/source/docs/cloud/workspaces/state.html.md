@@ -15,7 +15,7 @@ Each Terraform Cloud workspace has its own separate state data, used for runs wi
 
 In [remote runs](../run/index.html), Terraform Cloud automatically configures Terraform to use the workspace's state; the Terraform configuration does not need an explicit backend configuration. (If a backend configuration is present, it will be overridden.)
 
-In local runs (available for workspaces whose execution mode setting is set to "local"), you can use a workspace's state by configuring the [CLI integration](/docs/cli/cloud/index.html) and authenticating with a user token that has permission to read and write state versions for the relevant workspace. When using a Terraform configuration that references outputs from another workspace, the authentication token must also have permission to read state outputs for that workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+In local runs (available for workspaces whose execution mode setting is set to "local"), you can use a workspace's state by configuring [the `remote` backend](/docs/language/settings/backends/remote.html) and authenticating with a user token that has permission to read and write state versions for the relevant workspace. When using a Terraform configuration that references outputs from another workspace, the authentication token must also have permission to read state outputs for that workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -23,13 +23,13 @@ In local runs (available for workspaces whose execution mode setting is set to "
 
 In addition to the current state, Terraform Cloud retains historical state versions, which can be used to analyze infrastructure changes over time.
 
-You can view a workspace's state versions from its **States** tab. Each state in the list indicates which run and which VCS commit (if applicable) it was associated with. Click a state in the list for more details, including a diff against the previous state and a link to the raw state file.
+You can view a workspace's state versions from its "States" tab. Each state in the list indicates which run and which VCS commit (if applicable) it was associated with. Click a state in the list for more details, including a diff against the previous state and a link to the raw state file.
 
 ## State Manipulation
 
 Certain tasks (including importing resources, tainting resources, moving or renaming existing resources to match a changed configuration, and more) require modifying Terraform state outside the context of a run.
 
-Manual state manipulation in Terraform Cloud workspaces requires the use of Terraform CLI, using the same commands as would be used in a local workflow (`terraform import`, `terraform taint`, etc.). To manipulate state, you must configure the [CLI integration](/docs/cli/cloud/index.html) and authenticate with a user token that has permission to read and write state versions for the relevant workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+Manual state manipulation in Terraform Cloud workspaces requires the use of Terraform CLI, using the same commands as would be used in a local workflow (`terraform import`, `terraform taint`, etc.). To manipulate state, you must configure [the `remote` backend](/docs/language/settings/backends/remote.html) and authenticate with a user token that has permission to read and write state versions for the relevant workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 

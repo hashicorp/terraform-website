@@ -2,17 +2,18 @@
 layout: "cloud"
 page_title: "CLI-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
 description: |-
-  Trigger runs from your terminal using the Terraform CLI. Learn the required configuration for remote CLI runs.
+  Trigger runs from your terminal using the Terraform CLI. Learn the required configuration for remote CLI runs. 
 ---
 
 [sentinel]: ../sentinel/index.html
 [private]: ../registry/index.html
+[remote]: /docs/language/settings/backends/remote.html#excluding-files-from-upload-with-terraformignore 
 [speculative plan]: ./index.html#speculative-plans
 [tfe-provider]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs
 
 # The CLI-driven Run Workflow
 
-> **Hands-on:** Try the [Log in to Terraform Cloud from the CLI](https://learn.hashicorp.com/tutorials/terraform/cloud-login?in=terraform/0-13) tutorial on HashiCorp Learn.
+> **Hands-on:** Try the [Authenticate the CLI with Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-login?in=terraform/0-13&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
 
 Terraform Cloud has three workflows for managing Terraform runs.
 
@@ -22,13 +23,13 @@ Terraform Cloud has three workflows for managing Terraform runs.
 
 ## Summary
 
-The [CLI integration](/docs/cli/cloud/index.html) brings Terraform Cloud's collaboration features into the familiar Terraform CLI workflow. It offers the best of both worlds to developers who are already comfortable with using the Terraform CLI, and it can work with existing CI/CD pipelines.
+The [Terraform remote backend][remote] brings Terraform Cloud's collaboration features into the familiar Terraform CLI workflow. It offers the best of both worlds to developers who are already comfortable with using Terraform, and can work with existing CI/CD pipelines.
 
-You can start runs with the standard `terraform plan` and `terraform apply` commands and then watch the progress of the run from your terminal. These runs execute remotely in Terraform Cloud; they use variables from the appropriate workspace, enforce any applicable [Sentinel policies][sentinel], and can access Terraform Cloud's [private registry][private] and remote state inputs.
+Users can start runs with the standard `terraform plan` and `terraform apply` commands, and can watch the progress of the run without leaving their terminal. These runs execute remotely in Terraform Cloud; they use variables from the appropriate workspace, enforce any applicable [Sentinel policies][sentinel], and can access Terraform Cloud's [private module registry][private] and remote state inputs.
 
 Terraform Cloud offers two kinds of CLI-driven runs, to support different stages of your workflow:
 
-- `terraform plan` starts a [speculative plan][] in a Terraform Cloud workspace, using configuration files from a local directory. You can quickly check the results of edits (including compliance with Sentinel policies) without needing to copy sensitive variables to your local machine.
+- `terraform plan` starts a [speculative plan][] in a Terraform Cloud workspace, using configuration files from a local directory. Developers can quickly check the results of edits (including compliance with Sentinel policies) without needing to copy sensitive variables to their local machine.
 
   Speculative plans work with all workspaces, and can co-exist with the [VCS-driven workflow](./ui.html).
 
@@ -38,70 +39,65 @@ Terraform Cloud offers two kinds of CLI-driven runs, to support different stages
 
 To supplement these remote operations, you can also use the optional [Terraform Enterprise Provider][tfe-provider], which interacts with the resources supported by Terraform Cloud. It can be useful for editing variables and workspace settings through the Terraform CLI.
 
--> **Note:** The [Structured Run Output](../workspaces/settings.html#user-interface) user interface will not apply to runs executed using the CLI-driven workflow, regardless of the setting in the Terraform Cloud workspace.
+~> **Note:** The [Structured Run Output](../workspaces/settings.html#user-interface) user interface will not apply to runs executed using the CLI-driven workflow, regardless of the setting in the Terraform Cloud workspace.
 
-## Configuration
+## Remote Backend Configuration
 
-To enable the CLI-driven workflow, you must:
+To configure the remote backend, a stanza needs to be added to the Terraform configuration. It must specify the `remote` backend, the name of a Terraform Cloud organization, and the workspace(s) to use. The example below uses one workspace; see [the remote backend documentation][remote] for more details.
 
-1. Run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/cli/config/config-file.html#credentials).
-1. Add the `cloud` block to your Terraform configuration. The example below shows how you can map your CLI workspaces to Terraform Cloud workspaces that have a specific tag.
+```hcl
+terraform {
+  backend "remote" {
+    organization = "my-org"
 
-    ```
-    terraform {
-      cloud {
-        organization = "my-org"
-        workspaces {
-          tags = ["networking"]
-        }
-      }
+    workspaces {
+      name = "my-app-dev"
     }
-    ```
-    -> **Note:** The `cloud` block is available in Terraform v1.1 and later and Terraform Enterprise v202201 and later. Previous versions can use the [`remote` backend](/docs/language/settings/backends/remote.html) to configure the CLI workflow and migrate state.
+  }
+}
+```
 
-1. Run `terraform init`.
+Next, run `terraform login` to authenticate with Terraform Cloud. Alternatively, you can [manually configure credentials in the CLI config file](/docs/cli/config/config-file.html#credentials).
 
-    ```
-    $ terraform init
+The backend can be initialized with `terraform init`.
 
-    Initializing Terraform Cloud...
+```
+$ terraform init
 
-    Initializing provider plugins...
-    - Reusing previous version of hashicorp/random from the dependency lock file
-    - Using previously-installed hashicorp/random v3.0.1
+Initializing the backend...
 
-    Terraform Cloud has been successfully initialized!
+Initializing provider plugins...
 
-    You may now begin working with Terraform Cloud. Try running "terraform plan"
-    to see any changes that are required for your infrastructure.
+Terraform has been successfully initialized!
 
-    If you ever set or change modules or Terraform Settings,
-    run "terraform init" again to reinitialize your working directory.
-    ```
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
 
-Refer to [Using Terraform Cloud](/docs/cli/cloud/index.html) for more details about how to initialize and configure the integration.
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
 
 ### Implicit Workspace Creation
 
-If you configure the `cloud` block to use a workspace that doesn't yet exist in your organization, Terraform Cloud will create a new workspace with that name when you run `terraform init`. The output of `terraform init` will inform you when this happens.
+If you configure the remote backend to use a workspace that doesn't yet exist in your organization, Terraform Cloud will create a new workspace with that name when you run `terraform init`. The output of `terraform init` will inform you when this happens.
 
 Automatically created workspaces might not be immediately ready to use, so use Terraform Cloud's UI to check a workspace's settings and data before performing any runs. In particular, note that:
 
-- No Terraform variables or environment variables are created by default, unless your organization has configured one or more [global variable sets](/docs/cloud/workspaces/variables.html#scope). Terraform Cloud will use `*.auto.tfvars` files if they are present, but you will usually still need to set some workspace-specific variables.
+- No Terraform variables or environment variables are created by default. Terraform Cloud will use `*.auto.tfvars` files if they are present, but you will usually still need to set some workspace-specific variables.
 - The execution mode defaults to "Remote," so that runs occur within Terraform Cloud's infrastructure instead of on your workstation.
-- New workspaces are not automatically connected to a VCS repository and do not have a working directory specified.
+- New workspaces are not automatically connected to a VCS repository, and do not have a working directory specified.
 - A new workspace's Terraform version defaults to the most recent release of Terraform at the time the workspace was created.
 
 ## Variables in CLI-Driven Runs
 
-Remote runs in Terraform Cloud use:
+Remote runs in Terraform Cloud use variables from two sources:
 
-- Run-specific variables set via the command line or in your local environment. Terraform only uses the environment variables from your shell environment that are prefixed with `TF_VAR`.
-- Workspace-specific Terraform and environment variables set in the workspace.
-- Variable sets applied to the workspace.
-- Terraform variables from any `*.auto.tfvars` files included in the configuration.
+- Terraform variables and environment variables set in the workspace. These can be edited via the UI, the API, or the `tfe` Terraform provider.
+- Terraform variables from any `*.auto.tfvars` files included in the configuration. Workspace variables, if present, override these.
 
-Refer to [Variables](/docs/cloud/workspaces/variables.html) for more details about variable types, variable scopes, variable precedence, and how to set run-specific variables through the command line.
+-> **Note:** Remote runs do not use environment variables from your shell environment, and do not support specifying variables (or `.tfvars` files) as command line arguments.
 
 ## Remote Working Directories
 
@@ -115,57 +111,61 @@ If you use a combined repository and [specify a working directory on workspaces]
 
 CLI-driven runs upload an archive of your configuration directory
 to Terraform Cloud. If the directory contains files you want to exclude from upload,
-you can do so by defining a [`.terraformignore` file in your configuration directory](/docs/cli/cloud/settings.html).
+you can do so by defining a [`.terraformignore` file in your configuration directory][remote].
 
 ## Remote Speculative Plans
 
-You can run speculative plans in any workspace where you have permission to queue plans. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
-
 To run a [speculative plan][] on your configuration, use the `terraform plan` command. The plan will run in Terraform Cloud, and the logs will stream back to the command line along with a URL to view the plan in the Terraform Cloud UI.
 
-```
-$ terraform plan
-
-Running plan in Terraform Cloud. Output will stream here. Pressing Ctrl-C
-will stop streaming the logs, but will not stop the plan running remotely.
-
-Preparing the remote plan...
-
-To view this run in a browser, visit:
-https://app.terraform.io/app/hashicorp-learn/docs-workspace/runs/run-cfh2trDbvMU2Rkf1
-
-Waiting for the plan to start...
-
-[...]
-
-Plan: 1 to add, 0 to change, 0 to destroy.
-
-Changes to Outputs:
-  + pet_name = (known after apply)
-  ```
+Users can run speculative plans in any workspace where they have permission to queue plans. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 Speculative plans use the configuration code from the local working directory, but will use variable values from the specified workspace.
 
+```
+$ terraform plan
+
+Running plan in the remote backend. Output will stream here. Pressing Ctrl-C
+will stop streaming the logs, but will not stop the plan running remotely.
+To view this plan in a browser, visit:
+https://app.terraform.io/app/my-org/my-app-dev/runs/run-LU3uk79BE5Uj77io
+
+Waiting for the plan to start...
+
+Terraform v0.11.9
+
+Configuring remote state backend...
+Initializing Terraform configuration...
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+[...]
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+```
 
 ## Remote Applies
 
-In workspaces that aren't connected to a VCS repository, users with permission to apply runs can trigger remote applies with the CLI. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+When configuration changes are ready to be applied, use the `terraform apply` command. The apply will start in Terraform Cloud, and the command line will prompt for approval before applying the changes.
 
-When you are ready to apply configuration changes, use the `terraform apply` command. Terraform Cloud will plan your changes, and the command line will prompt you for approval before applying them.
+Remote applies require permission to apply runs for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+Remote applies use the configuration code from the local working directory, but will use variable values from the specified workspace.
+
+~> **Important:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
 
 ```
 $ terraform apply
 
-Running apply in Terraform Cloud. Output will stream here. Pressing Ctrl-C
+Running apply in the remote backend. Output will stream here. Pressing Ctrl-C
 will cancel the remote apply if it's still pending. If the apply started it
 will stop streaming the logs, but will not stop the apply running remotely.
-
-Preparing the remote apply...
-
 To view this run in a browser, visit:
-https://app.terraform.io/app/hashicorp-learn/docs-workspace/runs/run-Rcc12TkNW1PDa7GH
+https://app.terraform.io/app/my-org/my-app-dev/runs/run-PEekqv44Fs8NkiFx
 
 Waiting for the plan to start...
 
@@ -173,10 +173,7 @@ Waiting for the plan to start...
 
 Plan: 1 to add, 0 to change, 0 to destroy.
 
-Changes to Outputs:
-  + pet_name = (known after apply)
-
-Do you want to perform these actions in workspace "docs-workspace"?
+Do you want to perform these actions in workspace "my-app-dev"?
   Terraform will perform the actions described above.
   Only 'yes' will be accepted to approve.
 
@@ -186,13 +183,6 @@ Do you want to perform these actions in workspace "docs-workspace"?
 
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 ```
-
-[permissions-citation]: #intentionally-unused---keep-for-maintainers
-
-Remote applies use the configuration code from the local working directory, but use the variable values from the specified workspace.
-
-~> **Important:** You cannot run remote applies in workspaces that are linked to a VCS repository, since the repository serves as the workspace’s source of truth. To apply changes in a VCS-linked workspace, merge your changes to the designated branch.
-
 
 ## Sentinel Policies
 
@@ -236,4 +226,4 @@ Do you want to override the soft failed policy check?
 
 ## Options for Plans and Applies
 
-[Run Modes and Options](/docs/cloud/run/modes-and-options.html) contains more details about the various options available for plans and applies when you use the CLI-driven workflow.
+To understand the various options available for plans and applies using the CLI-driven workflow, visit [Run Modes and Options](/docs/cloud/run/modes-and-options.html).

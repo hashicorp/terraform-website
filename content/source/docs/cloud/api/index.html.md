@@ -72,7 +72,7 @@ The following entitlements are available:
 - `operations` — Allows an organization to perform runs within Terraform Cloud. Affects the [runs][], [plans][], and [applies][] endpoints.
 - `private-module-registry` — Allows an organization to publish and use modules with the [private module registry][]. Affects the [registry modules][] endpoints.
 - `self-serve-billing` — Allows an organization to pay via credit card using the in-app billing UI.
-- `state-storage` — Allows an organization to store state versions in its workspaces, which enables local Terraform runs with Terraform Cloud. Affects the [state versions][] endpoints.
+- `state-storage` — Allows an organization to store state versions in its workspaces, which enables local Terraform runs with the remote backend. Affects the [state versions][] endpoints.
 - `sentinel` — Allows an organization to use [Sentinel][]. Affects the [policies][], [policy sets][], and [policy checks][] endpoints.
 - `sso` — Allows an organization to manage and authenticate users via [single sign on][].
 - `teams` — Allows an organization to manage access to its workspaces with [teams](../users-teams-organizations/teams.html). Without this entitlement, an organization only has an owners team. Affects the [teams][], [team members][], [team access][], and [team tokens][] endpoints.
