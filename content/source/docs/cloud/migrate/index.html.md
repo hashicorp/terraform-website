@@ -9,14 +9,14 @@ description: |-
 
 You can begin using Terraform Cloud to manage existing resources without de-provisioning them. This requires migrating the Terraform [state files](/docs/language/state/index.html) for those resources to one or more Terraform Cloud workspaces. You can perform this migration with either the Terraform CLI or the Terraform Cloud API.
 
+> **Hands-on:** Try the [Migrate State to Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-migrate?in=terraform/state) tutorial on HashiCorp Learn for a walkthrough using the CLI method.
+
 ## Requirements
 
 Stop all Terraform operations involving the state files before migrating them. This may involve locking or deleting CI jobs, restricting access to the state backend, or communicating with other teams. You should also only migrate state files into Terraform Cloud workspaces that have never performed a run.
 
 
 ## CLI Migration
-
-> **Hands-on:** Try the [Migrate State to Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-migrate?in=terraform/state) tutorial on HashiCorp Learn.
 
 To migrate with the Terraform CLI, add the `cloud` block to your configuration, specify one or more Terraform Cloud workspaces for the state files, and run `terraform init`. If the workspaces you choose do not yet exist, Terraform Cloud creates them automatically in the specified organization.
 
