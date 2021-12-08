@@ -165,7 +165,7 @@ Refer to the sections below for instructions on how to verify your Docker Engine
     runc --version
     ```
 
-1. If your Docker Engine and `runc` versions meet the requirements from previous steps, your system is properly configured. Otherwise, proceed to [option 2](#option-2-docker-engine-with-a-compatbile-libseccomp-version).
+1. If your Docker Engine and `runc` versions meet the requirements from previous steps, your system is properly configured. Otherwise, proceed to [option 2](#option-2-docker-engine-with-a-compatible-libseccomp-version).
 
 
 #### Option 2: Docker Engine With a Compatible `libseccomp` Version
@@ -195,7 +195,7 @@ Refer to the sections below for instructions on how to verify your Docker Engine
 
 #### Option 3: Docker Engine Using a Modified `libseccomp` Profile
 
--> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in either [option 1](#option-1-docker-engine-with-a-compatible-runc-version) or [option 2](#option-2-docker-engine-with-a-compatbile-libseccomp-version).
+-> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in either [option 1](#option-1-docker-engine-with-a-compatible-runc-version) or [option 2](#option-2-docker-engine-with-a-compatible-libseccomp-version).
 
 1. [Install](https://docs.docker.com/engine/install/) Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
 
