@@ -132,7 +132,11 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
 
   1. Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x with `runc` v1.0.0-rc93 or greater.
   2. Docker Engine 20.10.x with `libseccomp` 2.4.4 or greater.
-  3. Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a modified `libseccomp` profile.
+  3. Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a modified `libseccomp` profile.
+
+Refer to the sections below for instructions on how to verify your Docker Engine configuration.
+
+-> **Note:** Both the online and airgap installers for Terraform Enterprise are not capable of verifying the Docker Engine configuration automatically.
 
 #### Option 1: Docker Engine With a Compatible `runc` Version
 
@@ -164,7 +168,7 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
 1. If your Docker Engine and `runc` versions meet the requirements from previous steps, your system is properly configured. Otherwise, proceed to [option 2](#option-2-docker-engine-with-a-compatbile-libseccomp-version).
 
 
-#### Option 2: Docker Engine With a Compatbile `libseccomp` Version
+#### Option 2: Docker Engine With a Compatible `libseccomp` Version
 
 -> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in [option 1](#option-1-docker-engine-with-a-compatible-runc-version).
 
@@ -193,7 +197,9 @@ Terraform Enterprise requires **at least one** of the following Docker Engine co
 
 -> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in either [option 1](#option-1-docker-engine-with-a-compatible-runc-version) or [option 2](#option-2-docker-engine-with-a-compatbile-libseccomp-version).
 
-1. [Install](https://docs.docker.com/engine/install/) Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+
+1. Check if the file `/etc/docker/seccomp.json` exists. If it does, proceed to step 4.
 
 1. Download the [default moby `libseccomp` profile](https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json) and save it to the file `/etc/docker/seccomp.json`.
 
