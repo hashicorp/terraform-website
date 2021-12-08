@@ -314,3 +314,4 @@ For _Mounted Disk_ installations, you must:
     semanage fcontext -a -t container_file_t "/opt/tfe(/.*)?"
     restorecon -R /opt/tfe
     ```
+-> ** Note: ** The `install.sh` script will attempt to install `container-selinux` in online mode. Regradless of mode container-selinux package as a dependacy on the `policycoreutils-python` package being installed.
