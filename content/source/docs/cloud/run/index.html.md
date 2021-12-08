@@ -61,7 +61,7 @@ Terraform Cloud has three main workflows for managing runs, and your chosen work
 - The [API-driven run workflow](./api.html), which is more flexible but requires you to create some tooling.
 - The [CLI-driven run workflow](./cli.html), which uses Terraform's standard CLI tools to execute runs in Terraform Cloud.
 
-In more abstract terms, runs can be initiated by VCS webhooks, the manual "Start new run" action in the workspace actions menu, the standard `terraform apply` command (with the remote backend configured), and [the Runs API](../api/run.html) (or any tool that uses that API).
+You can initiate Terraform Cloud runs through the manual **Start new plan** action in the workspace actions menu, VCS webhooks, the standard `terraform apply` command (with the CLI integration configured), and [the Runs API](../api/run.html) (or any tool that uses that API).
 
 ## Plans and Applies
 
@@ -80,7 +80,7 @@ Speculative plans are plan-only runs: they show a set of possible changes (and c
 There are three ways to run speculative plans:
 
 - In VCS-backed workspaces, pull requests start speculative plans, and the VCS provider's pull request interface includes a link to the plan. See [UI/VCS Runs: Speculative Plans on Pull Requests](./ui.html#speculative-plans-on-pull-requests) for more details.
-- With the [remote backend](/docs/language/settings/backends/remote.html) configured, running `terraform plan` on the command line starts a speculative plan. The plan output streams to the terminal, and a link to the plan is also included.
+- With the [CLI integration](/docs/cli/cloud/index.html) configured, running `terraform plan` on the command line starts a speculative plan. The plan output streams to the terminal, and a link to the plan is also included.
 - The runs API creates speculative plans whenever the specified configuration version is marked as speculative. See [the `configuration-versions` API](../api/configuration-versions.html#create-a-configuration-version) for more information.
 
 #### Retry a speculative plan in the UI
