@@ -80,5 +80,5 @@ Much like splitting monolithic applications into smaller microservices, this ena
 
 ## Creating Workspaces
 
-You can create workspaces through the [Terraform Cloud UI](/docs/cloud/workspaces/creating.html) or the [Workspaces API](../api/workspaces.html).
+You can create workspaces through the [Terraform Cloud UI](/docs/cloud/workspaces/creating.html), the [Workspaces API](../api/workspaces.html), or the [Terraform Cloud CLI integration](/docs/cli/cloud/index.html).
 

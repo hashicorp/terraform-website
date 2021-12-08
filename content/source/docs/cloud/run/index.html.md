@@ -61,7 +61,7 @@ Terraform Cloud has three main workflows for managing runs, and your chosen work
 - The [API-driven run workflow](./api.html), which is more flexible but requires you to create some tooling.
 - The [CLI-driven run workflow](./cli.html), which uses Terraform's standard CLI tools to execute runs in Terraform Cloud.
 
-You can initiate Terraform Cloud runs through the manual **Start new run** action in the workspace actions menu, VCS webhooks, the standard `terraform apply` command (with the CLI integration configured), and [the Runs API](../api/run.html) (or any tool that uses that API).
+You can initiate Terraform Cloud runs through the manual **Start new plan** action in the workspace actions menu, VCS webhooks, the standard `terraform apply` command (with the CLI integration configured), and [the Runs API](../api/run.html) (or any tool that uses that API).
 
 ## Plans and Applies
 
