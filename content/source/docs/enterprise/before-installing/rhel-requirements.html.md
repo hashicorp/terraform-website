@@ -10,7 +10,7 @@ When installing Terraform Enterprise on RedHat Enterprise Linux (RHEL), ensure y
 ## Install Requirements
 
 * A [supported version](/docs/enterprise/before-installing/index.html#operating-system-requirements) of RedHat Enterprise Linux.
-* A [supported Docker Engine](/docs/enterprise/before-installing/index.html##docker-engine-requirements) configuration.
+* A [supported Docker Engine](/docs/enterprise/before-installing/index.html#docker-engine-requirements) configuration.
 
 ### Pinning the Docker Version
 
