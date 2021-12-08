@@ -11,7 +11,7 @@ The framework can return [diagnostics](./diagnostics.html) feedback for values i
 
 ~> **NOTE:** When implementing validation logic, configuration values may be [unknown](./types.html#unknown) based on the source of the value. Implementations must account for this case, typically by returning early without returning new diagnostics.
 
-## Syntax and Basic Schema Validation
+## Default Terraform CLI Validation
 
 The [Terraform configuration language](https://www.terraform.io/docs/language/) is declarative and an implementation of [HashiCorp Configuration Language](https://github.com/hashicorp/hcl) (HCL). The Terraform CLI is responsible for reading and parsing configurations for validity, based on Terraform's concepts such as `resource` blocks and associated syntax. The Terraform CLI automatically handles basic validation of value type and behavior information based on the provider, resource, or data source schema. For example, the Terraform CLI returns an error when a string value is given where a list value is expected and also when a required attribute is missing from a configuration.
 
