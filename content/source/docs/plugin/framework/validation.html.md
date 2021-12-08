@@ -169,7 +169,7 @@ func (t computeInstanceIdentifierType) Validate(ctx context.Context, tfValue tft
 
 ## Schema Validation
 
-Provider, resource, and data source schemas also support validation across all attributes. This is helpful when checking values in multiple attributes, such as only accepting certain values in one attribute when another is a specific value.
+Provider, resource, and data source schemas also support validation across all attributes. This is helpful when checking values in multiple attributes, such as ensuring the values are compatible with each other.
 
 ### Creating Provider Schema Validation
 
