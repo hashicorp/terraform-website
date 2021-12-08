@@ -39,8 +39,6 @@ Parameter            | Description
 `:organization_name` | The name of the organization you'd like to view invoices for
 `:cursor`            | **Optional.** The ID of the invoice where the page should start. If omitted, the endpoint will return the first page.
 
-### Pagination
-
 ### Sample Request
 
 ```shell

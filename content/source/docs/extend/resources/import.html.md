@@ -198,7 +198,7 @@ func TestAccExampleThing_basic(t *testing.T) {
 
 The Terraform import framework supports importing multiple resources from a single state import function (sometimes referred to as "complex" imports), by adding elements to the returned `[]*schema.ResourceData`. Each of those new elements must have `ResourceData.SetType()` and `ResourceData.SetId()` called.
 
-Given our fictious example resource, if the API supported many associations with it, we could perform an API lookup during the resource import function to find those associations and add them to the Terraform state during import.
+Given our fictitious example resource, if the API supported many associations with it, we could perform an API lookup during the resource import function to find those associations and add them to the Terraform state during import.
 
 ```go
 func resourceExampleThingImportState(d *schema.ResourceData, meta interface{}) ([]*schema.ResourceData, error) {

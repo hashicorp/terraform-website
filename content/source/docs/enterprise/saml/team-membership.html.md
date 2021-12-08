@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "SAML Team Membership - Terraform Enterprise"
+description: |-
+  Automatically add users to teams based on their SAML assertion.
 ---
 
 # Team Membership Mapping

@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Defining Policies - Sentinel - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn how to use Sentinel policy language to create policies, including imports to define rules, useful functions, and more. 
 ---
 
 # Defining Policies

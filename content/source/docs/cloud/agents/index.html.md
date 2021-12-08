@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Terraform Cloud Agents - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Cloud agents let Terraform manage isolated, private, or on-premises infrastructure. Learn to install, configure, and manage cloud agents.
 ---
 
 # Terraform Cloud Agents
@@ -23,6 +25,16 @@ The agent architecture is pull-based, so no inbound connectivity is required. An
 
 Agents support Terraform versions 0.12 and above. Workspaces configured to use Terraform versions below 0.12 will not be able to select the agent-based execution mode.
 
+### Hardware Requirements
+
+The host running the agent will have varying resource requirements depending on the workspace. A host can be a dedicated or shared cloud instance, virtual machine, bare metal server, or a container. You should monitor and adjust memory, CPU, and disk space based on each workspace's usage and performance. The name of your instance type may vary depending on your deployment environment.
+
+You can use the specs below as a reference:
+
+* At least 4GB of free disk space
+  * Each run requires the agent to temporarily store local copies of the tarred repository, extracted repository, state file, any providers or modules, and the Terraform binary itself.
+* At least 2GB of system memory
+
 ### Networking Requirements
 
 In order for an agent to function properly, it must be able to make outbound requests over HTTPS (TCP port 443) to the Terraform Cloud application APIs. This may require perimeter networking as well as container host networking changes, depending on your environment. The IP ranges are documented in the [Terraform Cloud IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html).
@@ -44,7 +56,15 @@ Agents do not guarantee a clean working environment per Terraform execution. Eac
 
 ### Updating
 
-The agent will automatically receive application code updates for the agent only. Administrators are required to update the host operating system and all other installed software.
+By default, the agent will automatically update itself to the latest minor version. Administrators are required to update the host operating system and all other installed software.
+
+To customize this update behavior, pass the flag `-auto-update` or set the environment variable `TFC_AGENT_AUTO_UPDATE`. The valid options are presented in the table below.
+
+Update Setting | Behavior
+-- | --
+`minor` | Matches the default behavior, automatically update the agent to the latest minor version.
+`patch` | The agent will only be updated to the newest patch version, new minor versions will require a manual update.
+`disabled` | Disables automatic updates, all updates will be manual.
 
 ### Security Considerations
 
@@ -52,14 +72,20 @@ Agents should be considered a global resource within an organization. Once confi
 
 ### Limitations
 
-Agents are designed to allow you to run Terraform operations from a Terraform Cloud workspace on your private infrastructure. The following use cases are not supported by agents:
+Agents allow you to run Terraform operations from a Terraform Cloud workspace on your private infrastructure. Agents do not support:
 
-- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http)
-- Connecting Terraform Cloud workspaces to private VCS repositories
+- Connecting to private infrastructure from Sentinel policies using the [http import](https://docs.hashicorp.com/sentinel/imports/http).
+- Connecting Terraform Cloud workspaces to VCS instances that do not allow access from the public internet. For example, you cannot use agents to connect to a GitHub Enterprise Server instance that requires access to your VPN.
 
 For these use cases, we recommend you leverage the information provided by the [IP Ranges documentation](https://www.terraform.io/docs/cloud/architectural-details/ip-ranges.html) to permit direct communication from the appropriate Terraform Cloud service to your internal infrastructure.
 
 Organizations are limited to 20 pools each.
+
+### Terraform Enterprise
+
+Terraform Enterprise supports Terraform Cloud Agents; see
+[Terraform Cloud Agents on TFE](https://www.terraform.io/docs/enterprise/admin/agents-on-tfe.html) for
+TFE-specific documentation and requirements.
 
 ## Managing Agent Pools
 
@@ -222,6 +248,8 @@ Runs which are processed by an agent will have additional information about that
 ### Running Multiple Agents
 
 You may choose to run multiple agents within your network, up to the organization's purchased agent limit. If there are multiple agents available within an organization, Terraform Cloud will select the first available agent within the target pool.
+
+Each agent process will run a single Terraform run at a time. Multiple agent processes can be concurrently run on a single instance, license limit permitting.
 
 #### Resilience
 

@@ -1,10 +1,10 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform - Acceptance Testing: TestStep"
+page_title: "Plugin Development - Acceptance Testing: TestStep"
 sidebar_current: "docs-extend-testing-acceptance-teststep"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  TestSteps represent the application of an actual Terraform configuration
+  file to a given state.
 ---
 
 # Acceptance Tests: TestSteps
@@ -29,46 +29,46 @@ when running `terraform import`.
 
 An acceptance test’s mode is implicitly determined by the fields provided in the
 `TestStep` definition. The applicable fields are defined in the [TestStep
-Reference API](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestStep).
+Reference API](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestStep).
 
 ## Steps
 
-`Steps` is slice property of
-[TestCase](/docs/extend/testing/acceptance-tests/testcase.html), the object used
+`Steps` is a field within
+[TestCase](/docs/extend/testing/acceptance-tests/testcase.html), the struct used
 to construct acceptance tests. Each step represents a full `terraform apply` of
 a given configuration language, followed by zero or more checks (defined later)
 to verify the application. Each `Step` is applied in order, and require its own
 configuration and optional check functions. 
 
-Below is a code example of a lifecycle test that provides two `TestStep` objects: 
+Below is a code example of a lifecycle test that provides two `TestStep` structs: 
 
-```golang
+```go
 package example
 
 // example.Widget represents a concrete Go type that represents an API resource
 func TestAccExampleWidget_basic(t *testing.T) {
-	var widgetBefore, widgetAfter example.Widget
-	rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
+  var widgetBefore, widgetAfter example.Widget
+  rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
 
-	resource.Test(t, resource.TestCase{
-		PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckExampleResourceDestroy,
-		Steps: []resource.TestStep{
-			{
-				Config: testAccExampleResource(rName),
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
-				),
-			},
-			{
-				Config: testAccExampleResource_removedPolicy(rName),
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckExampleResourceExists("example_widget.foo", &widgetAfter),
-				),
-			},
-		},
-	})
+  resource.Test(t, resource.TestCase{
+    PreCheck:     func() { testAccPreCheck(t) },
+    Providers:    testAccProviders,
+    CheckDestroy: testAccCheckExampleResourceDestroy,
+    Steps: []resource.TestStep{
+      {
+        Config: testAccExampleResource(rName),
+        Check: resource.ComposeTestCheckFunc(
+          testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
+        ),
+      },
+      {
+        Config: testAccExampleResource_removedPolicy(rName),
+        Check: resource.ComposeTestCheckFunc(
+          testAccCheckExampleResourceExists("example_widget.foo", &widgetAfter),
+        ),
+      },
+    },
+  })
 }
 ```
 
@@ -79,7 +79,6 @@ configuration for the plugin or resource under test. This pattern of first
 applying and checking a basic configuration, followed by applying a modified
 configuration with updated or additional checks is a common pattern used to test
 update functionality.
-
 
 ## Check Functions
 
@@ -104,13 +103,13 @@ created.
 
 Example:
 
-```go 
+```go
 Steps: []resource.TestStep{
   {
     Config: testAccExampleResource(rName),
     Check: resource.ComposeTestCheckFunc(
-		// if testAccCheckExampleResourceExists fails to find the resource, 
-		// the parent TestStep and TestCase fail
+      // if testAccCheckExampleResourceExists fails to find the resource, 
+      // the parent TestStep and TestCase fail
       testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore), 
       resource.TestCheckResourceAttr("example_widget.foo", "size", "expected size"),
     ),
@@ -129,12 +128,14 @@ attempts to destroy any resources created.
 
 Example:
 
-```
+```go
 Steps: []resource.TestStep{
   {
     Config: testAccExampleResource(rName),
     Check: resource.ComposeAggregateTestCheckFunc(
-      testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore), // if testAccCheckExampleResourceExists fails to find the resource, the following TestCheckResourceAttr is still ran, with any errors aggregated
+      // if testAccCheckExampleResourceExists fails to find the resource, 
+      // the following TestCheckResourceAttr is still run, with any errors aggregated
+      testAccCheckExampleResourceExists("example_widget.foo", &widgetBefore),
       resource.TestCheckResourceAttr("example_widget.foo", "active", "true"),
     ),
   },
@@ -161,41 +162,45 @@ resource "example_widget" "foo" {
 
 Here the `name` represents the resource name in state (`example_widget.foo`),
 the `key` represents the attribute to check (`active`), and `value` represents
-the desired value to check against (`true`). Not all functions accept all three
-inputs.
+the desired value to check against (`true`). In this case, an equality check
+would be:
 
-Below is a list of builtin check functions, with links to their corresponding
-documentation on godoc.org:
+```go
+resource.TestCheckResourceAttr("example_widget.foo", "active", "true"),
+```
 
-- [TestCheckResourceAttrSet(name, key
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrSet)  
-- [TestCheckModuleResourceAttrSet(mp []string, name string, key
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrSet)  
-- [TestCheckResourceAttr(name, key, value
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttr)  
-- [TestCheckModuleResourceAttr(mp []string, name string, key string, value
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttr)
-- [TestCheckNoResourceAttr(name, key
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckNoResourceAttr)  
-- [TestCheckModuleNoResourceAttr(mp []string, name string, key
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleNoResourceAttr)  
-- [TestCheckResourceAttrPtr(name string, key string, value
-*string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPtr)  
-- [TestCheckModuleResourceAttrPtr(mp []string, name string, key string, value
-*string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrPtr)  
-- [TestCheckResourceAttrPair(nameFirst, keyFirst, nameSecond, keySecond
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPair)  
-- [TestCheckModuleResourceAttrPair(mpFirst []string, nameFirst string, keyFirst
-string, mpSecond []string, nameSecond string, keySecond
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckModuleResourceAttrPair)  
-- [TestCheckOutput(name, value
-string)](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckOutput)  
+The full list of functions can be seen in the [`helper/resource` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource). Names for these begin with `TestCheck...` and `TestMatch...`. The most common checks for non-`TypeSet` attributes are below.
 
+| Function | Purpose |
+|----------|---------|
+| [`TestCheckResourceAttr(name string, key string, value string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttr) | Value equality checks |
+| [`TestMatchResourceAttr(name string, key string, regex *regexp.Regexp)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestMatchResourceAttr) | 
+Value regular expression checks |
+| [`TestCheckResourceAttrPair(nameFirst string, keyFirst string, nameSecond string, keySecond string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrPair) | Value equality across two attributes (usually in different resources) |
+| [`TestCheckResourceAttrSet(name string, key string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckResourceAttrSet) | Passes if any value was set |
+| [`TestCheckNoResourceAttr(name string, key string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckNoResourceAttr) | Passes if no value was set |
+
+For `TypeSet` attributes, there are some additional functions that accept a `*` placeholder in attribute keys for indexing into the set.
+
+| Function | Purpose |
+|----------|---------|
+| [`TestCheckTypeSetElemAttr(name string, key string, value string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckTypeSetElemAttr) | Value is contained in set |
+| [`TestCheckTypeSetElemAttrPair(nameFirst string, keyFirst string, nameSecond string, keySecond string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckTypeSetElemAttrPair) | Value is contained in set from another attribute (usually in different resources) |
+| [`TestCheckTypeSetElemNestedAttrs(name string, key string, values map[string]string)`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckTypeSetElemNestedAttrs) | Map of values is contained in set (usually checking multiple attributes of a block) |
+
+All of these functions also accept the below syntax in attribute keys to enable additional behaviors.
+
+| Syntax | Purpose | Example |
+|--------|---------|---------|
+| `.{NUMBER}` | List index | `TestCheckResourceAttr("example_widget.foo", "some_block.0", "first value")` |
+| `.{KEY}` | Map key | `TestCheckResourceAttr("example_widget.foo", "some_map.some_key", "map value")` |
+| `.#` | Number of elements in list or set | `TestCheckResourceAttr("example_widget.foo", "some_list.#", "2")` |
+| `.%` | Number of keys in map | `TestCheckResourceAttr("example_widget.foo", "some_map.%", "2")` |
 
 ## Custom check functions 
 
 The `Check` field of `TestStep` accepts any function of type
-[TestCheckFunc](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckFunc).
+[TestCheckFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/resource#TestCheckFunc).
 Developers are free to write their own `check` functions to create customized
 validation functions for their plugin. Any function that matches the
 `TestCheckFunc` function signature of `func(*terraform.State) error` can be used
@@ -214,76 +219,76 @@ test function. The next check function `testAccCheckExampleWidgetAttributes`
 receives the updated `widget` and checks its attributes. The final check
 `TestCheckResourceAttr` verifies that the same value is stored in state.
  
-```go  
+```go
 func TestAccExampleWidget_basic(t *testing.T) {
-	var widget example.WidgetDescription
+  var widget example.WidgetDescription
 
-	resource.Test(t, resource.TestCase{
-		PreCheck:     func() { testAccPreCheck(t) },
-		Providers:    testAccProviders,
-		CheckDestroy: testAccCheckExampleWidgetDestroy,
-		Steps: []resource.TestStep{
+  resource.Test(t, resource.TestCase{
+    PreCheck:     func() { testAccPreCheck(t) },
+    Providers:    testAccProviders,
+    CheckDestroy: testAccCheckExampleWidgetDestroy,
+    Steps: []resource.TestStep{
 			{
-				Config: testAccExampleWidgetConfig,
-				Check: resource.ComposeTestCheckFunc(
-					testAccCheckExampleWidgetExists("example_widget.bar", &widget),
-					testAccCheckExampleWidgetAttributes(&widget),
-					resource.TestCheckResourceAttr("example_widget.bar", "active", "true"),
-				),
-			},
-		},
-	})
+        Config: testAccExampleWidgetConfig,
+        Check: resource.ComposeTestCheckFunc(
+          testAccCheckExampleWidgetExists("example_widget.bar", &widget),
+          testAccCheckExampleWidgetAttributes(&widget),
+          resource.TestCheckResourceAttr("example_widget.bar", "active", "true"),
+        ),
+      },
+    },
+  })
 }
 
 // testAccCheckExampleWidgetAttributes verifies attributes are set correctly by 
 // Terraform
 func testAccCheckExampleWidgetAttributes(widget *example.WidgetDescription) resource.TestCheckFunc {
-	return func(s *terraform.State) error {
-		if *widget.active != true {
-			return fmt.Errorf("widget is not active")
-		}
+  return func(s *terraform.State) error {
+    if *widget.active != true {
+      return fmt.Errorf("widget is not active")
+    }
 
-		return nil
-	}
+    return nil
+  }
 }
 
 // testAccCheckExampleWidgetExists uses the Example SDK directly to retrieve 
 // the Widget description, and stores it in the provided 
 // *example.WidgetDescription
 func testAccCheckExampleWidgetExists(resourceName string, widget *example.WidgetDescription) resource.TestCheckFunc {
-	return func(s *terraform.State) error {
-		// retrieve the resource by name from state
-		rs, ok := s.RootModule().Resources[resourceName]
-		if !ok {
-			return fmt.Errorf("Not found: %s", resourceName)
-		}
+  return func(s *terraform.State) error {
+    // retrieve the resource by name from state
+    rs, ok := s.RootModule().Resources[resourceName]
+    if !ok {
+      return fmt.Errorf("Not found: %s", resourceName)
+    }
 
-		if rs.Primary.ID == "" {
-			return fmt.Errorf("Widget ID is not set")
-		}
+    if rs.Primary.ID == "" {
+      return fmt.Errorf("Widget ID is not set")
+    }
 
-		// retrieve the client from the test provider
-		client := testAccProvider.Meta().(*ExampleClient)
+    // retrieve the client from the test provider
+    client := testAccProvider.Meta().(*ExampleClient)
 
-		response, err := client.DescribeWidgets(&example.DescribeWidgetsInput{
-			WidgetIDs: []string{rs.Primary.ID},
-		})
+    response, err := client.DescribeWidgets(&example.DescribeWidgetsInput{
+      WidgetIDs: []string{rs.Primary.ID},
+    })
 
-		if err != nil {
-			return err
-		}
+    if err != nil {
+      return err
+    }
 
-		// we expect only a single widget by this ID. If we find zero, or many, 
-		// then we consider this an error
-		if len(response.WidgetDescriptions) != 1 ||
-			*response.WidgetDescriptions[0].WidgetID != rs.Primary.ID {
-			return fmt.Errorf("Widget not found")
-		}
+    // we expect only a single widget by this ID. If we find zero, or many, 
+    // then we consider this an error
+    if len(response.WidgetDescriptions) != 1 ||
+      *response.WidgetDescriptions[0].WidgetID != rs.Primary.ID {
+      return fmt.Errorf("Widget not found")
+    }
 
-		// store the resulting widget in the *example.WidgetDescription pointer
-		*widget = *response.WidgetDescriptions[0]
-		return nil
-	}
+    // store the resulting widget in the *example.WidgetDescription pointer
+    *widget = *response.WidgetDescriptions[0]
+    return nil
+  }
 }
 ```
 

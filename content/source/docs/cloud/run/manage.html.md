@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Viewing and Managing Runs - Runs - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Workspaces list current, pending, and historical runs. Learn to view run information and lock workspaces to prevent new runs.
 ---
 
 # Viewing and Managing Runs
@@ -32,7 +34,7 @@ Most importantly, it shows:
 
 - The current status of the run.
 - The code commit associated with the run.
-- How the run was initiated, when, and which user initated it (if applicable).
+- How the run was initiated, when, and which user initiated it (if applicable).
 - A timeline of events related to the run.
 - The output from both the `terraform plan` and `terraform apply` commands, if applicable. You can hide or reveal these as needed; they default to visible if the command is currently running, and hidden if the command has finished.
 

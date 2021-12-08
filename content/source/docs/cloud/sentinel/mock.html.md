@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Mocking Terraform Sentinel Data - Sentinel - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn how to use the UI or API to generate mock Sentinel data and how to use that data for testing.
 ---
 
 # Mocking Terraform Sentinel Data
@@ -28,7 +30,7 @@ scrub sensitive data from these mocks, but we do not guarantee 100% accuracy.
 Treat this data with care, and avoid generating mocks with live sensitive data
 when possible. Access to this information requires [permission to download
 Sentinel mocks](/docs/cloud/users-teams-organizations/permissions.html) for the
-workspace where the data was generated. 
+workspace where the data was generated.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -84,7 +86,7 @@ mock-tfplan-v2.sentinel   # tfplan/v2 mock data
 mock-tfstate.sentinel     # tfstate mock data
 mock-tfstate-v2.sentinel  # tfstate/v2 mock data
 mock-tfrun.sentinel       # tfrun mock data
-sentinel.hcl              # sample configruation file
+sentinel.hcl              # sample configuration file
 ```
 
 The sample `sentinel.hcl` file contains mappings to the mocks so that you
@@ -265,9 +267,7 @@ The following factors can prevent you from generating mock data:
   produced via mock generation.
 * The run has not progressed past the planning stage, or did not create a plan
   successfully.
-* The run has been in a terminal state, such as applied or discarded, longer
-  than seven days. At this point, the data necessary to generate the mocks is no
-  longer available.
+* The run progressed past the planning stage prior to July 23, 2021. Prior to this date, Terraform Cloud only kept JSON plans for 7 days.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -275,6 +275,4 @@ If a plan cannot have its mock data exported due to any of these reasons, the
 **Download Sentinel mocks** button within the plan status section of the UI will
 not be visible.
 
--> **Note:** Only the plan needs to be successful for a run to be eligible for
-mock generation - if the apply or the policy checks fail, the data can still be
-generated, as long as it's within the 7 day expiration period.
+-> **Note:** Only a successful plan is required for mock generation. Sentinel can still generate the data if apply or policy checks fail.

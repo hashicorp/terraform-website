@@ -50,6 +50,14 @@ Status  | Response                                             | Reason
 [200][] | Array of [JSON API document][]s (`type: "ssh-keys"`) | Success
 [404][] | [JSON API error object][]                            | Organization not found or user not authorized
 
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
+
+Parameter                   | Description
+----------------------------|------------
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                | **Optional.** If omitted, the endpoint will return 20 ssh keys per page.
 
 ### Sample Request
 

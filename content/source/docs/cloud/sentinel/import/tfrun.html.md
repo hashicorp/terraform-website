@@ -35,6 +35,7 @@ tfrun
 │   ├── created_at (string)
 │   ├── description (string)
 │   ├── auto_apply (bool)
+│   ├── tags (array of strings)
 │   ├── working_directory (string)
 │   └── vcs_repo (map of keys)
 └── cost_estimate
@@ -73,7 +74,7 @@ Specifies the ID that is associated with the current Terraform run.
 
 The `created_at` value within the [root namespace](#namespace-root) specifies the time that the run was created. The timestamp returned follows the format outlined in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339).
 
-Users can use the `time` import to [load](https://docs.hashicorp.com/sentinel/imports/time#time-load-timeish) a run timestamp and create a new timespace from the specicied value. See the `time` import [documentation](https://docs.hashicorp.com/sentinel/imports/time#import-time) for available actions that can be performed on timespaces.
+Users can use the `time` import to [load](https://docs.hashicorp.com/sentinel/imports/time#time-load-timeish) a run timestamp and create a new timespace from the specified value. See the `time` import [documentation](https://docs.hashicorp.com/sentinel/imports/time#import-time) for available actions that can be performed on timespaces.
 
 ### Value: `message`
 
@@ -137,7 +138,7 @@ main = (length(tfrun.target_addrs) else 0) == 0
 
 * **Value Type:** A string-keyed map of values.
 
-Provides the names of the variables that are configured within the run and the [sensitivity](../../workspaces/variables.html#sensitive-values) state of the value.
+Provides the names of the variables that are configured within the run and the [sensitivity](../../workspaces/managing-variables.html#sensitive-values) state of the value.
 
 ```
 variables (map of keys)
@@ -209,6 +210,12 @@ This value can be `null`.
 * **Value Type:** Boolean.
 
 Contains the workspace's [auto-apply](../../workspaces/settings.html#auto-apply-and-manual-apply) setting.
+
+### Value: `tags`
+
+* **Value Type:** Array of strings.
+
+Contains the list of tag names for the workspace.
 
 ### Value: `working_directory`
 

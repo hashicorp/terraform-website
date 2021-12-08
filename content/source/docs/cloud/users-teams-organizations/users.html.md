@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Users - Terraform Cloud and Terraform Enterprise"
+description: |-
+  How to create an account, change user settings, set up two-factor authentication, create user API tokens, and more. 
 ---
 
 [organizations]: ./organizations.html
@@ -98,7 +100,7 @@ API tokens are necessary for:
 
 - Authenticating with the [Terraform Cloud API](../api/index.html). API calls require an `Authorization: Bearer <TOKEN>` HTTP header.
 - Authenticating with the [Terraform `remote` backend](/docs/language/settings/backends/remote.html), which requires a token in the CLI config file or in the backend configuration.
-- Using [private modules](../registry/using.html) in command-line Terraform runs on local machines requires [a token in the CLI config file](../registry/using.html#configuration).
+- Using [private modules](../registry/using.html) in command-line Terraform runs on local machines requires [a token in the CLI config file](../registry/using.html#authentication).
 
 Terraform Cloud has three kinds of API tokens: user, team, and organization. For more information about team and organization tokens, see [API Tokens](./api-tokens.html).
 

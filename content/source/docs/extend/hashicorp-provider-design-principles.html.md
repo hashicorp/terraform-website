@@ -1,12 +1,12 @@
 ---
 layout: "extend"
-page_title: "HashiCorp Provider Design Principles - Guides"
+page_title: "Provider Design Principles - Guides"
 sidebar_current: "docs-extend-hashicorp-provider-design-principles"
 description: |-
   Design principles for officially maintained Terraform Providers.
 ---
 
-# HashiCorp Provider Design Principles
+# Provider Design Principles
 
 Over time, the Terraform development community has gained large amounts of experience across a wide breadth of Application Programming Interfaces (APIs) supported by Terraform and its Software Development Kit (SDK). Recommended practices have emerged with designing the expected operator and maintainer experience. The principles below highlight the most prolific patterns when designing Terraform providers and associated resources, which guide HashiCorp design decisions.
 
@@ -16,7 +16,7 @@ A Terraform provider should manage a single collection of components based on th
 
 The benefits of this practice include:
 
-- Simplyfing connectivity and authentication requirements for the provider
+- Simplifying connectivity and authentication requirements for the provider
 - Enabling composition of related or dependent systems in new and innovative ways
 - Allowing maintainers to be experts in a single system or ecosystem.
 
@@ -57,4 +57,4 @@ A Terraform resource should offer support for `terraform import`. Benefits inclu
 
 As soon as a provider is released, users may have started managing their infrastructure with it. Care should be given to ensure state continuity is maintained and backwards compatible. When breaking changes need to occur, appropriate warning should be given to users using the plugin SDK's built-in mechanisms for deprecation and removal. In many cases this means maintaining both old and new names of resources and attributes.
 
-Providers should follow [Semantic Versioning 2.0.0](https://semver.org/) in the context of user state and configurations. Code contracts and compatibility are not a concern in versioning. Breaking changes should increment the major version of the provider, backwards compatibile resource and attribute additions should increment a minor version, and backwards compatible bug fixes should increment a patch version.
+Providers should follow [Semantic Versioning 2.0.0](https://semver.org/) in the context of user state and configurations. Code contracts and compatibility are not a concern in versioning. Breaking changes should increment the major version of the provider, backwards compatible resource and attribute additions should increment a minor version, and backwards compatible bug fixes should increment a patch version.

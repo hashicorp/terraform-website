@@ -1,6 +1,6 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Deprecations, Removals, and Renames Best Practices"
+page_title: "Plugin Development - Deprecations, Removals, and Renames Best Practices"
 sidebar_current: "docs-extend-best-practices-deprecations"
 description: |-
   Recommendations for deprecations, removals, and renames.
@@ -71,7 +71,7 @@ The recommended process is as follows:
 1. Add `**Deprecated**` to the documentation of the existing (now the "old") attribute, noting to use the new attribute.
 1. Add a note to the documentation that either the existing (now the "old") attribute or new attribute must be configured.
 1. Add `ConflictsWith` to the schema definitions of both the old and new attributes so they will present an error to the operator if both are configured at the same time.
-1. Add conditional logic in the `Create`, `Read`, and `Update` functions of the data source or resource to handle both attributes. Generally, this involves using [`ResourceData.GetOk()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#ResourceData.GetOk) (commonly `d.GetOk()` in HashiCorp maintained providers).
+1. Add conditional logic in the `Create`, `Read`, and `Update` functions of the data source or resource to handle both attributes. Generally, this involves using [`ResourceData.GetOk()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/schema#ResourceData.GetOk) (commonly `d.GetOk()` in HashiCorp maintained providers).
 1. Add conditional logic in the `Create` and `Update` function that returns an error if both the old and new attributes are not defined.
 1. Follow the rest of the procedures in the [Provider Attribute Removal section](#provider-attribute-removal). When the old attribute is removed, update the schema definition and documentation of the new attribute back to `Required`.
 
@@ -280,7 +280,7 @@ The recommended process is as follows:
 1. Add `Deprecated` to the schema definition of the existing (now the "old") attribute, noting to use the new attribute in the message.
 1. Add `**Deprecated**` to the documentation of the existing (now the "old") attribute, noting to use the new attribute.
 1. Add `ConflictsWith` to the schema definitions of both the old and new attributes so they will present an error to the operator if both are configured at the same time.
-1. Add conditional logic in the `Create`, `Read`, and `Update` functions of the data source or resource to handle both attributes. Generally, this involves using [`ResourceData.GetOk()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/schema#ResourceData.GetOk) (commonly `d.GetOk()` in HashiCorp maintained providers).
+1. Add conditional logic in the `Create`, `Read`, and `Update` functions of the data source or resource to handle both attributes. Generally, this involves using [`ResourceData.GetOk()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/schema#ResourceData.GetOk) (commonly `d.GetOk()` in HashiCorp maintained providers).
 1. Follow the rest of the procedures in the [Provider Attribute Removal section](#provider-attribute-removal).
 
 #### Example Renaming of an Optional Attribute
@@ -580,7 +580,7 @@ The recommended process for removing a data source or resource from a provider i
 1. Add `DeprecationMessage` in the data source or resource schema definition. After an operator upgrades to this version, they will be shown a warning with the message provided when using the deprecated data source or resource, but the Terraform run will still complete.
 1. Ensure the changelog has an entry noting the deprecation.
 1. Release a `MINOR` version with the deprecation.
-1. In the next `MAJOR` version, remove all code associated with the deprecated data source or resource except for the schema and replace the `Create` and `Read` functions to always return an error. Remove the documentation sidebar link and update the resource or data source documentation page to include information about the removal and any potential migration infromation. After an operator upgrades to this version, they will be shown an error about the missing data source or resource.
+1. In the next `MAJOR` version, remove all code associated with the deprecated data source or resource except for the schema and replace the `Create` and `Read` functions to always return an error. Remove the documentation sidebar link and update the resource or data source documentation page to include information about the removal and any potential migration information. After an operator upgrades to this version, they will be shown an error about the missing data source or resource.
 1. Ensure the changelog has an entry noting the removal.
 1. Release the `MAJOR` version.
 1. In the next `MAJOR` version, remove all code associated with the removed data source or resource. Remove the resource or data source documentation page.

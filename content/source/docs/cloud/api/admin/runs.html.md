@@ -30,7 +30,7 @@ The Runs Admin API contains endpoints to help site administrators manage runs.
 
 ## List all runs
 
-`GET /admin/runs`
+`GET /api/v2/admin/runs`
 
 This endpoint lists all runs in the Terraform Enterprise installation.
 
@@ -42,7 +42,7 @@ Status  | Response                               | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](../index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter           | Description
 --------------------|------------

@@ -18,7 +18,6 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 
 * **22:** SSH access (administration and debugging)
 * **8800:** Replicated (TFE setup dashboard, HTTPS)
-* **32846:** TFE admin console (a Replicated service)
 
 ### Source — TFE Server(s)
 
@@ -52,6 +51,8 @@ for accessibility in a firewall:
 
 ## Egress
 
+### Destination - Online Installations
+
 If Terraform Enterprise is installed in online mode, it accesses the following hostnames to get software updates:
 
 * `api.replicated.com`
@@ -68,8 +69,7 @@ If Terraform Enterprise is installed in online mode, it accesses the following h
 * `registry-1.docker.io`
 * `download.docker.com`
 * `production.cloudflare.docker.com`
-
-Airgapped installs do not check for updates over the network.
+* `install.terraform.io`
 
 Additionally, the following hostnames are accessed unless a
 [custom Terraform bundle](/docs/cloud/run/install-software.html#custom-and-community-providers)
@@ -78,7 +78,18 @@ is supplied:
 * `registry.terraform.io` (when using Terraform 0.12 and later)
 * `releases.hashicorp.com`
 
-Online and airgap installs also need egress access to any VCS servers/services that will be utilized, login/authentication servers if SAML will be configured (ADFS, Okta, etc), the various cloud API endpoints that will be managed with Terraform and any other third party services that will either be integrated with the Terraform Enteprise server or managed with it.
+~> **Note:** Airgapped installs do not check for updates over the network.
+
+### Destination - Additional Outbound Network Targets
+
+Terraform Enterprise also needs egress access to:
+
+* any VCS servers/services that will be utilized
+* login/authentication servers if SAML will be configured (ADFS, Okta, etc)
+* the various cloud API endpoints that will be managed with Terraform
+* any other third party services that will either be integrated with the Terraform Enteprise server or managed with it.
+
+### Destination - Cost Estimation APIs
 
 When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-integration) is enabled, it uses the respective cloud provider's APIs to get up-to-date pricing info.
 
@@ -88,10 +99,11 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
 
 ~> **Note:** Versions of Terraform Enterprise earlier than v202105-1 used `management.azure.com` and `ratecard.azure-api.net` rather than `prices.azure.com`.
 
-
 ## Other Configuration
 
-1. If a firewall is configured on the instance, be sure that traffic can flow out of the `docker0` interface to the instance's primary address. For example, to do this with UFW run: `ufw allow in on docker0`. This rule can be added before the `docker0` interface exists, so it is best to do it now, before the Docker installation.
+1. If a firewall is configured on the instance, run one of the following to allow traffic to flow out of the `docker0` interface to the instance's primary address. We recommend doing this before you install Docker.
+   * To use UFW, run: `ufw allow in on docker0`
+   *  To use firewalld, run: `firewall-cmd --permanent --zone=trusted --change-interface=docker0`
 1. Get a domain name for the instance. Using an IP address to access the product is not supported as many systems use TLS and need to verify that the certificate is correct, which can only be done with a hostname at present.
 1. **For GCP only:** Configure Docker to use an MTU (maximum transmission unit) of 1460, as required by Google ([GCP Cloud VPN Documentation: MTU Considerations](https://cloud.google.com/network-connectivity/docs/vpn/concepts/mtu-considerations)).
 
@@ -104,3 +116,5 @@ When [Cost Estimation](/docs/enterprise/admin/integration.html#cost-estimation-i
     ```
 
 1. Ensure the Docker bridge network address is not in use elsewhere on the network. If it is, please refer to the [Docker documentation](https://docs.docker.com/network/bridge/) for information on how to change it.
+
+~> **Note:** Beginning in version `v202004-1`, non-default Docker networks named `tfe_services` and `tfe_terraform_isolation` were added for the Terraform Enterprise component Docker containers as part of a network segmentation update. Custom configuration [may be required for MTU settings](https://support.hashicorp.com/hc/en-us/articles/4405507244691).

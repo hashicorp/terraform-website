@@ -1,16 +1,15 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Best Practices"
+page_title: "Plugin Development - Best Practices"
 sidebar_current: "docs-extend-best-practices"
 description: |-
-  Extending Terraform is a section for content dedicated to developing Plugins
-  to extend Terraform's core offering.
+  Patterns that ensure a consistent user experience, including naming, deprecation, beta features, testing, and versioning.
 ---
 
 # Terraform Plugin Best Practices
 
-A key feature of Terraform is its plugin system, which separates the details of 
-specific vendor APIs from the shared logic for managing state, managing configuration, 
+A key feature of Terraform is its plugin system, which separates the details of
+specific vendor APIs from the shared logic for managing state, managing configuration,
 and providing a safe plan and apply lifecycle. Plugins are responsible
 for the  implementation of functionality for provisioning resources for a
 specific cloud provider, allowing each provider to fully support its unique

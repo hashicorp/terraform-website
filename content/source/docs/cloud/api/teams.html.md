@@ -44,7 +44,7 @@ Parameter            | Description
 
 ### Query Parameters
 
-This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter      | Description
 ---------------|------------
@@ -295,7 +295,7 @@ Key path                              | Type   | Default   | Description
   "data": {
     "type": "teams",
     "attributes": {
-      "visibilty": "organization",
+      "visibility": "organization",
       "organization-access": {
         "manage-vcs-settings": true
       }
@@ -380,3 +380,4 @@ $ curl \
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](./index.html#inclusion-of-related-resources). The following resource types are available:
 
 - `users` (`string`) - Returns the full user record for every member of a team.
+- `organization-memberships` (`string`) - Returns the full organization membership record for every member of a team.

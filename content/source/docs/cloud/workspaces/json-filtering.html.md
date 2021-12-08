@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "JSON Filtering - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn how to create custom datasets on pages that display JSON data.
 ---
 
 # About JSON Data Filtering
@@ -107,7 +109,7 @@ used to re-write expressions to help reduce complexity.
 
 Iterators work with pipes in a fashion similar to object construction, where the
 expression on the right-hand side of the pipe is evaluated once for every
-iteration. 
+iteration.
 
 As an example, for the object `{"foo": {"a": 1}, "bar": {"a": 2}}`, both the
 expression `{z: .[].a}` and `.[] | {z: .a}` produce the same result: `{"z": 1}`

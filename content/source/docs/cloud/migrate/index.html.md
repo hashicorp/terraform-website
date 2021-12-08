@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Migrating State from Local Terraform - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Migrate state to Terraform Cloud to continue managing existing infrastructure without de-provisioning. 
 ---
 
 [state]: /docs/language/state/index.html

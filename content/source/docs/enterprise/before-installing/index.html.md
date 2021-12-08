@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "Pre-Install Checklist - Before Installing - Terraform Enterprise"
+description: |-
+  You need to make key architecture decisions and prepare infrastructure and data files before installing Terraform Enterprise.
 ---
 
 # Terraform Enterprise Pre-Install Checklist
@@ -33,7 +35,9 @@ The operational mode is selected at install time and cannot be changed once Terr
    check the [PostgreSQL Requirements](./postgres-requirements.html) for information that
    needs to be present for Terraform Enterprise to work. This option is best
    for users with expertise managing PostgreSQL or users that have access
-   to managed PostgreSQL offerings like [AWS RDS](https://aws.amazon.com/rds/).
+   to managed PostgreSQL offerings like the offers from [Amazon](https://aws.amazon.com/rds/), [Azure](https://azure.microsoft.com/en-us/services/postgresql/), or [Google Cloud](https://cloud.google.com/sql/docs/postgres/).
+
+1. *Active/Active* - This mode has the same requirements as External Services, with the additions of an external Redis server, and a fully automated install method. Refer to the [Active/Active](/docs/enterprise/install/active-active.html) page for more information about how to perform this type of install.
 
 1. *Mounted Disk* - This mode stores data in a separate
    directory on the host, with the intention that the directory is
@@ -77,8 +81,12 @@ Make sure your data storage services or device meet Terraform Enterprise's requi
 - _External Services_
     - [PostgreSQL Requirements](./postgres-requirements.html)
     - Any S3-compatible object storage service, GCP Cloud Storage or Azure blob storage meets Terraform Enterprise's object storage requirements. You must create a bucket for Terraform Enterprise to use, and specify that bucket during installation. Depending on your infrastructure provider, you might need to ensure the bucket is in the same region as the Terraform Enterprise instance.
-        - In environments without their own storage service, it may be possible to use [Minio](https://minio.io) for object storage. See the [Minio Setup Guide](./minio-setup-guide.html) for details.
+        - In environments without their own storage service, it may be possible to use [Minio](https://min.io/) for object storage. Refer to the [Minio Setup Guide](./minio-setup-guide.html) for details.
     - Optionally: if you already run your own [Vault](https://www.vaultproject.io/) cluster in production, you can configure Terraform Enterprise to use that instead of running its own internal Vault instance. Before installing Terraform Enterprise, follow the instructions in [Externally Managed Vault Configuration](./vault.html).
+
+- *Active/Active*
+    - Redis server v5 or v6
+    - Redis Cluster is *not* supported.
 
 - *Mounted Disk*
     - [Mounted Disk Requirements](./disk-requirements.html)
@@ -93,14 +101,12 @@ Terraform Enterprise runs on Linux instances, and you must prepare a running Lin
 
 Terraform Enterprise currently supports running under the following operating systems:
 
-- **Standalone deployment:**
-
-    - Debian 7.7+
-    - Ubuntu 14.04.5 / 16.04 / 18.04 / 20.04
-    - Red Hat Enterprise Linux 7.4 - 7.9
-    - CentOS 7.4 - 7.9
-    - Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
-    - Oracle Linux 7.4 - 7.9
+  - Debian 9 - 10
+  - Ubuntu 14.04.5 / 16.04 / 18.04 / 20.04
+  - Red Hat Enterprise Linux 7.4 - 7.9 / 8.4
+  - CentOS 7.4 - 7.9 / 8.4
+  - Amazon Linux 2014.03 / 2014.09 / 2015.03 / 2015.09 / 2016.03 / 2016.09 / 2017.03 / 2017.09 / 2018.03 / 2.0
+  - Oracle Linux 7.4 - 7.9 / 8.4
 
 ### Hardware Requirements
 
@@ -120,28 +126,127 @@ See [Network Requirements](./network-requirements.html) for details.
 
 <a id="software-requirements"></a>
 
-### Software Requirements (Standalone Deployment)
+### Docker Engine Requirements
 
-Some operating systems have specific configuration requirements:
+Terraform Enterprise requires **at least one** of the following Docker Engine configurations, in order of preference:
 
-- [RedHat Enterprise Linux (RHEL) Requirements](./rhel-requirements.html)
-- [CentOS Requirements](./centos-requirements.html)
+  1. Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x with `runc` v1.0.0-rc93 or greater.
+  2. Docker Engine 20.10.x with `libseccomp` 2.4.4 or greater.
+  3. Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x using a modified `libseccomp` profile.
 
-For other Linux distributions, check Docker compatibility:
+Refer to the sections below for instructions on how to verify your Docker Engine configuration.
 
-* The instance should run a supported version of Docker engine (1.7.1 or later, minimum 17.06.2-ce, maximum 19.03.8). This also requires a 64-bit distribution with a minimum Linux Kernel version of 3.10.
-    * Replicated 2.32.0 and above required when running Docker 18+.
-    * In Online mode, the installer will install Docker automatically.
-    * In Airgapped mode, Docker should be installed before you begin.
-* For _RedHat Enterprise_ and _Oracle Linux_, you **must** pre-install Docker as these distributions are [not officially supported by Docker Community Edition](https://docs.docker.com/engine/installation/#server).
+-> **Note:** Both the online and airgap installers for Terraform Enterprise are not capable of verifying the Docker Engine configuration automatically.
 
-~> **Important:** We do not recommend running Docker under a 2.x kernel.
+#### Option 1: Docker Engine With a Compatible `runc` Version
 
-### AWS-Specific Configuration
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+1. Install the latest version of `containerd` for your operating system.
+  - On Debian/Ubuntu:
 
-Terraform Enterprise's instance profile serves as default credentials for Terraform's AWS provider. Workspaces without environment variables for credentials will attempt to use the instance profile to provision AWS resources.
+        ```
+        sudo apt install containerd
+        ```
+  - On RHEL/CentOS:
 
-The instance profile of Terraform Enterprise's instance is the operator's responsibility. If you plan to specify any non-default permissions for Terraform Enterprise's instance profile, be aware that Terraform runs might use those permissions and plan accordingly.
+        ```
+        sudo yum install containerd.io
+        ```
+
+1. Confirm that the installed `containerd` version is 1.4.9, 1.5.5, or greater.
+
+    ```
+    containerd --version
+    ```
+
+1. Confirm that the installed `runc` version is v1.0.0-rc93 or greater:
+
+    ```
+    runc --version
+    ```
+
+1. If your Docker Engine and `runc` versions meet the requirements from previous steps, your system is properly configured. Otherwise, proceed to [option 2](#option-2-docker-engine-with-a-compatible-libseccomp-version).
+
+
+#### Option 2: Docker Engine With a Compatible `libseccomp` Version
+
+-> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in [option 1](#option-1-docker-engine-with-a-compatible-runc-version).
+
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 20.10.x for your operating system.
+1. Install the latest version of `libseccomp` for your operating system.
+  - On Debian/Ubuntu:
+
+        ```
+        sudo apt install libseccomp2
+        ```
+  - On RHEL/CentOS:
+
+        ```
+        sudo yum install libseccomp
+        ```
+
+1. Confirm that the installed `libseccomp` version is 2.4.4 or greater.
+
+    ```
+    runc --version
+    ```
+
+1. If your Docker Engine and `libseccomp` versions meet the requirements from previous steps, your system is properly configured. Otherwise, proceed to [option 3](#option-3-docker-engine-using-a-modified-libseccomp-profile).
+
+#### Option 3: Docker Engine Using a Modified `libseccomp` Profile
+
+-> **Note:** These instructions should only be used if your operating system does not meet the Docker Engine requirements detailed in either [option 1](#option-1-docker-engine-with-a-compatible-runc-version) or [option 2](#option-2-docker-engine-with-a-compatible-libseccomp-version).
+
+1. [Install](https://docs.docker.com/engine/install/) Docker Engine 1.13.1 (RHEL only), 17.06.2-ce, 18.09.x, 19.03.x, or 20.10.x for your operating system.
+
+1. Check if the file `/etc/docker/seccomp.json` exists. If it does, proceed to step 4.
+
+1. Download the [default moby `libseccomp` profile](https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json) and save it to the file `/etc/docker/seccomp.json`.
+
+    ```
+    sudo curl -L -o /etc/docker/seccomp.json \
+      https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json
+    ```
+
+1. Edit the `/etc/docker/seccomp.json` file and modify the line `"defaultAction": "SCMP_ACT_ERRNO",` to be `"defaultAction": "SCMP_ACT_TRACE",`. A `sed` command is included below for your convenience.
+
+    ```
+    sudo sed -i 's/"defaultAction":\s*"SCMP_ACT_ERRNO"/"defaultAction": "SCMP_ACT_TRACE"/1' /etc/docker/seccomp.json
+    ```
+
+1. Create a drop-in systemd unit file for the `docker` systemd service.
+
+    ```
+    sudo cp /lib/systemd/system/docker.service /etc/systemd/system/docker.service
+    ```
+
+1. Edit the drop-in `/etc/systemd/system/docker.service` systemd unit file and modify the line starting with `ExecStart=` to include the option `--seccomp-profile=/etc/docker/seccomp.json`.
+  - For example, the following line:
+
+        ```
+        ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock $OPTIONS $DOCKER_STORAGE_OPTIONS $DOCKER_ADD_RUNTIMES
+        ```
+  - Would become:
+
+        ```
+        ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --seccomp-profile=/etc/docker/seccomp.json $OPTIONS $DOCKER_STORAGE_OPTIONS $DOCKER_ADD_RUNTIMES
+        ```
+
+1. Reload the systemd daemon.
+
+    ```
+    sudo systemctl daemon-reload
+    ```
+
+1. Restart Docker Engine.
+
+    ```
+    sudo systemctl restart docker 
+    ```
+
+### IAM Policies
+
+If you have chosen the [external services operational mode](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision), Terraform Enterprise will need access to an S3-compliant endpoint for object storage. You can grant access to the object storage endpoint by either assigning an AWS instance profile or an equivalent IAM system in non-AWS environments.
 
 #### S3 Policy
 
@@ -186,16 +291,26 @@ At a minimum, Terraform Enterprise will require the following permissions if the
 }
 ```
 
+#### Instance Profile as Default Credentials
+You can use Terraform Enterprise's instance profile to provide default credentials to workspaces. Terraform will attempt to use the instance profile to provision resources when you do not set credentials as environment variables. However, this approach presents a few security risks:
+
+1. All workspaces will have the same permissions because they have access to the same instance profile. You cannot selectively allow or deny access to the instance profile for each workspace.
+2. Workspaces will share the instance profile with the Terraform Enterprise application. All workspaces within the application will have access to any resources that Terraform Enterprise depends on, such as its S3 bucket, KMS keys, etc.
+
+~> **Important:** If you choose not to use the instance profile for default credentials, we highly recommend that you [restrict build worker metadata access](../system-overview/security-model.html#restrict-terraform-build-worker-metadata-access) to prevent workspaces from accessing the instance profile.
+
 ### SELinux
 
-SELinux is supported when Terraform Enterprise runs in _External Services_ mode and only the default SELinux policies provided by RedHat are used. Terraform Enterprise v201812-1 or later is required for this support.
+Terraform Enterprise supports SELinux running in enforcing mode when certain requirements are met. These requirements vary depending on the type of Terraform Enterprise installation.
 
-SELinux is not supported when Terraform Enterprise runs in in *Demo* and *Mounted Disk* modes. When running in these modes the host running the installer must have SELinux configured in permissive mode.
+For _External Services_ and _Demo_ installations, you must install the latest version of the `container-selinux` package.
 
-To configure SELinux in permissive mode for the runtime only, run `setenforce 0` as root.
+For _Mounted Disk_ installations, you must:
 
-To configure SELinux in permissive mode persistently on boot, ensure the `/etc/selinux/config` file contains the following content:
+- Install the latest version of the `container-selinux` package.
+- Add the `container_file_t` type to the SELinux context for the mounted disk path and its subdirectories. The commands below update the mounted disk path `/opt/tfe` and its subdirectories to use the correct SELinux context.
 
-```
-SELINUX=permissive
-```
+    ```
+    semanage fcontext -a -t container_file_t "/opt/tfe(/.*)?"
+    restorecon -R /opt/tfe
+    ```

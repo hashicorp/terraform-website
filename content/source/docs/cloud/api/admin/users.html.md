@@ -30,7 +30,7 @@ The Users Admin API contains endpoints to help site administrators manage user a
 
 ## List all users
 
-`GET /admin/users`
+`GET /api/v2/admin/users`
 
 This endpoint lists all user accounts in the Terraform Enterprise installation.
 
@@ -42,7 +42,7 @@ Status  | Response                                | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](../index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter           | Description
 --------------------|------------

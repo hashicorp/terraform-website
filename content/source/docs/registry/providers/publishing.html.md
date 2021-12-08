@@ -3,7 +3,7 @@ layout: "registry"
 page_title: "Terraform Registry - Publishing Providers"
 sidebar_current: "docs-registry-provider-publishing"
 description: |-
-  Publishing Providers to the Terraform Registry
+  Learn how to release a provider and publish it to the Terraform Registry.
 ---
 
 # Publishing Providers
@@ -27,7 +27,7 @@ Providers published to the Terraform Registry are written and built in the same 
 - Example providers for reference:
     - [AWS](https://github.com/terraform-providers/terraform-provider-aws)
     - [AzureRM](https://github.com/terraform-providers/terraform-provider-azurerm)
-- [Contributing to Terraform guidelines](/docs/extend/community/contributing.html)
+- [Contributing to Terraform](https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md)
 
 ~> **Important:** In order to be detected by the Terraform Registry, all provider repositories on GitHub must match the pattern `terraform-provider-{NAME}`, and the repository must be public. Only lowercase repository names are supported.
 
@@ -36,6 +36,31 @@ Providers published to the Terraform Registry are written and built in the same 
 Your provider should contain an overview document (index.md), as well as a doc for each resource and data-source. See [Documenting Providers](./docs.html) for details about generating documentation and how to ensure your provider documentation renders properly on the Terraform Registry.
 
 -> **Note:** In order to test how documents will render in the Terraform Registry, you can use the [Terraform Registry Doc Preview Tool](https://registry.terraform.io/tools/doc-preview).
+
+### Terraform Registry Manifest File
+
+The Terraform Registry supports a JSON configuration file in each release that provides additional data about the provider being published. For example:
+
+```json
+{
+  "version": 1,
+  "metadata": {
+    "protocol_versions": ["5.0"],
+  },
+}
+```
+
+This file is conventionally named `terraform-registry-manifest.json` at the root of the provider repository and will be renamed in the release assets.
+
+It supports the following fields:
+
+| Field | Purpose |
+|-------|---------|
+| `metadata` | Object containing additional data to be associated with a release. |
+| `metadata.protocol_versions` | List of strings with supported Terraform protocol versions of the provider. Providers developed using [Terraform Plugin SDK version 2](/docs/extend/sdkv2-intro.html) should set this to `["5.0"]`. Providers developed using [Terraform Plugin Framework](/docs/plugin/framework/) should set this to `["6.0"]`. Defaults to `["5.0"]`. |
+| `version` | Numeric version of the manifest format, not the version of your provider. Set this to `1`. |
+
+~> **Important:** If developing a provider using [Terraform Plugin Framework](/docs/plugin/framework/), ensure the protocol versions are set to `["6.0"]` or practitioners will receive errors when attempting to use the provider.
 
 ### Creating a GitHub Release
 
@@ -85,7 +110,8 @@ The release must meet the following criteria:
 * There are 1 or more zip files containing the built provider binary for a single architecture
     * The binary name is `terraform-provider-{NAME}_v{VERSION}`
     * The archive name is `terraform-provider-{NAME}_{VERSION}_{OS}_{ARCH}.zip`
-* There is a `terraform-provider-{NAME}_{VERSION}_SHA256SUMS` file, which contains a sha256 sum for each zip file in the release.
+* There is a `terraform-provider-{NAME}_{VERSION}_manifest.json` file, which contains the Terraform Registry manifest file in the release.
+* There is a `terraform-provider-{NAME}_{VERSION}_SHA256SUMS` file, which contains a SHA-256 checksum for each zip file and the manifest file in the release.
     * `shasum -a 256 *.zip > terraform-provider-{NAME}_{VERSION}_SHA256SUMS`
 * There is a `terraform-provider-{NAME}_{VERSION}_SHA256SUMS.sig` file, which is a valid GPG binary (**not ASCII armored**) signature of the `terraform-provider-{NAME}_{VERSION}_SHA256SUMS` file using the keypair.
     * `gpg --detach-sign terraform-provider-{NAME}_{VERSION}_SHA256SUMS`

@@ -24,7 +24,7 @@ page_title: "User Tokens - API Docs - Terraform Cloud and Terraform Enterprise"
 
 ## List User Tokens
 
-`GET /api/v2/users/:user_id/authentication-tokens`
+`GET /users/:user_id/authentication-tokens`
 
 Parameter   | Description
 ------------|------------
@@ -41,6 +41,15 @@ Status  | Response                                | Reason
 [200][] | [JSON API document][] (`type: "authentication-tokens"`) | The request was successful
 [200][] | Empty [JSON API document][] (no type)    | User has no authentication tokens, or request was made by someone other than the user
 [404][] | [JSON API error object][]               | User not found
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
+
+Parameter                   | Description
+----------------------------|------------
+`page[number]`              | **Optional.** If omitted, the endpoint will return the first page.
+`page[size]`                | **Optional.** If omitted, the endpoint will return 20 user tokens per page.
 
 ### Sample Request
 
@@ -96,7 +105,7 @@ curl \
 
 ## Show a User Token
 
-`GET /api/v2/authentication-tokens/:id`
+`GET /authentication-tokens/:id`
 
 Parameter   | Description
 ------------|------------
@@ -148,7 +157,7 @@ curl \
 
 ## Create a User Token
 
-`POST /api/v2/users/:user_id/authentication-tokens`
+`POST /users/:user_id/authentication-tokens`
 
 Parameter   | Description
 ------------|------------
@@ -229,7 +238,7 @@ curl \
 
 ## Destroy a User Token
 
-`DELETE /api/v2/authentication-tokens/:id`
+`DELETE /authentication-tokens/:id`
 
 Parameter   | Description
 ------------|------------

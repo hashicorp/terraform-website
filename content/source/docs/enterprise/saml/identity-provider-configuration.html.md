@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "SAML Identity Provider Configuration - Terraform Enterprise"
+description: |-
+  Find instructions to set up SAML for specific identity providers and a sample sign-on request and response. 
 ---
 
 # Identity Provider Configuration

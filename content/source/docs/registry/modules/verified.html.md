@@ -3,7 +3,7 @@ layout: "registry"
 page_title: "Terraform Registry - Verified Modules"
 sidebar_current: "docs-registry-verified"
 description: |-
-  Verified modules are reviewed by HashiCorp and actively maintained by contributors to stay up-to-date and compatible with both Terraform and their respective providers.
+  Verified modules are reviewed by HashiCorp and actively maintained by contributors to stay up to date.
 ---
 
 # Verified Modules

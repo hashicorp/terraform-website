@@ -91,7 +91,7 @@ instances.
 ### Object Storage (Azure Blob Storage)
 
 An Azure Blob Storage
-[container](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction#container)
+[container](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction#containers)
 must be specified during the Terraform Enterprise installation for application data to
 be stored securely and redundantly away from the Azure VMs running the
 Terraform Enterprise application. This Azure Blob Storage container must be in the same
@@ -213,7 +213,7 @@ are routed to the highly available infrastructure supporting Azure Storage.
 
 There is not currently a full monitoring guide for Terraform Enterprise. The following pages include information relevant to monitoring:
 
-- [Logging](../../admin/logging.html)
+- [Log Forwarding](../../admin/logging.html)
 - [Diagnostics](../../support/index.html)
 - [Reliability and Availability](../../system-overview/reliability-availability.html)
 

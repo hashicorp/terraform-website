@@ -25,6 +25,8 @@ As mentioned above, the Active/Active architecture requires an existing [automat
 
 The primary requirement is an auto scaling group (or equivalent) with a single instance running Terraform Enterprise. This ASG should be behind a load balancer and can be exposed to the public Internet or not depending on your requirements. As mentioned earlier, the installation of the Terraform Enterprise application should be automated completely so that the auto scaling group can be scaled to zero and back to one without human intervention. 
 
+-> **Note**: Active/Active installations on VMware infrastructure also require you to configure a Load Balancer to route traffic across the Terraform Enterprise servers. This documentation does not cover that setup. While auto-scaling groups are not available via native vCenter options, you must still configure a fully automated deployment. You must also reduce the available servers to one server for upgrades, maintenance, and support.
+
 The application itself must be using [External Services](https://www.terraform.io/docs/enterprise/before-installing/index.html#operational-mode-decision) mode to connect to an external PostgreSQL database and object storage. 
 
 All admin and application configuration must be automated via your settings files and current with running configuration, i.e. it cannot have been altered via the Replicated Admin Console and not synced to the file. Specifically, you should be using the following configuration files:
@@ -53,7 +55,7 @@ There are new access requirements involving ingress and egress:
 
 #### Provision Redis 
 
-Externalizing Redis allows multiple active application nodes. Terraform Enterprise is validated to work with the managed Redis services from AWS, Azure, and GCP.
+Externalizing Redis allows multiple active application nodes. Terraform Enterprise is validated to work with the managed Redis services from AWS, Azure, and GCP. Terraform Enterprise does _not_ support Redis Cluster, but does support Redis Sentinel for failover with active/passive deployments.
 
 -> **Note**: Please see the cloud-specific configuration guides at the end of this document for details [here](#appendix-1-aws-elasticcache). 
 
@@ -73,24 +75,9 @@ The existing settings for the installer and infrastructure (`replicated.conf`) a
 To upgrade to the  Active/Active functionality and for ongoing upgrades, you need to pin your installation to the appropriate  release by setting the following:
 
 
-<table>
-  <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Specific Format Required</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>ReleaseSequence
-   </td>
-   <td>Refers to a version of TFE ([v202101-1](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202101-1.md)) on a specific release channel (Active/Active)
-   </td>
-   <td><strong>Yes</strong>, integer.
-   </td>
-  </tr>
-</table>
+| **Key**         | **Description**                                                                                                                    | **Specific Format Required** |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| ReleaseSequence | Refers to a version of TFE ([v202101-1](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202101-1.md)) | **Yes**, integer.            |
 
 
 The following example pins the deployment to the the ([v202101-1](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202101-1.md)) release of TFE (which is the first to support multiple nodes):
@@ -113,24 +100,9 @@ The existing settings for the Terraform Enterprise application (`ptfe-settings.j
 ##### Enable Active/Active
 
 
-<table>
-  <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Required Value</strong>
-   </td>
-   <td><strong>Specific Format Required</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>enable_active_active
-   </td>
-   <td>“1”
-   </td>
-   <td><strong>Yes, </strong>string.
-   </td>
-  </tr>
-</table>
+| **Key**                | **Required Value** | **Specific Format Required** |
+| ---------------------- | ------------------ | ---------------------------- |
+| enable\_active\_active | “1”                | **Yes**, string.             |
 
 
 
@@ -150,56 +122,13 @@ The existing settings for the Terraform Enterprise application (`ptfe-settings.j
 The settings for the Terraform Enterprise application must also be expanded to support an external Redis instance:
 
 
-<table>
-  <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Required Value</strong>
-   </td>
-   <td><strong>Specific Format Required</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>redis_host
-   </td>
-   <td>Hostname of an external Redis instance which is resolvable from the TFE instance
-   </td>
-   <td><strong>Yes, </strong>string.
-   </td>
-  </tr>
-  <tr>
-   <td>redis_port
-   </td>
-   <td>Port number of your external Redis instance
-   </td>
-   <td><strong>Yes</strong>, string.
-   </td>
-  </tr>
-  <tr>
-   <td>redis_use_password_auth*
-   </td>
-   <td>Set to ”1”, if you are using a Redis service that requires a password.
-   </td>
-   <td><strong>Yes</strong>, string.
-   </td>
-  </tr>
-  <tr>
-   <td>redis_pass*
-   </td>
-   <td><em>Must be set to the password of an external Redis instance if the instance requires password authentication</em>
-   </td>
-   <td><strong>Yes</strong>, string.
-   </td>
-  </tr>
-  <tr>
-   <td>redis_use_tls*
-   </td>
-   <td>Set to “1” if you are using a Redis service that requires TLS
-   </td>
-   <td><strong>Yes</strong>, string.
-   </td>
-  </tr>
-</table>
+| **Key**                      | **Required Value**                                                                                           | **Specific Format Required** |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------- |
+| redis\_host                  | Hostname of an external Redis instance which is resolvable from the TFE instance                             | **Yes**, string.             |
+| redis\_port                  | Port number of your external Redis instance                                                                  | **Yes**, string.             |
+| redis\_use\_password\_auth\* | Set to ”1”, if you are using a Redis service that requires a password.                                       | **Yes**, string.             |
+| redis\_pass\*                | _Must be set to the password of an external Redis instance if the instance requires password authentication_ | **Yes**, string.             |
+| redis\_use\_tls\*            | Set to “1” if you are using a Redis service that requires TLS                                                | **Yes**, string.             |
 
 
 _* Fields marked with an asterisk are only necessary if your particular external Redis instance requires them._
@@ -234,28 +163,9 @@ For example:
 
 !> The Encryption Password value must be added to the config and is **required to be identical between node instances** for the Active/Active architecture to function:
 
-<table>
-  <tr>
-   <td><strong>Key</strong>
-   </td>
-   <td><strong>Description</strong>
-   </td>
-   <td><strong>Value can change between deployments?</strong>
-   </td>
-   <td><strong>Specific Format Required</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>enc_password
-   </td>
-   <td>Used to encrypt sensitive data (<a href="https://www.terraform.io/docs/enterprise/install/encryption-password.html">docs</a>)
-   </td>
-   <td><strong>No. </strong>Changing will make decrypting existing data impossible. 
-   </td>
-   <td>No
-   </td>
-  </tr>
-</table>
+| **Key**       | **Description**                                                                                                    | **Value can change between deployments?**                       | **Specific Format Required** |
+| ------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ---------------------------- |
+| enc\_password | Used to encrypt sensitive data ([docs](https://www.terraform.io/docs/enterprise/install/encryption-password.html)) | **No.** Changing will make decrypting existing data impossible. | No                           |
 
 
 
@@ -454,30 +364,20 @@ You may consider using other options in the configuration depending on your requ
 The minimum instance size for Redis to be used with TFE is 6 GiB. For Azure, this allows for some minimum configurations across the three tiers using Cache Names for their different Tiers. Our recommendations on cache sizing for Azure Cache for Redis is in the table below:
 
 
-<table>
-  <tr>
-   <td> 
-   </td>
-   <td><strong>Basic</strong>
-   </td>
-   <td><strong>Standard</strong>
-   </td>
-   <td><strong>Premium</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Cache</strong> <strong>Name</strong>
-   </td>
-   <td>C3
-   </td>
-   <td>C0
-   </td>
-   <td>P2
-   </td>
-  </tr>
-</table>
+|                    | **Basic**    | **Standard** | **Premium** |
+| ------------------ | ------------ | ------------ | ----------- |
+| **Cache** **Name** | C3           | C0           | P2          |
 
 
 Make sure you configure the minimum TLS version to the TFE supported version of 1.2 as the Azure resource defaults to 1.0. The default port for Azure Cache for Redis is 6380 and will need to be modified in the Application Settings `ptfe-replicated.conf` in order for TFE to connect to Azure Cache for Redis.
 
 The default example provided on the provider page can be used to deploy Azure Cache for Redis [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache). The outputs of the resource can then be provided to the Terraform module in order to configure connectivity
+
+
+##
+
+## Appendix 4: Redis on VMware
+
+Redis on VMware was tested with a virtual machine with 2 CPUs and 8 Gb of memory running Ubuntu 20.04. Both Redis v5 and v6 are supported. A full list of supported Operating Systems can be found on the [Pre-Install Checklist](https://www.terraform.io/docs/enterprise/before-installing/index.html#operating-system-requirements).
+
+The sizing of your Redis server will depend on your company or organization's workload. Monitoring of the virtual machine and resizing based on utilization is recommended. More details on memory utilization can be found on [Redis' website](https://redis.io/topics/memory-optimization). 

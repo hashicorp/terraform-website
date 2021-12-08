@@ -48,7 +48,7 @@ State                  | Description
 `cost_estimating`      | The cost estimation phase of a run is in progress.
 `cost_estimated`       | The cost estimation phase of a run has completed.
 `policy_checking`      | The sentinel policy checking phase of a run is in progress.
-`policy_override`      | A sentinel policy has soft failed, and can be overriden.
+`policy_override`      | A sentinel policy has soft failed, and can be overridden.
 `policy_soft_failed`   | A sentinel policy has soft failed for a plan-only run.  This is a final state.
 `policy_checked`       | The sentinel policy checking phase of a run has completed.
 `confirmed`            | The plan produced by the run has been confirmed.
@@ -81,6 +81,7 @@ Properties without a default value are required.
 
 Key path                    | Type   | Default | Description
 ----------------------------|--------|---------|------------
+`data.attributes.auto-apply` | bool | (The current Auto Apply option of the workspace) | Whether to automatically apply changes when a Terraform plan is successful. Defaults to the [workspace Auto Apply](https://www.terraform.io/docs/cloud/workspaces/settings.html#auto-apply-and-manual-apply) setting.
 `data.attributes.is-destroy` | bool | false | Specifies if this plan is a destroy plan, which will destroy all provisioned resources. Mutually exclusive with `refresh-only`.
 `data.attributes.message` | string | "Queued manually via the Terraform Enterprise API" | Specifies the message to be associated with this run.
 `data.attributes.refresh` | bool | true | Specifies whether or not to refresh the state before a plan.
@@ -153,6 +154,7 @@ curl \
       "canceled-at": null,
       "created-at": "2021-05-24T07:38:04.171Z",
       "has-changes": false,
+      "auto-apply": false,
       "is-destroy": false,
       "message": "Custom message",
       "plan-only": false,
@@ -306,6 +308,7 @@ curl \
         "canceled-at": null,
         "created-at": "2021-05-24T07:38:04.171Z",
         "has-changes": false,
+        "auto-apply": false,
         "is-destroy": false,
         "message": "Custom message",
         "plan-only": false,
@@ -392,6 +395,7 @@ curl \
       "canceled-at": null,
       "created-at": "2021-05-24T07:38:04.171Z",
       "has-changes": false,
+      "auto-apply": false,
       "is-destroy": false,
       "message": "Custom message",
       "plan-only": false,

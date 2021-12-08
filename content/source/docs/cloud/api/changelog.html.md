@@ -13,6 +13,56 @@ page_id: "api-changelog"
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
+### 2021-12-03
+
+* OAuth API updated to handle `secret` and `rsa_public_key` fields for POST/PUT.
+
+### 2021-11-17
+
+* Added pagination support to the following endpoints:
+    * [Feature Sets](./feature-sets.html#list-feature-sets) - `GET /feature-sets`
+    * [Notification Configurations](./notification-configurations.html#list-notification-configurations) - `GET /workspaces/:workspace_id/notification-configurations`
+    * [Oauth Clients](./oauth-clients.html#list-oauth-clients) - `GET /organizations/:organization_name/oauth-clients`
+    * [Oauth Tokens](./oauth-tokens.html#list-oauth-tokens) - `GET /oauth-clients/:oauth_client_id/oauth-tokens`
+    * [Organization Feature Sets](./feature-sets.html#list-feature-sets-for-organization) - `GET /organizations/:organization_name/feature-sets` 
+    * [Organizations](./organizations.html#list-organizations) - `GET /organizations`
+    * [Policy Checks](./policy-checks.html#list-policy-checks) - `GET /runs/:run_id/policy-checks`
+    * [Policy Set Parameters](./policy-set-params.html#list-parameters) - `GET /policy-sets/:policy_set_id/parameters`
+    * [SSH Keys](./ssh-keys.html#list-ssh-keys) - `GET /organizations/:organization_name/ssh-keys`
+    * [User Tokens](./user-tokens.html#list-user-tokens) - `GET /users/:user_id/authentication-tokens`
+
+### 2021-11-11
+
+* Introduced the [Variable Sets](./variable-sets.html) endpoints for viewing and administering Variable Sets
+
+### 2021-11-18
+
+* Introduced the [Registry Providers](./providers.html) endpoint to manage public providers for a
+  private registry. These endpoints will be available in the folowing TFE Release: `v202112-1`
+
+### 2021-08-18
+
+* Introduced the [State Version Outputs](./state-versions.html) endpoint to retrieve the Outputs for a
+  given State Version
+
+### 2021-08-11
+
+* ![breaking][] Security fix to [Configuration versions](./configuration-versions.html): upload-url attribute for [uploading configuration files](./configuration-versions.html#upload-configuration-files) is now only available on the create response.
+
+### 2021-07-30
+
+* Introduced Workspace Tagging
+    * Updated [Workspaces](./workspaces.html):
+        * added `tag-names` attribute.
+        * added `POST /workspaces/:workspace_id/relationships/tags`
+        * added `DELETE /workspaces/:workspace_id/relationships/tags`
+    * Added [Organization Tags](./organization-tags.html).
+    * Added `tags` attribute to [`tfrun`](../sentinel/import/tfrun.html)
+
+### 2021-07-19
+
+* [Notification configurations](./notification-configurations.html): Gave organization tokens permission to create and manage notification configurations.
+
 ### 2021-07-09
 
 * [State versions](./state-versions.html): Fixed the ID format for the workspace relationship of a state version. Previously, the reported ID was unusable due to a bug.
@@ -24,16 +74,16 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
     * added `registry_name` scoped APIs.
     * added `organization_name` scoped APIs.
     * added [Module List API](./modules.html#list-registry-modules-for-an-organization).
-    * updated [Module Delete APIs](./modules.html#delete-a-module).
+    * updated [Module Delete APIs](./modules.html#delete-a-module) (see deprecation note below).
     * ![cloud][] added public registry module related APIs.
 * ![deprecation] [] The following [Registry Module APIs](./modules.html) have been replaced with newer apis and will be removed in the future.
     * The following endpoints to delete modules are replaced with [Module Delete APIs](./modules.html#delete-a-module)
-        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version`
-        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider`
-        * `POST /registry-modules/actions/delete/:organization_name/:name`
-    * `POST /registry-modules` replaced with [Updated POST Endpoint](./modules.html#publish-a-private-module-from-a-vcs)
-    * `POST /registry-modules/:organization_name/:name/:provider/versions` replaced with new [endpoint](./modules.html#create-a-module-version)
-    * `GET /registry-modules/show/:organization_name/:name/:provider` replaced with new [GET Endpoint](./modules.html#get-a-module)
+        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider/:version` replaced with `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/:version`
+        * `POST /registry-modules/actions/delete/:organization_name/:name/:provider` replaced with `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`
+        * `POST /registry-modules/actions/delete/:organization_name/:name` replaced with `DELETE /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name`
+    * `POST /registry-modules` replaced with [`POST /organizations/:organization_name/registry-modules/vcs`](./modules.html#publish-a-private-module-from-a-vcs)
+    * `POST /registry-modules/:organization_name/:name/:provider/versions` replaced with [`POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions`](./modules.html#create-a-module-version)
+    * `GET /registry-modules/show/:organization_name/:name/:provider` replaced with [`GET /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider`](./modules.html#get-a-module)
 
 ### 2021-05-27
 

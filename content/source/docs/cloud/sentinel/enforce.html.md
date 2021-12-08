@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Enforce and Override Policies - Sentinel - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Learn when Terraform Cloud performs policy checks and what happens when different types of policy checks fail.
 ---
 
 # Enforce and Override Policies
@@ -9,16 +11,18 @@ page_title: "Enforce and Override Policies - Sentinel - Terraform Cloud and Terr
 
 > **Hands-on:** Try the [Enforce Policy with Sentinel](https://learn.hashicorp.com/collections/terraform/policy?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
 
-Once a policy is added to an organization it is enforced on all runs.
+You can define individual policies within larger policy sets and apply those policy sets to all or a subset of workspaces in an organization. Terraform Cloud then enforces all of those policies on every workspace run.  
 
-The policy check will occur immediately after a plan is successfully executed in the run. If the plan fails, the policy check will not be performed. The policy check uses the generated tfplan file, [simulated apply object](./import/tfplan.html#value-applied), state and configuration to verify the rules in each of the policies.
+Policy checks occur after a plan and any enabled cost estimates are successfully executed in the run. This allows policies to restrict costs based on the data in the cost estimates. If the plan fails, Sentinel does not perform policy checks. The policy checks use data from the plan, state, configuration, workspace, and run to verify and enforce the rules in each policy.
 
-Enforcement level details can be found in the [Managing Policies](./manage-policies.html) documentation.
+Refer to the [Managing Policies](./manage-policies.html) documentation for more detail about enforcement.
 
-All `hard mandatory` and `soft mandatory` policies must pass in order for the run to continue to the "Confirm & Apply" state.
+All `hard-mandatory` must pass in order for the run to continue to the "Confirm & Apply" state. All `soft-mandatory` policies must pass or be overridden for the run to continue to the "Confirm & Apply" state.
 
-If a `soft mandatory` policy fails, users with permission to override policies will be presented with an "Override & Continue" button in the run. They have the ability to override the failed check and continue the execution of the run. This will not have any impact on future runs. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+If any `soft-mandatory` policies fail and no `hard-mandatory` policies fail, users with [permission to override policies](/docs/cloud/users-teams-organizations/permissions.html#manage-policy-overrides) will be presented with an **Override & Continue** button in the run in the Terraform Cloud workspace. This allows them to override the failed `soft-mandatory` policy checks and continue the execution of the run. This will not have any impact on future runs. 
+
+These users can also override `soft-mandatory` policies by running the `terraform apply` command and then entering "override" when prompted to override failed `soft-mandatory` policies for the run.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-If an `advisory` fails, it will show the warning state in the run; however, the execution of the run will continue to the "Confirm & Apply" state. No user action is required to override or continue the run execution.
+If an `advisory` policy check fails, it will show the warning state in the run, and the execution of the run will continue to the "Confirm & Apply" state. No user action is required to override or continue the run execution.

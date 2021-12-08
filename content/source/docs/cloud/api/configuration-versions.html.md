@@ -26,7 +26,7 @@ page_title: "Configuration Versions - API Docs - Terraform Cloud and Terraform E
 
 A configuration version (`configuration-version`) is a resource used to reference the uploaded configuration files. It is associated with the run to use the uploaded configuration files for performing the plan and apply.
 
-Listing and viewing configuration versions for a workspace requires permission to read runs; creating new configuration versions requires permission to queue plans. ([More about permissions.](../users-teams-organizations/permissions.html))
+You need read runs permission to list and view configuration versions for a workspace, and you need apply runs permission to create new configuration versions. Refer to the [permissions](../users-teams-organizations/permissions.html#general-workspace-permissions) documentation for more details.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -40,7 +40,7 @@ Listing and viewing configuration versions for a workspace requires permission t
 
 ### Query Parameters
 
-This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+This endpoint supports pagination [with standard URL query parameters](./index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter      | Description
 ---------------|------------
@@ -295,6 +295,10 @@ curl \
 }
 ```
 
+### Configuration Files Upload URL
+
+Once a configuration version is created, use the `upload-url` attribute to [upload configuration files](#upload-configuration-files) associated with that version. The `upload-url` attribute is only provided in the response when creating configuration versions.
+
 ### Configuration Version Status
 
 A configuration version will be in the `pending` status when initially created. It will remain pending until configuration files are supplied via [upload](#upload-configuration-files), and while they are processed.
@@ -311,7 +315,7 @@ Runs cannot be created using `pending` or `errored` configuration versions.
 
 `PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
 
-**The URL is provided in the `upload-url` attribute in the `configuration-versions` resource.**
+**The URL is provided in the `upload-url` attribute when creating a `configuration-versions` resource. After creation, the URL is hidden on the resource and no longer available.**
 
 ### Sample Request
 

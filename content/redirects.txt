@@ -23,7 +23,7 @@
 # Varnish rewrite rule. We're adding them here anyway, to ensure redirects.txt
 # is a complete record of all the rewrites this site uses.
 #
-# If you need to redirect to an external URL, you must contact it-helpdesk.
+# If you need to redirect to an external URL, you must contact submit a request through https://help.hashicorp.services --> Digital + Web will get you to the right team.
 #
 # INDEX.HTML AND PARENT PATHS
 #
@@ -149,6 +149,11 @@
 /docs/extend/resources.html                              /docs/extend/resources/index.html
 # /docs/extend/writing-custom-providers.html               https://learn.hashicorp.com/terraform/providers/setup-implement-read
 /docs/extend/plugin-sdk.html				 /docs/extend/guides/v1-upgrade-guide.html
+/docs/plugin                                             /docs/extend/index.html
+/docs/plugin/                                            /docs/extend/index.html
+/docs/plugin/index.html                                  /docs/extend/index.html
+/docs/plugin/framework/publishing.html                   /docs/registry/providers/publishing.html
+/guides/terraform-provider-development-program.html       /guides/terraform-integration-program.html
 
 # Move the docs about TFE runs
 /docs/enterprise/workspaces/run-basics.html              /docs/enterprise/run/index.html
@@ -914,3 +919,17 @@
 /docs/providers/index.html          /docs/language/providers/index.html
 /docs/providers/                    /docs/language/providers/index.html
 /docs/providers                     /docs/language/providers/index.html
+
+# Clean up Extend section (now Plugin Development)
+/docs/extend/community/events/index.html                  /community
+/docs/extend/community/events/2018/fall-gardening.html    /community
+/docs/extend/community/index.html                         /community
+/docs/extend/community                                    /community
+/docs/extend/community/                                   /community
+/docs/extend/plugin-types.html                            /docs/extend/index.html
+
+# External redirects for Community docs
+
+# /docs/extend/community/code-of-conduct.html  https://www.hashicorp.com/community-guidelines
+# /docs/extend/community/contributing.html     https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md
+# /docs/extend/community/maintainers.html      https://github.com/hashicorp/terraform/blob/main/.github/CONTRIBUTING.md#maintainers

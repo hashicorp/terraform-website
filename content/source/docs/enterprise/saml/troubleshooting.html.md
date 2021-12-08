@@ -1,6 +1,8 @@
 ---
 layout: "enterprise"
 page_title: "SAML SSO Troubleshooting Guide - Terraform Enterprise"
+description: |-
+  How to disable SAML, debug and test SAML, create a non-SSO admin account for recovery, common configuration errors, and more.
 ---
 
 # Troubleshooting Guide
@@ -68,7 +70,7 @@ The identity provider certificate is invalid or was not pasted correctly into Te
 **How to resolve:** Open the identity provider settings, copy the certificate, then paste it into the "IDP Certificate" field in Terraform Enterprise.
 
 **ERROR: Issuer of assertion not found or multiple**<br />
-Terrform Enterprise was unable to determine the issuer of the SAML response.<br />
+Terraform Enterprise was unable to determine the issuer of the SAML response.<br />
 **How to resolve:** The most common reason for this issue is that an F5 load balancer is not signing responses, resulting in the `<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">` and related elements not being present. Follow the steps under **Configuring SAML SP Connectors** on [Using APM as a SAML IdP](https://support.f5.com/kb/en-us/products/big-ip_apm/manuals/product/apm-authentication-single-sign-on-12-1-0/29.html), particularly step 9c. If you are not using an F5 as part of your SAML setup, see below to contact support.
 
 

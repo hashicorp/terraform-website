@@ -30,7 +30,7 @@ The Terraform Versions Admin API lets site administrators manage which versions 
 
 ## List all Terraform versions
 
-`GET /admin/terraform-versions`
+`GET /api/v2/admin/terraform-versions`
 
 This endpoint lists all known versions of Terraform.
 
@@ -42,7 +42,7 @@ Status  | Response                                             | Reason
 
 ### Query Parameters
 
-This endpoint supports pagination [with standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+This endpoint supports pagination [with standard URL query parameters](../index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter      | Description
 ---------------|------------
@@ -190,7 +190,7 @@ curl \
 
 ## Show a Terraform version
 
-`GET /admin/terraform-versions/:id`
+`GET /api/v2/admin/terraform-versions/:id`
 
 Parameter  | Description
 -----------|------------

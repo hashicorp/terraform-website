@@ -30,7 +30,7 @@ The Organizations Admin API contains endpoints to help site administrators manag
 
 ## List all Organizations
 
-`GET /admin/organizations`
+`GET /api/v2/admin/organizations`
 
 This endpoint lists all organizations in the Terraform Enterprise installation.
 
@@ -42,7 +42,7 @@ Status  | Response                                        | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+This endpoint supports pagination [with standard URL query parameters](../index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter                 | Description
 --------------------------|------------
@@ -142,7 +142,7 @@ curl \
 
 ## Show an Organization
 
-`GET /admin/organizations/:name`
+`GET /api/v2/admin/organizations/:name`
 
 Parameter  | Description
 -----------|------------
@@ -345,7 +345,7 @@ curl \
 
 -> This API endpoint is available in Terraform Enterprise as of version 202103-1.
 
-`GET /admin/organizations/:name/relationships/module-consumers`
+`GET /api/v2/admin/organizations/:name/relationships/module-consumers`
 
 This endpoint lists specific organizations in the Terraform Enterprise installation that have permission to use an organization's modules. It will be empty if the organization is sharing modules using global module sharing, or if the organization has no module sharing configuration.
 
@@ -360,7 +360,7 @@ Status  | Response                                        | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+This endpoint supports pagination [with standard URL query parameters](../index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter           | Description
 --------------------|------------

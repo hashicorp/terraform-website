@@ -2,7 +2,7 @@
 layout: "cloud"
 page_title: "Terraform Cloud for Splunk setup instructions"
 description: |-
-  HashiCorp Terraform Cloud customers can integrate with Splunk® using the official Terraform Cloud for Splunk app to understand Terraform Cloud operations
+  Splunk pulls in Terraform Cloud audit logs to help you identify the most active policies, significant operations changes, and more.
 ---
 
 # Terraform Cloud for Splunk setup instructions
@@ -23,6 +23,8 @@ Access and support for the Terraform Cloud for Splunk app is limited to customer
 There are no special prerequisites for Splunk Cloud users.
 
 ### Splunk Enterprise
+
+-> **Note:** This app is currently not supported on a clustered deployment of Splunk Enterprise.
 
 #### Networking Requirements
 

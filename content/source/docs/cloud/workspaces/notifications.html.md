@@ -44,7 +44,7 @@ Fill in the following fields to configure your notifications:
 
 - **Name:** An arbitrary display name to use for this notification configuration.
 - **Webhook URL** _(only available for generic and slack webhooks):_ The destination URL to send the webhook payload to. This URL must accept HTTP or HTTPS `POST` requests, and should be able to do something useful with the chosen payload type.
-  - If you are sending notifications to Slack, see Slack's documentation on [how to create an incoming webhook](https://api.slack.com/incoming-webhooks#create_a_webhook).
+  - If you are sending notifications to Slack, see Slack's documentation on [how to create an incoming webhook](https://api.slack.com/messaging/webhooks#create_a_webhook).
 
 - **Token** _(optional; only available for generic webhooks):_ An arbitrary secret string, which Terraform Cloud will use to sign its notification webhooks. ([See "Notification Authenticity" below][inpage-hmac].) This setting is encrypted for storage, and cannot be viewed after it is saved.
 - **Email Recipients** _(only available for emails):_ Select the users from the workspace's organization to notify.
@@ -55,7 +55,7 @@ Fill in the following fields to configure your notifications:
     - **Needs Attention**: Human decision required. When a plan has changes and is not auto-applied, or requires a policy override.
     - **Applying**: When a run begins the apply stage, after a plan is confirmed or auto-applied.
     - **Completed**: When a run has completed on a happy path and can't go any further.
-    - **Errored**: When a run has terminated early due to error or cancelation.
+    - **Errored**: When a run has terminated early due to error or cancellation.
 
 When finished, click the "Create configuration" button.
 

@@ -1,11 +1,13 @@
 ---
 layout: "cloud"
 page_title: "CLI-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Trigger runs from your terminal using the Terraform CLI. Learn the required configuration for remote CLI runs. 
 ---
 
 [sentinel]: ../sentinel/index.html
 [private]: ../registry/index.html
-[remote]: /docs/language/settings/backends/remote.html
+[remote]: /docs/language/settings/backends/remote.html#excluding-files-from-upload-with-terraformignore 
 [speculative plan]: ./index.html#speculative-plans
 [tfe-provider]: https://registry.terraform.io/providers/hashicorp/tfe/latest/docs
 
@@ -36,6 +38,8 @@ Terraform Cloud offers two kinds of CLI-driven runs, to support different stages
   Remote `terraform apply` is for workspaces without a linked VCS repository. It replaces the VCS-driven workflow with a more traditional CLI workflow.
 
 To supplement these remote operations, you can also use the optional [Terraform Enterprise Provider][tfe-provider], which interacts with the resources supported by Terraform Cloud. It can be useful for editing variables and workspace settings through the Terraform CLI.
+
+~> **Note:** The [Structured Run Output](../workspaces/settings.html#user-interface) user interface will not apply to runs executed using the CLI-driven workflow, regardless of the setting in the Terraform Cloud workspace.
 
 ## Remote Backend Configuration
 
@@ -222,4 +226,4 @@ Do you want to override the soft failed policy check?
 
 ## Options for Plans and Applies
 
-To understand the various options available for plans and applies using the CLI-driven workflow, see [Run Modes and Options](/docs/cloud/run/modes-and-options.html).
+To understand the various options available for plans and applies using the CLI-driven workflow, visit [Run Modes and Options](/docs/cloud/run/modes-and-options.html).

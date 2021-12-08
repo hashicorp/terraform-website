@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Creating Workspaces - Workspaces - Terraform Cloud and Terraform Enterprise"
+description: |-
+  Workspaces organize infrastructure into meaningful groups. Learn how to create and configure workspaces through the UI. 
 ---
 
 # Creating Workspaces
@@ -62,18 +64,19 @@ To create a new workspace:
 
 ## After Creating a Workspace
 
-When you create a new workspace, a few things happen:
+Terraform Cloud presents a dialog with shortcut links to either queue a plan or edit variables. If you don't need to edit variables, [manually queue a run](/docs/cloud/run/ui.html#manually-starting-runs) to prepare your workspace.
 
-- Terraform Cloud doesn't immediately queue a plan for the workspace. Instead, it presents a dialog with shortcut links to either queue a plan or edit variables.
+You may also want to:
 
-    If you don't need to edit variables, confirm that the workspace is ready to run by manually queuing a plan.
+- [Edit input or environment variables](./variables.html): Input variables define the parameters of a Terraform configuration, and shell environment variables store credentials and customize Terraform's behavior.
+- [Edit additional workspace settings](./settings.html): This includes notifications, permissions, and "Run Triggers" to queue runs automatically.
+- [Learn more about running Terraform in your workspace](../run/index.html): You can use the UI, API, or CLI to manage infrastructure.
 
-- If you connected a VCS repository to the workspace, Terraform Cloud automatically registers a webhook with your VCS provider. The next time new commits appear in the selected branch of that repo or a PR is opened to that branch, Terraform Cloud will automatically queue a Terraform plan for the workspace. For more information, see [VCS Connections: Webhooks](../vcs/index.html#webhooks).
+### VCS Connection
+If you connected a VCS repository to the workspace, Terraform Cloud automatically registers a webhook with your VCS provider. A workspace with no runs will not accept new runs from a VCS webhook, so you must [manually queue at least one run](/docs/cloud/run/ui.html#manually-starting-runs).
 
-A workspace with no runs will not accept new runs via VCS webhook; at least one run must be manually queued to confirm that the workspace is ready for further runs.
+After you have manually queued a run, Terraform Cloud will automatically queue a plan for the workspace when new commits appear in the selected branch of the linked repository or someone opens a pull request on that branch. [Learn more about VCS webhooks](../vcs/index.html#webhooks).
 
-Most of the time, you'll want to do one or more of the following after creating a workspace:
 
-- [Edit variables](./variables.html)
-- [Edit additional workspace settings](./settings.html)
-- [Work with runs](../run/index.html)
+
+

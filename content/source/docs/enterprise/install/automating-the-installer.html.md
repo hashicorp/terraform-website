@@ -149,14 +149,19 @@ The following settings apply to every installation:
 - `installation_type` — (Required) One of `poc` or `production`.
 - `enc_password` — (Required) The [password](./encryption-password.html) used to encrypt and decrypt the internally-managed Vault unseal key and root token. Not required only when opting out of internally-managed Vault.
 - `capacity_concurrency` — Number of concurrent plans and applies; defaults to `10`.
+- `capacity_cpus` - The maximum number of CPU cores that a Terraform plan or apply can use on the system; defaults to `0` (unlimited).
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `512`.
 - `enable_metrics_collection` — Whether Terraform Enterprise's [internal metrics collection](../admin/monitoring.html#internal-monitoring) should be enabled; defaults to `true`.
-- `iact_subnet_list` - A comma-separated list of CIDR masks that configure the ability to retrieve the [IACT](./automating-initial-user.html) from outside the host. For example: 10.0.0.0/24. If not set, no subnets can retrieve the IACT.
+- `iact_subnet_list` - A comma-separated list of CIDR masks that configure the ability to retrieve the [IACT](./automating-initial-user.html) from outside the host. For example: "10.0.0.0/24, 10.0.1.0/24". If not set, no subnets can retrieve the IACT.
 - `iact_subnet_time_limit` - The time limit that requests from the subnets listed can request the [IACT](./automating-initial-user.html), as measured from the instance creation in minutes; defaults to 60.
 - `extra_no_proxy` — (Optional) When configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
-- ` restrict_worker_metadata_access` - Prevents the environment where Terraform operations are executed from accessing the cloud instance metadata service. This should not be set when Terraform operations rely on using instance metadata (i.e., the instance IAM profile) as part of the Terraform provider configuration.
+- ` restrict_worker_metadata_access` - Prevents the environment where Terraform operations are executed from accessing the cloud instance metadata service. This should not be set when Terraform operations rely on using instance metadata (i.e., the instance IAM profile) as part of the Terraform provider configuration. *Note: a bug in Docker version [19.03.3](https://docs.docker.com/engine/release-notes/19.03/#known-issues-1) prevents this setting from working correctly. Operators should avoid using this Docker version when enabling this setting.*
 - `hairpin_addressing` - When set, TFE services will direct traffic destined for the installation's FQDN toward the instance's internal IP address. This is useful for cloud environments where HTTP clients running on instances behind a load balancer cannot send requests to the public hostname of that load balancer. Defaults to `false`.
+- `tls_vers` - (Optional) Set to `tls_1_2` to enable only TLS 1.2, or to `tls_1_3` to enable only TLS 1.3. When unset, TFE defaults to both TLS 1.2 and 1.3 (`tls_1_2_tls_1_3`).
+- `tls_ciphers` - (Optional) Set to an OpenSSL [cipher list format](https://www.openssl.org/docs/man1.0.2/man1/ciphers.html) string to enable a custom TLS ciphersuite. When unset, TFE uses a default ciphersuite.
 - `force_tls` - When set, TFE will require all application traffic to use HTTPS by sending a 'Strict-Transport-Security' header value in responses, and marking cookies as secure. A valid, trusted TLS certificate must be installed when this option is set, as browsers will refuse to serve webpages that have an HSTS header set that also serve self-signed or untrusted certificates.
+- `log_forwarding_enabled` - (Optional) Whether or not to enable [log forwarding](../admin/logging.html) for Terraform Enterprise. Set to `1` to enable log forwarding and `0` to disable log forwarding. Defaults to `0`.
+- `log_forwarding_config` - (Optional) Valid [log forwarding](../admin/logging.html) configuration specifying external destination(s) to forward logs.
 - `ca_certs` — (Optional) Custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
   in the data with `\n`. For instance:
 

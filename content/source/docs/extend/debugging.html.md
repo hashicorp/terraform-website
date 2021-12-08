@@ -1,9 +1,9 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Debugging Providers"
+page_title: "Plugin Development - Debugging Providers"
 sidebar_current: "docs-extend-debugging-providers"
 description: |-
-  How to debug providers.
+  How to use both logs and debugging tools to debug Terraform providers.
 ---
 
 # Debugging Providers
@@ -144,7 +144,7 @@ providers. The main differences are:
    to have the debugger work efficiently with the provider binary.
    To do so, build the provider binary with the necessary
    [Go compiler flags (gcflags)](https://golang.org/cmd/compile/):
-   `go build gcflags="all=-N -l"`
+   `go build -gcflags="all=-N -l"`
    
 ### Starting A Provider In Debug Mode
 

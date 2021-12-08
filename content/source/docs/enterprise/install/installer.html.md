@@ -152,6 +152,20 @@ As of version 201902-01, TLS versions 1.0 and 1.1 are no longer supported in Ter
 
 ![Terraform Enterprise TLS Versions User Interface](./assets/tls-versions.png)
 
+#### TLS Ciphersuites
+
+Terraform Enterprise uses a standard set of ciphersuites by default. If necessary, a custom ciphersuite can be provided:
+
+![Terraform Enterprise TLS Ciphersuite User Interface](./assets/tls-ciphers.png)
+
+(This value must be defined in the OpenSSL [cipher list format](https://www.openssl.org/docs/man1.0.2/man1/ciphers.html).)
+
+#### Force TLS with HSTS
+
+Terraform Enterpise may be configured to force TLS via the enabling of HTTP Strict Transport Security:
+
+![Terraform Enterprise TLS HSTS User Interface](./assets/tls-hsts.png)
+
 ## Alternative Terraform worker image
 
 TFE runs `terraform plan` and `terraform apply` operations in a disposable Docker containers. There are cases where runs may make frequent use of additional tools that are not available in the default Docker image. To allow use of these tools for any plan or apply, users can build their own image and configure TFE to use that instead. In order for this to happen the name of the alternative docker image must be set in the config by using the `Custom image tag` field as shown below:
@@ -159,18 +173,23 @@ TFE runs `terraform plan` and `terraform apply` operations in a disposable Docke
 ![Terraform Enterprise docker image](./assets/tfe-docker-image.png)
 
 ### Requirements
- - The base image must be `ubuntu:bionic`.
- - The image must exist on the Terraform Enterprise host. It can be added by running `docker pull` from a local registry or any other similar method.
- - All necessary PEM-encoded CA certificates must be placed within the `/usr/local/share/ca-certificates` directory. Each file added to this directory must end with the `.crt` extension. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
- - Terraform must not be installed on the image. Terraform Enterprise will take care of that at runtime.
 
-This is a sample `Dockerfile` you can use to start building your own image:
+- The base image must be `ubuntu:bionic` or an [offical RHEL7 image](https://catalog.redhat.com/software/containers/search?p=1&vendor_name=Red%20Hat%2C%20Inc.&rows=60&product_listings_names=Red%20Hat%20Universal%20Base%20Image%207|Red%20Hat%20Enterprise%20Linux%207&build_categories_list=Base%20Image)
+  (e.g., `registry.access.redhat.com/ubi7/ubi-minimal`).
+- The image must exist on the Terraform Enterprise host. You can add it by running `docker pull` from a local registry or any other similar method.
+- The software packages defined in the examples below must be installed on the image.
+- All necessary PEM-encoded CA certificates must be placed within the `/usr/local/share/ca-certificates` directory. Each file added to this directory must end with the `.crt` extension. The CA certificates configured in the [CA Bundle settings](#certificate-authority-ca-bundle) will not be automatically added to this image at runtime.
+- Terraform must not be installed on the image. Terraform Enterprise installs Terraform at runtime.
+
+Below are several example `Dockerfile` definitions you can use to start building your own image:
+
+#### Ubuntu
 
 ```
 # This Dockerfile builds the image used for the worker containers.
 FROM ubuntu:bionic
 
-# Install software used by Terraform Enterprise.
+# Install required software for Terraform Enterprise.
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     sudo unzip daemontools git-core awscli ssh wget curl psmisc iproute2 openssh-client redis-tools netcat-openbsd ca-certificates
 
@@ -180,6 +199,32 @@ ADD example-intermediate-ca.crt /usr/local/share/ca-certificates/
 
 # Update the CA certificates bundle to include newly added CA certificates.
 RUN update-ca-certificates
+```
+
+#### RHEL 7
+
+In addition to the packages that yum installs, curl installs the envdir tool Python port because it is a dependency of the Terraform Build Worker service. If the envdir tool is not installed on the alternative worker image, Terraform runs will fail within Terraform Enterprise.
+
+```docker
+FROM registry.access.redhat.com/ubi7/ubi-minimal:7.9-503
+
+# Update installed packages and clear cache
+RUN microdnf --assumeyes update && rm --recursive --force /var/cache/yum
+
+# Include all necessary CA certificates.
+ADD example-root-ca.crt /usr/share/pki/ca-trust-source/anchors
+ADD example-intermediate-ca.crt /usr/share/pki/ca-trust-source/anchors
+
+# Update the CA certificates bundle to include newly added CA certificates.
+RUN update-ca-trust
+
+# Install required software for Terraform Enterprise.
+RUN microdnf --assumeyes install \
+  unzip sudo git openssh wget curl psmisc iproute nmap-ncat openssl && \
+  microdnf clean all && \
+  curl --location --output /usr/local/bin/envdir \
+  https://github.com/jezdez/envdir/releases/download/0.7/envdir-0.7.pyz && \
+  chmod +x /usr/local/bin/envdir
 ```
 
 ### Executing Custom Scripts

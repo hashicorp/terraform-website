@@ -30,7 +30,7 @@ The Workspaces Admin API contains endpoints to help site administrators manage w
 
 ## List all workspaces
 
-`GET /admin/workspaces`
+`GET /api/v2/admin/workspaces`
 
 This endpoint lists all workspaces in the Terraform Enterprise installation.
 
@@ -42,7 +42,7 @@ Status  | Response                                     | Reason
 
 ### Query Parameters
 
-[These are standard URL query parameters](../index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](../index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 Parameter                     | Description
 ------------------------------|------------
@@ -142,9 +142,9 @@ curl \
 
 ## Show a workspace
 
-`GET /admin/workspaces/:id`
+`GET /api/v2/admin/workspaces/:id`
 
-This endpoint lists all workspaces in the Terraform Enterprise installation.
+This endpoint returns the workspace with the specified `workspace_id`.
 
 Status  | Response                                     | Reason
 --------|----------------------------------------------|----------

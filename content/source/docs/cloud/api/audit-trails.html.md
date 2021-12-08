@@ -22,13 +22,9 @@ page_title: "Audit Trails - API Docs - Terraform Cloud"
 
 # Audit Trails API
 
--> **Note:** Audit trails are a paid feature, available as part of the **Terraform Cloud for Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+Terraform Cloud retains 14 days of audit log information. The audit trails API exposes a stream of audit events, which describe changes to the application entities (workspaces, runs, etc.) that belong to a Terraform Cloud organization. Audit trails are a paid feature that is available as part of the **Terraform Cloud for Business** upgrade package. Refer to the [Terraform Cloud pricing page](https://www.hashicorp.com/products/terraform/pricing) for more details. Unlike other APIs, the Audit Trails API does not use the [JSON API specification](./index.html#json-api-formatting).
 
--> **Note:** Unlike other APIs, the Audit Trails API does not use the [JSON API specification](./index.html#json-api-formatting).
-
--> **Note:** Terraform Cloud retains 14 days of audit log information.
-
-The audit trails API exposes a stream of audit events, which describe changes to the application entities (workspaces, runs, etc.) that belong to a Terraform Cloud organization.
+-> **Note:** The Audit Trails API is not available for Terraform Enterprise.
 
 ## List an organization's audit events
 
@@ -38,7 +34,7 @@ The audit trails API exposes a stream of audit events, which describe changes to
 
 ### Query Parameters
 
-[These are standard URL query parameters](./index.html#query-parameters); remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+[These are standard URL query parameters](./index.html#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 | Parameter | Description                                                                                                                                                                      |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

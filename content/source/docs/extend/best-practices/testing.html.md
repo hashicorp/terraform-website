@@ -1,11 +1,10 @@
 ---
 layout: "extend"
-page_title: "Extending Terraform: Testing Patterns"
+page_title: "Plugin Development - Testing Patterns"
 sidebar_current: "docs-extend-best-practices-testing"
 description: |-
-  Testing Patterns covers essential acceptance test patterns 
-  to implement for Terraform resources. 
-  
+  Testing Patterns covers essential acceptance test patterns to implement for
+  Terraform resources. 
 ---
 
 # Testing Patterns
@@ -100,7 +99,7 @@ func TestAccExampleWidget_basic(t *testing.T) {
 	// generate a random name for each widget test run, to avoid
 	// collisions from multiple concurrent tests.
 	// the acctest package includes many helpers such as RandStringFromCharSet
-	// See https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/helper/acctest
+	// See https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/acctest
 	rName := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
 
 	resource.Test(t, resource.TestCase{
@@ -380,9 +379,8 @@ for safely managing infrastructure.
 [3]: /docs/extend/testing/acceptance-tests/testcase.html#precheck
 [4]: /docs/extend/testing/acceptance-tests/testcase.html#checkdestroy
 [5]: /docs/extend/testing/acceptance-tests/teststep.html
-[6]: https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L318-L320
-[7]: https://github.com/hashicorp/terraform-plugin-sdk/blob/9f0df37a8fdb2627ae32db6ceaf7f036d89b6768/helper/resource/testing.go#L322-L325
+[6]: https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep.ExpectNonEmptyPlan
+[7]: https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep.ExpectError
 [8]: /docs/extend/testing/acceptance-tests/teststep.html#check-functions
 [9]: /docs/extend/testing/acceptance-tests/teststep.html#builtin-check-functions
-
 

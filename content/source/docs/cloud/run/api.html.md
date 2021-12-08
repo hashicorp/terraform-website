@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "API-driven Runs - Runs - Terraform Cloud and Terraform Enterprise"
+description: |-
+  External tools communicate with Terraform Cloud to upload configurations and trigger runs.
 ---
 
 # The API-driven Run Workflow
@@ -27,7 +29,7 @@ The most significant difference in this workflow is that Terraform Cloud _does n
 
 Pushing a new configuration to an existing workspace is a multi-step process. This section walks through each step in detail, using an example bash script to illustrate.
 
-Creating new configuration versions requires permission to queue plans for the workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
+You need apply runs permission to create new configuration versions for the workspace. Refer to the [permissions](../users-teams-organizations/permissions.html#general-workspace-permissions) documentation for more details.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -57,7 +59,8 @@ WORKSPACE_NAME="$(cut -d'/' -f2 <<<"$2")"
 
 ### 2. Create the File for Upload
 
-The [configuration version API](../api/configuration-versions.html) requires an uploaded `tar.gz` file to use the configuration version for a run, so you must package the directory containing the Terraform configuration into a `tar.gz` file.
+
+The [configuration version API](../api/configuration-versions.html) requires a `tar.gz` file to use the configuration version for a run, so you must package the directory containing the Terraform configuration into a `tar.gz` file.
 
 ~> **Important:** The configuration directory must be the root of the tar file, with no intermediate directories. In other words, when the tar file is extracted the result must be paths like `./main.tf` rather than `./terraform-appserver/main.tf`.
 

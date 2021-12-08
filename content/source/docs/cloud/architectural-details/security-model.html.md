@@ -1,6 +1,8 @@
 ---
 layout: "cloud"
 page_title: "Security Model - Terraform Cloud"
+description: |-
+  Learn the authorization model, potential security threats, and our recommendations for securely using Terraform Cloud.
 ---
 # Terraform Cloud Security Model
 
@@ -12,7 +14,7 @@ This document explains the security model of Terraform Cloud and the security co
 
 ### Workspaces and Teams
 
-Terraform Cloud organizes infrastructure with workspaces. Workspaces represent a logical security boundary within the organization. Variables, state, SSH keys, and log output are local to a workspace. You can grant teams [read, plan, write, admin, or a customized set of permissions](../users-teams-organizations/permissions.html) within a workspace. 
+Terraform Cloud organizes infrastructure with workspaces. Workspaces represent a logical security boundary within the organization. Variables, state, SSH keys, and log output are local to a workspace. You can grant teams [read, plan, write, admin, or a customized set of permissions](../users-teams-organizations/permissions.html) within a workspace.
 
 ### Terraform Runs - Plans and Applies
 
@@ -54,7 +56,7 @@ You can grant teams [read, plan, write, admin, or a customized set of permission
 By default, Teams with read privileges within a workspace can view the workspace's state. You can remove this access by using [customized workspace permissions](../users-teams-organizations/permissions.html#custom-workspace-permissions); however, this will only apply to state file access through the API or UI. Terraform must access the state file in order to perform plan and apply operations, so any user with the ability to upload Terraform configurations and initiate runs will transitively have access to the workspaces' state.
 
 State may be shared across workspaces via the [remote state access workspace setting](../workspaces/state.html#accessing-state-from-other-workspaces).
- 
+
 Terraform configuration files in connected VCS repositories are inherently trusted. Commits to connected repositories will automatically queue a plan within the corresponding workspace. Pull requests to connected repositories will initiate a speculative plan, though this behavior may be disabled via the [speculative plan setting](../workspaces/vcs.html#automatic-speculative-plans) on the workspace settings page. Terraform Cloud has no knowledge of your VCS's authorization controls and does not associate Terraform Cloud user accounts with VCS user accounts — the two should be considered separate identities.
 
 ## Threat Model
@@ -97,7 +99,7 @@ Terraform providers and modules used in your Terraform configuration will have f
 
 ### Malicious Bypasses of Sentinel Policies
 
-[Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code framework integrated with the HashiCorp Enterprise products. You can create Sentinel policies to ensure the infrastructure provisioned by Terraform is compliant with a set of policies defined by your organization. 
+[Sentinel](https://www.hashicorp.com/sentinel) is an embedded policy-as-code framework integrated with the HashiCorp Enterprise products. You can create Sentinel policies to ensure the infrastructure provisioned by Terraform is compliant with a set of policies defined by your organization.
 
 Sentinel aims to prevent well-intentioned operators from writing configurations that violate organizational policies or best practices. It is not intended to be used as a security boundary that prevents malicious actors from executing malicious Terraform configuration, or modifying Terraform-provisioned infrastructure. Think of Sentinel as guard rails, not a locked door.
 
@@ -135,7 +137,7 @@ Vault users can leverage the [Terraform Cloud Secret backend](https://www.vaultp
 ### Control Access to Source Code
 
 By default, commits and pull requests to connected VCS repositories will automatically trigger a plan operation in a Terraform Cloud workspace. Terraform Cloud cannot protect against malicious code in linked repositories, so you should take care to only grant trusted operators access to these repositories.
-Workspaces may be configured to [enable or disable speculative plans for pull requests](../workspaces/vcs.html#automatic-speculative-plans) to linked repositories. You should disable this setting if you allow untrusted users to open pull requests in connected VCS repositories. 
+Workspaces may be configured to [enable or disable speculative plans for pull requests](../workspaces/vcs.html#automatic-speculative-plans) to linked repositories. You should disable this setting if you allow untrusted users to open pull requests in connected VCS repositories.
 
 -> **Note:** Terraform Cloud will not automatically trigger plans for pull requests from forked repositories.
 
