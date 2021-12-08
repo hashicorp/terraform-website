@@ -2,7 +2,7 @@
 layout: "enterprise"
 page_title: "Reference Architectures - Terraform Enterprise"
 description: |-
-  Links to Terraform Enterprise reference architectures for AWS, Azure, Google Cloud Platform, and VMWare.
+  Links to Terraform Enterprise reference architectures for AWS, Azure, Google Cloud Platform, and VMware.
 ---
 
 # Terraform Enterprise Reference Architectures

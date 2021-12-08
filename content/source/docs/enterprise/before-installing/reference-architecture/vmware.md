@@ -64,7 +64,7 @@ the internal database or Vault may result in serious performance issues.
 | Minimum | 2           | 4             | 16 GB RAM | 40GB |
 | Scaled  | 2           | 8             | 32 GB RAM | 40GB |
 
--> **Note:** Per VMWare’s recommendation, always allocate the least amount of CPU necessary. HashiCorp recommends starting with 4 CPUs and increasing if necessary.
+-> **Note:** Per VMware’s recommendation, always allocate the least amount of vCPUs and cores necessary and scale the resources based on application demand. HashiCorp recommends starting with 4 CPUs and increasing if necessary.
 
 #### Hardware Sizing Considerations
 
@@ -82,7 +82,7 @@ the internal database or Vault may result in serious performance issues.
 
 #### Network
 
-To deploy Terraform Enterprise on VMWare you will need to create new or use existing networking
+To deploy Terraform Enterprise on VMware you will need to create new or use existing networking
 infrastructure that has access to any infrastructure you expect to
 manage with the Terraform Enterprise server. If you plan to use your Terraform Enterprise server to manage or
 deploy infrastructure on external providers (eg Amazon Web Services, Microsoft Azure or Google Cloud), you will need to make sure the Terraform Enterprise server has unimpeded access to those providers. The same goes for any other public or private datacenter the server will need to
@@ -127,13 +127,13 @@ For more information about Terraform Enterprise's disk requirements, see [Before
 
 The Active/Active mode provides a higher level of availability and failover as well as horizontal scaling. It requires additional external services, and all of the requirements and instructions are available on the [Terraform Enterprise Active/Active page](../../install/active-active.html). 
 
-We have tested Active/Active on VMWare internally on ESX version 7.0.1 and vCenter Server Appliance version 7.0.2.00200, but should work on any version supported by the [vSphere Provider for Terraform](https://github.com/hashicorp/terraform-provider-vsphere).
+We have tested Active/Active on VMware vSphere internally, with ESXi version 7.0.1 and vCenter Server version 7.0.2.00200, but should work on any version supported by the [vSphere Provider for Terraform](https://github.com/hashicorp/terraform-provider-vsphere).
 
 We recommend a setup with the following:
 
 - A load balancer to route traffic to both Terraform Enterprise virtual machines. 
-- Both virtual machines located in the same physical datacenter and on the same network. High amounts of network latency between the Terraform Enterprise virtual machines and the external services may result in plan and apply slowness and errors. 
-- High-speed disks, as they are are [critical for good performance](../../system-overview/capacity.html). 
+- Both virtual machines located in the same physical datacenter and on the same network. High network latency between the Terraform Enterprise virtual machines and the external services may result in plan and apply issues. 
+- High-speed disks, as they are [critical for good performance](../../system-overview/capacity.html). 
 - Both Terraform Enterprise virtual machines can access an external Redis server, a PostgreSQL database, and an S3-compatible blob storage bucket. Terraform Enterprise will use an internal Vault server by default. Optionally, you can configure Terraform Enterprise to use an [existing Vault cluster](../vault.html).  
 
 An example of a recommended setup:
@@ -179,12 +179,12 @@ See [the Upgrades section](../../admin/upgrades.html) of the documentation. For 
 
 ### Failure Scenarios
 
-VMWare hypervisor provides a high level of resilience in various cases
-of failure (at the server hardware layer through vMotion and at the network layer through virtual distributed
-networking.) In addition, having ESXi failover to a DR datacenter
-provides recovery in the case of a total data center outage See the Disaster Recovery section.
+VMware vSphere provides a high level of resilience in various cases
+of failure, such as at the server hardware layer through vSphere High Availability (HA) and at the network layer through virtual distributed
+switching. In addition, employing tools such as VMware Site Recovery Manager or utilizing stretched clusters
+can assist in recovery in the case of a total data center to support failover to a DR datacenter. See the Disaster Recovery section.
 
-Additional failover can be provide by the Active/Active installation mode.
+The Active/Active deployment method can provide additional failover.
 
 #### Terraform Enterprise Servers (VMware Virtual Machine)
 
@@ -192,11 +192,12 @@ Should the *TFE-main* server fail, it can
 be recovered, or traffic can be routed to the *TFE-standby* server to
 resume service when the failure is limited to the Terraform Enterprise server layer. See the Disaster Recovery section.
 
-#### Single ESXi Server Failure
+#### Single ESXi Host Failure
 
-In the event of a single ESXi server failure, ESXi will vMotion the Terraform Enterprise virtual
-machine to a functioning ESXi host. This typically does not result in any
-visible outage to the end-user if VM Fault Tolerance has been configured. As with all applications, you may see a small interruption while the VM boots on the new host if Fault Tolerance is not configured.
+In the event of a single ESXi host failure, vSphere HA will restart the Terraform Enterprise virtual
+machine to a functioning ESXi host in the cluster. This restart can take up to 30 seconds for the failed virtual machine to come back online on a healthy host within the cluster.
+
+If VMware vSphere Fault Tolerance (FT) has been configured for the TFE server, the failover does not result in any visiable outage to the end user.
 
 #### PostgreSQL Database
 
