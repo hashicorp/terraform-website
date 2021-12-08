@@ -3,7 +3,7 @@ layout: terraform-glossary
 page_title: "Terraform Glossary"
 sidebar_current: "terraform-glossary"
 description: |-
-  Definitions for technical terms related to Terraform core, Terraform CLI, Terraform Cloud, and Terraform Enterprise. 
+  Definitions for technical terms related to Terraform core, Terraform CLI, Terraform Cloud, and Terraform Enterprise.
 ---
 
 # Glossary
@@ -675,7 +675,7 @@ The ability to start a [run][] (or perform a few other tasks) from your local [C
 
 Terraform Cloud performs Terraform runs in its own disposable VMs, where it can capture information, control access to secrets, etc., but many users are accustomed to running Terraform on their local machines. Remote operations exist to help split the difference.
 
-- [Terraform docs: Backends — Operations](/docs/language/settings/backends/index.html#operations)
+- [Terraform Cloud Docs: Terraform Runs and Remote Operations](/docs/cloud/run/index.html#remote-operations)
 
 ## Remote Backend
 
