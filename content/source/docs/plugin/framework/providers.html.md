@@ -110,3 +110,7 @@ in the configuration, including the provider prefix.
 
 The list of data sources is meant to be immutable. It should not change at
 runtime, and should consistently return the same values.
+
+## Further Provider Capabilities
+
+- [Validation](./validation.html) helps practitioners understand the required syntax, types, and acceptable values for your provider.

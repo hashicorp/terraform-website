@@ -95,3 +95,7 @@ func (p *provider) GetDataSources(_ context.Context) (map[string]tfsdk.DataSourc
 	}, nil
 }
 ```
+
+## Further Data Source Capabilities
+
+- [Validation](./validation.html) helps practitioners understand the required syntax, types, and acceptable values for your data source.
