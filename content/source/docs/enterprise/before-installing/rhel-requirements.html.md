@@ -28,17 +28,6 @@ sudo yum downgrade docker-1.13.1-72.git6f36bd4el7.x86_64 docker-client-1.13.1-72
 
 Afterwards, restart the Docker service and verify the newly installed version using `docker version`.
 
-## Mandatory Configuration
-
-If you opt to use Docker 1.13.1 from RHEL extras, then you must make a change to its default configuration to avoid hitting an out of memory bug.
-
-1. Open `/usr/lib/systemd/system/docker.service`.
-1. Remove the line that contains `--authorization-plugin=rhel-push-plugin`.
-1. Run `systemctl daemon-reload && systemctl restart docker`.
-1. Run `docker info 2> /dev/null | grep Authorization` to verify that there are no authorization plugins active.
-   If nothing is printed, your installation is properly configured. If anything is printed, please
-   contact support for further assistance.
-
 ## FAQ
 
 ### Can I use the Docker version in the RHEL Extras repository?
