@@ -7,7 +7,7 @@ description: "Configure Terraform input variables and environment variables and 
 
 # Managing Variables
 
-You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. Refer to the [variables overview](/docs/cloud/workspaces/variables.html) documentation for more information about variable types, scope, and precedence.
+You can set variables specifically for each workspace or you can create variable sets to reuse the same variables across multiple workspaces. Refer to the [variables overview](/docs/cloud/workspaces/variables.html) documentation for more information about variable types, scope, and precedence. You can also set variable values specifically for each run on the command line.
 
 ~> **Note:** Variable sets are in beta.
 
@@ -20,6 +20,21 @@ Once you have the proper [read and write variables permissions](/docs/cloud/user
 - The Terraform Cloud UI, as detailed below.
 - The Variables API for [workspace-specific variables](/docs/cloud/api/workspace-variables.html) and [variable sets](/docs/cloud/api/variable-sets.html).
 - The `tfe` provider's [`tfe_variable`](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) resource, which can be more convenient for bulk management.
+
+## Run-Specific Variables
+
+Terraform 1.1 and later lets you set [Terraform variable](/docs/cloud/workspaces/variables.html#terraform-variables) values for a particular plan or apply on the command line. These variable values will overwrite workspace-specific and variable set variables with the same key. Refer to the [variable precedence](/docs/cloud/workspaces/variables.html#precedence) documentation for more details.
+
+You can set run-specific Terraform variable values by:
+
+- Specifying `-var` and `-var-file` arguments. For example:
+
+    ```
+    terraform apply -var="key=value" -var-file="testing.tfvars"
+    ```
+- Creating local environment variables prefixed with `TF_VAR_`. For example, if you declare a variable called `replicas` in your configuration, you could create a local environment variable called `TF_VAR_replicas` and set it to a particular value. When you use the [CLI Workflow](/docs/cloud/run/cli.html), Terraform automatically identifies these environment variables and applies their values to the run.
+
+Refer to the [variables on the command line](/docs/language/values/variables.html#variables-on-the-command-line) documentation for more details and examples.
 
 ## Workspace-Specific Variables
 
@@ -60,6 +75,15 @@ To delete a variable:
 
 1. Click the ellipses next to the variable you want to delete and select **Delete**.
 1. Click **Yes, delete variable** to confirm your action.
+
+## Loading Variables from Files
+
+You can set [Terraform variable](/docs/cloud/workspaces/variables.html#terraform-variables) values by providing any number of [files ending in `.auto.tfvars`](/docs/language/values/variables.html#variable-files) to workspaces that use Terraform 0.10.0 or later. When you trigger a run, Terraform automatically loads and uses the variables defined in these files. If any variable from the workspace has the same key as a variable in the file, the workspace variable overwrites variable from the file.
+
+You can only do this with files ending in `auto.tfvars`; Terraform Cloud does not automatically load variables from `terraform.tfvars`. You can only apply other types of `.tfvars` files [on the command line](#run-specific-variables) for each run.
+
+~> **Note:** Terraform Cloud loads variables from files ending in `auto.tfvars` for each Terraform run, but does not automatically persist those variables to the Terraform Cloud workspace or display them in the **Variables** section of the workspace UI.
+
 
 ## Variable Sets
 
@@ -108,7 +132,7 @@ To edit or remove a variable set:
 
 ### Delete Variable Sets
 
-Deleting a variable set can be a disruptive action, especially if the variables are required to execute runs. We recommend informing organization and workspace owners before removing a variable set.  
+Deleting a variable set can be a disruptive action, especially if the variables are required to execute runs. We recommend informing organization and workspace owners before removing a variable set.
 
 To delete a variable set:
 
