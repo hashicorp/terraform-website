@@ -49,4 +49,3 @@ Terraform bundle with pre-existing provider binaries do not need access to these
 
 * **Agent Version Compatibility**: TFE places restrictions on what versions of Terraform Cloud Agents can be registered. This is to prevent an incompatible agent from registering with a TFE instance and attempting to execute a Terraform operation in an undefined way. Compatible versions of Terraform Cloud Agents on TFE will vary based on the specific TFE release sequence; any changes to compatible Terraform Cloud Agents versions will be noted in the [TFE release notes](https://github.com/hashicorp/terraform-enterprise-release-notes).
 
--> **Note:** TFE is currently compatible with Terraform Cloud agents versions `0.4.2` and lower.
