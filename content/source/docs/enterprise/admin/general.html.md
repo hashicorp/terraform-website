@@ -13,6 +13,16 @@ General settings control global behavior in Terraform Enterprise. To access gene
 
 -> **API:** See the [Admin Settings API](/docs/cloud/api/admin/settings.html).
 
+## Require Site Admins to Enable Two-factor Authentication
+
+-> **Note**: You can use this setting in conjunction with SAML for Terraform Enterprise v202201-1 or later. For prior versions, this setting has no effect if SAML is also enabled.
+
+This setting can make the site more secure by requiring that admins enable two-factor authentication to access site admin functionality.
+
+Admins that do not have two-factor authentication enabled may still log in, but will be unable to perform any admin-only functions until they enable and verify two-factor authentication.
+
+You can use this setting in conjunction with [SAML Single Sign On](https://www.terraform.io/docs/enterprise/saml/index.html).
+
 ## Contact Info
 
 The support email address is used in system emails and other contact details. It defaults to support@hashicorp.com. If you'd like  users of your instance to reach out to a specific person or team when they have issues, it can be changed to a local email address.
