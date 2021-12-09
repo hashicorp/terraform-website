@@ -69,6 +69,19 @@ A run performs a plan and apply, using a configuration version and the workspace
 
 Creating a run requires permission to queue plans for the specified workspace. ([More about permissions.](/docs/cloud/users-teams-organizations/permissions.html))
 
+When creating a run, you may optionally provide a list of variable objects containing key and value attributes. These values claim a high priority relative to variables defined at the workspace level. See [Variables Precedence](https://www.terraform.io/docs/cloud/workspaces/variables.html#precedence) section for more information. All values must be expressed as an HCL literal in the same syntax you would use when writing terraform code. See [Terraform types](https://www.terraform.io/docs/language/expressions/types.html#types) for more details.
+
+**Sample Run Variables:**
+
+```
+"attributes": {
+  "variables": [
+    { key: "replicas", value: "2" },
+    { key: "access_key", value: "\"ABCDE12345\"" }
+  ]
+}
+```
+
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
 -> **Note:** This endpoint cannot be accessed with [organization tokens](../users-teams-organizations/api-tokens.html#organization-api-tokens). You must access it with a [user token](../users-teams-organizations/users.html#api-tokens) or [team token](../users-teams-organizations/api-tokens.html#team-api-tokens).
@@ -88,6 +101,7 @@ Key path                                           | Type                | Defau
 `data.attributes.refresh-only`                     | bool                | false                                              | Whether this run should use the refresh-only plan mode, which will refresh the state without modifying any resources. Mutually exclusive with `is-destroy`.
 `data.attributes.replace-addrs`                    | array[string]       | (nothing)                                          | Specifies an optional list of resource addresses to be passed to the `-replace` flag.
 `data.attributes.target-addrs`                     | array[string]       | (nothing)                                          | Specifies an optional list of resource addresses to be passed to the `-target` flag.
+`data.attributes.variables`                        | array[{key, value}] | empty                                              | Specifies an optional list of run-specific variable values. See [Run-Specific Variables](https://www.terraform.io/docs/cloud/workspaces/managing-variables.html#run-specific-variables) in the Terraform Cloud workspaces documentation for more information.
 `data.relationships.workspace.data.id`             | string              | (nothing)                                          | Specifies the workspace ID where the run will be executed.
 `data.relationships.configuration-version.data.id` | string              | (nothing)                                          | Specifies the configuration version to use for this run. If the `configuration-version` object is omitted, the run will be created using the workspace's latest configuration version.
 
@@ -176,7 +190,8 @@ curl \
       },
       "refresh": false,
       "refresh-only": false,
-      "replace-addrs": null
+      "replace-addrs": null,
+      "variables": []
     },
     "relationships": {
       "apply": {...},
