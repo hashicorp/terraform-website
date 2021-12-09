@@ -13,6 +13,10 @@ page_id: "api-changelog"
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
+### 2021-12-09
+
+* Added `variables` field for POST /runs and the run resource, enabling run-specific variable values.
+
 ### 2021-12-03
 
 * OAuth API updated to handle `secret` and `rsa_public_key` fields for POST/PUT.
@@ -24,7 +28,7 @@ Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
     * [Notification Configurations](./notification-configurations.html#list-notification-configurations) - `GET /workspaces/:workspace_id/notification-configurations`
     * [Oauth Clients](./oauth-clients.html#list-oauth-clients) - `GET /organizations/:organization_name/oauth-clients`
     * [Oauth Tokens](./oauth-tokens.html#list-oauth-tokens) - `GET /oauth-clients/:oauth_client_id/oauth-tokens`
-    * [Organization Feature Sets](./feature-sets.html#list-feature-sets-for-organization) - `GET /organizations/:organization_name/feature-sets` 
+    * [Organization Feature Sets](./feature-sets.html#list-feature-sets-for-organization) - `GET /organizations/:organization_name/feature-sets`
     * [Organizations](./organizations.html#list-organizations) - `GET /organizations`
     * [Policy Checks](./policy-checks.html#list-policy-checks) - `GET /runs/:run_id/policy-checks`
     * [Policy Set Parameters](./policy-set-params.html#list-parameters) - `GET /policy-sets/:policy_set_id/parameters`
