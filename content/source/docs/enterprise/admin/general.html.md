@@ -15,13 +15,13 @@ General settings control global behavior in Terraform Enterprise. To access gene
 
 ## Require Site Admins to Enable Two-factor Authentication
 
--> **Note**: This setting can be used in conjunction with SAML in Terraform Enterprise versions v202201-1 or later. Prior to this release, the setting had no effect if SAML was also enabled
+-> **Note**: You can use this setting in conjunction with SAML for Terraform Enterprise v202201-1 or later. For prior versions, this setting has no effect if SAML is also enabled.
 
-Enabling this setting adds the requirement that admins have two-factor authentication enabled to access site admin functionality, which can make the site more secure.
+This setting can make the site more secure by requiring that admins enable two-factor authentication to access site admin functionality.
 
 Admins that do not have two-factor authentication enabled may still log in, but will be unable to perform any admin-only functions until they enable and verify two-factor authentication.
 
-This setting can be used in conjunction with [SAML Single Sign On](https://www.terraform.io/docs/enterprise/saml/index.html).
+You can use this setting in conjunction with [SAML Single Sign On](https://www.terraform.io/docs/enterprise/saml/index.html).
 
 ## Contact Info
 
