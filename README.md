@@ -152,6 +152,7 @@ This file can be standard Markdown and also supports [YAML frontmatter](https://
 title: 'My Title'
 description: "A thorough, yet succinct description of the page's contents"
 ---
+
 ```
 
 The significant keys in the YAML frontmatter are:
@@ -174,7 +175,7 @@ There are several custom markdown plugins that are available by default that enh
 - If you see `# Headline ((#slug))`, this is an example of an [anchor link alias](https://github.com/hashicorp/remark-plugins/tree/je.anchor-link-adjustments/plugins/anchor-links#anchor-link-aliases). It adds an extra permalink to a headline for compatibility and is removed from the output.
 - Due to [automatically generated permalinks](https://github.com/hashicorp/remark-plugins/tree/je.anchor-link-adjustments/plugins/anchor-links#anchor-links), any text changes to _headlines_ or _list items that begin with inline code_ can and will break existing permalinks. Be very cautious when changing either of these two text items.
 
-  Headlines are fairly self-explanitory, but here's an example of how list items that begin with inline code look.
+  Headlines are fairly self-explanatory, but here's an example of how to list items that begin with inline code look.
 
   ```markdown
   - this is a normal list item
@@ -224,7 +225,7 @@ $ curl ...
 </Tab>
 </Tabs>
 
-Contined normal markdown content
+Continued normal markdown content
 ````
 
 The intentionally skipped line is a limitation of the mdx parser which is being actively worked on. All tabs must have a heading, and there is no limit to the number of tabs, though it is recommended to go for a maximum of three or four.
@@ -478,7 +479,7 @@ This configuration would display something like the following text on the websit
 A {{ release candidate }} for <Product> {{ v1.0.0 }} is available! The release can be <a href='https://releases.hashicorp.com/<product>/{{ 1.0.0-rc1 }}'>downloaded here</a>.
 ```
 
-You may customize the parameters in any way you'd like. To remove a prerelease from the website, simply delete the `prerelease` paremeter from the above component.
+You may customize the parameters in any way you'd like. To remove a prerelease from the website, simply delete the `prerelease` parameter from the above component.
 
 <!-- END: releases -->
 
@@ -522,7 +523,7 @@ One more example - let's say that content is being moved to an external website.
 }
 ```
 
-If we no longer want the link to be in the side nav, we can simply remove it. If we do still want the link in the side nav, but pointing to an external destnation, we need to slightly change the structure as such:
+If we no longer want the link to be in the side nav, we can simply remove it. If we do still want the link in the side nav, but pointing to an external destination, we need to slightly change the structure as such:
 
 ```js
 {
