@@ -84,13 +84,9 @@ Instead of cherry-picking your commits to a specific version branch, you can add
 
 ### Deployment
 
-Currently, HashiCorp uses a CircleCI job to deploy the [terraform.io](terraform.io) site. Many people within HashiCorp can run this job manually, and it also runs automatically whenever a user in the HashiCorp GitHub org merges changes to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
+Currently, HashiCorp uses Vercel to deploy the [terraform.io](terraform.io) site whenever changes are merged in to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
 
-New commits in `hashicorp/terraform` don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can trigger a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
-
-- Log in to circleci.com, and make sure you're viewing the HashiCorp organization.
-- Go to the terraform-website project's list of workflows.
-- Find the most recent "website-deploy" workflow, and click the "Rerun workflow from start" button (which looks like a refresh button with a numeral "1" inside).
+New commits in `hashicorp/terraform` and `hashicorp/terraform-cdk` don't automatically deploy the site. To use the latest upstream content, you'll need to open a PR bumping the submodule commit.
 
 <!-- BEGIN: local-development -->
 <!-- Generated text, do not edit directly -->
@@ -137,9 +133,6 @@ If a submodule shows up as "changed" in `git status` but you haven't done anythi
 In order for `terraform-website` to pull the latest content from its submodules, the submodules need to be updated to their latest versions. This can be achieved by running `git submodule update`, which will cause the submodule to show as a changed file in `git status`. You should commit this change as part of your branch so that your PR can generate a preview using the expected commit from the upstream repo. The website will only ever show the content from the committed submodule, so if your upstream changes aren't being deployed, it's likely that you need to bump the submodule to the latest commit.
 
 Avoid running `git rm` on a submodule unless you know what you're doing. You usually want `git submodule deinit` instead.
-
-<!-- BEGIN: editing-markdown -->
-<!-- Generated text, do not edit directly -->
 
 ## Editing Markdown Content
 
@@ -196,7 +189,7 @@ There are several custom markdown plugins that are available by default that enh
 
 ### Custom Components
 
-A number of custom [mdx components](https://mdxjs.com/) are available for use within any `.mdx` file. Each one is documented below:
+A number of custom [mdx components](https://mdxjs.com/) are available for use within any `.mdx` file. However, these components should be used sparingly, and only where their use is obvious and clear. If you're unsure, please provide a rationale in your PR explaining why you feel your usage of the component is necessary.
 
 #### Tabs
 
@@ -314,8 +307,6 @@ $ terraform apply
 $ terraform apply
 ```
 ````
-
-<!-- END: editing-markdown -->
 
 <!-- BEGIN: editing-docs-sidebars -->
 <!-- Generated text, do not edit directly -->
