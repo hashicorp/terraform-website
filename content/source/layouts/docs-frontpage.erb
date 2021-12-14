@@ -1,9 +1,0 @@
-<% wrap_layout :inner do %>
-  <% content_for :sidebar do %>
-
-    <%= partial("layouts/otherdocs", locals: { header: "Terraform Docs" }) %>
-
-  <% end %>
-
-  <%= yield %>
-<% end %>

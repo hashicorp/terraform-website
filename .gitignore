@@ -1,8 +1,0 @@
-.vagrant
-.bundle
-build
-node_modules
-vendor
-.idea*
-*.DS_Store
-.vscode/
