@@ -1,0 +1,6 @@
+[submodule "ext/terraform"]
+	path = ext/terraform
+	url = https://github.com/hashicorp/terraform
+[submodule "ext/terraform-cdk"]
+	path = ext/terraform-cdk
+	url = https://github.com/hashicorp/terraform-cdk

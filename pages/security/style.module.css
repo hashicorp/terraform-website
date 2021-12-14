@@ -1,0 +1,11 @@
+.security {
+  composes: g-grid-container from global;
+  --brand: var(--terraform);
+
+  max-width: 848px;
+  margin: 72px auto;
+
+  & h1 {
+    text-align: center;
+  }
+}

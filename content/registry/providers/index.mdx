@@ -1,0 +1,33 @@
+---
+page_title: Terraform Registry - Providers Overview
+description: >-
+  The Terraform Registry is the main source for publicly available providers,
+  plugins that allow Terraform to interact with APIs.
+---
+
+# Overview
+
+Providers are how Terraform integrates with any upstream API.
+
+The Terraform Registry is the main source for publicly available Terraform providers. It offers a browsable and searchable interface for finding providers, and makes it possible for Terraform CLI to automatically install any of the providers it hosts.
+
+If you want Terraform to support a new infrastructure service, you can create your own provider using Terraform's Go SDK. Once you've developed a provider, you can use the Registry to share it with the rest of the community.
+
+## Using Providers From the Registry
+
+The Registry is directly integrated with Terraform. To use any provider from the Registry, all you need to do is require it within your Terraform configuration; Terraform can then automatically install that provider when initializing a working directory, and your configuration can take advantage of any resources implemented by that provider.
+
+For more information, see:
+
+- [Configuration Language: Provider Requirements](/language/providers/requirements)
+
+## Provider Tiers & Namespaces
+
+Terraform providers are published and maintained by a variety of sources, including HashiCorp, HashiCorp Technology Partners, and the Terraform community. The Registry uses tiers and badges to denote the source of a provider. Additionally, namespaces are used to help users identify the organization or publisher responsible for the integration, as shown in the table below.
+
+<ProviderTable />
+<p></p>
+
+## Verified Provider Development Program
+
+If your organization is interested in joining our Provider Development Program (which sets the standards for publishing providers and modules with a `Verified` badge), please take a look at our [Program Details](/docs/partnerships) for further information.

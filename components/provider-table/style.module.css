@@ -1,0 +1,29 @@
+.providerTable {
+  border: 0;
+  border-collapse: 'collapse';
+  width: 100%;
+
+  & tr {
+    height: 21px;
+
+    & td {
+      height: 21px;
+
+      &:nth-child(1) {
+        width: 12.4839%;
+      }
+
+      &:nth-child(2) {
+        width: 55.7271%;
+      }
+
+      &:nth-child(3) {
+        width: 31.7889%;
+      }
+    }
+  }
+
+  & span {
+    font-weight: 400;
+  }
+}

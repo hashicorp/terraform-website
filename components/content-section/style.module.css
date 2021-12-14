@@ -1,0 +1,11 @@
+.contentSection {
+  background: none;
+}
+
+.light {
+  background: var(--white);
+}
+
+.gray {
+  background: var(--gray-6);
+}

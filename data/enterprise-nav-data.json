@@ -1,0 +1,321 @@
+[
+  { "heading": "Deployment & Operation" },
+  { "title": "Overview", "path": "" },
+  {
+    "title": "Before Installing",
+    "routes": [
+      {
+        "title": "Pre-Install Checklist",
+        "path": "before-installing"
+      },
+      {
+        "title": "Reference Architectures",
+        "routes": [
+          {
+            "title": "Overview",
+            "path": "before-installing/reference-architecture"
+          },
+          {
+            "title": "AWS Reference Architecture",
+            "path": "before-installing/reference-architecture/aws"
+          },
+          {
+            "title": "Azure Reference Architecture",
+            "path": "before-installing/reference-architecture/azure"
+          },
+          {
+            "title": "GCP Reference Architecture",
+            "path": "before-installing/reference-architecture/gcp"
+          },
+          {
+            "title": "VMware Reference Architecture",
+            "path": "before-installing/reference-architecture/vmware"
+          }
+        ]
+      },
+      {
+        "title": "Data Storage Requirements",
+        "routes": [
+          {
+            "title": "PostgreSQL Requirements",
+            "path": "before-installing/data-storage-requirements/postgres-requirements"
+          },
+          {
+            "title": "Mounted Disk Requirements",
+            "path": "before-installing/data-storage-requirements/disk-requirements"
+          },
+          {
+            "title": "Minio Setup Guide",
+            "path": "before-installing/data-storage-requirements/minio-setup-guide"
+          },
+          {
+            "title": "Externally Managed Vault",
+            "path": "before-installing/data-storage-requirements/vault"
+          }
+        ]
+      },
+      {
+        "title": "Network Requirements",
+        "path": "before-installing/network-requirements"
+      },
+      {
+        "title": "OS-Specific Requirements",
+        "routes": [
+          {
+            "title": "RedHat Linux Requirements",
+            "path": "before-installing/os-specific/rhel-requirements"
+          },
+          {
+            "title": "CentOS Linux Requirements",
+            "path": "before-installing/os-specific/centos-requirements"
+          }
+        ]
+      },
+      {
+        "title": "Clustered Deployment Architecture",
+        "path": "before-installing/cluster-architecture",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "title": "Install and Configure",
+    "routes": [
+      { "title": "Overview", "path": "install" },
+      {
+        "title": "Interactive Install",
+        "routes": [
+          {
+            "title": "1. Run Installer",
+            "path": "install/interactive/installer"
+          },
+          {
+            "title": "2. Configure in Browser",
+            "path": "install/interactive/config"
+          }
+        ]
+      },
+      {
+        "title": "Automated Install",
+        "routes": [
+          {
+            "title": "Automated Installation",
+            "path": "install/automated/automating-the-installer"
+          },
+          {
+            "title": "Active/Active",
+            "path": "install/automated/active-active"
+          },
+          {
+            "title": "Initial User Automation",
+            "path": "install/automated/automating-initial-user"
+          },
+          {
+            "title": "Encryption Password",
+            "path": "install/automated/encryption-password"
+          }
+        ]
+      },
+      { "title": "AWS", "path": "install/cluster-aws", "hidden": true },
+      { "title": "Azure", "path": "install/cluster-azure", "hidden": true },
+      { "title": "Custom", "path": "install/cluster-custom", "hidden": true },
+      { "title": "GCP", "path": "install/cluster-gcp", "hidden": true },
+      {
+        "title": "Uninstall",
+        "path": "install/uninstall"
+      }
+    ]
+  },
+  {
+    "title": "User Management",
+    "routes": [
+      {
+        "title": "SAML SSO",
+        "routes": [
+          {
+            "title": "Overview",
+            "path": "user-management/saml"
+          },
+          {
+            "title": "Configuration",
+            "path": "user-management/saml/configuration"
+          },
+          {
+            "title": "Team Membership",
+            "path": "user-management/saml/team-membership"
+          },
+          {
+            "title": "Attributes",
+            "path": "user-management/saml/attributes"
+          },
+          {
+            "title": "Login",
+            "path": "user-management/saml/login"
+          },
+          {
+            "title": "IdP Configuration",
+            "routes": [
+              {
+                "title": "Overview",
+                "path": "user-management/saml/idp-configuration"
+              },
+              {
+                "title": "ADFS",
+                "path": "user-management/saml/idp-configuration/adfs"
+              },
+              {
+                "title": "Azure Active Directory",
+                "path": "user-management/saml/idp-configuration/aad"
+              },
+              {
+                "title": "Okta",
+                "path": "user-management/saml/idp-configuration/okta"
+              },
+              {
+                "title": "OneLogin",
+                "path": "user-management/saml/idp-configuration/onelogin"
+              }
+            ]
+          },
+          {
+            "title": "Troubleshooting",
+            "path": "user-management/saml/troubleshooting"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Administration",
+    "routes": [
+      { "title": "Overview", "path": "admin" },
+      {
+        "title": "Infrastructure",
+        "routes": [
+          {
+            "title": "Automated Recovery",
+            "path": "admin/infrastructure/automated-recovery"
+          },
+          {
+            "title": "Upgrades",
+            "path": "admin/infrastructure/upgrades"
+          },
+          {
+            "title": "Log Forwarding",
+            "path": "admin/infrastructure/logging"
+          },
+          {
+            "title": "Monitoring",
+            "path": "admin/infrastructure/monitoring"
+          },
+          {
+            "title": "Backups and Restores",
+            "path": "admin/infrastructure/backup-restore"
+          },
+          {
+            "title": "Active/Active",
+            "path": "admin/infrastructure/active-active"
+          },
+          {
+            "title": "Terraform Cloud Agents on TFE",
+            "href": "/enterprise/admin/agents-on-tfe"
+          }
+        ]
+      },
+      {
+        "title": "Terraform Cloud Agents on TFE",
+        "path": "admin/agents-on-tfe",
+        "hidden": true
+      },
+      {
+        "title": "Application",
+        "routes": [
+          {
+            "title": "Accessing the Admin Interface",
+            "path": "admin/application/admin-access"
+          },
+          {
+            "title": "General Settings",
+            "path": "admin/application/general"
+          },
+          {
+            "title": "Customization",
+            "path": "admin/application/customization"
+          },
+          {
+            "title": "Integration Settings",
+            "path": "admin/application/integration"
+          },
+          {
+            "title": "Managing Accounts & Resources",
+            "path": "admin/application/resources"
+          },
+          {
+            "title": "Module Sharing",
+            "path": "admin/application/module-sharing"
+          },
+          {
+            "title": "Admin API",
+            "href": "/cloud-docs/api-docs/admin"
+          },
+          {
+            "title": "Updating Terraform Enterprise License",
+            "path": "admin/application/update-tfe-license"
+          }
+        ]
+      },
+      {
+        "title": "Terraform Enterprise Logs",
+        "path": "admin/logging-old",
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "title": "System Overview",
+    "routes": [
+      { "title": "Overview", "path": "system-overview" },
+      {
+        "title": "Architecture Summary",
+        "path": "system-overview/architecture"
+      },
+      {
+        "title": "Reliability & Availability",
+        "path": "system-overview/reliability-availability"
+      },
+      {
+        "title": "Capacity & Performance",
+        "path": "system-overview/capacity"
+      },
+      {
+        "title": "Security Model",
+        "path": "system-overview/security-model"
+      }
+    ]
+  },
+  {
+    "title": "Release",
+    "routes": [
+      { "title": "Overview", "path": "release" },
+      { "title": "v202112-1 (LATEST)", "path": "release/v202112-1" },
+      { "title": "v202111-1", "path": "release/v202111-1" },
+      { "title": "v202110-1", "path": "release/v202110-1" },
+      { "title": "v202109-1", "path": "release/v202109-1" },
+      { "title": "v202109-2", "path": "release/v202109-2" },
+      { "title": "v202101-1", "path": "release/v202101-1" },
+      { "title": "v202102-1", "path": "release/v202102-1" },
+      { "title": "v202102-2", "path": "release/v202102-2" },
+      { "title": "v202103-1", "path": "release/v202103-1" },
+      { "title": "v202103-2", "path": "release/v202103-2" },
+      { "title": "v202103-3", "path": "release/v202103-3" },
+      { "title": "v202104-1", "path": "release/v202104-1" },
+      { "title": "v202105-1", "path": "release/v202105-1" },
+      { "title": "v202106-1", "path": "release/v202106-1" },
+      { "title": "v202107-1", "path": "release/v202107-1" },
+      { "title": "v202108-1", "path": "release/v202108-1" }
+    ]
+  },
+
+  { "title": "Support", "path": "support" },
+  { "heading": "Application Usage" }
+]

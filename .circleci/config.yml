@@ -1,0 +1,13 @@
+jobs:
+  algolia-index:
+    docker:
+      - image: docker.mirror.hashicorp.services/node:14
+    steps:
+      - checkout
+      - run:
+          name: Push content to Algolia Index
+          command: |
+            # Uncomment the below line when merging this into the main repo
+            # cd website/
+            npm install
+            node scripts/index_search_content.js

@@ -1,0 +1,87 @@
+.terraformHero {
+  background-image: url('/img/hero-bg-l.svg'), url('/img/hero-bg-r.svg');
+  background-position: top left, top right;
+  background-repeat: no-repeat, no-repeat;
+  padding-top: 128px;
+  padding-bottom: 128px;
+
+  @media (--medium-up) {
+    padding-bottom: 278px;
+  }
+
+  @media (width < 1120px) {
+    background-position: 11% 0%, 75% 0%;
+  }
+
+  & :global(.g-hero) {
+    padding: 0;
+    background: none;
+
+    & :global(.headline) {
+      & > h1 {
+        @media (width < 1120px) {
+          background: #ffffffdb;
+        }
+      }
+
+      & > p {
+        @media (width < 1120px) {
+          background: #ffffffdb;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+
+    & :global(.carousel) {
+      display: flex;
+      flex-direction: column-reverse;
+
+      @media (width < 1120px) {
+        flex-direction: column;
+      }
+
+      & :global(.controls) {
+        margin-bottom: 32px;
+      }
+    }
+  }
+}
+
+.contentContainer {
+  composes: g-grid-container from global;
+  display: flex;
+
+  @media (width < 1120px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  & > div {
+    width: 50%;
+
+    @media (width < 1120px) {
+      width: 100%;
+    }
+  }
+
+  & h1,
+  & p {
+    @media (width < 1120px) {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 402px;
+    }
+  }
+}
+
+.buttons {
+  margin-top: 40px;
+}
+
+.children {
+  @media (width < 1120px) {
+    margin-top: 40px;
+  }
+}

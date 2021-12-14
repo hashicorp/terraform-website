@@ -1,0 +1,43 @@
+---
+page_title: Telemetry - Terraform Cloud Agents - Terraform Cloud and Terraform Enterprise
+---
+
+# Telemetry
+
+Terraform Cloud Agents emit telemetry data using the [OpenTelemetry](https://opentelemetry.io/) protocol.
+
+## Configuration
+
+To configure your agent to emit telemetry data, you must include the `-otlp-address` flag or `TFC_AGENT_OTLP_ADDRESS` environment variable. This should be set to the host:port address of an [OpenTelemetry collector](https://opentelemetry.io/docs/concepts/data-collection/). This address should be a GRPC server running an OLTP collector.
+
+Optionally, you can pass the `-otlp-cert-file` or `TFC_AGENT_OTLP_CERT_FILE`. The agent will use a certificate at the path supplied to encrypt the client connection to the OpenTelemetry collector. When omitted, client connections are not secured.
+
+## Metrics
+
+An example of the metric names that the agent will emit is `tfc-agent.terraform.plan-json.generate.bytes`. Breaking down those sections:
+
+* `tfc-agent`: Metric names will be namespaced with tfc-agent to distinguish them from other metrics your system may be emitting.
+* `terraform`: Metric names may have a prefix with a component name, when a component is applicable.
+* `plan-json`: This shows that the metric in question is about the step of the agent process where JSON representations of the Terraform plan and Terraform provider schema are generated and uploaded.
+* `generate`: Specifically, it is about the generation of the JSON artifacts.
+* `bytes`: When a metric requires a unit in order to be understood, an un-abbreviated unit will be the last component of the metric name.
+
+In addition, agent metrics will follow some conventions around unit types:
+
+* All timing metrics (other than runtime metrics) will be measured in milliseconds.
+* All data size metrics will be measured in bytes.
+
+## Tracing
+
+In addition to metrics, the agent emits tracing spans that can be consumed by various distributed tracing tools. Information about supported tools can be found on the [OpenTelemetry Registry](https://opentelemetry.io/registry/). A span is a single unit of work performed by the agent.
+
+Spans conform to the following rules:
+
+* Each span has a unique name in plain English, explaining what it represents.
+* Span attributes will be made up of sections, separated by periods. Sections will contain only alphanumeric characters and dashes. For example: `tfc.run.terraform-version`.
+* Span attributes in the `tfc` namespace will have information relevant to the entire operation.
+* Span attributes in the `debug` namespace will have information relevant to the current span's scope.
+
+## Stability
+
+Metric names and definitions are not guaranteed to be stable at this time. HashiCorp will make an effort not to break existing monitoring of the agent, but metric names may change at any time. As the telemetry system matures, HashiCorp may add selected stable metrics to this documentation which will be covered by our versioning policy.

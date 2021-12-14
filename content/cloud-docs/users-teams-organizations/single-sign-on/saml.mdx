@@ -1,0 +1,41 @@
+---
+page_title: SAML - Single Sign-on - Terraform Cloud and Terraform Enterprise
+---
+
+-> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+
+# Single Sign-on: SAML
+
+The SAML SSO integration currently supports the following features of SAML 2.0:
+
+- Service Provider (SP)-initiated SSO
+- Identity Provider (IdP)-initiated SSO
+- Just-in-Time Provisioning
+
+The SAML SSO integration can be configured by providing a metadata URL or manually with the Single Sign-on URL, Entity ID, and X.509 Certificate.
+
+## Configuration (Terraform Cloud)
+
+1. Visit your organization settings page and click "SSO".
+
+1. Click "Setup SSO".
+
+   ![sso-setup](/img/docs/setup.png)
+
+1. Select "SAML" and click "Next".
+
+   ![sso-wizard-choose-provider-saml](/img/docs/wizard-choose-provider-saml.png)
+
+1. Configure using the IdP's metadata URL or manually with the Single Sign-On URL, Entity ID, and X.509 Certificate.
+
+   ![sso-wizard-configure-settings-metadata](/img/docs/wizard-configure-settings-metadata.png)
+
+   ![sso-wizard-configure-settings-manually](/img/docs/wizard-configure-settings-manually.png)
+
+1. Click "Save settings".
+
+1. [Verify](/cloud-docs/users-teams-organizations/single-sign-on/testing) your settings and click "Enable".
+
+1. Your SAML SSO configuration is complete and ready to [use](/cloud-docs/users-teams-organizations/single-sign-on#signing-in-with-sso).
+
+   ![sso-settings](/img/docs/settings-saml.png)
