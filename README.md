@@ -69,12 +69,14 @@ Merge the PR to master, and the site will automatically deploy in about 20m. ðŸ™
 
 ### For changes in `hashicorp/terraform`
 
-Merge the PR to main. The changes will appear in the next major Terraform release.
+Merge the PR to `main`. The changes will appear in the next major Terraform release.
 
 If you need your changes to be deployed sooner, cherry-pick them to:
 
 - the current release branch (e.g. `v1.0`) and push. They will be deployed in the next minor version release (once every two weeks).
 - the `stable-website` branch and push. They will be included in the next site deploy (see below). Note that the release process resets `stable-website` to match the release tag, removing any additional commits. So, we recommend always cherry-picking to the version branch first and then to `stable-website` when needed.
+
+Once your PR to `stable-website` is merged, open a PR bumping the submodule commit in `terraform-website`. See the [Using Submodules](#using-submodules) section below for more details.
 
 #### Backport Tags
 
@@ -130,7 +132,9 @@ Once you `init` a submodule, you usually need to run `git submodule update`, whi
 
 If a submodule shows up as "changed" in `git status` but you haven't done anything with it, it probably means that the upstream repo of a submodule was updated and you need to "pull" that update to point to the most recent commit. Run `git submodule update` to resolve this and you should see a clean `git status` return. Inactive submodules don't show up in `git status`.
 
-In general, you should never need to commit a submodule update to `terraform-website`; they're updated automatically during releases, and deploys use fresh content from the upstream stable-website branch anyway. If you are going to commit and see a submodule as "changed" in `git status`, you probably need to update the submodule to the most recent commit in the upstream repo using `git submodule update`. If that doesn't work, please reach out to a team member for support -- committing changes to a submodule can cause serious issues.
+### Updating Submodules
+
+In order for `terraform-website` to pull the latest content from its submodules, the submodules need to be updated to their latest versions. This can be achieved by running `git submodule update`, which will cause the submodule to show as a changed file in `git status`. You should commit this change as part of your branch so that your PR can generate a preview using the expected commit from the upstream repo. The website will only ever show the content from the committed submodule, so if your upstream changes aren't being deployed, it's likely that you need to bump the submodule to the latest commit.
 
 Avoid running `git rm` on a submodule unless you know what you're doing. You usually want `git submodule deinit` instead.
 
@@ -152,7 +156,6 @@ This file can be standard Markdown and also supports [YAML frontmatter](https://
 title: 'My Title'
 description: "A thorough, yet succinct description of the page's contents"
 ---
-
 ```
 
 The significant keys in the YAML frontmatter are:
