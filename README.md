@@ -61,8 +61,6 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 
   **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to `main` first. See [More About `stable-website`][#more-about-stable-website] below for more details.
 
-- A few remaining provider repos... but those won't be here for long! All but a few have migrated to [the Registry](https://registry.terraform.io), and the rest are leaving soon.
-
 ## Deploying Changes to [terraform.io][https://terraform.io]
 
 ### For changes in this repo
@@ -554,18 +552,13 @@ We support the following browsers targeting roughly the versions specified.
 
 <!-- END: browser-support -->
 
-<!-- BEGIN: deployment -->
-<!-- Generated text, do not edit directly -->
-
 ## Deployment
 
-This website is hosted on Vercel and configured to automatically deploy anytime you push code to the `stable-website` branch. Any time a pull request is submitted that changes files within the `website` folder, a deployment preview will appear in the github checks which can be used to validate the way docs changes will look live. Deployments from `stable-website` will look and behave the same way as deployment previews.
-
-<!-- END: deployment -->
+This website is hosted on Vercel and configured to automatically deploy anytime you push code to the `master` branch. Any time a pull request is submitted that changes files, a deployment preview will appear in the GitHub checks which can be used to validate the way docs changes will look live. Deployments from `master` will look and behave the same way as deployment previews.
 
 ## More About `stable-website`
 
-Terraform has a special `stable-website` branch with docs for the most recent release. When the website is deployed, it uses the current content of `stable-website`.
+Terraform has a special `stable-website` branch with docs for the most recent release. When the website is deployed, it uses the current content of `stable-website`. This is also the case for Terraform CDK. However, this repo _does not_ have a `stable-website` branch; instead, it uses the `master` branch.
 
 When we release a new version of Terraform, we automatically force-push the corresponding commit to `stable-website`. (We also automatically update the ext/terraform submodule in this repo, but that's only for convenience when doing local previews; normal deployment to [terraform.io][] ignores the current state of the submodules.)
 
