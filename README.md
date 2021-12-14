@@ -1,8 +1,6 @@
 # Terraform Documentation Website
 
-[![Netlify Status](https://img.shields.io/netlify/<NETLIFY-API-ID>?style=flat-square)](https://app.netlify.com/sites/<NETLIFY-SLUG>/deploys)
-
-This subdirectory contains the entire source for the [Terraform Website](https://example.com/). This is a [NextJS](https://nextjs.org/) project, which builds a static site from these source files.
+This repository contains the entire source for the [Terraform Website](https://example.com/). This is a [Next.js](https://nextjs.org/) project, which builds a static site from these source files.
 
 <!--
   This readme file contains several blocks of generated text, to make it easier to share common information
@@ -16,7 +14,11 @@ This subdirectory contains the entire source for the [Terraform Website](https:/
 ## Table of Contents
 
 - [Contributions](#contributions-welcome)
+- [Where the Docs Live](#where-the-docs-live)
+- [Deploying Changes to terraform.io](#deploying-changes-to-terraformio)
 - [Running the Site Locally](#running-the-site-locally)
+- [Using Submodules](#using-submodules)
+- [More about `stable-website`](#more-about-stable-website)
 - [Editing Markdown Content](#editing-markdown-content)
 - [Editing Navigation Sidebars](#editing-navigation-sidebars)
 - [Changing the Release Version](#changing-the-release-version)
@@ -32,6 +34,63 @@ This subdirectory contains the entire source for the [Terraform Website](https:/
 If you find a typo or you feel like you can improve the HTML, CSS, or JavaScript, we welcome contributions. Feel free to open issues or pull requests like any normal GitHub project, and we'll merge it in 🚀
 
 <!-- END: contributions -->
+
+## Where the Docs Live
+
+Docs live in a couple different repos. (**To find a page the easy way:** view it on [terraform.io][https://terraform.io] and click the "Edit this page" link at the bottom.)
+
+- This repository, under `content/`:
+
+  - Terraform Cloud docs
+  - Terraform Enterprise docs
+  - Plugin Development
+  - Terraform Registry Publishing
+
+  **Notable branches:** `master` is the "live" content that gets deployed to terraform.io. The site gets redeployed for new commits to master.
+
+- [hashicorp/terraform][https://github.com/hashicorp/terraform], under `website/docs`:
+
+  - Terraform CLI docs
+  - Terraform Language docs
+
+  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to `main` (and/or one of the long-lived version branches) first. See [More About `stable-website`][#more-about-stable-website] below for more details.
+
+- [hashicorp/terraform-cdk][https://github.com/hashicorp/terraform-cdk], under `website/docs`:
+
+  - Terraform CDK docs
+
+  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to `main` first. See [More About `stable-website`][#more-about-stable-website] below for more details.
+
+- A few remaining provider repos... but those won't be here for long! All but a few have migrated to [the Registry](https://registry.terraform.io), and the rest are leaving soon.
+
+## Deploying Changes to [terraform.io][https://terraform.io]
+
+### For changes in this repo
+
+Merge the PR to master, and the site will automatically deploy in about 20m. 🙌
+
+### For changes in `hashicorp/terraform`
+
+Merge the PR to main. The changes will appear in the next major Terraform release.
+
+If you need your changes to be deployed sooner, cherry-pick them to:
+
+- the current release branch (e.g. `v1.0`) and push. They will be deployed in the next minor version release (once every two weeks).
+- the `stable-website` branch and push. They will be included in the next site deploy (see below). Note that the release process resets `stable-website` to match the release tag, removing any additional commits. So, we recommend always cherry-picking to the version branch first and then to `stable-website` when needed.
+
+#### Backport Tags
+
+Instead of cherry-picking your commits to a specific version branch, you can add the associated backport tag (e.g., "1.1-backport") to your pull request before merging. After you merge, a bot automatically creates a pull request to add your commits to the version branch (linked in your original PR). You must manually merge the auto-generated PR into the version branch.
+
+### Deployment
+
+Currently, HashiCorp uses a CircleCI job to deploy the [terraform.io](terraform.io) site. Many people within HashiCorp can run this job manually, and it also runs automatically whenever a user in the HashiCorp GitHub org merges changes to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
+
+New commits in `hashicorp/terraform` don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can trigger a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
+
+- Log in to circleci.com, and make sure you're viewing the HashiCorp organization.
+- Go to the terraform-website project's list of workflows.
+- Find the most recent "website-deploy" workflow, and click the "Rerun workflow from start" button (which looks like a refresh button with a numeral "1" inside).
 
 <!-- BEGIN: local-development -->
 <!-- Generated text, do not edit directly -->
@@ -61,6 +120,22 @@ If you pull down new code from github, you should run `npm install` again. Other
 
 <!-- END: local-development -->
 
+## Using Submodules
+
+Submodules are used in this project to allow teams that work on different parts of terraform that are housed in different repos to all be able to contribute docs to the docs website at their own pace and in the way they prefer, while keeping the documentation content alongside the core code.
+
+Right now, there are two submodules included in this project: `hashicorp/terraform` and `hashicorp/terraform-cdk`. (We used to have a lot more, back when we hosted the documentation for most providers on terraform.io.)
+
+In your local checkout of this repo, Git submodules can be active or inactive. The first time you clone the repo, unless you have modified your git command defaults, the submodules will all default to being inactive, and their folders will be empty. To activate all submodules, run `git init submodule`. To activate only certain submodules, a path can be passed to the command as such: `git submodule init <PATH>`. To switch a submodule back to bring inactive `git submodule deinit <PATH>` can be used, though this is not typically necessary.
+
+Once you `init` a submodule, you usually need to run `git submodule update`, which will either do the initial checkout or update the working copy to the commit that `terraform-website` currently expects. Every time that changes are made to the upstream repo that the submodule represents, it will need to be updated as well.
+
+If a submodule shows up as "changed" in `git status` but you haven't done anything with it, it probably means that the upstream repo of a submodule was updated and you need to "pull" that update to point to the most recent commit. Run `git submodule update` to resolve this and you should see a clean `git status` return. Inactive submodules don't show up in `git status`.
+
+In general, you should never need to commit a submodule update to `terraform-website`; they're updated automatically during releases, and deploys use fresh content from the upstream stable-website branch anyway. If you are going to commit and see a submodule as "changed" in `git status`, you probably need to update the submodule to the most recent commit in the upstream repo using `git submodule update`. If that doesn't work, please reach out to a team member for support -- committing changes to a submodule can cause serious issues.
+
+Avoid running `git rm` on a submodule unless you know what you're doing. You usually want `git submodule deinit` instead.
+
 <!-- BEGIN: editing-markdown -->
 <!-- Generated text, do not edit directly -->
 
@@ -79,7 +154,6 @@ This file can be standard Markdown and also supports [YAML frontmatter](https://
 title: 'My Title'
 description: "A thorough, yet succinct description of the page's contents"
 ---
-
 ```
 
 The significant keys in the YAML frontmatter are:
@@ -151,7 +225,6 @@ $ curl ...
 
 </Tab>
 </Tabs>
-
 
 Contined normal markdown content
 ````
@@ -489,3 +562,15 @@ We support the following browsers targeting roughly the versions specified.
 This website is hosted on Vercel and configured to automatically deploy anytime you push code to the `stable-website` branch. Any time a pull request is submitted that changes files within the `website` folder, a deployment preview will appear in the github checks which can be used to validate the way docs changes will look live. Deployments from `stable-website` will look and behave the same way as deployment previews.
 
 <!-- END: deployment -->
+
+## More About `stable-website`
+
+Terraform has a special `stable-website` branch with docs for the most recent release. When the website is deployed, it uses the current content of `stable-website`.
+
+When we release a new version of Terraform, we automatically force-push the corresponding commit to `stable-website`. (We also automatically update the ext/terraform submodule in this repo, but that's only for convenience when doing local previews; normal deployment to [terraform.io][] ignores the current state of the submodules.)
+
+Between releases, we update docs on the `master` branch and on the current release's maintenance branch (like `v0.14`). By default, we assume these updates are relevant to a future release, so we don't display them on the website yet. **If a docs update should be shown immediately,** cherry-pick it onto `stable-website` _after_ it has been merged to `master` and/or the maintenance branch.
+
+This happens routinely, so anyone who can merge to `master` should also be able to merge to (or directly push) `stable-website`. Whoever clicks the merge button should make sure they know whether this commit needs a cherry-pick.
+
+**Be aware:** Since `stable-website` gets forcibly reset during releases, make sure to never commit new changes to `stable-website`. You should only commit cherry-picks from a long-lived branch.
