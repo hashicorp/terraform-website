@@ -1,6 +1,6 @@
 # Terraform Documentation Website
 
-This repository contains the entire source for the [Terraform Website](https://example.com/). This is a [Next.js](https://nextjs.org/) project, which builds a static site from these source files.
+This repository contains the entire source for the [Terraform Website](https://www.terraform.io/). This is a [Next.js](https://nextjs.org/) project, which builds a static site from these source files.
 
 <!--
   This readme file contains several blocks of generated text, to make it easier to share common information
