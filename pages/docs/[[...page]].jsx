@@ -7,6 +7,7 @@ import {
   generateStaticPaths,
   generateStaticProps,
 } from '@hashicorp/react-docs-page/server'
+import { glob } from 'glob'
 
 //  Configure the docs path
 const BASE_ROUTE = 'docs'
@@ -26,6 +27,9 @@ function DocsLayout(props) {
 }
 
 export async function getStaticPaths() {
+  console.log({ cwd: process.cwd() })
+  const files = glob.sync('**/*')
+  console.log(JSON.stringify(files, null, 2))
   const paths = await generateStaticPaths({
     navDataFile: NAV_DATA,
     localContentDir: CONTENT_DIR,
