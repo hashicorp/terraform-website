@@ -13,6 +13,7 @@ jobs:
               echo "Not Terraform Website Repo, not indexing Algolia"
               exit 0
             fi
+            npm i -g npm@latest
             npm ci
             node scripts/index_search_content.js
 workflows:
