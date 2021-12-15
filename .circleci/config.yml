@@ -27,6 +27,9 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: Pull submodules
+          command: git submodule update --init
+      - run:
           name: Build Docker Image if Necessary
           command: |
             if  [ "$CIRCLE_REPOSITORY_URL" != "git@github.com:hashicorp/terraform-website.git" ]; then
