@@ -127,7 +127,7 @@ module.exports = (async () => {
   const registryTopLevelRedirects = Object.entries(tfProviderNamespaces).map(
     ([namespace, repo]) => {
       return {
-        source: `/docs/providers/${namespace}`,
+        source: `/docs/providers/${namespace}(/index.html)?`,
         destination: `https://registry.terraform.io/providers/${repo}/latest/docs`,
         permanent: true,
       }
