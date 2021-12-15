@@ -1,0 +1,30 @@
+---
+page_title: >-
+  Enforce and Override Policies - Sentinel - Terraform Cloud and Terraform
+  Enterprise
+description: >-
+  Learn when Terraform Cloud performs policy checks and what happens when
+  different types of policy checks fail.
+---
+
+# Enforce and Override Policies
+
+-> **Note:** Sentinel policies are a paid feature, available as part of the **Team & Governance** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+
+> **Hands-on:** Try the [Enforce Policy with Sentinel](https://learn.hashicorp.com/collections/terraform/policy?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) collection on HashiCorp Learn.
+
+You can define individual policies within larger policy sets and apply those policy sets to all or a subset of workspaces in an organization. Terraform Cloud then enforces all of those policies on every workspace run.
+
+Policy checks occur after a plan and any enabled cost estimates are successfully executed in the run. This allows policies to restrict costs based on the data in the cost estimates. If the plan fails, Sentinel does not perform policy checks. The policy checks use data from the plan, state, configuration, workspace, and run to verify and enforce the rules in each policy.
+
+Refer to the [Managing Policies](/cloud-docs/sentinel/manage-policies) documentation for more detail about enforcement.
+
+All `hard-mandatory` must pass in order for the run to continue to the "Confirm & Apply" state. All `soft-mandatory` policies must pass or be overridden for the run to continue to the "Confirm & Apply" state.
+
+If any `soft-mandatory` policies fail and no `hard-mandatory` policies fail, users with [permission to override policies](/cloud-docs/users-teams-organizations/permissions#manage-policy-overrides) will be presented with an **Override & Continue** button in the run in the Terraform Cloud workspace. This allows them to override the failed `soft-mandatory` policy checks and continue the execution of the run. This will not have any impact on future runs.
+
+These users can also override `soft-mandatory` policies by running the `terraform apply` command and then entering "override" when prompted to override failed `soft-mandatory` policies for the run.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+If an `advisory` policy check fails, it will show the warning state in the run, and the execution of the run will continue to the "Confirm & Apply" state. No user action is required to override or continue the run execution.

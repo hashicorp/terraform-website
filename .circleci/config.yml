@@ -1,169 +1,26 @@
-version: 2.1
-
-orbs:
-  # Slack orb v. 3 uses a webhook URL for auth. If upgrading to v. 4+, we'll need a token instead.
-  slack: circleci/slack@3.4.2
-
-references:
-  images:
-    middleman: &MIDDLEMAN_IMAGE docker.mirror.hashicorp.services/hashicorp/middleman-hashicorp:0.3.47
-    ubuntu: &UBUNTU_IMAGE ubuntu-1604:201903-01
-    # We rely on dart-lang/sdk commit 7e7c01e804179782f884b174706ed0c80fb2ef71
-    # -- earliest viable container version is 2.11.0-182.0.dev
-    dart: &DART docker.mirror.hashicorp.services/google/dart:2.12.0-133.2.beta
-
-  cache:
-    rubygem: &RUBYGEM_CACHE_KEY static-site-gems-v1-{{ checksum "content/Gemfile.lock" }}
+version: 2
 
 jobs:
-  website-link-check:
+  algolia-index:
     docker:
-      - image: *MIDDLEMAN_IMAGE
+      - image: node:14
     steps:
       - checkout
-
-      - run: make sync
-
-      # restores gem cache
-      - restore_cache:
-          key: *RUBYGEM_CACHE_KEY
-
       - run:
-          name: install gems
-          working_directory: content
-          command: bundle check || bundle install --path vendor/bundle --retry=3
-
-      # saves gem cache if we have changed the Gemfile
-      - save_cache:
-          key: *RUBYGEM_CACHE_KEY
-          paths:
-            - content/vendor/bundle
-
-      - run:
-          name: run middleman in background
-          working_directory: content
-          background: true
-          command: bundle exec middleman server
-
-      - run:
-          name: wait for server to start
-          command: until curl -sS http://localhost:4567/ > /dev/null; do sleep 1; done
-
-      - run:
-          name: check links in changed pages
-          working_directory: content
-          command:
-            git diff --name-only -z --diff-filter=AMRCT $(git merge-base HEAD origin/master)..HEAD | bundle exec ./scripts/check-pr-links.rb
-            # --name-only: Return a list of affected files but don't show the changes.
-            # -z: Make that a null-separated list (instead of newline-separated), and
-            #     DON'T mangle non-ASCII characters.
-            # --diff-filter=AMRCT: Only list files that were added, modified, renamed,
-            #     copied, or had their type changed (file, symlink, etc.). In
-            #     particular, we don't want to check deleted files.
-            # $(git merge-base HEAD origin/master)..HEAD: Only consider files that have
-            #     changed since this branch diverged from master.
-
-  website-build-and-upload:
-    docker:
-      - image: *MIDDLEMAN_IMAGE
-    steps:
-      - slack/notify:
-          message: ":terraform-loading: Starting build/deploy for terraform.io..."
-          color: "#ECB942"
-
-      - checkout
-
-      # pull and update git submodules
-      - run: make sync
-
-      # restores gem cache
-      - restore_cache:
-          key: *RUBYGEM_CACHE_KEY
-
-      - run:
-          name: install gems
-          working_directory: content
-          command: bundle check || bundle install --path vendor/bundle --retry=3
-
-      # saves gem cache if we have changed the Gemfile
-      - save_cache:
-          key: *RUBYGEM_CACHE_KEY
-          paths:
-            - content/vendor/bundle
-
-      - run:
-          name: middleman build
-          working_directory: content
-          command: bundle exec middleman build
-
-      - run:
-          working_directory: content
-          command: ./scripts/upload.sh
-
-      - slack/status:
-          success_message: ":terraformda: Successfully deployed to terraform.io."
-          failure_message: ":boom: Failed to deploy terraform.io! Urgent attention needed! <!here>"
-
-  website-warm-cache-check-links:
-    docker:
-      - image: *DART
-    steps:
-      # TODO: This should be in the container, but we want to get the kinks
-      # worked out before committing to the overhead. Also the install takes 3s.
-      - run:
-          name: install filiph/linkcheck
-          command: pub global activate linkcheck
-
-      - run:
-          name: Warm cache and check for broken links
-          command: /root/.pub-cache/bin/linkcheck https://www.terraform.io/docs
-
-      - slack/status:
-          success_message: ":white_check_mark: Finished warming cache for terraform.io. :meow_yay: No broken links!"
-          failure_message: ":broken_image: Found broken links while warming cache for terraform.io. For details, check job log."
-
-  website-check-incoming-links:
-    docker:
-      - image: *MIDDLEMAN_IMAGE
-    steps:
-      - checkout
-
-      # Don't need to set up gems, submodules, or anything like that. We just
-      # need the script and the data files.
-
-      - run: ./content/scripts/check-incoming-links.sh https://www.terraform.io
-
-      - slack/status:
-          success_message: ":white_check_mark: WEEKLY INCOMING LINKS CHECK: :meow_yay: No broken links!"
-          failure_message: ":broken_image: WEEKLY INCOMING LINKS CHECK: An important page was deleted without getting a redirect! :fire_on_fire: Please check the job log and make sure that page gets redirected."
-
+          name: Push content to Algolia Index
+          command: |
+            if  [ "$CIRCLE_REPOSITORY_URL" != "git@github.com:hashicorp/terraform-website.git" ]; then
+              echo "Not Terraform Website Repo, not indexing Algolia"
+              exit 0
+            fi
+            npm ci
+            node scripts/index_search_content.js
 workflows:
-  website-test:
-    # run on branches and PRs; ignore master, since the cache warming also checks links.
+  version: 2
+  algolia_index:
     jobs:
-      - website-link-check:
+      - algolia-index:
           filters:
             branches:
-              ignore: master
-  website-deploy:
-    # only run on main branch
-    jobs:
-      - website-build-and-upload:
-          context: static-sites
-          filters:
-            branches:
-              only: master
-      - website-warm-cache-check-links:
-          context: static-sites
-          requires:
-            - website-build-and-upload
-  website-weekly-check:
-    jobs:
-      - website-check-incoming-links
-    triggers:
-      - schedule:
-          # ~11 am pacific time (19 UTC), every monday
-          cron: "0 19 * * 1"
-          filters:
-            branches:
-              only: master
+              only:
+                - master

@@ -1,50 +1,45 @@
-# Terraform Website [![CI Status](https://circleci.com/gh/hashicorp/terraform-website.svg?style=svg&circle-token=8b4edf41fc4a4a822fc5c6d10e45f0c5140beaf8)](https://circleci.com/gh/hashicorp/terraform-website/tree/master)
+# Terraform Documentation Website
 
-This repository contains the build infrastructure and some of the content for [terraform.io][]. Pull requests from the community are welcomed!
+This repository contains the entire source for the [Terraform Website](https://www.terraform.io/). This is a [Next.js](https://nextjs.org/) project, which builds a static site from these source files.
+
+<!--
+  This readme file contains several blocks of generated text, to make it easier to share common information
+  across documentation website readmes. To generate these blocks from their source, run `npm run generate:readme`
+
+  Any edits to the readme are welcome outside the clearly noted boundaries of the blocks. Alternately, a
+  block itself can be safely "forked" from the central implementation simply by removing the "BEGIN" and
+  "END" comments from around it.
+-->
 
 ## Table of Contents
 
-- [How the Site Works](#how-the-site-works)
+- [Contributions](#contributions-welcome)
 - [Where the Docs Live](#where-the-docs-live)
 - [Deploying Changes to terraform.io](#deploying-changes-to-terraformio)
 - [Running the Site Locally](#running-the-site-locally)
-- [Previewing Changes from Terraform Core](#previewing-changes-from-terraform-core)
-- [Writing Normal Docs Content](#writing-normal-docs-content)
-- [Screenshots](#screenshots)
-- [Navigation Sidebars](#navigation-sidebars)
 - [Using Submodules](#using-submodules)
-- [Finding Broken Links](#finding-broken-links)
 - [More about `stable-website`](#more-about-stable-website)
+- [Editing Markdown Content](#editing-markdown-content)
+- [Editing Navigation Sidebars](#editing-navigation-sidebars)
+- [Changing the Release Version](#changing-the-release-version)
+- [Redirects](#redirects)
+- [Browser Support](#browser-support)
+- [Deployment](#deployment)
 
-[terraform.io]: https://terraform.io
-[middleman]: https://www.middlemanapp.com
-[tf-repo]: https://github.com/hashicorp/terraform/
-[terraform-providers]: https://github.com/terraform-providers/
+<!-- BEGIN: contributions -->
+<!-- Generated text, do not edit directly -->
 
-## How the Site Works
+## Contributions Welcome!
 
-↥ [back to top](#table-of-contents)
+If you find a typo or you feel like you can improve the HTML, CSS, or JavaScript, we welcome contributions. Feel free to open issues or pull requests like any normal GitHub project, and we'll merge it in 🚀
 
-[terraform.io][] is in transition at the moment, and the production site is kind of hybrid:
-
-- Fastly handles all the traffic.
-- The following paths (all marketing content, at the moment) are proxied to a Next.js app running on Vercel:
-
-  - `/` (the front page)
-  - `/community`
-  - `/cloud` (and all sub-paths under `/cloud`)
-
-  For help with these pages, talk to the Web Platform team!
-
-- The rest of the site falls through to static pages built with [Middleman][]. That's what this repository manages!
+<!-- END: contributions -->
 
 ## Where the Docs Live
 
-↥ [back to top](#table-of-contents)
+Docs live in a couple different repos. (**To find a page the easy way:** view it on [terraform.io][https://terraform.io] and click the "Edit this page" link at the bottom.)
 
-Docs live in a couple different repos. (**To find a page the easy way:** view it on [terraform.io][] and click the "Edit this page" link at the bottom.)
-
-- This repository, under `content/source/docs/`:
+- This repository, under `content/`:
 
   - Terraform Cloud docs
   - Terraform Enterprise docs
@@ -53,18 +48,20 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 
   **Notable branches:** `master` is the "live" content that gets deployed to terraform.io. The site gets redeployed for new commits to master.
 
-- [hashicorp/terraform][tf-repo], under `website/docs`:
+- [hashicorp/terraform][https://github.com/hashicorp/terraform], under `website/docs`:
 
   - Terraform CLI docs
   - Terraform Language docs
 
-  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to `master` (and/or one of the long-lived version branches) first. See [More About `stable-website`][inpage-stable] below for more details.
+  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to `main` (and/or one of the long-lived version branches) first. See [More About `stable-website`][#more-about-stable-website] below for more details.
 
-- A few remaining provider repos... but those won't be here for long! All but a few have migrated to [the Registry](https://registry.terraform.io), and the rest are leaving soon.
+- [hashicorp/terraform-cdk][https://github.com/hashicorp/terraform-cdk], under `website/docs`:
 
-## Deploying Changes to [terraform.io][]
+  - Terraform CDK docs
 
-↥ [back to top](#table-of-contents)
+  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to `main` first. See [More About `stable-website`][#more-about-stable-website] below for more details.
+
+## Deploying Changes to [terraform.io][https://terraform.io]
 
 ### For changes in this repo
 
@@ -72,12 +69,14 @@ Merge the PR to master, and the site will automatically deploy in about 20m. �
 
 ### For changes in `hashicorp/terraform`
 
-Merge the PR to main. The changes will appear in the next major Terraform release.
+Merge the PR to `main`. The changes will appear in the next major Terraform release.
 
 If you need your changes to be deployed sooner, cherry-pick them to:
 
 - the current release branch (e.g. `v1.0`) and push. They will be deployed in the next minor version release (once every two weeks).
-- the `stable-website` branch and push. They will be included in the next site deploy (see below). Note that the release process resets `stable-website` to match the release tag, removing any additional commits. So, we recommend always cherry-picking to the version branch first and then to `stable-website` when needed.
+- the `stable-website` branch and push. They will be included in the next site deploy (see below). Note that the release process resets `stable-website` to match the release tag, removing any additional commits. So, we recommend always cherry-picking to the version branch first and then to `stable-website` when needed.
+
+Once your PR to `stable-website` is merged, open a PR bumping the submodule commit in `terraform-website`. See the [Using Submodules](#using-submodules) section below for more details.
 
 #### Backport Tags
 
@@ -85,213 +84,39 @@ Instead of cherry-picking your commits to a specific version branch, you can add
 
 ### Deployment
 
-Currently, HashiCorp uses a CircleCI job to deploy the [terraform.io](terraform.io) site. Many people within HashiCorp can run this job manually, and it also runs automatically whenever a user in the HashiCorp GitHub org merges changes to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
+Currently, HashiCorp uses Vercel to deploy the [terraform.io](terraform.io) site whenever changes are merged in to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
 
-New commits in `hashicorp/terraform` don't automatically deploy the site, but an unrelated site deploy will usually happen within a day. If you can't wait that long, you can trigger a manual CircleCI build or ask someone in the #proj-terraform-docs channel to do so:
+New commits in `hashicorp/terraform` and `hashicorp/terraform-cdk` don't automatically deploy the site. To use the latest upstream content, you'll need to open a PR bumping the submodule commit.
 
-- Log in to circleci.com, and make sure you're viewing the HashiCorp organization.
-- Go to the terraform-website project's list of workflows.
-- Find the most recent "website-deploy" workflow, and click the "Rerun workflow from start" button (which looks like a refresh button with a numeral "1" inside).
+<!-- BEGIN: local-development -->
+<!-- Generated text, do not edit directly -->
 
 ## Running the Site Locally
 
-↥ [back to top](#table-of-contents)
+The website can be run locally through node.js or [Docker](https://www.docker.com/get-started). If you choose to run through Docker, everything will be a little bit slower due to the additional overhead, so for frequent contributors it may be worth it to use node.
 
-You can preview the website from a local checkout of this repo as follows:
+> **Note:** If you are using a text editor that uses a "safe write" save style such as **vim** or **goland**, this can cause issues with the live reload in development. If you turn off safe write, this should solve the problem. In vim, this can be done by running `:set backupcopy=yes`. In goland, search the settings for "safe write" and turn that setting off.
 
-1. Install [Docker](https://docs.docker.com/install/) if you have not already done so.
-2. Go to the top directory of this repo in your terminal, and run `make website`.
-3. Open `http://localhost:4567` in your web browser.
-4. When you're done with the preview, press ctrl-C in your terminal to stop the server.
+### With Docker
 
-The local preview will include content from this repo and from any [_currently active_ submodules][inpage-submodules]; content from inactive submodules will be 404.
+Running the site locally is simple. Provided you have Docker installed, clone this repo, run `make`, and then visit `http://localhost:3000`.
 
-While the preview is running, you can edit pages and Middleman will automatically rebuild them.
+The docker image is pre-built with all the website dependencies installed, which is what makes it so quick and simple, but also means if you need to change dependencies and test the changes within Docker, you'll need a new image. If this is something you need to do, you can run `make build-image` to generate a local Docker image with updated dependencies, then `make website-local` to use that image and preview.
 
-## Previewing Changes from Terraform Core
+### With Node
 
-↥ [back to top](#table-of-contents)
+If your local development environment has a supported version (v10.0.0+) of [node installed](https://nodejs.org/en/) you can run:
 
-We keep documentation pertaining to core Terraform functionality in the `website` folder of the [`terraform` repository](https://github.com/hashicorp/terraform). You can preview changes to those files from this repository or from inside the `terraform` repository itself.
+- `npm install`
+- `npm start`
 
-### From the `terraform-website` repository
+...and then visit `http://localhost:3000`.
 
-To preview changes from a fork of Terraform core, you need to first make sure the necessary submodule is active, and then change the contents of the submodule to include your changes.
+If you pull down new code from github, you should run `npm install` again. Otherwise, there's no need to re-run `npm install` each time the site is run, you can just run `npm start` to get it going.
 
-#### Activating
-
-1. **Init:** Run `git submodule init ext/terraform`.
-2. **Update:** Run `git submodule update`.
-
-   The init command doesn't actually init things all the way, so if you forget to run update, you might have a bad afternoon. (For more information, see [Living With Submodules][inpage-submodules] below.)
-
-#### Changing
-
-Once the submodule is active, you can go into its directory to fetch and check out new commits. If you plan to routinely edit those docs, you can add an additional remote to make it easier to fetch from and push to your fork.
-
-You can even make direct edits to the submodule's content, as long as you remember to commit them and push your branch before resetting the submodule.
-
-For example:
-
-```
-$ cd ext/providers/rundeck
-$ git status
-... (should show either tracking stable-website branch, or some detached HEAD commit)
-$ git fetch <YOUR-REPO-URL> <YOUR-BRANCH-NAME>
-$ git checkout FETCH_HEAD
-... (will indicate that you are in a "detached HEAD state" against your branch)
-```
-
-To find your fork's repo URL, use the "Clone or Download" button on the main page of your fork on GitHub.
-
-Once you finish testing your changes, you can reset the submodule to its normal state by returning to the root of `terraform-website` and running `git submodule update`.
-
-**Note:** If you're updating a nav sidebar `.erb` file in a provider or in Terraform core, the Middleman preview server might not automatically refresh the affected pages. The easiest way to deal with it is to stop and restart the preview server.
-
-### From the `terraform` repository
-
-The build includes content from the `terraform` repository and the `terraform-website` repository, allowing you to preview the entire Terraform documentation site. You can find instructions in [terraform/website/README.md](https://github.com/hashicorp/terraform/tree/main/website).
-
-## Writing Normal Docs Content
-
-↥ [back to top](#table-of-contents)
-
-Our docs content uses a fairly standard Middleman-ish/Jekyll-ish format.
-
-### Files
-
-One file per page. Filenames should usually end in `.html.md` or `.html.markdown`, which behave identically.
-
-A page's location in the directory structure determines its URL.
-
-- For files in this repo, the root of the site starts at `content/source/`.
-- For files in hashicorp/terraform, the actual files live somewhere in `ext/` and we use symlinks to put them somewhere under `content/source/`. You can check where the symlinks point with `ls -l`, or you can just find files with the "Edit this page" links on [terraform.io][].
-
-### YAML Frontmatter
-
-Each file should begin with YAML frontmatter, like this:
-
-```
----
-layout: "enterprise2"
-page_title: "Naming - Workspaces - Terraform Enterprise"
----
-```
-
-Leave a blank line before the first line of Markdown content. We use the following frontmatter keys:
-
-- `page_title` (required) — The title that displays in the browser's title bar. Generally formatted as `<PAGE> - <SECTION> - <PRODUCT>`, like "Naming - Workspaces - Terraform Enterprise".
-- `layout` (required) — Which navigation sidebar to display for this page. A layout called `<NAME>` gets loaded from `./content/source/layouts/<NAME>.erb`.
-- `description` (optional) — The blurb that appears in search results, to summarize everything you'll find on this page. Auto-generated if omitted.
-
-A long time ago we also used a `sidebar_current` key, but now it does nothing.
-
-### Link Style
-
-When making a link to another page on the website:
-
-- Always omit the protocol and hostname. (For example: `/docs/configuration/index.html`, not `https://www.terraform.io/docs/configuration/index.html`.)
-- When linking _within a given section_ of the docs, use relative links whenever possible. (For example: to link to `https://www.terraform.io/docs/providers/aws/r/ec2_transit_gateway.html` from another AWS resource, write `./ec2_transit_gateway.html`; from an AWS data source, write `../r/ec2_transit_gateway.html`.) This takes less space, and makes content more portable if we need to reorganize the site in the future (spoiler: we will).
-
-### Content Formatting
-
-Content is in Markdown, with a few local syntax additions described below. Try to keep it mostly pure Markdown; sometimes a little HTML is unavoidable, but not often.
-
-#### Callouts
-
-If you start a paragraph with a special arrow-like sigil, it will become a colored callout box. You can't make multi-paragraph callouts. For colorblind users (and for clarity in general), we try to start callouts with a strong-emphasized word to indicate their function.
-
-| Sigil | Start text with  | Color  |
-| ----- | ---------------- | ------ |
-| `->`  | `**Note:**`      | blue   |
-| `~>`  | `**Important:**` | yellow |
-| `!>`  | `**Warning:**`   | red    |
-
-#### Learn Tutorial Crosslink Callouts
-
-We use a standard markdown snippet when linking to a relevant Learn tutorial near the top of a page or section:
-
-> **Hands-on:** Try the [Manage Permissions in Terraform Cloud](https://learn.hashicorp.com/tutorials/terraform/cloud-permissions?in=terraform/cloud&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
-
-We're (mis)using the blockquote element (`>`) to set these links apart from the rest of the text without causing "blue box fatigue." Also note that we're adding UTM tags to the links, to help keep track of where traffic to Learn is coming from. The snippet to use is:
-
-```markdown
-> **Hands-on:** Try the [<NAME>](<URL>&utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) tutorial on HashiCorp Learn.
-```
-
-If a whole collection is relevant, you can say "try the NAME collection" instead.
-
-#### Auto Header IDs
-
-Like GitHub and a lot of other places, terraform.io automatically generates `id` attributes for headers to enable direct linking.
-
-The basic transform to make IDs from header text is something like "lowercase it, delete anything other than `[a-z0-9_-]`, and replace runs of spaces with a hyphen," but since the exact behavior can be squirrelly, we recommend checking the actual ID in a preview before linking to it. The in-page quick-nav menu at the top of each page is helpful for finding the header you want.
-
-We also auto-generate IDs for code spans that are the first child of a list item, since it's common for long lists of arguments or attributes to be formatted that way.
-
-## Screenshots
-
-↥ [back to top](#table-of-contents)
-
-Some areas of documentation (mostly Terraform Cloud) make extensive use of screenshots. If you're adding or updating screenshots, please try to make them:
-
-- 1024px wide
-- As tall as necessary to show the content and any necessary context, but not taller
-- 1x resolution
-
-Both Firefox and Chrome have "responsive design" views for simulating various devices; this should let you lock the width and set the DPR to 1. (Firefox also has an integrated screenshot feature, located under the "dot dot dot" menu in the address bar.)
-
-If the page you're screenshotting looks unusable at 1024px wide, make it a bit wider and just get as close as you can. The main goal is to just avoid weirdly big or weirdly small text in comparison to other screenshots.
-
-## Navigation Sidebars
-
-↥ [back to top](#table-of-contents)
-
-Every page should be reachable from a navigation sidebar, with only rare exceptions. _If you create a new page, add it to the relevant sidebar._
-
-Sidebars are in .erb files, and can be found in `content/source/layouts/` (this repo) or `website/layouts/` (terraform core). A page uses the sidebar file that matches the `layout` key in its YAML frontmatter (plus the `.erb` extension).
-
-Sidebars generally look like this:
-
-```erb
-<% wrap_layout :inner do %>
-  <% content_for :sidebar do %>
-    <h4>TITLE</h4>
-
-    <ul class="nav docs-sidenav">
-      <li>
-        <a href="...">SECTION LINK</a>
-        <ul class="nav">
-          <li>
-            <a href="...">PAGE IN SECTION</a>
-          </li>
-          ...
-        </ul>
-      </li>
-    </ul>
-
-    <%= partial("layouts/otherdocs", :locals => { :skip => "Terraform Enterprise" }) %>
-  <% end %>
-  <%= yield %>
-<% end %>
-```
-
-### CSS Classes for Sidebars
-
-- `nav` -- Every `<ul>` in the sidebar should have this.
-- `docs-sidenav` -- The outermost `<ul>` should also have this.
-- `nav-auto-expand` -- Used for inner `<ul>`s that should default to "open" whenever their parent is opened. Useful for when you want to separate things into subcategories but don't want to require an extra click to navigate into those subcategories.
-- `nav-visible` -- Used for inner `<ul>`s that should always display as "open," regardless of the current page. Use this sparingly, and avoid using it for large sections; readers can use the "expand all" control if they need to see everything at once.
-
-A lot of existing sidebars have a ton of ERB tags that call a `sidebar_current` method. Ignore or remove these, and don't add more of them. They were part of a hack that we don't use anymore.
-
-You don't need to add anything special to a sidebar to get the dynamic JavaScript open/close behavior, but note that the "expand all" and filter controls are only added for sidebars with more than a certain number of links.
+<!-- END: local-development -->
 
 ## Using Submodules
-
-↥ [back to top](#table-of-contents)
-
-[inpage-submodules]: #using-submodules
 
 Submodules are used in this project to allow teams that work on different parts of terraform that are housed in different repos to all be able to contribute docs to the docs website at their own pace and in the way they prefer, while keeping the documentation content alongside the core code.
 
@@ -303,52 +128,432 @@ Once you `init` a submodule, you usually need to run `git submodule update`, whi
 
 If a submodule shows up as "changed" in `git status` but you haven't done anything with it, it probably means that the upstream repo of a submodule was updated and you need to "pull" that update to point to the most recent commit. Run `git submodule update` to resolve this and you should see a clean `git status` return. Inactive submodules don't show up in `git status`.
 
-In general, you should never need to commit a submodule update to `terraform-website`; they're updated automatically during releases, and deploys use fresh content from the upstream stable-website branch anyway. If you are going to commit and see a submodule as "changed" in `git status`, you probably need to update the submodule to the most recent commit in the upstream repo using `git submodule update`. If that doesn't work, please reach out to a team member for support -- committing changes to a submodule can cause serious issues.
+### Updating Submodules
+
+In order for `terraform-website` to pull the latest content from its submodules, the submodules need to be updated to their latest versions. This can be achieved by running `git submodule update`, which will cause the submodule to show as a changed file in `git status`. You should commit this change as part of your branch so that your PR can generate a preview using the expected commit from the upstream repo. The website will only ever show the content from the committed submodule, so if your upstream changes aren't being deployed, it's likely that you need to bump the submodule to the latest commit.
 
 Avoid running `git rm` on a submodule unless you know what you're doing. You usually want `git submodule deinit` instead.
 
-## Finding Broken Links
+## Editing Markdown Content
 
-↥ [back to top](#table-of-contents)
+Documentation content is written in [Markdown](https://www.markdownguide.org/cheat-sheet/) and you'll find all files listed under the `/content` directory.
 
-Terraform.io uses a few different link checkers, which run as CircleCI jobs. If a link checking job fails, you can go to the job in CircleCI to find out which link URL caused the problem and which page that link appeared on.
+To create a new page with Markdown, create a file ending in `.mdx` in a `content/<subdirectory>`. The path in the content directory will be the URL route. For example, `content/docs/hello.mdx` will be served from the `/docs/hello` URL.
 
-All of these jobs are configured in `./circleci/config.yml`, in this repo and in hashicorp/terraform.
+> **Important**: Files and directories will only be rendered and published to the website if they are [included in sidebar data](#editing-navigation-sidebars). Any file not included in sidebar data will not be rendered or published.
 
-### Global Link Check
+This file can be standard Markdown and also supports [YAML frontmatter](https://middlemanapp.com/basics/frontmatter/). YAML frontmatter is optional, there are defaults for all keys.
 
-We run a global link check for the whole site after every deploy.
+```yaml
+---
+title: 'My Title'
+description: "A thorough, yet succinct description of the page's contents"
+---
+```
 
-- **Where:** The job reports its status in the `#proj-terraform-docs` channel in Hashicorp's Slack.
-- **What:** This job only checks internal links within terraform.io, not external links to the rest of the web. (It runs frequently, and we don't want to be a nuisance.)
-- **Who:** The Terraform Education team is ultimately responsible for dealing with any broken links this turns up, but anyone in the channel is welcome to fix something if they see it first!
-- **How:** We're using [filiph/linkcheck](https://github.com/filiph/linkcheck/) for this. In addition to checking links, this also warms up the Fastly cache for the site.
+The significant keys in the YAML frontmatter are:
 
-### PR Link Check
+- `title` `(string)` - This is the title of the page that will be set in the HTML title.
+- `description` `(string)` - This is a description of the page that will be set in the HTML description.
 
-We run a targeted link check for docs PRs, in this repo and in hashicorp/terraform.
+> ⚠️ If there is a need for a `/api/*` url on this website, the url will be changed to `/api-docs/*`, as the `api` folder is reserved by next.js.
 
-- **Where:** It shows up as a GitHub PR check. It only runs for PRs from people in the HashiCorp GitHub organization (which should be fine, since we're the most likely to change a bunch of links at once.)
-- **What:** This job only checks links in the _content area_ (not navs/headers) of _pages that were changed in the current PR._ It checks both internal and external links.
-- **Who:** If this job is red in your PR, please fix your broken links before merging! Alternately, if it throws a false-positive and complains about a link that is actually fine, make sure to explain that before merging.
-- **How:** This is a custom Ruby script, because we weren't able to find an off-the-shelf link checker that met our requirements (i.e. don't complain about problems that have nothing to do with this PR). ([content/scripts/check-pr-links.rb](./content/scripts/check-pr-links.rb))
+### Creating New Pages
 
-### Known Incoming Link Check
+There is currently a small bug with new page creation - if you create a new page and link it up via subnav data while the server is running, it will report an error saying the page was not found. This can be resolved by restarting the server.
 
-We run a weekly check to make sure we don't delete popular pages without redirecting them somewhere useful.
+### Markdown Enhancements
 
-- **Where:** The job reports its status mid-morning (PST) every Monday, in the `#proj-terraform-docs` channel in Hashicorp's Slack.
-- **What:** This job checks a list of paths from the `content/scripts/testdata/incoming-links.txt` file.
-- **Who:** The Terraform Education team is ultimately responsible for dealing with any broken links this turns up, but anyone in the channel is welcome to fix something if they see it first!
-- **How:** This is a custom shell script that uses `wget`. ([content/scripts/check-incoming-links.sh](./content/scripts/check-incoming-links.sh))
+There are several custom markdown plugins that are available by default that enhance [standard markdown](https://commonmark.org/) to fit our use cases. This set of plugins introduces a couple instances of custom syntax, and a couple specific pitfalls that are not present by default with markdown, detailed below:
+
+- If you see the symbols `~>`, `->`, `=>`, or `!>`, these represent [custom alerts](https://github.com/hashicorp/remark-plugins/tree/master/plugins/paragraph-custom-alerts#paragraph-custom-alerts). These render as colored boxes to draw the user's attention to some type of aside.
+- If you see `@include '/some/path.mdx'`, this is a [markdown include](https://github.com/hashicorp/remark-plugins/tree/master/plugins/include-markdown#include-markdown-plugin). It's worth noting as well that all includes resolve from `website/content/partials` by default, and that changes to partials will not live-reload the website.
+- If you see `# Headline ((#slug))`, this is an example of an [anchor link alias](https://github.com/hashicorp/remark-plugins/tree/je.anchor-link-adjustments/plugins/anchor-links#anchor-link-aliases). It adds an extra permalink to a headline for compatibility and is removed from the output.
+- Due to [automatically generated permalinks](https://github.com/hashicorp/remark-plugins/tree/je.anchor-link-adjustments/plugins/anchor-links#anchor-links), any text changes to _headlines_ or _list items that begin with inline code_ can and will break existing permalinks. Be very cautious when changing either of these two text items.
+
+  Headlines are fairly self-explanatory, but here's an example of how to list items that begin with inline code look.
+
+  ```markdown
+  - this is a normal list item
+  - `this` is a list item that begins with inline code
+  ```
+
+  Its worth noting that _only the inline code at the beginning of the list item_ will cause problems if changed. So if you changed the above markup to...
+
+  ```markdown
+  - lsdhfhksdjf
+  - `this` jsdhfkdsjhkdsfjh
+  ```
+
+  ...while it perhaps would not be an improved user experience, no links would break because of it. The best approach is to **avoid changing headlines and inline code at the start of a list item**. If you must change one of these items, make sure to tag someone from the digital marketing development team on your pull request, they will help to ensure as much compatibility as possible.
+
+### Custom Components
+
+A number of custom [mdx components](https://mdxjs.com/) are available for use within any `.mdx` file. However, these components should be used sparingly, and only where their use is obvious and clear. If you're unsure, please provide a rationale in your PR explaining why you feel your usage of the component is necessary.
+
+#### Tabs
+
+The `Tabs` component creates tabbed content of any type, but is often used for code examples given in different languages. Here's an example of how it looks from the Vagrant documentation website:
+
+![Tabs Component](https://p176.p0.n0.cdn.getcloudapp.com/items/WnubALZ4/Screen%20Recording%202020-06-11%20at%2006.03%20PM.gif?v=1de81ea720a8cc8ade83ca64fb0b9edd)
+
+> Please refer to the [Swingset](https://react-components.vercel.app/?component=Tabs) documention for the latest examples and API reference.
+
+It can be used as such within a markdown file:
+
+````mdx
+Normal **markdown** content.
+
+<Tabs>
+<Tab heading="CLI command">
+            <!-- Intentionally skipped line.. -->
+```shell-session
+$ command ...
+```
+            <!-- Intentionally skipped line.. -->
+</Tab>
+<Tab heading="API call using cURL">
+
+```shell-session
+$ curl ...
+```
+
+</Tab>
+</Tabs>
+
+Continued normal markdown content
+````
+
+The intentionally skipped line is a limitation of the mdx parser which is being actively worked on. All tabs must have a heading, and there is no limit to the number of tabs, though it is recommended to go for a maximum of three or four.
+
+#### Enterprise Alert
+
+This component provides a standard way to call out functionality as being present only in the enterprise version of the software. It can be presented in two contexts, inline or standalone. Here's an example of standalone usage from the Consul docs website:
+
+![Enterprise Alert Component - Standalone](https://p176.p0.n0.cdn.getcloudapp.com/items/WnubALp8/Screen%20Shot%202020-06-11%20at%206.06.03%20PM.png?v=d1505b90bdcbde6ed664831a885ea5fb)
+
+The standalone component can be used as such in markdown files:
+
+```mdx
+# Page Headline
+
+<EnterpriseAlert />
+
+Continued markdown content...
+```
+
+It can also receive custom text contents if you need to change the messaging but wish to retain the style. This will replace the text `This feature is available in all versions of Consul Enterprise.` with whatever you add. For example:
+
+```mdx
+# Page Headline
+
+<EnterpriseAlert>
+  My custom text here, and <a href="#">a link</a>!
+</EnterpriseAlert>
+
+Continued markdown content...
+```
+
+It's important to note that once you are adding custom content, it must be html and can not be markdown, as demonstrated above with the link.
+
+Now let's look at inline usage, here's an example:
+
+![Enterprise Alert Component - Inline](https://p176.p0.n0.cdn.getcloudapp.com/items/L1upYLEJ/Screen%20Shot%202020-06-11%20at%206.07.50%20PM.png?v=013ba439263de8292befbc851d31dd78)
+
+And here's how it could be used in your markdown document:
+
+```mdx
+### Some Enterprise Feature <EnterpriseAlert inline />
+
+Continued markdown content...
+```
+
+It's also worth noting that this component will automatically adjust to the correct product colors depending on the context.
+
+#### Other Components
+
+Other custom components can be made available on a per-site basis, the above are the standards. If you have questions about custom components that are not documented here, or have a request for a new custom component, please reach out to @hashicorp/digital-marketing.
+
+### Syntax Highlighting
+
+When using fenced code blocks, the recommendation is to tag the code block with a language so that it can be syntax highlighted. For example:
+
+````
+```
+// BAD: Code block with no language tag
+```
+
+```javascript
+// GOOD: Code block with a language tag
+```
+````
+
+Check out the [supported languages list](https://prismjs.com/#supported-languages) for the syntax highlighter we use if you want to double check the language name.
+
+It is also worth noting specifically that if you are using a code block that is an example of a terminal command, the correct language tag is `shell-session`. For example:
+
+🚫**BAD**: Using `shell`, `sh`, `bash`, or `plaintext` to represent a terminal command
+
+````
+```shell
+$ terraform apply
+```
+````
+
+✅**GOOD**: Using `shell-session` to represent a terminal command
+
+````
+```shell-session
+$ terraform apply
+```
+````
+
+<!-- BEGIN: editing-docs-sidebars -->
+<!-- Generated text, do not edit directly -->
+
+## Editing Navigation Sidebars
+
+The structure of the sidebars are controlled by files in the [`/data` directory](data). For example, [data/docs-nav-data.json](data/docs-nav-data.json) controls the **docs** sidebar. Within the `data` folder, any file with `-nav-data` after it controls the navigation for the given section.
+
+The sidebar uses a simple recursive data structure to represent _files_ and _directories_. The sidebar is meant to reflect the structure of the docs within the filesystem while also allowing custom ordering. Let's look at an example. First, here's our example folder structure:
+
+```text
+.
+├── docs
+│   └── directory
+│       ├── index.mdx
+│       ├── file.mdx
+│       ├── another-file.mdx
+│       └── nested-directory
+│           ├── index.mdx
+│           └── nested-file.mdx
+```
+
+Here's how this folder structure could be represented as a sidebar navigation, in this example it would be the file `website/data/docs-nav-data.json`:
+
+```json
+[
+  {
+    "title": "Directory",
+    "routes": [
+      {
+        "title": "Overview",
+        "path": "directory"
+      },
+      {
+        "title": "File",
+        "path": "directory/file"
+      },
+      {
+        "title": "Another File",
+        "path": "directory/another-file"
+      },
+      {
+        "title": "Nested Directory",
+        "routes": [
+          {
+            "title": "Overview",
+            "path": "directory/nested-directory"
+          },
+          {
+            "title": "Nested File",
+            "path": "directory/nested-directory/nested-file"
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
+A couple more important notes:
+
+- Within this data structure, ordering is flexible, but hierarchy is not. The structure of the sidebar must correspond to the structure of the content directory. So while you could put `file` and `another-file` in any order in the sidebar, or even leave one or both of them out, you could not decide to un-nest the `nested-directory` object without also un-nesting it in the filesystem.
+- The `title` property on each node in the `nav-data` tree is the human-readable name in the navigation.
+- The `path` property on each leaf node in the `nav-data` tree is the URL path where the `.mdx` document will be rendered, and the
+- Note that "index" files must be explicitly added. These will be automatically resolved, so the `path` value should be, as above, `directory` rather than `directory/index`. A common convention is to set the `title` of an "index" node to be `"Overview"`.
+
+Below we will discuss a couple of more unusual but still helpful patterns.
+
+### Index-less Categories
+
+Sometimes you may want to include a category but not have a need for an index page for the category. This can be accomplished, but as with other branch and leaf nodes, a human-readable `title` needs to be set manually. Here's an example of how an index-less category might look:
+
+```text
+.
+├── docs
+│   └── indexless-category
+│       └── file.mdx
+```
+
+```json
+// website/data/docs-nav-data.json
+[
+  {
+    "title": "Indexless Category",
+    "routes": [
+      {
+        "title": "File",
+        "path": "indexless-category/file"
+      }
+    ]
+  }
+]
+```
+
+### Custom or External Links
+
+Sometimes you may have a need to include a link that is not directly to a file within the docs hierarchy. This can also be supported using a different pattern. For example:
+
+```json
+[
+  {
+    "name": "Directory",
+    "routes": [
+      {
+        "title": "File",
+        "path": "directory/file"
+      },
+      {
+        "title": "Another File",
+        "path": "directory/another-file"
+      },
+      {
+        "title": "Tao of HashiCorp",
+        "href": "https://www.hashicorp.com/tao-of-hashicorp"
+      }
+    ]
+  }
+]
+```
+
+If the link provided in the `href` property is external, it will display a small icon indicating this. If it's internal, it will appear the same way as any other direct file link.
+
+<!-- END: editing-docs-sidebars -->
+
+<!-- BEGIN: releases -->
+<!-- Generated text, do not edit directly -->
+
+## Changing the Release Version
+
+To change the version displayed for download on the website, head over to `data/version.js` and change the number there. It's important to note that the version number must match a version that has been released and is live on `releases.hashicorp.com` -- if it does not, the website will be unable to fetch links to the binaries and will not compile. So this version number should be changed _only after a release_.
+
+### Displaying a Prerelease
+
+If there is a prerelease of any type that should be displayed on the downloads page, this can be done by editing `pages/downloads/index.jsx`. By default, the download component might look something like this:
+
+```jsx
+<ProductDownloader
+  product="<Product>"
+  version={VERSION}
+  downloads={downloadData}
+  community="/resources"
+/>
+```
+
+To add a prerelease, an extra `prerelease` property can be added to the component as such:
+
+```jsx
+<ProductDownloader
+  product="<Product>"
+  version={VERSION}
+  downloads={downloadData}
+  community="/resources"
+  prerelease={{
+    type: 'release candidate', // the type of prerelease: beta, release candidate, etc.
+    name: 'v1.0.0', // the name displayed in text on the website
+    version: '1.0.0-rc1', // the actual version tag that was pushed to releases.hashicorp.com
+  }}
+/>
+```
+
+This configuration would display something like the following text on the website, emphasis added to the configurable parameters:
+
+```
+A {{ release candidate }} for <Product> {{ v1.0.0 }} is available! The release can be <a href='https://releases.hashicorp.com/<product>/{{ 1.0.0-rc1 }}'>downloaded here</a>.
+```
+
+You may customize the parameters in any way you'd like. To remove a prerelease from the website, simply delete the `prerelease` parameter from the above component.
+
+<!-- END: releases -->
+
+<!-- BEGIN: redirects -->
+<!-- Generated text, do not edit directly -->
+
+## Redirects
+
+This website structures URLs based on the filesystem layout. This means that if a file is moved, removed, or a folder is re-organized, links will break. If a path change is necessary, it can be mitigated using redirects. It's important to note that redirects should only be used to cover for external links -- if you are moving a path which internal links point to, the internal links should also be adjusted to point to the correct page, rather than relying on a redirect.
+
+To add a redirect, head over to the `redirects.js` file - the format is fairly simple - there's a `source` and a `destination` - fill them both in, indicate that it's a permanent redirect or not using the `permanent` key, and that's it. Let's look at an example:
+
+```
+{
+  source: '/foo',
+  destination: '/bar',
+  permanent: true
+}
+```
+
+This redirect rule will send all incoming links to `/foo` to `/bar`. For more details on the redirects file format, [check out the docs on vercel](https://vercel.com/docs/configuration#project/redirects). All redirects will work both locally and in production exactly the same way, so feel free to test and verify your redirects locally. In the past testing redirects has required a preview deployment -- this is no longer the case. Please note however that if you add a redirect while the local server is running, you will need to restart it in order to see the effects of the redirect.
+
+There is still one caveat though: redirects do not apply to client-side navigation. By default, all links in the navigation and docs sidebar will navigate purely on the client side, which makes navigation through the docs significantly faster, especially for those with low-end devices and/or weak internet connections. In the future, we plan to convert all internal links within docs pages to behave this way as well. This means that if there is a link on this website to a given piece of content that has changed locations in some way, we need to also _directly change existing links to the content_. This way, if a user clicks a link that navigates on the client side, or if they hit the url directly and the page renders from the server side, either one will work perfectly.
+
+Let's look at an example. Say you have a page called `/docs/foo` which needs to be moved to `/docs/nested/foo`. Additionally, this is a page that has been around for a while and we know there are links into `/docs/foo.html` left over from our previous website structure. First, we move the page, then adjust the docs sidenav, in `data/docs-navigation.js`. Find the category the page is in, and move it into the appropriate subcategory. Next, we add to `_redirects` as such. The `.html` version is covered automatically.
+
+```js
+{ source: '/foo', destination: '/nested/foo', permanent: true }
+```
+
+Next, we run a global search for internal links to `/foo`, and make sure to adjust them to be `/nested/foo` - this is to ensure that client-side navigation still works correctly. _Adding a redirect alone is not enough_.
+
+One more example - let's say that content is being moved to an external website. A common example is guides moving to `learn.hashicorp.com`. In this case, we take all the same steps, except that we need to make a different type of change to the `docs-navigation` file. If previously the structure looked like:
+
+```js
+{
+  category: 'docs',
+  content: [
+    'foo'
+  ]
+}
+```
+
+If we no longer want the link to be in the side nav, we can simply remove it. If we do still want the link in the side nav, but pointing to an external destination, we need to slightly change the structure as such:
+
+```js
+{
+  category: 'docs',
+  content: [
+    { title: 'Foo Title', href: 'https://learn.hashicorp.com/<product>/foo' }
+  ]
+}
+```
+
+As the majority of items in the side nav are internal links, the structure makes it as easy as possible to represent these links. This alternate syntax is the most concise manner than an external link can be represented. External links can be used anywhere within the docs sidenav.
+
+It's also worth noting that it is possible to do glob-based redirects, for example matching `/docs/*`, and you may see this pattern in the redirects file. This type of redirect is much higher risk and the behavior is a bit more nuanced, so if you need to add a glob redirect, please reach out to the website maintainers and ask about it first.
+
+<!-- END: redirects -->
+
+<!-- BEGIN: browser-support -->
+<!-- Generated text, do not edit directly -->
+
+## Browser Support
+
+We support the following browsers targeting roughly the versions specified.
+
+| ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png) | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png) | ![Internet Explorer](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_24x24.png) |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Latest**                                                                                          | **Latest**                                                                                             | **Latest**                                                                                       | **Latest**                                                                                          | **11+**                                                                                                    |
+
+<!-- END: browser-support -->
+
+## Deployment
+
+This website is hosted on Vercel and configured to automatically deploy anytime you push code to the `master` branch. Any time a pull request is submitted that changes files, a deployment preview will appear in the GitHub checks which can be used to validate the way docs changes will look live. Deployments from `master` will look and behave the same way as deployment previews.
 
 ## More About `stable-website`
 
-↥ [back to top](#table-of-contents)
-
-[inpage-stable]: #more-about-stable-website
-
-Terraform has a special `stable-website` branch with docs for the most recent release. When the website is deployed, it uses the current content of `stable-website`.
+Terraform has a special `stable-website` branch with docs for the most recent release. When the website is deployed, it uses the current content of `stable-website`. This is also the case for Terraform CDK. However, this repo _does not_ have a `stable-website` branch; instead, it uses the `master` branch.
 
 When we release a new version of Terraform, we automatically force-push the corresponding commit to `stable-website`. (We also automatically update the ext/terraform submodule in this repo, but that's only for convenience when doing local previews; normal deployment to [terraform.io][] ignores the current state of the submodules.)
 

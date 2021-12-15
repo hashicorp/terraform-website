@@ -1,0 +1,39 @@
+[
+  { "heading": "Registry Publishing" },
+  { "title": "Overview", "path": "" },
+  {
+    "title": "Providers",
+    "routes": [
+      { "title": "Overview", "path": "providers" },
+      {
+        "title": "Publishing Providers",
+        "path": "providers/publishing"
+      },
+      {
+        "title": "Documenting Providers",
+        "path": "providers/docs"
+      },
+      {
+        "title": "Recommended OS and Architecture",
+        "path": "providers/os-arch"
+      },
+      {
+        "title": "Terraform Integration Program",
+        "href": "/docs/partnerships"
+      }
+    ]
+  },
+  {
+    "title": "Modules",
+    "routes": [
+      {
+        "title": "Finding and Using Modules",
+        "path": "modules/use"
+      },
+      { "title": "Publishing Modules", "path": "modules/publish" },
+      { "title": "Verified Modules", "path": "modules/verified" }
+    ]
+  },
+  { "title": "Private Registries", "path": "private" },
+  { "title": "Registry API", "path": "api-docs" }
+]

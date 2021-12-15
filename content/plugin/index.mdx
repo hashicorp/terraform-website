@@ -1,0 +1,34 @@
+---
+page_title: Home - Plugin Development
+description: Learn about developing plugins that connect Terraform to external services.
+---
+
+# Plugin Development
+
+Terraform is logically split into two main parts:
+
+- **Terraform Core**: This is the Terraform binary that communicates with plugins to manage infrastructure resources. It provides a common interface that allows you to leverage many different cloud providers, databases, services, and in-house solutions.
+- **Terraform Plugins**: These are executable binaries written in Go that communicate with Terraform Core over an RPC interface. Each plugin exposes an implementation for a specific service, such as the [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest)
+  or the [cloud-init provider](https://registry.terraform.io/providers/hashicorp/cloudinit/latest/docs). Terraform currently supports one type of Plugin called [providers](/language/providers).
+
+![diagram: How Terraform uses plugins](/img/docs/terraform-plugin-overview.png)
+
+## Get Started
+
+- Learn more about [how Terraform Core interacts with plugins](/plugin/how-terraform-works).
+- Learn the [design principles](/plugin/hashicorp-provider-design-principles) HashiCorp developers follow when creating providers.
+- Decide [which SDK](/plugin/which-sdk) is right for your provider.
+- Try these hands-on tutorials on HashiCorp Learn: [Call APIs with Terraform Providers (SDKv2)](https://learn.hashicorp.com/collections/terraform/providers?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS) and [Implement Create and Read (Framework)](https://learn.hashicorp.com/tutorials/terraform/plugin-framework-create?in=terraform/providers)
+
+## Develop and Share Providers
+
+- Learn more about **how to use [SDKv2](/plugin/sdkv2/sdkv2-intro)** to develop providers. This includes details about how to define attributes and behaviors using [schemas](/plugin/sdkv2/schemas), [develop resources](/plugin/sdkv2/resources), [debug providers](/plugin/sdkv2/debugging), and [test plugins](/plugin/sdkv2/testing).
+- Learn more about **how to use the [plugin framework](/plugin/framework)** to develop providers. This includes details about how to define attributes and behaviors using [schemas](/plugin/framework/schemas), develop [resources](/plugin/framework/resources) and [data sources](/plugin/framework/data-sources), and [write tests](/plugin/framework/acctests).
+- [Publish your provider on the Terraform Registry](/registry/providers/publishing) to make it publicly available.
+- Get HashiCorp to [officially approve and verify](/docs/partnerships) your provider. Verified providers get a special badge on the Terraform Registry.
+
+## Get Support
+
+- Ask questions and learn useful patterns in the [Terraform Providers section](https://discuss.hashicorp.com/c/terraform-providers/tf-plugin-sdk/43) of HashiCorp discuss.
+
+- Report bugs to the [Terraform Plugin SDK Issue Tracker](https://github.com/hashicorp/terraform-plugin-sdk/issues).

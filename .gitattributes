@@ -1,0 +1,7 @@
+content/cdktf           symlink=dir
+content/cli             symlink=dir
+content/configuration   symlink=dir
+content/guides          symlink=dir
+content/internals       symlink=dir
+content/intro           symlink=dir
+content/language        symlink=dir

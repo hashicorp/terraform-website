@@ -1,0 +1,14 @@
+.hosting {
+  border: 1px solid var(--gray-5);
+  padding: 16px;
+  text-align: center;
+  color: var(--gray-2);
+}
+
+.signUpButton {
+  margin-left: 26px;
+}
+
+.logo {
+  margin-right: 8px;
+}

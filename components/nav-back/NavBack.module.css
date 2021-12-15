@@ -1,0 +1,11 @@
+.navBack {
+  color: var(--gray-3);
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-semi-bold);
+  font-size: 16px;
+  display: flex;
+
+  & > img {
+    margin-right: 10px;
+  }
+}

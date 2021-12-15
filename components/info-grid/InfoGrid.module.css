@@ -1,0 +1,26 @@
+.infoGrid {
+  display: grid;
+  grid-gap: 24px;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: 1fr;
+
+  @media (--medium-up) {
+    gap: 24px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (--large) {
+    gap: 64px;
+  }
+}
+
+.icon {
+  width: 72px;
+  height: 72px;
+  background-color: var(--terraform-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 38px;
+}
