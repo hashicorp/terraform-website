@@ -2,138 +2,69 @@
 page_title: Terraform Tools
 description: >-
   Use these tools with Terraform to solve a broad range of infrastructure and DevOps challenges.
+
 ---
 
 # Terraform Tools
 Terraform is part of a rich infrastructure and DevOps ecosystem. The tools below extend Terraform’s functionality or pair with Terraform to solve a broad range of infrastructure challenges.
 
-## Write and Validate Configuration
+## Develop and Validate Configuration
 
-|Name | Description |Managed By|
-|-----|------------|-----------|
-|[Cloud Development Kit for Terraform (CDKTF)](/docs/cdktf/index.html)|
-Use familiar programming languages to define and provision infrastructure. CDKTF currently supports TypeScript, Python, Java, C#, and Go (experimental). **Hands On:** Get started with the [Write CDK for Terraform configurations](https://learn.hashicorp.com/collections/terraform/cdktf) collection on HashiCorp Learn.|
-HashiCorp|
-
-[Terraform Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
-Add syntax highlighting and other editing features using the Terraform Language Server.
-HashiCorp
- [Terraform Language Server](https://github.com/hashicorp/terraform-ls)
-Add support for Terraform configuration language in editors that support the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/), like Sublime Text, vim, emacs, etc.
-HashiCorp
-[Terraform console](https://www.terraform.io/docs/cli/commands/console.html)
-Evaluate Terraform expressions and explore your Terraform project's state. The console helps you develop and debug your configuration, especially when working with complex state data and Terraform expressions.
-**Hands On:** Get started with the [Develop Configuration with the Console](https://learn.hashicorp.com/tutorials/terraform/console) tutorial on HashiCorp Learn.
-HashiCorp
+|Name | Maintainer |Description| Tutorial |
+|-----|------------|-----------|----------|
+|[Cloud Development Kit for Terraform (CDKTF)](/docs/cdktf/index.html)| HashiCorp | Use familiar programming languages to define and provision infrastructure. CDKTF currently supports TypeScript, Python, Java, C#, and Go (experimental).| [Write CDK for Terraform configurations](https://learn.hashicorp.com/collections/terraform/cdktf) |
+|[Terraform Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform) | HashiCorp | Enable syntax highlighting and other editing features to VS Code using the Terraform Language Server.| |
+|[Terraform Language Server](https://github.com/hashicorp/terraform-ls) | HashiCorp | Add support for the Terraform configuration language to editors that use the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/), like Sublime Text, vim, emacs, etc.| |
+|[Terraform console](https://www.terraform.io/docs/cli/commands/console.html) | HashiCorp | Evaluate Terraform expressions and explore your Terraform project's state. The console helps you develop and debug your configuration, especially when working with complex state data and Terraform expressions.| [Develop Configuration with the Console](https://learn.hashicorp.com/tutorials/terraform/console) |
 
 
 ## Manage Infrastructure
 
-Name
-Description
-Managed By
-[Kubernetes Operator for Terraform](https://github.com/hashicorp/terraform-k8s)
-Manage cloud and on-prem infrastructure through a Kubernetes custom resource definition (CRD) and Terraform Cloud.
-
- **Hands On:** Get started with the [Deploy Infrastructure with the Terraform Cloud Operator for Kubernetes](https://learn.hashicorp.com/tutorials/terraform/kubernetes-operator) tutorial on HashiCorp Learn.
-
-
-HashiCorp
-[Terraform ServiceNow Catalog](/docs/cloud/integrations/service-now/index.html)
-Create Terraform configurations to order Service Items, create workspaces, and perform Terraform runs from ServiceNow.
-HashiCorp
-[Consul Terraform Sync (Sync)](https://github.com/hashicorp/consul-terraform-sync)
-Automatically request network infrastructure updates to accommodate Consul service registrations. Works with A10 ADC, F5 BIG IP, Palo Alto Networks, and more.
-**Hands On:** Get started with the [Network Infrastructure Automation (NIA)](https://learn.hashicorp.com/collections/consul/network-infrastructure-automation) collection on HashiCorp Learn.
-HashiCorp
+|Name | Maintainer |Description| Tutorial |
+|-----|------------|-----------|----------|
+|[Kubernetes Operator for Terraform](https://github.com/hashicorp/terraform-k8s)| HashiCorp | Manage cloud and on-prem infrastructure through a Kubernetes custom resource definition (CRD) and Terraform Cloud. | [Deploy Infrastructure with the Terraform Cloud Operator for Kubernetes](https://learn.hashicorp.com/tutorials/terraform/kubernetes-operator) |
+| [Terraform ServiceNow Catalog](/docs/cloud/integrations/service-now/index.html) | HashiCorp |  Create Terraform configuration to order Service Items, create workspaces, and perform Terraform runs from ServiceNow.| |
+| [Consul Terraform Sync (Sync)](https://github.com/hashicorp/consul-terraform-sync) | HashiCorp | Automatically request network infrastructure updates to accommodate Consul service registrations. Works with A10 ADC, F5 BIG IP, Palo Alto Networks, and more. | [Network Infrastructure Automation (NIA)](https://learn.hashicorp.com/collections/consul/network-infrastructure-automation)  |
 
 
 ## Automate Terraform
 
-Name
-Description
-Managed By
- [`terraform-exec`](https://github.com/hashicorp/terraform-exec)
-Use the Go module to construct and run CLI commands. Refer to the `terraform-json` repository (below) for documentation about the return values.
-HashiCorp
- [`terraform-json`](https://github.com/hashicorp/terraform-json)
-Parse the output from CLI commands `terraform show -json`(/docs/commands/show.html#json-output) and [`terraform providers schema -json`](/docs/commands/providers/schema.html#json) and receive documentation for the output format. You can also use the provided helpers to work with the data.
-HashiCorp
-[Terraform Orb](https://circleci.com/developer/orbs/orb/circleci/terraform)
-Deploy your Terraform infrastructure via a CircleCI pipeline. CircleCI Orbs let you package, ship, and re-use configurations.
-**Hands On:** Get started with the [Deploy Terraform infrastructure with CircleCI](https://learn.hashicorp.com/tutorials/terraform/circle-ci) tutorial on HashiCorp Learn.
-Third Party
-[GitHub Actions for Terraform](https://github.com/hashicorp/setup-terraform)
-Automate Terraform in your GitHub Actions workflow. After you have used the action, subsequent steps in the same job can run Terraform commands using the GitHub Actions run syntax. This allows most Terraform commands to work exactly like they do on your local command line.
-
-
-**Hands On:** Try the [Automate Terraform with GitHub Actions](https://learn.hashicorp.com/tutorials/terraform/github-actions) tutorial on HashiCorp Learn.
-Third Party
-
+|Name | Maintainer |Description| Tutorial |
+|-----|------------|-----------|----------|
+| [`terraform-exec`](https://github.com/hashicorp/terraform-exec) | HashiCorp | Use the Go module to construct and run CLI commands. Refer to the `terraform-json` repository (below) for documentation about the return values. |  |
+| [`terraform-json`](https://github.com/hashicorp/terraform-json) | HashiCorp | Use the data types and helper functions in this repository to work with JSON-formatted Terraform output.|  |
+| [Terraform Orb](https://circleci.com/developer/orbs/orb/circleci/terraform) | Third Party | Deploy your Terraform infrastructure via a CircleCI pipeline. CircleCI Orbs let you package, ship, and re-use configurations. | [Deploy Terraform infrastructure with CircleCI](https://learn.hashicorp.com/tutorials/terraform/circle-ci) |
+|[GitHub Actions for Terraform](https://github.com/hashicorp/setup-terraform) | Third Party | Automate Terraform in your GitHub Actions workflow. After you have used the action, subsequent steps in the same job can run Terraform commands using the GitHub Actions run syntax. | [Automate Terraform with GitHub Actions](https://learn.hashicorp.com/tutorials/terraform/github-actions) |
 
 ## Security and Compliance
 
-Name
-Description
-Managed By
-[Terraform Cloud for Splunk](/docs/cloud/integrations/splunk/index.html)
-Pull audit logs from Terraform Cloud into Splunk to identify the most active policies, understand significant changes in resource operations, and filter actions by specific users within your organization.
-HashiCorp
-[Sentinel](https://www.terraform.io/docs/cloud/sentinel/index.html)
-Write and enforce fine-grained, logic-based policies for your infrastructure. Sentinel is an embedded policy-as-code framework integrated with the HashiCorp Enterprise products.
-
-**Hands On:** Try the [Enforce Policy with Sentinel](https://learn.hashicorp.com/collections/terraform/policy) collection on HashiCorp Learn.
-HashiCorp
+|Name | Maintainer |Description| Tutorial |
+|-----|------------|-----------|----------|
+| [Terraform Cloud for Splunk](/docs/cloud/integrations/splunk/index.html) | HashiCorp | Pull audit logs from Terraform Cloud into Splunk to identify the most active policies, understand significant changes in resource operations, and filter actions by specific users within your organization. | |
+| [Sentinel](https://www.terraform.io/docs/cloud/sentinel/index.html) | HashiCorp |  Write and enforce fine-grained, logic-based policies for your infrastructure. Sentinel is an embedded policy-as-code framework integrated with the HashiCorp Enterprise products. | [Enforce Policy with Sentinel](https://learn.hashicorp.com/collections/terraform/policy) |
 
 
 ## Develop Terraform Providers
 
-Name
-Description
-Managed By
-[Plugin SDK](/docs/extend/sdkv2-intro.html)
-Develop your own public or private Terraform providers.
-HashiCorp
-[Plugin Framework](/docs/plugin/framework/index.html)
-Develop your own public or private Terraform providers. The framework provides improvements and additional features from the Plugin SDK.
-HashiCorp
-[`terraform-plugin-mux`](https://github.com/hashicorp/terraform-plugin-mux)
-Combine providers built in multiple different SDKs and frameworks. This lets you upgrade between SDKs or frameworks on a resource-by-resource basis instead of all at once.
-
-
-HashiCorp
-[`terraform-plugin-go`](https://github.com/hashicorp/terraform-plugin-go)
-Use low-level Go bindings for the Terraform plugin protocol as a foundation for integrations.
-HashiCorp
-[`terraform-plugin-go-contrib`](https://github.com/hashicorp/terraform-plugin-go-contrib)
-Use this set of common code packages with `terraform-plugin-go`.
-HashiCorp
-[`terraform-plugin-log`](https://github.com/hashicorp/terraform-plugin-log)
-Attach context and information to logs and use multiple loggers to filter log output.
-HashiCorp
+|Name | Maintainer |Description| Tutorial |
+|-----|------------|-----------|----------|
+| [Plugin SDK](/docs/extend/sdkv2-intro.html) | HashiCorp | Develop your own Terraform providers. | [Setup and Implement Read](https://learn.hashicorp.com/tutorials/terraform/provider-setup?in=terraform/providers) |
+|[Plugin Framework](/docs/plugin/framework/index.html) | HashiCorp | Develop your own Terraform providers. The framework provides improvements and additional features from the Plugin SDK. | [Implement Create and Read with the Terraform Plugin Framework](https://learn.hashicorp.com/tutorials/terraform/plugin-framework-create?in=terraform/providers) |
+|[`terraform-plugin-mux`](https://github.com/hashicorp/terraform-plugin-mux)| HashiCorp | Combine providers built in multiple different SDKs and frameworks. This lets you upgrade between SDKs or frameworks on a resource-by-resource basis instead of all at once. | |
+| [`terraform-plugin-go`](https://github.com/hashicorp/terraform-plugin-go) | HashiCorp |  Use low-level Go bindings for the Terraform plugin protocol as a foundation for integrations. | |
+| [`terraform-plugin-go-contrib`](https://github.com/hashicorp/terraform-plugin-go-contrib) | HashiCorp |  Use this set of common code packages with `terraform-plugin-go`. |  |
+| [`terraform-plugin-log`](https://github.com/hashicorp/terraform-plugin-log) | HashiCorp | Attach context and information to logs and use multiple loggers to filter log output. | |
 
 
 ## HashiCorp Products
-You can use HashiCorp products together to enable self-service automation across teams and organizations. Watch CEO and Co-founder Armon Dadgar discuss how you can use Packer, Terraform, and Consul together to enable modern infrastructure automation.
+You can use HashiCorp products together to enable self-service automation across teams and organizations.
 
-Name
-Description
-Managed By
-[Vault provider](https://registry.terraform.io/providers/hashicorp/vault/latest/docs)
-Read from, write to, and configure Vault. Vault lets you secure, store, and tightly control access to tokens, passwords, certificates, encryption keys, and other sensitive data.
-**Hands On:** Try the [Inject Secrets into Terraform Using the Vault Provider](https://learn.hashicorp.com/tutorials/cloud/terraform-hcp-provider-vault) tutorial on HashiCorp Learn.
-HashiCorp
-[Consul Provider](https://registry.terraform.io/providers/hashicorp/consul/latest)
-Add external services to Consul, work with the key/value store, and more, using Terraform. [Consul](https://www.consul.io/) Consul provides service-based networking for dynamic infrastructure.
-**Hands On:** Try the [Use Terraform to Register External Services](https://learn.hashicorp.com/tutorials/consul/terraform-consul-provider) tutorial on HashiCorp Learn.
-HashiCorp
-[HashiCorp Cloud Platform Packer registry](https://cloud.hashicorp.com/docs/packer)
-Track golden images, designate images for test and production environments, and query images to use in both Packer and Terraform configurations. Packer lets you create identical machine images for multiple platforms from a single source template.
+|Name | Maintainer | Description| Tutorial |
+|-----|------------|-----------|----------|
+| [Vault provider](https://registry.terraform.io/providers/hashicorp/vault/latest/docs) | HashiCorp | Read from, write to, and configure Vault. Vault lets you secure, store, and tightly control access to tokens, passwords, certificates, encryption keys, and other sensitive data. | [Inject Secrets into Terraform Using the Vault Provider](https://learn.hashicorp.com/tutorials/cloud/terraform-hcp-provider-vault)|
+|[Consul Provider](https://registry.terraform.io/providers/hashicorp/consul/latest) | HashiCorp | Add external services to Consul, work with the key/value store, and more, using Terraform. [Consul](https://www.consul.io/) Consul provides service-based networking for dynamic infrastructure. | [Use Terraform to Register External Services](https://learn.hashicorp.com/tutorials/consul/terraform-consul-provider)|
+| [HashiCorp Cloud Platform Packer registry](https://cloud.hashicorp.com/docs/packer) | HashiCorp | Track golden images, designate images for test and production environments, and query images to use in both Packer and Terraform configurations. Packer lets you create identical machine images for multiple platforms from a single source template. | [Push Image Metadata to the HCP Packer Registry](https://learn.hashicorp.com/tutorials/packer/hcp-push-image-metadata) |
+| [Nomad AWS Module](https://registry.terraform.io/modules/hashicorp/nomad/aws/latest) | Third Party |  Use Terraform to deploy a Nomad cluster on Amazon Web Services (AWS). Nomad is a distributed, highly-available data-center aware scheduler. |
 
-**Hands On:** Try the [Push Image Metadata to the HCP Packer Registry](https://learn.hashicorp.com/tutorials/packer/hcp-push-image-metadata) tutorial on HashiCorp Learn.
-HashiCorp
-[Nomad AWS Module](https://registry.terraform.io/modules/hashicorp/nomad/aws/latest)
-Use Terraform to deploy a Nomad cluster on Amazon Web Services (AWS). Nomad is a distributed, highly-available data-center aware scheduler.
-Third Party
 
 
