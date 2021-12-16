@@ -10,13 +10,11 @@ import HashiHead from '@hashicorp/react-head'
 import HashiStackMenu from '@hashicorp/react-hashi-stack-menu'
 import AlertBanner from '@hashicorp/react-alert-banner'
 import { ErrorBoundary } from '@hashicorp/platform-runtime-error-monitoring'
-import Subnav from '@hashicorp/react-subnav'
+import Subnav from 'components/subnav'
 import Footer from 'components/footer'
 import Error from './_error'
 import { productName } from '../data/metadata'
 import alertBannerData, { ALERT_BANNER_ACTIVE } from 'data/alert-banner'
-import navMenuItems from 'data/primary-navigation.js'
-import Link from 'next/link'
 
 NProgress({ Router })
 // const { ConsentManager, openConsentManager } = createConsentManager({
@@ -45,17 +43,7 @@ function App({ Component, pageProps }) {
         <AlertBanner {...alertBannerData} product="terraform" hideOnMobile />
       )}
       <HashiStackMenu />
-      <Subnav
-        titleLink={{ text: 'terraform', url: '/' }}
-        ctaLinks={[
-          { text: 'Download CLI', url: '/downloads' },
-          { text: 'Terraform Cloud', url: '/cloud' },
-        ]}
-        menuItems={navMenuItems}
-        menuItemsAlign="right"
-        constrainWidth
-        Link={Link}
-      />
+      <Subnav />
       <div className="page-content">
         <Component {...pageProps} />
       </div>
