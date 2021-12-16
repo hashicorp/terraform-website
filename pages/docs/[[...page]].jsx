@@ -34,17 +34,32 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  if (params.page) {
+  const DEFINED_DOCS_PAGES = ['glossary', 'partnerships']
+
+  if (params.page && !DEFINED_DOCS_PAGES.includes(params.page[0])) {
     const path = ['/docs', ...params.page].join('/')
-    if (path in docsRedirects) {
-      return {
-        redirect: {
-          destination: docsRedirects[path],
-          permanent: true,
-        },
+    const pathIndexHtml = [path, 'index.html'].join('/')
+    const pathHtml = `${path}.html`
+
+    for (const key of [path, pathIndexHtml, pathHtml]) {
+      if (key in docsRedirects) {
+        return {
+          redirect: {
+            destination: docsRedirects[key],
+            permanent: true,
+          },
+        }
       }
     }
+
+    // We've hit a /docs page that's not in our redirects, and isn't one of the
+    // defined /docs routes, so return a 404 instead of trying to call the
+    // generateStaticProps method which returns a 500 error.
+    return {
+      notFound: true,
+    }
   }
+
   const props = await generateStaticProps({
     navDataFile: NAV_DATA,
     localContentDir: CONTENT_DIR,

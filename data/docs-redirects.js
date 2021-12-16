@@ -845,7 +845,7 @@ export const docsRedirects = {
   '/docs/extend/hashicorp-provider-design-principles.html': '/plugin/hashicorp-provider-design-principles',
   '/docs/extend/how-terraform-works.html': '/plugin/how-terraform-works',
   '/docs/extend/index.html': '/plugin',
-  '/docs/extend/plugin-sdk.html\t\t\t\t': '/plugin/sdkv2/guides/v1-upgrade-guide',
+  '/docs/extend/plugin-sdk.html': '/plugin/sdkv2/guides/v1-upgrade-guide',
   '/docs/extend/plugin-types.html': '/plugin',
   '/docs/extend/resources.html': '/plugin/sdkv2/resources',
   '/docs/extend/resources/customizing-differences.html': '/plugin/sdkv2/resources/customizing-differences',
