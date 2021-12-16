@@ -200,6 +200,7 @@ export const docsRedirects = {
   '/docs/cloud/guides/recommended-practices/part3.4.html': '/cloud-docs/guides/recommended-practices/part3.4',
   '/docs/cloud/guides/recommended-practices/part3.html': '/cloud-docs/guides/recommended-practices/part3',
   '/docs/cloud/index.html': '/cloud-docs',
+  '/docs/cloud': '/cloud-docs',
   '/docs/cloud/integrations/kubernetes/index.html': '/cloud-docs/integrations/kubernetes',
   '/docs/cloud/integrations/run-tasks/index.html': '/cloud-docs/integrations/run-tasks',
   '/docs/cloud/integrations/service-now/admin-guide.html': '/cloud-docs/integrations/service-now/admin-guide',
