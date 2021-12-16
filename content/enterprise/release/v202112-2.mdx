@@ -28,7 +28,7 @@ APPLICATION LEVEL BUG FIXES:
 1. Fixed an issue where Replicated snapshots were not executing for demo mode installations.
 1. Fixed provider/module APIs to allow prefix searching, also fixes bug where providers were returned for unrelated (but member of) organizations.
 1. Fixed structured run output to show a less verbose diff for json-encoded array fields
-1. Added a fix to prevent the removal of the last owner of an organization via the API. It also gives precedence to returning an error if you remove the last owner over removing yourself (if you are an owner of the organization). Meaning that even though if you try to remove yourself (and you happen to be the only owner), the error that you'll receive is the same as if one tried to remove the only owner. You'll only receive the error message: `You cannot remove yourself from an organization you own` if you try to remove yourself and are not the only owner of an organization.  Therefore the unit tests for "removing self as owner" had to be updated to include multiple owners in the organization. 
+1. Added a fix to prevent the removal of the last owner of an organization via the API. It also gives precedence to returning an error if you are an organization owner and you remove the last owner over removing yourself. If you try to remove yourself and you are the only owner, the error is the same as if you tried to remove the only owner:`You cannot remove yourself from an organization you own`. Therefore, we updated the unit tests for "removing self as owner" to include multiple owners in the organization. 
 
 
 APPLICATION LEVEL SECURITY FIXES:
