@@ -49,6 +49,7 @@ export const docsRedirects = {
   '/docs/cdktf/create-and-deploy/project-setup.html': '/cdktf/create-and-deploy/project-setup',
   '/docs/cdktf/create-and-deploy/remote-templates.html': '/cdktf/create-and-deploy/remote-templates',
   '/docs/cdktf/examples.html': '/cdktf/examples',
+  '/docs/cdktf': '/cdktf',
   '/docs/cdktf/index.html': '/cdktf',
   '/docs/cdktf/telemetry.html': '/cdktf/telemetry',
   '/docs/cdktf/test/unit-tests.html': '/cdktf/test/unit-tests',
