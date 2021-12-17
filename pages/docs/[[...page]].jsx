@@ -34,7 +34,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const DEFINED_DOCS_PAGES = ['glossary', 'partnerships']
+  const DEFINED_DOCS_PAGES = ['glossary', 'partnerships', 'terraform-tools']
 
   if (params.page && !DEFINED_DOCS_PAGES.includes(params.page[0])) {
     const path = ['/docs', ...params.page].join('/')
