@@ -12,6 +12,7 @@
     "title": "Integration Program",
     "href": "/docs/partnerships"
   },
+  { "title": "Terraform Tools", "href": "/docs/terraform-tools"},
   { "title": "CDK for Terraform", "href": "/cdktf" },
   { "title": "Glossary", "href": "/docs/glossary" }
 ]

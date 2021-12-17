@@ -59,6 +59,10 @@ export default [
         text: 'Integration Program',
       },
       {
+        url: '/docs/terraform-tools',
+        text: 'Terraform Tools',
+      },
+      {
         url: '/cdktf',
         text: 'CDK for Terraform',
       },
