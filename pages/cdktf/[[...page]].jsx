@@ -61,6 +61,10 @@ export async function getStaticProps({ params }) {
         }
       },
     ],
+    githubFileUrl(path) {
+      const filepath = path.replace('content/', '')
+      return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/docs/${filepath}`
+    },
   })
   return { props }
 }

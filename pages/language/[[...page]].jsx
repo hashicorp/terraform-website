@@ -43,6 +43,10 @@ export async function getStaticProps({ params }) {
     localContentDir: CONTENT_DIR,
     params,
     product: PRODUCT,
+    githubFileUrl(path) {
+      const filepath = path.replace('content/', '')
+      return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/docs/${filepath}`
+    },
   })
   return { props }
 }

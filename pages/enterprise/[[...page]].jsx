@@ -12,7 +12,7 @@ import {
 const BASE_ROUTE = 'enterprise'
 const NAV_DATA = 'data/enterprise-nav-data.json'
 const CONTENT_DIR = 'content/enterprise'
-const PRODUCT = { name: productName, slug: productSlug }
+const PRODUCT = { name: productName, slug: 'terraform-website' }
 
 export default function EnterpriseLayout(props) {
   // add the "other docs" section to the bottom of the nav data
@@ -47,6 +47,9 @@ export async function getStaticProps({ params }) {
     localContentDir: CONTENT_DIR,
     params,
     product: PRODUCT,
+    githubFileUrl(path) {
+      return `https://github.com/hashicorp/${PRODUCT.slug}/blob/master/${path}`
+    },
   })
   return { props }
 }

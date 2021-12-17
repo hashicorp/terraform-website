@@ -12,7 +12,7 @@ import {
 const BASE_ROUTE = 'docs'
 const NAV_DATA = 'data/docs-nav-data.json'
 const CONTENT_DIR = 'content/docs'
-const PRODUCT = { name: productName, slug: productSlug }
+const PRODUCT = { name: productName, slug: 'terraform-website' }
 
 function DocsLayout(props) {
   return (
@@ -65,6 +65,9 @@ export async function getStaticProps({ params }) {
     localContentDir: CONTENT_DIR,
     params,
     product: PRODUCT,
+    githubFileUrl(path) {
+      return `https://github.com/hashicorp/${PRODUCT.slug}/blob/master/${path}`
+    },
   })
   return { props }
 }
