@@ -13,9 +13,9 @@ Terraform is part of a rich infrastructure and DevOps ecosystem. The tools below
 |Name | Maintainer |Description| Tutorial |
 |-----|------------|-----------|----------|
 |[Cloud Development Kit for Terraform (CDKTF)](/docs/cdktf/index.html)| HashiCorp | Use familiar programming languages to define and provision infrastructure. CDKTF currently supports TypeScript, Python, Java, C#, and Go (experimental).| [Write CDK for Terraform configurations](https://learn.hashicorp.com/collections/terraform/cdktf) |
-|[Terraform Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform) | HashiCorp | Enable syntax highlighting and other editing features to VS Code using the Terraform Language Server.| |
-|[Terraform Language Server](https://github.com/hashicorp/terraform-ls) | HashiCorp | Add support for the Terraform configuration language to editors that use the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/), like Sublime Text, vim, emacs, etc.| |
-|[Terraform console](https://www.terraform.io/docs/cli/commands/console.html) | HashiCorp | Evaluate Terraform expressions and explore your Terraform project's state. The console helps you develop and debug your configuration, especially when working with complex state data and Terraform expressions.| [Develop Configuration with the Console](https://learn.hashicorp.com/tutorials/terraform/console) |
+|[Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform) | HashiCorp | Enable syntax highlighting and other editing features to VS Code using the Terraform Language Server.| |
+|[Language Server](https://github.com/hashicorp/terraform-ls) | HashiCorp | Add support for the Terraform configuration language to editors that use the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/), like Sublime Text, vim, emacs, etc.| |
+|[console](https://www.terraform.io/docs/cli/commands/console.html) | HashiCorp | Evaluate Terraform expressions and explore your Terraform project's state. The console helps you develop and debug your configuration, especially when working with complex state data and Terraform expressions.| [Develop Configuration with the Console](https://learn.hashicorp.com/tutorials/terraform/console) |
 
 
 ## Manage Infrastructure
@@ -23,7 +23,7 @@ Terraform is part of a rich infrastructure and DevOps ecosystem. The tools below
 |Name | Maintainer |Description| Tutorial |
 |-----|------------|-----------|----------|
 |[Kubernetes Operator for Terraform](https://github.com/hashicorp/terraform-k8s)| HashiCorp | Manage cloud and on-prem infrastructure through a Kubernetes custom resource definition (CRD) and Terraform Cloud. | [Deploy Infrastructure with the Terraform Cloud Operator for Kubernetes](https://learn.hashicorp.com/tutorials/terraform/kubernetes-operator) |
-| [Terraform ServiceNow Catalog](/docs/cloud/integrations/service-now/index.html) | HashiCorp |  Create Terraform configuration to order Service Items, create workspaces, and perform Terraform runs from ServiceNow.| |
+| [ServiceNow Catalog](/docs/cloud/integrations/service-now/index.html) | HashiCorp |  Create Terraform configuration to order Service Items, create workspaces, and perform Terraform runs from ServiceNow.| |
 | [Consul Terraform Sync (CTS)](https://github.com/hashicorp/consul-terraform-sync) | HashiCorp | Automatically request network infrastructure updates to accommodate Consul service registrations. Works with A10 ADC, F5 BIG IP, Palo Alto Networks, and more. | [Network Infrastructure Automation (NIA)](https://learn.hashicorp.com/collections/consul/network-infrastructure-automation)  |
 
 
@@ -34,6 +34,7 @@ Terraform is part of a rich infrastructure and DevOps ecosystem. The tools below
 | [`terraform-exec`](https://github.com/hashicorp/terraform-exec) | HashiCorp | Use the Go module to construct and run CLI commands. Refer to the `terraform-json` repository (below) for documentation about the return values. |  |
 | [`terraform-json`](https://github.com/hashicorp/terraform-json) | HashiCorp | Use the data types and helper functions in this repository to work with JSON-formatted Terraform output.|  |
 | [CircleCI Orb](https://circleci.com/developer/orbs/orb/circleci/terraform) | Third Party | Deploy your Terraform infrastructure via a CircleCI pipeline. CircleCI Orbs let you package, ship, and re-use configurations. | [Deploy Terraform infrastructure with CircleCI](https://learn.hashicorp.com/tutorials/terraform/circle-ci) |
+|[TFE Provider](https://registry.terraform.io/providers/hashicorp/tfe/latest) | HashiCorp | Manage Terraform Cloud or Terraform Enterprise with Terraform itself. Create, modify, and delete organizations, workspaces, teams, variables, run triggers, policy sets, and more. |  |
 |[GitHub Actions for Terraform](https://github.com/hashicorp/setup-terraform) | Third Party | Automate Terraform in your GitHub Actions workflow. After you have used the action, subsequent steps in the same job can run Terraform commands using the GitHub Actions run syntax. | [Automate Terraform with GitHub Actions](https://learn.hashicorp.com/tutorials/terraform/github-actions) |
 
 ## Security and Compliance
@@ -61,10 +62,13 @@ You can use HashiCorp products together to enable self-service automation across
 
 |Name | Maintainer | Description| Tutorial |
 |-----|------------|-----------|----------|
-| [Vault provider](https://registry.terraform.io/providers/hashicorp/vault/latest/docs) | HashiCorp | Vault lets you secure, store, and tightly control access to tokens, passwords, certificates, encryption keys, and other sensitive data. Use this provider to read from, write to, and configure Vault.  | [Inject Secrets into Terraform Using the Vault Provider](https://learn.hashicorp.com/tutorials/cloud/terraform-hcp-provider-vault)|
+| [HashiCorp Cloud Platform (HCP) Provider](https://registry.terraform.io/providers/hashicorp/hcp/latest) | HashiCorp |  Launch and run HashiCorp products as managed services that will be deployed into HashiCorp Virtual Networks (HVNs) and connected to your infrastructure resources. |   |
+| [Vault provider](https://registry.terraform.io/providers/hashicorp/vault/latest/docs) | HashiCorp | [Vault](https://www.vaultproject.io/) lets you secure, store, and tightly control access to tokens, passwords, certificates, encryption keys, and other sensitive data. Use this provider to read from, write to, and configure Vault.  | [Inject Secrets into Terraform Using the Vault Provider](https://learn.hashicorp.com/tutorials/cloud/terraform-hcp-provider-vault)|
 |[Consul Provider](https://registry.terraform.io/providers/hashicorp/consul/latest) | HashiCorp | [Consul](https://www.consul.io/) provides service-based networking for dynamic infrastructure. Use this provider to add external services to Consul, work with the key/value store, and more, using Terraform.  | [Use Terraform to Register External Services](https://learn.hashicorp.com/tutorials/consul/terraform-consul-provider)|
-| [HashiCorp Cloud Platform Packer registry](https://cloud.hashicorp.com/docs/packer) | HashiCorp | Packer lets you create identical machine images for multiple platforms from a single source template. Use the registry to track golden images, designate images for test and production environments, and query images to use in both Packer and Terraform configurations.  | [Push Image Metadata to the HCP Packer Registry](https://learn.hashicorp.com/tutorials/packer/hcp-push-image-metadata) |
-| [Nomad AWS Module](https://registry.terraform.io/modules/hashicorp/nomad/aws/latest) | Third Party |  Nomad is a distributed, highly-available data-center aware scheduler. Use Terraform to deploy a Nomad cluster on Amazon Web Services (AWS). |
+|[HashiCorp Consul Service (HCS)](https://registry.terraform.io/providers/hashicorp/hcs/latest) | HashiCorp | Provision HashiCorp-managed Consul clusters directly through the Azure Marketplace. |   |
+| [HCP Packer registry](https://cloud.hashicorp.com/docs/packer) | HashiCorp | [Packer](https://www.packer.io/) lets you create identical machine images for multiple platforms from a single source template. Use the registry to track golden images, designate images for test and production environments, and query images to use in both Packer and Terraform configurations.  | [Push Image Metadata to the HCP Packer Registry](https://learn.hashicorp.com/tutorials/packer/hcp-push-image-metadata) |
+|[Boundary Provider](https://registry.terraform.io/providers/hashicorp/boundary/latest) | HashiCorp | [Boundary](https://www.boundaryproject.io/) is an intelligent proxy that creates granular, identity-based access controls for dynamic infrastructure. Manage Boundary's identity-based access controls for resources provisioned with Terraform. |  |
+| [Nomad AWS Module](https://registry.terraform.io/modules/hashicorp/nomad/aws/latest) | Third Party |  [Nomad](https://www.nomadproject.io/) is a distributed, highly-available, data-center aware scheduler. Use Terraform to deploy a Nomad cluster on Amazon Web Services (AWS). |
 
 
 
