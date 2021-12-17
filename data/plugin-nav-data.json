@@ -175,6 +175,10 @@
         "routes": [
           { "title": "Overview", "path": "framework/resources" },
           {
+            "title": "Import",
+            "path": "framework/resources/import"
+          },
+          {
             "title": "Plan Modification",
             "path": "framework/resources/plan-modification"
           }
