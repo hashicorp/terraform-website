@@ -189,7 +189,7 @@ There are several custom markdown plugins that are available by default that enh
 
 ### Custom Components
 
-A number of custom [mdx components](https://mdxjs.com/) are available for use within any `.mdx` file. Please refer to the [Swingset](https://react-components.vercel.app/?component=Tabs) documentation for the latest examples and API reference. If you have questions about custom components that are not documented here, or have a request for a new custom component, please reach out to @hashicorp/digital-marketing.
+A number of custom [mdx components](https://mdxjs.com/) are available for use within any `.mdx` file. If you have questions about custom components, or have a request for a new custom component, please reach out to @hashicorp/digital-marketing.
 
 ### Syntax Highlighting
 
