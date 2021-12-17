@@ -162,6 +162,17 @@ The significant keys in the YAML frontmatter are:
 
 There is currently a small bug with new page creation - if you create a new page and link it up via subnav data while the server is running, it will report an error saying the page was not found. This can be resolved by restarting the server.
 
+#### Adding New Pages Under `content/docs`
+
+Due to the way we handle old `/docs` redirects, you need to explicitly add your new page to the `DEFINED_DOCS_PAGES` array in `pages/docs/[[...page]].jsx` in addition to creating the MDX file and updating `data/docs-nav-data.json`. For example, if you created an MDX file at the path `content/docs/why-terraform-is-awesome.mdx`, you would add the string `'why-terraform-is-awesome'` to the `DEFINED_DOCS_PAGES` array.
+
+```diff
+- const DEFINED_DOCS_PAGES = ['glossary', 'partnerships', 'terraform-tools']
++ const DEFINED_DOCS_PAGES = ['glossary', 'partnerships', 'terraform-tools', 'why-terraform-is-awesome']
+```
+
+The only directory you need to do this for is `content/docs`; all other directories will work without making any modifications outside adding the MDX file and updating the navigation data file.
+
 ### Markdown Enhancements
 
 There are several custom markdown plugins that are available by default that enhance [standard markdown](https://commonmark.org/) to fit our use cases. This set of plugins introduces a couple instances of custom syntax, and a couple specific pitfalls that are not present by default with markdown, detailed below:
