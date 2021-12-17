@@ -11,7 +11,7 @@ import {
 const BASE_ROUTE = 'cloud-docs'
 const NAV_DATA = 'data/cloud-docs-nav-data.json'
 const CONTENT_DIR = 'content/cloud-docs'
-const PRODUCT = { name: productName, slug: productSlug }
+const PRODUCT = { name: productName, slug: 'terraform-website' }
 
 export default function CloudDocsLayout(props) {
   // add the "other docs" section to the bottom of the nav data
@@ -41,6 +41,9 @@ export async function getStaticProps({ params }) {
     localContentDir: CONTENT_DIR,
     params,
     product: PRODUCT,
+    githubFileUrl(path) {
+      return `https://github.com/hashicorp/${PRODUCT.slug}/blob/master/${path}`
+    },
   })
   return { props }
 }
