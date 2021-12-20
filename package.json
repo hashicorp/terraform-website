@@ -31,7 +31,7 @@
     "@hashicorp/react-product-downloads-page": "2.5.2",
     "@hashicorp/react-section-header": "^5.0.4",
     "@hashicorp/react-stepped-feature-list": "^4.0.3",
-    "@hashicorp/react-subnav": "^9.3.0",
+    "@hashicorp/react-subnav": "^9.3.1",
     "@hashicorp/react-text-split": "^4.0.0",
     "@hashicorp/react-text-split-with-code": "^3.4.0",
     "@hashicorp/react-text-split-with-image": "^4.3.0",
