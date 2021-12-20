@@ -8,9 +8,11 @@
     "npm": ">= 7.0.0"
   },
   "dependencies": {
+    "@hashicorp/flight-icons": "^2.0.1",
     "@hashicorp/mktg-assets": "^2.0.0-alpha.0",
     "@hashicorp/mktg-global-styles": "4.0.0",
     "@hashicorp/mktg-logos": "^1.2.0",
+    "@hashicorp/nextjs-scripts": "^19.0.3",
     "@hashicorp/platform-analytics": "^0.2.0",
     "@hashicorp/platform-code-highlighting": "^0.1.2",
     "@hashicorp/platform-runtime-error-monitoring": "^0.1.0",
@@ -18,6 +20,7 @@
     "@hashicorp/react-accordion": "^3.0.1",
     "@hashicorp/react-alert-banner": "7.0.1",
     "@hashicorp/react-button": "^6.0.3",
+    "@hashicorp/react-call-to-action": "^4.1.1",
     "@hashicorp/react-code-block": "^4.4.0",
     "@hashicorp/react-command-line-terminal": "^2.0.4",
     "@hashicorp/react-consent-manager": "^7.1.0",
@@ -36,13 +39,17 @@
     "@hashicorp/react-text-split-with-code": "^3.4.0",
     "@hashicorp/react-text-split-with-image": "^4.3.0",
     "@hashicorp/react-vertical-text-block-list": "^7.0.0",
+    "@reach/dialog": "^0.16.2",
     "babel-plugin-import-glob-array": "0.2.0",
     "next": "^12.1.0",
     "next-mdx-remote": "^3.0.5",
     "next-remote-watch": "1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "semver": "^7.3.5"
+    "semver": "^7.3.5",
+    "framer-motion": "^5.5.5",
+    "react-datocms": "^1.6.6",
+    "react-player": "^2.9.0"
   },
   "devDependencies": {
     "@hashicorp/platform-cli": "^2.0.0",

@@ -3,7 +3,12 @@ const path = require('path')
 const redirects = require('./redirects.next.js')
 
 module.exports = withHashicorp({
+  dato: {
+    // This token is safe to be in this public repository, it only has access to content that is publicly viewable on the website
+    token: '88b4984480dad56295a8aadae6caad',
+  },
   nextOptimizedImages: true,
+  transpileModules: ['@hashicorp/flight-icons'],
   mdx: { resolveIncludes: path.join(__dirname, 'pages/partials') },
 })({
   svgo: { plugins: [{ removeViewBox: false }] },
@@ -18,5 +23,9 @@ module.exports = withHashicorp({
     IS_CONTENT_PREVIEW: process.env.IS_CONTENT_PREVIEW || false,
     NAV_DATA_PATH: process.env.NAV_DATA_PATH,
     CONTENT_DIR: process.env.CONTENT_DIR,
+  },
+  images: {
+    domains: ['www.datocms-assets.com'],
+    disableStaticImages: true,
   },
 })
