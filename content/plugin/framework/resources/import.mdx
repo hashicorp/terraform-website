@@ -108,4 +108,10 @@ example_resource.example: Importing from ID "some-identifier"...
 ╵
 ```
 
-You can also modify the `details` parameter of the function to include customized recommendations, such as other actions the practitioner can take.
+You can also modify the `details` parameter of the function to include customized recommendations, such as other actions the practitioner can take. For example:
+
+```go
+func (r exampleResource) ImportState(ctx context.Context, req tfsdk.ImportResourceStateRequest, resp *tfsdk.ImportResourceStateResponse) {
+    tfsdk.ResourceImportStateNotImplemented(ctx, "Custom error message.", resp)
+}
+```
