@@ -143,7 +143,7 @@ value when it's set in the state; the state can never hold any unknown values.
 
 The [`tfsdk.ResourceImportStatePassthroughID` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStatePassthroughID) is available to simplify writing the import identifier to an attribute. The [`tfsdk.ResourceImportStateNotImplemented` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStateNotImplemented) can be used if this resource does not support import.
 
-Additional documentation and code examples are available in the [Resource Import](/plugin/framework/resources/import) page.
+Refer to [Resource Import](/plugin/framework/resources/import) for more details and code examples.
 
 ## Add Resource to Provider
 
@@ -164,6 +164,5 @@ func (p *provider) GetResources(_ context.Context) (map[string]tfsdk.ResourceTyp
 
 ## Further Resource Capabilities
 
-- [Import](/plugin/framework/resources/import) helps practitioners bring existing infrastructure under Terraform's management.
 - [Plan modification](/plugin/framework/resources/plan-modification) helps practitioners understand expected behaviors for your resource during changes, such as default values for missing configurations or requiring replacement.
 - [Validation](/plugin/framework/validation) helps practitioners understand the required syntax, types, and acceptable values for your resource.
