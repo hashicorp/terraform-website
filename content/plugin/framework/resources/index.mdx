@@ -143,6 +143,8 @@ value when it's set in the state; the state can never hold any unknown values.
 
 The [`tfsdk.ResourceImportStatePassthroughID` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStatePassthroughID) is available to simplify writing the import identifier to an attribute. The [`tfsdk.ResourceImportStateNotImplemented` function](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceImportStateNotImplemented) can be used if this resource does not support import.
 
+Refer to [Resource Import](/plugin/framework/resources/import) for more details and code examples.
+
 ## Add Resource to Provider
 
 To make new resources available to practitioners, add them to the `GetResources` method on the [provider](/plugin/framework/providers).
