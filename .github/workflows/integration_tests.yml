@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
         # Get the branch name from the commit SHA
       - name: Set branch name
         run: echo "BRANCH=$(git name-rev --name-only $GITHUB_SHA | awk -F / '{print $3}')" >> $GITHUB_ENV
@@ -29,7 +29,7 @@ jobs:
           record: true
           parallel: true
           group: 'GitHub Actions'
-          command-prefix: 'percy exec -t 500 -- npx'
+          command-prefix: '@percy/cli exec -t 500 -- npx'
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # Pass the Vercel reported environment (Preview or Production) through to Cypress
