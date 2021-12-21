@@ -130,7 +130,7 @@ If a submodule shows up as "changed" in `git status` but you haven't done anythi
 
 ### Updating Submodules
 
-In order for `terraform-website` to pull the latest content from its submodules, the submodules need to be updated to their latest versions. This can be achieved by running `git submodule update`, which will cause the submodule to show as a changed file in `git status`. You should commit this change as part of your branch so that your PR can generate a preview using the expected commit from the upstream repo. The website will only ever show the content from the committed submodule, so if your upstream changes aren't being deployed, it's likely that you need to bump the submodule to the latest commit.
+In order for `terraform-website` to pull the latest content from its submodules, the submodules need to be updated to their latest versions. This can be achieved by running `git submodule update --remote`, which will cause the submodule to show as a changed file in `git status`. You should commit this change as part of your branch so that your PR can generate a preview using the expected commit from the upstream repo. The website will only ever show the content from the committed submodule, so if your upstream changes aren't being deployed, it's likely that you need to bump the submodule to the latest commit.
 
 Avoid running `git rm` on a submodule unless you know what you're doing. You usually want `git submodule deinit` instead.
 
