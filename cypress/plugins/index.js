@@ -12,13 +12,5 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-/**
- * @type {Cypress.PluginConfig}
- */
-// Percy health check
-let percyHealthCheck = require('@percy/cypress/task')
-
 // eslint-disable-next-line no-unused-vars
-module.exports = (on, config) => {
-  on('task', percyHealthCheck)
-}
+module.exports = (on, config) => {}
