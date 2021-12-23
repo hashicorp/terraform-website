@@ -219,6 +219,23 @@
     ]
   },
   {
+    "title": "Logging",
+    "routes": [
+      {
+        "title": "Overview",
+        "path": "log"
+      },
+      {
+        "title": "Filtering Log Output",
+        "path": "log/filtering"
+      },
+      {
+        "title": "Writing Log Output",
+        "path": "log/writing"
+      }
+    ]
+  },
+  {
     "title": "Publishing to the Registry",
     "href": "/registry/providers/publishing"
   },
