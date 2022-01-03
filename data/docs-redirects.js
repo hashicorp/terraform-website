@@ -867,6 +867,7 @@ export const docsRedirects = {
   '/docs/extend/testing/testing-api.html': '/plugin/sdkv2/testing/testing-api',
   '/docs/extend/testing/testing-patterns.html': '/plugin/sdkv2/testing/testing-patterns',
   '/docs/extend/testing/unit-testing.html': '/plugin/sdkv2/testing/unit-testing',
+  '/docs/extend/writing-custom-providers.html': 'https://learn.hashicorp.com/collections/terraform/providers',
   '/docs/github-actions/actions/apply.html': 'https://learn.hashicorp.com/tutorials/terraform/github-actions',
   '/docs/github-actions/actions/fmt.html': 'https://learn.hashicorp.com/tutorials/terraform/github-actions',
   '/docs/github-actions/actions/index.html': 'https://learn.hashicorp.com/tutorials/terraform/github-actions',
