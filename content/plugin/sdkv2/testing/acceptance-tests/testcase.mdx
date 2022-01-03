@@ -93,8 +93,10 @@ godoc.org](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/helper/r
 
 ### IsUnitTest
 
-**Type:** [bool](https://pkg.go.dev/builtin#bool)\
-**Default:** `false`\
+**Type:** [bool](https://pkg.go.dev/builtin#bool)
+
+**Default:** `false`
+
 **Required:** no
 
 **IsUnitTest** allows a test to run regardless of the TF_ACC environment
@@ -105,8 +107,10 @@ run.
 
 ### PreCheck
 
-**Type:** `function`\
-**Default:** `nil`\
+**Type:** `function`
+
+**Default:** `nil`
+
 **Required:** no
 
 **PreCheck** if non-nil, will be called before any test steps are executed. It
@@ -142,8 +146,8 @@ func testAccPreCheck(t *testing.T) {
 
 ### Providers
 
-**Type:**
-`map[string]`[\*schema.Provider](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Provider)\
+**Type:** [`map[string]*schema.Provider`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#Provider)
+
 **Required:** Yes
 
 **Providers** is a map of `*schema.Provider` values with `string`
@@ -185,8 +189,10 @@ func init() {
 
 ### CheckDestroy
 
-**Type:** [TestCheckFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckFunc)\
-**Default:** `nil`\
+**Type:** [TestCheckFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCheckFunc)
+
+**Default:** `nil`
+
 **Required:** no
 
 **CheckDestroy** is called after all test steps have been run and Terraform
@@ -251,7 +257,8 @@ func testAccCheckExampleResourceDestroy(s *terraform.State) error {
 
 ### Steps
 
-**Type:** [`[]TestStep`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep)\
+**Type:** [`[]TestStep`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep)
+
 **Required:** yes
 
 **TestStep** is a single apply sequence of a test, done within the context of a
