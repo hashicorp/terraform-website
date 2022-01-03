@@ -28,7 +28,7 @@
     "@hashicorp/react-image": "^4.0.2",
     "@hashicorp/react-inline-svg": "^6.0.3",
     "@hashicorp/react-link-wrap": "^3.0.3",
-    "@hashicorp/react-product-downloads-page": "^2.5.3",
+    "@hashicorp/react-product-downloads-page": "^2.6.0",
     "@hashicorp/react-section-header": "^5.0.4",
     "@hashicorp/react-stepped-feature-list": "^4.0.3",
     "@hashicorp/react-subnav": "^9.3.2",
