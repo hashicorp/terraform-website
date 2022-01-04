@@ -195,12 +195,12 @@ export default function UseCasePage({ data }) {
 }
 
 export async function getStaticPaths() {
-  const { allConsulUseCases } = await rivetQuery({
+  const { allTerraformUseCases } = await rivetQuery({
     query: useCasesQuery,
   })
 
   return {
-    paths: allConsulUseCases.map((page) => {
+    paths: allTerraformUseCases.map((page) => {
       return {
         params: {
           slug: page.slug,
@@ -214,11 +214,11 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params
 
-  const { allConsulUseCases } = await rivetQuery({
+  const { allTerraformUseCases } = await rivetQuery({
     query: useCasesQuery,
   })
 
-  const page = allConsulUseCases.find((page) => page.slug === slug)
+  const page = allTerraformUseCases.find((page) => page.slug === slug)
 
   if (!page) {
     return { notFound: true }

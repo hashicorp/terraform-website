@@ -1,5 +1,5 @@
 query UseCasesQuery {
-  allConsulUseCases {
+  allTerraformUseCases {
     seo: _seoMetaTags {
       attributes
       content
