@@ -1,5 +1,8 @@
 import semverGte from 'semver/functions/gte'
-import semverSatisfies from 'semver/functions/satisfies'
+import semverMajor from 'semver/functions/major'
+import semverMinor from 'semver/functions/minor'
+import semverPatch from 'semver/functions/patch'
+
 import VERSION from 'data/version'
 import { productSlug } from 'data/metadata'
 import Logo from '@hashicorp/mktg-assets/dist/product/terraform-logo/color'
@@ -55,15 +58,39 @@ function filterOldVersions(props) {
   const versions = props.props.releases.versions
 
   // versions is in the form of { [version]: { ...metadata } }
-  const filteredVersions = Object.entries(versions).filter(([version]) => {
+  // Filter by arbitrary & reasonable version cutoff
+  const filteredVersions = Object.keys(versions).filter((version) => {
     if (!semverGte(version, VERSION_DOWNLOAD_CUTOFF)) return false
-    // We don't want to list these versions in the download dropdown as they have a critical bug
-    if (semverSatisfies(version, '1.1.0 - 1.1.1')) return false
-
     return true
   })
 
-  props.props.releases.versions = Object.fromEntries(filteredVersions)
+  /** @type {{[x: string]:{ [y: string]: any}}} */
+  const tree = {}
+
+  filteredVersions.forEach((v) => {
+    const x = semverMajor(v)
+    const y = semverMinor(v)
+    const z = semverPatch(v)
+
+    if (!tree[x]) {
+      tree[x] = { [y]: z }
+    } else if (!tree[x][y]) {
+      tree[x][y] = z
+    } else {
+      tree[x][y] = Math.max(tree[x][y], z)
+    }
+  })
+
+  const newVersions = {}
+
+  Object.entries(tree).forEach(([x, xObj]) => {
+    Object.entries(xObj).forEach(([y, z]) => {
+      const version = `${x}.${y}.${z}`
+      newVersions[version] = versions[version]
+    })
+  })
+
+  props.props.releases.versions = newVersions
 }
 
 export async function getStaticProps() {
