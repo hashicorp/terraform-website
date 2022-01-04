@@ -67,6 +67,10 @@ function filterOldVersions(props) {
   /** @type {{[x: string]:{ [y: string]: any}}} */
   const tree = {}
 
+  /**
+   * Computes the latest patch versions for each major/minor
+   * e.g. given [1.1.2, 1.1.1, 1.1.0, 1.0.9, 1.0.8] -> return [1.1.2, 1.0.9]
+   */
   filteredVersions.forEach((v) => {
     const x = semverMajor(v)
     const y = semverMinor(v)
