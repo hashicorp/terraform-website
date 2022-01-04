@@ -71,6 +71,7 @@
 .description {
   margin: 0;
   composes: g-type-body from global;
+  color: inherit;
 }
 
 .cta {

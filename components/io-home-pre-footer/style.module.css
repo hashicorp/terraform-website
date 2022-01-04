@@ -77,12 +77,10 @@
   }
 
   &:nth-of-type(1) {
-    @nest .consul & {
-      color: var(--white);
-    }
+    color: var(--white);
 
-    @nest .terraform & {
-      color: var(--white);
+    @nest .vault & {
+      color: var(--black);
     }
   }
 

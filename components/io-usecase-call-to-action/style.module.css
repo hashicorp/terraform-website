@@ -47,6 +47,7 @@
 .description {
   margin: 0 0 32px;
   composes: g-type-body-large from global;
+  color: inherit;
 }
 
 .links {
