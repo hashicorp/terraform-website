@@ -36,8 +36,6 @@ export default function Homepage({ data }): React.ReactElement {
     useCasesHeading,
     useCasesDescription,
     useCasesCards,
-    tutorialsHeading,
-    tutorialCards,
     caseStudiesHeading,
     caseStudiesDescription,
     caseStudiesFeatured,
@@ -86,14 +84,14 @@ export default function Homepage({ data }): React.ReactElement {
           cta: _introOfferingsCta,
         }}
         video={{
-          youtubeId: _introVideo.youtubeId,
-          thumbnail: _introVideo.thumbnail.url,
-          heading: _introVideo.heading,
-          description: _introVideo.description,
+          youtubeId: _introVideo?.youtubeId,
+          thumbnail: _introVideo?.thumbnail?.url,
+          heading: _introVideo?.heading,
+          description: _introVideo?.description,
           person: {
-            name: _introVideo.personName,
-            description: _introVideo.personDescription,
-            avatar: _introVideo.personAvatar?.url,
+            name: _introVideo?.personName,
+            description: _introVideo?.personDescription,
+            avatar: _introVideo?.personAvatar?.url,
           },
         }}
       />
@@ -105,27 +103,6 @@ export default function Homepage({ data }): React.ReactElement {
             description={useCasesDescription}
             cardsPerRow={4}
             cards={useCasesCards.map((card) => {
-              return {
-                eyebrow: card.eyebrow,
-                link: {
-                  url: card.link,
-                  type: 'inbound',
-                },
-                heading: card.heading,
-                description: card.description,
-                products: card.products,
-              }
-            })}
-          />
-        </div>
-      </section>
-
-      <section className={s.tutorials}>
-        <div className={s.container}>
-          <IoCardContainer
-            heading={tutorialsHeading}
-            cardsPerRow={3}
-            cards={tutorialCards.map((card) => {
               return {
                 eyebrow: card.eyebrow,
                 link: {
@@ -192,12 +169,12 @@ export default function Homepage({ data }): React.ReactElement {
 }
 
 export async function getStaticProps() {
-  const { consulHomepage } = await rivetQuery({
+  const { terraformHomepage } = await rivetQuery({
     query: homepageQuery,
   })
 
   return {
-    props: { data: consulHomepage },
+    props: { data: terraformHomepage },
     revalidate:
       process.env.HASHI_ENV === 'production'
         ? process.env.GLOBAL_REVALIDATE
