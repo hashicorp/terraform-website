@@ -1,5 +1,5 @@
 query homepageQuery {
-  consulHomepage {
+  terraformHomepage {
     seo: _seoMetaTags {
       attributes
       content
@@ -72,16 +72,6 @@ query homepageQuery {
     useCasesHeading
     useCasesDescription
     useCasesCards {
-      eyebrow
-      heading
-      description
-      link
-      products {
-        name
-      }
-    }
-    tutorialsHeading
-    tutorialCards {
       eyebrow
       heading
       description
