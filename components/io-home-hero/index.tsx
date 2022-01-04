@@ -9,7 +9,7 @@ interface IoHomeHeroProps {
   brand: Products | 'neutral'
   heading: string
   description: string
-  ctas: Array<{
+  ctas?: Array<{
     title: string
     link: string
   }>
