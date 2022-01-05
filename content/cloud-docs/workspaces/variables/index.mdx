@@ -29,7 +29,7 @@ Environment variables can store provider credentials and other data. Refer to yo
 
 #### Parallelism
 
-You can use the `TFE_PARALLELISM` environment variable when your infrastructure providers produce errors on concurrent operations or use non-standard rate limiting. The `TFE_PARALLELISM` variable sets the  `-parallelism=<N>` flag for  `terraform plan` and `terraform apply`  ([more about `parallelism`](/internals/graph#walking-the-graph)). Valid values are between 1 and 256, inclusive, and the default is `10`. Terraform Cloud Agents do not support `TFE_PARALLELISM`, but you can specify flags as environment variables directly via [`TF_CLI_ARGS`](/cli/config/environment-variables#tf-cli-args). In these cases, use `TF_CLI_ARGS="parallelism=<N>"` instead.
+You can use the `TFE_PARALLELISM` environment variable when your infrastructure providers produce errors on concurrent operations or use non-standard rate limiting. The `TFE_PARALLELISM` variable sets the  `-parallelism=<N>` flag for  `terraform plan` and `terraform apply`  ([more about `parallelism`](/internals/graph#walking-the-graph)). Valid values are between 1 and 256, inclusive, and the default is `10`. Terraform Cloud Agents do not support `TFE_PARALLELISM`, but you can specify flags as environment variables directly via [`TF_CLI_ARGS`](/cli/config/environment-variables#tf-cli-args). In these cases, use `TF_CLI_ARGS="-parallelism=<N>"` instead.
 
 !> **Warning:** We recommend talking to HashiCorp support before setting `TFE_PARALLELISM`.
 
