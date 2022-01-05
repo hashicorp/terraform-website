@@ -1520,4 +1520,6 @@ export const docsRedirects = {
   '/docs/state/remote.html': '/language/state/remote',
   '/docs/state/sensitive-data.html': '/language/state/sensitive-data',
   '/docs/state/workspaces.html': '/language/state/workspaces',
+  '/language/resources/provisioners': '/language/resources/provisioners/syntax',
+  '/language/resources/provisioners/#provisioners-are-a-last-resort': '/language/resources/provisioners/syntax#provisioners-are-a-last-resort'
 }
