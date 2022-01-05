@@ -177,6 +177,7 @@ module.exports = (async () => {
     '/upgrade-guides/0-9.html': '/language/upgrade-guides/0-9',
     '/upgrade-guides/1-0.html': '/language/upgrade-guides/1-0',
     '/upgrade-guides/index.html': '/language/upgrade-guides',
+    '/language/resources/provisioners': '/language/resources/provisioners/syntax',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
