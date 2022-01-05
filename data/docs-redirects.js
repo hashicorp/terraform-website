@@ -360,8 +360,8 @@ export const docsRedirects = {
   '/docs/configuration/blocks/resources': '/language/resources',
   '/docs/configuration/blocks/resources/behavior.html': '/language/resources/behavior',
   '/docs/configuration/blocks/resources/index.html': '/language/resources',
-  '/docs/configuration/blocks/resources/provisioners': '/language/resources/provisioners',
-  '/docs/configuration/blocks/resources/provisioners/index.html': '/language/resources/provisioners',
+  '/docs/configuration/blocks/resources/provisioners': '/language/resources/provisioners/syntax',
+  '/docs/configuration/blocks/resources/provisioners/index.html': '/language/resources/provisioners/syntax',
   '/docs/configuration/blocks/resources/syntax.html': '/language/resources/syntax',
   '/docs/configuration/blocks/values': '/language/values',
   '/docs/configuration/blocks/values/index.html': '/language/values',
@@ -1520,6 +1520,5 @@ export const docsRedirects = {
   '/docs/state/remote.html': '/language/state/remote',
   '/docs/state/sensitive-data.html': '/language/state/sensitive-data',
   '/docs/state/workspaces.html': '/language/state/workspaces',
-  '/language/resources/provisioners': '/language/resources/provisioners/syntax',
-  '/language/resources/provisioners/#provisioners-are-a-last-resort': '/language/resources/provisioners/syntax#provisioners-are-a-last-resort'
+  '/docs/language/resources/provisioners/#provisioners-are-a-last-resort': '/language/resources/provisioners/syntax#provisioners-are-a-last-resort'
 }
