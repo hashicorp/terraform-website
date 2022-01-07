@@ -1520,4 +1520,5 @@ export const docsRedirects = {
   '/docs/state/remote.html': '/language/state/remote',
   '/docs/state/sensitive-data.html': '/language/state/sensitive-data',
   '/docs/state/workspaces.html': '/language/state/workspaces',
+  '/docs/cloud/migrate/workspaces.html': '/cloud-docs/migrate',
 }
