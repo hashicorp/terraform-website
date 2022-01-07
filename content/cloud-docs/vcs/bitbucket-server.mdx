@@ -76,11 +76,21 @@ Leave the page open in a browser tab, and remain logged in as an admin user.
 
    ![Terraform Cloud screenshot: text fields for adding a Bitbucket Server VCS provider](/img/docs/bitbucket-server-tfe-add-url-fields.png)
 
-1. Click "Create VCS Provider." This will take you back to the VCS Provider page, which now includes your new Bitbucket Server client.
+1. Click "Continue", which will allow you to use the **Consumer Key** and
+**Public/Private Keys** when creating a new Application Link in BitBucket
+Server.
 
-1. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Consumer Key** and **Public Key.**
+**If you have your own _Consumer Key_ and _Public Key_, then skip to step B.
+Otherwise, continue to step A to use the pre-generated keys.**
 
-   ![Terraform Cloud screenshot: Consumer key and public key](/img/docs/bitbucket-server-tfe-consumer-and-public-key.png)
+A) Leave this page open in a browser tab. In the next step, you will copy and paste the unique **Consumer Key** and **Public Key.**
+
+   ![Terraform Cloud screenshot: Consumer key and public key](/img/docs/bitbucket-server-tfe-generated-consumer-and-public-key.png)
+
+B) Insert the **Consumer Key**, **Public Key**, and **Private Key** into this
+form that matches the Application Link that already exists.
+
+   ![Terraform Cloud screenshot: Consumer key and public key](/img/docs/bitbucket-server-tfe-custom-consumer-and-public-key.png)
 
 ## Step 2: On Bitbucket Server, Create a New Application Link
 
