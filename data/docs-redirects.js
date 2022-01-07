@@ -694,7 +694,7 @@ export const docsRedirects = {
   '/docs/enterprise/integrations/service-now/index.html': '/cloud-docs/integrations/service-now',
   '/docs/enterprise/migrate': '/docs/cloud/migrate',
   '/docs/enterprise/migrate/index.html': '/cloud-docs/migrate',
-  '/docs/enterprise/migrate/workspaces.html': '/docs/cloud/migrate/workspaces.html',
+  '/docs/enterprise/migrate/workspaces.html': '/cloud-docs/migrate',
   '/docs/enterprise/packer/builds.html': '/docs/enterprise/packer/builds/index.html',
   '/docs/enterprise/private': '/docs/enterprise',
   '/docs/enterprise/private/admin': '/enterprise/admin/application/admin-access',
@@ -1520,4 +1520,5 @@ export const docsRedirects = {
   '/docs/state/remote.html': '/language/state/remote',
   '/docs/state/sensitive-data.html': '/language/state/sensitive-data',
   '/docs/state/workspaces.html': '/language/state/workspaces',
+  '/docs/cloud/migrate/workspaces.html': '/cloud-docs/migrate',
 }
