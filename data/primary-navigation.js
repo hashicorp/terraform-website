@@ -9,7 +9,7 @@ export default [
     submenu: [
       { url: '/', text: 'Terraform CLI' },
       {
-        url: '/cloud',
+        url: 'https://cloud.hashicorp.com/products/terraform',
         text: 'Terraform Cloud',
       },
       {

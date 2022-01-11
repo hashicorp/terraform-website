@@ -149,6 +149,8 @@ module.exports = (async () => {
   })
 
   const miscRedirectsMap = {
+    '/cloud': 'https://cloud.hashicorp.com/products/terraform',
+    '/cloud/how-it-works': 'https://cloud.hashicorp.com/products/terraform',
     '/community.html': '/community',
     '/downloads.html': '/downloads',
     '/guides/core-workflow.html': '/intro/core-workflow',
