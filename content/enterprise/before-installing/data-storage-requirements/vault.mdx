@@ -96,3 +96,31 @@ path "sys/mounts" {
   capabilities = ["read"]
 }
 ```
+
+### External Vault to Internal Vault Migration
+
+When migrating from an externally managed Vault service to the provided Terraform Enterprise internal Vault service, the backup process requires additional permissions to retreive keys from certain paths. To accomplish this the Vault policy needs to be modified to provided read access to paths. 
+
+```
+
+//add read to this rule
+path "transit/keys/archivist_*" {
+capabilities = ["read","update","create"] 
+}
+
+//Add read to this rule
+path "transit/backup/archivist_*" {
+capabilities = ["read", "create", "update"]
+}
+
+//Add read to this rule
+path "transit/keys/atlas_*" {
+capabilities = ["read","update","create"]
+}
+
+//add this policy rule
+path "transit/backup/atlas_*" {
+capabilities = ["read"]
+}
+
+```
