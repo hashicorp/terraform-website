@@ -1,15 +1,31 @@
 ---
 page_title: 'Home - Plugin Development: Filtering Log Output'
 description: >-
-  Information on how to filter the logs that your provider outputs, to help
-  find the information you're looking for.
+  Filter your provider's log outputs by subsystem and choose the log verbosity level.
 ---
 
 # Filtering Log Output
 
-A lot of different pieces of software are included in a Terraform run: Terraform itself, the SDK or SDKs that providers are built on, and one or more providers. All of these disparate pieces of software can be writing logs, which means that a lot of different logs are being written, and not all of them are always useful in figuring out why something's happening. To help with that, there are various environment variables used to filter log output.
+Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help you diagnose bugs. Use the environment variables on this page to turn on logging for one or more of these subsystems during a Terraform run. For each subsystem, you can specify the log verbosity level according to your use case.
 
-## Valid Levels
+## Logging Environment Variables
+
+Logging is off for all subsystems by default. When you set one or more logging environment variables to a [verbosity level](#verbosity-levels-and-format), Terraform writes the specified logs for each Terraform run.
+
+TBD something about how they cascade. When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`.
+
+| Variable Name | Scope | Precedence and Usage Notes |
+| --------------|-------------|-------------|
+`TF_LOG` | Terraform, the SDKs, and all providers | Overrides all other logging environment variables. |
+| `TF_LOG_CORE` | Terraform binary, excluding providers | Only works if `TF_LOG` is not set.|
+| `TF_LOG_PROVIDER` | All providers used during the run | Overrides provider-specific and SDK-specific logging environment variables.|
+| `TF_LOG_PROVIDER_{PROVIDER_NAME}`| Single provider (e.g., `TF_LOG_PROVIDER_AWS`) | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
+|`TF_LOG_SDK` | Provider SDKs for all providers used in the run | Overriden by SDK-specific environment variables. Only affects logs written with `terraform-plugin-log`. It does not yet apply to a large number of logs written by SDKv2 that use `TF_LOG` or `TF_LOG_PROVIDER` as their level. |
+`TF_LOG_SDK_PROTO` | [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go) | Overrides `TF_LOG_SDK` for logs written by `terraform-plugin-go` only. |
+| `TF_LOG_SDK_HELPER_SCHEMA`| `helper/schema` package in [`terraform-plugin-sdk/v2`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema)  | Only affects logs written with `terraform-plugin-log`. It does not yet apply to a large number of logs written by SDKv2 that still use `TF_LOG` or `TF_LOG_PROVIDER`. |
+|`TF_LOG_SDK_MUX`| [`terraform-plugin-mux`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux) module | Overrides `TF_LOG_SDK` for logs written by `terraform-plugin-mux` only.
+
+## Verbosity Levels and Format
 
 Valid levels you can pass to these environment variables are as follows, in order of most verbose to least verbose:
 
@@ -22,52 +38,21 @@ Valid levels you can pass to these environment variables are as follows, in orde
 
 As a special case, `JSON` will output logs in a machine-readable format, though the format is not guaranteed to be stable between releases.
 
-## `TF_LOG`
+## Setting the Log Output Path
 
-`TF_LOG` is the main logging environment variable that Terraform supports. It sets the log level for _everything_: Terraform, the SDKs, and all the providers, all at once. It's also a clamp; it's the most verbose log level anything can write as, no matter what their environment variables are.
+Use `TF_LOG_PATH` to specify a file path where the log output file should be written. If you do not specify a log path, Terraform writes the specified log output to your standard error.
 
-~> **Note:** when reporting bugs to issue trackers, you almost always want to set `TF_LOG=TRACE` unless the developers ask for something else.
+Terraform will automatically create the file at `TF_LOG_PATH` if necessary, but it _won't_ truncate the file contents if the file already exists. It will just add log output onto the end of the file.
 
-## `TF_LOG_PATH`
+## Tracing a Request
 
-`TF_LOG_PATH`, unlike other logging environment variables, doesn't control the verbosity of log output. Instead, it specifies where log output will be written to. Instead of writing everything to your standard error, which is the default and often not the most useful place it can go, `TF_LOG_PATH` accepts a file path that log output will be appended to.
+TBD add with functionality 
 
-~> **Note:** Terraform will automatically create the file at `TF_LOG_PATH` if necessary, but it _won't_ truncate the file contents if the file already exists. It will just add log output onto the end of the file.
-
-## `TF_LOG_CORE`
-
-The `TF_LOG_CORE` environment variable will set the log level for the Terraform binary itself, excluding providers. `TF_LOG_CORE` only works if `TF_LOG` is not set.
-
-## `TF_LOG_PROVIDER`
-
-The `TF_LOG_PROVIDER` environment variable will set the log level for all Terraform providers that are used during the run. If set, it will act as a clamp, meaning it is the most verbose level of logs that will be reported for any provider or SDK, regardless of if a specific provider, SDK, or subsystem has a more verbose level specified.
-
-## `TF_LOG_PROVIDER_{PROVIDER_NAME}`
-
-The `TF_LOG_PROVIDER_{PROVIDER_NAME}` (where `{PROVIDER_NAME}` is, e.g., `RANDOM` or `AWS` or `GOOGLE_BETA`) environment variable controls log output for that specific provider, _if and only if_ that provider writes its logs using the `tflog` package. Any logs written by the legacy `log.Print*` functions will not be affected by this environment variable.
-
-## `TF_LOG_SDK`
-
-The `TF_LOG_SDK` environment variable controls the log output for the provider SDKs for all providers used in the run. This does not act as a clamp; setting a specific SDK's log level to a more verbose level will override this level for that specific SDK.
-
-This only affects logs written with `terraform-plugin-log`; a large number of logs written by SDKv2 are not yet affected by this environment variable and instead use `TF_LOG` or `TF_LOG_PROVIDER` as their level. We aim to reduce the number of these exceptions over time.
-
-## `TF_LOG_SDK_PROTO`
-
-The `TF_LOG_SDK_PROTO` environment variable controls the log output for logs written by [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go).
-
-## `TF_LOG_SDK_HELPER_SCHEMA`
-
-The `TF_LOG_SDK_HELPER_SCHEMA` environment variable controls the log output for logs written by the `helper/schema` package in [`terraform-plugin-sdk/v2`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema). Only logs written by `terraform-plugin-log` are affected by this environment variable, meaning many logs in that package will still have their level determined by `TF_LOG` or `TF_LOG_PROVIDER`. We aim to reduce the number of these exceptions over time.
-
-## `TF_LOG_SDK_MUX`
-
-The `TF_LOG_SDK_MUX` environment variable controls the log output for logs written by the [`terraform-plugin-mux`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux) module.
 
 ## Testing
 
-When testing, the above environment variables will only control the log output for the provider under test. `TF_LOG_CORE` will do nothing.
+When you test a provider, Terraform ignores `TF_LOG_CORE` and logging environment variables only control the log output for the provider under test. Use the following environment variables to change where Terraform stores the log outputs:
 
-Setting `TF_ACC_LOG_PATH` to the path you want log output written to will write all the log output--core, SDKs, and all providers in the run--to the path specified at the `TRACE` level.
+  - `TF_ACC_LOG_PATH`: Set a path to write all log output from Terraform, plugin SDKs, and all providers in the run. Terraform will generate the output at the `TRACE` level of verbosity.
 
-Setting `TF_LOG_PATH_MASK` to a file path with a `%s` in the path will write test output to that path, replacing the `%s` with each test's name and writing only that test's output to that file.
+  - `TF_LOG_PATH_MASK`: Set to a file path with a `%s` in the path to write test output to that path. Replace the `%s` with each test's name to write only that test's output to the file.
