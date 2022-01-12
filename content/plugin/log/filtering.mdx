@@ -6,21 +6,21 @@ description: >-
 
 # Filtering Log Output
 
-Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help diagnose bugs. This page explains how to turn on logging for one or more of these subsystems and manage the location and content of logging data.
+Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help you diagnose bugs. This page explains how to turn on logging for one or more of these subsystems and manage logging output.
 
 
 ## Logging Environment Variables
 
-Logging is off for all subsystems by default. Set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels) to turn on the associated logger.
+Logging is off for all subsystems by default. To write log data for a Terraform run, set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels).
 
-When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. This turns on logging for all loggers at their most verbose setting. To write only a subset of logs, do not set `TF_LOG` and instead set the logging environment variables that are specific to Terraform binary, particular SDKs, or providers.
+When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. This turns on all loggers at their most verbose setting. To write only a subset of log output (e.g., for a single provider), do not set `TF_LOG` and instead set specific logging environment variables for your use case.
 
 | Variable Name | Controls logs for | Precedence and Usage Notes |
 | --------------|-------------|-------------|
 `TF_LOG` | Terraform, the SDKs, and all providers | Overrides all other logging environment variables. |
-| `TF_LOG_CORE` | Terraform binary, excluding providers | Only works if `TF_LOG` is not set.|
-| `TF_LOG_PROVIDER` | All providers used during the run | Overrides provider-specific and SDK-specific logging environment variables.|
-| `TF_LOG_PROVIDER_{PROVIDER_NAME}`| Single provider (e.g., `TF_LOG_PROVIDER_AWS`) | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
+| `TF_LOG_CORE` | Terraform binary | Does not include providers and only works if `TF_LOG` is not set.|
+| `TF_LOG_PROVIDER` | All providers used during the run | Overrides logging environment variables for specific providers and provider SDKs (e.g., `TF_LOG_PROTO`).|
+| `TF_LOG_PROVIDER_{PROVIDER_NAME}`, (e.g., `TF_LOG_PROVIDER_AWS`)| Single provider  | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
 |`TF_LOG_SDK` | Provider SDKs for all providers used in the run | As it only applies to logs written with `terraform-plugin-log`, this variable does not yet apply to a large number of logs written by SDKv2. You can control those logs with `TF_LOG` or `TF_LOG_PROVIDER`. |
 `TF_LOG_SDK_PROTO` | [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go) | Overrides `TF_LOG_SDK` for `terraform-plugin-go` logs. |
 | `TF_LOG_SDK_HELPER_SCHEMA`| `helper/schema` package in [`terraform-plugin-sdk/v2`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema)  | Overrides `TF_LOG_SDK` for `terraform-plugin-sdk/v2` logs. As it only applies to logs written with `terraform-plugin-log`, this variable does not yet apply to a large number of logs written by SDKv2. You can control those logs with `TF_LOG` or `TF_LOG_PROVIDER`. |
@@ -28,7 +28,13 @@ When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. Thi
 
 ## Logging Levels
 
-Pass the following values to the [logging environment variables](#logging-environment-variables) to set the verbosity level of its log output. They are listed in order of least verbose to most verbose:
+Set [logging environment variables](#logging-environment-variables) to one of the following values to set its associated loggers to a specific output verbosity level.
+
+```
+TF_LOG_PROVIDER=WARN
+```
+
+The values are listed in order of least verbose to most verbose:
 
 - **`OFF`**: Turns off logging for that logger.
 - **`ERROR`**: Least verbose, typically provides more detail about user-facing errors.
