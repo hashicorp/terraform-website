@@ -6,13 +6,13 @@ description: >-
 
 # Filtering Log Output
 
-Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help diagnose bugs. Use the environment variables on this page to turn on logging for one or more of these subsystems during a Terraform run. For each subsystem, you can specify the log verbosity level according to your use case.
+Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help diagnose bugs. This page explains how to turn on logging for one or more of these subsystems and manage the location and content of logging data.
 
 ## Logging Environment Variables
 
 Logging is off for all subsystems by default. When you set one or more logging environment variables to a [verbosity level](#verbosity-levels-and-format), Terraform writes the specified logs for each Terraform run.
 
-The variables are listed in When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`.
+When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. This turns on logging for all loggers at their most verbose setting. However, you can use the additional environment variables to filter log output to specific subsystems or providers.
 
 | Variable Name | Scope | Precedence and Usage Notes |
 | --------------|-------------|-------------|
@@ -25,18 +25,28 @@ The variables are listed in When you report bugs to issue trackers, we recommend
 |`TF_LOG_SDK_MUX`| [`terraform-plugin-mux`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux) module | Overrides `TF_LOG_SDK` for logs written by `terraform-plugin-mux` only.
 | `TF_LOG_PROVIDER_{PROVIDER_NAME}`| Single provider (e.g., `TF_LOG_PROVIDER_AWS`) | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
 
-## Verbosity Levels and Format
+## Logging Levels
 
-Valid levels you can pass to these environment variables are as follows, in order of most verbose to least verbose:
+You can pass the following values to each logging environment variable to .  in order of most verbose to least verbose:
 
 * `TRACE`
 * `DEBUG`
 * `INFO`
 * `WARN`
 * `ERROR`
-* `OFF` (turns off logs for that logger)
+* `OFF`: Turns off logging for that logger.
 
-As a special case, `JSON` will output logs in a machine-readable format, though the format is not guaranteed to be stable between releases.
+
+## Log Format
+
+By default, logs are written as...
+TODO: what's the difference between default and JSON format?
+
+`JSON` will output logs in a machine-readable format. The format is not guaranteed to be stable between releases.
+TOD: When we pass JSON, what verbosity level will happen?
+
+TODO: Should we say a bit about how logs are written that makes them esier to parse? Are they prepended with their subsystem? Let's say we did TRACE verbosity - how can they tell which logs are relevant to them/filter?
+
 
 ## Setting the Log Output Path
 
@@ -44,7 +54,7 @@ Use `TF_LOG_PATH` to specify a file path where the log output file should be wri
 
 Terraform will automatically create the file at `TF_LOG_PATH` if necessary, but it _won't_ truncate the file contents if the file already exists. It will just add log output onto the end of the file.
 
-## Tracing a Request
+## Tagging a Request
 
 Use the `With()` method to embed request-scoped values with a logger that will be printed in every log output line associated with the request. This lets you more easily filter output data.
 
@@ -59,7 +69,9 @@ TODO: Can we include a snippet of example output in a code block so folks can se
 
 ## Testing
 
-While testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test. Use the following environment variables to change where and how Terraform stores log outputs from tests.
+While testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test.
+
+Use the following environment variables to change where and how Terraform stores log outputs from tests.
 
   - `TF_ACC_LOG_PATH`: Set a path to write all log output from Terraform, plugin SDKs, and all providers in the run. Terraform will generate the output at the `TRACE` verbosity level.
 
