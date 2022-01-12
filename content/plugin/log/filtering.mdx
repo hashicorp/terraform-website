@@ -73,11 +73,13 @@ ctx = tflog.With(ctx, "example_id", 123)
 
 TODO: Can we include a snippet of example output in a code block so folks can see what this will look like?
 
-## Setting the Output File Path
+## Log Output Path
 
 Use `TF_LOG_PATH` to specify a file path where the log output file should be written. If you do not specify a log path, Terraform writes the specified log output to `stderr`.
 
 Terraform can automatically create the output file at `TF_LOG_PATH` if it does not already exist. If the file does exist, Terraform adds new log output onto the end of the file without truncating the file contents.
+
+~> **Important:** Do not write to `stdout` because our plugin system uses this as a communication channel.
 
 
 ## Testing
