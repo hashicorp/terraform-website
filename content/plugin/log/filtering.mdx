@@ -28,9 +28,9 @@ Terraform can automatically create the output file at `TF_LOG_PATH` if it does n
 
 ## Logging Environment Variables
 
-Logging is off for all subsystems by default. When you set one or more logging environment variables to a [verbosity level](#verbosity-levels-and-format), Terraform writes the specified logs for each Terraform run.
+Logging is off for all subsystems by default. Set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels) to turn on the associated logger.
 
-When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. This turns on logging for all loggers at their most verbose setting. However, you can use the additional environment variables to filter log output to specific subsystems or providers.
+When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. This turns on logging for all loggers at their most verbose setting. To write only a subset of logs, do not set `TF_LOG` and instead set the logging environment variables that are specific to Terraform binary, particular SDKs, or providers.
 
 | Variable Name | Controls logs for | Precedence and Usage Notes |
 | --------------|-------------|-------------|
