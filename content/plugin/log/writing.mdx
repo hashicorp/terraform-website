@@ -1,21 +1,24 @@
 ---
 page_title: 'Home - Plugin Development: Writing Log Output'
 description: >-
-  Information on how to write logs from your provider, to make it easier to
-  debug issues and understand what is happening.
+  Write logs from your provider that help users debug issues and understand operations.
 ---
 
 # Writing Log Output
 
 Providers can write log output using [the `tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog), which the SDKs set up and decorate with useful information.
 
-!> **Warning:** Don't use `fmt.Println` and similar methods to log! They will silently fail and your log output won't show up anywhere.
+!> **Warning:** Do not use `fmt.Println` and similar methods to log. They will silently fail and your log output will be unavailable.
+
+## Structured Logging
 
 `tflog` uses _structured logging_, based on [`go-hclog`](https://pkg.go.dev/github.com/hashicorp/go-hclog). Rather than having logs be sentences, with variables and values embedded in the sentence like `Printf` does, `tflog` takes a sentence describing what you're logging, and a set of variables to log. By separating the variables from the description of what's being logged, you can programmatically parse, filter, and search your log output based on those variables. It also allows other parts of the system to "decorate" log output, by associating variables with downstream log output.
 
+## Logging Levels
+
 To write log output, you need to decide what level the log output is:
 
-## Trace
+### Trace
 
 Trace log output is for low-level debugging of your provider's execution. It's meant to aid you in walking through exactly what code is executing so you can more easily follow what's happening. It's the most verbose output available.
 
@@ -28,7 +31,7 @@ if err != nil {
 tflog.Trace(ctx, "created the widget")
 ```
 
-## Debug
+### Debug
 
 Debug log output is for debugging your provider's execution. It's not quite as verbose as trace log output, but the information it exposes should only matter when debugging a provider's behavior. A good rule of thumb is that any "magic" behavior or anything that _may_ be confusing even though it's _correct_ is a good candidate for debug logging.
 
@@ -36,7 +39,7 @@ Debug log output is for debugging your provider's execution. It's not quite as v
 tflog.Debug(ctx, "found two identical diagnostics in the response, deduplicating down to one")
 ```
 
-## Info
+### Info
 
 Info log output is meant to be informative, but isn't necessarily related to debugging. Generally, a good candidate for info log output is information about the environment your provider is running in or how it's being configured to run. Info output is meant to be less verbose than debug output.
 
@@ -44,7 +47,7 @@ Info log output is meant to be informative, but isn't necessarily related to deb
 tflog.Info(ctx, "operating against API version 1.2.3")
 ```
 
-## Warn
+### Warn
 
 Warn log output is intended for warnings. It doesn't, on its own, indicate an error; _technically_ everything's still fine. But there's a solid chance things may not be fine, or at some future point won't be fine, and this is your breadcrumb pointing to why that may be the case. A good candidate for warning logs is environment problems that can be automatically recovered from or deprecations. Warning logs are meant to be less verbose than info logs.
 
@@ -52,7 +55,7 @@ Warn log output is intended for warnings. It doesn't, on its own, indicate an er
 tflog.Warn(ctx, "API returned a 500 error, retrying")
 ```
 
-## Error
+### Error
 
 Error log output is intended for situations in which a user-facing error is likely to be surfaced. They provide more information, often for a developer audience instead of a practitioner audience, about the error in question. Error logs are the least verbose logs available.
 
@@ -62,13 +65,13 @@ tflog.Error(ctx, "unrecognized API response body")
 
 ## Variables
 
-As mentioned, `tflog` allows provider developers to specify variables in the log output that are then machine parseable. To do so, follow up the log message with at least two arguments: a key and a value. For example:
+You can specify machine parseable `tflog` variables in the log output. To do this, add sets of key and value argument pairs after the log message. The example below adds a URL where a user could visit an API endpoint.
 
 ```go
 tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint")
 ```
 
-You can have as many keys and values as you want, as long as they're in that same key/value order:
+You can add as many key and value argument pairs as you need, but the key must always come before its associated value. The example below adds both a URL and a method for an associated API request.
 
 ```go
 tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint", "method", "POST")
