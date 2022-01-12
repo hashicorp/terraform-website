@@ -168,6 +168,7 @@ module.exports = (async () => {
     '/intro/vs/custom.html': '/intro/vs/custom',
     '/intro/vs/index.html': '/intro/vs',
     '/security.html': '/security',
+    '/upgrade-guides': '/language/upgrade-guides',
     '/upgrade-guides/0-10.html': '/language/upgrade-guides/0-10',
     '/upgrade-guides/0-11.html': '/language/upgrade-guides/0-11',
     '/upgrade-guides/0-12.html': '/language/upgrade-guides/0-12',
