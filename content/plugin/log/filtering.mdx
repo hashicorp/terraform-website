@@ -45,6 +45,11 @@ This example sets the loggers for all providers used in the run to `WARN` verbos
 TF_LOG_PROVIDER=WARN
 ```
 
+~> **NOTE:** Prior to Terraform v0.15.0, levels besides `TRACE` may not be
+entirely reliable. Refer to [this
+PR](https://github.com/hashicorp/terraform/pull/26632) for more details.
+
+
 ## Log Format
 
 By default, logs are written as...
@@ -70,7 +75,7 @@ TODO: Can we include a snippet of example output in a code block so folks can se
 
 ## Setting the Output File Path
 
-Use `TF_LOG_PATH` to specify a file path where the log output file should be written. If you do not specify a log path, Terraform writes the specified log output to your standard error.
+Use `TF_LOG_PATH` to specify a file path where the log output file should be written. If you do not specify a log path, Terraform writes the specified log output to `stderr`.
 
 Terraform can automatically create the output file at `TF_LOG_PATH` if it does not already exist. If the file does exist, Terraform adds new log output onto the end of the file without truncating the file contents.
 
