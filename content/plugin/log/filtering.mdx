@@ -6,18 +6,18 @@ description: >-
 
 # Filtering Log Output
 
-Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help you diagnose bugs. This page explains how to turn on logging for one or more of these subsystems and manage logging output.
+Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help you diagnose bugs. Logging is off for all subsystems by default. This page explains how to turn on logging for one or more of these subsystems and manage logging output.
 
 
 ## Logging Environment Variables
 
-Logging is off for all subsystems by default. To write log data for a Terraform run, set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels).
+To write log data for a Terraform run, set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels).
 
 When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. This turns on all loggers at their most verbose setting. To write only a subset of log output (e.g., for a single provider), do not set `TF_LOG` and instead set specific logging environment variables for your use case.
 
 Some environment variables take precedence over others. For example, if you set `TF_LOG_PROVIDER=TRACE` and `TF_LOG_PROVIDER_AZUREM=WARN`, all provider logs will be written at the `TRACE` level because `TF_LOG_PROVIDER` takes precedence.
 
-| Variable | Logs Written By | Precedence and Usage Notes |
+| Variable | Controls Logs From | Precedence and Usage |
 | --------------|-------------|-------------|
 `TF_LOG` | Terraform, the SDKs, and all providers | Overrides all other logging environment variables. |
 | `TF_LOG_CORE` | Terraform binary | Does not include providers and only works if `TF_LOG` is not set.|
@@ -30,13 +30,7 @@ Some environment variables take precedence over others. For example, if you set 
 
 ## Logging Levels
 
-To specify logging verbosity, set a [logging environment variable](#logging-environment-variables) to one of the following values.
-
-```
-TF_LOG_PROVIDER=WARN
-```
-
-The values are listed in order of least verbose to most verbose:
+To specify logging verbosity, set a [logging environment variable](#logging-environment-variables) to one of the following values. The values are listed in order of least verbose to most verbose:
 
 - **`OFF`**: Turns off logging for that logger.
 - **`ERROR`**: Least verbose, typically provides more detail about user-facing errors.
@@ -44,6 +38,12 @@ The values are listed in order of least verbose to most verbose:
 - **`INFO`**: Can include details about run environment or configuration.
 - **`DEBUG`**: Can include additional details about behavior, especially behaviors that may be non-intuitive.
 - **`TRACE`**: Most verbose, and typically includes low-level execution steps.
+
+This example sets the loggers for all providers used in the run to `WARN` verbosity.
+
+```
+TF_LOG_PROVIDER=WARN
+```
 
 ## Log Format
 
