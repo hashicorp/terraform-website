@@ -17,20 +17,20 @@ When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. Thi
 
 Some environment variables take precedence over others. For example, if you set `TF_LOG_PROVIDER=TRACE` and `TF_LOG_PROVIDER_AZUREM=WARN`, all provider logs will be written at the `TRACE` level because `TF_LOG_PROVIDER` takes precedence.
 
-| Variable Name | Controls Logs From | Precedence and Usage Notes |
+| Variable | Logs Written By | Precedence and Usage Notes |
 | --------------|-------------|-------------|
 `TF_LOG` | Terraform, the SDKs, and all providers | Overrides all other logging environment variables. |
 | `TF_LOG_CORE` | Terraform binary | Does not include providers and only works if `TF_LOG` is not set.|
 | `TF_LOG_PROVIDER` | All providers used during the run | Overrides logging environment variables for specific providers (e.g., `TF_LOG_PROVIDER_AWS`) and provider SDKs (e.g., `TF_LOG_PROTO`).|
-| `TF_LOG_PROVIDER_{PROVIDER_NAME}`, (e.g., `TF_LOG_PROVIDER_AWS`)| Single provider  | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
-|`TF_LOG_SDK` | Provider SDKs for all providers used in the run | As it only applies to logs written with `terraform-plugin-log`, this variable does not yet apply to a large number of logs written by SDKv2. You can control those logs with `TF_LOG` or `TF_LOG_PROVIDER`. |
+| `TF_LOG_PROVIDER_{PROVIDER_NAME}` (e.g., `TF_LOG_PROVIDER_AWS`)| Specific provider  | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
+|`TF_LOG_SDK` | Provider SDKs for all providers used in the run | Only applies to logs written with `terraform-plugin-log` and does not yet apply to a large number of SDKv2 logs. For remaining logs use `TF_LOG` or `TF_LOG_PROVIDER`. |
 `TF_LOG_SDK_PROTO` | [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go) | Overrides `TF_LOG_SDK` for `terraform-plugin-go` logs. |
-| `TF_LOG_SDK_HELPER_SCHEMA`| `helper/schema` package in [`terraform-plugin-sdk/v2`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema)  | Overrides `TF_LOG_SDK` for `terraform-plugin-sdk/v2` logs. As it only applies to logs written with `terraform-plugin-log`, this variable does not yet apply to a large number of logs written by SDKv2. You can control those logs with `TF_LOG` or `TF_LOG_PROVIDER`. |
-|`TF_LOG_SDK_MUX`| [`terraform-plugin-mux`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux) module | Overrides `TF_LOG_SDK` for `terraform-plugin-mux` logs.
+| `TF_LOG_SDK_HELPER_SCHEMA`| [`terraform-plugin-sdk/v2`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema) `helper/schema` package | Overrides `TF_LOG_SDK` for `terraform-plugin-sdk/v2` logs. Only applies to logs written with `terraform-plugin-log` and does not yet apply to a large number of SDKv2 logs. For remaining logs use `TF_LOG` or `TF_LOG_PROVIDER`. |
+|`TF_LOG_SDK_MUX`| [`terraform-plugin-mux`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux)| Overrides `TF_LOG_SDK` for `terraform-plugin-mux` logs.
 
 ## Logging Levels
 
-Set [logging environment variables](#logging-environment-variables) to one of the following values to set its associated loggers to a specific output verbosity level.
+To specify logging verbosity, set a [logging environment variable](#logging-environment-variables) to one of the following values.
 
 ```
 TF_LOG_PROVIDER=WARN
@@ -40,7 +40,7 @@ The values are listed in order of least verbose to most verbose:
 
 - **`OFF`**: Turns off logging for that logger.
 - **`ERROR`**: Least verbose, typically provides more detail about user-facing errors.
-- **`WARN`**: Typically includes warnings about deprecations or other environment problems that could cause future issues.
+- **`WARN`**: Typically includes warnings about deprecations or other environment problems.
 - **`INFO`**: Can include details about run environment or configuration.
 - **`DEBUG`**: Can include additional details about behavior, especially behaviors that may be non-intuitive.
 - **`TRACE`**: Most verbose, and typically includes low-level execution steps.
