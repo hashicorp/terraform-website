@@ -19,22 +19,22 @@ When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. Thi
 `TF_LOG` | Terraform, the SDKs, and all providers | Overrides all other logging environment variables. |
 | `TF_LOG_CORE` | Terraform binary, excluding providers | Only works if `TF_LOG` is not set.|
 | `TF_LOG_PROVIDER` | All providers used during the run | Overrides provider-specific and SDK-specific logging environment variables.|
+| `TF_LOG_PROVIDER_{PROVIDER_NAME}`| Single provider (e.g., `TF_LOG_PROVIDER_AWS`) | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
 |`TF_LOG_SDK` | Provider SDKs for all providers used in the run | Overriden by SDK-specific environment variables. Only affects logs written with `terraform-plugin-log`. It does not yet apply to a large number of logs written by SDKv2 that use `TF_LOG` or `TF_LOG_PROVIDER` as their level. |
 `TF_LOG_SDK_PROTO` | [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go) | Overrides `TF_LOG_SDK` for logs written by `terraform-plugin-go` only. |
 | `TF_LOG_SDK_HELPER_SCHEMA`| `helper/schema` package in [`terraform-plugin-sdk/v2`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema)  | Only affects logs written with `terraform-plugin-log`. It does not yet apply to a large number of logs written by SDKv2 that still use `TF_LOG` or `TF_LOG_PROVIDER`. |
 |`TF_LOG_SDK_MUX`| [`terraform-plugin-mux`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux) module | Overrides `TF_LOG_SDK` for logs written by `terraform-plugin-mux` only.
-| `TF_LOG_PROVIDER_{PROVIDER_NAME}`| Single provider (e.g., `TF_LOG_PROVIDER_AWS`) | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
 
 ## Logging Levels
 
-You can pass the following values to each logging environment variable to .  in order of most verbose to least verbose:
+You can pass the following values to each logging environment variable to set the verbosity level of its log output. They are listed in order of least verbose to most verbose:
 
-* `TRACE`
-* `DEBUG`
-* `INFO`
-* `WARN`
-* `ERROR`
-* `OFF`: Turns off logging for that logger.
+- **`OFF`**: Turns off logging for that logger. 
+- **`ERROR`**: Least verbose, typically provides more detail about user-facing errors.
+- **`WARN`**: Typically includes warnings about deprecations or other environment problems that could cause future issues.
+- **`INFO`**: Can include details about run environment or configuration.
+- **`DEBUG`**: Can include additional details about behavior, especially behaviors that may be non-intuitive.
+- **`TRACE`**: Most verbose, and typically includes low-level execution steps.
 
 
 ## Log Format
