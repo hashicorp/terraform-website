@@ -17,11 +17,12 @@ about each of them separately and in turn.
 
 Log-based debugging is a method of using logging calls to record what is
 happening in a provider as it happens, and then examining that record to piece
-together what happened after the fact. End users can share logs with provider developers, which can help developers debug providers without needing access to the environment or configuration.
+together what happened. Logs can help you debug your provider without needing access to the environment or configuration.
 
 When developing your provider, think carefully about what information you will need for debugging. You must inject log lines into your provider during development because they cannot be inserted into the binary after it has been built. This makes it harder to ask new questions when doing log-based debugging, becasue you will need to add a new log line to your provider and recompile it before new information can be surfaced in log output.
 
-Refer to [Filtering Log Output](/plugin/log/filtering) for details about turning on logging and filtering log output. Refer to [Writing Log Output](/plugin/log/writing) for details about how to use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog) to write useful log output for your provider at varying verbosity levels (e.g. `TRACE`, `WARN`, etc.)
+- [Filtering Log Output](/plugin/log/filtering) contains details about turning on logging and filtering log output.
+- Writing Log Output](/plugin/log/writing) contains details about how to use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog) to write useful log output for your provider at varying verbosity levels (e.g. `TRACE`, `WARN`, etc.)
 
 ## Debugger-Based Debugging
 
