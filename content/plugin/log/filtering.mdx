@@ -8,6 +8,24 @@ description: >-
 
 Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help diagnose bugs. This page explains how to turn on logging for one or more of these subsystems and manage the location and content of logging data.
 
+## Log Format
+
+By default, logs are written as...
+TODO: what's the difference between default and JSON format?
+
+`JSON` will output logs in a machine-readable format. The format is not guaranteed to be stable between releases.
+TOD: When we pass JSON, what verbosity level will happen?
+
+TODO: Should we say a bit about how logs are written that makes them esier to parse? Are they prepended with their subsystem? Let's say we did TRACE verbosity - how can they tell which logs are relevant to them/filter?
+
+
+## Setting the Output File Path
+
+Use `TF_LOG_PATH` to specify a file path where the log output file should be written. If you do not specify a log path, Terraform writes the specified log output to your standard error.
+
+Terraform can automatically create the output file at `TF_LOG_PATH` if it does not already exist. If the file does exist, Terraform adds new log output onto the end of the file without truncating the file contents.
+
+
 ## Logging Environment Variables
 
 Logging is off for all subsystems by default. When you set one or more logging environment variables to a [verbosity level](#verbosity-levels-and-format), Terraform writes the specified logs for each Terraform run.
@@ -27,36 +45,18 @@ When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. Thi
 
 ## Logging Levels
 
-You can pass the following values to each logging environment variable to set the verbosity level of its log output. They are listed in order of least verbose to most verbose:
+Pass the following values to the [logging environment variables](#logging-environment-variables) to set the verbosity level of its log output. They are listed in order of least verbose to most verbose:
 
-- **`OFF`**: Turns off logging for that logger. 
+- **`OFF`**: Turns off logging for that logger.
 - **`ERROR`**: Least verbose, typically provides more detail about user-facing errors.
 - **`WARN`**: Typically includes warnings about deprecations or other environment problems that could cause future issues.
 - **`INFO`**: Can include details about run environment or configuration.
 - **`DEBUG`**: Can include additional details about behavior, especially behaviors that may be non-intuitive.
 - **`TRACE`**: Most verbose, and typically includes low-level execution steps.
 
+## Adding Request Metadata
 
-## Log Format
-
-By default, logs are written as...
-TODO: what's the difference between default and JSON format?
-
-`JSON` will output logs in a machine-readable format. The format is not guaranteed to be stable between releases.
-TOD: When we pass JSON, what verbosity level will happen?
-
-TODO: Should we say a bit about how logs are written that makes them esier to parse? Are they prepended with their subsystem? Let's say we did TRACE verbosity - how can they tell which logs are relevant to them/filter?
-
-
-## Setting the Log Output Path
-
-Use `TF_LOG_PATH` to specify a file path where the log output file should be written. If you do not specify a log path, Terraform writes the specified log output to your standard error.
-
-Terraform will automatically create the file at `TF_LOG_PATH` if necessary, but it _won't_ truncate the file contents if the file already exists. It will just add log output onto the end of the file.
-
-## Tagging a Request
-
-Use the `With()` method to embed request-scoped values with a logger that will be printed in every log output line associated with the request. This lets you more easily filter output data.
+Use the `With()` method to embed values into every log output line associated with a particular request. This lets you more easily filter the output.
 
 The following example sets the `example_id` key set to `123`. Any subsequent `tflog` calls will now include this value in every log line printed for that request.
 
