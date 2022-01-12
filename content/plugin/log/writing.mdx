@@ -6,11 +6,11 @@ description: >-
 
 # Writing Log Output
 
-Use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog) to write log output for your provider. Both the SDK or the framework use `tflog` to let you write logs and display them to users with minimal setup.
+Use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog) to write logs for your provider. SDKs like the `terraform-plugin-framework`, `terraform-plugin-go`, and `terraform-plugin-sdk/v2` set up logging for you, so you only need to write the logs themselves.
 
-!> **Warning:** Do not use `fmt.Println` and similar methods to log. They will silently fail and your log output will be unavailable.
+!> **Warning:** Do not use `fmt.Println` and similar methods to log. They will silently fail, making the log output unavailable.
 
-This page explains how to use `tflog` to write log output at varying verbosity levels, add variables, and designate logs that relate to distinct sections of code (e.g., the API client).
+This page explains how to write log output at varying verbosity levels, add variables to logs, and designate logs that relate to distinct sections of code (e.g., the API client).
 
 ## Structured Logging
 
@@ -71,16 +71,11 @@ tflog.Trace(ctx, "created the widget")
 
 You can specify machine parseable `tflog` variables in the log output. To do this, add sets of key and value argument pairs after the log message. The example below adds a URL where a user could visit an API endpoint.
 
-```go
-tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint")
-```
-
 You can add as many key and value argument pairs as you need, but the key must always come before its associated value. The example below adds both a URL and a method for an associated API request.
 
 ```go
 tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint", "method", "POST")
 ```
-
 You can use types other than strings as values, too:
 
 ```go
