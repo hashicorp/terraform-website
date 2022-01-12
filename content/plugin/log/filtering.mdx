@@ -8,23 +8,6 @@ description: >-
 
 Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help diagnose bugs. This page explains how to turn on logging for one or more of these subsystems and manage the location and content of logging data.
 
-## Log Format
-
-By default, logs are written as...
-TODO: what's the difference between default and JSON format?
-
-`JSON` will output logs in a machine-readable format. The format is not guaranteed to be stable between releases.
-TOD: When we pass JSON, what verbosity level will happen?
-
-TODO: Should we say a bit about how logs are written that makes them esier to parse? Are they prepended with their subsystem? Let's say we did TRACE verbosity - how can they tell which logs are relevant to them/filter?
-
-
-## Setting the Output File Path
-
-Use `TF_LOG_PATH` to specify a file path where the log output file should be written. If you do not specify a log path, Terraform writes the specified log output to your standard error.
-
-Terraform can automatically create the output file at `TF_LOG_PATH` if it does not already exist. If the file does exist, Terraform adds new log output onto the end of the file without truncating the file contents.
-
 
 ## Logging Environment Variables
 
@@ -54,6 +37,17 @@ Pass the following values to the [logging environment variables](#logging-enviro
 - **`DEBUG`**: Can include additional details about behavior, especially behaviors that may be non-intuitive.
 - **`TRACE`**: Most verbose, and typically includes low-level execution steps.
 
+## Log Format
+
+By default, logs are written as...
+TODO: what's the difference between default and JSON format?
+
+`JSON` will output logs in a machine-readable format. The format is not guaranteed to be stable between releases.
+TOD: When we pass JSON, what verbosity level will happen?
+
+TODO: Should we say a bit about how logs are written that makes them esier to parse? Are they prepended with their subsystem? Let's say we did TRACE verbosity - how can they tell which logs are relevant to them/filter?
+
+
 ## Adding Request Metadata
 
 Use the `With()` method to embed values into every log output line associated with a particular request. This lets you more easily filter the output.
@@ -65,6 +59,12 @@ ctx = tflog.With(ctx, "example_id", 123)
 ```
 
 TODO: Can we include a snippet of example output in a code block so folks can see what this will look like?
+
+## Setting the Output File Path
+
+Use `TF_LOG_PATH` to specify a file path where the log output file should be written. If you do not specify a log path, Terraform writes the specified log output to your standard error.
+
+Terraform can automatically create the output file at `TF_LOG_PATH` if it does not already exist. If the file does exist, Terraform adds new log output onto the end of the file without truncating the file contents.
 
 
 ## Testing
