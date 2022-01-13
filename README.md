@@ -414,7 +414,7 @@ You may customize the parameters in any way you'd like. To remove a prerelease f
 
 This website structures URLs based on the filesystem layout. This means that if a file is moved, removed, or a folder is re-organized, links will break. If a path change is necessary, it can be mitigated using redirects. It's important to note that redirects should only be used to cover for external links -- if you are moving a path which internal links point to, the internal links should also be adjusted to point to the correct page, rather than relying on a redirect.
 
-To add a redirect, head over to the `redirects.next.js` file - the format is fairly simple - there's a `miscRedirectsMap` containing source keys and destination values - fill them both in, and that's it. Let's look at an example:
+To add a redirect, head over to the `redirects.next.js` file. It has a `miscRedirectsMap` containing source keys and destination values. Enter both the source key and the destination value for every redirect you want to add and save the file. Let's look at an example:
 
 ```js
 const miscRedirectsMap = {
