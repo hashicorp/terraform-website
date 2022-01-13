@@ -99,7 +99,7 @@ path "sys/mounts" {
 
 ### External Vault to Internal Vault Migration
 
-When migrating from an externally managed Vault service to the provided Terraform Enterprise internal Vault service, the backup process requires additional permissions to retreive keys from certain paths. To accomplish this the Vault policy needs to be modified to provided read access to paths. 
+The backup process requires additional permissions when migrating from an externally managed Vault service to the internal Terraform Enterprise Vault service. Modify the Vault policy to provide read access to the following paths. 
 
 ```
 
