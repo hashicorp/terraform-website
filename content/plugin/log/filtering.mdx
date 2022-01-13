@@ -6,14 +6,11 @@ description: >-
 
 # Filtering Log Output
 
-Terraform, provider SDKs, and providers can all write logs that provide insight into operations and can help you diagnose bugs. Logging is off for all subsystems by default. This page explains how to turn on logging for one or more of these subsystems and manage logging output.
-
+Terraform, providers, and provider SDKs can all write logs that provide insight into operations and can help you diagnose bugs. Logging is off for all of these subsystems by default, but you can use logging environment variables to turn on logging and filter log output. You can also add custom metadata to the log output for a particular request.
 
 ## Logging Environment Variables
 
-To write log data for a Terraform run, set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels).
-
-When you report bugs to issue trackers, we recommend setting `TF_LOG=TRACE`. This turns on all loggers at their most verbose setting. To write only a subset of log output (e.g., for a single provider), do not set `TF_LOG` and instead set specific logging environment variables for your use case.
+To write log data for a Terraform run, set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels). Use `TF_LOG` to write all available logs from Terraform binary, all providers and all provider SDKs. To write only a subset of logs (e.g., for a single provider), do not set `TF_LOG` and instead set specific logging environment variables for your use case.
 
 Some environment variables take precedence over others. For example, if you set `TF_LOG_PROVIDER=TRACE` and `TF_LOG_PROVIDER_AZUREM=WARN`, all provider logs will be written at the `TRACE` level because `TF_LOG_PROVIDER` takes precedence.
 
@@ -27,6 +24,8 @@ Some environment variables take precedence over others. For example, if you set 
 `TF_LOG_SDK_PROTO` | [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go) | Overrides `TF_LOG_SDK`. |
 | `TF_LOG_SDK_HELPER_SCHEMA`| [`terraform-plugin-sdk/v2`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema) `helper/schema` package | Overrides `TF_LOG_SDK`. Only applies to logs written with `terraform-plugin-log`. For remaining SDKV2 logs, use `TF_LOG` or `TF_LOG_PROVIDER`. |
 |`TF_LOG_SDK_MUX`| [`terraform-plugin-mux`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux)| Overrides `TF_LOG_SDK`.
+
+-> **Note**: We recommend setting `TF_LOG=TRACE` when you report bugs to issue trackers. This turns on all loggers at their most verbose setting.
 
 ## Logging Levels
 
@@ -84,7 +83,7 @@ Terraform can automatically create the output file at `TF_LOG_PATH` if it does n
 
 ## Testing
 
-While testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test.
+During testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test.
 
 Use the following environment variables to change where and how Terraform stores log outputs from tests.
 

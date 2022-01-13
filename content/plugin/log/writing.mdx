@@ -67,24 +67,27 @@ if err != nil {
 tflog.Trace(ctx, "created the widget")
 ```
 
-## Variables
+## Adding Variables
 
-You can specify machine parseable `tflog` variables in the log output. To do this, add sets of key and value argument pairs after the log message. The example below adds a URL where a user could visit an API endpoint.
+Use variables to attach information to specific logs or to a logger itself.
 
-You can add as many key and value argument pairs as you need, but the key must always come before its associated value. The example below adds both a URL and a method for an associated API request.
+### Log Output
+
+To specify machine parseable variables in the log output, add sets of key and value argument pairs after the log message. You can add as many key and value argument pairs as you need, but the key must always come before its associated value. The example below adds both a URL and a method for an associated API request.
 
 ```go
 tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint", "method", "POST")
 ```
 You can use types other than strings as values, too:
+  TOD: What are teh acceptable types? Are there any we don't support that might surprise folks?
 
 ```go
 tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint", "method", "POST", "size", 200, "authenticated", true, "headers", map[string][]string{"content-type": []string{"application/json"}})
 ```
 
-## Injecting Variables
+## Logger Context
 
-You can also "inject" variables into a logger. Loggers are transported using the `context.Context` variable, so injecting a variable into a logger returns a new `context.Context` variable containing the modified logger. Any calls to `tflog` using that logger will then implicitly include that variable.
+Loggers are transported using the `context.Context` variable, so injecting a variable into a logger returns a new `context.Context` variable containing the modified logger. Any calls to `tflog` using that logger will then implicitly include that variable. For example, the `terraform-plugin-go` library uses this method to assign a unique request ID to every RPC. This request ID that is included in all log output, allowing you to filter for logs associated with a specific request.
 
 ```go
 newContext := tflog.With(ctx, "url", "https://www.example.com/my/endpoint")
@@ -96,13 +99,13 @@ tflog.Debug(ctx, "this won't have the url variable attached")
 tflog.Debug(newContext, "this will have the url variable attached")
 ```
 
-This allows provider developers to attach contextual information to logs, even when that contextual information isn't surfaced at the same place the log is being written. For example, the `terraform-plugin-go` library uses this capability to attach contextual information to assign a unique request ID to every RPC which is then included in all log output, allowing logs to be filtered on a per-request basis.
-
 ## Subsystems
 
-When a section of code is sufficiently large or complex, or even when its logs are verbose but only sometimes needed, it can make sense to put it into its own subsystem. If they're configured to, these subsystems can be included or excluded from log output using environment variables. A good example of a subsystem may be logs that relate to the API client; sometimes you may need them, but when debugging provider code that's unrelated to that section of the codebase, they may get in the way or obscure things with how noisy they are.
+You may want to create a new subsystem for sections of code that are large, complex, or have distinct functionality. You can configure each subsystem to be included or excluded from log output using environment variables. For example, you may want to create a subsystem for logs that relate to the API client. These logs can be useful, but you may want the ability to turn them off when when debugging an unrelated issue.
 
-When using a subsystem, it needs to be registered first:
+### Create Subsystems
+
+To create a new subsystem, pass context and the subsystem name to the `NewSubsystem()` method.
 
 ```go
 // my-subsystem is the name of the subsystem
@@ -110,20 +113,22 @@ When using a subsystem, it needs to be registered first:
 ctx = tflog.NewSubsystem(ctx, "my-subsystem")
 ```
 
-If you want your subsystem to have a different level from the rest of the provider logs, you can use an option for that:
+Optionally, you can also specify a [logging level](#logging-levels) for the subsystem.
 
 ```go
 ctx = tflog.NewSubsystem(ctx, "my-subsystem", hclog.Debug)
 ```
 
-If you don't want to hardcode the level but instead control it from an environment variable, there's an option for that, too:
+You can also configure an environment variable to control the logging level instead of hardcoding it into the subsystem.
 
 ```go
 // read the level from TF_LOG_MYPROVIDER_CLIENT
 ctx = tflog.NewSubsystem(ctx, "my-subsystem", tflog.WithLevelFromEnv("TF_LOG_MYPROVIDER_CLIENT"))
 ```
 
-Then when writing logs, use the `Subsystem*` functions and pass in the same subsystem name:
+### Use Subsystems
+
+Use the `Subsystem*` functions to associate log output with a specific subsystem.
 
 ```go
 tflog.SubsystemDebug(ctx, "my-subsystem", "writing to a subsystem", "meaning_of_life", 42)
