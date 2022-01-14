@@ -459,7 +459,7 @@ If we no longer want the link to be in the side nav, we can simply remove it. If
 
 As the majority of items in the side nav are internal links, the structure makes it as easy as possible to represent these links. This alternate syntax is the most concise manner than an external link can be represented. External links can be used anywhere within the docs sidenav.
 
-It's also worth noting that it is possible to do glob-based redirects, for example matching `/nested/*`, and you may see this pattern in the redirects file. This type of redirect is much higher risk and the behavior is a bit more nuanced, so if you need to add a glob redirect, please reach out to the website maintainers and ask about it first.
+It's also worth noting that it is possible to do glob-based redirects (e.g., matching `/nested/*`), and you may see this pattern in the redirects file. This type of redirect is much higher risk and the behavior is a bit more nuanced. If you need to add a glob redirect, please contact the website maintainers and ask about it first.
 
 <!-- BEGIN: browser-support -->
 <!-- Generated text, do not edit directly -->
