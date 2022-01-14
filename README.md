@@ -435,7 +435,7 @@ const miscRedirectsMap = {
 
 Next, you would run a global search for internal links to `/language/foo`, and make sure to adjust them to be `/language/nested/foo`. This is to ensure that client-side navigation still works correctly. _Adding a redirect alone is not enough_.
 
-One more example - let's say that content is being moved to an external website. A common example is guides moving to `learn.hashicorp.com`. In this case, we take all the same steps, except that we need to make a different type of change to the `language-navigation` file. If previously the structure looked like:
+One more example - let's say that content is being moved to an external website. A common example is guides moving to `learn.hashicorp.com`. In this case, you would take all the same steps, but make a different type of change to the `language-navigation` file. Previously the structure looked like:
 
 ```json
 {
