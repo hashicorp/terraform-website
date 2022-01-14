@@ -446,7 +446,7 @@ One more example - let's say that content is being moved to an external website.
 }
 ```
 
-If we no longer want the link to be in the side nav, we can simply remove it. If we do still want the link in the side nav, but pointing to an external destination, we need to slightly change the structure as such:
+If you no longer want the link to be in the side nav, you can simply remove it. If you do still want the link in the side nav, but pointing to an external destination, you need to slightly change the structure as such:
 
 ```json
 {
