@@ -6,6 +6,7 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
   // To prevent an infinite redirect loop, we only look for a defined redirect
   // for pages that aren't explicitly defined here.
   const DEFINED_DOCS_PAGES = [
+    '/docs',
     '/docs/glossary',
     '/docs/partnerships',
     '/docs/terraform-tools',
