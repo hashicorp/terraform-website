@@ -13,12 +13,12 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 * **80:** Terraform Enterprise application access (HTTP; redirects to HTTPS)
 * **443:** Terraform Enterprise application access (HTTPS)
 
+~> **Note:** If using VCS integration with a SaaS VCS provider (GitHub.com, GitLab.com, Bitbucket Cloud or Azure DevOps Services), you will need to expose TFE to the public internet in order for the Inbound Web Hooks to reach Terraform Enterprise. It is recommended to configure a WAF in front of your load balancer in this scenario and restrict to the outbound IP range of your SaaS VCS as a minimum.
+
 ### Source — Administrators
 
 * **22:** SSH access (administration and debugging)
 * **8800:** Replicated (TFE setup dashboard, HTTPS)
-
-~> **Note:** If using VCS integration with a SaaS VCS provider (GitHub.com, GitLab.com, Bitbucket Cloud or Azure DevOps Services), you will need to expose TFE to the public internet in order for the Inbound Web Hooks to reach Terraform Enterprise. It is recommended to configure a WAF in front of your load balancer in this scenario and restrict to the outbound IP range of your SaaS VCS as a minimum.
 
 ### Source — TFE Server(s)
 
