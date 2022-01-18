@@ -49,7 +49,7 @@ The Terraform Versions Admin API lets site administrators manage which versions 
 This endpoint lists all known versions of Terraform.
 
 | Status  | Response                                             | Reason                                 |
-| ------- | ---------------------------------------------------- | -------------------------------------- |
+|---------|------------------------------------------------------|----------------------------------------|
 | [200][] | [JSON API document][] (`type: "terraform-versions"`) | Successfully listed Terraform versions |
 | [404][] | [JSON API error object][]                            | Client is not an administrator.        |
 
@@ -58,7 +58,7 @@ This endpoint lists all known versions of Terraform.
 This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
 | Parameter      | Description                                                                        |
-| -------------- | ---------------------------------------------------------------------------------- |
+|----------------|------------------------------------------------------------------------------------|
 | `page[number]` | **Optional.** If omitted, the endpoint will return the first page.                 |
 | `page[size]`   | **Optional.** If omitted, the endpoint will return 20 Terraform versions per page. |
 
@@ -129,7 +129,7 @@ curl \
 `POST /admin/terraform-versions`
 
 | Status  | Response                                             | Reason                                         |
-| ------- | ---------------------------------------------------- | ---------------------------------------------- |
+|---------|------------------------------------------------------|------------------------------------------------|
 | [201][] | [JSON API document][] (`type: "terraform-versions"`) | The Terraform version was successfully created |
 | [404][] | [JSON API error object][]                            | Client is not an administrator                 |
 | [422][] | [JSON API error object][]                            | Validation errors                              |
@@ -140,15 +140,15 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-| Key path                   | Type   | Default | Description                                                                                         |
-| -------------------------- | ------ | ------- | --------------------------------------------------------------------------------------------------- |
-| `data.type`                | string |         | Must be `"terraform-versions"`                                                                      |
-| `data.attributes.version`  | string |         | A semantic version string in N.N.N or N.N.N-bundleName format (e.g. `"0.11.0"`, `"0.12.20-beta1"`.) |
-| `data.attributes.url`      | string |         | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded                |
-| `data.attributes.sha`      | string |         | The SHA-256 checksum of the compressed Terraform binary                                             |
-| `data.attributes.official` | bool   | `false` | Whether or not this is an official release of Terraform                                             |
-| `data.attributes.enabled`  | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Cloud                      |
-| `data.attributes.beta`     | bool   | `false` | Whether or not this version of Terraform is a beta pre-release                                      |
+| Key path                            | Type   | Default | Description                                                                                                 |
+|-------------------------------------|--------|---------|-------------------------------------------------------------------------------------------------------------|
+| `data.type`                         | string |         | Must be `"terraform-versions"`                                                                              |
+| `data.attributes.version`           | string |         | A semantic version string in N.N.N or N.N.N-bundleName format (e.g. `"0.11.0"`, `"0.12.20-beta1"`.)         |
+| `data.attributes.url`               | string |         | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded                        |
+| `data.attributes.sha`               | string |         | The SHA-256 checksum of the compressed Terraform binary                                                     |
+| `data.attributes.official`          | bool   | `false` | Whether or not this is an official release of Terraform                                                     |
+| `data.attributes.enabled`           | bool   | `true`  | Whether or not this version of Terraform is enabled for use in Terraform Cloud                              |
+| `data.attributes.beta`              | bool   | `false` | Whether or not this version of Terraform is a beta pre-release                                              |
 
 ### Sample Payload
 
@@ -205,11 +205,11 @@ curl \
 `GET /api/v2/admin/terraform-versions/:id`
 
 | Parameter | Description                             |
-| --------- | --------------------------------------- |
+|-----------|-----------------------------------------|
 | `:id`     | The ID of the Terraform version to show |
 
 | Status  | Response                                             | Reason                                                         |
-| ------- | ---------------------------------------------------- | -------------------------------------------------------------- |
+|---------|------------------------------------------------------|----------------------------------------------------------------|
 | [200][] | [JSON API document][] (`type: "terraform-versions"`) | The request was successful                                     |
 | [404][] | [JSON API error object][]                            | Terraform version not found, or client is not an administrator |
 
@@ -248,11 +248,11 @@ curl \
 `PATCH /admin/terraform-versions/:id`
 
 | Parameter | Description                               |
-| --------- | ----------------------------------------- |
+|-----------|-------------------------------------------|
 | `:id`     | The ID of the Terraform version to update |
 
 | Status  | Response                                             | Reason                                                         |
-| ------- | ---------------------------------------------------- | -------------------------------------------------------------- |
+|---------|------------------------------------------------------|----------------------------------------------------------------|
 | [200][] | [JSON API document][] (`type: "terraform-versions"`) | The Terraform version was successfully updated                 |
 | [404][] | [JSON API error object][]                            | Terraform version not found, or client is not an administrator |
 | [422][] | [JSON API error object][]                            | Validation errors                                              |
@@ -264,7 +264,7 @@ This PATCH endpoint requires a JSON object with the following properties as a re
 Properties without a default value are required.
 
 | Key path                   | Type   | Default          | Description                                                                                         |
-| -------------------------- | ------ | ---------------- | --------------------------------------------------------------------------------------------------- |
+|----------------------------|--------|------------------|-----------------------------------------------------------------------------------------------------|
 | `data.type`                | string |                  | Must be `"terraform-versions"`                                                                      |
 | `data.attributes.version`  | string | (previous value) | A semantic version string in N.N.N or N.N.N-bundleName format (e.g. `"0.11.0"`, `"0.12.20-beta1"`.) |
 | `data.attributes.url`      | string | (previous value) | The URL where a ZIP-compressed 64-bit Linux binary of this version can be downloaded                |
@@ -326,11 +326,11 @@ curl \
 This endpoint removes a Terraform version from Terraform Cloud. Versions cannot be removed if they are labeled as official versions of Terraform or if there are workspaces using them.
 
 | Parameter | Description                               |
-| --------- | ----------------------------------------- |
+|-----------|-------------------------------------------|
 | `:id`     | The ID of the Terraform version to delete |
 
 | Status  | Response                  | Reason                                                                |
-| ------- | ------------------------- | --------------------------------------------------------------------- |
+|---------|---------------------------|-----------------------------------------------------------------------|
 | [204][] | Empty response            | The Terraform version was successfully deleted                        |
 | [404][] | [JSON API error object][] | Terraform version not found, or client is not an administrator        |
 | [422][] | [JSON API error object][] | The Terraform version cannot be removed (it is official or is in use) |
