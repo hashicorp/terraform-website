@@ -1,9 +1,11 @@
 query UseCasesQuery {
   allTerraformUseCases {
-    seo: _seoMetaTags {
-      attributes
-      content
-      tag
+    seo: seoMeta {
+      title
+      description
+      image {
+        url
+      }
     }
     slug
     heroHeading

@@ -1,8 +1,7 @@
 import * as React from 'react'
-import Head from 'next/head'
 import rivetQuery from '@hashicorp/nextjs-scripts/dato/client'
 import useCasesQuery from './query.graphql'
-import { renderMetaTags } from 'react-datocms'
+import ReactHead from '@hashicorp/react-head'
 import IoUsecaseHero from 'components/io-usecase-hero'
 import IoUsecaseSection from 'components/io-usecase-section'
 import IoUsecaseCustomer from 'components/io-usecase-customer'
@@ -41,7 +40,16 @@ export default function UseCasePage({ data }) {
 
   return (
     <>
-      <Head>{renderMetaTags(seo)}</Head>
+      <ReactHead
+        title={seo.title}
+        description={seo.description}
+        image={seo.image?.url}
+        twitterCard="summary_large_image"
+        pageName={seo.title}
+      >
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
+      </ReactHead>
 
       <IoUsecaseHero
         eyebrow="Use case"

@@ -1,9 +1,8 @@
 import * as React from 'react'
-import Head from 'next/head'
 import rivetQuery from '@hashicorp/nextjs-scripts/dato/client'
 import homepageQuery from './query.graphql'
 import { isInternalLink } from 'lib/utils'
-import { renderMetaTags } from 'react-datocms'
+import ReactHead from '@hashicorp/react-head'
 import IoHomeHero from 'components/io-home-hero'
 import IoHomeIntro from 'components/io-home-intro'
 import IoHomeInPractice from 'components/io-home-in-practice'
@@ -52,7 +51,16 @@ export default function Homepage({ data }): React.ReactElement {
 
   return (
     <>
-      <Head>{renderMetaTags(seo)}</Head>
+      <ReactHead
+        title={seo.title}
+        description={seo.description}
+        image={seo.image?.url}
+        twitterCard="summary_large_image"
+        pageName={seo.title}
+      >
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
+      </ReactHead>
 
       <IoHomeHero
         pattern="/img/home-hero-pattern.svg"

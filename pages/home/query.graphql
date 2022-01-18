@@ -1,9 +1,11 @@
 query homepageQuery {
   terraformHomepage {
-    seo: _seoMetaTags {
-      attributes
-      content
-      tag
+    seo: seoMeta {
+      title
+      description
+      image {
+        url
+      }
     }
     heroHeading
     heroDescription
