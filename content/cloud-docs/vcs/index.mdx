@@ -56,7 +56,7 @@ Terraform Cloud uses webhooks to monitor new commits and pull requests.
 - When someone adds new commits to a branch, any Terraform Cloud workspaces based on that branch will begin a Terraform run. Usually a user must inspect the plan output and approve an apply, but you can also enable automatic applies on a per-workspace basis. You can prevent automatic runs by locking a workspace.
 - When someone submits a pull request/merge request to a branch, any Terraform Cloud workspaces based on that branch will perform a [speculative plan](/cloud-docs/run/#speculative-plans) with the contents of the request and links to the results on the PR's page. This helps you avoid merging PRs that cause plan failures.
 
-~> **Important:** In Terraform Enterprise, integration with a SaaS VCS provider (GitHub.com, GitLab.com, Bitbucket Cloud, or Azure DevOps Services) requires ingress from the public internet. This lets the inbound web hooks reach Terraform Enterprise. You should also configure appropriate security controls, such as a WAF.
+~> **Important:** In Terraform Enterprise, integration with a SaaS VCS provider (GitHub.com, GitLab.com, Bitbucket Cloud, or Azure DevOps Services) requires ingress from the public internet. This lets the inbound web hooks reach Terraform Enterprise. You should also configure appropriate security controls, such as a Web Application Firewall (WAF).
 
 ### SSH Keys
 
