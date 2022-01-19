@@ -57,10 +57,12 @@ This endpoint lists all known versions of Terraform.
 
 This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
-| Parameter      | Description                                                                        |
-| -------------- | ---------------------------------------------------------------------------------- |
-| `page[number]` | **Optional.** If omitted, the endpoint will return the first page.                 |
-| `page[size]`   | **Optional.** If omitted, the endpoint will return 20 Terraform versions per page. |
+| Parameter         | Description                                                                                                                                                                                                                 |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filter[version]`         | **Optional.** A query string. This will find an exact Terraform version matching the version queried. This option takes precedence over search queries. This option is available in Terraform Enterprise v202201-2 or later.|
+| `search[version]` | **Optional.** A search query string. This will search for Terraform versions matching the version number queried. This option is available in Terraform Enterprise v202201-2 or later.                                      |
+| `page[number]`    | **Optional.** If omitted, the endpoint will return the first page.                                                                                                                                                          |
+| `page[size]`      | **Optional.** If omitted, the endpoint will return 20 Terraform versions per page.                                                                                                                                          |
 
 ### Sample Request
 
