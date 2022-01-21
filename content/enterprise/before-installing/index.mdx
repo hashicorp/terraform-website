@@ -217,7 +217,7 @@ Refer to the sections below for instructions on how to verify your Docker Engine
      https://raw.githubusercontent.com/moby/moby/master/profiles/seccomp/default.json
    ```
 
-1. Edit the `/etc/docker/seccomp.json` file and modify the line `"defaultAction": "SCMP_ACT_ERRNO",` to be `"defaultAction": "SCMP_ACT_TRACE",`. A `sed` command is included below for your convenience.
+1. Edit the `/etc/docker/seccomp.json` file and modify the line `"defaultAction": "SCMP_ACT_ERRNO",` to be `"defaultAction": "SCMP_ACT_TRACE",`. A `sed` command is included below for your convenience. For Docker Engine 1.13.1 (RHEL only), as the `/etc/docker/seccomp.json` file already exists you can proceed with restarting the docker engine after modifying the aforementioned line by running `sudo systemctl restart docker`.
 
    ```
    sudo sed -i 's/"defaultAction":\s*"SCMP_ACT_ERRNO"/"defaultAction": "SCMP_ACT_TRACE"/1' /etc/docker/seccomp.json
