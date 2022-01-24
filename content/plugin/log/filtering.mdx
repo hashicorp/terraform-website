@@ -12,7 +12,7 @@ Terraform, providers, and provider SDKs can all write logs that provide insight 
 
 Logging is off for all subsystems by default. Set one or more of the the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels) to write logs for a Terraform run.
 
-- To write all available logs from Terraform binary, all providers, and all provider SDKs, set `TF_LOG`.
+- To write all logs from Terraform binary, all providers, and all provider SDKs, set `TF_LOG`.
 - To write only a subset of logs (e.g., for a single provider), do not set `TF_LOG` and instead set specific logging environment variables for your use case.
 
 Some environment variables take precedence over others. For example, if you set `TF_LOG=TRACE` and `TF_LOG_PROVIDER_AZUREM=WARN`, all provider logs will be written at the `TRACE` level because `TF_LOG` takes precedence.
@@ -73,6 +73,6 @@ Terraform can automatically create the output file at `TF_LOG_PATH` if it does n
 
 ## Testing
 
-During testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test. The one exception is `TF_LOG_PROVIDER`, which does not affect provider or provider SDK logs during acceptance tests.
+During testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test. The one exception is `TF_LOG_PROVIDER`. This is because `TF_LOG_PROVIDER` only affects logs that are produced through the Terraform CLI, and provider logs are not produced through the CLI during acceptance tests. 
 
 Refer to [acceptance testing](/plugin/sdkv2/testing/acceptance-tests#environment-variables) for additional environment variables that help you manage test log output.
