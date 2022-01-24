@@ -6,19 +6,22 @@ description: >-
 
 # Filtering Log Output
 
-Terraform, providers, and provider SDKs can all write logs that provide insight into operations and can help you diagnose bugs. Logging is off for all of these subsystems by default, but you can use logging environment variables to turn on logging and filter log output.
+This page explains how to turn on logging, filter log output, and manage log format.
 
 ## Logging Environment Variables
 
-To write log data for a Terraform run, set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels). Use `TF_LOG` to write all available logs from Terraform binary, all providers and all provider SDKs. To write only a subset of logs (e.g., for a single provider), do not set `TF_LOG` and instead set specific logging environment variables for your use case.
+Terraform, providers, and provider SDKs can all write logs that provide insight into operations and help you diagnose bugs. Logging is off for all of these subsystems by default, but you can set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels) to write logs for a Terraform run.
 
-Some environment variables take precedence over others. For example, if you set `TF_LOG_PROVIDER=TRACE` and `TF_LOG_PROVIDER_AZUREM=WARN`, all provider logs will be written at the `TRACE` level because `TF_LOG_PROVIDER` takes precedence.
+- To write all available logs from Terraform binary, all providers, and all provider SDKs, set `TF_LOG`.
+- To write only a subset of logs (e.g., for a single provider), do not set `TF_LOG` and instead set specific logging environment variables for your use case.
+
+Some environment variables take precedence over others. For example, if you set `TF_LOG=TRACE` and `TF_LOG_PROVIDER_AZUREM=WARN`, all provider logs will be written at the `TRACE` level because `TF_LOG` takes precedence.
 
 | Variable | Logs Written By | Precedence and Usage |
 | --------------|-------------|-------------|
 | `TF_LOG` | All loggers (Terraform, SDKs, providers) | Overrides all other logging environment variables. |
 | `TF_LOG_CORE` | Terraform binary | Does not include providers. |
-| `TF_LOG_PROVIDER` | All providers used during the run | Overrides logging environment variables for specific providers (e.g., `TF_LOG_PROVIDER_AWS`) and provider SDKs (e.g., `TF_LOG_PROTO`).|
+| `TF_LOG_PROVIDER` | All providers and provider SDKs used during the run | Overrides logging environment variables for specific providers (e.g., `TF_LOG_PROVIDER_AWS`) and provider SDKs (e.g., `TF_LOG_PROTO`).|
 | `TF_LOG_PROVIDER_{PROVIDER_NAME}` (e.g., `TF_LOG_PROVIDER_AWS`)| Specific provider  | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
 |`TF_LOG_SDK` | All SDKs for providers used during the run | Only applies to logs written with `terraform-plugin-log`. For remaining SDKV2 logs, use `TF_LOG` or `TF_LOG_PROVIDER`. |
 | `TF_LOG_SDK_PROTO` | Protocol layer logging for providers built on [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go). | Overrides `TF_LOG_SDK`. |
@@ -36,7 +39,7 @@ To specify logging verbosity, set a [logging environment variable](#logging-envi
 - **`WARN`** - Typically includes warnings about deprecations or other environment problems.
 - **`INFO`** - Can include details about run environment or configuration.
 - **`DEBUG`** - Can include additional details about behavior, especially behaviors that may be non-intuitive.
-- **`TRACE`** - Most verbose, and typically includes low-level execution steps.
+- **`TRACE`** - Most verbose, typically includes low-level execution steps.
 
 This example sets the loggers for all providers used in the run to `WARN` verbosity.
 
@@ -51,13 +54,13 @@ PR](https://github.com/hashicorp/terraform/pull/26632) for more details.
 
 ## Log Format
 
-By default, logs are written as plaintext lines, prefixed with a timestamp and the level in square braces:
+By default, logs are written as plaintext lines, prefixed with a timestamp and the level in square braces.
 
 ```text
 YYYY-MM-DDTHH:MM:SS.SSSZ [Level] Message...
 ```
 
-Explicitly setting the log format to `JSON` will output logs in a machine-readable format at the TRACE logging level. The format is not guaranteed to be stable between releases.
+Explicitly setting the log format to `JSON` will output logs in a machine-readable format at the TRACE logging level. This format is not guaranteed to be stable between releases.
 
 ## Log Output Path
 
@@ -70,6 +73,4 @@ Terraform can automatically create the output file at `TF_LOG_PATH` if it does n
 
 ## Testing
 
-During testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test.
-
-Refer to the [acceptance testing](/plugin/sdkv2/testing/acceptance-tests) section for more information about additional environment variables that are available.
+During testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test. The [Acceptance testing](/plugin/sdkv2/testing/acceptance-tests#environment-variables) page contains additional environment variables to help you manage log output from tests.
