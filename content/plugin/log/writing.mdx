@@ -68,7 +68,7 @@ Use variables to attach information to specific logs or to a logger itself.
 
 ### Log Output
 
-To specify machine parseable variables in the log output, add sets of key and value argument pairs after the log message. You can add as many key and value argument pairs as you need, but the key must always come before its associated value. The example below adds both a URL and a method for an associated API request.
+To specify filterable variables in the log output, add sets of key and value argument pairs after the log message. You can add as many key and value argument pairs as you need, but the key must always come before its associated value. The example below adds both a URL and a method for an associated API request.
 
 ```go
 tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint", "method", "POST")
