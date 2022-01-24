@@ -694,7 +694,7 @@ export const docsRedirects = {
   '/docs/enterprise/integrations/service-now/index.html': '/cloud-docs/integrations/service-now',
   '/docs/enterprise/migrate': '/docs/cloud/migrate',
   '/docs/enterprise/migrate/index.html': '/cloud-docs/migrate',
-  '/docs/enterprise/migrate/workspaces.html': '/docs/cloud/migrate/workspaces.html',
+  '/docs/enterprise/migrate/workspaces.html': '/cloud-docs/migrate',
   '/docs/enterprise/packer/builds.html': '/docs/enterprise/packer/builds/index.html',
   '/docs/enterprise/private': '/docs/enterprise',
   '/docs/enterprise/private/admin': '/enterprise/admin/application/admin-access',
@@ -1522,4 +1522,5 @@ export const docsRedirects = {
   '/docs/state/workspaces.html': '/language/state/workspaces',
   '/docs/language/resources/provisioners': '/language/resources/provisioners/syntax',
   '/docs/language/resources/provisioners/#provisioners-are-a-last-resort': '/language/resources/provisioners/syntax#provisioners-are-a-last-resort'
+  '/docs/cloud/migrate/workspaces.html': '/cloud-docs/migrate',
 }

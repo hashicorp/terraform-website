@@ -19,7 +19,7 @@ page_title: Releases - Terraform Enterprise
 * Added the ability to restrict state access (usually performed via the `terraform_remote_state` data source) to specific workspaces within an organization, along with an admin setting to configure the default setting for new workspaces and a command line migration assistant.
 * Added UI for disabling automatic speculative plans in VCS-connected workspaces. (This already existed in the API, and is now also available in each workspace's VCS settings page.)
 * Added Firefox ESR and older Chrome/Firefox/Safari/Edge versions (latest 2) to browser support list
-* Added Replicated configuration to restrict Terraform run environments from being able to reach cloud provider metadata endpoints, e.g., <http://169.254.169.254>.
+* Added Replicated configuration to restrict Terraform run environments from being able to reach cloud provider metadata endpoints, e.g., `http://169.254.169.254`.
 * Active/Active configurations now require fewer tokens during install, only needing `enc_password` across all nodes (previously required tokens such as `cookie_hash`, `install_id` etc) See [documentation for more details](/enterprise/install/automated/active-active).
 
 ### Application Level Bug Fixes:

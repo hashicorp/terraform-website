@@ -27,7 +27,7 @@ Properties without a default value are required.
 | ------------------------------- | ------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `data.name`                     | string  |         | The name of the variable set.                                                                                                           |
 | `data.description`              | string  | `""`    | Text displayed in the UI to contextualize the variable set and its purpose.                                                             |
-| `data.is_global`                | boolean | `false` | When true, Terraform Cloud automatically applies the variable set to all current and future workspaces in the organization.             |
+| `data.global`                   | boolean | `false` | When true, Terraform Cloud automatically applies the variable set to all current and future workspaces in the organization.             |
 | `data.relationships.workspaces` | array   | \[]     | Array of references to workspaces that the variable set should be assigned to. Sending an empty array clears all workspace assignments. |
 | `data.relationships.vars`       | array   | \[]     | Array of complete variable definitions that comprise the variable set.                                                                  |
 
@@ -48,7 +48,7 @@ Terraform Cloud does not allow different global variable sets to contain conflic
     "attributes": {
       "name": "MyVarset",
       "description": "Full of vars and such for mass reuse",
-      "is-global": false
+      "global": false
     },
     "relationships": {
       "workspaces": {
@@ -97,7 +97,7 @@ curl \
     "attributes": {
       "name": "MyVarset",
       "description": "Full of vars and such for mass reuse",
-      "is-global": false
+      "global": false
     },
     "relationships": {
       "workspaces": {
@@ -151,7 +151,7 @@ Terraform Cloud does not allow global variable sets to contain conflicting varia
     "attributes": {
       "name": "MyVarset",
       "description": "Full of vars and such for mass reuse. Now global!",
-      "is-global": true
+      "global": true
     },
     "relationships": {
       "vars": {
@@ -191,7 +191,7 @@ curl \
     "attributes": {
       "name": "MyVarset",
       "description": "Full of vars and such for mass reuse. Now global!",
-      "is-global": true
+      "global": true
     },
     "relationships": {
       "vars": {
@@ -262,7 +262,7 @@ curl \
     "attributes": {
       "name": "MyVarset",
       "description": "Full of vars and such for mass reuse",
-      "is-global": false
+      "global": false
     },
     "relationships": {
       "workspaces": {
@@ -320,7 +320,7 @@ List all variable sets for a workspace.
       "attributes":  {
          "name": "varset-b7af6a77",
          "description": "Full of vars and such for mass reuse",
-         "is-global": false,
+         "global": false,
          "updated-at": "2021-10-29T17:15:56.722Z",
          "var-count":  5,
          "workspace-count": 2

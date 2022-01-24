@@ -124,7 +124,7 @@ Right now, there are two submodules included in this project: `hashicorp/terrafo
 
 In your local checkout of this repo, Git submodules can be active or inactive. The first time you clone the repo, unless you have modified your git command defaults, the submodules will all default to being inactive, and their folders will be empty. To activate all submodules, run `git init submodule`. To activate only certain submodules, a path can be passed to the command as such: `git submodule init <PATH>`. To switch a submodule back to bring inactive `git submodule deinit <PATH>` can be used, though this is not typically necessary.
 
-Once you `init` a submodule, you usually need to run `git submodule update`, which will either do the initial checkout or update the working copy to the commit that `terraform-website` currently expects. Every time that changes are made to the upstream repo that the submodule represents, it will need to be updated as well.
+Once you `init` a submodule, you usually need to run `git submodule update`, which will either do the initial checkout or update the working copy to the commit that `terraform-website` currently expects. You also need to update the submodule every time changes are made to the upstream repo that the submodule represents.
 
 If a submodule shows up as "changed" in `git status` but you haven't done anything with it, it probably means that the upstream repo of a submodule was updated and you need to "pull" that update to point to the most recent commit. Run `git submodule update` to resolve this and you should see a clean `git status` return. Inactive submodules don't show up in `git status`.
 
@@ -164,11 +164,16 @@ There is currently a small bug with new page creation - if you create a new page
 
 #### Adding New Pages Under `content/docs`
 
-Due to the way we handle old `/docs` redirects, you need to explicitly add your new page to the `DEFINED_DOCS_PAGES` array in `pages/docs/[[...page]].jsx` in addition to creating the MDX file and updating `data/docs-nav-data.json`. For example, if you created an MDX file at the path `content/docs/why-terraform-is-awesome.mdx`, you would add the string `'why-terraform-is-awesome'` to the `DEFINED_DOCS_PAGES` array.
+Due to the way we handle old `/docs` redirects, you need to explicitly add your new page to the `DEFINED_DOCS_PAGES` array in `pages/docs/_middleware.ts` in addition to creating the MDX file and updating `data/docs-nav-data.json`. For example, if you created an MDX file at the path `content/docs/why-terraform-is-awesome.mdx`, you would add the string `'/docs/why-terraform-is-awesome'` to the `DEFINED_DOCS_PAGES` array.
 
 ```diff
-- const DEFINED_DOCS_PAGES = ['glossary', 'partnerships', 'terraform-tools']
-+ const DEFINED_DOCS_PAGES = ['glossary', 'partnerships', 'terraform-tools', 'why-terraform-is-awesome']
+ const DEFINED_DOCS_PAGES = [
+    '/docs/glossary',
+    '/docs/partnerships',
+-   '/docs/terraform-tools'
++   '/docs/terraform-tools',
++   '/docs/why-terraform-is-awesome'
+  ]
 ```
 
 The only directory you need to do this for is `content/docs`; all other directories will work without making any modifications outside adding the MDX file and updating the navigation data file.
@@ -405,62 +410,56 @@ You may customize the parameters in any way you'd like. To remove a prerelease f
 
 <!-- END: releases -->
 
-<!-- BEGIN: redirects -->
-<!-- Generated text, do not edit directly -->
-
 ## Redirects
 
 This website structures URLs based on the filesystem layout. This means that if a file is moved, removed, or a folder is re-organized, links will break. If a path change is necessary, it can be mitigated using redirects. It's important to note that redirects should only be used to cover for external links -- if you are moving a path which internal links point to, the internal links should also be adjusted to point to the correct page, rather than relying on a redirect.
 
-To add a redirect, head over to the `redirects.js` file - the format is fairly simple - there's a `source` and a `destination` - fill them both in, indicate that it's a permanent redirect or not using the `permanent` key, and that's it. Let's look at an example:
+To add a redirect, head over to the `redirects.next.js` file. It has a `miscRedirectsMap` containing source keys and destination values. Enter both the source key and the destination value for every redirect you want to add and save the file. Let's look at an example:
 
-```
-{
-  source: '/foo',
-  destination: '/bar',
-  permanent: true
-}
+```js
+const miscRedirectsMap = {
+  '/cloud': 'https://cloud.hashicorp.com/products/terraform',
 ```
 
-This redirect rule will send all incoming links to `/foo` to `/bar`. For more details on the redirects file format, [check out the docs on vercel](https://vercel.com/docs/configuration#project/redirects). All redirects will work both locally and in production exactly the same way, so feel free to test and verify your redirects locally. In the past testing redirects has required a preview deployment -- this is no longer the case. Please note however that if you add a redirect while the local server is running, you will need to restart it in order to see the effects of the redirect.
+This redirect rule will send all incoming links to `/cloud` to `https://cloud.hashicorp.com/products/terraform`. For more details on the redirects file format, [check out the docs on vercel](https://vercel.com/docs/configuration#project/redirects). All redirects will work both locally and in production exactly the same way, so feel free to test and verify your redirects locally. In the past testing redirects has required a preview deployment -- this is no longer the case. Please note however that if you add a redirect while the local server is running, you will need to restart it in order to see the effects of the redirect.
 
 There is still one caveat though: redirects do not apply to client-side navigation. By default, all links in the navigation and docs sidebar will navigate purely on the client side, which makes navigation through the docs significantly faster, especially for those with low-end devices and/or weak internet connections. In the future, we plan to convert all internal links within docs pages to behave this way as well. This means that if there is a link on this website to a given piece of content that has changed locations in some way, we need to also _directly change existing links to the content_. This way, if a user clicks a link that navigates on the client side, or if they hit the url directly and the page renders from the server side, either one will work perfectly.
 
-Let's look at an example. Say you have a page called `/docs/foo` which needs to be moved to `/docs/nested/foo`. Additionally, this is a page that has been around for a while and we know there are links into `/docs/foo.html` left over from our previous website structure. First, we move the page, then adjust the docs sidenav, in `data/docs-navigation.js`. Find the category the page is in, and move it into the appropriate subcategory. Next, we add to `_redirects` as such. The `.html` version is covered automatically.
+Let's look at an example. Say you have a page called `/language/foo` which needs to be moved to `/language/nested/foo`. Additionally, this is a page that has been around for a while and we know there are links into `/language/foo.html` left over from our previous website structure. First, you would move the page to the correct directory and then adjust the docs sidenav in `data/language-navigation.js` to reflect the new structure.  Next, you would add to `miscRedirectsMap` (example below).
 
 ```js
-{ source: '/foo', destination: '/nested/foo', permanent: true }
+const miscRedirectsMap = {
+  '/language/foo': '/language/nested/foo',
+  '/language/foo.html': '/language/nested/foo'
 ```
 
-Next, we run a global search for internal links to `/foo`, and make sure to adjust them to be `/nested/foo` - this is to ensure that client-side navigation still works correctly. _Adding a redirect alone is not enough_.
+Next, you would run a global search for internal links to `/language/foo`, and make sure to adjust them to be `/language/nested/foo`. This is to ensure that client-side navigation still works correctly. _Adding a redirect alone is not enough_.
 
-One more example - let's say that content is being moved to an external website. A common example is guides moving to `learn.hashicorp.com`. In this case, we take all the same steps, except that we need to make a different type of change to the `docs-navigation` file. If previously the structure looked like:
+One more example - let's say that content is being moved to an external website. A common example is guides moving to `learn.hashicorp.com`. In this case, you would take all the same steps, but make a different type of change to the `language-navigation` file. Previously the structure looked like:
 
-```js
+```json
 {
-  category: 'docs',
-  content: [
-    'foo'
+  "title": "Language",
+  "routes": [
+    { "title": "Foo", "path": "foo" }
   ]
 }
 ```
 
-If we no longer want the link to be in the side nav, we can simply remove it. If we do still want the link in the side nav, but pointing to an external destination, we need to slightly change the structure as such:
+If you no longer want the link to be in the side nav, you can simply remove it. If you do still want the link in the side nav, but pointing to an external destination, you need to slightly change the structure as such:
 
-```js
+```json
 {
-  category: 'docs',
-  content: [
-    { title: 'Foo Title', href: 'https://learn.hashicorp.com/<product>/foo' }
+  "title": "Language",
+  "routes": [
+    { "title": "Foo", "href": "https://learn.hashicorp.com/<product>/foo" }
   ]
 }
 ```
 
 As the majority of items in the side nav are internal links, the structure makes it as easy as possible to represent these links. This alternate syntax is the most concise manner than an external link can be represented. External links can be used anywhere within the docs sidenav.
 
-It's also worth noting that it is possible to do glob-based redirects, for example matching `/docs/*`, and you may see this pattern in the redirects file. This type of redirect is much higher risk and the behavior is a bit more nuanced, so if you need to add a glob redirect, please reach out to the website maintainers and ask about it first.
-
-<!-- END: redirects -->
+It's also worth noting that it is possible to do glob-based redirects (e.g., matching `/nested/*`), and you may see this pattern in the redirects file. This type of redirect is much higher risk and the behavior is a bit more nuanced. If you need to add a glob redirect, please contact the website maintainers and ask about it first.
 
 <!-- BEGIN: browser-support -->
 <!-- Generated text, do not edit directly -->
