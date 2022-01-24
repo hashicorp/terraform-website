@@ -14,7 +14,7 @@ This page explains how to write log output at varying verbosity levels, add vari
 
 ## Structured Logging
 
-`tflog` uses _structured logging_, based on [`go-hclog`](https://pkg.go.dev/github.com/hashicorp/go-hclog). Rather that writing logs as sentences with embedded variables and values, `tflog` takes a sentence describing the logging event and a set of variables to log. By separating the variables from the log description, you can programmatically parse, filter, and search your log output based on those variables. It also allows other parts of the system to associate variables with downstream log output.
+The `tflog` library uses _structured logging_, based on [`go-hclog`](https://pkg.go.dev/github.com/hashicorp/go-hclog). Rather that writing logs as sentences with embedded variables and values, `tflog` takes a sentence describing the logging event and a set of variables to log. By separating the variables from the log description, you can programmatically parse, filter, and search your log output based on those variables. It also allows other parts of the system to associate variables with downstream log output.
 
 ## Logging Levels
 
