@@ -85,8 +85,4 @@ Terraform can automatically create the output file at `TF_LOG_PATH` if it does n
 
 During testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test.
 
-Use the following environment variables to change where and how Terraform stores log outputs from tests.
-
-  - `TF_ACC_LOG_PATH`: Specify a path to write all log output from Terraform, plugin SDKs, and all providers in the run. Terraform will generate the output at the `TRACE` verbosity level.
-
-  - `TF_LOG_PATH_MASK`: Specify a file path containing `%s` to write test output to that path. Replace the `%s` with each test's name to write only that test's output to the file.
+Refer to the [acceptance testing](/plugin/sdkv2/testing/acceptance-tests) section for more information about additional environment variables that are available.
