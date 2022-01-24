@@ -134,4 +134,25 @@ Use the `Subsystem*` functions to associate log output with a specific subsystem
 tflog.SubsystemDebug(ctx, "my-subsystem", "writing to a subsystem", "meaning_of_life", 42)
 ```
 
-Just like with `tflog.With`, it's important that the `Subsystem*` functions get passed the context that is returned from `tflog.NewSubsystem`; the modified logger is stored in the context.
+Use [`tflog.SubsystemWith()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemWith) to attach variables to a specific subsystem.
+
+```go
+// overwrite logger to include new `url` variable
+ctx = tflog.SubsystemWith(ctx, "my-subsystem", "url", "https://www.example.com/my/endpoint")
+
+// will include the `url` variable
+tflog.SubsystemDebug(ctx, "my-subsystem", "Calling API")
+```
+
+Similar to [`tflog.With()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#With), the context does not necessarily need to be overwritten if it is desirable to have separate logging contexts available.
+
+```go
+// create new logger that includes `url` variable
+apiContext := tflog.SubsystemWith(ctx, "my-subsystem", "url", "https://www.example.com/my/endpoint")
+
+// will not include the `url` variable
+tflog.SubsystemDebug(ctx, "my-subsystem", "Calling database")
+
+// will include the `url` variable
+tflog.SubsystemDebug(apiContext, "my-subsystem", "Calling API")
+```
