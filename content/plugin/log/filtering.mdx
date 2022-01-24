@@ -59,19 +59,6 @@ YYYY-MM-DDTHH:MM:SS.SSSZ [Level] Message...
 
 Explicitly setting the log format to `JSON` will output logs in a machine-readable format at the TRACE logging level. The format is not guaranteed to be stable between releases.
 
-
-## Adding Request Metadata
-
-Use the `With()` method to embed values into every log output line associated with a particular request. This lets you more easily filter the output.
-
-The following example sets the `example_id` key set to `123`. Any subsequent `tflog` calls will now include this value in every log line printed for that request.
-
-```
-ctx = tflog.With(ctx, "example_id", 123)
-```
-
-TODO: Can we include a snippet of example output in a code block so folks can see what this will look like?
-
 ## Log Output Path
 
 Use `TF_LOG_PATH` to specify a file path where the log output file should be written. If you do not specify a log path, Terraform writes the specified log output to `stderr`.
