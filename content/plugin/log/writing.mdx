@@ -73,8 +73,8 @@ To specify filterable variables in the log output, add sets of key and value arg
 ```go
 tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint", "method", "POST")
 ```
-You can use types other than strings as values, too:
-  TOD: What are teh acceptable types? Are there any we don't support that might surprise folks?
+
+You can use standard Go types other than strings as values, too:
 
 ```go
 tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint", "method", "POST", "size", 200, "authenticated", true, "headers", map[string][]string{"content-type": []string{"application/json"}})
