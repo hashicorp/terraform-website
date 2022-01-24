@@ -82,17 +82,32 @@ tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/end
 
 ### Multiple Log Variables
 
-Loggers are transported using the `context.Context` variable, so injecting a variable into a logger returns a new `context.Context` variable containing the modified logger. Any calls to `tflog` using that logger will then implicitly include that variable. For example, the `terraform-plugin-go` library uses this method to assign a unique request ID to every RPC. This request ID that is included in all log output, allowing you to filter for logs associated with a specific request.
+Loggers are transported using a `context.Context` type, so injecting a variable into a logger returns a new `context.Context` containing the modified logger. Any calls to `tflog` using that logger will then implicitly include that variable.
+
+Use [`tflog.With()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#With) to add variables that will be attached to subsequent logs:
 
 ```go
-newContext := tflog.With(ctx, "url", "https://www.example.com/my/endpoint")
-
-// won't include the `url` variable
-tflog.Debug(ctx, "this won't have the url variable attached")
+// overwrite logger to include new `url` variable
+ctx = tflog.With(ctx, "url", "https://www.example.com/my/endpoint")
 
 // will include the `url` variable
-tflog.Debug(newContext, "this will have the url variable attached")
+tflog.Debug(ctx, "Calling API")
 ```
+
+In certain situations, it may be preferable to conditionally attach the variables. Instead of overwriting the logger context, a new one can be created:
+
+```go
+// create new logger that includes `url` variable
+apiContext := tflog.With(ctx, "url", "https://www.example.com/my/endpoint")
+
+// will not include the `url` variable
+tflog.Debug(ctx, "Calling database")
+
+// will include the `url` variable
+tflog.Debug(apiContext, "Calling API")
+```
+
+Refer to the [Subsystems](#subsystems) section for another methodology to manage larger sets of similar loggers.
 
 ## Subsystems
 
