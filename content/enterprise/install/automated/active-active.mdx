@@ -216,8 +216,6 @@ Scale down to zero nodes to fully disable the admin dashboard. Once the existing
 
 Now that you have tested your external Redis connection change the min and max instance count of your Auto Scaling Group to two nodes.
 
--> **Note**: Running more than two instances is not _currently_ supported. Please contact your Customer Success Manager if there are any questions/concerns.
-
 #### Wait for Terraform Enterprise to Install
 
 You need to wait up to 15 minutes for the application to respond as healthy on both nodes. Monitor the status of the install with the same methods used previously for one node in Step 3.
@@ -229,6 +227,43 @@ You need to wait up to 15 minutes for the application to respond as healthy on b
 Finally, confirm the application is functioning as expected when running multiple nodes. Run Terraform plan and applies through the system (and any other tests specific to your environment) like you did to validate the application in Step 3.
 
 Confirm the general functionality of the Terraform Enterprise UI to validate the tokens you added in Step 2 are set correctly. Browse the `Run` interface and your organization's private registry to confirm your application functions as expected.
+
+### Scaling Beyond Two Nodes
+
+Terraform Enterprise now supports scaling up to three nodes as part of the Active/Active deployment. Scaling beyond two nodes requires careful evaluation and scaling of the external services as well, particularly the database server. Scaling to three nodes does not alter the [upgrade requirement](https://www.terraform.io/enterprise/admin/infrastructure/active-active#upgrading-tfe-or-patching-tfe-node-instances) that you scale down to a single node, or rebuild entirely.
+
+#### PostgreSQL Server
+
+The Terraform Enterprise PostgreSQL server is will typically max out the CPU before anything else. Close monitoring of the CPU while in a two node configuration should be done prior to scaling up to three nodes. Additionally, the database maximum connection count may need to be manually modified to allow for the additional load. The default pool size varies by cloud, so please refer to the documentation for the cloud your installation is on. 
+
+- [AWS - RDS connection limits](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html#RDS_Limits.MaxConnections)
+- [AWS - Aurora Scaling](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Performance.html)
+- [Azure - Azure Database Limits](https://docs.microsoft.com/en-us/azure/postgresql/concepts-limits)
+- [Google Cloud - Cloud SQL Quotes and Limits](https://cloud.google.com/sql/docs/quotas)
+- [PostgreSQL 12 - Connection Documentation](https://www.postgresql.org/docs/12/runtime-config-connection.html)
+
+#### Redis Server
+
+Rarely, certain types of workloads by cause spikes in the Redis server CPU or memory. We recommend the Redis server be monitored and scaled up as necessary. 
+
+- [AWS - Monitoring ElastiCache for Redis with CloudWatch](https://aws.amazon.com/blogs/database/monitoring-best-practices-with-amazon-elasticache-for-redis-using-amazon-cloudwatch/)
+- [Azure - Monitor Azure Cache for Redis](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-how-to-monitor)
+- [Google Cloud - Monitoring Redis Instances](https://cloud.google.com/memorystore/docs/redis/monitoring-instances)
+
+#### Network Infrastructure/API Limits
+
+As you scale out Terraform Enterprise beyond two nodes, you may be adding additional stress to your network and dramatically increasing the number of API calls made in your cloud account. Each of the three support clouds have their own default limits and processes by which those limits might possibly be increased. 
+
+- [AWS - EC2 instance network limits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-network-bandwidth.html)
+- [AWS - Request Throttling for the EC2 API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/throttling.html)
+- [Azure - Virtual Machine Network Limits](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-machine-network-throughput)
+- [Azure - Resource Manager Throttling](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/request-limits-and-throttling)
+- [Google Cloud - Network Quotas and Limits](https://cloud.google.com/vpc/docs/quota)
+- [Google Cloud - API rate limits](https://cloud.google.com/compute/docs/api-rate-limits)
+
+#### Consider Agents
+
+An alternative to scaling Terraform Enterprise beyond two, or even three, nodes is to utilize [Terraform Cloud Agents](https://www.terraform.io/enterprise/admin/agents-on-tfe). When agents are utilized, the actual Terraform plans and applies will take place on the target system that has the agent executable installed, with a much smaller impact on the Terraform Enterprise servers than local runs. Agents can run in other regions, other clouds, and even private cloud, provided the network connectivity is configured. 
 
 ##
 
