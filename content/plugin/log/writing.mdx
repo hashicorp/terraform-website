@@ -80,7 +80,7 @@ You can use standard Go types other than strings as values, too:
 tflog.Trace(ctx, "executing API request", "url", "https://www.example.com/my/endpoint", "method", "POST", "size", 200, "authenticated", true, "headers", map[string][]string{"content-type": []string{"application/json"}})
 ```
 
-### Logger Context
+### Multiple Log Variables
 
 Loggers are transported using the `context.Context` variable, so injecting a variable into a logger returns a new `context.Context` variable containing the modified logger. Any calls to `tflog` using that logger will then implicitly include that variable. For example, the `terraform-plugin-go` library uses this method to assign a unique request ID to every RPC. This request ID that is included in all log output, allowing you to filter for logs associated with a specific request.
 
