@@ -6,11 +6,11 @@ description: >-
 
 # Filtering Log Output
 
-This page explains how to turn on logging, filter log output, and manage log format.
+Terraform, providers, and provider SDKs can all write logs that provide insight into operations and help you diagnose bugs. This page explains how to turn on logging, filter log output, and manage log format.
 
 ## Logging Environment Variables
 
-Terraform, providers, and provider SDKs can all write logs that provide insight into operations and help you diagnose bugs. Logging is off for all of these subsystems by default, but you can set one or more of the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels) to write logs for a Terraform run.
+Logging is off for all subsystems by default. Set one or more of the the logging environment variables below to either [`JSON` format](#log-format) or a [verbosity level](#logging-levels) to write logs for a Terraform run.
 
 - To write all available logs from Terraform binary, all providers, and all provider SDKs, set `TF_LOG`.
 - To write only a subset of logs (e.g., for a single provider), do not set `TF_LOG` and instead set specific logging environment variables for your use case.
@@ -21,7 +21,7 @@ Some environment variables take precedence over others. For example, if you set 
 | --------------|-------------|-------------|
 | `TF_LOG` | All loggers (Terraform, SDKs, providers) | Overrides all other logging environment variables. |
 | `TF_LOG_CORE` | Terraform binary | Does not include providers. |
-| `TF_LOG_PROVIDER` | All providers and provider SDKs used during the run | Overrides logging environment variables for specific providers (e.g., `TF_LOG_PROVIDER_AWS`) and provider SDKs (e.g., `TF_LOG_PROTO`).|
+| `TF_LOG_PROVIDER` | All providers and provider SDKs used during the run | Overrides logging environment variables for specific providers (e.g., `TF_LOG_PROVIDER_AWS`) and provider SDKs (e.g., `TF_LOG_PROTO`). Only affects logs from Terraform CLI runs and does not affect logs from provider [acceptance tests](#testing). |
 | `TF_LOG_PROVIDER_{PROVIDER_NAME}` (e.g., `TF_LOG_PROVIDER_AWS`)| Specific provider  | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
 |`TF_LOG_SDK` | All SDKs for providers used during the run | Only applies to logs written with `terraform-plugin-log`. For remaining SDKV2 logs, use `TF_LOG` or `TF_LOG_PROVIDER`. |
 | `TF_LOG_SDK_PROTO` | Protocol layer logging for providers built on [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go). | Overrides `TF_LOG_SDK`. |
@@ -73,4 +73,6 @@ Terraform can automatically create the output file at `TF_LOG_PATH` if it does n
 
 ## Testing
 
-During testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test. The [Acceptance testing](/plugin/sdkv2/testing/acceptance-tests#environment-variables) page contains additional environment variables to help you manage log output from tests.
+During testing, Terraform ignores `TF_LOG_CORE`, and logging environment variables only control the log output for the provider under test. The one exception is `TF_LOG_PROVIDER`, which does not affect provider or provider SDK logs during acceptance tests.
+
+Refer to [acceptance testing](/plugin/sdkv2/testing/acceptance-tests#environment-variables) for additional environment variables that help you manage test log output.
