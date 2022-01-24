@@ -35,7 +35,7 @@ tflog.Error(ctx, "unrecognized API response body")
 Output that describes an unexpected condition, but not one that should halt execution. Warn log output is intended for warnings. Good candidates are deprecations or environment issues.
 
 ```go
-tflog.Warn(ctx, "API returned a 500 error, retrying")
+tflog.Warn(ctx, "Retrying due to API server-side error")
 ```
 
 ### Info
