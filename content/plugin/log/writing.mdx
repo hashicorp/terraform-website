@@ -128,7 +128,16 @@ ctx = tflog.NewSubsystem(ctx, "my-subsystem", tflog.WithLevelFromEnv("TF_LOG_MYP
 
 ### Use Subsystems
 
-Use the `Subsystem*` functions to associate log output with a specific subsystem.
+Logging or adding variables to subsystem loggers requires separate function calls so the subsystem can be appropriately associated:
+
+* [`tflog.SubsystemError()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemError): Equivalent to [`tflog.Error()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#Error), but using a subsystem logger.
+* [`tflog.SubsystemWarn()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemWarn): Equivalent to [`tflog.Warn()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#Warn), but using a subsystem logger.
+* [`tflog.SubsystemInfo()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemInfo): Equivalent to [`tflog.Info()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#Info), but using a subsystem logger.
+* [`tflog.SubsystemDebug()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemDebug): Equivalent to [`tflog.Debug()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#Debug), but using a subsystem logger.
+* [`tflog.SubsystemTrace()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemTrace): Equivalent to [`tflog.Trace()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#Trace), but using a subsystem logger.
+* [`tflog.SubsystemWith()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemWith): Equivalent to [`tflog.With()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#With), but using a subsystem logger.
+
+For example, use [`tflog.SubsystemDebug()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemDebug) to write a debug level log with a specific subsystem.
 
 ```go
 tflog.SubsystemDebug(ctx, "my-subsystem", "writing to a subsystem", "meaning_of_life", 42)
