@@ -59,12 +59,7 @@ tflog.Debug(ctx, "found two identical diagnostics in the response, deduplicating
 The most verbose output that describes the lowest level details of operation, such as intra-function steps or raw data.
 
 ```go
-tflog.Trace(ctx, "creating the widget")
-resp, err := client.CreateWidget(ctx)
-if err != nil {
-  panic(err)
-}
-tflog.Trace(ctx, "created the widget")
+tflog.Trace(ctx, "Creating the widget")
 ```
 
 ## Adding Variables
