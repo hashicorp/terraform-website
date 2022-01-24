@@ -118,8 +118,8 @@ You may want to create a new subsystem for sections of code that are large, comp
 To create a new subsystem, pass context and the subsystem name to the `NewSubsystem()` method.
 
 ```go
-// my-subsystem is the name of the subsystem
-// it will be attached to all your logs
+// my-subsystem is the name of the logging subsystem
+// It will be available to subsequent calls via the tflog.Subsystem* functions.
 ctx = tflog.NewSubsystem(ctx, "my-subsystem")
 ```
 
