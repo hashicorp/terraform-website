@@ -21,7 +21,7 @@ Some environment variables take precedence over others. For example, if you set 
 | `TF_LOG_PROVIDER` | All providers used during the run | Overrides logging environment variables for specific providers (e.g., `TF_LOG_PROVIDER_AWS`) and provider SDKs (e.g., `TF_LOG_PROTO`).|
 | `TF_LOG_PROVIDER_{PROVIDER_NAME}` (e.g., `TF_LOG_PROVIDER_AWS`)| Specific provider  | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
 |`TF_LOG_SDK` | All SDKs for providers used during the run | Only applies to logs written with `terraform-plugin-log`. For remaining SDKV2 logs, use `TF_LOG` or `TF_LOG_PROVIDER`. |
-`TF_LOG_SDK_PROTO` | [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go) | Overrides `TF_LOG_SDK`. |
+| `TF_LOG_SDK_PROTO` | Protocol layer logging for providers built on [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go). | Overrides `TF_LOG_SDK`. |
 | `TF_LOG_SDK_HELPER_SCHEMA`| [`terraform-plugin-sdk/v2`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema) `helper/schema` package | Overrides `TF_LOG_SDK`. Only applies to logs written with `terraform-plugin-log`. For remaining SDKV2 logs, use `TF_LOG` or `TF_LOG_PROVIDER`. |
 |`TF_LOG_SDK_MUX`| [`terraform-plugin-mux`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux)| Overrides `TF_LOG_SDK`.
 
