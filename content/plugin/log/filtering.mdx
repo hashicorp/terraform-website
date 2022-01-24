@@ -16,7 +16,7 @@ Some environment variables take precedence over others. For example, if you set 
 
 | Variable | Logs Written By | Precedence and Usage |
 | --------------|-------------|-------------|
-`TF_LOG` | All loggers (Terraform, SDKs, providers)| Overrides all other logging environment variables. |
+| `TF_LOG` | All loggers (Terraform, SDKs, providers) | Overrides all other logging environment variables. |
 | `TF_LOG_CORE` | Terraform binary | Does not include providers. |
 | `TF_LOG_PROVIDER` | All providers used during the run | Overrides logging environment variables for specific providers (e.g., `TF_LOG_PROVIDER_AWS`) and provider SDKs (e.g., `TF_LOG_PROTO`).|
 | `TF_LOG_PROVIDER_{PROVIDER_NAME}` (e.g., `TF_LOG_PROVIDER_AWS`)| Specific provider  | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
