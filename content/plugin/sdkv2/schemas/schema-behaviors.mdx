@@ -341,7 +341,7 @@ Value in statefile:
 
 ### ValidateFunc
 
-**Deprecated:** please use SchemaValidateDiagFunc
+**Deprecated:** Use `ValidateDiagFunc` instead.
 
 **Data structure:** [SchemaValidateFunc](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#SchemaValidateFunc)
 
@@ -387,9 +387,9 @@ resource "example" "ex_instance" {
 
 - Only works with primitive types
 
-`ValidateDiagFunc` is a function used to validate the value of a primitive type. Common use cases include ensuring an integer falls within a range or a string value is present in a list of valid options. The function returns a collection of Diagnostics which can be found here: <https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/diag#Diagnostics>. Developers should append and build the list of diagnostics up until a fatal error is reached, at which point they should return the Diagnostics to the SD. Terraform will only halt execution if an error is returned. Returning warnings will warn the user but the data provided is considered valid.
+`ValidateDiagFunc` is a function used to validate the value of a primitive type. Common use cases include ensuring an integer falls within a range or a string value is present in a list of valid options. The function returns a collection of [Diagnostics](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/diag#Diagnostics). Developers should append and build the list of diagnostics up until a fatal error is reached, at which point they should return the Diagnostics. Terraform will only halt execution if an error is returned. Warnings will display a warning message to the practitioner, but continue execution.
 
-Terraform includes a number of validators for use in plugins in the validation package. A full list can be found here: <https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation>
+The SDK includes some basic validators in the [`helper/validation` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation).
 
 **Schema example:**
 
