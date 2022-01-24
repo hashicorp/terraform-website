@@ -132,8 +132,8 @@ ctx = tflog.NewSubsystem(ctx, "my-subsystem", hclog.Debug)
 You can also configure an environment variable to control the logging level instead of hardcoding it into the subsystem.
 
 ```go
-// read the level from TF_LOG_MYPROVIDER_CLIENT
-ctx = tflog.NewSubsystem(ctx, "my-subsystem", tflog.WithLevelFromEnv("TF_LOG_MYPROVIDER_CLIENT"))
+// read the level from TF_LOG_PROVIDER_MYPROVIDER_CLIENT
+ctx = tflog.NewSubsystem(ctx, "my-subsystem", tflog.WithLevelFromEnv("TF_LOG_PROVIDER_MYPROVIDER_CLIENT"))
 ```
 
 ### Use Subsystems
