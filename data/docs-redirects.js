@@ -1521,6 +1521,6 @@ export const docsRedirects = {
   '/docs/state/sensitive-data.html': '/language/state/sensitive-data',
   '/docs/state/workspaces.html': '/language/state/workspaces',
   '/docs/language/resources/provisioners': '/language/resources/provisioners/syntax',
-  '/docs/language/resources/provisioners/#provisioners-are-a-last-resort': '/language/resources/provisioners/syntax#provisioners-are-a-last-resort'
+  '/docs/language/resources/provisioners/#provisioners-are-a-last-resort': '/language/resources/provisioners/syntax#provisioners-are-a-last-resort',
   '/docs/cloud/migrate/workspaces.html': '/cloud-docs/migrate',
 }
