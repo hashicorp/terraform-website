@@ -51,8 +51,11 @@ PR](https://github.com/hashicorp/terraform/pull/26632) for more details.
 
 ## Log Format
 
-By default, logs are written as...
-TODO: what's the difference between default and JSON format?
+By default, logs are written as plaintext lines, prefixed with a timestamp and the level in square braces:
+
+```text
+YYYY-MM-DDTHH:MM:SS.SSSZ [Level] Message...
+```
 
 `JSON` will output logs in a machine-readable format. The format is not guaranteed to be stable between releases.
 TOD: When we pass JSON, what verbosity level will happen?
