@@ -66,7 +66,7 @@ testing_new_config.go:111: no "id" found in attributes
 testing_new.go:53: no "id" found in attributes
 ```
 
-To workaround this limitation of the acceptance testing framework, add a root level `id` attribute to resources and data source schemas and ensure the attribute value is appropriately [written to state](/plugin/framework/writing-state). Conventionally, `id` is a computed attribute which contains the identifier for the resource.
+To workaround this limitation of the acceptance testing framework, add a root level `id` attribute to resource and data source schemas. Ensure the attribute value is appropriately [written to state](/plugin/framework/writing-state). Conventionally, `id` is a computed attribute which contains the identifier for the resource.
 
 For example, in the `GetSchema` method implementation of a [`DataSourceType`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#DataSourceType) or [`ResourceType`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-framework/tfsdk#ResourceType):
 
