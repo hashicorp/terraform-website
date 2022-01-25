@@ -6,25 +6,22 @@ description: >-
 
 # Writing Log Output
 
-Use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog) to write logs for your provider. SDKs like the `terraform-plugin-framework`, `terraform-plugin-go`, and `terraform-plugin-sdk/v2` set up logging for you, so you only need to write the logs themselves.
+Use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog) to write logs for your provider. SDKs like the `terraform-plugin-framework`, `terraform-plugin-go`, and `terraform-plugin-sdk/v2` set up logging for you, so you only need to write the logs themselves. You can write log output at varying verbosity levels, add variables to logs, and create subsystems to group logs that relate to distinct sections of code (e.g., the API client).
 
-!> **Warning:** Do not use `fmt.Println` and similar methods to log. They will silently fail, making the log output unavailable.
+!> **Warning:** Do not use `fmt.Println` and similar methods to log. They will silently fail, making the output unavailable.
 
-You can write log output at varying verbosity levels, add variables to logs, and designate logs that relate to distinct sections of code (e.g., the API client).
 
 ## Structured Logging
 
-The `tflog` package uses _structured logging_, based on [`go-hclog`](https://pkg.go.dev/github.com/hashicorp/go-hclog). Rather than writing logs as sentences with embedded variables and values, `tflog` takes a sentence describing the logging event and a set of variables to log. By separating the variables from the log description, you can programmatically parse, filter, and search your log output based on those variables. It also allows other parts of the system to associate variables with downstream log output.
+The `tflog` package uses structured logging, based on [`go-hclog`](https://pkg.go.dev/github.com/hashicorp/go-hclog). Rather than writing logs as sentences with embedded variables and values, `tflog` takes a sentence describing the logging event and a set of variables to log. When variables are separate from the log description, you can use them to programmatically parse, filter, and search log output. This separation also allows other parts of the system to associate variables with downstream log output.
 
 ## Log Levels
 
-You must choose a verbosity level for each line of log output. This lets you and other consumers [filter the log output](/plugin/log/filtering) from your provider. For example, you can set your provider to write only logs of type `Warn` during a Terraform run.
-
-The following levels are listed from least verbose to most verbose.
+You must choose a verbosity level for each line of log output. This lets consumers [specify a type of log output](/plugin/log/managing#log-levels) to write from your provider. For example, you can use environment variables to set your provider to write only logs of type `Warn` during a Terraform run.
 
 ### Error
 
-Least verbose output that typically describes an unexpected condition prior to halting execution. It often provides more information about a user-facing error.
+The least verbose output that typically describes an unexpected condition prior to halting execution. It often provides more information about a user-facing error.
 
 ```go
 tflog.Error(ctx, "Unrecognized API response body")
@@ -56,7 +53,7 @@ tflog.Debug(ctx, "Two identical diagnostics in the response, deduplicating down 
 
 ### Trace
 
-The most verbose output that describes the lowest level details of operation, such as intra-function steps or raw data.
+The most verbose output that describes the lowest level operational details, such as intra-function steps or raw data.
 
 ```go
 tflog.Trace(ctx, "Creating the widget")
@@ -68,14 +65,16 @@ Use variables to attach information to specific logs or to an entire logger, whi
 
 ### Single Log Variables
 
-To specify filterable variables in the log output, add sets of key and value argument pairs after the log message. You can add as many key and value argument pairs as you need, but the key must always come before its associated value. The example below adds both a URL and a method for an associated API request.
+To specify filterable variables in the log output, add sets of key and value argument pairs after the log message. You can add as many key and value argument pairs as you need, but the key must always come before its associated value.
+
+The following example adds both a URL and a method for an API request.
 
 ```go
 tflog.Trace(ctx, "executing API request",
     "url", "https://www.example.com/my/endpoint", "method", "POST")
 ```
 
-You can use standard Go types other than strings as values, too:
+You can also use other standard Go types for values.
 
 ```go
 tflog.Trace(ctx, "executing API request",
@@ -86,7 +85,7 @@ tflog.Trace(ctx, "executing API request",
 
 ### Multiple Log Variables
 
-Loggers are transported using a `context.Context` type, so injecting a variable into a logger returns a new `context.Context` containing the modified logger. Any calls to `tflog` using that logger will then implicitly include that variable.
+Loggers are transported using a `context.Context` type, so injecting a variable into a logger returns a new `context.Context` containing the modified logger. Subsequent calls to `tflog` with that logger will implicitly include the variable.
 
 Use [`tflog.With()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#With) to attach variables to a logger.
 
@@ -98,7 +97,7 @@ ctx = tflog.With(ctx, "url", "https://www.example.com/my/endpoint")
 tflog.Debug(ctx, "Calling API")
 ```
 
-You can also conditionally attach the variables by creating a new context and injecting it into the logger when needed.
+You can also conditionally attach the variables by creating a new context and injecting it into the logger.
 
 ```go
 // create new logger that includes `url` variable
@@ -125,13 +124,13 @@ To create a new subsystem, pass context and the subsystem name to the `NewSubsys
 ctx = tflog.NewSubsystem(ctx, "my-subsystem")
 ```
 
-Optionally, you can also specify a [log level](#log-levels) for the subsystem.
+Optionally, specify a [log level](#log-levels) for the subsystem.
 
 ```go
 ctx = tflog.NewSubsystem(ctx, "my-subsystem", hclog.Debug)
 ```
 
-You can also configure an environment variable to control the logging level instead of hardcoding it into the subsystem.
+You can also create an environment variable to control the logging level instead of hardcoding it into the subsystem.
 
 ```go
 // read the level from TF_LOG_PROVIDER_MYPROVIDER_CLIENT
@@ -166,7 +165,7 @@ ctx = tflog.SubsystemWith(ctx, "my-subsystem", "url", "https://www.example.com/m
 tflog.SubsystemDebug(ctx, "my-subsystem", "Calling API")
 ```
 
-You can also create a new context that contains the variables and inject it into the logger when needed.
+You can also conditionally attach variables by creating a new context and injecting it into the logger.
 
 ```go
 // create new logger that includes `url` variable
