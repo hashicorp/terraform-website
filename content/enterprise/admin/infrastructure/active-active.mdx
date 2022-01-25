@@ -75,6 +75,41 @@ tfe-admin list-nodes
 
 This command lists the IP addresses of all active nodes in the active/active installation. Nodes send a heartbeat every 5 seconds to signal that they are active. If Terraform Enterprise does not receive a heartbeat from a node within 30 seconds, it considers the node inactive and removes the node from the list.
 
+#### rotate-encryption-password
+
+```bash
+tfe-admin rotate-encryption-password CURRENT_PASSWORD NEW_PASSWORD
+```
+
+This command rotates the [encryption password](https://www.terraform.io/enterprise/install/automated/encryption-password) in use by Terraform Enterprise.
+
+To prevent sensitive information from being stored in the shell history, temporarily write the current and new encryption passwords to files and read them upon execution, deleting the temporary files when finished:
+
+```bash
+tfe-admin rotate-encryption-password "$(cat current_password.txt)" "$(cat new_password.txt)"
+```
+
+A successful encryption password rotation will show the following output:
+
+```bash
+Encryption password successfully rotated!
+
+Updating the `enc_password` application configuration on 2 node(s) to reflect the new encryption password.
+
+You must update any installation or automation processes to reflect the new encryption password!
+```
+
+An unsuccessful encryption password rotation will show an error:
+
+```bash
+Error rotating encryption password:
+Error:
+exit status 1
+Output:
+Encryption password not rotated!
+Error reading previous Vault configuration: failed decrypting unseal key: could not decrypt ciphertext: chacha20poly1305: message authentication failed
+```
+
 ## Other Supporting Commands
 
 There are additional commands available for checking status and troubleshooting directly on nodes. You can use them to confirm successful installation or to check on the status of a running node as part of troubleshooting activities.  Also, there are additional command aliases available that allow you to run more abbreviated versions of commands like just `support-bundle`. Run an `alias` command with no parameters to see the list of available command aliases.
