@@ -79,9 +79,11 @@ You can also use other standard Go types for values.
 
 ```go
 tflog.Trace(ctx, "executing API request",
-    "url", "https://www.example.com/my/endpoint", "method", "POST",
-    "size", 200, "authenticated", true, "headers",
-    map[string][]string{"content-type": []string{"application/json"}})
+    "url", "https://www.example.com/my/endpoint",
+    "method", "POST",
+    "size", 200,
+    "authenticated", true,
+    "headers", map[string][]string{"content-type": []string{"application/json"}})
 ```
 
 ### Multiple Log Variables
