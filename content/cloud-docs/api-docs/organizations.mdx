@@ -51,7 +51,7 @@ The Organizations API is used to list, show, create, update, and destroy organiz
 
 This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
 
--> **Note:** Currently, this endpoint returns a full, unpaginated list of organizations (without pagination metadata) if both of the pagination query parameters are omitted. This is likely to change in the future, so we recommend always supplying pagination parameters when building against this API.
+Currently, this endpoint returns a full, unpaginated list of organizations (without pagination metadata) if both of the pagination query parameters are omitted. To avoid inconsistent behavior, we recommend always supplying pagination parameters when building against this API.
 
 | Parameter      | Description                                                                   |
 | -------------- | ----------------------------------------------------------------------------- |
