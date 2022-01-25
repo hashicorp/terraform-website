@@ -10,13 +10,13 @@ Use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plug
 
 !> **Warning:** Do not use `fmt.Println` and similar methods to log. They will silently fail, making the log output unavailable.
 
-This page explains how to write log output at varying verbosity levels, add variables to logs, and designate logs that relate to distinct sections of code (e.g., the API client).
+You can write log output at varying verbosity levels, add variables to logs, and designate logs that relate to distinct sections of code (e.g., the API client).
 
 ## Structured Logging
 
-The `tflog` library uses _structured logging_, based on [`go-hclog`](https://pkg.go.dev/github.com/hashicorp/go-hclog). Rather that writing logs as sentences with embedded variables and values, `tflog` takes a sentence describing the logging event and a set of variables to log. By separating the variables from the log description, you can programmatically parse, filter, and search your log output based on those variables. It also allows other parts of the system to associate variables with downstream log output.
+The `tflog` package uses _structured logging_, based on [`go-hclog`](https://pkg.go.dev/github.com/hashicorp/go-hclog). Rather than writing logs as sentences with embedded variables and values, `tflog` takes a sentence describing the logging event and a set of variables to log. By separating the variables from the log description, you can programmatically parse, filter, and search your log output based on those variables. It also allows other parts of the system to associate variables with downstream log output.
 
-## Logging Levels
+## Log Levels
 
 You must choose a verbosity level for each line of log output. This lets you and other consumers [filter the log output](/plugin/log/filtering) from your provider. For example, you can set your provider to write only logs of type `Warn` during a Terraform run.
 
@@ -62,7 +62,7 @@ The most verbose output that describes the lowest level details of operation, su
 tflog.Trace(ctx, "Creating the widget")
 ```
 
-## Adding Variables
+## Variables
 
 Use variables to attach information to specific logs or to an entire logger, which adds that information to all subsequent logs. You can also combine both methods to simplify your logging code.
 
@@ -125,7 +125,7 @@ To create a new subsystem, pass context and the subsystem name to the `NewSubsys
 ctx = tflog.NewSubsystem(ctx, "my-subsystem")
 ```
 
-Optionally, you can also specify a [logging level](#logging-levels) for the subsystem.
+Optionally, you can also specify a [log level](#log-levels) for the subsystem.
 
 ```go
 ctx = tflog.NewSubsystem(ctx, "my-subsystem", hclog.Debug)
@@ -141,7 +141,7 @@ ctx = tflog.NewSubsystem(ctx, "my-subsystem",
 
 ### Use Subsystems
 
-Logging or adding variables to subsystem loggers requires separate function calls for each [logging level](#logging-levels):
+Logging or adding variables to subsystem loggers requires separate function calls for each [log level](#log-levels):
 
 * [`tflog.SubsystemError()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemError): Equivalent to [`tflog.Error()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#Error), but using a subsystem logger.
 * [`tflog.SubsystemWarn()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#SubsystemWarn): Equivalent to [`tflog.Warn()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog#Warn), but using a subsystem logger.

@@ -222,8 +222,8 @@
     "title": "Logging",
     "routes": [
       {
-        "title": "Filtering Log Output",
-        "path": "log/filtering"
+        "title": "Managing Log Output",
+        "path": "log/managing"
       },
       {
         "title": "Writing Log Output",
