@@ -21,7 +21,7 @@ The following environment variables turn on logging and can help you filter log 
 | --------------|-------------|-------------|
 | `TF_LOG` | All loggers (Terraform, SDKs, providers) | Overrides all other logging environment variables. |
 | `TF_LOG_CORE` | Terraform binary | Does not include providers. |
-| `TF_LOG_PROVIDER` | All providers and provider SDKs used during the run | Overrides logging environment variables for specific providers (e.g., `TF_LOG_PROVIDER_AWS`) and provider SDKs (e.g., `TF_LOG_PROTO`). Only affects logs from Terraform CLI runs and does not affect logs from provider [acceptance tests](#testing). |
+| `TF_LOG_PROVIDER` | All providers and provider SDKs used during the run | Overrides logging environment variables for specific providers (e.g., `TF_LOG_PROVIDER_AWS`) and provider SDKs (e.g., `TF_LOG_SDK`). Only affects logs from Terraform CLI runs and does not affect logs from provider [acceptance tests](#testing). |
 | `TF_LOG_PROVIDER_{PROVIDER_NAME}` (e.g., `TF_LOG_PROVIDER_AWS`)| Specific provider  | Only applies to providers that write logs using the `tflog` package. Does not affect logs written by legacy `log.Print*` functions. |
 |`TF_LOG_SDK` | All SDKs for providers used during the run | Only applies to logs written with `terraform-plugin-log`. For remaining SDKV2 logs, use `TF_LOG` or `TF_LOG_PROVIDER`. |
 | `TF_LOG_SDK_PROTO` | Protocol layer logging for providers built on [`terraform-plugin-go`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go). | Overrides `TF_LOG_SDK`. |
