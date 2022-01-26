@@ -69,15 +69,7 @@ These metrics report runtime information about Terraform Enterprise containers.
 | `tfe.container.process_count`             | `gauge`      | The number of processes active within the container                                                              |
 | `tfe.container.process_limit`             | `gauge`      | The maximum number of processes that can be executed inside the container                                        |
 
-In addition to the per-container metrics, the following global metrics are exposed:
-
-|              Exposed Metric              | Metrics Type |                                             Description                                            |
-|:---------------------------------------- |:------------:|:-------------------------------------------------------------------------------------------------- |
-| `tfe.operation.count`                    | `gauge `     | Number of running containers being used for Terraform operators (runs and plans)                   |
-| `tfe.operation.limit`                    | `gauge`      | Maximum number of jobs as defined by the `capacity_concurrency` Replicated config                  |
-
-
-For each metric emitted, the following metadata labels will be added:
+For each container per-metric emitted, the following metadata labels will be added:
 
 * `id`: The container ID
 * `name`: The container name
@@ -85,4 +77,15 @@ For each metric emitted, the following metadata labels will be added:
 
 Build worker container metrics include four additional labels: `run_type`, `run_id`, `workspace_name`, and `organization_name`. These labels can be used to associate a build worker container with it’s relevant type, run, workspace, and organization, respectively. Metrics for long-running service containers will not include these labels.
 
-Note that the name and ID for build worker containers are unique for each build. Build container names take the form of a UUID. Operators should be aware of this when planning for Prometheus storage capacity requirements, with respect to metric cardinality. Environments that do not need to track resource consumption of individual build containers or runs can use [Prometheus metric relabelling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs) to remove the unique ID, name, and run_type labels from container metrics, reducing cardinality within the dataset while still retaining an association of resource usage with a given workspace and organization.
+In addition to the per-container metrics, the following global metrics are exposed:
+
+|              Exposed Metric              | Metrics Type |                                             Description                                            |
+|:---------------------------------------- |:------------:|:-------------------------------------------------------------------------------------------------- |
+| `tfe.operation.count`                    | `gauge `     | Number of running containers being used for Terraform operators (runs and plans)                   |
+| `tfe.operation.limit`                    | `gauge`      | Maximum number of jobs as defined by the `capacity_concurrency` Replicated config                  |
+
+Note that the name and ID for build worker containers are unique for each build. Build container names take the form of a UUID. Operators should be aware of this when planning for Prometheus storage capacity requirements, with respect to metric cardinality. Environments that do not need to track resource consumption of individual build containers or runs can use [Prometheus metric relabelling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs) to remove the unique ID, name, and run type labels from container metrics, reducing cardinality within the dataset while still retaining an association of resource usage with a given workspace and organization.
+
+#### Grafana Dashboard
+
+A template Grafana dashboard that leverages Prometheus and the metrics exported by Terraform Enterprise is published at [https://grafana.com/grafana/dashboards/15630](https://grafana.com/grafana/dashboards/15630). This provides a starting point for organizations that leverage Grafana and Prometheus for visualization.
