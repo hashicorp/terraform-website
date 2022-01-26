@@ -234,7 +234,7 @@ Terraform Enterprise supports scaling up to three nodes as part of the Active/Ac
 
 #### PostgreSQL Server
 
-The Terraform Enterprise PostgreSQL server will typically hit the CPU capacity before other resources. Close monitoring of the CPU while in a two node configuration should be done prior to scaling up to three nodes. Additionally, the database maximum connection count may need to be manually modified to allow for the additional load. The defaults vary by cloud, so please refer to the documentation for the cloud your installation is on. 
+The Terraform Enterprise PostgreSQL server will typically hit the CPU capacity before other resources, so we recommend closely monitoring the CPU in a two node configuration before scaling up to three nodes. You may also need to manually modify the database maximum connection count to allow for the additional load. Defaults vary, so please refer to the documentation for the cloud hosting your installation.
 
 - [AWS - RDS connection limits](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html#RDS_Limits.MaxConnections)
 - [AWS - Aurora Scaling](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Performance.html)
