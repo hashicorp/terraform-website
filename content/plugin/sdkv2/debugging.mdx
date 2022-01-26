@@ -89,24 +89,53 @@ To do so, build the provider binary with the necessary
 
 ### Starting A Provider In Debug Mode
 
-Once a provider has a debug mode added to its `main` function, it can be
-activated. Run your debugger, and pass it the provider binary as the command to
-run, specifying whatever flags, environment variables, or other input is
-necessary to start your provider in debug mode:
+Once a provider has a debug mode added to its `main` function, it can be activated. Run your debugger, which is typically built into an editor or the Delve CLI, by passing it the provider binary as the command to execute. Specify any flags, environment variables, or other input that is necessary to start your provider.
 
-```sh
-$ dlv exec --headless ./terraform-provider-my-provider -- --debug
+#### Visual Studio Code
+
+Visual Studio Code (VS Code) features native [debugging](https://code.visualstudio.com/docs/editor/debugging) support with the [Go extension](https://marketplace.visualstudio.com/items?itemName=golang.go). The necessary launch configuration can be created within the repository as a `.vscode/launch.json` file, [user settings](https://code.visualstudio.com/docs/editor/debugging#_global-launch-configuration), or [workspace settings](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_workspace-launch-configurations).
+
+An example `.vscode/launch.json` configuration file:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Terraform Provider",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            // this assumes your workspace is the root of the repo
+            "program": "${workspaceFolder}",
+            "env": {},
+            "args": [
+                "-debug",
+            ]
+        }
+    ]
+}
 ```
 
-Connect your debugger (whether it's your IDE or the debugger client) to the
-debugger server. Have it continue execution (it pauses the process by default)
-and it will print output like the following to `stdout`:
+Running the editor debugger will output the reattach configuration to the debug console.
+
+#### Delve CLI
+
+Start a [`delve`](https://github.com/go-delve/delve) debugging session:
+
+```sh
+$ dlv exec --accept-multiclient --continue --headless ./terraform-provider-example -- -debug
+```
+
+It will print output like the following to `stdout`:
 
 ```
 Provider started, to attach Terraform set the TF_REATTACH_PROVIDERS env var:
 
         TF_REATTACH_PROVIDERS='{"registry.terraform.io/my-org/my-provider":{"Protocol":"grpc","Pid":3382870,"Test":true,"Addr":{"Network":"unix","String":"/tmp/plugin713096927"}}}'
 ```
+
+Connect your debugger, such as your editor or another delve CLI process, to the debugger server.
 
 ### Running Terraform With A Provider In Debug Mode
 
