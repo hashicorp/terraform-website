@@ -263,7 +263,7 @@ As you scale out Terraform Enterprise beyond two nodes, you may be adding additi
 
 Please consult the documentation and support of your cloud platform for more information on any of these topics.
 
-#### Consider Agents
+#### Terraform Cloud Agents - Alternative Solution
 
 Instead of scaling Terraform Enterprise beyond two or three nodes, you can use [Terraform Cloud Agents](https://www.terraform.io/enterprise/admin/agents-on-tfe). Terraform Cloud Agents can run in other regions, other clouds, and even private clouds. Agents poll Terraform Enterprise for work and then Terraform plans and applies will run on the target system that has the agent executable installed. This has a much smaller impact on the Terraform Enterprise servers than running Terraform locally.
 
