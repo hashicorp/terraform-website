@@ -230,7 +230,7 @@ Confirm the general functionality of the Terraform Enterprise UI to validate the
 
 ### Scaling Beyond Two Nodes
 
-Terraform Enterprise now supports scaling up to three nodes as part of the Active/Active deployment. Scaling beyond two nodes requires careful evaluation and scaling of the external services as well, particularly the database server. Scaling to three nodes does not alter the [upgrade requirement](https://www.terraform.io/enterprise/admin/infrastructure/active-active#upgrading-tfe-or-patching-tfe-node-instances) that you scale down to a single node, or rebuild entirely.
+Terraform Enterprise supports scaling up to three nodes as part of the Active/Active deployment. When scaling beyond two nodes, you should also carefully evaluate and scale external services, particularly the database server. Scaling to three nodes does not alter the [upgrade requirement](https://www.terraform.io/enterprise/admin/infrastructure/active-active#upgrading-tfe-or-patching-tfe-node-instances) that you scale down to a single node or rebuild entirely.
 
 #### PostgreSQL Server
 
