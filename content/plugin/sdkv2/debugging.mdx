@@ -89,11 +89,11 @@ To do so, build the provider binary with the necessary
 
 ### Starting A Provider In Debug Mode
 
-Once a provider has a debug mode added to its `main` function, it can be activated. Run your debugger, which is typically built into an editor or the Delve CLI, by passing it the provider binary as the command to execute. Specify any flags, environment variables, or other input that is necessary to start your provider.
+After you add a debug mode to your provider's `main` function, you can activate the debugger, which is typically built into an editor or the Delve CLI. To run your debugger, pass it the provider binary as the command to execute. Specify flags, environment variables, and any other input your provider needs to run.
 
 #### Visual Studio Code
 
-Visual Studio Code (VS Code) features native [debugging](https://code.visualstudio.com/docs/editor/debugging) support with the [Go extension](https://marketplace.visualstudio.com/items?itemName=golang.go). The necessary launch configuration can be created within the repository as a `.vscode/launch.json` file, [user settings](https://code.visualstudio.com/docs/editor/debugging#_global-launch-configuration), or [workspace settings](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_workspace-launch-configurations).
+Visual Studio Code (VS Code) features native [debugging](https://code.visualstudio.com/docs/editor/debugging) support with the [Go extension](https://marketplace.visualstudio.com/items?itemName=golang.go). You can create the necessary launch configuration within the repository as a `.vscode/launch.json` file, [user settings](https://code.visualstudio.com/docs/editor/debugging#_global-launch-configuration), or [workspace settings](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_workspace-launch-configurations).
 
 An example `.vscode/launch.json` configuration file:
 
@@ -136,6 +136,12 @@ Provider started, to attach Terraform set the TF_REATTACH_PROVIDERS env var:
 ```
 
 Connect your debugger, such as your editor or another delve CLI process, to the debugger server.
+
+For example with Delve CLI, using the server address and port output by `dlv exec` such as `API server listening at: 127.0.0.1:55413`:
+
+```shell
+dlv connect 127.0.0.1:55413
+```
 
 ### Running Terraform With A Provider In Debug Mode
 
