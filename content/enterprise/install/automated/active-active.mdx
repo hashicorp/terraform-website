@@ -252,7 +252,7 @@ Some workloads may rarely cause spikes in the Redis server CPU or memory. We rec
 
 #### Network Infrastructure/API Limits
 
-As you scale out Terraform Enterprise beyond two nodes, you may be adding additional stress to your network and dramatically increasing the number of API calls made in your cloud account. Each of the three support clouds have their own default limits and processes by which those limits might possibly be increased. 
+As you scale Terraform Enterprise beyond two nodes, you may be adding additional stress to your network and dramatically increasing the number of API calls made in your cloud account. Each cloud has its own default limits and processes by which those limits might be increased. Please refer to the documentation for the cloud hosting your installation.
 
 - [AWS - EC2 instance network limits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-network-bandwidth.html)
 - [AWS - Request Throttling for the EC2 API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/throttling.html)
@@ -260,8 +260,6 @@ As you scale out Terraform Enterprise beyond two nodes, you may be adding additi
 - [Azure - Resource Manager Throttling](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/request-limits-and-throttling)
 - [Google Cloud - Network Quotas and Limits](https://cloud.google.com/vpc/docs/quota)
 - [Google Cloud - API rate limits](https://cloud.google.com/compute/docs/api-rate-limits)
-
-Please consult the documentation and support of your cloud platform for more information on any of these topics.
 
 #### Terraform Cloud Agents - Alternative Solution
 
