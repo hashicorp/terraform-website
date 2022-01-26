@@ -222,7 +222,7 @@ curl \
 | ------------- | ------------------------- |
 | `:ssh_key_id` | The SSH key ID to update. |
 
-This endpoint replaces the name and/or key text of an existing SSH key. Existing workspaces that use the key will be updated with the new values.
+This endpoint replaces the name of an existing SSH key.
 
 Editing SSH keys requires permission to manage VCS settings. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
 
@@ -245,7 +245,6 @@ Properties without a default value are required.
 | ----------------------- | ------ | --------- | ----------------------------------------------------------------------------- |
 | `data.type`             | string |           | Must be `"ssh-keys"`.                                                         |
 | `data.attributes.name`  | string | (nothing) | A name to identify the SSH key. If omitted, the existing name is preserved.   |
-| `data.attributes.value` | string | (nothing) | The text of the SSH private key. If omitted, the existing value is preserved. |
 
 ### Sample Payload
 
