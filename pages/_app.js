@@ -2,7 +2,8 @@ import './style.css'
 import '@hashicorp/platform-util/nprogress/style.css'
 
 import NProgress from '@hashicorp/platform-util/nprogress'
-// import createConsentManager from '@hashicorp/react-consent-manager/loader'
+// import createConsentManager from '@hashicorp/react-consent-manager'
+// import localConsentManagerServices from 'lib/consent-manager-services'
 import usePageviewAnalytics from '@hashicorp/platform-analytics'
 import useAnchorLinkAnalytics from '@hashicorp/platform-util/anchor-link-analytics'
 import Router from 'next/router'
@@ -19,6 +20,7 @@ import alertBannerData, { ALERT_BANNER_ACTIVE } from 'data/alert-banner'
 NProgress({ Router })
 // const { ConsentManager, openConsentManager } = createConsentManager({
 //   preset: 'oss',
+//   otherServices: [...localConsentManagerServices]
 // })
 
 function App({ Component, pageProps }) {
