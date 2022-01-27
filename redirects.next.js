@@ -184,8 +184,8 @@ module.exports = (async () => {
     '/enterprise/before-installing/cluster-architecture': '/enterprise/admin/infrastructure/active-active',
     '/enterprise/install/cluster-aws': '/enterprise/admin/infrastructure/active-active',
     '/enterprise/install/cluster-azure': '/enterprise/admin/infrastructure/active-active',
-    'content/enterprise/install/cluster-custom': '/enterprise/admin/infrastructure/active-active',
-    'content/enterprise/install/cluster-gcp': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-custom': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-gcp': '/enterprise/admin/infrastructure/active-active',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
