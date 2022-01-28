@@ -69,7 +69,7 @@ These metrics report runtime information about Terraform Enterprise containers.
 | `tfe.container.process_count`             | `gauge`      | The number of processes active within the container                                                              |
 | `tfe.container.process_limit`             | `gauge`      | The maximum number of processes that can be executed inside the container                                        |
 
-For each container per-metric emitted, the following metadata labels will be added:
+The following metadata labels will be added to each container metric emitted:
 
 * `id`: The container ID
 * `name`: The container name
