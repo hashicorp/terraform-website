@@ -51,7 +51,6 @@ function App({ Component, pageProps }) {
       </div>
       <Footer openConsentManager={openConsentManager} />
       <ConsentManager />
-      <Footer />
     </ErrorBoundary>
   )
 }
