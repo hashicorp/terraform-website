@@ -75,7 +75,7 @@ The following metadata labels will be added to each container metric emitted:
 * `name`: The container name
 * `image`: The container image
 
-Build worker container metrics include four additional labels: `run_type`, `run_id`, `workspace_name`, and `organization_name`. These labels can be used to associate a build worker container with it’s relevant type, run, workspace, and organization, respectively. Metrics for long-running service containers will not include these labels.
+Build worker container metrics include four additional labels: `run_type`, `run_id`, `workspace_name`, and `organization_name`. You can use these labels to associate a build worker container with its type, run, workspace, and organization, respectively. Metrics for long-running service containers will not include these labels.
 
 In addition to the per-container metrics, the following global metrics are exposed:
 
