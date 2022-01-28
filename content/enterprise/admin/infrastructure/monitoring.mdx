@@ -69,6 +69,14 @@ These metrics report runtime information about Terraform Enterprise containers.
 | `tfe.container.process_count`             | `gauge`      | The number of processes active within the container                                                              |
 | `tfe.container.process_limit`             | `gauge`      | The maximum number of processes that can be executed inside the container                                        |
 
+The following metadata labels will be added to each container metric emitted:
+
+* `id`: The container ID
+* `name`: The container name
+* `image`: The container image
+
+Build worker container metrics include four additional labels: `run_type`, `run_id`, `workspace_name`, and `organization_name`. You can use these labels to associate a build worker container with its type, run, workspace, and organization, respectively. Metrics for long-running service containers will not include these labels.
+
 In addition to the per-container metrics, the following global metrics are exposed:
 
 |              Exposed Metric              | Metrics Type |                                             Description                                            |
@@ -76,13 +84,8 @@ In addition to the per-container metrics, the following global metrics are expos
 | `tfe.operation.count`                    | `gauge `     | Number of running containers being used for Terraform operators (runs and plans)                   |
 | `tfe.operation.limit`                    | `gauge`      | Maximum number of jobs as defined by the `capacity_concurrency` Replicated config                  |
 
+The name and ID for build worker containers are unique for each build, and build container names take the form of a UUID. Be aware of this when planning for Prometheus storage capacity requirements that relate to metric cardinality. Environments that do not need to track resource consumption of individual build containers or runs can use [Prometheus metric relabelling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs) to remove the unique ID, name, and run type labels from container metrics. This reduces cardinality within the dataset while still retaining the ability to associate resource usage with a given workspace and organization.
 
-For each metric emitted, the following metadata labels will be added:
+#### Grafana Dashboard
 
-* `id`: The container ID
-* `name`: The container name
-* `image`: The container image
-
-Build worker container metrics include four additional labels: `run_type`, `run_id`, `workspace_name`, and `organization_name`. These labels can be used to associate a build worker container with it’s relevant type, run, workspace, and organization, respectively. Metrics for long-running service containers will not include these labels.
-
-Note that the name and ID for build worker containers are unique for each build. Build container names take the form of a UUID. Operators should be aware of this when planning for Prometheus storage capacity requirements, with respect to metric cardinality. Environments that do not need to track resource consumption of individual build containers or runs can use [Prometheus metric relabelling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs) to remove the unique ID, name, and run_type labels from container metrics, reducing cardinality within the dataset while still retaining an association of resource usage with a given workspace and organization.
+This [template Grafana dashboard](https://grafana.com/grafana/dashboards/15630) demonstrates how you can use Grafana and Prometheus to visualize exported Terraform Enterprise metrics.
