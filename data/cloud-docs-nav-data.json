@@ -389,35 +389,35 @@
         "routes": [
           { "title": "Overview", "path": "api-docs/workspaces" },
           {
-            "title": "Workspace CRUD Actions",
+            "title": "CRUD Actions",
             "path": "api-docs/workspaces/workspace-crud-actions"
           },
           {
-            "title": "Workspace Lock Mechanism",
+            "title": "Lock Mechanism",
             "path": "api-docs/workspaces/workspace-lock-mechanism"
           },
           {
-            "title": "Workspace SSH Key Assignment",
+            "title": "SSH Key Assignment",
             "path": "api-docs/workspaces/workspace-ssh-key-assignment"
           },
           {
-            "title": "Workspace Remote State Consumers",
+            "title": "Remote State Consumers",
             "path": "api-docs/workspaces/workspace-remote-state-consumers"
           },
           {
-            "title": "Workspace Tags",
+            "title": "Tags",
             "path": "api-docs/workspaces/workspace-tags"
           },
           {
-            "title": "Workspace-Specific Variables",
+            "title": "Variables",
             "path": "api-docs/workspaces/workspace-variables"
           },
           {
-            "title": "Workspace Resources",
+            "title": "Resources",
             "path": "api-docs/workspaces/workspace-resources"
           },
           {
-            "title": "Workspaces Appendix",
+            "title": "Appendix",
             "path": "api-docs/workspaces/workspaces-appendix"
           }
         ]
