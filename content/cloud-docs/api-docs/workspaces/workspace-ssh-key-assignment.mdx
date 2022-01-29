@@ -1,0 +1,405 @@
+---
+page_title: Workspace SSH Key Assignment - API Docs - Terraform Cloud and Terraform Enterprise
+---
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+
+[JSON API document]: /cloud-docs/api-docs#json-api-documents
+
+[JSON API error object]: https://jsonapi.org/format/#error-objects
+
+[speculative plans]: /cloud-docs/run/#speculative-plans
+
+# Workspace SSH Assignment API
+
+## Assign an SSH key to a workspace
+
+This endpoint assigns an SSH key to a workspace.
+
+`PATCH /workspaces/:workspace_id/relationships/ssh-key`
+
+| Parameter       | Description                                                                                                                                                              |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `:workspace_id` | The workspace ID to assign the SSH key to. Obtain this from the [workspace settings](/cloud-docs/workspaces/settings) or the [Show Workspace](#show-workspace) endpoint. |
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path             | Type   | Default | Description                                                                                        |
+| -------------------- | ------ | ------- | -------------------------------------------------------------------------------------------------- |
+| `data.type`          | string |         | Must be `"workspaces"`.                                                                            |
+| `data.attributes.id` | string |         | The SSH key ID to assign. Obtain this from the [ssh-keys](/cloud-docs/api-docs/ssh-keys) endpoint. |
+
+#### Sample Payload
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": "sshkey-GxrePWre1Ezug7aM"
+    },
+    "type": "workspaces"
+  }
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/relationships/ssh-key
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "actions": {
+        "is-destroyable": true
+      },
+      "allow-destroy-plan": true,
+      "apply-duration-average": null,
+      "auto-apply": false,
+      "auto-destroy-at": null,
+      "created-at": "2021-08-16T19:44:45.241Z",
+      "description": "Example workspace for documentation.",
+      "environment": "default",
+      "execution-mode": "agent",
+      "file-triggers-enabled": false,
+      "global-remote-state": false,
+      "latest-change-at": "2021-08-16T19:44:45.241Z",
+      "locked": false,
+      "name": "workspace-1",
+      "operations": true,
+      "permissions": {
+        "can-create-state-versions": true,
+        "can-destroy": true,
+        "can-force-unlock": true,
+        "can-lock": true,
+        "can-manage-tags": true,
+        "can-queue-apply": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-read-state-versions": true,
+        "can-read-variable": true,
+        "can-unlock": true,
+        "can-update": true,
+        "can-update-variable": true
+      },
+      "plan-duration-average": null,
+      "policy-check-failures": null,
+      "queue-all-runs": false,
+      "resource-count": 0,
+      "run-failures": null,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
+      "speculative-enabled": false,
+      "structured-run-output-enabled": true,
+      "terraform-version": "1.0.4",
+      "trigger-prefixes": [],
+      "updated-at": "2021-08-16T22:59:56.631Z",
+      "vcs-repo": {
+        "branch": "",
+        "display-identifier": "my-organization/my-repository",
+        "identifier": "my-organization/my-repository",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-4ecWLF8W8gfxxNXP",
+        "repository-http-url": "https://github.com/my-organization/my-repository",
+        "service-provider": "github",
+        "webhook-url": "https://app.terraform.io/webhooks/vcs/704ac743-df64-4b8e-b9a3-a4c5fe1bec87"
+      },
+      "vcs-repo-identifier": "my-organization/my-repository",
+      "working-directory": "",
+      "workspace-kpis-runs-count": null
+    },
+    "id": "ws-FFP9JcN4m6czSRBj",
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
+    },
+    "relationships": {
+      "agent-pool": {
+        "data": {
+          "id": "apool-QxGd2tRjympfMvQc",
+          "type": "agent-pools"
+        }
+      },
+      "current-configuration-version": {
+        "data": {
+          "id": "cv-EpThx8RZdxt8a2mK",
+          "type": "configuration-versions"
+        },
+        "links": {
+          "related": "/api/v2/configuration-versions/cv-EpThx8RZdxt8a2mK"
+        }
+      },
+      "current-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "current-state-version": {
+        "data": null
+      },
+      "latest-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "outputs": {
+        "data": []
+      },
+      "readme": {
+        "data": {
+          "id": "227247",
+          "type": "workspace-readme"
+        }
+      },
+      "remote-state-consumers": {
+        "links": {
+          "related": "/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers"
+        }
+      },
+      "ssh-key": {
+        "data": {
+          "id": "sshkey-WfPdX2GKwGkK5rsB",
+          "type": "ssh-keys"
+        },
+        "links": {
+          "related": "/api/v2/ssh-keys/sshkey-WfPdX2GKwGkK5rsB"
+        }
+      }
+    },
+    "type": "workspaces"
+  }
+}
+```
+
+## Unassign an SSH key from a workspace
+
+This endpoint unassigns the currently assigned SSH key from a workspace.
+
+`PATCH /workspaces/:workspace_id/relationships/ssh-key`
+
+| Parameter       | Description                                                                                                                                                              |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `:workspace_id` | The workspace ID to assign the SSH key to. Obtain this from the [workspace settings](/cloud-docs/workspaces/settings) or the [Show Workspace](#show-workspace) endpoint. |
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path             | Type   | Default | Description             |
+| -------------------- | ------ | ------- | ----------------------- |
+| `data.type`          | string |         | Must be `"workspaces"`. |
+| `data.attributes.id` | string |         | Must be `null`.         |
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "attributes": {
+      "id": null
+    },
+    "type": "workspaces"
+  }
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/relationships/ssh-key
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "actions": {
+        "is-destroyable": true
+      },
+      "allow-destroy-plan": true,
+      "apply-duration-average": null,
+      "auto-apply": false,
+      "auto-destroy-at": null,
+      "created-at": "2021-08-16T19:44:45.241Z",
+      "description": "Example workspace for documentation.",
+      "environment": "default",
+      "execution-mode": "agent",
+      "file-triggers-enabled": false,
+      "global-remote-state": false,
+      "latest-change-at": "2021-08-16T19:44:45.241Z",
+      "locked": false,
+      "name": "workspace-1",
+      "operations": true,
+      "permissions": {
+        "can-create-state-versions": true,
+        "can-destroy": true,
+        "can-force-unlock": true,
+        "can-lock": true,
+        "can-manage-tags": true,
+        "can-queue-apply": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-read-state-versions": true,
+        "can-read-variable": true,
+        "can-unlock": true,
+        "can-update": true,
+        "can-update-variable": true
+      },
+      "plan-duration-average": null,
+      "policy-check-failures": null,
+      "queue-all-runs": false,
+      "resource-count": 0,
+      "run-failures": null,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
+      "speculative-enabled": false,
+      "structured-run-output-enabled": true,
+      "terraform-version": "1.0.4",
+      "trigger-prefixes": [],
+      "updated-at": "2021-08-16T23:06:08.609Z",
+      "vcs-repo": {
+        "branch": "",
+        "display-identifier": "my-organization/my-workspace",
+        "identifier": "my-organization/my-workspace",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-4ecWLF8W8gfxxNXP",
+        "repository-http-url": "https://github.com/my-organization/my-workspace",
+        "service-provider": "github",
+        "webhook-url": "https://app.terraform.io/webhooks/vcs/704ac743-df64-4b8e-b9a3-a4c5fe1bec87"
+      },
+      "vcs-repo-identifier": "my-organization/my-workspace",
+      "working-directory": "",
+      "workspace-kpis-runs-count": null
+    },
+    "id": "ws-FFP9JcN4m6czSRBj",
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
+    },
+    "relationships": {
+      "agent-pool": {
+        "data": {
+          "id": "apool-QxGd2tRjympfMvQc",
+          "type": "agent-pools"
+        }
+      },
+      "current-configuration-version": {
+        "data": {
+          "id": "cv-EpThx8RZdxt8a2mK",
+          "type": "configuration-versions"
+        },
+        "links": {
+          "related": "/api/v2/configuration-versions/cv-EpThx8RZdxt8a2mK"
+        }
+      },
+      "current-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "current-state-version": {
+        "data": null
+      },
+      "latest-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "outputs": {
+        "data": []
+      },
+      "readme": {
+        "data": {
+          "id": "227247",
+          "type": "workspace-readme"
+        }
+      },
+      "remote-state-consumers": {
+        "links": {
+          "related": "/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers"
+        }
+      }
+    },
+    "type": "workspaces"
+  }
+}
+
+```

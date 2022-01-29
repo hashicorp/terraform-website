@@ -1,0 +1,400 @@
+---
+page_title: Workspace Remote State Consumers - API Docs - Terraform Cloud and Terraform Enterprise
+---
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+
+[JSON API document]: /cloud-docs/api-docs#json-api-documents
+
+[JSON API error object]: https://jsonapi.org/format/#error-objects
+
+[speculative plans]: /cloud-docs/run/#speculative-plans
+
+# Workspace Remote State Consumers API
+
+## Get Remote State Consumers
+
+`GET /workspaces/:workspace_id/relationships/remote_state_consumers`
+
+| Parameter       | Description                                                                                                                                                                       |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:workspace_id` | The workspace ID to get remote state consumers for. Obtain this from the [workspace settings](/cloud-docs/workspaces/settings) or the [Show Workspace](#show-workspace) endpoint. |
+
+This endpoint retrieves the list of other workspaces that are allowed to access the given workspace's state during runs.
+
+* If `global-remote-state` is set to false for the workspace, this will return the list of other workspaces that are specifically authorized to access the workspace's state.
+* If `global-remote-state` is set to true, this will return a list of every workspace in the organization except for the subject workspace.
+
+The list returned by this endpoint is subject to the caller's normal workspace permissions; it will not include workspaces that the provided API token is unable to read.
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+| Parameter      | Description                                                                |
+| -------------- | -------------------------------------------------------------------------- |
+| `page[number]` | **Optional.** If omitted, the endpoint will return the first page.         |
+| `page[size]`   | **Optional.** If omitted, the endpoint will return 20 workspaces per page. |
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/relationships/remote-state-consumers
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "attributes": {
+        "actions": {
+          "is-destroyable": true
+        },
+        "allow-destroy-plan": true,
+        "apply-duration-average": null,
+        "auto-apply": false,
+        "auto-destroy-at": null,
+        "created-at": "2021-08-16T21:50:58.726Z",
+        "description": null,
+        "environment": "default",
+        "execution-mode": "remote",
+        "file-triggers-enabled": true,
+        "global-remote-state": false,
+        "latest-change-at": "2021-08-16T21:50:58.726Z",
+        "locked": false,
+        "name": "workspace-2",
+        "operations": true,
+        "permissions": {
+          "can-create-state-versions": true,
+          "can-destroy": true,
+          "can-force-unlock": true,
+          "can-lock": true,
+          "can-manage-tags": true,
+          "can-queue-apply": true,
+          "can-queue-destroy": true,
+          "can-queue-run": true,
+          "can-read-settings": true,
+          "can-read-state-versions": true,
+          "can-read-variable": true,
+          "can-unlock": true,
+          "can-update": true,
+          "can-update-variable": true
+        },
+        "plan-duration-average": null,
+        "policy-check-failures": null,
+        "queue-all-runs": false,
+        "resource-count": 0,
+        "run-failures": null,
+        "source": "tfe-api",
+        "source-name": null,
+        "source-url": null,
+        "speculative-enabled": true,
+        "structured-run-output-enabled": true,
+        "terraform-version": "0.11.1",
+        "trigger-prefixes": [],
+        "updated-at": "2021-08-16T22:57:28.163Z",
+        "vcs-repo": {
+          "branch": "",
+          "display-identifier": "my-organization/my-workspace",
+          "identifier": "my-organization/my-workspace",
+          "ingress-submodules": false,
+          "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+          "repository-http-url": "https://github.com/my-organization/my-workspace",
+          "service-provider": "github",
+          "webhook-url": "https://app.terraform.io/webhooks/vcs/704ac743-df64-4b8e-b9a3-a4c5fe1bec87"
+        },
+        "vcs-repo-identifier": "my-organization/my-workspace",
+        "working-directory": "",
+        "workspace-kpis-runs-count": null
+      },
+      "id": "ws-KTuq99JSzgmDSvYj",
+      "links": {
+        "self": "/api/v2/organizations/my-organization/workspaces/workspace-2"
+      },
+      "relationships": {
+        "agent-pool": {
+          "data": null
+        },
+        "current-configuration-version": {
+          "data": {
+            "id": "cv-9WgU5LYoTq3rrnG6",
+            "type": "configuration-versions"
+          },
+          "links": {
+            "related": "/api/v2/configuration-versions/cv-9WgU5LYoTq3rrnG6"
+          }
+        },
+        "current-run": {
+          "data": null
+        },
+        "current-state-version": {
+          "data": null
+        },
+        "latest-run": {
+          "data": null
+        },
+        "organization": {
+          "data": {
+            "id": "my-organization",
+            "type": "organizations"
+          }
+        },
+        "outputs": {
+          "data": []
+        },
+        "readme": {
+          "data": {
+            "id": "227347",
+            "type": "workspace-readme"
+          }
+        },
+        "remote-state-consumers": {
+          "links": {
+            "related": "/api/v2/workspaces/ws-KTuq99JSzgmDSvYj/relationships/remote-state-consumers"
+          }
+        },
+        "ssh-key": {
+          "data": {
+            "id": "sshkey-WfPdX2GKwGkK5rsB",
+            "type": "ssh-keys"
+          },
+          "links": {
+            "related": "/api/v2/ssh-keys/sshkey-WfPdX2GKwGkK5rsB"
+          }
+        }
+      },
+      "type": "workspaces"
+    }
+  ],
+  "links": {
+    "first": "https://app.terraform.io/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "last": "https://app.terraform.io/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "next": null,
+    "prev": null,
+    "self": "https://app.terraform.io/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "next-page": null,
+      "page-size": 20,
+      "prev-page": null,
+      "total-count": 1,
+      "total-pages": 1
+    }
+  }
+}
+```
+
+## Replace Remote State Consumers
+
+`PATCH /workspaces/:workspace_id/relationships/remote_state_consumers`
+
+| Parameter       | Description                                                                                                                                                                           |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:workspace_id` | The workspace ID to replace remote state consumers for. Obtain this from the [workspace settings](/cloud-docs/workspaces/settings) or the [Show Workspace](#show-workspace) endpoint. |
+
+This endpoint updates the workspace's remote state consumers to be _exactly_ the list of workspaces specified in the payload. It can only be used for workspaces where `global-remote-state` is false.
+
+This endpoint can only be used by teams with permission to manage workspaces for the entire organization — only those who can _view_ the entire list of consumers can _replace_ the entire list. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) Teams with admin permissions on specific workspaces can still modify remote state consumers for those workspaces, but must use the add (POST) and remove (DELETE) endpoints listed below instead of this PATCH endpoint.
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+| Status  | Response                  | Reason(s)                                                             |
+| ------- | ------------------------- | --------------------------------------------------------------------- |
+| [204][] | Nothing                   | Successfully updated remote state consumers                           |
+| [404][] | [JSON API error object][] | Workspace not found, or user unauthorized to perform action           |
+| [422][] | [JSON API error object][] | Problem with payload or request; details provided in the error object |
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path      | Type   | Default | Description                                                 |
+| ------------- | ------ | ------- | ----------------------------------------------------------- |
+| `data[].type` | string |         | Must be `"workspaces"`.                                     |
+| `data[].id`   | string |         | The ID of a workspace to be set as a remote state consumer. |
+
+### Sample Payload
+
+```json
+{
+  "data": [
+    {
+      "id": "ws-7aiqKYf6ejMFdtWS",
+      "type": "workspaces"
+    }
+  ]
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/ws-UYv6RYM8fVhzeGG5/relationships/remote-state-consumers
+```
+
+### Response
+
+No response body.
+
+Status code `204`.
+
+## Add Remote State Consumers
+
+`POST /workspaces/:workspace_id/relationships/remote_state_consumers`
+
+| Parameter       | Description                                                                                                                                                                       |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:workspace_id` | The workspace ID to add remote state consumers for. Obtain this from the [workspace settings](/cloud-docs/workspaces/settings) or the [Show Workspace](#show-workspace) endpoint. |
+
+This endpoint adds one or more remote state consumers to the workspace. It can only be used for workspaces where `global-remote-state` is false.
+
+* The workspaces specified as consumers must be readable to the API token that makes the request.
+* A workspace cannot be added as a consumer of itself. (A workspace can always read its own state, regardless of access settings.)
+* You can safely add a consumer workspace that is already present; it will be ignored, and the rest of the consumers in the request will be processed normally.
+
+| Status  | Response                  | Reason(s)                                                             |
+| ------- | ------------------------- | --------------------------------------------------------------------- |
+| [204][] | Nothing                   | Successfully updated remote state consumers                           |
+| [404][] | [JSON API error object][] | Workspace not found, or user unauthorized to perform action           |
+| [422][] | [JSON API error object][] | Problem with payload or request; details provided in the error object |
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path      | Type   | Default | Description                                                 |
+| ------------- | ------ | ------- | ----------------------------------------------------------- |
+| `data[].type` | string |         | Must be `"workspaces"`.                                     |
+| `data[].id`   | string |         | The ID of a workspace to be set as a remote state consumer. |
+
+### Sample Payload
+
+```json
+{
+  "data": [
+    {
+      "id": "ws-7aiqKYf6ejMFdtWS",
+      "type": "workspaces"
+    }
+  ]
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/ws-UYv6RYM8fVhzeGG5/relationships/remote-state-consumers
+```
+
+### Response
+
+No response body.
+
+Status code `204`.
+
+## Delete Remote State Consumers
+
+`DELETE /workspaces/:workspace_id/relationships/remote_state_consumers`
+
+| Parameter       | Description                                                                                                                                                                          |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `:workspace_id` | The workspace ID to remove remote state consumers for. Obtain this from the [workspace settings](/cloud-docs/workspaces/settings) or the [Show Workspace](#show-workspace) endpoint. |
+
+This endpoint removes one or more remote state consumers from a workspace, according to the contents of the payload. It can only be used for workspaces where `global-remote-state` is false.
+
+* The workspaces specified as consumers must be readable to the API token that makes the request.
+* You can safely remove a consumer workspace that is already absent; it will be ignored, and the rest of the consumers in the request will be processed normally.
+
+| Status  | Response                  | Reason(s)                                                             |
+| ------- | ------------------------- | --------------------------------------------------------------------- |
+| [204][] | Nothing                   | Successfully updated remote state consumers                           |
+| [404][] | [JSON API error object][] | Workspace not found, or user unauthorized to perform action           |
+| [422][] | [JSON API error object][] | Problem with payload or request; details provided in the error object |
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path      | Type   | Default | Description                                                      |
+| ------------- | ------ | ------- | ---------------------------------------------------------------- |
+| `data[].type` | string |         | Must be `"workspaces"`.                                          |
+| `data[].id`   | string |         | The ID of a workspace to remove from the remote state consumers. |
+
+### Sample Payload
+
+```json
+{
+  "data": [
+    {
+      "id": "ws-7aiqKYf6ejMFdtWS",
+      "type": "workspaces"
+    }
+  ]
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/ws-UYv6RYM8fVhzeGG5/relationships/remote-state-consumers
+```
+
+### Response
+
+No response body.
+
+Status code `204`.

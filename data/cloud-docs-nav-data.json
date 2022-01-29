@@ -304,6 +304,11 @@
         "path": "api-docs/_template",
         "hidden": true
       },
+      {
+        "title": "Workspaces API",
+        "path": "api-docs/_workspaces_bak",
+        "hidden": true
+      },
       { "title": "Overview", "path": "api-docs" },
       { "title": "Account", "path": "api-docs/account" },
       {
@@ -379,14 +384,43 @@
       { "title": "Users", "path": "api-docs/users" },
       { "title": "Variables", "path": "api-docs/variables" },
       { "title": "VCS Events", "path": "api-docs/vcs-events" },
-      { "title": "Workspaces", "path": "api-docs/workspaces" },
       {
-        "title": "Workspace-Specific Variables",
-        "path": "api-docs/workspace-variables"
-      },
-      {
-        "title": "Workspace Resources",
-        "path": "api-docs/workspace-resources"
+        "title": "Workspaces",
+        "routes": [
+          { "title": "Overview", "path": "api-docs/workspaces" },
+          {
+            "title": "Workspace CRUD Actions",
+            "path": "api-docs/workspaces/workspace-crud-actions"
+          },
+          {
+            "title": "Workspace Lock Mechanism",
+            "path": "api-docs/workspaces/workspace-lock-mechanism"
+          },
+          {
+            "title": "Workspace SSH Key Assignment",
+            "path": "api-docs/workspaces/workspace-ssh-key-assignment"
+          },
+          {
+            "title": "Workspace Remote State Consumers",
+            "path": "api-docs/workspaces/workspace-remote-state-consumers"
+          },
+          {
+            "title": "Workspace Tags",
+            "path": "api-docs/workspaces/workspace-tags"
+          },
+          {
+            "title": "Workspace-Specific Variables",
+            "path": "api-docs/workspaces/workspace-variables"
+          },
+          {
+            "title": "Workspace Resources",
+            "path": "api-docs/workspaces/workspace-resources"
+          },
+          {
+            "title": "Workspaces Appendix",
+            "path": "api-docs/workspaces/workspaces-appendix"
+          }
+        ]
       },
       {
         "title": "Variable Sets",

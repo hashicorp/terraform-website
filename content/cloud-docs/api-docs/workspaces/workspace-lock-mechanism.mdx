@@ -1,0 +1,544 @@
+---
+page_title: Workspace Lock Mechanism - API Docs - Terraform Cloud and Terraform Enterprise
+---
+
+[200]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+
+[201]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+
+[202]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202
+
+[204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+
+[400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+[401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+[403]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+[409]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/409
+
+[412]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/412
+
+[422]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422
+
+[429]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+[500]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+
+[504]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504
+
+[JSON API document]: /cloud-docs/api-docs#json-api-documents
+
+[JSON API error object]: https://jsonapi.org/format/#error-objects
+
+[speculative plans]: /cloud-docs/run/#speculative-plans
+
+# Workspace Lock Mechanism API
+
+## Lock a workspace
+
+This endpoint locks a workspace.
+
+`POST /workspaces/:workspace_id/actions/lock`
+
+| Parameter       | Description                                                                                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:workspace_id` | The workspace ID to lock. Obtain this from the [workspace settings](/cloud-docs/workspaces/settings) or the [Show Workspace](#show-workspace) endpoint. |
+
+| Status  | Response                                     | Reason(s)                                                   |
+| ------- | -------------------------------------------- | ----------------------------------------------------------- |
+| [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully locked the workspace                           |
+| [404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action |
+| [409][] | [JSON API error object][]                    | Workspace already locked                                    |
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path | Type   | Default | Description                           |
+| -------- | ------ | ------- | ------------------------------------- |
+| `reason` | string | `""`    | The reason for locking the workspace. |
+
+### Sample Payload
+
+```json
+{
+  "reason": "Locking workspace-1"
+}
+```
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/actions/lock
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "actions": {
+        "is-destroyable": true
+      },
+      "allow-destroy-plan": true,
+      "apply-duration-average": null,
+      "auto-apply": false,
+      "auto-destroy-at": null,
+      "created-at": "2021-08-16T19:44:45.241Z",
+      "description": "Example workspace for documentation.",
+      "environment": "default",
+      "execution-mode": "agent",
+      "file-triggers-enabled": false,
+      "global-remote-state": false,
+      "latest-change-at": "2021-08-16T19:44:45.241Z",
+      "locked": true,
+      "name": "workspace-1",
+      "operations": true,
+      "permissions": {
+        "can-create-state-versions": true,
+        "can-destroy": true,
+        "can-force-unlock": true,
+        "can-lock": true,
+        "can-manage-tags": true,
+        "can-queue-apply": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-read-state-versions": true,
+        "can-read-variable": true,
+        "can-unlock": true,
+        "can-update": true,
+        "can-update-variable": true
+      },
+      "plan-duration-average": null,
+      "policy-check-failures": null,
+      "queue-all-runs": false,
+      "resource-count": 0,
+      "run-failures": null,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
+      "speculative-enabled": false,
+      "structured-run-output-enabled": true,
+      "terraform-version": "1.0.4",
+      "trigger-prefixes": [],
+      "updated-at": "2021-08-16T22:39:15.912Z",
+      "vcs-repo": {
+        "branch": "",
+        "display-identifier": "my-organization/my-repository",
+        "identifier": "my-organization/my-repository",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "repository-http-url": "https://github.com/my-organization/my-repository",
+        "service-provider": "github",
+        "webhook-url": "https://app.terraform.io/webhooks/vcs/704ac743-df64-4b8e-b9a3-a4c5fe1bec87"
+      },
+      "vcs-repo-identifier": "my-organization/my-repository",
+      "working-directory": "",
+      "workspace-kpis-runs-count": null
+    },
+    "id": "ws-FFP9JcN4m6czSRBj",
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
+    },
+    "relationships": {
+      "agent-pool": {
+        "data": {
+          "id": "apool-QxGd2tRjympfMvQc",
+          "type": "agent-pools"
+        }
+      },
+      "current-configuration-version": {
+        "data": {
+          "id": "cv-EpThx8RZdxt8a2mK",
+          "type": "configuration-versions"
+        },
+        "links": {
+          "related": "/api/v2/configuration-versions/cv-EpThx8RZdxt8a2mK"
+        }
+      },
+      "current-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "current-state-version": {
+        "data": null
+      },
+      "latest-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "locked-by": {
+        "data": {
+          "id": "user-mGUNNJBeTrTYgxmv",
+          "type": "users"
+        },
+        "links": {
+          "related": "/api/v2/users/user-mGUNNJBeTrTYgxmv"
+        }
+      },
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "outputs": {
+        "data": []
+      },
+      "readme": {
+        "data": {
+          "id": "227247",
+          "type": "workspace-readme"
+        }
+      },
+      "remote-state-consumers": {
+        "links": {
+          "related": "/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers"
+        }
+      }
+    },
+    "type": "workspaces"
+  }
+}
+```
+
+## Unlock a workspace
+
+This endpoint unlocks a workspace.
+
+`POST /workspaces/:workspace_id/actions/unlock`
+
+| Parameter       | Description                                                                                                                                               |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:workspace_id` | The workspace ID to unlock. Obtain this from the [workspace settings](/cloud-docs/workspaces/settings) or the [Show Workspace](#show-workspace) endpoint. |
+
+| Status  | Response                                     | Reason(s)                                                   |
+| ------- | -------------------------------------------- | ----------------------------------------------------------- |
+| [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully unlocked the workspace                         |
+| [404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action |
+| [409][] | [JSON API error object][]                    | Workspace already unlocked, or locked by a different user   |
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/actions/unlock
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "actions": {
+        "is-destroyable": true
+      },
+      "allow-destroy-plan": true,
+      "apply-duration-average": null,
+      "auto-apply": false,
+      "auto-destroy-at": null,
+      "created-at": "2021-08-16T19:44:45.241Z",
+      "description": "Example workspace for documentation.",
+      "environment": "default",
+      "execution-mode": "agent",
+      "file-triggers-enabled": false,
+      "global-remote-state": false,
+      "latest-change-at": "2021-08-16T19:44:45.241Z",
+      "locked": false,
+      "name": "workspace-1",
+      "operations": true,
+      "permissions": {
+        "can-create-state-versions": true,
+        "can-destroy": true,
+        "can-force-unlock": true,
+        "can-lock": true,
+        "can-manage-tags": true,
+        "can-queue-apply": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-read-state-versions": true,
+        "can-read-variable": true,
+        "can-unlock": true,
+        "can-update": true,
+        "can-update-variable": true
+      },
+      "plan-duration-average": null,
+      "policy-check-failures": null,
+      "queue-all-runs": false,
+      "resource-count": 0,
+      "run-failures": null,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
+      "speculative-enabled": false,
+      "structured-run-output-enabled": true,
+      "terraform-version": "1.0.4",
+      "trigger-prefixes": [],
+      "updated-at": "2021-08-16T22:36:43.666Z",
+      "vcs-repo": {
+        "branch": "",
+        "display-identifier": "my-organization/my-repository",
+        "identifier": "my-organization/my-repository",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "repository-http-url": "https://github.com/my-organization/my-repository",
+        "service-provider": "github",
+        "webhook-url": "https://app.terraform.io/webhooks/vcs/704ac743-df64-4b8e-b9a3-a4c5fe1bec87"
+      },
+      "vcs-repo-identifier": "my-organization/my-repository",
+      "working-directory": "",
+      "workspace-kpis-runs-count": null
+    },
+    "id": "ws-FFP9JcN4m6czSRBj",
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
+    },
+    "relationships": {
+      "agent-pool": {
+        "data": {
+          "id": "apool-QxGd2tRjympfMvQc",
+          "type": "agent-pools"
+        }
+      },
+      "current-configuration-version": {
+        "data": {
+          "id": "cv-EpThx8RZdxt8a2mK",
+          "type": "configuration-versions"
+        },
+        "links": {
+          "related": "/api/v2/configuration-versions/cv-EpThx8RZdxt8a2mK"
+        }
+      },
+      "current-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "current-state-version": {
+        "data": null
+      },
+      "latest-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "outputs": {
+        "data": []
+      },
+      "readme": {
+        "data": {
+          "id": "227247",
+          "type": "workspace-readme"
+        }
+      },
+      "remote-state-consumers": {
+        "links": {
+          "related": "/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers"
+        }
+      }
+    },
+    "type": "workspaces"
+  }
+}
+```
+
+## Force Unlock a workspace
+
+This endpoint force unlocks a workspace. Only users with admin access are authorized to force unlock a workspace.
+
+`POST /workspaces/:workspace_id/actions/force-unlock`
+
+| Parameter       | Description                                                                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:workspace_id` | The workspace ID to force unlock. Obtain this from the [workspace settings](/cloud-docs/workspaces/settings) or the [Show Workspace](#show-workspace) endpoint. |
+
+| Status  | Response                                     | Reason(s)                                                   |
+| ------- | -------------------------------------------- | ----------------------------------------------------------- |
+| [200][] | [JSON API document][] (`type: "workspaces"`) | Successfully force unlocked the workspace                   |
+| [404][] | [JSON API error object][]                    | Workspace not found, or user unauthorized to perform action |
+| [409][] | [JSON API error object][]                    | Workspace already unlocked                                  |
+
+### Sample Request
+
+```shell
+$ curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  https://app.terraform.io/api/v2/workspaces/ws-SihZTyXKfNXUWuUa/actions/force-unlock
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "attributes": {
+      "actions": {
+        "is-destroyable": true
+      },
+      "allow-destroy-plan": true,
+      "apply-duration-average": null,
+      "auto-apply": false,
+      "auto-destroy-at": null,
+      "created-at": "2021-08-16T19:44:45.241Z",
+      "description": "Example workspace for documentation.",
+      "environment": "default",
+      "execution-mode": "agent",
+      "file-triggers-enabled": false,
+      "global-remote-state": false,
+      "latest-change-at": "2021-08-16T19:44:45.241Z",
+      "locked": false,
+      "name": "workspace-1",
+      "operations": true,
+      "permissions": {
+        "can-create-state-versions": true,
+        "can-destroy": true,
+        "can-force-unlock": true,
+        "can-lock": true,
+        "can-manage-tags": true,
+        "can-queue-apply": true,
+        "can-queue-destroy": true,
+        "can-queue-run": true,
+        "can-read-settings": true,
+        "can-read-state-versions": true,
+        "can-read-variable": true,
+        "can-unlock": true,
+        "can-update": true,
+        "can-update-variable": true
+      },
+      "plan-duration-average": null,
+      "policy-check-failures": null,
+      "queue-all-runs": false,
+      "resource-count": 0,
+      "run-failures": null,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
+      "speculative-enabled": false,
+      "structured-run-output-enabled": true,
+      "terraform-version": "1.0.4",
+      "trigger-prefixes": [],
+      "updated-at": "2021-08-16T22:42:06.143Z",
+      "vcs-repo": {
+        "branch": "",
+        "display-identifier": "my-organization/my-repository",
+        "identifier": "my-organization/my-repository",
+        "ingress-submodules": false,
+        "oauth-token-id": "ot-hmAyP66qk2AMVdbJ",
+        "repository-http-url": "https://github.com/my-organization/my-repository",
+        "service-provider": "github",
+        "webhook-url": "https://app.terraform.io/webhooks/vcs/704ac743-df64-4b8e-b9a3-a4c5fe1bec87"
+      },
+      "vcs-repo-identifier": "my-organization/my-repository",
+      "working-directory": "",
+      "workspace-kpis-runs-count": null
+    },
+    "id": "ws-FFP9JcN4m6czSRBj",
+    "links": {
+      "self": "/api/v2/organizations/my-organization/workspaces/workspace-1"
+    },
+    "relationships": {
+      "agent-pool": {
+        "data": {
+          "id": "apool-QxGd2tRjympfMvQc",
+          "type": "agent-pools"
+        }
+      },
+      "current-configuration-version": {
+        "data": {
+          "id": "cv-EpThx8RZdxt8a2mK",
+          "type": "configuration-versions"
+        },
+        "links": {
+          "related": "/api/v2/configuration-versions/cv-EpThx8RZdxt8a2mK"
+        }
+      },
+      "current-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "current-state-version": {
+        "data": null
+      },
+      "latest-run": {
+        "data": {
+          "id": "run-kWrpCVo79eTzmW7y",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-kWrpCVo79eTzmW7y"
+        }
+      },
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "outputs": {
+        "data": []
+      },
+      "readme": {
+        "data": {
+          "id": "227247",
+          "type": "workspace-readme"
+        }
+      },
+      "remote-state-consumers": {
+        "links": {
+          "related": "/api/v2/workspaces/ws-FFP9JcN4m6czSRBj/relationships/remote-state-consumers"
+        }
+      }
+    },
+    "type": "workspaces"
+  }
+}
+```
