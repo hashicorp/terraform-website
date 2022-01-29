@@ -413,7 +413,7 @@
             "path": "api-docs/workspaces/workspace-tags"
           },
           {
-            "title": "Variables",
+            "title": "Workspace-Specific Variables",
             "path": "api-docs/workspaces/workspace-variables"
           },
           {
