@@ -255,6 +255,10 @@ Refer to the sections below for instructions on how to verify your Docker Engine
 
 ### Log Rotation
 
+-> **Note:** If using log forwarding, refer to
+[this log rotation documentation](/enterprise/admin/infrastructure/logging#log-rotation)
+instead.
+
 Terraform Enterprise uses the `json-file` Docker logging driver to send its logs
 to JSON files on disk. This can cause increased disk utilization for the Docker
 data directory (which defaults to `/var/lib/docker`).
