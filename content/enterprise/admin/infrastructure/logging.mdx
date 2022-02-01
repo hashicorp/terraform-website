@@ -9,7 +9,7 @@ destinations, a process called log forwarding. Log forwarding provides increased
 observability, assistance complying with log retention requirements, and
 information during troubleshooting.
 
--> **Note:** If you are using a version of Terraform Enterprise prior to v202109-1, please refer to the [previous version of this page](/enterprise/admin/logging-old) with logspout information.
+-> **Note:** For Terraform Enterprise versions prior to v202109-1, please refer to the [previous version of this page](/enterprise/admin/logging-old) with logspout information.
 
 ## Requirements
 
@@ -30,22 +30,17 @@ Log forwarding is disabled by default. To enable log forwarding, set the
 `log_forwarding_enabled` Terraform Enterprise application setting to the value
 `1`.
 
-<Tabs>
-  <Tab heading="Standalone" group="standalone">
+For a Standalone installation of Terraform Enterprise:
 
 ```sh
 replicatedctl app-config set log_forwarding_enabled --value 1
 ```
 
-  </Tab>
-  <Tab heading="Active/Active" group="active-active">
+For an Active/Active installation of Terraform Enterprise:
 
 ```sh
 tfe-admin app-config -k log_forwarding_enabled -v 1
 ```
-
-  </Tab>
-</Tabs>
 
 When log forwarding is enabled, the Terraform Enterprise application settings
 show the following for `log_forwarding_enabled`:
@@ -73,22 +68,17 @@ Fluent Bit `[OUTPUT]` configuration and then using that file to configure the
 configuration is stored in the application settings exactly how it appears in
 the `fluent-bit.conf` file.
 
-<Tabs>
-  <Tab heading="Standalone" group="standalone">
+For a Standalone installation of Terraform Enterprise:
 
 ```sh
 replicatedctl app-config set log_forwarding_config --value "$(cat fluent-bit.conf)"
 ```
 
-  </Tab>
-  <Tab heading="Active/Active" group="active-active">
+For an Active/Active installation of Terraform Enterprise:
 
 ```sh
 tfe-admin app-config -k log_forwarding_config -v "$(cat fluent-bit.conf)"
 ```
-
-  </Tab>
-</Tabs>
 
 Once configured, the Terraform Enterprise application settings show the
 `log_forwarding_config` setting in escaped JSON string format:
