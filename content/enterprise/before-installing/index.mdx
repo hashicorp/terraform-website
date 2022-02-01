@@ -263,8 +263,12 @@ Terraform Enterprise uses the `json-file` Docker logging driver to send its logs
 to JSON files on disk. This can cause increased disk utilization for the Docker
 data directory (which defaults to `/var/lib/docker`).
 
-To limit this disk utilization, configure the `log-driver` and `log-opts`
-settings within `/etc/docker/daemon.json` to use reasonable values:
+To limit disk utilization, configure the `log-driver` and `log-opts` settings
+within `/etc/docker/daemon.json`.
+
+This following configuration tells the `json-file` Docker logging driver to use
+up to 384MB of disk space per container by limiting the size of a JSON log file
+to 128MB and keeping up to 3 JSON log files at any given time:
 
 ```json
 {
@@ -275,10 +279,6 @@ settings within `/etc/docker/daemon.json` to use reasonable values:
 	}
 }
 ```
-
-This configuration tells Docker that each container can use up to 384MB of disk
-space for JSON file logs by limiting the size of a JSON file to 128MB and
-keeping up to 3 files at any given time.
 
 To apply these changes, restart Docker:
 

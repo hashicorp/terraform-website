@@ -89,7 +89,7 @@ Once configured, the Terraform Enterprise application settings show the
     },
 ```
 
-Here's what that escaped JSON string will render to:
+That escaped JSON string renders to the following:
 
 ```ini
 # Match all logs and do not forward them anywhere.
@@ -340,19 +340,18 @@ Log forwarding uses the `journald` Docker logging driver to send Terraform
 Enterprise logs to `systemd-journald`. This can cause increased disk utilization
 for the `/var/log/journal` path.
 
-To limit this disk utilization, configure the `SystemMaxFileSize` and
-`SystemMaxFiles` settings within `/etc/systemd/journald.conf` to use reasonable
-values:
+To limit disk utilization, configure the `SystemMaxFileSize` and
+`SystemMaxFiles` settings within `/etc/systemd/journald.conf`.
+
+The following configuration tells `systemd-journald` to use up to 7GB of disk
+space by limiting the size a log file to 1024MB and keeping up to 7 files at any
+given time:
 
 ```ini
 [Journal]
 SystemMaxFileSize=1024M
 SystemMaxFiles=7
 ```
-
-This configuration tells `systemd-journald` that it can use up to 7GB of disk
-space by limiting the size a log file to 1024MB and keeping up to 7 files at any
-given time.
 
 To apply these changes, restart `systemd-journald`:
 
