@@ -70,11 +70,6 @@
             "path": "before-installing/os-specific/centos-requirements"
           }
         ]
-      },
-      {
-        "title": "Clustered Deployment Architecture",
-        "path": "before-installing/cluster-architecture",
-        "hidden": true
       }
     ]
   },
@@ -116,10 +111,6 @@
           }
         ]
       },
-      { "title": "AWS", "path": "install/cluster-aws", "hidden": true },
-      { "title": "Azure", "path": "install/cluster-azure", "hidden": true },
-      { "title": "Custom", "path": "install/cluster-custom", "hidden": true },
-      { "title": "GCP", "path": "install/cluster-gcp", "hidden": true },
       {
         "title": "Uninstall",
         "path": "install/uninstall"

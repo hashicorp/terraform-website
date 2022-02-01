@@ -181,6 +181,11 @@ module.exports = (async () => {
     '/upgrade-guides/1-0.html': '/language/upgrade-guides/1-0',
     '/upgrade-guides/index.html': '/language/upgrade-guides',
     '/language/resources/provisioners': '/language/resources/provisioners/syntax',
+    '/enterprise/before-installing/cluster-architecture': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-aws': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-azure': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-custom': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-gcp': '/enterprise/admin/infrastructure/active-active',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
