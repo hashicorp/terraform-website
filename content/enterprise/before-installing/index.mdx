@@ -253,6 +253,39 @@ Refer to the sections below for instructions on how to verify your Docker Engine
   sudo systemctl restart docker
   ```
 
+### Log Rotation
+
+-> **Note:** If using log forwarding, refer to
+[this log rotation documentation](/enterprise/admin/infrastructure/logging#log-rotation)
+instead.
+
+Terraform Enterprise uses the `json-file` Docker logging driver to send its logs
+to JSON files on disk. This can cause increased disk utilization for the Docker
+data directory (which defaults to `/var/lib/docker`).
+
+To limit disk utilization, configure the `log-driver` and `log-opts` settings
+within `/etc/docker/daemon.json`.
+
+This following configuration tells the `json-file` Docker logging driver to use
+up to 384MB of disk space per container by limiting the size of a JSON log file
+to 128MB and keeping up to 3 JSON log files at any given time:
+
+```json
+{
+	"log-driver": "json-file",
+	"log-opts": {
+		"max-size": "128m",
+		"max-file": "3" 
+	}
+}
+```
+
+To apply these changes, restart Docker:
+
+```sh
+sudo systemctl restart docker
+```
+
 ### IAM Policies
 
 If you have chosen the [external services operational mode](/enterprise/before-installing#operational-mode-decision), Terraform Enterprise will need access to an S3-compliant endpoint for object storage. You can grant access to the object storage endpoint by either assigning an AWS instance profile or an equivalent IAM system in non-AWS environments.
