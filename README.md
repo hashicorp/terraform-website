@@ -37,7 +37,7 @@ If you find a typo or you feel like you can improve the HTML, CSS, or JavaScript
 
 ## Where the Docs Live
 
-Docs live in a couple different repos. (**To find a page the easy way:** view it on [terraform.io][https://terraform.io] and click the "Edit this page" link at the bottom.)
+Docs live in a couple different repos. (**To find a page the easy way:** view it on [terraform.io](https://terraform.io) and click the "Edit this page" link at the bottom.)
 
 - This repository, under `content/`:
 
@@ -46,20 +46,20 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
   - Plugin Development
   - Terraform Registry Publishing
 
-  **Notable branches:** `master` is the "live" content that gets deployed to terraform.io. The site gets redeployed for new commits to master.
+  **Notable branches:** `master` is the "live" content that gets deployed to [terraform.io](https://terraform.io). The site gets redeployed for new commits to master.
 
 - [hashicorp/terraform][https://github.com/hashicorp/terraform], under `website/docs`:
 
   - Terraform CLI docs
   - Terraform Language docs
 
-  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to `main` (and/or one of the long-lived version branches) first. See [More About `stable-website`][#more-about-stable-website] below for more details.
+  **Notable branches:** `stable-website` is the "live" content that gets deployed to [terraform.io](https://terraform.io), but docs changes should get merged to `main` (and/or one of the long-lived version branches) first. See [More About `stable-website`][#more-about-stable-website] below for more details.
 
 - [hashicorp/terraform-cdk][https://github.com/hashicorp/terraform-cdk], under `website/docs`:
 
   - Terraform CDK docs
 
-  **Notable branches:** `stable-website` is the "live" content that gets deployed to terraform.io, but docs changes should get merged to `main` first. See [More About `stable-website`][#more-about-stable-website] below for more details.
+  **Notable branches:** `stable-website` is the "live" content that gets deployed to [terraform.io](https://terraform.io), but docs changes should get merged to `main` first. See [More About `stable-website`][#more-about-stable-website] below for more details.
 
 ## Deploying Changes to [terraform.io][https://terraform.io]
 
@@ -84,7 +84,7 @@ Instead of cherry-picking your commits to a specific version branch, you can add
 
 ### Deployment
 
-Currently, HashiCorp uses Vercel to deploy the [terraform.io](terraform.io) site whenever changes are merged in to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
+Currently, HashiCorp uses Vercel to deploy the [terraform.io](https://terraform.io) site whenever changes are merged in to `master` in this repository. Note that Terraform releases create sync commits to `terraform-website`, which will trigger a deploy.
 
 New commits in `hashicorp/terraform` and `hashicorp/terraform-cdk` don't automatically deploy the site. To use the latest upstream content, you'll need to open a PR bumping the submodule commit.
 
@@ -120,7 +120,7 @@ If you pull down new code from github, you should run `npm install` again. Other
 
 Submodules are used in this project to allow teams that work on different parts of terraform that are housed in different repos to all be able to contribute docs to the docs website at their own pace and in the way they prefer, while keeping the documentation content alongside the core code.
 
-Right now, there are two submodules included in this project: `hashicorp/terraform` and `hashicorp/terraform-cdk`. (We used to have a lot more, back when we hosted the documentation for most providers on terraform.io.)
+Right now, there are two submodules included in this project: `hashicorp/terraform` and `hashicorp/terraform-cdk`. (We used to have a lot more, back when we hosted the documentation for most providers on [terraform.io](https://terraform.io).)
 
 In your local checkout of this repo, Git submodules can be active or inactive. The first time you clone the repo, unless you have modified your git command defaults, the submodules will all default to being inactive, and their folders will be empty. To activate all submodules, run `git init submodule`. To activate only certain submodules, a path can be passed to the command as such: `git submodule init <PATH>`. To switch a submodule back to bring inactive `git submodule deinit <PATH>` can be used, though this is not typically necessary.
 
@@ -246,7 +246,7 @@ $ terraform apply
 
 ## Editing Navigation Sidebars
 
-The structure of the sidebars are controlled by files in the [`/data` directory](data). For example, [data/docs-nav-data.json](data/docs-nav-data.json) controls the **docs** sidebar. Within the `data` folder, any file with `-nav-data` after it controls the navigation for the given section. Several files within the `/data` directory are symlinked to their respective navigation file within a submodule. These files are indicated in some text editors by a small arrow to the right of the filename. You can also see which files are symlinked by running `ls -l` in the `data` directory on Linux/macOS, or `dir` on Windows. Edits to these files should be make directly to the file within the submodule, although on most systems editing the symlink file should achieve the same result. Any updates to these files will need to be pushed to their respective `stable-website` branch before they appear on `terraform.io`. 
+The structure of the sidebars are controlled by files in the [`/data` directory](data). For example, [data/docs-nav-data.json](data/docs-nav-data.json) controls the **docs** sidebar. Within the `data` folder, any file with `-nav-data` after it controls the navigation for the given section. Several files within the `/data` directory are symlinked to their respective navigation file within a submodule. These files are indicated in some text editors by a small arrow to the right of the filename. You can also see which files are symlinked by running `ls -l` in the `data` directory on Linux/macOS, or `dir` on Windows. Edits to these files should be make directly to the file within the submodule, although on most systems editing the symlink file should achieve the same result. Any updates to these files will need to be pushed to their respective `stable-website` branch before they appear on [terraform.io](https://terraform.io). 
 
 The sidebar uses a simple recursive data structure to represent _files_ and _directories_. The sidebar is meant to reflect the structure of the docs within the filesystem while also allowing custom ordering. Let's look at an example. First, here's our example folder structure:
 
@@ -482,7 +482,7 @@ This website is hosted on Vercel and configured to automatically deploy anytime 
 
 Terraform has a special `stable-website` branch with docs for the most recent release. When the website is deployed, it uses the current content of `stable-website`. This is also the case for Terraform CDK. However, this repo _does not_ have a `stable-website` branch; instead, it uses the `master` branch.
 
-When we release a new version of Terraform, we automatically force-push the corresponding commit to `stable-website`. (We also automatically update the ext/terraform submodule in this repo, but that's only for convenience when doing local previews; normal deployment to [terraform.io][] ignores the current state of the submodules.)
+When we release a new version of Terraform, we automatically force-push the corresponding commit to `stable-website`. (We also automatically update the ext/terraform submodule in this repo, but that's only for convenience when doing local previews; normal deployment to [terraform.io](https://terraform.io) ignores the current state of the submodules.)
 
 Between releases, we update docs on the `master` branch and on the current release's maintenance branch (like `v0.14`). By default, we assume these updates are relevant to a future release, so we don't display them on the website yet. **If a docs update should be shown immediately,** cherry-pick it onto `stable-website` _after_ it has been merged to `master` and/or the maintenance branch.
 
