@@ -335,7 +335,7 @@ At a minimum, Terraform Enterprise will require the following permissions if the
 
 #### Instance Profile as Default Credentials
 
-You can use Terraform Enterprise's instance profile to provide default credentials to workspaces. Terraform will attempt to use the instance profile to provision resources when you do not set credentials as environment variables. However, this approach presents a few security risks:
+You can use Terraform Enterprise's instance profile to provide default credentials to workspaces. Configure the [instance metadata options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html) and specify the PUT response hop limit value as 2 for instances using IMDSv2. Terraform will attempt to use the instance profile to provision resources when you do not set credentials as environment variables. However, this approach presents a few security risks:
 
 1. All workspaces will have the same permissions because they have access to the same instance profile. You cannot selectively allow or deny access to the instance profile for each workspace.
 1. Workspaces will share the instance profile with the Terraform Enterprise application. All workspaces within the application will have access to any resources that Terraform Enterprise depends on, such as its S3 bucket, KMS keys, etc.
