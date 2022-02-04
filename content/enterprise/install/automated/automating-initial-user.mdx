@@ -20,10 +20,10 @@ After installation, run the following from a shell connected to your Terraform E
 replicated admin --tty=0 retrieve-iact
 ```
 
-If you want to create the initial user in an automated deployment script, run a command like the following instead so that you can capture the IACT:
+If you want to create the initial user in an automated deployment script, run a command that lets you capture the IACT. The following example command outputs the complete IACT with the carriage return character removed. The `--tty=0` flag enables the command to run successfully in automation, such as cloud-init. Without this flag set, the command will return an empty string:
 
 ```shell
-initial_token=$(replicated admin retrieve-iact | tr -d '\r')
+initial_token=$(replicated admin --tty=0 retrieve-iact | tr -d '\r')
 ```
 
 The command outputs the complete IACT with the carriage return character removed, which facilitates use in automation.
