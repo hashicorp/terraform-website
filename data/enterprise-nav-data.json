@@ -288,7 +288,8 @@
     "title": "Release",
     "routes": [
       { "title": "Overview", "path": "release" },
-      { "title": "v202201-1 (LATEST)", "path": "release/v202201-1" },
+      { "title": "v202201-2 (LATEST)", "path": "release/v202201-2" },
+      { "title": "v202201-1", "path": "release/v202201-1" },
       { "title": "v202112-2", "path": "release/v202112-2" },
       { "title": "v202112-1", "path": "release/v202112-1" },
       { "title": "v202111-1", "path": "release/v202111-1" },
