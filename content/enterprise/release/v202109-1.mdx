@@ -4,6 +4,10 @@ page_title: Releases - Terraform Enterprise
 
 # TFE Release v202109-1 (565)
 
+## Known Issues
+
+1. [February 8, 2022] This release includes a regression that removed default log rotation settings of Docker logs using the `json-file` logging driver (the default driver), affecting log rotation on installations in which the new log forwarding feature is disabled. If the log forwarding feature is not enabled on your installation, it is recommended that you configure global log rotation settings to prevent disk space issues. For more information about configuring log rotation, please refer to https://terraform.io/enterprise/before-installing#log-rotation. This issue is fixed in v202201-2.
+
 ## Deprecation Notice
 
 The following operating systems are no longer supported:
