@@ -421,8 +421,8 @@
             "path": "api-docs/workspaces/workspace-resources"
           },
           {
-            "title": "Appendix",
-            "path": "api-docs/workspaces/workspaces-appendix"
+            "title": "Endpoint Related Resources",
+            "path": "api-docs/workspaces/workspaces-related-resources"
           }
         ]
       },

@@ -188,7 +188,7 @@ export const docsRedirects = {
   '/docs/cloud/api/workspaces/workspace-ssh-key-assignment.html': '/cloud-docs/api-docs/workspaces/workspace-ssh-key-assignment',
   '/docs/cloud/api/workspaces/workspace-tags.html': '/cloud-docs/api-docs/workspaces/workspace-tags',
   '/docs/cloud/api/workspaces/workspace-variables.html': '/cloud-docs/api-docs/workspaces/workspace-variables',
-  '/docs/cloud/api/workspaces/workspaces-appendix.html': '/cloud-docs/api-docs/workspaces/workspaces-appendix',
+  '/docs/cloud/api/workspaces/workspaces-related-resources.html': '/cloud-docs/api-docs/workspaces/workspaces-related-resources',
   '/docs/cloud/architectural-details/data-security.html': '/cloud-docs/architectural-details/data-security',
   '/docs/cloud/architectural-details/index.html': '/cloud-docs/architectural-details',
   '/docs/cloud/architectural-details/ip-ranges.html': '/cloud-docs/architectural-details/ip-ranges',
