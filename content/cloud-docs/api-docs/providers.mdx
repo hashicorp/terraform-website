@@ -58,7 +58,8 @@ For publicly curated providers, the Terraform Cloud Registry acts as a proxy to 
 | -------------------- | -------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to list available providers from. |
 
-Lists the providers from the public Terraform Registry that included in the private registry for the specified organization.
+
+Lists the providers from the public Terraform Registry as well as ones that are included in the private registry for the specified organization. 
 
 | Status  | Response                                             | Reason                                                     |
 | ------- | ---------------------------------------------------- | ---------------------------------------------------------- |
@@ -172,6 +173,9 @@ curl \
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
+#### Private providers
+After creating a provider, a version must be created and uploaded in order to be usable. Providers created this way do not automatically update with new versions; instead, you must explicitly create and upload each new version with the [Create a Provider Version](#create-a-provider-version) endpoint.
+
 #### Public providers
 
 When created, the public provider record will be available in the organization's registry provider list. You cannot create versions for public providers; you must use the versions available on the Terraform Registry.
@@ -194,7 +198,12 @@ Properties without a default value are required.
 | `data.type`                     | string |         | Must be `"registry-providers"`. |
 | `data.attributes.name`          | string |         | The name of the provider.       |
 | `data.attributes.namespace`     | string |         | The namespace of the provider.  |
-| `data.attributes.registry-name` | string |         | Must be `public`.               |
+| `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`. |
+
+### Sample Payload (private provider)
+```json
+<json_tput_here>
+```
 
 ### Sample Payload (public provider)
 
@@ -220,6 +229,10 @@ curl \
   --request POST \
   --data @payload.json \
   https://app.terraform.io/api/v2/organizations/my-organization/registry-providers
+```
+### Sample Response (private provider)
+```json
+<json_output_here>
 ```
 
 ### Sample Response (public provider)
@@ -254,24 +267,33 @@ curl \
 }
 ```
 
+## Create a Provider Version
+
+## Upload a Provider Version (private module)
+
 ## Get a Provider
 
 `GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name`
 
 ### Parameters
 
-| Parameter            | Description                                           |
-| -------------------- | ----------------------------------------------------- |
-| `:organization_name` | The name of the organization the provider belongs to. |
-| `:namespace`         | The namespace of the provider.                        |
-| `:name`              | The provider name.                                    |
-| `:registry-name`     | `public`.                                             |
+| Parameter            | Description                                                                                              |
+| -------------------- | -------------------------------------------------------------------------------------------------------- |
+| `:organization_name` | The name of the organization the provider belongs to.                                                    |
+| `:namespace`         | The namespace of the provider.                                                                           |
+| `:name`              | The provider name.                                                                                       |
+| `:registry-name`     | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`. |
 
 | Status  | Response                                             | Reason                                                    |
 | ------- | ---------------------------------------------------- | --------------------------------------------------------- |
 | [200][] | [JSON API document][] (`type: "registry-providers"`) | The request was successful                                |
 | [403][] | [JSON API error object][]                            | Forbidden - public provider curation disabled             |
 | [404][] | [JSON API error object][]                            | Provider not found or user unauthorized to perform action |
+
+### Sample Request (private provider)
+```shell
+<curl_request_here>
+```
 
 ### Sample Request (public provider)
 
@@ -315,6 +337,11 @@ curl \
 }
 ```
 
+### Sample Response (private provider)
+```json
+<json_output_here>
+```
+
 ## Delete a Provider
 
 `DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name`
@@ -326,7 +353,7 @@ curl \
 | `:organization_name` | The name of the organization to delete a provider from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
 | `:namespace`         | The namespace of the provider that will be deleted.                                                                                                                                                          |
 | `:name`              | The name of the provider that will be deleted.                                                                                                                                                               |
-| `:registry_name`     | `public`                                                                                                                                                                                                     |
+| `:registry_name`     | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`.                                                                                                                                                                                                      |
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -335,6 +362,12 @@ curl \
 | [204][] | Nothing                   | Success                                                     |
 | [403][] | [JSON API error object][] | Forbidden - public provider curation disabled               |
 | [404][] | [JSON API error object][] | Provider not found or user not authorized to perform action |
+
+
+### Sample Request (private provider)
+```shell
+<curl_request_here>
+```
 
 ### Sample Request (public provider)
 
