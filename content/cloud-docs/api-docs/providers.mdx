@@ -267,9 +267,96 @@ curl \
 }
 ```
 
-## Create a Provider Version
+## Create a GPG Key (Not sure if this goes here or in registry-api docs)
 
-## Upload a Provider Version (private module)
+## Create a Provider Version (private provider)
+
+`POST /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions`
+
+| Parameter            | Description                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
+| `:namespace`         | The namespace of the module for which the version is being created. For private modules this is the same as the `:organization_name` parameter                                                           |
+| `:name`              | The name of the module for which the version is being created.                                                                                                                                           |
+| `:registry-name`     | Must be `private`.                                                                                                                                                                                       |
+
+Creates a new registry provider version. This endpoint only applies to private providers.
+
+| Status  | Response                                                   | Reason                                                         |
+| ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
+| [201][] | [JSON API document][] (`type: "registry-provider-versions"`) | Successfully published provider version                      |
+| [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.) |
+| [403][] | [JSON API error object][]                                  | Forbidden - not available for public modules                   |
+| [404][] | [JSON API error object][]                                  | User not authorized                                            |
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path                  | Type   | Default | Description                             |
+| ------------------------- | ------ | ------- | -------------------------------------   |
+| `data.type`               | string |         | Must be `"registry-provider-versions"`. |
+| `data.attributes.version` | string |         | A valid semver version string.          |
+| `data.attributes.key_id` | string |         | A valid gpg-key string.                  |
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "type": "registry-provider-versions",
+    "attributes": {
+      "version": "1.2.3",
+      "key-id": "1234123412341234"
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/v2/organizations/demo-custom-providers/registry-providers/private/demo-custom-providers/random/versions
+```
+
+### Sample Response
+
+```json
+<sample_response_here>
+```
+
+## Get Version (private provider)
+
+`GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version`
+
+## Delete Version (private provider)
+
+`GET`
+
+
+## Upload a Provider Platform (private provider)
+
+`POST /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/platforms`
+
+
+## Get Platform (private provider)
+
+`GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/platforms/:os/:architecture`
+
+## Get Terraform Request (private provider)
+
+`GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/download/:os/:architecture`
+
+## Delete Platform (private provider)
+
+`DELETE`
 
 ## Get a Provider
 
