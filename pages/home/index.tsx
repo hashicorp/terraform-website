@@ -21,6 +21,7 @@ export default function Homepage({ data }): React.ReactElement {
     heroCards,
     introHeading,
     introDescription,
+    introFeatures,
     introOfferingsImage,
     introOfferings,
     introOfferingsCta,
@@ -81,6 +82,7 @@ export default function Homepage({ data }): React.ReactElement {
         brand="terraform"
         heading={introHeading}
         description={introDescription}
+        features={introFeatures}
         offerings={{
           image: {
             src: introOfferingsImage.url,

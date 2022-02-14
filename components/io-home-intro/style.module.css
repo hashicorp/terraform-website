@@ -43,6 +43,10 @@
   @nest .withFeatures.consul & {
     color: var(--white);
   }
+
+  @nest .withFeatures.terraform & {
+    color: var(--white);
+  }
 }
 
 .headerInner {
@@ -61,6 +65,7 @@
 .description {
   margin: 24px 0 0;
   composes: g-type-body-large from global;
+  color: inherit;
 
   @nest .withOfferings:not(.withFeatures) & {
     color: var(--gray-3);
