@@ -285,7 +285,7 @@
     ]
   },
   {
-    "title": "Release",
+    "title": "Releases",
     "routes": [
       { "title": "Overview", "path": "release" },
       { "title": "2022", "routes": [
