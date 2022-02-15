@@ -198,11 +198,21 @@ Properties without a default value are required.
 | `data.type`                     | string |         | Must be `"registry-providers"`. |
 | `data.attributes.name`          | string |         | The name of the provider.       |
 | `data.attributes.namespace`     | string |         | The namespace of the provider.  |
-| `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`. |
+| `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintaine provider or private. Must be either `public` or `private`. |
 
 ### Sample Payload (private provider)
+
 ```json
-<json_tput_here>
+{
+  "data": {
+    "type": "registry-providers",
+    "attributes": {
+      "name": "aws",
+      "namespace": "hashicorp",
+      "registry-name": "private"
+    }
+  }
+}
 ```
 
 ### Sample Payload (public provider)
@@ -230,9 +240,44 @@ curl \
   --data @payload.json \
   https://app.terraform.io/api/v2/organizations/my-organization/registry-providers
 ```
+
 ### Sample Response (private provider)
+
 ```json
-<json_output_here>
+{
+  "data": {
+    "id": "prov-cmEmLstBfjNNA9F3",
+    "type": "registry-providers",
+    "attributes": {
+      "name": "aws",
+      "namespace": "hashicorp",
+      "registry-name": "private",
+      "version-statuses": [],
+      "created-at": "2022-02-11T19:16:59.533Z",
+      "updated-at": "2022-02-11T19:16:59.533Z",
+      "permissions": {
+        "can-delete": true
+      }
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "my-organization",
+          "type": "organizations"
+        }
+      },
+      "versions": {
+        "data": [],
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws"
+    }
+  }
+}
 ```
 
 ### Sample Response (public provider)
@@ -267,17 +312,93 @@ curl \
 }
 ```
 
-## Create a GPG Key (Not sure if this goes here or in registry-api docs)
+## Upload a GPG Key (private provider)
 
-## Create a Provider Version (private provider)
+`POST /api/registry/:registry_name/v2/gpg-keys`
+
+| Parameter            | Description          |
+| -------------------- | -------------------- |
+| `:registry-name`     | Must be `private`.   |
+
+Uploadss a GPG Key to a private provider. The response will provider a "key-id" which will be needed to [Create a Provider Version](#create-a-provider-version) (see below).
+
+| Status  | Response                                                   | Reason                                                         |
+| ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
+| [201][] | [JSON API document][] (`type: "gpg-keys"`)                 | Successfully uploads a GPG key to a private provider           |
+| [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.) |
+| [403][] | [JSON API error object][]                                  | Forbidden - not available for public providers                 |
+| [404][] | [JSON API error object][]                                  | User not authorized                                            |
+
+### Request Body
+
+This POST endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path                      | Type   | Default | Description                             |
+| ----------------------------- | ------ | ------- | -------------------------------------   |
+| `data.type`                   | string |         | Must be `"gpg-keys"`.                   |
+| `data.attributes.namespace`   | string |         | A valid semver version string.          |
+| `data.attributes.ascii_armor` | string |         | A valid gpg-key string.                 |
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "attributes": {
+      "namespace": "hashicorp",
+      "ascii-armor": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmQINB...=txfz\n-----END PGP PUBLIC KEY BLOCK-----\n"
+    },
+    "type": "gpg-keys"
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  --data @payload.json \
+  https://app.terraform.io/api/registry/private/v2/gpg-keys
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "type": "gpg-keys",
+    "id": "23",
+    "attributes": {
+      "ascii-armor": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmQINB...=txfz\n-----END PGP PUBLIC KEY BLOCK-----\n",
+      "created-at": "2022-02-11T19:16:59Z",
+      "key-id": "32966F3FB5AC1129",
+      "namespace": "hashicorp",
+      "source": "",
+      "source-url": null,
+      "trust-signature": "",
+      "updated-at": "2022-02-11T19:16:59Z"
+    },
+    "links": {
+      "self": "/v2/gpg-keys/23"
+    }
+  }
+}
+```
+
+## Create a Provider Version
 
 `POST /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions`
 
 | Parameter            | Description                                                                                                                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
-| `:namespace`         | The namespace of the module for which the version is being created. For private modules this is the same as the `:organization_name` parameter                                                           |
-| `:name`              | The name of the module for which the version is being created.                                                                                                                                           |
+| `:organization_name` | The name of the organization to create a provider in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
+| `:namespace`         | The namespace of the provider for which the version is being created. For private providers this is the same as the `:organization_name` parameter                                                           |
+| `:name`              | The name of the provider for which the version is being created.                                                                                                                                           |
 | `:registry-name`     | Must be `private`.                                                                                                                                                                                       |
 
 Creates a new registry provider version. This endpoint only applies to private providers.
@@ -286,7 +407,7 @@ Creates a new registry provider version. This endpoint only applies to private p
 | ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
 | [201][] | [JSON API document][] (`type: "registry-provider-versions"`) | Successfully published provider version                      |
 | [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.) |
-| [403][] | [JSON API error object][]                                  | Forbidden - not available for public modules                   |
+| [403][] | [JSON API error object][]                                  | Forbidden - not available for public providers                   |
 | [404][] | [JSON API error object][]                                  | User not authorized                                            |
 
 ### Request Body
@@ -299,7 +420,7 @@ Properties without a default value are required.
 | ------------------------- | ------ | ------- | -------------------------------------   |
 | `data.type`               | string |         | Must be `"registry-provider-versions"`. |
 | `data.attributes.version` | string |         | A valid semver version string.          |
-| `data.attributes.key_id` | string |         | A valid gpg-key string.                  |
+| `data.attributes.key_id` | string |          | A valid gpg-key string.                  |
 
 ### Sample Payload
 
@@ -308,8 +429,8 @@ Properties without a default value are required.
   "data": {
     "type": "registry-provider-versions",
     "attributes": {
-      "version": "1.2.3",
-      "key-id": "1234123412341234"
+      "version": "3.1.1",
+      "key-id": "32966F3FB5AC1129"
     }
   }
 }
@@ -323,36 +444,242 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   --data @payload.json \
-  https://app.terraform.io/api/v2/organizations/demo-custom-providers/registry-providers/private/demo-custom-providers/random/versions
+  https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions
 ```
 
 ### Sample Response
 
 ```json
-<sample_response_here>
+{
+  "data": {
+    "id": "provver-y5KZUsSBRLV9zCtL",
+    "type": "registry-provider-versions",
+    "attributes": {
+      "version": "3.1.1",
+      "created-at": "2022-02-11T19:16:59.876Z",
+      "updated-at": "2022-02-11T19:16:59.876Z",
+      "key-id": "32966F3FB5AC1129",
+      "protocols": null,
+      "permissions": {
+        "can-delete": true,
+        "can-upload-asset": true
+      },
+      "shasums-uploaded": false,
+      "shasums-sig-uploaded": false
+    },
+    "relationships": {
+      "registry-provider": {
+        "data": {
+          "id": "prov-cmEmLstBfjNNA9F3",
+          "type": "registry-providers"
+        }
+      },
+      "platforms": {
+        "data": [],
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms"
+        }
+      }
+    },
+    "links": {
+      "shasums-upload": "https://archivist.terraform.io/v1/object/dmF1b...",
+      "shasums-sig-upload": "https://archivist.terraform.io/v1/object/dmF1b..."
+    }
+  }
+}
+
+```
+
+## Get all versions for a single provider (private provider)
+
+`GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/`
+
+### Parameters
+
+| Parameter            | Description                                                                                              |
+| -------------------- | -------------------------------------------------------------------------------------------------------- |
+| `:organization_name` | The name of the organization the provider belongs to.                                                    |
+| `:namespace`         | The namespace of the provider.                                                                           |
+| `:name`              | The provider name.                                                                                       |
+| `:registry-name`     | Must be `private`.                                                                                       |
+
+| Status  | Response                                             | Reason                                                    |
+| ------- | ---------------------------------------------------- | --------------------------------------------------------- |
+| [200][] | [JSON API document][] (`type: "registry-providers"`) | The request was successful                                |
+| [403][] | [JSON API error object][]                            | Forbidden - public provider curation disabled             |
+| [404][] | [JSON API error object][]                            | Provider not found or user unauthorized to perform action |
+
+### Sample Request 
+
+```shell
+curl \
+  --request GET \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "id": "provver-y5KZUsSBRLV9zCtL",
+      "type": "registry-provider-versions",
+      "attributes": {
+        "version": "3.1.1",
+        "created-at": "2022-02-11T19:16:59.876Z",
+        "updated-at": "2022-02-11T19:16:59.876Z",
+        "key-id": "32966F3FB5AC1129",
+        "protocols": null,
+        "permissions": {
+          "can-delete": true,
+          "can-upload-asset": true
+        },
+        "shasums-uploaded": true,
+        "shasums-sig-uploaded": true
+      },
+      "relationships": {
+        "registry-provider": {
+          "data": {
+            "id": "prov-cmEmLstBfjNNA9F3",
+            "type": "registry-providers"
+          }
+        },
+        "platforms": {
+          "data": [
+            {
+              "id": "provpltfrm-GSHhNzptr9s3WoLD",
+              "type": "registry-provider-platforms"
+            },
+            {
+              "id": "provpltfrm-A1PHitiM2KkKpVoM",
+              "type": "registry-provider-platforms"
+            },
+            {
+              "id": "provpltfrm-BLJWvWyJ2QMs525k",
+              "type": "registry-provider-platforms"
+            },
+            {
+              "id": "provpltfrm-qQYosUguetYtXGzJ",
+              "type": "registry-provider-platforms"
+            },
+            {
+              "id": "provpltfrm-pjDHFN46y193bS7t",
+              "type": "registry-provider-platforms"
+            }
+          ],
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms"
+          }
+        }
+      },
+      "links": {
+        "shasums-download": "https://archivist.terraform.io/v1/object/dmF1b...",
+        "shasums-sig-download": "https://archivist.terraform.io/v1/object/dmF1b..."
+      }
+    }
+  ],
+  "links": {
+    "self": "https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "page-size": 20,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 1,
+      "total-count": 1
+    }
+  }
+}
 ```
 
 ## Get Version (private provider)
 
+
 `GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version`
+this_feels_wrong
+registry/private/v2/gpg-keys?filter[namespace]=demo-custom-providers
+
+### Parameters
+
+| Parameter            | Description                                                                                              |
+| -------------------- | -------------------------------------------------------------------------------------------------------- |
+| `:organization_name` | The name of the organization the provider belongs to.                                                    |
+| `:namespace`         | The namespace of the provider.                                                                           |
+| `:name`              | The provider name.                                                                                       |
+| `:registry-name`     | Must be `private`.                                                                                       |
+| `filter[field name]`     | ***Required.*** Must be Must filter by `namespace`. May have more than one listed.                                                                                       |
+
+| Status  | Response                                             | Reason                                                    |
+| ------- | ---------------------------------------------------- | --------------------------------------------------------- |
+| [200][] | [JSON API document][] (`type: "registry-providers"`) | The request was successful                                |
+| [403][] | [JSON API error object][]                            | Forbidden - public provider curation disabled             |
+| [404][] | [JSON API error object][]                            | Provider not found or user unauthorized to perform action |
+
+### Sample Request 
+
+```shell
+<THIS_FEELS_WRONG>
+curl \
+  --request GET \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions/
+```
+
+### Sample Response
+
+```json
+```
 
 ## Delete Version (private provider)
 
-`GET`
+`DELETE`
 
 
 ## Upload a Provider Platform (private provider)
 
 `POST /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/platforms`
 
+## Get all platforms for a single version (private provider)
+
 
 ## Get Platform (private provider)
 
 `GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/platforms/:os/:architecture`
 
-## Get Terraform Request (private provider)
+### Parameters
 
-`GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/download/:os/:architecture`
+| Parameter            | Description                                                                                              |
+| -------------------- | -------------------------------------------------------------------------------------------------------- |
+| `:organization_name` | The name of the organization the provider belongs to.                                                    |
+| `:namespace`         | The namespace of the provider.                                                                           |
+| `:name`              | The provider name.                                                                                       |
+| `:registry-name`     | Must be `private`. |
+
+| Status  | Response                                             | Reason                                                    |
+| ------- | ---------------------------------------------------- | --------------------------------------------------------- |
+| [200][] | [JSON API document][] (`type: "registry-providers"`) | The request was successful                                |
+| [403][] | [JSON API error object][]                            | Forbidden - public provider curation disabled             |
+| [404][] | [JSON API error object][]                            | Provider not found or user unauthorized to perform action |
+
+### Sample Request (private provider)
+
+```shell
+```
+
+### Sample Response
+
+```json
+```
 
 ## Delete Platform (private provider)
 
@@ -378,8 +705,13 @@ curl \
 | [404][] | [JSON API error object][]                            | Provider not found or user unauthorized to perform action |
 
 ### Sample Request (private provider)
+
 ```shell
-<curl_request_here>
+curl \
+  --request GET \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws
 ```
 
 ### Sample Request (public provider)
@@ -390,6 +722,53 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/public/hashicorp/aws
+```
+### Sample Response (private provider)
+
+```json
+{
+  "data": {
+    "id": "prov-cmEmLstBfjNNA9F3",
+    "type": "registry-providers",
+    "attributes": {
+      "name": "aws",
+      "namespace": "hashicorp",
+      "version-statuses": [
+        {
+          "version": "3.1.1"
+        }
+      ],
+      "created-at": "2022-02-11T19:16:59.533Z",
+      "updated-at": "2022-02-11T19:16:59.533Z",
+      "registry-name": "private",
+      "permissions": {
+        "can-delete": true
+      }
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "hashicorp",
+          "type": "organizations"
+        }
+      },
+      "versions": {
+        "data": [
+          {
+            "id": "provver-y5KZUsSBRLV9zCtL",
+            "type": "registry-provider-versions"
+          }
+        ],
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws"
+    }
+  }
+}
 ```
 
 ### Sample Response (public provider)
@@ -424,11 +803,6 @@ curl \
 }
 ```
 
-### Sample Response (private provider)
-```json
-<json_output_here>
-```
-
 ## Delete a Provider
 
 `DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name`
@@ -440,7 +814,7 @@ curl \
 | `:organization_name` | The name of the organization to delete a provider from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
 | `:namespace`         | The namespace of the provider that will be deleted.                                                                                                                                                          |
 | `:name`              | The name of the provider that will be deleted.                                                                                                                                                               |
-| `:registry_name`     | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`.                                                                                                                                                                                                      |
+| `:registry_name`     | Indicates whether this is a publicly maintained provider or private. Must be either `public` or `private`.                                                                                                                                                                                                      |
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -452,6 +826,7 @@ curl \
 
 
 ### Sample Request (private provider)
+
 ```shell
 <curl_request_here>
 ```
