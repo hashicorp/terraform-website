@@ -186,6 +186,7 @@ module.exports = (async () => {
     '/enterprise/install/cluster-azure': '/enterprise/admin/infrastructure/active-active',
     '/enterprise/install/cluster-custom': '/enterprise/admin/infrastructure/active-active',
     '/enterprise/install/cluster-gcp': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/release': '/enterprise/releases',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {
