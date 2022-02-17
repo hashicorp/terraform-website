@@ -607,8 +607,6 @@ curl \
 ## Get Version (private provider)
 
 `GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version`
-this_feels_wrong
-registry/private/v2/gpg-keys?filter[namespace]=hashicorp
 
 ### Parameters
 
@@ -619,7 +617,6 @@ registry/private/v2/gpg-keys?filter[namespace]=hashicorp
 | `:name`              | The provider name.                                                                                       |
 | `:version`           | The provider version of the provider for which the platform is being created                             |
 | `:registry_name`     | Must be `private`.                                                                                       |
-| `filter[field name]`     | ***Required.*** Must be Must filter by `namespace`. May have more than one listed.                                                                                       |
 
 | Status  | Response                                             | Reason                                                    |
 | ------- | ---------------------------------------------------- | --------------------------------------------------------- |
@@ -630,17 +627,74 @@ registry/private/v2/gpg-keys?filter[namespace]=hashicorp
 ### Sample Request 
 
 ```shell
-<THIS_FEELS_WRONG>
 curl \
   --request GET \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions/
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions//3.1.1
 ```
 
 ### Sample Response
 
 ```json
+{
+  "data": {
+    "id": "provver-y5KZUsSBRLV9zCtL",
+    "type": "registry-provider-versions",
+    "attributes": {
+      "version": "3.1.1",
+      "created-at": "2022-02-11T19:16:59.876Z",
+      "updated-at": "2022-02-11T19:16:59.876Z",
+      "key-id": "32966F3FB5AC1129",
+      "protocols": null,
+      "permissions": {
+        "can-delete": true,
+        "can-upload-asset": true
+      },
+      "shasums-uploaded": true,
+      "shasums-sig-uploaded": true
+    },
+    "relationships": {
+      "registry-provider": {
+        "data": {
+          "id": "prov-cmEmLstBfjNNA9F3",
+          "type": "registry-providers"
+        }
+      },
+      "platforms": {
+        "data": [
+          {
+            "id": "provpltfrm-GSHhNzptr9s3WoLD",
+            "type": "registry-provider-platforms"
+          },
+          {
+            "id": "provpltfrm-A1PHitiM2KkKpVoM",
+            "type": "registry-provider-platforms"
+          },
+          {
+            "id": "provpltfrm-BLJWvWyJ2QMs525k",
+            "type": "registry-provider-platforms"
+          },
+          {
+            "id": "provpltfrm-qQYosUguetYtXGzJ",
+            "type": "registry-provider-platforms"
+          },
+          {
+            "id": "provpltfrm-pjDHFN46y193bS7t",
+            "type": "registry-provider-platforms"
+          }
+        ],
+        "links": {
+          "related": "/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms"
+        }
+      }
+    },
+    "links": {
+      "shasums-download": "https://archivist.terraform.io/v1/object/dmF1b...",
+      "shasums-sig-download": "https://archivist.terraform.io/v1/object/dmF1b..."
+    }
+  }
+}
 ```
 
 ### Note
