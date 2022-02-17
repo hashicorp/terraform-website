@@ -8,7 +8,7 @@ description: >-
 
 Terraform Enterprise releases from 2021 are listed in the table below.
 
-| Version                                           | Release Sequence | Recommended<br /> Replicated CLI                                     | Latest <br />Terraform CLI                                            | Sentinel                                                                       |
+| Version                                           | Release Sequence | Recommended<br /> Replicated CLI                                     | Bundled <br />Terraform CLI**                                            | Sentinel                                                                       |
 | ------------------------------------------------- | ---------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [v202112-2](/enterprise/releases/2021/v202112-2)   | 590              | [2.53.2](https://release-notes.replicated.com/release-notes/2.53.2/) | [1.0.11](https://github.com/hashicorp/terraform/releases/tag/v1.0.11) | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
 | [v202112-1](/enterprise/releases/2021/v202112-1)   | 588              | [2.53.2](https://release-notes.replicated.com/release-notes/2.53.2/) | [1.0.11](https://github.com/hashicorp/terraform/releases/tag/v1.0.11) | [0.18.4](https://docs.hashicorp.com/sentinel/changelog#0-18-4-july-20-2021)    |
@@ -29,3 +29,5 @@ Terraform Enterprise releases from 2021 are listed in the table below.
 | [v202101-1](/enterprise/releases/2021/v202101-1)   | 504              | [2.29.0](https://release-notes.replicated.com/release-notes/2.29.0/) | [0.13.5](https://github.com/hashicorp/terraform/releases/tag/v0.13.5) | [0.16.1](https://docs.hashicorp.com/sentinel/changelog#0-16-1-october-21-2020) |
 
 \* Denotes a <strong>required release</strong>. All online upgrades will automatically install this version, but airgap customers must upgrade to this version before proceeding to later releases.
+
+\** The release package contains this version of the Terraform CLI, but you can install older and newer versions of the Terraform CLI as needed via the Admin [UI](/enterprise/admin/application/resources#managing-terraform-versions) or [API](/cloud-docs/api-docs/admin/terraform-versions).
