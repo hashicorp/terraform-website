@@ -711,7 +711,7 @@ curl \
 | Parameter            | Description                                                                                                                                                                                                          |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to delete a provider version from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
-| `:namespace`         | The namespace of the provider for which the versions is veing deleted. For private providers this is the same as the `:organization_name` parameter                                                                  |
+| `:namespace`         | The namespace of the provider for which the version is being deleted. For private providers this is the same as the `:organization_name` parameter                                                                  |
 | `:name`              | The name of the provider for which the version is being destroyed                                                                                                                                                    |
 | `:version`           | The version for the provider that will be deleted                                                                                                                                                                    |
 | `:registry_name`     | Must be `private`.                                                                                                                                                                                                   |
@@ -748,7 +748,7 @@ curl \
 | `:version`           | The provider version of the provider for which the platform is being created                                                                                                                                        |
 | `:registry_name`     | Must be `private`.                                                                                                                                                                                                  |
 
-Creates a new registry provider version. This endpoint only applies to private providers.
+Creates a new registry provider platform. This endpoint only applies to private providers.
 
 | Status  | Response                                                   | Reason                                                         |
 | ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
@@ -1025,7 +1025,7 @@ curl \
 
 ## Get Platform (private provider)
 
-`GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/platforms/:os/:architecture`
+`GET /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/platforms/:os/:arch`
 
 ### Parameters
 
@@ -1094,7 +1094,38 @@ curl \
 
 ## Delete Platform (private provider)
 
-`DELETE`
+`DELETE /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/platforms/:os/:arch`
+
+### Parameters
+
+| Parameter            | Description                                                                                                                                                                                                          |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `:organization_name` | The name of the organization to delete a provider platform from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
+| `:namespace`         | The namespace of the provider for which the platform is being deleted. For private providers this is the same as the `:organization_name` parameter                                                                  |
+| `:name`              | The name of the provider for which the platform is being destroyed                                                                                                                                                    |
+| `:version`           | The version for which the platform is being destroyed                                                                                                                                                                  |
+| `:os`                | The os of the provider platform that is being destroyed                                                                       |
+| `:arch`              | The architecture of the provider platform that is being destroyed                                                              |
+| `:registry_name`     | Must be `private`.                                                                                                                                                                                                   |
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+| Status  | Response                  | Reason                                                      |
+| ------- | ------------------------- | ----------------------------------------------------------- |
+| [204][] | Nothing                   | Success                                                     |
+| [403][] | [JSON API error object][] | Forbidden - public provider curation disabled               |
+| [404][] | [JSON API error object][] | Provider not found or user not authorized to perform action |
+
+
+### Sample Request 
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms/linux/amd64
+```
 
 ## Get a Provider
 
