@@ -193,12 +193,12 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-| Key path                        | Type   | Default | Description                                                                                               |
-| ------------------------------- | ------ | ------- | --------------------------------------------------------------------------------------------------------- |
-| `data.type`                     | string |         | Must be `"registry-providers"`.                                                                           |
-| `data.attributes.name`          | string |         | The name of the provider.                                                                                 |
-| `data.attributes.namespace`     | string |         | The namespace of the provider.                                                                            |
-| `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintaine provider or private. Must be either `public` or `private`. |
+| Key path                        | Type   | Default | Description                                                                                                 |
+| ------------------------------- | ------ | ------- | ----------------------------------------------------------------------------------------------------------- |
+| `data.type`                     | string |         | Must be `"registry-providers"`.                                                                             |
+| `data.attributes.name`          | string |         | The name of the provider.                                                                                   |
+| `data.attributes.namespace`     | string |         | The namespace of the provider. For private providers this is the same as the `:organization_name` parameter |
+| `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintaine provider or private. Must be either `public` or `private`.   |
 
 ### Sample Payload (private provider)
 
@@ -262,7 +262,7 @@ curl \
     "relationships": {
       "organization": {
         "data": {
-          "id": "my-organization",
+          "id": "hashicorp",
           "type": "organizations"
         }
       },
@@ -501,7 +501,7 @@ curl \
 | Parameter            | Description                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization the provider belongs to.                                                    |
-| `:namespace`         | The namespace of the provider.                                                                           |
+| `:namespace`         | The namespace of the provider. Must be the same as the `organization_name` for the provider              |
 | `:name`              | The provider name.                                                                                       |
 | `:registry_name`     | Must be `private`.                                                                                       |
 
@@ -518,7 +518,7 @@ curl \
   --request GET \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions
+  https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions
 ```
 
 ### Sample Response
@@ -615,7 +615,7 @@ curl \
 | Parameter            | Description                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization the provider belongs to.                                                    |
-| `:namespace`         | The namespace of the provider.                                                                           |
+| `:namespace`         | The namespace of the provider. Must be the same as the `organization_name` for the provider              |
 | `:name`              | The provider name.                                                                                       |
 | `:version`           | The provider version of the provider for which the platform is being created                             |
 | `:registry_name`     | Must be `private`.                                                                                       |
@@ -633,7 +633,7 @@ curl \
   --request GET \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions//3.1.1
+  https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions//3.1.1
 ```
 
 ### Sample Response
@@ -734,7 +734,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/public/hashicorp/aws/versions/3.1.1
+  https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/public/hashicorp/aws/versions/3.1.1
 ```
 
 
@@ -844,7 +844,7 @@ curl \
 | Parameter            | Description                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization the provider belongs to.                                                    |
-| `:namespace`         | The namespace of the provider.                                                                           |
+| `:namespace`         | The namespace of the provider. Must be the same as the `organization_name` for the provider              |
 | `:name`              | The provider name.                                                                                       |
 | `:version`           | The version of the provider.                                                                             |
 | `:registry_name`     | Must be `private`.                                                                                       |
@@ -862,7 +862,7 @@ curl \
   --request GET \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms
+  https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms
 ```
 
 ### Sample Response
@@ -1034,7 +1034,7 @@ curl \
 | Parameter            | Description                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization the provider belongs to.                                                    |
-| `:namespace`         | The namespace of the provider.                                                                           |
+| `:namespace`         | The namespace of the provider. Must be the same as the `organization_name` for the provider              |
 | `:name`              | The provider name.                                                                                       |
 | `:version`           | The version of the provider.                                                                             |
 | `:os`                | The os of the provider platform.                                                                         |
@@ -1054,7 +1054,7 @@ curl \
   --request GET \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms/linux/amd64
+  https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms/linux/amd64
 ```
 
 ### Sample Response
@@ -1126,7 +1126,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms/linux/amd64
+  https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws/versions/3.1.1/platforms/linux/amd64
 ```
 
 ## Get a Provider
@@ -1135,12 +1135,12 @@ curl \
 
 ### Parameters
 
-| Parameter            | Description                                                                                              |
-| -------------------- | -------------------------------------------------------------------------------------------------------- |
-| `:organization_name` | The name of the organization the provider belongs to.                                                    |
-| `:namespace`         | The namespace of the provider.                                                                           |
-| `:name`              | The provider name.                                                                                       |
-| `:registry_name`     | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`. |
+| Parameter            | Description                                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `:organization_name` | The name of the organization the provider belongs to.                                                       |
+| `:namespace`         | The namespace of the provider. For private providers this is the same as the `:organization_name` parameter |
+| `:name`              | The provider name.                                                                                          |
+| `:registry_name`     | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`.    |
 
 | Status  | Response                                             | Reason                                                    |
 | ------- | ---------------------------------------------------- | --------------------------------------------------------- |
@@ -1155,7 +1155,7 @@ curl \
   --request GET \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-providers/private/hashicorp/aws
+  https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws
 ```
 
 ### Sample Request (public provider)
@@ -1272,7 +1272,11 @@ curl \
 ### Sample Request (private provider)
 
 ```shell
-<curl_request_here>
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/organizations/hashicorp/registry-providers/private/hashicorp/aws
 ```
 
 ### Sample Request (public provider)
