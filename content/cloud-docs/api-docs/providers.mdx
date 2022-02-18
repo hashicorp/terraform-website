@@ -173,10 +173,10 @@ curl \
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-#### Private providers
-After creating a provider, a version must be created and uploaded in order to be usable. Providers created this way do not automatically update with new versions; instead, you must explicitly create and upload each new version with the [Create a Provider Version](#create-a-provider-version) endpoint.
+#### Private Providers
+When created, the private provider record will be available in the organization's registry provider list. After creating a private provider, a version must be created and uploaded in order to be usable. Providers created this way do not automatically update with new versions; instead, you must explicitly create and upload each new version with the [Create a Provider Version](#create-a-provider-version) endpoint.
 
-#### Public providers
+#### Public Providers
 
 When created, the public provider record will be available in the organization's registry provider list. You cannot create versions for public providers; you must use the versions available on the Terraform Registry.
 
@@ -193,11 +193,11 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-| Key path                        | Type   | Default | Description                     |
-| ------------------------------- | ------ | ------- | ------------------------------- |
-| `data.type`                     | string |         | Must be `"registry-providers"`. |
-| `data.attributes.name`          | string |         | The name of the provider.       |
-| `data.attributes.namespace`     | string |         | The namespace of the provider.  |
+| Key path                        | Type   | Default | Description                                                                                               |
+| ------------------------------- | ------ | ------- | --------------------------------------------------------------------------------------------------------- |
+| `data.type`                     | string |         | Must be `"registry-providers"`.                                                                           |
+| `data.attributes.name`          | string |         | The name of the provider.                                                                                 |
+| `data.attributes.namespace`     | string |         | The namespace of the provider.                                                                            |
 | `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintaine provider or private. Must be either `public` or `private`. |
 
 ### Sample Payload (private provider)
@@ -320,7 +320,7 @@ curl \
 | -------------------- | -------------------- |
 | `:registry_name`     | Must be `private`.   |
 
-Uploadss a GPG Key to a private provider. The response will provider a "key-id" which will be needed to [Create a Provider Version](#create-a-provider-version) (see below).
+Uploads a GPG Key to a private provider. The response will provider a "key-id" which is needed to [Create a Provider Version](#create-a-provider-version) (see below).
 
 | Status  | Response                                                   | Reason                                                         |
 | ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
@@ -335,11 +335,11 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-| Key path                      | Type   | Default | Description                             |
-| ----------------------------- | ------ | ------- | -------------------------------------   |
-| `data.type`                   | string |         | Must be `"gpg-keys"`.                   |
-| `data.attributes.namespace`   | string |         | A valid semver version string.          |
-| `data.attributes.ascii_armor` | string |         | A valid gpg-key string.                 |
+| Key path                      | Type   | Default | Description                                                                                 |
+| ----------------------------- | ------ | ------- | ------------------------------------------------------------------------------------------- |
+| `data.type`                   | string |         | Must be `"gpg-keys"`.                                                                       |
+| `data.attributes.namespace`   | string |         | The namespace of the provider. Must be the same as the `organization_name` for the provider |
+| `data.attributes.ascii_armor` | string |         | A valid gpg-key string.                                                                     |
 
 ### Sample Payload
 
@@ -416,11 +416,12 @@ This POST endpoint requires a JSON object with the following properties as a req
 
 Properties without a default value are required.
 
-| Key path                  | Type   | Default | Description                             |
-| ------------------------- | ------ | ------- | -------------------------------------   |
-| `data.type`               | string |         | Must be `"registry-provider-versions"`. |
-| `data.attributes.version` | string |         | A valid semver version string.          |
-| `data.attributes.key_id` | string |          | A valid gpg-key string.                 |
+| Key path                    | Type   | Default | Description                                                      |
+| --------------------------- | ------ | ------- | ---------------------------------------------------------------- |
+| `data.type`                 | string |         | Must be `"registry-provider-versions"`.                          |
+| `data.attributes.version`   | string |         | A valid semver version string.                                   |
+| `data.attributes.key_id`    | string |         | A valid gpg-key string.                                          |
+| `data.attributes.protocols` | array  |         | Must be one or all of the following values `["4.0","5.0","6.0"]` |
 
 ### Sample Payload
 
@@ -430,7 +431,8 @@ Properties without a default value are required.
     "type": "registry-provider-versions",
     "attributes": {
       "version": "3.1.1",
-      "key-id": "32966F3FB5AC1129"
+      "key-id": "32966F3FB5AC1129",
+      "protocols": ["4.0"]
     }
   }
 }
@@ -459,7 +461,7 @@ curl \
       "created-at": "2022-02-11T19:16:59.876Z",
       "updated-at": "2022-02-11T19:16:59.876Z",
       "key-id": "32966F3FB5AC1129",
-      "protocols": null,
+      "protocols": ["4.0"],
       "permissions": {
         "can-delete": true,
         "can-upload-asset": true
@@ -532,7 +534,7 @@ curl \
         "created-at": "2022-02-11T19:16:59.876Z",
         "updated-at": "2022-02-11T19:16:59.876Z",
         "key-id": "32966F3FB5AC1129",
-        "protocols": null,
+        "protocols": ["4.0"],
         "permissions": {
           "can-delete": true,
           "can-upload-asset": true
@@ -646,7 +648,7 @@ curl \
       "created-at": "2022-02-11T19:16:59.876Z",
       "updated-at": "2022-02-11T19:16:59.876Z",
       "key-id": "32966F3FB5AC1129",
-      "protocols": null,
+      "protocols": ["4.0"],
       "permissions": {
         "can-delete": true,
         "can-upload-asset": true
@@ -750,12 +752,12 @@ curl \
 
 Creates a new registry provider platform. This endpoint only applies to private providers.
 
-| Status  | Response                                                   | Reason                                                         |
-| ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
-| [201][] | [JSON API document][] (`type: "registry-provider-platforms"`) | Successfully published provider platform                      |
-| [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.) |
-| [403][] | [JSON API error object][]                                  | Forbidden - not available for public providers                   |
-| [404][] | [JSON API error object][]                                  | User not authorized                                            |
+| Status  | Response                                                      | Reason                                                         |
+| ------- | ------------------------------------------------------------- | -------------------------------------------------------------- |
+| [201][] | [JSON API document][] (`type: "registry-provider-platforms"`) | Successfully published provider platform                       |
+| [422][] | [JSON API error object][]                                     | Malformed request body (missing attributes, wrong types, etc.) |
+| [403][] | [JSON API error object][]                                     | Forbidden - not available for public providers                 |
+| [404][] | [JSON API error object][]                                     | User not authorized                                            |
 
 ### Request Body
 
