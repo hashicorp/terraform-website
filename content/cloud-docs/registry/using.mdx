@@ -1,28 +1,19 @@
 ---
 page_title: >-
-  Using Modules - Private Module Registry - Terraform Cloud and Terraform
-  Enterprise
-description: >-
-  Find available providers and modules, include them in configurations, and run
-  configurations with private and public modules.
----
-
----
-page_title: >-
   Using Providers and Modules - Private Module Registry - Terraform Cloud and Terraform
   Enterprise
 description: >-
   Find available providers and modules and include them in configurations.
 ---
 
-# Using Providers and Modules from the Private Registry (link)
+# Using Providers and Modules from the Private Registry
 
 All users in an organization can view the Terraform Cloud private registry and use the available providers and modules. A private registry has some key requirements and differences from the [public Terraform Registry](/registry):
 
 - **Location:** You must use Terraform Cloud's web UI to search for providers, modules, and usage examples.
-- **Private Provider and Private Module `source` strings:** Private providers and modules use a [different format](/cloud-docs/registry/using#using-providers-and-modules-in-configurations).
+- **Provider and Module block `source` argument:** Private providers and modules use a [different format](/cloud-docs/registry/using#using-private-providers-and-modules-in-configurations).
 - **Terraform Version:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs, and workspaces using version 0.13 and higher can also automatically access private providers.
-- **Authentication:** If you run Terraform on the command line, you must [authenticate](/cloud-docs/registry/using#authentication) to Terraform Cloud or your Terraform Enterprise instance to use modules and providers in your organization’s private registry.
+- **Authentication:** If you run Terraform on the command line, you must [authenticate](/cloud-docs/registry/using#authentication) to Terraform Cloud or your Terraform Enterprise instance to use providers and modules in your organization’s private registry.
 
 -> **Note:** Terraform Enterprise does not support private providers.
 
@@ -69,13 +60,14 @@ terraform {
   }
 ```
 
-The syntax for referencing public modules in the [module block](/language/modules/syntax) `source` argument is `<NAMESPACE>/<MODULE NAME>/<PROVIDER_NAME>`.
+The syntax for referencing public modules in the [module block](/language/modules/syntax) `source` argument is `<NAMESPACE>/<MODULE_NAME>/<PROVIDER_NAME>`.
 
 ```hcl
 module "subnets" {
   source  = "hashicorp/subnets/cidr"
   version = "1.0.0"
 }
+```
 
 ## Using Private Providers and Modules in Configurations
 
@@ -91,7 +83,7 @@ terraform {
   }
 ```
 
-The syntax for referencing private modules in the [module block](/language/modules/syntax) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER_NAME>`.
+The syntax for referencing private modules in the [module block](/language/modules/syntax) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE_NAME>/<PROVIDER_NAME>`.
 
 - **Hostname:** For the SaaS version of Terraform Cloud, use `app.terraform.io`. In Terraform Enterprise, use the hostname for your instance or the [generic hostname](/cloud-docs/registry/using#generic-hostname-terraform-enterprise).
 - **Organization:** If you are using a shared module with Terraform Enterprise, the module's organization name may be different from your organization's name. Check the source string at the top of the module's registry page to find the proper organization name.
@@ -102,8 +94,6 @@ module "vpc" {
   version = "1.0.4"
 }
 ```
-
-To get started, copy and paste the usage example on the module's details page.
 
 
 ### Generic Hostname - Terraform Enterprise
@@ -133,7 +123,7 @@ A workspace can only use private providers and modules from its own organization
 
 ### Version Requirements
 
-Terraform version 0.11 or later is required to use private modules in Terraform cloud workspaces and use the CLI to apply configurations with private modules. Terraform version 0.13 and later is required to use private providers in Terraform Cloud workspaces and apply configurations with private providers.
+Terraform version 0.11 or later is required to use private modules in Terraform cloud workspaces and to use the CLI to apply configurations with private modules. Terraform version 0.13 and later is required to use private providers in Terraform Cloud workspaces and apply configurations with private providers.
 
 -> **Note:** Private providers are not available in Terraform Enterprise.
 
@@ -159,7 +149,7 @@ To configure authentication to Terraform Cloud or your Terraform Enterprise inst
 - (Terraform 0.12.21 or later) Use the [`terraform login`](/cli/commands/login) command to obtain and save a user API token.
 - Create a token and [manually configure credentials in the CLI config file][cli-credentials].
 
-Make sure the hostname matches the hostname you use in provider and module sources because if the same Terraform Cloud server is available at two hostnames, Terraform will not know that they reference the same server. To support multiple hostnames for provider and module sources, use the `terraform login` command multiple times, and specify a different hostname each time.
+Make sure the hostname matches the hostname you use in provider and module sources because if the same Terraform Cloud server is available at two hostnames, Terraform will not know that they reference the same server. To support multiple hostnames for provider and module sources, use the `terraform login` command multiple times and specify a different hostname each time.
 
 [user-token]: /cloud-docs/users-teams-organizations/users#api-tokens
 

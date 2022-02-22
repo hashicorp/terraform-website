@@ -46,7 +46,7 @@ To publish a new provider:
     ```json
     "links": {
         "shasums-upload":     "https://archivist.terraform.io/v1/object/dmF1b64hd73ghd63",
-       "shasums-sig-upload": "https://archivist.terraform.io/v1/object/dmF1b37dj37dh33d"
+        "shasums-sig-upload": "https://archivist.terraform.io/v1/object/dmF1b37dj37dh33d"
       }
     ```
 
@@ -71,7 +71,7 @@ To publish a new provider:
     $ curl -T local-example/terraform-provider-random_3.1.3_linux_amd64.zip
       https://archivist.terraform.io/v1/object/dmF1b45c367djh36dh3
     ```
-    
+
 1. Repeat steps 4 and 5 to add additional required platform binaries for the release.
 
 The provider is now available in your organization’s Terraform Cloud private registry. Users can search for it in the private registry UI and begin using it in configurations.
