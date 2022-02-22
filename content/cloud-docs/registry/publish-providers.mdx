@@ -44,31 +44,34 @@ To publish a new provider:
 1. Use the [Create a Provider Version endpoint](link to endpoint) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
 
     ```json
-      "links": {
-         "shasums-upload":     "https://archivist.terraform.io/v1/object/dmF1b...",
-      "shasums-sig-upload": "https://archivist.terraform.io/v1/object/dmF1b..."
-    }
+    "links": {
+        "shasums-upload":     "https://archivist.terraform.io/v1/object/dmF1b64hd73ghd63",
+       "shasums-sig-upload": "https://archivist.terraform.io/v1/object/dmF1b37dj37dh33d"
+      }
     ```
 
 1. Upload the `SHA256SUMS` and `SHA256SUMS.sig` files to the URLs returned in the previous step. The example command below uploads the files from a local machine.
 
     ```
     $ curl -T local-example/terraform-provider-random_3.1.3_SHA256SUMS
-     https://archivist.terraform.io/v1/object/dmF1b...
+      https://archivist.terraform.io/v1/object/dmF1b64hd73ghd63
     ```
+
 1. Use the [Add a Provider Platform endpoint](link to endpoint) to create a platform for the release. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
 
-```json
+    ```json
     "links": {
-          "provider-binary-upload": "https://archivist.terraform.io/v1/object/dmF1b45c..."
+          "provider-binary-upload": "https://archivist.terraform.io/v1/object/dmF1b45c367djh36dh3"
         }
     ```
 
 1. Upload the platform binary file to the URL from the previous step. The example command below uploads the binary from a local machine.
 
     ```
-    $ curl -T local-example/terraform-provider-random_3.1.3_linux_amd64.zip <https://archivist.terraform.io/v1/object/dmF1b45c...>
+    $ curl -T local-example/terraform-provider-random_3.1.3_linux_amd64.zip
+      https://archivist.terraform.io/v1/object/dmF1b45c367djh36dh3
     ```
+    
 1. Repeat steps 4 and 5 to add additional required platform binaries for the release.
 
 The provider is now available in your organization’s Terraform Cloud private registry. Users can search for it in the private registry UI and begin using it in configurations.
