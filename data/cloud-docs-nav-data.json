@@ -135,8 +135,12 @@
         "path": "registry/add"
       },
       {
+        "title": "Publishing Private Providers",
+        "path": "registry/publish-providers"
+      },
+      {
         "title": "Publishing Private Modules",
-        "path": "registry/publish"
+        "path": "registry/publish-modules"
       },
       { "title": "Using Providers and Modules", "path": "registry/using" },
       {
