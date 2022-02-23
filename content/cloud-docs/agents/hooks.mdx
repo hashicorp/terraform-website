@@ -3,3 +3,110 @@ page_title: Hooks - Terraform Cloud Agents - Terraform Cloud and Terraform Enter
 ---
 
 # Hooks
+
+Terraform Cloud Agents support executing custom programs, or hooks, during strategic points of a Terraform run. These hooks allow operators to extend the functionality of Terraform runs.
+
+The following hooks are supported:
+
+- `pre-plan` - This hook executes before `terraform init` during a `plan` operation.
+
+- `post-plan` - This hook executes after `terraform plan` during a `plan` operation regardless whether or not `terraform plan` successfully executed.
+
+- `pre-apply` - This hook executes before `terraform init` during an `apply` operation.
+
+- `post-apply` - This hook executes after `terraform apply` during an `apply` operation regardless whether or not `terraform apply` successfully executed.
+
+## Configuration
+
+Hooks are stored within the `hooks` subdirectory of the agent's data directory. By default, that's `~/.tfc-agent/hooks`.
+
+To enable a hook, create a file named `terraform-${HOOK}` where `${HOOK}` is one of the hooks listed above. Then store that file within the `hooks` subdirectory and make it executable. Once an agent is started and receives a run, it will attempt to execute your hook at the specified point during the Terraform run.
+
+For example, a `pre-plan` hook is an executable file named `~/.tfc-agent/hooks/terraform-pre-plan`.
+
+### Configuring hooks when running an Agent as a binary
+
+When running the `tfc-agent` binary directly on a Linux instance, you need to
+create the `hooks` directory within the agent's data directory.
+
+```sh
+mkdir -p ~/.tfc-agent/hooks
+```
+
+Then create your hooks. Here, a `pre-plan` hook is being created.
+
+```sh
+cat <<EOF > ~/.tfc-agent/hooks/terraform-pre-plan
+#!/bin/bash
+echo "Example pre-plan hook."
+EOF
+```
+
+Don't forget to make the hooks executable!
+
+```sh
+chmod +x ~/.tfc-agent/hooks/terraform-pre-plan
+```
+
+Finally, start the agent.
+
+```sh
+tfc-agent
+```
+
+That's it! As the agent executes Terraform runs it will attempt to execute
+your enabled hooks.
+
+### Configuring hooks when running an Agent using Docker 
+
+When running `tfc-agent` using Docker, you need to build a new Docker image
+containing your hooks.
+
+First, create a new directory and change into it. This allows the Docker
+build context to be limited to this new directory.
+
+```sh
+mkdir hooks-docker-example
+cd hooks-docker-example
+```
+
+Then, create a `hooks` directory to hold your hooks.
+
+```sh
+mkdir hooks
+```
+
+Next, create your hooks. Here, a `pre-plan` hook is being created.
+
+```sh
+cat <<EOF > hooks/terraform-pre-plan
+#!/bin/bash
+echo "Example pre-plan hook."
+EOF
+```
+
+Don't forget to make the hooks executable!
+
+```sh
+chmod +x hooks/terraform-pre-plan
+```
+
+Build a new `hashicorp/tfc-agent` Docker image using this `Dockerfile`.
+
+```
+FROM hashicorp/tfc-agent:latest
+RUN mkdir /home/tfc-agent/.tfc-agent
+ADD --chown=tfc-agent:tfc-agent hooks /home/tfc-agent/.tfc-agent/hooks
+```
+
+Start the agent using your newly built Docker image.
+
+```sh
+docker run -e TFC_AGENT_TOKEN=your-token -e TFC_AGENT_NAME=your-agent-name \
+  hashicorp/tfc-agent:your-tag
+```
+
+That's it! As the agent executes Terraform runs it will attempt to execute your
+enabled hooks.
+
+
