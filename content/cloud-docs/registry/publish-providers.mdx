@@ -20,9 +20,9 @@ When publishing a provider, you must upload one or more provider binaries, and a
 
 You must be a member of the [owners team](/cloud-docs/users-teams-organizations/permissions#organization-owners) or a team with [Manage Private Registry permissions](/cloud-docs/users-teams-organizations/permissions#manage-private-registry) to publish and delete private providers from the private registry.
 
-### Release Artifacts
+### Release Files
 
-You must publish at least one version of your provider that follows [semantic versioning format](http://semver.org). For each version, you must upload the signing key, `SHA256SUMS` file, `SHA256SUMS.sig` file, and one or more provider binaries. Using GoReleaser to [create a release on GitHub](/registry/providers/publishing#creating-a-github-release) or [create a release locally](/registry/providers/publishing#using-goreleaser-locally) generates many of these artifacts automatically. The private registry does not have strict naming conventions, but we recommend using GoReleaser file naming schemes for consistency.
+You must publish at least one version of your provider that follows [semantic versioning format](http://semver.org). For each version, you must upload the signing key, `SHA256SUMS` file, `SHA256SUMS.sig` file, and one or more provider binaries. Using GoReleaser to [create a release on GitHub](/registry/providers/publishing#creating-a-github-release) or [create a release locally](/registry/providers/publishing#using-goreleaser-locally) generates many of these files automatically. The private registry does not have strict naming conventions, but we recommend using GoReleaser file naming schemes for consistency.
 
 Private providers do not currently support documentation.
 
@@ -30,18 +30,18 @@ Private providers do not currently support documentation.
 
 GPG signing is required for custom providers, and you must upload the public key of the GPG keypair used to sign the release. Refer to [Preparing and Adding a Signing Key](/registry/providers/publishing#preparing-and-adding-a-signing-key) for more details. Unlike the public Terraform Registry, the private registry does not automatically upload new releases. You must manually add new provider versions.
 
-## Publishing a New Provider
+## Publishing a Provider and Creating a Version
 
-You can publish and manage private providers through the Terraform Cloud API. Before you begin, confirm that you can access the provider binaries, public GPG signing key, `SHA256SUMS` file, and `SHA256SUMS.sig` file from at least one release. You will upload these artifacts in the following steps.
+You must create a provider, at least one version, and at least one platform before consumers can user your provider in configurations. Before you begin, confirm that you can access the provider binaries, public GPG signing key, `SHA256SUMS` file, and `SHA256SUMS.sig` file from at least one release. You will upload these artifacts in the following steps.
 
-To publish a new provider:
+To publish a new provider through the Terraform Cloud API:
 
-1. Use the [Add a GPG key endpoint](link to endpoint) to add the public key that matches the signing key for the release. The response contains a `key-id` that you will use to create a provider version.
+1. Use the [Upload a GPG key endpoint](/cloud-docs/api-docs/providers#upload-a-gpg-key-private-provider) to add the public key that matches the signing key for the release. The response contains a `key-id` that you will use to create a provider version.
 
     ```json
     "key-id": "32966F3FB5AC1129"
     ```
-1. Use the [Create a Provider Version endpoint](link to endpoint) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
+1. Use the [Create a Provider Version endpoint](/cloud-docs/api-docs/providers#create-a-provider-version) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
 
     ```json
     "links": {
@@ -57,7 +57,7 @@ To publish a new provider:
       https://archivist.terraform.io/v1/object/dmF1b64hd73ghd63
     ```
 
-1. Use the [Add a Provider Platform endpoint](link to endpoint) to create a platform for the release. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
+1. Use the [Upload a Provider Platform](/cloud-docs/api-docs/providers#upload-a-provider-platform-private-provider) endpoint to create a platform for the release. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
 
     ```json
     "links": {
@@ -78,7 +78,7 @@ The provider is now available in your organization’s Terraform Cloud private r
 
 ## Checking Release Files
 
-Consumers cannot use a private provider until you upload all required [release artifacts](#release-artifacts). To determine whether the required artifacts have been uploaded:
+Consumers cannot use a private provider until you upload all required [release artifacts](#release-files). To determine whether the required artifacts have been uploaded:
 
 1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
 1. Open the **Manage Provider** menu and select **View release files**. The **Release Files** page appears containing a list of uploaded and missing files for the provider.
@@ -97,8 +97,13 @@ Use the [Registry Providers API](/cloud-docs/api-docs/providers) to do the follo
 You can delete private providers through the [Registry Providers API](/cloud-docs/api-docs/providers) or through the Terraform Cloud UI. To delete providers through the UI:
 
 1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
+If you want to delete a single version, use the **Versions** menu to select it.
 1. Open the **Manage Provider** menu and select **Delete Provider**. The **Delete Provider** box appears.
-1. Type the provider name to confirm and click **Delete**.
+1. Select an action from the menu:
+
+    - **Delete only this provider version:** Deletes only the version of the module you were viewing when you clicked Delete module.
+    - **Delete all versions for this provider:** Deletes all versions for this provider.
+1. Type the provider name and click **Delete**.
 
 Your provider has been deleted from this organization's private registry and all of its metadata has been removed. Consumers will no longer be able to reference this provider in configurations.
 
