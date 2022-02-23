@@ -54,6 +54,8 @@ For publicly curated providers, the Terraform Cloud Registry acts as a proxy to 
 
 `GET /organizations/:organization_name/registry-providers`
 
+### Parameters
+
 | Parameter            | Description                                                    |
 | -------------------- | -------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to list available providers from. |
@@ -166,6 +168,8 @@ curl \
 ## Create a Provider
 
 `POST /organizations/:organization_name/registry-providers`
+
+### Parameters
 
 | Parameter            | Description                                                                                                                                                                                                |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -317,6 +321,8 @@ curl \
 ## Add a GPG Key (Private Provider)
 
 `POST /api/registry/:registry_name/v2/gpg-keys`
+
+### Parameters
 
 | Parameter            | Description          |
 | -------------------- | -------------------- |
@@ -743,6 +749,8 @@ curl \
 ## Create a Provider Platform (Private Provider)
 
 `POST /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions/:version/platforms`
+
+### Parameters
 
 | Parameter            | Description                                                                                                                                                                                                         |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
