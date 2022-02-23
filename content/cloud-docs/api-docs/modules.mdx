@@ -100,6 +100,8 @@ $ curl \
 
 `GET /organizations/:organization_name/registry-modules`
 
+### Parameters
+
 | Parameter            | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
 | `:organization_name` | The name of the organization to list available modules from. |
@@ -234,6 +236,8 @@ curl \
 
 `POST /organizations/:organization_name/registry-modules/vcs`
 
+### Parameters
+
 | Parameter            | Description                                                                                                                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
@@ -339,6 +343,8 @@ curl \
 ## Create a Module (with no VCS connection)
 
 `POST /organizations/:organization_name/registry-modules`
+
+### Parameters
 
 | Parameter            | Description                                                                                                                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -498,6 +504,8 @@ curl \
 ~> **Deprecation warning**: the following endpoint `POST /registry-modules/:organization_name/:name/:provider/versions` is replaced by the below endpoint and will be removed from future versions of the API!
 
 `POST /organizations/:organization_name/registry-modules/:registry_name/:namespace/:name/:provider/versions`
+
+### Parameters
 
 | Parameter            | Description                                                                                                                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
