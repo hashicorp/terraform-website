@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="press-kit">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/public/assets/files/press-kit.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
