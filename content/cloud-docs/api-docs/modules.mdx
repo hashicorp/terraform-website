@@ -64,7 +64,7 @@ The Terraform Cloud Module Registry endpoints differs from the Module Registry e
 - The public module registry discovery endpoints have the path prefix provided in the [discovery document](/registry/api-docs#service-discovery) which is currently `/api/registry/public/v1`.
 - [Authentication](/cloud-docs/api-docs/#authentication) is handled the same as all other Terraform Cloud endpoints.
 
-### Sample Registry Request (private module)
+### Sample Registry Request (Private Module)
 
 List available versions for the `consul` module for the `aws` provider on the module registry published from the Github organization `my-gh-repo-org`:
 
@@ -80,7 +80,7 @@ $ curl \
   https://app.terraform.io/api/registry/v1/modules/my-cloud-org/consul/aws/versions
 ```
 
-### Sample Proxy Request (public module)
+### Sample Proxy Request (Public Module)
 
 List available versions for the `consul` module for the `aws` provider on the module registry published from the Github organization `my-gh-repo-org`:
 
@@ -348,11 +348,11 @@ curl \
 
 Creates a new registry module without a backing VCS repository.
 
-#### Private modules
+#### Private Modules
 
 After creating a module, a version must be created and uploaded in order to be usable. Modules created this way do not automatically update with new versions; instead, you must explicitly create and upload each new version with the [Create a Module Version](#create-a-module-version) endpoint.
 
-#### Public modules
+#### Public Modules
 
 When created, the public module record will be available in the organization's registry module list. You cannot create versions for public modules as they are maintained in the public registry.
 
@@ -375,9 +375,9 @@ Properties without a default value are required.
 | `data.attributes.name`          | string |         | The name of this module. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters.                                         |
 | `data.attributes.provider`      | string |         | Specifies the Terraform provider that this module is used for. May contain lowercase alphanumeric characters. Maximum length is 64 characters.                                                                   |
 | `data.attributes.namespace`     | string |         | The namespace of this module. Cannot be set for private modules. May contain alphanumeric characters, with dashes and underscores allowed in non-leading or trailing positions. Maximum length is 64 characters. |
-| `data.attributes.registry-name` | string |         | Indicates whether this is a publicly maintained module or private. Must be either `public` or `private`.                                                                                                         |
+| `data.attributes.registry-name` | string |         | Whether this is a publicly maintained module or private. Must be either `public` or `private`.                                                                                                         |
 
-### Sample Payload (private module)
+### Sample Payload (Private Module)
 
 ```json
 {
@@ -392,7 +392,7 @@ Properties without a default value are required.
 }
 ```
 
-### Sample Payload (public module)
+### Sample Payload (Public Module)
 
 ```json
 {
@@ -419,7 +419,7 @@ curl \
   https://app.terraform.io/api/v2/organizations/my-organization/registry-modules
 ```
 
-### Sample Response (private module)
+### Sample Response (Private Module)
 
 ```json
 {
@@ -456,7 +456,7 @@ curl \
 }
 ```
 
-### Sample Response (public module)
+### Sample Response (Public Module)
 
 ```json
 {
@@ -505,7 +505,7 @@ curl \
 | `:namespace`         | The namespace of the module for which the version is being created. For private modules this is the same as the `:organization_name` parameter                                                           |
 | `:name`              | The name of the module for which the version is being created.                                                                                                                                           |
 | `:provider`          | The name of the provider for which the version is being created.                                                                                                                                         |
-| `:registry-name`     | Must be `private`.                                                                                                                                                                                       |
+| `:registry_name`     | Must be `private`.                                                                                                                                                                                       |
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -582,7 +582,7 @@ curl \
 }
 ```
 
-## Upload a Module Version (private module)
+## Upload a Module Version (Private Module)
 
 `PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
 
@@ -643,7 +643,7 @@ After the registry module version is successfully parsed, its status will become
 | `:namespace`         | The namespace of the module. For private modules this is the name of the organization that owns the module. |
 | `:name`              | The module name.                                                                                            |
 | `:provider`          | The module provider. Must be lowercase alphanumeric.                                                        |
-| `:registry-name`     | Either `public` or `private`.                                                                               |
+| `:registry_name`     | Whether this is a publicly maintained module or private. Must be either `public` or `private`.              |
 
 | Status  | Response                                           | Reason                                                  |
 | ------- | -------------------------------------------------- | ------------------------------------------------------- |
@@ -651,7 +651,7 @@ After the registry module version is successfully parsed, its status will become
 | [403][] | [JSON API error object][]                          | Forbidden - public module curation disabled             |
 | [404][] | [JSON API error object][]                          | Module not found or user unauthorized to perform action |
 
-### Sample Request (private module)
+### Sample Request (Private Module)
 
 ```shell
 curl \
@@ -661,7 +661,7 @@ curl \
   https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/private/my-organization/my-module/aws
 ```
 
-### Sample Request (public module)
+### Sample Request (Public Module)
 
 ```shell
 curl \
@@ -671,7 +671,7 @@ curl \
   https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/public/terraform-aws-modules/vpc/aws
 ```
 
-### Sample Response (private module)
+### Sample Response (Private Module)
 
 ```json
 {
@@ -721,7 +721,7 @@ curl \
 }
 ```
 
-### Sample Response (public module)
+### Sample Response (Public Module)
 
 ```json
 {
@@ -784,7 +784,7 @@ are replaced by the below endpoints and will be removed from future versions of 
 | `:name`              | The module name that the deletion will affect.                                                                                                                                                             |
 | `:provider`          | If specified, the provider for the module that the deletion will affect.                                                                                                                                   |
 | `:version`           | If specified, the version for the module and provider that will be deleted.                                                                                                                                |
-| `:registry_name`     | Either `public` or `private`                                                                                                                                                                               |
+| `:registry_name`     | Whether this is a publicly maintained module or private. Must be either `public` or `private`.                                                                                                           |
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -805,7 +805,7 @@ If a version deletion would leave a provider with no versions, the provider will
 | [403][] | [JSON API error object][] | Forbidden - public module curation disabled                   |
 | [404][] | [JSON API error object][] | Module, provider, or version not found or user not authorized |
 
-### Sample Request (private module)
+### Sample Request (Private Module)
 
 ```shell
 curl \
@@ -815,7 +815,7 @@ curl \
   https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/private/my-organization/my-module/aws/2.0.0
 ```
 
-### Sample Request (public module)
+### Sample Request (Public Module)
 
 ```shell
 curl \
