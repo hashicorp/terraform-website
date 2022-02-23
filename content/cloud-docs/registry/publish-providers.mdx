@@ -12,7 +12,7 @@ In addition to [curating public providers from the Terraform Registry](/cloud-do
 
 -> **Note:** Terraform Enterprise does not support private providers.
 
-## Publishing Requirements
+## Requirements
 
 When publishing a provider, you must upload one or more provider binaries, and assets for validation (e.g., signing key, `SHA256SUMS` file, etc.). Review the following before publishing a new provider.
 
@@ -76,10 +76,34 @@ To publish a new provider:
 
 The provider is now available in your organization’s Terraform Cloud private registry. Users can search for it in the private registry UI and begin using it in configurations.
 
+## Checking Release Files
+
+Consumers cannot use a private provider until you upload all required [release artifacts](#release-artifacts). To determine whether the required artifacts have been uploaded:
+
+1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
+1. Open the **Manage Provider** menu and select **View release files**. The **Release Files** page appears containing a list of uploaded and missing files for the provider.
+
+
 ## Managing Private Providers
 
 Use the [Registry Providers API](/cloud-docs/api-docs/providers) to do the following:
 
-- View GPG keys
-- Add and delete provider versions and platforms
-- Publish, update, and delete private providers
+- Add and view GPG keys
+- Add, update, and delete provider versions and platforms
+- Publish and update providers
+
+## Deleting Private Providers.
+
+You can delete private providers through the [Registry Providers API](/cloud-docs/api-docs/providers) or through the Terraform Cloud UI. To delete providers through the UI:
+
+1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
+1. Open the **Manage Provider** menu and select **Delete Provider**. The **Delete Provider** box appears.
+1. Type the provider name to confirm and click **Delete**.
+
+Your provider has been deleted from this organization's private registry and all of its metadata has been removed. Consumers will no longer be able to reference this provider in configurations.
+
+### Restoring a Deleted Provider
+
+Deletion is permanent, but you can restore a deleted private provider by re-adding it to your organization and recreating its versions and platforms.
+
+
