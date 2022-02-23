@@ -502,10 +502,10 @@ curl \
 | Parameter            | Description                                                                                                                                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to create a module in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
+| `:registry_name`     | Must be `private`.                                                                                                                                                                                       |
 | `:namespace`         | The namespace of the module for which the version is being created. For private modules this is the same as the `:organization_name` parameter                                                           |
 | `:name`              | The name of the module for which the version is being created.                                                                                                                                           |
 | `:provider`          | The name of the provider for which the version is being created.                                                                                                                                         |
-| `:registry_name`     | Must be `private`.                                                                                                                                                                                       |
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -640,10 +640,10 @@ After the registry module version is successfully parsed, its status will become
 | Parameter            | Description                                                                                                 |
 | -------------------- | ----------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization the module belongs to.                                                         |
+| `:registry_name`     | Whether this is a publicly maintained module or private. Must be either `public` or `private`.              |
 | `:namespace`         | The namespace of the module. For private modules this is the name of the organization that owns the module. |
 | `:name`              | The module name.                                                                                            |
 | `:provider`          | The module provider. Must be lowercase alphanumeric.                                                        |
-| `:registry_name`     | Whether this is a publicly maintained module or private. Must be either `public` or `private`.              |
 
 | Status  | Response                                           | Reason                                                  |
 | ------- | -------------------------------------------------- | ------------------------------------------------------- |
@@ -780,11 +780,11 @@ are replaced by the below endpoints and will be removed from future versions of 
 | Parameter            | Description                                                                                                                                                                                                |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to delete a module from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
+| `:registry_name`     | Whether this is a publicly maintained module or private. Must be either `public` or `private`.                                                                                                             |
 | `:namespace`         | The module namespace that the deletion will affect. For private modules this is the name of the organization that owns the module.                                                                         |
 | `:name`              | The module name that the deletion will affect.                                                                                                                                                             |
 | `:provider`          | If specified, the provider for the module that the deletion will affect.                                                                                                                                   |
 | `:version`           | If specified, the version for the module and provider that will be deleted.                                                                                                                                |
-| `:registry_name`     | Whether this is a publicly maintained module or private. Must be either `public` or `private`.                                                                                                           |
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 

@@ -405,9 +405,10 @@ curl \
 | Parameter            | Description                                                                                                                                                                                                |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to create a provider in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
+| `:registry_name`     | Must be `private`.                                                                                                                                                                                         |
 | `:namespace`         | The namespace of the provider for which the version is being created. For private providers this is the same as the `:organization_name` parameter.                                                        |
 | `:name`              | The name of the provider for which the version is being created.                                                                                                                                           |
-| `:registry_name`     | Must be `private`.                                                                                                                                                                                         |
+
 
 Creates a new registry provider version. This endpoint only applies to private providers.
 
@@ -509,9 +510,9 @@ curl \
 | Parameter            | Description                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization the provider belongs to.                                        |
+| `:registry_name`     | Must be `private`.                                                                           |
 | `:namespace`         | The namespace of the provider. Must be the same as the `organization_name` for the provider. |
 | `:name`              | The provider name.                                                                           |
-| `:registry_name`     | Must be `private`.                                                                           |
 
 | Status  | Response                                             | Reason                                                    |
 | ------- | ---------------------------------------------------- | --------------------------------------------------------- |
@@ -623,10 +624,10 @@ curl \
 | Parameter            | Description                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization the provider belongs to.                                        |
+| `:registry_name`     | Must be `private`.                                                                           |
 | `:namespace`         | The namespace of the provider. Must be the same as the `organization_name` for the provider. |
 | `:name`              | The provider name.                                                                           |
 | `:version`           | The pversion of the provider being created to which different platforms can be added.        |
-| `:registry_name`     | Must be `private`.                                                                           |
 
 | Status  | Response                                             | Reason                                                    |
 | ------- | ---------------------------------------------------- | --------------------------------------------------------- |
@@ -721,10 +722,11 @@ curl \
 | Parameter            | Description                                                                                                                                                                                                          |
 | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to delete a provider version from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
+| `:registry_name`     | Must be `private`.                                                                                                                                                                                                   |
 | `:namespace`         | The namespace of the provider for which the version is being deleted. For private providers this is the same as the `:organization_name` parameter.                                                                  |
 | `:name`              | The name of the provider for which the version is being destroyed.                                                                                                                                                   |
 | `:version`           | The version for the provider that will be deleted along with its corresponding platforms.                                                                                                                            |
-| `:registry_name`     | Must be `private`.                                                                                                                                                                                                   |
+
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -755,10 +757,10 @@ curl \
 | Parameter            | Description                                                                                                                                                                                                         |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to create a provider platform in. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
+| `:registry_name`     | Must be `private`.                                                                                                                                                                                                  |
 | `:namespace`         | The namespace of the provider for which the platform is being created. For private providers this is the same as the `:organization_name` parameter.                                                                |
 | `:name`              | The name of the provider for which the platform is being created.                                                                                                                                                   |
 | `:version`           | The provider version of the provider for which the platform is being created.                                                                                                                                       |
-| `:registry_name`     | Must be `private`.                                                                                                                                                                                                  |
 
 Creates a new registry provider platform. This endpoint only applies to private providers.
 
@@ -854,10 +856,10 @@ curl \
 | Parameter            | Description                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization the provider belongs to.                                        |
+| `:registry_name`     | Must be `private`.                                                                           |
 | `:namespace`         | The namespace of the provider. Must be the same as the `organization_name` for the provider. |
 | `:name`              | The provider name.                                                                           |
 | `:version`           | The version of the provider.                                                                 |
-| `:registry_name`     | Must be `private`.                                                                           |
 
 | Status  | Response                                             | Reason                                                    |
 | ------- | ---------------------------------------------------- | --------------------------------------------------------- |
@@ -966,12 +968,12 @@ curl \
 | Parameter            | Description                                                                                  |
 | -------------------- | -------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization the provider belongs to.                                        |
+| `:registry_name`     | Must be `private`.                                                                           |
 | `:namespace`         | The namespace of the provider. Must be the same as the `organization_name` for the provider. |
 | `:name`              | The provider name.                                                                           |
 | `:version`           | The version of the provider.                                                                 |
 | `:os`                | The os of the provider platform.                                                             |
 | `:arch`              | The architecture of the provider platform.                                                   |
-| `:registry_name`     | Must be `private`.                                                                           |
 
 | Status  | Response                                             | Reason                                                    |
 | ------- | ---------------------------------------------------- | --------------------------------------------------------- |
@@ -1035,12 +1037,12 @@ curl \
 | Parameter            | Description                                                                                                                                                                                                            |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `:organization_name` | The name of the organization to delete a provider platform from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.  |
+| `:registry_name`     | Must be `private`.                                                                                                                                                                                                     |
 | `:namespace`         | The namespace of the provider for which the platform is being deleted. For private providers this is the same as the `:organization_name` parameter.                                                                   |
 | `:name`              | The name of the provider for which the platform is being destroyed.                                                                                                                                                    |
 | `:version`           | The version for which the platform is being destroyed.                                                                                                                                                                 |
 | `:os`                | The os of the provider platform that is being destroyed.                                                                                                                                                               |
 | `:arch`              | The architecture of the provider platform that is being destroyed.                                                                                                                                                     |
-| `:registry_name`     | Must be `private`.                                                                                                                                                                                                     |
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -1070,9 +1072,9 @@ curl \
 | Parameter            | Description                                                                                                  |
 | -------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `:organization_name` | The name of the organization the provider belongs to.                                                        |
+| `:registry_name`     | Whether this is a publicly maintained provider or private. Must be either `public` or `private`.             |
 | `:namespace`         | The namespace of the provider. For private providers this is the same as the `:organization_name` parameter. |
 | `:name`              | The provider name.                                                                                           |
-| `:registry_name`     | Whether this is a publicly maintained provider or private. Must be either `public` or `private`.               |
 
 | Status  | Response                                             | Reason                                                    |
 | ------- | ---------------------------------------------------- | --------------------------------------------------------- |
@@ -1188,9 +1190,9 @@ curl \
 | Parameter            | Description                                                                                                                                                                                                  |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `:organization_name` | The name of the organization to delete a provider from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
+| `:registry_name`     | Whether this is a publicly maintained provider or private. Must be either `public` or `private`.                                                                                                             |
 | `:namespace`         | The namespace of the provider that will be deleted.                                                                                                                                                          |
 | `:name`              | The name of the provider that will be deleted.                                                                                                                                                               |
-| `:registry_name`     | Whether this is a publicly maintained provider or private. Must be either `public` or `private`.                                                                                                             |
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
