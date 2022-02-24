@@ -16,11 +16,13 @@ In the list of workspaces on Terraform Cloud's main page, each workspace shows t
 _States in this stage:_
 
 - **Pending:** Terraform Cloud hasn't started action on a run yet. Terraform Cloud processes each workspace's runs in the order they were queued, and a run remains pending until every run before it has completed.
+- **Fetching:** If Terraform Cloud has not yet fetched the configuration from VCS, the run will go into this state until the configuration is available, then return to `pending`.
 
 _Leaving this stage:_
 
-- Proceeds automatically to the plan stage (**Planning** state) when it becomes the first run in the queue.
-- Can skip to completion (**Discarded** state) if a user discards it before it starts.
+- If Terraform Cloud encounters an error when fetching the configuration from VCS, the run skips to completion (**Plan Errored** state).
+- If the user discards the run before it starts, the run skips to completion (**Discarded** state).
+- Once fetching succeeds, or when it becomes the first run in the queue, the run will proceed automatically to the plan stage (**Planning** state).
 
 ## 2. The Plan Stage
 
