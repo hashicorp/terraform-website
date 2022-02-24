@@ -364,6 +364,8 @@ Notifies Terraform Cloud to discard the uploaded `.tar.gz` file associated with 
 
 Only configuration versions created via the API or CLI, in an `uploaded` state, and with no associated runs in progress can be archived using this endpoint. Otherwise, calling this endpoint will result in an error.
 
+VCS configuration versions are archived automatically once their runs are complete, then re-fetched for subsequent runs.
+
 | Status  | Response                  | Reason(s)                                                                                                                                     |
 | ------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | [202][] | none                      | Successfully initiated the archive process.                                                                                                   |
