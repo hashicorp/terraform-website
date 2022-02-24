@@ -15,6 +15,13 @@ page_id: api-changelog
 
 Keep track of changes to the API for Terraform Cloud and Terraform Enterprise.
 
+### 2022-02-28
+
+* Introduced [Archiving Configuration Versions](/cloud-docs/workspaces/configurations#archiving-configuration-versions).
+  * Updated [Configuration Versions](/cloud-docs/api-docs/configuration-versions#attributes) to add new `fetching` and `archived` states.
+  * Updated [Runs](/cloud-docs/api-docs/runs#attributes) to add new `fetching` state.
+  * Added the [Archive a Configuration Version](/cloud-docs/api-docs/configuration-versions#archive-a-configuration-version) endpoint.
+
 ### 2021-12-09
 
 * Added `variables` field for POST /runs and the run resource, enabling run-specific variable values.
