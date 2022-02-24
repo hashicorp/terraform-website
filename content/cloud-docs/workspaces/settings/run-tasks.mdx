@@ -32,6 +32,7 @@ To create a new run task:
 
 1. Enter the information about the run task to be configured:
 
+- **Enabled** (optional): Whether the run task will run across all associated workspaces. New tasks are enabled by default.
 - **Name** (required): A human-readable name for the run task. This will be displayed in workspace configuration pages and can contain letters, numbers, dashes and underscores.
 - **Endpoint URL** (required): The URL for the external service. Run tasks will POST the [run tasks payload](/cloud-docs/integrations/run-tasks/#integration-details) to this URL.
 - **HMAC key** (optional): A secret key that may be required by the external service to verify request authenticity.
