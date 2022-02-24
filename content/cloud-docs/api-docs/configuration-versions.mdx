@@ -44,6 +44,22 @@ You need read runs permission to list and view configuration versions for a work
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
+## Attributes
+
+### Configuration Version States
+
+The configuration version state is found in `data.attributes.status`, and you can reference the following list of possible states.
+
+A configuration version created through the API can only be used in runs if it is in an `uploaded` state. A configuration version created through a linked VCS repository may also be used in runs if it is in an `archived` state.
+
+| State                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `pending`              | The initial status of a configuration version after it has been created. Pending configuration versions cannot be used to create new runs.                                                                                                                               |
+| `fetching`             | For configuration versions created via a commit to a connected VCS repository, this state indicates that Terraform Cloud is in the process of fetching the associated files from VCS.                                                                                    |
+| `uploaded`             | The configuration version is fully processed and ready for use in runs.                                                                                                                                                                                                  |
+| `archived`             | All immediate runs are complete and the files associated with this configuration version have been discarded. If the configuration version was created via a connected VCS repository, it may be used in new runs, and Terraform Cloud will re-fetch the files from VCS. |
+| `errored`              | Something went wrong when processing this configuration version. Errored configuration versions cannot be used to create new runs.                                                                                                                                       |
+
 ## List Configuration Versions
 
 `GET /workspaces/:workspace_id/configuration-versions`
@@ -316,16 +332,6 @@ curl \
 
 Once a configuration version is created, use the `upload-url` attribute to [upload configuration files](#upload-configuration-files) associated with that version. The `upload-url` attribute is only provided in the response when creating configuration versions.
 
-### Configuration Version Status
-
-A configuration version will be in the `pending` status when initially created. It will remain pending until configuration files are supplied via [upload](#upload-configuration-files), and while they are processed.
-
-If upload and processing succeed, the configuration version status will then be `uploaded`. An `uploaded` configuration version is ready for use.
-
-If upload and processing fail, the status will be `errored`, indicating that something went wrong.
-
-Runs cannot be created using `pending` or `errored` configuration versions.
-
 ## Upload Configuration Files
 
 -> **Note**: If `auto-queue-runs` was either not provided or set to `true` during creation of the configuration version, a run using this configuration version will be automatically queued on the workspace. If `auto-queue-runs` was set to `false` explicitly, then it is necessary to [create a run on the workspace](/cloud-docs/api-docs/run#create-a-run) manually after the configuration version is uploaded.
@@ -344,6 +350,38 @@ curl \
   --request PUT \
   --data-binary @filename \
   https://archivist.terraform.io/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da
+```
+
+## Archive a Configuration Version
+
+`POST /configuration-versions/:configuration_version_id/actions/archive`
+
+| Parameter                   | Description                                    |
+| --------------------------- | ---------------------------------------------- |
+| `configuration_version_id`  | The ID of the configuration version to archive |
+
+Notifies Terraform Cloud to discard the uploaded `.tar.gz` file associated with this configuration version.
+
+Only configuration versions created via the API or CLI, in an `uploaded` state, and with no associated runs in progress can be archived using this endpoint. Otherwise, calling this endpoint will result in an error.
+
+| Status  | Response                  | Reason(s)                                                                                                                                     |
+| ------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| [202][] | none                      | Successfully initiated the archive process.                                                                                                   |
+| [409][] | [JSON API error object][] | Configuration version was in a non-archivable state, or the configuration version was created via VCS and cannot be archived through the API. |
+| [404][] | [JSON API error object][] | Configuration version was not found or user not authorized.                                                                                   |
+
+### Request Body
+
+This POST endpoint does not take a request body.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  https://app.terraform.io/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/actions/archive
 ```
 
 ## Available Related Resources
