@@ -32,7 +32,7 @@ GPG signing is required for custom providers, and you must upload the public key
 
 ## Publishing a Provider and Creating a Version
 
-You must create a provider, at least one version, and at least one platform before consumers can use your provider in configurations. Before you begin, confirm that you can access the provider binaries, public GPG signing key, `SHA256SUMS` file, and `SHA256SUMS.sig` file from at least one release. You will upload these artifacts in the following steps.
+You must create a provider, at least one version, and at least one platform for that version before consumers can use your provider in configurations. Before you begin, confirm that you can access the provider binaries, public GPG signing key, `SHA256SUMS` file, and `SHA256SUMS.sig` file from at least one release. You will upload these artifacts in the following steps.
 
 To publish a new provider through the Terraform Cloud API:
 
@@ -57,7 +57,7 @@ To publish a new provider through the Terraform Cloud API:
       https://archivist.terraform.io/v1/object/dmF1b64hd73ghd63
     ```
 
-1. Use the [Upload a Provider Platform](/cloud-docs/api-docs/providers#upload-a-provider-platform-private-provider) endpoint to create a platform for the release. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
+1. Use the [Upload a Provider Platform](/cloud-docs/api-docs/providers#upload-a-provider-platform-private-provider) endpoint to create a platform for the version. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
 
     ```json
     "links": {
