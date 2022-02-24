@@ -75,7 +75,7 @@ This endpoint supports pagination [with standard URL query parameters](/cloud-do
 | Parameter            | Description                                                                                                                                            |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `q`                  | **Optional.** A search query string.  Providers are searchable by both their name and their namespace fields.                                          |
-| `filter[field name]` | **Optional.** If specified, restricts results to those with the matching field name value.  Valid values are `registry_name`, and `organization_name`. |
+| `filter[field name]` | **Optional.** If specified, restricts results to those with the matching field name value. Valid values are `registry_name`, and `organization_name`. |
 | `page[number]`       | **Optional.** If omitted, the endpoint will return the first page.                                                                                     |
 | `page[size]`         | **Optional.** If omitted, the endpoint will return 20 registry providers per page.                                                                     |
 
@@ -318,6 +318,81 @@ curl \
 }
 ```
 
+## Get GPG Keys (Private Provider)
+`GET /api/registry/:registry_name/v2/gpg-keys`
+
+### Parameters
+
+| Parameter            | Description          |
+| -------------------- | -------------------- |
+| `:registry_name`     | Must be `private`.   |
+
+Returns a list of GPG keys that have been added to a private registry. Requires a filter by namespace(s).
+
+| Status  | Response                                             | Reason                                                     |
+| ------- | ---------------------------------------------------- | ---------------------------------------------------------- |
+| [200][] | [JSON API document][] (`type: "registry-providers"`) | The request was successful                                 |
+| [404][] | [JSON API error object][]                            | Providers not found or user unauthorized to perform action |
+
+### Query Parameters
+
+This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+| Parameter            | Description                                                                                                                                                           |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filter[field name]` | **Required.** Restricts results to those with the matching field name value. A valid value is `namespace` and can contain multiples (`filter[namespace]=org1, org2`). |
+
+### Sample Request
+
+```shell
+curl \
+  --request GET \
+  --header "Authorization: Bearer $TOKEN" \
+  https://app.terraform.io/api/registry/private/v2/gpg-keys?filter[namespace]=hashicorp
+```
+
+### Sample Response
+
+```json
+{
+  "data": [
+    {
+      "type": "gpg-keys",
+      "id": "23",
+      "attributes": {
+        "ascii-armor": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmQINB...=txfz\n-----END PGP PUBLIC KEY BLOCK-----\n",
+        "created-at": "2022-02-11T19:16:59Z",
+        "key-id": "32966F3FB5AC1129",
+        "namespace": "hashicorp",
+        "source": "",
+        "source-url": null,
+        "trust-signature": "",
+        "updated-at": "2022-02-11T19:16:59Z"
+      },
+      "links": {
+        "self": "/v2/gpg-keys/23"
+      }
+    }
+  ],
+  "links": {
+    "first": "/v2/gpg-keys?filter%5Bnamespace%5D=hashicorp&page%5Bnumber%5D=1&page%5Bsize%5D=15",
+    "last": "/v2/gpg-keys?filter%5Bnamespace%5D=hashicorp&page%5Bnumber%5D=1&page%5Bsize%5D=15",
+    "next": null,
+    "prev": null
+  },
+  "meta": {
+    "pagination": {
+      "page-size": 15,
+      "current-page": 1,
+      "next-page": null,
+      "prev-page": null,
+      "total-pages": 1,
+      "total-count": 1
+    }
+  }
+}
+```
+
 ## Add a GPG Key (Private Provider)
 
 `POST /api/registry/:registry_name/v2/gpg-keys`
@@ -328,7 +403,7 @@ curl \
 | -------------------- | -------------------- |
 | `:registry_name`     | Must be `private`.   |
 
-Uploads a GPG Key to a private provider. The response will provider a "key-id" which is needed to [Create a Provider Version](#create-a-provider-version) (see below).
+Uploads a GPG Key to a private registry. The response will provide a "key-id" which is needed to [Create a Provider Version](#create-a-provider-version) (see below).
 
 | Status  | Response                                                   | Reason                                                         |
 | ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
@@ -726,7 +801,7 @@ curl \
 | `:organization_name` | The name of the organization to delete a provider version from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team. |
 | `:registry_name`     | Must be `private`.                                                                                                                                                                                                   |
 | `:namespace`         | The namespace of the provider for which the version is being deleted. For private providers this is the same as the `:organization_name` parameter.                                                                  |
-| `:name`              | The name of the provider for which the version is being destroyed.                                                                                                                                                   |
+| `:name`              | The name of the provider for which the version is being deleted.                                                                                                                                                   |
 | `:version`           | The version for the provider that will be deleted along with its corresponding platforms.                                                                                                                            |
 
 
@@ -1041,10 +1116,10 @@ curl \
 | `:organization_name` | The name of the organization to delete a provider platform from. The organization must already exist, and the token authenticating the API request must belong to the "owners" team or a member of the "owners" team.  |
 | `:registry_name`     | Must be `private`.                                                                                                                                                                                                     |
 | `:namespace`         | The namespace of the provider for which the platform is being deleted. For private providers this is the same as the `:organization_name` parameter.                                                                   |
-| `:name`              | The name of the provider for which the platform is being destroyed.                                                                                                                                                    |
-| `:version`           | The version for which the platform is being destroyed.                                                                                                                                                                 |
-| `:os`                | The os of the provider platform that is being destroyed.                                                                                                                                                               |
-| `:arch`              | The architecture of the provider platform that is being destroyed.                                                                                                                                                     |
+| `:name`              | The name of the provider for which the platform is being deleted.                                                                                                                                                    |
+| `:version`           | The version for which the platform is being deleted.                                                                                                                                                                 |
+| `:os`                | The os of the provider platform that is being deleted.                                                                                                                                                               |
+| `:arch`              | The architecture of the provider platform that is being deleted.                                                                                                                                                     |
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
