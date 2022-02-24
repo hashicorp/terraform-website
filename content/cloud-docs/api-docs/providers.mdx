@@ -332,7 +332,7 @@ Returns a list of GPG keys that have been added to a private registry. Requires 
 | Status  | Response                                             | Reason                                                     |
 | ------- | ---------------------------------------------------- | ---------------------------------------------------------- |
 | [200][] | [JSON API document][] (`type: "registry-providers"`) | The request was successful                                 |
-| [404][] | [JSON API error object][]                            | Providers not found or user unauthorized to perform action |
+| [404][] | [JSON API error object][]                            | GPG key not found or user not authorized                   |
 
 ### Query Parameters
 
@@ -403,7 +403,7 @@ curl \
 | -------------------- | -------------------- |
 | `:registry_name`     | Must be `private`.   |
 
-Uploads a GPG Key to a private registry. The response will provide a "key-id" which is needed to [Create a Provider Version](#create-a-provider-version) (see below).
+Uploads a GPG Key to a private registry scoped with a namespace. The response will provide a "key-id" which is needed to [Create a Provider Version](#create-a-provider-version) (see below).
 
 | Status  | Response                                                   | Reason                                                         |
 | ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
@@ -429,12 +429,11 @@ Properties without a default value are required.
 ```json
 {
   "data": {
+    "type": "gpg-keys",
     "attributes": {
       "namespace": "hashicorp",
       "ascii-armor": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmQINB...=txfz\n-----END PGP PUBLIC KEY BLOCK-----\n"
-    },
-    "type": "gpg-keys"
-  }
+    }  }
 }
 ```
 
@@ -471,6 +470,172 @@ curl \
     }
   }
 }
+```
+
+## Get GPG Key (Private Provider)
+
+`GET /api/registry/:registry_name/v2/gpg-keys/:namespace/:key_id`
+
+### Parameters
+
+| Parameter            | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| `:registry_name`     | Must be `private`.                                   |
+| `:namespace`         | The namespace of the provider scoped to the GPG key. | 
+| `:key_id`            | The id of the GPG key.                               |
+
+Gets the content of a GPG key
+
+| Status  | Response                                                   | Reason                                                         |
+| ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
+| [201][] | [JSON API document][] (`type: "gpg-keys"`)                 | Successfully uppdates a GPG key                                |
+| [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.) |
+| [403][] | [JSON API error object][]                                  | Forbidden - not available for public providers                 |
+| [404][] | [JSON API error object][]                                  | GPG key not found or user not authorized                       |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request GET \
+  --data @payload.json \
+  https://app.terraform.io/api/registry/private/v2/gpg-keys/hashicorp/32966F3FB5AC1129
+```
+
+### Sample Response
+```json
+  "data": {
+    "type": "gpg-keys",
+    "id": "2",
+    "attributes": {
+      "ascii-armor": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmQINB...=txfz\n-----END PGP PUBLIC KEY BLOCK-----\n",
+      "created-at": "2022-02-24T17:07:25Z",
+      "key-id": "32966F3FB5AC1129",
+      "namespace": "hashicorp",
+      "source": "",
+      "source-url": null,
+      "trust-signature": "",
+      "updated-at": "2022-02-24T17:07:25Z"
+    },
+    "links": {
+      "self": "/v2/gpg-keys/2"
+    }
+  }
+}
+```
+
+## Update a GPG Key (Private Provider)
+
+`PATCH /api/registry/:registry_name/v2/gpg-keys/:namespace/:key_id`
+
+### Parameters
+
+| Parameter            | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| `:registry_name`     | Must be `private`.                                   |
+| `:namespace`         | The namespace of the provider scoped to the GPG key. | 
+| `:key_id`            | The id of the GPG key.                               |
+
+Updates the GPG key. Only the `namespace` attribute is allowed to be updated and has to match a namespace/organization the User has access to.
+
+| Status  | Response                                                   | Reason                                                         |
+| ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
+| [201][] | [JSON API document][] (`type: "gpg-keys"`)                 | Successfully uppdates a GPG key                                |
+| [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.) |
+| [403][] | [JSON API error object][]                                  | Forbidden - not available for public providers                 |
+| [404][] | [JSON API error object][]                                  | GPG key not found or user not authorized                       |
+
+### Request Body
+
+This PATCH endpoint requires a JSON object with the following properties as a request payload.
+
+Properties without a default value are required.
+
+| Key path                      | Type   | Default | Description                                                                                  |
+| ----------------------------- | ------ | ------- | -------------------------------------------------------------------------------------------- |
+| `data.type`                   | string |         | Must be `"gpg-keys"`.                                                                        |
+| `data.attributes.namespace`   | string |         | The namespace of the provider. Must be the same as the `organization_name` for the provider. |
+
+### Sample Payload
+
+```json
+{
+  "data": {
+    "type": "gpg-keys",
+    "attributes": {
+      "namespace": "new-namespace",
+    }
+  }
+}
+```
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request PATCH \
+  --data @payload.json \
+  https://app.terraform.io/api/registry/private/v2/gpg-keys/hashicorp/32966F3FB5AC1129
+```
+
+### Sample Response
+
+```json
+{
+  "data": {
+    "type": "gpg-keys",
+    "id": "2",
+    "attributes": {
+      "ascii-armor": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmQINB...=txfz\n-----END PGP PUBLIC KEY BLOCK-----\n",
+      "created-at": "2022-02-24T17:07:25Z",
+      "key-id": "32966F3FB5AC1129",
+      "namespace": "new-name",
+      "source": "",
+      "source-url": null,
+      "trust-signature": "",
+      "updated-at": "2022-02-24T17:12:10Z"
+    },
+    "links": {
+      "self": "/v2/gpg-keys/2"
+    }
+  }
+}
+```
+
+## Delete a GPG Key (Private Provider)
+
+`DELETE /api/registry/:registry_name/v2/gpg-keys/:namespace/:key_id`
+
+### Parameters
+
+| Parameter            | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| `:registry_name`     | Must be `private`.                                   |
+| `:namespace`         | The namespace of the provider scoped to the GPG key. | 
+| `:key_id`            | The id of the GPG key.                               |
+
+[permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+| Status  | Response                                                   | Reason                                                         |
+| ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
+| [201][] | [JSON API document][] (`type: "gpg-keys"`)                 | Successfully deletes a GPG key                                 |
+| [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.) |
+| [403][] | [JSON API error object][]                                  | Forbidden - not available for public providers                 |
+| [404][] | [JSON API error object][]                                  | GPG key not found or user not authorized                       |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  --data @payload.json \
+  https://app.terraform.io/api/registry/private/v2/gpg-keys/hashicorp/32966F3FB5AC1129
 ```
 
 ## Create a Provider Version
