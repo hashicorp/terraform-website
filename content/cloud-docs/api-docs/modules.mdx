@@ -110,7 +110,7 @@ Lists the modules that are available to a given organization. This includes the 
 
 | Status  | Response                                           | Reason                                                   |
 | ------- | -------------------------------------------------- | -------------------------------------------------------- |
-| [200][] | [JSON API document][] (`type: "registry-modules"`) | The request was successful                               |
+| [200][] | [JSON API document][] (`type: "registry-modules"`) | Success                                                  |
 | [404][] | [JSON API error object][]                          | Modules not found or user unauthorized to perform action |
 
 ### Query Parameters
@@ -655,7 +655,7 @@ After the registry module version is successfully parsed, its status will become
 
 | Status  | Response                                           | Reason                                                  |
 | ------- | -------------------------------------------------- | ------------------------------------------------------- |
-| [200][] | [JSON API document][] (`type: "registry-modules"`) | The request was successful                              |
+| [200][] | [JSON API document][] (`type: "registry-modules"`) | Success                                                 |
 | [403][] | [JSON API error object][]                          | Forbidden - public module curation disabled             |
 | [404][] | [JSON API error object][]                          | Module not found or user unauthorized to perform action |
 
