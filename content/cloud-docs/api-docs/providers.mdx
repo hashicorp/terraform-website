@@ -638,7 +638,7 @@ curl \
   https://app.terraform.io/api/registry/private/v2/gpg-keys/hashicorp/32966F3FB5AC1129
 ```
 
-## Create a Provider Version
+## Create a Provider Version (Private Provider)
 
 `POST /organizations/:organization_name/registry-providers/:registry_name/:namespace/:name/versions`
 
@@ -853,9 +853,8 @@ curl \
   }
 }
 ```
-### Note
 
-`shasums-uploaded` and `shasums-sig-uploaded` will be false if those files haven't been uploaded to Archivist yet. In this case, instead of including links to `shasums-download` and `shasums-sig-download`, the response will include upload links (`shasums-upload` and `shasums-sig-upload`).
+**Note:** `shasums-uploaded` and `shasums-sig-uploaded` will be false if those files haven't been uploaded to Archivist yet. In this case, instead of including links to `shasums-download` and `shasums-sig-download`, the response will include upload links (`shasums-upload` and `shasums-sig-upload`).
 
 ## Get Version (Private Provider)
 
@@ -950,10 +949,7 @@ curl \
 }
 ```
 
-### Note
-
-`shasums-uploaded` and `shasums-sig-uploaded` will be false if those files haven't been uploaded to Archivist yet. In this case, instead of including links to `shasums-download` and `shasums-sig-download`, the response will include upload links (`shasums-upload` and `shasums-sig-upload`).
-
+**Note:** `shasums-uploaded` and `shasums-sig-uploaded` will be false if those files haven't been uploaded to Archivist yet. In this case, instead of including links to `shasums-download` and `shasums-sig-download`, the response will include upload links (`shasums-upload` and `shasums-sig-upload`).
 
 ## Delete a Version (Private Provider)
 
@@ -1197,9 +1193,7 @@ curl \
 }
 ```
 
-### Note
-
-`provider-binary-uploaded` will be `false` if that file hasn't been uploaded to Archivist yet. In this case, instead of including a link to `provider-binary-download`, the response will include an upload link `provider-binary-upload`.
+**Note:** `provider-binary-uploaded` will be `false` if that file hasn't been uploaded to Archivist yet. In this case, instead of including a link to `provider-binary-download`, the response will include an upload link `provider-binary-upload`.
 
 ## Get Platform (Private Provider)
 
