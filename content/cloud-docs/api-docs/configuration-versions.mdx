@@ -55,10 +55,10 @@ A configuration version created through the API can only be used in runs if it i
 | State                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `pending`              | The initial status of a configuration version after it has been created. Pending configuration versions cannot be used to create new runs.                                                                                                                               |
-| `fetching`             | For configuration versions created via a commit to a connected VCS repository, this state indicates that Terraform Cloud is in the process of fetching the associated files from VCS.                                                                                    |
-| `uploaded`             | The configuration version is fully processed and ready for use in runs.                                                                                                                                                                                                  |
-| `archived`             | All immediate runs are complete and the files associated with this configuration version have been discarded. If the configuration version was created via a connected VCS repository, it may be used in new runs, and Terraform Cloud will re-fetch the files from VCS. |
-| `errored`              | Something went wrong when processing this configuration version. Errored configuration versions cannot be used to create new runs.                                                                                                                                       |
+| `fetching`             | For configuration versions created from a commit to a connected VCS repository, Terraform Cloud is currently fetching the associated files from VCS.                                                                                    |
+| `uploaded`             | The configuration version is fully processed and can be used in runs.                                                                                                                                                                                                  |
+| `archived`             | All immediate runs are complete and Terraform Cloud has discarded the files associated with this configuration version. If the configuration version was created through a connected VCS repository, it can still be used in new runs. In those cases, Terraform Cloud will re-fetch the files from VCS. |
+| `errored`              | Terraform Cloud could not process this configuration version, and it cannot be used to create new runs.                                                                                                                                       |
 
 ## List Configuration Versions
 
@@ -358,18 +358,16 @@ curl \
 
 | Parameter                   | Description                                    |
 | --------------------------- | ---------------------------------------------- |
-| `configuration_version_id`  | The ID of the configuration version to archive |
+| `configuration_version_id`  | The ID of the configuration version to archive. |
 
-Notifies Terraform Cloud to discard the uploaded `.tar.gz` file associated with this configuration version.
+This endpoint notifies Terraform Cloud to discard the uploaded `.tar.gz` file associated with this configuration version. This endpoint can only archive configuration versions that were created with the API or CLI, are in an `uploaded` [state](#configuration-version-states), and have no runs in progress. Otherwise, calling this endpoint will result in an error. 
 
-Only configuration versions created via the API or CLI, in an `uploaded` state, and with no associated runs in progress can be archived using this endpoint. Otherwise, calling this endpoint will result in an error.
-
-VCS configuration versions are archived automatically once their runs are complete, then re-fetched for subsequent runs.
+Terraform Cloud automatically archives configuration versions created through VCS when associated runs are complete and then re-fetches the files for subsequent runs.
 
 | Status  | Response                  | Reason(s)                                                                                                                                     |
 | ------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | [202][] | none                      | Successfully initiated the archive process.                                                                                                   |
-| [409][] | [JSON API error object][] | Configuration version was in a non-archivable state, or the configuration version was created via VCS and cannot be archived through the API. |
+| [409][] | [JSON API error object][] | Configuration version was in a non-archivable state, or the configuration version was created with VCS and cannot be archived through the API. |
 | [404][] | [JSON API error object][] | Configuration version was not found or user not authorized.                                                                                   |
 
 ### Request Body
