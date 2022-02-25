@@ -295,7 +295,7 @@ bash ./install.sh \
     public-address=5.6.7.8
 ```
 
-Note the `private-address` and `public-address` flags provided to the installer.  These may be left out, but the installer will prompt for them if it is unable to determine appropriate values automatically. If the instance will not have a separate public address, you may provide the private address for both values.
+Note the `private-address` and `public-address` flags provided to the installer.  If these are left out the installer will attempt to determine them itself, and will prompt for them if it is unable to. If using cloud-init or other non-interactive method to run the installer you will see this prompt as log output, but the installer will continue to run anyway and not supply the required ip address values. If the installer is unable to determine the IP addresses and you do not provide them, it will appear that the install has been successful, but functionality of Terraform Enterprise will be degraded. For example you may see a `Internal error: SIW-001` when importing modules to the private registry and when you run the `tfe-admin health-check` command you'll see that the Archivist and Vault containers are unhealthy. If the virtual machine instance will not have its own separate public ip address (i.e. you are using a load balancer and a private subnet), you may provide the private address for both values.
 
 ### Airgapped
 
