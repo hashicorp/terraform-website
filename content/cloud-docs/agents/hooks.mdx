@@ -34,7 +34,8 @@ Please note the following behavior when using hooks:
 - If a hook exits with a non-zero exit code, the Terraform run will fail
 	immediately.
 - The standard output and standard error from the hook will be printed
-	alongside the Terraform run output.
+	alongside the Terraform run output in the Terraform Cloud/Enterprise user
+	interface.
 - The hook name must match one of the [supported hooks](#supported-hooks). You
 	cannot customize or change these names. Because of this, there can only be
 	one hook of each type configured for each agent. For example, you could
@@ -96,9 +97,10 @@ example creates a `pre-plan` hook that prints a message when it runs.
   tfc-agent
   ```
 
-1. The agent will now trigger configured hooks at the appropriate points during
-Terraform runs. The standard output and standard error from the hook will be
-printed alongside the Terraform run.
+1. The agent will now trigger configured hooks at the appropriate points
+during Terraform runs. The standard output and standard error from the hook
+will be printed alongside the Terraform run in the Terraform Cloud/Enterprise
+user interface.
 
   ```
   Terraform v1.1.0
@@ -163,9 +165,10 @@ example creates a `pre-plan` hook that prints a message when it runs.
     hashicorp/tfc-agent:your-tag
   ```
 
-1. The agent will now trigger configured hooks at the appropriate points during
-Terraform runs. The standard output and standard error from the hook will be
-printed alongside the Terraform run.
+1. The agent will now trigger configured hooks at the appropriate points
+during Terraform runs. The standard output and standard error from the hook
+will be printed alongside the Terraform run in the Terraform Cloud/Enterprise
+user interface.
 
   ```
   Terraform v1.1.0
