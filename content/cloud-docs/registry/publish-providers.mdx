@@ -28,11 +28,11 @@ Private providers do not currently support documentation.
 
 ### Signed Releases
 
-GPG signing is required for custom providers, and you must upload the public key of the GPG keypair used to sign the release. Refer to [Preparing and Adding a Signing Key](/registry/providers/publishing#preparing-and-adding-a-signing-key) for more details. Unlike the public Terraform Registry, the private registry does not automatically upload new releases. You must manually add new provider versions and the associated release files.
+GPG signing is required for private providers, and you must upload the public key of the GPG keypair used to sign the release. Refer to [Preparing and Adding a Signing Key](/registry/providers/publishing#preparing-and-adding-a-signing-key) for more details. Unlike the public Terraform Registry, the private registry does not automatically upload new releases. You must manually add new provider versions and the associated release files.
 
 ## Publishing a Provider and Creating a Version
 
-You must create a provider, at least one version, and at least one platform for that version before consumers can use your provider in configurations. Before you begin, confirm that you can access the provider binaries, public GPG signing key, `SHA256SUMS` file, and `SHA256SUMS.sig` file from at least one release. You will upload these artifacts in the following steps.
+You must create a provider, at least one version, and at least one platform for that version before consumers can use the provider in configurations. Before you begin, confirm that you can access the provider binaries, public GPG signing key, `SHA256SUMS` file, and `SHA256SUMS.sig` file from at least one release. You will upload these artifacts in the following steps.
 
 To publish a new provider through the Terraform Cloud API:
 
@@ -87,15 +87,15 @@ Consumers cannot use a private provider version until you upload all required [r
 
 ## Managing Private Providers
 
-Use the [Registry Providers API](/cloud-docs/api-docs/providers) to create, read, update, and delete the following:
+Use the Terraform Cloud API to create, read, update, and delete the following:
 
-- GPG keys
-- Private providers
-- Provider versions and platforms
+- [GPG keys](/cloud-docs/api-docs/private-registry/gpg-keys)
+- [Private providers](/cloud-docs/api-docs/private-registry/providers)
+- [Provider versions and platforms](/cloud-docs/api-docs/private-registry/provider-versions-platforms)
 
 ## Deleting Private Providers and Versions
 
-In addition to the [Registry Providers API](/cloud-docs/api-docs/providers), you can delete providers or provider versions through the Terraform Cloud API. To delete providers and versions:
+In addition to the [Registry Providers API](/cloud-docs/api-docs/private-registry/providers#delete-a-provider), you can delete providers or provider versions through the Terraform Cloud UI. To delete providers and versions in the UI:
 
 1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
 1. If you want to delete a single version, use the **Versions** menu to select it.
