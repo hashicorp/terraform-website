@@ -36,12 +36,12 @@ You must create a provider, at least one version, and at least one platform for 
 
 To publish a new provider through the Terraform Cloud API:
 
-1. Use the [Upload a GPG key endpoint](/cloud-docs/api-docs/providers#upload-a-gpg-key-private-provider) to add the public key that matches the signing key for the release. The response contains a `key-id` that you will use to create a provider version.
+1. Use the [Add a GPG key endpoint](/cloud-docs/api-docs/providers#add-a-gpg-key-private-provider) to add the public key that matches the signing key for the release. The response contains a `key-id` that you will use to create a provider version.
 
     ```json
     "key-id": "32966F3FB5AC1129"
     ```
-1. Use the [Create a Provider Version endpoint](/cloud-docs/api-docs/providers#create-a-provider-version) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
+1. Use the [Create a Provider Version endpoint](/cloud-docs/api-docs/providers#create-a-provider-version-private-provider) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
 
     ```json
     "links": {
@@ -57,7 +57,7 @@ To publish a new provider through the Terraform Cloud API:
       https://archivist.terraform.io/v1/object/dmF1b64hd73ghd63
     ```
 
-1. Use the [Upload a Provider Platform](/cloud-docs/api-docs/providers#upload-a-provider-platform-private-provider) endpoint to create a platform for the version. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
+1. Use the [Create a Provider Platform endpoint](/cloud-docs/api-docs/providers#create-a-provider-platform-private-provider) to create a platform for the version. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
 
     ```json
     "links": {
@@ -82,31 +82,34 @@ Consumers cannot use a private provider version until you upload all required [r
 
 1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
 1. Use the version menu to navigate to the version you want to check.
-1. Open the **Manage Provider** menu and select **View release files**. The **Release Files** page appears containing lists of uploaded and missing files for the current version.
+1. Open the **Manage Provider** menu and select **Show release files**. The **Release Files** page appears containing lists of uploaded and missing files for the current version.
 
 
 ## Managing Private Providers
 
-Use the [Registry Providers API](/cloud-docs/api-docs/providers) to do the following:
+Use the [Registry Providers API](/cloud-docs/api-docs/providers) to create, read, update, and delete the following:
 
-- Add, update, and delete GPG keys
-- Add, update, and delete provider versions and platforms
-- Add, update, and delete private providers
+- GPG keys
+- Private providers
+- Provider versions and platforms
 
-## Deleting Private Providers
+## Deleting Private Providers and Versions
 
-You can delete private providers through the [Registry Providers API](/cloud-docs/api-docs/providers) or through the Terraform Cloud UI. To delete providers through the UI:
+In addition to the [Registry Providers API](/cloud-docs/api-docs/providers), you can delete providers or provider versions through the Terraform Cloud API. To delete providers and versions:
 
 1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
 1. If you want to delete a single version, use the **Versions** menu to select it.
-1. Open the **Manage Provider** menu and select **Delete Provider**. The **Delete Provider** box appears.
+1. Open the **Manage Provider** menu and select **Delete Provider**. The **Delete Provider from Organization** box appears.
 1. Select an action from the menu:
 
-    - **Delete only this provider version:** Deletes only the version of the provider you were viewing when you clicked **Delete Provider**.
+    - **Delete only this provider version:** Deletes only the version of the provider you are currently viewing.
     - **Delete all versions for this provider:** Deletes the entire provider and all associated versions.
-1. Type the provider name and click **Delete**.
 
-Your provider has been deleted from this organization's private registry and all of its data has been removed. Consumers will no longer be able to reference this provider in configurations.
+    ![Terraform Cloud screenshot: the deletion dialog](/img/docs/publish-providers-delete.png)
+
+1. Type the provider name into the confirmation box and click **Delete**.
+
+The provider version or entire provider has been deleted from this organization's private registry and its data has been removed. Consumers will no longer be able to reference it in configurations.
 
 ### Restoring a Deleted Provider
 
