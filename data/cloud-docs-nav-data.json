@@ -367,7 +367,7 @@
             "path": "api-docs/private-registry/providers"
           },
           {
-            "title": "Provider Versions and Platforms",
+            "title": "Private Provider Versions and Platforms",
             "path": "api-docs/private-registry/provider-versions-platforms"
           },
           { "title": "GPG Keys", "path": "api-docs/private-registry/gpg-keys" }
