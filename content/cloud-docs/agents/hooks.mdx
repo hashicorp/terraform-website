@@ -1,0 +1,178 @@
+---
+page_title: Hooks - Terraform Cloud Agents - Terraform Cloud and Terraform Enterprise
+description: >-
+  Terraform Cloud Agent hooks are custom programs that run at strategic points
+  during Terraform runs.
+---
+
+# Hooks
+
+Terraform Cloud Agents support running custom programs, or hooks, during
+strategic points of a Terraform run. These hooks allow you to extend the
+functionality of Terraform runs. For example, you may create a hook to
+dynamically download software required by the Terraform run or send an HTTP
+request to a system to kick off an external workflow.
+
+## Supported Hooks
+
+Terraform Cloud Agents support the following hooks:
+
+- `pre-plan` - Runs before `terraform init` during a `plan` operation.
+
+- `post-plan` - Runs after `terraform plan` during a `plan` operation
+	regardless of whether or not `terraform plan` completed successfully.
+
+- `pre-apply` - Runs before `terraform init` during an `apply` operation.
+
+- `post-apply` - Runs after `terraform apply` during an `apply` operation
+	regardless of whether or not `terraform apply` completed successfully.
+
+## Hook Behavior 
+
+Please note the following behavior when using hooks:
+
+- If a hook exits with a non-zero exit code, the Terraform run will fail
+	immediately.
+- The standard output and standard error from the hook will be printed
+	alongside the Terraform run output in the Terraform Cloud/Enterprise user
+	interface.
+- The hook name must match one of the [supported hooks](#supported-hooks). You
+	cannot customize or change these names. Because of this, there can only be
+	one hook of each type configured for each agent. For example, you could
+	create a `pre-plan` and `pre-apply` hook, but you cannot create two
+	`pre-plan` hooks.
+- Each hook must have the execute permission set.
+- Each hook has a 60 second timeout. If a hook times out the Terraform run will
+	fail immediately.
+- Environment variables do not persist across hooks. For example, if a
+	`pre-plan` hook exports environment variables, they will not be available
+	during `terraform plan` or during the `post-plan` hook. Similarly, if
+	`terraform plan` exports environment variables, they will not be available
+	during the `post-plan` hook.
+
+## Configuration
+
+Hooks are stored within the `hooks` subdirectory of the agent's data directory.
+By default, that's `~/.tfc-agent/hooks`.
+
+To configure a hook, create a file named `terraform-${HOOK}` where `${HOOK}`
+is one of the hooks listed above. Then store that file within the `hooks`
+subdirectory and make it executable. The agent will trigger configured hooks
+at the appropriate points during Terraform runs.
+
+For example, a `pre-plan` hook is an executable file named
+`~/.tfc-agent/hooks/terraform-pre-plan`. When this hook is configured, an agent
+will run this hook before `terraform init` during a `plan` operation.
+
+### Running an Agent as a Binary
+
+To configure hooks when running the `tfc-agent` binary directly on a Linux
+instance:
+
+1. Create the `hooks` directory within the agent's data directory.
+
+  ```sh
+  mkdir -p ~/.tfc-agent/hooks
+  ```
+
+1. Create one or more hooks inside the `hooks` directory. The following
+example creates a `pre-plan` hook that prints a message when it runs.
+
+  ```sh
+  cat <<EOF > ~/.tfc-agent/hooks/terraform-pre-plan
+  #!/bin/bash
+  echo "Example hook output."
+  EOF
+  ```
+
+1. Make the hooks executable.
+
+  ```sh
+  chmod +x ~/.tfc-agent/hooks/terraform-pre-plan
+  ```
+
+1. Start the agent.
+
+  ```sh
+  tfc-agent
+  ```
+
+1. The agent will now trigger configured hooks at the appropriate points
+during Terraform runs. The standard output and standard error from the hook
+will be printed alongside the Terraform run in the Terraform Cloud/Enterprise
+user interface.
+
+  ```
+  Terraform v1.1.0
+  Executing pre-plan hook...
+  Example hook output.
+  Initializing plugins and modules...
+  ```
+
+### Running an Agent with Docker 
+
+When running `tfc-agent` using Docker, you must build a new Docker image
+containing the hooks. To configure hooks:
+
+1. Create a new directory and navigate into it. This limits the Docker build
+context to this new directory.
+
+  ```sh
+  mkdir hooks-docker-example
+  cd hooks-docker-example
+  ```
+
+1. Create a `hooks` directory.
+
+  ```sh
+  mkdir hooks
+  ```
+
+1. Create one or more hooks inside the `hooks` directory. The following
+example creates a `pre-plan` hook that prints a message when it runs.
+
+  ```sh
+  cat <<EOF > hooks/terraform-pre-plan
+  #!/bin/bash
+  echo "Example hook output."
+  EOF
+  ```
+
+1. Make the hooks executable.
+
+  ```sh
+  chmod +x hooks/terraform-pre-plan
+  ```
+
+1. Create a `Dockerfile` with the following content.
+
+  ```
+  FROM hashicorp/tfc-agent:latest
+  RUN mkdir /home/tfc-agent/.tfc-agent
+  ADD --chown=tfc-agent:tfc-agent hooks /home/tfc-agent/.tfc-agent/hooks
+  ```
+
+1. Build a new `hashicorp/tfc-agent` Docker image using the `Dockerfile`.
+
+  ```
+  docker build -t hashicorp/tfc-agent:your-tag .
+  ```
+
+1. Start the agent using the Docker image.
+
+  ```sh
+  docker run -e TFC_AGENT_TOKEN=your-token -e TFC_AGENT_NAME=your-agent-name \
+    hashicorp/tfc-agent:your-tag
+  ```
+
+1. The agent will now trigger configured hooks at the appropriate points
+during Terraform runs. The standard output and standard error from the hook
+will be printed alongside the Terraform run in the Terraform Cloud/Enterprise
+user interface.
+
+  ```
+  Terraform v1.1.0
+  Executing pre-plan hook...
+  Example hook output.
+  Initializing plugins and modules...
+  ```
