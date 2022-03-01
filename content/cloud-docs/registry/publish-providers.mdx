@@ -36,12 +36,12 @@ You must create a provider, at least one version, and at least one platform for 
 
 To publish a new provider through the Terraform Cloud API:
 
-1. Use the [Add a GPG key endpoint](/cloud-docs/api-docs/providers#add-a-gpg-key-private-provider) to add the public key that matches the signing key for the release. The response contains a `key-id` that you will use to create a provider version.
+1. Use the [Add a GPG key endpoint](/cloud-docs/api-docs/private-registry/gpg-keys#add-a-gpg-key) to add the public key that matches the signing key for the release. The response contains a `key-id` that you will use to create a provider version.
 
     ```json
     "key-id": "32966F3FB5AC1129"
     ```
-1. Use the [Create a Provider Version endpoint](/cloud-docs/api-docs/providers#create-a-provider-version-private-provider) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
+1. Use the [Create a Provider Version endpoint](/cloud-docs/api-docs/private-registry/provider-versions-platforms#create-a-provider-version) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
 
     ```json
     "links": {
@@ -57,7 +57,7 @@ To publish a new provider through the Terraform Cloud API:
       https://archivist.terraform.io/v1/object/dmF1b64hd73ghd63
     ```
 
-1. Use the [Create a Provider Platform endpoint](/cloud-docs/api-docs/providers#create-a-provider-platform-private-provider) to create a platform for the version. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
+1. Use the [Create a Provider Platform endpoint](/cloud-docs/api-docs/private-registry/provider-versions-platforms#create-a-provider-platform) to create a platform for the version. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
 
     ```json
     "links": {
@@ -81,7 +81,7 @@ The provider is available in your organization’s Terraform Cloud private regis
 Consumers cannot use a private provider version until you upload all required [release files](#release-files). To determine whether these files have been uploaded:
 
 1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
-1. Use the version menu to navigate to the version you want to check.
+1. Use the version menu to navigate to the version you want to check. The UI shows a warning banner for versions that do not have all required release files.
 1. Open the **Manage Provider** menu and select **Show release files**. The **Release Files** page appears containing lists of uploaded and missing files for the current version.
 
 
@@ -95,7 +95,7 @@ Use the Terraform Cloud API to create, read, update, and delete the following:
 
 ## Deleting Private Providers and Versions
 
-In addition to the [Registry Providers API](/cloud-docs/api-docs/private-registry/providers#delete-a-provider), you can delete providers or provider versions through the Terraform Cloud UI. To delete providers and versions in the UI:
+In addition to the [Registry Providers API](/cloud-docs/api-docs/private-registry/providers#delete-a-provider), you can delete providers and provider versions through the Terraform Cloud UI. To delete providers and versions in the UI:
 
 1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
 1. If you want to delete a single version, use the **Versions** menu to select it.
