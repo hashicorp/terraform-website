@@ -1,0 +1,118 @@
+---
+page_title: >-
+  Publishing Private Providers - Private Registry
+description: >-
+  Prepare private providers for publishing, add them to the private registry, and
+  release new versions.
+---
+
+# Publishing Private Providers to the Terraform Cloud Private Registry
+
+In addition to [curating public providers from the Terraform Registry](/cloud-docs/registry/add), you can publish private providers to an organization's Terraform Cloud private registry. Once you have published a private provider through the API, members of your organization can search for it in the private registry UI and use it in configurations.
+
+-> **Note:** Terraform Enterprise does not support private providers.
+
+## Requirements
+
+Review the following before publishing a new provider.
+
+### Permissions
+
+You must be a member of the [owners team](/cloud-docs/users-teams-organizations/permissions#organization-owners) or a team with [Manage Private Registry permissions](/cloud-docs/users-teams-organizations/permissions#manage-private-registry) to publish and delete private providers from the private registry.
+
+### Release Files
+
+You must publish at least one version of your provider that follows [semantic versioning format](http://semver.org). For each version, you must upload the `SHA256SUMS` file, `SHA256SUMS.sig` file, and one or more provider binaries. Using GoReleaser to [create a release on GitHub](/registry/providers/publishing#creating-a-github-release) or [create a release locally](/registry/providers/publishing#using-goreleaser-locally) generates these files automatically. The private registry does not have strict naming conventions, but we recommend using GoReleaser file naming schemes for consistency.
+
+Private providers do not currently support documentation.
+
+### Signed Releases
+
+GPG signing is required for private providers, and you must upload the public key of the GPG keypair used to sign the release. Refer to [Preparing and Adding a Signing Key](/registry/providers/publishing#preparing-and-adding-a-signing-key) for more details. Unlike the public Terraform Registry, the private registry does not automatically upload new releases. You must manually add new provider versions and the associated release files.
+
+## Publishing a Provider and Creating a Version
+
+You must create a provider, at least one version, and at least one platform for that version before consumers can use the provider in configurations. Before you begin, confirm that you can access the provider binaries, public GPG signing key, `SHA256SUMS` file, and `SHA256SUMS.sig` file from at least one release. You will upload these artifacts in the following steps.
+
+To publish a new provider through the Terraform Cloud API:
+
+1. Use the [Add a GPG key endpoint](/cloud-docs/api-docs/private-registry/gpg-keys#add-a-gpg-key) to add the public key that matches the signing key for the release. The response contains a `key-id` that you will use to create a provider version.
+
+    ```json
+    "key-id": "32966F3FB5AC1129"
+    ```
+1. Use the [Create a Provider Version endpoint](/cloud-docs/api-docs/private-registry/provider-versions-platforms#create-a-provider-version) to create a version with the `key-id` from the previous step. The response includes URL links that you will use to upload the `SHA256SUMS` and `SHA256.sig` files.
+
+    ```json
+    "links": {
+        "shasums-upload":     "https://archivist.terraform.io/v1/object/dmF1b64hd73ghd63",
+        "shasums-sig-upload": "https://archivist.terraform.io/v1/object/dmF1b37dj37dh33d"
+      }
+    ```
+
+1. Upload the `SHA256SUMS` and `SHA256SUMS.sig` files to the URLs returned in the previous step. The example command below uploads the files from a local machine.
+
+    ```
+    $ curl -T local-example/terraform-provider-random_3.1.3_SHA256SUMS
+      https://archivist.terraform.io/v1/object/dmF1b64hd73ghd63
+    ```
+
+1. Use the [Create a Provider Platform endpoint](/cloud-docs/api-docs/private-registry/provider-versions-platforms#create-a-provider-platform) to create a platform for the version. Platforms are binaries that allow the provider to run on a particular operating system and architecture combination (e.g., Linux and AMD64). The response includes a `provider-binary-upload` URL that you will use to upload the binary file for the platform.
+
+    ```json
+    "links": {
+          "provider-binary-upload": "https://archivist.terraform.io/v1/object/dmF1b45c367djh45nj78"
+        }
+    ```
+
+1. Upload the platform binary file to the URL from the previous step. The example command below uploads the binary from a local machine.
+
+    ```
+    $ curl -T local-example/terraform-provider-random_3.1.3_linux_amd64.zip
+      https://archivist.terraform.io/v1/object/dmF1b45c367djh45nj78
+    ```
+
+1. (Optional) Repeat steps 4 and 5 to add additional platform binaries for the release.
+
+The provider is available in your organization’s Terraform Cloud private registry. Users can search for it in the private registry UI and begin using it in configurations.
+
+## Checking Release Files
+
+Consumers cannot use a private provider version until you upload all required [release files](#release-files). To determine whether these files have been uploaded:
+
+1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
+1. Use the version menu to navigate to the version you want to check. The UI shows a warning banner for versions that do not have all required release files.
+1. Open the **Manage Provider** menu and select **Show release files**. The **Release Files** page appears containing lists of uploaded and missing files for the current version.
+
+
+## Managing Private Providers
+
+Use the Terraform Cloud API to create, read, update, and delete the following:
+
+- [GPG keys](/cloud-docs/api-docs/private-registry/gpg-keys)
+- [Private providers](/cloud-docs/api-docs/private-registry/providers)
+- [Provider versions and platforms](/cloud-docs/api-docs/private-registry/provider-versions-platforms)
+
+## Deleting Private Providers and Versions
+
+In addition to the [Registry Providers API](/cloud-docs/api-docs/private-registry/providers#delete-a-provider), you can delete providers and provider versions through the Terraform Cloud UI. To delete providers and versions in the UI:
+
+1. Click **Registry** in the top navigation bar and click the private provider to go to its details page.
+1. If you want to delete a single version, use the **Versions** menu to select it.
+1. Open the **Manage Provider** menu and select **Delete Provider**. The **Delete Provider from Organization** box appears.
+1. Select an action from the menu:
+
+    - **Delete only this provider version:** Deletes only the version of the provider you are currently viewing.
+    - **Delete all versions for this provider:** Deletes the entire provider and all associated versions.
+
+    ![Terraform Cloud screenshot: the deletion dialog](/img/docs/publish-providers-delete.png)
+
+1. Type the provider name into the confirmation box and click **Delete**.
+
+The provider version or entire provider has been deleted from this organization's private registry and its data has been removed. Consumers will no longer be able to reference it in configurations.
+
+### Restoring a Deleted Provider
+
+Deletion is permanent, but you can restore a deleted private provider by re-adding it to your organization and recreating its versions and platforms.
+
+

@@ -1,38 +1,23 @@
 ---
 page_title: Terraform Registry - Private Registry
 description: >-
-  Terraform can load private modules from private registries via Terraform
-  Cloud.
+  Terraform configuration can use private modules and providers from Terraform Cloud private registries.
 ---
-
+  
 # Private Registries
 
-The registry at [registry.terraform.io](https://registry.terraform.io)
-only hosts public modules, but most organizations have some modules that
-can't, shouldn't, or don't need to be public.
+The Terraform Registry at [registry.terraform.io](https://registry.terraform.io) hosts public modules and providers, but most organizations use modules or providers that cannot or do not need to be publicly available.
 
-You can load private modules [directly from version control and other
-sources](/language/modules/sources), but those sources don't support [version
-constraints](/language/modules/syntax#version) or a browsable
-marketplace of modules, both of which are important for enabling a
-producers-and-consumers content model in a large organization.
+You can load private modules [directly from version control and other sources](/language/modules/sources), but those methods do not support [version constraints](/language/modules/syntax#version) or a browsable marketplace, both of which are important for enabling a producers-and-consumers content model in a large organization. You will benefit from a private registry if your teams need access to a common list of providers and modules.
 
-If your organization is specialized enough that teams frequently use modules
-created by other teams, you will benefit from a private module registry.
+## Terraform Cloud Private Registry
 
-## Terraform Cloud's Private Registry
+[Terraform Cloud](https://www.hashicorp.com/products/terraform) includes a [private registry](/cloud-docs/registry) that is available to all accounts, including free organizations. Unlike the public registry, the private registry can import modules from your private VCS repositories on any of Terraform Cloud's supported VCS providers. It also lets you upload and manage private, custom providers through the Terraform Cloud API and curate a list of commonly-used public providers and modules.
 
-[Terraform Cloud](https://www.hashicorp.com/products/terraform)
-includes a private module registry. It is available to all accounts, including free organizations.
+You can seamlessly [reference private modules and providers](/cloud-docs/registry/using) in your Terraform configurations, and the Terraform Cloud UI provides a searchable marketplace to help users find the components they need.
 
-It uses the same VCS-backed tagged release workflow as the Terraform Registry,
-but imports modules from your private VCS repos (on any of Terraform Cloud's supported VCS
-providers) instead of requiring public GitHub repos. You can seamlessly
-reference private modules in your Terraform configurations (just include a
-hostname in the module source), and Terraform Cloud's UI provides a searchable marketplace
-of private modules to help your users find the code they need.
+-> **Note:** Terraform Enterprise does not support private providers.
 
-[Terraform Cloud's private module registry is documented here.](/cloud-docs/registry)
 
 ## Other Private Registries
 

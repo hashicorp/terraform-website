@@ -1,19 +1,22 @@
 ---
 page_title: >-
-  Using Modules - Private Module Registry - Terraform Cloud and Terraform
+  Using Providers and Modules - Private Module Registry - Terraform Cloud and Terraform
   Enterprise
 description: >-
-  Find available providers and modules, include them in configurations, and run
-  configurations with private and public modules.
+  Find available providers and modules and include them in configurations.
 ---
 
 # Using Providers and Modules from the Private Registry
 
-All users in an organization can view the Terraform Cloud private registry and use the available providers and modules. A private registry has a few key differences from the [public Terraform Registry](/registry):
+All users in an organization can view the Terraform Cloud private registry and use the available providers and modules. A private registry has some key requirements and differences from the [public Terraform Registry](/registry):
 
 - **Location:** You must use Terraform Cloud's web UI to search for providers, modules, and usage examples.
-- **Module `source` strings:** Private modules use a [four-part format](/cloud-docs/registry/using#using-modules-in-configurations): `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
-- **Authentication:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs. But when you run Terraform on the command line, you must [authenticate](/cloud-docs/registry/using#authentication) to Terraform Cloud or your Terraform Enterprise instance.
+- **Provider and Module block `source` argument:** Private providers and modules use a [different format](/cloud-docs/registry/using#using-private-providers-and-modules-in-configurations).
+- **Terraform version:** Terraform Cloud workspaces using version 0.11 and higher can automatically access your private modules during Terraform runs, and workspaces using version 0.13 and higher can also automatically access private providers.
+- **Authentication:** If you run Terraform on the command line, you must [authenticate](/cloud-docs/registry/using#authentication) to Terraform Cloud or your Terraform Enterprise instance to use providers and modules in your organization’s private registry.
+
+-> **Note:** Terraform Enterprise does not support private providers.
+
 
 ## Finding Providers and Modules
 
@@ -41,9 +44,11 @@ Use the **Submodules** menu to navigate to the detail pages for any nested modul
 
 ![Terraform Cloud screenshot: a module submodules button](/img/docs/using-submodules-dropdown.png)
 
-## Using Providers in Configurations
+## Using Public Providers and Modules in Configurations
 
-The syntax for public providers in a private registry is the same as for providers that you use directly from the public Terraform Registry. The syntax for the [provider block](/language/providers/configuration#provider-configuration-1) `source` argument is `<NAMESPACE>/<PROVIDER>`.
+> **Hands-on:** Try the [Use Modules from the Registry](https://learn.hashicorp.com/tutorials/terraform/module-use?in=terraform/modules) tutorial on HashiCorp Learn.
+
+The syntax for public providers in a private registry is the same as for providers that you use directly from the public Terraform Registry. The syntax for the [provider block](/language/providers/configuration#provider-configuration-1) `source` argument is `<NAMESPACE>/<PROVIDER_NAME>`.
 
 ```hcl
 terraform {
@@ -55,13 +60,7 @@ terraform {
   }
 ```
 
-## Using Modules in Configurations
-
-> **Hands-on:** Try the [Use Modules from the Registry](https://learn.hashicorp.com/tutorials/terraform/module-use?in=terraform/modules) tutorial on HashiCorp Learn.
->
-> <br />
-
-The syntax for referencing publicly curated modules in the [module block](/language/modules/syntax) `source` argument is `<NAMESPACE>/<MODULE NAME>/<PROVIDER>`.
+The syntax for referencing public modules in the [module block](/language/modules/syntax) `source` argument is `<NAMESPACE>/<MODULE_NAME>/<PROVIDER_NAME>`.
 
 ```hcl
 module "subnets" {
@@ -70,10 +69,24 @@ module "subnets" {
 }
 ```
 
-The syntax for referencing private modules in the [module block](/language/modules/syntax) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE NAME>/<PROVIDER>`.
+## Using Private Providers and Modules in Configurations
+
+The syntax for referencing private providers in the [provider block](/language/providers/configuration#provider-configuration-1) `source` argument is `<HOSTNAME>/<NAMESPACE>/<PROVIDER_NAME>`. For the SaaS version of Terraform Cloud, the hostname is `app.terraform.io`.
+
+```hcl
+terraform {
+  required_providers {
+    random = {
+      source = "app.terraform.io/demo-custom-provider/random"
+      version = "1.1.0"
+    }
+  }
+```
+
+The syntax for referencing private modules in the [module block](/language/modules/syntax) `source` argument is `<HOSTNAME>/<ORGANIZATION>/<MODULE_NAME>/<PROVIDER_NAME>`.
 
 - **Hostname:** For the SaaS version of Terraform Cloud, use `app.terraform.io`. In Terraform Enterprise, use the hostname for your instance or the [generic hostname](/cloud-docs/registry/using#generic-hostname-terraform-enterprise).
-- **Organization:** If you are using a shared module with Terraform Enterprise, the module's organization name may be different than your organization's name. Check the source string at the top of the module's registry page to find the proper organization name.
+- **Organization:** If you are using a shared module with Terraform Enterprise, the module's organization name may be different from your organization's name. Check the source string at the top of the module's registry page to find the proper organization name.
 
 ```hcl
 module "vpc" {
@@ -82,7 +95,6 @@ module "vpc" {
 }
 ```
 
-To get started, you can copy and paste the usage example on the module's details page or use the [configuration designer](/cloud-docs/registry/design) to select multiple modules and fill in their variables.
 
 ### Generic Hostname - Terraform Enterprise
 
@@ -99,37 +111,36 @@ module "vpc" {
 
 To test configurations on a developer workstation without the remote backend configured, you must replace the generic hostname with a literal hostname in all module sources and then change them back before committing to VCS. We are working on making this workflow smoother, but we currently only recommend `localterraform.com` for large organizations that use multiple Terraform Enterprise instances.
 
-### Module Availability
+### Provider and Module Availability
 
-A workspace can only use private modules from its own organization's registry. When using modules from multiple organizations in the same configuration, we recommend:
+A workspace can only use private providers and modules from its own organization's registry. When using providers or modules from multiple organizations in the same configuration, we recommend:
 
-- **Terraform Cloud:** [Add modules to the registry](/cloud-docs/registry/publish#sharing-modules-across-organizations) for each organization that requires access.
+- **Terraform Cloud:** [Add providers and modules to the registry](/cloud-docs/registry/publish#sharing-modules-across-organizations) for each organization that requires access.
 
-- **Terraform Enterprise:** Check your site's [module sharing](/enterprise/admin/application/module-sharing) configuration. Note that in Terraform Enterprise v202012-1 or higher, workspaces can also use private modules from organizations that are sharing modules with the workspace's organization.
+- **Terraform Enterprise:** Check your site's [module sharing](/enterprise/admin/application/module-sharing) configuration. Note that in Terraform Enterprise v202012-1 or higher, workspaces can also use private modules from organizations that are sharing modules with the workspace's organization. Private providers are not available in Terraform Enterprise.
 
-## Running Configurations with Private Modules
+## Running Configurations with Private Providers and Modules
 
 ### Version Requirements
 
-Terraform 0.11 or later is required to:
+Terraform version 0.11 or later is required to use private modules in Terraform cloud workspaces and to use the CLI to apply configurations with private modules. Terraform version 0.13 and later is required to use private providers in Terraform Cloud workspaces and apply configurations with private providers.
 
-- Use private modules in Terraform Cloud workspaces with no extra setup.
-- Use the CLI to apply configurations with private modules.
+-> **Note:** Private providers are not available in Terraform Enterprise.
 
 ### Authentication
 
-You can use either a [user token](/cloud-docs/users-teams-organizations/users#api-tokens) or a [team token](/cloud-docs/users-teams-organizations/api-tokens#team-api-tokens) for authentication, but the type of token you choose may grant different permissions.
+To authenticate with Terraform Cloud, you can use either a [user token](/cloud-docs/users-teams-organizations/users#api-tokens) or a [team token](/cloud-docs/users-teams-organizations/api-tokens#team-api-tokens). The type of token you choose may grant different permissions.
 
-- **User Token**: Allows you to access modules from any organization in which you are a member. You are a member of an organization if you belong to any team in that organization. In Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any of your organizations.
+- **User Token**: Allows you to access providers and modules from any organization in which you are a member. You are a member of an organization if you belong to any team in that organization. In Terraform Enterprise v202012-1 or higher, you can also access modules from any organization that is sharing modules with any of your organizations.
 
-  -> **Note** When SAML SSO is enabled, there is a [session timeout for user API tokens](/enterprise/user-management/saml/login#api-token-expiration), requiring you to periodically re-authenticate through the web UI. Expired tokens produce a _401 Unauthorized_ error. A SAML SSO account with [IsServiceAccount](/enterprise/user-management/saml/attributes#isserviceaccount) is treated as a service account and will not have the session timeout.
+ -> **Note:** When SAML SSO is enabled, there is a [session timeout for user API tokens](/enterprise/user-management/saml/login#api-token-expiration), requiring you to periodically re-authenticate through the web UI. Expired tokens produce a _401 Unauthorized_ error. A SAML SSO account with [IsServiceAccount](/enterprise/user-management/saml/attributes#isserviceaccount) is treated as a service account and will not have the session timeout.
 
-- **Team Token**: Allows you to access the private module registry from that team's organization and modules from any organizations that are sharing a private module registry with that team's organization.
+- **Team Token**: Allows you to access the private registry of that team's organization and the registries from any other organizations that have configured sharing.
 
-<br/>
+
 _Permissions Example_
 
-A user belongs to three organizations (1, 2, and 3), and organizations 1 and 2 share private module access with each other. In this case, the user's token gives them access to the private module registries for all of the organizations they belong to: 1, 2, and 3. However, a team token from a team in organization 1 only gives the user access the private modules in organizations 1 and 2.
+A user belongs to three organizations (1, 2, and 3), and organizations 1 and 2 share access with each other. In this case, the user's token gives them access to the private registries for all of the organizations they belong to: 1, 2, and 3. However, a team token from a team in organization 1 only gives the user access to the private registry in organizations 1 and 2.
 
 #### Configure Authentication
 
@@ -138,7 +149,7 @@ To configure authentication to Terraform Cloud or your Terraform Enterprise inst
 - (Terraform 0.12.21 or later) Use the [`terraform login`](/cli/commands/login) command to obtain and save a user API token.
 - Create a token and [manually configure credentials in the CLI config file][cli-credentials].
 
-Make sure the hostname matches the hostname you use in module sources because if the same Terraform Cloud server is available at two hostnames, Terraform will not know that they are the same. To support multiple hostnames for module sources, use the `terraform login` command multiple times, and specify a different hostname each time.
+Make sure the hostname matches the hostname you use in provider and module sources because if the same Terraform Cloud server is available at two hostnames, Terraform will not know that they reference the same server. To support multiple hostnames for provider and module sources, use the `terraform login` command multiple times and specify a different hostname each time.
 
 [user-token]: /cloud-docs/users-teams-organizations/users#api-tokens
 
