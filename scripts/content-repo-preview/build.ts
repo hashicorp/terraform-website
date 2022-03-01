@@ -56,7 +56,7 @@ async function main() {
 
   const pagesDirs = (
     await fs.promises.readdir(pagesDir, { withFileTypes: true })
-  ).filter((ent) => ent.isDirectory)
+  ).filter((ent) => ent.isDirectory())
 
   for (const dir of pagesDirs) {
     if (!dir.name.includes(repo)) {
