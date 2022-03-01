@@ -4,7 +4,7 @@ import fs from 'fs'
 
 function checkEnvVars() {
   // Filter out defined env vars, leaving only the missing ones
-  const missingEnvVars = ['REPO', 'IS_CONTENT_REPO_PREVIEW'].filter(
+  const missingEnvVars = ['REPO', 'IS_CONTENT_PREVIEW'].filter(
     (key) => !process.env[key]
   )
 

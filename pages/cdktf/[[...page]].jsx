@@ -32,7 +32,7 @@ export default function CDKLayout(props) {
 
 // TODO: fix edit this page link
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
-  process.env.IS_CONTENT_REPO_PREVIEW
+  process.env.IS_CONTENT_PREVIEW
     ? {
         strategy: 'remote',
         basePath: BASE_ROUTE,
