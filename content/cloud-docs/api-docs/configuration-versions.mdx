@@ -367,7 +367,7 @@ Terraform Cloud automatically archives configuration versions created through VC
 | Status  | Response                  | Reason(s)                                                                                                                                     |
 | ------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | [202][] | none                      | Successfully initiated the archive process.                                                                                                   |
-| [409][] | [JSON API error object][] | Configuration version was in a non-archivable state, or the configuration version was created with VCS and cannot be archived through the API. |
+| [409][] | [JSON API error object][] | Configuration version was in a non-archivable state or the configuration version was created with VCS and cannot be archived through the API. |
 | [404][] | [JSON API error object][] | Configuration version was not found or user not authorized.                                                                                   |
 
 ### Request Body
