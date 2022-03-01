@@ -3,8 +3,9 @@ import DocsPage from '@hashicorp/react-docs-page'
 import otherDocsData from 'data/other-docs-nav-data.json'
 // Imports below are only used server-side
 import {
-  generateStaticPaths,
-  generateStaticProps,
+  // generateStaticPaths,
+  // generateStaticProps,
+  getStaticGenerationFunctions,
 } from '@hashicorp/react-docs-page/server'
 import visit from 'unist-util-visit'
 import path from 'path'
@@ -29,42 +30,51 @@ export default function CDKLayout(props) {
   )
 }
 
-export async function getStaticPaths() {
-  const paths = await generateStaticPaths({
-    navDataFile: NAV_DATA,
-    localContentDir: CONTENT_DIR,
-  })
-  return { paths, fallback: false }
-}
+// TODO: fix edit this page link
+const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions({
+  strategy: 'remote',
+  basePath: 'cdktf',
+  product: 'terraform-cdk',
+})
 
-export async function getStaticProps({ params }) {
-  const props = await generateStaticProps({
-    navDataFile: NAV_DATA,
-    localContentDir: CONTENT_DIR,
-    params,
-    product: PRODUCT,
-    remarkPlugins: [
-      () => {
-        const product = 'terraform-cdk'
-        const version = 'main'
-        return function transform(tree) {
-          visit(tree, 'image', (node) => {
-            const assetPath = params.page
-              ? path.posix.join(
-                  ...params.page,
-                  node.url.startsWith('.') ? `.${node.url}` : `../${node.url}`
-                )
-              : node.url
-            const asset = path.posix.join('website/docs/cdktf', assetPath)
-            node.url = `https://mktg-content-api.vercel.app/api/assets?product=${product}&version=${version}&asset=${asset}`
-          })
-        }
-      },
-    ],
-    githubFileUrl(path) {
-      const filepath = path.replace('content/', '')
-      return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/docs/${filepath}`
-    },
-  })
-  return { props }
-}
+export { getStaticPaths, getStaticProps }
+
+// export async function getStaticPaths() {
+//   const paths = await generateStaticPaths({
+//     navDataFile: NAV_DATA,
+//     localContentDir: CONTENT_DIR,
+//   })
+//   return { paths, fallback: false }
+// }
+
+// export async function getStaticProps({ params }) {
+//   const props = await generateStaticProps({
+//     navDataFile: NAV_DATA,
+//     localContentDir: CONTENT_DIR,
+//     params,
+//     product: PRODUCT,
+//     remarkPlugins: [
+//       () => {
+//         const product = 'terraform-cdk'
+//         const version = 'main'
+//         return function transform(tree) {
+//           visit(tree, 'image', (node) => {
+//             const assetPath = params.page
+//               ? path.posix.join(
+//                   ...params.page,
+//                   node.url.startsWith('.') ? `.${node.url}` : `../${node.url}`
+//                 )
+//               : node.url
+//             const asset = path.posix.join('website/docs/cdktf', assetPath)
+//             node.url = `https://mktg-content-api.vercel.app/api/assets?product=${product}&version=${version}&asset=${asset}`
+//           })
+//         }
+//       },
+//     ],
+//     githubFileUrl(path) {
+//       const filepath = path.replace('content/', '')
+//       return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/docs/${filepath}`
+//     },
+//   })
+//   return { props }
+// }
