@@ -95,11 +95,16 @@ Workspace-specific variables always overwrite variables from variable sets that 
 
 Non-global variables are only applied to a subset of workspaces in an organization.
 
-When non-global variable sets have conflicting variables, Terraform Cloud uses values from the variable set that was applied most recently. For example, if you apply Variable Set A and then apply Variable Set B to the same workspace a week later, Terraform Cloud will use any conflicting variables from Variable Set B. This will be the case regardless of which variable set has been edited most recently; Terraform Cloud only considers the date that each variable set is applied to the workspace when determining precedence.
+When non-global variable sets have conflicting variables, Terraform Cloud compares the variable set names, and uses values from the variable set with lexical predence. Terraform uses the Base64 alphabet as defined in
+[RFC 4648 section 4](https://tools.ietf.org/html/rfc4648#section-4), and lexical ordering follows UTF-8 character precedence rules. 
+
+For example, if you apply `A_Variable_Set` and `B_Variable_Set` to the same workspace, Terraform Cloud will use any conflicting variables from `A_Variable_Set`. This will be the case regardless of which variable set has been edited most recently; Terraform Cloud only considers the lexical ordering of variable set names when determining precedence.
 
 ### 5. Global Variable Sets
 
 Non-global variable sets always take precedence over global variable sets that are applied to all workspaces within an organization. This is true regardless of when the global variable set was applied.
+
+When global variable sets have conflicting variables, Terraform Cloud compares the variable set names, and uses values from the variable set with lexical predence. Lexical precedence follows the same rules as for non-global variable sets.
 
 ### 6. `auto.tfvars` Variable Files
 
