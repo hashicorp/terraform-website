@@ -95,16 +95,13 @@ Workspace-specific variables always overwrite variables from variable sets that 
 
 Non-global variables are only applied to a subset of workspaces in an organization.
 
-When non-global variable sets have conflicting variables, Terraform Cloud compares the variable set names, and uses values from the variable set with lexical predence. Terraform uses the Base64 alphabet as defined in
-[RFC 4648 section 4](https://tools.ietf.org/html/rfc4648#section-4), and lexical ordering follows UTF-8 character precedence rules. 
+When non-global variable sets have conflicting variables, Terraform Cloud compares the variable set names, and uses values from the variable set with lexical predence. Lexical ordering follows UTF-8 character precedence rules.
 
 For example, if you apply `A_Variable_Set` and `B_Variable_Set` to the same workspace, Terraform Cloud will use any conflicting variables from `A_Variable_Set`. This will be the case regardless of which variable set has been edited most recently; Terraform Cloud only considers the lexical ordering of variable set names when determining precedence.
 
 ### 5. Global Variable Sets
 
-Non-global variable sets always take precedence over global variable sets that are applied to all workspaces within an organization. This is true regardless of when the global variable set was applied.
-
-When global variable sets have conflicting variables, Terraform Cloud compares the variable set names, and uses values from the variable set with lexical predence. Lexical precedence follows the same rules as for non-global variable sets.
+Non-global variable sets always take precedence over global variable sets that are applied to all workspaces within an organization. Terraform does not allow global variable sets to contain variables with the same key, so they cannot conflict.
 
 ### 6. `auto.tfvars` Variable Files
 
@@ -114,22 +111,22 @@ Variables in the Terraform Cloud workspace and variables provided through the co
 
 Consider an example workspace that has the following variables applied:
 
-| Source                | Scope              | Date Applied | ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 | replicas |
-| --------------------- | ------------------ | ------------ | ---------- | ---------- | ---- | ---- | ---- | -------- |
-| Command Line Argument | Run-Specific       |              |            |            |      |      |      | `9`      |
-| Local Environment     | Run-Specific       |              |            |            |      |      |      | `8`      |
-| Variables             | Workspace-Specific | 10/1         | `g47fh474` | `874hf7u4` | `h`  |      |      | `1`      |
-| Variable Set A        | Non-Global         | 10/4         |            |            | `y`  | `x`  |      | `2`      |
-| Variable Set B        | Global             | 10/20        |            |            |      | `z`  | `a`  | `3`      |
+| Source                | Scope             |  ACCESS_KEY | ACCESS_ID  | VAR1 | KEY1 | VAR2 | replicas |
+| --------------------- | ------------------ | ---------- | ---------- | ---- | ---- | ---- | -------- |
+| Command Line Argument | Run-Specific       |            |            |      |      |      | `9`      |
+| Local Environment     | Run-Specific       |           |            |      |      |      | `8`      |
+| Variables             | Workspace-Specific | `g47fh474` | `874hf7u4` | `h`  |      |      | `1`      |
+| A_Variable_Set        | Non-Global       |              |            | `y`  | `x`  |      | `2`      |
+| B_Variable_Set        | Global          |               |            |      | `z`  | `a`  | `3`      |
 
 When you trigger a run through the command line, Terraform Cloud applies the following variables:
 
 - **Run-Specific:** `replicas` from the command line. That means `replicas` equals `9` for this run. Variables set from the command line take precedence over all other values, including the run-specific `TF_VAR_replicas` value set in your local environment.
 
-- **Workspace-Specific:** `ACCESS_KEY`, `ACCESS_ID`, and `VAR1`. That means `VAR1` equals `h` for this run, overwriting the value in Variable Set A.
+- **Workspace-Specific:** `ACCESS_KEY`, `ACCESS_ID`, and `VAR1`. That means `VAR1` equals `h` for this run, overwriting the value in A_Variable_Set.
 
-- **Variable Set A:** `KEY1`. That means `KEY1` equals `x` for this run, overwriting the value in Variable Set B.
+- **Variable Set A:** `KEY1`. That means `KEY1` equals `x` for this run, overwriting the value in B_Variable_Set.
 
-- **Variable Set B:** `VAR2`. This is a global variable set, so Variable Set A takes precedence regardless of when it was applied.
+- **B_Variable_Set:** `VAR2`. This is a global variable set, so A_Variable_Set takes precedence.
 
 ![An example scenario demonstrating variable precedence in Terraform Cloud](/img/docs/variable-precedence-example.png)
