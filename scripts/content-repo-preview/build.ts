@@ -59,7 +59,7 @@ async function main() {
   ).filter((ent) => ent.isDirectory())
 
   for (const dir of pagesDirs) {
-    if (!dir.name.includes(repo)) {
+    if (!dir.name.includes(repo) && dir.name !== 'home') {
       console.log(`🧹 removing pages for ${dir.name}`)
       await fs.promises.rm(path.join(pagesDir, dir.name), {
         recursive: true,
