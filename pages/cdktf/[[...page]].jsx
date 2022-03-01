@@ -12,8 +12,8 @@ import path from 'path'
 
 //  Configure the docs path
 const BASE_ROUTE = 'cdktf'
-const NAV_DATA = 'data/cdktf-nav-data.json'
-const CONTENT_DIR = 'content/cdktf'
+const NAV_DATA = '../data/cdktf-nav-data.json'
+const CONTENT_DIR = '../docs/cdktf'
 const PRODUCT = { name: productName, slug: 'terraform-cdk' }
 
 export default function CDKLayout(props) {
@@ -31,11 +31,21 @@ export default function CDKLayout(props) {
 }
 
 // TODO: fix edit this page link
-const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions({
-  strategy: 'remote',
-  basePath: 'cdktf',
-  product: 'terraform-cdk',
-})
+const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
+  process.env.IS_CONTENT_REPO_PREVIEW
+    ? {
+        strategy: 'remote',
+        basePath: BASE_ROUTE,
+        product: PRODUCT.slug,
+      }
+    : {
+        strategy: 'fs',
+        basePath: BASE_ROUTE,
+        localContentDir: CONTENT_DIR,
+        navDataFile: NAV_DATA,
+        product: PRODUCT.slug,
+      }
+)
 
 export { getStaticPaths, getStaticProps }
 
