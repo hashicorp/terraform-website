@@ -22,8 +22,8 @@ _States in this stage:_
 
 _Leaving this stage:_
 
-- If Terraform Cloud encounters an error when fetching the configuration from VCS, the run skips to completion (**Plan Errored** state).
-- If the user discards the run before it starts, the run skips to completion (**Discarded** state).
+- If Terraform Cloud encounters an error when fetching the configuration from VCS, the run does not continue (**Plan Errored** state).
+- If the user discards the run before it starts, the run does not continue (**Discarded** state).
 - If Terraform Cloud has successfully fetched the configuration and the run is first in the queue, the run proceeds automatically to the plan stage (**Planning** state).
 
 ## 2. The Plan Stage
@@ -35,14 +35,14 @@ _States in this stage:_
 
 _Leaving this stage:_
 
-- If the `terraform plan` command failed, the run skips to completion (**Plan Errored** state).
-- If a user canceled the plan by pressing the "Cancel Run" button, the run skips to completion (**Canceled** state).
-- If the plan succeeded and neither cost estimation nor Sentinel policy checks will be done, the run skips to completion (**Planned** state).
+- If the `terraform plan` command failed, the run does not continue (**Plan Errored** state).
+- If a user canceled the plan by pressing the "Cancel Run" button, the run does not continue (**Canceled** state).
+- If the plan succeeded with no changes and neither cost estimation nor Sentinel policy checks will be done, the run does not continue (**Planned** state).
 - If the plan succeeded and requires changes:
   - If cost estimation is enabled, the run proceeds automatically to the cost estimation stage.
   - If cost estimation is disabled and [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
   - If there are no Sentinel policies and the plan can be auto-applied, the run proceeds automatically to the apply stage. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
-  - If there are no Sentinel policies and the plan can't be auto-applied, the run pauses in the **Needs Confirmation** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
+  - If there are no Sentinel policies and the plan can't be auto-applied, the run pauses in the **Needs Confirmation** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) The run proceeds to the apply stage if they approve the apply, or does not continue (**Discarded** state) if they reject the apply.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -58,7 +58,7 @@ _States in this stage:_
 _Leaving this stage:_
 
 - If cost estimation succeeded or errors, the run moves to the next stage.
-- If there are no policy checks or applies, the run skips to completion (**Planned (Finished)** state).
+- If there are no policy checks or applies, the run does not continue (**Planned (Finished)** state).
 
 ## 4. The Policy Check Stage
 
@@ -76,13 +76,13 @@ _States in this stage:_
 
 _Leaving this stage:_
 
-- If any hard-mandatory policies failed, the run skips to completion (**Plan Errored** state).
+- If any hard-mandatory policies failed, the run does not continue (**Plan Errored** state).
 - If any soft-mandatory policies failed, the run pauses in the **Policy Override** state.
   - If a user with permission to manage policy overrides, overrides the failed policy, the run proceeds to the **Policy Checked** state. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
-  - If a user with permission to apply runs discards the run, the run skips to completion (**Discarded** state). ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
+  - If a user with permission to apply runs discards the run, the run does not continue (**Discarded** state). ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
 - If the run reaches the **Policy Checked** state (no mandatory policies failed, or soft-mandatory policies were overridden):
   - If the plan can be auto-applied, the run proceeds automatically to the apply stage. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
-  - If the plan can't be auto-applied, the run pauses in the **Policy Checked** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) The run proceeds to the apply stage if they approve the apply, or skips to completion (**Discarded** state) if they reject the apply.
+  - If the plan can't be auto-applied, the run pauses in the **Policy Checked** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) The run proceeds to the apply stage if they approve the apply, or does not continue (**Discarded** state) if they reject the apply.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
