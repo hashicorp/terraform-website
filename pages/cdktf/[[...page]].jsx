@@ -34,15 +34,15 @@ export default function CDKLayout(props) {
 const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
   process.env.IS_CONTENT_PREVIEW
     ? {
-        strategy: 'remote',
-        basePath: BASE_ROUTE,
-        product: PRODUCT.slug,
-      }
-    : {
         strategy: 'fs',
         basePath: BASE_ROUTE,
         localContentDir: CONTENT_DIR,
         navDataFile: NAV_DATA,
+        product: PRODUCT.slug,
+      }
+    : {
+        strategy: 'remote',
+        basePath: BASE_ROUTE,
         product: PRODUCT.slug,
       }
 )
