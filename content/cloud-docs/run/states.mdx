@@ -37,12 +37,12 @@ _Leaving this stage:_
 
 - If the `terraform plan` command failed, the run does not continue (**Plan Errored** state).
 - If a user canceled the plan by pressing the "Cancel Run" button, the run does not continue (**Canceled** state).
-- If the plan succeeded with no changes and neither cost estimation nor Sentinel policy checks will be done, the run does not continue (**Planned** state).
+- If the plan succeeded with no changes and neither cost estimation nor Sentinel policy checks will be done, Terraform Cloud considers the run complete (**Planned and Finished** state).
 - If the plan succeeded and requires changes:
   - If cost estimation is enabled, the run proceeds automatically to the cost estimation stage.
   - If cost estimation is disabled and [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
   - If there are no Sentinel policies and the plan can be auto-applied, the run proceeds automatically to the apply stage. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
-  - If there are no Sentinel policies and Terraform cannot auto-apply the plan, the run pauses in the **Needs Confirmation** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) If an authorized user approves the apply, the run proceeds to the apply stage. If an authorized user rejects the apply, the run does not continue (**Discarded** state).
+  - If Terraform cannot auto-apply the plan, the run pauses in the **Policy Checked** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) If an authorized user approves the apply, the run proceeds to the apply stage. If an authorized user rejects the apply, the run does not continue (**Discarded** state).
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -58,7 +58,7 @@ _States in this stage:_
 _Leaving this stage:_
 
 - If cost estimation succeeded or errors, the run moves to the next stage.
-- If there are no policy checks or applies, the run does not continue (**Planned (Finished)** state).
+- If there are no policy checks or applies, the run does not continue (**Planned and Finished** state).
 
 ## 4. The Policy Check Stage
 
@@ -107,7 +107,7 @@ A run is considered completed if it finishes applying, if any part of the run fa
 _States in this stage:_
 
 - **Applied:** The run was successfully applied.
-- **Planned:** `terraform plan`'s output already matches the current infrastructure state, so `terraform apply` doesn't need to do anything.
+- **Planned and Finished:** `terraform plan`'s output already matches the current infrastructure state, so `terraform apply` doesn't need to do anything.
 - **Apply Errored:** The `terraform apply` command failed, possibly due to a missing or misconfigured provider or an illegal operation on a provider.
 - **Plan Errored:** The `terraform plan` command failed (usually requiring fixes to variables or code), or a hard-mandatory Sentinel policy failed. The run cannot be applied.
 - **Discarded:** A user chose not to continue this run.
