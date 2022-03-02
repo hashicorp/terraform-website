@@ -42,7 +42,7 @@ _Leaving this stage:_
   - If cost estimation is enabled, the run proceeds automatically to the cost estimation stage.
   - If cost estimation is disabled and [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
   - If there are no Sentinel policies and the plan can be auto-applied, the run proceeds automatically to the apply stage. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
-  - If there are no Sentinel policies and the plan can't be auto-applied, the run pauses in the **Needs Confirmation** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) The run proceeds to the apply stage if they approve the apply, or does not continue (**Discarded** state) if they reject the apply.
+  - If there are no Sentinel policies and Terraform cannot auto-apply the plan, the run pauses in the **Needs Confirmation** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) If an authorized user approves the apply, the run proceeds to the apply stage. If an authorized user rejects the apply, the run does not continue (**Discarded** state).
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
