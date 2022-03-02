@@ -58,3 +58,17 @@ note an additional restriction on the `sslmode` parameter is that only the
 In Terraform Enterprise v202103-1, the internally-managed PostgreSQL server has been upgraded from PostgreSQL 9.5 to PostgreSQL 12. This change only affects mounted disk and proof of concept installations.
 
 For more details, consult the v202103-1 [release notes](https://github.com/hashicorp/terraform-enterprise-release-notes/blob/master/v202103-1.md).
+
+## Azure Database for PostgreSQL Flexible Server
+
+Azure requires that users of the Azure Database for PostgreSQL Flexible Server offering allow-list any desired PostgreSQL extensions for their PostgreSQL Flexible Server before they can be installed and/or used within a database.
+
+If a manually configuring the Azure Database for PostgreSQL Flexible Server, simply ensure that the `CITEXT`, `HSTORE`, and `UUID-OSSP` extensions are checked under the `azure.extensions` server parameters. Alternatively, if Terraform is used to manage the database, this example resource should appropriately add the extensions Terraform Enterprise utilizes to the allow-list:
+
+```terraform
+resource "azurerm_postgresql_flexible_server_configuration" "tfe" {
+  name = "azure.extensions"
+  server_id = azurerm_postgresql_flexible_server.tfe.id
+  value = "CITEXT,HSTORE,UUID-OSSP"
+}
+```
