@@ -17,4 +17,5 @@ module.exports = withHashicorp({
     BUGSNAG_SERVER_KEY: '1f55a49019f70f94a17dd6d93210f09d',
     IS_CONTENT_PREVIEW: process.env.IS_CONTENT_PREVIEW,
   },
+  outputFileTracing: false,
 })
