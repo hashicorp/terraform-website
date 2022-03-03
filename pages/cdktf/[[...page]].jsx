@@ -39,26 +39,26 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         localContentDir: CONTENT_DIR,
         navDataFile: NAV_DATA,
         product: PRODUCT.slug,
-        remarkPlugins: [
-          () => {
-            const product = 'terraform-cdk'
-            const version = 'main'
-            return function transform(tree) {
-              visit(tree, 'image', (node) => {
-                const assetPath = params.page
-                  ? path.posix.join(
-                      ...params.page,
-                      node.url.startsWith('.')
-                        ? `.${node.url}`
-                        : `../${node.url}`
-                    )
-                  : node.url
-                const asset = path.posix.join('website/docs/cdktf', assetPath)
-                node.url = `https://mktg-content-api.vercel.app/api/assets?product=${product}&version=${version}&asset=${asset}`
-              })
-            }
-          },
-        ],
+        // remarkPlugins: [
+        //   () => {
+        //     const product = 'terraform-cdk'
+        //     const version = 'main'
+        //     return function transform(tree) {
+        //       visit(tree, 'image', (node) => {
+        //         const assetPath = params.page
+        //           ? path.posix.join(
+        //               ...params.page,
+        //               node.url.startsWith('.')
+        //                 ? `.${node.url}`
+        //                 : `../${node.url}`
+        //             )
+        //           : node.url
+        //         const asset = path.posix.join('website/docs/cdktf', assetPath)
+        //         node.url = `https://mktg-content-api.vercel.app/api/assets?product=${product}&version=${version}&asset=${asset}`
+        //       })
+        //     }
+        //   },
+        // ],
       }
     : {
         strategy: 'remote',
