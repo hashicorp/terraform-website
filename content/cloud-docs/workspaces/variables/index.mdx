@@ -95,7 +95,7 @@ Workspace-specific variables always overwrite variables from variable sets that 
 
 Non-global variables are only applied to a subset of workspaces in an organization.
 
-When non-global variable sets have conflicting variables, Terraform Cloud compares the variable set names, and uses values from the variable set with lexical predence. Terraform and Terraform Cloud operate on UTF-8 strings, and Terraform Cloud sorts variable set names based the on lexical order of Unicode code points.
+When non-global variable sets have conflicting variables, Terraform Cloud compares the variable set names, and uses values from the variable set with lexical precedence. Terraform and Terraform Cloud operate on UTF-8 strings, and Terraform Cloud sorts variable set names based the on lexical order of Unicode code points.
 
 For example, if you apply `A_Variable_Set` and `B_Variable_Set` to the same workspace, Terraform Cloud will use any conflicting variables from `A_Variable_Set`. This will be the case regardless of which variable set has been edited most recently; Terraform Cloud only considers the lexical ordering of variable set names when determining precedence.
 
