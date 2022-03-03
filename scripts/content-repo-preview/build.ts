@@ -81,7 +81,7 @@ async function main() {
 
   // Put node_modules into .next/cache so we can retrieve them on subsequent builds
   // We are using mv here because it is more efficient than cp, and node_modules is a big chungus
-  execFileSync('cp', ['-rlf', 'node_modules', '../node_modules'], {
+  execFileSync('mv', ['node_modules', '../.next/cache/node_modules'], {
     stdio: 'inherit',
   })
 }
