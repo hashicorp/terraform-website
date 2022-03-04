@@ -15,8 +15,6 @@ infrastructure is verified. Terraform includes a framework for constructing
 acceptance tests that imitate the execution of one or more steps of applying one
 or more configuration files, allowing multiple scenarios to be tested.
 
-~> **Note**: Apart from the _Testing in v1.x of the SDK_ section below, information in this page covers version 2.x of the Plugin SDK. While the public API is largely unchanged between versions, the internal architecture and implementation of the testing framework is very different.
-
 Terraform acceptance tests use real Terraform configurations to exercise the
 code in real plan, apply, refresh, and destroy life cycles. When run from the
 root of a Terraform Provider codebase, Terraform’s testing framework compiles
@@ -30,34 +28,15 @@ validate all resources are destroyed, alerting developers if any fail to
 destroy. It is the developer's responsibility to clean up any dangling resources
 left over from testing and development.
 
-~> **Acceptance tests require `terraform` version 0.12.26 or above.**
-
 ## How Acceptance Tests Work
 
-Provider acceptance tests run real Terraform commands using a Terraform CLI binary, approximating as closely as possible the experience of using the provider under test with Terraform in production. We refer to this functionality as the "binary test driver".
+Provider acceptance tests run real Terraform commands using a Terraform CLI binary, approximating as closely as possible the experience of using the provider under test with Terraform in production.
 
 Terraform Core and Terraform Plugins act as gRPC client and server, implemented using HashiCorp's [go-plugin](https://github.com/hashicorp/go-plugin) system (see the [RPC Plugin Model](https://github.com/hashicorp/terraform/tree/main/docs/plugin-protocol) section of the Terraform Core documentation).  When `go test` is run, the SDK's acceptance test framework starts a plugin server in the same process as the Go test framework. This plugin server runs for the duration of the test case, and each Terraform command (`terraform plan`, `terraform apply`, etc) creates a client that reattaches to this server.
 
 Real-world Terraform usage requires a config file and Terraform working directory on the local filesystem. The framework uses the [`internal/plugintest` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/internal/plugintest) to manage temporary directories and files during test runs. This library is not intended for use directly by provider developers.
 
 While the test framework provides a reasonable simulation of real-world usage, there are some differences, the major one being in the lifecycle of the plugin gRPC server. During normal Terraform operation, the plugin server starts and stops once per graph walk, of which there may be several during one Terraform command. The acceptance test framework, however, maintains one plugin gRPC server for the duration of each test case. In theory, it is possible for providers to carry internal state between operations during tests - but providers would have to go out of their way (and the SDK's public API) to do this.
-
-## Testing in v1.x of the SDK
-
-From version 1.0.0 to 1.6.0 of the SDK, the only acceptance test driver available is the legacy test driver, which embeds part of the Terraform Core codebase inside the SDK. This duplicated code cannot be said to represent the production behaviour of any given version of Terraform.
-
-In version 1.7.0 of the SDK, an initial version of the binary test driver described above was added to the SDK. The internal architecture of this test driver differs from that in v2.x, but it provides similar functionality, running real Terraform CLI commands during acceptance tests. From version 1.7.0 onwards until the legacy test driver is removed in v2.0.0, provider developers can choose to use the legacy test driver or the binary test driver.
-
-In order to use the binary test driver in v1.7.0+, you should add code similar to the following to `provider_test.go`:
-
-```go
-func TestMain(m *testing.M) {
-  acctest.UseBinaryDriver("provider_name", Provider)
-  resource.TestMain(m)
-}
-```
-
-For more details, please see the [`github.com/hashicorp/terraform-plugin-sdk/acctest` package documentation](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/acctest).
 
 ## Test files
 
@@ -85,12 +64,30 @@ func TestAccXxx(*testing.T)
 
 ## Running Acceptance Tests
 
-~> **NOTE**: Acceptance tests typically create and destroy actual infrastructure resources, possibly incurring expenses during or after the test duration, and often require network connectivity and provider-specific credentials.
+Verify provider functionality by running acceptance testing, which is typically done via the [`go test`](https://pkg.go.dev/cmd/go/internal/test) command. After ensuring [Requirements](#requirements-and-recommendations) are met, use any environment capable of running `go test`, such as a local workstation [command line](#command-line), or continuous integration runner, such as [GitHub Actions](#github-actions), to run the acceptance tests.
 
-Acceptance testing runs Terraform CLI commands to end-to-end verify provider functionality. Terraform CLI version 0.12.26 or later is required. Creating real infrastructure in tests verifies the described behavior of providers in real world use
-cases against the actual APIs, and verifies both local and remote state values match. It is recommended to run acceptance tests in a separate testing account or namespace. This ensures no unexpected infrastructure is modified or destroyed due to potential code or testing issues.
+~> **NOTE**: These tests typically create and destroy actual infrastructure resources, possibly incurring expenses during or after the test duration.
 
-Each acceptance test will automatically find or install Terraform CLI into a separate temporary directory based on the following behaviors:
+### Requirements and Recommendations
+
+General requirements for running acceptance tests:
+
+- **[Go](https://go.dev/)**: Typically the most recent stable version.
+- **Terraform CLI**: Version 0.12.26 or later.
+- **Provider Access**: Network or system access to the provider and any resources being tested.
+- **Provider Credentials**: Authorized credentials to the provider and any resources being tested.
+- **TF_ACC Environment Variable**: Set to any value. Prevents developers from incurring unintended charges when running other Go tests.
+
+Additional recommendations for running acceptance tests:
+
+- **Separate Account**: Use a separate provider account or namespace for acceptance testing. This ensures no unexpected infrastructure is modified or destroyed due to potential code or testing issues.
+- **Previous Terraform CLI Installation**: Install Terraform CLI either into the operating system `PATH` or use the `TF_ACC_TERRAFORM_PATH` environment variable prior to running acceptance tests. Otherwise, the testing framework will download and install the latest Terraform CLI version into a temporary directory for every test invocation. Refer to the [Terraform CLI Installation Behaviors](#terraform-cli-installation-behaviors) section for additional details.
+
+-> Each provider may have more specific requirements and setup recommendations. Check the provider codebase for more details.
+
+#### Terraform CLI Installation Behaviors
+
+The testing framework implements the following Terraform CLI discovery and installation behaviors:
 
 - If the `TF_ACC_TERRAFORM_PATH` environment variable is set, that Terraform CLI binary is used if it exists and is executable. If not found or executable, an error will be returned unless the `TF_ACC_TERRAFORM_VERSION` environment variable is also set.
 - If the `TF_ACC_TERRAFORM_VERSION` environment variable is set, install and use that Terraform CLI version.
@@ -98,11 +95,11 @@ Each acceptance test will automatically find or install Terraform CLI into a sep
 
 Refer to the [Environment Variables](#environment-variables) section for more details about behaviors and valid configurations.
 
-While the testing can automatically install Terraform CLI as described above, it is recommended that you download and install Terraform CLI prior to running acceptance tests. It can be installed either into the operating system `PATH` or the `TF_ACC_TERRAFORM_PATH` environment variable can be used for test invocations. This will ensure that the expected Terraform CLI binary and version is being used, along with preventing separate downloads for each test.
+### Command Line
 
-The environment variable `TF_ACC` is typically required to be set to any value in order to run acceptance tests. This is by design and intended to prevent developers from incurring unintended charges when running tests.
+Run acceptance testing via the command line of any workstation. Use these instructions as the basis for other environments such as continuous integration runners.
 
-For example, the following will typically execute all available acceptance tests in a provider codebase:
+The following example will typically execute all available acceptance tests in a provider codebase:
 
 ```shell
 TF_ACC=1 go test -v ./...
@@ -110,7 +107,7 @@ TF_ACC=1 go test -v ./...
 
 Some provider codebases also implement a [Makefile](https://www.gnu.org/software/make/manual/make.html#Makefiles) with a `testacc` target, which will set `TF_ACC` and other testing flags automatically.
 
-For example, the following Makefile configuration:
+The following Makefile configuration example:
 
 ```make
 testacc:
@@ -125,6 +122,8 @@ make testacc
 
 ### GitHub Actions
 
+If using [GitHub](https://github.com/), run acceptance testing via [GitHub Actions](https://github.com/features/actions). Other continuous integration runners, while not exhaustively documented, are also supported.
+
 Create a [GitHub Actions workflow](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) file, such as `.github/workflows/test.yaml`, that:
 
 - Runs when pull requests are submitted (or on [other events](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows) as appropriate)
@@ -133,7 +132,7 @@ Create a [GitHub Actions workflow](https://docs.github.com/en/actions/using-work
 - Uses [`hashicorp/setup-terraform`](https://github.com/hashicorp/setup-terraform) to install Terraform CLI
 - Runs the `go test` command with the appropriate environment variables and flags
 
-For example:
+The following example workflow runs acceptance testing for the provider using the latest patch versions of Go 1.17 and Terraform CLI 1.1:
 
 ```yaml
 name: Terraform Provider Tests
@@ -175,11 +174,23 @@ jobs:
       - run: go test -v -cover ./...
 ```
 
-More advanced configuration, such as running acceptance testing against multiple Terraform CLI versions, is possible via the [`matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) strategy.
+Use the [`matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) strategy for more advanced configuration, such as running acceptance testing against multiple Terraform CLI versions.
 
-For example, adjusting the job configuration:
+The following example workflow runs acceptance testing for the provider using the latest patch versions of Go 1.17 and Terraform CLI 0.12 through 1.1:
 
 ```yaml
+name: Terraform Provider Tests
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/test.yaml'
+      - '**.go'
+
+permissions:
+  # Permission for checking out code
+  contents: read
+
 jobs:
   acceptance:
     name: Acceptance Tests (Terraform ${{ matrix.terraform-version }})
@@ -206,21 +217,32 @@ jobs:
       - run: go test -v -cover ./...
         env:
           TF_ACC: '1'
+  unit:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '1.17'
+      - run: go test -v -cover ./...
 ```
 
 ## Environment Variables
 
 A number of environment variables are available to control aspects of acceptance test execution.
 
-- `TF_ACC`: Set to any value to enable acceptance testing via the [`helper/resource.ParallelTest()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#ParallelTest) and [`helper/resource.Test()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#Test) functions.
-- `TF_ACC_LOG_PATH`: Set a path for Terraform logs during testing. Refer to `TF_LOG_PATH_MASK` to configure individual log files per test.
-- `TF_ACC_PROVIDER_HOST`: Set the hostname of the provider under test, such as `example.com` in the `example.com/myorg/myprovider` provider source address. Defaults to `registry.terraform.io`. This is only required if any [`TestStep.Config`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep.Config) specifies a provider source address, such as in the [`terraform` configuration block `required_providers` attribute](https://www.terraform.io/language/settings#specifying-provider-requirements).
-- `TF_ACC_PROVIDER_NAMESPACE`: Set the namespace of the provider under test, such as `myorg` in the `registry.terraform.io/myorg/myprovider` provider source address. Defaults to `hashicorp`. This is only required if any [`TestStep.Config`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep.Config) specifies a provider source address, such as in the [`terraform` configuration block `required_providers` attribute](https://www.terraform.io/language/settings#specifying-provider-requirements).
-- `TF_ACC_STATE_LINEAGE`: Set to `1` to enable state lineage debug logs, which are normally suppressed during acceptance testing.
-- `TF_ACC_TEMP_DIR`: Set a temporary directory used for testing files and installing Terraform CLI, if installation is required. If this is not set, the default operating system temporary directory (as identified by `os.TempDir()`) will be used.
-- `TF_ACC_TERRAFORM_PATH`: Set the path to a Terraform CLI binary on the local filesystem to be used during testing. It must be executable. If not found and `TF_ACC_TERRAFORM_VERSION` is not set, an error is returned.
-- `TF_ACC_TERRAFORM_VERSION`: Set the exact version of Terraform CLI to automatically install into `TF_ACC_TEMP_DIR`. For example, `1.1.6` or `v1.0.11`.
-- `TF_LOG_PATH_MASK`: Set a file path containing the string `%s`, which is replaced with the test name, to write a separate log file per test. Refer to `TF_ACC_LOG_PATH` to configure a single log file for all tests.
+| Environment Variable Name | Default | Description |
+|---------------------------|---------|-------------|
+| `TF_ACC` | N/A | Set to any value to enable acceptance testing via the [`helper/resource.ParallelTest()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#ParallelTest) and [`helper/resource.Test()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#Test) functions. |
+| `TF_ACC_LOG_PATH` | N/A | Set a path for Terraform logs during testing. Refer to `TF_LOG_PATH_MASK` to configure individual log files per test. |
+| `TF_ACC_PROVIDER_HOST`: | `registry.terraform.io` | Set the hostname of the provider under test, such as `example.com` in the `example.com/myorg/myprovider` provider source address. This is only required if any [`TestStep.Config`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep.Config) specifies a provider source address, such as in the [`terraform` configuration block `required_providers` attribute](https://www.terraform.io/language/settings#specifying-provider-requirements). |
+| `TF_ACC_PROVIDER_NAMESPACE` | `hashicorp` | Set the namespace of the provider under test, such as `myorg` in the `registry.terraform.io/myorg/myprovider` provider source address. This is only required if any [`TestStep.Config`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestStep.Config) specifies a provider source address, such as in the [`terraform` configuration block `required_providers` attribute](https://www.terraform.io/language/settings#specifying-provider-requirements). |
+| `TF_ACC_STATE_LINEAGE` | N/A | Set to `1` to enable state lineage debug logs, which are normally suppressed during acceptance testing. |
+| `TF_ACC_TEMP_DIR` | Operating system specific via [`os.TempDir()`](https://pkg.go.dev/os#TempDir) | Set a temporary directory used for testing files and installing Terraform CLI, if installation is required. |
+| `TF_ACC_TERRAFORM_PATH` | N/A | Set the path to a Terraform CLI binary on the local filesystem to be used during testing. It must be executable. If not found and `TF_ACC_TERRAFORM_VERSION` is not set, an error is returned. |
+| `TF_ACC_TERRAFORM_VERSION` | N/A | Set the exact version of Terraform CLI to automatically install into `TF_ACC_TEMP_DIR`. For example, `1.1.6` or `v1.0.11`. |
+| `TF_LOG_PATH_MASK` | N/A | Set a file path containing the string `%s`, which is replaced with the test name, to write a separate log file per test. Refer to `TF_ACC_LOG_PATH` to configure a single log file for all tests. |
 
 ## Troubleshooting
 
