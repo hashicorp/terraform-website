@@ -83,7 +83,7 @@ $ echo -n $WEBHOOK_BODY | openssl dgst -sha512 -hmac "$HMAC_KEY"
 
 [Packer](https://www.packer.io/) lets you create identical machine images for multiple platforms from a single source template. The [HCP Packer registry](docs/packer) lets you track golden images, designate images for test and production environments, and query images to use in Packer and Terraform configurations.
 
-The HCP Packer validation run task checks the image artifacts within a Terraform configuration. If the configuration references images marked as unusable (revoked), the run task fails and users receive an error message containing the number of revoked artifacts and whether HCP Packer has metadata for newer versions. For HCP Packer Plus registries, run tasks also help you identify hardcoded and untracked images that may not meet security and compliance requirements.
+The HCP Packer validation run task checks the image artifacts within a Terraform configuration. If the configuration references images marked as unusable (revoked), the run task fails and provides an error message containing the number of revoked artifacts and whether HCP Packer has metadata for newer versions. For HCP Packer Plus registries, run tasks also help you identify hardcoded and untracked images that may not meet security and compliance requirements.
 
 To get started, [create an HCP Packer account](/products/packer) and follow the instructions in the [HCP Packer Run Task](/docs/packer/manage-image-use/terraform-cloud-run-tasks) documentation.
 
