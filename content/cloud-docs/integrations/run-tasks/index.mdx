@@ -80,6 +80,7 @@ $ echo -n $WEBHOOK_BODY | openssl dgst -sha512 -hmac "$HMAC_KEY"
 
 ## HCP Packer Run Task
 > **Hands On:** Try the [Set Up Terraform Cloud Run Task for HCP Packer](https://learn.hashicorp.com/tutorials/packer/setup-tfc-run-task), [Standard tier run task image validation](https://learn.hashicorp.com/tutorials/packer/run-tasks-data-source-image-validation), and [Plus tier run task image validation](https://learn.hashicorp.com/tutorials/packer/run-tasks-resource-image-validation) tutorials on HashiCorp Learn to set up and test the Terraform Cloud Run Task integration end to end.
+
 [Packer](https://www.packer.io/) lets you create identical machine images for multiple platforms from a single source template. The [HCP Packer registry](docs/packer) lets you track golden images, designate images for test and production environments, and query images to use in Packer and Terraform configurations.
 
 The HCP Packer validation run task checks the image artifacts within a Terraform configuration. If the configuration references images marked as unusable (revoked), the run task fails and users receive an error message containing the number of revoked artifacts and whether HCP Packer has metadata for newer versions. For HCP Packer Plus registries, run tasks also help you identify hardcoded and untracked images that may not meet security and compliance requirements.
