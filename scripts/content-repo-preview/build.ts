@@ -79,11 +79,11 @@ async function main() {
   // and so it needs the .next folder available to complete the deployment
   execFileSync('cp', ['-R', '.next', '../.next'], { stdio: 'inherit' })
 
-  // Put node_modules into .next/cache so we can retrieve them on subsequent builds
-  // We are using mv here because it is more efficient than cp, and node_modules is a big chungus
-  execFileSync('mv', ['node_modules', '../.next/cache/node_modules'], {
-    stdio: 'inherit',
-  })
+  // // Put node_modules into .next/cache so we can retrieve them on subsequent builds
+  // // We are using mv here because it is more efficient than cp, and node_modules is a big chungus
+  // execFileSync('mv', ['node_modules', '../.next/cache/node_modules'], {
+  //   stdio: 'inherit',
+  // })
 }
 
 main()
