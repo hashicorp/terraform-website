@@ -241,3 +241,12 @@ curl \
   }
 }
 ```
+
+### Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](/cloud-docs/api-docs/#inclusion-of-related-resources). The following resource types are available:
+
+| Resource Name      | Description                            |
+| ------------------ | -------------------------------------- |
+| `run`              | The run this policy check belongs to.  |
+| `run.workspace`    | The associated workspace of the run.   |
