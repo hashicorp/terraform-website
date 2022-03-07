@@ -72,3 +72,6 @@ This resource is harder to predict than memory or CPU usage because it varies pe
 but in general we suggest 35 IOPS per concurrent Terraform run. So if an instance is configured for
 20 concurrent runs, the disk should have 700 IOPS allocated. For reference, on AWS, an EBS volume
 with an allocated size of 250 GB comes with a steady state of 750 IOPS.
+
+It is recommended to use a disk with a minimum of 500 IOPS or 100+MB/s throughput, whichever is the smaller and these are provisioned values.
+
