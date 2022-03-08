@@ -35,6 +35,12 @@ and later.
   variable when running `tfc-agent`. By default, `tfc-agent` will attempt to connect to
   Terraform Cloud, so this value must be explicitly defined when registering with a
   TFE instance.
+  
+  `TFC_ADDRESS` environment variable example:
+  
+  ```
+  $ export TFC_ADDRESS="https://tfe-host.example.com"
+  ```
 
 * **Custom Bundle Support**: Terraform Cloud Agents on TFE support
   [custom Terraform bundles](https://github.com/hashicorp/terraform/tree/main/tools/terraform-bundle).
