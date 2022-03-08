@@ -62,13 +62,7 @@ signature:
 func TestAccXxx(*testing.T)
 ```
 
-## Running Acceptance Tests
-
-Ensure that the [acceptance testing requirements](#requirements-and-recommendations) are met and then use the [`go test`](https://pkg.go.dev/cmd/go/internal/test) command to run acceptance tests. You can run the acceptance tests on any environment capable of running `go test`, such as a local workstation [command line](#command-line), or continuous integration runner, such as [GitHub Actions](#github-actions).
-
-~> **Note**: Acceptance tests typically create and destroy actual infrastructure resources, possibly incurring expenses during or after the test duration.
-
-### Requirements and Recommendations
+## Requirements and Recommendations
 
 Acceptance tests have the following requirements:
 
@@ -85,7 +79,7 @@ We also recommend the following when running acceptance tests:
 
 Each provider may have additional requirements and setup recommendations. Refer to the provider's codebase for more details.
 
-#### Terraform CLI Installation Behaviors
+### Terraform CLI Installation Behaviors
 
 The testing framework implements the following Terraform CLI discovery and installation behaviors:
 
@@ -94,6 +88,12 @@ The testing framework implements the following Terraform CLI discovery and insta
 - If both the `TF_ACC_TERRAFORM_PATH` and `TF_ACC_TERRAFORM_VERSION` environment variables are unset, the framework will search for the Terraform CLI binary based on the operating system `PATH`. If the framework cannot find the specified binary, it installs the latest available Terraform CLI binary.
 
 Refer to the [Environment Variables](#environment-variables) section for more details about behaviors and valid configurations.
+
+## Running Acceptance Tests
+
+Ensure that the [acceptance testing requirements](#requirements-and-recommendations) are met and then use the [`go test`](https://pkg.go.dev/cmd/go/internal/test) command to run acceptance tests. You can run the acceptance tests on any environment capable of running `go test`, such as a local workstation [command line](#command-line), or continuous integration runner, such as [GitHub Actions](#github-actions).
+
+~> **Note**: Acceptance tests typically create and destroy actual infrastructure resources, possibly incurring expenses during or after the test duration.
 
 ### Running Tests with the Command Line
 
