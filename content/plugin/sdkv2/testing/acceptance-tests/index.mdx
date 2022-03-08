@@ -30,7 +30,7 @@ left over from testing and development.
 
 ## How Acceptance Tests Work
 
-Provider acceptance tests run real Terraform commands using a Terraform CLI binary, approximating as closely as possible the experience of using the provider under test with Terraform in production.
+Provider acceptance tests use a Terraform CLI binary to run real Terraform commands. The goal is to approximate using the provider with Terraform in production as closely as possible.
 
 Terraform Core and Terraform Plugins act as gRPC client and server, implemented using HashiCorp's [go-plugin](https://github.com/hashicorp/go-plugin) system (see the [RPC Plugin Model](https://github.com/hashicorp/terraform/tree/main/docs/plugin-protocol) section of the Terraform Core documentation).  When `go test` is run, the SDK's acceptance test framework starts a plugin server in the same process as the Go test framework. This plugin server runs for the duration of the test case, and each Terraform command (`terraform plan`, `terraform apply`, etc) creates a client that reattaches to this server.
 
@@ -64,13 +64,13 @@ func TestAccXxx(*testing.T)
 
 ## Running Acceptance Tests
 
-Verify provider functionality by running acceptance testing, which is typically done via the [`go test`](https://pkg.go.dev/cmd/go/internal/test) command. After ensuring [Requirements](#requirements-and-recommendations) are met, use any environment capable of running `go test`, such as a local workstation [command line](#command-line), or continuous integration runner, such as [GitHub Actions](#github-actions), to run the acceptance tests.
+Ensure that the [acceptance testing requirements](#requirements-and-recommendations) are met and then use the [`go test`](https://pkg.go.dev/cmd/go/internal/test) command to run acceptance tests. You can run the acceptance tests on any environment capable of running `go test`, such as a local workstation [command line](#command-line), or continuous integration runner, such as [GitHub Actions](#github-actions).
 
-~> **NOTE**: These tests typically create and destroy actual infrastructure resources, possibly incurring expenses during or after the test duration.
+~> **Note**: Acceptance tests typically create and destroy actual infrastructure resources, possibly incurring expenses during or after the test duration.
 
 ### Requirements and Recommendations
 
-General requirements for running acceptance tests:
+Acceptance tests have the following requirements:
 
 - **[Go](https://go.dev/)**: Typically the most recent stable version.
 - **Terraform CLI**: Version 0.12.26 or later.
@@ -78,24 +78,24 @@ General requirements for running acceptance tests:
 - **Provider Credentials**: Authorized credentials to the provider and any resources being tested.
 - **TF_ACC Environment Variable**: Set to any value. Prevents developers from incurring unintended charges when running other Go tests.
 
-Additional recommendations for running acceptance tests:
+We also recommend the following when running acceptance tests:
 
-- **Separate Account**: Use a separate provider account or namespace for acceptance testing. This ensures no unexpected infrastructure is modified or destroyed due to potential code or testing issues.
-- **Previous Terraform CLI Installation**: Install Terraform CLI either into the operating system `PATH` or use the `TF_ACC_TERRAFORM_PATH` environment variable prior to running acceptance tests. Otherwise, the testing framework will download and install the latest Terraform CLI version into a temporary directory for every test invocation. Refer to the [Terraform CLI Installation Behaviors](#terraform-cli-installation-behaviors) section for additional details.
+- **Separate Account**: Use a separate provider account or namespace for acceptance testing. This prevents Terraform from unexpectedly modifying or destroying infrastructure due to code or testing issues.
+- **Previous Terraform CLI Installation**: Install Terraform CLI either into the operating system `PATH` or use the `TF_ACC_TERRAFORM_PATH` environment variable prior to running acceptance tests. Otherwise, the testing framework will download and install the latest Terraform CLI version into a temporary directory for every test invocation. Refer to the [Terraform CLI Installation Behaviors](#terraform-cli-installation-behaviors) section for details.
 
--> Each provider may have more specific requirements and setup recommendations. Check the provider codebase for more details.
+Each provider may have additional requirements and setup recommendations. Refer to the provider's codebase for more details.
 
 #### Terraform CLI Installation Behaviors
 
 The testing framework implements the following Terraform CLI discovery and installation behaviors:
 
-- If the `TF_ACC_TERRAFORM_PATH` environment variable is set, that Terraform CLI binary is used if it exists and is executable. If not found or executable, an error will be returned unless the `TF_ACC_TERRAFORM_VERSION` environment variable is also set.
-- If the `TF_ACC_TERRAFORM_VERSION` environment variable is set, install and use that Terraform CLI version.
-- If both the `TF_ACC_TERRAFORM_PATH` and `TF_ACC_TERRAFORM_VERSION` environment variables are unset, perform a lookup for the Terraform CLI binary based on the operating system `PATH`. If not found, the latest available Terraform CLI binary is installed.
+- If the `TF_ACC_TERRAFORM_PATH` environment variable is set, the framework will use that Terraform CLI binary if it exists and is executable. If the framework cannot find the binary or it is not executable, the framework returns an error unless the `TF_ACC_TERRAFORM_VERSION` environment variable is also set.
+- If the `TF_ACC_TERRAFORM_VERSION` environment variable is set, the framework will install and use that Terraform CLI version.
+- If both the `TF_ACC_TERRAFORM_PATH` and `TF_ACC_TERRAFORM_VERSION` environment variables are unset, the framework will search for the Terraform CLI binary based on the operating system `PATH`. If the framework cannot find the specified binary, it installs the latest available Terraform CLI binary.
 
 Refer to the [Environment Variables](#environment-variables) section for more details about behaviors and valid configurations.
 
-### Command Line
+### Running Tests with the Command Line
 
 Run acceptance testing via the command line of any workstation. Use these instructions as the basis for other environments such as continuous integration runners.
 
@@ -120,7 +120,7 @@ Enables developers to use the following to run acceptance tests:
 make testacc
 ```
 
-### GitHub Actions
+### Running Tests with GitHub Actions
 
 If using [GitHub](https://github.com/), run acceptance testing via [GitHub Actions](https://github.com/features/actions). Other continuous integration runners, while not exhaustively documented, are also supported.
 
