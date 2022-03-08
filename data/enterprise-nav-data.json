@@ -70,11 +70,6 @@
             "path": "before-installing/os-specific/centos-requirements"
           }
         ]
-      },
-      {
-        "title": "Clustered Deployment Architecture",
-        "path": "before-installing/cluster-architecture",
-        "hidden": true
       }
     ]
   },
@@ -116,10 +111,6 @@
           }
         ]
       },
-      { "title": "AWS", "path": "install/cluster-aws", "hidden": true },
-      { "title": "Azure", "path": "install/cluster-azure", "hidden": true },
-      { "title": "Custom", "path": "install/cluster-custom", "hidden": true },
-      { "title": "GCP", "path": "install/cluster-gcp", "hidden": true },
       {
         "title": "Uninstall",
         "path": "install/uninstall"
@@ -294,26 +285,49 @@
     ]
   },
   {
-    "title": "Release",
+    "title": "Releases",
     "routes": [
-      { "title": "Overview", "path": "release" },
-      { "title": "v202112-2 (LATEST)", "path": "release/v202112-2" },
-      { "title": "v202112-1", "path": "release/v202112-1" },
-      { "title": "v202111-1", "path": "release/v202111-1" },
-      { "title": "v202110-1", "path": "release/v202110-1" },
-      { "title": "v202109-1", "path": "release/v202109-1" },
-      { "title": "v202109-2", "path": "release/v202109-2" },
-      { "title": "v202101-1", "path": "release/v202101-1" },
-      { "title": "v202102-1", "path": "release/v202102-1" },
-      { "title": "v202102-2", "path": "release/v202102-2" },
-      { "title": "v202103-1", "path": "release/v202103-1" },
-      { "title": "v202103-2", "path": "release/v202103-2" },
-      { "title": "v202103-3", "path": "release/v202103-3" },
-      { "title": "v202104-1", "path": "release/v202104-1" },
-      { "title": "v202105-1", "path": "release/v202105-1" },
-      { "title": "v202106-1", "path": "release/v202106-1" },
-      { "title": "v202107-1", "path": "release/v202107-1" },
-      { "title": "v202108-1", "path": "release/v202108-1" }
+      { "title": "Overview", "path": "releases" },
+      { "title": "2022", "routes": [
+          { "title": "Overview", "path": "releases/2022" },
+          { "title": "v202202-1", "path": "releases/2022/v202202-1" },
+          { "title": "v202201-2", "path": "releases/2022/v202201-2" },
+          { "title": "v202201-1", "path": "releases/2022/v202201-1" }
+        ]
+      },
+      { "title": "2021", "routes": [
+          { "title": "Overview", "path": "releases/2021" },
+          { "title": "v202112-2", "path": "releases/2021/v202112-2" },
+          { "title": "v202112-1", "path": "releases/2021/v202112-1" },
+          { "title": "v202111-1", "path": "releases/2021/v202111-1" },
+          { "title": "v202110-1", "path": "releases/2021/v202110-1" },
+          { "title": "v202109-2", "path": "releases/2021/v202109-2" },
+          { "title": "v202109-1", "path": "releases/2021/v202109-1" },
+          { "title": "v202108-1", "path": "releases/2021/v202108-1" },
+          { "title": "v202107-1", "path": "releases/2021/v202107-1" },
+          { "title": "v202106-1", "path": "releases/2021/v202106-1" },
+          { "title": "v202105-1", "path": "releases/2021/v202105-1" },
+          { "title": "v202104-1", "path": "releases/2021/v202104-1" },
+          { "title": "v202103-3", "path": "releases/2021/v202103-3" },
+          { "title": "v202103-2", "path": "releases/2021/v202103-2" },
+          { "title": "v202103-1", "path": "releases/2021/v202103-1" },
+          { "title": "v202102-2", "path": "releases/2021/v202102-2" },
+          { "title": "v202102-1", "path": "releases/2021/v202102-1" },
+          { "title": "v202101-1", "path": "releases/2021/v202101-1" }
+        ]
+      },
+      { "title": "2020", "routes": [
+          { "title": "Overview", "path": "releases/2020" }
+        ]
+      },
+      { "title": "2019", "routes": [
+          { "title": "Overview", "path": "releases/2019" }
+        ]
+      },
+      { "title": "2018", "routes": [
+          { "title": "Overview", "path": "releases/2018" }
+        ]
+      }
     ]
   },
 

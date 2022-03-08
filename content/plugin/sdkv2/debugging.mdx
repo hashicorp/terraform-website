@@ -16,68 +16,12 @@ about each of them separately and in turn.
 ## Log-Based Debugging
 
 Log-based debugging is a method of using logging calls to record what is
-happening in a provider as it happens, and then examining that record to piece
-together what happened after the fact. Usefully, end users can capture logs and
-share them with developers, allowing developers to sometimes debug providers
-without needing access to the environment or configuration. Unfortunately,
-developers need to think ahead about what information they'll need when
-debugging, because the log lines need to be injected into the provider when
-it's built and cannot be inserted into the binary after it has been built. This
-makes it harder to ask new questions when doing log-based debugging, as the log
-line needs to be added and the provider needs to be recompiled before new
-information can be surfaced.
+happening in a provider and then examining that record to diagnose issues. Logs can help you debug your provider without access to the environment or configuration.
 
-### Inserting Log Lines Into A Provider
+When developing your provider, think carefully about what information you will need for debugging. Log lines cannot be inserted into the binary after it has been built. You will need to add a new log line and recompile your provider for new information to be surfaced in log output.
 
-Terraform providers all log to `stderr`. Any output to `stderr` will be passed
-over the gRPC protocol to Terraform, which will then write it to its
-destination.
-
-~> **Important:** Don't write to `stdout` on any Terraform providers! It can cause
-problems with our plugin system, which uses `stdout` as a communication
-channel.
-
-We recommend using the standard library `log` package to achieve this,
-via `log.Println` or `log.Printf` or similar functions.
-
-Log lines must be prefixed with the level of the log in square brackets. Valid
-levels, in decreasing order of severity, are:
-
-* ERROR
-* WARN
-* INFO
-* DEBUG
-* TRACE
-
-A full log line, then, may look like this:
-
-```go
-log.Println("[DEBUG] Something happened!")
-```
-
-### Turning On Logging
-
-Terraform controls which log levels are recorded for all providers and
-Terraform itself using the `TF_LOG` environment variable. Set it to `TRACE` to
-output all log lines, `DEBUG` to output all log lines except `TRACE` lines,
-etc.
-
-~> **NOTE:** prior to v0.15.0 of Terraform, levels besides `TRACE` may not be
-entirely reliable. See [this
-PR](https://github.com/hashicorp/terraform/pull/26632) for more details.
-
-By default, log output will be recorded to `stderr` when `TF_LOG` is set. To
-write log output to a file instead, set `TF_LOG_PATH` to a file's path. Log
-output will be appended there. It's worth noting that this file will not be
-truncated before log output is written.
-
-#### Separating Out Provider Logs
-
-Terraform can have some verbose logging and it can be difficult to parse log
-files when both Terraform and providers are writing to the same log file. In
-Terraform 0.15.0 and later, you can address this by setting the `TF_LOG_CORE`
-and `TF_LOG_PROVIDER` environment variables to different log levels.
-Set either to `off` to turn off its logging entirely.
+- [Managing Log Output](/plugin/log/managing) explains how to turn on logging, filter log output, choose the log format, and specify the log output path.
+- [Writing Log Output](/plugin/log/writing) contains details about how to use the [`tflog` package](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-log/tflog) to write log output at varying verbosity levels, add variables to logs, and create subsystems to group logs that relate to distinct sections of code (e.g., the API client).
 
 ## Debugger-Based Debugging
 
@@ -145,23 +89,58 @@ To do so, build the provider binary with the necessary
 
 ### Starting A Provider In Debug Mode
 
-Once a provider has a debug mode added to its `main` function, it can be
-activated. Run your debugger, and pass it the provider binary as the command to
-run, specifying whatever flags, environment variables, or other input is
-necessary to start your provider in debug mode:
+After you add a debug mode to your provider's `main` function, you can activate the debugger, which is typically built into an editor or the Delve CLI. To run your debugger, pass it the provider binary as the command to execute. Specify flags, environment variables, and any other input your provider needs to run.
 
-```sh
-$ dlv exec --headless ./terraform-provider-my-provider -- --debug
+#### Visual Studio Code
+
+Visual Studio Code (VS Code) features native [debugging](https://code.visualstudio.com/docs/editor/debugging) support with the [Go extension](https://marketplace.visualstudio.com/items?itemName=golang.go). You can create the necessary launch configuration within the repository as a `.vscode/launch.json` file, [user settings](https://code.visualstudio.com/docs/editor/debugging#_global-launch-configuration), or [workspace settings](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_workspace-launch-configurations).
+
+An example `.vscode/launch.json` configuration file:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Terraform Provider",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            // this assumes your workspace is the root of the repo
+            "program": "${workspaceFolder}",
+            "env": {},
+            "args": [
+                "-debug",
+            ]
+        }
+    ]
+}
 ```
 
-Connect your debugger (whether it's your IDE or the debugger client) to the
-debugger server. Have it continue execution (it pauses the process by default)
-and it will print output like the following to `stdout`:
+Running the editor debugger will output the reattach configuration to the debug console.
+
+#### Delve CLI
+
+Start a [`delve`](https://github.com/go-delve/delve) debugging session:
+
+```sh
+$ dlv exec --accept-multiclient --continue --headless ./terraform-provider-example -- -debug
+```
+
+It will print output like the following to `stdout`:
 
 ```
 Provider started, to attach Terraform set the TF_REATTACH_PROVIDERS env var:
 
         TF_REATTACH_PROVIDERS='{"registry.terraform.io/my-org/my-provider":{"Protocol":"grpc","Pid":3382870,"Test":true,"Addr":{"Network":"unix","String":"/tmp/plugin713096927"}}}'
+```
+
+Connect your debugger, such as your editor or another delve CLI process, to the debugger server.
+
+For example with Delve CLI, using the server address and port output by `dlv exec` such as `API server listening at: 127.0.0.1:55413`:
+
+```shell
+dlv connect 127.0.0.1:55413
 ```
 
 ### Running Terraform With A Provider In Debug Mode

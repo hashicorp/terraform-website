@@ -11,15 +11,17 @@ description: >-
 
 # Adding Public Providers and Modules to the Private Registry
 
-You can add providers and modules from the public [Terraform Registry](/registry) to your Terraform Cloud private registry. This lets you clearly designate which public providers and modules are recommended for the organization and makes their supporting documentation and examples centrally accessible.
+You can add providers and modules from the public [Terraform Registry](/registry) to your Terraform Cloud private registry. The private registry stores a pointer to these public providers and modules so that you can view their data from within Terraform Cloud. This lets you clearly designate which public providers and modules are recommended for the organization and makes their supporting documentation and examples centrally accessible.
 
--> **Note:** Public providers and modules are available in Terraform Enterprise v202012-1 and later. Your instance must allow access to registry.terraform.io and https://yy0ffni7mf-dsn.algolia.net/.
+-> **Note:** Public providers and modules are available in Terraform Enterprise v202012-1 and later. Your instance must allow access to `registry.terraform.io` and `https://yy0ffni7mf-dsn.algolia.net/`.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-The private registry automatically synchronizes public providers and modules with their source on the Terraform Registry. The private registry handles downloads and controls access with Terraform Cloud API tokens, so consumers do not need access to the provider and module source repositories, even when they run Terraform from the command line.
+You can add providers and modules through the UI as detailed below or through the [Registry Providers API](/cloud-docs/api-docs/providers) and the [Registry Modules API](/cloud-docs/api-docs/modules#create-a-module-with-no-vcs-connection-).
 
-All members of an organization can view and use public providers and modules, but only members of the [owners team](/cloud-docs/users-teams-organizations/permissions#organization-owners) can add them to the private registry. Owners can add providers and modules through the UI as detailed below or through the [Registry Providers API](/cloud-docs/api-docs/providers) and the [Registry Modules API](/cloud-docs/api-docs/modules#create-a-module-with-no-vcs-connection-).
+## Permissions
+
+All members of an organization can view and use public providers and modules. Members of the [owners team](/cloud-docs/users-teams-organizations/permissions#organization-owners) and teams with [Manage Private Registry permissions](/cloud-docs/users-teams-organizations/permissions#manage-private-registry) can add and delete them from the private registry.
 
 ## Adding a Public Provider or Module
 

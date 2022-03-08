@@ -149,6 +149,8 @@ module.exports = (async () => {
   })
 
   const miscRedirectsMap = {
+    '/cloud': 'https://cloud.hashicorp.com/products/terraform',
+    '/cloud/how-it-works': 'https://cloud.hashicorp.com/products/terraform',
     '/community.html': '/community',
     '/downloads.html': '/downloads',
     '/guides/core-workflow.html': '/intro/core-workflow',
@@ -166,6 +168,7 @@ module.exports = (async () => {
     '/intro/vs/custom.html': '/intro/vs/custom',
     '/intro/vs/index.html': '/intro/vs',
     '/security.html': '/security',
+    '/upgrade-guides': '/language/upgrade-guides',
     '/upgrade-guides/0-10.html': '/language/upgrade-guides/0-10',
     '/upgrade-guides/0-11.html': '/language/upgrade-guides/0-11',
     '/upgrade-guides/0-12.html': '/language/upgrade-guides/0-12',
@@ -177,6 +180,16 @@ module.exports = (async () => {
     '/upgrade-guides/0-9.html': '/language/upgrade-guides/0-9',
     '/upgrade-guides/1-0.html': '/language/upgrade-guides/1-0',
     '/upgrade-guides/index.html': '/language/upgrade-guides',
+    '/language/resources/provisioners': '/language/resources/provisioners/syntax',
+    '/enterprise/before-installing/cluster-architecture': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-aws': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-azure': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-custom': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/install/cluster-gcp': '/enterprise/admin/infrastructure/active-active',
+    '/enterprise/release': '/enterprise/releases',
+    '/cloud-docs/registry/publish': '/cloud-docs/registry/publish-modules',
+    '/cloud-docs/api-docs/providers': '/cloud-docs/api-docs/private-registry/providers',
+    '/cloud-docs/api-docs/modules': '/cloud-docs/api-docs/private-registry/modules',
   }
   const miscRedirects = Object.entries(miscRedirectsMap).map(
     ([source, destination]) => {

@@ -19,12 +19,10 @@ Below is an example `provider.go` file, detailing a hypothetical `ExampleProvide
 package exampleprovider
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-// Provider returns a terraform.ResourceProvider.
-func Provider() terraform.ResourceProvider {
+func Provider() *schema.Provider {
 	// Example Provider requires an API Token.
 	// The Email is optional
 	return &schema.Provider{

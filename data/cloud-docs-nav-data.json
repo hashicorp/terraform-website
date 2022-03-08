@@ -122,6 +122,7 @@
       { "title": "Overview", "path": "agents" },
       { "title": "Telemetry", "path": "agents/telemetry" },
       { "title": "Monitoring", "path": "agents/monitoring" },
+      { "title": "Hooks", "path": "agents/hooks" },
       { "title": "Changelog", "path": "agents/changelog" }
     ]
   },
@@ -134,8 +135,12 @@
         "path": "registry/add"
       },
       {
+        "title": "Publishing Private Providers",
+        "path": "registry/publish-providers"
+      },
+      {
         "title": "Publishing Private Modules",
-        "path": "registry/publish"
+        "path": "registry/publish-modules"
       },
       { "title": "Using Providers and Modules", "path": "registry/using" },
       {
@@ -325,7 +330,6 @@
       { "title": "Feature Sets", "path": "api-docs/feature-sets" },
       { "title": "Invoices", "path": "api-docs/invoices" },
       { "title": "IP Ranges", "path": "api-docs/ip-ranges" },
-      { "title": "Modules", "path": "api-docs/modules" },
       {
         "title": "Notification Configurations",
         "path": "api-docs/notification-configurations"
@@ -355,8 +359,19 @@
         "path": "api-docs/policy-set-params"
       },
       {
-        "title": "Providers",
-        "path": "api-docs/providers"
+        "title": "Private Registry",
+        "routes": [
+          { "title": "Modules", "path": "api-docs/private-registry/modules" },
+          {
+            "title": "Providers",
+            "path": "api-docs/private-registry/providers"
+          },
+          {
+            "title": "Private Provider Versions and Platforms",
+            "path": "api-docs/private-registry/provider-versions-platforms"
+          },
+          { "title": "GPG Keys", "path": "api-docs/private-registry/gpg-keys" }
+        ]
       },
       { "title": "Runs", "path": "api-docs/run" },
       { "title": "Run Tasks", "path": "api-docs/run-tasks" },

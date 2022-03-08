@@ -30,28 +30,62 @@ In addition to health-check monitoring, we recommend monitoring standard server 
 - CPU
 - Disk
 
-As of the `v202108-1` release, TFE will attach additional labels to the Docker containers used to execute Terraform runs. These labels include:
+As of the `v202201-1` release, Terraform Enterprise supports exporting container-level resource utilization metrics.
 
-- `run_type`: The job’s run type (either "plan" or "apply")
-- `run_id`: The job’s run ID (taking the form of "run-\&lt;random string\&gt;")
-- `workspace_name`: The name of the workspace under which the job is executing
-- `organization_name`: The name of the organization under which the job is executing
+### Terraform Enterprise Metrics
 
-Environments with Docker-aware observability tooling (such as `cAdvisor`) can leverage these labels to associate individual containers (and the resources they consume) with specific TFE runs.
+The Terraform Enterprise Metrics service collects a number of runtime metrics. Operators can use this data to gain real-time visibility into their installation. Additionally, these metrics can be used to set up monitoring and alerting to detect anomalous incidents, performance degradation, and utilization trends. Metrics are aggregated on a five second interval and are retained in memory for fifteen seconds. In order to leverage Terraform Enterprise metrics in monitoring, data must be stored in metric aggregation software. Terraform Enterprise currently supports exposing metrics data in Prometheus format, as well as a JSON representation.
 
-## Internal Monitoring
+#### Enable Metrics Collection
 
-Beginning in version 201811-1, Terraform Enterprise uses a statsd collector to monitor critical application metrics. Terraform Enterprise produces an error during start up if the instance is already running a collector on the same port:
+Metrics collection can be configured with the `metrics_endpoint_enabled` config flag in the [application config file](/enterprise/install/automated/automating-the-installer#application-settings). By default, `metrics_endpoint_enabled` is set to `"0"` (disabled). To enable metrics collection, set this value to `"1"`.
 
-```
-Error starting userland proxy: listen udp 0.0.0.0:XXXXX: bind: address already in use
-```
+#### Access Metrics
 
-To prevent this conflict, disable metrics collection by Terraform Enterprise:
+When enabled, Terraform Enterprise will expose metrics on a port separate from the application. This allows operators to use network access controls to restrict access to metrics data to authorized consumers, i.e., a Prometheus server. By default, port 9090 is used for plaintext HTTP requests, and port 9091 for HTTPS traffic. Both of these values are configurable via the `metrics_endpoint_port_http` and `metrics_endpoint_port_https` configuration values, respectively.
 
-1. Access the installer dashboard on port 8800 of your instance.
-1. Locate **Advanced Configuration** on the configuration page under **Terraform Build Worker image**.
-1. Uncheck "Enable metrics collection".
-1. Restart the application from the dashboard if it does not restart automatically.
+Both the HTTP and HTTPS ports will respond to HTTP requests with the path `/metrics`. By default, requests to the `/metrics` endpoint will generate a response in JSON format; adding the query string `?format=prometheus` will generate a response in Prometheus format.
 
-We recommend that internal monitoring only be disabled if it is causing issues, as it otherwise provides useful detail in diagnosing issues. From version 201812-1, the collector is configured on port 23010, and the 23000-23100 range should be [reserved for Terraform Enterprise](/enterprise/before-installing/network-requirements) to run any services of this nature.
+When using Prometheus, it is recommended to use a scrape interval shorter than the expiration time of 15 seconds, to ensure that data points from short-lived processes are not missed.
+
+#### Container Metrics
+
+These metrics report runtime information about Terraform Enterprise containers.
+
+|              Exposed Metric               | Metrics Type |                                                    Description                                                   |
+|:----------------------------------------- |:------------:|:---------------------------------------------------------------------------------------------------------------- |
+| `tfe.container.cpu.usage.user`            | `counter`    | Running count, in nanoseconds, of the total amount of time processes in the container have spent in userspace    |
+| `tfe.container.cpu.usage.kernel`          | `counter`    | Running count, in nanoseconds, of the total amount of time processes in the container have spent in kernel space |
+| `tfe.container.memory.used_bytes`         | `gauge`      | The amount of memory allocated to the container in bytes, minus memory that is used for page cache               |
+| `tfe.container.memory.limit`              | `gauge`      | The maximum amount of memory in bytes that can be allocated by the container                                     |
+| `tfe.container.network.rx_bytes_total`    | `counter`    | Running count of the number of network bytes received by the container                                           |
+| `tfe.container.network.rx_packets_total`  | `counter`    | Running count of the number of network packets received by the container                                         |
+| `tfe.container.network.tx_bytes_total`    | `counter`    | Running count of the number of network bytes transmitted by the container                                        |
+| `tfe.container.network.tx_packets_total`  | `counter`    | Running count of the number of network packets transmitted by the container                                      |
+| `tfe.container.disk.io_op_read_total`     | `counter`    | Running count of the number of read disk operations executed by the container                                    |
+| `tfe.container.disk.io_op_write_total`    | `counter`    | Running count of the number of write disk operations executed by the container                                   |
+| `tfe.container.disk.io_bytes_read_total`  | `counter`    | Running count of the number of disk bytes read by the container                                                  |
+| `tfe.container.disk.io_bytes_write_total` | `counter`    | Running count of the number of disk bytes written by the container                                               |
+| `tfe.container.process_count`             | `gauge`      | The number of processes active within the container                                                              |
+| `tfe.container.process_limit`             | `gauge`      | The maximum number of processes that can be executed inside the container                                        |
+
+The following metadata labels will be added to each container metric emitted:
+
+* `id`: The container ID
+* `name`: The container name
+* `image`: The container image
+
+Build worker container metrics include four additional labels: `run_type`, `run_id`, `workspace_name`, and `organization_name`. You can use these labels to associate a build worker container with its type, run, workspace, and organization, respectively. Metrics for long-running service containers will not include these labels.
+
+In addition to the per-container metrics, the following global metrics are exposed:
+
+|              Exposed Metric              | Metrics Type |                                             Description                                            |
+|:---------------------------------------- |:------------:|:-------------------------------------------------------------------------------------------------- |
+| `tfe.run.count`                    | `gauge `     | Number of running containers being used for Terraform operators (runs and plans)                   |
+| `tfe.run.limit`                    | `gauge`      | Maximum number of jobs as defined by the `capacity_concurrency` Replicated config                  |
+
+The name and ID for build worker containers are unique for each build, and build container names take the form of a UUID. Be aware of this when planning for Prometheus storage capacity requirements that relate to metric cardinality. Environments that do not need to track resource consumption of individual build containers or runs can use [Prometheus metric relabelling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs) to remove the unique ID, name, and run type labels from container metrics. This reduces cardinality within the dataset while still retaining the ability to associate resource usage with a given workspace and organization.
+
+#### Grafana Dashboard
+
+This [template Grafana dashboard](https://grafana.com/grafana/dashboards/15630) demonstrates how you can use Grafana and Prometheus to visualize exported Terraform Enterprise metrics.

@@ -1,0 +1,33 @@
+---
+page_title: Releases - Terraform Enterprise
+---
+
+# TFE Release v202111-1 (582)
+
+## Known Issues
+
+1. [February 8, 2022] This release includes a regression that removed default log rotation settings of Docker logs using the `json-file` logging driver (the default driver), affecting log rotation on installations in which the new log forwarding feature is disabled. If the log forwarding feature is not enabled on your installation, it is recommended that you configure global log rotation settings to prevent disk space issues. For more information about configuring log rotation, please refer to https://terraform.io/enterprise/before-installing#log-rotation. This issue is fixed in v202201-2.
+
+## APPLICATION LEVEL BREAKING CHANGES:
+
+* Certain application container images were updated to use Alpine 3.14 which has specific Docker, `runc`, and `libseccomp` version requirements. Please refer to [the Alpine 3.14 release notes](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0#faccessat2) to determine if your installation meets these new requirements before upgrading.
+
+## APPLICATION LEVEL FEATURES:
+
+* Added support for terraform-json 0.13.0
+* Added increase github changed files probe for pull requests from 300 to 3000
+* Added a `tfe-admin list-nodes` command to list all active nodes in an active/active installation.
+
+## APPLICATION LEVEL BUG FIXES:
+
+* Fixed an issue where a workspace throws errors if it's locked by a team or user that is then deleted.
+* Fixed an issue where all workspaces attached to a particular VCS repo would occasionally become unable to process webhooks.
+* Fixed an issue where log forwarding was not configured with HTTP proxy environment variables.
+* Fixed the Terraform version selector (in the workspace settings) for workspaces that use a custom version constraint (like `~> *0.5`). The selector will now show the constraint instead of the latest version.
+* Fixed an issue where visible teams weren't visible in Terraform Enterprise due to an incorrect SQL join.
+* Fixed issue where users could continue to select beta version of Terraform via API, even as betas are not allowed on the associated organization.
+
+## APPLICATION LEVEL SECURITY FIXES:
+
+* Updated the version of the internally-managed Vault server to \*8.4.
+* Ongoing container updates to address reported vulnerabilities in underlying packages / dependencies.

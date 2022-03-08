@@ -192,7 +192,7 @@ See [Active/Active Administration](/enterprise/admin/infrastructure/active-activ
 
 With installation complete, it is time to validate the new Redis connection. Terraform Enterprise uses Redis both as a cache for API requests and a queue for long running jobs, e.g. Terraform Runs. Test the latter behavior by running real Terraform plans and applies through the system.
 
-Once you are satisfied the application is running as expected, you can move on to step 4 to scale up to two nodes.
+Once you are satisfied the application is running as expected, you can move on to step 4 to scale up to 2 nodes.
 
 ### Step 4: Scale to Two Nodes
 
@@ -214,9 +214,7 @@ Scale down to zero nodes to fully disable the admin dashboard. Once the existing
 
 #### Scale Up to Two Nodes
 
-Now that you have tested your external Redis connection change the min and max instance count of your Auto Scaling Group to two nodes.
-
--> **Note**: Running more than two instances is not _currently_ supported. Please contact your Customer Success Manager if there are any questions/concerns.
+Now that you have tested your external Redis connection change the min and max instance count of your Auto Scaling Group to 2 nodes.
 
 #### Wait for Terraform Enterprise to Install
 
@@ -229,6 +227,43 @@ You need to wait up to 15 minutes for the application to respond as healthy on b
 Finally, confirm the application is functioning as expected when running multiple nodes. Run Terraform plan and applies through the system (and any other tests specific to your environment) like you did to validate the application in Step 3.
 
 Confirm the general functionality of the Terraform Enterprise UI to validate the tokens you added in Step 2 are set correctly. Browse the `Run` interface and your organization's private registry to confirm your application functions as expected.
+
+### Scaling Beyond Two Nodes
+
+Terraform Enterprise supports scaling up to 3 nodes as part of the Active/Active deployment. When scaling beyond 2 nodes, you should also carefully evaluate and scale external services, particularly the database server. Scaling to 3 nodes does not alter the [upgrade requirement](https://www.terraform.io/enterprise/admin/infrastructure/active-active#upgrading-tfe-or-patching-tfe-node-instances) that you scale down to a single node or rebuild entirely.
+
+#### PostgreSQL Server
+
+The Terraform Enterprise PostgreSQL server will typically hit the CPU capacity before other resources, so we recommend closely monitoring the CPU in a 2 node configuration before scaling up to 3 nodes. You may also need to manually modify the database maximum connection count to allow for the additional load. Defaults vary, so please refer to the documentation for the cloud hosting your installation.
+
+- [AWS - RDS connection limits](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html#RDS_Limits.MaxConnections)
+- [AWS - Aurora Scaling](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Managing.Performance.html)
+- [Azure - Azure Database Limits](https://docs.microsoft.com/en-us/azure/postgresql/concepts-limits)
+- [Google Cloud - Cloud SQL Quotes and Limits](https://cloud.google.com/sql/docs/quotas)
+- [PostgreSQL 12 - Connection Documentation](https://www.postgresql.org/docs/12/runtime-config-connection.html)
+
+#### Redis Server
+
+Some workloads may rarely cause spikes in the Redis server CPU or memory. We recommend monitoring the Redis server and scaling it up as necessary. 
+
+- [AWS - Monitoring ElastiCache for Redis with CloudWatch](https://aws.amazon.com/blogs/database/monitoring-best-practices-with-amazon-elasticache-for-redis-using-amazon-cloudwatch/)
+- [Azure - Monitor Azure Cache for Redis](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-how-to-monitor)
+- [Google Cloud - Monitoring Redis Instances](https://cloud.google.com/memorystore/docs/redis/monitoring-instances)
+
+#### Network Infrastructure/API Limits
+
+As you scale Terraform Enterprise beyond 2 nodes, you may be adding additional stress to your network and dramatically increasing the number of API calls made in your cloud account. Each cloud has its own default limits and processes by which those limits might be increased. Please refer to the documentation for the cloud hosting your installation.
+
+- [AWS - EC2 instance network limits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-network-bandwidth.html)
+- [AWS - Request Throttling for the EC2 API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/throttling.html)
+- [Azure - Virtual Machine Network Limits](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-machine-network-throughput)
+- [Azure - Resource Manager Throttling](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/request-limits-and-throttling)
+- [Google Cloud - Network Quotas and Limits](https://cloud.google.com/vpc/docs/quota)
+- [Google Cloud - API rate limits](https://cloud.google.com/compute/docs/api-rate-limits)
+
+#### Terraform Cloud Agents - Alternative Solution
+
+Instead of scaling Terraform Enterprise beyond 2 or 3 nodes, you can use [Terraform Cloud Agents](https://www.terraform.io/enterprise/admin/agents-on-tfe). Terraform Cloud Agents can run in other regions, other clouds, and even private clouds. Agents poll Terraform Enterprise for work and then Terraform plans and applies will run on the target system that has the agent executable installed. This has a much smaller impact on the Terraform Enterprise servers than running Terraform locally.
 
 ##
 
@@ -292,8 +327,8 @@ resource "aws_elasticache_replication_group" "tfe" {
 
 Requirements/Options:
 
-* **authorized_network** - The network you wish to deploy the instance into. Internal testing was done using the same network TFE is deployed into. If a different network is used, the customer needs to ensure the two networks are open on port **6379**.
-* **memory_size_gb** - How much memory to allocate to Redis. Initial testing was done with just 1gb configured. Larger deployments may require additional memory. (TFC uses an m4.large, which is just 6gb of memory, for reference.)
+* **authorized_network** - The network you wish to deploy the instance into. Internal testing was done using the same network TFE is deployed into. If a different network is used, the customer needs to ensure the 2 networks are open on port **6379**.
+* **memory_size_gb** - How much memory to allocate to Redis. Initial testing was done with just 1GB configured. Larger deployments may require additional memory. (TFC uses an m4.large, which is just 6GB of memory, for reference.)
 * **location_id** - What region to deploy into - should be the same one TFE is deployed into. If Standard_HA tier is selected, an alternative_location_id will also need to be provided as a failover location.
 * **redis_version** - Both 4.0 and 5.0 work without issue but 5.0 is recommended
 
@@ -307,7 +342,7 @@ You may consider using other options in the configuration depending on your requ
 
 -> **Note**: Azure Cache on Azure only supports persistence and encryption with their Premium tier. All other tiers, Basic and Standard, do not support data persistence.
 
-The minimum instance size for Redis to be used with TFE is 6 GiB. For Azure, this allows for some minimum configurations across the three tiers using Cache Names for their different Tiers. Our recommendations on cache sizing for Azure Cache for Redis is in the table below:
+The minimum instance size for Redis to be used with TFE is 6 GiB. For Azure, this allows for some minimum configurations across the 3 tiers using Cache Names for their different Tiers. Our recommendations on cache sizing for Azure Cache for Redis is in the table below:
 
 |                    | **Basic** | **Standard** | **Premium** |
 | ------------------ | --------- | ------------ | ----------- |
@@ -321,6 +356,6 @@ The default example provided on the provider page can be used to deploy Azure Ca
 
 ## Appendix 4: Redis on VMware
 
-Redis on VMware was tested with a virtual machine with 2 CPUs and 8 Gb of memory running Ubuntu 20.04. Both Redis v5 and v6 are supported. A full list of supported Operating Systems can be found on the [Pre-Install Checklist](/enterprise/before-installing#operating-system-requirements).
+Redis on VMware was tested with a virtual machine with 2 CPUs and 8 GB of memory running Ubuntu 20.04. Both Redis v5 and v6 are supported. A full list of supported Operating Systems can be found on the [Pre-Install Checklist](/enterprise/before-installing#operating-system-requirements).
 
 The sizing of your Redis server will depend on your company or organization's workload. Monitoring of the virtual machine and resizing based on utilization is recommended. More details on memory utilization can be found on [Redis' website](https://redis.io/topics/memory-optimization).

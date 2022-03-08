@@ -12,6 +12,7 @@ description: >-
 We recommend the following operating system / architecture combinations for compiled binaries available in the registry (this list is already satisfied by our [recommended **.goreleaser.yml** configuration file](https://github.com/hashicorp/terraform-provider-scaffolding/blob/main/.goreleaser.yml)):
 
 * Darwin / AMD64
+* Darwin / ARMv8
 * Linux / AMD64 (this is **required** for usage in Terraform Cloud, see below)
 * Linux / ARMv8 (sometimes referred to as AArch64 or ARM64)
 * Linux / ARMv6
@@ -23,8 +24,6 @@ We also recommend shipping binaries for the following combinations, but we typic
 * Windows / 386
 * FreeBSD / 386
 * FreeBSD / AMD64
-
--> **Note:** Darwin / ARMv8 support (the new M1 chip), once GA in Go 1.16, will be added to our recommended combinations.
 
 ## Terraform Cloud Compatibility
 

@@ -27,11 +27,11 @@ There are also some actions within an organization that are only available to ow
 
 Permissions for the owners team include:
 
-- Manage workspaces (see [Organization Permissions][] below; equivalent to admin permissions on every workspace)
-- Manage policies (see [Organization Permissions][] below)
-- Manage policy overrides (see [Organization Permissions][] below)
-- Manage VCS settings (see [Organization Permissions][] below)
-- Publish private modules (owners only)
+- Manage workspaces (refer to [Organization Permissions][] below; equivalent to admin permissions on every workspace)
+- Manage policies (refer to [Organization Permissions][] below)
+- Manage policy overrides (refer to [Organization Permissions][] below)
+- Manage VCS settings (refer to [Organization Permissions][] below)
+- Manage the private registry (refer to [Organization Permissions][] below)
 - Invite users to organization (owners only)
 - Manage team membership (owners only)
 - View all secret teams (owners only)
@@ -152,7 +152,9 @@ Some permissions - such as the runs permission - are tiered: you can assign one 
 
 ## Organization Permissions
 
-Separate from workspace permissions, teams can be granted permissions to manage certain resources or settings across an organization. The following organization permissions are available:
+Separate from workspace permissions, teams can be granted permissions to manage certain resources or settings across an organization. To set these permissions for a team, click **Settings** in the top navigation bar. Then click **Teams** and select the team name from the list.
+
+The following organization permissions are available:
 
 ### Manage Policies
 
@@ -175,7 +177,11 @@ Allows members to create and administrate all workspaces within the organization
 
 ### Manage VCS Settings
 
-Allows members to manage the set of VCS providers and SSH keys available within the organization.
+Allows members to manage the set of [VCS providers](/cloud-docs/vcs) and [SSH keys](/cloud-docs/vcs#ssh-keys) available within the organization.
+
+### Manage Private Registry
+
+Allows members to publish and delete providers, modules, or both providers and modules in the organization's [private registry](/cloud-docs/registry). These permissions are otherwise only available to organization owners.
 
 ## Permissions Outside Terraform Cloud's Scope
 

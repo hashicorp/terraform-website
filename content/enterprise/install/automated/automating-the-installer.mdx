@@ -156,27 +156,31 @@ The following settings apply to every installation:
 
 - `capacity_memory` — The maximum amount of memory (in megabytes) that a Terraform plan or apply can use on the system; defaults to `512`.
 
-- `enable_metrics_collection` — Whether Terraform Enterprise's [internal metrics collection](/enterprise/admin/infrastructure/monitoring#internal-monitoring) should be enabled; defaults to `true`.
-
 - `iact_subnet_list` - A comma-separated list of CIDR masks that configure the ability to retrieve the [IACT](/enterprise/install/automated/automating-initial-user) from outside the host. For example: "10.0.0.0/24, 10.0.1.0/24". If not set, no subnets can retrieve the IACT.
 
 - `iact_subnet_time_limit` - The time limit that requests from the subnets listed can request the [IACT](/enterprise/install/automated/automating-initial-user), as measured from the instance creation in minutes; defaults to 60.
 
 - `extra_no_proxy` — (Optional) When configured to use a proxy, a `,` (comma) separated list of hosts to exclude from proxying. Please note that this list does not support whitespace characters. For example: `127.0.0.1,tfe.myapp.com,myco.github.com`.
 
-- ` restrict_worker_metadata_access` - Prevents the environment where Terraform operations are executed from accessing the cloud instance metadata service. This should not be set when Terraform operations rely on using instance metadata (i.e., the instance IAM profile) as part of the Terraform provider configuration. _Note: a bug in Docker version [19.03.3](https://docs.docker.com/engine/release-notes/19.03/#known-issues-1) prevents this setting from working correctly. Operators should avoid using this Docker version when enabling this setting._
+- ` restrict_worker_metadata_access` - Prevents the environment where Terraform operations are executed from accessing the cloud instance metadata service. This should not be set when Terraform operations rely on using instance metadata (i.e., the instance IAM profile) as part of the Terraform provider configuration. _Note: a bug in Docker version [19.03.3](https://docs.docker.com/engine/release-notes/19.03/#known-issues-1) prevents this setting from working correctly. Operators should avoid using this Docker version when enabling this setting._; Valid values 0 or 1, defaults to 0.
 
 - `hairpin_addressing` - When set, TFE services will direct traffic destined for the installation's FQDN toward the instance's internal IP address. This is useful for cloud environments where HTTP clients running on instances behind a load balancer cannot send requests to the public hostname of that load balancer. Defaults to `false`.
 
 - `tls_vers` - (Optional) Set to `tls_1_2` to enable only TLS 1.2, or to `tls_1_3` to enable only TLS 1.3. When unset, TFE defaults to both TLS 1.2 and 1.3 (`tls_1_2_tls_1_3`).
 
-- `tls_ciphers` - (Optional) Set to an OpenSSL [cipher list format](https://www.openssl.org/docs/man1.0.2/man1/ciphers.html) string to enable a custom TLS ciphersuite. When unset, TFE uses a default ciphersuite.
+- `tls_ciphers` - (Optional) Set to an OpenSSL [cipher list format](https://www.openssl.org/docs/man1.1.1/man1/ciphers.html) string to enable a custom TLS ciphersuite. When unset, TFE uses a default ciphersuite.
 
 - `force_tls` - When set, TFE will require all application traffic to use HTTPS by sending a 'Strict-Transport-Security' header value in responses, and marking cookies as secure. A valid, trusted TLS certificate must be installed when this option is set, as browsers will refuse to serve webpages that have an HSTS header set that also serve self-signed or untrusted certificates.
 
 - `log_forwarding_enabled` - (Optional) Whether or not to enable [log forwarding](/enterprise/admin/infrastructure/logging) for Terraform Enterprise. Set to `1` to enable log forwarding and `0` to disable log forwarding. Defaults to `0`.
 
 - `log_forwarding_config` - (Optional) Valid [log forwarding](/enterprise/admin/infrastructure/logging) configuration specifying external destination(s) to forward logs.
+
+- `metrics_endpoint_enabled` - (Optional) Enable an endpoint to [expose container metrics](/enterprise/admin/infrastructure/monitoring#terraform-enterprise-metrics). Defaults to `0`.
+
+- `metrics_endpoint_port_http` - (Optional) Defines the TCP port on which HTTP metrics requests will be handled. Defaults to `9090`.
+
+- `metrics_endpoint_port_https` - (Optional) Defines the TCP port on which HTTPS metrics requests will be handled. Defaults to `9091`.
 
 - `ca_certs` — (Optional) Custom certificate authority (CA) bundle. JSON does not allow raw newline characters, so replace any newlines
   in the data with `\n`. For instance:
@@ -291,7 +295,9 @@ bash ./install.sh \
     public-address=5.6.7.8
 ```
 
-Note the `private-address` and `public-address` flags provided to the installer.  These may be left out, but the installer will prompt for them if it is unable to determine appropriate values automatically. If the instance will not have a separate public address, you may provide the private address for both values.
+We recommend you always supply the `private-address` and `public-address` flags to the installer. If the virtual machine instance will not have its own separate public IP address (i.e. you are using a load balancer and a private subnet), you should provide the private IP address for both flags.
+
+The installer will prompt you for these flags if it cannot determine them automatically. If you use `cloud-init` or another non-interactive method to run the installer, you will see this prompt in the log output, but the installer will continue to run. If the installer is unable to determine the IP addresses and you do not provide them, the installation will appear to be successful, but Terraform Enterprise will have degraded functionality. For example, you may see `Internal error: SIW-001` when importing modules to the private registry or notice that the Archivist and Vault containers are unhealthy when you run the `tfe-admin health-check` command. 
 
 ### Airgapped
 

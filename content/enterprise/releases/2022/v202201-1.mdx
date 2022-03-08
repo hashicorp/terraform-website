@@ -1,0 +1,45 @@
+---
+page_title: Releases - Terraform Enterprise
+---
+
+# TFE Release v202201-1 (594)
+
+DEPRECATION NOTICE:
+1. If you are using Terraform CLI v1.1.0 or v1.1.1, please upgrade to the latest version as soon as possible. Terraform CLI v1.1.0 and v1.1.1 both have a bug where a failure to construct the apply-time graph can cause Terraform to incorrectly report success and save an empty state, effectively “forgetting” all existing infrastructure. Although configurations that already worked on previous releases should not encounter this problem, it’s possible that incorrect future configuration changes would trigger this behavior during the apply step.
+
+UPCOMING DEPRECATION NOTICES:
+The Terraform Enterprise April 2022 release will:
+1. Remove the [demo operational mode](https://www.terraform.io/enterprise/before-installing#operational-mode-decision), which is also known as the proof of concept (PoC) operational mode. The mounted disk operational mode will replace the demo operational mode for both non-production and production Terraform Enterprise environments. To check which mode your installation is using, run `replicatedctl app-config export --template '{{ .installation_type.Value }}'`. The value `poc` indicates that your installation is using the demo operational mode. The April 2022 release notes will contain more information about how to migrate.
+1. Update the names of containers, which may break container monitoring or custom tooling that identifies containers by name. The April 2022 release notes will explain these name changes in more detail and provide a complete list of old and new container names.
+
+APPLICATION LEVEL BREAKING CHANGES:
+
+N/A
+
+APPLICATION LEVEL FEATURES:
+1. The setting to [require site admins to enable two-factor authentication](https://www.terraform.io/enterprise/admin/application/general#require-site-admins-to-enable-two-factor-authentication) now applies when SAML is enabled.
+1. Install-specific values are now available in the API. The UI also uses a new API-driven page configuration during bootstrapping.
+1. Users who are logged in can now view and manage their active sessions within their user settings.
+1. The [CLI integration](https://www.terraform.io/cli/cloud) is now available for using Terraform Enterprise from the command line. We recommend using this native integration for Terraform versions 1.1 or later, as it provides an improved user experience and various enhancements.
+1. Terraform versions 1.1.0 and 1.1.1 are now marked as deprecated. Deprecated versions cannot be selected in the workspace settings, but workspaces already using a deprecated version will display a warning.
+1. Container resource usage metrics are now available in Prometheus format.
+1. The private registry UI now displays a warning message for old versions of provider documentation with a link to the latest version. It also includes an **On this Page** outline for provider documentation that lets you navigate more quickly between sections. 
+1. Added an outline to the public provider documentation page
+1. The [new `tfe-admin rotate-encryption-password` command](https://www.terraform.io/enterprise/admin/infrastructure/active-active) rotates the encryption password on active/active installations of Terraform Enterprise.
+1. A workspace's ID can now be copied from the workspace overview page.
+1. New speculative attribute has been added to the [Configuration Versions API](https://www.terraform.io/cloud-docs/api-docs/configuration-versions) response.
+1. Add new option to allow teams that aren't the owner team to manage modules in the private registry.
+
+
+APPLICATION LEVEL BUG FIXES:
+1. Obscured OAuth connection errors when connecting VCS providers, such as misconfigured scopes.
+1. The Fluent Bit service did not respect lowercase versions of the `HTTP_PROXY` and `NO_PROXY` environment variables.
+1. Terraform Enterprise installations using Replicated's `self-signed` TLS certificates returned 500 when fetching structured run output.
+1. Resource names will not be mistakenly truncated in structured plan output.
+1. Fixed a typo on the workspace variables page.
+
+
+APPLICATION LEVEL SECURITY FIXES:
+1. Removed an insecure reference to the initial admin user token from the `REGISTRY_BASE_URL` environment variable in the Registry service.
+1. Updated Telegraf to version 1.12.1.
+1. Updated InfluxDB to version 2.1.1.

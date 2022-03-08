@@ -1,0 +1,55 @@
+---
+page_title: Releases - Terraform Enterprise
+---
+
+# TFE Release v202109-2 (568)
+
+## Known Issues
+
+1. [February 8, 2022] This release includes a regression that removed default log rotation settings of Docker logs using the `json-file` logging driver (the default driver), affecting log rotation on installations in which the new log forwarding feature is disabled. If the log forwarding feature is not enabled on your installation, it is recommended that you configure global log rotation settings to prevent disk space issues. For more information about configuring log rotation, please refer to https://terraform.io/enterprise/before-installing#log-rotation. This issue is fixed in v202201-2.
+
+## Application Level Bug Fixes Since v202109-1
+
+1. Updated Fluent Bit to v1.8.7 to fix a DNS resolution issue which prevents operators from sending logs to Datadog.
+
+## Deprecation Notice
+
+The following operating systems are no longer supported:
+
+- Ubuntu 14
+- Debian 7
+
+Docker logs using the `json-file` logging driver (the default driver) will no longer be automatically rotated. Please refer to the [log rotation documentation](/enterprise/before-installing#log-rotation) for details on how to configure log rotation.
+
+## Application Level Features
+
+1. Added Terraform CLI versions up through 1.1.0-alpha20210811 to Terraform Enterprise.
+1. Added 'capacity_cpus' Replicated configuration option to limit the number of CPU cores available to individual Terraform runs.
+1. Changed structured run UI to always show error logs immediately.
+1. Changed apply UI to show "no changes" for runs which only change outputs.
+1. Changed apply UI to hide output values by default, and improved display of complex values.
+1. Added advanced UI for Terraform Plan, including an interactive diff.
+1. Added support for Terraform Cloud Agents.
+1. Added support for forwarding Terraform Enterprise logs to one or more external destinations.
+
+## Application Level Bug Fixes
+
+1. Fixed sidekiq admin panel to be accessible to Configuration and Support admin RBAC roles.
+1. Changed apply progress UI for to clarify the final state of replaced resources.
+1. Updated Nomad to 1.1.4
+1. Updated Vault to 1.8.2
+1. Fixed registry modules with errors so that they are accessible.
+1. Updated Sentinel to 0.18.4
+1. Updated Telegraf to 1.19.3 to fix a `panic: runtime error: slice bounds out of range` error.
+1. Updated InfluxDB to 1.8.9.
+
+## Application Level Security Fixes
+
+1. Hid the upload-url attribute on ConfigurationVersion API resources after the initial create action in order to prevent a privilege escalation.
+1. Mitigated a potential Host header injection vulnerability.
+1. Ongoing container updates to address reported vulnerabilities in underlying packages / dependencies.
+
+## API
+
+1. Introduced the [State Version Outputs](/cloud-docs/api-docs/state-versions) endpoint to retrieve the Outputs for a given State Version
+1. **Breaking** Security fix to [Configuration versions](/cloud-docs/api-docs/configuration-versions): upload-url attribute for [uploading configuration files](/cloud-docs/api-docs/configuration-versions#upload-configuration-files) is now only available on the create response.

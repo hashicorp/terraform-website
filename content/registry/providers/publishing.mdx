@@ -102,13 +102,11 @@ GoReleaser is a tool for building Go projects for multiple platforms, creating a
 
 #### Manually Preparing a Release
 
-If for some reason you're not able to use GoReleaser to build, sign, and upload your release, you can create the required assets by following these steps, or encode them into a Makefile or shell script.
+You can manually create the required assets by following these requirements or encode them into a Makefile or shell script. The release must meet the following criteria:
 
-The release must meet the following criteria:
-
-- There are 1 or more zip files containing the built provider binary for a single architecture
-  - The binary name is `terraform-provider-{NAME}_v{VERSION}`
-  - The archive name is `terraform-provider-{NAME}_{VERSION}_{OS}_{ARCH}.zip`
+- There are 1 or more zip files containing the built provider binary for a single architecture.
+  - The binary name is `terraform-provider-{NAME}_v{VERSION}`.
+  - The archive name is `terraform-provider-{NAME}_{VERSION}_{OS}_{ARCH}.zip`.
 - There is a `terraform-provider-{NAME}_{VERSION}_manifest.json` file, which contains the Terraform Registry manifest file in the release.
 - There is a `terraform-provider-{NAME}_{VERSION}_SHA256SUMS` file, which contains a SHA-256 checksum for each zip file and the manifest file in the release.
   - `shasum -a 256 *.zip > terraform-provider-{NAME}_{VERSION}_SHA256SUMS`
@@ -128,14 +126,19 @@ Before publishing a provider, you must first sign in to the Terraform Registry w
 
 All provider releases are required to be signed, thus you must provide HashiCorp with the public key for the GPG keypair that you will be signing releases with. The Terraform Registry will validate that the release is signed with this key when publishing each version, and Terraform will verify this during `terraform init`.
 
-- Generate a GPG key to be used when signing releases (See [GitHub's detailed instructions](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key) for help with this step, but you do not need to add the key to GitHub)
-- Export your public key in ASCII-armor format using the following command, substituting the GPG key ID created in the step above:
+To prepare and add a signing key:
 
-```console
-$ gpg --armor --export "{Key ID or email address}"
-```
+1. Generate a GPG key to be used when signing releases. Refer to [GitHub's detailed instructions](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key) for this step, but you do not need to add the key to GitHub.
 
-The ASCII-armored public key to the Terraform Registry by going to [User Settings > Signing Keys](https://registry.terraform.io/settings/gpg-keys). You can add keys for your personal namespace, or any organization which you are an admin of.
+  -> **Note:** The Terraform Registry API accepts both RSA and DSA keys, but not the default ECC type.
+
+1. Use the following command to export your public key in ASCII-armor format. Substitute the GPG key ID created in the previous step.
+
+    ```console
+    $ gpg --armor --export "{Key ID or email address}"
+    ```
+
+1. In the Terraform Registry, click [User Settings > Signing Keys](https://registry.terraform.io/settings/gpg-keys) to add the ASCII-armored public key. You can add keys for your personal namespace or any organization where you are an admin.
 
 ### Publishing Your Provider
 

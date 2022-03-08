@@ -115,11 +115,12 @@ safely destroyed.
 
 A number of environment variables are available to control aspects of acceptance test execution.
 
-- `TF_ACC_TERRAFORM_PATH`: Used to specify the path to a Terraform binary on the local filesystem to be used during testing.
-- `TF_ACC_LOG_PATH`: Used to specify a path for Terraform logs during testing.
-- `TF_ACC_TEMP_DIR`: Used to specify a temporary directory used by the test driver. If this is not set, the default system temporary directory (as identified by `os.TempDir()`) will be used.
-- `TF_ACC_PROVIDER_NAMESPACE`: Used to control the namespace of the provider under test; only needed if config specifies a namespace for provider source.
-- `TF_ACC_PROVIDER_HOST`: Used to control the host of the provider under test; only needed if config specifies a host for provider source.
+- `TF_ACC_TERRAFORM_PATH`: Specify the path to a Terraform binary on the local filesystem to be used during testing.
+- `TF_ACC_LOG_PATH`: Specify a path for Terraform logs during testing.
+- `TF_LOG_PATH_MASK`: Specify a file path containing the string `%s` to write test output to that path. The `%s` is replaced with each test's name to write only that test's output to the file.
+- `TF_ACC_TEMP_DIR`: Specify a temporary directory used by the test driver. If this is not set, the default system temporary directory (as identified by `os.TempDir()`) will be used.
+- `TF_ACC_PROVIDER_NAMESPACE`: Control the namespace of the provider under test; only needed if config specifies a namespace for provider source.
+- `TF_ACC_PROVIDER_HOST`: Control the host of the provider under test; only needed if config specifies a host for provider source.
 - `TF_ACC_STATE_LINEAGE`: Set to "1" to enable state lineage debug logs, which are normally suppressed during acceptance testing.
 
 ## Troubleshooting

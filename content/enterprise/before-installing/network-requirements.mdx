@@ -13,6 +13,8 @@ The Linux instance that runs Terraform Enterprise needs to allow several kinds o
 * **80:** Terraform Enterprise application access (HTTP; redirects to HTTPS)
 * **443:** Terraform Enterprise application access (HTTPS)
 
+~> **Important:** Integration with a SaaS VCS provider (GitHub.com, GitLab.com, Bitbucket Cloud, or Azure DevOps Services) requires ingress from the public internet. This lets the [inbound web hooks](/cloud-docs/vcs#webhooks) reach Terraform Enterprise. You should also configure appropriate security controls, such as a Web Application Firewall (WAF).
+
 ### Source — Administrators
 
 * **22:** SSH access (administration and debugging)
