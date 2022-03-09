@@ -346,6 +346,36 @@ curl \
   https://archivist.terraform.io/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da
 ```
 
+## Download Configuration Files
+
+`GET /configuration-versions/:id/download`
+
+`GET /runs/:id/configuration-version/download`
+
+These endpoints generate a temporary URL to the location of the configuration version in a `.tar.gz` archive, and then redirect to that link. If using a client that can follow redirects, you can use these endpoints to save the `.tar.gz` archive locally without needing to save the temporary URL. These endpoints will return an error if attempting to download a configuration version that is not in an `uploaded` [state](#configuration-version-states).
+
+| Status  | Response                  | Reason                                                                                                                      |
+|---------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| [302][] | HTTP Redirect             | Configuration version found and temporary download URL generated                                                            |
+| [404][] | [JSON API error object][] | Configuration version not found, or specified configuration version is not uploaded, or user unauthorized to perform action |
+
+[302]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302
+
+[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+[JSON API error object]: https://jsonapi.org/format/#error-objects
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --location \
+  https://app.terraform.io/api/v2/configuration-versions/cv-C6Py6WQ1cUXQX2x2/download \
+  > export.tar.gz
+```
+
 ## Available Related Resources
 
 The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](/cloud-docs/api-docs/#inclusion-of-related-resources). The following resource types are available:
