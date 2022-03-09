@@ -66,7 +66,7 @@ func TestAccXxx(*testing.T)
 
 Acceptance tests have the following requirements:
 
-- **[Go](https://go.dev/)**: Typically the most recent stable version.
+- **[Go](https://go.dev/)**: The most recent stable version.
 - **Terraform CLI**: Version 0.12.26 or later.
 - **Provider Access**: Network or system access to the provider and any resources being tested.
 - **Provider Credentials**: Authorized credentials to the provider and any resources being tested.
@@ -95,11 +95,11 @@ Ensure that the [acceptance testing requirements](#requirements-and-recommendati
 
 ~> **Note**: Acceptance tests typically create and destroy actual infrastructure resources, possibly incurring expenses during or after the test duration.
 
-### Running Tests with the Command Line
+### Command Line Workflow
 
-Run acceptance testing via the command line of any workstation. Use these instructions as the basis for other environments such as continuous integration runners.
+Run acceptance testing with the command line of any workstation. Use these instructions as the basis for other environments such as continuous integration runners.
 
-The following example will typically execute all available acceptance tests in a provider codebase:
+The following example will execute all available acceptance tests in a provider codebase:
 
 ```shell
 TF_ACC=1 go test -v ./...
@@ -107,14 +107,14 @@ TF_ACC=1 go test -v ./...
 
 Some provider codebases also implement a [Makefile](https://www.gnu.org/software/make/manual/make.html#Makefiles) with a `testacc` target, which will set `TF_ACC` and other testing flags automatically.
 
-The following Makefile configuration example:
+The following is an example Makefile configuration:
 
 ```make
 testacc:
   TF_ACC=1 go test -v ./...
 ```
 
-Enables developers to use the following to run acceptance tests:
+The Makefile configuration lets developers to use the following command to run acceptance tests:
 
 ```shell
 make testacc
@@ -124,13 +124,15 @@ make testacc
 
 If using [GitHub](https://github.com/), run acceptance testing via [GitHub Actions](https://github.com/features/actions). Other continuous integration runners, while not exhaustively documented, are also supported.
 
-Create a [GitHub Actions workflow](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) file, such as `.github/workflows/test.yaml`, that:
+Create a [GitHub Actions workflow](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) file, such as `.github/workflows/test.yaml`, that does the following:
 
-- Runs when pull requests are submitted (or on [other events](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows) as appropriate)
-- Uses [`actions/checkout`](https://github.com/actions/checkout) to checkout the provider codebase
-- Uses [`actions/setup-go`](https://github.com/actions/setup-go) to install Go
-- Uses [`hashicorp/setup-terraform`](https://github.com/hashicorp/setup-terraform) to install Terraform CLI
-- Runs the `go test` command with the appropriate environment variables and flags
+- Runs when pull requests are submitted or on [other events](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows) as appropriate.
+- Uses [`actions/checkout`](https://github.com/actions/checkout) to checkout the provider codebase.
+- Uses [`actions/setup-go`](https://github.com/actions/setup-go) to install Go.
+- Uses [`hashicorp/setup-terraform`](https://github.com/hashicorp/setup-terraform) to install Terraform CLI.
+- Runs the `go test` command with the appropriate environment variables and flags.
+
+Use the [`matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) strategy for more advanced configuration, such as running acceptance testing against multiple Terraform CLI versions.
 
 The following example workflow runs acceptance testing for the provider using the latest patch versions of Go 1.17 and Terraform CLI 1.1:
 
@@ -174,7 +176,6 @@ jobs:
       - run: go test -v -cover ./...
 ```
 
-Use the [`matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) strategy for more advanced configuration, such as running acceptance testing against multiple Terraform CLI versions.
 
 The following example workflow runs acceptance testing for the provider using the latest patch versions of Go 1.17 and Terraform CLI 0.12 through 1.1:
 
