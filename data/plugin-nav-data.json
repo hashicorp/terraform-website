@@ -232,6 +232,31 @@
     ]
   },
   {
+    "title": "Combining and Translating",
+    "routes": [
+      {
+        "title": "Overview",
+        "path": "mux"
+      },
+      {
+        "title": "Combining Protocol Version 5 Providers",
+        "path": "mux/combining-protocol-version-5-providers"
+      },
+      {
+        "title": "Combining Protocol Version 6 Providers",
+        "path": "mux/combining-protocol-version-6-providers"
+      },
+      {
+        "title": "Translating Protocol Version 5 to 6",
+        "path": "mux/translating-protocol-version-5-to-6"
+      },
+      {
+        "title": "Translating Protocol Version 6 to 5",
+        "path": "mux/translating-protocol-version-6-to-5"
+      }
+    ]
+  },
+  {
     "title": "Publishing to the Registry",
     "href": "/registry/providers/publishing"
   },

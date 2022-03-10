@@ -5,9 +5,9 @@ description: Learn about version 2 of the Terraform Plugin SDK.
 
 # Terraform Plugin SDKv2
 
-Terraform Plugin SDKv2 is an established way to develop Terraform Plugins. It is the precursor to the [Terraform Plugin Framework](/plugin/framework), which is still in early development.
+Terraform Plugin SDKv2 is an established way to develop Terraform Plugins on [Protocol Version 5](/plugin/how-terraform-works#terraform-plugin-protocol).
 
-~> **Important**: [Which SDK Should I Use?](/plugin/which-sdk) explains the differences between the framework and SDKv2 to help you decide which option is right for your provider.
+~> **Important**: [Which SDK Should I Use?](/plugin/which-sdk) explains the differences between Terraform Plugin SDKv2 and [Terraform Plugin Framework](/plugin/framework) to help you decide which option is right for your provider.
 
 ## Get Started
 
@@ -23,3 +23,15 @@ Terraform Plugin SDKv2 is an established way to develop Terraform Plugins. It is
 
 - Learn how to [debug your provider](/plugin/sdkv2/debugging) using either logging calls or a debugging tool.
 - Learn how to [write successful acceptance and unit tests](/plugin/sdkv2/testing) for your provider.
+
+## Combine or Translate
+
+* [Combine your provider](/plugin/mux/combine-protocol-version-5-providers) with other [protocol version 5](/plugin/how-terraform-works#protocol-version-5) providers.
+* [Translate your provider](/plugin/mux/translate-protocol-version-5-to-6) into a [protocol version 6](/plugin/how-terraform-works#protocol-version-6) provider to require Terraform 1.0 and later.
+
+## Migrate to Terraform Plugin Framework
+
+The [terraform-plugin-framework](/plugin/framework) is a new way to develop Terraform providers, offering improvements and new features from Terraform Plugin SDKv2. You can refactor individual resources and data sources over time with the following compatibility:
+
+* Terraform 0.12 and later: [Translate the terraform-plugin-framework provider](/plugin/mux/translate-protocol-version-6-to-5) into a [protocol version 5](/plugin/how-terraform-works#protocol-version-5) provider and [combine your provider with the translated provider](/plugin/mux/combine-protocol-version-5-providers). You will not be able to use [Protocol version 6](/plugin/how-terraform-works#protocol-version-6) features.
+* Terraform 1.0 and later: [Translate your provider](/plugin/mux/translate-protocol-version-5-to-6) into a [protocol version 6](/plugin/how-terraform-works#protocol-version-6) provider and [combine the translated provider with the terraform-plugin-framework provider](/plugin/mux/combine-protocol-version-6-providers).

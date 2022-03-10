@@ -1,0 +1,88 @@
+---
+page_title: 'Plugin Development - Translating Protocol Version 5 to 6'
+description: >-
+  Use the tf5to6server package in terraform-plugin-mux to translate protocol version 5 providers to protocol version 6.
+---
+
+# Translating Protocol Version 5 to 6
+
+The [`tf5to6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server) package enables translating a [protocol version 5 provider server](../how-terraform-works#protocol-version-5) into a [protocol version 6 provider server](../how-terraform-works#protocol-version-6).
+
+Use this package to:
+
+* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](../sdkv2/sdk-intro) to [terraform-plugin-framework](../framework) over time, while taking advantage of [protocol version 6](../how-terraform-works#protocol-version-6) features in terraform-plugin-framework.
+* Develop with [terraform-plugin-sdk/v2](../sdkv2/sdk-intro), but require Terraform CLI 1.0 or later.
+
+## Compatibility
+
+Protocol version 6 provider servers are compatible with Terraform CLI 1.0 and later.
+
+~> **NOTE**: If upgrading [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro), Terraform CLI 1.1.5 and later is required.
+
+The following provider server implementations are supported:
+
+* [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro)
+* [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server)
+
+## Requirements
+
+Upgrading provider servers from protocol version 5 to protocol version 6 has no provider code requirements.
+
+If publishing to the [Terraform Registry](/registry), the [Terraform Registry manifest file](https://www.terraform.io/registry/providers/publishing#terraform-registry-manifest-file) should have `metadata.protocol_versions` set to `["6.0"]`.
+
+## Code Implementation
+
+Use the [`tf5to6server.UpgradeServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server#UpgradeServer) function to wrap a provider server. For most providers, this is in the provider `main()` function of the root directory `main.go` file or where [`tf6muxserver`](./combining-protocol-version-6-providers) is implemented in the codebase, if applicable.
+
+The following example upgrades a terraform-plugin-sdk/v2 provider:
+
+```go
+upgradedSdkProvider, err := tf5to6server.UpgradeServer(context.Background(), sdkprovider.New(version)().GRPCProvider)
+```
+
+To serve the upgraded provider directly via [`tf6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server):
+
+```go
+err = tf6server.Serve("registry.terraform.io/example/example", upgradedSdkProvider.ProviderServer)
+```
+
+To serve the upgraded provider while combined with others via [`tf6muxserver`](./combining-protocol-version-6-providers):
+
+```go
+providers := []func() tfprotov6.ProviderServer{
+	upgradedSdkProvider.ProviderServer,
+
+	// Example terraform-plugin-framework provider
+	func() tfprotov6.ProviderServer {
+		return tfsdk.NewProtocol6Server(frameworkprovider.New(version)())
+	},
+}
+
+muxServer, err := tf6muxserver.NewMuxServer(ctx, providers...)
+```
+
+Refer to the [`tf6muxserver`](./combining-protocol-version-6-providers) documentation for how to serve the combined provider.
+
+## Testing Implementation
+
+You can test the original provider using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. To test the upgraded provider, use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource) by setting the [`ProtoV6ProviderFactories` field of `TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV6ProviderFactories):
+
+```go
+resource.Test(t, resource.TestCase{
+	// ... other TestCase fields ...
+	ProtoV6ProviderFactories: map[string]func() (tfprotov6.ProviderServer, error) {
+		"example": func() (tfprotov6.ProviderServer, error) {
+			ctx := context.Background()
+			upgradedSdkProvider, err := tf5to6server.UpgradeServer(ctx, sdkprovider.New("test")().GRPCProvider)
+
+			if err != nil {
+				return nil, err
+			}
+
+			return upgradedSdkProvider.ProviderServer(), nil
+		},
+	},
+})
+```
+
+Refer to the [acceptance tests](../sdkv2/testing/acceptance-tests) documentation for more details.

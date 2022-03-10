@@ -1,0 +1,88 @@
+---
+page_title: 'Plugin Development - Translating Protocol Version 6 to 5'
+description: >-
+  Use the tf6to5server package in terraform-plugin-mux to translate protocol version 6 providers to protocol version 5.
+---
+
+# Translating Protocol Version 6 to 5
+
+The [`tf6to5server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf6to5server) package enables translating a [protocol version 6 provider server](../how-terraform-works#protocol-version-6) into a [protocol version 5 provider server](../how-terraform-works#protocol-version-5).
+
+Use this package to:
+
+* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](../sdkv2/sdk-intro) to [terraform-plugin-framework](../framework) over time, while maintaining Terraform CLI 0.12 and later compatibility.
+* Develop with [terraform-plugin-framework](../framework), but support Terraform CLI 0.12 and later.
+
+## Compatibility
+
+Protocol version 5 provider servers are compatible with Terraform CLI 0.12 and later.
+
+The following provider server implementations are supported:
+
+* [terraform-plugin-framework](../framework)
+* [terraform-plugin-go tf6server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server)
+
+## Requirements
+
+Downgrading provider servers from protocol version 6 to protocol version 5 will return an error if there are protocol version 6 features that are in use that are not available in protocol version 5. Refer to the [protocol version 6](../how-terraform-works#protocol-version-6) documentation for more information.
+
+If publishing to the [Terraform Registry](/registry), the [Terraform Registry manifest file](https://www.terraform.io/registry/providers/publishing#terraform-registry-manifest-file) should have `metadata.protocol_versions` set to `["5.0"]`.
+
+## Code Implementation
+
+Use the [`tf6to5server.DowngradeServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf6to5server#DowngradeServer) function to wrap a provider server. For most providers, this is in the provider `main()` function of the root directory `main.go` file or where [`tf5muxserver`](./combining-protocol-version-5-providers) is implemented in the codebase, if applicable.
+
+The following example downgrades a terraform-plugin-framework provider:
+
+```go
+downgradedFrameworkProvider, err := tf6to5server.DowngradeServer(context.Background(),func() tfprotov6.ProviderServer {
+	return tfsdk.NewProtocol6Server(frameworkprovider.New(version)())
+})
+```
+
+To serve the downgraded provider directly via [`tf5server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server):
+
+```go
+err = tf5server.Serve("registry.terraform.io/example/example", downgradedFrameworkProvider.ProviderServer)
+```
+
+To serve the downgraded provider while combined with others via [`tf5muxserver`](./combining-protocol-version-5-providers):
+
+```go
+providers := []func() tfprotov5.ProviderServer{
+	downgradedFrameworkProvider.ProviderServer,
+
+	// Example terraform-plugin-sdk/v2 provider
+	sdkprovider.New(version)().GRPCProvider,
+}
+
+muxServer, err := tf5muxserver.NewMuxServer(ctx, providers...)
+```
+
+Refer to the [`tf5muxserver`](./combining-protocol-version-5-providers) documentation for how to serve the combined provider.
+
+## Testing Implementation
+
+You can test the original provider using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. To test the downgraded provider, use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource) by setting the [`ProtoV5ProviderFactories` field of `TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories):
+
+```go
+resource.Test(t, resource.TestCase{
+	// ... other TestCase fields ...
+	ProtoV5ProviderFactories: map[string]func() (tfprotov5.ProviderServer, error) {
+		"example": func() (tfprotov5.ProviderServer, error) {
+			ctx := context.Background()
+			downgradedFrameworkProvider, err := tf6to5server.DowngradeServer(ctx, func() tfprotov6.ProviderServer {
+				return tfsdk.NewProtocol6Server(frameworkprovider.New("test")())
+			})
+
+			if err != nil {
+				return nil, err
+			}
+
+			return downgradedFrameworkProvider.ProviderServer(), nil
+		},
+	},
+})
+```
+
+Refer to the [acceptance tests](../sdkv2/testing/acceptance-tests) documentation for more details.
