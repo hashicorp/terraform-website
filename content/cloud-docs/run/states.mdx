@@ -13,28 +13,28 @@ In the list of workspaces on Terraform Cloud's main page, each workspace shows t
 
 ## 1. The Pending Stage
 
-A run's initial state depends on whether or not Terraform Cloud needs to fetch the configuration from VCS. Terraform Cloud automatically archives configuration versions created through VCS when all runs are complete and then re-fetches the files for subsequent runs.
-
 _States in this stage:_
 
 - **Pending:** Terraform Cloud hasn't started action on a run yet. Terraform Cloud processes each workspace's runs in the order they were queued, and a run remains pending until every run before it has completed.
-- **Fetching:** If Terraform Cloud has not yet fetched the configuration from VCS, the run will go into this state until the configuration is available, then return to `pending`.
 
 _Leaving this stage:_
 
-- If Terraform Cloud encounters an error when fetching the configuration from VCS, the run does not continue (**Plan Errored** state).
 - If the user discards the run before it starts, the run does not continue (**Discarded** state).
-- If Terraform Cloud has successfully fetched the configuration and the run is first in the queue, the run proceeds automatically to the plan stage (**Planning** state).
+- If the run is first in the queue, it proceeds automatically to the plan stage (**Planning** state).
 
 ## 2. The Plan Stage
 
+A run goes through different steps during the plan stage depending on whether or not Terraform Cloud needs to fetch the configuration from VCS. Terraform Cloud automatically archives configuration versions created through VCS when all runs are complete and then re-fetches the files for subsequent runs.
+
 _States in this stage:_
 
+- **Fetching:** If Terraform Cloud has not yet fetched the configuration from VCS, the run will go into this state until the configuration is available.
 - **Planning:** Terraform Cloud is currently running `terraform plan`.
 - **Needs Confirmation:** `terraform plan` has finished. Runs sometimes pause in this state, depending on the workspace and organization settings.
 
 _Leaving this stage:_
 
+- If Terraform Cloud encounters an error when fetching the configuration from VCS, the run does not continue (**Plan Errored** state).
 - If the `terraform plan` command failed, the run does not continue (**Plan Errored** state).
 - If a user canceled the plan by pressing the "Cancel Run" button, the run does not continue (**Canceled** state).
 - If the plan succeeded with no changes and neither cost estimation nor Sentinel policy checks will be done, Terraform Cloud considers the run complete (**Planned and Finished** state).
@@ -42,7 +42,7 @@ _Leaving this stage:_
   - If cost estimation is enabled, the run proceeds automatically to the cost estimation stage.
   - If cost estimation is disabled and [Sentinel policies][] are enabled, the run proceeds automatically to the policy check stage.
   - If there are no Sentinel policies and the plan can be auto-applied, the run proceeds automatically to the apply stage. Plans can be auto-applied if the auto-apply setting is enabled on the workspace and the plan was queued by a new VCS commit or by a user with permission to apply runs. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
-  - If Terraform cannot auto-apply the plan, the run pauses in the **Policy Checked** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) If an authorized user approves the apply, the run proceeds to the apply stage. If an authorized user rejects the apply, the run does not continue (**Discarded** state).
+  - If there are no Sentinel policies and Terraform Cloud cannot auto-apply the plan, the run pauses in the **Needs Confirmation** state until a user with permission to apply runs takes action. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions)) If an authorized user approves the apply, the run proceeds to the apply stage. If an authorized user rejects the apply, the run does not continue (**Discarded** state).
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
