@@ -354,6 +354,8 @@ curl \
 
 These endpoints generate a temporary URL to the location of the configuration version in a `.tar.gz` archive, and then redirect to that link. If using a client that can follow redirects, you can use these endpoints to save the `.tar.gz` archive locally without needing to save the temporary URL. These endpoints will return an error if attempting to download a configuration version that is not in an `uploaded` [state](#configuration-version-states).
 
+-> **Note:** These endpoints are available in Terraform Enterprise v202203-1 or later.
+
 | Status  | Response                  | Reason                                                                                                                      |
 |---------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | [302][] | HTTP Redirect             | Configuration version found and temporary download URL generated                                                            |
