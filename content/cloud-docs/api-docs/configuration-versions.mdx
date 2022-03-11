@@ -364,6 +364,8 @@ This endpoint notifies Terraform Cloud to discard the uploaded `.tar.gz` file as
 
 Terraform Cloud automatically archives configuration versions created through VCS when associated runs are complete and then re-fetches the files for subsequent runs.
 
+-> **Note:** This endpoint is available in Terraform Enterprise v202203-1 or later.
+
 | Status  | Response                  | Reason(s)                                                                                                                                     |
 | ------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | [202][] | none                      | Successfully initiated the archive process.                                                                                                   |

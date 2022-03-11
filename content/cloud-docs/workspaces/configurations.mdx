@@ -70,3 +70,5 @@ Once all runs using a particular configuration version are complete, Terraform C
 - **Created with a connected VCS repository.** Terraform Cloud will automatically archive VCS configuration versions once all runs are complete and re-fetch the configuration files from VCS as needed for new runs.
 
 - **Created with direct uploads via the API or CLI.** Terraform Cloud does not archive CLI and API configuration versions automatically, because it cannot re-fetch the files for new runs. However, you can use the [Archive a Configuration Version](/cloud-docs/api-docs/configuration-versions#archive-a-configuration-version) endpoint to archive them manually.
+
+-> **Note:** This functionality is available in Terraform Enterprise v202203-1 or later. In earlier versions, Terraform Enterprise keeps the `.tar.gz` files associated with configuration versions until the associated workspace is deleted.
