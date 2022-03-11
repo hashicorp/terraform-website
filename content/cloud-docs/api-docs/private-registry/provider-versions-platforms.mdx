@@ -60,12 +60,12 @@ All members of an organization can view and use both public and private provider
 
 Creates a new registry provider version. This endpoint only applies to private providers.
 
-| Status  | Response                                                   | Reason                                                         |
-| ------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
-| [201][] | [JSON API document][] (`type: "registry-provider-versions"`) | Successfully published provider version                      |
-| [422][] | [JSON API error object][]                                  | Malformed request body (missing attributes, wrong types, etc.) |
-| [403][] | [JSON API error object][]                                  | Forbidden - not available for public providers                 |
-| [404][] | [JSON API error object][]                                  | User not authorized                                            |
+| Status  | Response                                                     | Reason                                                         |
+| ------- | ----------------------------------------------------------   | -------------------------------------------------------------- |
+| [201][] | [JSON API document][] (`type: "registry-provider-versions"`) | Success                                                        |
+| [422][] | [JSON API error object][]                                    | Malformed request body (missing attributes, wrong types, etc.) |
+| [403][] | [JSON API error object][]                                    | Forbidden - not available for public providers                 |
+| [404][] | [JSON API error object][]                                    | User not authorized                                            |
 
 ### Request Body
 
@@ -410,7 +410,7 @@ Creates a new registry provider platform. This endpoint only applies to private 
 
 | Status  | Response                                                      | Reason                                                         |
 | ------- | ------------------------------------------------------------- | -------------------------------------------------------------- |
-| [201][] | [JSON API document][] (`type: "registry-provider-platforms"`) | Successfully published provider platform                       |
+| [201][] | [JSON API document][] (`type: "registry-provider-platforms"`) | Success                                                        |
 | [422][] | [JSON API error object][]                                     | Malformed request body (missing attributes, wrong types, etc.) |
 | [403][] | [JSON API error object][]                                     | Forbidden - not available for public providers                 |
 | [404][] | [JSON API error object][]                                     | User not authorized                                            |
@@ -424,8 +424,8 @@ Properties without a default value are required.
 | Key path                   | Type   | Default  | Description                              |
 | -------------------------  | ------ | -------  | -------------------------------------    |
 | `data.type`                | string |          | Must be `"registry-provider-platforms"`. |
-| `data.attributes.os`       | string |          | A valid semver version string.           |
-| `data.attributes.arch`     | string |          | A valid operating system string.                       |
+| `data.attributes.os`       | string |          | A valid operating system string.         |
+| `data.attributes.arch`     | string |          | A valid architecture string.             |
 | `data.attributes.shasum`   | string |          | A valid shasum string.                   |
 | `data.attributes.filename` | string |          | A valid filename string.                 |
 
