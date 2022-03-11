@@ -16,6 +16,14 @@ within each release are categorized into one or more of the following labels:
 Each version below corresponds to a release artifact available for download on
 the official [releases website](https://releases.hashicorp.com/tfc-agent/).
 
+## 1.1.2 (03/11/2022)
+
+BUG FIXES:
+
+* Fixed Terraform variable validation to accept Terraform v0.12+ syntax. (#122)
+* Fixed core HTTP requests (fetch jobs, post status) to log in debug mode (#125)
+* Extended HTTP header timeout to 30 seconds (#127)
+
 ## 1.1.1 (03/09/2022)
 
 IMPROVEMENTS:
