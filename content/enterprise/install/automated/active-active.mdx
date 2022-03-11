@@ -6,12 +6,14 @@ page_title: Automated Installation - Active/Active - Terraform Enterprise
 
 When your organization requires increased reliability or performance from Terraform Enterprise that your current single application instance cannot provide, it is time to scale to the Active/Active architecture.
 
+~> **Note:** The discontinued clustered version of Terraform Enterprise is no longer supported, and we strongly advise all customers to move to an Active/Active installation. Please contact your support representative if you need assistance.
+
 However, the benefits that come with the Active/Active architecture need to be weighed against increasing operation complexity:
 
 * Hard requirement of a completely automated installation
 * Observability concerns when monitoring multiple instances
 * Custom automation required to manage the lifecycle of application nodes
-* [New CLI-based commands](/enterprise/admin/infrastructure/active-active) vs Replicated Admin Console for administration
+* [New CLI-based commands](/enterprise/admin/infrastructure/admin) vs Replicated Admin Console for administration
 
 -> **Note**: Please contact your Customer Success Manager before attempting to follow this guide. They will be able to walk you through the process to make it as seamless as possible.
 
@@ -186,7 +188,7 @@ Which will output something similar to the following:
 
 Installation is complete once `isTransitioning` is `false` and `State` is `started`.
 
-See [Active/Active Administration](/enterprise/admin/infrastructure/active-active) for more status and troubleshooting commands.
+See [Admin Administration](/enterprise/admin/infrastructure/admin) for more status and troubleshooting commands.
 
 #### Validate Application
 
@@ -230,7 +232,7 @@ Confirm the general functionality of the Terraform Enterprise UI to validate the
 
 ### Scaling Beyond Two Nodes
 
-Terraform Enterprise supports scaling up to 3 nodes as part of the Active/Active deployment. When scaling beyond 2 nodes, you should also carefully evaluate and scale external services, particularly the database server. Scaling to 3 nodes does not alter the [upgrade requirement](https://www.terraform.io/enterprise/admin/infrastructure/active-active#upgrading-tfe-or-patching-tfe-node-instances) that you scale down to a single node or rebuild entirely.
+Terraform Enterprise supports scaling up to 3 nodes as part of the Active/Active deployment. When scaling beyond 2 nodes, you should also carefully evaluate and scale external services, particularly the database server. Scaling to 3 nodes does not alter the [upgrade requirement](https://www.terraform.io/enterprise/admin/infrastructure/admin#upgrading-tfe-or-patching-tfe-node-instances) that you scale down to a single node or rebuild entirely.
 
 #### PostgreSQL Server
 

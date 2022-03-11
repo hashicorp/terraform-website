@@ -204,8 +204,8 @@
             "path": "admin/infrastructure/backup-restore"
           },
           {
-            "title": "Active/Active",
-            "path": "admin/infrastructure/active-active"
+            "title": "Admin",
+            "path": "admin/infrastructure/admin"
           },
           {
             "title": "Terraform Cloud Agents on TFE",

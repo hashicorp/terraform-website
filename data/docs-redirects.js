@@ -582,7 +582,7 @@ export const docsRedirects = {
   '/docs/enterprise-beta/workspaces/run-basics.html': '/cloud-docs/run',
   '/docs/enterprise-beta/workspaces/run-ui.html': '/cloud-docs/run/ui',
   '/docs/enterprise-beta/workspaces/settings.html': '/cloud-docs/workspaces/settings',
-  '/docs/enterprise/admin/active-active.html': '/enterprise/admin/infrastructure/active-active',
+  '/docs/enterprise/admin/active-active.html': '/enterprise/install/automated/active-active',
   '/docs/enterprise/admin/admin-access.html': '/enterprise/admin/application/admin-access',
   '/docs/enterprise/admin/agents-on-tfe.html': '/enterprise/admin/agents-on-tfe',
   '/docs/enterprise/admin/automated-recovery.html': '/enterprise/admin/infrastructure/automated-recovery',
