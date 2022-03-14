@@ -10,6 +10,8 @@ page_title: Configuration Versions - API Docs - Terraform Cloud and Terraform En
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 
+[302]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302
+
 [400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
 
 [401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
@@ -43,6 +45,22 @@ A configuration version (`configuration-version`) is a resource used to referenc
 You need read runs permission to list and view configuration versions for a workspace, and you need apply runs permission to create new configuration versions. Refer to the [permissions](/cloud-docs/users-teams-organizations/permissions#general-workspace-permissions) documentation for more details.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
+
+## Attributes
+
+### Configuration Version States
+
+The configuration version state is found in `data.attributes.status`, and you can reference the following list of possible states.
+
+A configuration version created through the API or CLI can only be used in runs if it is in an `uploaded` state. A configuration version created through a linked VCS repository may also be used in runs if it is in an `archived` state.
+
+| State                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pending`              | The initial status of a configuration version after it has been created. Pending configuration versions cannot be used to create new runs.                                                                                                                                                               |
+| `fetching`             | For configuration versions created from a commit to a connected VCS repository, Terraform Cloud is currently fetching the associated files from VCS.                                                                                                                                                     |
+| `uploaded`             | The configuration version is fully processed and can be used in runs.                                                                                                                                                                                                                                    |
+| `archived`             | All immediate runs are complete and Terraform Cloud has discarded the files associated with this configuration version. If the configuration version was created through a connected VCS repository, it can still be used in new runs. In those cases, Terraform Cloud will re-fetch the files from VCS. |
+| `errored`              | Terraform Cloud could not process this configuration version, and it cannot be used to create new runs. You can try again by pushing a new commit to your linked VCS repository or creating a new configuration version with the API or CLI.                                                             |
 
 ## List Configuration Versions
 
@@ -316,16 +334,6 @@ curl \
 
 Once a configuration version is created, use the `upload-url` attribute to [upload configuration files](#upload-configuration-files) associated with that version. The `upload-url` attribute is only provided in the response when creating configuration versions.
 
-### Configuration Version Status
-
-A configuration version will be in the `pending` status when initially created. It will remain pending until configuration files are supplied via [upload](#upload-configuration-files), and while they are processed.
-
-If upload and processing succeed, the configuration version status will then be `uploaded`. An `uploaded` configuration version is ready for use.
-
-If upload and processing fail, the status will be `errored`, indicating that something went wrong.
-
-Runs cannot be created using `pending` or `errored` configuration versions.
-
 ## Upload Configuration Files
 
 -> **Note**: If `auto-queue-runs` was either not provided or set to `true` during creation of the configuration version, a run using this configuration version will be automatically queued on the workspace. If `auto-queue-runs` was set to `false` explicitly, then it is necessary to [create a run on the workspace](/cloud-docs/api-docs/run#create-a-run) manually after the configuration version is uploaded.
@@ -346,6 +354,40 @@ curl \
   https://archivist.terraform.io/v1/object/4c44d964-eba7-4dd5-ad29-1ece7b99e8da
 ```
 
+## Archive a Configuration Version
+
+`POST /configuration-versions/:configuration_version_id/actions/archive`
+
+| Parameter                   | Description                                    |
+| --------------------------- | ---------------------------------------------- |
+| `configuration_version_id`  | The ID of the configuration version to archive. |
+
+This endpoint notifies Terraform Cloud to discard the uploaded `.tar.gz` file associated with this configuration version. This endpoint can only archive configuration versions that were created with the API or CLI, are in an `uploaded` [state](#configuration-version-states), and have no runs in progress. Otherwise, calling this endpoint will result in an error.
+
+Terraform Cloud automatically archives configuration versions created through VCS when associated runs are complete and then re-fetches the files for subsequent runs.
+
+-> **Note:** This endpoint is available in Terraform Enterprise v202203-1 or later.
+
+| Status  | Response                  | Reason(s)                                                                                                                                     |
+| ------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| [202][] | none                      | Successfully initiated the archive process.                                                                                                   |
+| [409][] | [JSON API error object][] | Configuration version was in a non-archivable state or the configuration version was created with VCS and cannot be archived through the API. |
+| [404][] | [JSON API error object][] | Configuration version was not found or user not authorized.                                                                                   |
+
+### Request Body
+
+This POST endpoint does not take a request body.
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request POST \
+  https://app.terraform.io/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/actions/archive
+```
+
 ## Download Configuration Files
 
 `GET /configuration-versions/:id/download`
@@ -360,12 +402,6 @@ These endpoints generate a temporary URL to the location of the configuration ve
 |---------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | [302][] | HTTP Redirect             | Configuration version found and temporary download URL generated                                                            |
 | [404][] | [JSON API error object][] | Configuration version not found, or specified configuration version is not uploaded, or user unauthorized to perform action |
-
-[302]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302
-
-[404]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
-
-[JSON API error object]: https://jsonapi.org/format/#error-objects
 
 ### Sample Request
 
