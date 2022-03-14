@@ -10,6 +10,8 @@ page_title: Configuration Versions - API Docs - Terraform Cloud and Terraform En
 
 [204]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
 
+[302]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302
+
 [400]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
 
 [401]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
@@ -116,7 +118,8 @@ curl \
         }
       },
       "links": {
-        "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7"
+        "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7",
+        "download": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/download"
       }
     }
   ]
@@ -169,7 +172,8 @@ curl \
       }
     },
     "links": {
-      "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7"
+      "self": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7",
+      "download": "/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/download"
     }
   }
 }
@@ -384,6 +388,32 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request POST \
   https://app.terraform.io/api/v2/configuration-versions/cv-ntv3HbhJqvFzamy7/actions/archive
+```
+
+## Download Configuration Files
+
+`GET /configuration-versions/:id/download`
+
+`GET /runs/:id/configuration-version/download`
+
+These endpoints generate a temporary URL to the location of the configuration version in a `.tar.gz` archive, and then redirect to that link. If using a client that can follow redirects, you can use these endpoints to save the `.tar.gz` archive locally without needing to save the temporary URL. These endpoints will return an error if attempting to download a configuration version that is not in an `uploaded` [state](#configuration-version-states).
+
+-> **Note:** These endpoints are available in Terraform Enterprise v202203-1 or later.
+
+| Status  | Response                  | Reason                                                                                                                      |
+|---------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| [302][] | HTTP Redirect             | Configuration version found and temporary download URL generated                                                            |
+| [404][] | [JSON API error object][] | Configuration version not found, or specified configuration version is not uploaded, or user unauthorized to perform action |
+
+### Sample Request
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --location \
+  https://app.terraform.io/api/v2/configuration-versions/cv-C6Py6WQ1cUXQX2x2/download \
+  > export.tar.gz
 ```
 
 ## Available Related Resources
