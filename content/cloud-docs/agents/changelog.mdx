@@ -16,6 +16,35 @@ within each release are categorized into one or more of the following labels:
 Each version below corresponds to a release artifact available for download on
 the official [releases website](https://releases.hashicorp.com/tfc-agent/).
 
+## 1.1.2 (03/11/2022)
+
+BUG FIXES:
+
+* Fixed Terraform variable validation to accept Terraform v0.12+ syntax. (#122)
+* Fixed core HTTP requests (fetch jobs, post status) to log in debug mode (#125)
+* Extended HTTP header timeout to 30 seconds (#127)
+
+## 1.1.1 (03/09/2022)
+
+IMPROVEMENTS:
+
+* Added redacted HTTP logs in debug log mode (#123)
+
+## 1.1.0 (02/23/2022)
+
+FEATURES:
+
+* Added support for executing hooks at various stages of a Terraform run. (#109)
+
+BUG FIXES:
+
+* Fixed missing operation name in Terraform run temp dir paths (#115)
+
+IMPROVEMENTS:
+
+* Added Nomad context to logs, traces, and metrics when available (#109)
+* Added ping command to Docker image (#112)
+
 ## 1.0.2 (12/07/2021)
 
 BUG FIXES:
@@ -51,7 +80,7 @@ IMPROVEMENTS:
 * Increased HTTP retries when receiving server errors from TFC (#92)
 * Added utilities to Docker image to support modules, provisioners, etc. (#93)
 * Added support for Terraform versions 1.1+ via the "cloud" integration (#94)
-* Added detection of unrecognized TFC_AGENT_\* environment variables (#97)
+* Added detection of unrecognized `TFC_AGENT_*` environment variables (#97)
 
 ## 0.4.2 (10/06/2021)
 

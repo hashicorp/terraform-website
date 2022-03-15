@@ -328,7 +328,7 @@ resource "aws_elasticache_replication_group" "tfe" {
 Requirements/Options:
 
 * **authorized_network** - The network you wish to deploy the instance into. Internal testing was done using the same network TFE is deployed into. If a different network is used, the customer needs to ensure the 2 networks are open on port **6379**.
-* **memory_size_gb** - How much memory to allocate to Redis. Initial testing was done with just 1gb configured. Larger deployments may require additional memory. (TFC uses an m4.large, which is just 6gb of memory, for reference.)
+* **memory_size_gb** - How much memory to allocate to Redis. Initial testing was done with just 1GB configured. Larger deployments may require additional memory. (TFC uses an m4.large, which is just 6GB of memory, for reference.)
 * **location_id** - What region to deploy into - should be the same one TFE is deployed into. If Standard_HA tier is selected, an alternative_location_id will also need to be provided as a failover location.
 * **redis_version** - Both 4.0 and 5.0 work without issue but 5.0 is recommended
 
@@ -356,6 +356,6 @@ The default example provided on the provider page can be used to deploy Azure Ca
 
 ## Appendix 4: Redis on VMware
 
-Redis on VMware was tested with a virtual machine with 2 CPUs and 8 Gb of memory running Ubuntu 20.04. Both Redis v5 and v6 are supported. A full list of supported Operating Systems can be found on the [Pre-Install Checklist](/enterprise/before-installing#operating-system-requirements).
+Redis on VMware was tested with a virtual machine with 2 CPUs and 8 GB of memory running Ubuntu 20.04. Both Redis v5 and v6 are supported. A full list of supported Operating Systems can be found on the [Pre-Install Checklist](/enterprise/before-installing#operating-system-requirements).
 
 The sizing of your Redis server will depend on your company or organization's workload. Monitoring of the virtual machine and resizing based on utilization is recommended. More details on memory utilization can be found on [Redis' website](https://redis.io/topics/memory-optimization).

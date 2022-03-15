@@ -582,7 +582,7 @@ curl \
 }
 ```
 
-## Upload a Module Version (private module)
+## Add a Module Version (Private Module)
 
 `PUT https://archivist.terraform.io/v1/object/<UNIQUE OBJECT ID>`
 
@@ -805,16 +805,6 @@ If a version deletion would leave a provider with no versions, the provider will
 | [403][] | [JSON API error object][] | Forbidden - public module curation disabled                   |
 | [404][] | [JSON API error object][] | Module, provider, or version not found or user not authorized |
 
-### Sample Request (public module)
-
-```shell
-curl \
-  --header "Authorization: Bearer $TOKEN" \
-  --header "Content-Type: application/vnd.api+json" \
-  --request DELETE \
-  https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/public/terraform-aws-modules/vpc/aws
-```
-
 ### Sample Request (private module)
 
 ```shell
@@ -823,4 +813,14 @@ curl \
   --header "Content-Type: application/vnd.api+json" \
   --request DELETE \
   https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/private/my-organization/my-module/aws/2.0.0
+```
+
+### Sample Request (public module)
+
+```shell
+curl \
+  --header "Authorization: Bearer $TOKEN" \
+  --header "Content-Type: application/vnd.api+json" \
+  --request DELETE \
+  https://app.terraform.io/api/v2/organizations/my-organization/registry-modules/public/terraform-aws-modules/vpc/aws
 ```

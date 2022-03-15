@@ -7,7 +7,7 @@ description: >-
 
 # Private Registry
 
-Terraform Cloud's private registry works similarly to the [public Terraform Registry](/registry) and helps you share [Terraform providers](/language/providers) and [Terraform modules](/language/modules) across your organization. It includes support for versioning, a searchable list of available providers and modules, and a [configuration designer](/cloud-docs/registry/design) to help you build new workspaces faster.
+Terraform Cloud's private registry works similarly to the [public Terraform Registry](/registry) and helps you share [Terraform providers](/language/providers) and [Terraform modules](/language/modules) across your organization. It includes support for versioning and a searchable list of available providers and modules.
 
 > **Hands-on:** Try the [Add Public Providers and Modules to your Private Registry](https://learn.hashicorp.com/tutorials/terraform/private-registry-add) tutorial and [Share Modules in the Private Registry](https://learn.hashicorp.com/tutorials/terraform/module-private-registry?in=terraform/modules) tutorials on HashiCorp Learn.
 
@@ -17,9 +17,12 @@ Terraform Cloud's private registry works similarly to the [public Terraform Regi
 
 -> **Note:** Public providers and modules are available in Terraform Enterprise v202112-1 and later. Your instance must allow access to `registry.terraform.io` and `https://yy0ffni7mf-dsn.algolia.net/`.
 
-## Private Modules
+## Private Providers and Modules
 
-[Private modules](/cloud-docs/registry/publish) are hosted on an organization's private registry and are only available to members of that organization. In Terraform Enterprise, they are also available to other organizations that are configured to [share modules](/enterprise/admin/application/module-sharing) with that organization.
+[Private providers](/cloud-docs/registry/publish-providers) and [private modules](/cloud-docs/registry/publish) are hosted on an organization's private registry and are only available to members of that organization. In Terraform Enterprise, private modules are also available to other organizations that are configured to [share modules](/enterprise/admin/application/module-sharing) with that organization.
+
+-> **Note:** Terraform Enterprise does not support private providers.
+
 
 ## Managing Usage
 

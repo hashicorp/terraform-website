@@ -62,3 +62,13 @@ There are also a variety of ways to handle multiple environments. The most commo
 - Different environments use completely separate configurations, and shared behaviors are handled with shared Terraform modules. To protect production environments, verify new module versions in staging before updating the version used in production.
 
 Terraform Cloud works well with all of these approaches. If you used long-lived branches, be sure to specify which branch to use in each workspace's VCS connection settings.
+
+## Archiving Configuration Versions
+
+Once all runs using a particular configuration version are complete, Terraform Cloud no longer needs the associated `.tar.gz` file and may discard it to save storage space. This process is handled differently depending on how the configuration version was created.
+
+- **Created with a connected VCS repository.** Terraform Cloud will automatically archive VCS configuration versions once all runs are complete and re-fetch the configuration files from VCS as needed for new runs.
+
+- **Created with direct uploads via the API or CLI.** Terraform Cloud does not archive CLI and API configuration versions automatically, because it cannot re-fetch the files for new runs. However, you can use the [Archive a Configuration Version](/cloud-docs/api-docs/configuration-versions#archive-a-configuration-version) endpoint to archive them manually.
+
+-> **Note:** This functionality is available in Terraform Enterprise v202203-1 or later. In earlier versions, Terraform Enterprise keeps the `.tar.gz` files associated with configuration versions until the associated workspace is deleted.

@@ -49,12 +49,14 @@ The Organizations API is used to list, show, create, update, and destroy organiz
 
 ### Query Parameters
 
-This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.  If neither pagination query parameters are provided, the endpoint will not be paginated and will return all results.
+This endpoint supports pagination [with standard URL query parameters](/cloud-docs/api-docs/#query-parameters). Remember to percent-encode `[` as `%5B` and `]` as `%5D` if your tooling doesn't automatically encode URLs.
+
+Currently, this endpoint returns a full, unpaginated list of organizations (without pagination metadata) if both of the pagination query parameters are omitted. To avoid inconsistent behavior, we recommend always supplying pagination parameters when building against this API.
 
 | Parameter      | Description                                                                   |
 | -------------- | ----------------------------------------------------------------------------- |
-| `page[number]` | **Optional.** If omitted, the endpoint will return the first page.            |
-| `page[size]`   | **Optional.** If omitted, the endpoint will return 20 organizations per page. |
+| `page[number]` | **Optional.** Defaults to the first page, if omitted when `page[size]` is provided. |
+| `page[size]`   | **Optional.** Defaults to 20 organizations per page, if omitted when `page[number]` is provided. |
 
 ### Sample Request
 
@@ -63,7 +65,7 @@ curl \
   --header "Authorization: Bearer $TOKEN" \
   --header "Content-Type: application/vnd.api+json" \
   --request GET \
-  https://app.terraform.io/api/v2/organizations
+  https://app.terraform.io/api/v2/organizations\?page\[number\]\=1\&page\[size\]\=20
 ```
 
 ### Sample Response
@@ -72,12 +74,12 @@ curl \
 {
   "data": [
     {
-      "id": "hashicorp-one",
+      "id": "hashicorp",
       "type": "organizations",
       "attributes": {
-        "external-id": "org-WV6DfwfxxXvLfvfs",
-        "created-at": "2020-03-26T22:13:38.456Z",
-        "email": "user@example.com",
+        "external-id": "org-Hysjx5eUviuKVCJY",
+        "created-at": "2021-08-24T23:10:04.675Z",
+        "email": "hashicorp@example.com",
         "session-timeout": null,
         "session-remember": null,
         "collaborator-auth-policy": "password",
@@ -85,9 +87,88 @@ curl \
         "plan-expires-at": null,
         "plan-is-trial": false,
         "plan-is-enterprise": false,
+        "plan-identifier": "developer",
+        "cost-estimation-enabled": true,
+        "send-passing-statuses-for-untriggered-speculative-plans": true,
+        "name": "hashicorp",
+        "permissions": {
+          "can-update": true,
+          "can-destroy": true,
+          "can-access-via-teams": true,
+          "can-create-module": true,
+          "can-create-team": true,
+          "can-create-workspace": true,
+          "can-manage-users": true,
+          "can-manage-subscription": true,
+          "can-manage-sso": true,
+          "can-update-oauth": true,
+          "can-update-sentinel": true,
+          "can-update-ssh-keys": true,
+          "can-update-api-token": true,
+          "can-traverse": true,
+          "can-start-trial": true,
+          "can-update-agent-pools": true,
+          "can-manage-tags": true,
+          "can-manage-varsets": true,
+          "can-read-varsets": true,
+          "can-manage-public-providers": true,
+          "can-create-provider": true,
+          "can-manage-public-modules": true,
+          "can-manage-custom-providers": false
+        },
+        "fair-run-queuing-enabled": true,
+        "saml-enabled": false,
+        "owners-team-saml-role-id": null,
+        "two-factor-conformant": false
+      },
+      "relationships": {
+        "oauth-tokens": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/oauth-tokens"
+          }
+        },
+        "authentication-token": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/authentication-token"
+          }
+        },
+        "entitlement-set": {
+          "data": {
+            "id": "org-Hysjx5eUviuKVCJY",
+            "type": "entitlement-sets"
+          },
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/entitlement-set"
+          }
+        },
+        "subscription": {
+          "links": {
+            "related": "/api/v2/organizations/hashicorp/subscription"
+          }
+        }
+      },
+      "links": {
+        "self": "/api/v2/organizations/hashicorp"
+      }
+    },
+    {
+      "id": "hashicorp-two",
+      "type": "organizations",
+      "attributes": {
+        "external-id": "org-iJ5tr4WgB4WpA1hD",
+        "created-at": "2022-01-04T18:57:16.036Z",
+        "email": "hashicorp@example.com",
+        "session-timeout": null,
+        "session-remember": null,
+        "collaborator-auth-policy": "password",
+        "plan-expired": false,
+        "plan-expires-at": null,
+        "plan-is-trial": false,
+        "plan-is-enterprise": false,
+        "plan-identifier": "free",
         "cost-estimation-enabled": false,
         "send-passing-statuses-for-untriggered-speculative-plans": false,
-        "name": "hashicorp-one",
+        "name": "hashicorp-two",
         "permissions": {
           "can-update": true,
           "can-destroy": true,
@@ -106,83 +187,12 @@ curl \
           "can-start-trial": true,
           "can-update-agent-pools": false,
           "can-manage-tags": true,
+          "can-manage-varsets": true,
+          "can-read-varsets": true,
+          "can-manage-public-providers": true,
+          "can-create-provider": true,
           "can-manage-public-modules": true,
-          "can-manage-public-providers": false,
-          "can-create-provider": false
-        },
-        "fair-run-queuing-enabled": true,
-        "saml-enabled": false,
-        "owners-team-saml-role-id": null,
-        "two-factor-conformant": false
-      },
-      "relationships": {
-        "oauth-tokens": {
-          "links": {
-            "related": "/api/v2/organizations/hashicorp-one/oauth-tokens"
-          }
-        },
-        "authentication-token": {
-          "links": {
-            "related": "/api/v2/organizations/hashicorp-one/authentication-token"
-          }
-        },
-        "entitlement-set": {
-          "data": {
-            "id": "org-WV6DfwfxxXvLfvfs",
-            "type": "entitlement-sets"
-          },
-          "links": {
-            "related": "/api/v2/organizations/hashicorp-one/entitlement-set"
-          }
-        },
-        "subscription": {
-          "links": {
-            "related": "/api/v2/organizations/hashicorp-one/subscription"
-          }
-        }
-      },
-      "links": {
-        "self": "/api/v2/organizations/hashicorp-one"
-      }
-    },
-    {
-      "id": "hashicorp-two",
-      "type": "organizations",
-      "attributes": {
-        "external-id": "org-bEoHEeaxjLJYARWf",
-        "created-at": "2018-03-19T23:16:13.137Z",
-        "email": "user2@example.com",
-        "session-timeout": null,
-        "session-remember": null,
-        "collaborator-auth-policy": "password",
-        "plan-expired": false,
-        "plan-expires-at": null,
-        "plan-is-trial": false,
-        "plan-is-enterprise": false,
-        "cost-estimation-enabled": true,
-        "send-passing-statuses-for-untriggered-speculative-plans": false,
-        "name": "hashicorp-two",
-        "permissions": {
-          "can-update": true,
-          "can-destroy": true,
-          "can-access-via-teams": true,
-          "can-create-module": true,
-          "can-create-team": true,
-          "can-create-workspace": true,
-          "can-manage-users": true,
-          "can-manage-subscription": true,
-          "can-manage-sso": true,
-          "can-update-oauth": true,
-          "can-update-sentinel": true,
-          "can-update-ssh-keys": true,
-          "can-update-api-token": true,
-          "can-traverse": true,
-          "can-start-trial": false,
-          "can-update-agent-pools": true,
-          "can-manage-tags": true,
-          "can-manage-public-modules": true,
-          "can-manage-public-providers": false,
-          "can-create-provider": false
+          "can-manage-custom-providers": false
         },
         "fair-run-queuing-enabled": true,
         "saml-enabled": false,
@@ -202,7 +212,7 @@ curl \
         },
         "entitlement-set": {
           "data": {
-            "id": "org-bEoHEeaxjLJYARWf",
+            "id": "org-iJ5tr4WgB4WpA1hD",
             "type": "entitlement-sets"
           },
           "links": {
@@ -219,7 +229,24 @@ curl \
         "self": "/api/v2/organizations/hashicorp-two"
       }
     }
-  ]
+  ],
+  "links": {
+    "self": "https://tfe-zone-b0c8608c.ngrok.io/api/v2/organizations?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "first": "https://tfe-zone-b0c8608c.ngrok.io/api/v2/organizations?page%5Bnumber%5D=1&page%5Bsize%5D=20",
+    "prev": null,
+    "next": null,
+    "last": "https://tfe-zone-b0c8608c.ngrok.io/api/v2/organizations?page%5Bnumber%5D=1&page%5Bsize%5D=20"
+  },
+  "meta": {
+    "pagination": {
+      "current-page": 1,
+      "page-size": 20,
+      "prev-page": null,
+      "next-page": null,
+      "total-pages": 1,
+      "total-count": 2
+    }
+  }
 }
 ```
 

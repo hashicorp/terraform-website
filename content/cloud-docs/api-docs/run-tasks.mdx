@@ -75,6 +75,7 @@ Properties without a default value are required unless otherwise specified.
 | `data.attributes.url`      | string |         | URL to send a run task payload.                                   |
 | `data.attributes.category` | string |         | Must be `"task"`.                                                 |
 | `data.attributes.hmac-key` | string |         | (Optional) HMAC key to verify run task.                           |
+| `data.attributes.enabled`  | bool   | true    | (Optional) Whether the task will be run.                          |
 
 ### Sample Payload
 
@@ -86,6 +87,7 @@ Properties without a default value are required unless otherwise specified.
         "name": "example",
         "url": "http://example.com",
         "hmac_key": "secret",
+        "enabled": "true",
         "category": "task"
       }
   }
@@ -114,6 +116,7 @@ curl \
         "category": "task",
         "name": "my-run-task",
         "url": "http://example.com",
+        "enabled": "true",
         "hmac-key": null,
       },
       "relationships": {
@@ -177,6 +180,7 @@ curl \
                 "category": "task",
                 "name": "my-task",
                 "url": "http://example.com",
+                "enabled": "true",
                 "hmac-key": null,
             },
             "relationships": {
@@ -252,6 +256,7 @@ curl --request GET \
         "category": "task",
         "name": "my-task",
         "url": "http://example.com",
+        "enabled": "true",
         "hmac-key": null,
       },
       "relationships": {
@@ -304,6 +309,7 @@ Properties without a default value are required unless otherwise specified.
 | `data.attributes.url`      | string | (previous value) | URL to send a run task payload.                                       |
 | `data.attributes.category` | string | (previous value) | Must be `"task"`.                                                     |
 | `data.attributes.hmac-key` | string | (previous value) | (Optional) HMAC key to verify run task.                               |
+| `data.attributes.enabled`  | bool   | (previous value) | (Optional) Whether the task will be run.                              |
 
 ### Sample Payload
 
@@ -315,6 +321,7 @@ Properties without a default value are required unless otherwise specified.
         "name": "new-example",
         "url": "http://new-example.com",
         "hmac_key": "new-secret",
+        "enabled": "false",
         "category": "task"
       }
   }
@@ -343,6 +350,7 @@ curl \
         "category": "task",
         "name": "new-example",
         "url": "http://new-example.com",
+        "enabled": "false",
         "hmac-key": null,
       },
       "relationships": {
