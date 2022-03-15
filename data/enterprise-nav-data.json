@@ -1,6 +1,7 @@
 [
   { "heading": "Deployment & Operation" },
   { "title": "Overview", "path": "" },
+  { "title": "Operational Modes", "path": "operational-modes" },
   {
     "title": "Before Installing",
     "routes": [
