@@ -2,11 +2,11 @@
 page_title: Infrastructure Administration - Terraform Enterprise
 ---
 
-# Terraform Enterprise Admin
+# Terraform Enterprise Admin CLI commands
 
-The [Active/Active](/enterprise/install/automated/active-active) operational mode disables use of the Replicated Admin Console.  To accommodate this, there are now admin commands to facilitate configuration changes, safe application stops, and producing support bundles. There is a new container in the TFE architecture to support this called "tfe-admin". You must login to a node in the Active/Active cluster using SSH to run these commands from the command line. 
+The [Active/Active](/enterprise/install/automated/active-active) operational mode disables the Replicated Admin Console. Instead, it provides admin commands to change the configuration, stop the application safely, and produce support bundles. You must use SSH to log in to a node in the Active/Active cluster to run these commands from the command line.
 
--> **Note**: From version v202203-1, the admin commands are also available on standalone installation.
+-> **Note**: Admin commands are available on the standalone installation in Terraform Enterprise version v202203-1 and later.
 
 ### Commands
 

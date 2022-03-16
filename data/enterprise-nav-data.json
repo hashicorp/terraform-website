@@ -204,7 +204,7 @@
             "path": "admin/infrastructure/backup-restore"
           },
           {
-            "title": "Admin",
+            "title": "Admin CLI Commands",
             "path": "admin/infrastructure/admin"
           },
           {
