@@ -186,7 +186,7 @@ module.exports = (async () => {
     '/enterprise/install/cluster-azure': '/enterprise/install/automated/active-active',
     '/enterprise/install/cluster-custom': '/enterprise/install/automated/active-active',
     '/enterprise/install/cluster-gcp': '/enterprise/install/automated/active-active',
-    '/enterprise/admin/infrastructure/active-active': '/enterprise/admin/infrastructure/admin',
+    '/enterprise/admin/infrastructure/active-active': '/enterprise/admin/infrastructure/admin-cli',
     '/enterprise/release': '/enterprise/releases',
     '/cloud-docs/registry/publish': '/cloud-docs/registry/publish-modules',
     '/cloud-docs/api-docs/providers': '/cloud-docs/api-docs/private-registry/providers',

@@ -1,12 +1,12 @@
 ---
-page_title: Infrastructure Administration - Terraform Enterprise
+page_title: Admin CLI Commands - Infrastructure Administration - Terraform Enterprise
 ---
 
-# Terraform Enterprise Admin CLI commands
+# Terraform Enterprise Admin CLI Commands
 
-The [Active/Active](/enterprise/install/automated/active-active) operational mode disables the Replicated Admin Console. Instead, it provides admin commands to change the configuration, stop the application safely, and produce support bundles. You must use SSH to log in to a node in the Active/Active cluster to run these commands from the command line.
+The [Active/Active](/enterprise/install/automated/active-active) operational mode disables the Replicated Admin Console. Instead, it provides admin CLI commands to change the configuration, stop the application safely, and produce support bundles. You must use SSH to log in to a node in the Active/Active cluster to run these commands.
 
--> **Note**: Admin commands are available on the standalone installation in Terraform Enterprise version v202203-1 and later.
+-> **Note**: Admin CLI commands are available on the Standalone installation in Terraform Enterprise version v202203-1 and later.
 
 ### Commands
 
@@ -18,9 +18,9 @@ Note that `tfe-admin` is an alias for `replicated admin`, and can be used interc
 tfe-admin support-bundle
 ```
 
-This command generates a support bundle for all nodes. The output support bundle file is generated under `/var/lib/replicated/support-bundles`. 
+This command generates a support bundle for all nodes in `/var/lib/replicated/support-bundles`.
 
-For Active/Active, the support bundles will be uploaded to the same object store bucket that is used to store Terraform state files. The support bundles for a specific run of the admin command will all be uploaded to a directory with the same JobID (a timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format). If you are sending a support bundle to HashiCorp Support, package and send all associated bundles to ensure that we have all the necessary information.
+For Active/Active, the support bundles will be uploaded to the same object store bucket that is used to store Terraform state files. The support bundles for a specific run of the admin command will all be uploaded to a directory with the same JobID, which is a timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format. If you are sending a support bundle to HashiCorp Support, package and send all associated bundles to ensure that we have all the necessary information.
 
 Example upload structure
 
@@ -39,7 +39,9 @@ support-bundles
 tfe-admin node-drain
 ```
 
-This command will quiesce the current node and remove it from service. It will allow current work to complete and safely stop the node from picking up any new jobs from the Redis queue, allowing the application to be safely stopped. Currently, it only affects `localhost` (it does not support running on one node to drain other nodes). Currently, there is no reverse drain command - a restart is needed to restore the node.
+This command will quiesce the current node and remove it from service. It will allow current work to complete and safely stop the node from picking up any new jobs from the Redis queue, allowing the application to be safely stopped. Currently, it only affects `localhost` (it does not support running on one node to drain other nodes).
+
+-> **Note:** There is no reverse drain command - a restart is needed to restore the node.
 
 #### app-config
 

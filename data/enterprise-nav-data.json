@@ -205,7 +205,7 @@
           },
           {
             "title": "Admin CLI Commands",
-            "path": "admin/infrastructure/admin"
+            "path": "admin/infrastructure/admin-cli"
           },
           {
             "title": "Terraform Cloud Agents on TFE",
