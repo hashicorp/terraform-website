@@ -409,3 +409,11 @@ curl \
   --request DELETE \
   https://app.terraform.io/api/v2/oauth-clients/oc-XKFwG6ggfA9n7t1K
 ```
+
+### Available Related Resources
+
+The GET endpoints above can optionally return related resources, if requested with [the `include` query parameter](/cloud-docs/api-docs/#inclusion-of-related-resources). The following resource types are available:
+
+| Resource Name  | Description                              |
+| -------------- | ---------------------------------------- |
+| `oauth_tokens` | The OAuth tokens managed by this client  |
