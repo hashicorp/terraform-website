@@ -392,9 +392,17 @@ curl \
 
 ## Download Configuration Files
 
-`GET /configuration-versions/:id/download`
+`GET /configuration-versions/:configuration_version_id/download`
 
-`GET /runs/:id/configuration-version/download`
+| Parameter                   | Description                                      |
+| --------------------------- | ------------------------------------------------ |
+| `configuration_version_id`  | The ID of the configuration version to download. |
+
+`GET /runs/:run_id/configuration-version/download`
+
+| Parameter                   | Description                                                         |
+| --------------------------- | ------------------------------------------------------------------- |
+| `run_id`                    | The ID of the run whose configuration version should be downloaded. |
 
 These endpoints generate a temporary URL to the location of the configuration version in a `.tar.gz` archive, and then redirect to that link. If using a client that can follow redirects, you can use these endpoints to save the `.tar.gz` archive locally without needing to save the temporary URL. These endpoints will return an error if attempting to download a configuration version that is not in an `uploaded` [state](#configuration-version-states).
 
