@@ -22,7 +22,11 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
 
     for (const key of [path, pathIndexHtml, pathHtml]) {
       if (key in docsRedirects) {
-        return NextResponse.redirect(docsRedirects[key], 308)
+        // cloning the URL so we can provide an absolute URL to the .redirect() call,
+        // per: https://nextjs.org/docs/messages/middleware-relative-urls
+        const newUrl = req.nextUrl.clone()
+        newUrl.pathname = docsRedirects[key]
+        return NextResponse.redirect(newUrl, 308)
       }
     }
   }
