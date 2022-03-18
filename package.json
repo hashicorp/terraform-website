@@ -37,7 +37,7 @@
     "@hashicorp/react-text-split-with-image": "^4.3.0",
     "@hashicorp/react-vertical-text-block-list": "^7.0.0",
     "babel-plugin-import-glob-array": "0.2.0",
-    "next": "^12.0.7",
+    "next": "^12.1.0",
     "next-mdx-remote": "^3.0.5",
     "next-remote-watch": "1.0.0",
     "react": "^17.0.2",
