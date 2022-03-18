@@ -378,6 +378,7 @@
       },
       { "title": "Runs", "path": "api-docs/run" },
       { "title": "Run Tasks", "path": "api-docs/run-tasks" },
+      { "title": "Run Tasks Integration", "path": "api-docs/run-tasks-integration" },
       { "title": "Run Triggers", "path": "api-docs/run-triggers" },
       { "title": "SSH Keys", "path": "api-docs/ssh-keys" },
       {
