@@ -87,7 +87,11 @@ func main() {
 		serveOpts = append(serveOpts, tf6server.WithManagedDebug())
 	}
 
-	err = tf6server.Serve("registry.terraform.io/example/example", muxServer.ProviderServer, serveOpts...)
+	err = tf6server.Serve(
+		"registry.terraform.io/example/example",
+		muxServer.ProviderServer,
+		serveOpts...,
+	)
 
 	if err != nil {
 		log.Fatal(err)

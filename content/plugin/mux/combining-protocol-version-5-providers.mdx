@@ -82,7 +82,11 @@ func main() {
 		serveOpts = append(serveOpts, tf5server.WithManagedDebug())
 	}
 
-	err = tf5server.Serve("registry.terraform.io/example/example", muxServer.ProviderServer, serveOpts...)
+	err = tf5server.Serve(
+		"registry.terraform.io/example/example",
+		muxServer.ProviderServer,
+		serveOpts...,
+	)
 
 	if err != nil {
 		log.Fatal(err)

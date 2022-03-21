@@ -35,9 +35,12 @@ Use the [`tf6to5server.DowngradeServer()`](https://pkg.go.dev/github.com/hashico
 The following example downgrades a `terraform-plugin-framework` provider.
 
 ```go
-downgradedFrameworkProvider, err := tf6to5server.DowngradeServer(context.Background(),func() tfprotov6.ProviderServer {
-	return tfsdk.NewProtocol6Server(frameworkprovider.New(version)())
-})
+downgradedFrameworkProvider, err := tf6to5server.DowngradeServer(
+	context.Background(),
+	func() tfprotov6.ProviderServer {
+		return tfsdk.NewProtocol6Server(frameworkprovider.New(version)())
+	},
+)
 ```
 
 The following example uses [`tf5server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server) to serve the downgraded provider directly.
@@ -73,9 +76,12 @@ resource.Test(t, resource.TestCase{
 	ProtoV5ProviderFactories: map[string]func() (tfprotov5.ProviderServer, error) {
 		"example": func() (tfprotov5.ProviderServer, error) {
 			ctx := context.Background()
-			downgradedFrameworkProvider, err := tf6to5server.DowngradeServer(ctx, func() tfprotov6.ProviderServer {
-				return tfsdk.NewProtocol6Server(frameworkprovider.New("test")())
-			})
+			downgradedFrameworkProvider, err := tf6to5server.DowngradeServer(
+				ctx,
+				func() tfprotov6.ProviderServer {
+					return tfsdk.NewProtocol6Server(frameworkprovider.New("test")())
+				},
+			)
 
 			if err != nil {
 				return nil, err

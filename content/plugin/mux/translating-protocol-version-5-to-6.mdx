@@ -35,13 +35,19 @@ Use the [`tf5to6server.UpgradeServer()`](https://pkg.go.dev/github.com/hashicorp
 The following example upgrades a terraform-plugin-sdk/v2 provider.
 
 ```go
-upgradedSdkProvider, err := tf5to6server.UpgradeServer(context.Background(), sdkprovider.New(version)().GRPCProvider)
+upgradedSdkProvider, err := tf5to6server.UpgradeServer(
+	context.Background(),
+	sdkprovider.New(version)().GRPCProvider,
+)
 ```
 
 The following example uses [`tf6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server) to serve the upgraded provider directly.
 
 ```go
-err = tf6server.Serve("registry.terraform.io/example/example", upgradedSdkProvider.ProviderServer)
+err = tf6server.Serve(
+	"registry.terraform.io/example/example",
+	upgradedSdkProvider.ProviderServer,
+)
 ```
 
 The following example uses [`tf6muxserver`](./combining-protocol-version-6-providers) to serve the upgraded provider while it is combined with others.
@@ -73,7 +79,10 @@ resource.Test(t, resource.TestCase{
 	ProtoV6ProviderFactories: map[string]func() (tfprotov6.ProviderServer, error) {
 		"example": func() (tfprotov6.ProviderServer, error) {
 			ctx := context.Background()
-			upgradedSdkProvider, err := tf5to6server.UpgradeServer(ctx, sdkprovider.New("test")().GRPCProvider)
+			upgradedSdkProvider, err := tf5to6server.UpgradeServer(
+				ctx,
+				sdkprovider.New("test")().GRPCProvider,
+			)
 
 			if err != nil {
 				return nil, err
