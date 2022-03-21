@@ -96,7 +96,7 @@ func main() {
 
 ## Testing Implementation
 
-You can test individual providers using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV5ProviderFactories`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories field) of `TestCase` to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource). 
+You can test individual providers using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV5ProviderFactories` field of `TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories) to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource). 
 
 The following example uses the acceptance testing framework to create a test for two providers.
 
