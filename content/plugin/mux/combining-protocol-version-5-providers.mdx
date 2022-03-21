@@ -11,7 +11,7 @@ The [`tf5muxserver`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mu
 Use this package to:
 
 * Support multiple development teams across separate codebases.
-* Support multiple provider SDK implementations, including but not limited to, combining [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro) and [terraform-plugin-framework](../framework) after using [tf6to5server](./translating-protocol-version-6-to-5).
+* Support multiple provider SDK implementations. For example, you could downgrade an existing [terraform-plugin-framework](../framework) provider to protocol version 5 and then combine it with one or more providers built with [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro).
 
 ## Compatibility
 

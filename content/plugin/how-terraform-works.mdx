@@ -138,10 +138,10 @@ Protocol version 5 is compatible with Terraform CLI version 0.12 and later.
 
 Implementations include:
 
-* [terraform-plugin-sdk/v2](./sdkv2/sdkv2-intro): Develop Terraform Providers with a higher level SDK.
-* [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): Develop advanced use case Terraform Providers with a lower level SDK.
-* [tf6to5server](./mux/translating-protocol-version-6-to-5): Translate protocol version 6 providers into protocol version 5.
-* [tf5muxserver](./mux/combining-protocol-version-5-providers): Combine multiple protocol version 5 providers.
+* [terraform-plugin-sdk/v2](./sdkv2/sdkv2-intro): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
+* [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): A lower-level SDK to develop Terraform providers for more advanced use cases.
+* [tf6to5server](./mux/translating-protocol-version-6-to-5): A package to translate protocol version 6 providers into protocol version 5.
+* [tf5muxserver](./mux/combining-protocol-version-5-providers): A package to combine multiple protocol version 5 providers.
 
 [0]: https://en.wikipedia.org/wiki/Static_build#Static_building
 
