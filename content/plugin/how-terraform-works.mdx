@@ -127,10 +127,10 @@ Protocol version 6 is compatible with Terraform CLI version 1.0 and later. Proto
 
 Implementations include:
 
-* [terraform-plugin-framework](./framework): Develop Terraform Providers with a higher level SDK.
-* [terraform-plugin-go tf6server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server): Develop advanced use case Terraform Providers with a lower level SDK.
-* [tf5to6server](./mux/translating-protocol-version-5-to-6): Translate protocol version 5 providers into protocol version 6.
-* [tf6muxserver](./mux/combining-protocol-version-6-providers): Combine multiple protocol version 6 providers.
+* [terraform-plugin-framework](./framework): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
+* [terraform-plugin-go tf6server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server): A lower-level SDK to develop Terraform providers for more advanced use cases.
+* [tf5to6server](./mux/translating-protocol-version-5-to-6): A package to translate protocol version 5 providers into protocol version 6.
+* [tf6muxserver](./mux/combining-protocol-version-6-providers): A package to combine multiple protocol version 6 providers.
 
 ### Protocol Version 5
 

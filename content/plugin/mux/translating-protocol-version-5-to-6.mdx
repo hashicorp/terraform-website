@@ -6,11 +6,11 @@ description: >-
 
 # Translating Protocol Version 5 to 6
 
-The [`tf5to6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server) package enables translating a [protocol version 5 provider server](../how-terraform-works#protocol-version-5) into a [protocol version 6 provider server](../how-terraform-works#protocol-version-6).
+The [`tf5to6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server) package enables translating a [protocol version 5](../how-terraform-works#protocol-version-5)  provider server into a [protocol version 6](../how-terraform-works#protocol-version-6)  provider server.
 
 Use this package to:
 
-* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](../sdkv2/sdk-intro) to [terraform-plugin-framework](../framework) over time, while taking advantage of [protocol version 6](../how-terraform-works#protocol-version-6) features in terraform-plugin-framework.
+* Migrate individual resources and data sources from [terraform-plugin-sdk/v2](../sdkv2/sdk-intro) to [terraform-plugin-framework](../framework) over time, while using protocol version 6 features in terraform-plugin-framework.
 * Develop with [terraform-plugin-sdk/v2](../sdkv2/sdk-intro), but require Terraform CLI 1.0 or later.
 
 ## Compatibility
@@ -28,25 +28,25 @@ The following provider server implementations are supported:
 
 Upgrading provider servers from protocol version 5 to protocol version 6 has no provider code requirements.
 
-If publishing to the [Terraform Registry](/registry), the [Terraform Registry manifest file](https://www.terraform.io/registry/providers/publishing#terraform-registry-manifest-file) should have `metadata.protocol_versions` set to `["6.0"]`.
+If publishing to the [Terraform Registry](/registry), set `metadata.protocol_versions` to `["6.0"]` in the [Terraform Registry manifest file](https://www.terraform.io/registry/providers/publishing#terraform-registry-manifest-file).
 
 ## Code Implementation
 
-Use the [`tf5to6server.UpgradeServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server#UpgradeServer) function to wrap a provider server. For most providers, this is in the provider `main()` function of the root directory `main.go` file or where [`tf6muxserver`](./combining-protocol-version-6-providers) is implemented in the codebase, if applicable.
+Use the [`tf5to6server.UpgradeServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5to6server#UpgradeServer) function to wrap a provider server. For most providers, this is either in the provider `main()` function of the root directory `main.go` file or where [`tf6muxserver`](./combining-protocol-version-6-providers) is implemented in the codebase.
 
-The following example upgrades a terraform-plugin-sdk/v2 provider:
+The following example upgrades a terraform-plugin-sdk/v2 provider.
 
 ```go
 upgradedSdkProvider, err := tf5to6server.UpgradeServer(context.Background(), sdkprovider.New(version)().GRPCProvider)
 ```
 
-To serve the upgraded provider directly via [`tf6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server):
+The following example uses [`tf6server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server) to serve the upgraded provider directly.
 
 ```go
 err = tf6server.Serve("registry.terraform.io/example/example", upgradedSdkProvider.ProviderServer)
 ```
 
-To serve the upgraded provider while combined with others via [`tf6muxserver`](./combining-protocol-version-6-providers):
+The following example uses [`tf6muxserver`](./combining-protocol-version-6-providers) to serve the upgraded provider while it is combined with others.
 
 ```go
 providers := []func() tfprotov6.ProviderServer{
@@ -61,7 +61,7 @@ providers := []func() tfprotov6.ProviderServer{
 muxServer, err := tf6muxserver.NewMuxServer(ctx, providers...)
 ```
 
-Refer to the [`tf6muxserver`](./combining-protocol-version-6-providers) documentation for how to serve the combined provider.
+Refer to the [`tf6muxserver`](./combining-protocol-version-6-providers) documentation for more details about how to serve the combined provider.
 
 ## Testing Implementation
 

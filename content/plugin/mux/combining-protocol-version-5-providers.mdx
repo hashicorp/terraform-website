@@ -19,25 +19,25 @@ Protocol version 5 provider servers are compatible with Terraform CLI 0.12 and l
 
 The following provider server implementations are supported:
 
-* [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro): Develop Terraform Providers with a higher level SDK.
-* [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): Develop advanced use case Terraform Providers with a lower level SDK.
+* [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro): Develop Terraform providers with a higher-level SDK.
+* [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): Develop Terraform providers for advanced use cases with a lower-level SDK.
 * [tf6to5server](./translating-protocol-version-6-to-5): Translate protocol version 6 providers into protocol version 5.
 
 ## Requirements
 
-Combined provider servers have the following requirements:
+To be combined, provider servers must meet the following requirements:
 
-* All provider schemas must match
-* All provider meta schemas must match
-* Only one provider may implement each resource and data source
+* All provider schemas must match.
+* All provider meta schemas must match.
+* Only one provider may implement each resource and data source.
 
-If publishing to the [Terraform Registry](/registry), the [Terraform Registry manifest file](https://www.terraform.io/registry/providers/publishing#terraform-registry-manifest-file) should have `metadata.protocol_versions` set to `["5.0"]`.
+If publishing to the [Terraform Registry](/registry), set `metadata.protocol_versions` to `["5.0"]` in the [Terraform Registry manifest file](https://www.terraform.io/registry/providers/publishing#terraform-registry-manifest-file).
 
 ## Code Implementation
 
-Use the [`tf5muxserver.NewMuxServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5muxserver#NewMuxServer) function to create a combined provider server. For most providers, implement this in the provider `main()` function of the root directory `main.go` file or within a shared internal package to enable [testing for the combined provider](#testing-implementation). You can use [`tf5server.WithManagedDebug()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server#WithManagedDebug) to enable debugger support.
+Use the [`tf5muxserver.NewMuxServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5muxserver#NewMuxServer) function to create a combined provider server. Most providers implement this method in the provider `main()` function of the root directory `main.go` file or within a shared internal package to enable [testing for the combined provider](#testing-implementation). You can use [`tf5server.WithManagedDebug()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server#WithManagedDebug) to enable debugger support.
 
-The following example implements `tf5muxserver.NewMuxServer()` in a  `main()` function:
+The following example implements `tf5muxserver.NewMuxServer()` in a  `main()` function.
 
 ```go
 package main
@@ -92,7 +92,9 @@ func main() {
 
 ## Testing Implementation
 
-You can test individual providers using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. To test the combined provider, use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource) by setting the [`ProtoV5ProviderFactories` field of `TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories):
+You can test individual providers using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV5ProviderFactories`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories field) of `TestCase` to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource). 
+
+The following example uses the acceptance testing framework to create a test for two providers.
 
 ```go
 resource.Test(t, resource.TestCase{
