@@ -46,7 +46,10 @@ downgradedFrameworkProvider, err := tf6to5server.DowngradeServer(
 The following example uses [`tf5server`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server) to serve the downgraded provider directly.
 
 ```go
-err = tf5server.Serve("registry.terraform.io/example/example", downgradedFrameworkProvider.ProviderServer)
+err = tf5server.Serve(
+	"registry.terraform.io/example/example",
+	downgradedFrameworkProvider.ProviderServer,
+)
 ```
 
 The following example uses [`tf5muxserver`](./combining-protocol-version-5-providers) to serve the downgraded provider while it is combined with other providers.
