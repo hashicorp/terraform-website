@@ -19,8 +19,8 @@ Protocol version 5 provider servers are compatible with Terraform CLI 0.12 and l
 
 The following provider server implementations are supported:
 
-* [terraform-plugin-framework](../framework)
-* [terraform-plugin-go tf6server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server)
+* [terraform-plugin-framework](../framework): Develop Terraform providers with a higher-level SDK.
+* [terraform-plugin-go tf6server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server): Develop Terraform providers for advanced use cases with a lower-level SDK.
 
 ## Requirements
 
@@ -63,7 +63,9 @@ Refer to the [`tf5muxserver`](./combining-protocol-version-5-providers) document
 
 ## Testing Implementation
 
-You can test the original provider using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. To test the downgraded provider, use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource) by setting the [`ProtoV5ProviderFactories` field of `TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories):
+You can test the original provider using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV5ProviderFactories`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories) field of `TestCase` to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource).
+
+The following example creates a test case for a downgraded provider.
 
 ```go
 resource.Test(t, resource.TestCase{

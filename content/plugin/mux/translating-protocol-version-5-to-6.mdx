@@ -15,14 +15,12 @@ Use this package to:
 
 ## Compatibility
 
-Protocol version 6 provider servers are compatible with Terraform CLI 1.0 and later.
-
-~> **NOTE**: If upgrading [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro), Terraform CLI 1.1.5 and later is required.
+Protocol version 6 provider servers are compatible with Terraform CLI 1.0 and later. Terraform CLI 1.1.5 and later is required to upgrade [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro).
 
 The following provider server implementations are supported:
 
-* [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro)
-* [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server)
+* [terraform-plugin-sdk/v2](../sdkv2/sdkv2-intro): Develop Terraform providers with a higher-level SDK.
+* [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): Develop Terraform providers for advanced use cases with a lower-level SDK.
 
 ## Requirements
 
@@ -65,7 +63,9 @@ Refer to the [`tf6muxserver`](./combining-protocol-version-6-providers) document
 
 ## Testing Implementation
 
-You can test the original provider using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. To test the upgraded provider, use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource) by setting the [`ProtoV6ProviderFactories` field of `TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV6ProviderFactories):
+You can test the original provider using the same [acceptance tests](../sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV6ProviderFactories`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV6ProviderFactories) field of `TestCase` to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource).
+
+The following example creates a test for a combined provider.
 
 ```go
 resource.Test(t, resource.TestCase{
