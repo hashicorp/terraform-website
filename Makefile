@@ -52,3 +52,8 @@ website-local:
 
 .DEFAULT_GOAL := website
 .PHONY: build build-image website website-local
+
+test-build:
+	docker rmi hashicorp-terraform-website-local || true
+	docker rmi hashicorp-terraform-website-local:latest || true
+	docker build -t hashicorp-terraform-website-local:latest .
