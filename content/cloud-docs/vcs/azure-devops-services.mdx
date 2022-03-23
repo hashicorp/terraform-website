@@ -8,34 +8,29 @@ page_title: >-
 
 These instructions are for using dev.azure.com for Terraform Cloud's VCS features. [Other supported VCS providers](/cloud-docs/vcs) have separate instructions.
 
-Configuring a new VCS provider requires permission to manage VCS settings for the organization. ([More about permissions.](/cloud-docs/users-teams-organizations/permissions))
+This page explains the four main steps required to connect Terraform Cloud to your Azure DevOps Services VCS:
+
+1. Create a new connection in Terraform Cloud and get the callback URL.
+1. On your VCS, register your Terraform Cloud organization as a new application. Provide the callback URL and get the application ID and key.
+1. Provide Terraform Cloud with the application ID and key. Then, request VCS access.
+1. On your VCS, approve the access request from Terraform Cloud.                                          |
+
+~> **Important:** Terraform Cloud only supports Azure DevOps connections that use the `dev.azure.com` domain. If your Azure DevOps project uses the older `visualstudio.com` domain, you must migrate using the [steps in the Microsoft documentation](https://docs.microsoft.com/en-us/azure/devops/release-notes/2018/sep-10-azure-devops-launch#switch-existing-organizations-to-use-the-new-domain-name-url).
+
+## Requirements
+
+Configuring a new VCS provider requires permission to[ ]manage VCS settings](/cloud-docs/users-teams-organizations/permissions) for the organization.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-Connecting Terraform Cloud to your Azure DevOps Services VCS involves four steps:
 
-| On your VCS                                                                                       | On Terraform Cloud                                            |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-|                                                                                                   | Create a new connection in Terraform Cloud. Get callback URL. |
-| Register your Terraform Cloud organization as a new app. Get ID and key and provide callback URL. |                                                               |
-|                                                                                                   | Provide Terraform Cloud with ID and key. Request VCS access.  |
-| Approve access request.                                                                           |                                                               |
+Before you begin, enable `Third-party application access via OAuth` in Azure DevOps Services settings.
 
-The rest of the page explains these steps in more detail.
+1. Log in to [Azure DevOps Services](https://dev.azure.com/).
+1. Click **Organization settings** in the bottom of the sidebar.
+1. Click **Policies** in the sidebar under **Security**.
+1. Enable the **Third-party application access via OAuth** setting.
 
-~> **Important:** Terraform Cloud only supports Azure DevOps connections which use the `dev.azure.com` domain. If your Azure DevOps project uses the older `visualstudio.com` domain, you will need to migrate using the [steps provided by Microsoft](https://docs.microsoft.com/en-us/azure/devops/release-notes/2018/sep-10-azure-devops-launch#switch-existing-organizations-to-use-the-new-domain-name-url).
-
-## Check Azure DevOps services
-
-Check the following Azure DevOps Services settings before you begin.
-
-1. Login to [Azure DevOps Services](https://dev.azure.com/)
-
-1. Enable the `Third-party application access via OAuth` with the following steps
-
-   1. Go to your organization settings
-   1. Under Security click on policies
-   1. Enable the Third-party application access via OAuth
    ![Azure DevOps Services Screenshot: Polcies Third-party application access via Oauth](/img/docs/azure-devops-services-oauth-policies.png)
 
 ## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
