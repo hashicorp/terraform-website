@@ -30,16 +30,13 @@ Log forwarding is disabled by default. To enable log forwarding, set the
 `log_forwarding_enabled` Terraform Enterprise application setting to the value
 `1`.
 
-For a Standalone installation of Terraform Enterprise:
-
-```sh
-replicatedctl app-config set log_forwarding_enabled --value 1
-```
-
-For an Active/Active installation of Terraform Enterprise:
-
 ```sh
 tfe-admin app-config -k log_forwarding_enabled -v 1
+```
+
+-> **Note**: For Terraform Enterprise versions before v202203-1, use this command for standalone installations
+```sh
+replicatedctl app-config set log_forwarding_enabled --value 1
 ```
 
 When log forwarding is enabled, the Terraform Enterprise application settings

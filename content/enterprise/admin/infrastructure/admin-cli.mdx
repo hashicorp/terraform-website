@@ -1,16 +1,12 @@
 ---
-page_title: Active/Active - Infrastructure Administration - Terraform Enterprise
+page_title: Admin CLI Commands - Infrastructure Administration - Terraform Enterprise
 ---
 
-# Terraform Enterprise Active/Active
+# Terraform Enterprise Admin CLI Commands
 
-When your organization requires increased reliability or performance from Terraform Enterprise that your current single application instance cannot provide, it is time to scale to the Active/Active architecture. Please refer to  [Terraform Enterprise Active/Active](/enterprise/install/automated/active-active) for more information on moving to Active/Active.
+The [Active/Active](/enterprise/install/automated/active-active) operational mode disables the Replicated Admin Console. Instead, it provides admin CLI commands to change the configuration, stop the application safely, and produce support bundles. You must use SSH to log in to a node in the Active/Active cluster to run these commands.
 
-~> **Note:** The discontinued clustered version of Terraform Enterprise is no longer supported, and we strongly advise all customers to move to an Active/Active installation. Please contact your support representative if you need assistance.
-
-## Active/Active Admin Commands
-
-The Active/Active operational mode disables use of the Replicated Admin Console.  To accommodate this, there are now admin commands to facilitate configuration changes, safe application stops, and producing support bundles. There is a new container in the TFE architecture to support this called "tfe-admin". You must login to a node in the Active/Active cluster using SSH to run these commands from the command line.
+-> **Note**: Admin CLI commands are available on installations using the Standalone operational mode in Terraform Enterprise version v202203-1 and later.
 
 ### Commands
 
@@ -22,7 +18,11 @@ Note that `tfe-admin` is an alias for `replicated admin`, and can be used interc
 tfe-admin support-bundle
 ```
 
-This command generates a support bundle for all nodes. The support bundles will be uploaded to the same object store bucket that is used to store Terraform state files. The support bundles for a specific run of the admin command will all be uploaded to a directory with the same JobID (a timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format). If you are sending a support bundle to HashiCorp Support, package and send all associated bundles to ensure that we have all the necessary information.
+This command generates a support bundle for all nodes.
+
+For Standalone (single node) installations the support bundle will be created in `/var/lib/replicated/support-bundles`.
+
+For Active/Active, the support bundles will be uploaded to the same object store bucket that is used to store Terraform state files. The support bundles for a specific run of the admin command will all be uploaded to a directory with the same JobID, which is a timestamp in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339) format. If you are sending a support bundle to HashiCorp Support, package and send all associated bundles to ensure that we have all the necessary information.
 
 Example upload structure
 
@@ -41,7 +41,9 @@ support-bundles
 tfe-admin node-drain
 ```
 
-This command will quiesce the current node and remove it from service. It will allow current work to complete and safely stop the node from picking up any new jobs from the Redis queue, allowing the application to be safely stopped. Currently, it only affects `localhost` (it does not support running on one node to drain other nodes). Currently, there is no reverse drain command - a restart is needed to restore the node.
+This command will quiesce the current node and remove it from service. It will allow current work to complete and safely stop the node from picking up any new jobs from the Redis queue, allowing the application to be safely stopped. Currently, it only affects `localhost` (it does not support running on one node to drain other nodes).
+
+-> **Note:** There is no reverse drain command - a restart is needed to restore the node.
 
 #### app-config
 
@@ -75,7 +77,7 @@ tfe-app-config ()
 tfe-admin list-nodes
 ```
 
-This command lists the IP addresses of all active nodes in the active/active installation. Nodes send a heartbeat every 5 seconds to signal that they are active. If Terraform Enterprise does not receive a heartbeat from a node within 30 seconds, it considers the node inactive and removes the node from the list.
+This command lists the IP addresses of all active nodes in the installation. Nodes send a heartbeat every 5 seconds to signal that they are active. If Terraform Enterprise does not receive a heartbeat from a node within 30 seconds, it considers the node inactive and removes the node from the list.
 
 #### rotate-encryption-password
 
