@@ -13,13 +13,13 @@ This page explains the four main steps required to connect Terraform Cloud to yo
 1. Create a new connection in Terraform Cloud and get the callback URL.
 1. On your VCS, register your Terraform Cloud organization as a new application. Provide the callback URL and get the application ID and key.
 1. Provide Terraform Cloud with the application ID and key. Then, request VCS access.
-1. On your VCS, approve the access request from Terraform Cloud.                                          |
+1. On your VCS, approve the access request from Terraform Cloud.
 
 ~> **Important:** Terraform Cloud only supports Azure DevOps connections that use the `dev.azure.com` domain. If your Azure DevOps project uses the older `visualstudio.com` domain, you must migrate using the [steps in the Microsoft documentation](https://docs.microsoft.com/en-us/azure/devops/release-notes/2018/sep-10-azure-devops-launch#switch-existing-organizations-to-use-the-new-domain-name-url).
 
 ## Requirements
 
-Configuring a new VCS provider requires permission to[ ]manage VCS settings](/cloud-docs/users-teams-organizations/permissions) for the organization.
+Configuring a new VCS provider requires permission to [manage VCS settings](/cloud-docs/users-teams-organizations/permissions#manage-vcs-settings) for the organization.
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
@@ -49,8 +49,7 @@ Leave this page open in a browser tab. You will copy values from this page into 
 
 1. Go into your preferred organization.
 
-1. Click your user icon in the top right, and then click **. . .** > **User settings**.
-   ![Azure DevOps Services Screenshot: Opening User settings Menu](/img/docs/azure-devops-services-user-settings.png)
+1. Click your user icon in the top right, and then click the **ellipses (...) ** and select **User settings**.
 
 1. From the User settings menu, click **Profile**. Your profile page appears.
 
