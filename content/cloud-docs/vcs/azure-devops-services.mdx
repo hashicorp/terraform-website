@@ -25,9 +25,9 @@ The rest of the page explains these steps in more detail.
 
 ~> **Important:** Terraform Cloud only supports Azure DevOps connections which use the `dev.azure.com` domain. If your Azure DevOps project uses the older `visualstudio.com` domain, you will need to migrate using the [steps provided by Microsoft](https://docs.microsoft.com/en-us/azure/devops/release-notes/2018/sep-10-azure-devops-launch#switch-existing-organizations-to-use-the-new-domain-name-url).
 
-## Check Azure DevOps services 
+## Check Azure DevOps services
 
-Check the following Azure DevOps Services settings before you begin. 
+Check the following Azure DevOps Services settings before you begin.
 
 1. Login to [Azure DevOps Services](https://dev.azure.com/)
 
@@ -35,23 +35,23 @@ Check the following Azure DevOps Services settings before you begin.
 
    1. Go to your organization settings
    1. Under Security click on policies
-   1. Enable the Third-party application access via OAuth  
+   1. Enable the Third-party application access via OAuth
    ![Azure DevOps Services Screenshot: Polcies Third-party application access via Oauth](/img/docs/azure-devops-services-oauth-policies.png)
-   
+
 ## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
-1. Open Terraform Cloud in your browser and navigate to the "VCS Providers" settings for your organization. Click the "Add VCS Provider" button.
+1. Open Terraform Cloud in your browser and navigate to the **VCS Providers** settings for your organization. Click the **Add VCS Provider** button.
 
    If you just created your organization, you might already be on this page. Otherwise:
 
    1. Make sure the upper-left organization menu currently shows your organization.
-   1. Click the "Settings" link at the top of the page (or within the ☰ menu)
-   1. On the next page, click "VCS Providers" in the left sidebar
-   1. Click the "Add a VCS Provider" button
+   1. Click the **Settings** link at the top of the page (or within the ☰ menu)
+   1. On the next page, click **VCS Providers** in the left sidebar
+   1. Click the **Add a VCS Provider** button
 
-1. The "Add VCS Provider" page is divided into multiple steps to guide you through adding a new VCS provider.
+1. The **Add VCS Provider** page is divided into multiple steps to guide you through adding a new VCS provider.
 
-   For the first step, select "Azure DevOps" then select "Azure DevOps Services" from the dropdown. The page will move to the next step.
+   For the first step, select **Azure DevOps** then select **Azure DevOps Services** from the dropdown. The page will move to the next step.
 
 Leave the page open in a browser tab. In the next step you will copy values from this page, and in later steps you will continue configuring Terraform Cloud.
 
@@ -63,12 +63,12 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
 1. Go into your preferred organization.
 
-1. Click your user icon in the top right, and then click ". . ." > "User settings".
+1. Click your user icon in the top right, and then click **. . .** > **User settings**.
    ![Azure DevOps Services Screenshot: Opening User settings Menu](/img/docs/azure-devops-services-user-settings.png)
 
-1. From the User settings menu, click "Profile". Your profile page appears.
+1. From the User settings menu, click **Profile**. Your profile page appears.
 
-1. In the left sidebar, click "Authorizations". The Authorized OAuth Apps page appears.
+1. In the left sidebar, click **Authorizations**. The Authorized OAuth Apps page appears.
 
 1. Click the link to register a new app. A form appears asking for your company and application information.
 
@@ -83,15 +83,15 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
    ![Azure DevOps Services Screenshot: Creating a new application in your Azure DevOps Services Profile](/img/docs/azure-devops-services-create-application.png)
 
-   In the "Authorized scopes" section, select only "Code (read)" and "Code (status)" and then click "Create Application."
+   In the **Authorized scopes** section, select only **Code (read)** and **Code (status)** and then click **Create Application.**
 
    ![Azure DevOps Services Screenshot: Required permissions when creating a new application in your Azure DevOps Services Profile](/img/docs/azure-devops-services-application-permissions.png)
 
-   ~> **Important:** Do not add any additional scopes beyond "Code (read)" and "Code (status)," as this can prevent Terraform Cloud from connecting. Note that these authorized scopes cannot be updated after the application is created; to fix incorrect scopes you must delete and re-create the application.
+   ~> **Important:** Do not add any additional scopes beyond **Code (read)** and **Code (status),** as this can prevent Terraform Cloud from connecting. Note that these authorized scopes cannot be updated after the application is created; to fix incorrect scopes you must delete and re-create the application.
 
 1. After creating the application, the next page displays its details. Leave this page open in a browser tab. In the next step, you will copy and paste the unique **App ID** and **Client Secret** from this page.
 
-   If you accidentally close this details page and need to find it later, you can reach it from the "Applications and Services" links at the bottom left of your profile.
+   If you accidentally close this details page and need to find it later, you can reach it from the **Applications and Services** links at the bottom left of your profile.
 
 ## Step 3: On Terraform Cloud, Set up Your Provider
 
@@ -101,7 +101,7 @@ Leave the page open in a browser tab. In the next step you will copy values from
 
    ![Terraform Cloud screenshot: the ssh key screen](/img/docs/azure-devops-services-tfe-secret.png)
 
-1. Click "Connect and continue." This takes you to a page on Azure DevOps Services, asking whether you want to authorize the app. Click the "Accept" button and you'll be redirected back to Terraform Cloud.
+1. Click **Connect and continue.** This takes you to a page on Azure DevOps Services, asking whether you want to authorize the app. Click the **Accept** button and you'll be redirected back to Terraform Cloud.
 
    ![Azure DevOps Services Screenshot: Accepting the terms of use for connecting Terraform Cloud and Azure DevOps Services](/img/docs/azure-devops-services-accept-terms.png)
 
@@ -120,7 +120,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 ### If You Don't Need an SSH Keypair:
 
-1. Click the "Skip and Finish" button. This returns you to Terraform Cloud's VCS Providers page, which now includes your new Azure DevOps Services client.
+1. Click the **Skip and Finish** button. This returns you to Terraform Cloud's VCS Providers page, which now includes your new Azure DevOps Services client.
 
 ### If You Do Need an SSH Keypair:
 
@@ -130,7 +130,7 @@ Most organizations will not need to add an SSH private key. However, if the orga
 
 1. While logged into the Azure DevOps Services account you want Terraform Cloud to act as, navigate to the SSH Keys settings page, add a new SSH key and paste the value of the SSH public key you just created.
 
-1. In Terraform Cloud's "Add VCS Provider" page, paste the text of the **SSH private key** you just created, and click the "Add SSH Key" button.
+1. In Terraform Cloud's **Add VCS Provider** page, paste the text of the **SSH private key** you just created, and click the **Add SSH Key** button.
 
    ![Terraform Cloud screenshot: the ssh key screen](/img/docs/azure-devops-services-ssh-key.png)
 
