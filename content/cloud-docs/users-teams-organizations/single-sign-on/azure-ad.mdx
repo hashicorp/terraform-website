@@ -55,6 +55,7 @@ For more information on the listed features, visit the [Microsoft Azure AD SAML 
    1. In the **Reply URL** text box, paste the **Reply URL**.
    1. In the **Sign-on URL** text box, type the URL: `https://app.terraform.io/session`
    1. Select **Save**.
+1. On the **Single sign-on** page, download the `Certificate (Base64)` file from under SAML Signing Certificate
 1. In the app's overview page, find the **Manage** section and select **Users and groups**.
 1. Select **Add user**, then select **Users and groups** in the **Add Assignment** dialog.
 1. In the **Users and groups** dialog, select your user from the Users list, then click the **Select** button at the bottom of the screen.
@@ -62,7 +63,10 @@ For more information on the listed features, visit the [Microsoft Azure AD SAML 
 1. In the **Add Assignment** dialog, click the **Assign** button.
 
 ## Configuration (Terraform Cloud)
-
+1. Edit settings of your Azure SSO configuration
+   1. Go to **Public Certificate** 
+   1. Paste the contents of the SAML Signing Certificate downloaded from Microsoft Azure AD
+   1. Save Settings  
 1. [Verify](/cloud-docs/users-teams-organizations/single-sign-on/testing) your settings and click "Enable".
 
 1. Your Azure SSO configuration is complete and ready to [use](/cloud-docs/users-teams-organizations/single-sign-on#signing-in-with-sso).
