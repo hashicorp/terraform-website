@@ -39,6 +39,16 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         localContentDir: CONTENT_DIR,
         navDataFile: NAV_DATA,
         product: PRODUCT.slug,
+        githubFileUrl(url) {
+          // this path rewriting is meant for `terraform-cdk`.
+          // This is dependent on the where the `terraform-website` is cloned, and where
+          // the `terraform-cdk` files get mounted to within the `terraform-website` Docker
+          // container.
+          //
+          // This is subject to change.
+          const filepath = url.replace('cdk/', '')
+          return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/docs/${filepath}`
+        }
         // remarkPlugins: [
         //   () => {
         //     const product = 'terraform-cdk'
