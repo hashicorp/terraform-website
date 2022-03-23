@@ -14,26 +14,25 @@ The Terraform Enterprise April 2022 release will:
 
 ## APPLICATION LEVEL BREAKING CHANGES:
 
-1. The minimum required Replicated version is now 2.53.4. Airgap customers can visit this URL to download the latest Replicated version: [https://install.terraform.io/airgap/latest.tar.gz](https://install.terraform.io/airgap/latest.tar.gz).
+The minimum required Replicated version is now 2.53.4. Airgap customers can visit this URL to download the latest Replicated version: [https://install.terraform.io/airgap/latest.tar.gz](https://install.terraform.io/airgap/latest.tar.gz).
 
 ## APPLICATION LEVEL FEATURES:
 
 1. Added the ability to [archive configuration versions](https://www.terraform.io/cloud-docs/workspaces/configurations#archiving-configuration-versions) either automatically or manually in order to free up storage space and limit the amount of sensitive data stored in Terraform Enterprise.
-2. Improved the performance and reliability when destroying workspaces.
-3. Changed documentation link on preparing a module repository.
-4. Private providers are now supported in the private registry.
-5. Added API endpoints for [downloading configuration versions](https://www.terraform.io/cloud-docs/api-docs/configuration-versions#download-configuration-files).
+1. Improved the performance and reliability when destroying large workspaces.
+1. Added support for private providers in the private registry.
+1. Added API endpoints for [downloading configuration versions](https://www.terraform.io/cloud-docs/api-docs/configuration-versions#download-configuration-files).
 1. Added [Variable Sets](https://www.terraform.io/cloud-docs/api-docs/variable-sets).
-1. Added html and/or plain text versions to all account-related emails.
+1. Added html and/or plain-text email format support to all account-related emails that are sent to users on behalf of TFE.
 
 ## APPLICATION LEVEL BUG FIXES:
 
-1. Fixed response code for JSON parse errors.
-2. Fixed API dasherizing state output keys when the top level output type is an array containing maps.
-3. Fixed 500 error when fetching admin organization that does not exist.
+1. Fixed response code for JSON parse errors as parse failures should result in 400 Bad Request responses to clients.
+1. Fixed API dasherizing state output keys when the top level output type is an array containing maps.
+1. Fixed 500 error when fetching admin organization that does not exist.
 1. Fixed syntax error when setting a Terraform variable to `null`.
 1. Fixed Tag creation dates that are now displayed correctly.
 
 ## APPLICATION LEVEL SECURITY FIXES:
 
-1. Ongoing container updates to address reported vulnerabilities in underlying packages / dependencies, including OpenSSL-related [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778).
+Ongoing container updates to address reported vulnerabilities in underlying packages / dependencies, including OpenSSL-related [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778).
