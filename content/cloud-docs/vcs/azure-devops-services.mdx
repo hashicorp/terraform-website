@@ -23,7 +23,6 @@ Configuring a new VCS provider requires permission to[ ]manage VCS settings](/cl
 
 [permissions-citation]: #intentionally-unused---keep-for-maintainers
 
-
 Before you begin, enable `Third-party application access via OAuth` in Azure DevOps Services settings.
 
 1. Log in to [Azure DevOps Services](https://dev.azure.com/).
@@ -35,20 +34,12 @@ Before you begin, enable `Third-party application access via OAuth` in Azure Dev
 
 ## Step 1: On Terraform Cloud, Begin Adding a New VCS Provider
 
-1. Open Terraform Cloud in your browser and navigate to the **VCS Providers** settings for your organization. Click the **Add VCS Provider** button.
+1. Log in to Terraform Cloud and navigate to the organization where you want to add a VCS connection.
+1. Click **Settings** in the menu bar and then click **Providers** under **Version control** in the sidebar.
+1. Click **Add VCS a Provider**. The Add a VCS Provider page appears.
+1. Open the **Azure DevOps** menu and then select **Azure DevOps Services**. The **Set up provider** page appears.
 
-   If you just created your organization, you might already be on this page. Otherwise:
-
-   1. Make sure the upper-left organization menu currently shows your organization.
-   1. Click the **Settings** link at the top of the page (or within the ☰ menu)
-   1. On the next page, click **VCS Providers** in the left sidebar
-   1. Click the **Add a VCS Provider** button
-
-1. The **Add VCS Provider** page is divided into multiple steps to guide you through adding a new VCS provider.
-
-   For the first step, select **Azure DevOps** then select **Azure DevOps Services** from the dropdown. The page will move to the next step.
-
-Leave the page open in a browser tab. In the next step you will copy values from this page, and in later steps you will continue configuring Terraform Cloud.
+Leave this page open in a browser tab. You will copy values from this page into Azure DevOps in the next step, and in later steps you will continue configuring Terraform Cloud.
 
 ## Step 2: From your Azure DevOps Services Profile, Create a New Application
 
