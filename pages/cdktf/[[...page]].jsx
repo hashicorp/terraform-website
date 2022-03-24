@@ -49,7 +49,7 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
           // filepath = filepath.replace('cdk/', '')
           return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/docs/${filepath}`
         },
-        remarkPlugins: [
+        remarkPlugins: (params) => [
           () => {
             const product = PRODUCT.slug
             const version = 'main'
