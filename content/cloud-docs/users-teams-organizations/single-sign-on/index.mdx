@@ -63,7 +63,7 @@ If an organization's owners disable SSO (or downgrade the organization's account
 
 ## Managing Team Membership Through SSO
 
-Terraform Cloud can automatically add users to teams based on their SAML assertion, so you can manage team membership in your directory service. To do this, you must specify the `MemberOf` SAML attribute, and make sure the AttributeStatement in the SAMLResponse contains a list of AttributeValue items in the correct format (i.e., comma-separated list of team names).
+Terraform Cloud can automatically add users to teams based on their SAML assertion, so you can manage team membership in your directory service. To do this, you must specify the `MemberOf` SAML attribute, and make sure the AttributeStatement in the SAMLResponse contains a list of AttributeValue items in the correct format (i.e., comma-separated list of team names or SSO team IDs).
 
 If the SAML assertion includes a `MemberOf` attribute, users logging in via SSO are automatically added to the teams included in their assertion and removed from any teams that _aren't_ included in their assertion. This overrides any manually set team memberships; whenever the user logs in, their team membership is adjusted to match their SAML assertion.
 

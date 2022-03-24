@@ -36,7 +36,9 @@ page_title: Teams - API Docs - Terraform Cloud and Terraform Enterprise
 
 # Teams API
 
--> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
+-> **Note:** Team management is a paid feature, available as part of the **Team** upgrade package. Single sign-on is also a paid feature, available as part of the **Business** upgrade package. Refer to [Terraform Cloud pricing](https://www.hashicorp.com/products/terraform/pricing) for details.
+
+-> **Note:** Single sign-on is a paid feature, available as part of the **Business** upgrade package. [Learn more about Terraform Cloud pricing here](https://www.hashicorp.com/products/terraform/pricing).
 
 The Teams API is used to create, edit, and destroy teams as well as manage a team's organization-level permissions. The [Team Membership API](/cloud-docs/api-docs/team-members) is used to add or remove users from a team. Use the [Team Access API](/cloud-docs/api-docs/team-access) to associate a team with privileges on an individual workspace.
 
@@ -144,7 +146,7 @@ Properties without a default value are required.
 | --------------------------------------- | ------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `data.type`                             | string |            | Must be `"teams"`.                                                                                                                                                                                                                   |
 | `data.attributes.name`                  | string |            | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                              |
-| `data.attributes.sso-team-id`           | string | (nothing)  | The unique identifier of the team referred to from the SAML MemberOf attribute.                                                                                                                                                      |
+| `data.attributes.sso-team-id`           | string | (nothing)  | The unique identifier of the team from the SAML `MemberOf` attribute. Only available if the team belongs to an organization in the paid Terraform Cloud Business tier.                                                                                                                                                     |
 | `data.attributes.organization-access`   | object | (nothing)  | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-workspaces`, `manage-vcs-settings`, `manage-providers`, and `manage-modules` properties with boolean values. All properties default to `false`. |
 | `data.attributes.visibility` **(beta)** | string | `"secret"` | The team's visibility. Must be `"secret"` or `"organization"` (visible).                                                                                                                                                             |
 
@@ -306,7 +308,7 @@ Properties without a default value are required.
 | --------------------------------------- | ------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `data.type`                             | string |                  | Must be `"teams"`.                                                                                                                                                                                                                   |
 | `data.attributes.name`                  | string | (previous value) | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                              |
-| `data.attributes.sso-team-id`           | string | (previous value) | The unique identifier of the team referred to from the SAML MemberOf attribute.                                                                                                                                                      |
+| `data.attributes.sso-team-id`           | string | (previous value) | The unique identifier of the team from the SAML `MemberOf` attribute.  Only available if the team belongs to an organization in the paid Terraform Cloud Business Tier.                                                                                                                                                   |
 | `data.attributes.organization-access`   | object | (previous value) | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-workspaces`, `manage-vcs-settings`, `manage-providers`, and `manage-modules` properties with boolean values. All properties default to `false`. |
 | `data.attributes.visibility` **(beta)** | string | (previous value) | The team's visibility. Must be `"secret"` or `"organization"` (visible).                                                                                                                                                             |
 
