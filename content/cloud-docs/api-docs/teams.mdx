@@ -85,6 +85,7 @@ $ curl \
       "type": "teams",
       "attributes": {
         "name": "team-creation-test",
+        "sso-team-id": "cb265c8e41bddf3f9926b2cf3d190f0e1627daa4",
         "users-count": 0,
         "visibility": "organization",
         "permissions": {
@@ -143,6 +144,7 @@ Properties without a default value are required.
 | --------------------------------------- | ------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `data.type`                             | string |            | Must be `"teams"`.                                                                                                                                                                                                                   |
 | `data.attributes.name`                  | string |            | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                              |
+| `data.attributes.sso-team-id`           | string | (nothing)  | The unique identifier of the team referred to from the SAML MemberOf attribute.                                                                                                                                                      |
 | `data.attributes.organization-access`   | object | (nothing)  | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-workspaces`, `manage-vcs-settings`, `manage-providers`, and `manage-modules` properties with boolean values. All properties default to `false`. |
 | `data.attributes.visibility` **(beta)** | string | `"secret"` | The team's visibility. Must be `"secret"` or `"organization"` (visible).                                                                                                                                                             |
 
@@ -154,6 +156,7 @@ Properties without a default value are required.
     "type": "teams",
     "attributes": {
       "name": "team-creation-test",
+      "sso-team-id": "cb265c8e41bddf3f9926b2cf3d190f0e1627daa4",
       "organization-access": {
         "manage-workspaces": true
       }
@@ -180,6 +183,7 @@ $ curl \
   "data": {
     "attributes": {
       "name": "team-creation-test",
+      "sso-team-id": "cb265c8e41bddf3f9926b2cf3d190f0e1627daa4",
       "organization-access": {
         "manage-policies": false,
         "manage-policy-overrides": false,
@@ -242,6 +246,7 @@ $ curl \
     "type": "teams",
     "attributes": {
       "name": "team-creation-test",
+      "sso-team-id": "cb265c8e41bddf3f9926b2cf3d190f0e1627daa4",
       "users-count": 0,
       "visibility": "organization",
       "permissions": {
@@ -301,6 +306,7 @@ Properties without a default value are required.
 | --------------------------------------- | ------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `data.type`                             | string |                  | Must be `"teams"`.                                                                                                                                                                                                                   |
 | `data.attributes.name`                  | string | (previous value) | The name of the team, which can only include letters, numbers, `-`, and `_`. This will be used as an identifier and must be unique in the organization.                                                                              |
+| `data.attributes.sso-team-id`           | string | (previous value) | The unique identifier of the team referred to from the SAML MemberOf attribute.                                                                                                                                                      |
 | `data.attributes.organization-access`   | object | (previous value) | Settings for the team's organization access. This object can include `manage-policies`, `manage-policy-overrides`, `manage-workspaces`, `manage-vcs-settings`, `manage-providers`, and `manage-modules` properties with boolean values. All properties default to `false`. |
 | `data.attributes.visibility` **(beta)** | string | (previous value) | The team's visibility. Must be `"secret"` or `"organization"` (visible).                                                                                                                                                             |
 
@@ -338,6 +344,7 @@ $ curl \
   "data": {
     "attributes": {
       "name": "team-creation-test",
+      "sso-team-id": "cb265c8e41bddf3f9926b2cf3d190f0e1627daa4",
       "organization-access": {
         "manage-policies": false,
         "manage-policy-overrides": false,
