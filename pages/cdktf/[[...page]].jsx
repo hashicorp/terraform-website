@@ -39,36 +39,42 @@ const { getStaticPaths, getStaticProps } = getStaticGenerationFunctions(
         localContentDir: CONTENT_DIR,
         navDataFile: NAV_DATA,
         product: PRODUCT.slug,
-        githubFileUrl(url) {
+        githubFileUrl(filepath) {
           // this path rewriting is meant for `terraform-cdk`.
-          // This is dependent on the where the `terraform-website` is cloned, and where
-          // the `terraform-cdk` files get mounted to within the `terraform-website` Docker
+          // This is dependent on where the `terraform-website` is cloned, and where
+          // the `terraform-cdk` files get mounted to the `terraform-website` Docker
           // container.
           //
           // This is subject to change.
-          const filepath = url.replace('cdk/', '')
+          // filepath = filepath.replace('cdk/', '')
           return `https://github.com/hashicorp/${PRODUCT.slug}/blob/main/website/docs/${filepath}`
-        }
-        // remarkPlugins: [
-        //   () => {
-        //     const product = 'terraform-cdk'
-        //     const version = 'main'
-        //     return function transform(tree) {
-        //       visit(tree, 'image', (node) => {
-        //         const assetPath = params.page
-        //           ? path.posix.join(
-        //               ...params.page,
-        //               node.url.startsWith('.')
-        //                 ? `.${node.url}`
-        //                 : `../${node.url}`
-        //             )
-        //           : node.url
-        //         const asset = path.posix.join('website/docs/cdktf', assetPath)
-        //         node.url = `https://mktg-content-api.vercel.app/api/assets?product=${product}&version=${version}&asset=${asset}`
-        //       })
-        //     }
-        //   },
-        // ],
+        },
+        remarkPlugins: [
+          () => {
+            const product = PRODUCT.slug
+            const version = 'main'
+            return function transform(tree) {
+              visit(tree, 'image', (node) => {
+                const originalUrl = node.url
+                const assetPath = params.page
+                  ? path.posix.join(
+                      ...params.page,
+                      node.url.startsWith('.')
+                        ? `.${node.url}`
+                        : `../${node.url}`
+                    )
+                  : node.url
+                const asset = path.posix.join('website/docs/cdktf', assetPath)
+                node.url = `https://mktg-content-api.vercel.app/api/assets?product=${product}&version=${version}&asset=${asset}`
+                console.log(`Rewriting asset url for local preview:
+- Found: ${originalUrl}
+- Replaced with: ${node.url}
+
+If this is a net-new asset, it may not be available in the preview yet.`)
+              })
+            }
+          },
+        ],
       }
     : {
         strategy: 'remote',
