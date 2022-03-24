@@ -290,6 +290,7 @@
       { "title": "Overview", "path": "releases" },
       { "title": "2022", "routes": [
           { "title": "Overview", "path": "releases/2022" },
+          { "title": "v202203-1", "path": "releases/2022/v202203-1" },
           { "title": "v202202-1", "path": "releases/2022/v202202-1" },
           { "title": "v202201-2", "path": "releases/2022/v202201-2" },
           { "title": "v202201-1", "path": "releases/2022/v202201-1" }

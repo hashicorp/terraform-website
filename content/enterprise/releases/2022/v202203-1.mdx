@@ -1,0 +1,38 @@
+---
+page_title: Releases - Terraform Enterprise
+---
+
+# TFE Release v202203-1 (607)
+
+## UPCOMING DEPRECATION NOTICES:
+
+The Terraform Enterprise April 2022 release will:
+
+1. Remove the [demo operational mode](https://www.terraform.io/enterprise/before-installing#operational-mode-decision), which is also known as the proof of concept (PoC) operational mode. The mounted disk operational mode will replace the demo operational mode for both non-production and production Terraform Enterprise environments. To check which mode your installation is using, run `replicatedctl app-config export --template '{{ .installation_type.Value }}'`. The value `poc` indicates that your installation is using the demo operational mode. The April 2022 release notes will contain more information about how to migrate.
+1. Update the names of containers, which may break container monitoring or custom tooling that identifies containers by name. The April 2022 release notes will explain these name changes in more detail and provide a complete list of old and new container names.
+1. Change the default value of [`restrict_worker_metadata_access`](https://www.terraform.io/enterprise/install/automated/automating-the-installer#restrict_worker_metadata_access) to 1 (true) instead of 0 (false). If you rely on the instance metadata endpoint and make use of its instance profile, you must explicitly set the `restrict_worker_metadata_access` configuration flag in `replicated.conf` to 0.
+
+## APPLICATION LEVEL BREAKING CHANGES:
+
+The minimum required Replicated version is now 2.53.4. Airgap customers can visit this URL to download the latest Replicated version: [https://install.terraform.io/airgap/latest.tar.gz](https://install.terraform.io/airgap/latest.tar.gz).
+
+## APPLICATION LEVEL FEATURES:
+
+1. Added the ability to [archive configuration versions](https://www.terraform.io/cloud-docs/workspaces/configurations#archiving-configuration-versions) either automatically or manually in order to free up storage space and limit the amount of sensitive data stored in Terraform Enterprise.
+1. Improved the performance and reliability when destroying large workspaces.
+1. Added support to [publish private providers](/cloud-docs/registry/publish-providers) in the Terraform Cloud private registry. Once you have published a private provider through the API, members of your organization can search for it in the private registry UI and use it in configurations.
+1. Added API endpoints to the Terraform Cloud API for [downloading configuration versions](https://www.terraform.io/cloud-docs/api-docs/configuration-versions#download-configuration-files). A configuration version is a resource used to reference the uploaded configuration files that are associated with the Terraform runs.
+1. Added [Variable Sets](https://www.terraform.io/cloud-docs/api-docs/variable-sets) which let you reuse the same variables across multiple workspaces. For example, you could define a variable set of provider credentials and automatically apply it to all of the workspaces using that provider. .
+1. Added html and/or plain-text email format support to all account-related emails that are sent to users on behalf of TFE.
+
+## APPLICATION LEVEL BUG FIXES:
+
+1. Fixed response code for JSON parse errors as parse failures should result in 400 Bad Request responses to clients.
+1. Fixed API dasherizing state output keys when the top level output type is an array containing maps.
+1. Fixed 500 error when fetching admin organization that does not exist.
+1. Fixed syntax error when setting a Terraform variable to `null`.
+1. Fixed Tag creation dates that are now displayed correctly.
+
+## APPLICATION LEVEL SECURITY FIXES:
+
+Ongoing container updates to address reported vulnerabilities in underlying packages / dependencies, including OpenSSL-related [CVE-2022-0778](https://nvd.nist.gov/vuln/detail/CVE-2022-0778).
