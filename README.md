@@ -48,20 +48,20 @@ Docs live in a couple different repos. (**To find a page the easy way:** view it
 
   **Notable branches:** `master` is the "live" content that gets deployed to [terraform.io](https://terraform.io). The site gets redeployed for new commits to master.
 
-- [hashicorp/terraform][https://github.com/hashicorp/terraform], under `website/docs`:
+- [hashicorp/terraform](https://github.com/hashicorp/terraform), under `website/docs`:
 
   - Terraform CLI docs
   - Terraform Language docs
 
   **Notable branches:** `stable-website` is the "live" content that gets deployed to [terraform.io](https://terraform.io), but docs changes should get merged to `main` (and/or one of the long-lived version branches) first. See [More About `stable-website`][#more-about-stable-website] below for more details.
 
-- [hashicorp/terraform-cdk][https://github.com/hashicorp/terraform-cdk], under `website/docs`:
+- [hashicorp/terraform-cdk](https://github.com/hashicorp/terraform-cdk), under `website/docs`:
 
   - Terraform CDK docs
 
   **Notable branches:** `stable-website` is the "live" content that gets deployed to [terraform.io](https://terraform.io), but docs changes should get merged to `main` first. See [More About `stable-website`][#more-about-stable-website] below for more details.
 
-## Deploying Changes to [terraform.io][https://terraform.io]
+## Deploying Changes to [terraform.io](https://terraform.io)
 
 ### For changes in this repo
 
