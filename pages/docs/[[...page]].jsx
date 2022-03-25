@@ -28,6 +28,7 @@ export async function getStaticPaths() {
   const paths = await generateStaticPaths({
     navDataFile: NAV_DATA,
     localContentDir: CONTENT_DIR,
+    product: PRODUCT,
   })
   return { paths, fallback: false }
 }
