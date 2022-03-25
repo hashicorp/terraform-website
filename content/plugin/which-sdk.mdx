@@ -16,24 +16,9 @@ This guide will help you decide whether you should continue using SDKv2, or begi
 
 ## Are You Writing a New Provider or Maintaining an Existing Provider?
 
-If you maintain a large existing provider, we recommend that you continue using
-SDKv2 to develop new resources and data sources. We are actively working on
-[terraform-plugin-mux](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux)
-support for the framework, which will eventually allow you to use the framework
-to build resources into an SDKv2 provider.
+If you maintain a large existing provider, we recommend that you begin migrating from SDKv2 to the framework by developing new resources and data sources with the framework. You can use [terraform-plugin-mux](/plugin/mux) to refactor the provider over time. Refer to the [Migrate to Terraform Plugin Framework](/plugin/sdkv2/sdkv2-intro#migrate-to-terraform-plugin-framework) documentation for more details.
 
-If you are developing a greenfield provider, you should consider building it
-with the framework.
-
-## Do You Need to Support Users Not On Terraform CLI v1.0 Yet?
-
-If you support user bases that have not upgraded to Terraform CLI v1.0 in
-significant numbers, we recommend that you continue using SDKv2. The framework
-is built on Terraform protocol version 6, and Terraform could not download
-providers using protocol version 6 until Terraform CLI v1.0.
-
-If you do not have a user base or your user base has mostly upgraded to v1.0,
-the framework may be appropriate.
+If you are developing a new provider, you should consider building it entirely with the framework.
 
 ## Do You Have Bandwidth to Track and Resolve Breaking Changes?
 

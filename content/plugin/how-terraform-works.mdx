@@ -111,6 +111,38 @@ the correct subdirectories under `.terraform/providers/` (the automatic download
 directory); if any acceptable version of a given provider is installed
 elsewhere, `terraform init -upgrade` will not download a newer version of it.
 
+## Terraform Plugin Protocol
+
+The Terraform Plugin Protocol is a versioned interface between Terraform CLI and Terraform Plugins.
+
+During [discovery](#discovery), the Terraform Registry uses the protocol version as additional compatibility metadata when deciding which plugin versions Terraform CLI can select. You can configure this metadata in the [Terraform Registry manifest file](/registry/providers/publishing#terraform-registry-manifest-file) when you create a plugin release.
+
+Major versions of the protocol delineate Terraform CLI and Terraform Plugin compatibility. Minor versions of the protocol are additive. The protocol is implemented in [Protocol Buffers](https://developers.google.com/protocol-buffers) and [gRPC](https://grpc.io/), with the canonical source for protocol definitions located in the [Terraform CLI repository](https://github.com/hashicorp/terraform/tree/main/docs/plugin-protocol).
+
+### Protocol Version 6
+
+Protocol version 6 is compatible with Terraform CLI version 1.0 and later. Protocol version 6 includes all version 5 functionality for providers, plus:
+
+* **Nested Attributes**: You can define `SchemaAttribute` with the `NestedType` field. This enables complex schemas using [argument syntax](/language/syntax/configuration#arguments) instead of [block syntax](/language/syntax/configuration#blocks) and is preferred going forward.
+
+Implementations include:
+
+* [terraform-plugin-framework](/plugin/framework): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
+* [terraform-plugin-go tf6server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server): A lower-level SDK to develop Terraform providers for more advanced use cases.
+* [tf5to6server](/plugin/mux/translating-protocol-version-5-to-6): A package to translate protocol version 5 providers into protocol version 6.
+* [tf6muxserver](/plugin/mux/combining-protocol-version-6-providers): A package to combine multiple protocol version 6 providers.
+
+### Protocol Version 5
+
+Protocol version 5 is compatible with Terraform CLI version 0.12 and later.
+
+Implementations include:
+
+* [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
+* [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): A lower-level SDK to develop Terraform providers for more advanced use cases.
+* [tf6to5server](/plugin/mux/translating-protocol-version-6-to-5): A package to translate protocol version 6 providers into protocol version 5.
+* [tf5muxserver](/plugin/mux/combining-protocol-version-5-providers): A package to combine multiple protocol version 5 providers.
+
 [0]: https://en.wikipedia.org/wiki/Static_build#Static_building
 
 [1]: https://golang.org/

@@ -1,0 +1,127 @@
+---
+page_title: 'Plugin Development - Combining Protocol Version 5 Providers'
+description: >-
+  Use the tf5muxserver package in terraform-plugin-mux to combine protocol version 5 providers.
+---
+
+# Combining Protocol Version 5 Providers
+
+The [`tf5muxserver`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5muxserver) package enables combining any number of [protocol version 5 provider servers](/plugin/how-terraform-works#protocol-version-5) into a single server.
+
+Use this package to:
+
+* Support multiple development teams across separate codebases.
+* Support multiple provider SDK implementations. For example, you could downgrade an existing [terraform-plugin-framework](/plugin/framework) provider to protocol version 5 and then combine it with one or more providers built with [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro).
+
+## Compatibility
+
+Protocol version 5 provider servers are compatible with Terraform CLI 0.12 and later.
+
+The following provider server implementations are supported:
+
+* [terraform-plugin-sdk/v2](/plugin/sdkv2/sdkv2-intro): A higher-level SDK that makes Terraform provider development easier by abstracting implementation details.
+* [terraform-plugin-go tf5server](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server): A lower-level SDK to develop Terraform providers for more advanced use cases.
+* [tf6to5server](/plugin/mux/translating-protocol-version-6-to-5): A package to translate protocol version 6 providers into protocol version 5.
+
+## Requirements
+
+To be combined, provider servers must meet the following requirements:
+
+* All provider schemas must match.
+* All provider meta schemas must match.
+* Only one provider may implement each resource and data source.
+
+If publishing to the [Terraform Registry](/registry), set `metadata.protocol_versions` to `["5.0"]` in the [Terraform Registry manifest file](https://www.terraform.io/registry/providers/publishing#terraform-registry-manifest-file).
+
+## Code Implementation
+
+Use the [`tf5muxserver.NewMuxServer()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-mux/tf5muxserver#NewMuxServer) function to create a combined provider server. Most providers implement this method in the provider `main()` function of the root directory `main.go` file or within a shared internal package to enable [testing for the combined provider](#testing-implementation). You can use [`tf5server.WithManagedDebug()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server#WithManagedDebug) to enable debugger support.
+
+The following example implements `tf5muxserver.NewMuxServer()` in a  `main()` function.
+
+```go
+package main
+
+import (
+	"context"
+	"flag"
+	"log"
+
+	"github.com/example/terraform-provider-example/internal/provider1"
+	"github.com/example/terraform-provider-example/internal/provider2"
+	"github.com/hashicorp/terraform-plugin-go/tfprotov5"
+	"github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server"
+	"github.com/hashicorp/terraform-plugin-mux/tf5muxserver"
+)
+
+var (
+	// Version can be updated by goreleaser on release
+	version string = "dev"
+)
+
+func main() {
+	debugFlag := flag.Bool("debug", false, "Start provider in debug mode.")
+	flag.Parse()
+
+	ctx := context.Background()
+	providers := []func() tfprotov5.ProviderServer{
+		// Example terraform-plugin-sdk/v2 providers
+		provider1.New(version)().GRPCProvider,
+		provider2.New(version)().GRPCProvider,
+	}
+
+	muxServer, err := tf5muxserver.NewMuxServer(ctx, providers...)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var serveOpts []tf5server.ServeOpt
+
+	if *debugFlag {
+		serveOpts = append(serveOpts, tf5server.WithManagedDebug())
+	}
+
+	err = tf5server.Serve(
+		"registry.terraform.io/example/example",
+		muxServer.ProviderServer,
+		serveOpts...,
+	)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
+## Testing Implementation
+
+You can test individual providers using the same [acceptance tests](/plugin/sdkv2/testing/acceptance-tests) as before. Set the [`ProtoV5ProviderFactories` field of `TestCase`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource#TestCase.ProtoV5ProviderFactories) to use the acceptance testing framework available in [terraform-provider-sdk/v2/helper/resource](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource). 
+
+The following example uses the acceptance testing framework to create a test for two providers.
+
+```go
+resource.Test(t, resource.TestCase{
+	// ... other TestCase fields ...
+	ProtoV5ProviderFactories: map[string]func() (tfprotov5.ProviderServer, error) {
+		"example": func() (tfprotov5.ProviderServer, error) {
+			ctx := context.Background()
+			providers := []func() tfprotov5.ProviderServer{
+				// Example terraform-plugin-sdk/v2 providers
+				provider1.New(version)().GRPCProvider,
+				provider2.New(version)().GRPCProvider,
+			}
+
+			muxServer, err := tf5muxserver.NewMuxServer(ctx, providers...)
+
+			if err != nil {
+				return nil, err
+			}
+
+			return muxServer.ProviderServer(), nil
+		},
+	},
+})
+```
+
+Refer to the [acceptance tests](/plugin/sdkv2/testing/acceptance-tests) documentation for more details.
