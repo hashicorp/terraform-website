@@ -67,7 +67,6 @@
   "scripts": {
     "build": "next build",
     "build:deploy-preview": "npx ts-node --transpile-only ./scripts/content-repo-preview/build.ts",
-    "postbuild": "echo 'at postbuild' && echo $(pwd)",
     "update-submodules": "git submodule update --init --recursive",
     "cypress": "cypress open",
     "format": "next-hashicorp format",
